@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 400)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 410)];
     [self.view addSubview:drawView];
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];

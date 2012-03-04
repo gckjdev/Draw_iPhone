@@ -33,7 +33,7 @@
 - (void)play
 {
     _status = Playing;
-    _paintPosition = CGPointMake(0, 0);
+    _paintPosition = CGPointMake(0, -1);
     
     [self setDrawEnabled:NO];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
@@ -74,6 +74,7 @@
 - (void)setDrawEnabled:(BOOL)drawEnabled
 {
     pan.enabled = drawEnabled;
+    tap.enabled = drawEnabled;
 }
 
 #pragma mark Gesture Handler
@@ -106,6 +107,19 @@
     }
 }
 
+- (void) performTap:(UITapGestureRecognizer *)tapGestuereReconizer
+{
+    
+    if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint point = [tapGestuereReconizer locationInView:self];
+        currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];
+        [self.paintList addObject:currentPaint];
+        [currentPaint release];
+        [self addPoint:point toPaint:currentPaint];
+    }
+}
+
 #pragma mark Gesture Delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -132,6 +146,10 @@
         [self addGestureRecognizer:pan];
         [pan release];
         
+        tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTap:)];
+        [self addGestureRecognizer:tap];
+        [tap release];
+        
     }
     return self;
 }
@@ -155,13 +173,25 @@
     for (Paint *paint in self.paintList) {
         CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
         CGContextSetLineWidth(context, paint.width);
+        
         for (int i = 0; i < [paint pointCount]; ++ i) {
-                        
             CGPoint point = [paint pointAtIndex:i];
-            if (i == 0) {
-                CGContextMoveToPoint(context, point.x, point.y);   
+            if ([paint pointCount] == 1) {
+                //if tap gesture, draw a circle
+                CGContextSetFillColorWithColor(context, paint.color.CGColor);
+                CGFloat r = paint.width / 2;
+                CGFloat x = point.x - r;
+                CGFloat y = point.y - r;
+                CGFloat width = paint.width;
+                CGRect rect = CGRectMake(x, y, width, width);
+                CGContextFillEllipseInRect(context, rect);
             }else{
-                CGContextAddLineToPoint(context, point.x, point.y);
+                //if is pan gesture, draw a line.
+                if (i == 0) {
+                    CGContextMoveToPoint(context, point.x, point.y);   
+                }else{
+                    CGContextAddLineToPoint(context, point.x, point.y);
+                }
             }
             if (self.status == Playing && k == _paintPosition.x && i == _paintPosition.y) {
                 CGContextStrokePath(context);            

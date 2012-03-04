@@ -20,7 +20,8 @@ typedef enum{
     NSMutableArray *_paintList;
     Paint *currentPaint;
     UIPanGestureRecognizer *pan;
-    
+    UITapGestureRecognizer *tap;
+
     CGFloat _lineWidth;
     UIColor* _lineColor;    
 
