@@ -17,7 +17,6 @@
 @synthesize lineColor = _lineColor;
 @synthesize lineWidth = _lineWidth;
 @synthesize status = _status;
-@synthesize paintPosition = _paintPosition;
 @synthesize playSpeed= _playSpeed;
 
 

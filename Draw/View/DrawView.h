@@ -33,7 +33,6 @@ typedef enum{
 @property(nonatomic, assign) CGFloat lineWidth;
 @property(nonatomic, retain) UIColor* lineColor;
 @property(nonatomic, readonly) DrawViewStatus status; //default is Drawing
-@property(nonatomic, assign) CGPoint paintPosition;
 @property(nonatomic, assign) CGFloat playSpeed; //default is 1/30.0;
 
 - (void)clear;
