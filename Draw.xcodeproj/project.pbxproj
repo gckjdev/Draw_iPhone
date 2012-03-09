@@ -192,6 +192,12 @@
 		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
 		CA1041E71509B6E700F60C03 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041DC1509B6E700F60C03 /* DrawView.m */; };
 		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
+		CA1041F81509BC9700F60C03 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
+		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
+		CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041FB1509BF4700F60C03 /* RegisterUserController.m */; };
+		CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */; };
+		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
+		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -577,6 +583,15 @@
 		CA1041DC1509B6E700F60C03 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
 		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
+		CA1041F51509BC9700F60C03 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		CA1041F61509BC9700F60C03 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
+		CA1041F71509BC9700F60C03 /* HomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
+		CA1041FA1509BF4700F60C03 /* RegisterUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserController.h; sourceTree = "<group>"; };
+		CA1041FB1509BF4700F60C03 /* RegisterUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserController.m; sourceTree = "<group>"; };
+		CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterUserController.xib; sourceTree = "<group>"; };
+		CA1041FF1509C06E00F60C03 /* RoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomController.h; sourceTree = "<group>"; };
+		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
+		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1635,6 +1650,9 @@
 		CA1041E01509B6E700F60C03 /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				CA1041FF1509C06E00F60C03 /* RoomController.h */,
+				CA1042001509C06E00F60C03 /* RoomController.m */,
+				CA1042011509C06E00F60C03 /* RoomController.xib */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -1642,6 +1660,9 @@
 		CA1041E11509B6E700F60C03 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				CA1041FA1509BF4700F60C03 /* RegisterUserController.h */,
+				CA1041FB1509BF4700F60C03 /* RegisterUserController.m */,
+				CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -1658,13 +1679,6 @@
 			children = (
 			);
 			path = Select;
-			sourceTree = "<group>";
-		};
-		CA1041E41509B6E700F60C03 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		CA1041E81509B99A00F60C03 /* Draw */ = {
@@ -1695,6 +1709,16 @@
 			children = (
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		CA1041F41509BC8700F60C03 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CA1041F51509BC9700F60C03 /* HomeController.h */,
+				CA1041F61509BC9700F60C03 /* HomeController.m */,
+				CA1041F71509BC9700F60C03 /* HomeController.xib */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		CA745D131503B1B400600024 = {
@@ -1790,6 +1814,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA1041F41509BC8700F60C03 /* Home */,
 				CA1041D51509B6E700F60C03 /* Common */,
 				CA1041D61509B6E700F60C03 /* Draw */,
 				CA1041DD1509B6E700F60C03 /* Shop */,
@@ -1799,7 +1824,6 @@
 				CA1041E11509B6E700F60C03 /* Registration */,
 				CA1041E21509B6E700F60C03 /* SelectWord */,
 				CA1041E31509B6E700F60C03 /* Select */,
-				CA1041E41509B6E700F60C03 /* Home */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1871,6 +1895,9 @@
 /* Begin PBXProject section */
 		CA745D151503B1B400600024 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = CA745D181503B1B400600024 /* Build configuration list for PBXProject "Draw" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -1916,6 +1943,9 @@
 				CA10417A1509A9FF00F60C03 /* Source.zip in Resources */,
 				CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */,
 				CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */,
+				CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */,
+				CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */,
+				CA1042031509C06E00F60C03 /* RoomController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2111,6 +2141,9 @@
 				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
 				CA1041E71509B6E700F60C03 /* DrawView.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
+				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
+				CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */,
+				CA1042021509C06E00F60C03 /* RoomController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
