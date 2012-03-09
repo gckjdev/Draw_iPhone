@@ -188,6 +188,10 @@
 		CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040CD1509A9FD00F60C03 /* UIToolbar+TKCategory.m */; };
 		CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040CF1509A9FD00F60C03 /* UIView+TKCategory.m */; };
 		CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
+		CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041D81509B6E700F60C03 /* DrawViewController.m */; };
+		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
+		CA1041E71509B6E700F60C03 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041DC1509B6E700F60C03 /* DrawView.m */; };
+		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -201,10 +205,6 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
-		CAECE02F1503B29800BC2404 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAECE02D1503B29800BC2404 /* DrawViewController.m */; };
-		CAECE0301503B29800BC2404 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAECE02E1503B29800BC2404 /* DrawViewController.xib */; };
-		CAECE0331503B2DE00BC2404 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAECE0321503B2DE00BC2404 /* DrawView.m */; };
-		CAECE0361503B37D00BC2404 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAECE0351503B37D00BC2404 /* Paint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -570,6 +570,13 @@
 		CA1040CE1509A9FD00F60C03 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
 		CA1040CF1509A9FD00F60C03 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapkuLibrary.bundle; sourceTree = "<group>"; };
+		CA1041D71509B6E700F60C03 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
+		CA1041D81509B6E700F60C03 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
+		CA1041D91509B6E700F60C03 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
+		CA1041DB1509B6E700F60C03 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		CA1041DC1509B6E700F60C03 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
+		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -587,13 +594,6 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
-		CAECE02C1503B29800BC2404 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
-		CAECE02D1503B29800BC2404 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
-		CAECE02E1503B29800BC2404 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		CAECE0311503B2DE00BC2404 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		CAECE0321503B2DE00BC2404 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
-		CAECE0341503B37D00BC2404 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
-		CAECE0351503B37D00BC2404 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -642,6 +642,8 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA1041ED1509B9AB00F60C03 /* Common */,
+				CA1041EE1509B9AB00F60C03 /* User */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1582,6 +1584,119 @@
 			path = TapkuLibrary;
 			sourceTree = "<group>";
 		};
+		CA1041D51509B6E700F60C03 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CA1041D61509B6E700F60C03 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
+				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
+				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
+				CA1041DA1509B6E700F60C03 /* View */,
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
+		CA1041DA1509B6E700F60C03 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA1041DB1509B6E700F60C03 /* DrawView.h */,
+				CA1041DC1509B6E700F60C03 /* DrawView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA1041DD1509B6E700F60C03 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		CA1041DE1509B6E700F60C03 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		CA1041DF1509B6E700F60C03 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		CA1041E01509B6E700F60C03 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		CA1041E11509B6E700F60C03 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		CA1041E21509B6E700F60C03 /* SelectWord */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SelectWord;
+			sourceTree = "<group>";
+		};
+		CA1041E31509B6E700F60C03 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
+		CA1041E41509B6E700F60C03 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CA1041E81509B99A00F60C03 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				CA1041E91509B99A00F60C03 /* Paint.h */,
+				CA1041EA1509B99A00F60C03 /* Paint.m */,
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
+		CA1041EB1509B99A00F60C03 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		CA1041ED1509B9AB00F60C03 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CA1041EE1509B9AB00F60C03 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -1675,9 +1790,16 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CAECE02C1503B29800BC2404 /* DrawViewController.h */,
-				CAECE02D1503B29800BC2404 /* DrawViewController.m */,
-				CAECE02E1503B29800BC2404 /* DrawViewController.xib */,
+				CA1041D51509B6E700F60C03 /* Common */,
+				CA1041D61509B6E700F60C03 /* Draw */,
+				CA1041DD1509B6E700F60C03 /* Shop */,
+				CA1041DE1509B6E700F60C03 /* Feedback */,
+				CA1041DF1509B6E700F60C03 /* Share */,
+				CA1041E01509B6E700F60C03 /* Room */,
+				CA1041E11509B6E700F60C03 /* Registration */,
+				CA1041E21509B6E700F60C03 /* SelectWord */,
+				CA1041E31509B6E700F60C03 /* Select */,
+				CA1041E41509B6E700F60C03 /* Home */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1692,8 +1814,8 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CAECE0341503B37D00BC2404 /* Paint.h */,
-				CAECE0351503B37D00BC2404 /* Paint.m */,
+				CA1041E81509B99A00F60C03 /* Draw */,
+				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1701,8 +1823,6 @@
 		CAECE02A1503B25500BC2404 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CAECE0311503B2DE00BC2404 /* DrawView.h */,
-				CAECE0321503B2DE00BC2404 /* DrawView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1781,7 +1901,6 @@
 			files = (
 				CA745D2D1503B1B500600024 /* InfoPlist.strings in Resources */,
 				CA745D361503B1B500600024 /* MainWindow.xib in Resources */,
-				CAECE0301503B29800BC2404 /* DrawViewController.xib in Resources */,
 				CA103EA81509A56200F60C03 /* donedown.png in Resources */,
 				CA103EA91509A56200F60C03 /* doneup.png in Resources */,
 				CA103EAB1509A56200F60C03 /* TestPPViewController.xib in Resources */,
@@ -1796,6 +1915,7 @@
 				CA10416F1509A9FF00F60C03 /* README.txt in Resources */,
 				CA10417A1509A9FF00F60C03 /* Source.zip in Resources */,
 				CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */,
+				CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1833,9 +1953,6 @@
 			files = (
 				CA745D301503B1B500600024 /* main.m in Sources */,
 				CA745D331503B1B500600024 /* DrawAppDelegate.m in Sources */,
-				CAECE02F1503B29800BC2404 /* DrawViewController.m in Sources */,
-				CAECE0331503B2DE00BC2404 /* DrawView.m in Sources */,
-				CAECE0361503B37D00BC2404 /* Paint.m in Sources */,
 				CA103EA01509A56200F60C03 /* CommonService.m in Sources */,
 				CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */,
 				CA103EA21509A56200F60C03 /* PPApplication.m in Sources */,
@@ -1991,6 +2108,9 @@
 				CA1041AA1509A9FF00F60C03 /* UIScrollview+TKCategory.m in Sources */,
 				CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */,
 				CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */,
+				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
+				CA1041E71509B6E700F60C03 /* DrawView.m in Sources */,
+				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
