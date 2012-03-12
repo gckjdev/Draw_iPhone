@@ -8,8 +8,8 @@ option java_outer_classname = "GameMessageProtos";
 
 message JoinGameRequest {
   required string userId = 1;                  // 用户ID
-  required string gameId = 2;                 // 游戏ID，比如你画我猜为：draw
-  optional int32  autoNew=3 [default=0];        // 没有合适的游戏加入，则自动创建一个新的
+  required string gameId = 2;                  // 游戏ID，比如你画我猜为：draw
+  optional int32  autoNew=3 [default=0];       // 没有合适的游戏加入，则自动创建一个新的
 
 }
 
@@ -20,23 +20,26 @@ message JoinGameResponse {
 
 
 
+enum GameCommandType {
+  JOIN_GAME = 1;
+}
 
 message GameRequest {
 
-  enum CommandType {
-    JOIN_GAME = 1;
-  }
-
   required CommandType command = 1;
-  required int32 messageId = 2;                            // 唯一标识，每个客户端唯一，用于请求／响应对应
+  required int32 messageId = 2;                 // 唯一标识，每个客户端唯一，用于请求／响应对应
   
   optional JoinGameRequest joinGameRequest = 11;
 
 }
 
+enum GameResultCode {
+  SUCCESS = 0;
+}
+
 message GameResponse{
   required int32 messageId = 1;                 // 和请求消息对应的消息ID
-  required int32 resultCode = 2 [default=0];                    // 响应结果，0为成功
+  required int32 resultCode = 2 [default=0];    // 响应结果，0为成功
   
   optional JoinGameResponse joinGameResponse = 11;
   

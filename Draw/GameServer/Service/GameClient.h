@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "CommonNetworkClient.h"
 
-@interface GameClient : CommonNetworkClient
+@interface GameClient : CommonNetworkClient<CommonNetworkClientDelegate>
+
++ (GameClient*)defaultInstance;
+- (void)start:(NSString*)serverAddress port:(int)port;
 
 @end

@@ -9,6 +9,7 @@
 #import "DrawAppDelegate.h"
 
 #import "DrawViewController.h"
+#import "GameClient.h"
 
 @implementation DrawAppDelegate
 
@@ -20,6 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Start Game Client
+    [[GameClient defaultInstance] start:@"127.0.0.1" port:8080];
      
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
