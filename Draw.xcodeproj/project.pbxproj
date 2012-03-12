@@ -213,6 +213,11 @@
 		CA96E26B150DD65800292335 /* GameClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26A150DD65800292335 /* GameClient.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
+		CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E275150DE8AA00292335 /* GameBasic.proto */; };
+		CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E34F150DFBFA00292335 /* GameMessage.proto */; };
+		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
+		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
+		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 /* End PBXBuildFile section */
@@ -224,6 +229,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = CA745D1D1503B1B400600024;
 			remoteInfo = Draw;
+		};
+		CA96E33F150DF27400292335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteInfo = ProtocolBuffers;
+		};
+		CA96E341150DF27400292335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7401C1A80F950347006D8281;
+			remoteInfo = UnitTests;
+		};
+		CA96E343150DF27400292335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9;
+			remoteInfo = CommandLineTests;
+		};
+		CA96E345150DF28E00292335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
+			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -619,6 +652,13 @@
 		CA96E26F150DE56400292335 /* GameSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionManager.h; sourceTree = "<group>"; };
 		CA96E270150DE56400292335 /* GameSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionManager.m; sourceTree = "<group>"; };
 		CA96E272150DE58500292335 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
+		CA96E275150DE8AA00292335 /* GameBasic.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameBasic.proto; sourceTree = "<group>"; };
+		CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = "<group>"; };
+		CA96E34F150DFBFA00292335 /* GameMessage.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameMessage.proto; sourceTree = "<group>"; };
+		CA96E35C150E107800292335 /* GameBasic.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBasic.pb.m; sourceTree = "<group>"; };
+		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
+		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
+		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -629,6 +669,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
@@ -1758,6 +1799,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */,
 				CA103F391509A72100F60C03 /* MobileCoreServices.framework */,
 				CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */,
 				CA103F351509A71000F60C03 /* AVFoundation.framework */,
@@ -1829,6 +1871,7 @@
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
+				CA96E273150DE87A00292335 /* ProtocolBuffer */,
 				CA96E265150DD63900292335 /* Manager */,
 				CA96E266150DD63900292335 /* Service */,
 				CA96E267150DD63900292335 /* Model */,
@@ -1870,6 +1913,37 @@
 				CA96E272150DE58500292335 /* GameConstants.h */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CA96E273150DE87A00292335 /* ProtocolBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				CA96E274150DE87A00292335 /* Gen */,
+				CA96E275150DE8AA00292335 /* GameBasic.proto */,
+				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
+			);
+			path = ProtocolBuffer;
+			sourceTree = "<group>";
+		};
+		CA96E274150DE87A00292335 /* Gen */ = {
+			isa = PBXGroup;
+			children = (
+				CA96E35C150E107800292335 /* GameBasic.pb.m */,
+				CA96E35D150E107800292335 /* GameBasic.pb.h */,
+				CA96E35E150E107800292335 /* GameMessage.pb.m */,
+				CA96E35F150E107800292335 /* GameMessage.pb.h */,
+			);
+			path = Gen;
+			sourceTree = "<group>";
+		};
+		CA96E336150DF27300292335 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA96E340150DF27400292335 /* libProtocolBuffers.a */,
+				CA96E342150DF27400292335 /* UnitTests.octest */,
+				CA96E344150DF27400292335 /* CommandLineTests.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
@@ -1926,6 +2000,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CA96E346150DF28E00292335 /* PBXTargetDependency */,
 			);
 			name = Draw;
 			productName = Draw;
@@ -1974,6 +2049,12 @@
 			mainGroup = CA745D131503B1B400600024;
 			productRefGroup = CA745D1F1503B1B500600024 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CA96E336150DF27300292335 /* Products */;
+					ProjectRef = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CA745D1D1503B1B400600024 /* Draw */,
@@ -1981,6 +2062,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CA96E340150DF27400292335 /* libProtocolBuffers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libProtocolBuffers.a;
+			remoteRef = CA96E33F150DF27400292335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA96E342150DF27400292335 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = CA96E341150DF27400292335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA96E344150DF27400292335 /* CommandLineTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommandLineTests.app;
+			remoteRef = CA96E343150DF27400292335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA745D1C1503B1B400600024 /* Resources */ = {
@@ -2008,6 +2113,8 @@
 				CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */,
 				CA1042031509C06E00F60C03 /* RoomController.xib in Resources */,
 				CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */,
+				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
+				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2210,6 +2317,8 @@
 				CA96E26B150DD65800292335 /* GameClient.m in Sources */,
 				CA96E26E150DE4FD00292335 /* GameSession.m in Sources */,
 				CA96E271150DE56400292335 /* GameSessionManager.m in Sources */,
+				CA96E360150E107800292335 /* GameBasic.pb.m in Sources */,
+				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2228,6 +2337,11 @@
 			isa = PBXTargetDependency;
 			target = CA745D1D1503B1B400600024 /* Draw */;
 			targetProxy = CA745D461503B1B500600024 /* PBXContainerItemProxy */;
+		};
+		CA96E346150DF28E00292335 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = CA96E345150DF28E00292335 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2299,6 +2413,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
@@ -2313,6 +2428,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;

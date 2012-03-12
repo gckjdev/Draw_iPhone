@@ -1,0 +1,22 @@
+
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.gamebasic";
+option java_outer_classname = "GameBasicProtos";
+
+message PBGameUser {
+  required string userId = 1;                // 用户ID
+  required string nickName = 2;             // 用户昵称
+}
+
+message PBGameSession {
+  required string gameId = 1;               // 
+ required int32 sessionId = 2;       // 游戏会话ID
+  required string name = 3;                 // 本次游戏的名称（如房间名）
+  required string createBy = 4;              // 游戏创建者
+  required int32 createTime = 5;            // 游戏创建时间戳
+  optional string host = 6;                 // 游戏房间主人
+  repeated PBGameUser users = 7;                // 用户列表
+}
+
