@@ -9,7 +9,7 @@
 #import "DrawView.h"
 #import "Paint.h"
 
-#define DEFAULT_PLAY_SPEED (1/30.0)
+#define DEFAULT_PLAY_SPEED (1/40.0)
 
 @implementation DrawView
 @synthesize drawEnabled = _drawEnable;
@@ -36,10 +36,24 @@
     _paintPosition = CGPointMake(0, -1);
     
     [self setDrawEnabled:NO];
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
 }
 
 #pragma mark function called by player
+
+- (CGPoint)pointForPaintPosition:(CGPoint)position
+{
+    NSInteger x = position.x;
+    NSInteger y = position.y;
+    if (x < 0 || x >= [self.paintList count]) {
+        return ILLEGAL_POINT;
+    }
+    Paint *paint = [self.paintList objectAtIndex:x];
+    if (y < 0 || y >= [paint pointCount]) {
+        return ILLEGAL_POINT;
+    }
+    return [paint pointAtIndex:y];
+}
 
 - (BOOL)increasePaintPosition
 {
@@ -59,14 +73,21 @@
     }
     return NO;
 }
+
 - (void)nextFrame:(NSTimer *)theTimer;
 {
+    CGPoint lastPoint = [self pointForPaintPosition:_paintPosition];
     BOOL flag = [self increasePaintPosition];
     if (!flag) {
         [theTimer invalidate];
         theTimer = nil;
         _status = Drawing;
         return;
+    }
+    CGPoint currentPoint = [self pointForPaintPosition:_paintPosition];
+    if (![DrawUtils isIllegalPoint:lastPoint] && ![DrawUtils isIllegalPoint:currentPoint]) {
+        CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:currentPoint];
+        [self setNeedsDisplayInRect:rect];
     }
     [self setNeedsDisplay];
 }
@@ -81,8 +102,25 @@
 - (void)addPoint:(CGPoint)point toPaint:(Paint *)paint
 {
     if (paint) {
+        
+        CGPoint lastPoint = ILLEGAL_POINT;
+        if ([self.paintList count] != 0) {
+            Paint *paint = [self.paintList lastObject];
+            NSInteger index = paint.pointCount - 1;
+            if (index >= 0) {
+                lastPoint = [paint pointAtIndex:index];
+            }
+        }
+
         [paint addPoint:point];   
-        [self setNeedsDisplay];
+        if (![DrawUtils isIllegalPoint:lastPoint]) {
+            CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:point edgeWidth:_lineWidth];        
+
+            [self setNeedsDisplayInRect:rect];
+        }else{
+            [self setNeedsDisplay];
+        }
+        
     }
 
 }
@@ -136,7 +174,7 @@
 
         _status = Drawing;
         self.lineColor = [UIColor blackColor];
-        self.lineWidth = 2.0;
+        self.lineWidth = 5.0;
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _paintList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
@@ -169,10 +207,13 @@
 {
 
     CGContextRef context = UIGraphicsGetCurrentContext(); 
+    CGContextSetLineCap(context, kCGLineCapRound);
+
     int k = 0;
     for (Paint *paint in self.paintList) {
         CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
         CGContextSetLineWidth(context, paint.width);
+
         
         for (int i = 0; i < [paint pointCount]; ++ i) {
             CGPoint point = [paint pointAtIndex:i];
@@ -191,11 +232,13 @@
                     CGContextMoveToPoint(context, point.x, point.y);   
                 }else{
                     CGContextAddLineToPoint(context, point.x, point.y);
+                    CGContextSetLineJoin(context, kCGLineJoinRound);
+
                 }
             }
             if (self.status == Playing && k == _paintPosition.x && i == _paintPosition.y) {
                 CGContextStrokePath(context);            
-                [NSTimer scheduledTimerWithTimeInterval:1/30.0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                 return;
             }
         }
