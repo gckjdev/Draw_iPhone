@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonNetworkClient.h"
 
 @class DrawViewController;
 
-@interface DrawAppDelegate : NSObject <UIApplicationDelegate> {
+@interface DrawAppDelegate : NSObject <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
 }
 

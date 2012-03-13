@@ -7,6 +7,7 @@
 //
 
 #import "GameClient.h"
+#import "GameMessage.pb.h"
 
 @implementation GameClient
 
@@ -33,15 +34,24 @@ static GameClient* _defaultGameClient;
     [self connect:serverAddress port:port autoReconnect:YES];
 }
 
-#pragma CommonNetworkClientDelegate
 
-- (void)didConnected
-{
-}
 
-- (void)didBroken
+#pragma Methods
+
+- (void)sendJoinGameRequest:(NSString*)userId
 {
     
+    JoinGameRequest_Builder *joinGameRequestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    [joinGameRequestBuilder setUserId:userId];
+    [joinGameRequestBuilder setGameId:@""];
+
+    GameMessage_Builder *builder = [[[GameMessage_Builder alloc] init] autorelease];
+    [builder setCommand:GameCommandTypeJoinGameRequest];
+    [builder setMessageId:time(0)];
+    [builder setJoinGameRequest:[joinGameRequestBuilder build]];
+    
+    GameMessage* gameMessage = [builder build];
+    [self sendData:[gameMessage data]];
 }
 
 @end

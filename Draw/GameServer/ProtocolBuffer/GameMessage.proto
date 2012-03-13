@@ -3,7 +3,7 @@ import "GameBasic.proto";
 
 package game;
 
-option java_package = "com.orange.network.game.protocol.gamemessage";
+option java_package = "com.orange.network.game.protocol.message";
 option java_outer_classname = "GameMessageProtos";
 
 message JoinGameRequest {
@@ -13,34 +13,29 @@ message JoinGameRequest {
 
 }
 
-
 message JoinGameResponse {
   required PBGameSession gameSession = 1;
 }
 
 
-
 enum GameCommandType {
-  JOIN_GAME = 1;
-}
-
-message GameRequest {
-
-  required CommandType command = 1;
-  required int32 messageId = 2;                 // 唯一标识，每个客户端唯一，用于请求／响应对应
-  
-  optional JoinGameRequest joinGameRequest = 11;
-
+  JOIN_GAME_REQUEST = 1;
+  JOIN_GAME_RESPONSE = 2;
 }
 
 enum GameResultCode {
   SUCCESS = 0;
+  
+  ERROR_JOIN_GAME = 1;
 }
 
-message GameResponse{
-  required int32 messageId = 1;                 // 和请求消息对应的消息ID
-  required int32 resultCode = 2 [default=0];    // 响应结果，0为成功
+message GameMessage {
+  required GameCommandType command = 1;
+  required int32 messageId = 2;                             // 和请求消息对应的消息ID
+  optional GameResultCode resultCode = 3;                   // 响应结果，用于响应消息，0为成功
   
-  optional JoinGameResponse joinGameResponse = 11;
+  optional JoinGameRequest joinGameRequest = 11;
+  optional JoinGameResponse joinGameResponse = 12;
+  
   
 }

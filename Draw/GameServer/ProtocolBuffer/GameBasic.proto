@@ -2,7 +2,7 @@
 
 package game;
 
-option java_package = "com.orange.network.game.protocol.gamebasic";
+option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "GameBasicProtos";
 
 message PBGameUser {

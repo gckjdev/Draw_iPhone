@@ -4,10 +4,8 @@
 
 #import "GameBasic.pb.h"
 
-@class GameRequest;
-@class GameRequest_Builder;
-@class GameResponse;
-@class GameResponse_Builder;
+@class GameMessage;
+@class GameMessage_Builder;
 @class JoinGameRequest;
 @class JoinGameRequest_Builder;
 @class JoinGameResponse;
@@ -17,10 +15,18 @@
 @class PBGameUser;
 @class PBGameUser_Builder;
 typedef enum {
-  GameRequest_CommandTypeJoinGame = 1,
-} GameRequest_CommandType;
+  GameCommandTypeJoinGameRequest = 1,
+  GameCommandTypeJoinGameResponse = 2,
+} GameCommandType;
 
-BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value);
+BOOL GameCommandTypeIsValidValue(GameCommandType value);
+
+typedef enum {
+  GameResultCodeSuccess = 0,
+  GameResultCodeErrorJoinGame = 1,
+} GameResultCode;
+
+BOOL GameResultCodeIsValidValue(GameResultCode value);
 
 
 @interface GameMessageRoot : NSObject {
@@ -145,139 +151,91 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value);
 - (JoinGameResponse_Builder*) clearGameSession;
 @end
 
-@interface GameRequest : PBGeneratedMessage {
+@interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasMessageId_:1;
   BOOL hasJoinGameRequest_:1;
+  BOOL hasJoinGameResponse_:1;
   BOOL hasCommand_:1;
+  BOOL hasResultCode_:1;
   int32_t messageId;
   JoinGameRequest* joinGameRequest;
-  GameRequest_CommandType command;
+  JoinGameResponse* joinGameResponse;
+  GameCommandType command;
+  GameResultCode resultCode;
 }
 - (BOOL) hasCommand;
 - (BOOL) hasMessageId;
+- (BOOL) hasResultCode;
 - (BOOL) hasJoinGameRequest;
-@property (readonly) GameRequest_CommandType command;
+- (BOOL) hasJoinGameResponse;
+@property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
+@property (readonly) GameResultCode resultCode;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
+@property (readonly, retain) JoinGameResponse* joinGameResponse;
 
-+ (GameRequest*) defaultInstance;
-- (GameRequest*) defaultInstance;
++ (GameMessage*) defaultInstance;
+- (GameMessage*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameRequest_Builder*) builder;
-+ (GameRequest_Builder*) builder;
-+ (GameRequest_Builder*) builderWithPrototype:(GameRequest*) prototype;
+- (GameMessage_Builder*) builder;
++ (GameMessage_Builder*) builder;
++ (GameMessage_Builder*) builderWithPrototype:(GameMessage*) prototype;
 
-+ (GameRequest*) parseFromData:(NSData*) data;
-+ (GameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameRequest*) parseFromInputStream:(NSInputStream*) input;
-+ (GameRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (GameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameMessage*) parseFromData:(NSData*) data;
++ (GameMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameMessage*) parseFromInputStream:(NSInputStream*) input;
++ (GameMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameRequest_Builder : PBGeneratedMessage_Builder {
+@interface GameMessage_Builder : PBGeneratedMessage_Builder {
 @private
-  GameRequest* result;
+  GameMessage* result;
 }
 
-- (GameRequest*) defaultInstance;
+- (GameMessage*) defaultInstance;
 
-- (GameRequest_Builder*) clear;
-- (GameRequest_Builder*) clone;
+- (GameMessage_Builder*) clear;
+- (GameMessage_Builder*) clone;
 
-- (GameRequest*) build;
-- (GameRequest*) buildPartial;
+- (GameMessage*) build;
+- (GameMessage*) buildPartial;
 
-- (GameRequest_Builder*) mergeFrom:(GameRequest*) other;
-- (GameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameMessage_Builder*) mergeFrom:(GameMessage*) other;
+- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCommand;
-- (GameRequest_CommandType) command;
-- (GameRequest_Builder*) setCommand:(GameRequest_CommandType) value;
-- (GameRequest_Builder*) clearCommand;
+- (GameCommandType) command;
+- (GameMessage_Builder*) setCommand:(GameCommandType) value;
+- (GameMessage_Builder*) clearCommand;
 
 - (BOOL) hasMessageId;
 - (int32_t) messageId;
-- (GameRequest_Builder*) setMessageId:(int32_t) value;
-- (GameRequest_Builder*) clearMessageId;
+- (GameMessage_Builder*) setMessageId:(int32_t) value;
+- (GameMessage_Builder*) clearMessageId;
+
+- (BOOL) hasResultCode;
+- (GameResultCode) resultCode;
+- (GameMessage_Builder*) setResultCode:(GameResultCode) value;
+- (GameMessage_Builder*) clearResultCode;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;
-- (GameRequest_Builder*) setJoinGameRequest:(JoinGameRequest*) value;
-- (GameRequest_Builder*) setJoinGameRequestBuilder:(JoinGameRequest_Builder*) builderForValue;
-- (GameRequest_Builder*) mergeJoinGameRequest:(JoinGameRequest*) value;
-- (GameRequest_Builder*) clearJoinGameRequest;
-@end
-
-@interface GameResponse : PBGeneratedMessage {
-@private
-  BOOL hasMessageId_:1;
-  BOOL hasResultCode_:1;
-  BOOL hasJoinGameResponse_:1;
-  int32_t messageId;
-  int32_t resultCode;
-  JoinGameResponse* joinGameResponse;
-}
-- (BOOL) hasMessageId;
-- (BOOL) hasResultCode;
-- (BOOL) hasJoinGameResponse;
-@property (readonly) int32_t messageId;
-@property (readonly) int32_t resultCode;
-@property (readonly, retain) JoinGameResponse* joinGameResponse;
-
-+ (GameResponse*) defaultInstance;
-- (GameResponse*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameResponse_Builder*) builder;
-+ (GameResponse_Builder*) builder;
-+ (GameResponse_Builder*) builderWithPrototype:(GameResponse*) prototype;
-
-+ (GameResponse*) parseFromData:(NSData*) data;
-+ (GameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameResponse*) parseFromInputStream:(NSInputStream*) input;
-+ (GameResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (GameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (GameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface GameResponse_Builder : PBGeneratedMessage_Builder {
-@private
-  GameResponse* result;
-}
-
-- (GameResponse*) defaultInstance;
-
-- (GameResponse_Builder*) clear;
-- (GameResponse_Builder*) clone;
-
-- (GameResponse*) build;
-- (GameResponse*) buildPartial;
-
-- (GameResponse_Builder*) mergeFrom:(GameResponse*) other;
-- (GameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasMessageId;
-- (int32_t) messageId;
-- (GameResponse_Builder*) setMessageId:(int32_t) value;
-- (GameResponse_Builder*) clearMessageId;
-
-- (BOOL) hasResultCode;
-- (int32_t) resultCode;
-- (GameResponse_Builder*) setResultCode:(int32_t) value;
-- (GameResponse_Builder*) clearResultCode;
+- (GameMessage_Builder*) setJoinGameRequest:(JoinGameRequest*) value;
+- (GameMessage_Builder*) setJoinGameRequestBuilder:(JoinGameRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeJoinGameRequest:(JoinGameRequest*) value;
+- (GameMessage_Builder*) clearJoinGameRequest;
 
 - (BOOL) hasJoinGameResponse;
 - (JoinGameResponse*) joinGameResponse;
-- (GameResponse_Builder*) setJoinGameResponse:(JoinGameResponse*) value;
-- (GameResponse_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue;
-- (GameResponse_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value;
-- (GameResponse_Builder*) clearJoinGameResponse;
+- (GameMessage_Builder*) setJoinGameResponse:(JoinGameResponse*) value;
+- (GameMessage_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value;
+- (GameMessage_Builder*) clearJoinGameResponse;
 @end
 

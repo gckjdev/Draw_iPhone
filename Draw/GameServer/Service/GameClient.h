@@ -14,4 +14,6 @@
 + (GameClient*)defaultInstance;
 - (void)start:(NSString*)serverAddress port:(int)port;
 
+- (void)sendJoinGameRequest:(NSString*)userId;
+
 @end

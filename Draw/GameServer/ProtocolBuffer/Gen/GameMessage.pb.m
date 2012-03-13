@@ -20,6 +20,24 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL GameCommandTypeIsValidValue(GameCommandType value) {
+  switch (value) {
+    case GameCommandTypeJoinGameRequest:
+    case GameCommandTypeJoinGameResponse:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL GameResultCodeIsValidValue(GameResultCode value) {
+  switch (value) {
+    case GameResultCodeSuccess:
+    case GameResultCodeErrorJoinGame:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface JoinGameRequest ()
 @property (retain) NSString* userId;
 @property (retain) NSString* gameId;
@@ -484,13 +502,15 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
 }
 @end
 
-@interface GameRequest ()
-@property GameRequest_CommandType command;
+@interface GameMessage ()
+@property GameCommandType command;
 @property int32_t messageId;
+@property GameResultCode resultCode;
 @property (retain) JoinGameRequest* joinGameRequest;
+@property (retain) JoinGameResponse* joinGameResponse;
 @end
 
-@implementation GameRequest
+@implementation GameMessage
 
 - (BOOL) hasCommand {
   return !!hasCommand_;
@@ -506,6 +526,13 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   hasMessageId_ = !!value;
 }
 @synthesize messageId;
+- (BOOL) hasResultCode {
+  return !!hasResultCode_;
+}
+- (void) setHasResultCode:(BOOL) value {
+  hasResultCode_ = !!value;
+}
+@synthesize resultCode;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -513,29 +540,39 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   hasJoinGameRequest_ = !!value;
 }
 @synthesize joinGameRequest;
+- (BOOL) hasJoinGameResponse {
+  return !!hasJoinGameResponse_;
+}
+- (void) setHasJoinGameResponse:(BOOL) value {
+  hasJoinGameResponse_ = !!value;
+}
+@synthesize joinGameResponse;
 - (void) dealloc {
   self.joinGameRequest = nil;
+  self.joinGameResponse = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.command = GameRequest_CommandTypeJoinGame;
+    self.command = GameCommandTypeJoinGameRequest;
     self.messageId = 0;
+    self.resultCode = GameResultCodeSuccess;
     self.joinGameRequest = [JoinGameRequest defaultInstance];
+    self.joinGameResponse = [JoinGameResponse defaultInstance];
   }
   return self;
 }
-static GameRequest* defaultGameRequestInstance = nil;
+static GameMessage* defaultGameMessageInstance = nil;
 + (void) initialize {
-  if (self == [GameRequest class]) {
-    defaultGameRequestInstance = [[GameRequest alloc] init];
+  if (self == [GameMessage class]) {
+    defaultGameMessageInstance = [[GameMessage alloc] init];
   }
 }
-+ (GameRequest*) defaultInstance {
-  return defaultGameRequestInstance;
++ (GameMessage*) defaultInstance {
+  return defaultGameMessageInstance;
 }
-- (GameRequest*) defaultInstance {
-  return defaultGameRequestInstance;
+- (GameMessage*) defaultInstance {
+  return defaultGameMessageInstance;
 }
 - (BOOL) isInitialized {
   if (!self.hasCommand) {
@@ -549,6 +586,11 @@ static GameRequest* defaultGameRequestInstance = nil;
       return NO;
     }
   }
+  if (self.hasJoinGameResponse) {
+    if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -558,8 +600,14 @@ static GameRequest* defaultGameRequestInstance = nil;
   if (self.hasMessageId) {
     [output writeInt32:2 value:self.messageId];
   }
+  if (self.hasResultCode) {
+    [output writeEnum:3 value:self.resultCode];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
+  }
+  if (self.hasJoinGameResponse) {
+    [output writeMessage:12 value:self.joinGameResponse];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -576,55 +624,53 @@ static GameRequest* defaultGameRequestInstance = nil;
   if (self.hasMessageId) {
     size += computeInt32Size(2, self.messageId);
   }
+  if (self.hasResultCode) {
+    size += computeEnumSize(3, self.resultCode);
+  }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
+  }
+  if (self.hasJoinGameResponse) {
+    size += computeMessageSize(12, self.joinGameResponse);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (GameRequest*) parseFromData:(NSData*) data {
-  return (GameRequest*)[[[GameRequest builder] mergeFromData:data] build];
++ (GameMessage*) parseFromData:(NSData*) data {
+  return (GameMessage*)[[[GameMessage builder] mergeFromData:data] build];
 }
-+ (GameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameRequest*)[[[GameRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (GameMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameMessage*)[[[GameMessage builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (GameRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (GameRequest*)[[[GameRequest builder] mergeFromInputStream:input] build];
++ (GameMessage*) parseFromInputStream:(NSInputStream*) input {
+  return (GameMessage*)[[[GameMessage builder] mergeFromInputStream:input] build];
 }
-+ (GameRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameRequest*)[[[GameRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (GameMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameMessage*)[[[GameMessage builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (GameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (GameRequest*)[[[GameRequest builder] mergeFromCodedInputStream:input] build];
++ (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameMessage*)[[[GameMessage builder] mergeFromCodedInputStream:input] build];
 }
-+ (GameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameRequest*)[[[GameRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameMessage*)[[[GameMessage builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (GameRequest_Builder*) builder {
-  return [[[GameRequest_Builder alloc] init] autorelease];
++ (GameMessage_Builder*) builder {
+  return [[[GameMessage_Builder alloc] init] autorelease];
 }
-+ (GameRequest_Builder*) builderWithPrototype:(GameRequest*) prototype {
-  return [[GameRequest builder] mergeFrom:prototype];
++ (GameMessage_Builder*) builderWithPrototype:(GameMessage*) prototype {
+  return [[GameMessage builder] mergeFrom:prototype];
 }
-- (GameRequest_Builder*) builder {
-  return [GameRequest builder];
+- (GameMessage_Builder*) builder {
+  return [GameMessage builder];
 }
 @end
 
-BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
-  switch (value) {
-    case GameRequest_CommandTypeJoinGame:
-      return YES;
-    default:
-      return NO;
-  }
-}
-@interface GameRequest_Builder()
-@property (retain) GameRequest* result;
+@interface GameMessage_Builder()
+@property (retain) GameMessage* result;
 @end
 
-@implementation GameRequest_Builder
+@implementation GameMessage_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -632,34 +678,34 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[GameRequest alloc] init] autorelease];
+    self.result = [[[GameMessage alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (GameRequest_Builder*) clear {
-  self.result = [[[GameRequest alloc] init] autorelease];
+- (GameMessage_Builder*) clear {
+  self.result = [[[GameMessage alloc] init] autorelease];
   return self;
 }
-- (GameRequest_Builder*) clone {
-  return [GameRequest builderWithPrototype:result];
+- (GameMessage_Builder*) clone {
+  return [GameMessage builderWithPrototype:result];
 }
-- (GameRequest*) defaultInstance {
-  return [GameRequest defaultInstance];
+- (GameMessage*) defaultInstance {
+  return [GameMessage defaultInstance];
 }
-- (GameRequest*) build {
+- (GameMessage*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (GameRequest*) buildPartial {
-  GameRequest* returnMe = [[result retain] autorelease];
+- (GameMessage*) buildPartial {
+  GameMessage* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (GameRequest_Builder*) mergeFrom:(GameRequest*) other {
-  if (other == [GameRequest defaultInstance]) {
+- (GameMessage_Builder*) mergeFrom:(GameMessage*) other {
+  if (other == [GameMessage defaultInstance]) {
     return self;
   }
   if (other.hasCommand) {
@@ -668,16 +714,22 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
   if (other.hasMessageId) {
     [self setMessageId:other.messageId];
   }
+  if (other.hasResultCode) {
+    [self setResultCode:other.resultCode];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
+  }
+  if (other.hasJoinGameResponse) {
+    [self mergeJoinGameResponse:other.joinGameResponse];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (GameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (GameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -694,7 +746,7 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
       }
       case 8: {
         int32_t value = [input readEnum];
-        if (GameRequest_CommandTypeIsValidValue(value)) {
+        if (GameCommandTypeIsValidValue(value)) {
           [self setCommand:value];
         } else {
           [unknownFields mergeVarintField:1 value:value];
@@ -703,6 +755,15 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
       }
       case 16: {
         [self setMessageId:[input readInt32]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (GameResultCodeIsValidValue(value)) {
+          [self setResultCode:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
         break;
       }
       case 90: {
@@ -714,282 +775,7 @@ BOOL GameRequest_CommandTypeIsValidValue(GameRequest_CommandType value) {
         [self setJoinGameRequest:[subBuilder buildPartial]];
         break;
       }
-    }
-  }
-}
-- (BOOL) hasCommand {
-  return result.hasCommand;
-}
-- (GameRequest_CommandType) command {
-  return result.command;
-}
-- (GameRequest_Builder*) setCommand:(GameRequest_CommandType) value {
-  result.hasCommand = YES;
-  result.command = value;
-  return self;
-}
-- (GameRequest_Builder*) clearCommand {
-  result.hasCommand = NO;
-  result.command = GameRequest_CommandTypeJoinGame;
-  return self;
-}
-- (BOOL) hasMessageId {
-  return result.hasMessageId;
-}
-- (int32_t) messageId {
-  return result.messageId;
-}
-- (GameRequest_Builder*) setMessageId:(int32_t) value {
-  result.hasMessageId = YES;
-  result.messageId = value;
-  return self;
-}
-- (GameRequest_Builder*) clearMessageId {
-  result.hasMessageId = NO;
-  result.messageId = 0;
-  return self;
-}
-- (BOOL) hasJoinGameRequest {
-  return result.hasJoinGameRequest;
-}
-- (JoinGameRequest*) joinGameRequest {
-  return result.joinGameRequest;
-}
-- (GameRequest_Builder*) setJoinGameRequest:(JoinGameRequest*) value {
-  result.hasJoinGameRequest = YES;
-  result.joinGameRequest = value;
-  return self;
-}
-- (GameRequest_Builder*) setJoinGameRequestBuilder:(JoinGameRequest_Builder*) builderForValue {
-  return [self setJoinGameRequest:[builderForValue build]];
-}
-- (GameRequest_Builder*) mergeJoinGameRequest:(JoinGameRequest*) value {
-  if (result.hasJoinGameRequest &&
-      result.joinGameRequest != [JoinGameRequest defaultInstance]) {
-    result.joinGameRequest =
-      [[[JoinGameRequest builderWithPrototype:result.joinGameRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.joinGameRequest = value;
-  }
-  result.hasJoinGameRequest = YES;
-  return self;
-}
-- (GameRequest_Builder*) clearJoinGameRequest {
-  result.hasJoinGameRequest = NO;
-  result.joinGameRequest = [JoinGameRequest defaultInstance];
-  return self;
-}
-@end
-
-@interface GameResponse ()
-@property int32_t messageId;
-@property int32_t resultCode;
-@property (retain) JoinGameResponse* joinGameResponse;
-@end
-
-@implementation GameResponse
-
-- (BOOL) hasMessageId {
-  return !!hasMessageId_;
-}
-- (void) setHasMessageId:(BOOL) value {
-  hasMessageId_ = !!value;
-}
-@synthesize messageId;
-- (BOOL) hasResultCode {
-  return !!hasResultCode_;
-}
-- (void) setHasResultCode:(BOOL) value {
-  hasResultCode_ = !!value;
-}
-@synthesize resultCode;
-- (BOOL) hasJoinGameResponse {
-  return !!hasJoinGameResponse_;
-}
-- (void) setHasJoinGameResponse:(BOOL) value {
-  hasJoinGameResponse_ = !!value;
-}
-@synthesize joinGameResponse;
-- (void) dealloc {
-  self.joinGameResponse = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.messageId = 0;
-    self.resultCode = 0;
-    self.joinGameResponse = [JoinGameResponse defaultInstance];
-  }
-  return self;
-}
-static GameResponse* defaultGameResponseInstance = nil;
-+ (void) initialize {
-  if (self == [GameResponse class]) {
-    defaultGameResponseInstance = [[GameResponse alloc] init];
-  }
-}
-+ (GameResponse*) defaultInstance {
-  return defaultGameResponseInstance;
-}
-- (GameResponse*) defaultInstance {
-  return defaultGameResponseInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasMessageId) {
-    return NO;
-  }
-  if (!self.hasResultCode) {
-    return NO;
-  }
-  if (self.hasJoinGameResponse) {
-    if (!self.joinGameResponse.isInitialized) {
-      return NO;
-    }
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasMessageId) {
-    [output writeInt32:1 value:self.messageId];
-  }
-  if (self.hasResultCode) {
-    [output writeInt32:2 value:self.resultCode];
-  }
-  if (self.hasJoinGameResponse) {
-    [output writeMessage:11 value:self.joinGameResponse];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasMessageId) {
-    size += computeInt32Size(1, self.messageId);
-  }
-  if (self.hasResultCode) {
-    size += computeInt32Size(2, self.resultCode);
-  }
-  if (self.hasJoinGameResponse) {
-    size += computeMessageSize(11, self.joinGameResponse);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (GameResponse*) parseFromData:(NSData*) data {
-  return (GameResponse*)[[[GameResponse builder] mergeFromData:data] build];
-}
-+ (GameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameResponse*)[[[GameResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (GameResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (GameResponse*)[[[GameResponse builder] mergeFromInputStream:input] build];
-}
-+ (GameResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameResponse*)[[[GameResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (GameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (GameResponse*)[[[GameResponse builder] mergeFromCodedInputStream:input] build];
-}
-+ (GameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (GameResponse*)[[[GameResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (GameResponse_Builder*) builder {
-  return [[[GameResponse_Builder alloc] init] autorelease];
-}
-+ (GameResponse_Builder*) builderWithPrototype:(GameResponse*) prototype {
-  return [[GameResponse builder] mergeFrom:prototype];
-}
-- (GameResponse_Builder*) builder {
-  return [GameResponse builder];
-}
-@end
-
-@interface GameResponse_Builder()
-@property (retain) GameResponse* result;
-@end
-
-@implementation GameResponse_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[GameResponse alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (GameResponse_Builder*) clear {
-  self.result = [[[GameResponse alloc] init] autorelease];
-  return self;
-}
-- (GameResponse_Builder*) clone {
-  return [GameResponse builderWithPrototype:result];
-}
-- (GameResponse*) defaultInstance {
-  return [GameResponse defaultInstance];
-}
-- (GameResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (GameResponse*) buildPartial {
-  GameResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (GameResponse_Builder*) mergeFrom:(GameResponse*) other {
-  if (other == [GameResponse defaultInstance]) {
-    return self;
-  }
-  if (other.hasMessageId) {
-    [self setMessageId:other.messageId];
-  }
-  if (other.hasResultCode) {
-    [self setResultCode:other.resultCode];
-  }
-  if (other.hasJoinGameResponse) {
-    [self mergeJoinGameResponse:other.joinGameResponse];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (GameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (GameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setMessageId:[input readInt32]];
-        break;
-      }
-      case 16: {
-        [self setResultCode:[input readInt32]];
-        break;
-      }
-      case 90: {
+      case 98: {
         JoinGameResponse_Builder* subBuilder = [JoinGameResponse builder];
         if (self.hasJoinGameResponse) {
           [subBuilder mergeFrom:self.joinGameResponse];
@@ -1001,18 +787,34 @@ static GameResponse* defaultGameResponseInstance = nil;
     }
   }
 }
+- (BOOL) hasCommand {
+  return result.hasCommand;
+}
+- (GameCommandType) command {
+  return result.command;
+}
+- (GameMessage_Builder*) setCommand:(GameCommandType) value {
+  result.hasCommand = YES;
+  result.command = value;
+  return self;
+}
+- (GameMessage_Builder*) clearCommand {
+  result.hasCommand = NO;
+  result.command = GameCommandTypeJoinGameRequest;
+  return self;
+}
 - (BOOL) hasMessageId {
   return result.hasMessageId;
 }
 - (int32_t) messageId {
   return result.messageId;
 }
-- (GameResponse_Builder*) setMessageId:(int32_t) value {
+- (GameMessage_Builder*) setMessageId:(int32_t) value {
   result.hasMessageId = YES;
   result.messageId = value;
   return self;
 }
-- (GameResponse_Builder*) clearMessageId {
+- (GameMessage_Builder*) clearMessageId {
   result.hasMessageId = NO;
   result.messageId = 0;
   return self;
@@ -1020,17 +822,47 @@ static GameResponse* defaultGameResponseInstance = nil;
 - (BOOL) hasResultCode {
   return result.hasResultCode;
 }
-- (int32_t) resultCode {
+- (GameResultCode) resultCode {
   return result.resultCode;
 }
-- (GameResponse_Builder*) setResultCode:(int32_t) value {
+- (GameMessage_Builder*) setResultCode:(GameResultCode) value {
   result.hasResultCode = YES;
   result.resultCode = value;
   return self;
 }
-- (GameResponse_Builder*) clearResultCode {
+- (GameMessage_Builder*) clearResultCode {
   result.hasResultCode = NO;
-  result.resultCode = 0;
+  result.resultCode = GameResultCodeSuccess;
+  return self;
+}
+- (BOOL) hasJoinGameRequest {
+  return result.hasJoinGameRequest;
+}
+- (JoinGameRequest*) joinGameRequest {
+  return result.joinGameRequest;
+}
+- (GameMessage_Builder*) setJoinGameRequest:(JoinGameRequest*) value {
+  result.hasJoinGameRequest = YES;
+  result.joinGameRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setJoinGameRequestBuilder:(JoinGameRequest_Builder*) builderForValue {
+  return [self setJoinGameRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeJoinGameRequest:(JoinGameRequest*) value {
+  if (result.hasJoinGameRequest &&
+      result.joinGameRequest != [JoinGameRequest defaultInstance]) {
+    result.joinGameRequest =
+      [[[JoinGameRequest builderWithPrototype:result.joinGameRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.joinGameRequest = value;
+  }
+  result.hasJoinGameRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearJoinGameRequest {
+  result.hasJoinGameRequest = NO;
+  result.joinGameRequest = [JoinGameRequest defaultInstance];
   return self;
 }
 - (BOOL) hasJoinGameResponse {
@@ -1039,15 +871,15 @@ static GameResponse* defaultGameResponseInstance = nil;
 - (JoinGameResponse*) joinGameResponse {
   return result.joinGameResponse;
 }
-- (GameResponse_Builder*) setJoinGameResponse:(JoinGameResponse*) value {
+- (GameMessage_Builder*) setJoinGameResponse:(JoinGameResponse*) value {
   result.hasJoinGameResponse = YES;
   result.joinGameResponse = value;
   return self;
 }
-- (GameResponse_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue {
+- (GameMessage_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue {
   return [self setJoinGameResponse:[builderForValue build]];
 }
-- (GameResponse_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value {
+- (GameMessage_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value {
   if (result.hasJoinGameResponse &&
       result.joinGameResponse != [JoinGameResponse defaultInstance]) {
     result.joinGameResponse =
@@ -1058,7 +890,7 @@ static GameResponse* defaultGameResponseInstance = nil;
   result.hasJoinGameResponse = YES;
   return self;
 }
-- (GameResponse_Builder*) clearJoinGameResponse {
+- (GameMessage_Builder*) clearJoinGameResponse {
   result.hasJoinGameResponse = NO;
   result.joinGameResponse = [JoinGameResponse defaultInstance];
   return self;

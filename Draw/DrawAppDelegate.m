@@ -23,6 +23,7 @@
     // Override point for customization after application launch.
     
     // Start Game Client
+    [[GameClient defaultInstance] setDelegate:self];
     [[GameClient defaultInstance] start:@"127.0.0.1" port:8080];
      
     self.window.rootViewController = self.viewController;
@@ -74,6 +75,18 @@
     [_window release];
     [_viewController release];
     [super dealloc];
+}
+
+#pragma CommonNetworkClientDelegate
+
+- (void)didConnected
+{
+    [[GameClient defaultInstance] sendJoinGameRequest:@"test user"];
+}
+
+- (void)didBroken
+{
+    
 }
 
 @end
