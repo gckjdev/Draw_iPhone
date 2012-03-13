@@ -7,7 +7,6 @@
 //
 
 #import "Paint.h"
-#import "DrawUtils.h"
 
 @implementation Paint
 @synthesize width = _width;
@@ -39,7 +38,7 @@
 - (CGPoint)pointAtIndex:(NSInteger)index
 {
     if (index < 0 || index >= [self.pointList count]) {
-        return ILLEGAL_POINT;
+        return CGPointMake(-1000, -1000);
     }
     NSValue *value = [self.pointList objectAtIndex:index];
     return [value CGPointValue];

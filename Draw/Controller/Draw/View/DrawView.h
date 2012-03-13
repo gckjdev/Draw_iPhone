@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DrawUtils.h"
 
 typedef enum{
     Drawing = 0x1,
@@ -32,10 +31,10 @@ typedef enum{
 
 @property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled;
 @property(nonatomic, retain) NSMutableArray *paintList;
-@property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
-@property(nonatomic, retain) UIColor* lineColor; //default is black
+@property(nonatomic, assign) CGFloat lineWidth;
+@property(nonatomic, retain) UIColor* lineColor;
 @property(nonatomic, readonly) DrawViewStatus status; //default is Drawing
-@property(nonatomic, assign) CGFloat playSpeed; //default is 1/40.0;
+@property(nonatomic, assign) CGFloat playSpeed; //default is 1/30.0;
 
 - (void)clear;
 - (void)play;
