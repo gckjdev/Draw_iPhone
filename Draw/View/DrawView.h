@@ -8,13 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "DrawUtils.h"
+#import "Paint.h"
 
 typedef enum{
     Drawing = 0x1,
     Playing = 0x1 << 1 
 }DrawViewStatus;
 
-@class Paint;
+
+@protocol DrawViewDelegate <NSObject>
+
+@optional
+- (void)didDrawedPaint:(Paint *)paint;
+
+@end
+
+
 @interface DrawView : UIView<UIGestureRecognizerDelegate>
 {
     BOOL _drawEnable;
@@ -36,7 +45,11 @@ typedef enum{
 @property(nonatomic, retain) UIColor* lineColor; //default is black
 @property(nonatomic, readonly) DrawViewStatus status; //default is Drawing
 @property(nonatomic, assign) CGFloat playSpeed; //default is 1/40.0;
+@property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 
+@property(nonatomic, assign) id<DrawViewDelegate>delegate;
+
+- (NSInteger)lastPaintPointCount;
 - (void)clear;
 - (void)play;
 @end

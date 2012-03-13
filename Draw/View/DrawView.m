@@ -10,6 +10,8 @@
 #import "Paint.h"
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
+#define DEFAULT_SIMPLING_DISTANCE (5.0)
+#define DEFAULT_LINE_WIDTH (4.0 * 1.414)
 
 @implementation DrawView
 @synthesize drawEnabled = _drawEnable;
@@ -18,8 +20,8 @@
 @synthesize lineWidth = _lineWidth;
 @synthesize status = _status;
 @synthesize playSpeed= _playSpeed;
-
-
+@synthesize delegate = _delegate;
+@synthesize simplingDistance = _simplingDistance;
 #pragma mark Action Funtion
 
 - (void)clear
@@ -37,6 +39,16 @@
     
     [self setDrawEnabled:NO];
     [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+}
+
+
+- (NSInteger)lastPaintPointCount
+{
+    Paint *paint = [self.paintList lastObject];
+    if (paint) {
+        return [paint pointCount];
+    }
+    return 0;
 }
 
 #pragma mark function called by player
@@ -105,17 +117,21 @@
         
         CGPoint lastPoint = ILLEGAL_POINT;
         if ([self.paintList count] != 0) {
+            
             Paint *paint = [self.paintList lastObject];
             NSInteger index = paint.pointCount - 1;
             if (index >= 0) {
                 lastPoint = [paint pointAtIndex:index];
+                if ([DrawUtils distanceBetweenPoint:lastPoint point2:point] <= _simplingDistance) {
+                    return;
+                }
             }
+            
         }
 
         [paint addPoint:point];   
         if (![DrawUtils isIllegalPoint:lastPoint]) {
             CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:point edgeWidth:_lineWidth];        
-
             [self setNeedsDisplayInRect:rect];
         }else{
             [self setNeedsDisplay];
@@ -141,6 +157,9 @@
     }else if(panGestuereReconizer.state == UIGestureRecognizerStateEnded)
     {
         [self addPoint:point toPaint:currentPaint];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
+            [self.delegate didDrawedPaint:currentPaint];
+        }
 
     }
 }
@@ -174,7 +193,8 @@
 
         _status = Drawing;
         self.lineColor = [UIColor blackColor];
-        self.lineWidth = 5.0;
+        self.lineWidth = DEFAULT_LINE_WIDTH;
+        self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _paintList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];

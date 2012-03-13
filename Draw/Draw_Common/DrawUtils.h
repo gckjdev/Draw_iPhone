@@ -14,5 +14,8 @@
 + (BOOL)isIllegalPoint:(CGPoint)point;
 + (CGRect)constructWithPoint1:(CGPoint)point1 point2:(CGPoint)point2;
 + (CGRect)constructWithPoint1:(CGPoint)point1 point2:(CGPoint)point2 edgeWidth:(CGFloat)edgeWidth;
++ (CGPoint)zipPoint:(CGPoint)point size:(NSInteger)size;
++ (CGFloat)distanceBetweenPoint:(CGPoint)point1 point2:(CGPoint)point2;
+
 
 @end

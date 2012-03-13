@@ -42,4 +42,24 @@
     return CGRectMake(x - edgeWidth / 2.0, y - edgeWidth / 2.0, width + edgeWidth, height + edgeWidth);
 }
 
++ (CGPoint)zipPoint:(CGPoint)point size:(NSInteger)size
+{
+    
+    if (size <= 1) {
+        return point;
+    }
+    NSInteger x = point.x;
+    NSInteger y = point.y;
+    x -= (x % (size / 2));
+    y -= (y % (size / 2));
+    return CGPointMake(x, y);
+}
+
++ (CGFloat)distanceBetweenPoint:(CGPoint)point1 point2:(CGPoint)point2
+{
+    CGFloat left = powf(point1.x - point2.x, 2);
+    CGFloat right = powf(point1.y - point2.y, 2);
+    return sqrtf(left + right);
+}
+
 @end
