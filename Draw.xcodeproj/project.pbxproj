@@ -1946,6 +1946,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CADD7F91150F3F760075C739 /* GameSession */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GameSession;
+			sourceTree = "<group>";
+		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1973,6 +1980,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CADD7F91150F3F760075C739 /* GameSession */,
 				CA1041E81509B99A00F60C03 /* Draw */,
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
