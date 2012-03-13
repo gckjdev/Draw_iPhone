@@ -112,6 +112,7 @@
 		CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F351509A71000F60C03 /* AVFoundation.framework */; };
 		CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */; };
 		CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F391509A72100F60C03 /* MobileCoreServices.framework */; };
+		CA103F481509A88900F60C03 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F471509A88900F60C03 /* Security.framework */; };
 		CA1041051509A9FF00F60C03 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F4C1509A9FD00F60C03 /* ASIAuthenticationDialog.m */; };
 		CA1041061509A9FF00F60C03 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F4F1509A9FD00F60C03 /* ASIDataCompressor.m */; };
 		CA1041071509A9FF00F60C03 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F511509A9FD00F60C03 /* ASIDataDecompressor.m */; };
@@ -189,7 +190,6 @@
 		CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
 		CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041D81509B6E700F60C03 /* DrawViewController.m */; };
 		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
-		CA1041E71509B6E700F60C03 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041DC1509B6E700F60C03 /* DrawView.m */; };
 		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
 		CA1041F81509BC9700F60C03 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
@@ -210,14 +210,8 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
-		CA96E26B150DD65800292335 /* GameClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26A150DD65800292335 /* GameClient.m */; };
-		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
-		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
-		CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E275150DE8AA00292335 /* GameBasic.proto */; };
-		CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E34F150DFBFA00292335 /* GameMessage.proto */; };
-		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
-		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
-		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
+		CA9AA899150F1EEC009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */; };
+		CA9AA89D150F2625009D1CB6 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA89C150F2625009D1CB6 /* DrawView.m */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 /* End PBXBuildFile section */
@@ -229,34 +223,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = CA745D1D1503B1B400600024;
 			remoteInfo = Draw;
-		};
-		CA96E33F150DF27400292335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
-		CA96E341150DF27400292335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281;
-			remoteInfo = UnitTests;
-		};
-		CA96E343150DF27400292335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9;
-			remoteInfo = CommandLineTests;
-		};
-		CA96E345150DF28E00292335 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -462,6 +428,7 @@
 		CA103F351509A71000F60C03 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		CA103F391509A72100F60C03 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CA103F471509A88900F60C03 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA103F4B1509A9FD00F60C03 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		CA103F4C1509A9FD00F60C03 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		CA103F4D1509A9FD00F60C03 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -615,8 +582,6 @@
 		CA1041D71509B6E700F60C03 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		CA1041D81509B6E700F60C03 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		CA1041D91509B6E700F60C03 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		CA1041DB1509B6E700F60C03 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		CA1041DC1509B6E700F60C03 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
 		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 		CA1041F51509BC9700F60C03 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -645,20 +610,10 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
-		CA96E269150DD65800292335 /* GameClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClient.h; sourceTree = "<group>"; };
-		CA96E26A150DD65800292335 /* GameClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClient.m; sourceTree = "<group>"; };
-		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
-		CA96E26D150DE4FD00292335 /* GameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSession.m; sourceTree = "<group>"; };
-		CA96E26F150DE56400292335 /* GameSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionManager.h; sourceTree = "<group>"; };
-		CA96E270150DE56400292335 /* GameSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionManager.m; sourceTree = "<group>"; };
-		CA96E272150DE58500292335 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
-		CA96E275150DE8AA00292335 /* GameBasic.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameBasic.proto; sourceTree = "<group>"; };
-		CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = "<group>"; };
-		CA96E34F150DFBFA00292335 /* GameMessage.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameMessage.proto; sourceTree = "<group>"; };
-		CA96E35C150E107800292335 /* GameBasic.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBasic.pb.m; sourceTree = "<group>"; };
-		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
-		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
-		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
+		CA9AA897150F1EEC009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
+		CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CA9AA89B150F2625009D1CB6 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		CA9AA89C150F2625009D1CB6 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -669,7 +624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
+				CA103F481509A88900F60C03 /* Security.framework in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
@@ -1665,18 +1620,8 @@
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
-				CA1041DA1509B6E700F60C03 /* View */,
 			);
 			path = Draw;
-			sourceTree = "<group>";
-		};
-		CA1041DA1509B6E700F60C03 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CA1041DB1509B6E700F60C03 /* DrawView.h */,
-				CA1041DC1509B6E700F60C03 /* DrawView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
@@ -1780,6 +1725,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				CA103F471509A88900F60C03 /* Security.framework */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -1799,7 +1745,6 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */,
 				CA103F391509A72100F60C03 /* MobileCoreServices.framework */,
 				CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */,
 				CA103F351509A71000F60C03 /* AVFoundation.framework */,
@@ -1821,14 +1766,14 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AA89A150F2625009D1CB6 /* View */,
+				CA9AA895150F1ECD009D1CB6 /* Draw_Common */,
 				CA103B391509A56000F60C03 /* Core */,
 				CA103B361509A55000F60C03 /* Resource */,
-				CA96E264150DD55400292335 /* GameServer */,
 				CA103B371509A55000F60C03 /* Service */,
 				CAECE0271503B25500BC2404 /* Controller */,
 				CAECE0281503B25500BC2404 /* Manager */,
 				CAECE0291503B25500BC2404 /* Model */,
-				CAECE02A1503B25500BC2404 /* View */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
@@ -1868,82 +1813,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CA96E264150DD55400292335 /* GameServer */ = {
+		CA9AA895150F1ECD009D1CB6 /* Draw_Common */ = {
 			isa = PBXGroup;
 			children = (
-				CA96E273150DE87A00292335 /* ProtocolBuffer */,
-				CA96E265150DD63900292335 /* Manager */,
-				CA96E266150DD63900292335 /* Service */,
-				CA96E267150DD63900292335 /* Model */,
-				CA96E268150DD63900292335 /* Common */,
+				CA9AA897150F1EEC009D1CB6 /* DrawUtils.h */,
+				CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */,
 			);
-			path = GameServer;
+			path = Draw_Common;
 			sourceTree = "<group>";
 		};
-		CA96E265150DD63900292335 /* Manager */ = {
+		CA9AA89A150F2625009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CA96E26F150DE56400292335 /* GameSessionManager.h */,
-				CA96E270150DE56400292335 /* GameSessionManager.m */,
+				CA9AA89B150F2625009D1CB6 /* DrawView.h */,
+				CA9AA89C150F2625009D1CB6 /* DrawView.m */,
 			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		CA96E266150DD63900292335 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E269150DD65800292335 /* GameClient.h */,
-				CA96E26A150DD65800292335 /* GameClient.m */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		CA96E267150DD63900292335 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E26C150DE4FD00292335 /* GameSession.h */,
-				CA96E26D150DE4FD00292335 /* GameSession.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CA96E268150DD63900292335 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E272150DE58500292335 /* GameConstants.h */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		CA96E273150DE87A00292335 /* ProtocolBuffer */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E274150DE87A00292335 /* Gen */,
-				CA96E275150DE8AA00292335 /* GameBasic.proto */,
-				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
-			);
-			path = ProtocolBuffer;
-			sourceTree = "<group>";
-		};
-		CA96E274150DE87A00292335 /* Gen */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E35C150E107800292335 /* GameBasic.pb.m */,
-				CA96E35D150E107800292335 /* GameBasic.pb.h */,
-				CA96E35E150E107800292335 /* GameMessage.pb.m */,
-				CA96E35F150E107800292335 /* GameMessage.pb.h */,
-			);
-			path = Gen;
-			sourceTree = "<group>";
-		};
-		CA96E336150DF27300292335 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CA96E340150DF27400292335 /* libProtocolBuffers.a */,
-				CA96E342150DF27400292335 /* UnitTests.octest */,
-				CA96E344150DF27400292335 /* CommandLineTests.app */,
-			);
-			name = Products;
+			path = View;
 			sourceTree = "<group>";
 		};
 		CADD7F91150F3F760075C739 /* GameSession */ = {
@@ -1987,13 +1872,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CAECE02A1503B25500BC2404 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2008,7 +1886,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA96E346150DF28E00292335 /* PBXTargetDependency */,
 			);
 			name = Draw;
 			productName = Draw;
@@ -2057,12 +1934,6 @@
 			mainGroup = CA745D131503B1B400600024;
 			productRefGroup = CA745D1F1503B1B500600024 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CA96E336150DF27300292335 /* Products */;
-					ProjectRef = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				CA745D1D1503B1B400600024 /* Draw */,
@@ -2070,30 +1941,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		CA96E340150DF27400292335 /* libProtocolBuffers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libProtocolBuffers.a;
-			remoteRef = CA96E33F150DF27400292335 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA96E342150DF27400292335 /* UnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
-			remoteRef = CA96E341150DF27400292335 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA96E344150DF27400292335 /* CommandLineTests.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CommandLineTests.app;
-			remoteRef = CA96E343150DF27400292335 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA745D1C1503B1B400600024 /* Resources */ = {
@@ -2121,8 +1968,6 @@
 				CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */,
 				CA1042031509C06E00F60C03 /* RoomController.xib in Resources */,
 				CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */,
-				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
-				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2316,17 +2161,13 @@
 				CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */,
 				CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */,
 				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
-				CA1041E71509B6E700F60C03 /* DrawView.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
 				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
 				CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */,
 				CA1042021509C06E00F60C03 /* RoomController.m in Sources */,
 				CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */,
-				CA96E26B150DD65800292335 /* GameClient.m in Sources */,
-				CA96E26E150DE4FD00292335 /* GameSession.m in Sources */,
-				CA96E271150DE56400292335 /* GameSessionManager.m in Sources */,
-				CA96E360150E107800292335 /* GameBasic.pb.m in Sources */,
-				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
+				CA9AA899150F1EEC009D1CB6 /* DrawUtils.m in Sources */,
+				CA9AA89D150F2625009D1CB6 /* DrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2345,11 +2186,6 @@
 			isa = PBXTargetDependency;
 			target = CA745D1D1503B1B400600024 /* Draw */;
 			targetProxy = CA745D461503B1B500600024 /* PBXContainerItemProxy */;
-		};
-		CA96E346150DF28E00292335 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ProtocolBuffers;
-			targetProxy = CA96E345150DF28E00292335 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2421,7 +2257,6 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
@@ -2436,7 +2271,6 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
