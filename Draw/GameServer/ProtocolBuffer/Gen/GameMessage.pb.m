@@ -42,6 +42,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
 @property (retain) NSString* userId;
 @property (retain) NSString* gameId;
 @property int32_t autoNew;
+@property (retain) NSString* nickName;
 @end
 
 @implementation JoinGameRequest
@@ -67,9 +68,17 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
   hasAutoNew_ = !!value;
 }
 @synthesize autoNew;
+- (BOOL) hasNickName {
+  return !!hasNickName_;
+}
+- (void) setHasNickName:(BOOL) value {
+  hasNickName_ = !!value;
+}
+@synthesize nickName;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
+  self.nickName = nil;
   [super dealloc];
 }
 - (id) init {
@@ -77,6 +86,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     self.userId = @"";
     self.gameId = @"";
     self.autoNew = 0;
+    self.nickName = @"";
   }
   return self;
 }
@@ -99,6 +109,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (!self.hasGameId) {
     return NO;
   }
+  if (!self.hasNickName) {
+    return NO;
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -110,6 +123,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasAutoNew) {
     [output writeInt32:3 value:self.autoNew];
+  }
+  if (self.hasNickName) {
+    [output writeString:4 value:self.nickName];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -128,6 +144,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasAutoNew) {
     size += computeInt32Size(3, self.autoNew);
+  }
+  if (self.hasNickName) {
+    size += computeStringSize(4, self.nickName);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -213,6 +232,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasAutoNew) {
     [self setAutoNew:other.autoNew];
   }
+  if (other.hasNickName) {
+    [self setNickName:other.nickName];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -244,6 +266,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 24: {
         [self setAutoNew:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setNickName:[input readString]];
         break;
       }
     }
@@ -295,6 +321,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearAutoNew {
   result.hasAutoNew = NO;
   result.autoNew = 0;
+  return self;
+}
+- (BOOL) hasNickName {
+  return result.hasNickName;
+}
+- (NSString*) nickName {
+  return result.nickName;
+}
+- (JoinGameRequest_Builder*) setNickName:(NSString*) value {
+  result.hasNickName = YES;
+  result.nickName = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearNickName {
+  result.hasNickName = NO;
+  result.nickName = @"";
   return self;
 }
 @end

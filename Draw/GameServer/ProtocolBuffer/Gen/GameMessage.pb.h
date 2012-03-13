@@ -40,16 +40,20 @@ BOOL GameResultCodeIsValidValue(GameResultCode value);
   BOOL hasAutoNew_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
+  BOOL hasNickName_:1;
   int32_t autoNew;
   NSString* userId;
   NSString* gameId;
+  NSString* nickName;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasGameId;
 - (BOOL) hasAutoNew;
+- (BOOL) hasNickName;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
+@property (readonly, retain) NSString* nickName;
 
 + (JoinGameRequest*) defaultInstance;
 - (JoinGameRequest*) defaultInstance;
@@ -99,6 +103,11 @@ BOOL GameResultCodeIsValidValue(GameResultCode value);
 - (int32_t) autoNew;
 - (JoinGameRequest_Builder*) setAutoNew:(int32_t) value;
 - (JoinGameRequest_Builder*) clearAutoNew;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (JoinGameRequest_Builder*) setNickName:(NSString*) value;
+- (JoinGameRequest_Builder*) clearNickName;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

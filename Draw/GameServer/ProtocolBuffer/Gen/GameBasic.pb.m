@@ -244,7 +244,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 
 @interface PBGameSession ()
 @property (retain) NSString* gameId;
-@property int32_t sessionId;
+@property int64_t sessionId;
 @property (retain) NSString* name;
 @property (retain) NSString* createBy;
 @property int32_t createTime;
@@ -308,7 +308,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.gameId = @"";
-    self.sessionId = 0;
+    self.sessionId = 0L;
     self.name = @"";
     self.createBy = @"";
     self.createTime = 0;
@@ -363,7 +363,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
     [output writeString:1 value:self.gameId];
   }
   if (self.hasSessionId) {
-    [output writeInt32:2 value:self.sessionId];
+    [output writeInt64:2 value:self.sessionId];
   }
   if (self.hasName) {
     [output writeString:3 value:self.name];
@@ -393,7 +393,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
     size += computeStringSize(1, self.gameId);
   }
   if (self.hasSessionId) {
-    size += computeInt32Size(2, self.sessionId);
+    size += computeInt64Size(2, self.sessionId);
   }
   if (self.hasName) {
     size += computeStringSize(3, self.name);
@@ -535,7 +535,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
         break;
       }
       case 16: {
-        [self setSessionId:[input readInt32]];
+        [self setSessionId:[input readInt64]];
         break;
       }
       case 26: {
@@ -582,17 +582,17 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 - (BOOL) hasSessionId {
   return result.hasSessionId;
 }
-- (int32_t) sessionId {
+- (int64_t) sessionId {
   return result.sessionId;
 }
-- (PBGameSession_Builder*) setSessionId:(int32_t) value {
+- (PBGameSession_Builder*) setSessionId:(int64_t) value {
   result.hasSessionId = YES;
   result.sessionId = value;
   return self;
 }
 - (PBGameSession_Builder*) clearSessionId {
   result.hasSessionId = NO;
-  result.sessionId = 0;
+  result.sessionId = 0L;
   return self;
 }
 - (BOOL) hasName {

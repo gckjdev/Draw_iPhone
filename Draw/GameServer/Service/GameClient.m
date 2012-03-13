@@ -38,12 +38,13 @@ static GameClient* _defaultGameClient;
 
 #pragma Methods
 
-- (void)sendJoinGameRequest:(NSString*)userId
+- (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName
 {
     
     JoinGameRequest_Builder *joinGameRequestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
     [joinGameRequestBuilder setUserId:userId];
     [joinGameRequestBuilder setGameId:@""];
+    [joinGameRequestBuilder setNickName:nickName];
 
     GameMessage_Builder *builder = [[[GameMessage_Builder alloc] init] autorelease];
     [builder setCommand:GameCommandTypeJoinGameRequest];

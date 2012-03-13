@@ -78,7 +78,7 @@
   BOOL hasName_:1;
   BOOL hasCreateBy_:1;
   BOOL hasHost_:1;
-  int32_t sessionId;
+  int64_t sessionId;
   int32_t createTime;
   NSString* gameId;
   NSString* name;
@@ -93,7 +93,7 @@
 - (BOOL) hasCreateTime;
 - (BOOL) hasHost;
 @property (readonly, retain) NSString* gameId;
-@property (readonly) int32_t sessionId;
+@property (readonly) int64_t sessionId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* createBy;
 @property (readonly) int32_t createTime;
@@ -141,8 +141,8 @@
 - (PBGameSession_Builder*) clearGameId;
 
 - (BOOL) hasSessionId;
-- (int32_t) sessionId;
-- (PBGameSession_Builder*) setSessionId:(int32_t) value;
+- (int64_t) sessionId;
+- (PBGameSession_Builder*) setSessionId:(int64_t) value;
 - (PBGameSession_Builder*) clearSessionId;
 
 - (BOOL) hasName;
