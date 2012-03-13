@@ -190,7 +190,6 @@
 		CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
 		CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041D81509B6E700F60C03 /* DrawViewController.m */; };
 		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
-		CA1041E71509B6E700F60C03 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041DC1509B6E700F60C03 /* DrawView.m */; };
 		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
 		CA1041F81509BC9700F60C03 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
@@ -211,6 +210,8 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA9AA899150F1EEC009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */; };
+		CA9AA89D150F2625009D1CB6 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA89C150F2625009D1CB6 /* DrawView.m */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 /* End PBXBuildFile section */
@@ -581,8 +582,6 @@
 		CA1041D71509B6E700F60C03 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		CA1041D81509B6E700F60C03 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		CA1041D91509B6E700F60C03 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		CA1041DB1509B6E700F60C03 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		CA1041DC1509B6E700F60C03 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
 		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 		CA1041F51509BC9700F60C03 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -611,6 +610,10 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA9AA897150F1EEC009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
+		CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CA9AA89B150F2625009D1CB6 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		CA9AA89C150F2625009D1CB6 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -1617,18 +1620,8 @@
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
-				CA1041DA1509B6E700F60C03 /* View */,
 			);
 			path = Draw;
-			sourceTree = "<group>";
-		};
-		CA1041DA1509B6E700F60C03 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CA1041DB1509B6E700F60C03 /* DrawView.h */,
-				CA1041DC1509B6E700F60C03 /* DrawView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
@@ -1773,13 +1766,14 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AA89A150F2625009D1CB6 /* View */,
+				CA9AA895150F1ECD009D1CB6 /* Draw_Common */,
 				CA103B391509A56000F60C03 /* Core */,
 				CA103B361509A55000F60C03 /* Resource */,
 				CA103B371509A55000F60C03 /* Service */,
 				CAECE0271503B25500BC2404 /* Controller */,
 				CAECE0281503B25500BC2404 /* Manager */,
 				CAECE0291503B25500BC2404 /* Model */,
-				CAECE02A1503B25500BC2404 /* View */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
@@ -1819,6 +1813,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA9AA895150F1ECD009D1CB6 /* Draw_Common */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AA897150F1EEC009D1CB6 /* DrawUtils.h */,
+				CA9AA898150F1EEC009D1CB6 /* DrawUtils.m */,
+			);
+			path = Draw_Common;
+			sourceTree = "<group>";
+		};
+		CA9AA89A150F2625009D1CB6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AA89B150F2625009D1CB6 /* DrawView.h */,
+				CA9AA89C150F2625009D1CB6 /* DrawView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1850,13 +1862,6 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CAECE02A1503B25500BC2404 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2148,12 +2153,13 @@
 				CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */,
 				CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */,
 				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
-				CA1041E71509B6E700F60C03 /* DrawView.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
 				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
 				CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */,
 				CA1042021509C06E00F60C03 /* RoomController.m in Sources */,
 				CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */,
+				CA9AA899150F1EEC009D1CB6 /* DrawUtils.m in Sources */,
+				CA9AA89D150F2625009D1CB6 /* DrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

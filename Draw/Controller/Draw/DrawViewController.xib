@@ -239,8 +239,9 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<float key="IBUIValue">10</float>
-								<float key="IBUIMaxValue">20</float>
+								<float key="IBUIValue">16</float>
+								<float key="IBUIMinValue">2</float>
+								<float key="IBUIMaxValue">30</float>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 40}</string>
