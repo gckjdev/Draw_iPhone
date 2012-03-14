@@ -220,6 +220,8 @@
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CADD7FAF1510BE670075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FAE1510BE670075C739 /* GameConstants.proto */; };
+		CADD7FB21510BFCB0075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -662,6 +664,9 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CADD7FAE1510BE670075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
+		CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
+		CADD7FB11510BFCA0075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1921,6 +1926,7 @@
 				CA96E274150DE87A00292335 /* Gen */,
 				CA96E275150DE8AA00292335 /* GameBasic.proto */,
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
+				CADD7FAE1510BE670075C739 /* GameConstants.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -1928,6 +1934,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */,
+				CADD7FB11510BFCA0075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
 				CA96E35D150E107800292335 /* GameBasic.pb.h */,
 				CA96E35E150E107800292335 /* GameMessage.pb.m */,
@@ -2123,6 +2131,7 @@
 				CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */,
 				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
+				CADD7FAF1510BE670075C739 /* GameConstants.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2327,6 +2336,7 @@
 				CA96E271150DE56400292335 /* GameSessionManager.m in Sources */,
 				CA96E360150E107800292335 /* GameBasic.pb.m in Sources */,
 				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
+				CADD7FB21510BFCB0075C739 /* GameConstants.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

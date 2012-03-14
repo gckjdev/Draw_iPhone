@@ -10,10 +10,14 @@
 #import "CommonNetworkClient.h"
 
 @interface GameClient : CommonNetworkClient<CommonNetworkClientDelegate>
+{
+    int _messageIdIndex;
+}
 
 + (GameClient*)defaultInstance;
 - (void)start:(NSString*)serverAddress port:(int)port;
 
 - (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName;
+- (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;
 
 @end

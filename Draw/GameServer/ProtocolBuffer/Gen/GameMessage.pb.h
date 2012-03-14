@@ -3,9 +3,12 @@
 #import "ProtocolBuffers.h"
 
 #import "GameBasic.pb.h"
+#import "GameConstants.pb.h"
 
 @class GameMessage;
 @class GameMessage_Builder;
+@class GeneralNotification;
+@class GeneralNotification_Builder;
 @class JoinGameRequest;
 @class JoinGameRequest_Builder;
 @class JoinGameResponse;
@@ -14,20 +17,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
-typedef enum {
-  GameCommandTypeJoinGameRequest = 1,
-  GameCommandTypeJoinGameResponse = 2,
-} GameCommandType;
-
-BOOL GameCommandTypeIsValidValue(GameCommandType value);
-
-typedef enum {
-  GameResultCodeSuccess = 0,
-  GameResultCodeErrorJoinGame = 1,
-} GameResultCode;
-
-BOOL GameResultCodeIsValidValue(GameResultCode value);
-
+@class StartGameRequest;
+@class StartGameRequest_Builder;
+@class StartGameResponse;
+@class StartGameResponse_Builder;
 
 @interface GameMessageRoot : NSObject {
 }
@@ -160,29 +153,220 @@ BOOL GameResultCodeIsValidValue(GameResultCode value);
 - (JoinGameResponse_Builder*) clearGameSession;
 @end
 
+@interface StartGameRequest : PBGeneratedMessage {
+@private
+}
+
++ (StartGameRequest*) defaultInstance;
+- (StartGameRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (StartGameRequest_Builder*) builder;
++ (StartGameRequest_Builder*) builder;
++ (StartGameRequest_Builder*) builderWithPrototype:(StartGameRequest*) prototype;
+
++ (StartGameRequest*) parseFromData:(NSData*) data;
++ (StartGameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (StartGameRequest*) parseFromInputStream:(NSInputStream*) input;
++ (StartGameRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (StartGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (StartGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface StartGameRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  StartGameRequest* result;
+}
+
+- (StartGameRequest*) defaultInstance;
+
+- (StartGameRequest_Builder*) clear;
+- (StartGameRequest_Builder*) clone;
+
+- (StartGameRequest*) build;
+- (StartGameRequest*) buildPartial;
+
+- (StartGameRequest_Builder*) mergeFrom:(StartGameRequest*) other;
+- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface StartGameResponse : PBGeneratedMessage {
+@private
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasNextPlayUserId_:1;
+  NSString* currentPlayUserId;
+  NSString* nextPlayUserId;
+}
+- (BOOL) hasCurrentPlayUserId;
+- (BOOL) hasNextPlayUserId;
+@property (readonly, retain) NSString* currentPlayUserId;
+@property (readonly, retain) NSString* nextPlayUserId;
+
++ (StartGameResponse*) defaultInstance;
+- (StartGameResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (StartGameResponse_Builder*) builder;
++ (StartGameResponse_Builder*) builder;
++ (StartGameResponse_Builder*) builderWithPrototype:(StartGameResponse*) prototype;
+
++ (StartGameResponse*) parseFromData:(NSData*) data;
++ (StartGameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (StartGameResponse*) parseFromInputStream:(NSInputStream*) input;
++ (StartGameResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (StartGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (StartGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface StartGameResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  StartGameResponse* result;
+}
+
+- (StartGameResponse*) defaultInstance;
+
+- (StartGameResponse_Builder*) clear;
+- (StartGameResponse_Builder*) clone;
+
+- (StartGameResponse*) build;
+- (StartGameResponse*) buildPartial;
+
+- (StartGameResponse_Builder*) mergeFrom:(StartGameResponse*) other;
+- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasCurrentPlayUserId;
+- (NSString*) currentPlayUserId;
+- (StartGameResponse_Builder*) setCurrentPlayUserId:(NSString*) value;
+- (StartGameResponse_Builder*) clearCurrentPlayUserId;
+
+- (BOOL) hasNextPlayUserId;
+- (NSString*) nextPlayUserId;
+- (StartGameResponse_Builder*) setNextPlayUserId:(NSString*) value;
+- (StartGameResponse_Builder*) clearNextPlayUserId;
+@end
+
+@interface GeneralNotification : PBGeneratedMessage {
+@private
+  BOOL hasSessionStatus_:1;
+  BOOL hasHost_:1;
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasNextPlayUserId_:1;
+  int32_t sessionStatus;
+  NSString* host;
+  NSString* currentPlayUserId;
+  NSString* nextPlayUserId;
+}
+- (BOOL) hasHost;
+- (BOOL) hasSessionStatus;
+- (BOOL) hasCurrentPlayUserId;
+- (BOOL) hasNextPlayUserId;
+@property (readonly, retain) NSString* host;
+@property (readonly) int32_t sessionStatus;
+@property (readonly, retain) NSString* currentPlayUserId;
+@property (readonly, retain) NSString* nextPlayUserId;
+
++ (GeneralNotification*) defaultInstance;
+- (GeneralNotification*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GeneralNotification_Builder*) builder;
++ (GeneralNotification_Builder*) builder;
++ (GeneralNotification_Builder*) builderWithPrototype:(GeneralNotification*) prototype;
+
++ (GeneralNotification*) parseFromData:(NSData*) data;
++ (GeneralNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input;
++ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GeneralNotification_Builder : PBGeneratedMessage_Builder {
+@private
+  GeneralNotification* result;
+}
+
+- (GeneralNotification*) defaultInstance;
+
+- (GeneralNotification_Builder*) clear;
+- (GeneralNotification_Builder*) clone;
+
+- (GeneralNotification*) build;
+- (GeneralNotification*) buildPartial;
+
+- (GeneralNotification_Builder*) mergeFrom:(GeneralNotification*) other;
+- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasHost;
+- (NSString*) host;
+- (GeneralNotification_Builder*) setHost:(NSString*) value;
+- (GeneralNotification_Builder*) clearHost;
+
+- (BOOL) hasSessionStatus;
+- (int32_t) sessionStatus;
+- (GeneralNotification_Builder*) setSessionStatus:(int32_t) value;
+- (GeneralNotification_Builder*) clearSessionStatus;
+
+- (BOOL) hasCurrentPlayUserId;
+- (NSString*) currentPlayUserId;
+- (GeneralNotification_Builder*) setCurrentPlayUserId:(NSString*) value;
+- (GeneralNotification_Builder*) clearCurrentPlayUserId;
+
+- (BOOL) hasNextPlayUserId;
+- (NSString*) nextPlayUserId;
+- (GeneralNotification_Builder*) setNextPlayUserId:(NSString*) value;
+- (GeneralNotification_Builder*) clearNextPlayUserId;
+@end
+
 @interface GameMessage : PBGeneratedMessage {
 @private
+  BOOL hasSessionId_:1;
   BOOL hasMessageId_:1;
+  BOOL hasUserId_:1;
   BOOL hasJoinGameRequest_:1;
   BOOL hasJoinGameResponse_:1;
+  BOOL hasStartGameRequest_:1;
+  BOOL hasStartGameResponse_:1;
+  BOOL hasNotification_:1;
   BOOL hasCommand_:1;
   BOOL hasResultCode_:1;
+  int64_t sessionId;
   int32_t messageId;
+  NSString* userId;
   JoinGameRequest* joinGameRequest;
   JoinGameResponse* joinGameResponse;
+  StartGameRequest* startGameRequest;
+  StartGameResponse* startGameResponse;
+  GeneralNotification* notification;
   GameCommandType command;
   GameResultCode resultCode;
 }
 - (BOOL) hasCommand;
 - (BOOL) hasMessageId;
 - (BOOL) hasResultCode;
+- (BOOL) hasUserId;
+- (BOOL) hasSessionId;
 - (BOOL) hasJoinGameRequest;
 - (BOOL) hasJoinGameResponse;
+- (BOOL) hasStartGameRequest;
+- (BOOL) hasStartGameResponse;
+- (BOOL) hasNotification;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
+@property (readonly, retain) NSString* userId;
+@property (readonly) int64_t sessionId;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
+@property (readonly, retain) StartGameRequest* startGameRequest;
+@property (readonly, retain) StartGameResponse* startGameResponse;
+@property (readonly, retain) GeneralNotification* notification;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -233,6 +417,16 @@ BOOL GameResultCodeIsValidValue(GameResultCode value);
 - (GameMessage_Builder*) setResultCode:(GameResultCode) value;
 - (GameMessage_Builder*) clearResultCode;
 
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (GameMessage_Builder*) setUserId:(NSString*) value;
+- (GameMessage_Builder*) clearUserId;
+
+- (BOOL) hasSessionId;
+- (int64_t) sessionId;
+- (GameMessage_Builder*) setSessionId:(int64_t) value;
+- (GameMessage_Builder*) clearSessionId;
+
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;
 - (GameMessage_Builder*) setJoinGameRequest:(JoinGameRequest*) value;
@@ -246,5 +440,26 @@ BOOL GameResultCodeIsValidValue(GameResultCode value);
 - (GameMessage_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value;
 - (GameMessage_Builder*) clearJoinGameResponse;
+
+- (BOOL) hasStartGameRequest;
+- (StartGameRequest*) startGameRequest;
+- (GameMessage_Builder*) setStartGameRequest:(StartGameRequest*) value;
+- (GameMessage_Builder*) setStartGameRequestBuilder:(StartGameRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeStartGameRequest:(StartGameRequest*) value;
+- (GameMessage_Builder*) clearStartGameRequest;
+
+- (BOOL) hasStartGameResponse;
+- (StartGameResponse*) startGameResponse;
+- (GameMessage_Builder*) setStartGameResponse:(StartGameResponse*) value;
+- (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value;
+- (GameMessage_Builder*) clearStartGameResponse;
+
+- (BOOL) hasNotification;
+- (GeneralNotification*) notification;
+- (GameMessage_Builder*) setNotification:(GeneralNotification*) value;
+- (GameMessage_Builder*) setNotificationBuilder:(GeneralNotification_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeNotification:(GeneralNotification*) value;
+- (GameMessage_Builder*) clearNotification;
 @end
 

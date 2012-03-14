@@ -1,0 +1,43 @@
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.constants";
+option java_outer_classname = "GameConstantsProtos";
+
+enum GameCommandType {
+
+  // client --> server
+
+  JOIN_GAME_REQUEST = 1;
+  JOIN_GAME_RESPONSE = 2;
+  
+  START_GAME_REQUEST = 3;
+  START_GAME_RESPONSE = 4;
+
+  
+
+  // server --> client
+  
+  // notifications
+  
+  USER_JOIN_NOTIFICATION_REQUEST = 51;
+  USER_JOIN_NOTIFICATION_RESPONSE = 52;
+
+  HOST_CHANGE_NOTIFICATION_REQUEST = 53;
+  HOST_CHANGE_NOTIFICATION_RESPONSE = 54;
+
+  GAME_START_NOTIFICATION_REQUEST = 55;
+  GAME_START_NOTIFICATION_RESPONSE = 56;
+  
+}
+
+enum GameResultCode {
+  SUCCESS = 0;
+  
+  // business errors
+  ERROR_JOIN_GAME = 1;
+  
+  // system errors
+  ERROR_SYSTEM_HANDLER_NOT_FOUND = 910;
+}
+

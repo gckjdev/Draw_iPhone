@@ -74,16 +74,22 @@
 @private
   BOOL hasSessionId_:1;
   BOOL hasCreateTime_:1;
+  BOOL hasStatus_:1;
   BOOL hasGameId_:1;
   BOOL hasName_:1;
   BOOL hasCreateBy_:1;
   BOOL hasHost_:1;
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasNextPlayUserId_:1;
   int64_t sessionId;
   int32_t createTime;
+  int32_t status;
   NSString* gameId;
   NSString* name;
   NSString* createBy;
   NSString* host;
+  NSString* currentPlayUserId;
+  NSString* nextPlayUserId;
   NSMutableArray* mutableUsersList;
 }
 - (BOOL) hasGameId;
@@ -92,12 +98,18 @@
 - (BOOL) hasCreateBy;
 - (BOOL) hasCreateTime;
 - (BOOL) hasHost;
+- (BOOL) hasStatus;
+- (BOOL) hasCurrentPlayUserId;
+- (BOOL) hasNextPlayUserId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int64_t sessionId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* createBy;
 @property (readonly) int32_t createTime;
 @property (readonly, retain) NSString* host;
+@property (readonly) int32_t status;
+@property (readonly, retain) NSString* currentPlayUserId;
+@property (readonly, retain) NSString* nextPlayUserId;
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;
 
@@ -164,6 +176,21 @@
 - (NSString*) host;
 - (PBGameSession_Builder*) setHost:(NSString*) value;
 - (PBGameSession_Builder*) clearHost;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBGameSession_Builder*) setStatus:(int32_t) value;
+- (PBGameSession_Builder*) clearStatus;
+
+- (BOOL) hasCurrentPlayUserId;
+- (NSString*) currentPlayUserId;
+- (PBGameSession_Builder*) setCurrentPlayUserId:(NSString*) value;
+- (PBGameSession_Builder*) clearCurrentPlayUserId;
+
+- (BOOL) hasNextPlayUserId;
+- (NSString*) nextPlayUserId;
+- (PBGameSession_Builder*) setNextPlayUserId:(NSString*) value;
+- (PBGameSession_Builder*) clearNextPlayUserId;
 
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;

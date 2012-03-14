@@ -11,12 +11,18 @@ message PBGameUser {
 }
 
 message PBGameSession {
-  required string gameId = 1;               // 哪个游戏
+  optional string gameId = 1;               // 哪个游戏
   required int64 sessionId = 2;             // 游戏会话ID
   required string name = 3;                 // 本次游戏的名称（如房间名）
-  required string createBy = 4;             // 游戏创建者
-  required int32 createTime = 5;            // 游戏创建时间戳
+  optional string createBy = 4;             // 游戏创建者
+  optional int32 createTime = 5;            // 游戏创建时间戳
   optional string host = 6;                 // 游戏房间主人
-  repeated PBGameUser users = 7;            // 用户列表
+     optional int32 status = 7;                        // 游戏状态
+     optional string currentPlayUserId = 8;                // 当前轮到的用户（如画画的用户）
+     optional string nextPlayUserId = 9;                  // 下一个要轮到的用户（如画画的用户）
+     
+     
+  repeated PBGameUser users = 50;            // 用户列表
+
 }
 

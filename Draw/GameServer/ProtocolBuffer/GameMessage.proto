@@ -1,5 +1,6 @@
 
 import "GameBasic.proto";
+import "GameConstants.proto";
 
 package game;
 
@@ -17,25 +18,44 @@ message JoinGameResponse {
   required PBGameSession gameSession = 1;
 }
 
-
-enum GameCommandType {
-  JOIN_GAME_REQUEST = 1;
-  JOIN_GAME_RESPONSE = 2;
+message StartGameRequest {                     // 开始游戏请求
 }
 
-enum GameResultCode {
-  SUCCESS = 0;
-  
-  ERROR_JOIN_GAME = 1;
+message StartGameResponse {                    // 开始游戏响应
+  optional string currentPlayUserId = 5;       // 当前轮到的用户（如画画的用户）
+  optional string nextPlayUserId = 6;          // 下一个要轮到的用户（如画画的用户）
+}
+
+//message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
+//  required int64 sessionId = 1;                // 游戏会话ID
+//  optional string userId = 2;                  // 接受请求的用户ID
+//  required string userSequence = 3;            // 用户游戏顺序
+//}
+
+
+message GeneralNotification{                 
+
+  optional string host = 3;                            // 房间主人
+  optional int32  sessionStatus = 4;                   // 会话状态
+  optional string currentPlayUserId = 5;               // 当前轮到的用户（如画画的用户）
+  optional string nextPlayUserId = 6;                  // 下一个要轮到的用户（如画画的用户）
+
 }
 
 message GameMessage {
   required GameCommandType command = 1;
   required int32 messageId = 2;                             // 和请求消息对应的消息ID
-  optional GameResultCode resultCode = 3;                   // 响应结果，用于响应消息，0为成功
+  optional GameResultCode resultCode = 3 [default=SUCCESS]; // 响应结果，用于响应消息，0为成功
+  
+  optional string userId = 4;
+  optional int64  sessionId = 5 [default=0];
   
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;
   
+  optional StartGameRequest startGameRequest = 13;
+  optional StartGameResponse startGameResponse = 14;
+  
+  optional GeneralNotification notification = 51;
   
 }

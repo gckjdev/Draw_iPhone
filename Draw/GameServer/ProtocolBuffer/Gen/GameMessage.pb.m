@@ -13,6 +13,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -20,24 +21,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL GameCommandTypeIsValidValue(GameCommandType value) {
-  switch (value) {
-    case GameCommandTypeJoinGameRequest:
-    case GameCommandTypeJoinGameResponse:
-      return YES;
-    default:
-      return NO;
-  }
-}
-BOOL GameResultCodeIsValidValue(GameResultCode value) {
-  switch (value) {
-    case GameResultCodeSuccess:
-    case GameResultCodeErrorJoinGame:
-      return YES;
-    default:
-      return NO;
-  }
-}
 @interface JoinGameRequest ()
 @property (retain) NSString* userId;
 @property (retain) NSString* gameId;
@@ -544,12 +527,667 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
 }
 @end
 
+@interface StartGameRequest ()
+@end
+
+@implementation StartGameRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static StartGameRequest* defaultStartGameRequestInstance = nil;
++ (void) initialize {
+  if (self == [StartGameRequest class]) {
+    defaultStartGameRequestInstance = [[StartGameRequest alloc] init];
+  }
+}
++ (StartGameRequest*) defaultInstance {
+  return defaultStartGameRequestInstance;
+}
+- (StartGameRequest*) defaultInstance {
+  return defaultStartGameRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (StartGameRequest*) parseFromData:(NSData*) data {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromData:data] build];
+}
++ (StartGameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (StartGameRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromInputStream:input] build];
+}
++ (StartGameRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (StartGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (StartGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameRequest*)[[[StartGameRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (StartGameRequest_Builder*) builder {
+  return [[[StartGameRequest_Builder alloc] init] autorelease];
+}
++ (StartGameRequest_Builder*) builderWithPrototype:(StartGameRequest*) prototype {
+  return [[StartGameRequest builder] mergeFrom:prototype];
+}
+- (StartGameRequest_Builder*) builder {
+  return [StartGameRequest builder];
+}
+@end
+
+@interface StartGameRequest_Builder()
+@property (retain) StartGameRequest* result;
+@end
+
+@implementation StartGameRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[StartGameRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (StartGameRequest_Builder*) clear {
+  self.result = [[[StartGameRequest alloc] init] autorelease];
+  return self;
+}
+- (StartGameRequest_Builder*) clone {
+  return [StartGameRequest builderWithPrototype:result];
+}
+- (StartGameRequest*) defaultInstance {
+  return [StartGameRequest defaultInstance];
+}
+- (StartGameRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (StartGameRequest*) buildPartial {
+  StartGameRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (StartGameRequest_Builder*) mergeFrom:(StartGameRequest*) other {
+  if (other == [StartGameRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface StartGameResponse ()
+@property (retain) NSString* currentPlayUserId;
+@property (retain) NSString* nextPlayUserId;
+@end
+
+@implementation StartGameResponse
+
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
+- (BOOL) hasNextPlayUserId {
+  return !!hasNextPlayUserId_;
+}
+- (void) setHasNextPlayUserId:(BOOL) value {
+  hasNextPlayUserId_ = !!value;
+}
+@synthesize nextPlayUserId;
+- (void) dealloc {
+  self.currentPlayUserId = nil;
+  self.nextPlayUserId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.currentPlayUserId = @"";
+    self.nextPlayUserId = @"";
+  }
+  return self;
+}
+static StartGameResponse* defaultStartGameResponseInstance = nil;
++ (void) initialize {
+  if (self == [StartGameResponse class]) {
+    defaultStartGameResponseInstance = [[StartGameResponse alloc] init];
+  }
+}
++ (StartGameResponse*) defaultInstance {
+  return defaultStartGameResponseInstance;
+}
+- (StartGameResponse*) defaultInstance {
+  return defaultStartGameResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasCurrentPlayUserId) {
+    [output writeString:5 value:self.currentPlayUserId];
+  }
+  if (self.hasNextPlayUserId) {
+    [output writeString:6 value:self.nextPlayUserId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasCurrentPlayUserId) {
+    size += computeStringSize(5, self.currentPlayUserId);
+  }
+  if (self.hasNextPlayUserId) {
+    size += computeStringSize(6, self.nextPlayUserId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (StartGameResponse*) parseFromData:(NSData*) data {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromData:data] build];
+}
++ (StartGameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (StartGameResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromInputStream:input] build];
+}
++ (StartGameResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (StartGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (StartGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (StartGameResponse*)[[[StartGameResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (StartGameResponse_Builder*) builder {
+  return [[[StartGameResponse_Builder alloc] init] autorelease];
+}
++ (StartGameResponse_Builder*) builderWithPrototype:(StartGameResponse*) prototype {
+  return [[StartGameResponse builder] mergeFrom:prototype];
+}
+- (StartGameResponse_Builder*) builder {
+  return [StartGameResponse builder];
+}
+@end
+
+@interface StartGameResponse_Builder()
+@property (retain) StartGameResponse* result;
+@end
+
+@implementation StartGameResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[StartGameResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (StartGameResponse_Builder*) clear {
+  self.result = [[[StartGameResponse alloc] init] autorelease];
+  return self;
+}
+- (StartGameResponse_Builder*) clone {
+  return [StartGameResponse builderWithPrototype:result];
+}
+- (StartGameResponse*) defaultInstance {
+  return [StartGameResponse defaultInstance];
+}
+- (StartGameResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (StartGameResponse*) buildPartial {
+  StartGameResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (StartGameResponse_Builder*) mergeFrom:(StartGameResponse*) other {
+  if (other == [StartGameResponse defaultInstance]) {
+    return self;
+  }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
+  if (other.hasNextPlayUserId) {
+    [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 42: {
+        [self setCurrentPlayUserId:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setNextPlayUserId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (NSString*) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (StartGameResponse_Builder*) setCurrentPlayUserId:(NSString*) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (StartGameResponse_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasNextPlayUserId {
+  return result.hasNextPlayUserId;
+}
+- (NSString*) nextPlayUserId {
+  return result.nextPlayUserId;
+}
+- (StartGameResponse_Builder*) setNextPlayUserId:(NSString*) value {
+  result.hasNextPlayUserId = YES;
+  result.nextPlayUserId = value;
+  return self;
+}
+- (StartGameResponse_Builder*) clearNextPlayUserId {
+  result.hasNextPlayUserId = NO;
+  result.nextPlayUserId = @"";
+  return self;
+}
+@end
+
+@interface GeneralNotification ()
+@property (retain) NSString* host;
+@property int32_t sessionStatus;
+@property (retain) NSString* currentPlayUserId;
+@property (retain) NSString* nextPlayUserId;
+@end
+
+@implementation GeneralNotification
+
+- (BOOL) hasHost {
+  return !!hasHost_;
+}
+- (void) setHasHost:(BOOL) value {
+  hasHost_ = !!value;
+}
+@synthesize host;
+- (BOOL) hasSessionStatus {
+  return !!hasSessionStatus_;
+}
+- (void) setHasSessionStatus:(BOOL) value {
+  hasSessionStatus_ = !!value;
+}
+@synthesize sessionStatus;
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
+- (BOOL) hasNextPlayUserId {
+  return !!hasNextPlayUserId_;
+}
+- (void) setHasNextPlayUserId:(BOOL) value {
+  hasNextPlayUserId_ = !!value;
+}
+@synthesize nextPlayUserId;
+- (void) dealloc {
+  self.host = nil;
+  self.currentPlayUserId = nil;
+  self.nextPlayUserId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.host = @"";
+    self.sessionStatus = 0;
+    self.currentPlayUserId = @"";
+    self.nextPlayUserId = @"";
+  }
+  return self;
+}
+static GeneralNotification* defaultGeneralNotificationInstance = nil;
++ (void) initialize {
+  if (self == [GeneralNotification class]) {
+    defaultGeneralNotificationInstance = [[GeneralNotification alloc] init];
+  }
+}
++ (GeneralNotification*) defaultInstance {
+  return defaultGeneralNotificationInstance;
+}
+- (GeneralNotification*) defaultInstance {
+  return defaultGeneralNotificationInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasHost) {
+    [output writeString:3 value:self.host];
+  }
+  if (self.hasSessionStatus) {
+    [output writeInt32:4 value:self.sessionStatus];
+  }
+  if (self.hasCurrentPlayUserId) {
+    [output writeString:5 value:self.currentPlayUserId];
+  }
+  if (self.hasNextPlayUserId) {
+    [output writeString:6 value:self.nextPlayUserId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasHost) {
+    size += computeStringSize(3, self.host);
+  }
+  if (self.hasSessionStatus) {
+    size += computeInt32Size(4, self.sessionStatus);
+  }
+  if (self.hasCurrentPlayUserId) {
+    size += computeStringSize(5, self.currentPlayUserId);
+  }
+  if (self.hasNextPlayUserId) {
+    size += computeStringSize(6, self.nextPlayUserId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GeneralNotification*) parseFromData:(NSData*) data {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromData:data] build];
+}
++ (GeneralNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromInputStream:input] build];
+}
++ (GeneralNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromCodedInputStream:input] build];
+}
++ (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GeneralNotification*)[[[GeneralNotification builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GeneralNotification_Builder*) builder {
+  return [[[GeneralNotification_Builder alloc] init] autorelease];
+}
++ (GeneralNotification_Builder*) builderWithPrototype:(GeneralNotification*) prototype {
+  return [[GeneralNotification builder] mergeFrom:prototype];
+}
+- (GeneralNotification_Builder*) builder {
+  return [GeneralNotification builder];
+}
+@end
+
+@interface GeneralNotification_Builder()
+@property (retain) GeneralNotification* result;
+@end
+
+@implementation GeneralNotification_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GeneralNotification alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GeneralNotification_Builder*) clear {
+  self.result = [[[GeneralNotification alloc] init] autorelease];
+  return self;
+}
+- (GeneralNotification_Builder*) clone {
+  return [GeneralNotification builderWithPrototype:result];
+}
+- (GeneralNotification*) defaultInstance {
+  return [GeneralNotification defaultInstance];
+}
+- (GeneralNotification*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GeneralNotification*) buildPartial {
+  GeneralNotification* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GeneralNotification_Builder*) mergeFrom:(GeneralNotification*) other {
+  if (other == [GeneralNotification defaultInstance]) {
+    return self;
+  }
+  if (other.hasHost) {
+    [self setHost:other.host];
+  }
+  if (other.hasSessionStatus) {
+    [self setSessionStatus:other.sessionStatus];
+  }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
+  if (other.hasNextPlayUserId) {
+    [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 26: {
+        [self setHost:[input readString]];
+        break;
+      }
+      case 32: {
+        [self setSessionStatus:[input readInt32]];
+        break;
+      }
+      case 42: {
+        [self setCurrentPlayUserId:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setNextPlayUserId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasHost {
+  return result.hasHost;
+}
+- (NSString*) host {
+  return result.host;
+}
+- (GeneralNotification_Builder*) setHost:(NSString*) value {
+  result.hasHost = YES;
+  result.host = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearHost {
+  result.hasHost = NO;
+  result.host = @"";
+  return self;
+}
+- (BOOL) hasSessionStatus {
+  return result.hasSessionStatus;
+}
+- (int32_t) sessionStatus {
+  return result.sessionStatus;
+}
+- (GeneralNotification_Builder*) setSessionStatus:(int32_t) value {
+  result.hasSessionStatus = YES;
+  result.sessionStatus = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearSessionStatus {
+  result.hasSessionStatus = NO;
+  result.sessionStatus = 0;
+  return self;
+}
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (NSString*) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (GeneralNotification_Builder*) setCurrentPlayUserId:(NSString*) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasNextPlayUserId {
+  return result.hasNextPlayUserId;
+}
+- (NSString*) nextPlayUserId {
+  return result.nextPlayUserId;
+}
+- (GeneralNotification_Builder*) setNextPlayUserId:(NSString*) value {
+  result.hasNextPlayUserId = YES;
+  result.nextPlayUserId = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearNextPlayUserId {
+  result.hasNextPlayUserId = NO;
+  result.nextPlayUserId = @"";
+  return self;
+}
+@end
+
 @interface GameMessage ()
 @property GameCommandType command;
 @property int32_t messageId;
 @property GameResultCode resultCode;
+@property (retain) NSString* userId;
+@property int64_t sessionId;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
+@property (retain) StartGameRequest* startGameRequest;
+@property (retain) StartGameResponse* startGameResponse;
+@property (retain) GeneralNotification* notification;
 @end
 
 @implementation GameMessage
@@ -575,6 +1213,20 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   hasResultCode_ = !!value;
 }
 @synthesize resultCode;
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasSessionId {
+  return !!hasSessionId_;
+}
+- (void) setHasSessionId:(BOOL) value {
+  hasSessionId_ = !!value;
+}
+@synthesize sessionId;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -589,9 +1241,34 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
   hasJoinGameResponse_ = !!value;
 }
 @synthesize joinGameResponse;
+- (BOOL) hasStartGameRequest {
+  return !!hasStartGameRequest_;
+}
+- (void) setHasStartGameRequest:(BOOL) value {
+  hasStartGameRequest_ = !!value;
+}
+@synthesize startGameRequest;
+- (BOOL) hasStartGameResponse {
+  return !!hasStartGameResponse_;
+}
+- (void) setHasStartGameResponse:(BOOL) value {
+  hasStartGameResponse_ = !!value;
+}
+@synthesize startGameResponse;
+- (BOOL) hasNotification {
+  return !!hasNotification_;
+}
+- (void) setHasNotification:(BOOL) value {
+  hasNotification_ = !!value;
+}
+@synthesize notification;
 - (void) dealloc {
+  self.userId = nil;
   self.joinGameRequest = nil;
   self.joinGameResponse = nil;
+  self.startGameRequest = nil;
+  self.startGameResponse = nil;
+  self.notification = nil;
   [super dealloc];
 }
 - (id) init {
@@ -599,8 +1276,13 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
     self.command = GameCommandTypeJoinGameRequest;
     self.messageId = 0;
     self.resultCode = GameResultCodeSuccess;
+    self.userId = @"";
+    self.sessionId = 0L;
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
+    self.startGameRequest = [StartGameRequest defaultInstance];
+    self.startGameResponse = [StartGameResponse defaultInstance];
+    self.notification = [GeneralNotification defaultInstance];
   }
   return self;
 }
@@ -645,11 +1327,26 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasResultCode) {
     [output writeEnum:3 value:self.resultCode];
   }
+  if (self.hasUserId) {
+    [output writeString:4 value:self.userId];
+  }
+  if (self.hasSessionId) {
+    [output writeInt64:5 value:self.sessionId];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
   }
   if (self.hasJoinGameResponse) {
     [output writeMessage:12 value:self.joinGameResponse];
+  }
+  if (self.hasStartGameRequest) {
+    [output writeMessage:13 value:self.startGameRequest];
+  }
+  if (self.hasStartGameResponse) {
+    [output writeMessage:14 value:self.startGameResponse];
+  }
+  if (self.hasNotification) {
+    [output writeMessage:51 value:self.notification];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -669,11 +1366,26 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasResultCode) {
     size += computeEnumSize(3, self.resultCode);
   }
+  if (self.hasUserId) {
+    size += computeStringSize(4, self.userId);
+  }
+  if (self.hasSessionId) {
+    size += computeInt64Size(5, self.sessionId);
+  }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
   }
   if (self.hasJoinGameResponse) {
     size += computeMessageSize(12, self.joinGameResponse);
+  }
+  if (self.hasStartGameRequest) {
+    size += computeMessageSize(13, self.startGameRequest);
+  }
+  if (self.hasStartGameResponse) {
+    size += computeMessageSize(14, self.startGameResponse);
+  }
+  if (self.hasNotification) {
+    size += computeMessageSize(51, self.notification);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -759,11 +1471,26 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasResultCode) {
     [self setResultCode:other.resultCode];
   }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasSessionId) {
+    [self setSessionId:other.sessionId];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
   if (other.hasJoinGameResponse) {
     [self mergeJoinGameResponse:other.joinGameResponse];
+  }
+  if (other.hasStartGameRequest) {
+    [self mergeStartGameRequest:other.startGameRequest];
+  }
+  if (other.hasStartGameResponse) {
+    [self mergeStartGameResponse:other.startGameResponse];
+  }
+  if (other.hasNotification) {
+    [self mergeNotification:other.notification];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -808,6 +1535,14 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         break;
       }
+      case 34: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setSessionId:[input readInt64]];
+        break;
+      }
       case 90: {
         JoinGameRequest_Builder* subBuilder = [JoinGameRequest builder];
         if (self.hasJoinGameRequest) {
@@ -824,6 +1559,33 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setJoinGameResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 106: {
+        StartGameRequest_Builder* subBuilder = [StartGameRequest builder];
+        if (self.hasStartGameRequest) {
+          [subBuilder mergeFrom:self.startGameRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setStartGameRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 114: {
+        StartGameResponse_Builder* subBuilder = [StartGameResponse builder];
+        if (self.hasStartGameResponse) {
+          [subBuilder mergeFrom:self.startGameResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setStartGameResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 410: {
+        GeneralNotification_Builder* subBuilder = [GeneralNotification builder];
+        if (self.hasNotification) {
+          [subBuilder mergeFrom:self.notification];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setNotification:[subBuilder buildPartial]];
         break;
       }
     }
@@ -875,6 +1637,38 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearResultCode {
   result.hasResultCode = NO;
   result.resultCode = GameResultCodeSuccess;
+  return self;
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (GameMessage_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (GameMessage_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasSessionId {
+  return result.hasSessionId;
+}
+- (int64_t) sessionId {
+  return result.sessionId;
+}
+- (GameMessage_Builder*) setSessionId:(int64_t) value {
+  result.hasSessionId = YES;
+  result.sessionId = value;
+  return self;
+}
+- (GameMessage_Builder*) clearSessionId {
+  result.hasSessionId = NO;
+  result.sessionId = 0L;
   return self;
 }
 - (BOOL) hasJoinGameRequest {
@@ -935,6 +1729,96 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearJoinGameResponse {
   result.hasJoinGameResponse = NO;
   result.joinGameResponse = [JoinGameResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasStartGameRequest {
+  return result.hasStartGameRequest;
+}
+- (StartGameRequest*) startGameRequest {
+  return result.startGameRequest;
+}
+- (GameMessage_Builder*) setStartGameRequest:(StartGameRequest*) value {
+  result.hasStartGameRequest = YES;
+  result.startGameRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setStartGameRequestBuilder:(StartGameRequest_Builder*) builderForValue {
+  return [self setStartGameRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeStartGameRequest:(StartGameRequest*) value {
+  if (result.hasStartGameRequest &&
+      result.startGameRequest != [StartGameRequest defaultInstance]) {
+    result.startGameRequest =
+      [[[StartGameRequest builderWithPrototype:result.startGameRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.startGameRequest = value;
+  }
+  result.hasStartGameRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearStartGameRequest {
+  result.hasStartGameRequest = NO;
+  result.startGameRequest = [StartGameRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasStartGameResponse {
+  return result.hasStartGameResponse;
+}
+- (StartGameResponse*) startGameResponse {
+  return result.startGameResponse;
+}
+- (GameMessage_Builder*) setStartGameResponse:(StartGameResponse*) value {
+  result.hasStartGameResponse = YES;
+  result.startGameResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue {
+  return [self setStartGameResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value {
+  if (result.hasStartGameResponse &&
+      result.startGameResponse != [StartGameResponse defaultInstance]) {
+    result.startGameResponse =
+      [[[StartGameResponse builderWithPrototype:result.startGameResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.startGameResponse = value;
+  }
+  result.hasStartGameResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearStartGameResponse {
+  result.hasStartGameResponse = NO;
+  result.startGameResponse = [StartGameResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasNotification {
+  return result.hasNotification;
+}
+- (GeneralNotification*) notification {
+  return result.notification;
+}
+- (GameMessage_Builder*) setNotification:(GeneralNotification*) value {
+  result.hasNotification = YES;
+  result.notification = value;
+  return self;
+}
+- (GameMessage_Builder*) setNotificationBuilder:(GeneralNotification_Builder*) builderForValue {
+  return [self setNotification:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeNotification:(GeneralNotification*) value {
+  if (result.hasNotification &&
+      result.notification != [GeneralNotification defaultInstance]) {
+    result.notification =
+      [[[GeneralNotification builderWithPrototype:result.notification] mergeFrom:value] buildPartial];
+  } else {
+    result.notification = value;
+  }
+  result.hasNotification = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearNotification {
+  result.hasNotification = NO;
+  result.notification = [GeneralNotification defaultInstance];
   return self;
 }
 @end

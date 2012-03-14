@@ -81,7 +81,10 @@
 
 - (void)didConnected
 {
-    [[GameClient defaultInstance] sendJoinGameRequest:@"test user" nickName:@"Benson"];
+    [[GameClient defaultInstance] sendJoinGameRequest:@"test user 1" nickName:@"Benson"];
+    [[GameClient defaultInstance] sendJoinGameRequest:@"test user 2" nickName:@"Gamy"];
+    
+
 }
 
 - (void)didBroken
