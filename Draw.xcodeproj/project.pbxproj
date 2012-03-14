@@ -189,7 +189,6 @@
 		CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
 		CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041D81509B6E700F60C03 /* DrawViewController.m */; };
 		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
-		CA1041E71509B6E700F60C03 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041DC1509B6E700F60C03 /* DrawView.m */; };
 		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
 		CA1041F81509BC9700F60C03 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
@@ -218,10 +217,10 @@
 		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
 		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
+		CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA965150F4071009D1CB6 /* DrawView.m */; };
+		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
-		CADD7FAF1510BE670075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FAE1510BE670075C739 /* GameConstants.proto */; };
-		CADD7FB21510BFCB0075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -617,8 +616,6 @@
 		CA1041D71509B6E700F60C03 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		CA1041D81509B6E700F60C03 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		CA1041D91509B6E700F60C03 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		CA1041DB1509B6E700F60C03 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		CA1041DC1509B6E700F60C03 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
 		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 		CA1041F51509BC9700F60C03 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -661,12 +658,13 @@
 		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
 		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
 		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
+		CA9AA964150F4071009D1CB6 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		CA9AA965150F4071009D1CB6 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
+		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
-		CADD7FAE1510BE670075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
-		CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
-		CADD7FB11510BFCA0075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1670,18 +1668,8 @@
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
-				CA1041DA1509B6E700F60C03 /* View */,
 			);
 			path = Draw;
-			sourceTree = "<group>";
-		};
-		CA1041DA1509B6E700F60C03 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CA1041DB1509B6E700F60C03 /* DrawView.h */,
-				CA1041DC1509B6E700F60C03 /* DrawView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
@@ -1826,6 +1814,8 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AA973150F423C009D1CB6 /* Draw_Common */,
+				CA9AA963150F4071009D1CB6 /* View */,
 				CA103B391509A56000F60C03 /* Core */,
 				CA103B361509A55000F60C03 /* Resource */,
 				CA96E264150DD55400292335 /* GameServer */,
@@ -1833,7 +1823,6 @@
 				CAECE0271503B25500BC2404 /* Controller */,
 				CAECE0281503B25500BC2404 /* Manager */,
 				CAECE0291503B25500BC2404 /* Model */,
-				CAECE02A1503B25500BC2404 /* View */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
@@ -1926,7 +1915,6 @@
 				CA96E274150DE87A00292335 /* Gen */,
 				CA96E275150DE8AA00292335 /* GameBasic.proto */,
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
-				CADD7FAE1510BE670075C739 /* GameConstants.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -1934,8 +1922,6 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
-				CADD7FB01510BFCA0075C739 /* GameConstants.pb.m */,
-				CADD7FB11510BFCA0075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
 				CA96E35D150E107800292335 /* GameBasic.pb.h */,
 				CA96E35E150E107800292335 /* GameMessage.pb.m */,
@@ -1952,6 +1938,24 @@
 				CA96E344150DF27400292335 /* CommandLineTests.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CA9AA963150F4071009D1CB6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AA964150F4071009D1CB6 /* DrawView.h */,
+				CA9AA965150F4071009D1CB6 /* DrawView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA9AA973150F423C009D1CB6 /* Draw_Common */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AA974150F423C009D1CB6 /* DrawUtils.h */,
+				CA9AA975150F423C009D1CB6 /* DrawUtils.m */,
+			);
+			path = Draw_Common;
 			sourceTree = "<group>";
 		};
 		CADD7F91150F3F760075C739 /* GameSession */ = {
@@ -1993,13 +1997,6 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CAECE02A1503B25500BC2404 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2131,7 +2128,6 @@
 				CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */,
 				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
-				CADD7FAF1510BE670075C739 /* GameConstants.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2325,7 +2321,6 @@
 				CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */,
 				CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */,
 				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
-				CA1041E71509B6E700F60C03 /* DrawView.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
 				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
 				CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */,
@@ -2336,7 +2331,8 @@
 				CA96E271150DE56400292335 /* GameSessionManager.m in Sources */,
 				CA96E360150E107800292335 /* GameBasic.pb.m in Sources */,
 				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
-				CADD7FB21510BFCB0075C739 /* GameConstants.pb.m in Sources */,
+				CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */,
+				CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

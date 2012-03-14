@@ -10,11 +10,13 @@
 #import "DrawView.h"
 
 @implementation DrawViewController
+@synthesize playButton;
 @synthesize widthSlider;
 
 - (void)dealloc
 {
     [widthSlider release];
+    [playButton release];
     [super dealloc];
 }
 
@@ -35,6 +37,7 @@
     [super viewDidLoad];
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 410)];
     [self.view addSubview:drawView];
+    drawView.delegate = self;
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
 }
@@ -43,6 +46,7 @@
 - (void)viewDidUnload
 {
     [self setWidthSlider:nil];
+    [self setPlayButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -71,4 +75,14 @@
     UISlider *slider = (UISlider *)sender;
     [drawView setLineWidth:slider.value];
 }
+
+- (void)didDrawedPaint:(Paint *)paint
+{
+    NSInteger count = [paint pointCount];
+    NSLog(@"point count = %d ", count);
+    [self.playButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
+//    - (void)setTitle:(NSString *)title forState:(UIControlState)state;
+//    self.playButton
+}
+
 @end
