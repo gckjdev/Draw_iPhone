@@ -221,6 +221,7 @@
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -665,6 +666,8 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
+		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1922,6 +1925,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CADD7FCB1510C9700075C739 /* GameConstants.pb.m */,
+				CADD7FCC1510C9700075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
 				CA96E35D150E107800292335 /* GameBasic.pb.h */,
 				CA96E35E150E107800292335 /* GameMessage.pb.m */,
@@ -2333,6 +2338,7 @@
 				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
 				CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */,
 				CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */,
+				CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
