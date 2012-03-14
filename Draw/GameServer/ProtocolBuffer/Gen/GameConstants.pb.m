@@ -40,6 +40,8 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
   switch (value) {
     case GameResultCodeSuccess:
     case GameResultCodeErrorJoinGame:
+    case GameResultCodeErrorUseridNull:
+    case GameResultCodeErrorUserCannotStartGame:
     case GameResultCodeErrorSystemHandlerNotFound:
       return YES;
     default:

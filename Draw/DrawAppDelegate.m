@@ -81,8 +81,8 @@
 
 - (void)didConnected
 {
-    [[GameClient defaultInstance] sendJoinGameRequest:@"test user 1" nickName:@"Benson"];
-    [[GameClient defaultInstance] sendJoinGameRequest:@"test user 2" nickName:@"Gamy"];
+    [[GameClient defaultInstance] sendJoinGameRequest:@"User_ID1" nickName:@"Benson"];
+    [[GameClient defaultInstance] sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];
     
 
 }

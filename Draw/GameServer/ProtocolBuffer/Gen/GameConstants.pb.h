@@ -20,6 +20,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value);
 typedef enum {
   GameResultCodeSuccess = 0,
   GameResultCodeErrorJoinGame = 1,
+  GameResultCodeErrorUseridNull = 100,
+  GameResultCodeErrorUserCannotStartGame = 101,
   GameResultCodeErrorSystemHandlerNotFound = 910,
 } GameResultCode;
 

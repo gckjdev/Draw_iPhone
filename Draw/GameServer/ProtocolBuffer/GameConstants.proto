@@ -37,6 +37,10 @@ enum GameResultCode {
   // business errors
   ERROR_JOIN_GAME = 1;
   
+  // user errors
+  ERROR_USERID_NULL = 100;
+  ERROR_USER_CANNOT_START_GAME = 101;
+  
   // system errors
   ERROR_SYSTEM_HANDLER_NOT_FOUND = 910;
 }

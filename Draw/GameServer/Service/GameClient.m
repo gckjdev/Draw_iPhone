@@ -49,7 +49,7 @@ static GameClient* _defaultGameClient;
         PPDebug(@"Join Game Response, session id = %qi", 
                 [[[message joinGameResponse] gameSession] sessionId]);        
         
-       [[GameClient defaultInstance] sendStartGameRequest:@"test user 1" sessionId:sessionId]; 
+       [[GameClient defaultInstance] sendStartGameRequest:@"User_ID1" sessionId:sessionId]; 
     }
 }
 
