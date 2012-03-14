@@ -884,21 +884,22 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 @end
 
 @interface GeneralNotification ()
-@property (retain) NSString* host;
+@property (retain) NSString* sessionHost;
 @property int32_t sessionStatus;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
+@property (retain) NSString* newUserId;
 @end
 
 @implementation GeneralNotification
 
-- (BOOL) hasHost {
-  return !!hasHost_;
+- (BOOL) hasSessionHost {
+  return !!hasSessionHost_;
 }
-- (void) setHasHost:(BOOL) value {
-  hasHost_ = !!value;
+- (void) setHasSessionHost:(BOOL) value {
+  hasSessionHost_ = !!value;
 }
-@synthesize host;
+@synthesize sessionHost;
 - (BOOL) hasSessionStatus {
   return !!hasSessionStatus_;
 }
@@ -920,18 +921,27 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
   hasNextPlayUserId_ = !!value;
 }
 @synthesize nextPlayUserId;
+- (BOOL) hasNewUserId {
+  return !!hasNewUserId_;
+}
+- (void) setHasNewUserId:(BOOL) value {
+  hasNewUserId_ = !!value;
+}
+@synthesize newUserId;
 - (void) dealloc {
-  self.host = nil;
+  self.sessionHost = nil;
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
+  self.newUserId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.host = @"";
+    self.sessionHost = @"";
     self.sessionStatus = 0;
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
+    self.newUserId = @"";
   }
   return self;
 }
@@ -951,8 +961,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasHost) {
-    [output writeString:3 value:self.host];
+  if (self.hasSessionHost) {
+    [output writeString:3 value:self.sessionHost];
   }
   if (self.hasSessionStatus) {
     [output writeInt32:4 value:self.sessionStatus];
@@ -963,6 +973,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasNextPlayUserId) {
     [output writeString:6 value:self.nextPlayUserId];
   }
+  if (self.hasNewUserId) {
+    [output writeString:7 value:self.newUserId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -972,8 +985,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
 
   size = 0;
-  if (self.hasHost) {
-    size += computeStringSize(3, self.host);
+  if (self.hasSessionHost) {
+    size += computeStringSize(3, self.sessionHost);
   }
   if (self.hasSessionStatus) {
     size += computeInt32Size(4, self.sessionStatus);
@@ -983,6 +996,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasNextPlayUserId) {
     size += computeStringSize(6, self.nextPlayUserId);
+  }
+  if (self.hasNewUserId) {
+    size += computeStringSize(7, self.newUserId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1059,8 +1075,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other == [GeneralNotification defaultInstance]) {
     return self;
   }
-  if (other.hasHost) {
-    [self setHost:other.host];
+  if (other.hasSessionHost) {
+    [self setSessionHost:other.sessionHost];
   }
   if (other.hasSessionStatus) {
     [self setSessionStatus:other.sessionStatus];
@@ -1070,6 +1086,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (other.hasNextPlayUserId) {
     [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  if (other.hasNewUserId) {
+    [self setNewUserId:other.newUserId];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1093,7 +1112,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
         break;
       }
       case 26: {
-        [self setHost:[input readString]];
+        [self setSessionHost:[input readString]];
         break;
       }
       case 32: {
@@ -1108,23 +1127,27 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
         [self setNextPlayUserId:[input readString]];
         break;
       }
+      case 58: {
+        [self setNewUserId:[input readString]];
+        break;
+      }
     }
   }
 }
-- (BOOL) hasHost {
-  return result.hasHost;
+- (BOOL) hasSessionHost {
+  return result.hasSessionHost;
 }
-- (NSString*) host {
-  return result.host;
+- (NSString*) sessionHost {
+  return result.sessionHost;
 }
-- (GeneralNotification_Builder*) setHost:(NSString*) value {
-  result.hasHost = YES;
-  result.host = value;
+- (GeneralNotification_Builder*) setSessionHost:(NSString*) value {
+  result.hasSessionHost = YES;
+  result.sessionHost = value;
   return self;
 }
-- (GeneralNotification_Builder*) clearHost {
-  result.hasHost = NO;
-  result.host = @"";
+- (GeneralNotification_Builder*) clearSessionHost {
+  result.hasSessionHost = NO;
+  result.sessionHost = @"";
   return self;
 }
 - (BOOL) hasSessionStatus {
@@ -1173,6 +1196,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearNextPlayUserId {
   result.hasNextPlayUserId = NO;
   result.nextPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasNewUserId {
+  return result.hasNewUserId;
+}
+- (NSString*) newUserId {
+  return result.newUserId;
+}
+- (GeneralNotification_Builder*) setNewUserId:(NSString*) value {
+  result.hasNewUserId = YES;
+  result.newUserId = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearNewUserId {
+  result.hasNewUserId = NO;
+  result.newUserId = @"";
   return self;
 }
 @end

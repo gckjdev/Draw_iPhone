@@ -252,22 +252,26 @@
 @interface GeneralNotification : PBGeneratedMessage {
 @private
   BOOL hasSessionStatus_:1;
-  BOOL hasHost_:1;
+  BOOL hasSessionHost_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
+  BOOL hasNewUserId_:1;
   int32_t sessionStatus;
-  NSString* host;
+  NSString* sessionHost;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
+  NSString* newUserId;
 }
-- (BOOL) hasHost;
+- (BOOL) hasSessionHost;
 - (BOOL) hasSessionStatus;
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
-@property (readonly, retain) NSString* host;
+- (BOOL) hasNewUserId;
+@property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly, retain) NSString* newUserId;
 
 + (GeneralNotification*) defaultInstance;
 - (GeneralNotification*) defaultInstance;
@@ -303,10 +307,10 @@
 - (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasHost;
-- (NSString*) host;
-- (GeneralNotification_Builder*) setHost:(NSString*) value;
-- (GeneralNotification_Builder*) clearHost;
+- (BOOL) hasSessionHost;
+- (NSString*) sessionHost;
+- (GeneralNotification_Builder*) setSessionHost:(NSString*) value;
+- (GeneralNotification_Builder*) clearSessionHost;
 
 - (BOOL) hasSessionStatus;
 - (int32_t) sessionStatus;
@@ -322,6 +326,11 @@
 - (NSString*) nextPlayUserId;
 - (GeneralNotification_Builder*) setNextPlayUserId:(NSString*) value;
 - (GeneralNotification_Builder*) clearNextPlayUserId;
+
+- (BOOL) hasNewUserId;
+- (NSString*) newUserId;
+- (GeneralNotification_Builder*) setNewUserId:(NSString*) value;
+- (GeneralNotification_Builder*) clearNewUserId;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
