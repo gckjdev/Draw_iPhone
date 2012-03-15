@@ -1,18 +1,18 @@
 //
-//  GameClient.m
+//  GameNetworkClient.m
 //  Draw
 //
 //  Created by  on 12-3-12.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "GameClient.h"
+#import "GameNetworkClient.h"
 #import "GameMessage.pb.h"
 #import "LogUtil.h"
 
-@implementation GameClient
+@implementation GameNetworkClient
 
-static GameClient* _defaultGameClient;
+static GameNetworkClient* _defaultGameNetworkClient;
 
 #pragma LifeCycle Management
 
@@ -21,13 +21,13 @@ static GameClient* _defaultGameClient;
     [super dealloc];
 }
 
-+ (GameClient*)defaultInstance
++ (GameNetworkClient*)defaultInstance
 {
-    if (_defaultGameClient != nil)
-        return _defaultGameClient;
+    if (_defaultGameNetworkClient != nil)
+        return _defaultGameNetworkClient;
     
-    _defaultGameClient = [[GameClient alloc] init];
-    return _defaultGameClient;
+    _defaultGameNetworkClient = [[GameNetworkClient alloc] init];
+    return _defaultGameNetworkClient;
 }
 
 - (void)start:(NSString*)serverAddress port:(int)port
@@ -39,17 +39,16 @@ static GameClient* _defaultGameClient;
 
 - (void)handleData:(NSData*)data
 {
-    GameMessage *message = [GameMessage parseFromData:data];
-    PPDebug(@"<handle data> message = %@", [message description]);
-    
-    if ([message hasJoinGameResponse]){
-        
-        long sessionId = [[[message joinGameResponse] gameSession] sessionId];
-        
-        PPDebug(@"Join Game Response, session id = %qi", 
-                [[[message joinGameResponse] gameSession] sessionId]);        
-        
-       [[GameClient defaultInstance] sendStartGameRequest:@"User_ID1" sessionId:sessionId]; 
+    @try
+    {
+        GameMessage *message = [GameMessage parseFromData:data];
+        if ([self.delegate respondsToSelector:@selector(handleData:)]){
+            [self.delegate performSelector:@selector(handleData:) withObject:message];
+        }
+    }
+    @catch(NSException* ex)
+    {
+        NSLog(@"catch exception while handleData, exception = %@", [ex debugDescription]);
     }
 }
 

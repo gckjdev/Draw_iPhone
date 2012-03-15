@@ -1,5 +1,5 @@
 //
-//  GameClient.h
+//  GameNetworkClient.h
 //  Draw
 //
 //  Created by  on 12-3-12.
@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "CommonNetworkClient.h"
 
-@interface GameClient : CommonNetworkClient<CommonNetworkClientDelegate>
+@interface GameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
     int _messageIdIndex;
 }
 
-+ (GameClient*)defaultInstance;
++ (GameNetworkClient*)defaultInstance;
 - (void)start:(NSString*)serverAddress port:(int)port;
 
 - (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName;

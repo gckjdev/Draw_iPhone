@@ -22,7 +22,12 @@ typedef enum {
   GameResultCodeErrorJoinGame = 1,
   GameResultCodeErrorUseridNull = 100,
   GameResultCodeErrorUserCannotStartGame = 101,
+  GameResultCodeErrorNoSessionId = 200,
+  GameResultCodeErrorNextStateNotFound = 201,
+  GameResultCodeErrorSessionidNull = 202,
+  GameResultCodeErrorSessionAlreadyStart = 203,
   GameResultCodeErrorSystemHandlerNotFound = 910,
+  GameResultCodeErrorSystemException = 911,
 } GameResultCode;
 
 BOOL GameResultCodeIsValidValue(GameResultCode value);

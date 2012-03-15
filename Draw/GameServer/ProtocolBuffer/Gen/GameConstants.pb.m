@@ -42,7 +42,12 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorJoinGame:
     case GameResultCodeErrorUseridNull:
     case GameResultCodeErrorUserCannotStartGame:
+    case GameResultCodeErrorNoSessionId:
+    case GameResultCodeErrorNextStateNotFound:
+    case GameResultCodeErrorSessionidNull:
+    case GameResultCodeErrorSessionAlreadyStart:
     case GameResultCodeErrorSystemHandlerNotFound:
+    case GameResultCodeErrorSystemException:
       return YES;
     default:
       return NO;
