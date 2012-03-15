@@ -62,4 +62,49 @@
     return sqrtf(left + right);
 }
 
++ (NSInteger)compressRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
+{
+    NSInteger intRed = red * 255.0;
+    NSInteger intGreen = green * 255.0;
+    NSInteger intBlue = blue * 255.0;
+    NSInteger intAlpha = alpha * 64.0;
+    NSInteger ret = intAlpha + (intBlue << 6) + (intGreen << 14) + (intRed << 22);
+    return ret;
+}
+
+
++ (UIColor *)decompressIntColor:(NSInteger)intColor
+{
+    CGFloat alpha = (intColor % (1<<6)) / 64.0;
+    CGFloat blue = ((intColor >> 6) % (1<<8)) / 255.0;
+    CGFloat green = ((intColor >> 14) % (1<<8)) / 255.0; 
+    CGFloat red = ((intColor >> 22) % (1<<8)) / 255.0; 
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
++ (NSInteger)compressPoint:(CGPoint)point
+{
+    NSInteger ret = (point.x * (1 << 15)) + point.y;
+    return ret;
+}
+
++ (CGPoint)decompressIntPoint:(NSInteger)intPoint
+{
+    CGFloat y = intPoint % (1 << 15);
+    CGFloat x = intPoint >> 15;
+    return CGPointMake(x, y);
+    
+}
+
+
+#define LINT_TIMES 100000.0
++ (NSInteger)compressLineWidth:(CGFloat)width
+{
+    return width * LINT_TIMES;
+}
+
++ (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth
+{
+    return intLineWidth / LINT_TIMES;
+}
+
 @end

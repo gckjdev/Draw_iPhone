@@ -8,7 +8,7 @@
 
 #import "DrawViewController.h"
 #import "DrawView.h"
-
+#import "DrawGameService.h"
 @implementation DrawViewController
 @synthesize playButton;
 @synthesize widthSlider;
@@ -40,6 +40,13 @@
     drawView.delegate = self;
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
+    
+    NSInteger c = [DrawUtils compressRed:(rand()%2556) / 2556.0 green:(rand()%2556) / 2556.0 blue:(rand()%2556) / 2556.0 alpha:(rand()%2556) / 2556.0];
+    [DrawUtils decompressIntColor:c];
+    
+    NSInteger p = [DrawUtils compressPoint:CGPointMake((rand()%387), rand() % 4867)];
+    [DrawUtils decompressIntPoint:p];
+    
 }
 
 
@@ -81,8 +88,14 @@
     NSInteger count = [paint pointCount];
     NSLog(@"point count = %d ", count);
     [self.playButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
-//    - (void)setTitle:(NSString *)title forState:(UIControlState)state;
-//    self.playButton
+    NSInteger intColor  = 19999;
+    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
+    for (NSValue *pointValue in paint.pointList) {
+        CGPoint point = [pointValue CGPointValue];
+        NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+        [pointList addObject:pointNumber];
+    }
+    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
 
 @end
