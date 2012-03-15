@@ -109,7 +109,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setWidth:width];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
+    [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
