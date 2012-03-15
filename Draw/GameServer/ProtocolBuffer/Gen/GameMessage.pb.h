@@ -260,6 +260,7 @@
   Float32 width;
   int32_t color;
   NSMutableArray* mutablePointsList;
+  int32_t pointsMemoizedSerializedSize;
 }
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
@@ -376,6 +377,7 @@
   NSString* nextPlayUserId;
   NSString* newUserId;
   NSMutableArray* mutablePointsList;
+  int32_t pointsMemoizedSerializedSize;
 }
 - (BOOL) hasSessionHost;
 - (BOOL) hasSessionStatus;

@@ -940,8 +940,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.mutablePointsList.count > 0) {
+    [output writeRawVarint32:10];
+    [output writeRawVarint32:pointsMemoizedSerializedSize];
+  }
   for (NSNumber* value in self.mutablePointsList) {
-    [output writeInt32:1 value:[value intValue]];
+    [output writeInt32NoTag:[value intValue]];
   }
   if (self.hasWidth) {
     [output writeFloat:22 value:self.width];
@@ -964,7 +968,11 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       dataSize += computeInt32SizeNoTag([value intValue]);
     }
     size += dataSize;
-    size += 1 * self.mutablePointsList.count;
+    if (self.mutablePointsList.count > 0) {
+      size += 1;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    pointsMemoizedSerializedSize = dataSize;
   }
   if (self.hasWidth) {
     size += computeFloatSize(22, self.width);
@@ -1080,8 +1088,13 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self addPoints:[input readInt32]];
+      case 10: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPoints:[input readInt32]];
+        }
+        [input popLimit:limit];
         break;
       }
       case 181: {
@@ -1420,8 +1433,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasNewUserId) {
     [output writeString:7 value:self.newUserId];
   }
+  if (self.mutablePointsList.count > 0) {
+    [output writeRawVarint32:170];
+    [output writeRawVarint32:pointsMemoizedSerializedSize];
+  }
   for (NSNumber* value in self.mutablePointsList) {
-    [output writeInt32:21 value:[value intValue]];
+    [output writeInt32NoTag:[value intValue]];
   }
   if (self.hasWidth) {
     [output writeFloat:22 value:self.width];
@@ -1459,7 +1476,11 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       dataSize += computeInt32SizeNoTag([value intValue]);
     }
     size += dataSize;
-    size += 2 * self.mutablePointsList.count;
+    if (self.mutablePointsList.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    pointsMemoizedSerializedSize = dataSize;
   }
   if (self.hasWidth) {
     size += computeFloatSize(22, self.width);
@@ -1610,8 +1631,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
         [self setNewUserId:[input readString]];
         break;
       }
-      case 168: {
-        [self addPoints:[input readInt32]];
+      case 170: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPoints:[input readInt32]];
+        }
+        [input popLimit:limit];
         break;
       }
       case 181: {

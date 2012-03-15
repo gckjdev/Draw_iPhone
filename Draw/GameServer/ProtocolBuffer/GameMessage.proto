@@ -27,7 +27,7 @@ message StartGameResponse {                    // 开始游戏响应
 }
 
 message SendDrawDataRequest {
-  repeated int32 points = 1;
+  repeated int32 points = 1 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
 }
@@ -51,7 +51,7 @@ message GeneralNotification{
   optional string newUserId = 7;
   
   // draw data
-  repeated int32 points = 21;
+  repeated int32 points = 21 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
   
