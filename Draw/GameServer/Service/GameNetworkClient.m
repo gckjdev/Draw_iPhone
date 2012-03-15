@@ -42,6 +42,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
     @try
     {
         GameMessage *message = [GameMessage parseFromData:data];
+        PPDebug(@"RECV MESSAGE, COMMAND = %d, RESULT = %d", [message command], [message resultCode]);
         if ([self.delegate respondsToSelector:@selector(handleData:)]){
             [self.delegate performSelector:@selector(handleData:) withObject:message];
         }
@@ -94,6 +95,28 @@ static GameNetworkClient* _defaultGameNetworkClient;
     
     GameMessage* message = [messageBuilder build];
     [self sendData:[message data]];
+}
+
+- (void)sendDrawDataRequest:(NSString*)userId 
+                  sessionId:(long)sessionId 
+                  pointList:(NSArray*)pointList 
+                      color:(int)color
+                      width:(float)width
+{
+    SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
+    [requestBuilder setColor:color];
+    [requestBuilder addAllPoints:pointList];
+    [requestBuilder setWidth:width];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setSendDrawDataRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];    
 }
 
 @end

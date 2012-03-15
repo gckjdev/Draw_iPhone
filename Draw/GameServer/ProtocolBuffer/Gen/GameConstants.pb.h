@@ -7,12 +7,16 @@ typedef enum {
   GameCommandTypeJoinGameResponse = 2,
   GameCommandTypeStartGameRequest = 3,
   GameCommandTypeStartGameResponse = 4,
+  GameCommandTypeSendDrawDataRequest = 11,
+  GameCommandTypeSendDrawDataResponse = 12,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeHostChangeNotificationRequest = 53,
   GameCommandTypeHostChangeNotificationResponse = 54,
   GameCommandTypeGameStartNotificationRequest = 55,
   GameCommandTypeGameStartNotificationResponse = 56,
+  GameCommandTypeNewDrawDataNotificationRequest = 71,
+  GameCommandTypeNewDrawDataNotificationResponse = 72,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);
@@ -26,6 +30,8 @@ typedef enum {
   GameResultCodeErrorNextStateNotFound = 201,
   GameResultCodeErrorSessionidNull = 202,
   GameResultCodeErrorSessionAlreadyStart = 203,
+  GameResultCodeErrorSessionNotStart = 204,
+  GameResultCodeErrorNoDrawData = 301,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
 } GameResultCode;

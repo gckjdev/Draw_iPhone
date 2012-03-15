@@ -883,12 +883,431 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 }
 @end
 
+@interface SendDrawDataRequest ()
+@property (retain) NSMutableArray* mutablePointsList;
+@property Float32 width;
+@property int32_t color;
+@end
+
+@implementation SendDrawDataRequest
+
+@synthesize mutablePointsList;
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasColor {
+  return !!hasColor_;
+}
+- (void) setHasColor:(BOOL) value {
+  hasColor_ = !!value;
+}
+@synthesize color;
+- (void) dealloc {
+  self.mutablePointsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.width = 0;
+    self.color = 0;
+  }
+  return self;
+}
+static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
++ (void) initialize {
+  if (self == [SendDrawDataRequest class]) {
+    defaultSendDrawDataRequestInstance = [[SendDrawDataRequest alloc] init];
+  }
+}
++ (SendDrawDataRequest*) defaultInstance {
+  return defaultSendDrawDataRequestInstance;
+}
+- (SendDrawDataRequest*) defaultInstance {
+  return defaultSendDrawDataRequestInstance;
+}
+- (NSArray*) pointsList {
+  return mutablePointsList;
+}
+- (int32_t) pointsAtIndex:(int32_t) index {
+  id value = [mutablePointsList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (NSNumber* value in self.mutablePointsList) {
+    [output writeInt32:1 value:[value intValue]];
+  }
+  if (self.hasWidth) {
+    [output writeFloat:22 value:self.width];
+  }
+  if (self.hasColor) {
+    [output writeInt32:23 value:self.color];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePointsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutablePointsList.count;
+  }
+  if (self.hasWidth) {
+    size += computeFloatSize(22, self.width);
+  }
+  if (self.hasColor) {
+    size += computeInt32Size(23, self.color);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (SendDrawDataRequest*) parseFromData:(NSData*) data {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromData:data] build];
+}
++ (SendDrawDataRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromInputStream:input] build];
+}
++ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataRequest*)[[[SendDrawDataRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataRequest_Builder*) builder {
+  return [[[SendDrawDataRequest_Builder alloc] init] autorelease];
+}
++ (SendDrawDataRequest_Builder*) builderWithPrototype:(SendDrawDataRequest*) prototype {
+  return [[SendDrawDataRequest builder] mergeFrom:prototype];
+}
+- (SendDrawDataRequest_Builder*) builder {
+  return [SendDrawDataRequest builder];
+}
+@end
+
+@interface SendDrawDataRequest_Builder()
+@property (retain) SendDrawDataRequest* result;
+@end
+
+@implementation SendDrawDataRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[SendDrawDataRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (SendDrawDataRequest_Builder*) clear {
+  self.result = [[[SendDrawDataRequest alloc] init] autorelease];
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clone {
+  return [SendDrawDataRequest builderWithPrototype:result];
+}
+- (SendDrawDataRequest*) defaultInstance {
+  return [SendDrawDataRequest defaultInstance];
+}
+- (SendDrawDataRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (SendDrawDataRequest*) buildPartial {
+  SendDrawDataRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (SendDrawDataRequest_Builder*) mergeFrom:(SendDrawDataRequest*) other {
+  if (other == [SendDrawDataRequest defaultInstance]) {
+    return self;
+  }
+  if (other.mutablePointsList.count > 0) {
+    if (result.mutablePointsList == nil) {
+      result.mutablePointsList = [NSMutableArray array];
+    }
+    [result.mutablePointsList addObjectsFromArray:other.mutablePointsList];
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasColor) {
+    [self setColor:other.color];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self addPoints:[input readInt32]];
+        break;
+      }
+      case 181: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 184: {
+        [self setColor:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) pointsList {
+  if (result.mutablePointsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointsList;
+}
+- (int32_t) pointsAtIndex:(int32_t) index {
+  return [result pointsAtIndex:index];
+}
+- (SendDrawDataRequest_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePointsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (SendDrawDataRequest_Builder*) addPoints:(int32_t) value {
+  if (result.mutablePointsList == nil) {
+    result.mutablePointsList = [NSMutableArray array];
+  }
+  [result.mutablePointsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (SendDrawDataRequest_Builder*) addAllPoints:(NSArray*) values {
+  if (result.mutablePointsList == nil) {
+    result.mutablePointsList = [NSMutableArray array];
+  }
+  [result.mutablePointsList addObjectsFromArray:values];
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearPointsList {
+  result.mutablePointsList = nil;
+  return self;
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (SendDrawDataRequest_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 0;
+  return self;
+}
+- (BOOL) hasColor {
+  return result.hasColor;
+}
+- (int32_t) color {
+  return result.color;
+}
+- (SendDrawDataRequest_Builder*) setColor:(int32_t) value {
+  result.hasColor = YES;
+  result.color = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearColor {
+  result.hasColor = NO;
+  result.color = 0;
+  return self;
+}
+@end
+
+@interface SendDrawDataResponse ()
+@end
+
+@implementation SendDrawDataResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
++ (void) initialize {
+  if (self == [SendDrawDataResponse class]) {
+    defaultSendDrawDataResponseInstance = [[SendDrawDataResponse alloc] init];
+  }
+}
++ (SendDrawDataResponse*) defaultInstance {
+  return defaultSendDrawDataResponseInstance;
+}
+- (SendDrawDataResponse*) defaultInstance {
+  return defaultSendDrawDataResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (SendDrawDataResponse*) parseFromData:(NSData*) data {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromData:data] build];
+}
++ (SendDrawDataResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromInputStream:input] build];
+}
++ (SendDrawDataResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (SendDrawDataResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (SendDrawDataResponse*)[[[SendDrawDataResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (SendDrawDataResponse_Builder*) builder {
+  return [[[SendDrawDataResponse_Builder alloc] init] autorelease];
+}
++ (SendDrawDataResponse_Builder*) builderWithPrototype:(SendDrawDataResponse*) prototype {
+  return [[SendDrawDataResponse builder] mergeFrom:prototype];
+}
+- (SendDrawDataResponse_Builder*) builder {
+  return [SendDrawDataResponse builder];
+}
+@end
+
+@interface SendDrawDataResponse_Builder()
+@property (retain) SendDrawDataResponse* result;
+@end
+
+@implementation SendDrawDataResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[SendDrawDataResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (SendDrawDataResponse_Builder*) clear {
+  self.result = [[[SendDrawDataResponse alloc] init] autorelease];
+  return self;
+}
+- (SendDrawDataResponse_Builder*) clone {
+  return [SendDrawDataResponse builderWithPrototype:result];
+}
+- (SendDrawDataResponse*) defaultInstance {
+  return [SendDrawDataResponse defaultInstance];
+}
+- (SendDrawDataResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (SendDrawDataResponse*) buildPartial {
+  SendDrawDataResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (SendDrawDataResponse_Builder*) mergeFrom:(SendDrawDataResponse*) other {
+  if (other == [SendDrawDataResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
 @interface GeneralNotification ()
 @property (retain) NSString* sessionHost;
 @property int32_t sessionStatus;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
 @property (retain) NSString* newUserId;
+@property (retain) NSMutableArray* mutablePointsList;
+@property Float32 width;
+@property int32_t color;
 @end
 
 @implementation GeneralNotification
@@ -928,11 +1347,27 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
   hasNewUserId_ = !!value;
 }
 @synthesize newUserId;
+@synthesize mutablePointsList;
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasColor {
+  return !!hasColor_;
+}
+- (void) setHasColor:(BOOL) value {
+  hasColor_ = !!value;
+}
+@synthesize color;
 - (void) dealloc {
   self.sessionHost = nil;
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
   self.newUserId = nil;
+  self.mutablePointsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -942,6 +1377,8 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
     self.newUserId = @"";
+    self.width = 0;
+    self.color = 0;
   }
   return self;
 }
@@ -956,6 +1393,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 }
 - (GeneralNotification*) defaultInstance {
   return defaultGeneralNotificationInstance;
+}
+- (NSArray*) pointsList {
+  return mutablePointsList;
+}
+- (int32_t) pointsAtIndex:(int32_t) index {
+  id value = [mutablePointsList objectAtIndex:index];
+  return [value intValue];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -975,6 +1419,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasNewUserId) {
     [output writeString:7 value:self.newUserId];
+  }
+  for (NSNumber* value in self.mutablePointsList) {
+    [output writeInt32:21 value:[value intValue]];
+  }
+  if (self.hasWidth) {
+    [output writeFloat:22 value:self.width];
+  }
+  if (self.hasColor) {
+    [output writeInt32:23 value:self.color];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -999,6 +1452,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasNewUserId) {
     size += computeStringSize(7, self.newUserId);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePointsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutablePointsList.count;
+  }
+  if (self.hasWidth) {
+    size += computeFloatSize(22, self.width);
+  }
+  if (self.hasColor) {
+    size += computeInt32Size(23, self.color);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1090,6 +1557,18 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasNewUserId) {
     [self setNewUserId:other.newUserId];
   }
+  if (other.mutablePointsList.count > 0) {
+    if (result.mutablePointsList == nil) {
+      result.mutablePointsList = [NSMutableArray array];
+    }
+    [result.mutablePointsList addObjectsFromArray:other.mutablePointsList];
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasColor) {
+    [self setColor:other.color];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1129,6 +1608,18 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 58: {
         [self setNewUserId:[input readString]];
+        break;
+      }
+      case 168: {
+        [self addPoints:[input readInt32]];
+        break;
+      }
+      case 181: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 184: {
+        [self setColor:[input readInt32]];
         break;
       }
     }
@@ -1214,6 +1705,69 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   result.newUserId = @"";
   return self;
 }
+- (NSArray*) pointsList {
+  if (result.mutablePointsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointsList;
+}
+- (int32_t) pointsAtIndex:(int32_t) index {
+  return [result pointsAtIndex:index];
+}
+- (GeneralNotification_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePointsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (GeneralNotification_Builder*) addPoints:(int32_t) value {
+  if (result.mutablePointsList == nil) {
+    result.mutablePointsList = [NSMutableArray array];
+  }
+  [result.mutablePointsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (GeneralNotification_Builder*) addAllPoints:(NSArray*) values {
+  if (result.mutablePointsList == nil) {
+    result.mutablePointsList = [NSMutableArray array];
+  }
+  [result.mutablePointsList addObjectsFromArray:values];
+  return self;
+}
+- (GeneralNotification_Builder*) clearPointsList {
+  result.mutablePointsList = nil;
+  return self;
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (GeneralNotification_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 0;
+  return self;
+}
+- (BOOL) hasColor {
+  return result.hasColor;
+}
+- (int32_t) color {
+  return result.color;
+}
+- (GeneralNotification_Builder*) setColor:(int32_t) value {
+  result.hasColor = YES;
+  result.color = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearColor {
+  result.hasColor = NO;
+  result.color = 0;
+  return self;
+}
 @end
 
 @interface GameMessage ()
@@ -1226,6 +1780,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
 @property (retain) StartGameResponse* startGameResponse;
+@property (retain) SendDrawDataRequest* sendDrawDataRequest;
+@property (retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (retain) GeneralNotification* notification;
 @end
 
@@ -1294,6 +1850,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasStartGameResponse_ = !!value;
 }
 @synthesize startGameResponse;
+- (BOOL) hasSendDrawDataRequest {
+  return !!hasSendDrawDataRequest_;
+}
+- (void) setHasSendDrawDataRequest:(BOOL) value {
+  hasSendDrawDataRequest_ = !!value;
+}
+@synthesize sendDrawDataRequest;
+- (BOOL) hasSendDrawDataResponse {
+  return !!hasSendDrawDataResponse_;
+}
+- (void) setHasSendDrawDataResponse:(BOOL) value {
+  hasSendDrawDataResponse_ = !!value;
+}
+@synthesize sendDrawDataResponse;
 - (BOOL) hasNotification {
   return !!hasNotification_;
 }
@@ -1307,6 +1877,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   self.joinGameResponse = nil;
   self.startGameRequest = nil;
   self.startGameResponse = nil;
+  self.sendDrawDataRequest = nil;
+  self.sendDrawDataResponse = nil;
   self.notification = nil;
   [super dealloc];
 }
@@ -1321,6 +1893,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
     self.startGameResponse = [StartGameResponse defaultInstance];
+    self.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
+    self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
     self.notification = [GeneralNotification defaultInstance];
   }
   return self;
@@ -1384,6 +1958,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasStartGameResponse) {
     [output writeMessage:14 value:self.startGameResponse];
   }
+  if (self.hasSendDrawDataRequest) {
+    [output writeMessage:21 value:self.sendDrawDataRequest];
+  }
+  if (self.hasSendDrawDataResponse) {
+    [output writeMessage:22 value:self.sendDrawDataResponse];
+  }
   if (self.hasNotification) {
     [output writeMessage:51 value:self.notification];
   }
@@ -1422,6 +2002,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasStartGameResponse) {
     size += computeMessageSize(14, self.startGameResponse);
+  }
+  if (self.hasSendDrawDataRequest) {
+    size += computeMessageSize(21, self.sendDrawDataRequest);
+  }
+  if (self.hasSendDrawDataResponse) {
+    size += computeMessageSize(22, self.sendDrawDataResponse);
   }
   if (self.hasNotification) {
     size += computeMessageSize(51, self.notification);
@@ -1528,6 +2114,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasStartGameResponse) {
     [self mergeStartGameResponse:other.startGameResponse];
   }
+  if (other.hasSendDrawDataRequest) {
+    [self mergeSendDrawDataRequest:other.sendDrawDataRequest];
+  }
+  if (other.hasSendDrawDataResponse) {
+    [self mergeSendDrawDataResponse:other.sendDrawDataResponse];
+  }
   if (other.hasNotification) {
     [self mergeNotification:other.notification];
   }
@@ -1616,6 +2208,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setStartGameResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 170: {
+        SendDrawDataRequest_Builder* subBuilder = [SendDrawDataRequest builder];
+        if (self.hasSendDrawDataRequest) {
+          [subBuilder mergeFrom:self.sendDrawDataRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSendDrawDataRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 178: {
+        SendDrawDataResponse_Builder* subBuilder = [SendDrawDataResponse builder];
+        if (self.hasSendDrawDataResponse) {
+          [subBuilder mergeFrom:self.sendDrawDataResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSendDrawDataResponse:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -1828,6 +2438,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearStartGameResponse {
   result.hasStartGameResponse = NO;
   result.startGameResponse = [StartGameResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasSendDrawDataRequest {
+  return result.hasSendDrawDataRequest;
+}
+- (SendDrawDataRequest*) sendDrawDataRequest {
+  return result.sendDrawDataRequest;
+}
+- (GameMessage_Builder*) setSendDrawDataRequest:(SendDrawDataRequest*) value {
+  result.hasSendDrawDataRequest = YES;
+  result.sendDrawDataRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setSendDrawDataRequestBuilder:(SendDrawDataRequest_Builder*) builderForValue {
+  return [self setSendDrawDataRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeSendDrawDataRequest:(SendDrawDataRequest*) value {
+  if (result.hasSendDrawDataRequest &&
+      result.sendDrawDataRequest != [SendDrawDataRequest defaultInstance]) {
+    result.sendDrawDataRequest =
+      [[[SendDrawDataRequest builderWithPrototype:result.sendDrawDataRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.sendDrawDataRequest = value;
+  }
+  result.hasSendDrawDataRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearSendDrawDataRequest {
+  result.hasSendDrawDataRequest = NO;
+  result.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasSendDrawDataResponse {
+  return result.hasSendDrawDataResponse;
+}
+- (SendDrawDataResponse*) sendDrawDataResponse {
+  return result.sendDrawDataResponse;
+}
+- (GameMessage_Builder*) setSendDrawDataResponse:(SendDrawDataResponse*) value {
+  result.hasSendDrawDataResponse = YES;
+  result.sendDrawDataResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue {
+  return [self setSendDrawDataResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value {
+  if (result.hasSendDrawDataResponse &&
+      result.sendDrawDataResponse != [SendDrawDataResponse defaultInstance]) {
+    result.sendDrawDataResponse =
+      [[[SendDrawDataResponse builderWithPrototype:result.sendDrawDataResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.sendDrawDataResponse = value;
+  }
+  result.hasSendDrawDataResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearSendDrawDataResponse {
+  result.hasSendDrawDataResponse = NO;
+  result.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
   return self;
 }
 - (BOOL) hasNotification {

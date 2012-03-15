@@ -26,6 +26,15 @@ message StartGameResponse {                    // 开始游戏响应
   optional string nextPlayUserId = 6;          // 下一个要轮到的用户（如画画的用户）
 }
 
+message SendDrawDataRequest {
+  repeated int32 points = 1;
+  optional float width = 22;
+  optional int32 color = 23;
+}
+
+message SendDrawDataResponse{
+}
+
 //message GameStartNotification{                 // 游戏开始通知，用于服务器通知所有同一个会话里面的用户
 //  required int64 sessionId = 1;                // 游戏会话ID
 //  optional string userId = 2;                  // 接受请求的用户ID
@@ -40,6 +49,12 @@ message GeneralNotification{
   optional string currentPlayUserId = 5;               // 当前轮到的用户（如画画的用户）
   optional string nextPlayUserId = 6;                  // 下一个要轮到的用户（如画画的用户）
   optional string newUserId = 7;
+  
+  // draw data
+  repeated int32 points = 21;
+  optional float width = 22;
+  optional int32 color = 23;
+  
 }
 
 message GameMessage {
@@ -55,6 +70,9 @@ message GameMessage {
   
   optional StartGameRequest startGameRequest = 13;
   optional StartGameResponse startGameResponse = 14;
+  
+  optional SendDrawDataRequest sendDrawDataRequest = 21;
+  optional SendDrawDataResponse sendDrawDataResponse = 22;
   
   optional GeneralNotification notification = 51;
   

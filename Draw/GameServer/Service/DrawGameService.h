@@ -12,11 +12,17 @@
 @interface DrawGameService : CommonService<CommonNetworkClientDelegate>
 {
     GameNetworkClient *_networkClient;
+    
+    NSString *_userId;
+    int _sessionId;
 }
 
+@property (nonatomic, retain) NSString* userId;
 
 + (DrawGameService*)defaultService;
 
-
+- (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
+                                   color:(int)color
+                                   width:(float)width;
 
 @end

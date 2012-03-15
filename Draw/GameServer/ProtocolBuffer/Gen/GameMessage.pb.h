@@ -17,6 +17,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class SendDrawDataRequest;
+@class SendDrawDataRequest_Builder;
+@class SendDrawDataResponse;
+@class SendDrawDataResponse_Builder;
 @class StartGameRequest;
 @class StartGameRequest_Builder;
 @class StartGameResponse;
@@ -249,29 +253,146 @@
 - (StartGameResponse_Builder*) clearNextPlayUserId;
 @end
 
+@interface SendDrawDataRequest : PBGeneratedMessage {
+@private
+  BOOL hasWidth_:1;
+  BOOL hasColor_:1;
+  Float32 width;
+  int32_t color;
+  NSMutableArray* mutablePointsList;
+}
+- (BOOL) hasWidth;
+- (BOOL) hasColor;
+@property (readonly) Float32 width;
+@property (readonly) int32_t color;
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
+
++ (SendDrawDataRequest*) defaultInstance;
+- (SendDrawDataRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (SendDrawDataRequest_Builder*) builder;
++ (SendDrawDataRequest_Builder*) builder;
++ (SendDrawDataRequest_Builder*) builderWithPrototype:(SendDrawDataRequest*) prototype;
+
++ (SendDrawDataRequest*) parseFromData:(NSData*) data;
++ (SendDrawDataRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input;
++ (SendDrawDataRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface SendDrawDataRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  SendDrawDataRequest* result;
+}
+
+- (SendDrawDataRequest*) defaultInstance;
+
+- (SendDrawDataRequest_Builder*) clear;
+- (SendDrawDataRequest_Builder*) clone;
+
+- (SendDrawDataRequest*) build;
+- (SendDrawDataRequest*) buildPartial;
+
+- (SendDrawDataRequest_Builder*) mergeFrom:(SendDrawDataRequest*) other;
+- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
+- (SendDrawDataRequest_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
+- (SendDrawDataRequest_Builder*) addPoints:(int32_t) value;
+- (SendDrawDataRequest_Builder*) addAllPoints:(NSArray*) values;
+- (SendDrawDataRequest_Builder*) clearPointsList;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (SendDrawDataRequest_Builder*) setWidth:(Float32) value;
+- (SendDrawDataRequest_Builder*) clearWidth;
+
+- (BOOL) hasColor;
+- (int32_t) color;
+- (SendDrawDataRequest_Builder*) setColor:(int32_t) value;
+- (SendDrawDataRequest_Builder*) clearColor;
+@end
+
+@interface SendDrawDataResponse : PBGeneratedMessage {
+@private
+}
+
++ (SendDrawDataResponse*) defaultInstance;
+- (SendDrawDataResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (SendDrawDataResponse_Builder*) builder;
++ (SendDrawDataResponse_Builder*) builder;
++ (SendDrawDataResponse_Builder*) builderWithPrototype:(SendDrawDataResponse*) prototype;
+
++ (SendDrawDataResponse*) parseFromData:(NSData*) data;
++ (SendDrawDataResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SendDrawDataResponse*) parseFromInputStream:(NSInputStream*) input;
++ (SendDrawDataResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (SendDrawDataResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (SendDrawDataResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface SendDrawDataResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  SendDrawDataResponse* result;
+}
+
+- (SendDrawDataResponse*) defaultInstance;
+
+- (SendDrawDataResponse_Builder*) clear;
+- (SendDrawDataResponse_Builder*) clone;
+
+- (SendDrawDataResponse*) build;
+- (SendDrawDataResponse*) buildPartial;
+
+- (SendDrawDataResponse_Builder*) mergeFrom:(SendDrawDataResponse*) other;
+- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
 @interface GeneralNotification : PBGeneratedMessage {
 @private
+  BOOL hasWidth_:1;
   BOOL hasSessionStatus_:1;
+  BOOL hasColor_:1;
   BOOL hasSessionHost_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
   BOOL hasNewUserId_:1;
+  Float32 width;
   int32_t sessionStatus;
+  int32_t color;
   NSString* sessionHost;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
   NSString* newUserId;
+  NSMutableArray* mutablePointsList;
 }
 - (BOOL) hasSessionHost;
 - (BOOL) hasSessionStatus;
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasNewUserId;
+- (BOOL) hasWidth;
+- (BOOL) hasColor;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
 @property (readonly, retain) NSString* newUserId;
+@property (readonly) Float32 width;
+@property (readonly) int32_t color;
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
 
 + (GeneralNotification*) defaultInstance;
 - (GeneralNotification*) defaultInstance;
@@ -331,6 +452,23 @@
 - (NSString*) newUserId;
 - (GeneralNotification_Builder*) setNewUserId:(NSString*) value;
 - (GeneralNotification_Builder*) clearNewUserId;
+
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
+- (GeneralNotification_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
+- (GeneralNotification_Builder*) addPoints:(int32_t) value;
+- (GeneralNotification_Builder*) addAllPoints:(NSArray*) values;
+- (GeneralNotification_Builder*) clearPointsList;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (GeneralNotification_Builder*) setWidth:(Float32) value;
+- (GeneralNotification_Builder*) clearWidth;
+
+- (BOOL) hasColor;
+- (int32_t) color;
+- (GeneralNotification_Builder*) setColor:(int32_t) value;
+- (GeneralNotification_Builder*) clearColor;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
@@ -342,6 +480,8 @@
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
   BOOL hasStartGameResponse_:1;
+  BOOL hasSendDrawDataRequest_:1;
+  BOOL hasSendDrawDataResponse_:1;
   BOOL hasNotification_:1;
   BOOL hasCommand_:1;
   BOOL hasResultCode_:1;
@@ -352,6 +492,8 @@
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
   StartGameResponse* startGameResponse;
+  SendDrawDataRequest* sendDrawDataRequest;
+  SendDrawDataResponse* sendDrawDataResponse;
   GeneralNotification* notification;
   GameCommandType command;
   GameResultCode resultCode;
@@ -365,6 +507,8 @@
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
 - (BOOL) hasStartGameResponse;
+- (BOOL) hasSendDrawDataRequest;
+- (BOOL) hasSendDrawDataResponse;
 - (BOOL) hasNotification;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
@@ -375,6 +519,8 @@
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
 @property (readonly, retain) StartGameResponse* startGameResponse;
+@property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
+@property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (readonly, retain) GeneralNotification* notification;
 
 + (GameMessage*) defaultInstance;
@@ -463,6 +609,20 @@
 - (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value;
 - (GameMessage_Builder*) clearStartGameResponse;
+
+- (BOOL) hasSendDrawDataRequest;
+- (SendDrawDataRequest*) sendDrawDataRequest;
+- (GameMessage_Builder*) setSendDrawDataRequest:(SendDrawDataRequest*) value;
+- (GameMessage_Builder*) setSendDrawDataRequestBuilder:(SendDrawDataRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeSendDrawDataRequest:(SendDrawDataRequest*) value;
+- (GameMessage_Builder*) clearSendDrawDataRequest;
+
+- (BOOL) hasSendDrawDataResponse;
+- (SendDrawDataResponse*) sendDrawDataResponse;
+- (GameMessage_Builder*) setSendDrawDataResponse:(SendDrawDataResponse*) value;
+- (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
+- (GameMessage_Builder*) clearSendDrawDataResponse;
 
 - (BOOL) hasNotification;
 - (GeneralNotification*) notification;

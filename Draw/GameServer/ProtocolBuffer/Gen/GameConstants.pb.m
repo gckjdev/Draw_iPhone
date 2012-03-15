@@ -25,12 +25,16 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeJoinGameResponse:
     case GameCommandTypeStartGameRequest:
     case GameCommandTypeStartGameResponse:
+    case GameCommandTypeSendDrawDataRequest:
+    case GameCommandTypeSendDrawDataResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeHostChangeNotificationRequest:
     case GameCommandTypeHostChangeNotificationResponse:
     case GameCommandTypeGameStartNotificationRequest:
     case GameCommandTypeGameStartNotificationResponse:
+    case GameCommandTypeNewDrawDataNotificationRequest:
+    case GameCommandTypeNewDrawDataNotificationResponse:
       return YES;
     default:
       return NO;
@@ -46,6 +50,8 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorNextStateNotFound:
     case GameResultCodeErrorSessionidNull:
     case GameResultCodeErrorSessionAlreadyStart:
+    case GameResultCodeErrorSessionNotStart:
+    case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
       return YES;

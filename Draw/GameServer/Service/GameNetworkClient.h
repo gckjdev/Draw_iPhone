@@ -19,5 +19,10 @@
 
 - (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName;
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;
+- (void)sendDrawDataRequest:(NSString*)userId 
+                  sessionId:(long)sessionId 
+                  pointList:(NSArray*)pointList 
+                      color:(int)color
+                      width:(float)width;
 
 @end
