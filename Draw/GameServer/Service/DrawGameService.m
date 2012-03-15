@@ -77,11 +77,11 @@ static DrawGameService* _defaultService;
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIUtils alert:[NSString stringWithFormat:@"Start Game At Session %qi", [message sessionId]]]; 
         
-        [self sendDrawDataRequestWithPointList:[NSArray arrayWithObjects:
-                                                [NSNumber numberWithInt:1]
-                                                ,[NSNumber numberWithInt:2]
-                                                ,[NSNumber numberWithInt:3]
-                                                , nil] color:255 width:2.0];
+//        [self sendDrawDataRequestWithPointList:[NSArray arrayWithObjects:
+//                                                [NSNumber numberWithInt:1]
+//                                                ,[NSNumber numberWithInt:2]
+//                                                ,[NSNumber numberWithInt:3]
+//                                                , nil] color:255 width:2.0];
     });
 }
 
