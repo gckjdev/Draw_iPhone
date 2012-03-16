@@ -25,7 +25,7 @@
 - (void)addPoint:(CGPoint)point;
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
-
+- (NSString *)toString;
 
 
 @end

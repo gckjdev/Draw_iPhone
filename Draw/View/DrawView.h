@@ -11,7 +11,7 @@
 #import "Paint.h"
 
 typedef enum{
-    Drawing = 0x1,
+    Unplaying = 0x1,
     Playing = 0x1 << 1 
 }DrawViewStatus;
 
@@ -37,6 +37,8 @@ typedef enum{
 
     DrawViewStatus _status;
     CGPoint _paintPosition;
+    NSTimer *_playTimer;
+    
 }
 
 @property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled;
@@ -48,11 +50,6 @@ typedef enum{
 @property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
-
-//- (void)setDrawColorWithRed:(CGFloat)red 
-//                      green:(CGFloat)green 
-//                       blue:(CGFloat)blue 
-//                      alpha:(CGFloat)alpha;
 
 - (NSInteger)lastPaintPointCount;
 - (void)addPaint:(Paint *)paint play:(BOOL)play;

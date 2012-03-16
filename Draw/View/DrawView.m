@@ -29,7 +29,7 @@
 {
     [self.paintList removeAllObjects];
     [self setDrawEnabled:YES];
-    _status = Drawing;
+    _status = Unplaying;
     [self setNeedsDisplay];
 }
 
@@ -37,9 +37,9 @@
 {
     _status = Playing;
     _paintPosition = CGPointMake(index, -1);
-    
     [self setDrawEnabled:NO];
-    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+
+    _playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
 }
 
 - (void)play
@@ -47,11 +47,13 @@
     [self playFromPaintIndex:0];
 }
 
-
 - (void)addPaint:(Paint *)paint play:(BOOL)play
 {
     if (play) {
         [self.paintList addObject:paint];
+        if (self.status == Playing) {
+            return;
+        }
         [self playFromPaintIndex:[self.paintList count] - 1];
     }else{
         [self.paintList addObject:paint];
@@ -97,6 +99,9 @@
                 _paintPosition.y = 0;
                 _paintPosition.x ++;
             }
+            if (_paintPosition.x == [_paintList count]) {
+                return NO;
+            }
             return YES;
         }
     }
@@ -110,7 +115,7 @@
     if (!flag) {
         [theTimer invalidate];
         theTimer = nil;
-        _status = Drawing;
+        _status = Unplaying;
         return;
     }
     CGPoint currentPoint = [self pointForPaintPosition:_paintPosition];
@@ -131,7 +136,12 @@
 - (void)addPoint:(CGPoint)point toPaint:(Paint *)paint
 {
     if (paint) {
-        
+        if (point.x < 0) {
+            point.x = 0;
+        }
+        if (point.y < 0) {
+            point.y = 0;
+        }
         CGPoint lastPoint = ILLEGAL_POINT;
         if ([self.paintList count] != 0) {
             
@@ -208,7 +218,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        _status = Drawing;
+        _status = Unplaying;
         self.lineColor = [DrawColor blackColor];
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
@@ -275,7 +285,7 @@
             }
             if (self.status == Playing && k == _paintPosition.x && i == _paintPosition.y) {
                 CGContextStrokePath(context);            
-                [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+                _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                 return;
             }
         }

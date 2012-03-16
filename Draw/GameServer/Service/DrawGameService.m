@@ -107,6 +107,13 @@ static DrawGameService* _defaultService;
     });
 }
 
+- (void)handleCleanDraw:(GameMessage *)message
+{
+    if ([_drawDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
+        [_drawDelegate didReceiveRedrawResponse:message];
+    }
+}
+
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]) {
@@ -131,6 +138,8 @@ static DrawGameService* _defaultService;
         case GameCommandTypeHostChangeNotificationRequest:
             break;
 
+        case GameCommandTypeCleanDrawNotificationRequest:
+            [self handleCleanDraw:message];
         default:
             break;
     }

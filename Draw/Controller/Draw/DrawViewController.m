@@ -107,6 +107,7 @@
 
 - (IBAction)clickRedraw:(id)sender {
     //send clean request.
+    [_drawGameService cleanDraw];
     [drawView clear];
 }
 
@@ -128,6 +129,8 @@
         NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
         [pointList addObject:pointNumber];
     }
+    NSLog(@"didDrawedPaint: %@",[paint toString]);
+    
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
 
@@ -138,6 +141,7 @@
     NSArray *pointList = [[message notification] pointsList];
     Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
     [showView addPaint:paint play:YES];
+    NSLog(@"didReceiveDrawData: %@",[paint toString]);
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message

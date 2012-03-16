@@ -60,7 +60,20 @@
     return [value CGPointValue];
 }
 
-
+- (NSString *)getPointListString:(NSArray *)list
+{
+    NSString *string = @"{";
+    for (NSValue *value in list) {
+        CGPoint point = [value CGPointValue];
+        string = [NSString stringWithFormat:@"%@(%f, %f), ",string,point.x,point.y];
+    }
+    string = [NSString stringWithFormat:@"%@}",string];
+    return string;
+}
+- (NSString *)toString
+{
+    return [NSString stringWithFormat:@"<Paint>:[width = %f,point = %@]",self.width, [self getPointListString:self.pointList]];
+}
 
 - (void)dealloc
 {
