@@ -26,8 +26,13 @@
 
 + (NSInteger)compressPoint:(CGPoint)point;
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint;
++ (NSArray *)compressCGPointList:(NSArray *)pointList;
++ (NSArray *)decompressNumberPointList:(NSArray *)numberPointList;
+
 
 + (NSInteger)compressLineWidth:(CGFloat)width;
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth;
+
+
 
 @end

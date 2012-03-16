@@ -40,7 +40,10 @@ static DrawGameService* _defaultService;
     self = [super init];
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"127.0.0.1" port:8080];
+    [_networkClient start:@"192.168.1.12" port:8080];
+    
+    self.userId = @"User_ID2";
+    
     return self;
 }
 
@@ -62,7 +65,7 @@ static DrawGameService* _defaultService;
         PPDebug(@"Join Game Response, session id = %qi", 
                 [[[message joinGameResponse] gameSession] sessionId]);        
         
-        [_networkClient sendStartGameRequest:@"User_ID1" sessionId:_sessionId]; 
+        [_networkClient sendStartGameRequest:_userId sessionId:_sessionId]; 
     }
 
 }
@@ -151,10 +154,10 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
-    self.userId = @"User_ID1";
-    
-    [_networkClient sendJoinGameRequest:@"User_ID1" nickName:@"Benson"];
-    [_networkClient sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];        
+//    self.userId = ;
+    [_networkClient sendJoinGameRequest:self.userId nickName:@"Benson"];
+//    self.userId = @"User_ID2";
+//    [_networkClient sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];        
 }
 
 - (void)didBroken

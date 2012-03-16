@@ -9,6 +9,7 @@
 #import "DrawView.h"
 #import "Paint.h"
 #import "DrawColor.h"
+#import "DrawUtils.h"
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -44,6 +45,8 @@
 
 - (void)play
 {
+    
+    
     [self playFromPaintIndex:0];
 }
 
@@ -136,12 +139,11 @@
 - (void)addPoint:(CGPoint)point toPaint:(Paint *)paint
 {
     if (paint) {
-        if (point.x < 0) {
-            point.x = 0;
-        }
-        if (point.y < 0) {
-            point.y = 0;
-        }
+        point.x = MAX(point.x, 0);
+        point.y = MAX(point.y, 0);
+        point.x = MIN(point.x, self.bounds.size.width);
+        point.y = MIN(point.y, self.bounds.size.height);
+
         CGPoint lastPoint = ILLEGAL_POINT;
         if ([self.paintList count] != 0) {
             
@@ -184,6 +186,14 @@
     }else if(panGestuereReconizer.state == UIGestureRecognizerStateEnded)
     {
         [self addPoint:point toPaint:currentPaint];
+        
+//        NSLog(@"before Compress: %@",[currentPaint toString]);
+//        
+//        NSArray *temp = [DrawUtils compressCGPointList:currentPaint.pointList];
+//        currentPaint.pointList = (NSMutableArray *)[DrawUtils decompressNumberPointList:temp];
+//        
+//        NSLog(@"after Compress: %@",[currentPaint toString]);
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
             [self.delegate didDrawedPaint:currentPaint];
         }
