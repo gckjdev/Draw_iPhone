@@ -43,6 +43,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCleanDrawNotificationRequest:
     case GameCommandTypeCleanDrawNotificationResponse:
     case GameCommandTypeLocalChannelDisconnect:
+    case GameCommandTypeLocalFinishGame:
       return YES;
     default:
       return NO;

@@ -42,7 +42,7 @@ static DrawGameService* _defaultService;
     self = [super init];
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.12" port:8080];
+    [_networkClient start:@"192.168.1.100" port:8080];
     srand(time(0));
     self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
 //    start = NO;

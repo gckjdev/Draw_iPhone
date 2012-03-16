@@ -48,6 +48,7 @@ enum GameCommandType {
   
   // local message, not for service <--> client, only for local purpose
   LOCAL_CHANNEL_DISCONNECT = 201;
+  LOCAL_FINISH_GAME = 203;
 }
 
 enum GameResultCode {

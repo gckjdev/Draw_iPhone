@@ -25,6 +25,7 @@ typedef enum {
   GameCommandTypeCleanDrawNotificationRequest = 73,
   GameCommandTypeCleanDrawNotificationResponse = 74,
   GameCommandTypeLocalChannelDisconnect = 201,
+  GameCommandTypeLocalFinishGame = 203,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);
