@@ -41,7 +41,7 @@ typedef enum{
     
 }
 
-@property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled;
+@property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled; //default is yes
 @property(nonatomic, retain) NSMutableArray *paintList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, retain) DrawColor* lineColor; //default is black

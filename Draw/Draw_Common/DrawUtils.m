@@ -83,17 +83,42 @@
 }
 + (NSInteger)compressPoint:(CGPoint)point
 {
-    NSInteger ret = (point.x * (1 << 15)) + point.y;
+    NSInteger ret = ((NSInteger)point.x * (1 << 15)) + point.y;    
+
+//    NSLog(@"(%f,%f)====>%d",point.x, point.y, ret);
     return ret;
 }
 
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint
 {
-    CGFloat y = intPoint % (1 << 15);
-    CGFloat x = intPoint >> 15;
+    CGFloat y = intPoint % (1<<15);
+    CGFloat x = intPoint / (1<<15);
+    
+//    NSLog(@"%d====>(%f,%f)", intPoint, x, y);
     return CGPointMake(x, y);
     
 }
+
++ (NSArray *)compressCGPointList:(NSArray *)pointList
+{
+    NSMutableArray *retArray = [[[NSMutableArray alloc] init] autorelease];
+    for (NSValue *value in pointList) {
+        CGPoint point = [value CGPointValue];
+        NSNumber *number = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+        [retArray addObject:number];
+    }
+    return retArray;
+}
++ (NSArray *)decompressNumberPointList:(NSArray *)numberPointList
+{
+    NSMutableArray *pointList = [[[NSMutableArray alloc] init]autorelease];
+    for (NSNumber *pointNumber in numberPointList) {
+        CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+        [pointList addObject:[NSValue valueWithCGPoint:point]];
+    }
+    return pointList;
+}
+
 
 + (NSInteger)compressDrawColor:(DrawColor *)color
 {
@@ -101,7 +126,6 @@
 }
 + (DrawColor *)decompressIntDrawColor:(NSInteger)intColor
 {
-    NSLog(@"-----------alpha: %d----------",(intColor % (1<<6)));
 
     CGFloat alpha = (intColor % (1<<6)) / 63.0;
     CGFloat blue = ((intColor >> 6) % (1<<8)) / 255.0;

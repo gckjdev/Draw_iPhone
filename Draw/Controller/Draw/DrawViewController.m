@@ -48,15 +48,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 190)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 200)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
     
     
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 245, 320, 190)];
+    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 255, 320, 200)];
     [self.view addSubview:showView];
+    [showView setDrawEnabled:NO];
     [showView release];
     
     _drawGameService = [DrawGameService defaultService];
@@ -109,6 +110,7 @@
     //send clean request.
     [_drawGameService cleanDraw];
     [drawView clear];
+    [drawView setDrawEnabled:YES];
 }
 
 - (IBAction)changeSlider:(id)sender {
