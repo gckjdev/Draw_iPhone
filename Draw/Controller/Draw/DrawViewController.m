@@ -136,7 +136,7 @@
     CGFloat lineWidth = [[message notification] width];        
     NSArray *pointList = [[message notification] pointsList];
     Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
-    [showView addPaint:paint play:NO];
+    [showView addPaint:paint play:YES];
 }
 
 
