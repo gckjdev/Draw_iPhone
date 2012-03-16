@@ -9,14 +9,25 @@
 #import "DrawViewController.h"
 #import "DrawView.h"
 #import "DrawGameService.h"
+#import "DrawColor.h"
 @implementation DrawViewController
 @synthesize playButton;
 @synthesize widthSlider;
+@synthesize redButton;
+@synthesize greenButton;
+@synthesize blueButton;
+@synthesize whiteButton;
+@synthesize blackButton;
 
 - (void)dealloc
 {
     [widthSlider release];
     [playButton release];
+    [redButton release];
+    [greenButton release];
+    [blueButton release];
+    [whiteButton release];
+    [blackButton release];
     [super dealloc];
 }
 
@@ -54,6 +65,11 @@
 {
     [self setWidthSlider:nil];
     [self setPlayButton:nil];
+    [self setRedButton:nil];
+    [self setGreenButton:nil];
+    [self setBlueButton:nil];
+    [self setWhiteButton:nil];
+    [self setBlackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -67,7 +83,17 @@
 
 - (IBAction)pickColor:(id)sender {
     UIButton *button = (UIButton *)sender;
-    [drawView setLineColor:button.backgroundColor];
+    if (button == redButton) {
+        [drawView setLineColor:[DrawColor redColor]];
+    }else if (button == greenButton) {
+        [drawView setLineColor:[DrawColor greenColor]];
+    }else if (button == blueButton) {
+        [drawView setLineColor:[DrawColor blueColor]];
+    }else if (button == whiteButton) {
+        [drawView setLineColor:[DrawColor whiteColor]];
+    }else if (button == blackButton) {
+        [drawView setLineColor:[DrawColor blackColor]];
+    }
 }
 
 - (IBAction)clickPlay:(id)sender {
@@ -86,9 +112,10 @@
 - (void)didDrawedPaint:(Paint *)paint
 {
     NSInteger count = [paint pointCount];
-    NSLog(@"point count = %d ", count);
     [self.playButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
-    NSInteger intColor  = 19999;
+
+    NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
+    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
     for (NSValue *pointValue in paint.pointList) {
         CGPoint point = [pointValue CGPointValue];

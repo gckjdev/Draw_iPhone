@@ -23,7 +23,7 @@ typedef enum{
 
 @end
 
-
+@class DrawColor;
 @interface DrawView : UIView<UIGestureRecognizerDelegate>
 {
     BOOL _drawEnable;
@@ -33,7 +33,7 @@ typedef enum{
     UITapGestureRecognizer *tap;
 
     CGFloat _lineWidth;
-    UIColor* _lineColor;    
+    DrawColor* _lineColor;    
 
     DrawViewStatus _status;
     CGPoint _paintPosition;
@@ -42,12 +42,17 @@ typedef enum{
 @property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled;
 @property(nonatomic, retain) NSMutableArray *paintList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
-@property(nonatomic, retain) UIColor* lineColor; //default is black
+@property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, readonly) DrawViewStatus status; //default is Drawing
 @property(nonatomic, assign) CGFloat playSpeed; //default is 1/40.0;
 @property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
+
+//- (void)setDrawColorWithRed:(CGFloat)red 
+//                      green:(CGFloat)green 
+//                       blue:(CGFloat)blue 
+//                      alpha:(CGFloat)alpha;
 
 - (NSInteger)lastPaintPointCount;
 - (void)clear;

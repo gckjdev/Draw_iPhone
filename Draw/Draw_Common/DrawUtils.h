@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #define ILLEGAL_POINT CGPointMake(-100000, -100000)
 
+@class DrawColor;
 @interface DrawUtils : NSObject
 + (CGPoint)illegalPoint;
 + (BOOL)isIllegalPoint:(CGPoint)point;
@@ -16,10 +17,14 @@
 + (CGRect)constructWithPoint1:(CGPoint)point1 point2:(CGPoint)point2 edgeWidth:(CGFloat)edgeWidth;
 + (CGPoint)zipPoint:(CGPoint)point size:(NSInteger)size;
 + (CGFloat)distanceBetweenPoint:(CGPoint)point1 point2:(CGPoint)point2;
-//+ (NSInteger)compressColor:(UIColor *)color;
+
++ (NSInteger)compressDrawColor:(DrawColor *)color;
++ (DrawColor *)decompressIntDrawColor:(NSInteger)intColor;
+
 + (NSInteger)compressRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
-+ (NSInteger)compressPoint:(CGPoint)point;
 + (UIColor *)decompressIntColor:(NSInteger)intColor;
+
++ (NSInteger)compressPoint:(CGPoint)point;
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint;
 
 + (NSInteger)compressLineWidth:(CGFloat)width;

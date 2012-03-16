@@ -19,5 +19,10 @@
 - (IBAction)changeSlider:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
 @property (retain, nonatomic) IBOutlet UISlider *widthSlider;
+@property (retain, nonatomic) IBOutlet UIButton *redButton;
+@property (retain, nonatomic) IBOutlet UIButton *greenButton;
+@property (retain, nonatomic) IBOutlet UIButton *blueButton;
+@property (retain, nonatomic) IBOutlet UIButton *whiteButton;
+@property (retain, nonatomic) IBOutlet UIButton *blackButton;
 
 @end

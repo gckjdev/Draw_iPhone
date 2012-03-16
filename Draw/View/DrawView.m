@@ -8,6 +8,7 @@
 
 #import "DrawView.h"
 #import "Paint.h"
+#import "DrawColor.h"
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -41,6 +42,14 @@
     [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
 }
 
+
+//- (void)setDrawColorWithRed:(CGFloat)red 
+//                      green:(CGFloat)green 
+//                       blue:(CGFloat)blue 
+//                      alpha:(CGFloat)alpha
+//{
+//    _lineColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+//}
 
 - (NSInteger)lastPaintPointCount
 {
@@ -192,7 +201,7 @@
     if (self) {
 
         _status = Drawing;
-        self.lineColor = [UIColor blackColor];
+        self.lineColor = [DrawColor blackColor];
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         self.playSpeed = DEFAULT_PLAY_SPEED;

@@ -7,7 +7,7 @@
 //
 
 #import "DrawUtils.h"
-
+#import "DrawColor.h"
 
 @implementation DrawUtils
 
@@ -67,7 +67,7 @@
     NSInteger intRed = red * 255.0;
     NSInteger intGreen = green * 255.0;
     NSInteger intBlue = blue * 255.0;
-    NSInteger intAlpha = alpha * 64.0;
+    NSInteger intAlpha = alpha * 63.0;
     NSInteger ret = intAlpha + (intBlue << 6) + (intGreen << 14) + (intRed << 22);
     return ret;
 }
@@ -75,7 +75,7 @@
 
 + (UIColor *)decompressIntColor:(NSInteger)intColor
 {
-    CGFloat alpha = (intColor % (1<<6)) / 64.0;
+    CGFloat alpha = (intColor % (1<<6)) / 63.0;
     CGFloat blue = ((intColor >> 6) % (1<<8)) / 255.0;
     CGFloat green = ((intColor >> 14) % (1<<8)) / 255.0; 
     CGFloat red = ((intColor >> 22) % (1<<8)) / 255.0; 
@@ -95,6 +95,20 @@
     
 }
 
++ (NSInteger)compressDrawColor:(DrawColor *)color
+{
+    return [DrawUtils compressRed:color.red green:color.green blue:color.blue alpha:color.alpha];
+}
++ (DrawColor *)decompressIntDrawColor:(NSInteger)intColor
+{
+    NSLog(@"-----------alpha: %d----------",(intColor % (1<<6)));
+
+    CGFloat alpha = (intColor % (1<<6)) / 63.0;
+    CGFloat blue = ((intColor >> 6) % (1<<8)) / 255.0;
+    CGFloat green = ((intColor >> 14) % (1<<8)) / 255.0; 
+    CGFloat red = ((intColor >> 22) % (1<<8)) / 255.0; 
+    return [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
 
 #define LINT_TIMES 100000.0
 + (NSInteger)compressLineWidth:(CGFloat)width

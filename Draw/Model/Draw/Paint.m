@@ -14,7 +14,7 @@
 @synthesize color = _color;
 @synthesize pointList = _pointList;
 
-- (id)initWithWidth:(CGFloat)width color:(UIColor*)color
+- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
 {
     self = [super init];
     if (self) {

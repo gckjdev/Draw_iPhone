@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class DrawColor;
 @interface Paint : NSObject
 {
     CGFloat _width;
-    UIColor *_color;
+    DrawColor *_color;
     NSMutableArray *_pointList;
 }
 @property(nonatomic,assign)CGFloat width;
-@property(nonatomic,retain)UIColor* color;
+@property(nonatomic,retain)DrawColor* color;
 @property(nonatomic,retain)NSMutableArray *pointList;
-- (id)initWithWidth:(CGFloat)width color:(UIColor*)color;
+- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color;
 - (void)addPoint:(CGPoint)point;
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
