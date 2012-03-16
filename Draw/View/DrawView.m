@@ -209,6 +209,9 @@
         [self.paintList addObject:currentPaint];
         [currentPaint release];
         [self addPoint:point toPaint:currentPaint];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
+            [self.delegate didDrawedPaint:currentPaint];
+        }
     }
 }
 

@@ -44,7 +44,7 @@ static DrawGameService* _defaultService;
     [_networkClient setDelegate:self];
     [_networkClient start:@"192.168.1.12" port:8080];
     
-    start = YES;
+    start = NO;
     if(start)
     {
         self.userId = @"GamyDevice";        
