@@ -33,4 +33,6 @@
                                    color:(int)color
                                    width:(float)width;
 
+- (void)cleanDraw;
+
 @end

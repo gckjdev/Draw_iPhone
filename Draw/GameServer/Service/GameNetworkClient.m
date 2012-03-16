@@ -119,4 +119,17 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendData:[gameMessage data]];    
 }
 
+- (void)sendCleanDraw:(NSString*)userId 
+            sessionId:(long)sessionId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeCleanDrawRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];        
+}
+
 @end

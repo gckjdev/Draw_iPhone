@@ -78,6 +78,8 @@ static DrawGameService* _defaultService;
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIUtils alert:[NSString stringWithFormat:@"Start Game At Session %qi", [message sessionId]]]; 
         
+//        [self cleanDraw];
+        
 //        [self sendDrawDataRequestWithPointList:[NSArray arrayWithObjects:
 //                                                [NSNumber numberWithInt:1]
 //                                                ,[NSNumber numberWithInt:2]
@@ -125,6 +127,9 @@ static DrawGameService* _defaultService;
         case GameCommandTypeNewDrawDataNotificationRequest:
             [self handleNewDrawDataNotification:message];
             break;
+            
+        case GameCommandTypeHostChangeNotificationRequest:
+            break;
 
         default:
             break;
@@ -161,5 +166,10 @@ static DrawGameService* _defaultService;
                                   width:width];
 }
 
+- (void)cleanDraw
+{
+    [_networkClient sendCleanDraw:_userId
+                        sessionId:_sessionId];    
+}
 
 @end

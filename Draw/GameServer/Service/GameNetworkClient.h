@@ -25,4 +25,7 @@
                       color:(int)color
                       width:(float)width;
 
+- (void)sendCleanDraw:(NSString*)userId 
+            sessionId:(long)sessionId;
+
 @end

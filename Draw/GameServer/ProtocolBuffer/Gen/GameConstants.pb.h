@@ -9,6 +9,7 @@ typedef enum {
   GameCommandTypeStartGameResponse = 4,
   GameCommandTypeSendDrawDataRequest = 11,
   GameCommandTypeSendDrawDataResponse = 12,
+  GameCommandTypeCleanDrawRequest = 13,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeHostChangeNotificationRequest = 53,
@@ -17,6 +18,8 @@ typedef enum {
   GameCommandTypeGameStartNotificationResponse = 56,
   GameCommandTypeNewDrawDataNotificationRequest = 71,
   GameCommandTypeNewDrawDataNotificationResponse = 72,
+  GameCommandTypeCleanDrawNotificationRequest = 73,
+  GameCommandTypeCleanDrawNotificationResponse = 74,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);
