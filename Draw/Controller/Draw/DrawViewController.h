@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "DrawView.h"
+#import "DrawGameService.h"
 
-@interface DrawViewController : UIViewController<DrawViewDelegate> {
+@interface DrawViewController : UIViewController<DrawViewDelegate, DrawGameServiceDelegate> {
     DrawView *drawView;
+    DrawGameService *_drawGameService;
+    DrawView *showView;
 }
 - (IBAction)pickColor:(id)sender;
 - (IBAction)clickPlay:(id)sender;

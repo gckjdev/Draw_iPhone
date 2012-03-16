@@ -55,6 +55,7 @@ typedef enum{
 //                      alpha:(CGFloat)alpha;
 
 - (NSInteger)lastPaintPointCount;
+- (void)addPaint:(Paint *)paint play:(BOOL)play;
 - (void)clear;
 - (void)play;
 @end

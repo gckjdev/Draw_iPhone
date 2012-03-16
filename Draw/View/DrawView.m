@@ -33,23 +33,31 @@
     [self setNeedsDisplay];
 }
 
-- (void)play
+- (void)playFromPaintIndex:(NSInteger)index
 {
     _status = Playing;
-    _paintPosition = CGPointMake(0, -1);
+    _paintPosition = CGPointMake(index, -1);
     
     [self setDrawEnabled:NO];
     [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
 }
 
+- (void)play
+{
+    [self playFromPaintIndex:0];
+}
 
-//- (void)setDrawColorWithRed:(CGFloat)red 
-//                      green:(CGFloat)green 
-//                       blue:(CGFloat)blue 
-//                      alpha:(CGFloat)alpha
-//{
-//    _lineColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
-//}
+
+- (void)addPaint:(Paint *)paint play:(BOOL)play
+{
+    if (play) {
+        [self.paintList addObject:paint];
+        [self playFromPaintIndex:[self.paintList count] - 1];
+    }else{
+        [self.paintList addObject:paint];
+        [self setNeedsDisplay];
+    }
+}
 
 - (NSInteger)lastPaintPointCount
 {

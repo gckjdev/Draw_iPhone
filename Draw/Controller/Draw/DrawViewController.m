@@ -10,6 +10,7 @@
 #import "DrawView.h"
 #import "DrawGameService.h"
 #import "DrawColor.h"
+#import "GameMessage.pb.h"
 @implementation DrawViewController
 @synthesize playButton;
 @synthesize widthSlider;
@@ -28,6 +29,7 @@
     [blueButton release];
     [whiteButton release];
     [blackButton release];
+    [showView release];
     [super dealloc];
 }
 
@@ -46,17 +48,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 410)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 190)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
     
-    NSInteger c = [DrawUtils compressRed:(rand()%2556) / 2556.0 green:(rand()%2556) / 2556.0 blue:(rand()%2556) / 2556.0 alpha:(rand()%2556) / 2556.0];
-    [DrawUtils decompressIntColor:c];
     
-    NSInteger p = [DrawUtils compressPoint:CGPointMake((rand()%387), rand() % 4867)];
-    [DrawUtils decompressIntPoint:p];
+    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 245, 320, 190)];
+    [self.view addSubview:showView];
+    [showView release];
+    
+    _drawGameService = [DrawGameService defaultService];
+    _drawGameService.drawDelegate = self;
+    
     
 }
 
@@ -124,5 +129,15 @@
     }
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
+
+- (void)didReceiveDrawData:(GameMessage *)message
+{
+    NSInteger intColor = [[message notification] color];
+    CGFloat lineWidth = [[message notification] width];        
+    NSArray *pointList = [[message notification] pointsList];
+    Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
+    [showView addPaint:paint play:NO];
+}
+
 
 @end

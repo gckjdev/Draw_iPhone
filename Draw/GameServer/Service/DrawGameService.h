@@ -9,6 +9,14 @@
 #import "CommonService.h"
 #import "GameNetworkClient.h"
 
+@class GameMessage;
+@protocol DrawGameServiceDelegate <NSObject>
+
+@optional;
+- (void)didReceiveDrawData:(GameMessage *)message;
+
+@end
+
 @interface DrawGameService : CommonService<CommonNetworkClientDelegate>
 {
     GameNetworkClient *_networkClient;
@@ -18,7 +26,7 @@
 }
 
 @property (nonatomic, retain) NSString* userId;
-
+@property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 + (DrawGameService*)defaultService;
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 

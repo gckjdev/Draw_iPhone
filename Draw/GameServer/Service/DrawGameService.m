@@ -16,6 +16,7 @@
 static DrawGameService* _defaultService;
 
 @synthesize userId = _userId;
+@synthesize drawDelegate = _drawDelegate;
 
 - (void)dealloc
 {
@@ -95,7 +96,12 @@ static DrawGameService* _defaultService;
     // display this in UI 
     dispatch_async(dispatch_get_main_queue(), ^{        
         // TODO
-        [[message notification] pointsList];
+        NSLog(@"<Receive Draw Data>:");
+        if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
+            [_drawDelegate didReceiveDrawData:message];
+        }
+
+
     });
 }
 

@@ -25,6 +25,21 @@
     return self;
 }
 
+- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList
+{
+    self = [super init];
+    if (self) {
+        self.width = width;
+        self.color = [DrawUtils decompressIntDrawColor:color];
+        _pointList = [[NSMutableArray alloc] init];
+        for (NSNumber *pointNumber in numberPointList) {
+            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+            [self addPoint:point];
+        }
+    }
+    return self;
+}
+
 - (void)addPoint:(CGPoint)point
 {
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
