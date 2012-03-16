@@ -87,6 +87,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)clickStartButton:(id)sender {
+    [_drawGameService startGame];
+}
+
 - (IBAction)pickColor:(id)sender {
     UIButton *button = (UIButton *)sender;
     if (button == redButton) {

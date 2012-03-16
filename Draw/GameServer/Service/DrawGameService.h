@@ -38,4 +38,6 @@
 
 - (void)cleanDraw;
 
+- (void)startGame;
+
 @end
