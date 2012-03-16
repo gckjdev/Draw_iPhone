@@ -225,6 +225,8 @@
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
+		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
+		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -676,6 +678,10 @@
 		CADD7FD61511BA240075C739 /* GameNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkClient.h; sourceTree = "<group>"; };
 		CADD7FDB1511BAAB0075C739 /* DrawGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGameService.h; sourceTree = "<group>"; };
 		CADD7FDC1511BAAB0075C739 /* DrawGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameService.m; sourceTree = "<group>"; };
+		CADD804B15138C690075C739 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
+		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1075,6 +1081,8 @@
 				CA103D441509A56100F60C03 /* PPViewController+NumPadReturn.m */,
 				CA103D451509A56100F60C03 /* ViewControllerUtils.h */,
 				CA103D461509A56100F60C03 /* ViewControllerUtils.m */,
+				CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */,
+				CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */,
 			);
 			path = "Core-Utils-Controller";
 			sourceTree = "<group>";
@@ -1753,6 +1761,8 @@
 		CA1041EB1509B99A00F60C03 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				CADD804B15138C690075C739 /* UserManager.h */,
+				CADD804C15138C690075C739 /* UserManager.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1832,7 +1842,6 @@
 				CA96E264150DD55400292335 /* GameServer */,
 				CA103B371509A55000F60C03 /* Service */,
 				CAECE0271503B25500BC2404 /* Controller */,
-				CAECE0281503B25500BC2404 /* Manager */,
 				CAECE0291503B25500BC2404 /* Model */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
@@ -1998,13 +2007,6 @@
 				CA1041E31509B6E700F60C03 /* Select */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		CAECE0281503B25500BC2404 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		CAECE0291503B25500BC2404 /* Model */ = {
@@ -2355,6 +2357,8 @@
 				CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */,
 				CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */,
 				CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */,
+				CADD804D15138C690075C739 /* UserManager.m in Sources */,
+				CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

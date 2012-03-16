@@ -10,4 +10,6 @@
 
 @interface HomeController : UIViewController
 
+- (IBAction)clickStart:(id)sender;
+
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "RegisterUserController.h"
+#import "UserManager.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 @implementation RegisterUserController
+@synthesize userIdTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,12 +34,18 @@
 
 - (void)viewDidLoad
 {
+    // TODO for test
+    int i = rand() % 100;
+    self.userIdTextField.text = [NSString stringWithFormat:@"Mark_%d", i];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    
+    [self setUserIdTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +57,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
++ (void)showAt:(UIViewController*)superViewController
+{
+    RegisterUserController* userController = [[RegisterUserController alloc] init];
+    [superViewController.navigationController pushViewController:userController animated:NO];
+    [userController release];
+}
+
+- (IBAction)clickSubmit:(id)sender
+{
+    // dummy implementation
+    [[UserManager defaultManager] saveUserId:self.userIdTextField.text nickName:nil];
+    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+}
+
+- (void)dealloc {
+    [userIdTextField release];
+    [super dealloc];
+}
 @end

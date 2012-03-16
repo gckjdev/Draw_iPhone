@@ -8,6 +8,13 @@
 
 
 
-@interface UserManager : CommonManager
+@interface UserManager : NSObject
+
++ (UserManager*)defaultManager;
+
+- (NSString*)userId;
+- (void)saveUserId:(NSString*)userId 
+          nickName:(NSString*)nickName;
+- (BOOL)hasUser;
 
 @end

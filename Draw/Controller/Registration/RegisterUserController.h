@@ -10,4 +10,11 @@
 
 @interface RegisterUserController : UIViewController
 
++ (void)showAt:(UIViewController*)superViewController;
+
+
+- (IBAction)clickSubmit:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UITextField *userIdTextField;
+
 @end

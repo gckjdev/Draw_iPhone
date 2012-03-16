@@ -7,6 +7,8 @@
 //
 
 #import "HomeController.h"
+#import "RoomController.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 @implementation HomeController
 
@@ -46,6 +48,14 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)clickStart:(id)sender
+{
+    RoomController* roomController = [[RoomController alloc] init];
+    [self.navigationController pushViewController:roomController 
+                           animatedWithTransition:UIViewAnimationTransitionCurlUp];
+    [roomController release];
 }
 
 @end

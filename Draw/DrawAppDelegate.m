@@ -11,6 +11,9 @@
 #import "DrawViewController.h"
 #import "GameNetworkClient.h"
 #import "DrawGameService.h"
+#import "UserManager.h"
+#import "HomeController.h"
+#import "RegisterUserController.h"
 
 @implementation DrawAppDelegate
 
@@ -25,8 +28,17 @@
     
     // Start Game Service
     [DrawGameService defaultService];
+    
+    // Init Home
+    HomeController* homeController = [[[HomeController alloc] init] autorelease];
+    UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:homeController] autorelease];
+    navigationController.navigationBarHidden = YES;
+    
+    if ([[UserManager defaultManager] hasUser] == NO){
+        [RegisterUserController showAt:homeController];
+    }
      
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
