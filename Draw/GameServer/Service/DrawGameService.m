@@ -11,6 +11,8 @@
 #import "PPDebug.h"
 #import "UIUtils.h"
 
+
+
 @implementation DrawGameService
 
 static DrawGameService* _defaultService;
@@ -42,7 +44,14 @@ static DrawGameService* _defaultService;
     [_networkClient setDelegate:self];
     [_networkClient start:@"192.168.1.12" port:8080];
     
-    self.userId = @"User_ID2";
+    start = YES;
+    if(start)
+    {
+        self.userId = @"GamyDevice";        
+    }else{
+        self.userId = @"Simulator";
+    }
+
     
     return self;
 }
@@ -65,7 +74,10 @@ static DrawGameService* _defaultService;
         PPDebug(@"Join Game Response, session id = %qi", 
                 [[[message joinGameResponse] gameSession] sessionId]);        
         
-        [_networkClient sendStartGameRequest:_userId sessionId:_sessionId]; 
+        if (start) {
+            [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
+        }
+
     }
 
 }

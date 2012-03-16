@@ -25,6 +25,7 @@
     
     NSString *_userId;
     int _sessionId;
+    BOOL start;
 }
 
 @property (nonatomic, retain) NSString* userId;

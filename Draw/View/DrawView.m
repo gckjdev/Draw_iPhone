@@ -29,7 +29,7 @@
 - (void)clear
 {
     [self.paintList removeAllObjects];
-    [self setDrawEnabled:YES];
+//    [self setDrawEnabled:YES];
     _status = Unplaying;
     [self setNeedsDisplay];
 }
@@ -45,8 +45,6 @@
 
 - (void)play
 {
-    
-    
     [self playFromPaintIndex:0];
 }
 
@@ -244,6 +242,8 @@
         tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTap:)];
         [self addGestureRecognizer:tap];
         [tap release];
+        
+        [self setDrawEnabled:YES];
         
     }
     return self;
