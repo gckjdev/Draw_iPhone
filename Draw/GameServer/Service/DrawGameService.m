@@ -43,14 +43,16 @@ static DrawGameService* _defaultService;
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
     [_networkClient start:@"192.168.1.12" port:8080];
-    
-    start = NO;
-    if(start)
-    {
-        self.userId = @"GamyDevice";        
-    }else{
-        self.userId = @"Simulator";
-    }
+    srand(time(0));
+    self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
+//    start = NO;
+//    
+//    if(start)
+//    {
+//        self.userId = @"GamyDevice";
+//    }else{
+//        self.userId = @"Simulator";
+//    }
 
     
     return self;
@@ -74,12 +76,18 @@ static DrawGameService* _defaultService;
         PPDebug(@"Join Game Response, session id = %qi", 
                 [[[message joinGameResponse] gameSession] sessionId]);        
         
-        if (start) {
-            [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
-        }
+//        if (start) {
+//            [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
+//        }
 
     }
 
+}
+
+
+- (void)startGame
+{
+    [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
 }
 
 - (void)handleStartGameResponse:(GameMessage*)message

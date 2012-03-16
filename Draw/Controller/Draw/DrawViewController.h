@@ -16,6 +16,7 @@
     DrawGameService *_drawGameService;
     DrawView *showView;
 }
+- (IBAction)clickStartButton:(id)sender;
 - (IBAction)pickColor:(id)sender;
 - (IBAction)clickPlay:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
