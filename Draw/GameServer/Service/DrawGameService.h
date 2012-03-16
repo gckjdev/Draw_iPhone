@@ -14,6 +14,8 @@
 
 @optional;
 - (void)didReceiveDrawData:(GameMessage *)message;
+- (void)didReceiveRedrawResponse:(GameMessage *)message;
+
 
 @end
 

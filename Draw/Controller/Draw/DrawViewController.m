@@ -106,6 +106,7 @@
 }
 
 - (IBAction)clickRedraw:(id)sender {
+    //send clean request.
     [drawView clear];
 }
 
@@ -139,5 +140,9 @@
     [showView addPaint:paint play:YES];
 }
 
+- (void)didReceiveRedrawResponse:(GameMessage *)message
+{
+    [showView clear];
+}
 
 @end
