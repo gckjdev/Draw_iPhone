@@ -1318,6 +1318,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
 @property (retain) NSString* newUserId;
+@property (retain) NSString* quitUserId;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -1360,6 +1361,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasNewUserId_ = !!value;
 }
 @synthesize newUserId;
+- (BOOL) hasQuitUserId {
+  return !!hasQuitUserId_;
+}
+- (void) setHasQuitUserId:(BOOL) value {
+  hasQuitUserId_ = !!value;
+}
+@synthesize quitUserId;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -1380,6 +1388,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
   self.newUserId = nil;
+  self.quitUserId = nil;
   self.mutablePointsList = nil;
   [super dealloc];
 }
@@ -1390,6 +1399,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
     self.newUserId = @"";
+    self.quitUserId = @"";
     self.width = 0;
     self.color = 0;
   }
@@ -1433,6 +1443,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasNewUserId) {
     [output writeString:7 value:self.newUserId];
   }
+  if (self.hasQuitUserId) {
+    [output writeString:8 value:self.quitUserId];
+  }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
     [output writeRawVarint32:pointsMemoizedSerializedSize];
@@ -1469,6 +1482,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasNewUserId) {
     size += computeStringSize(7, self.newUserId);
+  }
+  if (self.hasQuitUserId) {
+    size += computeStringSize(8, self.quitUserId);
   }
   {
     int32_t dataSize = 0;
@@ -1578,6 +1594,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasNewUserId) {
     [self setNewUserId:other.newUserId];
   }
+  if (other.hasQuitUserId) {
+    [self setQuitUserId:other.quitUserId];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -1629,6 +1648,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 58: {
         [self setNewUserId:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setQuitUserId:[input readString]];
         break;
       }
       case 170: {
@@ -1729,6 +1752,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearNewUserId {
   result.hasNewUserId = NO;
   result.newUserId = @"";
+  return self;
+}
+- (BOOL) hasQuitUserId {
+  return result.hasQuitUserId;
+}
+- (NSString*) quitUserId {
+  return result.quitUserId;
+}
+- (GeneralNotification_Builder*) setQuitUserId:(NSString*) value {
+  result.hasQuitUserId = YES;
+  result.quitUserId = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearQuitUserId {
+  result.hasQuitUserId = NO;
+  result.quitUserId = @"";
   return self;
 }
 - (NSArray*) pointsList {

@@ -62,7 +62,7 @@ static DrawGameService* _defaultService;
         PPDebug(@"Join Game Response, session id = %qi", 
                 [[[message joinGameResponse] gameSession] sessionId]);        
         
-        [_networkClient sendStartGameRequest:@"User_ID1" sessionId:_sessionId]; 
+        [_networkClient sendStartGameRequest:@"User_ID3" sessionId:_sessionId]; 
     }
 
 }
@@ -151,9 +151,9 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
-    self.userId = @"User_ID1";
+    self.userId = @"User_ID3";
     
-    [_networkClient sendJoinGameRequest:@"User_ID1" nickName:@"Benson"];
+    [_networkClient sendJoinGameRequest:@"User_ID3" nickName:@"Benson"];
     [_networkClient sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];        
 }
 
