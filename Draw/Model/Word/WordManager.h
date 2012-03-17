@@ -23,6 +23,8 @@
 
 + (WordManager *)defaultManager;
 - (NSInteger)scoreForWord:(Word *)word; //calculate the word score.
+- (NSString *)levelDescForWord:(Word *)word; 
+
 - (void)addWord:(Word *)word; //when need to update the words, call the method
 - (NSArray *)randDrawWordList; //will return a word list, and the list size is 3
 

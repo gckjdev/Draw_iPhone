@@ -7,8 +7,13 @@
 //
 
 #import "SelectWordController.h"
+#import "Word.h"
+#import "WordManager.h"
 
 @implementation SelectWordController
+@synthesize wordTableView = _wordTableView;
+@synthesize wordArray = _wordArray;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +37,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.wordArray = [[WordManager defaultManager]randDrawWordList];
 }
 
 - (void)viewDidUnload
 {
+    [self setWordTableView:nil];
+    [self setWordArray:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +55,37 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [_wordTableView release];
+    [super dealloc];
+}
+- (IBAction)clickChangeWordButton:(id)sender {
+    self.wordArray = [[WordManager defaultManager]randDrawWordList];
+    [self.wordTableView reloadData];
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"WordCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]autorelease];
+    }
+    
+    Word *word = [self.wordArray objectAtIndex:indexPath.row];
+    WordManager *manager = [WordManager defaultManager];
+    
+    NSString *text = [NSString stringWithFormat:@"%@          %@             %d",word.text, 
+                      [manager levelDescForWord:word], 
+                      [manager scoreForWord:word]];
+    [cell.textLabel setText:text];
+    return cell;
+    
+}
 @end

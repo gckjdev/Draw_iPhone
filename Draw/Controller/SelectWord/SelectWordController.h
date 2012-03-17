@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectWordController : UIViewController
+@interface SelectWordController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray *_wordArray;
+}
+
+@property (retain, nonatomic) IBOutlet UITableView *wordTableView;
+@property (retain, nonatomic) NSArray *wordArray;
+- (IBAction)clickChangeWordButton:(id)sender;
 
 @end

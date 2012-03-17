@@ -68,7 +68,7 @@ WordManager *GlobalGetWordManager()
     NSMutableArray *retHighArray = [self parsePathArray:highArray];
     
     NSMutableDictionary *dict = [[[NSMutableDictionary alloc] init]autorelease];
-    [dict setObject:retLowArray forKey:KEY_HIGH_LEVEL];
+    [dict setObject:retLowArray forKey:KEY_LOW_LEVEL];
     [dict setObject:retMediumArray forKey:KEY_MEDIUM_LEVEL];
     [dict setObject:retHighArray forKey:KEY_HIGH_LEVEL];
     return dict;
@@ -104,6 +104,19 @@ WordManager *GlobalGetWordManager()
         case WordLevelLow:
         default:
             return 1;
+    }
+}
+
+- (NSString *)levelDescForWord:(Word *)word
+{
+    switch (word.level) {
+        case WordLevelHigh:
+            return @"困难";
+        case WordLeveLMedium:
+            return @"一般";
+        case WordLevelLow:
+        default:
+            return @"简单";
     }
 }
 

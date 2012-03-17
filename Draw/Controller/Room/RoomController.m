@@ -8,6 +8,7 @@
 
 #import "RoomController.h"
 #import "DrawGameService.h"
+#import "SelectWordController.h"
 
 @implementation RoomController
 
@@ -62,7 +63,9 @@
 - (IBAction)clickStart:(id)sender
 {
     [[DrawGameService defaultService] startGame];
-    
+    SelectWordController *sw = [[SelectWordController alloc] init];
+    [self.navigationController pushViewController:sw animated:YES];
+    [sw release];
     // Goto Select Word UI
 }
 
