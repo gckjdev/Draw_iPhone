@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>High</key>
+	<array>
+		<array>
+			<string>乔丹</string>
+			<integer>3</integer>
+		</array>
+		<array>
+			<string>詹姆斯</string>
+			<integer>3</integer>
+		</array>
+	</array>
+	<key>Medium</key>
+	<array>
+		<array>
+			<string>袜子</string>
+			<integer>2</integer>
+		</array>
+		<array>
+			<string>小鸟</string>
+			<integer>2</integer>
+		</array>
+	</array>
+	<key>Low</key>
+	<array>
+		<array>
+			<string>耳朵</string>
+			<integer>1</integer>
+		</array>
+		<array>
+			<string>手指</string>
+			<integer>1</integer>
+		</array>
+	</array>
+</dict>
+</plist>
