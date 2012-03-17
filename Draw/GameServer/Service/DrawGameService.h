@@ -17,6 +17,10 @@
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
 - (void)didJoinGame:(GameMessage *)message;
+- (void)didStartGame:(GameMessage *)message;
+- (void)didGameStart:(GameMessage *)message;
+- (void)didNewUserJoinGame:(GameMessage *)message;
+- (void)didUserQuitGame:(GameMessage *)message;
 
 @end
 
@@ -29,6 +33,8 @@
 
     int _sessionId;
     BOOL start;
+    
+    
 }
 
 @property (nonatomic, retain) NSString* userId;

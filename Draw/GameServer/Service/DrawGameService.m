@@ -67,8 +67,12 @@ static DrawGameService* _defaultService;
 
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
-    _sessionId = [[[message joinGameResponse] gameSession] sessionId];        
-    [_roomDelegate didJoinGame:message];
+    dispatch_async(dispatch_get_main_queue(), ^{    
+        _sessionId = [[[message joinGameResponse] gameSession] sessionId];        
+        if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
+            [_roomDelegate didJoinGame:message];
+        }
+    });
 }
 
 - (void)joinGame
@@ -82,50 +86,59 @@ static DrawGameService* _defaultService;
 }
 
 - (void)handleStartGameResponse:(GameMessage*)message
-{
-    if ([message resultCode] != 0){
-        // TODO, notify UI for result
-        
-    }
-    
-    // TODO, notify UI
+{    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIUtils alert:[NSString stringWithFormat:@"Start Game At Session %qi", [message sessionId]]]; 
-        
-//        [self cleanDraw];
-        
-//        [self sendDrawDataRequestWithPointList:[NSArray arrayWithObjects:
-//                                                [NSNumber numberWithInt:1]
-//                                                ,[NSNumber numberWithInt:2]
-//                                                ,[NSNumber numberWithInt:3]
-//                                                , nil] color:255 width:2.0];
+        if ([_roomDelegate respondsToSelector:@selector(didStartGame:)]){
+            [_roomDelegate didStartGame:message];
+        }
     });
 }
 
+- (void)handleGameStartNotification:(GameMessage*)message
+{    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([_roomDelegate respondsToSelector:@selector(didGameStart:)]){
+            [_roomDelegate didGameStart:message];
+        }
+    });
+}
+
+- (void)handlNewUserJoinNotification:(GameMessage*)message
+{    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([_roomDelegate respondsToSelector:@selector(didNewUserJoinGame:)]){
+            [_roomDelegate didNewUserJoinGame:message];
+        }
+    });
+}
+
+- (void)handlUserQuitJoinNotification:(GameMessage*)message
+{    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([_roomDelegate respondsToSelector:@selector(didUserQuitGame:)]){
+            [_roomDelegate didUserQuitGame:message];
+        }
+    });
+}
+
+
 - (void)handleNewDrawDataNotification:(GameMessage*)message
 {
-    if ([message hasNotification] == NO){
-        // TODO error
-        return;
-    }
-    
-    // display this in UI 
     dispatch_async(dispatch_get_main_queue(), ^{        
-        // TODO
         NSLog(@"<Receive Draw Data>:");
         if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
             [_drawDelegate didReceiveDrawData:message];
         }
-
-
     });
 }
 
 - (void)handleCleanDraw:(GameMessage *)message
 {
-    if ([_drawDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
-        [_drawDelegate didReceiveRedrawResponse:message];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{        
+        if ([_drawDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
+            [_drawDelegate didReceiveRedrawResponse:message];
+        }
+    });
 }
 
 - (void)handleData:(GameMessage*)message
@@ -140,11 +153,17 @@ static DrawGameService* _defaultService;
             break;
 
         case GameCommandTypeGameStartNotificationRequest:
+            [self handleGameStartNotification:message];
             break;
             
         case GameCommandTypeUserJoinNotificationRequest:
+            [self handlNewUserJoinNotification:message];
             break;
             
+        case GameCommandTypeUserQuitNotificationRequest:
+            [self handlUserQuitJoinNotification:message];
+            break;
+
         case GameCommandTypeNewDrawDataNotificationRequest:
             [self handleNewDrawDataNotification:message];
             break;
@@ -154,6 +173,7 @@ static DrawGameService* _defaultService;
 
         case GameCommandTypeCleanDrawNotificationRequest:
             [self handleCleanDraw:message];
+
         default:
             break;
     }
