@@ -22,6 +22,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @interface PBGameUser ()
 @property (retain) NSString* userId;
 @property (retain) NSString* nickName;
+@property (retain) NSString* avatar;
 @end
 
 @implementation PBGameUser
@@ -40,15 +41,24 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasNickName_ = !!value;
 }
 @synthesize nickName;
+- (BOOL) hasAvatar {
+  return !!hasAvatar_;
+}
+- (void) setHasAvatar:(BOOL) value {
+  hasAvatar_ = !!value;
+}
+@synthesize avatar;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
+  self.avatar = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
     self.nickName = @"";
+    self.avatar = @"";
   }
   return self;
 }
@@ -80,6 +90,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasNickName) {
     [output writeString:2 value:self.nickName];
   }
+  if (self.hasAvatar) {
+    [output writeString:3 value:self.avatar];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -94,6 +107,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasNickName) {
     size += computeStringSize(2, self.nickName);
+  }
+  if (self.hasAvatar) {
+    size += computeStringSize(3, self.avatar);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -176,6 +192,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
+  if (other.hasAvatar) {
+    [self setAvatar:other.avatar];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -203,6 +222,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 18: {
         [self setNickName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setAvatar:[input readString]];
         break;
       }
     }
@@ -238,6 +261,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearNickName {
   result.hasNickName = NO;
   result.nickName = @"";
+  return self;
+}
+- (BOOL) hasAvatar {
+  return result.hasAvatar;
+}
+- (NSString*) avatar {
+  return result.avatar;
+}
+- (PBGameUser_Builder*) setAvatar:(NSString*) value {
+  result.hasAvatar = YES;
+  result.avatar = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearAvatar {
+  result.hasAvatar = NO;
+  result.avatar = @"";
   return self;
 }
 @end

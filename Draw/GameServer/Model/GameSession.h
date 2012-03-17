@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class GameSessionUser;
+@class GameTurn;
+@class PBGameSession;
+@class GameTurn;
+
 @interface GameSession : NSObject
+
+@property (nonatomic, retain) NSString *roomName;
+@property (nonatomic, retain) NSMutableArray *userList;
+@property (nonatomic, retain) NSMutableArray *turnList;
+@property (nonatomic, assign) int sessionId;
+@property (nonatomic, retain) NSString *hostUserId;
+@property (nonatomic, retain) NSString *userId;
+@property (nonatomic, assign) int status;
+@property (nonatomic, retain) GameTurn *currentTurn;
+
++ (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 
 @end

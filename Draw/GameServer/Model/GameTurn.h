@@ -10,4 +10,15 @@
 
 @interface GameTurn : NSObject
 
+@property (nonatomic, assign) int round;
+
+@property (nonatomic, retain) NSString *currentPlayUserId;
+@property (nonatomic, retain) NSString *nextPlayUserId;
+
+@property (nonatomic, retain) NSArray *playResultList;
+@property (nonatomic, retain) NSArray *userCommentList;
+@property (nonatomic, retain) NSArray *drawActionList;
+
+//@property (nonatomic, retain) 
+
 @end

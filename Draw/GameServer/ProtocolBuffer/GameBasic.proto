@@ -8,6 +8,7 @@ option java_outer_classname = "GameBasicProtos";
 message PBGameUser {
   required string userId = 1;                // 用户ID
   required string nickName = 2;             // 用户昵称
+     optional string avatar = 3;                        // 用户头像
 }
 
 message PBGameSession {

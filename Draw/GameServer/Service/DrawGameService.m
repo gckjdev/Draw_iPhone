@@ -10,7 +10,7 @@
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
 #import "UIUtils.h"
-
+#import "GameSession.h"
 
 
 @implementation DrawGameService
@@ -21,9 +21,11 @@ static DrawGameService* _defaultService;
 @synthesize nickName = _nickName;
 @synthesize drawDelegate = _drawDelegate;
 @synthesize roomDelegate = _roomDelegate;
+@synthesize session = _session;
 
 - (void)dealloc
 {
+    [_session release];
     [_nickName release];
     [_userId release];
     [_networkClient disconnect];
@@ -45,7 +47,7 @@ static DrawGameService* _defaultService;
     self = [super init];
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.14" port:8080];
+    [_networkClient start:@"192.168.1.100" port:8080];
     srand(time(0));
 //    self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
 //    start = NO;
@@ -67,8 +69,13 @@ static DrawGameService* _defaultService;
 
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
-    dispatch_async(dispatch_get_main_queue(), ^{    
-        _sessionId = [[[message joinGameResponse] gameSession] sessionId];        
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        
+        // create game session
+        PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+        self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
+        PPDebug(@"Create Session = %@", [self.session description]);
+        
         if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
             [_roomDelegate didJoinGame:message];
         }
@@ -82,7 +89,7 @@ static DrawGameService* _defaultService;
 
 - (void)startGame
 {
-    [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
+    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];             
 }
 
 - (void)handleStartGameResponse:(GameMessage*)message
@@ -186,7 +193,7 @@ static DrawGameService* _defaultService;
 - (void)didConnected
 {
 //    self.userId = ;
-    [_networkClient sendJoinGameRequest:self.userId nickName:@"Benson"];
+//    [_networkClient sendJoinGameRequest:self.userId nickName:@"Benson"];
 //    self.userId = @"User_ID2";
 //    [_networkClient sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];        
 }
@@ -203,7 +210,7 @@ static DrawGameService* _defaultService;
                                    width:(float)width
 {
     [_networkClient sendDrawDataRequest:_userId
-                              sessionId:_sessionId
+                              sessionId:[_session sessionId]
                               pointList:pointList
                                   color:color
                                   width:width];
@@ -212,7 +219,7 @@ static DrawGameService* _defaultService;
 - (void)cleanDraw
 {
     [_networkClient sendCleanDraw:_userId
-                        sessionId:_sessionId];    
+                        sessionId:[_session sessionId]];    
 }
 
 @end

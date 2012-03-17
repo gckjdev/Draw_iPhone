@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class PBGameUser;
+
 @interface GameSessionUser : NSObject
+
+@property (nonatomic, retain) NSString *userId;
+@property (nonatomic, retain) NSString *nickName;
+@property (nonatomic, retain) NSString *userAvatar;
+
++ (GameSessionUser*)fromPBUser:(PBGameUser*)pbUser;
 
 @end

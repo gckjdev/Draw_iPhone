@@ -24,6 +24,8 @@
 
 @end
 
+@class GameSession;
+
 @interface DrawGameService : CommonService<CommonNetworkClientDelegate>
 {
     GameNetworkClient *_networkClient;
@@ -31,9 +33,8 @@
     NSString *_userId;
     NSString *_nickName;
 
-    int _sessionId;
+//    int _sessionId;
     BOOL start;
-    
     
 }
 
@@ -41,6 +42,7 @@
 @property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
+@property (nonatomic, retain) GameSession* session;
 
 + (DrawGameService*)defaultService;
 
