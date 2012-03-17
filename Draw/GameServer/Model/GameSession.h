@@ -12,6 +12,7 @@
 @class GameTurn;
 @class PBGameSession;
 @class GameTurn;
+@class StartGameResponse;
 
 @interface GameSession : NSObject
 
@@ -25,5 +26,6 @@
 @property (nonatomic, retain) GameTurn *currentTurn;
 
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
+- (void)updateByStartGameResponse:(StartGameResponse*)response;
 
 @end

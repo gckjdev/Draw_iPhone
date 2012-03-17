@@ -74,7 +74,7 @@ static DrawGameService* _defaultService;
         // create game session
         PBGameSession* pbSession = [[message joinGameResponse] gameSession];
         self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
-        PPDebug(@"Create Session = %@", [self.session description]);
+        PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
         
         if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
             [_roomDelegate didJoinGame:message];
@@ -82,19 +82,14 @@ static DrawGameService* _defaultService;
     });
 }
 
-- (void)joinGame
-{
-    [_networkClient sendJoinGameRequest:_userId nickName:_nickName];
-}
-
-- (void)startGame
-{
-    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];             
-}
-
 - (void)handleStartGameResponse:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // update session data        
+        [self.session updateByStartGameResponse:[message startGameResponse]];
+        PPDebug(@"<handleStartGameResponse> Update Session = %@", [self.session description]);
+        
         if ([_roomDelegate respondsToSelector:@selector(didStartGame:)]){
             [_roomDelegate didStartGame:message];
         }
@@ -160,15 +155,15 @@ static DrawGameService* _defaultService;
             break;
 
         case GameCommandTypeGameStartNotificationRequest:
-            [self handleGameStartNotification:message];
+            [self handleGameStartNotification:message]; // TODO
             break;
             
         case GameCommandTypeUserJoinNotificationRequest:
-            [self handlNewUserJoinNotification:message];
+            [self handlNewUserJoinNotification:message]; // TODO
             break;
             
         case GameCommandTypeUserQuitNotificationRequest:
-            [self handlUserQuitJoinNotification:message];
+            [self handlUserQuitJoinNotification:message]; // TODO
             break;
 
         case GameCommandTypeNewDrawDataNotificationRequest:
@@ -203,7 +198,17 @@ static DrawGameService* _defaultService;
 }
 
 
-#pragma Methods for External
+#pragma Methods for External (UI Thread)
+
+- (void)joinGame
+{
+    [_networkClient sendJoinGameRequest:_userId nickName:_nickName];
+}
+
+- (void)startGame
+{
+    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];             
+}
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
                                    color:(int)color

@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "GameSessionUser.h"
 #import "GameTurn.h"
+#import "GameMessage.pb.h"
 
 @implementation GameSession
 
@@ -73,6 +74,10 @@
     return session;
 }
 
-
+- (void)updateByStartGameResponse:(StartGameResponse*)response
+{
+    [self.currentTurn setCurrentPlayUserId:[response currentPlayUserId]];
+    [self.currentTurn setNextPlayUserId:[response nextPlayUserId]];
+}
 
 @end
