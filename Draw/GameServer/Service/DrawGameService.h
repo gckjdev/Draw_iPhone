@@ -16,6 +16,7 @@
 - (void)didReceiveDrawData:(GameMessage *)message;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
+- (void)didJoinGame:(GameMessage *)message;
 
 @end
 
@@ -24,12 +25,17 @@
     GameNetworkClient *_networkClient;
     
     NSString *_userId;
+    NSString *_nickName;
+
     int _sessionId;
     BOOL start;
 }
 
 @property (nonatomic, retain) NSString* userId;
+@property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
+@property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
+
 + (DrawGameService*)defaultService;
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
@@ -37,7 +43,7 @@
                                    width:(float)width;
 
 - (void)cleanDraw;
-
 - (void)startGame;
+- (void)joinGame;
 
 @end

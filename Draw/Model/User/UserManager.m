@@ -30,6 +30,12 @@ static UserManager* _defaultManager;
     return [userDefaults objectForKey:KEY_USERID];
 }
 
+- (NSString*)nickName
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:KEY_NICKNAME];
+}
+
 - (BOOL)hasUser
 {
     return ([[self userId] length] > 0);

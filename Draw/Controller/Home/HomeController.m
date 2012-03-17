@@ -9,6 +9,7 @@
 #import "HomeController.h"
 #import "RoomController.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "DrawGameService.h"
 
 @implementation HomeController
 
@@ -51,7 +52,7 @@
 }
 
 - (IBAction)clickStart:(id)sender
-{
+{        
     RoomController* roomController = [[RoomController alloc] init];
     [self.navigationController pushViewController:roomController 
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];

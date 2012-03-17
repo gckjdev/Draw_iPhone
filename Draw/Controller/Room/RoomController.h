@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
+#import "DrawGameService.h"
 
-@interface RoomController : UIViewController
+@interface RoomController : PPViewController<DrawGameServiceDelegate>
+
+- (IBAction)clickStart:(id)sender;
 
 @end

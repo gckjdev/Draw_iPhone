@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface HomeController : UIViewController
+@interface HomeController : PPViewController
 
 - (IBAction)clickStart:(id)sender;
 

@@ -18,10 +18,13 @@
 static DrawGameService* _defaultService;
 
 @synthesize userId = _userId;
+@synthesize nickName = _nickName;
 @synthesize drawDelegate = _drawDelegate;
+@synthesize roomDelegate = _roomDelegate;
 
 - (void)dealloc
 {
+    [_nickName release];
     [_userId release];
     [_networkClient disconnect];
     [_networkClient release];
@@ -42,9 +45,9 @@ static DrawGameService* _defaultService;
     self = [super init];
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.100" port:8080];
+    [_networkClient start:@"192.168.1.14" port:8080];
     srand(time(0));
-    self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
+//    self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
 //    start = NO;
 //    
 //    if(start)
@@ -64,26 +67,14 @@ static DrawGameService* _defaultService;
 
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
-    if ([message resultCode] != 0){
-        // TODO, notify UI for result
-        return;
-    }
-    
-    if ([message hasJoinGameResponse]){
-        
-        _sessionId = [[[message joinGameResponse] gameSession] sessionId];
-        
-        PPDebug(@"Join Game Response, session id = %qi", 
-                [[[message joinGameResponse] gameSession] sessionId]);        
-        
-//        if (start) {
-//            [_networkClient sendStartGameRequest:_userId sessionId:_sessionId];             
-//        }
-
-    }
-
+    _sessionId = [[[message joinGameResponse] gameSession] sessionId];        
+    [_roomDelegate didJoinGame:message];
 }
 
+- (void)joinGame
+{
+    [_networkClient sendJoinGameRequest:_userId nickName:_nickName];
+}
 
 - (void)startGame
 {

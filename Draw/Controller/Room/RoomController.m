@@ -7,6 +7,7 @@
 //
 
 #import "RoomController.h"
+#import "DrawGameService.h"
 
 @implementation RoomController
 
@@ -32,7 +33,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    [[DrawGameService defaultService] setRoomDelegate:self];
+    [[DrawGameService defaultService] joinGame];
+
 }
 
 - (void)viewDidUnload
@@ -46,6 +51,19 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didJoinGame:(GameMessage *)message
+{
+    [self hideActivity];
+    [UIUtils alert:@"Join Game OK!"];
+}
+
+- (IBAction)clickStart:(id)sender
+{
+    [[DrawGameService defaultService] startGame];
+    
+    // Goto Select Word UI
 }
 
 @end

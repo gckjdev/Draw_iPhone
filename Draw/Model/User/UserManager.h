@@ -13,8 +13,11 @@
 + (UserManager*)defaultManager;
 
 - (NSString*)userId;
+- (NSString*)nickName;
+
 - (void)saveUserId:(NSString*)userId 
           nickName:(NSString*)nickName;
+
 - (BOOL)hasUser;
 
 @end
