@@ -26,8 +26,6 @@
 {
     // Override point for customization after application launch.
     
-    // Start Game Service
-    [DrawGameService defaultService];
     
     // Init Home
     HomeController* homeController = [[[HomeController alloc] init] autorelease];
@@ -37,7 +35,14 @@
     if ([[UserManager defaultManager] hasUser] == NO){
         [RegisterUserController showAt:homeController];
     }
-     
+    else{
+        
+    }
+
+    // Start Game Service And Set User Id
+    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
+    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
+    
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;

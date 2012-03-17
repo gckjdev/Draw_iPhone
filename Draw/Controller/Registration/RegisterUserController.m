@@ -8,6 +8,7 @@
 
 #import "RegisterUserController.h"
 #import "UserManager.h"
+#import "DrawGameService.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 
 @implementation RegisterUserController
@@ -66,8 +67,11 @@
 
 - (IBAction)clickSubmit:(id)sender
 {
-    // dummy implementation
-    [[UserManager defaultManager] saveUserId:self.userIdTextField.text nickName:nil];
+    // TODO dummy implementation here
+    NSString* userId = self.userIdTextField.text;
+    [[UserManager defaultManager] saveUserId:userId nickName:nil];
+    [[DrawGameService defaultService] setUserId:userId];
+    
     [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
 }
 
