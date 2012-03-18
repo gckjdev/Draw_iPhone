@@ -42,6 +42,7 @@
 @property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
+@property (nonatomic, retain) NSMutableArray *gameObserverList;
 @property (nonatomic, retain) GameSession* session;
 
 + (DrawGameService*)defaultService;
@@ -53,5 +54,8 @@
 - (void)cleanDraw;
 - (void)startGame;
 - (void)joinGame;
+
+- (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
+- (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 
 @end

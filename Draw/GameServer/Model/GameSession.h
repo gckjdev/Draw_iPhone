@@ -11,6 +11,7 @@
 @class GameSessionUser;
 @class GameTurn;
 @class PBGameSession;
+@class GeneralNotification;
 @class GameTurn;
 @class StartGameResponse;
 
@@ -27,5 +28,10 @@
 
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 - (void)updateByStartGameResponse:(StartGameResponse*)response;
+- (void)updateByGameNotification:(GeneralNotification*)notification;
+
+- (BOOL)isCurrentPlayUser:(NSString*)userId;
+- (BOOL)isMe:(NSString*)userId;
+- (BOOL)isHostUser:(NSString*)userId;
 
 @end

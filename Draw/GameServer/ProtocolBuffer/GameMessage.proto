@@ -50,6 +50,8 @@ message GeneralNotification{
   optional string nextPlayUserId = 6;                  // 下一个要轮到的用户（如画画的用户）
   optional string newUserId = 7;
   optional string quitUserId = 8;
+  optional string nickName = 9;
+  optional string userAvatar = 10;
   
   // draw data
   repeated int32 points = 21 [packed=true];

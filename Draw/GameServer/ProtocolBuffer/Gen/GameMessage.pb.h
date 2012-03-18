@@ -370,6 +370,8 @@
   BOOL hasNextPlayUserId_:1;
   BOOL hasNewUserId_:1;
   BOOL hasQuitUserId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasUserAvatar_:1;
   Float32 width;
   int32_t sessionStatus;
   int32_t color;
@@ -378,6 +380,8 @@
   NSString* nextPlayUserId;
   NSString* newUserId;
   NSString* quitUserId;
+  NSString* nickName;
+  NSString* userAvatar;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -387,6 +391,8 @@
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasNewUserId;
 - (BOOL) hasQuitUserId;
+- (BOOL) hasNickName;
+- (BOOL) hasUserAvatar;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 @property (readonly, retain) NSString* sessionHost;
@@ -395,6 +401,8 @@
 @property (readonly, retain) NSString* nextPlayUserId;
 @property (readonly, retain) NSString* newUserId;
 @property (readonly, retain) NSString* quitUserId;
+@property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* userAvatar;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 - (NSArray*) pointsList;
@@ -463,6 +471,16 @@
 - (NSString*) quitUserId;
 - (GeneralNotification_Builder*) setQuitUserId:(NSString*) value;
 - (GeneralNotification_Builder*) clearQuitUserId;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (GeneralNotification_Builder*) setNickName:(NSString*) value;
+- (GeneralNotification_Builder*) clearNickName;
+
+- (BOOL) hasUserAvatar;
+- (NSString*) userAvatar;
+- (GeneralNotification_Builder*) setUserAvatar:(NSString*) value;
+- (GeneralNotification_Builder*) clearUserAvatar;
 
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;

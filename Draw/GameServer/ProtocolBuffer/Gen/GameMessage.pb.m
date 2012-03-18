@@ -1319,6 +1319,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* nextPlayUserId;
 @property (retain) NSString* newUserId;
 @property (retain) NSString* quitUserId;
+@property (retain) NSString* nickName;
+@property (retain) NSString* userAvatar;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -1368,6 +1370,20 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasQuitUserId_ = !!value;
 }
 @synthesize quitUserId;
+- (BOOL) hasNickName {
+  return !!hasNickName_;
+}
+- (void) setHasNickName:(BOOL) value {
+  hasNickName_ = !!value;
+}
+@synthesize nickName;
+- (BOOL) hasUserAvatar {
+  return !!hasUserAvatar_;
+}
+- (void) setHasUserAvatar:(BOOL) value {
+  hasUserAvatar_ = !!value;
+}
+@synthesize userAvatar;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -1389,6 +1405,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.nextPlayUserId = nil;
   self.newUserId = nil;
   self.quitUserId = nil;
+  self.nickName = nil;
+  self.userAvatar = nil;
   self.mutablePointsList = nil;
   [super dealloc];
 }
@@ -1400,6 +1418,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.nextPlayUserId = @"";
     self.newUserId = @"";
     self.quitUserId = @"";
+    self.nickName = @"";
+    self.userAvatar = @"";
     self.width = 0;
     self.color = 0;
   }
@@ -1446,6 +1466,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasQuitUserId) {
     [output writeString:8 value:self.quitUserId];
   }
+  if (self.hasNickName) {
+    [output writeString:9 value:self.nickName];
+  }
+  if (self.hasUserAvatar) {
+    [output writeString:10 value:self.userAvatar];
+  }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
     [output writeRawVarint32:pointsMemoizedSerializedSize];
@@ -1485,6 +1511,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasQuitUserId) {
     size += computeStringSize(8, self.quitUserId);
+  }
+  if (self.hasNickName) {
+    size += computeStringSize(9, self.nickName);
+  }
+  if (self.hasUserAvatar) {
+    size += computeStringSize(10, self.userAvatar);
   }
   {
     int32_t dataSize = 0;
@@ -1597,6 +1629,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasQuitUserId) {
     [self setQuitUserId:other.quitUserId];
   }
+  if (other.hasNickName) {
+    [self setNickName:other.nickName];
+  }
+  if (other.hasUserAvatar) {
+    [self setUserAvatar:other.userAvatar];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -1652,6 +1690,14 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 66: {
         [self setQuitUserId:[input readString]];
+        break;
+      }
+      case 74: {
+        [self setNickName:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setUserAvatar:[input readString]];
         break;
       }
       case 170: {
@@ -1768,6 +1814,38 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearQuitUserId {
   result.hasQuitUserId = NO;
   result.quitUserId = @"";
+  return self;
+}
+- (BOOL) hasNickName {
+  return result.hasNickName;
+}
+- (NSString*) nickName {
+  return result.nickName;
+}
+- (GeneralNotification_Builder*) setNickName:(NSString*) value {
+  result.hasNickName = YES;
+  result.nickName = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearNickName {
+  result.hasNickName = NO;
+  result.nickName = @"";
+  return self;
+}
+- (BOOL) hasUserAvatar {
+  return result.hasUserAvatar;
+}
+- (NSString*) userAvatar {
+  return result.userAvatar;
+}
+- (GeneralNotification_Builder*) setUserAvatar:(NSString*) value {
+  result.hasUserAvatar = YES;
+  result.userAvatar = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearUserAvatar {
+  result.hasUserAvatar = NO;
+  result.userAvatar = @"";
   return self;
 }
 - (NSArray*) pointsList {

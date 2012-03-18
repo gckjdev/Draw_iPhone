@@ -9,6 +9,7 @@
 #import "RoomController.h"
 #import "DrawGameService.h"
 #import "SelectWordController.h"
+#import "GameSession.h"
 
 @implementation RoomController
 
@@ -39,10 +40,12 @@
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] joinGame];
 
+    [[DrawGameService defaultService] registerObserver:self];
 }
 
 - (void)viewDidUnload
 {
+    [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -54,18 +57,78 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)updateGameUsers
+{
+    GameSession* session = [[DrawGameService defaultService] session];
+    NSArray* userList = [session userList];
+    int startTag = 1;
+    int endTag = 6;
+    for (GameSessionUser* user in userList){
+        UIButton* button = (UIButton*)[self.view viewWithTag:startTag++];
+        [button setTitle:[user userId] forState:UIControlStateNormal];
+        button.titleLabel.numberOfLines = 2;
+        
+        if ([session isHostUser:[user userId]]){
+            NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
+            [button setTitle:title forState:UIControlStateNormal];
+        }
+        
+        if ([session isMe:[user userId]]){
+            NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user userId]];
+            [button setTitle:title forState:UIControlStateNormal];
+        }
+
+        if ([session isCurrentPlayUser:[user userId]]){
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
+    }
+    
+    // clean all data
+    for (int i=startTag; i<=endTag; i++){
+        UIButton* button = (UIButton*)[self.view viewWithTag:i];
+        [button setTitle:@"" forState:UIControlStateNormal];
+    }
+    
+}
+
+#pragma Draw Game Service Delegate
+
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];
     [UIUtils alert:@"Join Game OK!"];
+
+    // update 
+    [self updateGameUsers];
+}
+
+- (void)didStartGame:(GameMessage *)message
+{
+    [self updateGameUsers];
+}
+
+- (void)didGameStart:(GameMessage *)message
+{
+    [self updateGameUsers];
+    
+    SelectWordController *sw = [[SelectWordController alloc] init];
+    [self.navigationController pushViewController:sw animated:YES];
+    [sw release];    
+}
+
+- (void)didNewUserJoinGame:(GameMessage *)message
+{
+    [self updateGameUsers];    
+}
+
+- (void)didUserQuitGame:(GameMessage *)message
+{
+    [self updateGameUsers];    
 }
 
 - (IBAction)clickStart:(id)sender
 {
     [[DrawGameService defaultService] startGame];
-    SelectWordController *sw = [[SelectWordController alloc] init];
-    [self.navigationController pushViewController:sw animated:YES];
-    [sw release];
     // Goto Select Word UI
 }
 

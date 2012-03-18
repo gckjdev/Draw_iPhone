@@ -22,6 +22,7 @@ static DrawGameService* _defaultService;
 @synthesize drawDelegate = _drawDelegate;
 @synthesize roomDelegate = _roomDelegate;
 @synthesize session = _session;
+@synthesize gameObserverList = _gameObserverList;
 
 - (void)dealloc
 {
@@ -30,6 +31,7 @@ static DrawGameService* _defaultService;
     [_userId release];
     [_networkClient disconnect];
     [_networkClient release];
+    [_gameObserverList release];
     [super dealloc];
 }
 
@@ -45,25 +47,36 @@ static DrawGameService* _defaultService;
 - (id)init
 {
     self = [super init];
+    
+    _gameObserverList = [[NSMutableArray alloc] init];
+        
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.100" port:8080];
-    srand(time(0));
-//    self.userId = [NSString stringWithFormat:@"GamyDevice_%d",rand() % 100];
-//    start = NO;
-//    
-//    if(start)
-//    {
-//        self.userId = @"GamyDevice";
-//    }else{
-//        self.userId = @"Simulator";
-//    }
+    [_networkClient start:@"192.168.1.198" port:8080];
 
-    
     return self;
 }
 
+#pragma Notification Handling
 
+- (void)notifyGameObserver:(SEL)selector message:(GameMessage*)message
+{
+    for (id observer in _gameObserverList){        
+        if ([observer respondsToSelector:selector]){
+            [observer performSelector:selector withObject:message];
+        }
+    }    
+}
+
+- (void)registerObserver:(id<DrawGameServiceDelegate>)observer
+{
+    [self.gameObserverList addObject:observer];
+}
+
+- (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer
+{
+    [self.gameObserverList removeObject:observer];
+}
 
 #pragma Message Handle Methods
 
@@ -98,35 +111,42 @@ static DrawGameService* _defaultService;
 
 - (void)handleGameStartNotification:(GameMessage*)message
 {    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([_roomDelegate respondsToSelector:@selector(didGameStart:)]){
-            [_roomDelegate didGameStart:message];
-        }
+    dispatch_async(dispatch_get_main_queue(), ^{      
+        
+        // update session data
+        [self.session updateByGameNotification:[message notification]];
+
+        // notify
+        [self notifyGameObserver:@selector(didGameStart:) message:message];
     });
 }
 
 - (void)handlNewUserJoinNotification:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([_roomDelegate respondsToSelector:@selector(didNewUserJoinGame:)]){
-            [_roomDelegate didNewUserJoinGame:message];
-        }
+        // update session data
+        [self.session updateByGameNotification:[message notification]];
+
+        // notify
+        [self notifyGameObserver:@selector(didNewUserJoinGame:) message:message];
     });
 }
 
 - (void)handlUserQuitJoinNotification:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([_roomDelegate respondsToSelector:@selector(didUserQuitGame:)]){
-            [_roomDelegate didUserQuitGame:message];
-        }
+        // update session data
+        [self.session updateByGameNotification:[message notification]];
+        
+        // notify
+        [self notifyGameObserver:@selector(didUserQuitGame:) message:message];
     });
 }
 
-
 - (void)handleNewDrawDataNotification:(GameMessage*)message
 {
-    dispatch_async(dispatch_get_main_queue(), ^{        
+    dispatch_async(dispatch_get_main_queue(), ^{               
+        // TODO chaneg to notifyGameObserver
         NSLog(@"<Receive Draw Data>:");
         if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
             [_drawDelegate didReceiveDrawData:message];
@@ -137,6 +157,7 @@ static DrawGameService* _defaultService;
 - (void)handleCleanDraw:(GameMessage *)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{        
+        // TODO chaneg to notifyGameObserver
         if ([_drawDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
             [_drawDelegate didReceiveRedrawResponse:message];
         }
@@ -155,15 +176,15 @@ static DrawGameService* _defaultService;
             break;
 
         case GameCommandTypeGameStartNotificationRequest:
-            [self handleGameStartNotification:message]; // TODO
+            [self handleGameStartNotification:message]; 
             break;
             
         case GameCommandTypeUserJoinNotificationRequest:
-            [self handlNewUserJoinNotification:message]; // TODO
+            [self handlNewUserJoinNotification:message]; 
             break;
             
         case GameCommandTypeUserQuitNotificationRequest:
-            [self handlUserQuitJoinNotification:message]; // TODO
+            [self handlUserQuitJoinNotification:message]; 
             break;
 
         case GameCommandTypeNewDrawDataNotificationRequest:
@@ -187,10 +208,6 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
-//    self.userId = ;
-//    [_networkClient sendJoinGameRequest:self.userId nickName:@"Benson"];
-//    self.userId = @"User_ID2";
-//    [_networkClient sendJoinGameRequest:@"User_ID2" nickName:@"Gamy"];        
 }
 
 - (void)didBroken

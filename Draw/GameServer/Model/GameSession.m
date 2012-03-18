@@ -11,6 +11,14 @@
 #import "GameSessionUser.h"
 #import "GameTurn.h"
 #import "GameMessage.pb.h"
+#import "PPDebug.h"
+
+@interface GameSession ()
+
+- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar;
+- (void)removeUser:(NSString*)userId;
+
+@end
 
 @implementation GameSession
 
@@ -78,6 +86,82 @@
 {
     [self.currentTurn setCurrentPlayUserId:[response currentPlayUserId]];
     [self.currentTurn setNextPlayUserId:[response nextPlayUserId]];
+}
+
+- (void)updateByGameNotification:(GeneralNotification*)notification
+{
+    if ([[notification currentPlayUserId] length] > 0){
+        [self.currentTurn setCurrentPlayUserId:[notification currentPlayUserId]];
+    }
+    
+    if ([[notification nextPlayUserId] length] > 0){
+        [self.currentTurn setNextPlayUserId:[notification nextPlayUserId]];
+    }
+    
+    if ([[notification newUserId] length] > 0){
+        [self addNewUser:[notification newUserId]
+                nickName:[notification nickName]
+                  avatar:[notification userAvatar]];
+    }
+    
+    if ([[notification quitUserId] length] > 0){
+        [self removeUser:[notification quitUserId]];
+    }
+    
+    if ([[notification sessionHost] length] > 0){
+        self.hostUserId = [notification sessionHost];
+    }
+}
+
+- (BOOL)isCurrentPlayUser:(NSString*)userId
+{
+    return [[[self currentTurn] currentPlayUserId] isEqualToString:userId];
+}
+
+- (BOOL)isMe:(NSString*)userId
+{
+    return [[self userId] isEqualToString:userId];
+}
+
+- (BOOL)isHostUser:(NSString*)userId
+{
+    return [[self hostUserId] isEqualToString:userId];    
+}
+
+
+#pragma User Management
+- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar
+{
+    for (GameSessionUser* user in _userList){
+        if ([[user userId] isEqualToString:userId]){
+            // already exist, don't add
+            return;
+        }
+    }
+    
+    GameSessionUser *user = [[GameSessionUser alloc] init];
+    [user setUserId:userId];
+    [user setNickName:nickName];
+    [user setUserAvatar:avatar];
+    [_userList addObject:user];
+    [user release];
+    
+    PPDebug(@"<addNewUser> userId = %@", userId);
+}
+
+- (void)removeUser:(NSString*)userId
+{
+    GameSessionUser* userFound = nil;
+    for (GameSessionUser* user in _userList){
+        if ([[user userId] isEqualToString:userId]){
+            userFound = user;
+        }
+    }
+    
+    if (userFound != nil){
+        PPDebug(@"<removeUser> userId = %@", userId);
+        [_userList removeObject:userFound];
+    }
 }
 
 @end
