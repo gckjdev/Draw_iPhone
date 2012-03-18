@@ -17,10 +17,19 @@
 
 @implementation DrawAppDelegate
 
+@synthesize window = _window;
+@synthesize viewController = _viewController;
+@synthesize roomController = _roomController;
+@synthesize homeController = _homeController;
 
-@synthesize window=_window;
-
-@synthesize viewController=_viewController;
+- (void)dealloc
+{
+    [_homeController release];
+    [_roomController release];
+    [_window release];
+    [_viewController release];
+    [super dealloc];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,20 +37,15 @@
     
     
     // Init Home
-    HomeController* homeController = [[[HomeController alloc] init] autorelease];
-    UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:homeController] autorelease];
+    self.homeController = [[[HomeController alloc] init] autorelease];    
+    
+    UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:self.homeController] autorelease];
     navigationController.navigationBarHidden = YES;
     
     if ([[UserManager defaultManager] hasUser] == NO){
-        [RegisterUserController showAt:homeController];
-    }
-    else{
-        
+        [RegisterUserController showAt:self.homeController];
     }
 
-    // Start Game Service And Set User Id
-    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
-    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
@@ -87,12 +91,6 @@
      */
 }
 
-- (void)dealloc
-{
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
 
 
 @end

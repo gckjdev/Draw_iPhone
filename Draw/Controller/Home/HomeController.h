@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "DrawGameService.h"
 
-@interface HomeController : PPViewController
+@interface HomeController : PPViewController<DrawGameServiceDelegate>
 
 - (IBAction)clickStart:(id)sender;
 

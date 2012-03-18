@@ -10,13 +10,18 @@
 #import "CommonNetworkClient.h"
 
 @class DrawViewController;
+@class RoomController;
+@class HomeController;
 
 @interface DrawAppDelegate : NSObject <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
 @property (nonatomic, retain) IBOutlet DrawViewController *viewController;
+
+@property (nonatomic, retain) RoomController *roomController;
+@property (nonatomic, retain) HomeController *homeController;
+
 
 @end

@@ -36,11 +36,14 @@
 {
     [super viewDidLoad];
     
+    [self showActivityWithText:NSLS(@"kJoining")];
+
     // Do any additional setup after loading the view from its nib.
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] joinGame];
 
     [[DrawGameService defaultService] registerObserver:self];
+    
 }
 
 - (void)viewDidUnload
@@ -104,7 +107,13 @@
 
 - (void)didStartGame:(GameMessage *)message
 {
+    [self hideActivity];
     [self updateGameUsers];
+
+    SelectWordController *sw = [[SelectWordController alloc] init];
+    [self.navigationController pushViewController:sw animated:YES];
+    [sw release];    
+
 }
 
 - (void)didGameStart:(GameMessage *)message
@@ -128,6 +137,7 @@
 
 - (IBAction)clickStart:(id)sender
 {
+    [self showActivityWithText:@"kStartingGame"];
     [[DrawGameService defaultService] startGame];
     // Goto Select Word UI
 }

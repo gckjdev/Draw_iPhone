@@ -23,6 +23,7 @@ static DrawGameService* _defaultService;
 @synthesize roomDelegate = _roomDelegate;
 @synthesize session = _session;
 @synthesize gameObserverList = _gameObserverList;
+@synthesize homeDelegate = _homeDelegate;
 
 - (void)dealloc
 {
@@ -208,10 +209,20 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if ([_homeDelegate respondsToSelector:@selector(didConnected)]){
+            [_homeDelegate didConnected];
+        }
+    });
 }
 
 - (void)didBroken
 {    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if ([_homeDelegate respondsToSelector:@selector(didBroken)]){
+            [_homeDelegate didBroken];
+        }
+    });
 }
 
 

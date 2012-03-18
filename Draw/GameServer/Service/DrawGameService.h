@@ -22,6 +22,10 @@
 - (void)didNewUserJoinGame:(GameMessage *)message;
 - (void)didUserQuitGame:(GameMessage *)message;
 
+- (void)didConnected;
+- (void)didBroken;
+
+
 @end
 
 @class GameSession;
@@ -42,6 +46,7 @@
 @property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
+@property (nonatomic, assign) id<DrawGameServiceDelegate> homeDelegate;
 @property (nonatomic, retain) NSMutableArray *gameObserverList;
 @property (nonatomic, retain) GameSession* session;
 

@@ -10,6 +10,9 @@
 #import "RoomController.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 #import "DrawGameService.h"
+#import "DrawAppDelegate.h"
+#import "UserManager.h"
+#import "PPDebug.h"
 
 @implementation HomeController
 
@@ -35,7 +38,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    [self showActivityWithText:@"kConnectingServer"];
+    
+    // Start Game Service And Set User Id
+    [[DrawGameService defaultService] setHomeDelegate:self];
+    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
+    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
+    
 }
 
 - (void)viewDidUnload
@@ -53,10 +64,26 @@
 
 - (IBAction)clickStart:(id)sender
 {        
-    RoomController* roomController = [[RoomController alloc] init];
-    [self.navigationController pushViewController:roomController 
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.roomController == nil){    
+        app.roomController = [[[RoomController alloc] init] autorelease];
+    }
+
+    [self.navigationController pushViewController:app.roomController 
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];
-    [roomController release];
+}
+
+- (void)didBroken
+{
+//    [UIUtils alert:@"Network Broken"];
+    PPDebug(@"<didBroken>");
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+- (void)didConnected
+{
+    [self hideActivity];
+    [UIUtils alert:@"Server Connected"];
 }
 
 @end
