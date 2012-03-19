@@ -14,9 +14,11 @@
 
 - (NSString*)userId;
 - (NSString*)nickName;
+- (NSString*)avatarURL;
 
 - (void)saveUserId:(NSString*)userId 
-          nickName:(NSString*)nickName;
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL;
 
 - (BOOL)hasUser;
 

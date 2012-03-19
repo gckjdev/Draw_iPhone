@@ -46,6 +46,7 @@
 
 @property (nonatomic, retain) NSString* userId;
 @property (nonatomic, retain) NSString* nickName;
+@property (nonatomic, retain) NSString* avatar;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> homeDelegate;

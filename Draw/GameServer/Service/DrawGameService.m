@@ -25,9 +25,11 @@ static DrawGameService* _defaultService;
 @synthesize gameObserverList = _gameObserverList;
 @synthesize homeDelegate = _homeDelegate;
 @synthesize historySessionSet = _historySessionSet;
+@synthesize avatar = _avatar;
 
 - (void)dealloc
 {
+    [_avatar release];
     [_historySessionSet release];
     [_session release];
     [_nickName release];
@@ -265,6 +267,7 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
+                                 avatar:_avatar
                               sessionId:-1
                       excludeSessionSet:_historySessionSet];
 }
@@ -278,6 +281,7 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
+                                 avatar:_avatar
                               sessionId:[_session sessionId]
                       excludeSessionSet:_historySessionSet];
 }

@@ -19,6 +19,7 @@
 
 - (void)sendJoinGameRequest:(NSString*)userId 
                    nickName:(NSString*)nickName 
+                     avatar:(NSString*)avatar
                   sessionId:(int)currentSessionId
           excludeSessionSet:(NSSet*)excludeSessionSet;
 
