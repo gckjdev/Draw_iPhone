@@ -9,8 +9,6 @@ typedef enum {
   GameCommandTypeStartGameResponse = 4,
   GameCommandTypeQuitGameRequest = 5,
   GameCommandTypeQuitGameResponse = 6,
-  GameCommandTypeChangeRoomRequest = 7,
-  GameCommandTypeChangeRoomResponse = 8,
   GameCommandTypeSendDrawDataRequest = 11,
   GameCommandTypeSendDrawDataResponse = 12,
   GameCommandTypeCleanDrawRequest = 13,

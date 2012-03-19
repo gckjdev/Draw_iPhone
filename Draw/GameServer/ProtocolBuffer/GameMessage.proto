@@ -22,13 +22,13 @@ message JoinGameResponse {
   required PBGameSession gameSession = 1;
 }
 
-message ChangeRoomRequest {                     // 更换房间请求
-  repeated int64 excludeSessionId = 1;
-}
-
-message ChangeRoomResponse {
-  required PBGameSession gameSession = 1;
-}
+//message ChangeRoomRequest {                     // 更换房间请求
+//  repeated int64 excludeSessionId = 1;
+//}
+//
+//message ChangeRoomResponse {
+//  required PBGameSession gameSession = 1;
+//}
 
 message StartGameRequest {                     // 开始游戏请求
 }
@@ -89,8 +89,8 @@ message GameMessage {
   optional SendDrawDataRequest sendDrawDataRequest = 21;
   optional SendDrawDataResponse sendDrawDataResponse = 22;
   
-  optional ChangeRoomRequest changeRoomRequest = 23;
-  optional ChangeRoomResponse changeRoomResponse = 24;
+//  optional ChangeRoomRequest changeRoomRequest = 23;
+//  optional ChangeRoomResponse changeRoomResponse = 24;
   
   optional GeneralNotification notification = 51;
   

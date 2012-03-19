@@ -27,8 +27,6 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeStartGameResponse:
     case GameCommandTypeQuitGameRequest:
     case GameCommandTypeQuitGameResponse:
-    case GameCommandTypeChangeRoomRequest:
-    case GameCommandTypeChangeRoomResponse:
     case GameCommandTypeSendDrawDataRequest:
     case GameCommandTypeSendDrawDataResponse:
     case GameCommandTypeCleanDrawRequest:
