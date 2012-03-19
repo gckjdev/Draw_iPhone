@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"猜词中"];
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 80, 320, 360)];
+    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 100, 320, 320)];
     [self.view addSubview:showView];
     [showView release];
     [showView setDrawEnabled:NO];

@@ -61,6 +61,13 @@ static DrawGameService* _defaultService;
     return self;
 }
 
+- (BOOL)isMeHost
+{
+    if ([self.session isHostUser:_userId]) {
+        return YES;
+    }
+    return NO;
+}
 - (BOOL)isMyTurn
 {
     if ([self.session isHostUser:_userId]) {
