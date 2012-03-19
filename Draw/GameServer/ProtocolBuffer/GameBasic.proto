@@ -8,7 +8,7 @@ option java_outer_classname = "GameBasicProtos";
 message PBGameUser {
   required string userId = 1;                // 用户ID
   required string nickName = 2;             // 用户昵称
-     optional string avatar = 3;                        // 用户头像
+    optional string avatar = 3;                        // 用户头像
 }
 
 message PBGameSession {
@@ -18,10 +18,9 @@ message PBGameSession {
   optional string createBy = 4;             // 游戏创建者
   optional int32 createTime = 5;            // 游戏创建时间戳
   optional string host = 6;                 // 游戏房间主人
-     optional int32 status = 7;                        // 游戏状态
-     optional string currentPlayUserId = 8;                // 当前轮到的用户（如画画的用户）
-     optional string nextPlayUserId = 9;                  // 下一个要轮到的用户（如画画的用户）
-     
+  optional int32 status = 7;                        // 游戏状态
+  optional string currentPlayUserId = 8;                // 当前轮到的用户（如画画的用户）
+  optional string nextPlayUserId = 9;                  // 下一个要轮到的用户（如画画的用户）     
      
   repeated PBGameUser users = 50;            // 用户列表
 

@@ -69,8 +69,12 @@
 {
     // TODO dummy implementation here
     NSString* userId = self.userIdTextField.text;
-    [[UserManager defaultManager] saveUserId:userId nickName:nil];
+    [[UserManager defaultManager] saveUserId:userId 
+                                    nickName:userId 
+                                   avatarURL:@"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
     [[DrawGameService defaultService] setUserId:userId];
+    [[DrawGameService defaultService] setNickName:userId];
+    [[DrawGameService defaultService] setAvatar:@"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
     
     [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
 }

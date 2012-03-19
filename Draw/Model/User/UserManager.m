@@ -11,6 +11,7 @@
 
 #define KEY_USERID          @"KEY_USERID"
 #define KEY_NICKNAME        @"KEY_NICKNAME"
+#define KEY_AVATAR_URL      @"KEY_AVATAR_URL"
 
 @implementation UserManager
 
@@ -36,6 +37,12 @@ static UserManager* _defaultManager;
     return [userDefaults objectForKey:KEY_NICKNAME];
 }
 
+- (NSString*)avatarURL
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:KEY_AVATAR_URL];
+}
+
 - (BOOL)hasUser
 {
     return ([[self userId] length] > 0);
@@ -43,12 +50,13 @@ static UserManager* _defaultManager;
 
 - (void)saveUserId:(NSString*)userId 
           nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL
 {
     PPDebug(@"Save userId(%@), nickName(%@)", userId, nickName);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:userId forKey:KEY_USERID];
     [userDefaults setObject:nickName forKey:KEY_NICKNAME];
-    
+    [userDefaults setObject:avatarURL forKey:avatarURL];
 }
 
 
