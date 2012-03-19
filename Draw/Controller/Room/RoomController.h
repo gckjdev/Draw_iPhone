@@ -16,7 +16,7 @@
     BOOL _hasClickStartGame;
 }
 
-
+@property (retain, nonatomic) IBOutlet UIButton *prolongButton;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 @property (retain, nonatomic) NSTimer *startTimer;

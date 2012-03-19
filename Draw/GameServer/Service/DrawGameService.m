@@ -158,6 +158,13 @@ static DrawGameService* _defaultService;
     });
 }
 
+- (void)handleGameProlongNotification:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self notifyGameObserver:@selector(didGameProlong:) message:message];
+    });    
+}
+
 - (void)handlUserQuitJoinNotification:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -230,6 +237,10 @@ static DrawGameService* _defaultService;
             break;
             
         case GameCommandTypeHostChangeNotificationRequest:
+            break;
+            
+        case GameCommandTypeProlongGameNotificationRequest:
+            [self handleGameProlongNotification:message];
             break;
 
         case GameCommandTypeCleanDrawNotificationRequest:
@@ -312,6 +323,12 @@ static DrawGameService* _defaultService;
                              word:word
                             level:level];
      
+}
+
+- (void)prolongGame
+{
+    [_networkClient sendProlongGame:_userId
+                          sessionId:[_session sessionId]];
 }
 
 @end

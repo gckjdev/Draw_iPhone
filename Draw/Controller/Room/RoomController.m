@@ -29,6 +29,7 @@
 
 @implementation RoomController
 
+@synthesize prolongButton = _prolongButton;
 @synthesize roomNameLabel;
 @synthesize startGameButton;
 @synthesize startTimer = _startTimer;
@@ -37,6 +38,7 @@
     [_startTimer release];
     [startGameButton release];
     [roomNameLabel release];
+    [_prolongButton release];
     [super dealloc];
 }
 
@@ -102,6 +104,7 @@
     [[DrawGameService defaultService] unregisterObserver:self];
     [self setStartGameButton:nil];
     [self setRoomNameLabel:nil];
+    [self setProlongButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -181,10 +184,20 @@
 
 - (void)updateStartButton
 {
-    [self.startGameButton setHidden:![[DrawGameService defaultService] isMeHost]];
+    if ([[DrawGameService defaultService] isMeHost]){
+        NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart (%d)"), _currentTimeCounter];                           
+        [self.startGameButton setTitle:title forState:UIControlStateNormal];
+        [self.startGameButton setEnabled:YES];
+        
+        [self.prolongButton setTitle:NSLS(@"kWaitABit") forState:UIControlStateNormal];
+    }
+    else{
+        NSString* title = [NSString stringWithFormat:NSLS(@"kStartAfter (%d)"), _currentTimeCounter];                           
+        [self.startGameButton setTitle:title forState:UIControlStateNormal];
+        [self.startGameButton setEnabled:NO];
 
-    NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart (%d)"), _currentTimeCounter];                           
-    [self.startGameButton setTitle:title forState:UIControlStateNormal];
+        [self.prolongButton setTitle:NSLS(@"kQuickQuick") forState:UIControlStateNormal];
+    }
 }
 
 #pragma Draw Game Service Delegate
@@ -251,6 +264,11 @@
     [[DrawGameService defaultService] startGame];    
 }
 
+- (BOOL)isHost
+{
+    return [[DrawGameService defaultService] isMeHost];
+}
+
 - (IBAction)clickStart:(id)sender
 {
     [self startGame];
@@ -265,7 +283,12 @@
 
 - (IBAction)clickProlongStart:(id)sender
 {
-    [self prolongStartTimer];
+    if ([[DrawGameService defaultService] isMeHost]){
+        [self prolongStartTimer];
+    }
+    else{
+        // TODO send an urge request
+    }
 }
 
 + (void)showRoom:(UIViewController*)superController
@@ -287,6 +310,14 @@
 #define PROLONG_INTERVAL        (10)
 #define DEFAULT_START_TIME      (60)
 
+- (void)didGameProlong:(GameMessage *)message
+{
+    // receive host prolong game message, prolong the timer
+    if ([self isHost] == NO){
+        [self prolongStartTimer];
+    }
+}
+
 - (void)resetStartTimer
 {
     _currentTimeCounter = DEFAULT_START_TIME;
@@ -298,6 +329,7 @@
 
 - (void)scheduleStartTimer
 {
+    [self resetStartTimer];
     self.startTimer = [NSTimer scheduledTimerWithTimeInterval:START_TIMER_INTERVAL
                                                        target:self 
                                                      selector:@selector(handleStartTimer:) 
@@ -311,6 +343,11 @@
     if (_currentTimeCounter >= DEFAULT_START_TIME){
         _currentTimeCounter = DEFAULT_START_TIME;
     }
+    
+    // notice all other users
+    if ([self isHost]){
+        [[DrawGameService defaultService] prolongGame];
+    }
 }
 
 - (void)handleStartTimer:(id)sender
@@ -320,8 +357,14 @@
 
     if (_currentTimeCounter <= 0){
         // start game directly!
-        [self resetStartTimer];
-        [self startGame];
+        if ([self isHost]){
+            [self resetStartTimer];
+            [self startGame];
+        }
+        else{
+            // if you are not host, you have to wait again...
+            [self scheduleStartTimer];
+        }
     }
 }
 

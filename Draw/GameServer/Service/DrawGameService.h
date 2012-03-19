@@ -22,6 +22,7 @@
 - (void)didGameStart:(GameMessage *)message;
 - (void)didNewUserJoinGame:(GameMessage *)message;
 - (void)didUserQuitGame:(GameMessage *)message;
+- (void)didGameProlong:(GameMessage *)message;
 
 - (void)didConnected;
 - (void)didBroken;
@@ -66,6 +67,8 @@
 - (BOOL)isMyTurn;
 - (BOOL)isMeHost;
 - (void)changeRoom;
+- (void)prolongGame;
+
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 

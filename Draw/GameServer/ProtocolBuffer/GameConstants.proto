@@ -24,7 +24,10 @@ enum GameCommandType {
   SEND_DRAW_DATA_RESPONSE = 12;
   
   CLEAN_DRAW_REQUEST = 13;
-  CLEAN_DRAW_RESPONSE = 13;
+  CLEAN_DRAW_RESPONSE = 14;
+  
+  PROLONG_GAME_REQUEST = 15;
+  PROLONG_GAME_RESPONSE = 16;
 
   // server --> client
   
@@ -47,6 +50,9 @@ enum GameCommandType {
   
   CLEAN_DRAW_NOTIFICATION_REQUEST = 73;
   CLEAN_DRAW_NOTIFICATION_RESPONSE = 74;
+  
+  PROLONG_GAME_NOTIFICATION_REQUEST = 75;
+  PROLONG_GAME_NOTIFICATION_RESPONSE = 76;  
   
   
   // local message, not for service <--> client, only for local purpose
