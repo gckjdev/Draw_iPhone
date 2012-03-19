@@ -39,6 +39,9 @@ message StartGameResponse {                    // 开始游戏响应
 }
 
 message SendDrawDataRequest {
+  optional string word = 10;
+  optional int32 level = 11;
+
   repeated int32 points = 1 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
@@ -69,6 +72,10 @@ message GeneralNotification{
   repeated int32 points = 21 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
+  
+  optional string word = 31;
+  optional int32 level = 32;
+  optional int32 round = 33;
   
 }
 

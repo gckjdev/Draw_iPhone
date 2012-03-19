@@ -29,6 +29,7 @@
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 - (void)updateByStartGameResponse:(StartGameResponse*)response;
 - (void)updateByGameNotification:(GeneralNotification*)notification;
+- (void)updateCurrentTurnByMessage:(GeneralNotification*)notification;
 
 - (BOOL)isCurrentPlayUser:(NSString*)userId;
 - (BOOL)isMe:(NSString*)userId;

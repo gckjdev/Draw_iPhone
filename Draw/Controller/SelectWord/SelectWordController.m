@@ -95,6 +95,7 @@
     UIViewController *vc = nil;
     if ([gameService isMyTurn]) {
          vc = [[DrawViewController alloc] initWithWord:word];
+        [[DrawGameService defaultService] startDraw:word.text level:word.level];
     }else
     {
         vc = [[ShowDrawController alloc] initWithWord:word];

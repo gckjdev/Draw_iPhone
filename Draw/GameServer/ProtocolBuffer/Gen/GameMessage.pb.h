@@ -284,14 +284,22 @@
 @interface SendDrawDataRequest : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
+  BOOL hasLevel_:1;
   BOOL hasColor_:1;
+  BOOL hasWord_:1;
   Float32 width;
+  int32_t level;
   int32_t color;
+  NSString* word;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
+- (BOOL) hasWord;
+- (BOOL) hasLevel;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+@property (readonly, retain) NSString* word;
+@property (readonly) int32_t level;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 - (NSArray*) pointsList;
@@ -330,6 +338,16 @@
 - (SendDrawDataRequest_Builder*) mergeFrom:(SendDrawDataRequest*) other;
 - (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWord;
+- (NSString*) word;
+- (SendDrawDataRequest_Builder*) setWord:(NSString*) value;
+- (SendDrawDataRequest_Builder*) clearWord;
+
+- (BOOL) hasLevel;
+- (int32_t) level;
+- (SendDrawDataRequest_Builder*) setLevel:(int32_t) value;
+- (SendDrawDataRequest_Builder*) clearLevel;
 
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
@@ -393,6 +411,8 @@
   BOOL hasWidth_:1;
   BOOL hasSessionStatus_:1;
   BOOL hasColor_:1;
+  BOOL hasLevel_:1;
+  BOOL hasRound_:1;
   BOOL hasSessionHost_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
@@ -400,9 +420,12 @@
   BOOL hasQuitUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasUserAvatar_:1;
+  BOOL hasWord_:1;
   Float32 width;
   int32_t sessionStatus;
   int32_t color;
+  int32_t level;
+  int32_t round;
   NSString* sessionHost;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
@@ -410,6 +433,7 @@
   NSString* quitUserId;
   NSString* nickName;
   NSString* userAvatar;
+  NSString* word;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -423,6 +447,9 @@
 - (BOOL) hasUserAvatar;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+- (BOOL) hasWord;
+- (BOOL) hasLevel;
+- (BOOL) hasRound;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
@@ -433,6 +460,9 @@
 @property (readonly, retain) NSString* userAvatar;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
+@property (readonly, retain) NSString* word;
+@property (readonly) int32_t level;
+@property (readonly) int32_t round;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -526,6 +556,21 @@
 - (int32_t) color;
 - (GeneralNotification_Builder*) setColor:(int32_t) value;
 - (GeneralNotification_Builder*) clearColor;
+
+- (BOOL) hasWord;
+- (NSString*) word;
+- (GeneralNotification_Builder*) setWord:(NSString*) value;
+- (GeneralNotification_Builder*) clearWord;
+
+- (BOOL) hasLevel;
+- (int32_t) level;
+- (GeneralNotification_Builder*) setLevel:(int32_t) value;
+- (GeneralNotification_Builder*) clearLevel;
+
+- (BOOL) hasRound;
+- (int32_t) round;
+- (GeneralNotification_Builder*) setRound:(int32_t) value;
+- (GeneralNotification_Builder*) clearRound;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
