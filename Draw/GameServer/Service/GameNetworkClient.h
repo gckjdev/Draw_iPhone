@@ -17,8 +17,13 @@
 + (GameNetworkClient*)defaultInstance;
 - (void)start:(NSString*)serverAddress port:(int)port;
 
-- (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName;
+- (void)sendJoinGameRequest:(NSString*)userId 
+                   nickName:(NSString*)nickName 
+                  sessionId:(int)currentSessionId
+          excludeSessionSet:(NSSet*)excludeSessionSet;
+
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;
+
 - (void)sendDrawDataRequest:(NSString*)userId 
                   sessionId:(long)sessionId 
                   pointList:(NSArray*)pointList 

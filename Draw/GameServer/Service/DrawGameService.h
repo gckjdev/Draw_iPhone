@@ -40,6 +40,7 @@
 //    int _sessionId;
     BOOL start;
     
+    NSMutableSet *_historySessionSet;
 }
 
 @property (nonatomic, retain) NSString* userId;
@@ -48,6 +49,7 @@
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> homeDelegate;
 @property (nonatomic, retain) NSMutableArray *gameObserverList;
+@property (nonatomic, retain) NSMutableSet *historySessionSet;
 @property (nonatomic, retain) GameSession* session;
 
 + (DrawGameService*)defaultService;
@@ -60,6 +62,7 @@
 - (void)startGame;
 - (void)joinGame;
 - (BOOL)isMyTurn;
+- (void)changeRoom;
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 

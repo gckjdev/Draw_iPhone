@@ -24,9 +24,11 @@ static DrawGameService* _defaultService;
 @synthesize session = _session;
 @synthesize gameObserverList = _gameObserverList;
 @synthesize homeDelegate = _homeDelegate;
+@synthesize historySessionSet = _historySessionSet;
 
 - (void)dealloc
 {
+    [_historySessionSet release];
     [_session release];
     [_nickName release];
     [_userId release];
@@ -50,6 +52,7 @@ static DrawGameService* _defaultService;
     self = [super init];
     
     _gameObserverList = [[NSMutableArray alloc] init];
+    _historySessionSet = [[NSMutableSet alloc] init];
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
@@ -97,6 +100,9 @@ static DrawGameService* _defaultService;
         PBGameSession* pbSession = [[message joinGameResponse] gameSession];
         self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
         PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
+        
+        // add into hisotry
+        [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
         
         if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
             [_roomDelegate didJoinGame:message];
@@ -238,12 +244,23 @@ static DrawGameService* _defaultService;
 
 - (void)joinGame
 {
-    [_networkClient sendJoinGameRequest:_userId nickName:_nickName];
+    [_networkClient sendJoinGameRequest:_userId 
+                               nickName:_nickName 
+                              sessionId:-1
+                      excludeSessionSet:_historySessionSet];
 }
 
 - (void)startGame
 {
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];             
+}
+
+- (void)changeRoom
+{
+    [_networkClient sendJoinGameRequest:_userId 
+                               nickName:_nickName 
+                              sessionId:[_session sessionId]
+                      excludeSessionSet:_historySessionSet];
 }
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 

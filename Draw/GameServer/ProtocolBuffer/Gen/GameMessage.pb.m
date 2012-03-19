@@ -26,6 +26,9 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* gameId;
 @property int32_t autoNew;
 @property (retain) NSString* nickName;
+@property (retain) NSString* avatar;
+@property (retain) NSMutableArray* mutableExcludeSessionIdList;
+@property int64_t sessionToBeChange;
 @end
 
 @implementation JoinGameRequest
@@ -58,10 +61,27 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasNickName_ = !!value;
 }
 @synthesize nickName;
+- (BOOL) hasAvatar {
+  return !!hasAvatar_;
+}
+- (void) setHasAvatar:(BOOL) value {
+  hasAvatar_ = !!value;
+}
+@synthesize avatar;
+@synthesize mutableExcludeSessionIdList;
+- (BOOL) hasSessionToBeChange {
+  return !!hasSessionToBeChange_;
+}
+- (void) setHasSessionToBeChange:(BOOL) value {
+  hasSessionToBeChange_ = !!value;
+}
+@synthesize sessionToBeChange;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
   self.nickName = nil;
+  self.avatar = nil;
+  self.mutableExcludeSessionIdList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -70,6 +90,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.gameId = @"";
     self.autoNew = 0;
     self.nickName = @"";
+    self.avatar = @"";
+    self.sessionToBeChange = 0L;
   }
   return self;
 }
@@ -84,6 +106,13 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 }
 - (JoinGameRequest*) defaultInstance {
   return defaultJoinGameRequestInstance;
+}
+- (NSArray*) excludeSessionIdList {
+  return mutableExcludeSessionIdList;
+}
+- (int64_t) excludeSessionIdAtIndex:(int32_t) index {
+  id value = [mutableExcludeSessionIdList objectAtIndex:index];
+  return [value longLongValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
@@ -110,6 +139,15 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasNickName) {
     [output writeString:4 value:self.nickName];
   }
+  if (self.hasAvatar) {
+    [output writeString:5 value:self.avatar];
+  }
+  for (NSNumber* value in self.mutableExcludeSessionIdList) {
+    [output writeInt64:6 value:[value longLongValue]];
+  }
+  if (self.hasSessionToBeChange) {
+    [output writeInt64:7 value:self.sessionToBeChange];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -130,6 +168,20 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasNickName) {
     size += computeStringSize(4, self.nickName);
+  }
+  if (self.hasAvatar) {
+    size += computeStringSize(5, self.avatar);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableExcludeSessionIdList) {
+      dataSize += computeInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableExcludeSessionIdList.count;
+  }
+  if (self.hasSessionToBeChange) {
+    size += computeInt64Size(7, self.sessionToBeChange);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -218,6 +270,18 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
+  if (other.hasAvatar) {
+    [self setAvatar:other.avatar];
+  }
+  if (other.mutableExcludeSessionIdList.count > 0) {
+    if (result.mutableExcludeSessionIdList == nil) {
+      result.mutableExcludeSessionIdList = [NSMutableArray array];
+    }
+    [result.mutableExcludeSessionIdList addObjectsFromArray:other.mutableExcludeSessionIdList];
+  }
+  if (other.hasSessionToBeChange) {
+    [self setSessionToBeChange:other.sessionToBeChange];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -253,6 +317,18 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 34: {
         [self setNickName:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setAvatar:[input readString]];
+        break;
+      }
+      case 48: {
+        [self addExcludeSessionId:[input readInt64]];
+        break;
+      }
+      case 56: {
+        [self setSessionToBeChange:[input readInt64]];
         break;
       }
     }
@@ -320,6 +396,69 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearNickName {
   result.hasNickName = NO;
   result.nickName = @"";
+  return self;
+}
+- (BOOL) hasAvatar {
+  return result.hasAvatar;
+}
+- (NSString*) avatar {
+  return result.avatar;
+}
+- (JoinGameRequest_Builder*) setAvatar:(NSString*) value {
+  result.hasAvatar = YES;
+  result.avatar = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearAvatar {
+  result.hasAvatar = NO;
+  result.avatar = @"";
+  return self;
+}
+- (NSArray*) excludeSessionIdList {
+  if (result.mutableExcludeSessionIdList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableExcludeSessionIdList;
+}
+- (int64_t) excludeSessionIdAtIndex:(int32_t) index {
+  return [result excludeSessionIdAtIndex:index];
+}
+- (JoinGameRequest_Builder*) replaceExcludeSessionIdAtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutableExcludeSessionIdList replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (JoinGameRequest_Builder*) addExcludeSessionId:(int64_t) value {
+  if (result.mutableExcludeSessionIdList == nil) {
+    result.mutableExcludeSessionIdList = [NSMutableArray array];
+  }
+  [result.mutableExcludeSessionIdList addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (JoinGameRequest_Builder*) addAllExcludeSessionId:(NSArray*) values {
+  if (result.mutableExcludeSessionIdList == nil) {
+    result.mutableExcludeSessionIdList = [NSMutableArray array];
+  }
+  [result.mutableExcludeSessionIdList addObjectsFromArray:values];
+  return self;
+}
+- (JoinGameRequest_Builder*) clearExcludeSessionIdList {
+  result.mutableExcludeSessionIdList = nil;
+  return self;
+}
+- (BOOL) hasSessionToBeChange {
+  return result.hasSessionToBeChange;
+}
+- (int64_t) sessionToBeChange {
+  return result.sessionToBeChange;
+}
+- (JoinGameRequest_Builder*) setSessionToBeChange:(int64_t) value {
+  result.hasSessionToBeChange = YES;
+  result.sessionToBeChange = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearSessionToBeChange {
+  result.hasSessionToBeChange = NO;
+  result.sessionToBeChange = 0L;
   return self;
 }
 @end

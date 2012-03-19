@@ -34,23 +34,34 @@
 
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
+  BOOL hasSessionToBeChange_:1;
   BOOL hasAutoNew_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  int64_t sessionToBeChange;
   int32_t autoNew;
   NSString* userId;
   NSString* gameId;
   NSString* nickName;
+  NSString* avatar;
+  NSMutableArray* mutableExcludeSessionIdList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasGameId;
 - (BOOL) hasAutoNew;
 - (BOOL) hasNickName;
+- (BOOL) hasAvatar;
+- (BOOL) hasSessionToBeChange;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
 @property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* avatar;
+@property (readonly) int64_t sessionToBeChange;
+- (NSArray*) excludeSessionIdList;
+- (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 
 + (JoinGameRequest*) defaultInstance;
 - (JoinGameRequest*) defaultInstance;
@@ -105,6 +116,23 @@
 - (NSString*) nickName;
 - (JoinGameRequest_Builder*) setNickName:(NSString*) value;
 - (JoinGameRequest_Builder*) clearNickName;
+
+- (BOOL) hasAvatar;
+- (NSString*) avatar;
+- (JoinGameRequest_Builder*) setAvatar:(NSString*) value;
+- (JoinGameRequest_Builder*) clearAvatar;
+
+- (NSArray*) excludeSessionIdList;
+- (int64_t) excludeSessionIdAtIndex:(int32_t) index;
+- (JoinGameRequest_Builder*) replaceExcludeSessionIdAtIndex:(int32_t) index with:(int64_t) value;
+- (JoinGameRequest_Builder*) addExcludeSessionId:(int64_t) value;
+- (JoinGameRequest_Builder*) addAllExcludeSessionId:(NSArray*) values;
+- (JoinGameRequest_Builder*) clearExcludeSessionIdList;
+
+- (BOOL) hasSessionToBeChange;
+- (int64_t) sessionToBeChange;
+- (JoinGameRequest_Builder*) setSessionToBeChange:(int64_t) value;
+- (JoinGameRequest_Builder*) clearSessionToBeChange;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

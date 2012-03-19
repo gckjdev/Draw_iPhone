@@ -26,6 +26,7 @@ typedef enum {
   GameCommandTypeCleanDrawNotificationResponse = 74,
   GameCommandTypeLocalChannelDisconnect = 201,
   GameCommandTypeLocalFinishGame = 203,
+  GameCommandTypeLocalJoinGame = 204,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);
@@ -40,6 +41,7 @@ typedef enum {
   GameResultCodeErrorSessionidNull = 202,
   GameResultCodeErrorSessionAlreadyStart = 203,
   GameResultCodeErrorSessionNotStart = 204,
+  GameResultCodeErrorNoSessionAvailable = 205,
   GameResultCodeErrorNoDrawData = 301,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,

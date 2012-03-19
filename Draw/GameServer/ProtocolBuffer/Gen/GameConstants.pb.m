@@ -44,6 +44,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCleanDrawNotificationResponse:
     case GameCommandTypeLocalChannelDisconnect:
     case GameCommandTypeLocalFinishGame:
+    case GameCommandTypeLocalJoinGame:
       return YES;
     default:
       return NO;
@@ -60,6 +61,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorSessionidNull:
     case GameResultCodeErrorSessionAlreadyStart:
     case GameResultCodeErrorSessionNotStart:
+    case GameResultCodeErrorNoSessionAvailable:
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
