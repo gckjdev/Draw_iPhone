@@ -51,7 +51,7 @@
 {
     [self showActivityWithText:NSLS(@"kJoining")];
 
-    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
+//    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
 
     // Do any additional setup after loading the view from its nib.
     [[DrawGameService defaultService] setRoomDelegate:self];
@@ -88,7 +88,6 @@
 - (void)updateGameUsers
 {
     
-    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
     
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
@@ -127,7 +126,8 @@
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:@""];
     }
-    
+    [self.startGameButton setHidden:![[DrawGameService defaultService] isMeHost]];
+
 }
 
 #pragma Draw Game Service Delegate
@@ -154,10 +154,16 @@
 
 - (void)didGameStart:(GameMessage *)message
 {
-    [self updateGameUsers];
-    ShowDrawController *sd = [[ShowDrawController alloc] init];
-    [self.navigationController pushViewController:sd animated:YES];
-    [sd release];
+    
+    //TODO check if the user is the host. 
+    [self updateGameUsers];    
+    if (![[DrawGameService defaultService] isMyTurn]) {
+        ShowDrawController *sd = [[ShowDrawController alloc] init];
+        [self.navigationController pushViewController:sd animated:YES];
+        [sd release];
+        
+    }
+
 //    SelectWordController *sw = [[SelectWordController alloc] init];
 //    [self.navigationController pushViewController:sw animated:YES];
 //    [sw release];    

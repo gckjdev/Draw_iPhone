@@ -62,6 +62,7 @@
 - (void)startGame;
 - (void)joinGame;
 - (BOOL)isMyTurn;
+- (BOOL)isMeHost;
 - (void)changeRoom;
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
