@@ -11,12 +11,20 @@
 #import "DrawGameService.h"
 
 @interface RoomController : PPViewController<DrawGameServiceDelegate>
+{
+    int _currentTimeCounter;
+    BOOL _hasClickStartGame;
+}
+
+
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
+@property (retain, nonatomic) IBOutlet UIButton *startGameButton;
+@property (retain, nonatomic) NSTimer *startTimer;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;
+- (IBAction)clickProlongStart:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 
 + (void)showRoom:(UIViewController*)superController;
 

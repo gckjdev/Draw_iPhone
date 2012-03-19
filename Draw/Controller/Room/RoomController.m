@@ -19,18 +19,34 @@
 @interface RoomController ()
 
 - (void)updateGameUsers;
+- (void)updateStartButton;
+
+- (void)resetStartTimer;
+- (void)scheduleStartTimer;
+- (void)prolongStartTimer;
 
 @end
 
 @implementation RoomController
+
 @synthesize roomNameLabel;
 @synthesize startGameButton;
+@synthesize startTimer = _startTimer;
+
+- (void)dealloc {
+    [_startTimer release];
+    [startGameButton release];
+    [roomNameLabel release];
+    [super dealloc];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self resetStartTimer];
     }
     return self;
 }
@@ -51,6 +67,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -69,6 +86,8 @@
     [[DrawGameService defaultService] registerObserver:self];
 
     [[DrawGameService defaultService] joinGame];    
+    
+    [self scheduleStartTimer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -150,8 +169,7 @@
         [imageView clear];
     }
     
-    [self.startGameButton setHidden:![[DrawGameService defaultService] isMeHost]];
-
+    [self updateStartButton];
 }
 
 - (void)updateRoomName
@@ -159,6 +177,14 @@
     NSString* name = [NSString stringWithFormat:NSLS(@"Room %@"),  
                       [[[DrawGameService defaultService] session] roomName]];
     self.roomNameLabel.text = name;
+}
+
+- (void)updateStartButton
+{
+    [self.startGameButton setHidden:![[DrawGameService defaultService] isMeHost]];
+
+    NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart (%d)"), _currentTimeCounter];                           
+    [self.startGameButton setTitle:title forState:UIControlStateNormal];
 }
 
 #pragma Draw Game Service Delegate
@@ -175,6 +201,8 @@
 
 - (void)didStartGame:(GameMessage *)message
 {
+    _hasClickStartGame = NO;
+    
     [self hideActivity];
     [self updateGameUsers];
 
@@ -186,6 +214,7 @@
 
 - (void)didGameStart:(GameMessage *)message
 {
+    _hasClickStartGame = NO;
     
     //TODO check if the user is the host. 
     [self updateGameUsers];    
@@ -211,11 +240,20 @@
     [self updateGameUsers];    
 }
 
+- (void)startGame
+{
+    if (_hasClickStartGame){
+        return;
+    }
+    
+    _hasClickStartGame = YES;
+    [self showActivityWithText:NSLS(@"kStartingGame")];
+    [[DrawGameService defaultService] startGame];    
+}
+
 - (IBAction)clickStart:(id)sender
 {
-    [self showActivityWithText:NSLS(@"kStartingGame")];
-    [[DrawGameService defaultService] startGame];
-    // Goto Select Word UI
+    [self startGame];
 }
 
 - (IBAction)clickChangeRoom:(id)sender
@@ -225,10 +263,9 @@
     
 }
 
-- (void)dealloc {
-    [startGameButton release];
-    [roomNameLabel release];
-    [super dealloc];
+- (IBAction)clickProlongStart:(id)sender
+{
+    [self prolongStartTimer];
 }
 
 + (void)showRoom:(UIViewController*)superController
@@ -242,6 +279,50 @@
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];
 
     [app.roomController joinGame];
+}
+
+#pragma Timer Handling
+
+#define START_TIMER_INTERVAL    (1)
+#define PROLONG_INTERVAL        (10)
+#define DEFAULT_START_TIME      (60)
+
+- (void)resetStartTimer
+{
+    _currentTimeCounter = DEFAULT_START_TIME;
+    if (self.startTimer != nil){
+        [self.startTimer invalidate];
+        self.startTimer = nil;
+    }
+}
+
+- (void)scheduleStartTimer
+{
+    self.startTimer = [NSTimer scheduledTimerWithTimeInterval:START_TIMER_INTERVAL
+                                                       target:self 
+                                                     selector:@selector(handleStartTimer:) 
+                                                     userInfo:nil 
+                                                      repeats:YES];
+}
+
+- (void)prolongStartTimer
+{
+    _currentTimeCounter += PROLONG_INTERVAL;
+    if (_currentTimeCounter >= DEFAULT_START_TIME){
+        _currentTimeCounter = DEFAULT_START_TIME;
+    }
+}
+
+- (void)handleStartTimer:(id)sender
+{
+    _currentTimeCounter --;
+    [self updateStartButton];    
+
+    if (_currentTimeCounter <= 0){
+        // start game directly!
+        [self resetStartTimer];
+        [self startGame];
+    }
 }
 
 @end
