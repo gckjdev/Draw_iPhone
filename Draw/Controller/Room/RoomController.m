@@ -13,6 +13,7 @@
 #import "GameSession.h"
 
 @implementation RoomController
+@synthesize startGameButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +40,8 @@
     
     [self showActivityWithText:NSLS(@"kJoining")];
 
+    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
+
     // Do any additional setup after loading the view from its nib.
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] joinGame];
@@ -50,6 +53,7 @@
 - (void)viewDidUnload
 {
     [[DrawGameService defaultService] unregisterObserver:self];
+    [self setStartGameButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -145,4 +149,8 @@
     // Goto Select Word UI
 }
 
+- (void)dealloc {
+    [startGameButton release];
+    [super dealloc];
+}
 @end

@@ -13,5 +13,6 @@
 @interface RoomController : PPViewController<DrawGameServiceDelegate>
 
 - (IBAction)clickStart:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 
 @end

@@ -12,27 +12,37 @@
 #import "DrawColor.h"
 #import "GameMessage.pb.h"
 #import "Word.h"
+#import "PickColorView.h"
+#import "PickLineWidthView.h"
+
+
 
 @implementation DrawViewController
 @synthesize playButton;
-@synthesize widthSlider;
 @synthesize redButton;
 @synthesize greenButton;
 @synthesize blueButton;
-@synthesize whiteButton;
+@synthesize widthButton;
+@synthesize eraserButton;
+@synthesize moreButton;
 @synthesize blackButton;
 @synthesize word = _word;
+@synthesize pickColorView = _pickColorView;
+@synthesize pickLineWidthView = _pickLineWidthView;
 
 - (void)dealloc
 {
-    [widthSlider release];
     [playButton release];
     [redButton release];
     [greenButton release];
     [blueButton release];
-    [whiteButton release];
     [blackButton release];
     [_word release];
+    [widthButton release];
+    [eraserButton release];
+    [moreButton release];
+    [_pickLineWidthView release];
+    [_pickColorView release];
     [super dealloc];
 }
 
@@ -55,6 +65,11 @@
     
 }
 
+- (void)addPickColorView
+{
+    
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -66,7 +81,6 @@
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 400)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
-    [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
     
     _drawGameService = [DrawGameService defaultService];
@@ -78,14 +92,17 @@
 
 - (void)viewDidUnload
 {
-    [self setWidthSlider:nil];
     [self setPlayButton:nil];
     [self setRedButton:nil];
     [self setGreenButton:nil];
     [self setBlueButton:nil];
-    [self setWhiteButton:nil];
     [self setBlackButton:nil];
     [self setWord:nil];
+    [self setWidthButton:nil];
+    [self setEraserButton:nil];
+    [self setMoreButton:nil];
+    [self setPickColorView:nil];
+    [self setPickLineWidthView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -97,9 +114,14 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)clickStartButton:(id)sender {
-    [_drawGameService startGame];
+
+- (void)hidePickViews
+{
+    [self.pickLineWidthView setHidden:YES];
+    [self.pickColorView setHidden:YES];
 }
+
+
 
 - (IBAction)pickColor:(id)sender {
     UIButton *button = (UIButton *)sender;
@@ -109,8 +131,6 @@
         [drawView setLineColor:[DrawColor greenColor]];
     }else if (button == blueButton) {
         [drawView setLineColor:[DrawColor blueColor]];
-    }else if (button == whiteButton) {
-        [drawView setLineColor:[DrawColor whiteColor]];
     }else if (button == blackButton) {
         [drawView setLineColor:[DrawColor blackColor]];
     }
@@ -127,10 +147,28 @@
     [drawView setDrawEnabled:YES];
 }
 
-- (IBAction)changeSlider:(id)sender {
-    UISlider *slider = (UISlider *)sender;
-    [drawView setLineWidth:slider.value];
+- (IBAction)clickMoreColorButton:(id)sender {
+    
+    NSLog(@"clickMoreColorButton");
 }
+
+- (IBAction)clickPickWidthButton:(id)sender {
+    PickLineWidthView *widthView = [[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)];
+    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
+    for (int i = 5; i < 21; i += 5) {
+        NSNumber *number = [NSNumber numberWithInt:i];
+        [widthArray addObject:number];
+    }
+    [widthView setLineWidths:widthArray];
+    [widthArray release];
+    [self.view addSubview:widthView];
+}
+
+- (IBAction)clickEraserButton:(id)sender {
+    NSLog(@"clickEraserButton");
+}
+
+
 
 - (void)didDrawedPaint:(Paint *)paint
 {

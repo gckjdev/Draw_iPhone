@@ -172,6 +172,9 @@
 {
     CGPoint point = [panGestuereReconizer locationInView:self];
     if (panGestuereReconizer.state == UIGestureRecognizerStateBegan) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch)]) {
+            [self.delegate didStartedTouch];
+        }
         currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];
         [self.paintList addObject:currentPaint];
         [currentPaint release];
@@ -184,14 +187,6 @@
     }else if(panGestuereReconizer.state == UIGestureRecognizerStateEnded)
     {
         [self addPoint:point toPaint:currentPaint];
-        
-//        NSLog(@"before Compress: %@",[currentPaint toString]);
-//        
-//        NSArray *temp = [DrawUtils compressCGPointList:currentPaint.pointList];
-//        currentPaint.pointList = (NSMutableArray *)[DrawUtils decompressNumberPointList:temp];
-//        
-//        NSLog(@"after Compress: %@",[currentPaint toString]);
-        
         if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
             [self.delegate didDrawedPaint:currentPaint];
         }
@@ -202,7 +197,11 @@
 - (void) performTap:(UITapGestureRecognizer *)tapGestuereReconizer
 {
     
-    if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
+    if (tapGestuereReconizer.state == UIGestureRecognizerStateBegan) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch)]) {
+            [self.delegate didStartedTouch];
+        }
+    }else if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
     {
         CGPoint point = [tapGestuereReconizer locationInView:self];
         currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];

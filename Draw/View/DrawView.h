@@ -20,6 +20,7 @@ typedef enum{
 
 @optional
 - (void)didDrawedPaint:(Paint *)paint;
+- (void)didStartedTouch;
 
 @end
 
