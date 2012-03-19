@@ -87,9 +87,7 @@
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] registerObserver:self];
 
-    [[DrawGameService defaultService] joinGame];    
-    
-    [self scheduleStartTimer];
+    [[DrawGameService defaultService] joinGame];        
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -208,6 +206,7 @@
     [UIUtils alert:@"Join Game OK!"];
 
     // update 
+    [self scheduleStartTimer];
     [self updateGameUsers];
     [self updateRoomName];
 }
