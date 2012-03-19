@@ -229,6 +229,10 @@
 		CAA0E6AB1514845700FD8C3E /* WordDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA0E6AA1514845700FD8C3E /* WordDictionary.plist */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
+		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
+		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
+		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
@@ -694,6 +698,12 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
+		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
+		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
+		CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawController.h; sourceTree = "<group>"; };
+		CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawController.m; sourceTree = "<group>"; };
+		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
 		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 		CADD7FCE1510DC530075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
@@ -1711,6 +1721,9 @@
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
+				CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */,
+				CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */,
+				CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -1762,6 +1775,9 @@
 				CAA754BA150A02EA00B9391E /* SelectWordController.h */,
 				CAA754BB150A02EA00B9391E /* SelectWordController.m */,
 				CAA754BC150A02EA00B9391E /* SelectWordController.xib */,
+				CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */,
+				CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */,
+				CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */,
 			);
 			path = SelectWord;
 			sourceTree = "<group>";
@@ -2196,6 +2212,8 @@
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
 				CAA0E6AB1514845700FD8C3E /* WordDictionary.plist in Resources */,
+				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
+				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2413,6 +2431,8 @@
 				CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */,
 				CA3B56E61514CB9400A93137 /* GameUserComment.m in Sources */,
 				CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */,
+				CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */,
+				CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

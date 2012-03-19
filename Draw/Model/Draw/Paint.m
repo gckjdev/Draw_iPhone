@@ -8,6 +8,7 @@
 
 #import "Paint.h"
 #import "DrawUtils.h"
+#import "GameMessage.pb.h"
 
 @implementation Paint
 @synthesize width = _width;
@@ -33,6 +34,24 @@
         self.color = [DrawUtils decompressIntDrawColor:color];
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in numberPointList) {
+            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+            [self addPoint:point];
+        }
+    }
+    return self;
+}
+
+- (id)initWithGameMessage:(GameMessage *)gameMessage
+{
+    self = [super init];
+    if (self && gameMessage) {
+        NSInteger intColor = [[gameMessage notification] color];
+        CGFloat lineWidth = [[gameMessage notification] width];        
+        NSArray *pointList = [[gameMessage notification] pointsList];
+        self.width = lineWidth;
+        self.color = [DrawUtils decompressIntDrawColor:intColor];
+        _pointList = [[NSMutableArray alloc] init];
+        for (NSNumber *pointNumber in pointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
             [self addPoint:point];
         }

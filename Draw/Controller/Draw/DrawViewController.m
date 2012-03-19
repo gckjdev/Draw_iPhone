@@ -11,6 +11,8 @@
 #import "DrawGameService.h"
 #import "DrawColor.h"
 #import "GameMessage.pb.h"
+#import "Word.h"
+
 @implementation DrawViewController
 @synthesize playButton;
 @synthesize widthSlider;
@@ -19,6 +21,7 @@
 @synthesize blueButton;
 @synthesize whiteButton;
 @synthesize blackButton;
+@synthesize word = _word;
 
 - (void)dealloc
 {
@@ -29,7 +32,7 @@
     [blueButton release];
     [whiteButton release];
     [blackButton release];
-    [showView release];
+    [_word release];
     [super dealloc];
 }
 
@@ -42,23 +45,29 @@
 }
 
 #pragma mark - View lifecycle
-
+- (id)initWithWord:(Word *)word
+{
+    self = [super init];
+    if (self) {
+        self.word = word; 
+    }
+    return self;
+    
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 200)];
+    
+    [self setTitle:[NSString stringWithFormat:@"画画中(%@)",self.word.text]];       
+
+    
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 400)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView setLineWidth:self.widthSlider.value];
     [drawView release];
-    
-    
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 255, 320, 200)];
-    [self.view addSubview:showView];
-    [showView setDrawEnabled:NO];
-    [showView release];
     
     _drawGameService = [DrawGameService defaultService];
     _drawGameService.drawDelegate = self;
@@ -76,6 +85,7 @@
     [self setBlueButton:nil];
     [self setWhiteButton:nil];
     [self setBlackButton:nil];
+    [self setWord:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -140,19 +150,18 @@
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
 
-- (void)didReceiveDrawData:(GameMessage *)message
-{
-    NSInteger intColor = [[message notification] color];
-    CGFloat lineWidth = [[message notification] width];        
-    NSArray *pointList = [[message notification] pointsList];
-    Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
-    [showView addPaint:paint play:YES];
-//    NSLog(@"didReceiveDrawData: %@",[paint toString]);
-}
-
-- (void)didReceiveRedrawResponse:(GameMessage *)message
-{
-    [showView clear];
-}
+//- (void)didReceiveDrawData:(GameMessage *)message
+//{
+//    NSInteger intColor = [[message notification] color];
+//    CGFloat lineWidth = [[message notification] width];        
+//    NSArray *pointList = [[message notification] pointsList];
+//    Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
+////    NSLog(@"didReceiveDrawData: %@",[paint toString]);
+//}
+//
+//- (void)didReceiveRedrawResponse:(GameMessage *)message
+//{
+//    
+//}
 
 @end

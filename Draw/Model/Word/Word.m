@@ -29,5 +29,30 @@
     [super dealloc];
 }
 
+- (NSInteger)score
+{
+    switch (self.level) {
+        case WordLevelHigh:
+            return 3;
+        case WordLeveLMedium:
+            return 2;
+        case WordLevelLow:
+        default:
+            return 1;
+    }
+}
+
+- (NSString *)levelDesc
+{
+    switch (self.level) {
+        case WordLevelHigh:
+            return @"困难";
+        case WordLeveLMedium:
+            return @"一般";
+        case WordLevelLow:
+        default:
+            return @"简单";
+    }
+}
 
 @end

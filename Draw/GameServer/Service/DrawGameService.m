@@ -53,12 +53,20 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.198" port:8080];
+    [_networkClient start:@"192.168.1.10" port:8080];
 
     return self;
 }
 
-#pragma Notification Handling
+- (BOOL)isMyTurn
+{
+    if ([self.session isCurrentPlayUser:_userId]) {
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark Notification Handling
 
 - (void)notifyGameObserver:(SEL)selector message:(GameMessage*)message
 {

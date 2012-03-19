@@ -9,6 +9,10 @@
 #import "SelectWordController.h"
 #import "Word.h"
 #import "WordManager.h"
+#import "SelectWordCell.h"
+#import "DrawViewController.h"
+#import "ShowDrawController.h"
+#import "DrawGameService.h"
 
 @implementation SelectWordController
 @synthesize wordTableView = _wordTableView;
@@ -72,20 +76,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"WordCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    static NSString *cellIdentifier = @"WordCell";
+    SelectWordCell *cell = [tableView dequeueReusableCellWithIdentifier:[SelectWordCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]autorelease];
+        cell = [SelectWordCell createCell:self];
     }
     
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
-    WordManager *manager = [WordManager defaultManager];
-    
-    NSString *text = [NSString stringWithFormat:@"%@          %@             %d",word.text, 
-                      [manager levelDescForWord:word], 
-                      [manager scoreForWord:word]];
-    [cell.textLabel setText:text];
+    [cell setCellInfo:word];
+
     return cell;
-    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Word *word = [self.wordArray objectAtIndex:indexPath.row];
+    DrawGameService *gameService = [DrawGameService defaultService];
+    UIViewController *vc = nil;
+    if ([gameService isMyTurn]) {
+         vc = [[DrawViewController alloc] initWithWord:word];
+    }else
+    {
+        vc = [[ShowDrawController alloc] initWithWord:word];
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+
 }
 @end

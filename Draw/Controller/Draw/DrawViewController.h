@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 #import "DrawView.h"
 #import "DrawGameService.h"
 
+@class Word;
 @interface DrawViewController : UIViewController<DrawViewDelegate, DrawGameServiceDelegate> {
     DrawView *drawView;
     DrawGameService *_drawGameService;
-    DrawView *showView;
+    Word *_word;
 }
 - (IBAction)clickStartButton:(id)sender;
 - (IBAction)pickColor:(id)sender;
@@ -28,5 +31,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *blueButton;
 @property (retain, nonatomic) IBOutlet UIButton *whiteButton;
 @property (retain, nonatomic) IBOutlet UIButton *blackButton;
+
+@property (retain, nonatomic) Word *word;
+- (id)initWithWord:(Word *)word;
 
 @end

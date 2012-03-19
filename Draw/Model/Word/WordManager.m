@@ -94,31 +94,7 @@ WordManager *GlobalGetWordManager()
     [wordDict release];
     [super dealloc];
 }
-- (NSInteger)scoreForWord:(Word *)word
-{
-    switch (word.level) {
-        case WordLevelHigh:
-            return 3;
-        case WordLeveLMedium:
-            return 2;
-        case WordLevelLow:
-        default:
-            return 1;
-    }
-}
 
-- (NSString *)levelDescForWord:(Word *)word
-{
-    switch (word.level) {
-        case WordLevelHigh:
-            return @"困难";
-        case WordLeveLMedium:
-            return @"一般";
-        case WordLevelLow:
-        default:
-            return @"简单";
-    }
-}
 
 
 - (void)addWord:(Word *)word

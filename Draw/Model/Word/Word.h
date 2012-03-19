@@ -25,4 +25,6 @@ typedef enum
 @property(nonatomic, assign)WordLevel level;
 
 - (id)initWithText:(NSString *)text level:(WordLevel)level;
+- (NSInteger)score;
+- (NSString *)levelDesc;
 @end

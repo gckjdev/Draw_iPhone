@@ -9,6 +9,7 @@
 #import "RoomController.h"
 #import "DrawGameService.h"
 #import "SelectWordController.h"
+#import "ShowDrawController.h"
 #import "GameSession.h"
 
 @implementation RoomController
@@ -119,10 +120,12 @@
 - (void)didGameStart:(GameMessage *)message
 {
     [self updateGameUsers];
-    
-    SelectWordController *sw = [[SelectWordController alloc] init];
-    [self.navigationController pushViewController:sw animated:YES];
-    [sw release];    
+    ShowDrawController *sd = [[ShowDrawController alloc] init];
+    [self.navigationController pushViewController:sd animated:YES];
+    [sd release];
+//    SelectWordController *sw = [[SelectWordController alloc] init];
+//    [self.navigationController pushViewController:sw animated:YES];
+//    [sw release];    
 }
 
 - (void)didNewUserJoinGame:(GameMessage *)message
