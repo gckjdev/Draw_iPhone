@@ -11,6 +11,12 @@
 #import "SelectWordController.h"
 #import "GameSession.h"
 
+@interface RoomController ()
+
+- (void)updateGameUsers;
+
+@end
+
 @implementation RoomController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,6 +55,7 @@
     
     [[DrawGameService defaultService] registerObserver:self];
 
+    [self updateGameUsers];
     [super viewDidAppear:animated];
 }
 
@@ -77,32 +84,40 @@
 {
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
-    int startTag = 1;
-    int endTag = 6;
+    int startTag = 21;
+    int endTag = 26;
     for (GameSessionUser* user in userList){
-        UIButton* button = (UIButton*)[self.view viewWithTag:startTag++];
-        [button setTitle:[user userId] forState:UIControlStateNormal];
-        button.titleLabel.numberOfLines = 2;
+//        UIButton* button = (UIButton*)[self.view viewWithTag:startTag++];
+//        [button setTitle:[user userId] forState:UIControlStateNormal];
+//        button.titleLabel.numberOfLines = 2;
+
+        UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
+        [label setText:[user userId]];
         
         if ([session isHostUser:[user userId]]){
             NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
-            [button setTitle:title forState:UIControlStateNormal];
+//            [button setTitle:title forState:UIControlStateNormal];
+            [label setText:title];
         }
         
         if ([session isMe:[user userId]]){
             NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user userId]];
-            [button setTitle:title forState:UIControlStateNormal];
+            [label setText:title];
+//            [button setTitle:title forState:UIControlStateNormal];
         }
 
         if ([session isCurrentPlayUser:[user userId]]){
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [label setTextColor:[UIColor redColor]];
+//            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
     }
     
     // clean all data
     for (int i=startTag; i<=endTag; i++){
-        UIButton* button = (UIButton*)[self.view viewWithTag:i];
-        [button setTitle:@"" forState:UIControlStateNormal];
+//        UIButton* button = (UIButton*)[self.view viewWithTag:i];
+//        [button setTitle:@"" forState:UIControlStateNormal];
+        UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
+        [label setText:@""];
     }
     
 }
