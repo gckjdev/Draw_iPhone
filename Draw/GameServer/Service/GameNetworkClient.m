@@ -144,4 +144,25 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendData:[gameMessage data]];        
 }
 
+- (void)sendStartDraw:(NSString*)userId 
+            sessionId:(long)sessionId
+                 word:(NSString*)word 
+                level:(int)level
+{
+    SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
+    [requestBuilder setWord:word];
+    [requestBuilder setLevel:level];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setSendDrawDataRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];    
+}
+
+
 @end

@@ -56,14 +56,14 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.10" port:8080];
+    [_networkClient start:@"192.168.1.198" port:8080];
 
     return self;
 }
 
 - (BOOL)isMyTurn
 {
-    if ([self.session isCurrentPlayUser:_userId]) {
+    if ([self.session isHostUser:_userId]) {
         return YES;
     }
     return NO;
@@ -160,9 +160,21 @@ static DrawGameService* _defaultService;
 
 - (void)handleNewDrawDataNotification:(GameMessage*)message
 {
-    dispatch_async(dispatch_get_main_queue(), ^{               
+    dispatch_async(dispatch_get_main_queue(), ^{         
+        
+        // Update Game Session Data
+        [_session updateCurrentTurnByMessage:[message notification]];
+        
         // TODO chaneg to notifyGameObserver
-        NSLog(@"<Receive Draw Data>:");
+        if ([[message notification] hasWord]){
+            PPDebug(@"handleNewDrawDataNotification <Receive Word>");
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:)]) {
+                [_drawDelegate didReceiveDrawWord:[[message notification] word] 
+                                            level:[[message notification] level]];
+            }
+        }
+
+        PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
         if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
             [_drawDelegate didReceiveDrawData:message];
         }
@@ -278,6 +290,15 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendCleanDraw:_userId
                         sessionId:[_session sessionId]];    
+}
+
+- (void)startDraw:(NSString*)word level:(int)level
+{
+    [_networkClient sendStartDraw:_userId
+                        sessionId:[_session sessionId]
+                             word:word
+                            level:level];
+     
 }
 
 @end

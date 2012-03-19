@@ -21,4 +21,7 @@
 
 //@property (nonatomic, retain) 
 
+@property (nonatomic, retain) NSString* word;
+@property (nonatomic, assign) int level;
+
 @end

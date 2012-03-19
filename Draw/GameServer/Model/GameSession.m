@@ -113,6 +113,24 @@
     }
 }
 
+- (void)updateCurrentTurnByMessage:(GeneralNotification*)notification
+{
+    if ([notification hasWord]){
+        [self.currentTurn setWord:[notification word]];    
+        PPDebug(@"set current turn word to %@", [notification word]);
+    }
+    
+    if ([notification hasLevel]){
+        [self.currentTurn setLevel:[notification level]];
+        PPDebug(@"set current turn level to %d", [notification level]);
+    }
+    
+    if ([notification hasRound]){
+        [self.currentTurn setRound:[notification round]];
+        PPDebug(@"set current turn round to %d", [notification round]);
+    }
+}
+
 - (BOOL)isCurrentPlayUser:(NSString*)userId
 {
     return [[[self currentTurn] currentPlayUserId] isEqualToString:userId];

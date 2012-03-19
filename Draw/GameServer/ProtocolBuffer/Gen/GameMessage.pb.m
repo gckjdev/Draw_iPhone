@@ -1023,6 +1023,8 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 @end
 
 @interface SendDrawDataRequest ()
+@property (retain) NSString* word;
+@property int32_t level;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -1030,6 +1032,20 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 
 @implementation SendDrawDataRequest
 
+- (BOOL) hasWord {
+  return !!hasWord_;
+}
+- (void) setHasWord:(BOOL) value {
+  hasWord_ = !!value;
+}
+@synthesize word;
+- (BOOL) hasLevel {
+  return !!hasLevel_;
+}
+- (void) setHasLevel:(BOOL) value {
+  hasLevel_ = !!value;
+}
+@synthesize level;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -1046,11 +1062,14 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 }
 @synthesize color;
 - (void) dealloc {
+  self.word = nil;
   self.mutablePointsList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.word = @"";
+    self.level = 0;
     self.width = 0;
     self.color = 0;
   }
@@ -1086,6 +1105,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   for (NSNumber* value in self.mutablePointsList) {
     [output writeInt32NoTag:[value intValue]];
   }
+  if (self.hasWord) {
+    [output writeString:10 value:self.word];
+  }
+  if (self.hasLevel) {
+    [output writeInt32:11 value:self.level];
+  }
   if (self.hasWidth) {
     [output writeFloat:22 value:self.width];
   }
@@ -1112,6 +1137,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       size += computeInt32SizeNoTag(dataSize);
     }
     pointsMemoizedSerializedSize = dataSize;
+  }
+  if (self.hasWord) {
+    size += computeStringSize(10, self.word);
+  }
+  if (self.hasLevel) {
+    size += computeInt32Size(11, self.level);
   }
   if (self.hasWidth) {
     size += computeFloatSize(22, self.width);
@@ -1194,6 +1225,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (other == [SendDrawDataRequest defaultInstance]) {
     return self;
   }
+  if (other.hasWord) {
+    [self setWord:other.word];
+  }
+  if (other.hasLevel) {
+    [self setLevel:other.level];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -1236,6 +1273,14 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
         [input popLimit:limit];
         break;
       }
+      case 82: {
+        [self setWord:[input readString]];
+        break;
+      }
+      case 88: {
+        [self setLevel:[input readInt32]];
+        break;
+      }
       case 181: {
         [self setWidth:[input readFloat]];
         break;
@@ -1246,6 +1291,38 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       }
     }
   }
+}
+- (BOOL) hasWord {
+  return result.hasWord;
+}
+- (NSString*) word {
+  return result.word;
+}
+- (SendDrawDataRequest_Builder*) setWord:(NSString*) value {
+  result.hasWord = YES;
+  result.word = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearWord {
+  result.hasWord = NO;
+  result.word = @"";
+  return self;
+}
+- (BOOL) hasLevel {
+  return result.hasLevel;
+}
+- (int32_t) level {
+  return result.level;
+}
+- (SendDrawDataRequest_Builder*) setLevel:(int32_t) value {
+  result.hasLevel = YES;
+  result.level = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearLevel {
+  result.hasLevel = NO;
+  result.level = 0;
+  return self;
 }
 - (NSArray*) pointsList {
   if (result.mutablePointsList == nil) {
@@ -1463,6 +1540,9 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
+@property (retain) NSString* word;
+@property int32_t level;
+@property int32_t round;
 @end
 
 @implementation GeneralNotification
@@ -1538,6 +1618,27 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasColor_ = !!value;
 }
 @synthesize color;
+- (BOOL) hasWord {
+  return !!hasWord_;
+}
+- (void) setHasWord:(BOOL) value {
+  hasWord_ = !!value;
+}
+@synthesize word;
+- (BOOL) hasLevel {
+  return !!hasLevel_;
+}
+- (void) setHasLevel:(BOOL) value {
+  hasLevel_ = !!value;
+}
+@synthesize level;
+- (BOOL) hasRound {
+  return !!hasRound_;
+}
+- (void) setHasRound:(BOOL) value {
+  hasRound_ = !!value;
+}
+@synthesize round;
 - (void) dealloc {
   self.sessionHost = nil;
   self.currentPlayUserId = nil;
@@ -1547,6 +1648,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.nickName = nil;
   self.userAvatar = nil;
   self.mutablePointsList = nil;
+  self.word = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1561,6 +1663,9 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.userAvatar = @"";
     self.width = 0;
     self.color = 0;
+    self.word = @"";
+    self.level = 0;
+    self.round = 0;
   }
   return self;
 }
@@ -1624,6 +1729,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasColor) {
     [output writeInt32:23 value:self.color];
   }
+  if (self.hasWord) {
+    [output writeString:31 value:self.word];
+  }
+  if (self.hasLevel) {
+    [output writeInt32:32 value:self.level];
+  }
+  if (self.hasRound) {
+    [output writeInt32:33 value:self.round];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1674,6 +1788,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasColor) {
     size += computeInt32Size(23, self.color);
+  }
+  if (self.hasWord) {
+    size += computeStringSize(31, self.word);
+  }
+  if (self.hasLevel) {
+    size += computeInt32Size(32, self.level);
+  }
+  if (self.hasRound) {
+    size += computeInt32Size(33, self.round);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1786,6 +1909,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasColor) {
     [self setColor:other.color];
   }
+  if (other.hasWord) {
+    [self setWord:other.word];
+  }
+  if (other.hasLevel) {
+    [self setLevel:other.level];
+  }
+  if (other.hasRound) {
+    [self setRound:other.round];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1854,6 +1986,18 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 184: {
         [self setColor:[input readInt32]];
+        break;
+      }
+      case 250: {
+        [self setWord:[input readString]];
+        break;
+      }
+      case 256: {
+        [self setLevel:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setRound:[input readInt32]];
         break;
       }
     }
@@ -2048,6 +2192,54 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearColor {
   result.hasColor = NO;
   result.color = 0;
+  return self;
+}
+- (BOOL) hasWord {
+  return result.hasWord;
+}
+- (NSString*) word {
+  return result.word;
+}
+- (GeneralNotification_Builder*) setWord:(NSString*) value {
+  result.hasWord = YES;
+  result.word = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearWord {
+  result.hasWord = NO;
+  result.word = @"";
+  return self;
+}
+- (BOOL) hasLevel {
+  return result.hasLevel;
+}
+- (int32_t) level {
+  return result.level;
+}
+- (GeneralNotification_Builder*) setLevel:(int32_t) value {
+  result.hasLevel = YES;
+  result.level = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearLevel {
+  result.hasLevel = NO;
+  result.level = 0;
+  return self;
+}
+- (BOOL) hasRound {
+  return result.hasRound;
+}
+- (int32_t) round {
+  return result.round;
+}
+- (GeneralNotification_Builder*) setRound:(int32_t) value {
+  result.hasRound = YES;
+  result.round = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearRound {
+  result.hasRound = NO;
+  result.round = 0;
   return self;
 }
 @end

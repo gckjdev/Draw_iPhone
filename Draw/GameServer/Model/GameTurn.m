@@ -16,9 +16,12 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize nextPlayUserId = _nextPlayUserId;
+@synthesize word = _word;
+@synthesize level = _level;
 
 - (void)dealloc
 {
+    [_word release];
     [_currentPlayUserId release];
     [_nextPlayUserId release];
     [_playResultList release];

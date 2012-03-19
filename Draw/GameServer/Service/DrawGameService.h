@@ -14,6 +14,7 @@
 
 @optional;
 - (void)didReceiveDrawData:(GameMessage *)message;
+- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
 - (void)didJoinGame:(GameMessage *)message;
@@ -65,5 +66,7 @@
 - (void)changeRoom;
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
+
+- (void)startDraw:(NSString*)word level:(int)level;
 
 @end

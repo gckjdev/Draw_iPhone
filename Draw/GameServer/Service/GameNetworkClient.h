@@ -33,4 +33,9 @@
 - (void)sendCleanDraw:(NSString*)userId 
             sessionId:(long)sessionId;
 
+- (void)sendStartDraw:(NSString*)userId 
+            sessionId:(long)sessionId
+                 word:(NSString*)word 
+                level:(int)level;
+
 @end
