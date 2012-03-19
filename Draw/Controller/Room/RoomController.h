@@ -18,4 +18,6 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 
++ (void)showRoom:(UIViewController*)superController;
+
 @end

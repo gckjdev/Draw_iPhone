@@ -13,6 +13,8 @@
 #import "GameSession.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
+#import "DrawAppDelegate.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 @interface RoomController ()
 
@@ -48,22 +50,25 @@
     self.roomNameLabel.text = @"";
     
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated
+{    
+    [[DrawGameService defaultService] registerObserver:self];
+    [self updateGameUsers];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)joinGame
 {
     [self showActivityWithText:NSLS(@"kJoining")];
-
-//    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
-
-    // Do any additional setup after loading the view from its nib.
-    [[DrawGameService defaultService] setRoomDelegate:self];
-    [[DrawGameService defaultService] joinGame];
     
+    [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] registerObserver:self];
 
-    [self updateGameUsers];
-    [super viewDidAppear:animated];
+    [[DrawGameService defaultService] joinGame];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -225,4 +230,18 @@
     [roomNameLabel release];
     [super dealloc];
 }
+
++ (void)showRoom:(UIViewController*)superController
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.roomController == nil){    
+        app.roomController = [[[RoomController alloc] init] autorelease];
+    }
+    
+    [superController.navigationController pushViewController:app.roomController 
+                           animatedWithTransition:UIViewAnimationTransitionCurlUp];
+
+    [app.roomController joinGame];
+}
+
 @end

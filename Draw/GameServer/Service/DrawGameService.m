@@ -91,7 +91,9 @@ static DrawGameService* _defaultService;
 
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer
 {
-    [self.gameObserverList addObject:observer];
+    if ([self.gameObserverList containsObject:observer] == NO){
+        [self.gameObserverList addObject:observer];
+    }
 }
 
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer
