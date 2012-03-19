@@ -43,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,6 +87,9 @@
 
 - (void)updateGameUsers
 {
+    
+    [self.startGameButton setHidden:![[DrawGameService defaultService] isMyTurn]];
+    
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
     int startTag = 21;
@@ -178,7 +183,7 @@
 - (IBAction)clickChangeRoom:(id)sender
 {
     [self showActivityWithText:NSLS(@"kChangeRoom")];
-    [[DrawGameService defaultService] startGame];
+    [[DrawGameService defaultService] changeRoom];
     
 }
 
