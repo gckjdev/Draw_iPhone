@@ -27,6 +27,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeStartGameResponse:
     case GameCommandTypeQuitGameRequest:
     case GameCommandTypeQuitGameResponse:
+    case GameCommandTypeChangeRoomRequest:
+    case GameCommandTypeChangeRoomResponse:
     case GameCommandTypeSendDrawDataRequest:
     case GameCommandTypeSendDrawDataResponse:
     case GameCommandTypeCleanDrawRequest:
@@ -60,6 +62,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorSessionidNull:
     case GameResultCodeErrorSessionAlreadyStart:
     case GameResultCodeErrorSessionNotStart:
+    case GameResultCodeErrorNoSessionAvailable:
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:

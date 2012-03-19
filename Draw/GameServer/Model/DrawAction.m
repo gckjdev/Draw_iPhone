@@ -7,7 +7,17 @@
 //
 
 #import "DrawAction.h"
+#import "Paint.h"
 
 @implementation DrawAction
+
+@synthesize type = _type;
+@synthesize paint = _paint;
+
+- (void)dealloc
+{
+    [_paint release];
+    [super dealloc];
+}
 
 @end

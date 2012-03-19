@@ -5,6 +5,10 @@
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
 
+@class ChangeRoomRequest;
+@class ChangeRoomRequest_Builder;
+@class ChangeRoomResponse;
+@class ChangeRoomResponse_Builder;
 @class GameMessage;
 @class GameMessage_Builder;
 @class GeneralNotification;
@@ -155,6 +159,95 @@
 - (JoinGameResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (JoinGameResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (JoinGameResponse_Builder*) clearGameSession;
+@end
+
+@interface ChangeRoomRequest : PBGeneratedMessage {
+@private
+}
+
++ (ChangeRoomRequest*) defaultInstance;
+- (ChangeRoomRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ChangeRoomRequest_Builder*) builder;
++ (ChangeRoomRequest_Builder*) builder;
++ (ChangeRoomRequest_Builder*) builderWithPrototype:(ChangeRoomRequest*) prototype;
+
++ (ChangeRoomRequest*) parseFromData:(NSData*) data;
++ (ChangeRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeRoomRequest*) parseFromInputStream:(NSInputStream*) input;
++ (ChangeRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ChangeRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ChangeRoomRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  ChangeRoomRequest* result;
+}
+
+- (ChangeRoomRequest*) defaultInstance;
+
+- (ChangeRoomRequest_Builder*) clear;
+- (ChangeRoomRequest_Builder*) clone;
+
+- (ChangeRoomRequest*) build;
+- (ChangeRoomRequest*) buildPartial;
+
+- (ChangeRoomRequest_Builder*) mergeFrom:(ChangeRoomRequest*) other;
+- (ChangeRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ChangeRoomResponse : PBGeneratedMessage {
+@private
+  BOOL hasGameSession_:1;
+  PBGameSession* gameSession;
+}
+- (BOOL) hasGameSession;
+@property (readonly, retain) PBGameSession* gameSession;
+
++ (ChangeRoomResponse*) defaultInstance;
+- (ChangeRoomResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (ChangeRoomResponse_Builder*) builder;
++ (ChangeRoomResponse_Builder*) builder;
++ (ChangeRoomResponse_Builder*) builderWithPrototype:(ChangeRoomResponse*) prototype;
+
++ (ChangeRoomResponse*) parseFromData:(NSData*) data;
++ (ChangeRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeRoomResponse*) parseFromInputStream:(NSInputStream*) input;
++ (ChangeRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (ChangeRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (ChangeRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface ChangeRoomResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  ChangeRoomResponse* result;
+}
+
+- (ChangeRoomResponse*) defaultInstance;
+
+- (ChangeRoomResponse_Builder*) clear;
+- (ChangeRoomResponse_Builder*) clone;
+
+- (ChangeRoomResponse*) build;
+- (ChangeRoomResponse*) buildPartial;
+
+- (ChangeRoomResponse_Builder*) mergeFrom:(ChangeRoomResponse*) other;
+- (ChangeRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameSession;
+- (PBGameSession*) gameSession;
+- (ChangeRoomResponse_Builder*) setGameSession:(PBGameSession*) value;
+- (ChangeRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
+- (ChangeRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
+- (ChangeRoomResponse_Builder*) clearGameSession;
 @end
 
 @interface StartGameRequest : PBGeneratedMessage {
@@ -511,6 +604,8 @@
   BOOL hasStartGameResponse_:1;
   BOOL hasSendDrawDataRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
+  BOOL hasChangeRoomRequest_:1;
+  BOOL hasChangeRoomResponse_:1;
   BOOL hasNotification_:1;
   BOOL hasCommand_:1;
   BOOL hasResultCode_:1;
@@ -523,6 +618,8 @@
   StartGameResponse* startGameResponse;
   SendDrawDataRequest* sendDrawDataRequest;
   SendDrawDataResponse* sendDrawDataResponse;
+  ChangeRoomRequest* changeRoomRequest;
+  ChangeRoomResponse* changeRoomResponse;
   GeneralNotification* notification;
   GameCommandType command;
   GameResultCode resultCode;
@@ -538,6 +635,8 @@
 - (BOOL) hasStartGameResponse;
 - (BOOL) hasSendDrawDataRequest;
 - (BOOL) hasSendDrawDataResponse;
+- (BOOL) hasChangeRoomRequest;
+- (BOOL) hasChangeRoomResponse;
 - (BOOL) hasNotification;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
@@ -550,6 +649,8 @@
 @property (readonly, retain) StartGameResponse* startGameResponse;
 @property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
+@property (readonly, retain) ChangeRoomRequest* changeRoomRequest;
+@property (readonly, retain) ChangeRoomResponse* changeRoomResponse;
 @property (readonly, retain) GeneralNotification* notification;
 
 + (GameMessage*) defaultInstance;
@@ -652,6 +753,20 @@
 - (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
 - (GameMessage_Builder*) clearSendDrawDataResponse;
+
+- (BOOL) hasChangeRoomRequest;
+- (ChangeRoomRequest*) changeRoomRequest;
+- (GameMessage_Builder*) setChangeRoomRequest:(ChangeRoomRequest*) value;
+- (GameMessage_Builder*) setChangeRoomRequestBuilder:(ChangeRoomRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChangeRoomRequest:(ChangeRoomRequest*) value;
+- (GameMessage_Builder*) clearChangeRoomRequest;
+
+- (BOOL) hasChangeRoomResponse;
+- (ChangeRoomResponse*) changeRoomResponse;
+- (GameMessage_Builder*) setChangeRoomResponse:(ChangeRoomResponse*) value;
+- (GameMessage_Builder*) setChangeRoomResponseBuilder:(ChangeRoomResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChangeRoomResponse:(ChangeRoomResponse*) value;
+- (GameMessage_Builder*) clearChangeRoomResponse;
 
 - (BOOL) hasNotification;
 - (GeneralNotification*) notification;

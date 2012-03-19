@@ -527,6 +527,348 @@ static JoinGameResponse* defaultJoinGameResponseInstance = nil;
 }
 @end
 
+@interface ChangeRoomRequest ()
+@end
+
+@implementation ChangeRoomRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static ChangeRoomRequest* defaultChangeRoomRequestInstance = nil;
++ (void) initialize {
+  if (self == [ChangeRoomRequest class]) {
+    defaultChangeRoomRequestInstance = [[ChangeRoomRequest alloc] init];
+  }
+}
++ (ChangeRoomRequest*) defaultInstance {
+  return defaultChangeRoomRequestInstance;
+}
+- (ChangeRoomRequest*) defaultInstance {
+  return defaultChangeRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ChangeRoomRequest*) parseFromData:(NSData*) data {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromData:data] build];
+}
++ (ChangeRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (ChangeRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (ChangeRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomRequest*)[[[ChangeRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomRequest_Builder*) builder {
+  return [[[ChangeRoomRequest_Builder alloc] init] autorelease];
+}
++ (ChangeRoomRequest_Builder*) builderWithPrototype:(ChangeRoomRequest*) prototype {
+  return [[ChangeRoomRequest builder] mergeFrom:prototype];
+}
+- (ChangeRoomRequest_Builder*) builder {
+  return [ChangeRoomRequest builder];
+}
+@end
+
+@interface ChangeRoomRequest_Builder()
+@property (retain) ChangeRoomRequest* result;
+@end
+
+@implementation ChangeRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ChangeRoomRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ChangeRoomRequest_Builder*) clear {
+  self.result = [[[ChangeRoomRequest alloc] init] autorelease];
+  return self;
+}
+- (ChangeRoomRequest_Builder*) clone {
+  return [ChangeRoomRequest builderWithPrototype:result];
+}
+- (ChangeRoomRequest*) defaultInstance {
+  return [ChangeRoomRequest defaultInstance];
+}
+- (ChangeRoomRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ChangeRoomRequest*) buildPartial {
+  ChangeRoomRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ChangeRoomRequest_Builder*) mergeFrom:(ChangeRoomRequest*) other {
+  if (other == [ChangeRoomRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ChangeRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ChangeRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface ChangeRoomResponse ()
+@property (retain) PBGameSession* gameSession;
+@end
+
+@implementation ChangeRoomResponse
+
+- (BOOL) hasGameSession {
+  return !!hasGameSession_;
+}
+- (void) setHasGameSession:(BOOL) value {
+  hasGameSession_ = !!value;
+}
+@synthesize gameSession;
+- (void) dealloc {
+  self.gameSession = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameSession = [PBGameSession defaultInstance];
+  }
+  return self;
+}
+static ChangeRoomResponse* defaultChangeRoomResponseInstance = nil;
++ (void) initialize {
+  if (self == [ChangeRoomResponse class]) {
+    defaultChangeRoomResponseInstance = [[ChangeRoomResponse alloc] init];
+  }
+}
++ (ChangeRoomResponse*) defaultInstance {
+  return defaultChangeRoomResponseInstance;
+}
+- (ChangeRoomResponse*) defaultInstance {
+  return defaultChangeRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGameSession) {
+    return NO;
+  }
+  if (!self.gameSession.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameSession) {
+    [output writeMessage:1 value:self.gameSession];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameSession) {
+    size += computeMessageSize(1, self.gameSession);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (ChangeRoomResponse*) parseFromData:(NSData*) data {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromData:data] build];
+}
++ (ChangeRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (ChangeRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (ChangeRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ChangeRoomResponse*)[[[ChangeRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (ChangeRoomResponse_Builder*) builder {
+  return [[[ChangeRoomResponse_Builder alloc] init] autorelease];
+}
++ (ChangeRoomResponse_Builder*) builderWithPrototype:(ChangeRoomResponse*) prototype {
+  return [[ChangeRoomResponse builder] mergeFrom:prototype];
+}
+- (ChangeRoomResponse_Builder*) builder {
+  return [ChangeRoomResponse builder];
+}
+@end
+
+@interface ChangeRoomResponse_Builder()
+@property (retain) ChangeRoomResponse* result;
+@end
+
+@implementation ChangeRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[ChangeRoomResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (ChangeRoomResponse_Builder*) clear {
+  self.result = [[[ChangeRoomResponse alloc] init] autorelease];
+  return self;
+}
+- (ChangeRoomResponse_Builder*) clone {
+  return [ChangeRoomResponse builderWithPrototype:result];
+}
+- (ChangeRoomResponse*) defaultInstance {
+  return [ChangeRoomResponse defaultInstance];
+}
+- (ChangeRoomResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (ChangeRoomResponse*) buildPartial {
+  ChangeRoomResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (ChangeRoomResponse_Builder*) mergeFrom:(ChangeRoomResponse*) other {
+  if (other == [ChangeRoomResponse defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameSession) {
+    [self mergeGameSession:other.gameSession];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (ChangeRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (ChangeRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        if (self.hasGameSession) {
+          [subBuilder mergeFrom:self.gameSession];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameSession:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameSession {
+  return result.hasGameSession;
+}
+- (PBGameSession*) gameSession {
+  return result.gameSession;
+}
+- (ChangeRoomResponse_Builder*) setGameSession:(PBGameSession*) value {
+  result.hasGameSession = YES;
+  result.gameSession = value;
+  return self;
+}
+- (ChangeRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue {
+  return [self setGameSession:[builderForValue build]];
+}
+- (ChangeRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value {
+  if (result.hasGameSession &&
+      result.gameSession != [PBGameSession defaultInstance]) {
+    result.gameSession =
+      [[[PBGameSession builderWithPrototype:result.gameSession] mergeFrom:value] buildPartial];
+  } else {
+    result.gameSession = value;
+  }
+  result.hasGameSession = YES;
+  return self;
+}
+- (ChangeRoomResponse_Builder*) clearGameSession {
+  result.hasGameSession = NO;
+  result.gameSession = [PBGameSession defaultInstance];
+  return self;
+}
+@end
+
 @interface StartGameRequest ()
 @end
 
@@ -1925,6 +2267,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property (retain) StartGameResponse* startGameResponse;
 @property (retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (retain) SendDrawDataResponse* sendDrawDataResponse;
+@property (retain) ChangeRoomRequest* changeRoomRequest;
+@property (retain) ChangeRoomResponse* changeRoomResponse;
 @property (retain) GeneralNotification* notification;
 @end
 
@@ -2007,6 +2351,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasSendDrawDataResponse_ = !!value;
 }
 @synthesize sendDrawDataResponse;
+- (BOOL) hasChangeRoomRequest {
+  return !!hasChangeRoomRequest_;
+}
+- (void) setHasChangeRoomRequest:(BOOL) value {
+  hasChangeRoomRequest_ = !!value;
+}
+@synthesize changeRoomRequest;
+- (BOOL) hasChangeRoomResponse {
+  return !!hasChangeRoomResponse_;
+}
+- (void) setHasChangeRoomResponse:(BOOL) value {
+  hasChangeRoomResponse_ = !!value;
+}
+@synthesize changeRoomResponse;
 - (BOOL) hasNotification {
   return !!hasNotification_;
 }
@@ -2022,6 +2380,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   self.startGameResponse = nil;
   self.sendDrawDataRequest = nil;
   self.sendDrawDataResponse = nil;
+  self.changeRoomRequest = nil;
+  self.changeRoomResponse = nil;
   self.notification = nil;
   [super dealloc];
 }
@@ -2038,6 +2398,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.startGameResponse = [StartGameResponse defaultInstance];
     self.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
     self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
+    self.changeRoomRequest = [ChangeRoomRequest defaultInstance];
+    self.changeRoomResponse = [ChangeRoomResponse defaultInstance];
     self.notification = [GeneralNotification defaultInstance];
   }
   return self;
@@ -2068,6 +2430,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasJoinGameResponse) {
     if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasChangeRoomResponse) {
+    if (!self.changeRoomResponse.isInitialized) {
       return NO;
     }
   }
@@ -2106,6 +2473,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasSendDrawDataResponse) {
     [output writeMessage:22 value:self.sendDrawDataResponse];
+  }
+  if (self.hasChangeRoomRequest) {
+    [output writeMessage:23 value:self.changeRoomRequest];
+  }
+  if (self.hasChangeRoomResponse) {
+    [output writeMessage:24 value:self.changeRoomResponse];
   }
   if (self.hasNotification) {
     [output writeMessage:51 value:self.notification];
@@ -2151,6 +2524,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasSendDrawDataResponse) {
     size += computeMessageSize(22, self.sendDrawDataResponse);
+  }
+  if (self.hasChangeRoomRequest) {
+    size += computeMessageSize(23, self.changeRoomRequest);
+  }
+  if (self.hasChangeRoomResponse) {
+    size += computeMessageSize(24, self.changeRoomResponse);
   }
   if (self.hasNotification) {
     size += computeMessageSize(51, self.notification);
@@ -2263,6 +2642,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasSendDrawDataResponse) {
     [self mergeSendDrawDataResponse:other.sendDrawDataResponse];
   }
+  if (other.hasChangeRoomRequest) {
+    [self mergeChangeRoomRequest:other.changeRoomRequest];
+  }
+  if (other.hasChangeRoomResponse) {
+    [self mergeChangeRoomResponse:other.changeRoomResponse];
+  }
   if (other.hasNotification) {
     [self mergeNotification:other.notification];
   }
@@ -2369,6 +2754,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setSendDrawDataResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 186: {
+        ChangeRoomRequest_Builder* subBuilder = [ChangeRoomRequest builder];
+        if (self.hasChangeRoomRequest) {
+          [subBuilder mergeFrom:self.changeRoomRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChangeRoomRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 194: {
+        ChangeRoomResponse_Builder* subBuilder = [ChangeRoomResponse builder];
+        if (self.hasChangeRoomResponse) {
+          [subBuilder mergeFrom:self.changeRoomResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChangeRoomResponse:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -2641,6 +3044,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearSendDrawDataResponse {
   result.hasSendDrawDataResponse = NO;
   result.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasChangeRoomRequest {
+  return result.hasChangeRoomRequest;
+}
+- (ChangeRoomRequest*) changeRoomRequest {
+  return result.changeRoomRequest;
+}
+- (GameMessage_Builder*) setChangeRoomRequest:(ChangeRoomRequest*) value {
+  result.hasChangeRoomRequest = YES;
+  result.changeRoomRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setChangeRoomRequestBuilder:(ChangeRoomRequest_Builder*) builderForValue {
+  return [self setChangeRoomRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChangeRoomRequest:(ChangeRoomRequest*) value {
+  if (result.hasChangeRoomRequest &&
+      result.changeRoomRequest != [ChangeRoomRequest defaultInstance]) {
+    result.changeRoomRequest =
+      [[[ChangeRoomRequest builderWithPrototype:result.changeRoomRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.changeRoomRequest = value;
+  }
+  result.hasChangeRoomRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChangeRoomRequest {
+  result.hasChangeRoomRequest = NO;
+  result.changeRoomRequest = [ChangeRoomRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasChangeRoomResponse {
+  return result.hasChangeRoomResponse;
+}
+- (ChangeRoomResponse*) changeRoomResponse {
+  return result.changeRoomResponse;
+}
+- (GameMessage_Builder*) setChangeRoomResponse:(ChangeRoomResponse*) value {
+  result.hasChangeRoomResponse = YES;
+  result.changeRoomResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setChangeRoomResponseBuilder:(ChangeRoomResponse_Builder*) builderForValue {
+  return [self setChangeRoomResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChangeRoomResponse:(ChangeRoomResponse*) value {
+  if (result.hasChangeRoomResponse &&
+      result.changeRoomResponse != [ChangeRoomResponse defaultInstance]) {
+    result.changeRoomResponse =
+      [[[ChangeRoomResponse builderWithPrototype:result.changeRoomResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.changeRoomResponse = value;
+  }
+  result.hasChangeRoomResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChangeRoomResponse {
+  result.hasChangeRoomResponse = NO;
+  result.changeRoomResponse = [ChangeRoomResponse defaultInstance];
   return self;
 }
 - (BOOL) hasNotification {

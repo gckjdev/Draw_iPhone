@@ -137,7 +137,7 @@
 
 - (IBAction)clickStart:(id)sender
 {
-    [self showActivityWithText:@"kStartingGame"];
+    [self showActivityWithText:NSLS(@"kStartingGame")];
     [[DrawGameService defaultService] startGame];
     // Goto Select Word UI
 }

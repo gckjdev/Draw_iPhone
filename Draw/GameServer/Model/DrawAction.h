@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class Paint;
+
+typedef enum {
+    
+    DRAW_ACTION_TYPE_DRAW,
+    DRAW_ACTION_TYPE_CLEAN
+} DRAW_ACTION_TYPE;
+
 @interface DrawAction : NSObject
+
+@property (nonatomic, assign) DRAW_ACTION_TYPE type;
+@property (nonatomic, retain) Paint *paint;
 
 @end
