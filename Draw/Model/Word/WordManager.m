@@ -98,8 +98,11 @@ WordManager *GlobalGetWordManager()
 - (NSString *)randLetterWithWord:(Word *)word
 {
     NSString *str = @"北京天安门广场紫禁城乔丹詹姆斯足球篮球小鸡老鹰妖怪香蕉纸巾";
-    NSInteger i = rand() % str.length;
-    return [str substringWithRange:NSMakeRange(i, 1)];
+    NSInteger count = 16 - [word.text length];
+    NSString *suffix = [str substringWithRange:NSMakeRange(0, count)];
+    return [NSString stringWithFormat:@"%@%@",word.text,suffix];
+//    NSInteger i = rand() % str.length;
+//    return [str substringWithRange:NSMakeRange(i, 1)];
 }
 
 - (void)addWord:(Word *)word

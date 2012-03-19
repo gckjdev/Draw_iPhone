@@ -56,7 +56,7 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.198" port:8080];
+    [_networkClient start:@"192.168.1.10" port:8080];
 
     return self;
 }

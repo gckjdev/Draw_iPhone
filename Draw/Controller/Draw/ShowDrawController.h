@@ -16,10 +16,11 @@
     Word *_word;
     DrawGameService *drawGameService;
     DrawView *showView;
+    NSString *candidateString;
 }
 
 @property(nonatomic, retain)Word *word;
 
-- (id)initWithWord:(Word *)word;
+//- (id)initWithWord:(Word *)word;
 
 @end
