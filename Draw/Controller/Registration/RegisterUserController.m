@@ -67,11 +67,21 @@
 
 - (IBAction)clickSubmit:(id)sender
 {
+    NSArray* randomAvatar = [NSArray arrayWithObjects:
+                             @"http://file11.joyes.com/other/2010/01/25/ad7440f6997c48de85fed5a0527e05c0.jpg", 
+                             @"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg",
+                             @"http://img06.taobaocdn.com/sns_logo/i6/T1vY4pXhlDXXartXjX_100x100.jpg",
+                             @"http://img01.taobaocdn.com/sns_logo/i1/T1uBFLXc4IXXaCwpjX_100x100.jpg",
+                             @"http://www.hampoo.com/files/public/member/2011/06/20/142/images/20110704095135_thumb2.jpg",
+                             nil];
+    
+    srand(time(0));
+    
     // TODO dummy implementation here
     NSString* userId = self.userIdTextField.text;
     [[UserManager defaultManager] saveUserId:userId 
                                     nickName:userId 
-                                   avatarURL:@"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
+                                   avatarURL:[randomAvatar objectAtIndex:random() % [randomAvatar count]]];
     [[DrawGameService defaultService] setUserId:userId];
     [[DrawGameService defaultService] setNickName:userId];
     [[DrawGameService defaultService] setAvatar:@"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];

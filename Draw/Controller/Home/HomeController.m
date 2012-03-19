@@ -46,7 +46,7 @@
     [[DrawGameService defaultService] setHomeDelegate:self];
     [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
-    
+    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -11,6 +11,8 @@
 #import "SelectWordController.h"
 #import "ShowDrawController.h"
 #import "GameSession.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @interface RoomController ()
 
@@ -19,6 +21,7 @@
 @end
 
 @implementation RoomController
+@synthesize roomNameLabel;
 @synthesize startGameButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,9 +45,9 @@
 
 - (void)viewDidLoad
 {
+    self.roomNameLabel.text = @"";
+    
     [super viewDidLoad];
-
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -74,6 +77,7 @@
 {
     [[DrawGameService defaultService] unregisterObserver:self];
     [self setStartGameButton:nil];
+    [self setRoomNameLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -93,6 +97,9 @@
     NSArray* userList = [session userList];
     int startTag = 21;
     int endTag = 26;
+    int imageStartTag = 31;
+    int imageEndTag = 32;
+    
     for (GameSessionUser* user in userList){
 //        UIButton* button = (UIButton*)[self.view viewWithTag:startTag++];
 //        [button setTitle:[user userId] forState:UIControlStateNormal];
@@ -117,6 +124,12 @@
             [label setTextColor:[UIColor redColor]];
 //            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
+        
+        // set images
+        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
+        [imageView clear];
+        [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        [GlobalGetImageCache() manage:imageView];
     }
     
     // clean all data
@@ -126,8 +139,21 @@
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:@""];
     }
+    
+    for (int i=imageStartTag; i<=imageEndTag; i++){
+        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
+        [imageView clear];
+    }
+    
     [self.startGameButton setHidden:![[DrawGameService defaultService] isMeHost]];
 
+}
+
+- (void)updateRoomName
+{
+    NSString* name = [NSString stringWithFormat:NSLS(@"Room %@"),  
+                      [[[DrawGameService defaultService] session] roomName]];
+    self.roomNameLabel.text = name;
 }
 
 #pragma Draw Game Service Delegate
@@ -139,6 +165,7 @@
 
     // update 
     [self updateGameUsers];
+    [self updateRoomName];
 }
 
 - (void)didStartGame:(GameMessage *)message
@@ -195,6 +222,7 @@
 
 - (void)dealloc {
     [startGameButton release];
+    [roomNameLabel release];
     [super dealloc];
 }
 @end

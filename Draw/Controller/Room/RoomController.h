@@ -11,6 +11,7 @@
 #import "DrawGameService.h"
 
 @interface RoomController : PPViewController<DrawGameServiceDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;

@@ -36,6 +36,8 @@
     // Override point for customization after application launch.
     
     
+    [self initImageCacheManager];
+    
     // Init Home
     self.homeController = [[[HomeController alloc] init] autorelease];    
     

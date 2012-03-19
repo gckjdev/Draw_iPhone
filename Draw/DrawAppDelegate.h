@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonNetworkClient.h"
+#import "PPApplication.h"
 
 @class DrawViewController;
 @class RoomController;
 @class HomeController;
 
-@interface DrawAppDelegate : NSObject <UIApplicationDelegate, CommonNetworkClientDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
 }
 
