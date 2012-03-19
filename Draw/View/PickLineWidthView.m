@@ -59,16 +59,19 @@
 - (void)setLineWidths:(NSArray *)widthArray
 {
     [self removeAllButtons];
-    int i = 1;
     CGFloat lineWidth = self.frame.size.width * 3.0 / 5.0;
-    CGFloat lineHeight = self.frame.size.height / ([widthArray count] * 2+ 1);
-    
+    CGFloat totalHeight = 0;
+    for (NSNumber *width in widthArray) {
+        totalHeight += width.integerValue;
+    }
+    CGFloat space = (self.frame.size.height - totalHeight) / ([widthArray count] + 1);
+    CGFloat y = 0;
     for (NSNumber *width in widthArray) {
         UIButton *button = [self addAndSetButtonWithWidth:width.integerValue];
         CGFloat x = self.frame.size.width / 5.0;
-        CGFloat y = lineHeight * i;
-        i += 2;
-        button.frame = CGRectMake(x, y, lineWidth, lineHeight);
+        y += space;
+        button.frame = CGRectMake(x, y, lineWidth, width.integerValue);
+        y += width.integerValue;
     }
 }
 

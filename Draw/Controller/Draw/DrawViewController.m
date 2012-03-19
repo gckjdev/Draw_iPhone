@@ -65,10 +65,54 @@
     
 }
 
+- (void)addPickLineWidthView
+{
+    self.pickLineWidthView = [[[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)]autorelease];
+    [self.pickLineWidthView setCenter:CGPointMake(self.widthButton.center.x, self.widthButton.center. y + 80)];
+    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
+    for (int i = 5; i < 21; i += 5) {
+        NSNumber *number = [NSNumber numberWithInt:i];
+        [widthArray addObject:number];
+    }
+    [self.pickLineWidthView setLineWidths:widthArray];
+    [widthArray release];
+    [self.view addSubview:self.pickLineWidthView];
+    self.pickLineWidthView.delegate = self;
+}
+
+
 - (void)addPickColorView
 {
+    self.pickColorView = [[[PickColorView alloc] initWithFrame:CGRectMake(100, 100, 120, 90)]autorelease];
+    [self.pickColorView setCenter:CGPointMake(self.moreButton.center.x, self.moreButton.center. y + 75)];
+    NSMutableArray *colorList = [[NSMutableArray alloc] init];
+
+    [colorList addObject:[DrawColor cyanColor]];    
+    [colorList addObject:[DrawColor orangeColor]];    
+    [colorList addObject:[DrawColor brownColor]];    
+    [colorList addObject:[DrawColor magentaColor]];
+    [colorList addObject:[DrawColor blackColor]];    
+    [colorList addObject:[DrawColor magentaColor]];    
+    [colorList addObject:[DrawColor orangeColor]];
+    [colorList addObject:[DrawColor purpleColor]];
+    [colorList addObject:[DrawColor whiteColor]];
+    [colorList addObject:[DrawColor blueColor]];
+    [colorList addObject:[DrawColor greenColor]];
+    [colorList addObject:[DrawColor redColor]];
     
+    
+    [self.pickColorView setColorList:colorList];
+    [colorList release];
+    [self.view addSubview:self.pickColorView];
+    self.pickColorView.delegate = self;
 }
+
+- (void)hidePickViews
+{
+    [self.pickLineWidthView setHidden:YES];
+    [self.pickColorView setHidden:YES];
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -77,7 +121,6 @@
     
     [self setTitle:[NSString stringWithFormat:@"画画中(%@)",self.word.text]];       
 
-    
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 400)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
@@ -86,7 +129,9 @@
     _drawGameService = [DrawGameService defaultService];
     _drawGameService.drawDelegate = self;
     
-    
+    [self addPickColorView];
+    [self addPickLineWidthView];
+    [self hidePickViews];
 }
 
 
@@ -115,11 +160,7 @@
 }
 
 
-- (void)hidePickViews
-{
-    [self.pickLineWidthView setHidden:YES];
-    [self.pickColorView setHidden:YES];
-}
+
 
 
 
@@ -148,24 +189,18 @@
 }
 
 - (IBAction)clickMoreColorButton:(id)sender {
-    
-    NSLog(@"clickMoreColorButton");
+
+    [self.pickColorView setHidden:![self.pickColorView isHidden]];
+    [self.pickLineWidthView setHidden:YES];
 }
 
 - (IBAction)clickPickWidthButton:(id)sender {
-    PickLineWidthView *widthView = [[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)];
-    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
-    for (int i = 5; i < 21; i += 5) {
-        NSNumber *number = [NSNumber numberWithInt:i];
-        [widthArray addObject:number];
-    }
-    [widthView setLineWidths:widthArray];
-    [widthArray release];
-    [self.view addSubview:widthView];
+    [self.pickLineWidthView setHidden:![self.pickLineWidthView isHidden]];
+    [self.pickColorView setHidden:YES];
 }
 
 - (IBAction)clickEraserButton:(id)sender {
-    NSLog(@"clickEraserButton");
+    [drawView setLineColor:[DrawColor whiteColor]];
 }
 
 
@@ -183,23 +218,28 @@
         NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
         [pointList addObject:pointNumber];
     }
-//    NSLog(@"didDrawedPaint: %@",[paint toString]);
     
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
 
-//- (void)didReceiveDrawData:(GameMessage *)message
-//{
-//    NSInteger intColor = [[message notification] color];
-//    CGFloat lineWidth = [[message notification] width];        
-//    NSArray *pointList = [[message notification] pointsList];
-//    Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
-////    NSLog(@"didReceiveDrawData: %@",[paint toString]);
-//}
-//
-//- (void)didReceiveRedrawResponse:(GameMessage *)message
-//{
-//    
-//}
+- (void)didStartedTouch
+{
+    [self hidePickViews];
+}
+
+#pragma mark pick view delegate
+- (void)didPickedLineWidth:(NSInteger)width
+{
+    [self hidePickViews];
+    [drawView setLineWidth:width];
+}
+
+- (void)didPickedColor:(DrawColor *)color
+{
+    [self hidePickViews];
+    [drawView setLineColor:color];
+}
+
+
 
 @end

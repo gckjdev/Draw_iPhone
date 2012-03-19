@@ -197,12 +197,11 @@
 - (void) performTap:(UITapGestureRecognizer *)tapGestuereReconizer
 {
     
-    if (tapGestuereReconizer.state == UIGestureRecognizerStateBegan) {
+    if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
+    {
         if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch)]) {
             [self.delegate didStartedTouch];
         }
-    }else if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
-    {
         CGPoint point = [tapGestuereReconizer locationInView:self];
         currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];
         [self.paintList addObject:currentPaint];
