@@ -13,5 +13,6 @@
 @interface RoomController : PPViewController<DrawGameServiceDelegate>
 
 - (IBAction)clickStart:(id)sender;
+- (IBAction)clickChangeRoom:(id)sender;
 
 @end

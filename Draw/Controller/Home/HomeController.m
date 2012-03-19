@@ -49,6 +49,12 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self hideActivity];
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];

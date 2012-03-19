@@ -39,16 +39,29 @@
     [self showActivityWithText:NSLS(@"kJoining")];
 
     // Do any additional setup after loading the view from its nib.
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] joinGame];
-
-    [[DrawGameService defaultService] registerObserver:self];
     
+    [[DrawGameService defaultService] registerObserver:self];
+
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self hideActivity];
+    [super viewDidDisappear:animated];
+
+    [[DrawGameService defaultService] unregisterObserver:self];
 }
 
 - (void)viewDidUnload
 {
-    [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -140,6 +153,12 @@
     [self showActivityWithText:NSLS(@"kStartingGame")];
     [[DrawGameService defaultService] startGame];
     // Goto Select Word UI
+}
+
+- (IBAction)clickChangeRoom:(id)sender
+{
+    [self showActivityWithText:NSLS(@"kChangeRoom")];
+    [[DrawGameService defaultService] changeRoom];    
 }
 
 @end

@@ -63,18 +63,29 @@ static GameNetworkClient* _defaultGameNetworkClient;
 
 #pragma Methods
 
-- (void)sendJoinGameRequest:(NSString*)userId nickName:(NSString*)nickName
+- (void)sendJoinGameRequest:(NSString*)userId 
+                   nickName:(NSString*)nickName 
+                  sessionId:(int)currentSessionId
+          excludeSessionSet:(NSSet*)excludeSessionSet
 {
     
     JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:@""];
-    [requestBuilder setNickName:nickName];
+    [requestBuilder setNickName:nickName];    
+    [requestBuilder addAllExcludeSessionId:[excludeSessionSet allObjects]];
+    if (currentSessionId > 0){
+        [requestBuilder setSessionToBeChange:currentSessionId];
+    }
 
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
+    if (currentSessionId > 0){
+        [messageBuilder setUserId:userId];
+        [messageBuilder setSessionId:currentSessionId];
+    }
     
     GameMessage* gameMessage = [messageBuilder build];
     [self sendData:[gameMessage data]];
@@ -95,6 +106,22 @@ static GameNetworkClient* _defaultGameNetworkClient;
     
     GameMessage* message = [messageBuilder build];
     [self sendData:[message data]];
+}
+
+- (void)sendChangeRoomRequest:(NSString*)userId sessionId:(long)sessionId excludeSessionSet:(NSSet*)excludeSessionSet
+{
+    ChangeRoomRequest_Builder *requestBuilder = [[[ChangeRoomRequest_Builder alloc] init] autorelease];
+    [requestBuilder addAllExcludeSessionId:[excludeSessionSet allObjects]];
+
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeChangeRoomRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setChangeRoomRequest:[requestBuilder build]];
+    
+    GameMessage* message = [messageBuilder build];
+    [self sendData:[message data]];    
 }
 
 - (void)sendDrawDataRequest:(NSString*)userId 
