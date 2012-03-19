@@ -95,7 +95,12 @@ WordManager *GlobalGetWordManager()
     [super dealloc];
 }
 
-
+- (NSString *)randLetterWithWord:(Word *)word
+{
+    NSString *str = @"北京天安门广场紫禁城乔丹詹姆斯足球篮球小鸡老鹰妖怪香蕉纸巾";
+    NSInteger i = rand() % str.length;
+    return [str substringWithRange:NSMakeRange(i, 1)];
+}
 
 - (void)addWord:(Word *)word
 {
