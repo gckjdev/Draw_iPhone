@@ -58,7 +58,7 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.9" port:8080];
+    [_networkClient start:@"192.168.1.198" port:8080];
 
     return self;
 }
@@ -165,6 +165,16 @@ static DrawGameService* _defaultService;
     });    
 }
 
+- (void)handleGameTurnCompleteNotification:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{   
+        PPDebug(@"<handleGameTurnCompleteNotification> Game Turn Completed!");
+        if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
+            [_drawDelegate didGameTurnComplete:message];
+        }
+    });    
+}
+
 - (void)handlUserQuitJoinNotification:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -184,11 +194,16 @@ static DrawGameService* _defaultService;
         [_session updateCurrentTurnByMessage:[message notification]];
         
         // TODO chaneg to notifyGameObserver
-        if ([[message notification] hasWord]){
+        if ([[[message notification] word] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
             if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:)]) {
                 [_drawDelegate didReceiveDrawWord:[[message notification] word] 
                                             level:[[message notification] level]];
+            }
+            
+            PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
+            if ([_drawDelegate respondsToSelector:@selector(didGameTurnGuessStart:)]) {
+                [_drawDelegate didGameTurnGuessStart:message];
             }
         }
         
@@ -260,6 +275,10 @@ static DrawGameService* _defaultService;
 
         case GameCommandTypeCleanDrawNotificationRequest:
             [self handleCleanDraw:message];
+            
+        case GameCommandTypeGameTurnCompleteNotificationRequest:
+            [self handleGameTurnCompleteNotification:message];
+            break;
 
         default:
             break;
