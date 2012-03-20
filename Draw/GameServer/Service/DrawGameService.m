@@ -108,12 +108,15 @@ static DrawGameService* _defaultService;
     dispatch_async(dispatch_get_main_queue(), ^{ 
         
         // create game session
-        PBGameSession* pbSession = [[message joinGameResponse] gameSession];
-        self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
-        PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
-        
-        // add into hisotry
-        [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+            self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
+
+            PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
+            
+            // add into hisotry
+            [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
+        }
         
         if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
             [_roomDelegate didJoinGame:message];
@@ -125,9 +128,11 @@ static DrawGameService* _defaultService;
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        // update session data        
-        [self.session updateByStartGameResponse:[message startGameResponse]];
-        PPDebug(@"<handleStartGameResponse> Update Session = %@", [self.session description]);
+        // update session data      
+        if ([message resultCode] == 0){
+            [self.session updateByStartGameResponse:[message startGameResponse]];
+            PPDebug(@"<handleStartGameResponse> Update Session = %@", [self.session description]);
+        }
         
         if ([_roomDelegate respondsToSelector:@selector(didStartGame:)]){
             [_roomDelegate didStartGame:message];

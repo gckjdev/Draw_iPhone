@@ -26,6 +26,8 @@
 - (void)scheduleStartTimer;
 - (void)prolongStartTimer;
 
+- (BOOL)isMyTurn;
+
 @end
 
 @implementation RoomController
@@ -136,11 +138,11 @@
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:[user userId]];
         
-        if ([session isHostUser:[user userId]]){
-            NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
-//            [button setTitle:title forState:UIControlStateNormal];
-            [label setText:title];
-        }
+//        if ([session isHostUser:[user userId]]){
+//            NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
+////            [button setTitle:title forState:UIControlStateNormal];
+//            [label setText:title];
+//        }
         
         if ([session isMe:[user userId]]){
             NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user userId]];
@@ -150,7 +152,6 @@
 
         if ([session isCurrentPlayUser:[user userId]]){
             [label setTextColor:[UIColor redColor]];
-//            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
         
         // set images
@@ -185,7 +186,7 @@
 
 - (void)updateStartButton
 {
-    if ([[DrawGameService defaultService] isMeHost]){
+    if ([self isMyTurn]){
         NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart (%d)"), _currentTimeCounter];                           
         [self.startGameButton setTitle:title forState:UIControlStateNormal];
         [self.startGameButton setEnabled:YES];
@@ -206,7 +207,12 @@
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];
-    [UIUtils alert:@"Join Game OK!"];
+    if ([message resultCode] == 0){
+        [UIUtils alert:@"Join Game OK!"];
+    }
+    else{
+        [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
+    }
 
     // update 
     [self scheduleStartTimer];
@@ -217,12 +223,19 @@
 - (void)didStartGame:(GameMessage *)message
 {
     _hasClickStartGame = NO;
-    
     [self hideActivity];
+    
+    if ([message resultCode] == 0){
+        [UIUtils alert:@"Start Game OK!"];
+    }
+    else{
+        [UIUtils alert:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]]];
+    }
+    
     [self updateGameUsers];
     
     SelectWordController *sw = [[SelectWordController alloc] init];
-    [self.navigationController pushViewController:sw animated:YES];
+    [self.navigationController pushViewController:sw animated:NO];
     [sw release];    
 
 }
@@ -233,9 +246,9 @@
     
     //TODO check if the user is the host. 
     [self updateGameUsers];    
-    if (![[DrawGameService defaultService] isMyTurn]) {
+    if (![self isMyTurn]) {
         ShowDrawController *sd = [ShowDrawController instance];
-        [self.navigationController pushViewController:sd animated:YES];        
+        [self.navigationController pushViewController:sd animated:NO];        
     }
 
 //    SelectWordController *sw = [[SelectWordController alloc] init];
@@ -266,9 +279,9 @@
     [[DrawGameService defaultService] startGame];    
 }
 
-- (BOOL)isHost
+- (BOOL)isMyTurn
 {
-    return [[DrawGameService defaultService] isMeHost];
+    return [[DrawGameService defaultService] isMyTurn];
 }
 
 - (IBAction)clickStart:(id)sender
@@ -285,7 +298,7 @@
 
 - (IBAction)clickProlongStart:(id)sender
 {
-    if ([[DrawGameService defaultService] isMeHost]){
+    if ([self isMyTurn]){
         [self prolongStartTimer];
     }
     else{
@@ -315,7 +328,7 @@
 - (void)didGameProlong:(GameMessage *)message
 {
     // receive host prolong game message, prolong the timer
-    if ([self isHost] == NO){
+    if ([self isMyTurn] == NO){
         [self prolongStartTimer];
     }
 }
@@ -347,7 +360,7 @@
     }
     
     // notice all other users
-    if ([self isHost]){
+    if ([self isMyTurn]){
         [[DrawGameService defaultService] prolongGame];
     }
 }
@@ -359,7 +372,7 @@
 
     if (_currentTimeCounter <= 0){
         // start game directly!
-        if ([self isHost]){
+        if ([self isMyTurn]){
             [self resetStartTimer];
             [self startGame];
         }

@@ -14,6 +14,7 @@
 @class GeneralNotification;
 @class GameTurn;
 @class StartGameResponse;
+@class JoinGameResponse;
 
 typedef enum {
     SESSION_WAITING = 0,

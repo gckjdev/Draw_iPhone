@@ -92,12 +92,10 @@
 {
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
     DrawGameService *gameService = [DrawGameService defaultService];
-    if ([gameService isMyTurn]) {
-        DrawViewController *vc = [DrawViewController instance];
-        vc.word = word;
-        [[DrawGameService defaultService] startDraw:word.text level:word.level];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    DrawViewController *vc = [DrawViewController instance];
+    vc.word = word;
+    [[DrawGameService defaultService] startDraw:word.text level:word.level];
+    [self.navigationController pushViewController:vc animated:NO];
 
 }
 @end
