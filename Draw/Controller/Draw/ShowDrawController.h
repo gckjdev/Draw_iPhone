@@ -17,9 +17,13 @@
     DrawGameService *drawGameService;
     DrawView *showView;
     NSString *candidateString;
+    NSTimer *guessTimer;
+    NSInteger retainCount;
 }
 
 @property(nonatomic, retain)Word *word;
 - (IBAction)clickGuessDoneButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
+@property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 
 @end

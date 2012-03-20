@@ -207,7 +207,7 @@ static DrawGameService* _defaultService;
             }
         }
         
-        if ([[message notification] hasGuessWord]){
+        if ([[[message notification] guessWord] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Guess Word> %@, %@, %d",
                     [[message notification] guessWord],
                     [[message notification] guessUserId],

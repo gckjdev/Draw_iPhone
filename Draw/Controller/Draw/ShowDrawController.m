@@ -14,14 +14,21 @@
 #import "Word.h"
 #import "WordManager.h"
 #import "LocaleUtils.h"
+#import "AnimationManager.h"
+
+#define GUESS_TIME 90
 
 @implementation ShowDrawController
+@synthesize guessMsgLabel;
+@synthesize guessDoneButton;
 @synthesize word = _word;
 
 - (void)dealloc
 {
     [_word release];
     [candidateString release];
+    [guessMsgLabel release];
+    [guessDoneButton release];
     [super dealloc];
 }
 
@@ -142,12 +149,56 @@
     }
 }
 
+- (void)popUpGuessMessage:(NSString *)message
+{
+    [self.guessMsgLabel setText:message];
+    [self.guessMsgLabel setHidden:NO];
+    [self.view bringSubviewToFront:self.guessMsgLabel];
+    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
+}
+
+#pragma mark CAAnimation delegate
+//animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.guessMsgLabel setHidden:YES];
+}
+
+
+- (void)setGuessAndPickButtonsEnabled:(BOOL)enabled
+{
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [button setEnabled:enabled];
+    }
+    
+    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [button setEnabled:enabled];
+    }
+}
+- (void)setClockTitle:(NSTimer *)theTimer
+{
+    NSString *title = [NSString stringWithFormat:NSLS(@"猜词中 %d"), --retainCount];
+    [self setTitle:title];
+    if (retainCount == 0) {
+        [theTimer invalidate];
+        theTimer = nil;
+        [self setGuessAndPickButtonsEnabled:NO];
+        [self.guessDoneButton setEnabled:NO];
+    }
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"猜词中"];
+    [self setGuessAndPickButtonsEnabled:NO];
+    [self.guessDoneButton setEnabled:NO];
+    
+    retainCount = GUESS_TIME;
+    [self setTitle:[NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount]];
+
     showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:showView];
     [showView release];
@@ -157,10 +208,13 @@
     
     [self makeWriteButtons];
     [self makePlayerButtons];
+    [self.guessMsgLabel setHidden:YES];
 }
 
 - (void)viewDidUnload
 {
+    [self setGuessMsgLabel:nil];
+    [self setGuessDoneButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -172,6 +226,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)alert:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
 
 #pragma mark DrawGameServiceDelegate
 - (void)didReceiveDrawData:(GameMessage *)message
@@ -185,22 +245,44 @@
 }
 
 
+- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
+{
+    if (![drawGameService.userId isEqualToString:guessUserId]) {
+        //alert the answer;
+        if (!guessCorrect) {
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
+                                     guessUserId, wordText]];            
+        }else{
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
+                                     guessUserId]];
+        }
+        
+    }
+
+}
+
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
 {
     if (self.word) {
         return;
     }
+    
+    //start guess timer
+    
+    guessTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
     self.word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
     [self makePickingButtons];
+    [self setGuessAndPickButtonsEnabled:YES];
+    [self.guessDoneButton setEnabled:YES];
 }
 
 - (void)didConnected
 {
-    
+    [self alert:NSLS(@"connection recover")];
 }
 - (void)didBroken
 {
-    
+    [self alert:NSLS(@"connection broken")];
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -209,12 +291,7 @@
 }
 
 
-- (void)alert:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"Result") message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
-    [alertView show];
-    [alertView release];
-}
+
 
 - (IBAction)clickGuessDoneButton:(id)sender {
     //get the word
@@ -234,6 +311,8 @@
     }else{
         [self alert:NSLS(@"Wrong")];
     }
+    
+    [drawGameService guess:ans guessUserId:drawGameService.session.userId];
     //send the word to the server
 }
 @end

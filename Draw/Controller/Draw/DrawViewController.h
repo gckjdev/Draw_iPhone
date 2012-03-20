@@ -24,6 +24,8 @@
     Word *_word;
     PickColorView *_pickColorView;
     PickLineWidthView *_pickLineWidthView;
+    NSTimer *drawTimer;
+    NSInteger retainCount;
 }
 
 - (IBAction)pickColor:(id)sender;
@@ -43,6 +45,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UIButton *blackButton;
+@property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) PickLineWidthView *pickLineWidthView;
