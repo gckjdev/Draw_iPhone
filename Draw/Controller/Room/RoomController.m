@@ -261,6 +261,8 @@
         return;
     }
     
+    [self resetStartTimer];
+    
     _hasClickStartGame = YES;
     [self showActivityWithText:NSLS(@"kStartingGame")];
     [[DrawGameService defaultService] startGame];    
