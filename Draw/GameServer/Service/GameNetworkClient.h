@@ -39,4 +39,7 @@
                  word:(NSString*)word 
                 level:(int)level;
 
+- (void)sendProlongGame:(NSString*)userId 
+              sessionId:(long)sessionId;
+
 @end

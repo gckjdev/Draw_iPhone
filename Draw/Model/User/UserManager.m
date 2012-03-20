@@ -40,7 +40,8 @@ static UserManager* _defaultManager;
 - (NSString*)avatarURL
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults objectForKey:KEY_AVATAR_URL];
+    NSString* value = [userDefaults objectForKey:KEY_AVATAR_URL];
+    return value;
 }
 
 - (BOOL)hasUser
@@ -56,7 +57,8 @@ static UserManager* _defaultManager;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:userId forKey:KEY_USERID];
     [userDefaults setObject:nickName forKey:KEY_NICKNAME];
-    [userDefaults setObject:avatarURL forKey:avatarURL];
+    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+    [userDefaults synchronize];
 }
 
 

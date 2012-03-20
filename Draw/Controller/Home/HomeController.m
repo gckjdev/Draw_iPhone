@@ -39,6 +39,8 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     // Do any additional setup after loading the view from its nib.
     [self showActivityWithText:@"kConnectingServer"];
     
@@ -46,13 +48,13 @@
     [[DrawGameService defaultService] setHomeDelegate:self];
     [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
-    
+    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     [self hideActivity];
-    [super viewDidAppear:animated];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -70,13 +72,7 @@
 
 - (IBAction)clickStart:(id)sender
 {        
-    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
-    if (app.roomController == nil){    
-        app.roomController = [[[RoomController alloc] init] autorelease];
-    }
-
-    [self.navigationController pushViewController:app.roomController 
-                           animatedWithTransition:UIViewAnimationTransitionCurlUp];
+    [RoomController showRoom:self];
 }
 
 - (void)didBroken

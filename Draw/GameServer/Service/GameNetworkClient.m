@@ -63,6 +63,20 @@ static GameNetworkClient* _defaultGameNetworkClient;
 
 #pragma Methods
 
+- (void)sendSimpleMessage:(int)command
+                   userId:(NSString*)userId 
+                sessionId:(long)sessionId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:command];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];                
+}
+
 - (void)sendJoinGameRequest:(NSString*)userId 
                    nickName:(NSString*)nickName 
                      avatar:(NSString*)avatar
@@ -94,20 +108,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
 }
 
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId
-{
-//    StartGameRequest_Builder *requestBuilder = [[[StartGameRequest_Builder alloc] init] autorelease];
-//    [requestBuilder setUserId:userId];
-//    [requestBuilder setSessionId:sessionId];
-    
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeStartGameRequest];
-    [messageBuilder setMessageId:[self generateMessageId]];
-    [messageBuilder setSessionId:sessionId];
-    [messageBuilder setUserId:userId];
-//    [messageBuilder setStartGameRequest:[requestBuilder build]];
-    
-    GameMessage* message = [messageBuilder build];
-    [self sendData:[message data]];
+{    
+    [self sendSimpleMessage:GameCommandTypeStartGameRequest userId:userId sessionId:sessionId];    
 }
 
 
@@ -136,14 +138,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
 - (void)sendCleanDraw:(NSString*)userId 
             sessionId:(long)sessionId
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeCleanDrawRequest];
-    [messageBuilder setMessageId:[self generateMessageId]];
-    [messageBuilder setUserId:userId];
-    [messageBuilder setSessionId:sessionId];
-    
-    GameMessage* gameMessage = [messageBuilder build];
-    [self sendData:[gameMessage data]];        
+    [self sendSimpleMessage:GameCommandTypeCleanDrawRequest userId:userId sessionId:sessionId];
 }
 
 - (void)sendStartDraw:(NSString*)userId 
@@ -164,6 +159,12 @@ static GameNetworkClient* _defaultGameNetworkClient;
     
     GameMessage* gameMessage = [messageBuilder build];
     [self sendData:[gameMessage data]];    
+}
+
+- (void)sendProlongGame:(NSString*)userId 
+              sessionId:(long)sessionId
+{
+    [self sendSimpleMessage:GameCommandTypeProlongGameRequest userId:userId sessionId:sessionId];
 }
 
 
