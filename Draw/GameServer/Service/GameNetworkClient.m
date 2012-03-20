@@ -188,5 +188,10 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendSimpleMessage:GameCommandTypeProlongGameRequest userId:userId sessionId:sessionId];
 }
 
+- (void)sendQuitGame:(NSString*)userId 
+           sessionId:(long)sessionId
+{
+    [self sendSimpleMessage:GameCommandTypeQuitGameRequest userId:userId sessionId:sessionId];    
+}
 
 @end

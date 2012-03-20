@@ -68,6 +68,8 @@
 - (void)cleanDraw;
 - (void)startGame;
 - (void)joinGame;
+- (void)quitGame;
+
 - (BOOL)isMyTurn;
 - (BOOL)isMeHost;
 - (void)changeRoom;
@@ -78,4 +80,6 @@
 
 - (void)startDraw:(NSString*)word level:(int)level;
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId;
+
+
 @end
