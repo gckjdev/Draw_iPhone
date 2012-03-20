@@ -25,6 +25,9 @@
 - (void)didUserQuitGame:(GameMessage *)message;
 - (void)didGameProlong:(GameMessage *)message;
 
+- (void)didGameTurnGuessStart:(GameMessage *)message;
+- (void)didGameTurnComplete:(GameMessage *)message;
+
 - (void)didConnected;
 - (void)didBroken;
 

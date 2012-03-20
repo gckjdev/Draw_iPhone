@@ -15,6 +15,8 @@ typedef enum {
   GameCommandTypeCleanDrawResponse = 14,
   GameCommandTypeProlongGameRequest = 15,
   GameCommandTypeProlongGameResponse = 16,
+  GameCommandTypeCompleteGameRequest = 17,
+  GameCommandTypeCompleteGameResponse = 18,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeUserQuitNotificationRequest = 53,
@@ -29,9 +31,12 @@ typedef enum {
   GameCommandTypeCleanDrawNotificationResponse = 74,
   GameCommandTypeProlongGameNotificationRequest = 75,
   GameCommandTypeProlongGameNotificationResponse = 76,
+  GameCommandTypeGameTurnCompleteNotificationRequest = 77,
+  GameCommandTypeGameTurnCompleteNotificationResponse = 78,
   GameCommandTypeLocalChannelDisconnect = 201,
   GameCommandTypeLocalFinishGame = 203,
   GameCommandTypeLocalJoinGame = 204,
+  GameCommandTypeLocalGameTurnComplete = 205,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);

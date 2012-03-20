@@ -33,6 +33,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCleanDrawResponse:
     case GameCommandTypeProlongGameRequest:
     case GameCommandTypeProlongGameResponse:
+    case GameCommandTypeCompleteGameRequest:
+    case GameCommandTypeCompleteGameResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:
@@ -47,9 +49,12 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCleanDrawNotificationResponse:
     case GameCommandTypeProlongGameNotificationRequest:
     case GameCommandTypeProlongGameNotificationResponse:
+    case GameCommandTypeGameTurnCompleteNotificationRequest:
+    case GameCommandTypeGameTurnCompleteNotificationResponse:
     case GameCommandTypeLocalChannelDisconnect:
     case GameCommandTypeLocalFinishGame:
     case GameCommandTypeLocalJoinGame:
+    case GameCommandTypeLocalGameTurnComplete:
       return YES;
     default:
       return NO;
