@@ -191,10 +191,25 @@ static DrawGameService* _defaultService;
                                             level:[[message notification] level]];
             }
         }
+        
+        if ([[message notification] hasGuessWord]){
+            PPDebug(@"handleNewDrawDataNotification <Receive Guess Word> %@, %@, %d",
+                    [[message notification] guessWord],
+                    [[message notification] guessUserId],
+                    [[message notification] guessCorrect]);
+            
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveGuessWord:guessUserId:guessCorrect:)]) {
+                [_drawDelegate didReceiveGuessWord:[[message notification] guessWord]
+                                       guessUserId:[[message notification] guessUserId]
+                                      guessCorrect:[[message notification] guessCorrect]];
+            }            
+        }
 
-        PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
-        if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
-            [_drawDelegate didReceiveDrawData:message];
+        if ([[[message notification] pointsList] count] > 0){
+            PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
+                [_drawDelegate didReceiveDrawData:message];
+            }
         }
     });
 }
@@ -329,6 +344,14 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendProlongGame:_userId
                           sessionId:[_session sessionId]];
+}
+
+- (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId
+{
+    [_networkClient sendGuessWord:word
+                      guessUserId:guessUserId
+                           userId:_userId
+                        sessionId:[_session sessionId]];
 }
 
 @end

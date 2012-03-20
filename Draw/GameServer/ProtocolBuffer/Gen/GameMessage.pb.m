@@ -1028,6 +1028,9 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
+@property (retain) NSString* guessWord;
+@property (retain) NSString* guessUserId;
+@property BOOL guessCorrect;
 @end
 
 @implementation SendDrawDataRequest
@@ -1061,9 +1064,37 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
   hasColor_ = !!value;
 }
 @synthesize color;
+- (BOOL) hasGuessWord {
+  return !!hasGuessWord_;
+}
+- (void) setHasGuessWord:(BOOL) value {
+  hasGuessWord_ = !!value;
+}
+@synthesize guessWord;
+- (BOOL) hasGuessUserId {
+  return !!hasGuessUserId_;
+}
+- (void) setHasGuessUserId:(BOOL) value {
+  hasGuessUserId_ = !!value;
+}
+@synthesize guessUserId;
+- (BOOL) hasGuessCorrect {
+  return !!hasGuessCorrect_;
+}
+- (void) setHasGuessCorrect:(BOOL) value {
+  hasGuessCorrect_ = !!value;
+}
+- (BOOL) guessCorrect {
+  return !!guessCorrect_;
+}
+- (void) setGuessCorrect:(BOOL) value {
+  guessCorrect_ = !!value;
+}
 - (void) dealloc {
   self.word = nil;
   self.mutablePointsList = nil;
+  self.guessWord = nil;
+  self.guessUserId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1072,6 +1103,9 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
     self.level = 0;
     self.width = 0;
     self.color = 0;
+    self.guessWord = @"";
+    self.guessUserId = @"";
+    self.guessCorrect = NO;
   }
   return self;
 }
@@ -1117,6 +1151,15 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (self.hasColor) {
     [output writeInt32:23 value:self.color];
   }
+  if (self.hasGuessWord) {
+    [output writeString:41 value:self.guessWord];
+  }
+  if (self.hasGuessUserId) {
+    [output writeString:42 value:self.guessUserId];
+  }
+  if (self.hasGuessCorrect) {
+    [output writeBool:43 value:self.guessCorrect];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1149,6 +1192,15 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   }
   if (self.hasColor) {
     size += computeInt32Size(23, self.color);
+  }
+  if (self.hasGuessWord) {
+    size += computeStringSize(41, self.guessWord);
+  }
+  if (self.hasGuessUserId) {
+    size += computeStringSize(42, self.guessUserId);
+  }
+  if (self.hasGuessCorrect) {
+    size += computeBoolSize(43, self.guessCorrect);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1243,6 +1295,15 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (other.hasColor) {
     [self setColor:other.color];
   }
+  if (other.hasGuessWord) {
+    [self setGuessWord:other.guessWord];
+  }
+  if (other.hasGuessUserId) {
+    [self setGuessUserId:other.guessUserId];
+  }
+  if (other.hasGuessCorrect) {
+    [self setGuessCorrect:other.guessCorrect];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1287,6 +1348,18 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       }
       case 184: {
         [self setColor:[input readInt32]];
+        break;
+      }
+      case 330: {
+        [self setGuessWord:[input readString]];
+        break;
+      }
+      case 338: {
+        [self setGuessUserId:[input readString]];
+        break;
+      }
+      case 344: {
+        [self setGuessCorrect:[input readBool]];
         break;
       }
     }
@@ -1385,6 +1458,54 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
 - (SendDrawDataRequest_Builder*) clearColor {
   result.hasColor = NO;
   result.color = 0;
+  return self;
+}
+- (BOOL) hasGuessWord {
+  return result.hasGuessWord;
+}
+- (NSString*) guessWord {
+  return result.guessWord;
+}
+- (SendDrawDataRequest_Builder*) setGuessWord:(NSString*) value {
+  result.hasGuessWord = YES;
+  result.guessWord = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearGuessWord {
+  result.hasGuessWord = NO;
+  result.guessWord = @"";
+  return self;
+}
+- (BOOL) hasGuessUserId {
+  return result.hasGuessUserId;
+}
+- (NSString*) guessUserId {
+  return result.guessUserId;
+}
+- (SendDrawDataRequest_Builder*) setGuessUserId:(NSString*) value {
+  result.hasGuessUserId = YES;
+  result.guessUserId = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearGuessUserId {
+  result.hasGuessUserId = NO;
+  result.guessUserId = @"";
+  return self;
+}
+- (BOOL) hasGuessCorrect {
+  return result.hasGuessCorrect;
+}
+- (BOOL) guessCorrect {
+  return result.guessCorrect;
+}
+- (SendDrawDataRequest_Builder*) setGuessCorrect:(BOOL) value {
+  result.hasGuessCorrect = YES;
+  result.guessCorrect = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearGuessCorrect {
+  result.hasGuessCorrect = NO;
+  result.guessCorrect = NO;
   return self;
 }
 @end
@@ -1543,6 +1664,9 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* word;
 @property int32_t level;
 @property int32_t round;
+@property (retain) NSString* guessWord;
+@property (retain) NSString* guessUserId;
+@property BOOL guessCorrect;
 @end
 
 @implementation GeneralNotification
@@ -1639,6 +1763,32 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasRound_ = !!value;
 }
 @synthesize round;
+- (BOOL) hasGuessWord {
+  return !!hasGuessWord_;
+}
+- (void) setHasGuessWord:(BOOL) value {
+  hasGuessWord_ = !!value;
+}
+@synthesize guessWord;
+- (BOOL) hasGuessUserId {
+  return !!hasGuessUserId_;
+}
+- (void) setHasGuessUserId:(BOOL) value {
+  hasGuessUserId_ = !!value;
+}
+@synthesize guessUserId;
+- (BOOL) hasGuessCorrect {
+  return !!hasGuessCorrect_;
+}
+- (void) setHasGuessCorrect:(BOOL) value {
+  hasGuessCorrect_ = !!value;
+}
+- (BOOL) guessCorrect {
+  return !!guessCorrect_;
+}
+- (void) setGuessCorrect:(BOOL) value {
+  guessCorrect_ = !!value;
+}
 - (void) dealloc {
   self.sessionHost = nil;
   self.currentPlayUserId = nil;
@@ -1649,6 +1799,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.userAvatar = nil;
   self.mutablePointsList = nil;
   self.word = nil;
+  self.guessWord = nil;
+  self.guessUserId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1666,6 +1818,9 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.word = @"";
     self.level = 0;
     self.round = 0;
+    self.guessWord = @"";
+    self.guessUserId = @"";
+    self.guessCorrect = NO;
   }
   return self;
 }
@@ -1738,6 +1893,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasRound) {
     [output writeInt32:33 value:self.round];
   }
+  if (self.hasGuessWord) {
+    [output writeString:41 value:self.guessWord];
+  }
+  if (self.hasGuessUserId) {
+    [output writeString:42 value:self.guessUserId];
+  }
+  if (self.hasGuessCorrect) {
+    [output writeBool:43 value:self.guessCorrect];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1797,6 +1961,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasRound) {
     size += computeInt32Size(33, self.round);
+  }
+  if (self.hasGuessWord) {
+    size += computeStringSize(41, self.guessWord);
+  }
+  if (self.hasGuessUserId) {
+    size += computeStringSize(42, self.guessUserId);
+  }
+  if (self.hasGuessCorrect) {
+    size += computeBoolSize(43, self.guessCorrect);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1918,6 +2091,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasRound) {
     [self setRound:other.round];
   }
+  if (other.hasGuessWord) {
+    [self setGuessWord:other.guessWord];
+  }
+  if (other.hasGuessUserId) {
+    [self setGuessUserId:other.guessUserId];
+  }
+  if (other.hasGuessCorrect) {
+    [self setGuessCorrect:other.guessCorrect];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1998,6 +2180,18 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 264: {
         [self setRound:[input readInt32]];
+        break;
+      }
+      case 330: {
+        [self setGuessWord:[input readString]];
+        break;
+      }
+      case 338: {
+        [self setGuessUserId:[input readString]];
+        break;
+      }
+      case 344: {
+        [self setGuessCorrect:[input readBool]];
         break;
       }
     }
@@ -2240,6 +2434,54 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearRound {
   result.hasRound = NO;
   result.round = 0;
+  return self;
+}
+- (BOOL) hasGuessWord {
+  return result.hasGuessWord;
+}
+- (NSString*) guessWord {
+  return result.guessWord;
+}
+- (GeneralNotification_Builder*) setGuessWord:(NSString*) value {
+  result.hasGuessWord = YES;
+  result.guessWord = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearGuessWord {
+  result.hasGuessWord = NO;
+  result.guessWord = @"";
+  return self;
+}
+- (BOOL) hasGuessUserId {
+  return result.hasGuessUserId;
+}
+- (NSString*) guessUserId {
+  return result.guessUserId;
+}
+- (GeneralNotification_Builder*) setGuessUserId:(NSString*) value {
+  result.hasGuessUserId = YES;
+  result.guessUserId = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearGuessUserId {
+  result.hasGuessUserId = NO;
+  result.guessUserId = @"";
+  return self;
+}
+- (BOOL) hasGuessCorrect {
+  return result.hasGuessCorrect;
+}
+- (BOOL) guessCorrect {
+  return result.guessCorrect;
+}
+- (GeneralNotification_Builder*) setGuessCorrect:(BOOL) value {
+  result.hasGuessCorrect = YES;
+  result.guessCorrect = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearGuessCorrect {
+  result.hasGuessCorrect = NO;
+  result.guessCorrect = NO;
   return self;
 }
 @end

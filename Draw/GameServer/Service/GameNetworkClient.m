@@ -161,6 +161,27 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendData:[gameMessage data]];    
 }
 
+- (void)sendGuessWord:(NSString*)guessWord
+          guessUserId:(NSString*)guessUserId
+               userId:(NSString*)userId
+            sessionId:(long)sessionId
+{
+    SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
+    [requestBuilder setGuessWord:guessWord];
+    [requestBuilder setGuessUserId:guessUserId];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setSendDrawDataRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];    
+
+}
+
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId
 {

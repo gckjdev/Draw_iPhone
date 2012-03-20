@@ -45,6 +45,10 @@ message SendDrawDataRequest {
   repeated int32 points = 1 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
+  
+  optional string guessWord = 41;
+  optional string guessUserId = 42;
+  optional bool guessCorrect = 43;  
 }
 
 message SendDrawDataResponse{
@@ -73,10 +77,15 @@ message GeneralNotification{
   optional float width = 22;
   optional int32 color = 23;
   
+  // word data
   optional string word = 31;
   optional int32 level = 32;
   optional int32 round = 33;
   
+  // guess data
+  optional string guessWord = 41;
+  optional string guessUserId = 42;
+  optional bool guessCorrect = 43;
 }
 
 message GameMessage {

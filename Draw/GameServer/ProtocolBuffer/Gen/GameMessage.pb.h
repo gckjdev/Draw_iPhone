@@ -283,14 +283,20 @@
 
 @interface SendDrawDataRequest : PBGeneratedMessage {
 @private
+  BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
   BOOL hasLevel_:1;
   BOOL hasColor_:1;
   BOOL hasWord_:1;
+  BOOL hasGuessWord_:1;
+  BOOL hasGuessUserId_:1;
+  BOOL guessCorrect_:1;
   Float32 width;
   int32_t level;
   int32_t color;
   NSString* word;
+  NSString* guessWord;
+  NSString* guessUserId;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -298,10 +304,16 @@
 - (BOOL) hasLevel;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+- (BOOL) hasGuessWord;
+- (BOOL) hasGuessUserId;
+- (BOOL) hasGuessCorrect;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
+@property (readonly, retain) NSString* guessWord;
+@property (readonly, retain) NSString* guessUserId;
+- (BOOL) guessCorrect;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -365,6 +377,21 @@
 - (int32_t) color;
 - (SendDrawDataRequest_Builder*) setColor:(int32_t) value;
 - (SendDrawDataRequest_Builder*) clearColor;
+
+- (BOOL) hasGuessWord;
+- (NSString*) guessWord;
+- (SendDrawDataRequest_Builder*) setGuessWord:(NSString*) value;
+- (SendDrawDataRequest_Builder*) clearGuessWord;
+
+- (BOOL) hasGuessUserId;
+- (NSString*) guessUserId;
+- (SendDrawDataRequest_Builder*) setGuessUserId:(NSString*) value;
+- (SendDrawDataRequest_Builder*) clearGuessUserId;
+
+- (BOOL) hasGuessCorrect;
+- (BOOL) guessCorrect;
+- (SendDrawDataRequest_Builder*) setGuessCorrect:(BOOL) value;
+- (SendDrawDataRequest_Builder*) clearGuessCorrect;
 @end
 
 @interface SendDrawDataResponse : PBGeneratedMessage {
@@ -408,32 +435,38 @@
 
 @interface GeneralNotification : PBGeneratedMessage {
 @private
+  BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
   BOOL hasSessionStatus_:1;
-  BOOL hasColor_:1;
-  BOOL hasLevel_:1;
   BOOL hasRound_:1;
-  BOOL hasSessionHost_:1;
-  BOOL hasCurrentPlayUserId_:1;
-  BOOL hasNextPlayUserId_:1;
-  BOOL hasNewUserId_:1;
-  BOOL hasQuitUserId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasUserAvatar_:1;
+  BOOL hasLevel_:1;
+  BOOL hasColor_:1;
+  BOOL hasGuessUserId_:1;
+  BOOL hasGuessWord_:1;
   BOOL hasWord_:1;
+  BOOL hasUserAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasQuitUserId_:1;
+  BOOL hasNewUserId_:1;
+  BOOL hasNextPlayUserId_:1;
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasSessionHost_:1;
+  BOOL guessCorrect_:1;
   Float32 width;
   int32_t sessionStatus;
-  int32_t color;
-  int32_t level;
   int32_t round;
-  NSString* sessionHost;
-  NSString* currentPlayUserId;
-  NSString* nextPlayUserId;
-  NSString* newUserId;
-  NSString* quitUserId;
-  NSString* nickName;
-  NSString* userAvatar;
+  int32_t level;
+  int32_t color;
+  NSString* guessUserId;
+  NSString* guessWord;
   NSString* word;
+  NSString* userAvatar;
+  NSString* nickName;
+  NSString* quitUserId;
+  NSString* newUserId;
+  NSString* nextPlayUserId;
+  NSString* currentPlayUserId;
+  NSString* sessionHost;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -450,6 +483,9 @@
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
 - (BOOL) hasRound;
+- (BOOL) hasGuessWord;
+- (BOOL) hasGuessUserId;
+- (BOOL) hasGuessCorrect;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
@@ -463,6 +499,9 @@
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) int32_t round;
+@property (readonly, retain) NSString* guessWord;
+@property (readonly, retain) NSString* guessUserId;
+- (BOOL) guessCorrect;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -571,6 +610,21 @@
 - (int32_t) round;
 - (GeneralNotification_Builder*) setRound:(int32_t) value;
 - (GeneralNotification_Builder*) clearRound;
+
+- (BOOL) hasGuessWord;
+- (NSString*) guessWord;
+- (GeneralNotification_Builder*) setGuessWord:(NSString*) value;
+- (GeneralNotification_Builder*) clearGuessWord;
+
+- (BOOL) hasGuessUserId;
+- (NSString*) guessUserId;
+- (GeneralNotification_Builder*) setGuessUserId:(NSString*) value;
+- (GeneralNotification_Builder*) clearGuessUserId;
+
+- (BOOL) hasGuessCorrect;
+- (BOOL) guessCorrect;
+- (GeneralNotification_Builder*) setGuessCorrect:(BOOL) value;
+- (GeneralNotification_Builder*) clearGuessCorrect;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
