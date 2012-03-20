@@ -15,6 +15,7 @@
 @optional;
 - (void)didReceiveDrawData:(GameMessage *)message;
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
+- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
 - (void)didJoinGame:(GameMessage *)message;
@@ -73,5 +74,5 @@
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 
 - (void)startDraw:(NSString*)word level:(int)level;
-
+- (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId;
 @end

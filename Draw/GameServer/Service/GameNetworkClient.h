@@ -42,4 +42,10 @@
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId;
 
+- (void)sendGuessWord:(NSString*)guessWord
+          guessUserId:(NSString*)guessUserId
+               userId:(NSString*)userId
+            sessionId:(long)sessionId;
+
+
 @end
