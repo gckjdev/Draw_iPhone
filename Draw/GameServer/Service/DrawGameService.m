@@ -58,7 +58,7 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.10" port:8080];
+    [_networkClient start:@"192.168.1.9" port:8080];
 
     return self;
 }
@@ -72,7 +72,7 @@ static DrawGameService* _defaultService;
 }
 - (BOOL)isMyTurn
 {
-    if ([self.session isHostUser:_userId]) {
+    if ([self.session isCurrentPlayUser:_userId]) {
         return YES;
     }
     return NO;
@@ -101,7 +101,7 @@ static DrawGameService* _defaultService;
     [self.gameObserverList removeObject:observer];
 }
 
-#pragma Message Handle Methods
+#pragma mark Message Delegae Handle Methods
 
 - (void)handleJoinGameResponse:(GameMessage*)message
 {
@@ -274,7 +274,7 @@ static DrawGameService* _defaultService;
 }
 
 
-#pragma Methods for External (UI Thread)
+#pragma mark Methods for External (UI Thread)
 
 - (void)joinGame
 {

@@ -121,7 +121,7 @@
     
     [self setTitle:[NSString stringWithFormat:@"画画中(%@)",self.word.text]];       
 
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 50, 320, 400)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView release];

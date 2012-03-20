@@ -48,6 +48,7 @@
     self.userList = [NSMutableArray array];
     self.turnList = [NSMutableArray array];
     self.currentTurn = [[[GameTurn alloc] init] autorelease];
+    self.status = SESSION_WAITING;
     return self;
 }
 
@@ -181,5 +182,16 @@
         [_userList removeObject:userFound];
     }
 }
+
+- (void)startPlay
+{
+    self.status = SESSION_PLAYING;
+}
+
+- (void)finishPlay
+{
+    self.status = SESSION_WAITING;
+}
+
 
 @end

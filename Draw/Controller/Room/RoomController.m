@@ -15,6 +15,7 @@
 #import "PPApplication.h"
 #import "DrawAppDelegate.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "PPDebug.h"
 
 @interface RoomController ()
 
@@ -86,6 +87,7 @@
     
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] registerObserver:self];
+    PPDebug(@"<registerObserver> room controller");
 
     [[DrawGameService defaultService] joinGame];        
 }
@@ -94,7 +96,8 @@
 {
     [self hideActivity];
     [super viewDidDisappear:animated];
-    [[DrawGameService defaultService] unregisterObserver:self];    
+    [[DrawGameService defaultService] unregisterObserver:self]; 
+    PPDebug(@"<unregisterObserver> room controller");
 }
 
 - (void)viewDidUnload
@@ -217,7 +220,7 @@
     
     [self hideActivity];
     [self updateGameUsers];
-
+    
     SelectWordController *sw = [[SelectWordController alloc] init];
     [self.navigationController pushViewController:sw animated:YES];
     [sw release];    

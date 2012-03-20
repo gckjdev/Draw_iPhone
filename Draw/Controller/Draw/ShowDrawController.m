@@ -13,6 +13,8 @@
 #import "GameSession.h"
 #import "Word.h"
 #import "WordManager.h"
+#import "LocaleUtils.h"
+
 @implementation ShowDrawController
 @synthesize word = _word;
 
@@ -28,6 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.word = nil;
     }
     return self;
 }
@@ -43,7 +46,7 @@
 #pragma mark - init the buttons
 
 #define WRITE_BUTTON_TAG_START 11
-#define WRITE_BUTTON_TAG_END 18
+#define WRITE_BUTTON_TAG_END 17
 #define PICK_BUTTON_TAG_START 21
 #define PICK_BUTTON_TAG_END 36
 #define PLAYER_BUTTON_TAG_START 1
@@ -79,7 +82,6 @@
 {
     NSString *text = [button titleForState:UIControlStateNormal];
     if ([text length] != 0) {
-        //TODO set the title nil, and reset the picking button.
         UIButton *pButton = [self getTheCandidateButtonForText:text];
         if (pButton) {
             [pButton setTitle:text forState:UIControlStateNormal];            
@@ -92,10 +94,11 @@
 {
     NSString *text = [button titleForState:UIControlStateNormal];
     if ([text length] != 0) {
-        //TODO find out the empty button and set the button title.
         UIButton *wButton = [self getTheFirstEmptyButton];
-        [wButton setTitle:text forState:UIControlStateNormal];
-        [button setTitle:nil forState:UIControlStateNormal];
+        if (wButton) {
+            [wButton setTitle:text forState:UIControlStateNormal];
+            [button setTitle:nil forState:UIControlStateNormal];            
+        }
     }
 }
 
@@ -114,12 +117,12 @@
     
     candidateString = [[WordManager defaultManager] randLetterWithWord:self.word];
     [candidateString retain];
-    NSLog(@"candidate String = %@", candidateString);
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
         NSString *string = [candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
         [button setTitle:string forState:UIControlStateNormal];
+        [self.view bringSubviewToFront:button];
     }
 }
 
@@ -134,7 +137,6 @@
     for (GameSessionUser *user in session.userList) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         button.hidden = NO;
-        NSLog(@"userId = %@", user.userId);
         [button setTitle:user.userId forState:UIControlStateNormal];
         ++ i;
     }
@@ -146,7 +148,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"猜词中"];
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 100, 320, 200)];
+    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:showView];
     [showView release];
     [showView setDrawEnabled:NO];
@@ -154,7 +156,6 @@
     [drawGameService setDrawDelegate:self];
     
     [self makeWriteButtons];
-//    [self makePickedButtons];
     [self makePlayerButtons];
 }
 
@@ -171,14 +172,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-//- (id)initWithWord:(Word *)word
-//{
-//    self = [super init];
-//    if (self) {
-//        self.word = word;
-//    }
-//    return self;
-//}
 
 #pragma mark DrawGameServiceDelegate
 - (void)didReceiveDrawData:(GameMessage *)message
@@ -194,6 +187,9 @@
 
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
 {
+    if (self.word) {
+        return;
+    }
     self.word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
     [self makePickingButtons];
 }
@@ -213,4 +209,31 @@
 }
 
 
+- (void)alert:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"Result") message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
+- (IBAction)clickGuessDoneButton:(id)sender {
+    //get the word
+    NSString *ans = @"";
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        NSString *text = [button titleForState:UIControlStateNormal];
+        if (text) {
+            ans = [NSString stringWithFormat:@"%@%@",ans,text];
+        }
+    }
+    
+    BOOL flag = [ans isEqualToString:self.word.text];
+    //alter if the word is correct
+    if (flag) {
+        [self alert:NSLS(@"Correct!")];
+    }else{
+        [self alert:NSLS(@"Wrong")];
+    }
+    //send the word to the server
+}
 @end

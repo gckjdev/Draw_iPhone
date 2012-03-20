@@ -15,6 +15,11 @@
 @class GameTurn;
 @class StartGameResponse;
 
+typedef enum {
+    SESSION_WAITING = 0,
+    SESSION_PLAYING        
+} SessionStatus ;
+
 @interface GameSession : NSObject
 
 @property (nonatomic, retain) NSString *roomName;
@@ -34,5 +39,8 @@
 - (BOOL)isCurrentPlayUser:(NSString*)userId;
 - (BOOL)isMe:(NSString*)userId;
 - (BOOL)isHostUser:(NSString*)userId;
+
+- (void)startPlay;
+- (void)finishPlay;
 
 @end

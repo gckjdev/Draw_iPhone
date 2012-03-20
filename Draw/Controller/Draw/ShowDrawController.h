@@ -20,7 +20,6 @@
 }
 
 @property(nonatomic, retain)Word *word;
-
-//- (id)initWithWord:(Word *)word;
+- (IBAction)clickGuessDoneButton:(id)sender;
 
 @end
