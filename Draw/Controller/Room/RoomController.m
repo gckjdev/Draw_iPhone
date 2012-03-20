@@ -234,10 +234,8 @@
     //TODO check if the user is the host. 
     [self updateGameUsers];    
     if (![[DrawGameService defaultService] isMyTurn]) {
-        ShowDrawController *sd = [[ShowDrawController alloc] init];
-        [self.navigationController pushViewController:sd animated:YES];
-        [sd release];
-        
+        ShowDrawController *sd = [ShowDrawController instance];
+        [self.navigationController pushViewController:sd animated:YES];        
     }
 
 //    SelectWordController *sw = [[SelectWordController alloc] init];

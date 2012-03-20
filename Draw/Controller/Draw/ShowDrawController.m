@@ -15,8 +15,18 @@
 #import "WordManager.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
+#import "GameTurn.h"
 
-#define GUESS_TIME 90
+ShowDrawController *staticShowDrawController = nil;
+ShowDrawController *GlobalGetShowDrawController()
+{
+    if (staticShowDrawController == nil) {
+        staticShowDrawController = [[ShowDrawController alloc] init];
+    }
+    return staticShowDrawController;
+}
+
+#define GUESS_TIME 119
 
 @implementation ShowDrawController
 @synthesize guessMsgLabel;
@@ -40,6 +50,11 @@
         self.word = nil;
     }
     return self;
+}
+
++ (ShowDrawController *)instance
+{
+    return GlobalGetShowDrawController();
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,6 +131,7 @@
     for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:nil forState:UIControlStateNormal];
     }
 }
 
@@ -179,38 +195,61 @@
 }
 - (void)setClockTitle:(NSTimer *)theTimer
 {
-    NSString *title = [NSString stringWithFormat:NSLS(@"猜词中 %d"), --retainCount];
-    [self setTitle:title];
-    if (retainCount == 0) {
+    --retainCount;
+    if (retainCount <= 0) {
         [theTimer invalidate];
         theTimer = nil;
         [self setGuessAndPickButtonsEnabled:NO];
         [self.guessDoneButton setEnabled:NO];
+        retainCount = 0;
     }
+    NSString *title = [NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount];
+    [self setTitle:title];
 }
+
+- (void)restWord:(NSString *)text level:(WordLevel)level
+{
+    self.word = [[[Word alloc] initWithText:text level:level]autorelease];
+    [self makeWriteButtons];
+    [self makePickingButtons];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setGuessAndPickButtonsEnabled:NO];
-    [self.guessDoneButton setEnabled:NO];
-    
-    retainCount = GUESS_TIME;
-    [self setTitle:[NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount]];
 
+    showView = nil;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [showView removeFromSuperview];
     showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:showView];
     [showView release];
+    
+    [self setGuessAndPickButtonsEnabled:NO];
+    [self.guessDoneButton setEnabled:NO];
     [showView setDrawEnabled:NO];
     drawGameService = [DrawGameService defaultService];
     [drawGameService setDrawDelegate:self];
-    
+    retainCount = GUESS_TIME;
+    [self setTitle:[NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount]];
     [self makeWriteButtons];
     [self makePlayerButtons];
+    
+    GameTurn *turn = drawGameService.session.currentTurn;
+    if (turn && turn.word) {
+        [self restWord:turn.word level:turn.level];
+    }
+    
     [self.guessMsgLabel setHidden:YES];
 }
-
 - (void)viewDidUnload
 {
     [self setGuessMsgLabel:nil];
@@ -263,17 +302,28 @@
 
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
 {
-    if (self.word) {
-        return;
+    if (wordText) {
+        [self restWord:wordText level:wordLevel];
     }
     
+
+//    self.word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
+//    
+//    [self makePickingButtons];
+
+}
+
+- (void)didGameTurnGuessStart:(GameMessage *)message
+{
     //start guess timer
     
     guessTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
-    self.word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-    [self makePickingButtons];
     [self setGuessAndPickButtonsEnabled:YES];
-    [self.guessDoneButton setEnabled:YES];
+    [self.guessDoneButton setEnabled:YES];    
+}
+- (void)didGameTurnComplete:(GameMessage *)message
+{
+    [self alert:@"Game is complete"];
 }
 
 - (void)didConnected

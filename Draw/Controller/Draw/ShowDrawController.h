@@ -26,4 +26,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 
++ (ShowDrawController *)instance;
+
 @end
+
+extern ShowDrawController *GlobalGetShowDrawController();

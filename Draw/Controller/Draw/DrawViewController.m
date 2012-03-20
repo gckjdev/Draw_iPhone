@@ -19,6 +19,15 @@
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
 
+DrawViewController *staticDrawViewController = nil;
+DrawViewController *GlobalGetDrawViewController()
+{
+    if (staticDrawViewController == nil) {
+        staticDrawViewController = [[DrawViewController alloc] init];
+    }
+    return staticDrawViewController;
+}
+
 @implementation DrawViewController
 @synthesize playButton;
 @synthesize redButton;
@@ -60,16 +69,21 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-- (id)initWithWord:(Word *)word
++ (DrawViewController *)instance
 {
-    self = [super init];
-    if (self) {
-        self.word = word; 
-    }
-    return self;
-    
+    return GlobalGetDrawViewController();
 }
+
+#pragma mark - View lifecycle
+//- (id)initWithWord:(Word *)word
+//{
+//    self = [super init];
+//    if (self) {
+//        self.word = word; 
+//    }
+//    return self;
+//    
+//}
 
 - (void)addPickLineWidthView
 {
@@ -140,37 +154,51 @@
 
 - (void)setClockTitle:(NSTimer *)theTimer
 {
-    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, --retainCount];
-    [self setTitle:title];
-    if (retainCount == 0) {
+    --retainCount;
+    if (retainCount <= 0) {
         [theTimer invalidate];
         theTimer = nil;
+        retainCount = 0;
         [drawView setDrawEnabled:NO];
     }
+    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
+    [self setTitle:title];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    retainCount = DRAW_TIME;
-    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
-    [self setTitle:title];
-    drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
-    [self.view addSubview:drawView];
-    drawView.delegate = self;
-    [drawView release];
-    
+    drawView = nil;
     _drawGameService = [DrawGameService defaultService];
-    _drawGameService.drawDelegate = self;
     
     [self addPickColorView];
     [self addPickLineWidthView];
     [self hidePickViews];
-    [self.guessMsgLabel setHidden:YES];
+
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [drawView removeFromSuperview];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
+    [self.view addSubview:drawView];
+    drawView.delegate = self;
+    [drawView release];
+
+    
+    _drawGameService.drawDelegate = self;
+    [self hidePickViews];
+    [self.guessMsgLabel setHidden:YES];
+    
+    retainCount = DRAW_TIME;
+    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
+    [self setTitle:title];
+    drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
+    [self makePlayerButtons];
+}
 
 - (void)viewDidUnload
 {
@@ -199,12 +227,12 @@
 
 
 
-//- (void)alert:(NSString *)message
-//{
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
-//    [alertView show];
-//    [alertView release];
-//}
+- (void)alert:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
 
 
 
@@ -293,6 +321,14 @@
 
     }
 }
+
+
+- (void)didGameTurnComplete:(GameMessage *)message
+{
+    [self alert:@"Game is complete"];
+}
+
+
 #pragma mark pick view delegate
 - (void)didPickedLineWidth:(NSInteger)width
 {

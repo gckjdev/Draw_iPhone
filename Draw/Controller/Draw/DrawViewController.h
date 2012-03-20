@@ -51,6 +51,11 @@
 @property (retain, nonatomic) PickLineWidthView *pickLineWidthView;
 @property (retain, nonatomic) PickColorView *pickColorView;
 
-- (id)initWithWord:(Word *)word;
+//- (id)initWithWord:(Word *)word;
+
++ (DrawViewController *)instance;
 
 @end
+
+
+extern DrawViewController *GlobalGetDrawViewController();
