@@ -14,14 +14,17 @@
 #import "Word.h"
 #import "WordManager.h"
 #import "LocaleUtils.h"
+#import "AnimationManager.h"
 
 @implementation ShowDrawController
+@synthesize guessMsgLabel;
 @synthesize word = _word;
 
 - (void)dealloc
 {
     [_word release];
     [candidateString release];
+    [guessMsgLabel release];
     [super dealloc];
 }
 
@@ -142,6 +145,22 @@
     }
 }
 
+- (void)popUpGuessMessage:(NSString *)message
+{
+    [self.guessMsgLabel setText:message];
+    [self.guessMsgLabel setHidden:NO];
+    [self.view bringSubviewToFront:self.guessMsgLabel];
+    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
+}
+
+#pragma mark CAAnimation delegate
+//animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.guessMsgLabel setHidden:YES];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -157,10 +176,12 @@
     
     [self makeWriteButtons];
     [self makePlayerButtons];
+    [self.guessMsgLabel setHidden:YES];
 }
 
 - (void)viewDidUnload
 {
+    [self setGuessMsgLabel:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -172,6 +193,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)alert:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
 
 #pragma mark DrawGameServiceDelegate
 - (void)didReceiveDrawData:(GameMessage *)message
@@ -184,6 +211,22 @@
     [showView clear];
 }
 
+
+- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
+{
+    if (![drawGameService.userId isEqualToString:guessUserId]) {
+        //alert the ans;
+        if (!guessCorrect) {
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
+                                     guessUserId, wordText]];            
+        }else{
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
+                                     guessUserId]];
+        }
+        
+    }
+
+}
 
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
 {
@@ -209,12 +252,7 @@
 }
 
 
-- (void)alert:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"Result") message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
-    [alertView show];
-    [alertView release];
-}
+
 
 - (IBAction)clickGuessDoneButton:(id)sender {
     //get the word
@@ -234,6 +272,8 @@
     }else{
         [self alert:NSLS(@"Wrong")];
     }
+    
+    [drawGameService guess:ans guessUserId:drawGameService.session.userId];
     //send the word to the server
 }
 @end

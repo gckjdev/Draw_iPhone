@@ -184,7 +184,7 @@ static DrawGameService* _defaultService;
         [_session updateCurrentTurnByMessage:[message notification]];
         
         // TODO chaneg to notifyGameObserver
-        if ([[message notification] hasWord]){
+        if ([[[message notification] word] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
             if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:)]) {
                 [_drawDelegate didReceiveDrawWord:[[message notification] word] 
@@ -192,7 +192,7 @@ static DrawGameService* _defaultService;
             }
         }
         
-        if ([[message notification] hasGuessWord]){
+        if ([[[message notification] guessWord] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Guess Word> %@, %@, %d",
                     [[message notification] guessWord],
                     [[message notification] guessUserId],

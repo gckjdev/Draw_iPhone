@@ -14,8 +14,10 @@
 #import "Word.h"
 #import "PickColorView.h"
 #import "PickLineWidthView.h"
-
-
+#import "GameSessionUser.h"
+#import "GameSession.h"
+#import "LocaleUtils.h"
+#import "AnimationManager.h"
 
 @implementation DrawViewController
 @synthesize playButton;
@@ -26,6 +28,7 @@
 @synthesize eraserButton;
 @synthesize moreButton;
 @synthesize blackButton;
+@synthesize guessMsgLabel;
 @synthesize word = _word;
 @synthesize pickColorView = _pickColorView;
 @synthesize pickLineWidthView = _pickLineWidthView;
@@ -43,6 +46,7 @@
     [moreButton release];
     [_pickLineWidthView release];
     [_pickColorView release];
+    [guessMsgLabel release];
     [super dealloc];
 }
 
@@ -113,6 +117,24 @@
     [self.pickColorView setHidden:YES];
 }
 
+#define PLAYER_BUTTON_TAG_START 1
+#define PLAYER_BUTTON_TAG_END 6
+
+- (void)makePlayerButtons
+{
+    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        button.hidden = YES;
+    }
+    int i = 1;
+    GameSession *session = [[DrawGameService defaultService] session];
+    for (GameSessionUser *user in session.userList) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        button.hidden = NO;
+        [button setTitle:user.userId forState:UIControlStateNormal];
+        ++ i;
+    }
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -132,6 +154,7 @@
     [self addPickColorView];
     [self addPickLineWidthView];
     [self hidePickViews];
+    [self.guessMsgLabel setHidden:YES];
 }
 
 
@@ -148,6 +171,7 @@
     [self setMoreButton:nil];
     [self setPickColorView:nil];
     [self setPickLineWidthView:nil];
+    [self setGuessMsgLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -161,6 +185,12 @@
 
 
 
+//- (void)alert:(NSString *)message
+//{
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"confirm") otherButtonTitles:nil];
+//    [alertView show];
+//    [alertView release];
+//}
 
 
 
@@ -227,6 +257,28 @@
     [self hidePickViews];
 }
 
+- (void)popUpGuessMessage:(NSString *)message
+{
+    [self.guessMsgLabel setText:message];
+    [self.guessMsgLabel setHidden:NO];
+    [self.view bringSubviewToFront:self.guessMsgLabel];
+    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
+}
+
+- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
+{
+    if (![_drawGameService.userId isEqualToString:guessUserId]) {
+        //alert the ans;
+        if (!guessCorrect) {
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
+                                     guessUserId, wordText]];            
+        }else{
+            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
+                                     guessUserId]];
+        }
+
+    }
+}
 #pragma mark pick view delegate
 - (void)didPickedLineWidth:(NSInteger)width
 {
@@ -240,6 +292,11 @@
     [drawView setLineColor:color];
 }
 
-
+#pragma mark CAAnimation delegate
+//animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.guessMsgLabel setHidden:YES];
+}
 
 @end

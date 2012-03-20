@@ -116,17 +116,17 @@
 
 - (void)updateCurrentTurnByMessage:(GeneralNotification*)notification
 {
-    if ([notification hasWord]){
+    if ([notification hasWord] && [[notification word] length] > 0){
         [self.currentTurn setWord:[notification word]];    
         PPDebug(@"set current turn word to %@", [notification word]);
     }
     
-    if ([notification hasLevel]){
+    if ([notification hasLevel] && [notification level] > 0){
         [self.currentTurn setLevel:[notification level]];
         PPDebug(@"set current turn level to %d", [notification level]);
     }
     
-    if ([notification hasRound]){
+    if ([notification hasRound] && [notification round] > 0){
         [self.currentTurn setRound:[notification round]];
         PPDebug(@"set current turn round to %d", [notification round]);
     }

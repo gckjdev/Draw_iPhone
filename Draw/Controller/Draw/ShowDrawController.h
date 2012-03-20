@@ -21,5 +21,6 @@
 
 @property(nonatomic, retain)Word *word;
 - (IBAction)clickGuessDoneButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 
 @end
