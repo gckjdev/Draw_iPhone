@@ -42,7 +42,7 @@
     self.homeController = [[[HomeController alloc] init] autorelease];    
     
     UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:self.homeController] autorelease];
-    navigationController.navigationBarHidden = NO;
+    navigationController.navigationBarHidden = YES;
     
     if ([[UserManager defaultManager] hasUser] == NO){
         [RegisterUserController showAt:self.homeController];

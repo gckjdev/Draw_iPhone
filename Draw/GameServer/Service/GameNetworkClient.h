@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "CommonNetworkClient.h"
 
+#define PROLONG_GAME        @"PG"
+#define ASK_QUICK_GAME      @"AG"
+
 @interface GameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
     int _messageIdIndex;
@@ -44,6 +47,9 @@
 
 - (void)sendQuitGame:(NSString*)userId 
            sessionId:(long)sessionId;
+
+- (void)sendAskQuickGame:(NSString*)userId 
+               sessionId:(long)sessionId;
 
 - (void)sendGuessWord:(NSString*)guessWord
           guessUserId:(NSString*)guessUserId

@@ -5,6 +5,10 @@
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
 
+@class GameChatRequest;
+@class GameChatRequest_Builder;
+@class GameChatResponse;
+@class GameChatResponse_Builder;
 @class GameMessage;
 @class GameMessage_Builder;
 @class GeneralNotification;
@@ -281,6 +285,103 @@
 - (StartGameResponse_Builder*) clearNextPlayUserId;
 @end
 
+@interface GameChatRequest : PBGeneratedMessage {
+@private
+  BOOL hasContent_:1;
+  NSString* content;
+  NSMutableArray* mutableToUserIdList;
+}
+- (BOOL) hasContent;
+@property (readonly, retain) NSString* content;
+- (NSArray*) toUserIdList;
+- (NSString*) toUserIdAtIndex:(int32_t) index;
+
++ (GameChatRequest*) defaultInstance;
+- (GameChatRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameChatRequest_Builder*) builder;
++ (GameChatRequest_Builder*) builder;
++ (GameChatRequest_Builder*) builderWithPrototype:(GameChatRequest*) prototype;
+
++ (GameChatRequest*) parseFromData:(NSData*) data;
++ (GameChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameChatRequest*) parseFromInputStream:(NSInputStream*) input;
++ (GameChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameChatRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  GameChatRequest* result;
+}
+
+- (GameChatRequest*) defaultInstance;
+
+- (GameChatRequest_Builder*) clear;
+- (GameChatRequest_Builder*) clone;
+
+- (GameChatRequest*) build;
+- (GameChatRequest*) buildPartial;
+
+- (GameChatRequest_Builder*) mergeFrom:(GameChatRequest*) other;
+- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) toUserIdList;
+- (NSString*) toUserIdAtIndex:(int32_t) index;
+- (GameChatRequest_Builder*) replaceToUserIdAtIndex:(int32_t) index with:(NSString*) value;
+- (GameChatRequest_Builder*) addToUserId:(NSString*) value;
+- (GameChatRequest_Builder*) addAllToUserId:(NSArray*) values;
+- (GameChatRequest_Builder*) clearToUserIdList;
+
+- (BOOL) hasContent;
+- (NSString*) content;
+- (GameChatRequest_Builder*) setContent:(NSString*) value;
+- (GameChatRequest_Builder*) clearContent;
+@end
+
+@interface GameChatResponse : PBGeneratedMessage {
+@private
+}
+
++ (GameChatResponse*) defaultInstance;
+- (GameChatResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameChatResponse_Builder*) builder;
++ (GameChatResponse_Builder*) builder;
++ (GameChatResponse_Builder*) builderWithPrototype:(GameChatResponse*) prototype;
+
++ (GameChatResponse*) parseFromData:(NSData*) data;
++ (GameChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameChatResponse*) parseFromInputStream:(NSInputStream*) input;
++ (GameChatResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameChatResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  GameChatResponse* result;
+}
+
+- (GameChatResponse*) defaultInstance;
+
+- (GameChatResponse_Builder*) clear;
+- (GameChatResponse_Builder*) clone;
+
+- (GameChatResponse*) build;
+- (GameChatResponse*) buildPartial;
+
+- (GameChatResponse_Builder*) mergeFrom:(GameChatResponse*) other;
+- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
 @interface SendDrawDataRequest : PBGeneratedMessage {
 @private
   BOOL hasGuessCorrect_:1;
@@ -441,6 +542,7 @@
   BOOL hasRound_:1;
   BOOL hasLevel_:1;
   BOOL hasColor_:1;
+  BOOL hasChatContent_:1;
   BOOL hasGuessUserId_:1;
   BOOL hasGuessWord_:1;
   BOOL hasWord_:1;
@@ -457,6 +559,7 @@
   int32_t round;
   int32_t level;
   int32_t color;
+  NSString* chatContent;
   NSString* guessUserId;
   NSString* guessWord;
   NSString* word;
@@ -469,6 +572,7 @@
   NSString* sessionHost;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
+  NSMutableArray* mutableChatToUserIdList;
 }
 - (BOOL) hasSessionHost;
 - (BOOL) hasSessionStatus;
@@ -486,6 +590,7 @@
 - (BOOL) hasGuessWord;
 - (BOOL) hasGuessUserId;
 - (BOOL) hasGuessCorrect;
+- (BOOL) hasChatContent;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
@@ -502,8 +607,11 @@
 @property (readonly, retain) NSString* guessWord;
 @property (readonly, retain) NSString* guessUserId;
 - (BOOL) guessCorrect;
+@property (readonly, retain) NSString* chatContent;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
+- (NSArray*) chatToUserIdList;
+- (NSString*) chatToUserIdAtIndex:(int32_t) index;
 
 + (GeneralNotification*) defaultInstance;
 - (GeneralNotification*) defaultInstance;
@@ -625,6 +733,18 @@
 - (BOOL) guessCorrect;
 - (GeneralNotification_Builder*) setGuessCorrect:(BOOL) value;
 - (GeneralNotification_Builder*) clearGuessCorrect;
+
+- (NSArray*) chatToUserIdList;
+- (NSString*) chatToUserIdAtIndex:(int32_t) index;
+- (GeneralNotification_Builder*) replaceChatToUserIdAtIndex:(int32_t) index with:(NSString*) value;
+- (GeneralNotification_Builder*) addChatToUserId:(NSString*) value;
+- (GeneralNotification_Builder*) addAllChatToUserId:(NSArray*) values;
+- (GeneralNotification_Builder*) clearChatToUserIdList;
+
+- (BOOL) hasChatContent;
+- (NSString*) chatContent;
+- (GeneralNotification_Builder*) setChatContent:(NSString*) value;
+- (GeneralNotification_Builder*) clearChatContent;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
@@ -638,6 +758,8 @@
   BOOL hasStartGameResponse_:1;
   BOOL hasSendDrawDataRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
+  BOOL hasChatRequest_:1;
+  BOOL hasChatResponse_:1;
   BOOL hasNotification_:1;
   BOOL hasCommand_:1;
   BOOL hasResultCode_:1;
@@ -650,6 +772,8 @@
   StartGameResponse* startGameResponse;
   SendDrawDataRequest* sendDrawDataRequest;
   SendDrawDataResponse* sendDrawDataResponse;
+  GameChatRequest* chatRequest;
+  GameChatResponse* chatResponse;
   GeneralNotification* notification;
   GameCommandType command;
   GameResultCode resultCode;
@@ -665,6 +789,8 @@
 - (BOOL) hasStartGameResponse;
 - (BOOL) hasSendDrawDataRequest;
 - (BOOL) hasSendDrawDataResponse;
+- (BOOL) hasChatRequest;
+- (BOOL) hasChatResponse;
 - (BOOL) hasNotification;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
@@ -677,6 +803,8 @@
 @property (readonly, retain) StartGameResponse* startGameResponse;
 @property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
+@property (readonly, retain) GameChatRequest* chatRequest;
+@property (readonly, retain) GameChatResponse* chatResponse;
 @property (readonly, retain) GeneralNotification* notification;
 
 + (GameMessage*) defaultInstance;
@@ -779,6 +907,20 @@
 - (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
 - (GameMessage_Builder*) clearSendDrawDataResponse;
+
+- (BOOL) hasChatRequest;
+- (GameChatRequest*) chatRequest;
+- (GameMessage_Builder*) setChatRequest:(GameChatRequest*) value;
+- (GameMessage_Builder*) setChatRequestBuilder:(GameChatRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChatRequest:(GameChatRequest*) value;
+- (GameMessage_Builder*) clearChatRequest;
+
+- (BOOL) hasChatResponse;
+- (GameChatResponse*) chatResponse;
+- (GameMessage_Builder*) setChatResponse:(GameChatResponse*) value;
+- (GameMessage_Builder*) setChatResponseBuilder:(GameChatResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeChatResponse:(GameChatResponse*) value;
+- (GameMessage_Builder*) clearChatResponse;
 
 - (BOOL) hasNotification;
 - (GeneralNotification*) notification;

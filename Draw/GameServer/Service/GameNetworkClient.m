@@ -182,10 +182,42 @@ static GameNetworkClient* _defaultGameNetworkClient;
 
 }
 
+- (void)sendChatMessage:(NSString*)userId 
+              sessionId:(long)sessionId
+             toUserList:(NSArray*)toUserList
+                content:(NSString*)content
+{
+    GameChatRequest_Builder *requestBuilder = [[[GameChatRequest_Builder alloc] init] autorelease];
+    if (content != nil){
+        [requestBuilder setContent:content];
+    }
+    if (toUserList != nil){
+        [requestBuilder addAllToUserId:toUserList];
+    }
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeChatRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setChatRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];                
+}
+
+
+
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId
 {
-    [self sendSimpleMessage:GameCommandTypeProlongGameRequest userId:userId sessionId:sessionId];
+    [self sendChatMessage:userId sessionId:sessionId toUserList:nil content:PROLONG_GAME];
+}
+
+- (void)sendAskQuickGame:(NSString*)userId 
+              sessionId:(long)sessionId
+{
+    [self sendChatMessage:userId sessionId:sessionId toUserList:nil content:ASK_QUICK_GAME];
 }
 
 - (void)sendQuitGame:(NSString*)userId 

@@ -25,7 +25,10 @@
 - (IBAction)clickChangeRoom:(id)sender;
 - (IBAction)clickProlongStart:(id)sender;
 
+// use this method when first enter room
++ (void)firstEnterRoom:(UIViewController*)superController;
 
-+ (void)showRoom:(UIViewController*)superController;
+// use this method for returning from draw/guess to room
++ (void)returnRoom:(UIViewController*)superController;
 
 @end

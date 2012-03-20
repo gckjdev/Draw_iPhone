@@ -31,8 +31,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeSendDrawDataResponse:
     case GameCommandTypeCleanDrawRequest:
     case GameCommandTypeCleanDrawResponse:
-    case GameCommandTypeProlongGameRequest:
-    case GameCommandTypeProlongGameResponse:
+    case GameCommandTypeChatRequest:
+    case GameCommandTypeChatResponse:
     case GameCommandTypeCompleteGameRequest:
     case GameCommandTypeCompleteGameResponse:
     case GameCommandTypeUserJoinNotificationRequest:
@@ -47,8 +47,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeNewDrawDataNotificationResponse:
     case GameCommandTypeCleanDrawNotificationRequest:
     case GameCommandTypeCleanDrawNotificationResponse:
-    case GameCommandTypeProlongGameNotificationRequest:
-    case GameCommandTypeProlongGameNotificationResponse:
+    case GameCommandTypeChatNotificationRequest:
+    case GameCommandTypeChatNotificationResponse:
     case GameCommandTypeGameTurnCompleteNotificationRequest:
     case GameCommandTypeGameTurnCompleteNotificationResponse:
     case GameCommandTypeLocalChannelDisconnect:

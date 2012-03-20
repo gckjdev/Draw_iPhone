@@ -72,7 +72,7 @@
 
 - (IBAction)clickStart:(id)sender
 {        
-    [RoomController showRoom:self];
+    [RoomController firstEnterRoom:self];
 }
 
 - (void)didBroken

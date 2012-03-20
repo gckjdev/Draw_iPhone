@@ -1022,6 +1022,385 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
 }
 @end
 
+@interface GameChatRequest ()
+@property (retain) NSMutableArray* mutableToUserIdList;
+@property (retain) NSString* content;
+@end
+
+@implementation GameChatRequest
+
+@synthesize mutableToUserIdList;
+- (BOOL) hasContent {
+  return !!hasContent_;
+}
+- (void) setHasContent:(BOOL) value {
+  hasContent_ = !!value;
+}
+@synthesize content;
+- (void) dealloc {
+  self.mutableToUserIdList = nil;
+  self.content = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.content = @"";
+  }
+  return self;
+}
+static GameChatRequest* defaultGameChatRequestInstance = nil;
++ (void) initialize {
+  if (self == [GameChatRequest class]) {
+    defaultGameChatRequestInstance = [[GameChatRequest alloc] init];
+  }
+}
++ (GameChatRequest*) defaultInstance {
+  return defaultGameChatRequestInstance;
+}
+- (GameChatRequest*) defaultInstance {
+  return defaultGameChatRequestInstance;
+}
+- (NSArray*) toUserIdList {
+  return mutableToUserIdList;
+}
+- (NSString*) toUserIdAtIndex:(int32_t) index {
+  id value = [mutableToUserIdList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (NSString* element in self.mutableToUserIdList) {
+    [output writeString:1 value:element];
+  }
+  if (self.hasContent) {
+    [output writeString:2 value:self.content];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableToUserIdList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableToUserIdList.count;
+  }
+  if (self.hasContent) {
+    size += computeStringSize(2, self.content);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameChatRequest*) parseFromData:(NSData*) data {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromData:data] build];
+}
++ (GameChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameChatRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromInputStream:input] build];
+}
++ (GameChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatRequest*)[[[GameChatRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameChatRequest_Builder*) builder {
+  return [[[GameChatRequest_Builder alloc] init] autorelease];
+}
++ (GameChatRequest_Builder*) builderWithPrototype:(GameChatRequest*) prototype {
+  return [[GameChatRequest builder] mergeFrom:prototype];
+}
+- (GameChatRequest_Builder*) builder {
+  return [GameChatRequest builder];
+}
+@end
+
+@interface GameChatRequest_Builder()
+@property (retain) GameChatRequest* result;
+@end
+
+@implementation GameChatRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameChatRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameChatRequest_Builder*) clear {
+  self.result = [[[GameChatRequest alloc] init] autorelease];
+  return self;
+}
+- (GameChatRequest_Builder*) clone {
+  return [GameChatRequest builderWithPrototype:result];
+}
+- (GameChatRequest*) defaultInstance {
+  return [GameChatRequest defaultInstance];
+}
+- (GameChatRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameChatRequest*) buildPartial {
+  GameChatRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameChatRequest_Builder*) mergeFrom:(GameChatRequest*) other {
+  if (other == [GameChatRequest defaultInstance]) {
+    return self;
+  }
+  if (other.mutableToUserIdList.count > 0) {
+    if (result.mutableToUserIdList == nil) {
+      result.mutableToUserIdList = [NSMutableArray array];
+    }
+    [result.mutableToUserIdList addObjectsFromArray:other.mutableToUserIdList];
+  }
+  if (other.hasContent) {
+    [self setContent:other.content];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self addToUserId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setContent:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) toUserIdList {
+  if (result.mutableToUserIdList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableToUserIdList;
+}
+- (NSString*) toUserIdAtIndex:(int32_t) index {
+  return [result toUserIdAtIndex:index];
+}
+- (GameChatRequest_Builder*) replaceToUserIdAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableToUserIdList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (GameChatRequest_Builder*) addToUserId:(NSString*) value {
+  if (result.mutableToUserIdList == nil) {
+    result.mutableToUserIdList = [NSMutableArray array];
+  }
+  [result.mutableToUserIdList addObject:value];
+  return self;
+}
+- (GameChatRequest_Builder*) addAllToUserId:(NSArray*) values {
+  if (result.mutableToUserIdList == nil) {
+    result.mutableToUserIdList = [NSMutableArray array];
+  }
+  [result.mutableToUserIdList addObjectsFromArray:values];
+  return self;
+}
+- (GameChatRequest_Builder*) clearToUserIdList {
+  result.mutableToUserIdList = nil;
+  return self;
+}
+- (BOOL) hasContent {
+  return result.hasContent;
+}
+- (NSString*) content {
+  return result.content;
+}
+- (GameChatRequest_Builder*) setContent:(NSString*) value {
+  result.hasContent = YES;
+  result.content = value;
+  return self;
+}
+- (GameChatRequest_Builder*) clearContent {
+  result.hasContent = NO;
+  result.content = @"";
+  return self;
+}
+@end
+
+@interface GameChatResponse ()
+@end
+
+@implementation GameChatResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static GameChatResponse* defaultGameChatResponseInstance = nil;
++ (void) initialize {
+  if (self == [GameChatResponse class]) {
+    defaultGameChatResponseInstance = [[GameChatResponse alloc] init];
+  }
+}
++ (GameChatResponse*) defaultInstance {
+  return defaultGameChatResponseInstance;
+}
+- (GameChatResponse*) defaultInstance {
+  return defaultGameChatResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameChatResponse*) parseFromData:(NSData*) data {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromData:data] build];
+}
++ (GameChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameChatResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromInputStream:input] build];
+}
++ (GameChatResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (GameChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameChatResponse*)[[[GameChatResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameChatResponse_Builder*) builder {
+  return [[[GameChatResponse_Builder alloc] init] autorelease];
+}
++ (GameChatResponse_Builder*) builderWithPrototype:(GameChatResponse*) prototype {
+  return [[GameChatResponse builder] mergeFrom:prototype];
+}
+- (GameChatResponse_Builder*) builder {
+  return [GameChatResponse builder];
+}
+@end
+
+@interface GameChatResponse_Builder()
+@property (retain) GameChatResponse* result;
+@end
+
+@implementation GameChatResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameChatResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameChatResponse_Builder*) clear {
+  self.result = [[[GameChatResponse alloc] init] autorelease];
+  return self;
+}
+- (GameChatResponse_Builder*) clone {
+  return [GameChatResponse builderWithPrototype:result];
+}
+- (GameChatResponse*) defaultInstance {
+  return [GameChatResponse defaultInstance];
+}
+- (GameChatResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameChatResponse*) buildPartial {
+  GameChatResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameChatResponse_Builder*) mergeFrom:(GameChatResponse*) other {
+  if (other == [GameChatResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
 @interface SendDrawDataRequest ()
 @property (retain) NSString* word;
 @property int32_t level;
@@ -1667,6 +2046,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
+@property (retain) NSMutableArray* mutableChatToUserIdList;
+@property (retain) NSString* chatContent;
 @end
 
 @implementation GeneralNotification
@@ -1789,6 +2170,14 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 - (void) setGuessCorrect:(BOOL) value {
   guessCorrect_ = !!value;
 }
+@synthesize mutableChatToUserIdList;
+- (BOOL) hasChatContent {
+  return !!hasChatContent_;
+}
+- (void) setHasChatContent:(BOOL) value {
+  hasChatContent_ = !!value;
+}
+@synthesize chatContent;
 - (void) dealloc {
   self.sessionHost = nil;
   self.currentPlayUserId = nil;
@@ -1801,6 +2190,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.word = nil;
   self.guessWord = nil;
   self.guessUserId = nil;
+  self.mutableChatToUserIdList = nil;
+  self.chatContent = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1821,6 +2212,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
+    self.chatContent = @"";
   }
   return self;
 }
@@ -1842,6 +2234,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (int32_t) pointsAtIndex:(int32_t) index {
   id value = [mutablePointsList objectAtIndex:index];
   return [value intValue];
+}
+- (NSArray*) chatToUserIdList {
+  return mutableChatToUserIdList;
+}
+- (NSString*) chatToUserIdAtIndex:(int32_t) index {
+  id value = [mutableChatToUserIdList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
   return YES;
@@ -1901,6 +2300,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasGuessCorrect) {
     [output writeBool:43 value:self.guessCorrect];
+  }
+  for (NSString* element in self.mutableChatToUserIdList) {
+    [output writeString:51 value:element];
+  }
+  if (self.hasChatContent) {
+    [output writeString:52 value:self.chatContent];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1970,6 +2375,17 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasGuessCorrect) {
     size += computeBoolSize(43, self.guessCorrect);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableChatToUserIdList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableChatToUserIdList.count;
+  }
+  if (self.hasChatContent) {
+    size += computeStringSize(52, self.chatContent);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2100,6 +2516,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasGuessCorrect) {
     [self setGuessCorrect:other.guessCorrect];
   }
+  if (other.mutableChatToUserIdList.count > 0) {
+    if (result.mutableChatToUserIdList == nil) {
+      result.mutableChatToUserIdList = [NSMutableArray array];
+    }
+    [result.mutableChatToUserIdList addObjectsFromArray:other.mutableChatToUserIdList];
+  }
+  if (other.hasChatContent) {
+    [self setChatContent:other.chatContent];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2192,6 +2617,14 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 344: {
         [self setGuessCorrect:[input readBool]];
+        break;
+      }
+      case 410: {
+        [self addChatToUserId:[input readString]];
+        break;
+      }
+      case 418: {
+        [self setChatContent:[input readString]];
         break;
       }
     }
@@ -2484,6 +2917,53 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   result.guessCorrect = NO;
   return self;
 }
+- (NSArray*) chatToUserIdList {
+  if (result.mutableChatToUserIdList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableChatToUserIdList;
+}
+- (NSString*) chatToUserIdAtIndex:(int32_t) index {
+  return [result chatToUserIdAtIndex:index];
+}
+- (GeneralNotification_Builder*) replaceChatToUserIdAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableChatToUserIdList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (GeneralNotification_Builder*) addChatToUserId:(NSString*) value {
+  if (result.mutableChatToUserIdList == nil) {
+    result.mutableChatToUserIdList = [NSMutableArray array];
+  }
+  [result.mutableChatToUserIdList addObject:value];
+  return self;
+}
+- (GeneralNotification_Builder*) addAllChatToUserId:(NSArray*) values {
+  if (result.mutableChatToUserIdList == nil) {
+    result.mutableChatToUserIdList = [NSMutableArray array];
+  }
+  [result.mutableChatToUserIdList addObjectsFromArray:values];
+  return self;
+}
+- (GeneralNotification_Builder*) clearChatToUserIdList {
+  result.mutableChatToUserIdList = nil;
+  return self;
+}
+- (BOOL) hasChatContent {
+  return result.hasChatContent;
+}
+- (NSString*) chatContent {
+  return result.chatContent;
+}
+- (GeneralNotification_Builder*) setChatContent:(NSString*) value {
+  result.hasChatContent = YES;
+  result.chatContent = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearChatContent {
+  result.hasChatContent = NO;
+  result.chatContent = @"";
+  return self;
+}
 @end
 
 @interface GameMessage ()
@@ -2498,6 +2978,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property (retain) StartGameResponse* startGameResponse;
 @property (retain) SendDrawDataRequest* sendDrawDataRequest;
 @property (retain) SendDrawDataResponse* sendDrawDataResponse;
+@property (retain) GameChatRequest* chatRequest;
+@property (retain) GameChatResponse* chatResponse;
 @property (retain) GeneralNotification* notification;
 @end
 
@@ -2580,6 +3062,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasSendDrawDataResponse_ = !!value;
 }
 @synthesize sendDrawDataResponse;
+- (BOOL) hasChatRequest {
+  return !!hasChatRequest_;
+}
+- (void) setHasChatRequest:(BOOL) value {
+  hasChatRequest_ = !!value;
+}
+@synthesize chatRequest;
+- (BOOL) hasChatResponse {
+  return !!hasChatResponse_;
+}
+- (void) setHasChatResponse:(BOOL) value {
+  hasChatResponse_ = !!value;
+}
+@synthesize chatResponse;
 - (BOOL) hasNotification {
   return !!hasNotification_;
 }
@@ -2595,6 +3091,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   self.startGameResponse = nil;
   self.sendDrawDataRequest = nil;
   self.sendDrawDataResponse = nil;
+  self.chatRequest = nil;
+  self.chatResponse = nil;
   self.notification = nil;
   [super dealloc];
 }
@@ -2611,6 +3109,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.startGameResponse = [StartGameResponse defaultInstance];
     self.sendDrawDataRequest = [SendDrawDataRequest defaultInstance];
     self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
+    self.chatRequest = [GameChatRequest defaultInstance];
+    self.chatResponse = [GameChatResponse defaultInstance];
     self.notification = [GeneralNotification defaultInstance];
   }
   return self;
@@ -2680,6 +3180,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasSendDrawDataResponse) {
     [output writeMessage:22 value:self.sendDrawDataResponse];
   }
+  if (self.hasChatRequest) {
+    [output writeMessage:23 value:self.chatRequest];
+  }
+  if (self.hasChatResponse) {
+    [output writeMessage:24 value:self.chatResponse];
+  }
   if (self.hasNotification) {
     [output writeMessage:51 value:self.notification];
   }
@@ -2724,6 +3230,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasSendDrawDataResponse) {
     size += computeMessageSize(22, self.sendDrawDataResponse);
+  }
+  if (self.hasChatRequest) {
+    size += computeMessageSize(23, self.chatRequest);
+  }
+  if (self.hasChatResponse) {
+    size += computeMessageSize(24, self.chatResponse);
   }
   if (self.hasNotification) {
     size += computeMessageSize(51, self.notification);
@@ -2836,6 +3348,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasSendDrawDataResponse) {
     [self mergeSendDrawDataResponse:other.sendDrawDataResponse];
   }
+  if (other.hasChatRequest) {
+    [self mergeChatRequest:other.chatRequest];
+  }
+  if (other.hasChatResponse) {
+    [self mergeChatResponse:other.chatResponse];
+  }
   if (other.hasNotification) {
     [self mergeNotification:other.notification];
   }
@@ -2942,6 +3460,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setSendDrawDataResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 186: {
+        GameChatRequest_Builder* subBuilder = [GameChatRequest builder];
+        if (self.hasChatRequest) {
+          [subBuilder mergeFrom:self.chatRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChatRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 194: {
+        GameChatResponse_Builder* subBuilder = [GameChatResponse builder];
+        if (self.hasChatResponse) {
+          [subBuilder mergeFrom:self.chatResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setChatResponse:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -3214,6 +3750,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearSendDrawDataResponse {
   result.hasSendDrawDataResponse = NO;
   result.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasChatRequest {
+  return result.hasChatRequest;
+}
+- (GameChatRequest*) chatRequest {
+  return result.chatRequest;
+}
+- (GameMessage_Builder*) setChatRequest:(GameChatRequest*) value {
+  result.hasChatRequest = YES;
+  result.chatRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setChatRequestBuilder:(GameChatRequest_Builder*) builderForValue {
+  return [self setChatRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChatRequest:(GameChatRequest*) value {
+  if (result.hasChatRequest &&
+      result.chatRequest != [GameChatRequest defaultInstance]) {
+    result.chatRequest =
+      [[[GameChatRequest builderWithPrototype:result.chatRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.chatRequest = value;
+  }
+  result.hasChatRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChatRequest {
+  result.hasChatRequest = NO;
+  result.chatRequest = [GameChatRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasChatResponse {
+  return result.hasChatResponse;
+}
+- (GameChatResponse*) chatResponse {
+  return result.chatResponse;
+}
+- (GameMessage_Builder*) setChatResponse:(GameChatResponse*) value {
+  result.hasChatResponse = YES;
+  result.chatResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setChatResponseBuilder:(GameChatResponse_Builder*) builderForValue {
+  return [self setChatResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeChatResponse:(GameChatResponse*) value {
+  if (result.hasChatResponse &&
+      result.chatResponse != [GameChatResponse defaultInstance]) {
+    result.chatResponse =
+      [[[GameChatResponse builderWithPrototype:result.chatResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.chatResponse = value;
+  }
+  result.hasChatResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearChatResponse {
+  result.hasChatResponse = NO;
+  result.chatResponse = [GameChatResponse defaultInstance];
   return self;
 }
 - (BOOL) hasNotification {

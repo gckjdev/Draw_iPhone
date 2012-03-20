@@ -38,6 +38,14 @@ message StartGameResponse {                    // 开始游戏响应
   optional string nextPlayUserId = 6;          // 下一个要轮到的用户（如画画的用户）
 }
 
+message GameChatRequest{
+  repeated string toUserId = 1;                 // 对谁说，默认对所有
+  optional string content = 2;                  // 说的内容
+}
+
+message GameChatResponse{
+}
+
 message SendDrawDataRequest {
   optional string word = 10;
   optional int32 level = 11;
@@ -86,6 +94,11 @@ message GeneralNotification{
   optional string guessWord = 41;
   optional string guessUserId = 42;
   optional bool guessCorrect = 43;
+  
+  // chat
+  repeated string chatToUserId = 51;                 // 对谁说，默认对所有
+  optional string chatContent = 52;                  // 说的内容
+  
 }
 
 message GameMessage {
@@ -104,9 +117,9 @@ message GameMessage {
   
   optional SendDrawDataRequest sendDrawDataRequest = 21;
   optional SendDrawDataResponse sendDrawDataResponse = 22;
-  
-//  optional ChangeRoomRequest changeRoomRequest = 23;
-//  optional ChangeRoomResponse changeRoomResponse = 24;
+    
+  optional GameChatRequest chatRequest = 23;
+  optional GameChatResponse chatResponse = 24;
   
   optional GeneralNotification notification = 51;
   

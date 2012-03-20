@@ -163,10 +163,18 @@ static DrawGameService* _defaultService;
     });
 }
 
-- (void)handleGameProlongNotification:(GameMessage*)message
+- (void)handleChatNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self notifyGameObserver:@selector(didGameProlong:) message:message];
+        if ([message resultCode] == 0){
+            NSString* content = [[message notification] chatContent];
+            if ([content isEqualToString:PROLONG_GAME]){
+                [self notifyGameObserver:@selector(didGameProlong:) message:message];
+            }
+            else if ([content isEqualToString:ASK_QUICK_GAME]){
+                [self notifyGameObserver:@selector(didGameAskQuick:) message:message];
+            }            
+        }
     });    
 }
 
@@ -274,15 +282,15 @@ static DrawGameService* _defaultService;
         case GameCommandTypeHostChangeNotificationRequest:
             break;
             
-        case GameCommandTypeProlongGameNotificationRequest:
-            [self handleGameProlongNotification:message];
-            break;
-
         case GameCommandTypeCleanDrawNotificationRequest:
             [self handleCleanDraw:message];
             
         case GameCommandTypeGameTurnCompleteNotificationRequest:
             [self handleGameTurnCompleteNotification:message];
+            break;
+            
+        case GameCommandTypeChatNotificationRequest:
+            [self handleChatNotification:message];
             break;
 
         default:
@@ -369,6 +377,13 @@ static DrawGameService* _defaultService;
     [_networkClient sendProlongGame:_userId
                           sessionId:[_session sessionId]];
 }
+
+- (void)askQuickGame
+{
+    [_networkClient sendAskQuickGame:_userId
+                           sessionId:[_session sessionId]];
+}
+
 
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId
 {

@@ -24,6 +24,7 @@
 - (void)didNewUserJoinGame:(GameMessage *)message;
 - (void)didUserQuitGame:(GameMessage *)message;
 - (void)didGameProlong:(GameMessage *)message;
+- (void)didGameAskQuick:(GameMessage *)message;
 
 - (void)didGameTurnGuessStart:(GameMessage *)message;
 - (void)didGameTurnComplete:(GameMessage *)message;
@@ -74,6 +75,7 @@
 - (BOOL)isMeHost;
 - (void)changeRoom;
 - (void)prolongGame;
+- (void)askQuickGame;
 
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;

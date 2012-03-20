@@ -20,6 +20,7 @@
 @interface RoomController ()
 
 - (void)updateGameUsers;
+- (void)updateRoomName;
 - (void)updateStartButton;
 
 - (void)resetStartTimer;
@@ -79,19 +80,10 @@
 {    
     [[DrawGameService defaultService] registerObserver:self];
     [self updateGameUsers];
+    [self updateRoomName];
+    [self updateStartButton];
     
     [super viewDidAppear:animated];
-}
-
-- (void)joinGame
-{
-    [self showActivityWithText:NSLS(@"kJoining")];
-    
-    [[DrawGameService defaultService] setRoomDelegate:self];
-    [[DrawGameService defaultService] registerObserver:self];
-    PPDebug(@"<registerObserver> room controller");
-
-    [[DrawGameService defaultService] joinGame];        
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -118,6 +110,8 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark - GUI Update Methods
 
 - (void)updateGameUsers
 {
@@ -202,7 +196,7 @@
     }
 }
 
-#pragma Draw Game Service Delegate
+#pragma mark - Draw Game Service Delegate
 
 - (void)didJoinGame:(GameMessage *)message
 {
@@ -266,6 +260,33 @@
     [self updateGameUsers];    
 }
 
+- (void)didGameAskQuick:(GameMessage *)message
+{
+    NSString* text = [NSString stringWithFormat:@"%@ says quick quick!", [message userId]];    
+    [UIUtils alert:text];
+}
+
+- (void)didGameProlong:(GameMessage *)message
+{
+    // receive host prolong game message, prolong the timer
+    if ([self isMyTurn] == NO){
+        [self prolongStartTimer];
+    }
+}
+
+#pragma mark - Core Methods
+
+- (void)joinGame
+{
+    [self showActivityWithText:NSLS(@"kJoining")];
+    
+    [[DrawGameService defaultService] setRoomDelegate:self];
+    [[DrawGameService defaultService] registerObserver:self];
+    PPDebug(@"<registerObserver> room controller");
+    
+    [[DrawGameService defaultService] joinGame];        
+}
+
 - (void)startGame
 {
     if (_hasClickStartGame){
@@ -283,6 +304,8 @@
 {
     return [[DrawGameService defaultService] isMyTurn];
 }
+
+#pragma mark - Button Click Action
 
 - (IBAction)clickStart:(id)sender
 {
@@ -303,10 +326,23 @@
     }
     else{
         // TODO send an urge request
+        [[DrawGameService defaultService] askQuickGame];
     }
 }
 
-+ (void)showRoom:(UIViewController*)superController
+#pragma mark - Room Enter/Return
+
++ (RoomController*)defaultInstance
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.roomController == nil){    
+        app.roomController = [[[RoomController alloc] init] autorelease];
+    }
+    
+    return app.roomController;
+}
+
++ (void)firstEnterRoom:(UIViewController*)superController
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.roomController == nil){    
@@ -319,19 +355,17 @@
     [app.roomController joinGame];
 }
 
-#pragma Timer Handling
++ (void)returnRoom:(UIViewController*)superController
+{
+    [superController.navigationController popToViewController:[RoomController defaultInstance] animated:YES];
+    [[RoomController defaultInstance] scheduleStartTimer];
+}
+
+#pragma mark - Timer Handling
 
 #define START_TIMER_INTERVAL    (1)
 #define PROLONG_INTERVAL        (10)
 #define DEFAULT_START_TIME      (60)
-
-- (void)didGameProlong:(GameMessage *)message
-{
-    // receive host prolong game message, prolong the timer
-    if ([self isMyTurn] == NO){
-        [self prolongStartTimer];
-    }
-}
 
 - (void)resetStartTimer
 {
