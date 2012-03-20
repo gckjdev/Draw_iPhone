@@ -24,6 +24,8 @@
     Word *_word;
     PickColorView *_pickColorView;
     PickLineWidthView *_pickLineWidthView;
+    NSTimer *drawTimer;
+    NSInteger retainCount;
 }
 
 - (IBAction)pickColor:(id)sender;

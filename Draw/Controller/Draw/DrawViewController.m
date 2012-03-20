@@ -33,6 +33,8 @@
 @synthesize pickColorView = _pickColorView;
 @synthesize pickLineWidthView = _pickLineWidthView;
 
+#define DRAW_TIME 59
+
 - (void)dealloc
 {
     [playButton release];
@@ -136,13 +138,25 @@
     }
 }
 
+- (void)setClockTitle:(NSTimer *)theTimer
+{
+    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, --retainCount];
+    [self setTitle:title];
+    if (retainCount == 0) {
+        [theTimer invalidate];
+        theTimer = nil;
+        [drawView setDrawEnabled:NO];
+    }
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setTitle:[NSString stringWithFormat:@"画画中(%@)",self.word.text]];       
-
+    retainCount = DRAW_TIME;
+    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
+    [self setTitle:title];
+    drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
