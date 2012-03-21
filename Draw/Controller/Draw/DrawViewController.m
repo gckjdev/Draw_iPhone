@@ -18,6 +18,7 @@
 #import "GameSession.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
+#import "ResultController.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -165,29 +166,14 @@ DrawViewController *GlobalGetDrawViewController()
     [self setTitle:title];
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+- (void)resetData
 {
-    [super viewDidLoad];
-    drawView = nil;
-    _drawGameService = [DrawGameService defaultService];
-    
-    [self addPickColorView];
-    [self addPickLineWidthView];
-    [self hidePickViews];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     [drawView removeFromSuperview];
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView release];
-
+    
     
     _drawGameService.drawDelegate = self;
     [self hidePickViews];
@@ -198,6 +184,28 @@ DrawViewController *GlobalGetDrawViewController()
     [self setTitle:title];
     drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
     [self makePlayerButtons];
+}
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    NSLog(@"<DrawViewController>: viewDidLoad");
+    [super viewDidLoad];
+    drawView = nil;
+    _drawGameService = [DrawGameService defaultService];
+    
+    [self addPickColorView];
+    [self addPickLineWidthView];
+    [self hidePickViews];
+    
+    [self resetData];
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -261,12 +269,13 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 - (IBAction)clickMoreColorButton:(id)sender {
-
+    [self.view bringSubviewToFront:self.pickColorView];
     [self.pickColorView setHidden:![self.pickColorView isHidden]];
     [self.pickLineWidthView setHidden:YES];
 }
 
 - (IBAction)clickPickWidthButton:(id)sender {
+    [self.view bringSubviewToFront:self.pickLineWidthView];
     [self.pickLineWidthView setHidden:![self.pickLineWidthView isHidden]];
     [self.pickColorView setHidden:YES];
 }
@@ -325,7 +334,11 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    [self alert:@"Game is complete"];
+    NSLog(@"Game is Complete");
+    UIImage *image = [drawView createImage];
+    ResultController *rc = [[ResultController alloc] initWithImage:image];
+    [self.navigationController pushViewController:rc animated:YES];
+    [rc release];
 }
 
 

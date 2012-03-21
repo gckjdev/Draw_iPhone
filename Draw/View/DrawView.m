@@ -10,6 +10,8 @@
 #import "Paint.h"
 #import "DrawColor.h"
 #import "DrawUtils.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -25,6 +27,22 @@
 @synthesize delegate = _delegate;
 @synthesize simplingDistance = _simplingDistance;
 #pragma mark Action Funtion
+
+- (void)printListCount:(NSTimer *)theTimer
+{
+    if (self.paintList) {
+        if (theTimer) {
+            NSLog(@"from timer paintList count is %d", [self.paintList count]);                    
+        }else{
+            NSLog(@"NOT from timer paintList count is %d", [self.paintList count]);                    
+        }
+
+    }else
+    {
+        NSLog(@"paintList is null");
+    }
+    
+}
 
 - (void)clear
 {
@@ -136,6 +154,8 @@
 #pragma mark Gesture Handler
 - (void)addPoint:(CGPoint)point toPaint:(Paint *)paint
 {
+//    [self printListCount:nil];
+
     if (paint) {
         point.x = MAX(point.x, 0);
         point.y = MAX(point.y, 0);
@@ -220,6 +240,8 @@
     return (gestureRecognizer.view == self);
 }
 
+
+
 #pragma mark Constructor & Destructor
 
 - (id)initWithFrame:(CGRect)frame
@@ -247,6 +269,9 @@
         [self setDrawEnabled:YES];
         
     }
+    
+//    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(printListCount:) userInfo:nil repeats:YES];
+    
     return self;
 }
 
@@ -307,5 +332,16 @@
     }
 }
 
+
+- (UIImage*)createImage
+{
+    CGRect rect = self.frame;
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 
 @end

@@ -241,7 +241,8 @@
     //TODO check if the user is the host. 
     [self updateGameUsers];    
     if (![self isMyTurn]) {
-        ShowDrawController *sd = [ShowDrawController instance];
+//        ShowDrawController *sd = [ShowDrawController instance];
+        ShowDrawController *sd = [[[ShowDrawController alloc] init]autorelease];
         [self.navigationController pushViewController:sd animated:NO];        
     }
 

@@ -198,6 +198,8 @@
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA2423E71518597E00BBECBE /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2423E61518597E00BBECBE /* AnimationManager.m */; };
+		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
+		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -652,6 +654,9 @@
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA2423E51518597E00BBECBE /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		CA2423E61518597E00BBECBE /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
+		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
+		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -1733,6 +1738,9 @@
 				CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */,
 				CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */,
 				CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */,
+				CA32CD0B15197B6900BF86BA /* ResultController.h */,
+				CA32CD0C15197B6900BF86BA /* ResultController.m */,
+				CA32CD0D15197B6900BF86BA /* ResultController.xib */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -2229,6 +2237,7 @@
 				CAA0E6AB1514845700FD8C3E /* WordDictionary.plist in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
+				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2451,6 +2460,7 @@
 				CAB3DBE61517096D00E7DBC4 /* PickLineWidthView.m in Sources */,
 				CAB3DBE91517098B00E7DBC4 /* PickColorView.m in Sources */,
 				CA2423E71518597E00BBECBE /* AnimationManager.m in Sources */,
+				CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

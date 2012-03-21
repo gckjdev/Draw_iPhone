@@ -16,6 +16,7 @@
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
 #import "GameTurn.h"
+#import "ResultController.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -31,6 +32,7 @@ ShowDrawController *GlobalGetShowDrawController()
 @implementation ShowDrawController
 @synthesize guessMsgLabel;
 @synthesize guessDoneButton;
+@synthesize showImageView;
 @synthesize word = _word;
 
 - (void)dealloc
@@ -39,6 +41,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [candidateString release];
     [guessMsgLabel release];
     [guessDoneButton release];
+    [showImageView release];
     [super dealloc];
 }
 
@@ -122,6 +125,10 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setTitle:nil forState:UIControlStateNormal];            
         }
     }
+    NSLog(@"createImage");
+
+    [self.showImageView setImage:[showView createImage]];
+    [self.view bringSubviewToFront:self.showImageView];
 }
 
 
@@ -214,20 +221,8 @@ ShowDrawController *GlobalGetShowDrawController()
     [self makePickingButtons];
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void)resetData
 {
-    [super viewDidLoad];
-
-    showView = nil;
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     [showView removeFromSuperview];
     showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
     [self.view addSubview:showView];
@@ -250,10 +245,28 @@ ShowDrawController *GlobalGetShowDrawController()
     
     [self.guessMsgLabel setHidden:YES];
 }
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    showView = nil;
+    [self resetData];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+
+}
 - (void)viewDidUnload
 {
     [self setGuessMsgLabel:nil];
     [self setGuessDoneButton:nil];
+    [self setShowImageView:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -323,7 +336,12 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    [self alert:@"Game is complete"];
+//    [self alert:@"Game is complete"];
+    NSLog(@"Game is Complete");
+    UIImage *image = [showView createImage];
+    ResultController *rc = [[ResultController alloc] initWithImage:image];
+    [self.navigationController pushViewController:rc animated:YES];
+    [rc release];
 }
 
 - (void)didConnected

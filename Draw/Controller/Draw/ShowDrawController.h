@@ -25,6 +25,7 @@
 - (IBAction)clickGuessDoneButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
+@property (retain, nonatomic) IBOutlet UIImageView *showImageView;
 
 + (ShowDrawController *)instance;
 

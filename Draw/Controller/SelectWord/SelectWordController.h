@@ -11,10 +11,13 @@
 @interface SelectWordController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *_wordArray;
+    NSInteger  retainCount;
+    BOOL hasPushController;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
 @property (retain, nonatomic) NSArray *wordArray;
 - (IBAction)clickChangeWordButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *clockLabel;
 
 @end
