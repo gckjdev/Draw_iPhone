@@ -83,5 +83,7 @@
 - (void)startDraw:(NSString*)word level:(int)level;
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId;
 
+- (BOOL)isConnected;
+- (void)connectServer;
 
 @end

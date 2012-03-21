@@ -57,10 +57,18 @@ static DrawGameService* _defaultService;
     _historySessionSet = [[NSMutableSet alloc] init];
         
     _networkClient = [[GameNetworkClient alloc] init];
-    [_networkClient setDelegate:self];
-    [_networkClient start:@"192.168.1.198" port:8080];
-
+    [_networkClient setDelegate:self];    
     return self;
+}
+
+- (BOOL)isConnected
+{
+    return [_networkClient isConnected];
+}
+
+- (void)connectServer
+{
+    [_networkClient start:@"192.168.1.198" port:8080];
 }
 
 - (BOOL)isMeHost

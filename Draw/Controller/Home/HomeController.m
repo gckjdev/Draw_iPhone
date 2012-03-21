@@ -43,13 +43,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view from its nib.
-    [self showActivityWithText:@"kConnectingServer"];
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
     [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
+    
+//    [[DrawGameService defaultService] connectServer];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -81,17 +82,26 @@
 - (IBAction)clickStart:(id)sender
 {        
     [self showActivityWithText:NSLS(@"kJoingGame")];
-    [[DrawGameService defaultService] joinGame];    
+    
+    if ([[DrawGameService defaultService] isConnected]){        
+        [[DrawGameService defaultService] joinGame];    
+    }
+    else{
+        [self showActivityWithText:@"kConnectingServer"];        
+        [[DrawGameService defaultService] connectServer];
+        _isTryJoinGame = YES;
+    }
 }
 
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [UIUtils alert:@"Join Game OK!"];
+        [self popupHappyMessage:@"Join Game OK" title:@""];
     }
     else{
-        [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
+        NSString* text = [NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]];
+        [self popupUnhappyMessage:text title:@""];
     }
 
     [RoomController firstEnterRoom:self];
@@ -99,16 +109,23 @@
 
 - (void)didBroken
 {
+    _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [UIUtils alert:@"Network Broken"];
+    [self popupUnhappyMessage:@"Network Failure, Connect Server Failure" title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)didConnected
 {
     [self hideActivity];
-    [UIUtils alert:@"Server Connected"];
+    [self popupHappyMessage:@"Server Connected" title:@""];
+    if (_isTryJoinGame){
+        [[DrawGameService defaultService] joinGame];    
+    }
+    
+    _isTryJoinGame = NO;
+    
 }
 
 @end

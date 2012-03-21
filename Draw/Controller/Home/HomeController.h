@@ -11,6 +11,9 @@
 #import "DrawGameService.h"
 
 @interface HomeController : PPViewController<DrawGameServiceDelegate>
+{
+    BOOL _isTryJoinGame;
+}
 
 - (IBAction)clickStart:(id)sender;
 

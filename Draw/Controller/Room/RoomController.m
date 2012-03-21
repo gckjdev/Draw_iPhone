@@ -216,10 +216,10 @@
     [self hideActivity];
     
     if ([message resultCode] == 0){
-        [UIUtils alert:@"Start Game OK!"];
+        [self popupHappyMessage:@"Start Game OK!" title:@""];
     }
     else{
-        [UIUtils alert:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]]];
+        [self popupHappyMessage:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]] title:@""];
     }
     
     [self updateGameUsers];
