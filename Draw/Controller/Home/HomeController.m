@@ -13,6 +13,7 @@
 #import "DrawAppDelegate.h"
 #import "UserManager.h"
 #import "PPDebug.h"
+#import "GameMessage.pb.h"
 
 @implementation HomeController
 
@@ -51,9 +52,16 @@
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[DrawGameService defaultService] registerObserver:self];
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self hideActivity];
+    [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
 }
 
@@ -72,13 +80,28 @@
 
 - (IBAction)clickStart:(id)sender
 {        
+    [self showActivityWithText:NSLS(@"kJoingGame")];
+    [[DrawGameService defaultService] joinGame];    
+}
+
+- (void)didJoinGame:(GameMessage *)message
+{
+    [self hideActivity];
+    if ([message resultCode] == 0){
+        [UIUtils alert:@"Join Game OK!"];
+    }
+    else{
+        [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
+    }
+
     [RoomController firstEnterRoom:self];
 }
 
 - (void)didBroken
 {
-//    [UIUtils alert:@"Network Broken"];
     PPDebug(@"<didBroken>");
+    [self hideActivity];
+    [UIUtils alert:@"Network Broken"];
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 

@@ -58,7 +58,7 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self];
-    [_networkClient start:@"192.167.1.103" port:8080];
+    [_networkClient start:@"192.168.1.198" port:8080];
 
     return self;
 }
@@ -118,9 +118,7 @@ static DrawGameService* _defaultService;
             [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
         }
         
-        if ([_roomDelegate respondsToSelector:@selector(didJoinGame:)]){
-            [_roomDelegate didJoinGame:message];
-        }
+        [self notifyGameObserver:@selector(didJoinGame:) message:message];
     });
 }
 
@@ -134,9 +132,7 @@ static DrawGameService* _defaultService;
             PPDebug(@"<handleStartGameResponse> Update Session = %@", [self.session description]);
         }
         
-        if ([_roomDelegate respondsToSelector:@selector(didStartGame:)]){
-            [_roomDelegate didStartGame:message];
-        }
+        [self notifyGameObserver:@selector(didStartGame:) message:message];        
     });
 }
 

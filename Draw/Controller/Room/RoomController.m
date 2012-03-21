@@ -208,10 +208,6 @@
         [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
     }
 
-    // update 
-    [self scheduleStartTimer];
-    [self updateGameUsers];
-    [self updateRoomName];
 }
 
 - (void)didStartGame:(GameMessage *)message
@@ -352,8 +348,11 @@
     
     [superController.navigationController pushViewController:app.roomController 
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];
-
-    [app.roomController joinGame];
+    
+    // update 
+    [app.roomController scheduleStartTimer];
+    [app.roomController updateGameUsers];
+    [app.roomController updateRoomName];    
 }
 
 + (void)returnRoom:(UIViewController*)superController

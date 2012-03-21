@@ -32,7 +32,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
 
 - (void)start:(NSString*)serverAddress port:(int)port
 {
-    [self connect:serverAddress port:port autoReconnect:YES];
+    [self connect:serverAddress port:port autoReconnect:NO];
 }
 
 #pragma Data Handler
