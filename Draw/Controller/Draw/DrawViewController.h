@@ -46,6 +46,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UIButton *blackButton;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
+@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *clockLabel;
 
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) PickLineWidthView *pickLineWidthView;

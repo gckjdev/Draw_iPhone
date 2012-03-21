@@ -17,6 +17,8 @@
 #import "AnimationManager.h"
 #import "GameTurn.h"
 #import "ResultController.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -32,7 +34,7 @@ ShowDrawController *GlobalGetShowDrawController()
 @implementation ShowDrawController
 @synthesize guessMsgLabel;
 @synthesize guessDoneButton;
-@synthesize showImageView;
+@synthesize clockLabel;
 @synthesize word = _word;
 
 - (void)dealloc
@@ -41,7 +43,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [candidateString release];
     [guessMsgLabel release];
     [guessDoneButton release];
-    [showImageView release];
+    [clockLabel release];
     [super dealloc];
 }
 
@@ -77,6 +79,26 @@ ShowDrawController *GlobalGetShowDrawController()
 #define PLAYER_BUTTON_TAG_START 1
 #define PLAYER_BUTTON_TAG_END 6
 
+
+- (void)bringAllViewsToFront
+{
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [self.view bringSubviewToFront:button];
+    }
+    
+    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [self.view bringSubviewToFront:button];
+    }
+    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [self.view bringSubviewToFront:button];
+    }
+    [self.view bringSubviewToFront:self.clockLabel];
+    [self.view bringSubviewToFront:self.guessMsgLabel];
+    [self.view bringSubviewToFront:self.guessDoneButton];
+}
 
 - (UIButton *)getTheFirstEmptyButton
 {
@@ -127,8 +149,6 @@ ShowDrawController *GlobalGetShowDrawController()
     }
     NSLog(@"createImage");
 
-    [self.showImageView setImage:[showView createImage]];
-    [self.view bringSubviewToFront:self.showImageView];
 }
 
 
@@ -139,6 +159,7 @@ ShowDrawController *GlobalGetShowDrawController()
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:nil forState:UIControlStateNormal];
+//        [self.view bringSubviewToFront:button];
     }
 }
 
@@ -152,7 +173,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
         NSString *string = [candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
         [button setTitle:string forState:UIControlStateNormal];
-        [self.view bringSubviewToFront:button];
+//        [self.view bringSubviewToFront:button];
     }
 }
 
@@ -169,6 +190,12 @@ ShowDrawController *GlobalGetShowDrawController()
         button.hidden = NO;
         [button setTitle:user.userId forState:UIControlStateNormal];
         ++ i;
+        HJManagedImageV* imageView = [[HJManagedImageV alloc] initWithFrame:button.bounds];
+        [imageView clear];
+        [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        [GlobalGetImageCache() manage:imageView];
+        [button addSubview:imageView];
+        [imageView release];
     }
 }
 
@@ -200,6 +227,8 @@ ShowDrawController *GlobalGetShowDrawController()
         [button setEnabled:enabled];
     }
 }
+
+
 - (void)setClockTitle:(NSTimer *)theTimer
 {
     --retainCount;
@@ -210,8 +239,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self.guessDoneButton setEnabled:NO];
         retainCount = 0;
     }
-    NSString *title = [NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount];
-    [self setTitle:title];
+    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
 }
 
 - (void)restWord:(NSString *)text level:(WordLevel)level
@@ -224,7 +252,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)resetData
 {
     [showView removeFromSuperview];
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
+    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
     [self.view addSubview:showView];
     [showView release];
     
@@ -234,7 +262,8 @@ ShowDrawController *GlobalGetShowDrawController()
     drawGameService = [DrawGameService defaultService];
     [drawGameService setDrawDelegate:self];
     retainCount = GUESS_TIME;
-    [self setTitle:[NSString stringWithFormat:NSLS(@"猜词中 %d"), retainCount]];
+    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    [self bringAllViewsToFront];
     [self makeWriteButtons];
     [self makePlayerButtons];
     
@@ -266,7 +295,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     [self setGuessMsgLabel:nil];
     [self setGuessDoneButton:nil];
-    [self setShowImageView:nil];
+    [self setClockLabel:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -338,6 +367,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
 //    [self alert:@"Game is complete"];
     NSLog(@"Game is Complete");
+    
     UIImage *image = [showView createImage];
     ResultController *rc = [[ResultController alloc] initWithImage:image];
     [self.navigationController pushViewController:rc animated:YES];

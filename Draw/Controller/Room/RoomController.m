@@ -16,6 +16,9 @@
 #import "DrawAppDelegate.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 #import "PPDebug.h"
+#import "GameSessionUser.h"
+#import "GameMessage.pb.h"
+
 
 @interface RoomController ()
 
@@ -28,6 +31,7 @@
 - (void)prolongStartTimer;
 
 - (BOOL)isMyTurn;
+- (NSInteger)userCount;
 
 @end
 
@@ -194,6 +198,18 @@
 
         [self.prolongButton setTitle:NSLS(@"kQuickQuick") forState:UIControlStateNormal];
     }
+    
+    // one user cannot start...
+    if ([self userCount] <= 1){
+        [self.startGameButton setEnabled:NO];        
+    }
+}
+
+- (NSInteger)userCount
+{
+    GameSession* session = [[DrawGameService defaultService] session];
+    NSArray* userList = [session userList];
+    return [userList count];
 }
 
 #pragma mark - Draw Game Service Delegate
@@ -208,6 +224,14 @@
         [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
     }
 
+    // update 
+    [self updateGameUsers];
+    [self updateRoomName];    
+    if ([self userCount] > 1) {
+        [self scheduleStartTimer];        
+    }else{
+        [self resetStartTimer];
+    }
 }
 
 - (void)didStartGame:(GameMessage *)message
@@ -250,11 +274,20 @@
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
     [self updateGameUsers];    
+    if (self.startTimer == nil && [self userCount] > 1) {
+        [self scheduleStartTimer];
+    }
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
     [self updateGameUsers];    
+    if ([self userCount] > 1) {
+        [self scheduleStartTimer];        
+    }else{
+        [self resetStartTimer];
+    }
+   
 }
 
 - (void)didGameAskQuick:(GameMessage *)message
@@ -301,6 +334,8 @@
 {
     return [[DrawGameService defaultService] isMyTurn];
 }
+
+
 
 #pragma mark - Button Click Action
 
@@ -350,7 +385,11 @@
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];
     
     // update 
-    [app.roomController scheduleStartTimer];
+    if ([app.roomController userCount] > 1) {
+        [app.roomController scheduleStartTimer];        
+    }else{
+        [app.roomController resetStartTimer];
+    }    
     [app.roomController updateGameUsers];
     [app.roomController updateRoomName];    
 }
@@ -358,7 +397,13 @@
 + (void)returnRoom:(UIViewController*)superController
 {
     [superController.navigationController popToViewController:[RoomController defaultInstance] animated:YES];
-    [[RoomController defaultInstance] scheduleStartTimer];
+    if ([[RoomController defaultInstance] userCount] > 1) {
+        [[RoomController defaultInstance] scheduleStartTimer];        
+    }else
+    {
+        [[RoomController defaultInstance] resetStartTimer];        
+    }
+
 }
 
 #pragma mark - Timer Handling
@@ -370,6 +415,7 @@
 - (void)resetStartTimer
 {
     _currentTimeCounter = DEFAULT_START_TIME;
+    [self updateStartButton];
     if (self.startTimer != nil){
         [self.startTimer invalidate];
         self.startTimer = nil;

@@ -50,6 +50,7 @@
         hasPushController = YES;
         DrawViewController *vc = [[[DrawViewController alloc] init]autorelease];
         [gameService startDraw:word.text level:word.level];
+        vc.word = word;
         [self.navigationController pushViewController:vc animated:NO];        
     }
     
