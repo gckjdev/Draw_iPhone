@@ -16,6 +16,9 @@
 #import "DrawAppDelegate.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 #import "PPDebug.h"
+#import "GameSessionUser.h"
+#import "GameMessage.pb.h"
+
 
 @interface RoomController ()
 
@@ -196,6 +199,13 @@
     }
 }
 
+- (NSInteger)userCount
+{
+    GameSession* session = [[DrawGameService defaultService] session];
+    NSArray* userList = [session userList];
+    return [userList count];
+}
+
 #pragma mark - Draw Game Service Delegate
 
 - (void)didJoinGame:(GameMessage *)message
@@ -209,9 +219,13 @@
     }
 
     // update 
-    [self scheduleStartTimer];
     [self updateGameUsers];
-    [self updateRoomName];
+    [self updateRoomName];    
+    if ([self userCount] > 1) {
+        [self scheduleStartTimer];        
+    }else{
+        [self resetStartTimer];
+    }
 }
 
 - (void)didStartGame:(GameMessage *)message
@@ -254,11 +268,20 @@
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
     [self updateGameUsers];    
+    if (self.startTimer == nil && [self userCount] > 1) {
+        [self scheduleStartTimer];
+    }
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
     [self updateGameUsers];    
+    if ([self userCount] > 1) {
+        [self scheduleStartTimer];        
+    }else{
+        [self resetStartTimer];
+    }
+   
 }
 
 - (void)didGameAskQuick:(GameMessage *)message
@@ -305,6 +328,8 @@
 {
     return [[DrawGameService defaultService] isMyTurn];
 }
+
+
 
 #pragma mark - Button Click Action
 
@@ -359,7 +384,13 @@
 + (void)returnRoom:(UIViewController*)superController
 {
     [superController.navigationController popToViewController:[RoomController defaultInstance] animated:YES];
-    [[RoomController defaultInstance] scheduleStartTimer];
+    if ([[RoomController defaultInstance] userCount] > 1) {
+        [[RoomController defaultInstance] scheduleStartTimer];        
+    }else
+    {
+        [[RoomController defaultInstance] resetStartTimer];        
+    }
+
 }
 
 #pragma mark - Timer Handling
@@ -371,6 +402,7 @@
 - (void)resetStartTimer
 {
     _currentTimeCounter = DEFAULT_START_TIME;
+    [self updateStartButton];
     if (self.startTimer != nil){
         [self.startTimer invalidate];
         self.startTimer = nil;

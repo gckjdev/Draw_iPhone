@@ -19,6 +19,8 @@
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
 #import "ResultController.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -39,6 +41,8 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize moreButton;
 @synthesize blackButton;
 @synthesize guessMsgLabel;
+@synthesize wordLabel;
+@synthesize clockLabel;
 @synthesize word = _word;
 @synthesize pickColorView = _pickColorView;
 @synthesize pickLineWidthView = _pickLineWidthView;
@@ -59,6 +63,8 @@ DrawViewController *GlobalGetDrawViewController()
     [_pickLineWidthView release];
     [_pickColorView release];
     [guessMsgLabel release];
+    [wordLabel release];
+    [clockLabel release];
     [super dealloc];
 }
 
@@ -76,16 +82,23 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 #pragma mark - View lifecycle
-//- (id)initWithWord:(Word *)word
-//{
-//    self = [super init];
-//    if (self) {
-//        self.word = word; 
-//    }
-//    return self;
-//    
-//}
 
+
+#define PLAYER_BUTTON_TAG_START 1
+#define PLAYER_BUTTON_TAG_END 6
+
+- (void)bringAllViewsToFront
+{
+    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
+        UIView *button = [self.view viewWithTag:i];
+        [self.view bringSubviewToFront:button];
+    }
+    [self.view bringSubviewToFront:guessMsgLabel];
+    [self.view bringSubviewToFront:clockLabel];
+    [self.view bringSubviewToFront:self.pickColorView];
+    [self.view bringSubviewToFront:self.pickLineWidthView];
+    [self.view bringSubviewToFront:drawView];
+}
 - (void)addPickLineWidthView
 {
     self.pickLineWidthView = [[[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)]autorelease];
@@ -134,8 +147,6 @@ DrawViewController *GlobalGetDrawViewController()
     [self.pickColorView setHidden:YES];
 }
 
-#define PLAYER_BUTTON_TAG_START 1
-#define PLAYER_BUTTON_TAG_END 6
 
 - (void)makePlayerButtons
 {
@@ -150,6 +161,14 @@ DrawViewController *GlobalGetDrawViewController()
         button.hidden = NO;
         [button setTitle:user.userId forState:UIControlStateNormal];
         ++ i;
+        
+        HJManagedImageV* imageView = [[HJManagedImageV alloc] initWithFrame:button.bounds];
+        [imageView clear];
+        [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        [GlobalGetImageCache() manage:imageView];
+        [button addSubview:imageView];
+        [imageView release];
+        
     }
 }
 
@@ -162,14 +181,13 @@ DrawViewController *GlobalGetDrawViewController()
         retainCount = 0;
         [drawView setDrawEnabled:NO];
     }
-    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
-    [self setTitle:title];
+    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
 }
 
 - (void)resetData
 {
     [drawView removeFromSuperview];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 40, 320, 330)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
     [self.view addSubview:drawView];
     drawView.delegate = self;
     [drawView release];
@@ -178,12 +196,15 @@ DrawViewController *GlobalGetDrawViewController()
     _drawGameService.drawDelegate = self;
     [self hidePickViews];
     [self.guessMsgLabel setHidden:YES];
-    
+    [self.wordLabel setText:self.word.text];
+//    [self.view bringSubviewToFront:self.wordLabel];
+//    [self.view bringSubviewToFront:self.clockLabel];
     retainCount = DRAW_TIME;
-    NSString *title = [NSString stringWithFormat:NSLS(@"画画中(%@) %d"),self.word.text, retainCount];
-    [self setTitle:title];
+    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    
     drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
     [self makePlayerButtons];
+    [self bringAllViewsToFront];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -222,6 +243,8 @@ DrawViewController *GlobalGetDrawViewController()
     [self setPickColorView:nil];
     [self setPickLineWidthView:nil];
     [self setGuessMsgLabel:nil];
+    [self setWordLabel:nil];
+    [self setClockLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -269,13 +292,13 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 - (IBAction)clickMoreColorButton:(id)sender {
-    [self.view bringSubviewToFront:self.pickColorView];
+//    [self.view bringSubviewToFront:self.pickColorView];
     [self.pickColorView setHidden:![self.pickColorView isHidden]];
     [self.pickLineWidthView setHidden:YES];
 }
 
 - (IBAction)clickPickWidthButton:(id)sender {
-    [self.view bringSubviewToFront:self.pickLineWidthView];
+//    [self.view bringSubviewToFront:self.pickLineWidthView];
     [self.pickLineWidthView setHidden:![self.pickLineWidthView isHidden]];
     [self.pickColorView setHidden:YES];
 }
