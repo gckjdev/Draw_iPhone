@@ -83,6 +83,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {    
     [[DrawGameService defaultService] registerObserver:self];
+    [[DrawGameService defaultService] setRoomDelegate:self];
     [self updateGameUsers];
     [self updateRoomName];
     [self updateStartButton];
@@ -261,14 +262,10 @@
     //TODO check if the user is the host. 
     [self updateGameUsers];    
     if (![self isMyTurn]) {
-//        ShowDrawController *sd = [ShowDrawController instance];
-        ShowDrawController *sd = [[[ShowDrawController alloc] init]autorelease];
+        ShowDrawController *sd = [ShowDrawController instance];
+//        ShowDrawController *sd = [[[ShowDrawController alloc] init]autorelease];
         [self.navigationController pushViewController:sd animated:NO];        
     }
-
-//    SelectWordController *sw = [[SelectWordController alloc] init];
-//    [self.navigationController pushViewController:sw animated:YES];
-//    [sw release];    
 }
 
 - (void)didNewUserJoinGame:(GameMessage *)message

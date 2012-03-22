@@ -97,6 +97,9 @@ WordManager *GlobalGetWordManager()
 
 - (NSString *)randLetterWithWord:(Word *)word
 {
+    if (word == nil) {
+        return nil;
+    }
     NSString *str = @"北京天安门广场紫禁城乔丹詹姆斯足球篮球小鸡老鹰妖怪香蕉纸巾";
     NSInteger count = 16 - [word.text length];
     NSString *suffix = [str substringWithRange:NSMakeRange(0, count)];

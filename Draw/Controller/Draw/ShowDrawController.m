@@ -19,6 +19,7 @@
 #import "ResultController.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
+#import "HomeController.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -55,6 +56,12 @@ ShowDrawController *GlobalGetShowDrawController()
         self.word = nil;
     }
     return self;
+}
+
+- (IBAction)clickRunAway:(id)sender {
+    [drawGameService quitGame];
+    [HomeController returnRoom:self];
+//    [HomeController 
 }
 
 + (ShowDrawController *)instance
@@ -171,9 +178,12 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
-        NSString *string = [candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
-        [button setTitle:string forState:UIControlStateNormal];
-//        [self.view bringSubviewToFront:button];
+        if (candidateString != nil) {
+            NSString *string = [candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
+            [button setTitle:string forState:UIControlStateNormal];
+        }else{
+            [button setTitle:nil forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -182,6 +192,9 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         button.hidden = YES;
+        for (UIView *view in button.subviews) {
+            [view removeFromSuperview];
+        }
     }
     int i = 1;
     GameSession *session = [[DrawGameService defaultService] session];
@@ -242,9 +255,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
 }
 
-- (void)restWord:(NSString *)text level:(WordLevel)level
+- (void)resetWord:(Word *)word
 {
-    self.word = [[[Word alloc] initWithText:text level:level]autorelease];
+    self.word = word;
+//    self.word = [[[Word alloc] initWithText:text level:level]autorelease];
     [self makeWriteButtons];
     [self makePickingButtons];
 }
@@ -256,23 +270,27 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.view addSubview:showView];
     [showView release];
     
-    [self setGuessAndPickButtonsEnabled:NO];
-    [self.guessDoneButton setEnabled:NO];
+    [self setGuessAndPickButtonsEnabled:YES];
+    [self.guessDoneButton setEnabled:YES];
     [showView setDrawEnabled:NO];
     drawGameService = [DrawGameService defaultService];
     [drawGameService setDrawDelegate:self];
     retainCount = GUESS_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
-    [self bringAllViewsToFront];
-    [self makeWriteButtons];
-    [self makePlayerButtons];
+//    [self makeWriteButtons];
+//    [self makePlayerButtons];
+    [self resetWord:self.word];
+//    GameTurn *turn = drawGameService.session.currentTurn;
+//    if (self.word) {
+//        [self restWord:turn.word level:turn.level];
+        
+//    }
     
-    GameTurn *turn = drawGameService.session.currentTurn;
-    if (turn && turn.word) {
-        [self restWord:turn.word level:turn.level];
-    }
     
     [self.guessMsgLabel setHidden:YES];
+//    [self bringAllViewsToFront];    
+    [self.view sendSubviewToBack:showView];
+
 }
 
 #pragma mark - View lifecycle
@@ -281,16 +299,23 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     [super viewDidLoad];
     showView = nil;
-    [self resetData];
+    self.word = nil;
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self resetData];
+    [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
-    
-
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [drawGameService unregisterObserver:self];
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     [self setGuessMsgLabel:nil];
@@ -345,7 +370,9 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
 {
     if (wordText) {
-        [self restWord:wordText level:wordLevel];
+        Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
+        [self resetWord:word];
+//        [self restWord:wordText level:wordLevel];
     }
     
 
@@ -367,11 +394,12 @@ ShowDrawController *GlobalGetShowDrawController()
 {
 //    [self alert:@"Game is complete"];
     NSLog(@"Game is Complete");
-    
+
     UIImage *image = [showView createImage];
-    ResultController *rc = [[ResultController alloc] initWithImage:image];
+    ResultController *rc = [[ResultController alloc] initWithImage:image wordText:self.word.text score:self.word.score];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
+    [self resetWord:nil];
 }
 
 - (void)didConnected
@@ -385,11 +413,10 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    
+    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",[message userId]];
+    [self makePlayerButtons];
+    [self popUpGuessMessage:quitText];
 }
-
-
-
 
 - (IBAction)clickGuessDoneButton:(id)sender {
     //get the word

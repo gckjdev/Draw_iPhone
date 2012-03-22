@@ -7,25 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DrawGameService.h"
 
-@interface ResultController : UIViewController
+
+@interface ResultController : UIViewController<DrawGameServiceDelegate>
 {
     UIImage * _image;
+    BOOL didGameStarted;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
 @property (retain, nonatomic) IBOutlet UIButton *continueButton;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
 @property (retain, nonatomic) IBOutlet UIButton *exitButton;
+@property (retain, nonatomic) NSString *wordText;
+@property (assign, nonatomic) NSInteger score;
+@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
+
 
 - (IBAction)clickUpButton:(id)sender;
-
 - (IBAction)clickDownButton:(id)sender;
 - (IBAction)clickContinueButton:(id)sender;
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickExitButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
-- (id)initWithImage:(UIImage *)image;
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)wordText score:(NSInteger)score;
 
 @end

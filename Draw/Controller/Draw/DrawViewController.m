@@ -102,7 +102,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)addPickLineWidthView
 {
     self.pickLineWidthView = [[[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)]autorelease];
-    [self.pickLineWidthView setCenter:CGPointMake(self.widthButton.center.x, self.widthButton.center. y + 80)];
+    [self.pickLineWidthView setCenter:CGPointMake(self.widthButton.center.x, self.widthButton.center. y + 120)];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     for (int i = 5; i < 21; i += 5) {
         NSNumber *number = [NSNumber numberWithInt:i];
@@ -118,7 +118,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)addPickColorView
 {
     self.pickColorView = [[[PickColorView alloc] initWithFrame:CGRectMake(100, 100, 120, 90)]autorelease];
-    [self.pickColorView setCenter:CGPointMake(self.moreButton.center.x, self.moreButton.center. y + 75)];
+    [self.pickColorView setCenter:CGPointMake(self.moreButton.center.x, self.moreButton.center. y + 115)];
     NSMutableArray *colorList = [[NSMutableArray alloc] init];
 
     [colorList addObject:[DrawColor cyanColor]];    
@@ -153,6 +153,9 @@ DrawViewController *GlobalGetDrawViewController()
     for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         button.hidden = YES;
+        for (UIView *view in button.subviews) {
+            [view removeFromSuperview];
+        }
     }
     int i = 1;
     GameSession *session = [[DrawGameService defaultService] session];
@@ -186,6 +189,11 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)resetData
 {
+    
+    [self addPickColorView];
+    [self addPickLineWidthView];
+    [self hidePickViews];
+    
     [drawView removeFromSuperview];
     drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
     [self.view addSubview:drawView];
@@ -204,7 +212,8 @@ DrawViewController *GlobalGetDrawViewController()
     
     drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
     [self makePlayerButtons];
-    [self bringAllViewsToFront];
+//    [self bringAllViewsToFront];
+    [self.view sendSubviewToBack:drawView];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -214,19 +223,20 @@ DrawViewController *GlobalGetDrawViewController()
     [super viewDidLoad];
     drawView = nil;
     _drawGameService = [DrawGameService defaultService];
-    
-    [self addPickColorView];
-    [self addPickLineWidthView];
-    [self hidePickViews];
-    
-    [self resetData];
-    
 
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self resetData];
+    [_drawGameService registerObserver:self];
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [_drawGameService unregisterObserver:self];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -359,12 +369,17 @@ DrawViewController *GlobalGetDrawViewController()
 {
     NSLog(@"Game is Complete");
     UIImage *image = [drawView createImage];
-    ResultController *rc = [[ResultController alloc] initWithImage:image];
+    ResultController *rc = [[ResultController alloc] initWithImage:image wordText:self.word.text score:self.word.score];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
 }
 
-
+- (void)didUserQuitGame:(GameMessage *)message
+{
+    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",[message userId]];
+    [self makePlayerButtons];
+    [self popUpGuessMessage:quitText];
+}
 #pragma mark pick view delegate
 - (void)didPickedLineWidth:(NSInteger)width
 {

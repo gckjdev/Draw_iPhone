@@ -7,6 +7,9 @@
 //
 
 #import "ResultController.h"
+#import "HomeController.h"
+#import "RoomController.h"
+#import "DrawGameService.h"
 
 @implementation ResultController
 @synthesize drawImage;
@@ -15,6 +18,10 @@
 @synthesize continueButton;
 @synthesize saveButton;
 @synthesize exitButton;
+@synthesize wordText;
+@synthesize score;
+@synthesize wordLabel;
+@synthesize scoreLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,13 +40,15 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (id)initWithImage:(UIImage *)image
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)wordText score:(NSInteger)score
 {
     self = [super init];
     if (self) {
 //        [self.drawImage setImage:image];        
         _image = image;
         [_image retain];
+        self.wordText = wordText;
+        self.score = score;
     }
     return self;
 }
@@ -50,6 +59,23 @@
 {
     [super viewDidLoad];
     [self.drawImage setImage:_image];
+    [self.wordLabel setText:self.wordText];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
+
+    didGameStarted = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[DrawGameService defaultService] unregisterObserver:self];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    [[DrawGameService  defaultService] setDrawDelegate:self];
+    [[DrawGameService defaultService] setRoomDelegate:self];
+    [[DrawGameService defaultService] registerObserver:self];
 }
 
 - (void)viewDidUnload
@@ -61,6 +87,8 @@
     [self setExitButton:nil];
     [self setDrawImage:nil];
     _image = nil;
+    [self setWordLabel:nil];
+    [self setScoreLabel:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -81,6 +109,9 @@
     [exitButton release];
     [drawImage release];
     [_image release];
+    [wordText release];
+    [wordLabel release];
+    [scoreLabel release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
@@ -90,6 +121,11 @@
 }
 
 - (IBAction)clickContinueButton:(id)sender {
+    if (didGameStarted) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [RoomController returnRoom:self];
+    }
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -97,5 +133,13 @@
 }
 
 - (IBAction)clickExitButton:(id)sender {
+    [[DrawGameService defaultService] quitGame];
+    [HomeController returnRoom:self];
 }
+- (void)didGameStart:(GameMessage *)message
+{
+    NSLog(@"<ResultController>: didGameStart");
+    didGameStarted = YES;
+}
+
 @end
