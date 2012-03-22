@@ -10,6 +10,7 @@
 #import "HomeController.h"
 #import "RoomController.h"
 #import "DrawGameService.h"
+#import "GameConstants.h"
 
 #define CONTINUE_TIME 10
 
@@ -42,15 +43,15 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)wordText score:(NSInteger)score
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has
 {
     self = [super init];
     if (self) {
-//        [self.drawImage setImage:image];        
         _image = image;
         [_image retain];
-        self.wordText = wordText;
-        self.score = score;
+        self.wordText = aWordText;
+        self.score = aScore;
+        hasRankButtons = has;
     }
     return self;
 }
@@ -85,6 +86,12 @@
     continueTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleContinueTimer:) userInfo:nil repeats:YES];
 }
 
+- (void)setUpAndDownButtonEnabled:(BOOL)enabled
+{
+    [upButton setEnabled:enabled];
+    [downButton setEnabled:enabled];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -95,18 +102,29 @@
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
     didGameStarted = NO;
     [self startTimer];
+    drawGameService = [DrawGameService defaultService];
+    [self setUpAndDownButtonEnabled:YES];
+    
+    upButton.hidden = downButton.hidden = !hasRankButtons;
+    
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [[DrawGameService defaultService] unregisterObserver:self];
+    [drawGameService unregisterObserver:self];
+    [drawGameService setRoomDelegate:nil];
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[DrawGameService defaultService] setRoomDelegate:self];
-    [[DrawGameService defaultService] registerObserver:self];
+        
+    [drawGameService setRoomDelegate:self];
+    [drawGameService registerObserver:self];
+    [self.upButton setEnabled:YES];
+    [self.downButton setEnabled:YES];
 }
 
 - (void)viewDidUnload
@@ -146,9 +164,13 @@
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
+    [drawGameService rankGameResult:RANK_GOOD];
+    [self setUpAndDownButtonEnabled:NO];
 }
 
 - (IBAction)clickDownButton:(id)sender {
+    [drawGameService rankGameResult:RANK_BAD];
+    [self setUpAndDownButtonEnabled:NO];
 }
 
 - (IBAction)clickContinueButton:(id)sender {
@@ -173,5 +195,16 @@
     NSLog(@"<ResultController>: didGameStart");
     didGameStarted = YES;
 }
+
+
+- (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
+{
+    if (rank.integerValue == RANK_BAD) {
+        NSLog(@"%@ give you an egg", userId);
+    }else{
+        NSLog(@"%@ give you a flower", userId);
+    }
+}
+
 
 @end

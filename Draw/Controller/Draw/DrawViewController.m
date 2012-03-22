@@ -402,7 +402,11 @@ DrawViewController *GlobalGetDrawViewController()
 {
     NSLog(@"Game is Complete");
     UIImage *image = [drawView createImage];
-    ResultController *rc = [[ResultController alloc] initWithImage:image wordText:self.word.text score:self.word.score];
+    ResultController *rc = [[ResultController alloc] initWithImage:image 
+                                                          wordText:self.word.text 
+                                                             score:self.word.score 
+                                                    hasRankButtons:NO];
+    
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
     [self resetTimer];
