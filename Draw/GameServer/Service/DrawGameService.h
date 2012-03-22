@@ -34,7 +34,7 @@
 - (void)didGameTurnComplete:(GameMessage *)message;
 
 // game ranking
-- (void)didReceiveRank:(NSNumber*)rank;
+- (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId;
 
 // server connection
 - (void)didConnected;

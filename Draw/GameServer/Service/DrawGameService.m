@@ -68,7 +68,7 @@ static DrawGameService* _defaultService;
 
 - (void)connectServer
 {
-    [_networkClient start:@"192.167.1.102" port:8080];
+    [_networkClient start:@"192.168.1.198" port:8080];
 }
 
 - (BOOL)isMeHost
@@ -105,6 +105,16 @@ static DrawGameService* _defaultService;
         }
     }    
 }
+
+- (void)notifyGameObserver:(SEL)selector withObject1:(NSObject*)object1 withObject2:(NSObject*)object2
+{
+    for (id observer in _gameObserverList){        
+        if ([observer respondsToSelector:selector]){
+            [observer performSelector:selector withObject:object1 withObject:object2];
+        }
+    }    
+}
+
 
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer
 {
@@ -189,7 +199,9 @@ static DrawGameService* _defaultService;
             }            
             else if ([content rangeOfString:CHAT_COMMAND_RANK].location != NSNotFound){
                 int rank = [_networkClient stringToRank:content];
-                [self notifyGameObserver:@selector(didReceiveRank:) withObject:[NSNumber numberWithInt:rank]];
+                [self notifyGameObserver:@selector(didReceiveRank:fromUserId:)
+                             withObject1:[NSNumber numberWithInt:rank]
+                             withObject2:[message userId]];
             }
         }
     });    
@@ -198,6 +210,10 @@ static DrawGameService* _defaultService;
 - (void)handleGameTurnCompleteNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{   
+        
+        // update session data
+        [self.session updateByGameNotification:[message notification]];
+        
         PPDebug(@"<handleGameTurnCompleteNotification> Game Turn Completed!");
         if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
             [_drawDelegate didGameTurnComplete:message];
