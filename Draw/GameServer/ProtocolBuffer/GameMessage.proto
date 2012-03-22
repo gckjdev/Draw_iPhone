@@ -40,7 +40,7 @@ message StartGameResponse {                    // 开始游戏响应
 
 message GameChatRequest{
   repeated string toUserId = 1;                 // 对谁说，默认对所有
-  optional string content = 2;                  // 说的内容
+  optional string content = 2;                  // 说的内容  
 }
 
 message GameChatResponse{
@@ -108,6 +108,7 @@ message GameMessage {
   
   optional string userId = 4;
   optional int64  sessionId = 5 [default=0];
+  optional int32  round = 6;
   
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;

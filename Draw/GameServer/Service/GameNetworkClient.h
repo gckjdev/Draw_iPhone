@@ -57,6 +57,12 @@
             sessionId:(long)sessionId;
 
 
+- (void)sendRankGameResult:(int)rank
+                    userId:(NSString*)userId
+                 sessionId:(long)sessionId
+                     round:(int)round;
 
+- (int)stringToRank:(NSString*)rankString;
+- (NSString*)rankToString:(int)rank;
 
 @end

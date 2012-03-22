@@ -33,6 +33,9 @@
 - (void)didGameTurnGuessStart:(GameMessage *)message;
 - (void)didGameTurnComplete:(GameMessage *)message;
 
+// game ranking
+- (void)didReceiveRank:(NSNumber*)rank;
+
 // server connection
 - (void)didConnected;
 - (void)didBroken;
@@ -90,5 +93,7 @@
 
 - (BOOL)isConnected;
 - (void)connectServer;
+
+- (void)rankGameResult:(int)rank;
 
 @end

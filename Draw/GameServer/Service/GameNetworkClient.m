@@ -9,6 +9,7 @@
 #import "GameNetworkClient.h"
 #import "GameMessage.pb.h"
 #import "LogUtil.h"
+#import "GameConstants.h"
 
 @implementation GameNetworkClient
 
@@ -186,6 +187,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
               sessionId:(long)sessionId
              toUserList:(NSArray*)toUserList
                 content:(NSString*)content
+                  round:(int)round
 {
     GameChatRequest_Builder *requestBuilder = [[[GameChatRequest_Builder alloc] init] autorelease];
     if (content != nil){
@@ -201,12 +203,23 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
     [messageBuilder setChatRequest:[requestBuilder build]];
+    [messageBuilder setRound:round];
     
     GameMessage* gameMessage = [messageBuilder build];
     [self sendData:[gameMessage data]];                
 }
 
-
+- (void)sendChatMessage:(NSString*)userId 
+              sessionId:(long)sessionId
+             toUserList:(NSArray*)toUserList
+                content:(NSString*)content
+{
+    [self sendChatMessage:userId
+                sessionId:sessionId
+               toUserList:toUserList
+                  content:content
+                    round:0];
+}
 
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId
@@ -224,6 +237,29 @@ static GameNetworkClient* _defaultGameNetworkClient;
            sessionId:(long)sessionId
 {
     [self sendSimpleMessage:GameCommandTypeQuitGameRequest userId:userId sessionId:sessionId];    
+}
+
+- (NSString*)rankToString:(int)rank
+{
+    return [NSString stringWithFormat:@"%@%d", CHAT_COMMAND_RANK, rank];
+}
+
+- (int)stringToRank:(NSString*)rankString
+{
+    NSString* str = [rankString stringByReplacingOccurrencesOfString:CHAT_COMMAND_RANK withString:@""];
+    return [str intValue];
+}
+
+- (void)sendRankGameResult:(int)rank
+                    userId:(NSString*)userId
+                 sessionId:(long)sessionId
+                     round:(int)round
+{
+    [self sendChatMessage:userId 
+                sessionId:sessionId 
+               toUserList:nil 
+                  content:[self rankToString:rank]
+                    round:round];
 }
 
 @end

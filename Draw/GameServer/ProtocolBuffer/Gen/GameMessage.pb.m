@@ -2972,6 +2972,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property GameResultCode resultCode;
 @property (retain) NSString* userId;
 @property int64_t sessionId;
+@property int32_t round;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
@@ -3020,6 +3021,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasSessionId_ = !!value;
 }
 @synthesize sessionId;
+- (BOOL) hasRound {
+  return !!hasRound_;
+}
+- (void) setHasRound:(BOOL) value {
+  hasRound_ = !!value;
+}
+@synthesize round;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -3103,6 +3111,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.resultCode = GameResultCodeSuccess;
     self.userId = @"";
     self.sessionId = 0L;
+    self.round = 0;
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
@@ -3162,6 +3171,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasSessionId) {
     [output writeInt64:5 value:self.sessionId];
   }
+  if (self.hasRound) {
+    [output writeInt32:6 value:self.round];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
   }
@@ -3212,6 +3224,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasSessionId) {
     size += computeInt64Size(5, self.sessionId);
+  }
+  if (self.hasRound) {
+    size += computeInt32Size(6, self.round);
   }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
@@ -3330,6 +3345,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasSessionId) {
     [self setSessionId:other.sessionId];
   }
+  if (other.hasRound) {
+    [self setRound:other.round];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
@@ -3406,6 +3424,10 @@ static GameMessage* defaultGameMessageInstance = nil;
       }
       case 40: {
         [self setSessionId:[input readInt64]];
+        break;
+      }
+      case 48: {
+        [self setRound:[input readInt32]];
         break;
       }
       case 90: {
@@ -3570,6 +3592,22 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearSessionId {
   result.hasSessionId = NO;
   result.sessionId = 0L;
+  return self;
+}
+- (BOOL) hasRound {
+  return result.hasRound;
+}
+- (int32_t) round {
+  return result.round;
+}
+- (GameMessage_Builder*) setRound:(int32_t) value {
+  result.hasRound = YES;
+  result.round = value;
+  return self;
+}
+- (GameMessage_Builder*) clearRound {
+  result.hasRound = NO;
+  result.round = 0;
   return self;
 }
 - (BOOL) hasJoinGameRequest {

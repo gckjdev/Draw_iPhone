@@ -116,6 +116,13 @@
 
 - (void)updateCurrentTurnByMessage:(GeneralNotification*)notification
 {
+    if ([notification hasRound] && [notification round] > 0){        
+        if ([self.currentTurn round] != [notification round]){        
+            [self.currentTurn setRound:[notification round]];
+            PPDebug(@"new round, set round to %d", [notification round]);
+        }
+    }
+
     if ([notification hasWord] && [[notification word] length] > 0){
         [self.currentTurn setWord:[notification word]];    
         PPDebug(@"set current turn word to %@", [notification word]);
@@ -126,10 +133,6 @@
         PPDebug(@"set current turn level to %d", [notification level]);
     }
     
-    if ([notification hasRound] && [notification round] > 0){
-        [self.currentTurn setRound:[notification round]];
-        PPDebug(@"set current turn round to %d", [notification round]);
-    }
 }
 
 - (BOOL)isCurrentPlayUser:(NSString*)userId

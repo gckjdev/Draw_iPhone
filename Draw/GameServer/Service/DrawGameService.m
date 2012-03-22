@@ -11,7 +11,7 @@
 #import "PPDebug.h"
 #import "UIUtils.h"
 #import "GameSession.h"
-
+#import "GameConstants.h"
 
 @implementation DrawGameService
 
@@ -97,6 +97,15 @@ static DrawGameService* _defaultService;
     }    
 }
 
+- (void)notifyGameObserver:(SEL)selector withObject:(NSObject*)object
+{
+    for (id observer in _gameObserverList){        
+        if ([observer respondsToSelector:selector]){
+            [observer performSelector:selector withObject:object];
+        }
+    }    
+}
+
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer
 {
     if ([self.gameObserverList containsObject:observer] == NO){
@@ -178,6 +187,10 @@ static DrawGameService* _defaultService;
             else if ([content isEqualToString:ASK_QUICK_GAME]){
                 [self notifyGameObserver:@selector(didGameAskQuick:) message:message];
             }            
+            else if ([content rangeOfString:CHAT_COMMAND_RANK].location != NSNotFound){
+                int rank = [_networkClient stringToRank:content];
+                [self notifyGameObserver:@selector(didReceiveRank:) withObject:[NSNumber numberWithInt:rank]];
+            }
         }
     });    
 }
@@ -256,6 +269,13 @@ static DrawGameService* _defaultService;
     });
 }
 
+- (void)handleUserQuitGameResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{    
+        PPDebug(@"<handleUserQuitGameResponse>");
+    });    
+}
+
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]) {
@@ -288,6 +308,7 @@ static DrawGameService* _defaultService;
             
         case GameCommandTypeCleanDrawNotificationRequest:
             [self handleCleanDraw:message];
+            break;
             
         case GameCommandTypeGameTurnCompleteNotificationRequest:
             [self handleGameTurnCompleteNotification:message];
@@ -295,6 +316,10 @@ static DrawGameService* _defaultService;
             
         case GameCommandTypeChatNotificationRequest:
             [self handleChatNotification:message];
+            break;
+            
+        case GameCommandTypeQuitGameResponse:
+            [self handleUserQuitGameResponse:message];
             break;
 
         default:
@@ -401,6 +426,17 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendQuitGame:_userId
                        sessionId:[_session sessionId]];
+
+    // clear session data here
+    self.session = nil;
+}
+
+- (void)rankGameResult:(int)rank
+{
+    [_networkClient sendRankGameResult:rank
+                                userId:[_session userId]
+                             sessionId:[_session sessionId]
+                                 round:[[_session currentTurn] round]];
 }
 
 @end

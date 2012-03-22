@@ -751,6 +751,7 @@
 @private
   BOOL hasSessionId_:1;
   BOOL hasMessageId_:1;
+  BOOL hasRound_:1;
   BOOL hasUserId_:1;
   BOOL hasJoinGameRequest_:1;
   BOOL hasJoinGameResponse_:1;
@@ -765,6 +766,7 @@
   BOOL hasResultCode_:1;
   int64_t sessionId;
   int32_t messageId;
+  int32_t round;
   NSString* userId;
   JoinGameRequest* joinGameRequest;
   JoinGameResponse* joinGameResponse;
@@ -783,6 +785,7 @@
 - (BOOL) hasResultCode;
 - (BOOL) hasUserId;
 - (BOOL) hasSessionId;
+- (BOOL) hasRound;
 - (BOOL) hasJoinGameRequest;
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
@@ -797,6 +800,7 @@
 @property (readonly) GameResultCode resultCode;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int64_t sessionId;
+@property (readonly) int32_t round;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
@@ -865,6 +869,11 @@
 - (int64_t) sessionId;
 - (GameMessage_Builder*) setSessionId:(int64_t) value;
 - (GameMessage_Builder*) clearSessionId;
+
+- (BOOL) hasRound;
+- (int32_t) round;
+- (GameMessage_Builder*) setRound:(int32_t) value;
+- (GameMessage_Builder*) clearRound;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;

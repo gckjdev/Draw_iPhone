@@ -39,10 +39,10 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:
     case GameCommandTypeUserQuitNotificationResponse:
-    case GameCommandTypeHostChangeNotificationRequest:
-    case GameCommandTypeHostChangeNotificationResponse:
     case GameCommandTypeGameStartNotificationRequest:
     case GameCommandTypeGameStartNotificationResponse:
+    case GameCommandTypeHostChangeNotificationRequest:
+    case GameCommandTypeHostChangeNotificationResponse:
     case GameCommandTypeNewDrawDataNotificationRequest:
     case GameCommandTypeNewDrawDataNotificationResponse:
     case GameCommandTypeCleanDrawNotificationRequest:
