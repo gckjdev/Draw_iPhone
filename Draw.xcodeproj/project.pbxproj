@@ -244,6 +244,8 @@
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
+		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
+		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -729,6 +731,10 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
+		CAE2CABC151B2ECA0062ED37 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2076,6 +2082,24 @@
 			path = GameSession;
 			sourceTree = "<group>";
 		};
+		CAE2CABA151B2E1D0062ED37 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				CAE2CABC151B2ECA0062ED37 /* Account.h */,
+				CAE2CABD151B2ECA0062ED37 /* Account.m */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		CAE2CABB151B2E1D0062ED37 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				CAE2CABF151B2F7C0062ED37 /* Item.h */,
+				CAE2CAC0151B2F7C0062ED37 /* Item.m */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2096,6 +2120,8 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAE2CABA151B2E1D0062ED37 /* Account */,
+				CAE2CABB151B2E1D0062ED37 /* Item */,
 				CAA0E6A315147DEF00FD8C3E /* Word */,
 				CADD7F91150F3F760075C739 /* GameSession */,
 				CA1041E81509B99A00F60C03 /* Draw */,
@@ -2461,6 +2487,8 @@
 				CAB3DBE91517098B00E7DBC4 /* PickColorView.m in Sources */,
 				CA2423E71518597E00BBECBE /* AnimationManager.m in Sources */,
 				CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */,
+				CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */,
+				CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
