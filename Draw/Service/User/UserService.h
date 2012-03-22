@@ -8,6 +8,20 @@
 
 #import "CommonService.h"
 
+@class PPViewController;
+
+@protocol UserServiceDelegate <NSObject>
+
+- (void)didUserRegistered:(int)resultCode;
+
+@end
+
 @interface UserService : CommonService
+
++ (UserService*)defaultService;
+
+- (void)registerUser:(NSString*)email 
+            password:(NSString*)password 
+      viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 @end

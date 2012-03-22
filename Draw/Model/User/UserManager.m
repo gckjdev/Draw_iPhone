@@ -12,6 +12,7 @@
 #define KEY_USERID          @"KEY_USERID"
 #define KEY_NICKNAME        @"KEY_NICKNAME"
 #define KEY_AVATAR_URL      @"KEY_AVATAR_URL"
+#define KEY_DEVICE_TOKEN    @"KEY_DEVICE_TOKEN"
 
 @implementation UserManager
 
@@ -42,6 +43,13 @@ static UserManager* _defaultManager;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_AVATAR_URL];
     return value;
+}
+
+- (NSString*)deviceToken
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* value = [userDefaults objectForKey:KEY_DEVICE_TOKEN];
+    return value;    
 }
 
 - (BOOL)hasUser

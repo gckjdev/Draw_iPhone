@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "DrawGameService.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "UserService.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -85,6 +86,8 @@
     [[DrawGameService defaultService] setUserId:userId];
     [[DrawGameService defaultService] setNickName:userId];
     [[DrawGameService defaultService] setAvatar:@"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
+    
+//    [[UserService defaultService] registerUser: password:<#(NSString *)#> viewController:<#(PPViewController<UserServiceDelegate> *)#>
     
     [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
 }

@@ -15,6 +15,7 @@
 - (NSString*)userId;
 - (NSString*)nickName;
 - (NSString*)avatarURL;
+- (NSString*)deviceToken;
 
 - (void)saveUserId:(NSString*)userId 
           nickName:(NSString*)nickName
