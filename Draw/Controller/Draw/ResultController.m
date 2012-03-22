@@ -11,6 +11,8 @@
 #import "RoomController.h"
 #import "DrawGameService.h"
 
+#define CONTINUE_TIME 10
+
 @implementation ResultController
 @synthesize drawImage;
 @synthesize upButton;
@@ -53,6 +55,36 @@
     return self;
 }
 
+- (void)updateContinueButton:(NSInteger)count
+{
+    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
+}
+
+- (void)resetTimer
+{
+    if (continueTimer && [continueTimer isValid]) {
+            [continueTimer invalidate];
+    }
+    continueTimer = nil;
+    retainCount = CONTINUE_TIME;
+}
+
+- (void)handleContinueTimer:(NSTimer *)theTimer
+{
+    -- retainCount;
+    if (retainCount <= 0) {
+        retainCount = 0;
+        [self clickContinueButton:nil];
+    }
+    [self updateContinueButton:retainCount];
+}
+
+- (void)startTimer
+{
+    [self resetTimer];
+    continueTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleContinueTimer:) userInfo:nil repeats:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -61,8 +93,8 @@
     [self.drawImage setImage:_image];
     [self.wordLabel setText:self.wordText];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
-
     didGameStarted = NO;
+    [self startTimer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -73,7 +105,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [[DrawGameService  defaultService] setDrawDelegate:self];
     [[DrawGameService defaultService] setRoomDelegate:self];
     [[DrawGameService defaultService] registerObserver:self];
 }
@@ -121,6 +152,7 @@
 }
 
 - (IBAction)clickContinueButton:(id)sender {
+    [self resetTimer];
     if (didGameStarted) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{

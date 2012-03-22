@@ -30,7 +30,7 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define GUESS_TIME 119
+#define GUESS_TIME 120
 
 @implementation ShowDrawController
 @synthesize guessMsgLabel;
@@ -117,6 +117,23 @@ ShowDrawController *GlobalGetShowDrawController()
     }
     return nil;
 }
+
+
+
+- (NSString *)getAnswer
+{
+    //get the word
+    NSString *ans = @"";
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        NSString *text = [button titleForState:UIControlStateNormal];
+        if (text) {
+            ans = [NSString stringWithFormat:@"%@%@",ans,text];
+        }
+    }
+    return ans;
+}
+
 
 - (UIButton *)getTheCandidateButtonForText:(NSString *)text
 {
@@ -240,14 +257,19 @@ ShowDrawController *GlobalGetShowDrawController()
         [button setEnabled:enabled];
     }
 }
-
-
-- (void)setClockTitle:(NSTimer *)theTimer
+- (void)resetTimer
+{
+    if (guessTimer && [guessTimer isValid]) {
+        [guessTimer invalidate];
+    }
+    guessTimer = nil;
+    retainCount = GUESS_TIME;
+}
+- (void)handleTimer:(NSTimer *)theTimer
 {
     --retainCount;
     if (retainCount <= 0) {
-        [theTimer invalidate];
-        theTimer = nil;
+        [self resetTimer];
         [self setGuessAndPickButtonsEnabled:NO];
         [self.guessDoneButton setEnabled:NO];
         retainCount = 0;
@@ -255,10 +277,17 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
 }
 
+
+- (void)startTimer
+{
+    [self resetTimer];
+    guessTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+}
+
+
 - (void)resetWord:(Word *)word
 {
     self.word = word;
-//    self.word = [[[Word alloc] initWithText:text level:level]autorelease];
     [self makeWriteButtons];
     [self makePickingButtons];
 }
@@ -277,18 +306,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [drawGameService setDrawDelegate:self];
     retainCount = GUESS_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
-//    [self makeWriteButtons];
-//    [self makePlayerButtons];
+    [self makePlayerButtons];
     [self resetWord:self.word];
-//    GameTurn *turn = drawGameService.session.currentTurn;
-//    if (self.word) {
-//        [self restWord:turn.word level:turn.level];
-        
-//    }
-    
-    
     [self.guessMsgLabel setHidden:YES];
-//    [self bringAllViewsToFront];    
+
     [self.view sendSubviewToBack:showView];
 
 }
@@ -372,29 +393,19 @@ ShowDrawController *GlobalGetShowDrawController()
     if (wordText) {
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
         [self resetWord:word];
-//        [self restWord:wordText level:wordLevel];
     }
-    
-
-//    self.word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-//    
-//    [self makePickingButtons];
-
 }
 
 - (void)didGameTurnGuessStart:(GameMessage *)message
 {
-    //start guess timer
-    
-    guessTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setClockTitle:) userInfo:nil repeats:YES];
+    [self startTimer];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];    
 }
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-//    [self alert:@"Game is complete"];
     NSLog(@"Game is Complete");
-
+    [self resetTimer];
     UIImage *image = [showView createImage];
     ResultController *rc = [[ResultController alloc] initWithImage:image wordText:self.word.text score:self.word.score];
     [self.navigationController pushViewController:rc animated:YES];
@@ -419,17 +430,9 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 - (IBAction)clickGuessDoneButton:(id)sender {
-    //get the word
-    NSString *ans = @"";
-    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        NSString *text = [button titleForState:UIControlStateNormal];
-        if (text) {
-            ans = [NSString stringWithFormat:@"%@%@",ans,text];
-        }
-    }
-    
+    NSString *ans = [self getAnswer];
     BOOL flag = [ans isEqualToString:self.word.text];
+    
     //alter if the word is correct
     if (flag) {
         [self alert:NSLS(@"Correct!")];

@@ -14,6 +14,8 @@
 {
     UIImage * _image;
     BOOL didGameStarted;
+    NSTimer *continueTimer;
+    NSInteger retainCount;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
