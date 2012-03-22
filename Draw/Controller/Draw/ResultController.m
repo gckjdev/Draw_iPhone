@@ -7,6 +7,11 @@
 //
 
 #import "ResultController.h"
+#import "HomeController.h"
+#import "RoomController.h"
+#import "DrawGameService.h"
+
+#define CONTINUE_TIME 10
 
 @implementation ResultController
 @synthesize drawImage;
@@ -15,6 +20,10 @@
 @synthesize continueButton;
 @synthesize saveButton;
 @synthesize exitButton;
+@synthesize wordText;
+@synthesize score;
+@synthesize wordLabel;
+@synthesize scoreLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,15 +42,47 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (id)initWithImage:(UIImage *)image
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)wordText score:(NSInteger)score
 {
     self = [super init];
     if (self) {
 //        [self.drawImage setImage:image];        
         _image = image;
         [_image retain];
+        self.wordText = wordText;
+        self.score = score;
     }
     return self;
+}
+
+- (void)updateContinueButton:(NSInteger)count
+{
+    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
+}
+
+- (void)resetTimer
+{
+    if (continueTimer && [continueTimer isValid]) {
+            [continueTimer invalidate];
+    }
+    continueTimer = nil;
+    retainCount = CONTINUE_TIME;
+}
+
+- (void)handleContinueTimer:(NSTimer *)theTimer
+{
+    -- retainCount;
+    if (retainCount <= 0) {
+        retainCount = 0;
+        [self clickContinueButton:nil];
+    }
+    [self updateContinueButton:retainCount];
+}
+
+- (void)startTimer
+{
+    [self resetTimer];
+    continueTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleContinueTimer:) userInfo:nil repeats:YES];
 }
 
 #pragma mark - View lifecycle
@@ -50,6 +91,22 @@
 {
     [super viewDidLoad];
     [self.drawImage setImage:_image];
+    [self.wordLabel setText:self.wordText];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
+    didGameStarted = NO;
+    [self startTimer];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[DrawGameService defaultService] unregisterObserver:self];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[DrawGameService defaultService] setRoomDelegate:self];
+    [[DrawGameService defaultService] registerObserver:self];
 }
 
 - (void)viewDidUnload
@@ -61,6 +118,8 @@
     [self setExitButton:nil];
     [self setDrawImage:nil];
     _image = nil;
+    [self setWordLabel:nil];
+    [self setScoreLabel:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -81,6 +140,9 @@
     [exitButton release];
     [drawImage release];
     [_image release];
+    [wordText release];
+    [wordLabel release];
+    [scoreLabel release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
@@ -90,6 +152,12 @@
 }
 
 - (IBAction)clickContinueButton:(id)sender {
+    [self resetTimer];
+    if (didGameStarted) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [RoomController returnRoom:self];
+    }
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -97,5 +165,13 @@
 }
 
 - (IBAction)clickExitButton:(id)sender {
+    [[DrawGameService defaultService] quitGame];
+    [HomeController returnRoom:self];
 }
+- (void)didGameStart:(GameMessage *)message
+{
+    NSLog(@"<ResultController>: didGameStart");
+    didGameStarted = YES;
+}
+
 @end

@@ -26,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
+- (IBAction)clickRunAway:(id)sender;
 
 
 + (ShowDrawController *)instance;

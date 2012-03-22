@@ -44,13 +44,12 @@
 - (void)startGameWithWord:(Word *)word
 {
     DrawGameService *gameService = [DrawGameService defaultService];
-//    DrawViewController *vc = [DrawViewController instance];
-//    vc.word = word;
     if (!hasPushController) {
         hasPushController = YES;
-        DrawViewController *vc = [[[DrawViewController alloc] init]autorelease];
-        [gameService startDraw:word.text level:word.level];
+//        DrawViewController *vc = [[[DrawViewController alloc] init]autorelease];
+        DrawViewController *vc = [DrawViewController instance];
         vc.word = word;
+        [gameService startDraw:word.text level:word.level];
         [self.navigationController pushViewController:vc animated:NO];        
     }
     

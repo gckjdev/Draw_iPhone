@@ -16,5 +16,6 @@
 }
 
 - (IBAction)clickStart:(id)sender;
-
++ (HomeController *)defaultInstance;
++ (void)returnRoom:(UIViewController*)superController;
 @end

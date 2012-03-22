@@ -127,5 +127,18 @@
     _isTryJoinGame = NO;
     
 }
++ (HomeController *)defaultInstance
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.homeController == nil){    
+        app.homeController = [[[HomeController alloc] init] autorelease];
+    }
+    
+    return app.homeController;
+}
++ (void)returnRoom:(UIViewController*)superController
+{
+    [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
+}
 
 @end
