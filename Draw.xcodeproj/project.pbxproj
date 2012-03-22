@@ -198,6 +198,10 @@
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA2423E71518597E00BBECBE /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2423E61518597E00BBECBE /* AnimationManager.m */; };
+		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
+		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
+		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
+		CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
@@ -656,6 +660,14 @@
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA2423E51518597E00BBECBE /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		CA2423E61518597E00BBECBE /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
+		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
+		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		CA322104151B6BE60039A384 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
+		CA322106151B6C6F0039A384 /* CompleteUserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteUserInfoController.h; sourceTree = "<group>"; };
+		CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteUserInfoController.m; sourceTree = "<group>"; };
+		CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteUserInfoController.xib; sourceTree = "<group>"; };
+		CA32210B151B6DA40039A384 /* GameNetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkConstants.h; sourceTree = "<group>"; };
 		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -1788,6 +1800,9 @@
 				CA1041FA1509BF4700F60C03 /* RegisterUserController.h */,
 				CA1041FB1509BF4700F60C03 /* RegisterUserController.m */,
 				CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */,
+				CA322106151B6C6F0039A384 /* CompleteUserInfoController.h */,
+				CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */,
+				CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -1840,6 +1855,8 @@
 		CA1041EE1509B9AB00F60C03 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				CA322103151B6BE60039A384 /* UserService.h */,
+				CA322104151B6BE60039A384 /* UserService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1852,6 +1869,16 @@
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CA3220FF151B6A490039A384 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA322100151B6A670039A384 /* GameNetworkRequest.h */,
+				CA322101151B6A670039A384 /* GameNetworkRequest.m */,
+				CA32210B151B6DA40039A384 /* GameNetworkConstants.h */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		CA745D131503B1B400600024 = {
@@ -1906,6 +1933,7 @@
 				CA103B371509A55000F60C03 /* Service */,
 				CAECE0271503B25500BC2404 /* Controller */,
 				CAECE0291503B25500BC2404 /* Model */,
+				CA3220FF151B6A490039A384 /* Network */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
@@ -2264,6 +2292,7 @@
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
+				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2489,6 +2518,9 @@
 				CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */,
 				CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */,
 				CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */,
+				CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */,
+				CA322105151B6BE60039A384 /* UserService.m in Sources */,
+				CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

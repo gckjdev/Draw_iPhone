@@ -15,6 +15,11 @@
 #import "HomeController.h"
 #import "RegisterUserController.h"
 
+NSString* GlobalGetServerURL()
+{
+    return @"http://192.168.1.198/api/i?";
+}
+
 @implementation DrawAppDelegate
 
 @synthesize window = _window;
