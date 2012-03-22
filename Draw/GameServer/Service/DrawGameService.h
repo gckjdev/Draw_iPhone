@@ -13,11 +13,14 @@
 @protocol DrawGameServiceDelegate <NSObject>
 
 @optional;
+
+// draw actions
 - (void)didReceiveDrawData:(GameMessage *)message;
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
+// game actions
 - (void)didJoinGame:(GameMessage *)message;
 - (void)didStartGame:(GameMessage *)message;
 - (void)didGameStart:(GameMessage *)message;
@@ -26,9 +29,11 @@
 - (void)didGameProlong:(GameMessage *)message;
 - (void)didGameAskQuick:(GameMessage *)message;
 
+// game turn result
 - (void)didGameTurnGuessStart:(GameMessage *)message;
 - (void)didGameTurnComplete:(GameMessage *)message;
 
+// server connection
 - (void)didConnected;
 - (void)didBroken;
 
