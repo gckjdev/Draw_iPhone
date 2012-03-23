@@ -14,6 +14,9 @@
 #import "UserManager.h"
 #import "HomeController.h"
 #import "RegisterUserController.h"
+#import "ShowDrawController.h"
+
+
 
 NSString* GlobalGetServerURL()
 {
@@ -36,11 +39,17 @@ NSString* GlobalGetServerURL()
     [super dealloc];
 }
 
+- (void)initGlobalObjects
+{
+    [DrawViewController instance];
+    [ShowDrawController instance];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-    
+    [self initGlobalObjects];
     [self initImageCacheManager];
     
     // Init Home

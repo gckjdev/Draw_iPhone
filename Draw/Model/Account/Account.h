@@ -10,9 +10,10 @@
 
 @interface Account : NSObject<NSCoding>
 {
-    NSInteger _balance;
+    NSNumber *_balance;
 }
-@property(nonatomic, assign)NSInteger balance;
+@property(nonatomic, assign)NSNumber *balance;
 
-
++ (Account *)defaultAccount;
++ (Account *)accountWithBalance:(NSInteger)balance;
 @end

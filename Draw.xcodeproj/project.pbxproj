@@ -250,6 +250,12 @@
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
+		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
+		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAF10B06151C82EF008C4512 /* ItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10B04151C82EF008C4512 /* ItemController.m */; };
+		CAF10B07151C82EF008C4512 /* ItemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10B05151C82EF008C4512 /* ItemController.xib */; };
+		CAF10B0B151C8328008C4512 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10B09151C8327008C4512 /* ItemCell.m */; };
+		CAF10B0C151C8328008C4512 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10B0A151C8328008C4512 /* ItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -747,6 +753,16 @@
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
+		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAF10B03151C82EF008C4512 /* ItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemController.h; sourceTree = "<group>"; };
+		CAF10B04151C82EF008C4512 /* ItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemController.m; sourceTree = "<group>"; };
+		CAF10B05151C82EF008C4512 /* ItemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemController.xib; sourceTree = "<group>"; };
+		CAF10B08151C8327008C4512 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		CAF10B09151C8327008C4512 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		CAF10B0A151C8328008C4512 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2115,6 +2131,8 @@
 			children = (
 				CAE2CABC151B2ECA0062ED37 /* Account.h */,
 				CAE2CABD151B2ECA0062ED37 /* Account.m */,
+				CAF10AF9151C665D008C4512 /* AccountManager.h */,
+				CAF10AFA151C665D008C4512 /* AccountManager.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -2124,6 +2142,8 @@
 			children = (
 				CAE2CABF151B2F7C0062ED37 /* Item.h */,
 				CAE2CAC0151B2F7C0062ED37 /* Item.m */,
+				CAF10AFC151C666D008C4512 /* ItemManager.h */,
+				CAF10AFD151C666E008C4512 /* ItemManager.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -2131,6 +2151,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAF10B02151C82DC008C4512 /* ItemController */,
 				CA1041F41509BC8700F60C03 /* Home */,
 				CA1041D51509B6E700F60C03 /* Common */,
 				CA1041D61509B6E700F60C03 /* Draw */,
@@ -2156,6 +2177,19 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CAF10B02151C82DC008C4512 /* ItemController */ = {
+			isa = PBXGroup;
+			children = (
+				CAF10B03151C82EF008C4512 /* ItemController.h */,
+				CAF10B04151C82EF008C4512 /* ItemController.m */,
+				CAF10B05151C82EF008C4512 /* ItemController.xib */,
+				CAF10B08151C8327008C4512 /* ItemCell.h */,
+				CAF10B09151C8327008C4512 /* ItemCell.m */,
+				CAF10B0A151C8328008C4512 /* ItemCell.xib */,
+			);
+			path = ItemController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2293,6 +2327,8 @@
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
+				CAF10B07151C82EF008C4512 /* ItemController.xib in Resources */,
+				CAF10B0C151C8328008C4512 /* ItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2521,6 +2557,10 @@
 				CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */,
 				CA322105151B6BE60039A384 /* UserService.m in Sources */,
 				CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */,
+				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
+				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
+				CAF10B06151C82EF008C4512 /* ItemController.m in Sources */,
+				CAF10B0B151C8328008C4512 /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

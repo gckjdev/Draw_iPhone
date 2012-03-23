@@ -292,18 +292,25 @@ ShowDrawController *GlobalGetShowDrawController()
     [self makePickingButtons];
 }
 
+- (id)init{
+    self = [super init];
+    if (self) {
+        drawGameService = [DrawGameService defaultService];
+        [drawGameService setDrawDelegate:self];
+        showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
+        [showView setDrawEnabled:NO];
+    }
+    return self;
+}
+
 - (void)resetData
 {
-    [showView removeFromSuperview];
-    showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
-    [self.view addSubview:showView];
-    [showView release];
-    
+//    [showView removeFromSuperview];
+//    [showView release];
+
+    [showView clear];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];
-    [showView setDrawEnabled:NO];
-    drawGameService = [DrawGameService defaultService];
-    [drawGameService setDrawDelegate:self];
     retainCount = GUESS_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
     [self makePlayerButtons];
@@ -319,8 +326,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    showView = nil;
-    self.word = nil;
+    [self.view addSubview:showView];
 }
 
 

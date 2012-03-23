@@ -22,6 +22,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
+#import "ShowDrawController.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -225,19 +226,23 @@ DrawViewController *GlobalGetDrawViewController()
     drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 }
 
+- (id)init{
+    self = [super init];
+    if (self) {
+        drawGameService = [DrawGameService defaultService];
+        drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];    
+    }
+    return self;
+}
+
 - (void)resetData
 {
     
     [self addPickColorView];
     [self addPickLineWidthView];
     [self hidePickViews];
-    
-    [drawView removeFromSuperview];
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
-    [self.view addSubview:drawView];
-    drawView.delegate = self;
-    [drawView release];
-    _drawGameService.drawDelegate = self;
+    [drawView clear];
+    drawGameService.drawDelegate = self;
     [self hidePickViews];
     [self.guessMsgLabel setHidden:YES];
     [self.wordLabel setText:self.word.text];
@@ -255,21 +260,21 @@ DrawViewController *GlobalGetDrawViewController()
 {
     NSLog(@"<DrawViewController>: viewDidLoad");
     [super viewDidLoad];
-    drawView = nil;
-    _drawGameService = [DrawGameService defaultService];
-
+    drawView.delegate = self;
+    [self.view addSubview:drawView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self resetData];
-    [_drawGameService registerObserver:self];
+    [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [_drawGameService unregisterObserver:self];
+    [drawGameService unregisterObserver:self];
+    [drawGameService setDrawDelegate:[ShowDrawController instance]];
     [super viewDidDisappear:animated];
 }
 
@@ -331,7 +336,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (IBAction)clickRedraw:(id)sender {
     //send clean request.
-    [_drawGameService cleanDraw];
+    [drawGameService cleanDraw];
     [drawView clear];
     [drawView setDrawEnabled:YES];
 }
@@ -385,7 +390,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
 {
-    if (![_drawGameService.userId isEqualToString:guessUserId]) {
+    if (![drawGameService.userId isEqualToString:guessUserId]) {
         //alert the ans;
         if (!guessCorrect) {
             [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 

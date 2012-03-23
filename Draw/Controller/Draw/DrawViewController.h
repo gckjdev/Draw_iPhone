@@ -20,7 +20,7 @@
 
 @interface DrawViewController : UIViewController<DrawViewDelegate, DrawGameServiceDelegate, PickLineWidthViewDelegate, PickColorViewDelegate> {
     DrawView *drawView;
-    DrawGameService *_drawGameService;
+    DrawGameService *drawGameService;
     Word *_word;
     PickColorView *_pickColorView;
     PickLineWidthView *_pickLineWidthView;
