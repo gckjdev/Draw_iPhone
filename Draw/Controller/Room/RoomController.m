@@ -269,6 +269,11 @@
     }
 }
 
+- (void)didGameTurnComplete:(GameMessage*)message
+{
+    [self updateGameUsers];
+}
+
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
     [self updateGameUsers];    

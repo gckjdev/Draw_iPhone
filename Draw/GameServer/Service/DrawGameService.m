@@ -218,6 +218,8 @@ static DrawGameService* _defaultService;
         if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
             [_drawDelegate didGameTurnComplete:message];
         }
+        
+        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     });    
 }
 
