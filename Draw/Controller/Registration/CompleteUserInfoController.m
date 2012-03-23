@@ -7,8 +7,15 @@
 //
 
 #import "CompleteUserInfoController.h"
+#import "UserManager.h"
 
 @implementation CompleteUserInfoController
+@synthesize avatarLabel;
+@synthesize nickNameLabel;
+@synthesize avatarButton;
+@synthesize nickNameTextField;
+@synthesize submitButton;
+@synthesize skipButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,10 +40,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.nickNameTextField.text = [[UserManager defaultManager] nickName];
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setAvatarLabel:nil];
+    [self setNickNameLabel:nil];
+    [self setAvatarButton:nil];
+    [self setNickNameTextField:nil];
+    [self setSubmitButton:nil];
+    [self setSkipButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +64,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [avatarLabel release];
+    [nickNameLabel release];
+    [avatarButton release];
+    [nickNameTextField release];
+    [submitButton release];
+    [skipButton release];
+    [super dealloc];
+}
 @end

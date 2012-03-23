@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserService.h"
+#import "PPViewController.h"
 
-@interface RegisterUserController : UIViewController
+@interface RegisterUserController : PPViewController<UserServiceDelegate>
 
 + (void)showAt:(UIViewController*)superViewController;
 

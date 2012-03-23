@@ -18,7 +18,7 @@
 #import "PPDebug.h"
 #import "GameSessionUser.h"
 #import "GameMessage.pb.h"
-
+#import "UserManager.h"
 
 @interface RoomController ()
 
@@ -135,7 +135,7 @@
 //        button.titleLabel.numberOfLines = 2;
 
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
-        [label setText:[user userId]];
+        [label setText:[user nickName]];
         
 //        if ([session isHostUser:[user userId]]){
 //            NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
@@ -144,7 +144,7 @@
 //        }
         
         if ([session isMe:[user userId]]){
-            NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user userId]];
+            NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user nickName]];
             [label setText:title];
 //            [button setTitle:title forState:UIControlStateNormal];
         }
@@ -156,7 +156,12 @@
         // set images
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
-        [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        if ([[user userAvatar] length] > 0){
+            [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        }
+        else{
+            [imageView setUrl:[NSURL URLWithString:DEFAULT_AVATAR]];
+        }
         [GlobalGetImageCache() manage:imageView];
     }
     

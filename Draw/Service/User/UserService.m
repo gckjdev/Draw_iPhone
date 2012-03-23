@@ -47,11 +47,14 @@ static UserService* _defaultUserService;
             if (output.resultCode == ERROR_SUCCESS) {
                 // save return User ID locally
                 NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
+                NSString* nickName = [UserManager nickNameByEmail:email];
                 
-                // save data
-                [[UserManager defaultManager] saveUserId:userId nickName:@"" avatarURL:@""];
-                
-                // TODO save email address, etc
+                // save data                
+                [[UserManager defaultManager] saveUserId:userId 
+                                                   email:email 
+                                                password:password 
+                                                nickName:nickName 
+                                               avatarURL:nil];
                 
                 if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
                     [viewController didUserRegistered:output.resultCode];                    
@@ -62,7 +65,7 @@ static UserService* _defaultUserService;
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
                 // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
-                [viewController popupUnhappyMessage:NSLS(@"") title:nil];
+                [viewController popupUnhappyMessage:NSLS(@"kUnknownRegisterFailure") title:nil];
             }
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"

@@ -9,10 +9,14 @@
 #import "UserManager.h"
 #import "PPDebug.h"
 
-#define KEY_USERID          @"KEY_USERID"
-#define KEY_NICKNAME        @"KEY_NICKNAME"
-#define KEY_AVATAR_URL      @"KEY_AVATAR_URL"
-#define KEY_DEVICE_TOKEN    @"KEY_DEVICE_TOKEN"
+#define KEY_USERID          @"USER_KEY_USERID"
+#define KEY_NICKNAME        @"USER_KEY_NICKNAME"
+#define KEY_AVATAR_URL      @"USER_KEY_AVATAR_URL"
+#define KEY_DEVICE_TOKEN    @"USER_KEY_DEVICE_TOKEN"
+#define KEY_EMAIL           @"USER_KEY_EMAIL"
+#define KEY_PASSWORD        @"USER_KEY_PASSWORD"
+
+
 
 @implementation UserManager
 
@@ -58,15 +62,35 @@ static UserManager* _defaultManager;
 }
 
 - (void)saveUserId:(NSString*)userId 
+             email:(NSString*)email
+          password:(NSString*)password
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
 {
-    PPDebug(@"Save userId(%@), nickName(%@)", userId, nickName);    
+    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:userId forKey:KEY_USERID];
     [userDefaults setObject:nickName forKey:KEY_NICKNAME];
-    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+    [userDefaults setObject:email forKey:KEY_EMAIL];
+    [userDefaults setObject:password forKey:KEY_PASSWORD];
+    
+    if (avatarURL != nil){
+        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+    }
+    
     [userDefaults synchronize];
+}
+
++ (NSString*)nickNameByEmail:(NSString*)email
+{
+    NSRange range = [email rangeOfString:@"@"];
+    if (range.location == NSNotFound){
+        return @"";
+    }
+    else{
+        int index = range.location;
+        return [email substringToIndex:index];
+    }
 }
 
 

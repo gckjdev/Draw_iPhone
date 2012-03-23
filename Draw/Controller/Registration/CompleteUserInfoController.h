@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface CompleteUserInfoController : UIViewController
+@interface CompleteUserInfoController : PPViewController
+@property (retain, nonatomic) IBOutlet UILabel *avatarLabel;
+@property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
+@property (retain, nonatomic) IBOutlet UIButton *avatarButton;
+@property (retain, nonatomic) IBOutlet UITextField *nickNameTextField;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
+@property (retain, nonatomic) IBOutlet UIButton *skipButton;
 
 @end

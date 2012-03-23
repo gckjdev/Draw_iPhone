@@ -11,6 +11,9 @@
 #import "DrawGameService.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 #import "UserService.h"
+#import "CompleteUserInfoController.h"
+#import "StringUtil.h"
+#import "PPDebug.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -38,7 +41,7 @@
 {
     // TODO for test
     int i = rand() % 100;
-    self.userIdTextField.text = [NSString stringWithFormat:@"Mark_%d", i];
+    self.userIdTextField.text = [NSString stringWithFormat:@"mark_%d@21cn.com", i];
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -66,7 +69,7 @@
     [userController release];
 }
 
-- (IBAction)clickSubmit:(id)sender
+- (void)addTestUser
 {
     NSArray* randomAvatar = [NSArray arrayWithObjects:
                              @"http://file11.joyes.com/other/2010/01/25/ad7440f6997c48de85fed5a0527e05c0.jpg", 
@@ -80,22 +83,65 @@
     
     NSString* avatar = [randomAvatar objectAtIndex:random() % [randomAvatar count]];
     
-    // TODO dummy implementation here
     NSString* userId = self.userIdTextField.text;
     [[UserManager defaultManager] saveUserId:userId 
+                                       email:@"" 
+                                    password:@""     
                                     nickName:userId 
                                    avatarURL:avatar];
     [[DrawGameService defaultService] setUserId:userId];
     [[DrawGameService defaultService] setNickName:userId];
     [[DrawGameService defaultService] setAvatar:avatar];
+}
+
+- (BOOL)verifyField
+{
+    if ([userIdTextField.text length] == 0){
+        // [UIUtils alert:@"电子邮件地址不能为空"];
+        [UIUtils alert:NSLS(@"kEmailEmpty")];
+        [userIdTextField becomeFirstResponder];
+        return NO;
+    }
     
-//    [[UserService defaultService] registerUser: password:<#(NSString *)#> viewController:<#(PPViewController<UserServiceDelegate> *)#>
+    if (NSStringIsValidEmail(userIdTextField.text) == NO){
+        // @"输入的电子邮件地址不合法，请重新输入"
+        [UIUtils alert:NSLS(@"kInvalidEmail")];
+        [userIdTextField becomeFirstResponder];
+        return NO;        
+    }
     
-    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+//    if ([loginPasswordTextField.text length] == 0){
+//        [UIUtils alert:@"密码不能为空"];
+//        [loginPasswordTextField becomeFirstResponder];
+//        return NO;
+//    }         
+    
+    return YES;
+}
+
+
+- (IBAction)clickSubmit:(id)sender
+{    
+    NSString* userId = self.userIdTextField.text;    
+    if ([self verifyField] == NO){        
+        return;
+    }    
+    [[UserService defaultService] registerUser:userId password:@"" viewController:self];    
 }
 
 - (void)dealloc {
     [userIdTextField release];
     [super dealloc];
 }
+
+- (void)didUserRegistered:(int)resultCode
+{
+    // go to next view
+    PPDebug(@"<didUserRegistered> result code = %d", resultCode);
+    if (resultCode == 0){
+        CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:NO];    
+    }
+}
+
 @end
