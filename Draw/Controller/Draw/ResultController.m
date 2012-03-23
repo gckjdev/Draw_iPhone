@@ -12,7 +12,7 @@
 #import "DrawGameService.h"
 #import "GameConstants.h"
 
-#define CONTINUE_TIME 1000
+#define CONTINUE_TIME 10
 
 @implementation ResultController
 @synthesize drawImage;

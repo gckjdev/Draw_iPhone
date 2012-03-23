@@ -49,7 +49,7 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize pickColorView = _pickColorView;
 @synthesize pickLineWidthView = _pickLineWidthView;
 
-#define DRAW_TIME 10
+#define DRAW_TIME 60
 
 - (void)dealloc
 {

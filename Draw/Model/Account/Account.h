@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Account : NSObject
+@interface Account : NSObject<NSCoding>
+{
+    NSInteger _balance;
+}
+@property(nonatomic, assign)NSInteger balance;
+
 
 @end
