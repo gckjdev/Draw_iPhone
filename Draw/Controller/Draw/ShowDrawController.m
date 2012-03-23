@@ -311,7 +311,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.guessMsgLabel setHidden:YES];
 
     [self.view sendSubviewToBack:showView];
-
+    gameCompleted = NO;
 }
 
 #pragma mark - View lifecycle
@@ -329,6 +329,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self resetData];
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -404,17 +405,20 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    NSLog(@"Game is Complete");
-    [self resetTimer];
-    UIImage *image = [showView createImage];
-    ResultController *rc = [[ResultController alloc] initWithImage:image 
-                                                          wordText:self.word.text 
-                                                             score:self.word.score 
-                                                    hasRankButtons:YES];
-    
-    [self.navigationController pushViewController:rc animated:YES];
-    [rc release];
-    [self resetWord:nil];
+    if (!gameCompleted) {
+        NSLog(@"Game is Complete");        
+        gameCompleted = YES;
+        [self resetTimer];
+        UIImage *image = [showView createImage];
+        ResultController *rc = [[ResultController alloc] initWithImage:image 
+                                                              wordText:self.word.text 
+                                                                 score:self.word.score 
+                                                        hasRankButtons:YES];
+        
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+        [self resetWord:nil];        
+    }
 }
 
 - (void)didConnected

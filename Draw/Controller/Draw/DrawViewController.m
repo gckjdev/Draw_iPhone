@@ -247,6 +247,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view sendSubviewToBack:drawView];
     [self startTimer];
     [self setToolButtonEnabled:YES];
+    gameComplete = NO;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -400,16 +401,19 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    NSLog(@"Game is Complete");
-    UIImage *image = [drawView createImage];
-    ResultController *rc = [[ResultController alloc] initWithImage:image 
-                                                          wordText:self.word.text 
-                                                             score:self.word.score 
-                                                    hasRankButtons:NO];
-    
-    [self.navigationController pushViewController:rc animated:YES];
-    [rc release];
-    [self resetTimer];
+    if (!gameComplete) {
+        gameComplete = YES;
+        NSLog(@"Game is Complete");
+        UIImage *image = [drawView createImage];
+        ResultController *rc = [[ResultController alloc] initWithImage:image 
+                                                              wordText:self.word.text 
+                                                                 score:self.word.score 
+                                                        hasRankButtons:NO];
+        
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+        [self resetTimer];
+    }
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -420,7 +424,7 @@ DrawViewController *GlobalGetDrawViewController()
     if ([self userCount] <= 1) {
         [self alert:NSLS(@"all users quit")];
     }
-    [RoomController returnRoom:self];
+    [RoomController returnRoom:self startNow:NO];
     
 }
 #pragma mark pick view delegate

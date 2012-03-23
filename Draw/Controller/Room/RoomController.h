@@ -29,6 +29,6 @@
 + (void)firstEnterRoom:(UIViewController*)superController;
 
 // use this method for returning from draw/guess to room
-+ (void)returnRoom:(UIViewController*)superController;
++ (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow;
 
 @end

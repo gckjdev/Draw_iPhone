@@ -19,6 +19,7 @@
     NSString *candidateString;
     NSTimer *guessTimer;
     NSInteger retainCount;
+    BOOL gameCompleted;
 }
 
 @property(nonatomic, retain)Word *word;

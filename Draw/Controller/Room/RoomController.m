@@ -256,17 +256,19 @@
 
 }
 
+- (void)showDrawViewController
+{
+    if (![self isMyTurn]) {
+        ShowDrawController *sd = [ShowDrawController instance];
+        [self.navigationController pushViewController:sd animated:NO];        
+    }
+}
+
 - (void)didGameStart:(GameMessage *)message
 {
     _hasClickStartGame = NO;
-    
-    //TODO check if the user is the host. 
     [self updateGameUsers];    
-    if (![self isMyTurn]) {
-        ShowDrawController *sd = [ShowDrawController instance];
-//        ShowDrawController *sd = [[[ShowDrawController alloc] init]autorelease];
-        [self.navigationController pushViewController:sd animated:NO];        
-    }
+    [self showDrawViewController];
 }
 
 - (void)didGameTurnComplete:(GameMessage*)message
@@ -397,14 +399,21 @@
     [app.roomController updateRoomName];    
 }
 
-+ (void)returnRoom:(UIViewController*)superController
++ (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow
 {
-    [superController.navigationController popToViewController:[RoomController defaultInstance] animated:YES];
-    if ([[RoomController defaultInstance] userCount] > 1) {
-        [[RoomController defaultInstance] scheduleStartTimer];        
+    RoomController *roomController = [RoomController defaultInstance];
+    [superController.navigationController popToViewController:roomController animated:YES];
+    
+    if (startNow) {
+        [roomController showDrawViewController];
+        return;
+    }
+    
+    if ([roomController userCount] > 1) {
+        [roomController scheduleStartTimer];        
     }else
     {
-        [[RoomController defaultInstance] resetStartTimer];        
+        [roomController resetStartTimer];        
     }
 
 }

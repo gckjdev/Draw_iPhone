@@ -12,7 +12,7 @@
 #import "DrawGameService.h"
 #import "GameConstants.h"
 
-#define CONTINUE_TIME 10
+#define CONTINUE_TIME 1000
 
 @implementation ResultController
 @synthesize drawImage;
@@ -31,6 +31,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        didGameStarted = NO;
     }
     return self;
 }
@@ -76,6 +77,7 @@
     if (retainCount <= 0) {
         retainCount = 0;
         [self clickContinueButton:nil];
+        return;
     }
     [self updateContinueButton:retainCount];
 }
@@ -100,13 +102,13 @@
     [self.drawImage setImage:_image];
     [self.wordLabel setText:self.wordText];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
-    didGameStarted = NO;
+
     [self startTimer];
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
     
     upButton.hidden = downButton.hidden = !hasRankButtons;
-    
+    NSLog(@"Result Controller view Did load");
     
 }
 
@@ -175,11 +177,7 @@
 
 - (IBAction)clickContinueButton:(id)sender {
     [self resetTimer];
-    if (didGameStarted) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [RoomController returnRoom:self];
-    }
+    [RoomController returnRoom:self startNow:didGameStarted];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -194,6 +192,8 @@
 {
     NSLog(@"<ResultController>: didGameStart");
     didGameStarted = YES;
+//    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 

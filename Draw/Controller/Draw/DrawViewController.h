@@ -26,6 +26,7 @@
     PickLineWidthView *_pickLineWidthView;
     NSTimer *drawTimer;
     NSInteger retainCount;
+    BOOL gameComplete;
 }
 
 - (IBAction)pickColor:(id)sender;
