@@ -402,9 +402,10 @@
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow
 {
     RoomController *roomController = [RoomController defaultInstance];
-    [superController.navigationController popToViewController:roomController animated:YES];
+    [superController.navigationController popToViewController:roomController animated:NO];
     
     if (startNow) {
+//        [roomController performSelector:@selector(showDrawViewController) withObject:nil afterDelay:0.0f];
         [roomController showDrawViewController];
         return;
     }
