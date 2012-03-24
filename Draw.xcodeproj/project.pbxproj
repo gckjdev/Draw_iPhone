@@ -203,6 +203,8 @@
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
 		CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
+		CA322142151E0FC00039A384 /* WordDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA322141151E0FC00039A384 /* WordDictionary.plist */; };
+		CA322144151E107B0039A384 /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA322143151E107B0039A384 /* default_avatar.jpg */; };
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
@@ -234,7 +236,6 @@
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
-		CAA0E6AB1514845700FD8C3E /* WordDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA0E6AA1514845700FD8C3E /* WordDictionary.plist */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -677,6 +678,8 @@
 		CA32210B151B6DA40039A384 /* GameNetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkConstants.h; sourceTree = "<group>"; };
 		CA32213B151DEDE10039A384 /* ChangeAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatar.h; sourceTree = "<group>"; };
 		CA32213C151DEDE10039A384 /* ChangeAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatar.m; sourceTree = "<group>"; };
+		CA322141151E0FC00039A384 /* WordDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordDictionary.plist; sourceTree = "<group>"; };
+		CA322143151E107B0039A384 /* default_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_avatar.jpg; sourceTree = "<group>"; };
 		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -727,7 +730,6 @@
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
 		CAA0E6A815147F6E00FD8C3E /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
-		CAA0E6AA1514845700FD8C3E /* WordDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordDictionary.plist; sourceTree = SOURCE_ROOT; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -807,7 +809,9 @@
 		CA103B361509A55000F60C03 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				CAA0E6AA1514845700FD8C3E /* WordDictionary.plist */,
+				CA32213E151E0FC00039A384 /* Icons */,
+				CA32213F151E0FC00039A384 /* Images */,
+				CA322140151E0FC00039A384 /* Data */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1909,6 +1913,29 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		CA32213E151E0FC00039A384 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				CA322143151E107B0039A384 /* default_avatar.jpg */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		CA32213F151E0FC00039A384 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		CA322140151E0FC00039A384 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CA322141151E0FC00039A384 /* WordDictionary.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -2335,13 +2362,14 @@
 				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
-				CAA0E6AB1514845700FD8C3E /* WordDictionary.plist in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 				CAF10B07151C82EF008C4512 /* ItemController.xib in Resources */,
 				CAF10B0C151C8328008C4512 /* ItemCell.xib in Resources */,
+				CA322142151E0FC00039A384 /* WordDictionary.plist in Resources */,
+				CA322144151E107B0039A384 /* default_avatar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

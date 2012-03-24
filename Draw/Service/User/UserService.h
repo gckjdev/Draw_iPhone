@@ -12,7 +12,10 @@
 
 @protocol UserServiceDelegate <NSObject>
 
+@optional
 - (void)didUserRegistered:(int)resultCode;
+- (void)didUserUpdated:(int)resultCode;
+
 
 @end
 
@@ -24,4 +27,7 @@
             password:(NSString*)password 
       viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
+- (void)updateUserAvatar:(UIImage*)avatarImage 
+                nickName:(NSString*)nickName 
+          viewController:(PPViewController<UserServiceDelegate>*)viewController;
 @end

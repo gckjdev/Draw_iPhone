@@ -8,6 +8,7 @@
 
 #import "CompleteUserInfoController.h"
 #import "UserManager.h"
+#import "UserService.h"
 
 @implementation CompleteUserInfoController
 @synthesize avatarLabel;
@@ -17,6 +18,7 @@
 @synthesize submitButton;
 @synthesize skipButton;
 @synthesize changeAvatarMenu = _changeAvatarMenu;
+@synthesize avatarImage = _avatarImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,7 +45,9 @@
     // Do any additional setup after loading the view from its nib.
     
     self.nickNameTextField.text = [[UserManager defaultManager] nickName];
-    
+        
+    self.avatarImage = [[UserManager defaultManager] avatarImage];
+    [self.avatarButton setBackgroundImage:_avatarImage forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
@@ -66,6 +70,7 @@
 }
 
 - (void)dealloc {
+    [_avatarImage release];
     [_changeAvatarMenu release];
     [avatarLabel release];
     [nickNameLabel release];
@@ -83,18 +88,33 @@
 
 - (IBAction)clickSubmit:(id)sender
 {
+    if ([self.nickNameTextField.text length] <= 0){
+        [UIUtils alert:NSLS(@"kNickNameEmpty")];
+        [self.nickNameTextField becomeFirstResponder];
+        return;
+    }
     
+    [self.nickNameTextField endEditing:YES];    
+    [[UserService defaultService] updateUserAvatar:_avatarImage 
+                                          nickName:self.nickNameTextField.text
+                                    viewController:self];
 }
 
 - (IBAction)clickAvatar:(id)sender
 {
-    self.changeAvatarMenu = [[ChangeAvatar alloc] init];
+    self.changeAvatarMenu = [[[ChangeAvatar alloc] init] autorelease];
     [self.changeAvatarMenu showSelectionView:self];
 }
 
 - (void)didImageSelected:(UIImage *)image
 {
     [self.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
+    self.avatarImage = image;
+}
+
+- (void)didUserUpdated:(int)resultCode
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

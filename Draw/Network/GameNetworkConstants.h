@@ -8,7 +8,7 @@
 
 
 #define SERVER_URL                  (GlobalGetServerURL())
-
+#define APP_ID                      @"Game"
 
 #define SHARE_KEY @"NetworkRequestShareKey"
 

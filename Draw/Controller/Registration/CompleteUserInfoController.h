@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
 #import "ChangeAvatar.h"
+#import "UserService.h"
 
-@interface CompleteUserInfoController : PPViewController<ChangeAvatarDelegate>
+@interface CompleteUserInfoController : PPViewController<ChangeAvatarDelegate, UserServiceDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *avatarLabel;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
@@ -20,6 +21,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *skipButton;
 
 @property (retain, nonatomic) ChangeAvatar *changeAvatarMenu;
+@property (retain, nonatomic) UIImage *avatarImage;
 
 - (IBAction)clickSkip:(id)sender;
 - (IBAction)clickSubmit:(id)sender;

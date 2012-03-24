@@ -12,6 +12,8 @@
 #import "UserManager.h"
 #import "PPViewController.h"
 #import "PPNetworkRequest.h"
+#import "UIDevice+IdentifierAddition.h"
+#import "UIImageExt.h"
 
 @implementation UserService
 
@@ -29,7 +31,9 @@ static UserService* _defaultUserService;
             password:(NSString*)password 
       viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
-    NSString* appId = @"Game";  // TODO
+    
+    // TODO send device id later
+    
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     [viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
@@ -37,7 +41,7 @@ static UserService* _defaultUserService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest registerUserByEmail:SERVER_URL 
-                                                       appId:appId 
+                                                       appId:APP_ID 
                                                        email:email 
                                                     password:password
                                                  deviceToken:deviceToken];
@@ -84,6 +88,50 @@ static UserService* _defaultUserService;
     });    
 }
 
+- (void)updateUserAvatar:(UIImage*)avatarImage 
+                nickName:(NSString*)nickName 
+          viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    // save data locally firstly
+    [[UserManager defaultManager] saveAvatarLocally:avatarImage];
+    [[UserManager defaultManager] setNickName:nickName];
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* password = [[UserManager defaultManager] password];
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
+                                                               appId:APP_ID 
+                                                              userId:userId 
+                                                            deviceId:deviceId 
+                                                         deviceToken:deviceToken 
+                                                            nickName:nickName 
+                                                            password:password 
+                                                              avatar:[avatarImage data]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                [viewController popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];
+                
+                // update avatar
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
+                [[UserManager defaultManager] setAvatar:retURL];
+            }
+            else{
+                [viewController popupUnhappyMessage:NSLS(@"kUpdateUserFail") title:@""];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserUpdated:)]){
+                [viewController didUserUpdated:output.resultCode];
+            }
+        });
+    });
+    
+}
 
 
 @end
