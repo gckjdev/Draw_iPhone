@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ChangeAvatar : NSObject
+@protocol ChangeAvatarDelegate <NSObject>
+
+- (void)didImageSelected:(UIImage*)image;
+
+@end
+
+@class PPViewController;
+
+@interface ChangeAvatar : NSObject<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, retain) PPViewController<ChangeAvatarDelegate> *superViewController;
+@property (nonatomic, assign) CGSize imageSize;
+@property (nonatomic, assign) BOOL autoRoundRect;
+
+- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 
 @end

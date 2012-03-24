@@ -16,6 +16,7 @@
 @synthesize nickNameTextField;
 @synthesize submitButton;
 @synthesize skipButton;
+@synthesize changeAvatarMenu = _changeAvatarMenu;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,6 +66,7 @@
 }
 
 - (void)dealloc {
+    [_changeAvatarMenu release];
     [avatarLabel release];
     [nickNameLabel release];
     [avatarButton release];
@@ -73,4 +75,26 @@
     [skipButton release];
     [super dealloc];
 }
+
+- (IBAction)clickSkip:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)clickSubmit:(id)sender
+{
+    
+}
+
+- (IBAction)clickAvatar:(id)sender
+{
+    self.changeAvatarMenu = [[ChangeAvatar alloc] init];
+    [self.changeAvatarMenu showSelectionView:self];
+}
+
+- (void)didImageSelected:(UIImage *)image
+{
+    [self.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
+}
+
 @end

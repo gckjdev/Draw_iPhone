@@ -7,7 +7,134 @@
 //
 
 #import "ChangeAvatar.h"
+#import "LocaleUtils.h"
+#import "PPViewController.h"
+#import "UIImageExt.h"
+
+#define DEFAULT_AVATAR_SIZE 57
 
 @implementation ChangeAvatar
+
+@synthesize superViewController = _superViewController;
+@synthesize autoRoundRect = _autoRoundRect;
+@synthesize imageSize = _imageSize;
+
+- (id)init
+{
+    self = [super init];
+    self.imageSize = CGSizeMake(DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE);
+    self.autoRoundRect = YES;
+    return self;
+}
+
+- (void)dealloc
+{
+    [_superViewController release];
+    [super dealloc];
+}
+
+- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+{
+    self.superViewController = superViewController;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+    [actionSheet showInView:[superViewController view]];
+    [actionSheet release];        
+}
+
+//- (void)setUserAvatar:(UIImage*)image
+//{    
+//    UserService* userService = GlobalGetUserService();
+//    [userService updateUserAvatar:image];    
+//    
+//    // update GUI
+//    [self updateImageView];
+//}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (image != nil){
+        if ([_superViewController respondsToSelector:@selector(didImageSelected:)])
+            
+            if (_autoRoundRect || (_imageSize.width > 0.0f && _imageSize.height > 0.0f)){
+                if (_autoRoundRect){
+                    image = [UIImage createRoundedRectImage:image size:_imageSize];
+                }
+                else{
+                    image = [image imageByScalingAndCroppingForSize:_imageSize];
+                }
+            }
+            
+            [_superViewController didImageSelected:image];
+    }
+    
+    [_superViewController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [_superViewController dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void)selectPhoto
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] &&
+        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        [_superViewController presentModalViewController:picker animated:YES];     
+        [picker release];
+    }
+    
+}
+
+- (void)takePhoto
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        [_superViewController presentModalViewController:picker animated:YES];        
+        [picker release];
+    }
+    
+}
+
+- (void)handleSelectAvatar:(int)buttonIndex
+{
+    enum{
+        BUTTON_SELECT_ALBUM,
+        BUTTON_TAKE_PHOTO,
+        BUTTON_CANCEL
+    };
+    
+    switch (buttonIndex) {
+        case BUTTON_SELECT_ALBUM:
+            [self selectPhoto];
+            break;
+            
+        case BUTTON_TAKE_PHOTO:
+            [self takePhoto];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self handleSelectAvatar:buttonIndex];
+}
+
 
 @end
