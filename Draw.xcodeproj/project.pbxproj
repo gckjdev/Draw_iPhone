@@ -224,6 +224,22 @@
 		CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322167151EF49A0039A384 /* SINAWeiboRequest.m */; };
 		CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217C151EF5570039A384 /* SinaSNSService.m */; };
 		CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217F151EF56E0039A384 /* QQWeiboService.m */; };
+		CA322185151F62C00039A384 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
+		CA322186151F62C00039A384 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
+		CA32218F151F64A60039A384 /* ShopMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32218D151F649D0039A384 /* ShopMainController.m */; };
+		CA322190151F64A60039A384 /* ShopMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32218E151F64A10039A384 /* ShopMainController.xib */; };
+		CA322194151F64F90039A384 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322192151F64F90039A384 /* CommonDialog.m */; };
+		CA322195151F64F90039A384 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322193151F64F90039A384 /* CommonDialog.xib */; };
+		CA32219D151F655E0039A384 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322198151F655E0039A384 /* ItemCell.m */; };
+		CA32219E151F655E0039A384 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322199151F655E0039A384 /* ItemCell.xib */; };
+		CA32219F151F655E0039A384 /* ItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32219B151F655E0039A384 /* ItemController.m */; };
+		CA3221A0151F655E0039A384 /* ItemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32219C151F655E0039A384 /* ItemController.xib */; };
+		CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
+		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
+		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
+		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
+		CA3221AD151F65EB0039A384 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221AC151F65EA0039A384 /* AccountService.m */; };
+		CA3221B0151F661B0039A384 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221AF151F661A0039A384 /* ItemService.m */; };
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
@@ -273,10 +289,6 @@
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
-		CAF10B06151C82EF008C4512 /* ItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10B04151C82EF008C4512 /* ItemController.m */; };
-		CAF10B07151C82EF008C4512 /* ItemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10B05151C82EF008C4512 /* ItemController.xib */; };
-		CAF10B0B151C8328008C4512 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10B09151C8327008C4512 /* ItemCell.m */; };
-		CAF10B0C151C8328008C4512 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF10B0A151C8328008C4512 /* ItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -728,6 +740,31 @@
 		CA32217E151EF56E0039A384 /* QQWeiboService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQWeiboService.h; sourceTree = "<group>"; };
 		CA32217F151EF56E0039A384 /* QQWeiboService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQWeiboService.m; sourceTree = "<group>"; };
 		CA322181151EF66E0039A384 /* SNSServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSServiceDelegate.h; sourceTree = "<group>"; };
+		CA322182151F62C00039A384 /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
+		CA322183151F62C00039A384 /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
+		CA322184151F62C00039A384 /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
+		CA32218C151F649C0039A384 /* ShopMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainController.h; sourceTree = "<group>"; };
+		CA32218D151F649D0039A384 /* ShopMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainController.m; sourceTree = "<group>"; };
+		CA32218E151F64A10039A384 /* ShopMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopMainController.xib; sourceTree = "<group>"; };
+		CA322191151F64F90039A384 /* CommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDialog.h; sourceTree = "<group>"; };
+		CA322192151F64F90039A384 /* CommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDialog.m; sourceTree = "<group>"; };
+		CA322193151F64F90039A384 /* CommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDialog.xib; sourceTree = "<group>"; };
+		CA322197151F655E0039A384 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		CA322198151F655E0039A384 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		CA322199151F655E0039A384 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		CA32219A151F655E0039A384 /* ItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemController.h; sourceTree = "<group>"; };
+		CA32219B151F655E0039A384 /* ItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemController.m; sourceTree = "<group>"; };
+		CA32219C151F655E0039A384 /* ItemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemController.xib; sourceTree = "<group>"; };
+		CA3221A1151F657F0039A384 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
+		CA3221A2151F657F0039A384 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
+		CA3221A3151F657F0039A384 /* FeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
+		CA3221A6151F65AD0039A384 /* UserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingController.h; sourceTree = "<group>"; };
+		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
+		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
+		CA3221AB151F65EA0039A384 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
+		CA3221AC151F65EA0039A384 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
+		CA3221AE151F66190039A384 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
+		CA3221AF151F661A0039A384 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -810,12 +847,6 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
-		CAF10B03151C82EF008C4512 /* ItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemController.h; sourceTree = "<group>"; };
-		CAF10B04151C82EF008C4512 /* ItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemController.m; sourceTree = "<group>"; };
-		CAF10B05151C82EF008C4512 /* ItemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemController.xib; sourceTree = "<group>"; };
-		CAF10B08151C8327008C4512 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
-		CAF10B09151C8327008C4512 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
-		CAF10B0A151C8328008C4512 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1814,6 +1845,9 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CA322191151F64F90039A384 /* CommonDialog.h */,
+				CA322192151F64F90039A384 /* CommonDialog.m */,
+				CA322193151F64F90039A384 /* CommonDialog.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1837,6 +1871,12 @@
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				CA322182151F62C00039A384 /* CoinShopController.h */,
+				CA322183151F62C00039A384 /* CoinShopController.m */,
+				CA322184151F62C00039A384 /* CoinShopController.xib */,
+				CA32218C151F649C0039A384 /* ShopMainController.h */,
+				CA32218D151F649D0039A384 /* ShopMainController.m */,
+				CA32218E151F64A10039A384 /* ShopMainController.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -1844,6 +1884,9 @@
 		CA1041DE1509B6E700F60C03 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				CA3221A1151F657F0039A384 /* FeedbackController.h */,
+				CA3221A2151F657F0039A384 /* FeedbackController.m */,
+				CA3221A3151F657F0039A384 /* FeedbackController.xib */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -1928,6 +1971,10 @@
 			children = (
 				CA322103151B6BE60039A384 /* UserService.h */,
 				CA322104151B6BE60039A384 /* UserService.m */,
+				CA3221AB151F65EA0039A384 /* AccountService.h */,
+				CA3221AC151F65EA0039A384 /* AccountService.m */,
+				CA3221AE151F66190039A384 /* ItemService.h */,
+				CA3221AF151F661A0039A384 /* ItemService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1957,6 +2004,9 @@
 			children = (
 				CA32213B151DEDE10039A384 /* ChangeAvatar.h */,
 				CA32213C151DEDE10039A384 /* ChangeAvatar.m */,
+				CA3221A6151F65AD0039A384 /* UserSettingController.h */,
+				CA3221A7151F65AD0039A384 /* UserSettingController.m */,
+				CA3221A8151F65AE0039A384 /* UserSettingController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2059,6 +2109,19 @@
 				CA322181151EF66E0039A384 /* SNSServiceDelegate.h */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CA322196151F655B0039A384 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				CA322197151F655E0039A384 /* ItemCell.h */,
+				CA322198151F655E0039A384 /* ItemCell.m */,
+				CA322199151F655E0039A384 /* ItemCell.xib */,
+				CA32219A151F655E0039A384 /* ItemController.h */,
+				CA32219B151F655E0039A384 /* ItemController.m */,
+				CA32219C151F655E0039A384 /* ItemController.xib */,
+			);
+			path = Item;
 			sourceTree = "<group>";
 		};
 		CA745D131503B1B400600024 = {
@@ -2316,8 +2379,8 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA322196151F655B0039A384 /* Item */,
 				CA32213A151DEDBF0039A384 /* User */,
-				CAF10B02151C82DC008C4512 /* ItemController */,
 				CA1041F41509BC8700F60C03 /* Home */,
 				CA1041D51509B6E700F60C03 /* Common */,
 				CA1041D61509B6E700F60C03 /* Draw */,
@@ -2343,19 +2406,6 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CAF10B02151C82DC008C4512 /* ItemController */ = {
-			isa = PBXGroup;
-			children = (
-				CAF10B03151C82EF008C4512 /* ItemController.h */,
-				CAF10B04151C82EF008C4512 /* ItemController.m */,
-				CAF10B05151C82EF008C4512 /* ItemController.xib */,
-				CAF10B08151C8327008C4512 /* ItemCell.h */,
-				CAF10B09151C8327008C4512 /* ItemCell.m */,
-				CAF10B0A151C8328008C4512 /* ItemCell.xib */,
-			);
-			path = ItemController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2492,8 +2542,6 @@
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
-				CAF10B07151C82EF008C4512 /* ItemController.xib in Resources */,
-				CAF10B0C151C8328008C4512 /* ItemCell.xib in Resources */,
 				CA322142151E0FC00039A384 /* WordDictionary.plist in Resources */,
 				CA322144151E107B0039A384 /* default_avatar.jpg in Resources */,
 				CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */,
@@ -2507,6 +2555,13 @@
 				CA322176151EF49B0039A384 /* sinaico@2x.png in Resources */,
 				CA322177151EF49B0039A384 /* sinaico_big.png in Resources */,
 				CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */,
+				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
+				CA322190151F64A60039A384 /* ShopMainController.xib in Resources */,
+				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
+				CA32219E151F655E0039A384 /* ItemCell.xib in Resources */,
+				CA3221A0151F655E0039A384 /* ItemController.xib in Resources */,
+				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
+				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2737,8 +2792,6 @@
 				CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */,
 				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
 				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
-				CAF10B06151C82EF008C4512 /* ItemController.m in Sources */,
-				CAF10B0B151C8328008C4512 /* ItemCell.m in Sources */,
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
 				CA322169151EF49A0039A384 /* CommonSNSRequest.m in Sources */,
 				CA32216A151EF49A0039A384 /* OAuthCore.m in Sources */,
@@ -2748,6 +2801,15 @@
 				CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */,
 				CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */,
 				CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */,
+				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,
+				CA32218F151F64A60039A384 /* ShopMainController.m in Sources */,
+				CA322194151F64F90039A384 /* CommonDialog.m in Sources */,
+				CA32219D151F655E0039A384 /* ItemCell.m in Sources */,
+				CA32219F151F655E0039A384 /* ItemController.m in Sources */,
+				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
+				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
+				CA3221AD151F65EB0039A384 /* AccountService.m in Sources */,
+				CA3221B0151F661B0039A384 /* ItemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
