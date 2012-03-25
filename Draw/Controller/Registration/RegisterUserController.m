@@ -14,6 +14,8 @@
 #import "CompleteUserInfoController.h"
 #import "StringUtil.h"
 #import "PPDebug.h"
+#import "SinaSNSService.h"
+#import "QQWeiboService.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -129,6 +131,20 @@
     [[UserService defaultService] registerUser:userId password:@"" viewController:self];    
 }
 
+- (IBAction)clickSinaLogin:(id)sender
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationItem.title = NSLS(@"微博授权");
+    [[SinaSNSService defaultService] startLogin:self];
+}
+
+- (IBAction)clickQQLogin:(id)sender
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationItem.title = NSLS(@"微博授权");
+    [[QQWeiboService defaultService] startLogin:self];
+}
+
 - (void)dealloc {
     [userIdTextField release];
     [super dealloc];
@@ -142,6 +158,12 @@
         CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:NO];    
     }
+}
+
+- (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
+{
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popToRootViewControllerAnimated:YES]; 
 }
 
 @end

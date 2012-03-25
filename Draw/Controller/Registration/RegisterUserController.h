@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "UserService.h"
 #import "PPViewController.h"
+#import "SNSServiceDelegate.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate>
 
 + (void)showAt:(UIViewController*)superViewController;
 
 
 - (IBAction)clickSubmit:(id)sender;
+- (IBAction)clickSinaLogin:(id)sender;
+- (IBAction)clickQQLogin:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UITextField *userIdTextField;
 
