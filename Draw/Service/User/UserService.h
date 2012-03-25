@@ -27,6 +27,9 @@
             password:(NSString*)password 
       viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
+- (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
+                     viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
 - (void)updateUserAvatar:(UIImage*)avatarImage 
                 nickName:(NSString*)nickName 
           viewController:(PPViewController<UserServiceDelegate>*)viewController;

@@ -10,8 +10,12 @@
 #import "UserService.h"
 #import "PPViewController.h"
 #import "SNSServiceDelegate.h"
+#import "SNSConstants.h"
 
 @interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate>
+{
+    int _currentLoginType;
+}
 
 + (void)showAt:(UIViewController*)superViewController;
 

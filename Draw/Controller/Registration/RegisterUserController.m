@@ -16,6 +16,7 @@
 #import "PPDebug.h"
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
+#import "GameNetworkConstants.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -124,6 +125,8 @@
 
 - (IBAction)clickSubmit:(id)sender
 {    
+    _currentLoginType = REGISTER_TYPE_EMAIL;
+    
     NSString* userId = self.userIdTextField.text;    
     if ([self verifyField] == NO){        
         return;
@@ -133,6 +136,8 @@
 
 - (IBAction)clickSinaLogin:(id)sender
 {
+    _currentLoginType = REGISTER_TYPE_SINA;
+    
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationItem.title = NSLS(@"微博授权");
     [[SinaSNSService defaultService] startLogin:self];
@@ -140,6 +145,8 @@
 
 - (IBAction)clickQQLogin:(id)sender
 {
+    _currentLoginType = REGISTER_TYPE_QQ;
+    
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationItem.title = NSLS(@"微博授权");
     [[QQWeiboService defaultService] startLogin:self];
@@ -152,18 +159,33 @@
 
 - (void)didUserRegistered:(int)resultCode
 {
+    self.navigationController.navigationBarHidden = YES;
+
     // go to next view
     PPDebug(@"<didUserRegistered> result code = %d", resultCode);
     if (resultCode == 0){
-        CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
-        [self.navigationController pushViewController:controller animated:NO];    
+        if (_currentLoginType == REGISTER_TYPE_EMAIL){
+            CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:NO];    
+        }
+        else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+    else{
+        // TODO show error code?
+        [self.navigationController popToViewController:self animated:YES];
     }
 }
 
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
-{
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popToRootViewControllerAnimated:YES]; 
+{        
+    if (result == 0){
+        [[UserService defaultService] registerUserWithSNSUserInfo:userInfo viewController:self];
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

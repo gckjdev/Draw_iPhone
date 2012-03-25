@@ -10,6 +10,12 @@
 #define TEMP_AVATAR_LOCAL_PATH  @"temp"
 #define DEFAULT_AVATAR_BUNDLE   @"default_avatar.jpg"
 
+@protocol AvatarImageDelegate <NSObject>
+
+- (void)didAvatarImageLoad:(UIImage*)image;
+
+@end
+
 @interface UserManager : NSObject
 
 + (UserManager*)defaultManager;
@@ -35,5 +41,22 @@
          avatarURL:(NSString*)avatarURL;
 
 + (NSString*)nickNameByEmail:(NSString*)email;
+
+- (void)saveUserId:(NSString*)userId
+              sinaId:(NSString*)loginId
+            password:(NSString*)password 
+            nickName:(NSString*)nickName
+           avatarURL:(NSString*)avatarURL
+     sinaAccessToken:(NSString*)accessToken
+    sinaAccessTokenSecret:(NSString*)accessTokenSecret;
+
+- (void)saveUserId:(NSString*)userId
+            qqId:(NSString*)loginId
+          password:(NSString*)password 
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL
+   qqAccessToken:(NSString*)accessToken
+qqAccessTokenSecret:(NSString*)accessTokenSecret;
+
 
 @end

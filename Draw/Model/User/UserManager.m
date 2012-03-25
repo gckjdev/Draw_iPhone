@@ -19,6 +19,15 @@
 #define KEY_EMAIL           @"USER_KEY_EMAIL"
 #define KEY_PASSWORD        @"USER_KEY_PASSWORD"
 
+#define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
+#define KEY_SINA_ACCESS_TOKEN           @"USER_KEY_SINA_ACCESS_TOKEN"
+#define KEY_SINA_ACCESS_TOKEN_SECRET    @"USER_KEY_SINA_ACCESS_TOKEN_SECRET"
+
+#define KEY_QQ_LOGINID                @"USER_KEY_QQ_LOGINID"
+#define KEY_QQ_ACCESS_TOKEN           @"USER_KEY_QQ_ACCESS_TOKEN"
+#define KEY_QQ_ACCESS_TOKEN_SECRET    @"USER_KEY_QQ_ACCESS_TOKEN_SECRET"
+
+
 #define AVATAR_LOCAL_FILENAME   @"user_avatar.png"
 
 @implementation UserManager
@@ -191,6 +200,92 @@ static UserManager* _defaultManager;
     }
     
     return _avatarImage;
+}
+
+- (void)saveUserId:(NSString*)userId
+            sinaId:(NSString*)loginId
+          password:(NSString*)password 
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL
+   sinaAccessToken:(NSString*)accessToken
+sinaAccessTokenSecret:(NSString*)accessTokenSecret
+{
+    PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (userId != nil){
+        [userDefaults setObject:userId forKey:KEY_USERID];
+    }
+    
+    if ([nickName length] > 0){
+        [userDefaults setObject:nickName forKey:KEY_NICKNAME];
+    }
+    
+    if (loginId != nil){
+        [userDefaults setObject:loginId forKey:KEY_SINA_LOGINID];
+    }
+    
+    if ([password length] > 0){
+        [userDefaults setObject:password forKey:KEY_PASSWORD];
+    }
+    
+    if (accessToken != nil){
+        [userDefaults setObject:accessToken forKey:KEY_SINA_ACCESS_TOKEN];
+    }
+    
+    if (accessTokenSecret != nil){
+        [userDefaults setObject:accessTokenSecret forKey:KEY_SINA_ACCESS_TOKEN_SECRET];
+    }
+    
+    if ([avatarURL length] > 0){
+        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+        [self avatarImage];
+    }
+    
+    [userDefaults synchronize];    
+}
+
+- (void)saveUserId:(NSString*)userId
+              qqId:(NSString*)loginId
+          password:(NSString*)password 
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL
+   qqAccessToken:(NSString*)accessToken
+qqAccessTokenSecret:(NSString*)accessTokenSecret
+{
+    PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (userId != nil){
+        [userDefaults setObject:userId forKey:KEY_USERID];
+    }
+    
+    if ([nickName length] > 0){
+        [userDefaults setObject:nickName forKey:KEY_NICKNAME];
+    }
+    
+    if (loginId != nil){
+        [userDefaults setObject:loginId forKey:KEY_QQ_LOGINID];
+    }
+    
+    if ([password length] > 0){
+        [userDefaults setObject:password forKey:KEY_PASSWORD];
+    }
+    
+    if (accessToken != nil){
+        [userDefaults setObject:accessToken forKey:KEY_QQ_ACCESS_TOKEN];
+    }
+    
+    if (accessTokenSecret != nil){
+        [userDefaults setObject:accessTokenSecret forKey:KEY_QQ_ACCESS_TOKEN_SECRET];
+    }
+    
+    if ([avatarURL length] > 0){
+        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+        [self avatarImage];
+    }
+    
+    [userDefaults synchronize];     
 }
 
 @end
