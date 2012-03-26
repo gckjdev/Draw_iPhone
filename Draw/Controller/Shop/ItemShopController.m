@@ -1,14 +1,14 @@
 //
-//  CoinShopController.m
+//  ItemShopController.m
 //  Draw
 //
-//  Created by  on 12-3-25.
+//  Created by  on 12-3-26.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CoinShopController.h"
+#import "ItemShopController.h"
 
-@implementation CoinShopController
+@implementation ItemShopController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,12 +69,11 @@
     }
     cell.indexPath = indexPath;
     if (indexPath.row == 0) {
-        [cell setCellInfoWithCellType:SHOPPING_COIN_TYPE count:400 price:1.99];    
+        [cell setCellInfoWithCellType:SHOPPING_ITEM_TYPE count:20 price:400];    
     }else{
-        [cell setCellInfoWithCellType:SHOPPING_COIN_TYPE count:1200 price:4.99];
+        [cell setCellInfoWithCellType:SHOPPING_ITEM_TYPE count:40 price:720];
     }
     return cell;
-//    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,6 +85,6 @@
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                 type:(SHOPPING_CELL_TYPE)type
 {
-    NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
+    NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
 }
 @end

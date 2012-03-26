@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "GameMessage.pb.h"
+#import "ShopMainController.h"
 
 @implementation HomeController
 
@@ -91,6 +92,12 @@
         [[DrawGameService defaultService] connectServer];
         _isTryJoinGame = YES;
     }
+}
+
+- (IBAction)clickShop:(id)sender {
+    ShopMainController *sc = [[ShopMainController alloc] init];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 - (void)didJoinGame:(GameMessage *)message

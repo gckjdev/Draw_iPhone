@@ -7,8 +7,14 @@
 //
 
 #import "ShopMainController.h"
+#import "CoinShopController.h"
+#import "ItemShopController.h"
 
 @implementation ShopMainController
+@synthesize coinNumberLabel;
+@synthesize itemNumberLabel;
+@synthesize buyCoinButton;
+@synthesize buyItemButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +43,10 @@
 
 - (void)viewDidUnload
 {
+    [self setBuyCoinButton:nil];
+    [self setBuyItemButton:nil];
+    [self setCoinNumberLabel:nil];
+    [self setItemNumberLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +58,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [buyCoinButton release];
+    [buyItemButton release];
+    [coinNumberLabel release];
+    [itemNumberLabel release];
+    [super dealloc];
+}
+- (IBAction)clickBuyCoinButton:(id)sender {
+    CoinShopController *cc = [[CoinShopController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
+}
+
+- (IBAction)clickBuyItemButton:(id)sender {
+    ItemShopController *ic = [[ItemShopController alloc] init];
+    [self.navigationController pushViewController:ic animated:YES];
+    [ic release];
+}
 @end

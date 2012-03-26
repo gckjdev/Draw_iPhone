@@ -230,10 +230,6 @@
 		CA322190151F64A60039A384 /* ShopMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32218E151F64A10039A384 /* ShopMainController.xib */; };
 		CA322194151F64F90039A384 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322192151F64F90039A384 /* CommonDialog.m */; };
 		CA322195151F64F90039A384 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322193151F64F90039A384 /* CommonDialog.xib */; };
-		CA32219D151F655E0039A384 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322198151F655E0039A384 /* ItemCell.m */; };
-		CA32219E151F655E0039A384 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322199151F655E0039A384 /* ItemCell.xib */; };
-		CA32219F151F655E0039A384 /* ItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32219B151F655E0039A384 /* ItemController.m */; };
-		CA3221A0151F655E0039A384 /* ItemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32219C151F655E0039A384 /* ItemController.xib */; };
 		CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
@@ -247,6 +243,10 @@
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
 		CA3B56E61514CB9400A93137 /* GameUserComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E51514CB9300A93137 /* GameUserComment.m */; };
 		CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E81514D41E00A93137 /* DrawAction.m */; };
+		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
+		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
+		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
+		CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -749,12 +749,6 @@
 		CA322191151F64F90039A384 /* CommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDialog.h; sourceTree = "<group>"; };
 		CA322192151F64F90039A384 /* CommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDialog.m; sourceTree = "<group>"; };
 		CA322193151F64F90039A384 /* CommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDialog.xib; sourceTree = "<group>"; };
-		CA322197151F655E0039A384 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
-		CA322198151F655E0039A384 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
-		CA322199151F655E0039A384 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
-		CA32219A151F655E0039A384 /* ItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemController.h; sourceTree = "<group>"; };
-		CA32219B151F655E0039A384 /* ItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemController.m; sourceTree = "<group>"; };
-		CA32219C151F655E0039A384 /* ItemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemController.xib; sourceTree = "<group>"; };
 		CA3221A1151F657F0039A384 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		CA3221A2151F657F0039A384 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		CA3221A3151F657F0039A384 /* FeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
@@ -778,6 +772,12 @@
 		CA3B56E51514CB9300A93137 /* GameUserComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUserComment.m; sourceTree = "<group>"; };
 		CA3B56E71514D41E00A93137 /* DrawAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawAction.h; sourceTree = "<group>"; };
 		CA3B56E81514D41E00A93137 /* DrawAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawAction.m; sourceTree = "<group>"; };
+		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
+		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
+		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
+		CA41C9461520179000013DC8 /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
+		CA41C9471520179000013DC8 /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
+		CA41C9481520179100013DC8 /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1877,6 +1877,12 @@
 				CA32218C151F649C0039A384 /* ShopMainController.h */,
 				CA32218D151F649D0039A384 /* ShopMainController.m */,
 				CA32218E151F64A10039A384 /* ShopMainController.xib */,
+				CA41C941152010FF00013DC8 /* ItemShopController.h */,
+				CA41C942152010FF00013DC8 /* ItemShopController.m */,
+				CA41C943152010FF00013DC8 /* ItemShopController.xib */,
+				CA41C9461520179000013DC8 /* ShoppingCell.h */,
+				CA41C9471520179000013DC8 /* ShoppingCell.m */,
+				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -2109,19 +2115,6 @@
 				CA322181151EF66E0039A384 /* SNSServiceDelegate.h */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		CA322196151F655B0039A384 /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				CA322197151F655E0039A384 /* ItemCell.h */,
-				CA322198151F655E0039A384 /* ItemCell.m */,
-				CA322199151F655E0039A384 /* ItemCell.xib */,
-				CA32219A151F655E0039A384 /* ItemController.h */,
-				CA32219B151F655E0039A384 /* ItemController.m */,
-				CA32219C151F655E0039A384 /* ItemController.xib */,
-			);
-			path = Item;
 			sourceTree = "<group>";
 		};
 		CA745D131503B1B400600024 = {
@@ -2379,7 +2372,6 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CA322196151F655B0039A384 /* Item */,
 				CA32213A151DEDBF0039A384 /* User */,
 				CA1041F41509BC8700F60C03 /* Home */,
 				CA1041D51509B6E700F60C03 /* Common */,
@@ -2558,10 +2550,10 @@
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
 				CA322190151F64A60039A384 /* ShopMainController.xib in Resources */,
 				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
-				CA32219E151F655E0039A384 /* ItemCell.xib in Resources */,
-				CA3221A0151F655E0039A384 /* ItemController.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
+				CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */,
+				CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2804,12 +2796,12 @@
 				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,
 				CA32218F151F64A60039A384 /* ShopMainController.m in Sources */,
 				CA322194151F64F90039A384 /* CommonDialog.m in Sources */,
-				CA32219D151F655E0039A384 /* ItemCell.m in Sources */,
-				CA32219F151F655E0039A384 /* ItemController.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
 				CA3221AD151F65EB0039A384 /* AccountService.m in Sources */,
 				CA3221B0151F661B0039A384 /* ItemService.m in Sources */,
+				CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */,
+				CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

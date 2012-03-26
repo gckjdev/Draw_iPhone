@@ -10,4 +10,10 @@
 
 @interface ShopMainController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
+@property (retain, nonatomic) IBOutlet UIButton *buyItemButton;
+- (IBAction)clickBuyCoinButton:(id)sender;
+- (IBAction)clickBuyItemButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *coinNumberLabel;
+@property (retain, nonatomic) IBOutlet UILabel *itemNumberLabel;
 @end

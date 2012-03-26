@@ -16,6 +16,7 @@
 }
 
 - (IBAction)clickStart:(id)sender;
+- (IBAction)clickShop:(id)sender;
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
 @end

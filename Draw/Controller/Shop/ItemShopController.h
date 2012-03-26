@@ -1,8 +1,8 @@
 //
-//  CoinShopController.h
+//  ItemShopController.h
 //  Draw
 //
-//  Created by  on 12-3-25.
+//  Created by  on 12-3-26.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "PPTableViewController.h"
 #import "ShoppingCell.h"
 
-@interface CoinShopController : PPTableViewController<ShoppingCellDelegate>
-
+@interface ItemShopController : PPTableViewController<ShoppingCellDelegate>
 - (IBAction)clickBackButton:(id)sender;
+
 @end
