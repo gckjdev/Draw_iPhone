@@ -7,6 +7,8 @@
 //
 
 #import "ItemShopController.h"
+//#import "ShoppingModel.h"
+#import "PriceService.h"
 
 @implementation ItemShopController
 
@@ -14,7 +16,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -33,6 +35,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[PriceService defaultService] fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:self];
 }
 
 - (void)viewDidUnload
@@ -55,8 +58,8 @@
 #pragma mark - Table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return [self.dataList count];
-    return 2;
+    return [self.dataList count];
+//    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,11 +71,8 @@
         cell.shoppingDelegate = self;
     }
     cell.indexPath = indexPath;
-    if (indexPath.row == 0) {
-        [cell setCellInfoWithCellType:SHOPPING_ITEM_TYPE count:20 price:400];    
-    }else{
-        [cell setCellInfoWithCellType:SHOPPING_ITEM_TYPE count:40 price:720];
-    }
+    ShoppingModel *model = [self.dataList objectAtIndex:indexPath.row];
+    [cell setCellInfo:model indexPath:indexPath];
     return cell;
 }
 
@@ -83,8 +83,22 @@
 
 #pragma mark - ShoppingCell delegate
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
-                                type:(SHOPPING_CELL_TYPE)type
+                               model:(ShoppingModel *)model
 {
     NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
 }
+
+#pragma mark - Price service delegate
+- (void)didBeginFetchShoppingList
+{
+    [self showActivityWithText:@"Loading..."];
+}
+- (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
+{
+    [self hideActivity];
+    self.dataList = shoppingList;
+    [self.dataTableView reloadData];
+}
+
+
 @end

@@ -7,14 +7,14 @@
 //
 
 #import "CoinShopController.h"
-
+//#import "ShoppingModel.h"
 @implementation CoinShopController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [[PriceService defaultService] fetchShoppingListByType:SHOPPING_COIN_TYPE viewController:self];
 }
 
 - (void)viewDidUnload
@@ -55,8 +55,7 @@
 #pragma mark - Table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return [self.dataList count];
-    return 2;
+    return [self.dataList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,13 +67,9 @@
         cell.shoppingDelegate = self;
     }
     cell.indexPath = indexPath;
-    if (indexPath.row == 0) {
-        [cell setCellInfoWithCellType:SHOPPING_COIN_TYPE count:400 price:1.99];    
-    }else{
-        [cell setCellInfoWithCellType:SHOPPING_COIN_TYPE count:1200 price:4.99];
-    }
+    ShoppingModel *model = [self.dataList objectAtIndex:indexPath.row];
+    [cell setCellInfo:model indexPath:indexPath];
     return cell;
-//    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -84,8 +79,20 @@
 
 #pragma mark - ShoppingCell delegate
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
-                                type:(SHOPPING_CELL_TYPE)type
+                               model:(ShoppingModel *)model
 {
     NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
+}
+
+#pragma mark - Price service delegate
+- (void)didBeginFetchShoppingList
+{
+    [self showActivityWithText:@"Loading..."];
+}
+- (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
+{
+    [self hideActivity];
+    self.dataList = shoppingList;
+    [self.dataTableView reloadData];
 }
 @end

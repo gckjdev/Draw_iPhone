@@ -234,8 +234,6 @@
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
-		CA3221AD151F65EB0039A384 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221AC151F65EA0039A384 /* AccountService.m */; };
-		CA3221B0151F661B0039A384 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221AF151F661A0039A384 /* ItemService.m */; };
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
@@ -247,6 +245,9 @@
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
 		CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
+		CA41C94D152021C000013DC8 /* ShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94C152021C000013DC8 /* ShoppingModel.m */; };
+		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
+		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -755,10 +756,6 @@
 		CA3221A6151F65AD0039A384 /* UserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingController.h; sourceTree = "<group>"; };
 		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
 		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
-		CA3221AB151F65EA0039A384 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
-		CA3221AC151F65EA0039A384 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
-		CA3221AE151F66190039A384 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
-		CA3221AF151F661A0039A384 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -778,6 +775,12 @@
 		CA41C9461520179000013DC8 /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
 		CA41C9471520179000013DC8 /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
 		CA41C9481520179100013DC8 /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
+		CA41C94B152021C000013DC8 /* ShoppingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingModel.h; sourceTree = "<group>"; };
+		CA41C94C152021C000013DC8 /* ShoppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingModel.m; sourceTree = "<group>"; };
+		CA41C94E1520608D00013DC8 /* PriceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceService.h; sourceTree = "<group>"; };
+		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
+		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
+		CA41C95A15206C1100013DC8 /* ShoppingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingManager.m; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1977,10 +1980,8 @@
 			children = (
 				CA322103151B6BE60039A384 /* UserService.h */,
 				CA322104151B6BE60039A384 /* UserService.m */,
-				CA3221AB151F65EA0039A384 /* AccountService.h */,
-				CA3221AC151F65EA0039A384 /* AccountService.m */,
-				CA3221AE151F66190039A384 /* ItemService.h */,
-				CA3221AF151F661A0039A384 /* ItemService.m */,
+				CA41C94E1520608D00013DC8 /* PriceService.h */,
+				CA41C94F1520608D00013DC8 /* PriceService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2365,6 +2366,10 @@
 				CAE2CAC0151B2F7C0062ED37 /* Item.m */,
 				CAF10AFC151C666D008C4512 /* ItemManager.h */,
 				CAF10AFD151C666E008C4512 /* ItemManager.m */,
+				CA41C94B152021C000013DC8 /* ShoppingModel.h */,
+				CA41C94C152021C000013DC8 /* ShoppingModel.m */,
+				CA41C95915206C1000013DC8 /* ShoppingManager.h */,
+				CA41C95A15206C1100013DC8 /* ShoppingManager.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -2798,10 +2803,11 @@
 				CA322194151F64F90039A384 /* CommonDialog.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
-				CA3221AD151F65EB0039A384 /* AccountService.m in Sources */,
-				CA3221B0151F661B0039A384 /* ItemService.m in Sources */,
 				CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */,
 				CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */,
+				CA41C94D152021C000013DC8 /* ShoppingModel.m in Sources */,
+				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
+				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

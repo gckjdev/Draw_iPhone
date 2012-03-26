@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "ShoppingCell.h"
+#import "PriceService.h"
 
-@interface CoinShopController : PPTableViewController<ShoppingCellDelegate>
+@interface CoinShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
 
 - (IBAction)clickBackButton:(id)sender;
 @end

@@ -75,6 +75,17 @@
 #define METHOD_SEGMENTTEXT @"st"
 #define METHOD_COMPAREPRODUCT @"comp"
 
+
+//game method
+#define METHOD_FETCH_SHOPPING_LIST @"gpri"
+
+
+
+//game parameters
+
+#define PARA_SHOPPING_TYPE @"pt"
+#define PARA_SHOPPING_AMOUNT @"pa"
+#define PARA_SHOPPING_VALUE @"val"
 // request parameters
 
 #define PARA_USERID @"uid"

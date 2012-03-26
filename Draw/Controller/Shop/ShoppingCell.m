@@ -11,9 +11,7 @@
 @implementation ShoppingCell
 @synthesize priceLabel;
 @synthesize countLabel;
-@synthesize type = _type;
-@synthesize price = _price;
-@synthesize count = _count;
+@synthesize model = _model;
 @synthesize shoppingDelegate = _shoppingDelegate;
 
 + (id)createCell:(id)delegate
@@ -43,32 +41,34 @@
 - (void)dealloc {
     [countLabel release];
     [priceLabel release];
+    [_model release];
     [super dealloc];
 }
 
-- (void)setCellInfoWithCellType:(SHOPPING_CELL_TYPE)type 
-                          count:(NSInteger)count 
-                          price:(CGFloat)price
+- (void)setCellInfo:(ShoppingModel *)model indexPath:(NSIndexPath *)aIndexPath
 {
-    self.type = type;
-    self.count = count;
-    self.price = price;
+    self.indexPath = aIndexPath;
+    self.model = model;
     NSString *countString = nil;
     NSString *priceString = nil;
-    if (type == SHOPPING_COIN_TYPE) {
-        countString = [NSString stringWithFormat:@"%d金币",count];
-        priceString = [NSString stringWithFormat:@"$%.2f",price];
-    }else if(type == SHOPPING_ITEM_TYPE)
+    if (model.type == SHOPPING_COIN_TYPE) {
+        countString = [NSString stringWithFormat:@"%d金币",model.count];
+        priceString = [NSString stringWithFormat:@"$%.2f",model.price];
+    }else if(model.type == SHOPPING_ITEM_TYPE)
     {
-        countString = [NSString stringWithFormat:@"锦囊 %d个",count];
-        priceString = [NSString stringWithFormat:@"%.0f金币",price];
-        
+        countString = [NSString stringWithFormat:@"锦囊 %d个",model.count];
+        priceString = [NSString stringWithFormat:@"%.0f金币",model.price];
     }
+     
+    [self.countLabel setText:countString];
+    [self.priceLabel setText:priceString];
 }
+
+
 
 - (IBAction)clickBuyButton:(id)sender {
     if (_shoppingDelegate && [_shoppingDelegate respondsToSelector:@selector(didClickBuyButtonAtIndexPath:type:)]) {
-        [_shoppingDelegate didClickBuyButtonAtIndexPath:self.indexPath type:self.type];
+        [_shoppingDelegate didClickBuyButtonAtIndexPath:self.indexPath model:self.model];
     }
 }
 @end

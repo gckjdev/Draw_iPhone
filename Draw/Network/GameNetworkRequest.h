@@ -50,5 +50,8 @@
                           password:(NSString*)newPassword
                             avatar:(NSData*)avatar;
 
++ (CommonNetworkOutput*)fetchShoppingList:(NSString*)baseURL 
+                                     type:(int)type;
+
 
 @end
