@@ -10,7 +10,7 @@
 #import "CommonService.h"
 #import "ShoppingModel.h"
 #import "PPTableViewController.h"
-
+#import <StoreKit/StoreKit.h>
 
 @protocol PriceServiceDelegate <NSObject>
 
@@ -19,13 +19,16 @@
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode;
 
 @end
-@interface PriceService : CommonService
+@interface PriceService : CommonService<SKProductsRequestDelegate>
 {
     
 }
 
 + (PriceService *)defaultService;
+
 - (void)fetchShoppingListByType:(SHOPPING_MODEL_TYPE)type
       viewController:(PPViewController<PriceServiceDelegate> *)viewController;
+
+- (void)fetchCoinProductList:(PPViewController<PriceServiceDelegate> *)viewController;
 
 @end

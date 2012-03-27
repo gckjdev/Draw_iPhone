@@ -7,6 +7,7 @@
 //
 
 #import "CoinShopController.h"
+#import <StoreKit/StoreKit.h>
 //#import "ShoppingModel.h"
 @implementation CoinShopController
 
@@ -32,7 +33,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[PriceService defaultService] fetchShoppingListByType:SHOPPING_COIN_TYPE viewController:self];
+    
+    if ([SKPaymentQueue canMakePayments]) {
+        // Display a store to the user.
+    } else {
+        [UIUtils alert:NSLS(@"kPaymentCannotMake")];
+    }
+    
+    
+    [[PriceService defaultService] fetchCoinProductList:self];
 }
 
 - (void)viewDidUnload

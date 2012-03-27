@@ -9,6 +9,7 @@
 #import "ShopMainController.h"
 #import "CoinShopController.h"
 #import "ItemShopController.h"
+#import <StoreKit/StoreKit.h>
 
 @implementation ShopMainController
 @synthesize coinNumberLabel;
@@ -39,6 +40,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)viewDidUnload

@@ -86,6 +86,8 @@
 #define PARA_SHOPPING_TYPE @"pt"
 #define PARA_SHOPPING_AMOUNT @"pa"
 #define PARA_SHOPPING_VALUE @"val"
+#define PARA_APPLE_IAP_PRODUCT_ID @"ipi"
+
 // request parameters
 
 #define PARA_USERID @"uid"

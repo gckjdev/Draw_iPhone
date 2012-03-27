@@ -11,6 +11,8 @@
 #import "GameNetworkRequest.h"
 #import "PPNetworkRequest.h"
 #import "ShoppingManager.h"
+#import "PPDebug.h"
+#import <StoreKit/StoreKit.h>
 
 static PriceService* staticPriceService = nil;
 
@@ -23,6 +25,7 @@ static PriceService* staticPriceService = nil;
     }
     return staticPriceService;
 }
+
 - (void)fetchShoppingListByType:(SHOPPING_MODEL_TYPE)type
                  viewController:(PPViewController<PriceServiceDelegate> *)viewController
 {
@@ -46,6 +49,35 @@ static PriceService* staticPriceService = nil;
         
     });    
 
+}
+
+- (void)fetchCoinProductList:(PPViewController<PriceServiceDelegate> *)viewController
+{        
+    // read price list
+    NSArray* priceList = [[ShoppingManager defaultManager] getShoppingListByType:SHOPPING_COIN_TYPE];    
+    NSMutableSet* productIdSet = [[[NSMutableSet alloc] init] autorelease];
+    for (ShoppingModel* price in priceList){
+        if ([price productId] != nil){
+            [productIdSet addObject:[price productId]];
+        }
+    }
+    
+    SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:productIdSet];
+    request.delegate = self;
+    [request start];
+    [request release];
+}
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSArray *myProducts = response.products;
+    
+    for (SKProduct* product in myProducts){
+        PPDebug(@"IAP products = %@, %@", [product localizedDescription], [product localizedTitle]);        
+    }
+
+    // Populate your UI from the products list.
+    // Save a reference to the products list.
 }
 
 @end

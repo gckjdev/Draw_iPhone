@@ -24,10 +24,17 @@ typedef enum{
 @property(nonatomic, assign) NSInteger count;
 @property(nonatomic, assign) CGFloat price;
 @property(nonatomic, assign) CGFloat savePercent;
+@property(nonatomic, retain) NSString *productId;
 
 - (id)initWithType:(SHOPPING_MODEL_TYPE)type 
              count:(NSInteger)count 
              price:(CGFloat)price 
         savePercen:(CGFloat)savePercent;
+
+- (id)initWithType:(SHOPPING_MODEL_TYPE)type 
+             count:(NSInteger)count 
+             price:(CGFloat)price 
+        savePercen:(CGFloat)savePercent
+         productId:(NSString*)productId;
 
 @end
