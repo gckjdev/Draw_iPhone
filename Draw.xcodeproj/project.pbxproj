@@ -248,6 +248,10 @@
 		CA41C94D152021C000013DC8 /* ShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94C152021C000013DC8 /* ShoppingModel.m */; };
 		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
+		CA4215FC1521915300FAA008 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4215FA1521915300FAA008 /* 57@2x.png */; };
+		CA4215FD1521915300FAA008 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4215FB1521915300FAA008 /* 57.png */; };
+		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
+		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -781,6 +785,11 @@
 		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
 		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
 		CA41C95A15206C1100013DC8 /* ShoppingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingManager.m; sourceTree = "<group>"; };
+		CA4215FA1521915300FAA008 /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
+		CA4215FB1521915300FAA008 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		CA4215FF152196B900FAA008 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
+		CA421600152196B900FAA008 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
+		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -857,6 +866,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
@@ -1984,6 +1994,8 @@
 				CA322104151B6BE60039A384 /* UserService.m */,
 				CA41C94E1520608D00013DC8 /* PriceService.h */,
 				CA41C94F1520608D00013DC8 /* PriceService.m */,
+				CA4215FF152196B900FAA008 /* AccountService.h */,
+				CA421600152196B900FAA008 /* AccountService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2023,6 +2035,8 @@
 		CA32213E151E0FC00039A384 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				CA4215FA1521915300FAA008 /* 57@2x.png */,
+				CA4215FB1521915300FAA008 /* 57.png */,
 				CA322143151E107B0039A384 /* default_avatar.jpg */,
 			);
 			path = Icons;
@@ -2142,6 +2156,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA4216021521973A00FAA008 /* StoreKit.framework */,
 				CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */,
 				CA103F391509A72100F60C03 /* MobileCoreServices.framework */,
 				CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */,
@@ -2559,6 +2574,8 @@
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
 				CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */,
 				CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */,
+				CA4215FC1521915300FAA008 /* 57@2x.png in Resources */,
+				CA4215FD1521915300FAA008 /* 57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2808,6 +2825,7 @@
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
+				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2893,7 +2911,10 @@
 		CA745D531503B1B500600024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2911,8 +2932,11 @@
 		CA745D541503B1B500600024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2920,6 +2944,7 @@
 				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "567D364C-8715-407A-A12E-EB426A08C30F";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
