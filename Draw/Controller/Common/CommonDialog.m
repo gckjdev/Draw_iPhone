@@ -7,45 +7,106 @@
 //
 
 #import "CommonDialog.h"
+#import "AnimationManager.h"
+
+#define RUN_OUT_TIME 0.2
+#define RUN_IN_TIME 0.4
 
 @implementation CommonDialog
+@synthesize contentView = _contentView;
+@synthesize delegate = _delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)dealloc
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    [_contentView release];
+    [super dealloc];
+}
+
+- (void)initTitles
+{
+
+}
+
++ (CommonDialog *)createDialog
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonDialog" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create <CommonDialog> but cannot find cell object from Nib");
+        return nil;
+    }
+    CommonDialog* view =  (CommonDialog*)[topLevelObjects objectAtIndex:0];
+    [view initTitles];
+    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:view removeCompeleted:NO];
+    //CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:-3 duration:0.5];
+    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
+    return view;
+    
+}
+
++ (CommonDialog *)createDialogwWithDelegate:(id<CommonDialogDelegate>)aDelegate
+{
+    CommonDialog* view = [CommonDialog createDialog];
+    view.delegate = aDelegate;
+    return view;
+    
+}
+
+- (IBAction)clickOk:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(clickOk)]) {
+        [_delegate clickOk];
+    }
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+//     CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:3 duration:0.5];
+    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
+//    [runOut setDelegate:self];
+//    [self.layer addAnimation:runOut forKey:@"runOut"];
+    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
+    //[self removeFromSuperview];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(clickOk)]) {
+        [_delegate clickOk];
+    }
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+    //     CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:3 duration:0.5];
+    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
+    //    [runOut setDelegate:self];
+    //    [self.layer addAnimation:runOut forKey:@"runOut"];
+    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
+}
+
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* value = [anim valueForKey:@"AnimationKey"];
+    if ([value isEqualToString:@"runOut"]) {
+        [self setHidden:YES];
+        [self removeFromSuperview];
+    }
+}
+
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
     if (self) {
-        // Custom initialization
+        // Initialization code
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end

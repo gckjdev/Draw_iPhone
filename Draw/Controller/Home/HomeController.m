@@ -15,6 +15,7 @@
 #import "PPDebug.h"
 #import "GameMessage.pb.h"
 #import "ShopMainController.h"
+#import "CommonDialog.h"
 
 @implementation HomeController
 
@@ -98,6 +99,12 @@
     ShopMainController *sc = [[ShopMainController alloc] init];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
+}
+
+- (IBAction)testDialog:(id)sender
+{
+    CommonDialog* dialog = [CommonDialog createDialog];
+    [self.view addSubview:dialog];
 }
 
 - (void)didJoinGame:(GameMessage *)message
