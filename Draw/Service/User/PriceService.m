@@ -26,8 +26,8 @@ static PriceService* staticPriceService = nil;
 - (void)fetchShoppingListByType:(SHOPPING_MODEL_TYPE)type
                  viewController:(PPViewController<PriceServiceDelegate> *)viewController
 {
-    if ([viewController respondsToSelector:@selector(didBeginFetchShoppingList)]) {
-        [viewController didBeginFetchShoppingList];
+    if ([viewController respondsToSelector:@selector(didBeginFetchData)]) {
+        [viewController didBeginFetchData];
     }
     dispatch_async(workingQueue, ^{
         
@@ -46,6 +46,31 @@ static PriceService* staticPriceService = nil;
         
     });    
 
+}
+
+- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(PPViewController<PriceServiceDelegate> *)viewController
+{
+    if ([viewController respondsToSelector:@selector(didBeginFetchData)]) {
+        [viewController didBeginFetchData];
+    }
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest fetchAccountBalance:SERVER_URL userId:userId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS) {
+                NSDecimalNumber *number = (NSDecimalNumber *)output.jsonDataArray;
+                int balance = number.integerValue;
+//                int balance =[[ShoppingManager defaultManager] getBalanceFromOutputList:output.jsonDataArray];
+                if ([viewController respondsToSelector:@selector(didFinishFetchAccountBalance:resultCode:)]) {
+                    [viewController didFinishFetchAccountBalance:balance resultCode:output.resultCode];
+                }
+            }
+        });
+        
+    });  
 }
 
 @end

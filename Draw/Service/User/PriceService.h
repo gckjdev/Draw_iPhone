@@ -15,8 +15,11 @@
 @protocol PriceServiceDelegate <NSObject>
 
 @optional
-- (void)didBeginFetchShoppingList;
+- (void)didBeginFetchData;
+- (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode;
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode;
+
+
 
 @end
 @interface PriceService : CommonService
@@ -27,5 +30,5 @@
 + (PriceService *)defaultService;
 - (void)fetchShoppingListByType:(SHOPPING_MODEL_TYPE)type
       viewController:(PPViewController<PriceServiceDelegate> *)viewController;
-
+- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(PPViewController<PriceServiceDelegate> *)viewController;
 @end

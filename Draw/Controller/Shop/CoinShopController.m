@@ -7,7 +7,8 @@
 //
 
 #import "CoinShopController.h"
-//#import "ShoppingModel.h"
+#import "DrawGameService.h"
+
 @implementation CoinShopController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,6 +34,9 @@
 {
     [super viewDidLoad];
     [[PriceService defaultService] fetchShoppingListByType:SHOPPING_COIN_TYPE viewController:self];
+    NSString *userId = [[DrawGameService defaultService] userId];
+    NSLog(@"userID = %@",userId);
+    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
 }
 
 - (void)viewDidUnload
@@ -85,7 +89,7 @@
 }
 
 #pragma mark - Price service delegate
-- (void)didBeginFetchShoppingList
+- (void)didBeginFetchData
 {
     [self showActivityWithText:@"Loading..."];
 }
@@ -95,4 +99,11 @@
     self.dataList = shoppingList;
     [self.dataTableView reloadData];
 }
+
+- (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode
+{
+    [self hideActivity];
+    NSLog(@"did get balance: %d",balance);
+}
+
 @end
