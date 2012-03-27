@@ -59,4 +59,5 @@ static ShoppingManager *staticShoppingManager = nil;
     return array;
 }
 
+
 @end

@@ -391,13 +391,13 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
 {
     if (![drawGameService.userId isEqualToString:guessUserId]) {
-        //alert the ans;
+        NSString *nickName = [[drawGameService session]getNickNameByUserId:guessUserId];
         if (!guessCorrect) {
             [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
-                                     guessUserId, wordText]];            
+                                     nickName, wordText]];            
         }else{
             [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
-                                     guessUserId]];
+                                     nickName]];
         }
 
     }
@@ -423,7 +423,8 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",[message userId]];
+    NSString *nickName = [[drawGameService session]getNickNameByUserId:[message userId]];
+    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",nickName];
     [self makePlayerButtons];
     [self popUpGuessMessage:quitText];
     if ([self userCount] <= 1) {

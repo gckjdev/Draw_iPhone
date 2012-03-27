@@ -16,6 +16,10 @@
 	<key>Medium</key>
 	<array>
 		<array>
+			<string>星星</string>
+			<string>2</string>
+		</array>
+		<array>
 			<string>袜子</string>
 			<integer>2</integer>
 		</array>

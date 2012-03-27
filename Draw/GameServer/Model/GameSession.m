@@ -196,5 +196,16 @@
     self.status = SESSION_WAITING;
 }
 
+- (NSString *)getNickNameByUserId:(NSString *)userId
+{
+    for (GameSessionUser *user in self.userList) {
+        if([user.userId isEqualToString:userId])
+        {
+            return user.nickName;
+        }
+    }
+    return nil;
+}
+
 
 @end

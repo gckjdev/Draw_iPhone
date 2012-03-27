@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedbackController : UIViewController
+@interface FeedbackController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 
 @end

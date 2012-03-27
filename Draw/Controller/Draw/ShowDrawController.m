@@ -190,7 +190,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)makePickingButtons
 {
     
-    candidateString = [[WordManager defaultManager] randLetterWithWord:self.word];
+    candidateString = [[WordManager defaultManager] randLetterWithWord:self.word count:16];
     [candidateString retain];
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
@@ -383,12 +383,15 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     if (![drawGameService.userId isEqualToString:guessUserId]) {
         //alert the answer;
+        
+        NSString *nickName = [[drawGameService session]getNickNameByUserId:guessUserId];
+        
         if (!guessCorrect) {
             [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
-                                     guessUserId, wordText]];            
+                                     nickName, wordText]];            
         }else{
             [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
-                                     guessUserId]];
+                                     nickName]];
         }
         
     }
@@ -438,7 +441,8 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",[message userId]];
+    NSString *nickName = [[drawGameService session]getNickNameByUserId:[message userId]];
+    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",nickName];
     [self makePlayerButtons];
     [self popUpGuessMessage:quitText];
 }

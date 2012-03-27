@@ -15,6 +15,9 @@
 #import "PPDebug.h"
 #import "GameMessage.pb.h"
 #import "ShopMainController.h"
+#import "CommonDialog.h"
+#import "FeedbackController.h"
+
 
 @implementation HomeController
 
@@ -40,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -102,7 +107,8 @@
 
 - (IBAction)testDialog:(id)sender
 {
-
+    CommonDialog* dialog = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
+    [self.view addSubview:dialog];
 }
 
 - (void)didJoinGame:(GameMessage *)message
@@ -121,7 +127,9 @@
 
 - (IBAction)clickFeedback:(id)sender
 {
-    
+    FeedbackController* feedBack = [[FeedbackController alloc] init];
+    [self.navigationController pushViewController:feedBack animated:YES];
+    [feedBack release];
 }
 
 - (IBAction)clickSettings:(id)sender

@@ -78,6 +78,7 @@
 
 //game method
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
+#define METHOD_GET_ACCOUNT_BALANCE @"gab"
 
 
 
@@ -87,6 +88,7 @@
 #define PARA_SHOPPING_AMOUNT @"pa"
 #define PARA_SHOPPING_VALUE @"val"
 #define PARA_APPLE_IAP_PRODUCT_ID @"ipi"
+#define PARA_ACCOUNT_BALANCE @"ab"
 
 // request parameters
 

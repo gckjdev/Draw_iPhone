@@ -43,5 +43,5 @@ typedef enum {
 
 - (void)startPlay;
 - (void)finishPlay;
-
+- (NSString *)getNickNameByUserId:(NSString *)userId;
 @end
