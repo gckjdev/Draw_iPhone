@@ -52,6 +52,7 @@
 
 + (CommonNetworkOutput*)fetchShoppingList:(NSString*)baseURL 
                                      type:(int)type;
++ (CommonNetworkOutput*)fetchAccountBalance:(NSString*)baseURL userId:(NSString *)userId;
 
 
 @end

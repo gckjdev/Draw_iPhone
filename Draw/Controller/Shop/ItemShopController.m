@@ -89,7 +89,7 @@
 }
 
 #pragma mark - Price service delegate
-- (void)didBeginFetchShoppingList
+- (void)didBeginFetchData
 {
     [self showActivityWithText:@"Loading..."];
 }

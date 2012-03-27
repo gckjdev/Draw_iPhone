@@ -78,6 +78,7 @@
 
 //game method
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
+#define METHOD_GET_ACCOUNT_BALANCE @"gab"
 
 
 
@@ -86,6 +87,8 @@
 #define PARA_SHOPPING_TYPE @"pt"
 #define PARA_SHOPPING_AMOUNT @"pa"
 #define PARA_SHOPPING_VALUE @"val"
+#define PARA_ACCOUNT_BALANCE @"ab"
+
 // request parameters
 
 #define PARA_USERID @"uid"
