@@ -10,4 +10,16 @@
 
 @implementation AccountService
 
+static AccountService* _defaultAccountService;
+
++ (AccountService*)defaultService
+{
+    if (_defaultAccountService == nil)
+        _defaultAccountService = [[AccountService alloc] init];
+    
+    return _defaultAccountService;
+}
+
+
+
 @end

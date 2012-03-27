@@ -10,4 +10,6 @@
 
 @interface AccountService : CommonService
 
++ (AccountService *)defaultService;
+
 @end

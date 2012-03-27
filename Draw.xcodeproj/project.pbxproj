@@ -250,6 +250,8 @@
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA4215FC1521915300FAA008 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4215FA1521915300FAA008 /* 57@2x.png */; };
 		CA4215FD1521915300FAA008 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4215FB1521915300FAA008 /* 57.png */; };
+		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
+		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -785,6 +787,9 @@
 		CA41C95A15206C1100013DC8 /* ShoppingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingManager.m; sourceTree = "<group>"; };
 		CA4215FA1521915300FAA008 /* 57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "57@2x.png"; sourceTree = "<group>"; };
 		CA4215FB1521915300FAA008 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		CA4215FF152196B900FAA008 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
+		CA421600152196B900FAA008 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
+		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -861,6 +866,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
@@ -1988,6 +1994,8 @@
 				CA322104151B6BE60039A384 /* UserService.m */,
 				CA41C94E1520608D00013DC8 /* PriceService.h */,
 				CA41C94F1520608D00013DC8 /* PriceService.m */,
+				CA4215FF152196B900FAA008 /* AccountService.h */,
+				CA421600152196B900FAA008 /* AccountService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2148,6 +2156,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA4216021521973A00FAA008 /* StoreKit.framework */,
 				CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */,
 				CA103F391509A72100F60C03 /* MobileCoreServices.framework */,
 				CA103F371509A71A00F60C03 /* libz.1.1.3.dylib */,
@@ -2816,6 +2825,7 @@
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
+				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
