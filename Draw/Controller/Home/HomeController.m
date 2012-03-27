@@ -100,6 +100,11 @@
     [sc release];
 }
 
+- (IBAction)testDialog:(id)sender
+{
+
+}
+
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];

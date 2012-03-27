@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommonDialog : UIViewController
+@protocol CommonDialogDelegate <NSObject>
+ @optional
+- (void)clickOk;
+- (void)clickBack;
+@end
 
+@interface CommonDialog : UIView {
+    
+}
+
+@property (assign, nonatomic) id<CommonDialogDelegate> delegate;
++ (CommonDialog *)createDialog;
++ (CommonDialog *)createDialogwWithDelegate:(id<CommonDialogDelegate>)aDelegate;
 @end
