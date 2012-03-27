@@ -16,6 +16,8 @@
 }
 
 +(ShoppingManager *)defaultManager;
+
+- (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type;
 - (NSArray *)getShoppingListFromOutputList:(NSArray *)list type:(SHOPPING_MODEL_TYPE)type;
 
 @end

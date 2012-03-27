@@ -7,6 +7,7 @@
 //
 
 #import "CoinShopController.h"
+#import <StoreKit/StoreKit.h>
 #import "DrawGameService.h"
 
 @implementation CoinShopController
@@ -33,7 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[PriceService defaultService] fetchShoppingListByType:SHOPPING_COIN_TYPE viewController:self];
+    
+    if ([SKPaymentQueue canMakePayments]) {
+        // Display a store to the user.
+    } else {
+        [UIUtils alert:NSLS(@"kPaymentCannotMake")];
+    }
+    
+    
+    [[PriceService defaultService] fetchCoinProductList:self];
     NSString *userId = [[DrawGameService defaultService] userId];
     NSLog(@"userID = %@",userId);
     [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
