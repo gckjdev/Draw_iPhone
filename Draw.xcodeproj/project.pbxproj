@@ -2929,7 +2929,7 @@
 					armv7,
 					armv6,
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -2939,6 +2939,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "97D2E8B3-02C9-4B7C-BFBE-2214DD5481EB";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

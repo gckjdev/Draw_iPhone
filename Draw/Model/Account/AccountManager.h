@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Account;
+@class UserAccount;
 @interface AccountManager : NSObject
 {
 

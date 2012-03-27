@@ -7,9 +7,27 @@
 //
 
 #import "CommonService.h"
+#import <StoreKit/StoreKit.h>
 
-@interface AccountService : CommonService
+#define PAYMENT_SUCCESS 0
+#define PAYMENT_FAILURE 1
+#define PAYMENT_CANCEL  2
+
+@class ShoppingModel;
+
+@protocol AccountServiceDelegate <NSObject>
+
+@optional
+- (void)didFinishBuyProduct:(int)resultCode;
+
+@end
+
+@interface AccountService : CommonService<SKPaymentTransactionObserver>
+
+@property (nonatomic, retain) NSObject<AccountServiceDelegate> *delegate;
 
 + (AccountService *)defaultService;
+
+- (void)buyCoin:(ShoppingModel*)price;
 
 @end

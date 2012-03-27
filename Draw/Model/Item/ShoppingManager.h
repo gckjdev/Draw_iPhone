@@ -15,7 +15,14 @@
     
 }
 
+@property (nonatomic, retain) NSArray *coinPriceList;
+
 +(ShoppingManager *)defaultManager;
+
+
+// coin price handling
+- (ShoppingModel*)findCoinPriceByProductId:(NSString*)productId;
+- (void)updateCoinSKProduct:(SKProduct*)product;
 
 - (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type;
 - (NSArray *)getShoppingListFromOutputList:(NSArray *)list type:(SHOPPING_MODEL_TYPE)type;

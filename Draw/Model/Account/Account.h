@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Account : NSObject<NSCoding>
+@interface UserAccount : NSObject<NSCoding>
 {
     NSNumber *_balance;
 }
 @property(nonatomic, assign)NSNumber *balance;
 
-+ (Account *)defaultAccount;
-+ (Account *)accountWithBalance:(NSInteger)balance;
++ (UserAccount *)defaultAccount;
++ (UserAccount *)accountWithBalance:(NSInteger)balance;
 @end

@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
+
 typedef enum{
     SHOPPING_COIN_TYPE = 1,
     SHOPPING_ITEM_TYPE = 2
 }SHOPPING_MODEL_TYPE;
+
 
 @interface ShoppingModel : NSObject
 {
@@ -18,6 +21,7 @@ typedef enum{
     NSInteger _count;
     CGFloat _price;
     CGFloat _savePercent;
+    SKProduct *_product;
 }
 
 @property(nonatomic, assign) SHOPPING_MODEL_TYPE type;
@@ -25,6 +29,7 @@ typedef enum{
 @property(nonatomic, assign) CGFloat price;
 @property(nonatomic, assign) CGFloat savePercent;
 @property(nonatomic, retain) NSString *productId;
+@property(nonatomic, retain) SKProduct *product;
 
 - (id)initWithType:(SHOPPING_MODEL_TYPE)type 
              count:(NSInteger)count 

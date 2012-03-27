@@ -45,7 +45,9 @@
     [[PriceService defaultService] fetchCoinProductList:self];
     NSString *userId = [[DrawGameService defaultService] userId];
     NSLog(@"userID = %@",userId);
-    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
+
+    // why here??? Benson
+//    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
 }
 
 - (void)viewDidUnload

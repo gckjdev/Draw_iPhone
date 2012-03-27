@@ -15,9 +15,11 @@
 @synthesize type = _type;
 @synthesize savePercent = _savePercent;
 @synthesize productId = _productId;
+@synthesize product = _product;
 
 - (void)dealloc
 {
+    [_product release];
     [_productId release];
     [super dealloc];
 }

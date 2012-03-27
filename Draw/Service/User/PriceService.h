@@ -19,13 +19,13 @@
 - (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode;
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode;
 
-
-
 @end
+
 @interface PriceService : CommonService<SKProductsRequestDelegate>
 {
-    
+    id<PriceServiceDelegate> delegate;
 }
+
 
 + (PriceService *)defaultService;
 

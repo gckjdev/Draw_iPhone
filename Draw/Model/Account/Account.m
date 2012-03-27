@@ -1,5 +1,5 @@
 //
-//  Account.m
+//  UserAccount.m
 //  Draw
 //
 //  Created by  on 12-3-22.
@@ -8,7 +8,7 @@
 
 #import "Account.h"
 
-@implementation Account
+@implementation UserAccount
 @synthesize balance = _balance;
 
 - (id)initWithBalance:(NSInteger)balance
@@ -36,13 +36,13 @@
     return self;
 }
 
-+ (Account *)defaultAccount
++ (UserAccount *)defaultAccount
 {
-    return [Account accountWithBalance:3];
+    return [UserAccount accountWithBalance:3];
 }
 
-+ (Account *)accountWithBalance:(NSInteger)balance
++ (UserAccount *)accountWithBalance:(NSInteger)balance
 {
-    return [[[Account alloc] initWithBalance:balance] autorelease];
+    return [[[UserAccount alloc] initWithBalance:balance] autorelease];
 }
 @end

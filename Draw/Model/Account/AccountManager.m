@@ -38,7 +38,7 @@ AccountManager* GlobalGetAccountManager()
     return GlobalGetAccountManager();
 }
 
-- (void)saveAccount:(Account *)account forUserId:(NSString *)userId
+- (void)saveAccount:(UserAccount *)account forUserId:(NSString *)userId
 {
     if (account == nil || userId == nil) {
         return;
@@ -55,7 +55,7 @@ AccountManager* GlobalGetAccountManager()
     [defaults synchronize];
 }
 
-- (Account *)accountForUserId:(NSString *)userId
+- (UserAccount *)accountForUserId:(NSString *)userId
 {
     if (userId == nil) {
         return nil;
@@ -69,10 +69,10 @@ AccountManager* GlobalGetAccountManager()
     if (balance == nil) {
         return nil;
     }
-    return [Account accountWithBalance:balance.integerValue];
+    return [UserAccount accountWithBalance:balance.integerValue];
 }
 
-- (Account *)getAccount
+- (UserAccount *)getAccount
 {
     NSString *userId = [[UserManager defaultManager] userId];
     return [self accountForUserId:userId];
@@ -81,7 +81,7 @@ AccountManager* GlobalGetAccountManager()
 - (void)updateAccount:(NSInteger)balance
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    [self saveAccount:[Account accountWithBalance:balance] forUserId:userId];
+    [self saveAccount:[UserAccount accountWithBalance:balance] forUserId:userId];
 }
 
 @end

@@ -53,7 +53,11 @@ static PriceService* staticPriceService = nil;
 
 - (void)fetchCoinProductList:(PPViewController<PriceServiceDelegate> *)viewController
 {        
-    // read price list
+    if ([viewController respondsToSelector:@selector(didBeginFetchData)]) {
+        [viewController didBeginFetchData];
+    }
+    
+    // read IAP Product Identifier from shopping manager
     NSArray* priceList = [[ShoppingManager defaultManager] getShoppingListByType:SHOPPING_COIN_TYPE];    
     NSMutableSet* productIdSet = [[[NSMutableSet alloc] init] autorelease];
     for (ShoppingModel* price in priceList){
@@ -62,20 +66,31 @@ static PriceService* staticPriceService = nil;
         }
     }
     
+    // request data from Apple IAP server
     SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:productIdSet];
     request.delegate = self;
     [request start];
     [request release];
+    PPDebug(@"<fetchCoinProductList> Send Query IAP Product for (%@)", [productIdSet description]);
+    
+    // save delegate for call back
+    delegate = viewController;
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    NSArray *myProducts = response.products;
-    
+    // update SKProduct in coin price list
+    NSArray *myProducts = response.products;    
     for (SKProduct* product in myProducts){
-        PPDebug(@"IAP products = %@, %@", [product localizedDescription], [product localizedTitle]);        
+        PPDebug(@"<didReceiveResponse> IAP products = %@, %@", [product localizedDescription], [product localizedTitle]);          
+        [[ShoppingManager defaultManager] updateCoinSKProduct:product];
     }
-
+    
+    // notify UI to update
+    NSArray* coinPriceList = [[ShoppingManager defaultManager] coinPriceList];
+    if ([delegate respondsToSelector:@selector(didFinishFetchShoppingList:resultCode:)]) {
+        [delegate didFinishFetchShoppingList:coinPriceList resultCode:0];
+    }
 }
 
 // Populate your UI from the products list.

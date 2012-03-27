@@ -9,10 +9,20 @@
 #import "ShoppingManager.h"
 #import "ShoppingModel.h"
 #import "GameNetworkConstants.h"
+#import <StoreKit/StoreKit.h>
 
 static ShoppingManager *staticShoppingManager = nil;
 
 @implementation ShoppingManager
+
+@synthesize coinPriceList = _coinPriceList;
+
+- (void)dealloc
+{
+    [_coinPriceList release];
+    [super dealloc];
+}
+
 +(ShoppingManager *)defaultManager
 {
     if (staticShoppingManager == nil) {
@@ -21,10 +31,33 @@ static ShoppingManager *staticShoppingManager = nil;
     return staticShoppingManager;
 }
 
+- (ShoppingModel*)findCoinPriceByProductId:(NSString*)productId
+{
+    for (ShoppingModel* price in _coinPriceList){
+        if ([[price productId] isEqualToString:productId]){
+            return price;
+        }
+    }    
+    
+    return nil;
+}
+
+- (void)updateCoinSKProduct:(SKProduct*)product
+{
+    for (ShoppingModel* price in _coinPriceList){
+        if ([[price productId] isEqualToString:[product productIdentifier]]){
+            // update product in price
+            price.product = product;
+        }
+    }
+}
+
 - (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type
 {
     // TODO, read data locally
 
+    
+    // Test, simulate data here, shall read from local storage
     NSMutableArray *array = [[[NSMutableArray alloc] init]autorelease];
 
     ShoppingModel *model1 = [[[ShoppingModel alloc] initWithType:type 
@@ -40,7 +73,9 @@ static ShoppingManager *staticShoppingManager = nil;
                                                        productId:@"com.orange.draw.coins_1200"] autorelease];
 
     [array addObject:model1];
-    [array addObject:model2];    
+    [array addObject:model2]; 
+    
+    self.coinPriceList = array;    
     return array;
 }
 
