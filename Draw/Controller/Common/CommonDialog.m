@@ -7,12 +7,18 @@
 //
 
 #import "CommonDialog.h"
+#import "AnimationManager.h"
+
+#define RUN_OUT_TIME 0.2
+#define RUN_IN_TIME 0.4
 
 @implementation CommonDialog
+@synthesize contentView = _contentView;
 @synthesize delegate = _delegate;
 
 - (void)dealloc
 {
+    [_contentView release];
     [super dealloc];
 }
 
@@ -31,9 +37,9 @@
     }
     CommonDialog* view =  (CommonDialog*)[topLevelObjects objectAtIndex:0];
     [view initTitles];
-//    CAAnimation *runIn = [AnimationManager translationAnimationFrom:CGPointMake(160, 720) to:CGPointMake(160, 240) duration:0.3 delegate:self removeCompeleted:NO];
+    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:view removeCompeleted:NO];
     //CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:-3 duration:0.5];
-//    [view.layer addAnimation:runIn forKey:@"runIn"];
+    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
     return view;
     
 }
@@ -51,13 +57,13 @@
     if (_delegate && [_delegate respondsToSelector:@selector(clickOk)]) {
         [_delegate clickOk];
     }
-//    CAAnimation *runOut = [AnimationManager translationAnimationFrom:CGPointMake(160, 240) to:CGPointMake(160, 720) duration:0.1 delegate:self removeCompeleted:NO];
-    // CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:3 duration:0.5];
-//    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+//     CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:3 duration:0.5];
+    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
 //    [runOut setDelegate:self];
 //    [self.layer addAnimation:runOut forKey:@"runOut"];
-    //[_contentView.layer addAnimation:rollAnimation forKey:@"rolling"];
-    [self removeFromSuperview];
+    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
+    //[self removeFromSuperview];
 }
 
 - (IBAction)clickBack:(id)sender
@@ -65,18 +71,23 @@
     if (_delegate && [_delegate respondsToSelector:@selector(clickOk)]) {
         [_delegate clickOk];
     }
-    [self removeFromSuperview];
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+    //     CAAnimation *rollAnimation = [AnimationManager rotationAnimationWithRoundCount:3 duration:0.5];
+    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
+    //    [runOut setDelegate:self];
+    //    [self.layer addAnimation:runOut forKey:@"runOut"];
+    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
 }
 
 
-//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-//{
-//    NSString* value = [anim valueForKey:@"AnimationKey"];
-//    if ([value isEqualToString:@"runOut"]) {
-//        [self setHidden:YES];
-//        [self removeFromSuperview];
-//    }
-//}
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* value = [anim valueForKey:@"AnimationKey"];
+    if ([value isEqualToString:@"runOut"]) {
+        [self setHidden:YES];
+        [self removeFromSuperview];
+    }
+}
 
 
 - (id)initWithFrame:(CGRect)frame

@@ -17,6 +17,7 @@
 @interface CommonDialog : UIView {
     
 }
+@property (retain, nonatomic) IBOutlet UIView *contentView;
 
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 + (CommonDialog *)createDialog;
