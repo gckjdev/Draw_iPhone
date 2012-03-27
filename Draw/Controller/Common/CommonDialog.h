@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    SINGLE_BUTTON = 0,
+    DOUBLE_BUTTON
+}CommonDialogStyle;
+
 @protocol CommonDialogDelegate <NSObject>
  @optional
 - (void)clickOk;
@@ -18,8 +23,10 @@
     
 }
 @property (retain, nonatomic) IBOutlet UIView *contentView;
+@property (retain, nonatomic) IBOutlet UIButton *oKButton;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
-+ (CommonDialog *)createDialog;
-+ (CommonDialog *)createDialogwWithDelegate:(id<CommonDialogDelegate>)aDelegate;
++ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle;
++ (CommonDialog *)createDialogwWithDelegate:(id<CommonDialogDelegate>)aDelegate withStyle:(CommonDialogStyle)aStyle;
 @end

@@ -103,7 +103,7 @@
 
 - (IBAction)testDialog:(id)sender
 {
-    CommonDialog* dialog = [CommonDialog createDialog];
+    CommonDialog* dialog = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
     [self.view addSubview:dialog];
 }
 
