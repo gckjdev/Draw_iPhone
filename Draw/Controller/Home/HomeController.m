@@ -16,6 +16,7 @@
 #import "GameMessage.pb.h"
 #import "ShopMainController.h"
 #import "CommonDialog.h"
+#import "FeedbackController.h"
 
 @implementation HomeController
 
@@ -123,7 +124,9 @@
 
 - (IBAction)clickFeedback:(id)sender
 {
-    
+    FeedbackController* feedBack = [[FeedbackController alloc] init];
+    [self.navigationController pushViewController:feedBack animated:YES];
+    [feedBack release];
 }
 
 - (IBAction)clickSettings:(id)sender
