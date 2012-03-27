@@ -114,6 +114,22 @@
     [RoomController firstEnterRoom:self];
 }
 
+- (IBAction)clickFeedback:(id)sender
+{
+    
+}
+
+- (IBAction)clickSettings:(id)sender
+{
+    
+}
+
+- (IBAction)clickShare:(id)sender
+{
+    
+}
+
+
 - (void)didBroken
 {
     _isTryJoinGame = NO;

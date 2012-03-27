@@ -17,6 +17,11 @@
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickShop:(id)sender;
+
+- (IBAction)clickFeedback:(id)sender;
+- (IBAction)clickSettings:(id)sender;
+- (IBAction)clickShare:(id)sender;
+
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
 @end
