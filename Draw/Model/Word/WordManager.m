@@ -9,6 +9,10 @@
 #import "WordManager.h"
 #import "Word.h"
 
+
+#define WORD_DICT [[NSBundle mainBundle] pathForResource:@"WordDictionary" ofType:@"plist"]
+#define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
+
 WordManager *_wordManager;
 WordManager *GlobalGetWordManager()
 {
@@ -80,8 +84,7 @@ WordManager *GlobalGetWordManager()
     self = [super init];
     if (self) {
         //load data
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"WordDictionary" ofType:@"plist"];
-        NSDictionary *pathDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
+        NSDictionary *pathDictionary = [NSDictionary dictionaryWithContentsOfFile:WORD_DICT];
         wordDict = [self parsePathDict:pathDictionary];
         [wordDict retain];
     }
@@ -95,17 +98,69 @@ WordManager *GlobalGetWordManager()
     [super dealloc];
 }
 
-- (NSString *)randLetterWithWord:(Word *)word
+- (NSString *)charWithKey:(NSString *)key dict:(NSDictionary *)dict outOfString:(NSString *)string
+{
+    
+    
+    
+    NSArray *list = [dict objectForKey:key];
+    int br = 0;
+    while (list == nil && br < [string length]) {
+        NSString *tempKey = [string substringWithRange:NSMakeRange(br, 1)];
+        list = [dict objectForKey:tempKey];
+        ++ br;
+    }
+    if (list) {
+        for (int i = 0; i < [list count]; ++ i) {
+            NSString *value = [list objectAtIndex:rand() % [list count]];            
+            NSString *str1 = [value substringFromIndex:1];
+            NSString *str2 = [value substringWithRange:NSMakeRange(0, 1)];
+            NSInteger str1Loc = [string rangeOfString:str1].location;
+            NSInteger str2Loc = [string rangeOfString:str2].location;
+            if (str1Loc == NSNotFound) {
+                return str1;
+            }else if (str2Loc == NSNotFound) {
+                return str2;
+            }
+        }    
+    }
+    return key;
+}
+
+
+
+- (NSString *)randLetterWithWord:(Word *)word count:(NSInteger)count
 {
     if (word == nil) {
         return nil;
     }
-    NSString *str = @"北京天安门广场紫禁城乔丹詹姆斯足球篮球小鸡老鹰妖怪香蕉纸巾";
-    NSInteger count = 16 - [word.text length];
-    NSString *suffix = [str substringWithRange:NSMakeRange(0, count)];
-    return [NSString stringWithFormat:@"%@%@",word.text,suffix];
-//    NSInteger i = rand() % str.length;
-//    return [str substringWithRange:NSMakeRange(i, 1)];
+    
+    
+    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];
+
+    
+    NSInteger length = word.text.length;
+    NSMutableArray *retArray = [[NSMutableArray alloc] init];
+    NSString *createSet = [NSString stringWithFormat:@"%@",word.text];
+    for (int i = 0; i < count - length; ++ i) {
+        NSInteger l = [createSet length];
+        NSString *key = [createSet substringWithRange:NSMakeRange(rand() % l, 1)];
+        NSString *value = [self charWithKey:key dict:wordBase outOfString:createSet];
+        if ([createSet rangeOfString:value].location == NSNotFound) {
+            createSet = [NSString stringWithFormat:@"%@%@",createSet,value];            
+        }
+        NSLog(@"createSet : %@", createSet);
+        [retArray addObject:value];
+    }
+    
+    for (int i = 0 ; i < length; ++ i) {
+        NSString *value = [word.text substringWithRange:NSMakeRange(i, 1)];
+        int k = rand() % retArray.count;
+        [retArray insertObject:value atIndex:k];
+    }
+    return [retArray componentsJoinedByString:@""];
+
+    
 }
 
 - (void)addWord:(Word *)word

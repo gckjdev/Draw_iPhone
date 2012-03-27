@@ -27,7 +27,9 @@
 
 - (void)addWord:(Word *)word; //when need to update the words, call the method
 - (NSArray *)randDrawWordList; //will return a word list, and the list size is 3
-- (NSString *)randLetterWithWord:(Word *)word;
+//- (NSString *)randLetterWithWord:(Word *)word;
+- (NSString *)randLetterWithWord:(Word *)word count:(NSInteger)count;
+
 
 @end
 

@@ -16,6 +16,8 @@
 #import "GameMessage.pb.h"
 #import "ShopMainController.h"
 #import "CommonDialog.h"
+#import "WordManager.h"
+#import "Word.h"
 
 @implementation HomeController
 
@@ -41,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
