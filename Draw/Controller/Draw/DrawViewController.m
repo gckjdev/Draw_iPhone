@@ -242,6 +242,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self addPickLineWidthView];
     [self hidePickViews];
     [drawView clear];
+    [drawView setDrawEnabled:YES];
     drawGameService.drawDelegate = self;
     [self hidePickViews];
     [self.guessMsgLabel setHidden:YES];

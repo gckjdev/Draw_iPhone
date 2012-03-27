@@ -46,13 +46,11 @@ WordManager *GlobalGetWordManager()
     }
 }
 
-- (NSMutableArray *)parsePathArray:(NSArray *)array
+- (NSMutableArray *)parsePathArray:(NSArray *)array level:(WordLevel)level
 {
     NSMutableArray *retArray = [[[NSMutableArray alloc] init]autorelease];   
-    for (NSArray *w in array) {
-        NSString *text = [w objectAtIndex:0];
-        NSNumber *level = [w objectAtIndex:1];
-        Word *word = [[Word alloc] initWithText:text level:[level integerValue]];
+    for (NSString *text in array) {
+        Word *word = [[Word alloc] initWithText:text level:level];
         [retArray addObject:word];
         [word release];
     }
@@ -67,9 +65,9 @@ WordManager *GlobalGetWordManager()
     NSArray *mediumArray = [pDict objectForKey:KEY_MEDIUM_LEVEL];
     NSArray *highArray = [pDict objectForKey:KEY_HIGH_LEVEL];
     
-    NSMutableArray *retLowArray = [self parsePathArray:lowArray];
-    NSMutableArray *retMediumArray = [self parsePathArray:mediumArray];
-    NSMutableArray *retHighArray = [self parsePathArray:highArray];
+    NSMutableArray *retLowArray = [self parsePathArray:lowArray level:WordLevelLow];
+    NSMutableArray *retMediumArray = [self parsePathArray:mediumArray level:WordLeveLMedium];
+    NSMutableArray *retHighArray = [self parsePathArray:highArray level:WordLevelHigh];
     
     NSMutableDictionary *dict = [[[NSMutableDictionary alloc] init]autorelease];
     [dict setObject:retLowArray forKey:KEY_LOW_LEVEL];
