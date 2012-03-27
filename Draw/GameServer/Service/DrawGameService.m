@@ -68,8 +68,10 @@ static DrawGameService* _defaultService;
 
 - (void)connectServer
 {
+
 //    [_networkClient start:@"192.167.1.103" port:8080];
     [_networkClient start:@"192.168.1.6" port:8080];    
+
 }
 
 - (BOOL)isMeHost

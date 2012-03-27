@@ -16,8 +16,8 @@
 #import "GameMessage.pb.h"
 #import "ShopMainController.h"
 #import "CommonDialog.h"
-#import "WordManager.h"
-#import "Word.h"
+#import "FeedbackController.h"
+
 
 @implementation HomeController
 
@@ -107,7 +107,7 @@
 
 - (IBAction)testDialog:(id)sender
 {
-    CommonDialog* dialog = [CommonDialog createDialog];
+    CommonDialog* dialog = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
     [self.view addSubview:dialog];
 }
 
@@ -127,7 +127,9 @@
 
 - (IBAction)clickFeedback:(id)sender
 {
-    
+    FeedbackController* feedBack = [[FeedbackController alloc] init];
+    [self.navigationController pushViewController:feedBack animated:YES];
+    [feedBack release];
 }
 
 - (IBAction)clickSettings:(id)sender
