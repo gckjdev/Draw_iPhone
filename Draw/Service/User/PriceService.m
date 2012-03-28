@@ -13,6 +13,7 @@
 #import "ShoppingManager.h"
 #import "PPDebug.h"
 #import <StoreKit/StoreKit.h>
+#import "SKProduct+LocalizedPrice.h"
 
 static PriceService* staticPriceService = nil;
 
@@ -82,7 +83,10 @@ static PriceService* staticPriceService = nil;
     // update SKProduct in coin price list
     NSArray *myProducts = response.products;    
     for (SKProduct* product in myProducts){
-        PPDebug(@"<didReceiveResponse> IAP products = %@, %@", [product localizedDescription], [product localizedTitle]);          
+        PPDebug(@"<didReceiveResponse> IAP products = %@, %@, %@", 
+                [product localizedDescription], 
+                [product localizedTitle],
+                [product localizedPrice]);          
         [[ShoppingManager defaultManager] updateCoinSKProduct:product];
     }
     
