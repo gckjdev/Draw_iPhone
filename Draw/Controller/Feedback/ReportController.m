@@ -7,12 +7,40 @@
 //
 
 #import "ReportController.h"
+#import "SNSServiceDelegate.h"
 
 @interface ReportController ()
 
 @end
 
 @implementation ReportController
+@synthesize submitButton;
+@synthesize backButton;
+@synthesize contentText;
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [self.contentText resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self.contentText setFrame:CGRectMake(26, 20, 268, 160)];
+    [self.backButton setFrame:CGRectOffset(self.backButton.frame, 0, -200)];
+    [self.submitButton setFrame:CGRectOffset(self.submitButton.frame, 0, -200)];
+    return YES;
+}
+
+- (IBAction)submit:(id)sender
+{
+    [[SinaSNSService defaultService] publishWeibo:self.contentText.text delegate:self];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +59,9 @@
 
 - (void)viewDidUnload
 {
+    [self setContentText:nil];
+    [self setSubmitButton:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -41,4 +72,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [contentText release];
+    [submitButton release];
+    [backButton release];
+    [super dealloc];
+}
 @end
