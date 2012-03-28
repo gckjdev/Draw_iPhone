@@ -17,7 +17,7 @@
 #import "ShopMainController.h"
 #import "CommonDialog.h"
 #import "FeedbackController.h"
-
+#import "UserSettingController.h"
 
 @implementation HomeController
 
@@ -134,7 +134,9 @@
 
 - (IBAction)clickSettings:(id)sender
 {
-    
+    UserSettingController *settings = [[UserSettingController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
 }
 
 - (IBAction)clickShare:(id)sender

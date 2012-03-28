@@ -46,12 +46,19 @@ static AccountService* _defaultAccountService;
         PPDebug(@"<buyCoin> but SKProduct of price is null");
         return;
     }
+    PPDebug(@"<buyCoin> on product %@", [selectedProduct productIdentifier]);
     SKPayment *payment = [SKPayment paymentWithProduct:selectedProduct];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 - (void)recordTransaction:(SKPaymentTransaction*)transaction
 {
+    PPDebug(@"<recordTransaction> transaction = %@ [%@]", 
+            transaction.transactionIdentifier,
+            [transaction.transactionReceipt description]);
+    
+    // TODO Must Record transactionIdentifier & transactionReceipt in server
+    
     NSString* productId  = transaction.payment.productIdentifier;
     ShoppingModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
     if (price == nil){
@@ -67,6 +74,8 @@ static AccountService* _defaultAccountService;
 
 - (void)provideContent:(NSString*)productId
 {
+    PPDebug(@"<provideContent> productId = %@", productId);    
+    
     // update UI here    
     int resultCode = PAYMENT_SUCCESS;
     if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
@@ -76,6 +85,8 @@ static AccountService* _defaultAccountService;
 
 - (void) completeTransaction: (SKPaymentTransaction *)transaction
 {
+    PPDebug(@"<completeTransaction> transaction = %@", transaction.transactionIdentifier);
+    
     // Your application should implement these two methods.
     [self recordTransaction:transaction];
     [self provideContent:transaction.payment.productIdentifier];
@@ -86,6 +97,7 @@ static AccountService* _defaultAccountService;
 
 - (void) restoreTransaction: (SKPaymentTransaction *)transaction
 {
+    PPDebug(@"<restoreTransaction> transaction = %@", transaction.transactionIdentifier);
     [self recordTransaction: transaction];
     [self provideContent: transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
@@ -93,6 +105,7 @@ static AccountService* _defaultAccountService;
 
 - (void) failedTransaction: (SKPaymentTransaction *)transaction
 {
+    PPDebug(@"<failedTransaction> error code = %d", transaction.error.code);
     if (transaction.error.code != SKErrorPaymentCancelled) {
         // TODO display an error here to UI
         int resultCode = PAYMENT_FAILURE;
@@ -115,6 +128,9 @@ static AccountService* _defaultAccountService;
 {
     for (SKPaymentTransaction *transaction in transactions)
     {
+        PPDebug(@"<updatedTransactions> productId=%@, transactionState=%d", 
+                transaction.payment.productIdentifier, transaction.transactionState);
+        
         switch (transaction.transactionState)
         {
             case SKPaymentTransactionStatePurchased:
@@ -125,6 +141,8 @@ static AccountService* _defaultAccountService;
                 break;
             case SKPaymentTransactionStateRestored:
                 [self restoreTransaction:transaction];
+            case SKPaymentTransactionStatePurchasing:
+                break;
             default:
                 break;
         }
