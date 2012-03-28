@@ -398,7 +398,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 }
 
-- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel
+- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
 {
     if (wordText) {
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];

@@ -90,6 +90,7 @@ message GeneralNotification{
   optional string word = 31;
   optional int32 level = 32;
   optional int32 round = 33;
+  optional int32 language = 34;
   
   // guess data
   optional string guessWord = 41;

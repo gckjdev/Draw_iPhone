@@ -548,6 +548,7 @@
   BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
   BOOL hasSessionStatus_:1;
+  BOOL hasLanguage_:1;
   BOOL hasRound_:1;
   BOOL hasLevel_:1;
   BOOL hasColor_:1;
@@ -565,6 +566,7 @@
   BOOL guessCorrect_:1;
   Float32 width;
   int32_t sessionStatus;
+  int32_t language;
   int32_t round;
   int32_t level;
   int32_t color;
@@ -596,6 +598,7 @@
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
 - (BOOL) hasRound;
+- (BOOL) hasLanguage;
 - (BOOL) hasGuessWord;
 - (BOOL) hasGuessUserId;
 - (BOOL) hasGuessCorrect;
@@ -613,6 +616,7 @@
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) int32_t round;
+@property (readonly) int32_t language;
 @property (readonly, retain) NSString* guessWord;
 @property (readonly, retain) NSString* guessUserId;
 - (BOOL) guessCorrect;
@@ -727,6 +731,11 @@
 - (int32_t) round;
 - (GeneralNotification_Builder*) setRound:(int32_t) value;
 - (GeneralNotification_Builder*) clearRound;
+
+- (BOOL) hasLanguage;
+- (int32_t) language;
+- (GeneralNotification_Builder*) setLanguage:(int32_t) value;
+- (GeneralNotification_Builder*) clearLanguage;
 
 - (BOOL) hasGuessWord;
 - (NSString*) guessWord;
