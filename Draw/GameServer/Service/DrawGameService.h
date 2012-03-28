@@ -16,7 +16,8 @@
 
 // draw actions
 - (void)didReceiveDrawData:(GameMessage *)message;
-- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
+//- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
+- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language;
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 

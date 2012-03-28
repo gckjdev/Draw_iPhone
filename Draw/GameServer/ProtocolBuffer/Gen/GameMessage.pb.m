@@ -2081,6 +2081,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* word;
 @property int32_t level;
 @property int32_t round;
+@property int32_t language;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
@@ -2182,6 +2183,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasRound_ = !!value;
 }
 @synthesize round;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
 - (BOOL) hasGuessWord {
   return !!hasGuessWord_;
 }
@@ -2247,6 +2255,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.word = @"";
     self.level = 0;
     self.round = 0;
+    self.language = 0;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
@@ -2330,6 +2339,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasRound) {
     [output writeInt32:33 value:self.round];
   }
+  if (self.hasLanguage) {
+    [output writeInt32:34 value:self.language];
+  }
   if (self.hasGuessWord) {
     [output writeString:41 value:self.guessWord];
   }
@@ -2404,6 +2416,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasRound) {
     size += computeInt32Size(33, self.round);
+  }
+  if (self.hasLanguage) {
+    size += computeInt32Size(34, self.language);
   }
   if (self.hasGuessWord) {
     size += computeStringSize(41, self.guessWord);
@@ -2545,6 +2560,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasRound) {
     [self setRound:other.round];
   }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
   if (other.hasGuessWord) {
     [self setGuessWord:other.guessWord];
   }
@@ -2643,6 +2661,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 264: {
         [self setRound:[input readInt32]];
+        break;
+      }
+      case 272: {
+        [self setLanguage:[input readInt32]];
         break;
       }
       case 330: {
@@ -2905,6 +2927,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearRound {
   result.hasRound = NO;
   result.round = 0;
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (int32_t) language {
+  return result.language;
+}
+- (GeneralNotification_Builder*) setLanguage:(int32_t) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = 0;
   return self;
 }
 - (BOOL) hasGuessWord {

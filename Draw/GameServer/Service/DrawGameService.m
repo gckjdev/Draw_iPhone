@@ -249,9 +249,10 @@ static DrawGameService* _defaultService;
         // TODO chaneg to notifyGameObserver
         if ([[[message notification] word] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
-            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:)]) {
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:language:)]) {
                 [_drawDelegate didReceiveDrawWord:[[message notification] word] 
-                                            level:[[message notification] level]];
+                                            level:[[message notification] level]
+                                         language:[[message notification] language]];
             }
             
             PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
