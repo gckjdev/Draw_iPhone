@@ -88,7 +88,7 @@
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 
-- (void)startDraw:(NSString*)word level:(int)level;
+- (void)startDraw:(NSString*)word level:(int)level language:(int)language;
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId;
 
 - (BOOL)isConnected;

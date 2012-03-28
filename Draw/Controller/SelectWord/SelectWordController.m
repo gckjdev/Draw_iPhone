@@ -14,6 +14,7 @@
 #import "ShowDrawController.h"
 #import "DrawGameService.h"
 #import "LocaleUtils.h"
+#import "UserManager.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -49,7 +50,8 @@
 //        DrawViewController *vc = [[[DrawViewController alloc] init]autorelease];
         DrawViewController *vc = [DrawViewController instance];
         vc.word = word;
-        [gameService startDraw:word.text level:word.level];
+        int language = 1; // TODO, use formal language from UserManager
+        [gameService startDraw:word.text level:word.level language:language];
         [self.navigationController pushViewController:vc animated:NO];        
     }
     

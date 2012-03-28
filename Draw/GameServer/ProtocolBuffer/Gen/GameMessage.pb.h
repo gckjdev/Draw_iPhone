@@ -387,6 +387,7 @@
   BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
   BOOL hasLevel_:1;
+  BOOL hasLanguage_:1;
   BOOL hasColor_:1;
   BOOL hasWord_:1;
   BOOL hasGuessWord_:1;
@@ -394,6 +395,7 @@
   BOOL guessCorrect_:1;
   Float32 width;
   int32_t level;
+  int32_t language;
   int32_t color;
   NSString* word;
   NSString* guessWord;
@@ -403,6 +405,7 @@
 }
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
+- (BOOL) hasLanguage;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasGuessWord;
@@ -410,6 +413,7 @@
 - (BOOL) hasGuessCorrect;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
+@property (readonly) int32_t language;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly, retain) NSString* guessWord;
@@ -461,6 +465,11 @@
 - (int32_t) level;
 - (SendDrawDataRequest_Builder*) setLevel:(int32_t) value;
 - (SendDrawDataRequest_Builder*) clearLevel;
+
+- (BOOL) hasLanguage;
+- (int32_t) language;
+- (SendDrawDataRequest_Builder*) setLanguage:(int32_t) value;
+- (SendDrawDataRequest_Builder*) clearLanguage;
 
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
