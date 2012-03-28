@@ -415,12 +415,13 @@ static DrawGameService* _defaultService;
                         sessionId:[_session sessionId]];    
 }
 
-- (void)startDraw:(NSString*)word level:(int)level
+- (void)startDraw:(NSString*)word level:(int)level language:(int)language
 {
     [_networkClient sendStartDraw:_userId
                         sessionId:[_session sessionId]
                              word:word
-                            level:level];
+                            level:level
+                         language:language];
      
 }
 

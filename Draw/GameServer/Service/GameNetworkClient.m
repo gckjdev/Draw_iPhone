@@ -146,10 +146,12 @@ static GameNetworkClient* _defaultGameNetworkClient;
             sessionId:(long)sessionId
                  word:(NSString*)word 
                 level:(int)level
+             language:(int)language
 {
     SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
     [requestBuilder setWord:word];
     [requestBuilder setLevel:level];
+    [requestBuilder setLanguage:language];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];
