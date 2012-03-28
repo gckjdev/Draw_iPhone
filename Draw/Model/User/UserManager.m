@@ -11,6 +11,7 @@
 #import "UIImageUtil.h"
 #import "ASIHTTPRequest.h"
 #import "FileUtil.h"
+#import "LocaleUtils.h"
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -18,6 +19,7 @@
 #define KEY_DEVICE_TOKEN    @"USER_KEY_DEVICE_TOKEN"
 #define KEY_EMAIL           @"USER_KEY_EMAIL"
 #define KEY_PASSWORD        @"USER_KEY_PASSWORD"
+#define KEY_LANGUAGE        @"USER_KEY_LANGUAGE "
 
 #define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
 #define KEY_SINA_ACCESS_TOKEN           @"USER_KEY_SINA_ACCESS_TOKEN"
@@ -29,7 +31,7 @@
 
 
 #define AVATAR_LOCAL_FILENAME   @"user_avatar.png"
-
+    
 @implementation UserManager
 
 @synthesize avatarImage = _avatarImage;
@@ -286,6 +288,27 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     
     [userDefaults synchronize];     
+}
+
+- (void)setLanguageType:(LanguageType)type
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:type forKey:KEY_LANGUAGE];
+}
+
+- (LanguageType)getLanguageType
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    LanguageType type = [userDefaults integerForKey:KEY_LANGUAGE];
+    if (type == 0) {
+        if ([LocaleUtils isChina]){
+            type = ChineseType;
+        }else{
+            type = EnglishType;
+        }
+    }
+    [self setLanguageType:type];
+    return type;
 }
 
 @end

@@ -10,6 +10,8 @@
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
+		C2E6628215230B3F00487601 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
+		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -344,6 +346,9 @@
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
 		C2E6625F1521B91900487601 /* ReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportController.m; sourceTree = "<group>"; };
 		C2E662601521B91900487601 /* ReportController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportController.xib; sourceTree = "<group>"; };
+		C2E6627F15230B3F00487601 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
+		C2E6628015230B3F00487601 /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareController.m; sourceTree = "<group>"; };
+		C2E6628115230B3F00487601 /* ShareController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareController.xib; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -1929,6 +1934,9 @@
 		CA1041DF1509B6E700F60C03 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				C2E6627F15230B3F00487601 /* ShareController.h */,
+				C2E6628015230B3F00487601 /* ShareController.m */,
+				C2E6628115230B3F00487601 /* ShareController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -2602,6 +2610,7 @@
 				CA4215FD1521915300FAA008 /* 57.png in Resources */,
 				C2E662621521B91900487601 /* ReportController.xib in Resources */,
 				CA202C9C1521C57200B78539 /* words.plist in Resources */,
+				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2854,6 +2863,7 @@
 				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
+				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

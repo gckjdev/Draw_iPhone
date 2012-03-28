@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
+@class UserManager;
 
-@interface UserSettingController : UIViewController
-
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate>
+{
+    UserManager *userManager;
+}
+- (IBAction)clickBackButton:(id)sender;
 @end
