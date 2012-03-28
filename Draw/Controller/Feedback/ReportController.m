@@ -41,10 +41,10 @@
 - (IBAction)submit:(id)sender
 {
     switch (_reportType) {
-        case SNS_SHARE:
+        case SNS_SHARE: {
             [[SinaSNSService defaultService] publishWeibo:self.contentText.text delegate:self];
-            break;
-            
+        }
+            break;            
         default:
             break;
     }

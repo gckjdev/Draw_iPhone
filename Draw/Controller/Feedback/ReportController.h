@@ -11,8 +11,8 @@
 
 typedef enum {
     SNS_SHARE = 0,
-    REPORT_BUG,
-    FEEDBACK
+    SUBMIT_BUG,
+    SUMIT_FEEDBACK
 }ReportType;
 
 

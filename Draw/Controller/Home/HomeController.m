@@ -18,6 +18,7 @@
 #import "CommonDialog.h"
 #import "FeedbackController.h"
 #import "UserSettingController.h"
+#import "ShareController.h"
 
 @implementation HomeController
 
@@ -141,7 +142,9 @@
 
 - (IBAction)clickShare:(id)sender
 {
-    
+    ShareController* share = [[ShareController alloc] init ];
+    [self.navigationController pushViewController:share animated:YES];
+    [share release];
 }
 
 
