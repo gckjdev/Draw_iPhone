@@ -32,14 +32,36 @@
     return YES;
 }
 
+#pragma mark - publish weibo delegate
+- (void)didPublishWeibo:(int)result
+{
+    
+}
+
 - (IBAction)submit:(id)sender
 {
-    [[SinaSNSService defaultService] publishWeibo:self.contentText.text delegate:self];
+    switch (_reportType) {
+        case SNS_SHARE:
+            [[SinaSNSService defaultService] publishWeibo:self.contentText.text delegate:self];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (id)initWithType:(ReportType)aType
+{
+    self = [super init];
+    if (self) {
+        _reportType = aType;
+    }
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
