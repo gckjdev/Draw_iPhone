@@ -10,6 +10,12 @@
 #define TEMP_AVATAR_LOCAL_PATH  @"temp"
 #define DEFAULT_AVATAR_BUNDLE   @"default_avatar.jpg"
 
+typedef enum {
+    ChineseType = 1,
+    EnglishType = 2
+}LanguageType;
+
+
 @protocol AvatarImageDelegate <NSObject>
 
 - (void)didAvatarImageLoad:(UIImage*)image;
@@ -57,6 +63,9 @@
          avatarURL:(NSString*)avatarURL
    qqAccessToken:(NSString*)accessToken
 qqAccessTokenSecret:(NSString*)accessTokenSecret;
+
+- (void)setLanguageType:(LanguageType)type;
+- (LanguageType)getLanguageType;
 
 
 @end
