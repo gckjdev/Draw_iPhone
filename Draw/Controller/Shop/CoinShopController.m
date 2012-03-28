@@ -9,6 +9,7 @@
 #import "CoinShopController.h"
 #import <StoreKit/StoreKit.h>
 #import "DrawGameService.h"
+#import "AccountService.h"
 
 @implementation CoinShopController
 
@@ -97,6 +98,8 @@
                                model:(ShoppingModel *)model
 {
     NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
+    
+    [[AccountService defaultService] buyCoin:model];
 }
 
 #pragma mark - Price service delegate

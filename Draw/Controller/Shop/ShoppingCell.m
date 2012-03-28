@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingCell.h"
+#import "SKProduct+LocalizedPrice.h"
 
 @implementation ShoppingCell
 @synthesize priceLabel;
@@ -52,8 +53,8 @@
     NSString *countString = nil;
     NSString *priceString = nil;
     if (model.type == SHOPPING_COIN_TYPE) {
-        countString = [NSString stringWithFormat:@"%d金币",model.count];
-        priceString = [NSString stringWithFormat:@"$%.2f",model.price];
+        countString = [NSString stringWithFormat:@"%d金币", model.count];
+        priceString = [NSString stringWithFormat:@"%@", [model.product localizedPrice]];
     }else if(model.type == SHOPPING_ITEM_TYPE)
     {
         countString = [NSString stringWithFormat:@"锦囊 %d个",model.count];
@@ -67,7 +68,7 @@
 
 
 - (IBAction)clickBuyButton:(id)sender {
-    if (_shoppingDelegate && [_shoppingDelegate respondsToSelector:@selector(didClickBuyButtonAtIndexPath:type:)]) {
+    if (_shoppingDelegate && [_shoppingDelegate respondsToSelector:@selector(didClickBuyButtonAtIndexPath:model:)]) {
         [_shoppingDelegate didClickBuyButtonAtIndexPath:self.indexPath model:self.model];
     }
 }
