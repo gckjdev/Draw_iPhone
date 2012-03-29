@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
 #import "DrawGameService.h"
+#import "RouterService.h"
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate>
 {
-    BOOL _isTryJoinGame;
+    BOOL _isTryJoinGame;    
 }
 
 - (IBAction)clickStart:(id)sender;

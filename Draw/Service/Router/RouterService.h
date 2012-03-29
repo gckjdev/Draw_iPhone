@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 
+@class TrafficServer;
+
 @protocol RouterServiceDelegate <NSObject>
 
 - (void)didServerListFetched:(int)result;
@@ -17,12 +19,20 @@
 
 @interface RouterService : CommonService
 
-
+@property (nonatomic, retain) NSTimer *updateTimer;
+@property (nonatomic, retain) NSMutableArray *failureServerList;
 
 + (RouterService*)defaultService;
 
 - (void)fetchServerList:(id<RouterServiceDelegate>)delegate;
+- (void)fetchServerListAtBackground;
+- (void)tryFetchServerList:(id<RouterServiceDelegate>)delegate;
 
+- (void)startUpdateTimer;
+- (void)stopUpdateTimer;
 
+- (TrafficServer*)assignTrafficServer;
+
+- (void)putServerInFailureList:(NSString*)serverAddress port:(int)port;
 
 @end

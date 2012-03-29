@@ -37,4 +37,20 @@
     return self;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"[TrafficServer, address=%@, port=%d, language=%d, usage=%d, capacity=%d]",
+            _serverAddress, _port, _language, _usage, _capcity];
+}
+
+- (NSString*)key
+{
+    return [NSString stringWithFormat:@"%@:%d", _serverAddress, _port];
+}
+
++ (NSString*)keyWithServerAddress:(NSString*)address port:(int)port
+{
+    return [NSString stringWithFormat:@"%@:%d", address, port];    
+}
+
 @end

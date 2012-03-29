@@ -46,5 +46,11 @@ static TrafficServerManager* _defaultManager;
     [self.serverList removeAllObjects];
 }
 
+- (BOOL)hasData
+{
+    return [_serverList count] > 0;
+}
+
+
 
 @end

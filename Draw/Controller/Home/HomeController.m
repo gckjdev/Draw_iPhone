@@ -19,6 +19,8 @@
 #import "FeedbackController.h"
 #import "UserSettingController.h"
 #import "ShareController.h"
+#import "TrafficServer.h"
+#import "Reachability.h"
 
 @implementation HomeController
 
@@ -62,6 +64,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
 }
@@ -94,11 +97,13 @@
         [[DrawGameService defaultService] joinGame];    
     }
     else{
+        
         [self showActivityWithText:@"kConnectingServer"];        
-        [[DrawGameService defaultService] connectServer];
-        _isTryJoinGame = YES;
+        [[RouterService defaultService] tryFetchServerList:self];        
     }
 }
+
+
 
 - (IBAction)clickShop:(id)sender {
     ShopMainController *sc = [[ShopMainController alloc] init];
@@ -121,6 +126,10 @@
     else{
         NSString* text = [NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]];
         [self popupUnhappyMessage:text title:@""];
+        [[DrawGameService defaultService] disconnectServer];
+        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
+                                                          port:[[DrawGameService defaultService] serverPort]];
+        return;
     }
 
     [RoomController firstEnterRoom:self];
@@ -155,6 +164,11 @@
     [self hideActivity];
     [self popupUnhappyMessage:@"Network Failure, Connect Server Failure" title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
+        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
+                                                          port:[[DrawGameService defaultService] serverPort]];
+    }
 }
 
 - (void)didConnected
@@ -168,6 +182,22 @@
     _isTryJoinGame = NO;
     
 }
+
+- (void)didServerListFetched:(int)result
+{
+    TrafficServer* server = [[RouterService defaultService] assignTrafficServer];
+    if (server == nil){
+        [self hideActivity];
+        [UIUtils alert:NSLS(@"kNoServerAvailable")];
+        return;
+    }
+
+    [[DrawGameService defaultService] setServerAddress:server.serverAddress];
+    [[DrawGameService defaultService] setServerPort:server.port];    
+    [[DrawGameService defaultService] connectServer];
+    _isTryJoinGame = YES;
+}
+
 + (HomeController *)defaultInstance
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];

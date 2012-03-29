@@ -69,6 +69,9 @@
 @property (nonatomic, retain) NSMutableSet *historySessionSet;
 @property (nonatomic, retain) GameSession* session;
 
+@property (nonatomic, retain) NSString* serverAddress;
+@property (nonatomic, assign) int serverPort;
+
 + (DrawGameService*)defaultService;
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
@@ -94,6 +97,7 @@
 
 - (BOOL)isConnected;
 - (void)connectServer;
+- (void)disconnectServer;
 
 - (void)rankGameResult:(int)rank;
 

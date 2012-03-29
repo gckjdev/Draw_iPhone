@@ -18,5 +18,7 @@
 
 - (void)clearAllServers;
 - (void)addTrafficServer:(TrafficServer*)server;
+- (BOOL)hasData;
+
 
 @end

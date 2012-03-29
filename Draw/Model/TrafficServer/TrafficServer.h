@@ -22,4 +22,7 @@
                       usage:(int)usage
                    capacity:(int)capacity;
 
+- (NSString*)key;
++ (NSString*)keyWithServerAddress:(NSString*)address port:(int)port;
+
 @end

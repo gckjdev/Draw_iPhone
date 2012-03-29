@@ -26,9 +26,12 @@ static DrawGameService* _defaultService;
 @synthesize homeDelegate = _homeDelegate;
 @synthesize historySessionSet = _historySessionSet;
 @synthesize avatar = _avatar;
+@synthesize serverAddress = _serverAddress;
+@synthesize serverPort = _serverPort;
 
 - (void)dealloc
 {
+    [_serverAddress release];
     [_avatar release];
     [_historySessionSet release];
     [_session release];
@@ -72,8 +75,13 @@ static DrawGameService* _defaultService;
 //    [_networkClient start:@"192.167.1.103" port:8080];
 //    [_networkClient start:@"192.168.1.6" port:8080];    
 
-    [_networkClient start:@"58.215.188.215" port:9000];    
+    [_networkClient start:_serverAddress port:_serverPort];    
 
+}
+
+- (void)disconnectServer
+{
+    [_networkClient disconnect];
 }
 
 - (BOOL)isMeHost
@@ -83,6 +91,7 @@ static DrawGameService* _defaultService;
     }
     return NO;
 }
+
 - (BOOL)isMyTurn
 {
     if ([self.session isCurrentPlayUser:_userId]) {
@@ -451,6 +460,8 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendQuitGame:_userId
                        sessionId:[_session sessionId]];
+    
+    [_networkClient disconnect];
 
     // clear session data here
     self.session = nil;
