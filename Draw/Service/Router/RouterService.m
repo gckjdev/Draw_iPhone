@@ -123,6 +123,7 @@ static RouterService* _defaultRouterService;
 #define LOW_USAGE_THREADHOLD 500    // 5%
 #define MAX_USAGE            7000   // 70%
 
+
 - (TrafficServer*)assignTrafficServer
 {        
     int language = [[UserManager defaultManager] getLanguageType];
