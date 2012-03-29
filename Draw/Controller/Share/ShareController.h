@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShareController : UIViewController
+@interface ShareController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+    NSMutableSet* _selectedPaints;
+}
+@property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
+@property (retain, nonatomic) IBOutlet UITableView *gallery;
+@property (retain, nonatomic) NSMutableArray* paints;
 
 @end

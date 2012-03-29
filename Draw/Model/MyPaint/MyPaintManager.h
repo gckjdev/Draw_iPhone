@@ -11,14 +11,6 @@
 @interface MyPaintManager : NSObject
 
 + (MyPaintManager*)defaultManager;
-
-@property (nonatomic, retain) NSDate * createDate;
-@property (nonatomic, retain) NSString * image;
-@property (nonatomic, retain) NSData * data;
-@property (nonatomic, retain) NSNumber * drawByMe;
-@property (nonatomic, retain) NSString * drawUserNickName;
-@property (nonatomic, retain) NSString * drawUserId;
-
 - (BOOL)createMyPaintWithImage:(NSString*)image
                           data:(NSData*)data
                     drawUserId:(NSString*)drawUserId
