@@ -201,6 +201,9 @@
 		CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */; };
 		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
+		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
+		CA13771F1524282600B5790B /* TrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771E1524282600B5790B /* TrafficServer.m */; };
+		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
@@ -714,6 +717,12 @@
 		CA1041FF1509C06E00F60C03 /* RoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomController.h; sourceTree = "<group>"; };
 		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
+		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
+		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
+		CA13771D1524282600B5790B /* TrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServer.h; sourceTree = "<group>"; };
+		CA13771E1524282600B5790B /* TrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServer.m; sourceTree = "<group>"; };
+		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
+		CA1377211524283A00B5790B /* TrafficServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServerManager.m; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA202C9B1521C57200B78539 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
@@ -926,6 +935,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA137718152425BD00B5790B /* Router */,
 				CA1041ED1509B9AB00F60C03 /* Common */,
 				CA1041EE1509B9AB00F60C03 /* User */,
 			);
@@ -2032,6 +2042,26 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		CA137718152425BD00B5790B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				CA137719152425CF00B5790B /* RouterService.h */,
+				CA13771A152425CF00B5790B /* RouterService.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		CA13771C1524280D00B5790B /* TrafficServer */ = {
+			isa = PBXGroup;
+			children = (
+				CA13771D1524282600B5790B /* TrafficServer.h */,
+				CA13771E1524282600B5790B /* TrafficServer.m */,
+				CA1377201524283A00B5790B /* TrafficServerManager.h */,
+				CA1377211524283A00B5790B /* TrafficServerManager.m */,
+			);
+			path = TrafficServer;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -2388,13 +2418,6 @@
 			path = Word;
 			sourceTree = "<group>";
 		};
-		CADD7F91150F3F760075C739 /* GameSession */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GameSession;
-			sourceTree = "<group>";
-		};
 		CAE2CABA151B2E1D0062ED37 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -2442,10 +2465,10 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA13771C1524280D00B5790B /* TrafficServer */,
 				CAE2CABA151B2E1D0062ED37 /* Account */,
 				CAE2CABB151B2E1D0062ED37 /* Item */,
 				CAA0E6A315147DEF00FD8C3E /* Word */,
-				CADD7F91150F3F760075C739 /* GameSession */,
 				CA1041E81509B99A00F60C03 /* Draw */,
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
@@ -2864,6 +2887,9 @@
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
+				CA13771B152425CF00B5790B /* RouterService.m in Sources */,
+				CA13771F1524282600B5790B /* TrafficServer.m in Sources */,
+				CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
