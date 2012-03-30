@@ -8,6 +8,7 @@
 
 #import "ShareController.h"
 #import "LocaleUtils.h"
+#import "ShareEditController.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGES_PER_LINE 3
@@ -52,7 +53,10 @@ enum {
 {
     switch (buttonIndex) {
         case SHARE: {
-            
+            UIImage* myImage = [[_selectedPaints allObjects] objectAtIndex:0];
+            ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         }
             break;
         case REPLAY: {
@@ -100,6 +104,11 @@ enum {
 - (IBAction)changeGalleryFielter:(id)sender
 {
     NSLog(@"%d", self.paintsFilter.selectedSegmentIndex);
+}
+
+-(IBAction)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -20,4 +20,14 @@
     [super dealloc];
 }
 
+- (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
+{
+    self = [super init];
+    if (self) {
+        _type = aType;
+        self.paint = aPaint;
+    }
+    return self;
+}
+
 @end

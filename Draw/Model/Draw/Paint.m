@@ -15,6 +15,25 @@
 @synthesize color = _color;
 @synthesize pointList = _pointList;
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.width = [aDecoder decodeFloatForKey:@"width"];
+        self.color = [aDecoder decodeObjectForKey:@"color"];
+        self.pointList = [aDecoder decodeObjectForKey:@"pointList"];
+        
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.color forKey:@"color"];
+    [aCoder encodeObject:self.pointList forKey:@"pointList"];
+    [aCoder encodeFloat:self.width forKey:@"width"];
+}
+
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
 {
     self = [super init];

@@ -68,7 +68,7 @@
 @property (nonatomic, retain) NSMutableArray *gameObserverList;
 @property (nonatomic, retain) NSMutableSet *historySessionSet;
 @property (nonatomic, retain) GameSession* session;
-
+@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property (nonatomic, retain) NSString* serverAddress;
 @property (nonatomic, assign) int serverPort;
 

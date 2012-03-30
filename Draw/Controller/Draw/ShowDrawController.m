@@ -479,6 +479,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self resetTimer];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image 
+                                                         paintList:showView.paintList
                                                               wordText:self.word.text 
                                                                  score:self.word.score 
                                                         hasRankButtons:YES];
