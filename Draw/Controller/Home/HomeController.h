@@ -22,6 +22,12 @@
 - (IBAction)clickFeedback:(id)sender;
 - (IBAction)clickSettings:(id)sender;
 - (IBAction)clickShare:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *startButton;
+@property (retain, nonatomic) IBOutlet UIButton *shopButton;
+@property (retain, nonatomic) IBOutlet UIButton *shareButton;
+@property (retain, nonatomic) IBOutlet UIButton *checkinButton;
+@property (retain, nonatomic) IBOutlet UIButton *settingButton;
+@property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
