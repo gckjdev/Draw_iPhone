@@ -45,6 +45,8 @@
 
 - (void)viewDidLoad
 {
+    [self setBackgroundImageName:@"home.png"];
+
     [super viewDidLoad];
 
     
