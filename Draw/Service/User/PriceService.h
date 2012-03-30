@@ -34,5 +34,5 @@
 
 - (void)fetchCoinProductList:(PPViewController<PriceServiceDelegate> *)viewController;
 
-- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(PPViewController<PriceServiceDelegate> *)viewController;
+- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(id<PriceServiceDelegate> )priceServiceDelegate;
 @end

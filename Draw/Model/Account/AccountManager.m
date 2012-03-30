@@ -9,7 +9,7 @@
 #import "AccountManager.h"
 #import "Account.h"
 #import "UserManager.h"
-
+#import "PPDebug.h"
 AccountManager* staticAccountManager = nil;
 AccountManager* GlobalGetAccountManager()
 {
@@ -20,7 +20,7 @@ AccountManager* GlobalGetAccountManager()
 }
 
 @implementation AccountManager
-
+@synthesize account = _account;
 
 
 #define ACCOUNT_DICT @"ACCOUNT_DICT"
@@ -31,6 +31,12 @@ AccountManager* GlobalGetAccountManager()
     if (self) {
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [_account release];
+    [super dealloc];
 }
 
 + (AccountManager *)defaultManager
@@ -72,16 +78,58 @@ AccountManager* GlobalGetAccountManager()
     return [UserAccount accountWithBalance:balance.integerValue];
 }
 
-- (UserAccount *)getAccount
+- (UserAccount *)getUserAccount
 {
-    NSString *userId = [[UserManager defaultManager] userId];
-    return [self accountForUserId:userId];
+    if (self.account == nil) {
+        NSString *userId = [[UserManager defaultManager] userId];
+        self.account = [self accountForUserId:userId];
+    }
+    return self.account;
+}
+
+- (NSInteger)getBalance
+{
+    return [[self getUserAccount] intBalanceValue];
 }
 
 - (void)updateAccount:(NSInteger)balance
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    [self saveAccount:[UserAccount accountWithBalance:balance] forUserId:userId];
+    self.account = [UserAccount accountWithBalance:balance];
+    [self saveAccount:self.account forUserId:userId];
+    
 }
+
+- (void)updateAccountForServer
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
+    
+}
+
+- (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
+{
+    NSInteger result = [self getBalance] - balance;
+    [self updateAccount:result];
+}
+
+
+- (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
+{
+    
+}
+
+#pragma mark - Price Delegate
+
+- (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode
+{
+    if (resultCode == 0) {
+        PPDebug(@"get balance : %d", balance);
+        [self updateAccount:balance];
+    }
+}
+
+
+
 
 @end

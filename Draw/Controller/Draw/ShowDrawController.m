@@ -256,10 +256,12 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setTitle:nil forState:UIControlStateNormal];            
         }
     }
-    NSString *ans = [self getAnswer];
-    BOOL flag = [ans isEqualToString:self.word.text];
-    if (flag) {
-        [self clickGuessDoneButton:nil];
+    if (languageType != ChineseType) {
+        NSString *ans = [self getAnswer];
+        BOOL flag = [ans isEqualToString:self.word.text];
+        if (flag) {
+            [self clickGuessDoneButton:nil];
+        }        
     }
 }
 

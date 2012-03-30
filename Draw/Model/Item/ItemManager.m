@@ -90,7 +90,8 @@ ItemManager *GlobalGetItemManager()
         [mList addObject:item];
         [mDict setObject:mList forKey:userId];
     }
-    [defaults setObject:mDict forKey:ITEM_DICT];
+    NSData *archviedData = [NSKeyedArchiver archivedDataWithRootObject:mDict];
+    [defaults setObject:archviedData forKey:ITEM_DICT];
 }
 
 @end

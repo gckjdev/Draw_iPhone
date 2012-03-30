@@ -9,6 +9,9 @@
 #import "ItemShopController.h"
 //#import "ShoppingModel.h"
 #import "PriceService.h"
+#import "AccountManager.h"
+#import "ItemManager.h"
+#import "Item.h"
 
 @implementation ItemShopController
 

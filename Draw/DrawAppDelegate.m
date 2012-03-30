@@ -18,6 +18,7 @@
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "RouterService.h"
+#import "AccountManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -40,6 +41,11 @@ NSString* GlobalGetServerURL()
     [super dealloc];
 }
 
+- (void)updateDataFromServer
+{
+    [[AccountManager defaultManager] updateAccountForServer];
+}
+
 - (void)initGlobalObjects
 {
     [DrawViewController instance];
@@ -52,6 +58,7 @@ NSString* GlobalGetServerURL()
     srand(time(0));
     [self initGlobalObjects];
     [self initImageCacheManager];
+    [self updateDataFromServer];
     
     // Init SNS Service
     [[SinaSNSService defaultService] setAppKey:@"2831348933" Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];

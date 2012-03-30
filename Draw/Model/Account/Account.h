@@ -16,4 +16,5 @@
 
 + (UserAccount *)defaultAccount;
 + (UserAccount *)accountWithBalance:(NSInteger)balance;
+- (NSInteger)intBalanceValue;
 @end

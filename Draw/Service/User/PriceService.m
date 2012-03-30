@@ -99,10 +99,10 @@ static PriceService* staticPriceService = nil;
 
 // Populate your UI from the products list.
 // Save a reference to the products list.
-- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(PPViewController<PriceServiceDelegate> *)viewController
+- (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(id<PriceServiceDelegate> )priceServiceDelegate
 {
-    if ([viewController respondsToSelector:@selector(didBeginFetchData)]) {
-        [viewController didBeginFetchData];
+    if ([priceServiceDelegate respondsToSelector:@selector(didBeginFetchData)]) {
+        [priceServiceDelegate didBeginFetchData];
     }
     dispatch_async(workingQueue, ^{
         
@@ -110,13 +110,13 @@ static PriceService* staticPriceService = nil;
         output = [GameNetworkRequest fetchAccountBalance:SERVER_URL userId:userId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController hideActivity];
+//            [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
                 NSDecimalNumber *number = (NSDecimalNumber *)output.jsonDataArray;
                 int balance = number.integerValue;
                 //                int balance =[[ShoppingManager defaultManager] getBalanceFromOutputList:output.jsonDataArray];
-                if ([viewController respondsToSelector:@selector(didFinishFetchAccountBalance:resultCode:)]) {
-                    [viewController didFinishFetchAccountBalance:balance resultCode:output.resultCode];
+                if ([priceServiceDelegate respondsToSelector:@selector(didFinishFetchAccountBalance:resultCode:)]) {
+                    [priceServiceDelegate didFinishFetchAccountBalance:balance resultCode:output.resultCode];
                 }
             }
         });

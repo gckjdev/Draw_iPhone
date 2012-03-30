@@ -45,4 +45,9 @@
 {
     return [[[UserAccount alloc] initWithBalance:balance] autorelease];
 }
+
+- (NSInteger)intBalanceValue
+{
+    return self.balance.integerValue;
+}
 @end

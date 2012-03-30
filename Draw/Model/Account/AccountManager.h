@@ -7,15 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PriceService.h"
+
+typedef enum  {
+    CheckInType = 1, // 
+    PurchaseType = 2,
+    BuyItemType = 3
+}BalanceSourceType;
 
 @class UserAccount;
-@interface AccountManager : NSObject
+@interface AccountManager : NSObject<PriceServiceDelegate>
 {
-
+    UserAccount *_account;
 }
+
+
+@property(retain, nonatomic) UserAccount *account;
+- (NSInteger)getBalance;
+- (void)updateAccountForServer;
+- (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
+- (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
+- (NSInteger)getBalance;
 + (AccountManager *)defaultManager;
-
-
 @end
 
 extern AccountManager* GlobalGetAccountManager();
