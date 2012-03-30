@@ -37,11 +37,12 @@ ShowDrawController *GlobalGetShowDrawController()
 @synthesize guessDoneButton;
 @synthesize clockLabel;
 @synthesize word = _word;
+@synthesize candidateString = _candidateString;
 
 - (void)dealloc
 {
     [_word release];
-    [candidateString release];
+    [_candidateString release];
     [guessMsgLabel release];
     [guessDoneButton release];
     [clockLabel release];
@@ -64,6 +65,7 @@ ShowDrawController *GlobalGetShowDrawController()
 //    [HomeController 
 }
 
+
 + (ShowDrawController *)instance
 {
     return GlobalGetShowDrawController();
@@ -80,7 +82,7 @@ ShowDrawController *GlobalGetShowDrawController()
 #pragma mark - init the buttons
 
 #define WRITE_BUTTON_TAG_START 11
-#define WRITE_BUTTON_TAG_END 17
+#define WRITE_BUTTON_TAG_END 18
 #define PICK_BUTTON_TAG_START 21
 #define PICK_BUTTON_TAG_END 36
 #define PLAYER_BUTTON_TAG_START 1
@@ -118,27 +120,110 @@ ShowDrawController *GlobalGetShowDrawController()
     return nil;
 }
 
+- (void)initAnswerAndCadidateViews
+{
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i)
+    {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:nil forState:UIControlStateNormal];
+    }
+    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END + 1; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [button setTitle:nil forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)updateAnswerViews
+{
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) 
+    {
+            UIButton *button = (UIButton *)[self.view viewWithTag:i];     
+            [button setEnabled:YES];
+            if (i == WRITE_BUTTON_TAG_END && languageType == ChineseType) {
+                [button setTitle:@"done" forState:UIControlStateNormal];
+                [button removeTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
+                [button addTarget:self action:@selector(clickGuessDoneButton:) forControlEvents:UIControlEventTouchUpInside];
+            }else{
+                [button setTitle:nil forState:UIControlStateNormal];
+            }
+    }
+}
+
+- (void)updateCandidateViewsWithText:(NSString *)text
+{
+    self.candidateString = text;
+    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        [button setEnabled:YES];
+        if (self.candidateString != nil) {
+            NSString *string = [self.candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
+            [button setTitle:string forState:UIControlStateNormal];
+            if ([string isEqualToString:@" "]) {
+                [button setEnabled:NO];
+            }
+        }else{
+            [button setTitle:nil forState:UIControlStateNormal];
+            [button setEnabled:NO];
+        }
+    }
+}
+
+- (void) updateCandidateViews
+{
+    NSString *text = nil;
+    if (languageType == ChineseType) {
+        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:16];
+    }else{
+        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:16];
+    }
+    [self updateCandidateViewsWithText:text];
+}
+
+- (void)updatePickWordViews
+{
+    [self updateAnswerViews];
+    [self updateCandidateViews];
+}
+
+- (void)updatePickViewsWithWord:(Word *)word lang:(LanguageType)lang
+{
+    
+    NSString *upperString = [WordManager upperText:word.text];
+    self.word = word;
+    self.word.text = upperString;
+    languageType = lang;
+    [self updateCandidateViews];
+    [self updateAnswerViews];
+}
 
 
 - (NSString *)getAnswer
 {
     //get the word
-    NSString *ans = @"";
+    NSString *answer = @"";
+    if (languageType == ChineseType) {
+        
+    }else{
+        
+    }
+    
     for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         NSString *text = [button titleForState:UIControlStateNormal];
-        if (text) {
-            ans = [NSString stringWithFormat:@"%@%@",ans,text];
+        if (text && [text length] == 1 && ![text isEqualToString:@" "]) {
+            answer = [NSString stringWithFormat:@"%@%@",answer,text];
         }
     }
-    return ans;
+    return answer;
 }
 
 
 - (UIButton *)getTheCandidateButtonForText:(NSString *)text
 {
-    for (int i = 0; i < [candidateString length]; ++ i) {
-        NSString *sub = [candidateString substringWithRange:NSMakeRange(i, 1)];
+    for (int i = 0; i < [self.candidateString length]; ++ i) {
+        NSString *sub = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
         if ([sub isEqualToString:text]) {
             UIButton *button = (UIButton *)[self.view viewWithTag:PICK_BUTTON_TAG_START + i];
             if ([[button titleForState:UIControlStateNormal] length] == 0) {
@@ -171,40 +256,16 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setTitle:nil forState:UIControlStateNormal];            
         }
     }
-    NSLog(@"createImage");
-
-}
-
-
-
-- (void)makeWriteButtons
-{
-    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:nil forState:UIControlStateNormal];
-//        [self.view bringSubviewToFront:button];
+    NSString *ans = [self getAnswer];
+    BOOL flag = [ans isEqualToString:self.word.text];
+    if (flag) {
+        [self clickGuessDoneButton:nil];
     }
 }
 
-- (void)makePickingButtons
-{
-    
-    candidateString = [[WordManager defaultManager] randChinesStringWithWord:self.word count:16];
-    [candidateString retain];
-    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
-        if (candidateString != nil) {
-            NSString *string = [candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
-            [button setTitle:string forState:UIControlStateNormal];
-        }else{
-            [button setTitle:nil forState:UIControlStateNormal];
-        }
-    }
-}
 
-- (void)makePlayerButtons
+
+- (void)updatePlayerButtons
 {
     for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
@@ -285,13 +346,6 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
-- (void)resetWord:(Word *)word
-{
-    self.word = word;
-    [self makeWriteButtons];
-    [self makePickingButtons];
-}
-
 - (id)init{
     self = [super init];
     if (self) {
@@ -305,16 +359,14 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)resetData
 {
-//    [showView removeFromSuperview];
-//    [showView release];
 
     [showView clear];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
-    [self makePlayerButtons];
-    [self resetWord:self.word];
+    [self updatePlayerButtons];
+    [self updatePickViewsWithWord:self.word lang:languageType];
     [self.guessMsgLabel setHidden:YES];
 
     [self.view sendSubviewToBack:showView];
@@ -327,6 +379,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     [super viewDidLoad];
     [self.view addSubview:showView];
+    [self initAnswerAndCadidateViews];
 }
 
 
@@ -341,6 +394,8 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidDisappear:(BOOL)animated
 {
     [drawGameService unregisterObserver:self];
+    [self setWord:nil];
+    [self updatePickViewsWithWord:nil lang:languageType];
     [super viewDidDisappear:animated];
 }
 
@@ -402,7 +457,9 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     if (wordText) {
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-        [self resetWord:word];
+        
+        LanguageType lang = [[UserManager defaultManager] getLanguageType];
+        [self updatePickViewsWithWord:word lang:lang];
     }
 }
 
@@ -426,7 +483,7 @@ ShowDrawController *GlobalGetShowDrawController()
         
         [self.navigationController pushViewController:rc animated:YES];
         [rc release];
-        [self resetWord:nil];        
+        [self updatePickViewsWithWord:nil lang:languageType];
     }
 }
 
@@ -443,22 +500,28 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     NSString *nickName = [[drawGameService session]getNickNameByUserId:[message userId]];
     NSString *quitText = [NSString stringWithFormat:@"%@ quit!",nickName];
-    [self makePlayerButtons];
+    [self updatePlayerButtons];
     [self popUpGuessMessage:quitText];
 }
 
-- (IBAction)clickGuessDoneButton:(id)sender {
+- (void)clickGuessDoneButton:(id)sender {
     NSString *ans = [self getAnswer];
     BOOL flag = [ans isEqualToString:self.word.text];
     
     //alter if the word is correct
     if (flag) {
         [self alert:NSLS(@"Correct!")];
+        [self setGuessAndPickButtonsEnabled:NO];
     }else{
         [self alert:NSLS(@"Wrong")];
     }
-    
     [drawGameService guess:ans guessUserId:drawGameService.session.userId];
-    //send the word to the server
 }
+
+- (IBAction)clickBombButton:(id)sender {
+    NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+    [self updateAnswerViews];
+    [self updateCandidateViewsWithText:result];
+}
+
 @end

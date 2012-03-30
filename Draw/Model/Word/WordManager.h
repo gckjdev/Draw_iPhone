@@ -31,8 +31,8 @@
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count;
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count;
 - (void)loadDictByWithLanguage:(LanguageType)languageType;
-
-
++ (NSString *)upperText:(NSString *)text;
++ (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word;
 @end
 
 extern WordManager *GlobalGetWordManager();

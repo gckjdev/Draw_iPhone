@@ -33,6 +33,7 @@ WordManager *GlobalGetWordManager()
 
 @implementation WordManager
 @synthesize wordDict = _wordDict;
+@synthesize languageType = _languageType;
 
 + (WordManager *)defaultManager
 {
@@ -147,11 +148,9 @@ WordManager *GlobalGetWordManager()
 
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count
 {
-    if (word == nil) {
+    if (word == nil || [word.text length] == 0) {
         return nil;
     }
-    
-    
     NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
     NSInteger length = word.text.length;
     NSMutableArray *retArray = [[NSMutableArray alloc] init];
@@ -198,6 +197,9 @@ WordManager *GlobalGetWordManager()
 
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
 {
+    if (word == nil || [word.text length] == 0) {
+        return nil;
+    }
     NSInteger length = word.text.length;
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
     for (int i = 0; i < count - length; ++i) {
@@ -214,12 +216,70 @@ WordManager *GlobalGetWordManager()
 }
 
 
-- (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
++ (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
 {
     NSString *text = word.text;
-    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
-    NSMutableString *s = [NSMutableString stringWithString:text];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < [text length]; ++ i) {
+        NSString *charString = [text substringWithRange:NSMakeRange(i, 1)];
+        NSNumber *count = [dict objectForKey:charString];
+        if (count) {
+            count = [NSNumber numberWithInt:(count.integerValue + 1)];
+        }else{
+            count = [NSNumber numberWithInt:1];
+        }
+        [dict setObject:count forKey:charString];
+    }
+    const int CANDIDATE_LENGTH = 50;
+    BOOL canDeleteIndex[CANDIDATE_LENGTH] = {NO};
+    for (int i = 0; i < candidateString.length; ++ i) {
+        NSString *subString = [candidateString substringWithRange:NSMakeRange(i, 1)];
+        NSNumber *number = [dict objectForKey:subString];
+        if (number == nil || number.integerValue == 0) {
+            canDeleteIndex[i] = YES;
+        }else{
+            canDeleteIndex[i] = NO;
+            NSInteger count = number.integerValue - 1;
+            number = [NSNumber numberWithInt:count];
+            [dict setObject:number forKey:subString];
+        }
+    }
+    [dict release];
     
+    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
+    NSMutableString *s = [NSMutableString stringWithString:candidateString];
+
+    NSInteger index = rand() % s.length;
+    while (count) {
+        unichar ch = [s characterAtIndex:index];
+        if (ch != ' ' && canDeleteIndex[index]) {
+            count --;
+            ch = ' ';
+            NSString *rep = [NSString stringWithFormat:@"%c",ch];
+            [s replaceCharactersInRange:NSMakeRange(index, 1) withString:rep];
+            index = rand() % s.length;
+        }else{
+            index = (index + 1) % s.length;
+        }
+    }
+
+    return s;
+}
++ (NSString *)upperText:(NSString *)text
+{
+    if (text == nil) {
+        return nil;
+    }
+    NSMutableString *string = [NSMutableString stringWithString:text];
+    for (int i = 0; i < string.length; ++ i) {
+        unichar ch = [string characterAtIndex:i];
+        if (ch >= 'a' && ch <= 'z') {
+            ch = ch + ('A' - 'a');
+            NSString *str = [NSString stringWithFormat:@"%c",ch];
+            [string replaceCharactersInRange:NSMakeRange(i, 1) withString:str];
+        }
+    }
+    return string;
 }
 
 @end
