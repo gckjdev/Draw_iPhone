@@ -19,6 +19,7 @@
 #import "GameSessionUser.h"
 #import "GameMessage.pb.h"
 #import "UserManager.h"
+#import "ShareImageManager.h"
 
 @interface RoomController ()
 
@@ -73,6 +74,8 @@
 
 - (void)viewDidLoad
 {
+//    [self setBackgroundImageName:ROOM_BACKGROUND];    
+    
     self.roomNameLabel.text = @"";
     
     [super viewDidLoad];
@@ -87,6 +90,10 @@
     [self updateGameUsers];
     [self updateRoomName];
     [self updateStartButton];
+        
+    [self.prolongButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
+    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];    
+    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateDisabled];    
     
     [super viewDidAppear:animated];
 }
@@ -144,14 +151,14 @@
 //        }
         
         if ([session isMe:[user userId]]){
-            NSString* title = [NSString stringWithFormat:@"%@ (Me)", [user nickName]];
+            NSString* title = [NSString stringWithFormat:NSLS(@"Me")];
             [label setText:title];
 //            [button setTitle:title forState:UIControlStateNormal];
         }
 
-        if ([session isCurrentPlayUser:[user userId]]){
-            [label setTextColor:[UIColor redColor]];
-        }
+//        if ([session isCurrentPlayUser:[user userId]]){
+//            [label setTextColor:[UIColor redColor]];
+//        }
         
         // set images
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
@@ -183,7 +190,7 @@
 
 - (void)updateRoomName
 {
-    NSString* name = [NSString stringWithFormat:NSLS(@"Room %@"),  
+    NSString* name = [NSString stringWithFormat:NSLS(@"kRoomName"),  
                       [[[DrawGameService defaultService] session] roomName]];
     self.roomNameLabel.text = name;
 }
@@ -191,14 +198,14 @@
 - (void)updateStartButton
 {
     if ([self isMyTurn]){
-        NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart (%d)"), _currentTimeCounter];                           
+        NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart"), _currentTimeCounter];                           
         [self.startGameButton setTitle:title forState:UIControlStateNormal];
         [self.startGameButton setEnabled:YES];
         
         [self.prolongButton setTitle:NSLS(@"kWaitABit") forState:UIControlStateNormal];
     }
     else{
-        NSString* title = [NSString stringWithFormat:NSLS(@"kStartAfter (%d)"), _currentTimeCounter];                           
+        NSString* title = [NSString stringWithFormat:NSLS(@"kStartAfter"), _currentTimeCounter];                           
         [self.startGameButton setTitle:title forState:UIControlStateNormal];
         [self.startGameButton setEnabled:NO];
 

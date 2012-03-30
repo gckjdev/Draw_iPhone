@@ -1,0 +1,31 @@
+/* 
+ Localizable.strings
+ GhostGame
+ 
+ Created by haodong qiu on 12年3月1日.
+ Copyright (c) 2012年 orange. All rights reserved.
+ */
+
+"kStart" = "开始游戏";
+
+"kShop" = "商店";
+
+"kShare" = "分享";
+
+"kSettings" = "设置";
+
+"kFeedback" = "反馈";
+
+"Me" = "我";
+
+"kRoomName" = "房间[%@]";
+
+"kClickToStart" = "开始画画 (%d)";
+
+"kWaitABit" = "等一下";
+
+"kQuickQuick" = "催一下";
+
+"kWaitForMoreUsers" = "等待更多用户";
+
+"kStartAfter" = "即将开始 (%d)";

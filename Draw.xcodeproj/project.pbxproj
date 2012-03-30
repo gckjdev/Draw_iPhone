@@ -276,6 +276,8 @@
 		CA1377EA15259C1500B5790B /* room@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377A915259C1400B5790B /* room@2x.png */; };
 		CA1377EB15259C1500B5790B /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377AA15259C1400B5790B /* setting@2x.png */; };
 		CA1377EC15259C1500B5790B /* changeroom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377AB15259C1400B5790B /* changeroom@2x.png */; };
+		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
+		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
@@ -869,6 +871,11 @@
 		CA1377A915259C1400B5790B /* room@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room@2x.png"; sourceTree = "<group>"; };
 		CA1377AA15259C1400B5790B /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 		CA1377AB15259C1400B5790B /* changeroom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changeroom@2x.png"; sourceTree = "<group>"; };
+		CA1377ED1525A2D700B5790B /* ShareImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareImageManager.h; sourceTree = "<group>"; };
+		CA1377EE1525A2D700B5790B /* ShareImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareImageManager.m; sourceTree = "<group>"; };
+		CA1377F11525A7CB00B5790B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CA1377F31525A80200B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA202C9B1521C57200B78539 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
@@ -2034,6 +2041,8 @@
 				CA322191151F64F90039A384 /* CommonDialog.h */,
 				CA322192151F64F90039A384 /* CommonDialog.m */,
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
+				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
+				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2495,6 +2504,7 @@
 		CA745D291503B1B500600024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CA1377F01525A7CB00B5790B /* Localizable.strings */,
 				CA745D2A1503B1B500600024 /* Draw-Info.plist */,
 				CA745D2B1503B1B500600024 /* InfoPlist.strings */,
 				CA745D2E1503B1B500600024 /* Draw-Prefix.pch */,
@@ -2936,6 +2946,7 @@
 				CA1377EA15259C1500B5790B /* room@2x.png in Resources */,
 				CA1377EB15259C1500B5790B /* setting@2x.png in Resources */,
 				CA1377EC15259C1500B5790B /* changeroom@2x.png in Resources */,
+				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3196,6 +3207,7 @@
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
 				C2E6629F152463B900487601 /* ShareEditController.m in Sources */,
+				CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3251,10 +3263,20 @@
 			name = EGORefresh.strings;
 			sourceTree = "<group>";
 		};
+		CA1377F01525A7CB00B5790B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA1377F11525A7CB00B5790B /* en */,
+				CA1377F31525A80200B5790B /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CA745D2B1503B1B500600024 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CA745D2C1503B1B500600024 /* en */,
+				CA1377F41525A80D00B5790B /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
