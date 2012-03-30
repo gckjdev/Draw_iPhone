@@ -57,6 +57,21 @@
     return self;
 }
 
+- (id)initWithImage:(UIImage *)image paintList:(NSArray*)paintList wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has
+{
+    self = [super init];
+    if (self) {
+        _image = image;
+        [_image retain];
+        self.wordText = aWordText;
+        self.score = aScore;
+        hasRankButtons = has;
+        _paintList = [paintList retain];
+    }
+    return self;
+
+}
+
 - (void)saveImage {
     if (_image!=nil) 
     {

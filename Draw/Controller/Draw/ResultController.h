@@ -13,6 +13,7 @@
 @interface ResultController : UIViewController<DrawGameServiceDelegate>
 {
     UIImage * _image;
+    NSArray * _paintList;
     BOOL didGameStarted;
     NSTimer *continueTimer;
     NSInteger retainCount;
@@ -38,5 +39,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
 - (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has;
+- (id)initWithImage:(UIImage *)image paintList:(NSArray*)paintList wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has;
 
 @end

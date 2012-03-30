@@ -135,6 +135,7 @@
         [theTimer invalidate];
         theTimer = nil;
         _status = Unplaying;
+        
         return;
     }
     CGPoint currentPoint = [self pointForPaintPosition:_paintPosition];

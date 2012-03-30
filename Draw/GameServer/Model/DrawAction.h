@@ -16,9 +16,13 @@ typedef enum {
     DRAW_ACTION_TYPE_CLEAN
 } DRAW_ACTION_TYPE;
 
-@interface DrawAction : NSObject
+@interface DrawAction : NSObject {
+    
+}
 
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
+
+- (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint ;
 
 @end

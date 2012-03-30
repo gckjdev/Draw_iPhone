@@ -12,6 +12,8 @@
 #import "UIUtils.h"
 #import "GameSession.h"
 #import "GameConstants.h"
+#import "DrawAction.h"
+#import "Paint.h"
 
 @implementation DrawGameService
 
@@ -28,7 +30,7 @@ static DrawGameService* _defaultService;
 @synthesize avatar = _avatar;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
-
+@synthesize drawActionList = _drawActionList;
 - (void)dealloc
 {
     [_serverAddress release];
@@ -40,6 +42,7 @@ static DrawGameService* _defaultService;
     [_networkClient disconnect];
     [_networkClient release];
     [_gameObserverList release];
+    [_drawActionList release];
     [super dealloc];
 }
 
@@ -60,7 +63,8 @@ static DrawGameService* _defaultService;
     _historySessionSet = [[NSMutableSet alloc] init];
         
     _networkClient = [[GameNetworkClient alloc] init];
-    [_networkClient setDelegate:self];    
+    [_networkClient setDelegate:self]; 
+    _drawActionList = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -98,6 +102,13 @@ static DrawGameService* _defaultService;
         return YES;
     }
     return NO;
+}
+
+- (void)saveDrawActionType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
+{
+    DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
+    [self.drawActionList addObject:action];
+    [action release];
 }
 
 #pragma mark Notification Handling
@@ -175,6 +186,7 @@ static DrawGameService* _defaultService;
         
         [self notifyGameObserver:@selector(didStartGame:) message:message];        
     });
+    [self.drawActionList removeAllObjects];
 }
 
 - (void)handleGameStartNotification:(GameMessage*)message
@@ -234,6 +246,7 @@ static DrawGameService* _defaultService;
         }
         
         [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
+        //Kira:here save to file
     });    
 }
 
@@ -289,6 +302,13 @@ static DrawGameService* _defaultService;
                 [_drawDelegate didReceiveDrawData:message];
             }
         }
+        
+        NSArray* array = [[message notification] pointsList];
+        int color = [[message notification] color];
+        float width = [[message notification] width];
+        Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array];
+        [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
+        [paint release];
     });
 }
 
@@ -300,6 +320,7 @@ static DrawGameService* _defaultService;
             [_drawDelegate didReceiveRedrawResponse:message];
         }
     });
+    [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
 }
 
 - (void)handleUserQuitGameResponse:(GameMessage*)message
@@ -396,7 +417,8 @@ static DrawGameService* _defaultService;
 
 - (void)startGame
 {
-    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];             
+    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
+    [_drawActionList removeAllObjects];
 }
 
 - (void)changeRoom
@@ -417,12 +439,17 @@ static DrawGameService* _defaultService;
                               pointList:pointList
                                   color:color
                                   width:width];
+    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList];
+    [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
+    [paint release];
+    
 }
 
 - (void)cleanDraw
 {
     [_networkClient sendCleanDraw:_userId
-                        sessionId:[_session sessionId]];    
+                        sessionId:[_session sessionId]];  
+    [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
 }
 
 - (void)startDraw:(NSString*)word level:(int)level language:(int)language

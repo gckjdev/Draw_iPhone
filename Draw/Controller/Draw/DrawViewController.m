@@ -412,6 +412,7 @@ DrawViewController *GlobalGetDrawViewController()
         NSLog(@"Game is Complete");
         UIImage *image = [drawView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image 
+                                                             paintList:drawView.paintList
                                                               wordText:self.word.text 
                                                                  score:self.word.score 
                                                         hasRankButtons:NO];

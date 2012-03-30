@@ -12,7 +12,7 @@
 @class DrawColor;
 @class GameMessage;
 
-@interface Paint : NSObject
+@interface Paint : NSObject <NSCoding>
 {
     CGFloat _width;
     DrawColor *_color;
