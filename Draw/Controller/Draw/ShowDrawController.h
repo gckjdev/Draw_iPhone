@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
-
+#import "UserManager.h"
 @class Word;
 @class DrawView;
 @interface ShowDrawController : UIViewController<DrawGameServiceDelegate>
@@ -16,18 +16,21 @@
     Word *_word;
     DrawGameService *drawGameService;
     DrawView *showView;
-    NSString *candidateString;
+    NSString *_candidateString;
     NSTimer *guessTimer;
     NSInteger retainCount;
+    LanguageType languageType;
     BOOL gameCompleted;
 }
 
 @property(nonatomic, retain)Word *word;
-- (IBAction)clickGuessDoneButton:(id)sender;
+- (void)clickGuessDoneButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
+@property (retain, nonatomic) NSString *candidateString;
 - (IBAction)clickRunAway:(id)sender;
+- (IBAction)clickBombButton:(id)sender;
 
 
 + (ShowDrawController *)instance;

@@ -9,8 +9,9 @@
 #import "WordManager.h"
 #import "Word.h"
 
+#define CN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"CN_Words_Dict" ofType:@"plist"]
+#define EN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"EN_Words_Dict" ofType:@"plist"]
 
-#define WORD_DICT [[NSBundle mainBundle] pathForResource:@"WordDictionary" ofType:@"plist"]
 #define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
 
 NSString *UPPER_LETTER_LIST[] = {@"A", @"B", @"C", @"D", @"E", 
@@ -31,24 +32,25 @@ WordManager *GlobalGetWordManager()
 }
 
 @implementation WordManager
+@synthesize wordDict = _wordDict;
+@synthesize languageType = _languageType;
 
 + (WordManager *)defaultManager
 {
-    return GlobalGetWordManager();
+    WordManager *manager = GlobalGetWordManager();
+    [manager loadDictByWithLanguage:[[UserManager defaultManager] getLanguageType]];
+    return manager;
 }
-
-
-
 
 - (NSArray *)wordArrayOfLevel:(WordLevel)level
 {
     switch (level) {
         case WordLevelLow:
-            return [wordDict objectForKey:KEY_LOW_LEVEL];
+            return [_wordDict objectForKey:KEY_LOW_LEVEL];
         case WordLeveLMedium:
-            return [wordDict objectForKey:KEY_MEDIUM_LEVEL];
+            return [_wordDict objectForKey:KEY_MEDIUM_LEVEL];
         case WordLevelHigh:
-            return [wordDict objectForKey:KEY_HIGH_LEVEL];
+            return [_wordDict objectForKey:KEY_HIGH_LEVEL];
         default:
             return nil;
     }
@@ -85,29 +87,38 @@ WordManager *GlobalGetWordManager()
     
 }
 
+- (void)loadDictByWithLanguage:(LanguageType)languageType
+{
+    if (languageType == _languageType && self.wordDict != nil) {
+        return;
+    }else{
+        NSDictionary *pathDictionary = nil;
+        if (languageType == ChineseType) {
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:CN_WORD_DICT];            
+        }else {
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:EN_WORD_DICT];            
+        }
+        self.wordDict = [self parsePathDict:pathDictionary];
+    }
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
         //load data
-        NSDictionary *pathDictionary = [NSDictionary dictionaryWithContentsOfFile:WORD_DICT];
-        wordDict = [self parsePathDict:pathDictionary];
-        [wordDict retain];
     }
-    
     return self;
 }
 
 - (void)dealloc
 {
-    [wordDict release];
+    [_wordDict release];
     [super dealloc];
 }
 
 - (NSString *)charWithKey:(NSString *)key dict:(NSDictionary *)dict outOfString:(NSString *)string
 {
-    
-    
     
     NSArray *list = [dict objectForKey:key];
     int br = 0;
@@ -137,14 +148,10 @@ WordManager *GlobalGetWordManager()
 
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count
 {
-    if (word == nil) {
+    if (word == nil || [word.text length] == 0) {
         return nil;
     }
-    
-    
-    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];
-
-    
+    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
     NSInteger length = word.text.length;
     NSMutableArray *retArray = [[NSMutableArray alloc] init];
     NSString *createSet = [NSString stringWithFormat:@"%@",word.text];
@@ -190,6 +197,9 @@ WordManager *GlobalGetWordManager()
 
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
 {
+    if (word == nil || [word.text length] == 0) {
+        return nil;
+    }
     NSInteger length = word.text.length;
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
     for (int i = 0; i < count - length; ++i) {
@@ -206,12 +216,70 @@ WordManager *GlobalGetWordManager()
 }
 
 
-- (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
++ (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
 {
     NSString *text = word.text;
-    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
-    NSMutableString *s = [NSMutableString stringWithString:text];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < [text length]; ++ i) {
+        NSString *charString = [text substringWithRange:NSMakeRange(i, 1)];
+        NSNumber *count = [dict objectForKey:charString];
+        if (count) {
+            count = [NSNumber numberWithInt:(count.integerValue + 1)];
+        }else{
+            count = [NSNumber numberWithInt:1];
+        }
+        [dict setObject:count forKey:charString];
+    }
+    const int CANDIDATE_LENGTH = 50;
+    BOOL canDeleteIndex[CANDIDATE_LENGTH] = {NO};
+    for (int i = 0; i < candidateString.length; ++ i) {
+        NSString *subString = [candidateString substringWithRange:NSMakeRange(i, 1)];
+        NSNumber *number = [dict objectForKey:subString];
+        if (number == nil || number.integerValue == 0) {
+            canDeleteIndex[i] = YES;
+        }else{
+            canDeleteIndex[i] = NO;
+            NSInteger count = number.integerValue - 1;
+            number = [NSNumber numberWithInt:count];
+            [dict setObject:number forKey:subString];
+        }
+    }
+    [dict release];
     
+    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
+    NSMutableString *s = [NSMutableString stringWithString:candidateString];
+
+    NSInteger index = rand() % s.length;
+    while (count) {
+        unichar ch = [s characterAtIndex:index];
+        if (ch != ' ' && canDeleteIndex[index]) {
+            count --;
+            ch = ' ';
+            NSString *rep = [NSString stringWithFormat:@"%c",ch];
+            [s replaceCharactersInRange:NSMakeRange(index, 1) withString:rep];
+            index = rand() % s.length;
+        }else{
+            index = (index + 1) % s.length;
+        }
+    }
+
+    return s;
+}
++ (NSString *)upperText:(NSString *)text
+{
+    if (text == nil) {
+        return nil;
+    }
+    NSMutableString *string = [NSMutableString stringWithString:text];
+    for (int i = 0; i < string.length; ++ i) {
+        unichar ch = [string characterAtIndex:i];
+        if (ch >= 'a' && ch <= 'z') {
+            ch = ch + ('A' - 'a');
+            NSString *str = [NSString stringWithFormat:@"%c",ch];
+            [string replaceCharactersInRange:NSMakeRange(i, 1) withString:str];
+        }
+    }
+    return string;
 }
 
 @end

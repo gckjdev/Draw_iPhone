@@ -21,8 +21,15 @@
 #import "ShareController.h"
 #import "TrafficServer.h"
 #import "Reachability.h"
+#import "ShareImageManager.h"
 
 @implementation HomeController
+@synthesize startButton = _startButton;
+@synthesize shopButton = _shopButton;
+@synthesize shareButton = _shareButton;
+@synthesize checkinButton = _checkinButton;
+@synthesize settingButton = _settingButton;
+@synthesize feedbackButton = _feedbackButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,10 +52,28 @@
 
 - (void)viewDidLoad
 {
+    [self setBackgroundImageName:@"home.png"];
+
     [super viewDidLoad];
 
     
+    // setup button images
+    UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
+    [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.shopButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
+    // set text
+    [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
+    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
+    
+    [self.settingButton setImage:[UIImage imageNamed:SETTING_BUTTON_IMAGE] forState:UIControlStateNormal];
+    [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
+    
+    [self.feedbackButton setImage:[UIImage imageNamed:FEEDBACK_BUTTON_IMAGE] forState:UIControlStateNormal];
+    [self.feedbackButton setTitle:NSLS(@"kFeedback") forState:UIControlStateNormal];
+
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view from its nib.
@@ -78,6 +103,12 @@
 
 - (void)viewDidUnload
 {
+    [self setStartButton:nil];
+    [self setShopButton:nil];
+    [self setShareButton:nil];
+    [self setCheckinButton:nil];
+    [self setSettingButton:nil];
+    [self setFeedbackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -212,4 +243,13 @@
     [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
 }
 
+- (void)dealloc {
+    [_startButton release];
+    [_shopButton release];
+    [_shareButton release];
+    [_checkinButton release];
+    [_settingButton release];
+    [_feedbackButton release];
+    [super dealloc];
+}
 @end

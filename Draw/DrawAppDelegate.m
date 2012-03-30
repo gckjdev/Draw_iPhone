@@ -49,7 +49,7 @@ NSString* GlobalGetServerURL()
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
+    srand(time(0));
     [self initGlobalObjects];
     [self initImageCacheManager];
     
