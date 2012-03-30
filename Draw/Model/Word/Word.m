@@ -54,5 +54,8 @@
             return @"简单";
     }
 }
-
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level
+{
+    return [[[Word alloc] initWithText:text level:level]autorelease];
+}
 @end

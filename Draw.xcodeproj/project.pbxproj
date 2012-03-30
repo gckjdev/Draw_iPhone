@@ -14,6 +14,8 @@
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
+		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
+		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -216,7 +218,6 @@
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
 		CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
-		CA322142151E0FC00039A384 /* WordDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA322141151E0FC00039A384 /* WordDictionary.plist */; };
 		CA322144151E107B0039A384 /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA322143151E107B0039A384 /* default_avatar.jpg */; };
 		CA322169151EF49A0039A384 /* CommonSNSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32214E151EF49A0039A384 /* CommonSNSRequest.m */; };
 		CA32216A151EF49A0039A384 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322150151EF49A0039A384 /* OAuthCore.m */; };
@@ -360,6 +361,8 @@
 		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
 		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
+		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
+		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -749,7 +752,6 @@
 		CA32210B151B6DA40039A384 /* GameNetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkConstants.h; sourceTree = "<group>"; };
 		CA32213B151DEDE10039A384 /* ChangeAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatar.h; sourceTree = "<group>"; };
 		CA32213C151DEDE10039A384 /* ChangeAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatar.m; sourceTree = "<group>"; };
-		CA322141151E0FC00039A384 /* WordDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordDictionary.plist; sourceTree = "<group>"; };
 		CA322143151E107B0039A384 /* default_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_avatar.jpg; sourceTree = "<group>"; };
 		CA32214D151EF49A0039A384 /* CommonSNSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSNSRequest.h; sourceTree = "<group>"; };
 		CA32214E151EF49A0039A384 /* CommonSNSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSNSRequest.m; sourceTree = "<group>"; };
@@ -2139,8 +2141,9 @@
 		CA322140151E0FC00039A384 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CA02364415255AE100F29743 /* CN_Words_Dict.plist */,
+				CA02364515255AE100F29743 /* EN_Words_Dict.plist */,
 				CA202C9B1521C57200B78539 /* words.plist */,
-				CA322141151E0FC00039A384 /* WordDictionary.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2646,7 +2649,6 @@
 				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
-				CA322142151E0FC00039A384 /* WordDictionary.plist in Resources */,
 				CA322144151E107B0039A384 /* default_avatar.jpg in Resources */,
 				CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */,
 				CA32216F151EF49A0039A384 /* qqico.png in Resources */,
@@ -2672,6 +2674,8 @@
 				CA202C9C1521C57200B78539 /* words.plist in Resources */,
 				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
 				C2E662A0152463B900487601 /* ShareEditController.xib in Resources */,
+				CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */,
+				CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3021,6 +3025,7 @@
 					armv7,
 					armv6,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3031,6 +3036,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "84B4E85C-FD89-4A03-8327-AAA7C4DBDDE6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "97D2E8B3-02C9-4B7C-BFBE-2214DD5481EB";
 				SDKROOT = iphoneos;
 			};
@@ -3043,6 +3049,7 @@
 					armv7,
 					armv6,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -3051,6 +3058,7 @@
 				HEADER_SEARCH_PATHS = "../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "84B4E85C-FD89-4A03-8327-AAA7C4DBDDE6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "567D364C-8715-407A-A12E-EB426A08C30F";
 				SDKROOT = iphoneos;
 			};

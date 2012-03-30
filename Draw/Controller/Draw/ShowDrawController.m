@@ -190,7 +190,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)makePickingButtons
 {
     
-    candidateString = [[WordManager defaultManager] randLetterWithWord:self.word count:16];
+    candidateString = [[WordManager defaultManager] randChinesStringWithWord:self.word count:16];
     [candidateString retain];
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];

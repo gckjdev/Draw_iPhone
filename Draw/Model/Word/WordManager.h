@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserManager.h"
 
 
 #define KEY_LOW_LEVEL @"Low"
@@ -17,18 +18,19 @@
 
 @interface WordManager : NSObject
 {
-    NSMutableDictionary *wordDict;
+    NSMutableDictionary *_wordDict;
+    LanguageType _languageType;
 }
 
 
+@property(nonatomic,retain)NSMutableDictionary *wordDict;
+@property(nonatomic, assign)LanguageType languageType;
 + (WordManager *)defaultManager;
-//- (NSInteger)scoreForWord:(Word *)word; //calculate the word score.
-//- (NSString *)levelDescForWord:(Word *)word; 
-
 - (void)addWord:(Word *)word; //when need to update the words, call the method
 - (NSArray *)randDrawWordList; //will return a word list, and the list size is 3
-//- (NSString *)randLetterWithWord:(Word *)word;
-- (NSString *)randLetterWithWord:(Word *)word count:(NSInteger)count;
+- (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count;
+- (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count;
+- (void)loadDictByWithLanguage:(LanguageType)languageType;
 
 
 @end

@@ -9,9 +9,18 @@
 #import "WordManager.h"
 #import "Word.h"
 
+#define CN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"CN_Words_Dict" ofType:@"plist"]
+#define EN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"EN_Words_Dict" ofType:@"plist"]
 
-#define WORD_DICT [[NSBundle mainBundle] pathForResource:@"WordDictionary" ofType:@"plist"]
 #define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
+
+NSString *UPPER_LETTER_LIST[] = {@"A", @"B", @"C", @"D", @"E", 
+    @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", 
+    @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"};
+
+NSString *LOWER_LETTER_LIST[] = {@"a", @"b", @"c", @"d", @"e", 
+    @"f", @"g", @"h", @"i", @"j", @"k", @"l", @"m", @"n", @"o", 
+    @"p", @"q", @"r", @"s", @"t", @"u", @"v", @"w", @"x", @"y", @"z"};
 
 WordManager *_wordManager;
 WordManager *GlobalGetWordManager()
@@ -23,24 +32,24 @@ WordManager *GlobalGetWordManager()
 }
 
 @implementation WordManager
+@synthesize wordDict = _wordDict;
 
 + (WordManager *)defaultManager
 {
-    return GlobalGetWordManager();
+    WordManager *manager = GlobalGetWordManager();
+    [manager loadDictByWithLanguage:[[UserManager defaultManager] getLanguageType]];
+    return manager;
 }
-
-
-
 
 - (NSArray *)wordArrayOfLevel:(WordLevel)level
 {
     switch (level) {
         case WordLevelLow:
-            return [wordDict objectForKey:KEY_LOW_LEVEL];
+            return [_wordDict objectForKey:KEY_LOW_LEVEL];
         case WordLeveLMedium:
-            return [wordDict objectForKey:KEY_MEDIUM_LEVEL];
+            return [_wordDict objectForKey:KEY_MEDIUM_LEVEL];
         case WordLevelHigh:
-            return [wordDict objectForKey:KEY_HIGH_LEVEL];
+            return [_wordDict objectForKey:KEY_HIGH_LEVEL];
         default:
             return nil;
     }
@@ -77,29 +86,38 @@ WordManager *GlobalGetWordManager()
     
 }
 
+- (void)loadDictByWithLanguage:(LanguageType)languageType
+{
+    if (languageType == _languageType && self.wordDict != nil) {
+        return;
+    }else{
+        NSDictionary *pathDictionary = nil;
+        if (languageType == ChineseType) {
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:CN_WORD_DICT];            
+        }else {
+            pathDictionary = [NSDictionary dictionaryWithContentsOfFile:EN_WORD_DICT];            
+        }
+        self.wordDict = [self parsePathDict:pathDictionary];
+    }
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
         //load data
-        NSDictionary *pathDictionary = [NSDictionary dictionaryWithContentsOfFile:WORD_DICT];
-        wordDict = [self parsePathDict:pathDictionary];
-        [wordDict retain];
     }
-    
     return self;
 }
 
 - (void)dealloc
 {
-    [wordDict release];
+    [_wordDict release];
     [super dealloc];
 }
 
 - (NSString *)charWithKey:(NSString *)key dict:(NSDictionary *)dict outOfString:(NSString *)string
 {
-    
-    
     
     NSArray *list = [dict objectForKey:key];
     int br = 0;
@@ -127,16 +145,14 @@ WordManager *GlobalGetWordManager()
 
 
 
-- (NSString *)randLetterWithWord:(Word *)word count:(NSInteger)count
+- (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count
 {
     if (word == nil) {
         return nil;
     }
     
     
-    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];
-
-    
+    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
     NSInteger length = word.text.length;
     NSMutableArray *retArray = [[NSMutableArray alloc] init];
     NSString *createSet = [NSString stringWithFormat:@"%@",word.text];
@@ -178,6 +194,32 @@ WordManager *GlobalGetWordManager()
         [wordArray addObject:word];
     }
     return wordArray;
+}
+
+- (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
+{
+    NSInteger length = word.text.length;
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
+    for (int i = 0; i < count - length; ++i) {
+        NSInteger index = rand() % 26;
+        NSString *letter = UPPER_LETTER_LIST[index];
+        [array addObject:letter];
+    }
+    for (int i = 0; i < length; ++ i) {
+        NSInteger index = rand() % [array count];
+        NSString *string = [word.text substringWithRange:NSMakeRange(i, 1)];
+        [array insertObject:string atIndex:index];
+    }
+    return [array componentsJoinedByString:@""];
+}
+
+
+- (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
+{
+    NSString *text = word.text;
+    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
+    NSMutableString *s = [NSMutableString stringWithString:text];
+    
 }
 
 @end
