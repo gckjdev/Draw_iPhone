@@ -148,21 +148,44 @@ static RouterService* _defaultRouterService;
         }
     }
 
-    // select the last one from low candidate server list
+    TrafficServer* selectedServer = nil;
+    
+    BOOL disableRandom = YES;
+    srand(time(0));
     if ([lowCandidateList count] > 0){
-        PPDebug(@"Choose LAST server in low candidate server list, %@", 
-                [lowCandidateList objectAtIndex:[lowCandidateList count]-1]);
-        return [lowCandidateList objectAtIndex:[lowCandidateList count]-1];
+        // select the last one from low candidate server list
+        if ([lowCandidateList count] == 1){
+            selectedServer = [lowCandidateList objectAtIndex:0];
+        }
+        else{
+            int randIndex = rand() % 2;
+            if (disableRandom){
+                randIndex = 1;
+            }
+            int index = [lowCandidateList count] - randIndex - 1;        // randome select one out of last 2
+            selectedServer = [lowCandidateList objectAtIndex:index];
+        }
+        
+        PPDebug(@"Choose server in low candidate, %@", [selectedServer description]);
+    }    
+    else if ([normalCandidateList count] > 0){
+        // select the first one from normal candidate server list
+        if ([normalCandidateList count] == 1){
+            selectedServer = [normalCandidateList objectAtIndex:0];
+        }
+        else{
+            int randIndex = rand() % 2;
+            if (disableRandom){
+                randIndex = 1;
+            }
+            int index = randIndex;    // randome select one out of the first 2
+            selectedServer = [normalCandidateList objectAtIndex:index];
+        }
+                
+        PPDebug(@"Choose server in normal candidate, %@", selectedServer);
     }
     
-    // select the first one from normal candidate server list
-    if ([normalCandidateList count] > 0){
-        PPDebug(@"Choose FIRST server in normal candidate server list, %@", 
-                [normalCandidateList objectAtIndex:0]);
-        return [normalCandidateList objectAtIndex:0];
-    }
-    
-    return nil;
+    return selectedServer;
 }
 
 - (void)putServerInFailureList:(NSString*)serverAddress port:(int)port
