@@ -16,7 +16,8 @@
 
 // draw actions
 - (void)didReceiveDrawData:(GameMessage *)message;
-- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
+//- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
+- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language;
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
@@ -68,6 +69,9 @@
 @property (nonatomic, retain) NSMutableSet *historySessionSet;
 @property (nonatomic, retain) GameSession* session;
 
+@property (nonatomic, retain) NSString* serverAddress;
+@property (nonatomic, assign) int serverPort;
+
 + (DrawGameService*)defaultService;
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
@@ -88,11 +92,12 @@
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
 
-- (void)startDraw:(NSString*)word level:(int)level;
+- (void)startDraw:(NSString*)word level:(int)level language:(int)language;
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId;
 
 - (BOOL)isConnected;
 - (void)connectServer;
+- (void)disconnectServer;
 
 - (void)rankGameResult:(int)rank;
 

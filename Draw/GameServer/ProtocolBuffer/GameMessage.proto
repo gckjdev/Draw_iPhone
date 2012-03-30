@@ -49,6 +49,7 @@ message GameChatResponse{
 message SendDrawDataRequest {
   optional string word = 10;
   optional int32 level = 11;
+  optional int32 language = 12;                 // 1 Chinese, 2 English
 
   repeated int32 points = 1 [packed=true];
   optional float width = 22;
@@ -89,6 +90,7 @@ message GeneralNotification{
   optional string word = 31;
   optional int32 level = 32;
   optional int32 round = 33;
+  optional int32 language = 34;
   
   // guess data
   optional string guessWord = 41;

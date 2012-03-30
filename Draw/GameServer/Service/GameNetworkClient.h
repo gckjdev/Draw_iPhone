@@ -40,7 +40,8 @@
 - (void)sendStartDraw:(NSString*)userId 
             sessionId:(long)sessionId
                  word:(NSString*)word 
-                level:(int)level;
+                level:(int)level
+             language:(int)language;
 
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId;

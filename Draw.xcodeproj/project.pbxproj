@@ -10,6 +10,10 @@
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
+		C2E6628215230B3F00487601 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
+		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
+		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
+		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -199,6 +203,12 @@
 		CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */; };
 		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
+		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
+		CA13771F1524282600B5790B /* TrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771E1524282600B5790B /* TrafficServer.m */; };
+		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
+		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
+		CA13772D15245AAB00B5790B /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
+		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
@@ -344,6 +354,12 @@
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
 		C2E6625F1521B91900487601 /* ReportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportController.m; sourceTree = "<group>"; };
 		C2E662601521B91900487601 /* ReportController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportController.xib; sourceTree = "<group>"; };
+		C2E6627F15230B3F00487601 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
+		C2E6628015230B3F00487601 /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareController.m; sourceTree = "<group>"; };
+		C2E6628115230B3F00487601 /* ShareController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareController.xib; sourceTree = "<group>"; };
+		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
+		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
+		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -709,6 +725,17 @@
 		CA1041FF1509C06E00F60C03 /* RoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomController.h; sourceTree = "<group>"; };
 		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
+		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
+		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
+		CA13771D1524282600B5790B /* TrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServer.h; sourceTree = "<group>"; };
+		CA13771E1524282600B5790B /* TrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServer.m; sourceTree = "<group>"; };
+		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
+		CA1377211524283A00B5790B /* TrafficServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServerManager.m; sourceTree = "<group>"; };
+		CA1377281524598700B5790B /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
+		CA13772B15245AAB00B5790B /* MyPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaint.h; sourceTree = "<group>"; };
+		CA13772C15245AAB00B5790B /* MyPaint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaint.m; sourceTree = "<group>"; };
+		CA13772E15245AE600B5790B /* MyPaintManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintManager.h; sourceTree = "<group>"; };
+		CA13772F15245AE600B5790B /* MyPaintManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintManager.m; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA202C9B1521C57200B78539 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
@@ -921,6 +948,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA137718152425BD00B5790B /* Router */,
 				CA1041ED1509B9AB00F60C03 /* Common */,
 				CA1041EE1509B9AB00F60C03 /* User */,
 			);
@@ -1929,6 +1957,12 @@
 		CA1041DF1509B6E700F60C03 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				C2E6629C152463B900487601 /* ShareEditController.h */,
+				C2E6629D152463B900487601 /* ShareEditController.m */,
+				C2E6629E152463B900487601 /* ShareEditController.xib */,
+				C2E6627F15230B3F00487601 /* ShareController.h */,
+				C2E6628015230B3F00487601 /* ShareController.m */,
+				C2E6628115230B3F00487601 /* ShareController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -2022,6 +2056,45 @@
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CA137718152425BD00B5790B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				CA137719152425CF00B5790B /* RouterService.h */,
+				CA13771A152425CF00B5790B /* RouterService.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		CA13771C1524280D00B5790B /* TrafficServer */ = {
+			isa = PBXGroup;
+			children = (
+				CA13771D1524282600B5790B /* TrafficServer.h */,
+				CA13771E1524282600B5790B /* TrafficServer.m */,
+				CA1377201524283A00B5790B /* TrafficServerManager.h */,
+				CA1377211524283A00B5790B /* TrafficServerManager.m */,
+			);
+			path = TrafficServer;
+			sourceTree = "<group>";
+		};
+		CA1377231524591500B5790B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CA13772A15245A7900B5790B /* MyPaint */ = {
+			isa = PBXGroup;
+			children = (
+				CA13772B15245AAB00B5790B /* MyPaint.h */,
+				CA13772C15245AAB00B5790B /* MyPaint.m */,
+				CA13772E15245AE600B5790B /* MyPaintManager.h */,
+				CA13772F15245AE600B5790B /* MyPaintManager.m */,
+			);
+			path = MyPaint;
 			sourceTree = "<group>";
 		};
 		CA3220FF151B6A490039A384 /* Network */ = {
@@ -2380,13 +2453,6 @@
 			path = Word;
 			sourceTree = "<group>";
 		};
-		CADD7F91150F3F760075C739 /* GameSession */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GameSession;
-			sourceTree = "<group>";
-		};
 		CAE2CABA151B2E1D0062ED37 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -2434,11 +2500,13 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA1377231524591500B5790B /* CoreData */,
+				CA13771C1524280D00B5790B /* TrafficServer */,
 				CAE2CABA151B2E1D0062ED37 /* Account */,
 				CAE2CABB151B2E1D0062ED37 /* Item */,
 				CAA0E6A315147DEF00FD8C3E /* Word */,
-				CADD7F91150F3F760075C739 /* GameSession */,
 				CA1041E81509B99A00F60C03 /* Draw */,
+				CA13772A15245A7900B5790B /* MyPaint */,
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
@@ -2602,6 +2670,8 @@
 				CA4215FD1521915300FAA008 /* 57.png in Resources */,
 				C2E662621521B91900487601 /* ReportController.xib in Resources */,
 				CA202C9C1521C57200B78539 /* words.plist in Resources */,
+				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
+				C2E662A0152463B900487601 /* ShareEditController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2854,6 +2924,14 @@
 				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
+				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
+				CA13771B152425CF00B5790B /* RouterService.m in Sources */,
+				CA13771F1524282600B5790B /* TrafficServer.m in Sources */,
+				CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */,
+				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
+				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
+				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
+				C2E6629F152463B900487601 /* ShareEditController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3081,6 +3159,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
+			);
+			currentVersion = CA1377281524598700B5790B /* MainDataModel.xcdatamodel */;
+			path = MainDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CA745D151503B1B400600024 /* Project object */;
 }

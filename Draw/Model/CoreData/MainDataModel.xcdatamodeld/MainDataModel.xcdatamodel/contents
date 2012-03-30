@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="drawByMe" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
+    <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
+    <elements>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="135"/>
+    </elements>
+</model>

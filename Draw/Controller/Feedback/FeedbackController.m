@@ -7,8 +7,7 @@
 //
 
 #import "FeedbackController.h"
-
-#define NSLS(x) NSLocalizedString(x, @"")
+#import "ReportController.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -62,15 +61,16 @@ enum {
 {
     switch (indexPath.row) {
         case SHARE: {
-            
+            ReportController* rc = [[ReportController alloc] init];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
+        case FEEDBACK:
         case REPORT_BUG: {
-            
-        }
-            break;
-        case FEEDBACK: {
-            
+            ReportController* rc = [[ReportController alloc] init];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
         case ABOUT: {
@@ -82,7 +82,7 @@ enum {
         }
             break;
         case GIVE_REVIEW: {
-            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/tuan-gou/id456494464?l=en&mt=8"]];
         }
             break;
         default:

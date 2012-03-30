@@ -1404,6 +1404,7 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
 @interface SendDrawDataRequest ()
 @property (retain) NSString* word;
 @property int32_t level;
+@property int32_t language;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -1428,6 +1429,13 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
   hasLevel_ = !!value;
 }
 @synthesize level;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -1480,6 +1488,7 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
   if ((self = [super init])) {
     self.word = @"";
     self.level = 0;
+    self.language = 0;
     self.width = 0;
     self.color = 0;
     self.guessWord = @"";
@@ -1524,6 +1533,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (self.hasLevel) {
     [output writeInt32:11 value:self.level];
   }
+  if (self.hasLanguage) {
+    [output writeInt32:12 value:self.language];
+  }
   if (self.hasWidth) {
     [output writeFloat:22 value:self.width];
   }
@@ -1565,6 +1577,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   }
   if (self.hasLevel) {
     size += computeInt32Size(11, self.level);
+  }
+  if (self.hasLanguage) {
+    size += computeInt32Size(12, self.language);
   }
   if (self.hasWidth) {
     size += computeFloatSize(22, self.width);
@@ -1662,6 +1677,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -1721,6 +1739,10 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
         [self setLevel:[input readInt32]];
         break;
       }
+      case 96: {
+        [self setLanguage:[input readInt32]];
+        break;
+      }
       case 181: {
         [self setWidth:[input readFloat]];
         break;
@@ -1774,6 +1796,22 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
 - (SendDrawDataRequest_Builder*) clearLevel {
   result.hasLevel = NO;
   result.level = 0;
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (int32_t) language {
+  return result.language;
+}
+- (SendDrawDataRequest_Builder*) setLanguage:(int32_t) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = 0;
   return self;
 }
 - (NSArray*) pointsList {
@@ -2043,6 +2081,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* word;
 @property int32_t level;
 @property int32_t round;
+@property int32_t language;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
@@ -2144,6 +2183,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasRound_ = !!value;
 }
 @synthesize round;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
 - (BOOL) hasGuessWord {
   return !!hasGuessWord_;
 }
@@ -2209,6 +2255,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.word = @"";
     self.level = 0;
     self.round = 0;
+    self.language = 0;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
@@ -2292,6 +2339,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasRound) {
     [output writeInt32:33 value:self.round];
   }
+  if (self.hasLanguage) {
+    [output writeInt32:34 value:self.language];
+  }
   if (self.hasGuessWord) {
     [output writeString:41 value:self.guessWord];
   }
@@ -2366,6 +2416,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasRound) {
     size += computeInt32Size(33, self.round);
+  }
+  if (self.hasLanguage) {
+    size += computeInt32Size(34, self.language);
   }
   if (self.hasGuessWord) {
     size += computeStringSize(41, self.guessWord);
@@ -2507,6 +2560,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasRound) {
     [self setRound:other.round];
   }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
   if (other.hasGuessWord) {
     [self setGuessWord:other.guessWord];
   }
@@ -2605,6 +2661,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 264: {
         [self setRound:[input readInt32]];
+        break;
+      }
+      case 272: {
+        [self setLanguage:[input readInt32]];
         break;
       }
       case 330: {
@@ -2867,6 +2927,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearRound {
   result.hasRound = NO;
   result.round = 0;
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (int32_t) language {
+  return result.language;
+}
+- (GeneralNotification_Builder*) setLanguage:(int32_t) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = 0;
   return self;
 }
 - (BOOL) hasGuessWord {

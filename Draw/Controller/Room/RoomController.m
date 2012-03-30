@@ -372,6 +372,12 @@
     }
 }
 
+- (IBAction)clickMenu:(id)sender
+{
+    [[DrawGameService defaultService] quitGame];
+    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+}
+
 #pragma mark - Room Enter/Return
 
 + (RoomController*)defaultInstance

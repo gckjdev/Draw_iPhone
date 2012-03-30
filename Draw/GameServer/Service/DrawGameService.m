@@ -26,9 +26,12 @@ static DrawGameService* _defaultService;
 @synthesize homeDelegate = _homeDelegate;
 @synthesize historySessionSet = _historySessionSet;
 @synthesize avatar = _avatar;
+@synthesize serverAddress = _serverAddress;
+@synthesize serverPort = _serverPort;
 
 - (void)dealloc
 {
+    [_serverAddress release];
     [_avatar release];
     [_historySessionSet release];
     [_session release];
@@ -70,8 +73,15 @@ static DrawGameService* _defaultService;
 {
 
 //    [_networkClient start:@"192.167.1.103" port:8080];
-    [_networkClient start:@"192.168.1.6" port:8080];    
+//    [_networkClient start:@"192.168.1.6" port:8080];    
 
+    [_networkClient start:_serverAddress port:_serverPort];    
+
+}
+
+- (void)disconnectServer
+{
+    [_networkClient disconnect];
 }
 
 - (BOOL)isMeHost
@@ -81,6 +91,7 @@ static DrawGameService* _defaultService;
     }
     return NO;
 }
+
 - (BOOL)isMyTurn
 {
     if ([self.session isCurrentPlayUser:_userId]) {
@@ -247,9 +258,10 @@ static DrawGameService* _defaultService;
         // TODO chaneg to notifyGameObserver
         if ([[[message notification] word] length] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
-            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:)]) {
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:language:)]) {
                 [_drawDelegate didReceiveDrawWord:[[message notification] word] 
-                                            level:[[message notification] level]];
+                                            level:[[message notification] level]
+                                         language:[[message notification] language]];
             }
             
             PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
@@ -413,12 +425,13 @@ static DrawGameService* _defaultService;
                         sessionId:[_session sessionId]];    
 }
 
-- (void)startDraw:(NSString*)word level:(int)level
+- (void)startDraw:(NSString*)word level:(int)level language:(int)language
 {
     [_networkClient sendStartDraw:_userId
                         sessionId:[_session sessionId]
                              word:word
-                            level:level];
+                            level:level
+                         language:language];
      
 }
 
@@ -447,6 +460,8 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendQuitGame:_userId
                        sessionId:[_session sessionId]];
+    
+    [_networkClient disconnect];
 
     // clear session data here
     self.session = nil;

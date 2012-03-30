@@ -24,6 +24,7 @@
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;
 - (IBAction)clickProlongStart:(id)sender;
+- (IBAction)clickMenu:(id)sender;
 
 // use this method when first enter room
 + (void)firstEnterRoom:(UIViewController*)superController;

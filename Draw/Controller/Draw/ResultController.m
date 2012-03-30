@@ -57,6 +57,31 @@
     return self;
 }
 
+- (void)saveImage {
+    if (_image!=nil) 
+    {
+        //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        //并给文件起个文件名
+        NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:@"bgimage.png"];
+        
+        //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
+        BOOL result=[UIImagePNGRepresentation(_image)writeToFile: uniquePath    atomically:YES];
+        
+        if (result) {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:NSLS(@"图片保存成功") delegate:nil cancelButtonTitle:NSLS(@"OK") otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }        
+        
+    }else {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:NSLS(@"图片保存失败") delegate:nil cancelButtonTitle:NSLS(@"OK") otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+}
+
 - (void)updateContinueButton:(NSInteger)count
 {
     [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
@@ -182,6 +207,7 @@
 
 - (IBAction)clickSaveButton:(id)sender {
     UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
+    [self saveImage];
 }
 
 - (IBAction)clickExitButton:(id)sender {

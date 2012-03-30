@@ -54,5 +54,8 @@
                                      type:(int)type;
 + (CommonNetworkOutput*)fetchAccountBalance:(NSString*)baseURL userId:(NSString *)userId;
 
++ (CommonNetworkOutput*)getAllTrafficeServers:(NSString*)baseURL;
+
+
 
 @end

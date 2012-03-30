@@ -80,7 +80,15 @@
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
 #define METHOD_GET_ACCOUNT_BALANCE @"gab"
 
+// for traffic server
+#define PARA_SERVER_ADDRESS @"sa"
+#define PARA_SERVER_PORT @"sp"
+#define PARA_SERVER_LANGUAGE @"sl"
+#define PARA_SERVER_USER_COUNT @"su"
+#define PARA_SERVER_USAGE @"us"
+#define PARA_SERVER_CAPACITY @"sc"
 
+#define METHOD_GET_TRAFFIC_SERVER_LIST @"gt"
 
 //game parameters
 
