@@ -18,7 +18,7 @@
 
 "Me" = "Me";
 
-"kRoomName" = "Room[%@]";
+"kRoomName" = "Room [%@]";
 
 "kClickToStart" = "Draw (%d)";
 
