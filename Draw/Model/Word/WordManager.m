@@ -13,6 +13,14 @@
 #define WORD_DICT [[NSBundle mainBundle] pathForResource:@"WordDictionary" ofType:@"plist"]
 #define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
 
+NSString *UPPER_LETTER_LIST[] = {@"A", @"B", @"C", @"D", @"E", 
+    @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", 
+    @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"};
+
+NSString *LOWER_LETTER_LIST[] = {@"a", @"b", @"c", @"d", @"e", 
+    @"f", @"g", @"h", @"i", @"j", @"k", @"l", @"m", @"n", @"o", 
+    @"p", @"q", @"r", @"s", @"t", @"u", @"v", @"w", @"x", @"y", @"z"};
+
 WordManager *_wordManager;
 WordManager *GlobalGetWordManager()
 {
@@ -127,7 +135,7 @@ WordManager *GlobalGetWordManager()
 
 
 
-- (NSString *)randLetterWithWord:(Word *)word count:(NSInteger)count
+- (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count
 {
     if (word == nil) {
         return nil;
@@ -178,6 +186,32 @@ WordManager *GlobalGetWordManager()
         [wordArray addObject:word];
     }
     return wordArray;
+}
+
+- (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
+{
+    NSInteger length = word.text.length;
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
+    for (int i = 0; i < count - length; ++i) {
+        NSInteger index = rand() % 26;
+        NSString *letter = UPPER_LETTER_LIST[index];
+        [array addObject:letter];
+    }
+    for (int i = 0; i < length; ++ i) {
+        NSInteger index = rand() % [array count];
+        NSString *string = [word.text substringWithRange:NSMakeRange(i, 1)];
+        [array insertObject:string atIndex:index];
+    }
+    return [array componentsJoinedByString:@""];
+}
+
+
+- (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
+{
+    NSString *text = word.text;
+    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
+    NSMutableString *s = [NSMutableString stringWithString:text];
+    
 }
 
 @end

@@ -294,6 +294,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:type forKey:KEY_LANGUAGE];
+    [userDefaults synchronize];
 }
 
 - (LanguageType)getLanguageType

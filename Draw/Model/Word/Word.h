@@ -27,4 +27,5 @@ typedef enum
 - (id)initWithText:(NSString *)text level:(WordLevel)level;
 - (NSInteger)score;
 - (NSString *)levelDesc;
++ (Word *)wordWithText:(NSString *)text level:(WordLevel)level;
 @end
