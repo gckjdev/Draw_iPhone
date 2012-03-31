@@ -52,4 +52,17 @@ static UIImage* _greenButtonImage;
     return _orangeButtonImage;    
 }
 
+- (UIImage *)pickEasyWordCellImage
+{
+    return [UIImage imageNamed:WORD_EASY_CELL_BACKGROUND];
+}
+- (UIImage *)pickNormakWordCellImage
+{
+    return [UIImage imageNamed:WORD_NORMAL_CELL_BACKGROUND];    
+}
+- (UIImage *)pickHardWordCellImage
+{
+    return [UIImage imageNamed:WORD_HARD_CELL_BACKGROUND];
+}
+
 @end

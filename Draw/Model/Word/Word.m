@@ -7,7 +7,7 @@
 //
 
 #import "Word.h"
-
+#import "LocaleUtils.h"
 @implementation Word
 @synthesize level = _level;
 @synthesize text = _text;
@@ -46,12 +46,12 @@
 {
     switch (self.level) {
         case WordLevelHigh:
-            return @"困难";
+            return NSLS(@"kHard");
         case WordLeveLMedium:
-            return @"一般";
+            return NSLS(@"kNormal");
         case WordLevelLow:
         default:
-            return @"简单";
+            return NSLS(@"kEasy");
     }
 }
 + (Word *)wordWithText:(NSString *)text level:(WordLevel)level

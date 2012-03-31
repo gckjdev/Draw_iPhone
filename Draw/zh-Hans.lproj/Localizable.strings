@@ -29,3 +29,11 @@
 "kWaitForMoreUsers" = "等待更多用户";
 
 "kStartAfter" = "即将开始 (%d)";
+
+"kPickWordTitle" = "请选择一个词来画";
+
+"kChangeWords" = "换一组词语";
+
+"kEasy" = "容易";
+"kNormal" = "一般";
+"kHard" = "困难";

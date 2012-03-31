@@ -9,10 +9,12 @@
 #import "SelectWordCell.h"
 #import "Word.h"
 #import "WordManager.h"
+#import "ShareImageManager.h"
 
 @implementation SelectWordCell
 @synthesize wordLabel;
 @synthesize levelLabel;
+@synthesize backgroundImage;
 @synthesize scoreLabel;
 
 + (id)createCell:(id)delegate
@@ -38,21 +40,35 @@
 
 + (CGFloat)getCellHeight
 {
-    return 44.0f;
+    return 74.0f;
 }
 
 - (void)setCellInfo:(Word *)word
 {
-    NSString *score = [NSString stringWithFormat:@"%d",word.score];
+    NSString *score = [NSString stringWithFormat:@"X%d",word.score];
     [self.wordLabel setText:word.text];
     [self.levelLabel setText:word.levelDesc];
     [self.scoreLabel setText:score];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    switch (word.level) {
+        case WordLevelLow:
+            [self.backgroundImage setImage:[imageManager pickEasyWordCellImage]];
+            break;
+        case WordLeveLMedium:
+            [self.backgroundImage setImage:[imageManager pickNormakWordCellImage]];
+            break;
+        case WordLevelHigh:
+            [self.backgroundImage setImage:[imageManager pickHardWordCellImage]];
+        default:
+            break;
+    }
 }
 
 - (void)dealloc {
     [wordLabel release];
     [levelLabel release];
     [scoreLabel release];
+    [backgroundImage release];
     [super dealloc];
 }
 @end

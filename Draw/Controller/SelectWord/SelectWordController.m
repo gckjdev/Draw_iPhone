@@ -15,13 +15,17 @@
 #import "DrawGameService.h"
 #import "LocaleUtils.h"
 #import "UserManager.h"
+#import "ShareImageManager.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
+@synthesize changeWordButton = _changeWordButton;
+@synthesize titleLabel = _titleLabel;
+@synthesize toolNumberButton = _toolNumberButton;
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
 
-#define PICK_WORD_TIME 9
+#define PICK_WORD_TIME 9000
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,6 +74,19 @@
     
 }
 
+- (void)updateToolNumberButton:(NSInteger)number
+{
+    NSString *string = [NSString stringWithFormat:@"%d",number];
+    [self.toolNumberButton setTitle:string forState:UIControlStateNormal];
+}
+
+
+- (void)localeViewText
+{
+    [self.titleLabel setText:NSLS(@"kPickWordTitle")];
+    [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -77,8 +94,14 @@
     [super viewDidLoad];
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     retainCount = PICK_WORD_TIME;
-    [self.clockLabel setText:[NSString stringWithFormat:NSLS(@"%d s'"),retainCount]];
+    [self.clockLabel setText:[NSString stringWithFormat:NSLS(@"%d"),retainCount]];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [self updateToolNumberButton:9];
+    
+    [self localeViewText];
 }
 
 
@@ -89,6 +112,9 @@
     [self setWordTableView:nil];
     [self setWordArray:nil];
     [self setClockLabel:nil];
+    [self setChangeWordButton:nil];
+    [self setToolNumberButton:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -103,6 +129,9 @@
 - (void)dealloc {
     [_wordTableView release];
     [_clockLabel release];
+    [_changeWordButton release];
+    [_toolNumberButton release];
+    [_titleLabel release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
@@ -133,6 +162,10 @@
 {
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
     [self startGameWithWord:word];
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [SelectWordCell getCellHeight];
 }
 @end

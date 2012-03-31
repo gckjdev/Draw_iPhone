@@ -13,6 +13,12 @@
 // background
 #define ROOM_BACKGROUND         @"room.png"
 
+
+//cell background
+#define WORD_EASY_CELL_BACKGROUND @"easy.png"
+#define WORD_NORMAL_CELL_BACKGROUND @"normal.png"
+#define WORD_HARD_CELL_BACKGROUND @"hard.png"
+
 @interface ShareImageManager : NSObject
 
 + (ShareImageManager*)defaultManager;
@@ -20,5 +26,9 @@
 - (UIImage*)woodImage;
 - (UIImage*)greenImage;
 - (UIImage*)orangeImage;
+- (UIImage *)pickEasyWordCellImage;
+- (UIImage *)pickNormakWordCellImage;
+- (UIImage *)pickHardWordCellImage;
+
 
 @end

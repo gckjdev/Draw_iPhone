@@ -15,7 +15,7 @@
     return nil;
 }
 
-- (void)saveCheckInDate
+- (void)saveCheckInDate:(NSDate *)date
 {
     
 }

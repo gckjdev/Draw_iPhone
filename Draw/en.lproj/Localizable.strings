@@ -29,3 +29,11 @@
 "kWaitForMoreUsers" = "Waiting...";
 
 "kStartAfter" = "Wait For Start (%d)";
+
+"kPickWordTitle" = "Word Selection";
+
+"kChangeWords" = "Change";
+
+"kEasy" = "Easy";
+"kNormal" = "Normal";
+"kHard" = "Hard";

@@ -19,5 +19,8 @@
 @property (retain, nonatomic) NSArray *wordArray;
 - (IBAction)clickChangeWordButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
+@property (retain, nonatomic) IBOutlet UIButton *changeWordButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (retain, nonatomic) IBOutlet UIButton *toolNumberButton;
 @end
