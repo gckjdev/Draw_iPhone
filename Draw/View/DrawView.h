@@ -56,6 +56,7 @@ typedef enum{
 - (void)addPaint:(Paint *)paint play:(BOOL)play;
 - (void)clear;
 - (void)play;
--(UIImage*)createImage;
+- (UIImage*)createImage;
+- (UIImage*)createImageByActions:(NSArray*)drawActions;
 
 @end

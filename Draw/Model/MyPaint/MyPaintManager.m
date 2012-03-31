@@ -47,6 +47,13 @@ static MyPaintManager* _defaultManager;
     return [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
 }
 
+- (NSArray*)findAllPaints
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    return [dataManager execute:@"findAllPaints" sortBy:@"createDate" ascending:NO];
+
+}
+
 
 
 @end

@@ -9,6 +9,8 @@
 #import "ShareController.h"
 #import "LocaleUtils.h"
 #import "ShareEditController.h"
+#import "MyPaintManager.h"
+#import "MyPaint.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGES_PER_LINE 3
@@ -129,13 +131,13 @@ enum {
     if (_selectedPaints == nil) {
         _selectedPaints = [[NSMutableSet alloc] init];
             }
-    for (int i = 0; i < 1000; i++) {
-        if (i%2 == 0) {
-            [_paints addObject:[[UIImage imageNamed:@"57.png"] copy]];
-                } else {
-                    [_paints addObject:[[UIImage imageNamed:@"default_avatar.jpg"]copy]];
-                        }
-        
+    NSArray* allPaints = [[MyPaintManager defaultManager] findAllPaints];
+    for (MyPaint* paint in allPaints) {
+        NSString* paintName = [paint image];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {
+            UIImage* image = [[UIImage alloc] initWithContentsOfFile:paintName];
+            [self.paints addObject:image];
+        }
     }
     // Do any additional setup after loading the view from its nib.
 }
