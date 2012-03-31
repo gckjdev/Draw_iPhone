@@ -10,6 +10,7 @@
 #import "Paint.h"
 #import "DrawColor.h"
 #import "DrawUtils.h"
+#import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -343,6 +344,19 @@
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
+}
+
+- (UIImage*)createImageByActions:(NSArray*)drawActions
+{
+//    [self.paintList removeAllObjects];
+//    if (drawActions) {
+//        for (DrawAction* action in drawActions) {
+//            if (action.type == DRAW_ACTION_TYPE_DRAW) {
+//                [self.paintList addObject:action.paint];
+//            }
+//        }
+//    }
+    return [self createImage];
 }
 
 @end

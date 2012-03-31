@@ -245,9 +245,8 @@ static DrawGameService* _defaultService;
             [_drawDelegate didGameTurnComplete:message];
         }
         
-        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
-        //Kira:here save to file
-    });    
+       [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
+    }); 
 }
 
 - (void)handlUserQuitJoinNotification:(GameMessage*)message

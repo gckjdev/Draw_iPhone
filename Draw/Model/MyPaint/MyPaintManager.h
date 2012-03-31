@@ -19,6 +19,6 @@
 
 
 - (NSArray*)findOnlyMyPaints;
-
+- (NSArray*)findAllPaints;
 
 @end
