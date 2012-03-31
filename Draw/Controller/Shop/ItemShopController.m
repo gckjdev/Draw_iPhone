@@ -84,6 +84,12 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [ShoppingCell getCellHeight];
+}
+
+
 #pragma mark - ShoppingCell delegate
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(ShoppingModel *)model

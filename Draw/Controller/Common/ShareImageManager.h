@@ -28,6 +28,8 @@
 - (UIImage*)orangeImage;
 - (UIImage *)buyButtonImage;
 - (UIImage*)showcaseBackgroundImage;
+- (UIImage *)coinImage;
+- (UIImage *)toolImage;
 
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;

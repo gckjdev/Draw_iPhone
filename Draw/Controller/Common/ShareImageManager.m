@@ -85,4 +85,13 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:WORD_HARD_CELL_BACKGROUND];
 }
 
+- (UIImage *)coinImage
+{
+    return [UIImage imageNamed:@"coin.png"];
+}
+- (UIImage *)toolImage
+{
+    return [UIImage imageNamed:@"tool.png"];
+}
+
 @end

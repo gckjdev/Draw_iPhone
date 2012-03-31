@@ -8,12 +8,18 @@
 
 #import "ShoppingCell.h"
 #import "SKProduct+LocalizedPrice.h"
+#import "ShareImageManager.h"
+#import "LocaleUtils.h"
 
 @implementation ShoppingCell
 @synthesize priceLabel;
+@synthesize coinImage;
 @synthesize countLabel;
+@synthesize toolImage;
+@synthesize costCoinImage;
 @synthesize model = _model;
 @synthesize shoppingDelegate = _shoppingDelegate;
+@synthesize buyButton;
 
 + (id)createCell:(id)delegate
 {
@@ -37,14 +43,20 @@
 
 + (CGFloat)getCellHeight
 {
-    return 44.0f;
+    return 100.0f;
 }
 - (void)dealloc {
     [countLabel release];
     [priceLabel release];
     [_model release];
+    [coinImage release];
+    [toolImage release];
+    [buyButton release];
+    [costCoinImage release];
     [super dealloc];
 }
+
+
 
 - (void)setCellInfo:(ShoppingModel *)model indexPath:(NSIndexPath *)aIndexPath
 {
@@ -52,15 +64,25 @@
     self.model = model;
     NSString *countString = nil;
     NSString *priceString = nil;
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (model.type == SHOPPING_COIN_TYPE) {
-        countString = [NSString stringWithFormat:@"%d金币", model.count];
+        countString = [NSString stringWithFormat:@"x%d", model.count];
         priceString = [NSString stringWithFormat:@"%@", [model.product localizedPrice]];
+        [self.coinImage setHidden:NO];
+        [self.toolImage setHidden:YES];        
+        [self.costCoinImage setHidden:YES];
+        
     }else if(model.type == SHOPPING_ITEM_TYPE)
     {
-        countString = [NSString stringWithFormat:@"锦囊 %d个",model.count];
-        priceString = [NSString stringWithFormat:@"%.0f金币",model.price];
+        countString = [NSString stringWithFormat:@"x%d",model.count];
+        priceString = [NSString stringWithFormat:@"x%.0f",model.price];
+        [self.costCoinImage setHidden:NO];
+        [self.coinImage setHidden:YES];
+        [self.toolImage setHidden:NO];
     }
-     
+    [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+    [self.buyButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
+    
     [self.countLabel setText:countString];
     [self.priceLabel setText:priceString];
 }
