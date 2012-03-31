@@ -92,7 +92,7 @@ static PriceService* staticPriceService = nil;
     
     // notify UI to update
     NSArray* coinPriceList = [[ShoppingManager defaultManager] coinPriceList];
-    if ([delegate respondsToSelector:@selector(didFinishFetchShoppingList:resultCode:)]) {
+    if (delegate &&[delegate respondsToSelector:@selector(didFinishFetchShoppingList:resultCode:)]) {
         [delegate didFinishFetchShoppingList:coinPriceList resultCode:0];
     }
 }

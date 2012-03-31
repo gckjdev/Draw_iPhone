@@ -67,6 +67,7 @@
     [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
+    [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
     [self.settingButton setImage:[UIImage imageNamed:SETTING_BUTTON_IMAGE] forState:UIControlStateNormal];
     [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];

@@ -16,6 +16,8 @@
 
 "kFeedback" = "Feedback";
 
+"kCheckin" = "Sign";
+
 "Me" = "Me";
 
 "kRoomName" = "Room [%@]";
@@ -37,3 +39,7 @@
 "kEasy" = "Easy";
 "kNormal" = "Normal";
 "kHard" = "Hard";
+
+
+"kBuy" = "Buy";
+"kShopMainTitle" = "Shop";

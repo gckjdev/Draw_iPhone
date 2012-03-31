@@ -51,7 +51,6 @@
     DrawGameService *gameService = [DrawGameService defaultService];
     if (!hasPushController) {
         hasPushController = YES;
-//        DrawViewController *vc = [[[DrawViewController alloc] init]autorelease];
         DrawViewController *vc = [DrawViewController instance];
         vc.word = word;
         int language = 1; // TODO, use formal language from UserManager

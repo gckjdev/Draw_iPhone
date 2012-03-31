@@ -10,9 +10,14 @@
 #import "CoinShopController.h"
 #import "ItemShopController.h"
 #import <StoreKit/StoreKit.h>
+#import "ShareImageManager.h"
+#import "LocaleUtils.h"
 
 @implementation ShopMainController
 @synthesize coinNumberLabel;
+@synthesize titleLabel;
+@synthesize showcaseBg;
+@synthesize backButton;
 @synthesize itemNumberLabel;
 @synthesize buyCoinButton;
 @synthesize buyItemButton;
@@ -39,8 +44,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.showcaseBg setImage:[imageManager showcaseBackgroundImage]];
+    [self.buyCoinButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
+    [self.buyItemButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
+    [self.buyCoinButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+    [self.buyItemButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];    
+    [self.titleLabel setText:NSLS(@"kShopMainTitle")];
+
 }
 
 - (void)viewDidUnload
@@ -49,6 +60,9 @@
     [self setBuyItemButton:nil];
     [self setCoinNumberLabel:nil];
     [self setItemNumberLabel:nil];
+    [self setShowcaseBg:nil];
+    [self setTitleLabel:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -65,6 +79,9 @@
     [buyItemButton release];
     [coinNumberLabel release];
     [itemNumberLabel release];
+    [showcaseBg release];
+    [titleLabel release];
+    [backButton release];
     [super dealloc];
 }
 - (IBAction)clickBuyCoinButton:(id)sender {
@@ -77,5 +94,8 @@
     ItemShopController *ic = [[ItemShopController alloc] init];
     [self.navigationController pushViewController:ic animated:YES];
     [ic release];
+}
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

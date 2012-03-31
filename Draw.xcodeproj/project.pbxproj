@@ -376,6 +376,10 @@
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAEA70071526D85800B3D206 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70051526D85700B3D206 /* number@2x.png */; };
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
+		CAEA700C1526F30200B3D206 /* point_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70091526F2FD00B3D206 /* point_selected@2x.png */; };
+		CAEA700D1526F30200B3D206 /* point_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700A1526F2FF00B3D206 /* point_unselect@2x.png */; };
+		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
+		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 /* End PBXBuildFile section */
@@ -1037,6 +1041,10 @@
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		CAEA70051526D85700B3D206 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number@2x.png"; sourceTree = "<group>"; };
 		CAEA70061526D85700B3D206 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
+		CAEA70091526F2FD00B3D206 /* point_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_selected@2x.png"; sourceTree = "<group>"; };
+		CAEA700A1526F2FF00B3D206 /* point_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_unselect@2x.png"; sourceTree = "<group>"; };
+		CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
+		CAEA700F1527017D00B3D206 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -2279,6 +2287,10 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAEA70091526F2FD00B3D206 /* point_selected@2x.png */,
+				CAEA700F1527017D00B3D206 /* back@2x.png */,
+				CAEA700A1526F2FF00B3D206 /* point_unselect@2x.png */,
+				CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */,
 				CAEA70051526D85700B3D206 /* number@2x.png */,
 				CAEA70061526D85700B3D206 /* tool@2x.png */,
 				CA13776B15259C1400B5790B /* inputbg@2x.png */,
@@ -2965,6 +2977,10 @@
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				CAEA70071526D85800B3D206 /* number@2x.png in Resources */,
 				CAEA70081526D85800B3D206 /* tool@2x.png in Resources */,
+				CAEA700C1526F30200B3D206 /* point_selected@2x.png in Resources */,
+				CAEA700D1526F30200B3D206 /* point_unselect@2x.png in Resources */,
+				CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */,
+				CAEA70101527017F00B3D206 /* back@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

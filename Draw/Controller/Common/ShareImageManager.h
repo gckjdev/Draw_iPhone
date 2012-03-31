@@ -12,7 +12,7 @@
 
 // background
 #define ROOM_BACKGROUND         @"room.png"
-
+#define SHOWCASE_BACKGROUND         @"buyitems_bg.png"
 
 //cell background
 #define WORD_EASY_CELL_BACKGROUND @"easy.png"
@@ -26,6 +26,9 @@
 - (UIImage*)woodImage;
 - (UIImage*)greenImage;
 - (UIImage*)orangeImage;
+- (UIImage *)buyButtonImage;
+- (UIImage*)showcaseBackgroundImage;
+
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;

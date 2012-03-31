@@ -15,6 +15,8 @@ static ShareImageManager* _defaultManager;
 static UIImage* _woodButtonImage;
 static UIImage* _orangeButtonImage;
 static UIImage* _greenButtonImage;
+static UIImage *_buyButtonImage;
+static UIImage* _showcaseBackgroundImage;
 
 + (ShareImageManager*)defaultManager
 {
@@ -51,6 +53,24 @@ static UIImage* _greenButtonImage;
     
     return _orangeButtonImage;    
 }
+
+- (UIImage *)buyButtonImage
+{
+    if(_buyButtonImage == nil)
+    {
+        _buyButtonImage = [[UIImage strectchableImageName:@"buybutton.png"] retain];
+    }
+    return _buyButtonImage;
+}
+
+- (UIImage*)showcaseBackgroundImage
+{
+    if (_showcaseBackgroundImage == nil) {
+        _showcaseBackgroundImage = [[UIImage strectchableImageName:SHOWCASE_BACKGROUND]retain];
+    }
+    return _showcaseBackgroundImage;
+}
+
 
 - (UIImage *)pickEasyWordCellImage
 {

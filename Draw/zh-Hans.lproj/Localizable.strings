@@ -16,6 +16,8 @@
 
 "kFeedback" = "反馈";
 
+"kCheckin" = "签 到";
+
 "Me" = "我";
 
 "kRoomName" = "房间 [%@]";
@@ -37,3 +39,6 @@
 "kEasy" = "容易";
 "kNormal" = "一般";
 "kHard" = "困难";
+
+"kBuy" = "购买";
+"kShopMainTitle" = "商店";
