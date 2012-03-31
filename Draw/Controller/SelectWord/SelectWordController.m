@@ -25,7 +25,7 @@
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
 
-#define PICK_WORD_TIME 9000
+#define PICK_WORD_TIME 10
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
