@@ -8,6 +8,7 @@
 
 #import "FeedbackController.h"
 #import "ReportController.h"
+#import "CommonDialog.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -108,6 +109,12 @@ enum {
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)testDialog:(id)sender
+{
+    CommonDialog* dlg = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
+    [self.view addSubview:dlg];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
