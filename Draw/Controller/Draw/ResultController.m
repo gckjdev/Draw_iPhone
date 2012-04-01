@@ -60,21 +60,6 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)image paintList:(NSArray*)paintList wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has
-{
-    self = [super init];
-    if (self) {
-        _image = image;
-        [_image retain];
-        self.wordText = aWordText;
-        self.score = aScore;
-        hasRankButtons = has;
-        _paintList = [paintList retain];
-    }
-    return self;
-
-}
-
 - (void)updateContinueButton:(NSInteger)count
 {
     [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
@@ -216,18 +201,26 @@
 
 - (void)didFinishAPaint:(NSArray *)drawAction
 {   
-    NSString* imageName = [NSString stringWithFormat:@"images/%d.png", time(0)];
+    time_t aTime = time(0);
+    NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     if (_image!=nil) 
     {
         //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        if (!paths) {
+            PPDebug(@"Document directory not found!");
+        }
         //并给文件起个文件名
         NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
-        
         //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
-        BOOL result=[UIImagePNGRepresentation(_image)writeToFile: uniquePath    atomically:YES];
-        PPDebug(@"<DrawGameService> save image to file result:%d", result);
-        [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:nil drawUserId:nil drawUserNickName:nil drawByMe:YES];
+        NSData* imageData = UIImagePNGRepresentation(_image);
+        BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+        PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+        if (result) {
+            NSArray* drawActionList = drawGameService.drawActionList;
+            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:nil drawUserNickName:nil drawByMe:YES];
+        }
     }
 }
 

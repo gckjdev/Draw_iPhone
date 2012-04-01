@@ -11,6 +11,8 @@
 #import "ShareEditController.h"
 #import "MyPaintManager.h"
 #import "MyPaint.h"
+#import "DrawAction.h"
+#import "DrawView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGES_PER_LINE 3
@@ -38,6 +40,7 @@
     UIButton* btn = (UIButton*)sender;
     [_selectedPaints removeAllObjects];
     [_selectedPaints addObject:[self.paints objectAtIndex:btn.tag-BUTTON_INDEX_OFFSET]];
+    _currentSelectedPaint = btn.tag-BUTTON_INDEX_OFFSET;
     UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"Options") delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Share") otherButtonTitles:NSLS(@"Replay"), NSLS(@"Delete"), nil];
     [tips showInView:self.view];
     [tips release];
@@ -62,6 +65,23 @@ enum {
         }
             break;
         case REPLAY: {
+            NSArray* allPaints = [[MyPaintManager defaultManager] findAllPaints];
+            MyPaint* currentPaint = [allPaints objectAtIndex:_currentSelectedPaint];
+            NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
+            NSArray* drawActionList = (NSArray*)currentData;
+            UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+            [background setBackgroundColor:[UIColor blackColor]];
+            [background setAlpha:0.5];
+            DrawView* replayView = [[DrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];
+            [self.view addSubview:background];
+            [self.view addSubview:replayView];
+            NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
+            [replayView setDrawActionList:actionList];
+            [replayView play];
+
+            
+            [replayView release];
+            [background release];
             
         }
             break;
@@ -78,9 +98,19 @@ enum {
 }
 
 #pragma mark - table view delegate
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.paints.count/IMAGES_PER_LINE;
+    NSLog(@"row is %d", self.paints.count/IMAGES_PER_LINE);
+    return self.paints.count/IMAGES_PER_LINE +1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,13 +121,18 @@ enum {
     }
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
-        UIImage* paint  = [self.paints objectAtIndex:paintIndex];
-        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(lineIndex*IMAGE_WIDTH, 0, IMAGE_WIDTH, IMAGE_WIDTH)];
-        [btn setBackgroundImage:paint forState:UIControlStateNormal];
-        btn.tag = BUTTON_INDEX_OFFSET+paintIndex;
-        [btn addTarget:self action:@selector(popTipsWithIndex:) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:btn];
-        [btn release];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        if (paintIndex < self.paints.count) {
+            UIImage* paint  = [self.paints objectAtIndex:paintIndex];
+            if (paint) {
+                UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(lineIndex*IMAGE_WIDTH, 0, IMAGE_WIDTH, IMAGE_WIDTH)];
+                [btn setBackgroundImage:paint forState:UIControlStateNormal];
+                btn.tag = BUTTON_INDEX_OFFSET+paintIndex;
+                [btn addTarget:self action:@selector(popTipsWithIndex:) forControlEvents:UIControlEventTouchUpInside];
+                [cell addSubview:btn];
+                [btn release];
+            }
+        }
     }
     
     return cell;
@@ -117,7 +152,8 @@ enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _paints = [[NSMutableArray alloc] init];
+        _selectedPaints = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -125,20 +161,16 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (_paints == nil) {
-        _paints = [[NSMutableArray alloc] init ];
-    }
-    if (_selectedPaints == nil) {
-        _selectedPaints = [[NSMutableSet alloc] init];
-            }
     NSArray* allPaints = [[MyPaintManager defaultManager] findAllPaints];
     for (MyPaint* paint in allPaints) {
         NSString* paintName = [paint image];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {
-            UIImage* image = [[UIImage alloc] initWithContentsOfFile:paintName];
-            [self.paints addObject:image];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {            
+            NSData* imageData = [[NSData alloc] initWithContentsOfFile:paintName];
+            UIImage* image = [UIImage imageWithData:imageData];
+            [self.paints addObject:image];         
         }
     }
+
     // Do any additional setup after loading the view from its nib.
 }
 

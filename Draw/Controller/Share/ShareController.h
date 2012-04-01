@@ -10,6 +10,8 @@
 
 @interface ShareController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     NSMutableSet* _selectedPaints;
+    NSMutableArray *_paints;
+    int _currentSelectedPaint;
 }
 @property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;

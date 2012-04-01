@@ -20,137 +20,100 @@
 
 @implementation DrawView
 @synthesize drawEnabled = _drawEnable;
-@synthesize paintList = _paintList;
+//@synthesize paintList = _paintList;
 @synthesize lineColor = _lineColor;
 @synthesize lineWidth = _lineWidth;
 @synthesize status = _status;
 @synthesize playSpeed= _playSpeed;
 @synthesize delegate = _delegate;
 @synthesize simplingDistance = _simplingDistance;
+@synthesize drawActionList = _drawActionList;
 #pragma mark Action Funtion
 
-- (void)printListCount:(NSTimer *)theTimer
-{
-    if (self.paintList) {
-        if (theTimer) {
-            NSLog(@"from timer paintList count is %d", [self.paintList count]);                    
-        }else{
-            NSLog(@"NOT from timer paintList count is %d", [self.paintList count]);                    
-        }
-
-    }else
-    {
-        NSLog(@"paintList is null");
-    }
-    
-}
 
 - (void)clear
 {
-    [self.paintList removeAllObjects];
-//    [self setDrawEnabled:YES];
+    DrawAction *drawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    [self.drawActionList addObject:drawAction];
+    _currentDrawAction = drawAction;
     _status = Unplaying;
     [self setNeedsDisplay];
 }
 
-- (void)playFromPaintIndex:(NSInteger)index
+- (void)playFromDrawActionIndex:(NSInteger)index
 {
     _status = Playing;
-    _paintPosition = CGPointMake(index, -1);
+    _playingAction = [self.drawActionList objectAtIndex:index];
+    _playingPointIndex = -1;
+    _playingActionIndex = index;
     [self setDrawEnabled:NO];
-
     _playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
 }
 
 - (void)play
 {
-    [self playFromPaintIndex:0];
+    [self playFromDrawActionIndex:0];
 }
 
-- (void)addPaint:(Paint *)paint play:(BOOL)play
+
+- (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
     if (play) {
-        [self.paintList addObject:paint];
+        [self.drawActionList addObject:action];
         if (self.status == Playing) {
             return;
         }
-        [self playFromPaintIndex:[self.paintList count] - 1];
+        [self playFromDrawActionIndex:[self.drawActionList count] -1];
     }else{
-        [self.paintList addObject:paint];
+        [self.drawActionList addObject:action];
         [self setNeedsDisplay];
     }
 }
 
-- (NSInteger)lastPaintPointCount
-{
-    Paint *paint = [self.paintList lastObject];
-    if (paint) {
-        return [paint pointCount];
-    }
-    return 0;
-}
 
 #pragma mark function called by player
 
-- (CGPoint)pointForPaintPosition:(CGPoint)position
-{
-    NSInteger x = position.x;
-    NSInteger y = position.y;
-    if (x < 0 || x >= [self.paintList count]) {
-        return ILLEGAL_POINT;
-    }
-    Paint *paint = [self.paintList objectAtIndex:x];
-    if (y < 0 || y >= [paint pointCount]) {
-        return ILLEGAL_POINT;
-    }
-    return [paint pointAtIndex:y];
-}
 
-- (BOOL)increasePaintPosition
+- (NSInteger)pointCountForDrawAction:(DrawAction *)drawAction
 {
-    NSInteger x = _paintPosition.x;
-    NSInteger y = _paintPosition.y;
-    if (x < [self.paintList count]) {
-        Paint *paint = [self.paintList objectAtIndex:x];
-        if (y < [paint pointCount]) {
-            _paintPosition.y ++;
-            NSInteger count = [paint pointCount];
-            if (_paintPosition.y == count) {
-                _paintPosition.y = 0;
-                _paintPosition.x ++;
-            }
-            if (_paintPosition.x == [_paintList count]) {
-                return NO;
-            }
-            return YES;
-        }
+    if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
+        return 0;
+    }else{
+        Paint *paint = [drawAction paint];
+        return paint.pointCount;
     }
-    return NO;
 }
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {
-    CGPoint lastPoint = [self pointForPaintPosition:_paintPosition];
-    BOOL flag = [self increasePaintPosition];
-    if (!flag) {
-        [theTimer invalidate];
-        theTimer = nil;
-        _status = Unplaying;
-        
-        return;
+
+    NSInteger pointCount = [self pointCountForDrawAction:_playingAction];
+    _playingPointIndex ++;
+    if (_playingPointIndex < pointCount) {
+        //can play this action
+    }else{
+        //play next action
+        _playingPointIndex = 0;
+        _playingActionIndex ++;
+        if ([self.drawActionList count] > _playingActionIndex) {
+            _playingAction = [self.drawActionList objectAtIndex:_playingActionIndex];
+
+        }else{
+            //illegal
+            _status = Unplaying;
+            return;
+        }
     }
-    CGPoint currentPoint = [self pointForPaintPosition:_paintPosition];
-    if (![DrawUtils isIllegalPoint:lastPoint] && ![DrawUtils isIllegalPoint:currentPoint]) {
-        CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:currentPoint];
-        [self setNeedsDisplayInRect:rect];
-    }
+
     [self setNeedsDisplay];
+    
 }
 
 - (void)setDrawEnabled:(BOOL)drawEnabled
 {
     pan.enabled = drawEnabled;
     tap.enabled = drawEnabled;
+    _drawEnable = drawEnabled;
 }
 
 #pragma mark Gesture Handler
@@ -165,9 +128,10 @@
         point.y = MIN(point.y, self.bounds.size.height);
 
         CGPoint lastPoint = ILLEGAL_POINT;
-        if ([self.paintList count] != 0) {
-            
-            Paint *paint = [self.paintList lastObject];
+        if ([self.drawActionList count] != 0) {
+            //simpling the point distance
+            DrawAction *drawAction = [self.drawActionList lastObject];
+            Paint *paint = [drawAction paint];
             NSInteger index = paint.pointCount - 1;
             if (index >= 0) {
                 lastPoint = [paint pointAtIndex:index];
@@ -198,7 +162,9 @@
             [self.delegate didStartedTouch];
         }
         currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];
-        [self.paintList addObject:currentPaint];
+        DrawAction *drawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
+        _currentDrawAction = drawAction;
+        [self.drawActionList addObject:drawAction];
         [currentPaint release];
         [self addPoint:point toPaint:currentPaint];
 
@@ -226,7 +192,11 @@
         }
         CGPoint point = [tapGestuereReconizer locationInView:self];
         currentPaint = [[Paint alloc] initWithWidth:self.lineWidth color:self.lineColor];
-        [self.paintList addObject:currentPaint];
+//        [self.paintList addObject:currentPaint];
+        DrawAction *drawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
+        _currentDrawAction = drawAction;
+        [self.drawActionList addObject:drawAction];
+        
         [currentPaint release];
         [self addPoint:point toPaint:currentPaint];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
@@ -256,7 +226,7 @@
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         self.playSpeed = DEFAULT_PLAY_SPEED;
-        _paintList = [[NSMutableArray alloc] init];
+        _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         
         //add gesture recognizer;
@@ -272,19 +242,50 @@
         
     }
     
-//    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(printListCount:) userInfo:nil repeats:YES];
     
     return self;
 }
 
 - (void)dealloc
 {
-    [_paintList release];
+    [_drawActionList release];
     [_lineColor release];
     [super dealloc];
 }
 
+- (NSInteger)lastCleanActionIndex
+{
+    int i = 0;
+    for (DrawAction *action in self.drawActionList) {
+        if (action.type == DRAW_ACTION_TYPE_CLEAN) {
+            return i;
+        }
+        ++ i;
+    }
+    return  -1;
+}
 
+- (NSInteger)startPlayIndex
+{
+    NSInteger index = 0;
+    NSInteger ans = 0;
+    for (;index < self.drawActionList.count; ++index) {
+        DrawAction *drawAction = [self.drawActionList objectAtIndex:index];
+        if (_status == Playing) {
+            if (index == _playingActionIndex) {
+                return ans;
+            }            
+        }else {
+            if (_currentDrawAction == drawAction) {
+                return ans;
+            }
+        }
+        if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
+            ans = index + 1;
+        }
+    }
+    return 0;
+}
 
 #pragma mark drawRect
 
@@ -294,43 +295,57 @@
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetLineCap(context, kCGLineCapRound);
 
-    int k = 0;
-    for (Paint *paint in self.paintList) {
-        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-        CGContextSetLineWidth(context, paint.width);
-
+    if (_status == Unplaying && _currentDrawAction && _currentDrawAction.type == DRAW_ACTION_TYPE_CLEAN)
+    {
+        return;
+    }
+    
+    NSInteger startPlayIndex = [self startPlayIndex];
+    for (int j = startPlayIndex; j < self.drawActionList.count; ++ j) {
         
-        for (int i = 0; i < [paint pointCount]; ++ i) {
-            CGPoint point = [paint pointAtIndex:i];
-            if ([paint pointCount] == 1) {
-                //if tap gesture, draw a circle
-                CGContextSetFillColorWithColor(context, paint.color.CGColor);
-                CGFloat r = paint.width / 2;
-                CGFloat x = point.x - r;
-                CGFloat y = point.y - r;
-                CGFloat width = paint.width;
-                CGRect rect = CGRectMake(x, y, width, width);
-                CGContextFillEllipseInRect(context, rect);
-            }else{
-                //if is pan gesture, draw a line.
-                if (i == 0) {
-                    CGContextMoveToPoint(context, point.x, point.y);   
-                }else{
-                    CGContextAddLineToPoint(context, point.x, point.y);
-                    CGContextSetLineJoin(context, kCGLineJoinRound);
+        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
+        int i = 0;
 
+        Paint *paint = drawAction.paint;
+        if (drawAction.type == DRAW_ACTION_TYPE_DRAW && paint) { //if is draw action 
+            CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
+            CGContextSetLineWidth(context, paint.width);
+            for (i = 0; i < [paint pointCount]; ++ i) {
+                CGPoint point = [paint pointAtIndex:i];
+                if ([paint pointCount] == 1) {
+                    //if tap gesture, draw a circle
+                    CGContextSetFillColorWithColor(context, paint.color.CGColor);
+                    CGFloat r = paint.width / 2;
+                    CGFloat x = point.x - r;
+                    CGFloat y = point.y - r;
+                    CGFloat width = paint.width;
+                    CGRect rect = CGRectMake(x, y, width, width);
+                    CGContextFillEllipseInRect(context, rect);
+                }else{
+                    //if is pan gesture, draw a line.
+                    if (i == 0) {
+                        CGContextMoveToPoint(context, point.x, point.y);   
+                    }else{
+                        CGContextAddLineToPoint(context, point.x, point.y);
+                        CGContextSetLineJoin(context, kCGLineJoinRound);
+                    }
+                }
+            //if is playing then play the next frame
+                if (self.status == Playing && drawAction == _playingAction && i == _playingPointIndex) {
+                    CGContextStrokePath(context);            
+                    _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+                    return;
                 }
             }
-            if (self.status == Playing && k == _paintPosition.x && i == _paintPosition.y) {
+        }else{ // if is clean action 
+            //if is playing then play the next frame
+            if (self.status == Playing && drawAction == _playingAction && i == _playingPointIndex) {
                 CGContextStrokePath(context);            
                 _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                 return;
             }
         }
-        
-        CGContextStrokePath(context);            
-        ++ k;
-
+        CGContextStrokePath(context); 
     }
 }
 
@@ -358,5 +373,18 @@
 //    }
     return [self createImage];
 }
+
+//- (void)playDrawActionList:(NSArray*)actionList
+//{
+//    for (DrawAction* action in actionList) {
+//        if (action.type == DRAW_ACTION_TYPE_DRAW) {
+//            [self addPaint:action.paint play:YES];
+//            NSLog(@"draw a paint");
+//                } else {
+//                    NSLog(@"clear");
+//            }
+//    }
+//    
+//}
 
 @end

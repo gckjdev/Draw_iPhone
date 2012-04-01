@@ -21,6 +21,26 @@
     [super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeFloat:_red forKey:@"red"];
+    [aCoder encodeFloat:_green forKey:@"green"];
+    [aCoder encodeFloat:_blue forKey:@"blue"];
+    [aCoder encodeFloat:_alpha forKey:@"alpha"];
+    
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        _red = [aDecoder decodeFloatForKey:@"red"];
+        _green = [aDecoder decodeFloatForKey:@"green"];
+        _blue = [aDecoder decodeFloatForKey:@"blue"];
+        _alpha = [aDecoder decodeFloatForKey:@"alpha"];
+    }
+    return self;
+}
+
 - (void)setColor:(UIColor *)color
 {
     if (_color != color) {

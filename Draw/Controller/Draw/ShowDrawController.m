@@ -20,6 +20,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "HomeController.h"
+#import "DrawAction.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -428,7 +429,9 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)didReceiveDrawData:(GameMessage *)message
 {
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    [showView addPaint:paint play:YES];
+    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+    [showView addDrawAction:action play:YES];
+//    [showView addPaint:paint play:YES];
 }
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
@@ -478,8 +481,7 @@ ShowDrawController *GlobalGetShowDrawController()
         gameCompleted = YES;
         [self resetTimer];
         UIImage *image = [showView createImage];
-        ResultController *rc = [[ResultController alloc] initWithImage:image 
-                                                         paintList:showView.paintList
+        ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
                                                                  score:self.word.score 
                                                         hasRankButtons:YES];
