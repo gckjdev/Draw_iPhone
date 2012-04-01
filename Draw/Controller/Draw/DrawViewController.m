@@ -37,14 +37,12 @@ DrawViewController *GlobalGetDrawViewController()
 
 @implementation DrawViewController
 @synthesize eraserButton;
-@synthesize moreButton;
 @synthesize guessMsgLabel;
 @synthesize wordLabel;
 @synthesize clockButton;
 @synthesize cleanButton;
+@synthesize penButton;
 @synthesize word = _word;
-//@synthesize pickColorView = _pickColorView;
-//@synthesize pickLineWidthView = _pickLineWidthView;
 
 #define DRAW_TIME 60
 
@@ -53,13 +51,11 @@ DrawViewController *GlobalGetDrawViewController()
 
     [_word release];
     [eraserButton release];
-    [moreButton release];
-//    [_pickLineWidthView release];
-//    [_pickColorView release];
     [guessMsgLabel release];
     [wordLabel release];
     [clockButton release];
     [cleanButton release];
+    [penButton release];
     [super dealloc];
 }
 
@@ -82,70 +78,21 @@ DrawViewController *GlobalGetDrawViewController()
 #define PLAYER_BUTTON_TAG_START 1
 #define PLAYER_BUTTON_TAG_END 6
 
-- (void)bringAllViewsToFront
-{
-    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
-        UIView *button = [self.view viewWithTag:i];
-        [self.view bringSubviewToFront:button];
-    }
-    [self.view bringSubviewToFront:guessMsgLabel];
-    [self.view bringSubviewToFront:clockButton];
-//    [self.view bringSubviewToFront:self.pickColorView];
-//    [self.view bringSubviewToFront:self.pickLineWidthView];
-    [self.view bringSubviewToFront:drawView];
-}
-//- (void)addPickLineWidthView
+//- (void)bringAllViewsToFront
 //{
-//    self.pickLineWidthView = [[[PickLineWidthView alloc] initWithFrame:CGRectMake(100, 100, 120, 100)]autorelease];
-//    [self.pickLineWidthView setCenter:CGPointMake(self.widthButton.center.x, self.widthButton.center. y - 120)];
-//    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
-//    for (int i = 5; i < 21; i += 5) {
-//        NSNumber *number = [NSNumber numberWithInt:i];
-//        [widthArray addObject:number];
+//    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
+//        UIView *button = [self.view viewWithTag:i];
+//        [self.view bringSubviewToFront:button];
 //    }
-//    [self.pickLineWidthView setLineWidths:widthArray];
-//    [widthArray release];
-//    [self.view addSubview:self.pickLineWidthView];
-//    self.pickLineWidthView.delegate = self;
+//    [self.view bringSubviewToFront:guessMsgLabel];
+//    [self.view bringSubviewToFront:clockButton];
+//    [self.view bringSubviewToFront:drawView];
 //}
 
-
-//- (void)addPickColorView
-//{
-//    self.pickColorView = [[[PickColorView alloc] initWithFrame:CGRectMake(100, 100, 120, 90)]autorelease];
-//    [self.pickColorView setCenter:CGPointMake(self.moreButton.center.x, self.moreButton.center. y - 115)];
-//    NSMutableArray *colorList = [[NSMutableArray alloc] init];
-//
-//    [colorList addObject:[DrawColor cyanColor]];    
-//    [colorList addObject:[DrawColor orangeColor]];    
-//    [colorList addObject:[DrawColor brownColor]];    
-//    [colorList addObject:[DrawColor magentaColor]];
-//    [colorList addObject:[DrawColor blackColor]];    
-//    [colorList addObject:[DrawColor magentaColor]];    
-//    [colorList addObject:[DrawColor orangeColor]];
-//    [colorList addObject:[DrawColor purpleColor]];
-//    [colorList addObject:[DrawColor whiteColor]];
-//    [colorList addObject:[DrawColor blueColor]];
-//    [colorList addObject:[DrawColor greenColor]];
-//    [colorList addObject:[DrawColor redColor]];
-//    
-//    
-//    [self.pickColorView setColorList:colorList];
-//    [colorList release];
-//    [self.view addSubview:self.pickColorView];
-//    self.pickColorView.delegate = self;
-//}
-
-//- (void)hidePickViews
-//{
-//    [self.pickLineWidthView setHidden:YES];
-//    [self.pickColorView setHidden:YES];
-//}
 
 
 - (void)setToolButtonEnabled:(BOOL)enabled
 {
-    [moreButton setEnabled:enabled];
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
 }
@@ -200,7 +147,6 @@ DrawViewController *GlobalGetDrawViewController()
         retainCount = 0;
         [drawView setDrawEnabled:NO];
         [self setToolButtonEnabled:NO];
-//        [self hidePickViews];
     }
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
     [self.clockButton setTitle:second forState:UIControlStateNormal];
@@ -226,20 +172,15 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetData
 {
     
-//    [self addPickColorView];
-//    [self addPickLineWidthView];
-//    [self hidePickViews];
     [drawView clear];
     [drawView setDrawEnabled:YES];
     drawGameService.drawDelegate = self;
-//    [self hidePickViews];
     [self.guessMsgLabel setHidden:YES];
     [self.wordLabel setText:self.word.text];
     retainCount = DRAW_TIME;
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
     [self.clockButton setTitle:second forState:UIControlStateNormal];
     [self makePlayerButtons];
-//    [self.view sendSubviewToBack:drawView];
     [self startTimer];
     [self setToolButtonEnabled:YES];
     gameComplete = NO;
@@ -278,18 +219,13 @@ DrawViewController *GlobalGetDrawViewController()
 {
 
     [self setWord:nil];
-//    [self setWidthButton:nil];
     [self setEraserButton:nil];
-    [self setMoreButton:nil];
-//    [self setPickColorView:nil];
-//    [self setPickLineWidthView:nil];
     [self setGuessMsgLabel:nil];
     [self setWordLabel:nil];
     [self setClockButton:nil];
     [self setCleanButton:nil];
+    [self setPenButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -309,14 +245,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 
 
-- (IBAction)pickColor:(id)sender {
-    UIButton *button = (UIButton *)sender;
 
-}
-
-- (IBAction)clickPlay:(id)sender {
-    [drawView play];
-}
 
 - (IBAction)clickRedraw:(id)sender {
     //send clean request.
@@ -325,22 +254,11 @@ DrawViewController *GlobalGetDrawViewController()
     [drawView setDrawEnabled:YES];
 }
 
-- (IBAction)clickMoreColorButton:(id)sender {
-//    [self.view bringSubviewToFront:self.pickColorView];
-//    [self.pickColorView setHidden:![self.pickColorView isHidden]];
-//    [self.pickLineWidthView setHidden:YES];
-//    [self.pickColorView setHidden:NO];
-}
-
-- (IBAction)clickPickWidthButton:(id)sender {
-//    [self.view bringSubviewToFront:self.pickLineWidthView];
-//    [self.pickLineWidthView setHidden:![self.pickLineWidthView isHidden]];
-//    [self.pickColorView setHidden:YES];
-///    [self.pickLineWidthView setHidden:NO];
-}
-
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
+}
+
+- (IBAction)clickPenButton:(id)sender {
 }
 
 

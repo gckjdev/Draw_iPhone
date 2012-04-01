@@ -22,33 +22,27 @@
     DrawView *drawView;
     DrawGameService *drawGameService;
     Word *_word;
-//    PickColorView *_pickColorView;
-//    PickLineWidthView *_pickLineWidthView;
     NSTimer *drawTimer;
     NSInteger retainCount;
     BOOL gameComplete;
 }
 
-- (IBAction)pickColor:(id)sender;
+
 - (IBAction)clickRedraw:(id)sender;
-- (IBAction)clickMoreColorButton:(id)sender;
-- (IBAction)clickPickWidthButton:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
+- (IBAction)clickPenButton:(id)sender;
 
 
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
-@property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
+@property (retain, nonatomic) IBOutlet UIButton *penButton;
 
 @property (retain, nonatomic) Word *word;
-//@property (retain, nonatomic) PickLineWidthView *pickLineWidthView;
-//@property (retain, nonatomic) PickColorView *pickColorView;
 
-//- (id)initWithWord:(Word *)word;
 
 + (DrawViewController *)instance;
 
