@@ -30,7 +30,6 @@
 }
 
 - (IBAction)pickColor:(id)sender;
-- (IBAction)clickPlay:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickMoreColorButton:(id)sender;
 - (IBAction)clickPickWidthButton:(id)sender;
@@ -38,17 +37,12 @@
 
 
 
-@property (retain, nonatomic) IBOutlet UIButton *playButton;
-@property (retain, nonatomic) IBOutlet UIButton *redButton;
-@property (retain, nonatomic) IBOutlet UIButton *greenButton;
-@property (retain, nonatomic) IBOutlet UIButton *blueButton;
 @property (retain, nonatomic) IBOutlet UIButton *widthButton;
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
-@property (retain, nonatomic) IBOutlet UIButton *blackButton;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
-@property (retain, nonatomic) IBOutlet UILabel *clockLabel;
+@property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 
 @property (retain, nonatomic) Word *word;

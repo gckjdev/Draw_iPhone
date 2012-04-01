@@ -34,17 +34,11 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 @implementation DrawViewController
-@synthesize playButton;
-@synthesize redButton;
-@synthesize greenButton;
-@synthesize blueButton;
-@synthesize widthButton;
 @synthesize eraserButton;
 @synthesize moreButton;
-@synthesize blackButton;
 @synthesize guessMsgLabel;
 @synthesize wordLabel;
-@synthesize clockLabel;
+@synthesize clockButton;
 @synthesize cleanButton;
 @synthesize word = _word;
 @synthesize pickColorView = _pickColorView;
@@ -54,20 +48,15 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)dealloc
 {
-    [playButton release];
-    [redButton release];
-    [greenButton release];
-    [blueButton release];
-    [blackButton release];
+
     [_word release];
-    [widthButton release];
     [eraserButton release];
     [moreButton release];
     [_pickLineWidthView release];
     [_pickColorView release];
     [guessMsgLabel release];
     [wordLabel release];
-    [clockLabel release];
+    [clockButton release];
     [cleanButton release];
     [super dealloc];
 }
@@ -98,7 +87,7 @@ DrawViewController *GlobalGetDrawViewController()
         [self.view bringSubviewToFront:button];
     }
     [self.view bringSubviewToFront:guessMsgLabel];
-    [self.view bringSubviewToFront:clockLabel];
+    [self.view bringSubviewToFront:clockButton];
     [self.view bringSubviewToFront:self.pickColorView];
     [self.view bringSubviewToFront:self.pickLineWidthView];
     [self.view bringSubviewToFront:drawView];
@@ -154,12 +143,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)setToolButtonEnabled:(BOOL)enabled
 {
-    [redButton setEnabled:enabled];
-    [blueButton setEnabled:enabled];
-    [greenButton setEnabled:enabled];
-    [blackButton setEnabled:enabled];
     [moreButton setEnabled:enabled];
-    [widthButton setEnabled:enabled];
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
 }
@@ -216,7 +200,8 @@ DrawViewController *GlobalGetDrawViewController()
         [self setToolButtonEnabled:NO];
         [self hidePickViews];
     }
-    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    NSString *second = [NSString stringWithFormat:@"%d",retainCount];
+    [self.clockButton setTitle:second forState:UIControlStateNormal];
 }
 
 
@@ -248,7 +233,8 @@ DrawViewController *GlobalGetDrawViewController()
     [self.guessMsgLabel setHidden:YES];
     [self.wordLabel setText:self.word.text];
     retainCount = DRAW_TIME;
-    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    NSString *second = [NSString stringWithFormat:@"%d",retainCount];
+    [self.clockButton setTitle:second forState:UIControlStateNormal];
     [self makePlayerButtons];
 //    [self.view sendSubviewToBack:drawView];
     [self startTimer];
@@ -281,11 +267,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)viewDidUnload
 {
-    [self setPlayButton:nil];
-    [self setRedButton:nil];
-    [self setGreenButton:nil];
-    [self setBlueButton:nil];
-    [self setBlackButton:nil];
+
     [self setWord:nil];
     [self setWidthButton:nil];
     [self setEraserButton:nil];
@@ -294,7 +276,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self setPickLineWidthView:nil];
     [self setGuessMsgLabel:nil];
     [self setWordLabel:nil];
-    [self setClockLabel:nil];
+    [self setClockButton:nil];
     [self setCleanButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -320,15 +302,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (IBAction)pickColor:(id)sender {
     UIButton *button = (UIButton *)sender;
-    if (button == redButton) {
-        [drawView setLineColor:[DrawColor redColor]];
-    }else if (button == greenButton) {
-        [drawView setLineColor:[DrawColor greenColor]];
-    }else if (button == blueButton) {
-        [drawView setLineColor:[DrawColor blueColor]];
-    }else if (button == blackButton) {
-        [drawView setLineColor:[DrawColor blackColor]];
-    }
+
 }
 
 - (IBAction)clickPlay:(id)sender {
@@ -364,11 +338,8 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didDrawedPaint:(Paint *)paint
 {
-    NSInteger count = [paint pointCount];
-    [self.playButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
 
     NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
-    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
     for (NSValue *pointValue in paint.pointList) {
         CGPoint point = [pointValue CGPointValue];
