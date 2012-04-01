@@ -77,7 +77,10 @@
     }
     return self;
 }
-
++ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color
+{
+    return [[[Paint alloc] initWithWidth:width color:color]autorelease];
+}
 - (void)addPoint:(CGPoint)point
 {
     NSValue *pointValue = [NSValue valueWithCGPoint:point];

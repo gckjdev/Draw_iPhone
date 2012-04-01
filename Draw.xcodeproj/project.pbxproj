@@ -354,7 +354,6 @@
 		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
 		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
-		CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA965150F4071009D1CB6 /* DrawView.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CA9F73E515280FB400DB55B6 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E415280FB300DB55B6 /* PickPenView.m */; };
 		CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E7152817C700DB55B6 /* ColorView.m */; };
@@ -384,6 +383,8 @@
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAF25AE415289707002D79EE /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF25AE115289707002D79EE /* DrawView.m */; };
+		CAF25AE515289707002D79EE /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF25AE315289707002D79EE /* ShowDrawView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1005,8 +1006,6 @@
 		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
 		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
 		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
-		CA9AA964150F4071009D1CB6 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		CA9AA965150F4071009D1CB6 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CA9F73E315280FB300DB55B6 /* PickPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickPenView.h; sourceTree = "<group>"; };
@@ -1055,6 +1054,10 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAF25AE015289707002D79EE /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		CAF25AE115289707002D79EE /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		CAF25AE215289707002D79EE /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
+		CAF25AE315289707002D79EE /* ShowDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2666,8 +2669,10 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CA9AA964150F4071009D1CB6 /* DrawView.h */,
-				CA9AA965150F4071009D1CB6 /* DrawView.m */,
+				CAF25AE015289707002D79EE /* DrawView.h */,
+				CAF25AE115289707002D79EE /* DrawView.m */,
+				CAF25AE215289707002D79EE /* ShowDrawView.h */,
+				CAF25AE315289707002D79EE /* ShowDrawView.m */,
 				CAB3DBE41517096D00E7DBC4 /* PickLineWidthView.h */,
 				CAB3DBE51517096D00E7DBC4 /* PickLineWidthView.m */,
 				CAB3DBE71517098B00E7DBC4 /* PickColorView.h */,
@@ -3193,7 +3198,6 @@
 				CA96E271150DE56400292335 /* GameSessionManager.m in Sources */,
 				CA96E360150E107800292335 /* GameBasic.pb.m in Sources */,
 				CA96E361150E107800292335 /* GameMessage.pb.m in Sources */,
-				CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */,
 				CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */,
 				CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */,
 				CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */,
@@ -3256,6 +3260,8 @@
 				CA51BD761525DEDE00C77E50 /* Reward.m in Sources */,
 				CA9F73E515280FB400DB55B6 /* PickPenView.m in Sources */,
 				CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */,
+				CAF25AE415289707002D79EE /* DrawView.m in Sources */,
+				CAF25AE515289707002D79EE /* ShowDrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

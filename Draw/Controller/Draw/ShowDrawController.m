@@ -7,7 +7,7 @@
 //
 
 #import "ShowDrawController.h"
-#import "DrawView.h"
+#import "ShowDrawView.h"
 #import "Paint.h"
 #import "GameSessionUser.h"
 #import "GameSession.h"
@@ -354,8 +354,8 @@ ShowDrawController *GlobalGetShowDrawController()
     if (self) {
         drawGameService = [DrawGameService defaultService];
         [drawGameService setDrawDelegate:self];
-        showView = [[DrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
-        [showView setDrawEnabled:NO];
+        showView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 87, 320, 330)];
+
     }
     return self;
 }
@@ -363,7 +363,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)resetData
 {
 
-    [showView cleanActions];
+    [showView cleanAllActions];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
@@ -434,9 +434,9 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
-//    [showView clear];
     DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     [showView addDrawAction:action play:YES];
+
 }
 
 

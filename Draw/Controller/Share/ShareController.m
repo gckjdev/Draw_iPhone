@@ -12,8 +12,8 @@
 #import "MyPaintManager.h"
 #import "MyPaint.h"
 #import "DrawAction.h"
-#import "DrawView.h"
-
+//#import "DrawView.h"
+#import "ShowDrawView.h"
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGES_PER_LINE 3
 #define IMAGE_WIDTH 93
@@ -72,13 +72,12 @@ enum {
             UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
             [background setBackgroundColor:[UIColor blackColor]];
             [background setAlpha:0.5];
-            DrawView* replayView = [[DrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];
+            ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];
             [self.view addSubview:background];
             [self.view addSubview:replayView];
             NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
             [replayView setDrawActionList:actionList];
             [replayView play];
-
             
             [replayView release];
             [background release];

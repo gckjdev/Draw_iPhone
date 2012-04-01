@@ -12,8 +12,6 @@
 
 #import "DrawView.h"
 #import "DrawGameService.h"
-//#import "PickLineWidthView.h"
-//#import "PickColorView.h"
 #import "PickPenView.h"
 
 @class Word;

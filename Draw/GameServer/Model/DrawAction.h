@@ -22,7 +22,7 @@ typedef enum {
 
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
-
+- (NSInteger)pointCount;
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 @end

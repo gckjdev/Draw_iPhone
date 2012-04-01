@@ -30,6 +30,7 @@
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
 - (NSString *)toString;
++ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color;
 
 
 @end

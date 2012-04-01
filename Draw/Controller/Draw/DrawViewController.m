@@ -96,6 +96,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
+    [drawView setDrawEnabled:enabled];
 }
 
 - (NSInteger)userCount
@@ -146,7 +147,6 @@ DrawViewController *GlobalGetDrawViewController()
     if (retainCount <= 0) {
         [self resetTimer];
         retainCount = 0;
-        [drawView setDrawEnabled:NO];
         [self setToolButtonEnabled:NO];
     }
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
@@ -173,9 +173,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)resetData
 {
-    
-    [drawView cleanActions];
-    [drawView setDrawEnabled:YES];
+    [drawView clearAllActions];
     drawGameService.drawDelegate = self;
     [self.guessMsgLabel setHidden:YES];
     [self.wordLabel setText:self.word.text];
@@ -191,6 +189,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     pickPenView.center = drawView.center;
     [self.view addSubview:pickPenView];
+    pickPenView.hidden = YES;
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (int i = 20; i >= 5 ;i -= 5) {
         NSNumber *number = [NSNumber numberWithInt:i];
@@ -263,8 +262,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (IBAction)clickRedraw:(id)sender {
     //send clean request.
     [drawGameService cleanDraw];
-    [drawView clear];
-    [drawView setDrawEnabled:YES];
+    [drawView addCleanAction];
 }
 
 - (IBAction)clickEraserButton:(id)sender {

@@ -49,5 +49,11 @@
     }
     return self;
 }
-
+- (NSInteger)pointCount
+{
+    if (self.paint) {
+        return [self.paint pointCount];
+    }
+    return 0;
+}
 @end

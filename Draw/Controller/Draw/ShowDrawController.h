@@ -10,12 +10,12 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 @class Word;
-@class DrawView;
+@class ShowDrawView;
 @interface ShowDrawController : UIViewController<DrawGameServiceDelegate>
 {
     Word *_word;
     DrawGameService *drawGameService;
-    DrawView *showView;
+    ShowDrawView *showView;
     NSString *_candidateString;
     NSTimer *guessTimer;
     NSInteger retainCount;
