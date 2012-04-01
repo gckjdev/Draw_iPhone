@@ -356,6 +356,8 @@
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
 		CA9AA966150F4071009D1CB6 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA965150F4071009D1CB6 /* DrawView.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
+		CA9F73E515280FB400DB55B6 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E415280FB300DB55B6 /* PickPenView.m */; };
+		CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E7152817C700DB55B6 /* ColorView.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
@@ -1007,6 +1009,10 @@
 		CA9AA965150F4071009D1CB6 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CA9F73E315280FB300DB55B6 /* PickPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickPenView.h; sourceTree = "<group>"; };
+		CA9F73E415280FB300DB55B6 /* PickPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickPenView.m; sourceTree = "<group>"; };
+		CA9F73E6152817C700DB55B6 /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
+		CA9F73E7152817C700DB55B6 /* ColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorView.m; sourceTree = "<group>"; };
 		CAA0E6A415147DFF00FD8C3E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
@@ -2170,6 +2176,8 @@
 			children = (
 				CA1041E91509B99A00F60C03 /* Paint.h */,
 				CA1041EA1509B99A00F60C03 /* Paint.m */,
+				CA9F73E6152817C700DB55B6 /* ColorView.h */,
+				CA9F73E7152817C700DB55B6 /* ColorView.m */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -2664,6 +2672,8 @@
 				CAB3DBE51517096D00E7DBC4 /* PickLineWidthView.m */,
 				CAB3DBE71517098B00E7DBC4 /* PickColorView.h */,
 				CAB3DBE81517098B00E7DBC4 /* PickColorView.m */,
+				CA9F73E315280FB300DB55B6 /* PickPenView.h */,
+				CA9F73E415280FB300DB55B6 /* PickPenView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3244,6 +3254,8 @@
 				CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */,
 				CA51BD731525DED100C77E50 /* RewardManager.m in Sources */,
 				CA51BD761525DEDE00C77E50 /* Reward.m in Sources */,
+				CA9F73E515280FB400DB55B6 /* PickPenView.m in Sources */,
+				CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

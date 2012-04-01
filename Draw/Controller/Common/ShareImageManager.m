@@ -94,4 +94,21 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"tool.png"];
 }
 
+
+#pragma makr - Color Image
+
+- (UIImage *)redColorImage
+{
+    return [UIImage imageNamed:@"red_color.png"];
+//    return [UIImage strectchableImageName:@"red_color.png"];
+}
+- (UIImage *)blueColorImage
+{
+    return [UIImage imageNamed:@"blue_color.png"];    
+}
+- (UIImage *)yellowColorImage
+{
+    return [UIImage imageNamed:@"yellow_color.png"];    
+}
+
 @end
