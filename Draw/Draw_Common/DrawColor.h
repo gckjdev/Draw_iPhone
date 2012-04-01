@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DrawColor : NSObject
+@interface DrawColor : NSObject <NSCoding>
 {
     CGFloat _red;
     CGFloat _green;

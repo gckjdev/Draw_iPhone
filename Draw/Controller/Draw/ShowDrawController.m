@@ -20,6 +20,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "HomeController.h"
+#import "DrawAction.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -362,7 +363,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)resetData
 {
 
-    [showView clear];
+    [showView cleanActions];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
@@ -370,7 +371,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePlayerButtons];
     [self updatePickViewsWithWord:self.word lang:languageType];
     [self.guessMsgLabel setHidden:YES];
-
     [self.view sendSubviewToBack:showView];
     gameCompleted = NO;
 }
@@ -428,11 +428,15 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)didReceiveDrawData:(GameMessage *)message
 {
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    [showView addPaint:paint play:YES];
+    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+    [showView addDrawAction:action play:YES];
+//    [showView addPaint:paint play:YES];
 }
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
-    [showView clear];
+//    [showView clear];
+    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    [showView addDrawAction:action play:YES];
 }
 
 
@@ -478,8 +482,7 @@ ShowDrawController *GlobalGetShowDrawController()
         gameCompleted = YES;
         [self resetTimer];
         UIImage *image = [showView createImage];
-        ResultController *rc = [[ResultController alloc] initWithImage:image 
-                                                         paintList:showView.paintList
+        ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
                                                                  score:self.word.score 
                                                         hasRankButtons:YES];

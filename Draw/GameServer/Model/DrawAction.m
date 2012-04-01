@@ -30,4 +30,24 @@
     return self;
 }
 
+
++ (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
+{
+    return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
+}
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.paint forKey:@"paint"];
+    [aCoder encodeInt:_type forKey:@"type"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.paint = [aDecoder decodeObjectForKey:@"paint"];
+        _type = [aDecoder decodeIntForKey:@"type"];
+    }
+    return self;
+}
+
 @end

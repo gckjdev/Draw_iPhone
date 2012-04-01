@@ -25,10 +25,15 @@ typedef enum{
 @end
 
 @class DrawColor;
+@class DrawAction;
 @interface DrawView : UIView<UIGestureRecognizerDelegate>
 {
     BOOL _drawEnable;
-    NSMutableArray *_paintList;
+//    NSMutableArray *_paintList;
+    
+    NSMutableArray *_drawActionList;
+    DrawAction *_currentDrawAction;
+
     Paint *currentPaint;
     UIPanGestureRecognizer *pan;
     UITapGestureRecognizer *tap;
@@ -37,13 +42,17 @@ typedef enum{
     DrawColor* _lineColor;    
 
     DrawViewStatus _status;
-    CGPoint _paintPosition;
+//    CGPoint _paintPosition;
     NSTimer *_playTimer;
     
+    DrawAction *_playingAction;
+    NSInteger _playingPointIndex;
+    NSInteger _playingActionIndex;    
 }
 
 @property(nonatomic, assign, getter = isDrawEnabled) BOOL drawEnabled; //default is yes
-@property(nonatomic, retain) NSMutableArray *paintList;
+//@property(nonatomic, retain) NSMutableArray *paintList;
+@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, readonly) DrawViewStatus status; //default is Drawing
@@ -53,10 +62,12 @@ typedef enum{
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 
 - (NSInteger)lastPaintPointCount;
-- (void)addPaint:(Paint *)paint play:(BOOL)play;
+//- (void)addPaint:(Paint *)paint play:(BOOL)play;
 - (void)clear;
 - (void)play;
 - (UIImage*)createImage;
 - (UIImage*)createImageByActions:(NSArray*)drawActions;
-
+- (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
+- (void)cleanActions;
+//- (void)playDrawActionList:(NSArray*)actionList;
 @end

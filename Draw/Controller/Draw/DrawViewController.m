@@ -174,7 +174,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetData
 {
     
-    [drawView clear];
+    [drawView cleanActions];
     [drawView setDrawEnabled:YES];
     drawGameService.drawDelegate = self;
     [self.guessMsgLabel setHidden:YES];
@@ -325,14 +325,14 @@ DrawViewController *GlobalGetDrawViewController()
         gameComplete = YES;
         NSLog(@"Game is Complete");
         UIImage *image = [drawView createImage];
-        ResultController *rc = [[ResultController alloc] initWithImage:image 
-                                                             paintList:drawView.paintList
-                                                              wordText:self.word.text 
-                                                                 score:self.word.score 
-                                                        hasRankButtons:NO];
-        
-        [self.navigationController pushViewController:rc animated:YES];
-        [rc release];
+//        ResultController *rc = [[ResultController alloc] initWithImage:image 
+//                                                             paintList:drawView.paintList
+//                                                              wordText:self.word.text 
+//                                                                 score:self.word.score 
+//                                                        hasRankButtons:NO];
+//        
+//        [self.navigationController pushViewController:rc animated:YES];
+//        [rc release];
         [self resetTimer];
     }
 }
