@@ -172,7 +172,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetData
 {
     
-    [drawView clear];
+    [drawView cleanActions];
     [drawView setDrawEnabled:YES];
     drawGameService.drawDelegate = self;
     [self.guessMsgLabel setHidden:YES];

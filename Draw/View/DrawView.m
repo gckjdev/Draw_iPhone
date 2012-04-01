@@ -30,7 +30,13 @@
 @synthesize drawActionList = _drawActionList;
 #pragma mark Action Funtion
 
-
+- (void)cleanActions
+{
+    [self.drawActionList removeAllObjects];
+    [self setNeedsDisplay];
+    _currentDrawAction = nil;
+    _playingAction = nil;
+}
 - (void)clear
 {
     DrawAction *drawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
@@ -281,7 +287,7 @@
             }
         }
         if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
-            ans = index + 1;
+            ans = index ;
         }
     }
     return 0;
@@ -307,7 +313,7 @@
         int i = 0;
 
         Paint *paint = drawAction.paint;
-        if (drawAction.type == DRAW_ACTION_TYPE_DRAW && paint) { //if is draw action 
+        if (drawAction.type == DRAW_ACTION_TYPE_DRAW) { //if is draw action 
             CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
             CGContextSetLineWidth(context, paint.width);
             for (i = 0; i < [paint pointCount]; ++ i) {
@@ -339,7 +345,7 @@
             }
         }else{ // if is clean action 
             //if is playing then play the next frame
-            if (self.status == Playing && drawAction == _playingAction && i == _playingPointIndex) {
+            if (self.status == Playing && drawAction == _playingAction ) {
                 CGContextStrokePath(context);            
                 _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                 return;

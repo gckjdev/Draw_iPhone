@@ -68,6 +68,6 @@ typedef enum{
 - (UIImage*)createImage;
 - (UIImage*)createImageByActions:(NSArray*)drawActions;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
-
+- (void)cleanActions;
 //- (void)playDrawActionList:(NSArray*)actionList;
 @end

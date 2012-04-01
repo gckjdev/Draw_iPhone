@@ -363,7 +363,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)resetData
 {
 
-    [showView clear];
+    [showView cleanActions];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
@@ -371,7 +371,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePlayerButtons];
     [self updatePickViewsWithWord:self.word lang:languageType];
     [self.guessMsgLabel setHidden:YES];
-
     [self.view sendSubviewToBack:showView];
     gameCompleted = NO;
 }
@@ -435,7 +434,9 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
-    [showView clear];
+//    [showView clear];
+    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    [showView addDrawAction:action play:YES];
 }
 
 
