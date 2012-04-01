@@ -7,28 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class DrawColor;
+@class ColorView;
+
 @protocol PickPenDelegate <NSObject>
 
 @optional
-- (void)didPickedColor:(DrawColor *)color;
+- (void)didPickedColorView:(ColorView *)colorView;
 - (void)didPickedLineWidth:(NSInteger)width;
+- (void)didPickedMoreColor;
 @end
 
-@interface PickPenView : UIView
+@interface PickPenView : UIImageView
 {
-    UIImageView *_backgroundView;
     id<PickPenDelegate> _delegate;
-    NSArray *_colorList;
-    NSMutableArray *colorButtonArray;
+    NSArray *colorViewArray;
     NSMutableArray *widthButtonArray;
-
+    NSInteger _currentWidth;
+    
 }
 @property(nonatomic, retain)UIImageView *backgroudView;
 @property(nonatomic, retain)id<PickPenDelegate>delegate;
 
-- (void)setColorList:(NSArray *)colorList; // the list should be DrawColor list, not the UIColor array
+
 - (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
-
-
+- (void)setColorViews:(NSArray *)colorViews;
+- (NSInteger)currentWidth;
 @end

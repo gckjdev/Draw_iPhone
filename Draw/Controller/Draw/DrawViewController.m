@@ -56,6 +56,7 @@ DrawViewController *GlobalGetDrawViewController()
     [clockButton release];
     [cleanButton release];
     [penButton release];
+    [pickPenView release];
     [super dealloc];
 }
 
@@ -163,8 +164,9 @@ DrawViewController *GlobalGetDrawViewController()
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
-        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
-        NSLog(@"DrawView did init");
+        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 370)];   
+        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(0, 0, 304, 120)];
+        pickPenView.delegate = self;
     }
     return self;
 }
@@ -185,7 +187,18 @@ DrawViewController *GlobalGetDrawViewController()
     [self setToolButtonEnabled:YES];
     gameComplete = NO;
 }
-
+- (void)initPickPenView
+{
+    pickPenView.center = drawView.center;
+    [self.view addSubview:pickPenView];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 20; i >= 5 ;i -= 5) {
+        NSNumber *number = [NSNumber numberWithInt:i];
+        [array addObject:number];
+    }
+    [pickPenView setLineWidths:array];
+    [array release];
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -193,7 +206,7 @@ DrawViewController *GlobalGetDrawViewController()
     [super viewDidLoad];
     drawView.delegate = self;
     [self.view addSubview:drawView];
-    
+    [self initPickPenView];
 //    ShareImageManager *imageManager = [ShareImageManager defaultManager];
 //    ColorView *cView = [ColorView colorViewWithDrawColor:nil image:[imageManager redColorImage] scale:ColorViewScaleLarge];
 //    cView.center = drawView.center;
@@ -337,16 +350,17 @@ DrawViewController *GlobalGetDrawViewController()
     
 }
 #pragma mark pick view delegate
+- (void)didPickedColorView:(ColorView *)colorView
+{
+    
+}
 - (void)didPickedLineWidth:(NSInteger)width
 {
-//    [self hidePickViews];
     [drawView setLineWidth:width];
 }
-
-- (void)didPickedColor:(DrawColor *)color
+- (void)didPickedMoreColor
 {
-//    [self hidePickViews];
-    [drawView setLineColor:color];
+    //present a buy color controller;
 }
 
 #pragma mark CAAnimation delegate

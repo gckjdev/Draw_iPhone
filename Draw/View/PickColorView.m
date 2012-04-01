@@ -31,7 +31,7 @@
     return self;
 }
 
-- (void)didClickButton:(UIButton *)button
+- (void)ClickColorView:(UIButton *)button
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedColor:)]) {
         DrawColor *color = [_colorList objectAtIndex:button.tag];
@@ -49,7 +49,7 @@
     return button;
 }
 
-- (void)removeAllButtons
+- (void)removeAllColorViews
 {
     for (UIButton *button in buttonArray) {
         [button removeFromSuperview];
@@ -68,7 +68,7 @@
         [_colorList retain];
     
         //create buttons and add buttons
-        [self removeAllButtons];
+        [self removeAllColorViews];
         int i = 0;
         CGFloat w = self.frame.size.width;
         CGFloat h = self.frame.size.height;
@@ -99,11 +99,7 @@
             x += width;
             ++ i;
         }
-        
     }
-    
-    
-//    UIButton 
 }
 
 @end

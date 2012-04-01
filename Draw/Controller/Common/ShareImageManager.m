@@ -111,4 +111,14 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"yellow_color.png"];    
 }
 
+- (UIImage *)selectedPointImage
+{
+    return [UIImage imageNamed:@"point_selected.png"];    
+}
+- (UIImage *)unSelectedPointImage
+{
+    return [UIImage imageNamed:@"point_unselect.png"];    
+}
+
+
 @end

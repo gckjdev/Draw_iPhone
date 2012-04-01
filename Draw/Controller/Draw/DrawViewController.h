@@ -12,14 +12,16 @@
 
 #import "DrawView.h"
 #import "DrawGameService.h"
-#import "PickLineWidthView.h"
-#import "PickColorView.h"
-
+//#import "PickLineWidthView.h"
+//#import "PickColorView.h"
+#import "PickPenView.h"
 
 @class Word;
-
-@interface DrawViewController : UIViewController<DrawViewDelegate, DrawGameServiceDelegate, PickLineWidthViewDelegate, PickColorViewDelegate> {
+@interface DrawViewController : UIViewController<DrawViewDelegate, 
+            DrawGameServiceDelegate, PickPenDelegate> {
+                
     DrawView *drawView;
+    PickPenView *pickPenView;
     DrawGameService *drawGameService;
     Word *_word;
     NSTimer *drawTimer;

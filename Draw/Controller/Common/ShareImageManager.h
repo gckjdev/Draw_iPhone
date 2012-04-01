@@ -40,5 +40,8 @@
 - (UIImage *)blueColorImage;
 - (UIImage *)yellowColorImage;
 
+- (UIImage *)selectedPointImage;
+- (UIImage *)unSelectedPointImage;
+
 
 @end
