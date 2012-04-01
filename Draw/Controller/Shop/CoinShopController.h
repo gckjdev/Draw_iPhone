@@ -12,6 +12,11 @@
 #import "PriceService.h"
 
 @interface CoinShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (retain, nonatomic) IBOutlet UILabel *coinNumberLabel;
 - (IBAction)clickBackButton:(id)sender;
+
++(CoinShopController *)instance;
+
 @end

@@ -42,3 +42,5 @@
 
 "kBuy" = "购买";
 "kShopMainTitle" = "商店";
+"kItemShopTitle"= "购买道具";
+"kCoinShopTitle"= "购买金币";

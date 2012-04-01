@@ -85,15 +85,13 @@
     [super dealloc];
 }
 - (IBAction)clickBuyCoinButton:(id)sender {
-    CoinShopController *cc = [[CoinShopController alloc] init];
+    CoinShopController *cc = [CoinShopController instance];
     [self.navigationController pushViewController:cc animated:YES];
-    [cc release];
 }
 
 - (IBAction)clickBuyItemButton:(id)sender {
-    ItemShopController *ic = [[ItemShopController alloc] init];
+    ItemShopController *ic = [ItemShopController instance];
     [self.navigationController pushViewController:ic animated:YES];
-    [ic release];
 }
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

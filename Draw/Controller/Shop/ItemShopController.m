@@ -7,13 +7,24 @@
 //
 
 #import "ItemShopController.h"
-//#import "ShoppingModel.h"
 #import "PriceService.h"
 #import "AccountManager.h"
 #import "ItemManager.h"
 #import "Item.h"
+#import "ShareImageManager.h"
+
+ItemShopController *staticItemController = nil;
 
 @implementation ItemShopController
+@synthesize titleLabel;
+
++(ItemShopController *)instance
+{
+    if (staticItemController == nil) {
+        staticItemController = [[ItemShopController alloc] init];
+    }
+    return staticItemController;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,12 +48,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     [[PriceService defaultService] fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:self];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    UIImageView *tableBg = [[UIImageView alloc] initWithFrame:self.dataTableView.bounds];
+    
+    [tableBg setImage:[imageManager showcaseBackgroundImage]];
+    [self.dataTableView setBackgroundView:tableBg];
+    [tableBg release];
+    
+    [self.titleLabel setText:NSLS(@"kItemShopTitle")];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //load the coin number
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -110,4 +135,8 @@
 }
 
 
+- (void)dealloc {
+    [titleLabel release];
+    [super dealloc];
+}
 @end

@@ -11,6 +11,9 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 
+#define ITEM_PRICE_CENTER CGPointMake(195,34)
+#define COIN_PRICE_CENTER CGPointMake(180,34)
+
 @implementation ShoppingCell
 @synthesize priceLabel;
 @synthesize coinImage;
@@ -43,7 +46,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 100.0f;
+    return 96.0f;
 }
 - (void)dealloc {
     [countLabel release];
@@ -68,6 +71,7 @@
     if (model.type == SHOPPING_COIN_TYPE) {
         countString = [NSString stringWithFormat:@"x%d", model.count];
         priceString = [NSString stringWithFormat:@"%@", [model.product localizedPrice]];
+        [self.priceLabel setCenter:COIN_PRICE_CENTER];
         [self.coinImage setHidden:NO];
         [self.toolImage setHidden:YES];        
         [self.costCoinImage setHidden:YES];
@@ -75,10 +79,11 @@
     }else if(model.type == SHOPPING_ITEM_TYPE)
     {
         countString = [NSString stringWithFormat:@"x%d",model.count];
-        priceString = [NSString stringWithFormat:@"x%.0f",model.price];
+        priceString = [NSString stringWithFormat:@"%.0f",model.price];
         [self.costCoinImage setHidden:NO];
         [self.coinImage setHidden:YES];
         [self.toolImage setHidden:NO];
+        [self.priceLabel setCenter:ITEM_PRICE_CENTER];
     }
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
     [self.buyButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];

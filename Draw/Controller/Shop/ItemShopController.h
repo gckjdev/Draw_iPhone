@@ -12,6 +12,8 @@
 #import "PriceService.h"
 
 @interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickBackButton:(id)sender;
 
++(ItemShopController *)instance;
 @end

@@ -10,8 +10,21 @@
 #import <StoreKit/StoreKit.h>
 #import "DrawGameService.h"
 #import "AccountService.h"
+#import "ShareImageManager.h"
+
+CoinShopController *staticCoinController;
 
 @implementation CoinShopController
+@synthesize titleLabel;
+@synthesize coinNumberLabel;
+
++(CoinShopController *)instance
+{
+    if (staticCoinController == nil) {
+        staticCoinController = [[CoinShopController alloc] init];
+    }
+    return staticCoinController;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,12 +60,31 @@
     NSString *userId = [[DrawGameService defaultService] userId];
     NSLog(@"userID = %@",userId);
 
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    UIImageView *tableBg = [[UIImageView alloc] initWithFrame:self.dataTableView.bounds];
+    
+    [tableBg setImage:[imageManager showcaseBackgroundImage]];
+    [self.dataTableView setBackgroundView:tableBg];
+    [tableBg release];
+    
+    [self.titleLabel setText:NSLS(@"kCoinShopTitle")];
+
+    
     // why here??? Benson
 //    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //load the coin number
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidUnload
 {
+    [self setCoinNumberLabel:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -125,4 +157,9 @@
     NSLog(@"did get balance: %d",balance);
 }
 
+- (void)dealloc {
+    [coinNumberLabel release];
+    [titleLabel release];
+    [super dealloc];
+}
 @end
