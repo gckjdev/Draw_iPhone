@@ -15,10 +15,13 @@
 
 @implementation ShareEditController
 @synthesize myImage = _myImage;
+@synthesize patternsGallery = _patternsGallery;
+@synthesize patternsArray = _patternsArray;
 
 - (void)dealloc
 {
     [_myImage release];
+    [_patternsGallery release];
     [super dealloc];
 }
 
@@ -49,17 +52,19 @@
 {
     [super viewDidLoad];
     UIImageView* view1 = [[[UIImageView alloc] initWithFrame:CGRectMake(130, 400, 60, 60)] autorelease];
-    [view1 setImage:self.myImage];
+    NSArray* patternsImageArray = [NSArray arrayWithObjects:[UIImage imageNamed:@"guess_pattern.png"], nil];
     [self.view addSubview:view1];
     SynthesisView* view = [[SynthesisView alloc] initWithFrame:CGRectMake(20, 75, 280, 280)];
     view.drawImage = self.myImage;
     view.patternImage = [UIImage imageNamed:@"guess_pattern.png"];
     [self.view addSubview:view];
+    [view1 setImage:[view createImage]];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setPatternsGallery:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

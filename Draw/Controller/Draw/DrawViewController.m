@@ -230,6 +230,8 @@ DrawViewController *GlobalGetDrawViewController()
     [self initPickPenView];
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:wordButton];
+    [self.view bringSubviewToFront:popupButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated

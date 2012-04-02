@@ -10,6 +10,8 @@
 
 @interface ShareEditController : UIViewController
 @property (retain, nonatomic) UIImage* myImage;
+@property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
+@property (retain, nonatomic) NSMutableArray* patternsArray;
 
 - (id)initWithImage:(UIImage*)anImage;
 @end
