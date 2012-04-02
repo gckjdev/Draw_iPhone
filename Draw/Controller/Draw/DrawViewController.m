@@ -196,6 +196,13 @@ DrawViewController *GlobalGetDrawViewController()
         [array addObject:number];
     }
     [pickPenView setLineWidths:array];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
+    for (int i = 0; i < 8; ++ i) {
+        ColorView *colorView = [ColorView colorViewWithDrawColor:[DrawColor redColor] image:[imageManager redColorImage] scale:ColorViewScaleLarge];
+        
+    }
+    
     [array release];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

@@ -138,33 +138,28 @@
         colorViewArray = colorViews;
         [colorViewArray retain];
         
-        //create buttons and add buttons
-//        [self removeAllColorViews];
-        int i = 0;
         CGFloat w = self.frame.size.width;
-        CGFloat h = self.frame.size.height;
-        
         NSInteger rowNumber = [colorViews count] / BUTTON_COUNT_PER_ROW ;
         if ([colorViews count] % BUTTON_COUNT_PER_ROW != 0) {
             rowNumber ++;
         }
         
         CGFloat space = w / (3.0 * BUTTON_COUNT_PER_ROW + 1);
-//        CGFloat width = 2 * space;
-//        CGFloat height = (h - (rowNumber + 1) * space) / rowNumber;
-
         CGFloat baseX = 50;
         CGFloat baseY = 20;    
         CGFloat x = 0, y = 0;
-        int k  = 0;
+        int l = 0, r = 0;
         for (ColorView *colorView in colorViews) {
             CGFloat width = colorView.frame.size.width;
             CGFloat height= colorView.frame.size.height;
-            x = baseX + width / 2 + (width + space) * (i++);
-            y = baseY + height / 2;
+            x = baseX + width / 2 + (width + space) * r;
+            y = baseY + height / 2 + (height + space) * l ;
+            colorView.center = CGPointMake(x, y);
+            l = (l+1) % rowNumber;
+            r = (r+1) % BUTTON_COUNT_PER_ROW;
+            [self addSubview:colorView];
         }
-    }
-        
+    }        
 }
 
 @end
