@@ -15,4 +15,5 @@
 
 @property(nonatomic, retain)UIImage *patternImage;
 @property(nonatomic, retain)UIImage *drawImage;
+- (UIImage*)createImage;
 @end
