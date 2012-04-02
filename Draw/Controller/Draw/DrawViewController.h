@@ -36,7 +36,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
-@property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;

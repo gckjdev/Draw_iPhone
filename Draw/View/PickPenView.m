@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setBackgroundColor:[UIColor yellowColor]];
+//        [self setBackgroundColor:[UIColor yellowColor]];
         widthButtonArray  = [[NSMutableArray alloc] init];
         self.userInteractionEnabled = YES;
     }

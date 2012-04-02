@@ -39,7 +39,6 @@ DrawViewController *GlobalGetDrawViewController()
 @implementation DrawViewController
 @synthesize popupButton;
 @synthesize eraserButton;
-@synthesize guessMsgLabel;
 @synthesize wordLabel;
 @synthesize clockButton;
 @synthesize cleanButton;
@@ -53,7 +52,6 @@ DrawViewController *GlobalGetDrawViewController()
 
     [_word release];
     [eraserButton release];
-    [guessMsgLabel release];
     [wordLabel release];
     [clockButton release];
     [cleanButton release];
@@ -81,19 +79,6 @@ DrawViewController *GlobalGetDrawViewController()
 
 #define PLAYER_BUTTON_TAG_START 1
 #define PLAYER_BUTTON_TAG_END 6
-
-//- (void)bringAllViewsToFront
-//{
-//    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
-//        UIView *button = [self.view viewWithTag:i];
-//        [self.view bringSubviewToFront:button];
-//    }
-//    [self.view bringSubviewToFront:guessMsgLabel];
-//    [self.view bringSubviewToFront:clockButton];
-//    [self.view bringSubviewToFront:drawView];
-//}
-
-
 
 - (void)setToolButtonEnabled:(BOOL)enabled
 {
@@ -188,7 +173,8 @@ DrawViewController *GlobalGetDrawViewController()
     if (self) {
         drawGameService = [DrawGameService defaultService];
         drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
-        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 280, 304, 120)];
+        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 285, 302, 122)];
+        [pickPenView setImage:[[ShareImageManager defaultManager] toolPopupImage]];
         pickPenView.delegate = self;
     }
     return self;
@@ -198,7 +184,6 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [drawView clearAllActions];
     drawGameService.drawDelegate = self;
-    [self.guessMsgLabel setHidden:YES];
     [pickPenView setHidden:YES];
     [popupButton setHidden:YES];
     [self.wordLabel setText:self.word.text];
@@ -264,7 +249,6 @@ DrawViewController *GlobalGetDrawViewController()
 
     [self setWord:nil];
     [self setEraserButton:nil];
-    [self setGuessMsgLabel:nil];
     [self setWordLabel:nil];
     [self setClockButton:nil];
     [self setCleanButton:nil];
@@ -323,13 +307,6 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
 }
 
-//- (void)popUpGuessMessage:(NSString *)message 
-//{
-//    [self.guessMsgLabel setText:message];
-//    [self.guessMsgLabel setHidden:NO];
-//    [self.view bringSubviewToFront:self.guessMsgLabel];
-//    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
-//}
 
 - (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
 {
@@ -434,11 +411,6 @@ DrawViewController *GlobalGetDrawViewController()
     //present a buy color controller;
 }
 
-#pragma mark CAAnimation delegate
-//animation delegate
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [self.guessMsgLabel setHidden:YES];
-}
+
 
 @end
