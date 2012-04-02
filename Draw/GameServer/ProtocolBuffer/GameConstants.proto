@@ -81,6 +81,7 @@ enum GameResultCode {
   // user errors
   ERROR_USERID_NULL = 100;
   ERROR_USER_CANNOT_START_GAME = 101;
+  ERROR_USER_NOT_IN_SESSION = 102;
     
   // session errors
   ERROR_NO_SESSION_ID = 200;

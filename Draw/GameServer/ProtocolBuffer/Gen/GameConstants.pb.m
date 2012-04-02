@@ -66,6 +66,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorJoinGame:
     case GameResultCodeErrorUseridNull:
     case GameResultCodeErrorUserCannotStartGame:
+    case GameResultCodeErrorUserNotInSession:
     case GameResultCodeErrorNoSessionId:
     case GameResultCodeErrorNextStateNotFound:
     case GameResultCodeErrorSessionidNull:
