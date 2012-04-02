@@ -59,7 +59,8 @@
 - (void)addTarget:(id)target action:(SEL)action
 {
     self.userInteractionEnabled = YES;
-    [self addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [super addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 @end

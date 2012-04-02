@@ -11,6 +11,8 @@
 #import "UserManager.h"
 @class Word;
 @class ShowDrawView;
+@class ShareImageManager;
+@class ToolView;
 @interface ShowDrawController : UIViewController<DrawGameServiceDelegate>
 {
     Word *_word;
@@ -21,17 +23,21 @@
     NSInteger retainCount;
     LanguageType languageType;
     BOOL gameCompleted;
+    
+    ShareImageManager *shareImageManager;
+    NSMutableArray *avatarArray;
+    ToolView *toolView;
 }
 
+@property (retain, nonatomic) IBOutlet UIButton *popupButton;
 @property(nonatomic, retain)Word *word;
-- (void)clickGuessDoneButton:(id)sender;
-@property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;
+
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
 @property (retain, nonatomic) NSString *candidateString;
 - (IBAction)clickRunAway:(id)sender;
-- (IBAction)clickBombButton:(id)sender;
-
+- (void)bomb:(id)sender;
+- (IBAction)clickGuessDoneButton:(id)sender;
 
 + (ShowDrawController *)instance;
 

@@ -47,7 +47,7 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize word = _word;
 
 #define DRAW_TIME 60
-#define MARK_FRAME CGRectMake(17,20,16,17)
+
 - (void)dealloc
 {
 
@@ -60,6 +60,8 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView release];
     [popupButton release];
     [turnNumberButton release];
+    [avatarArray release];
+    [drawView release];
     [super dealloc];
 }
 
