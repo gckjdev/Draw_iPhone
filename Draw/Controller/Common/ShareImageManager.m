@@ -133,5 +133,10 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"point_unselect.png"];    
 }
 
+- (UIImage *)toolPopupImage
+{
+    return [UIImage imageNamed:@"tool_popup.png"];    
+}
+
 
 @end

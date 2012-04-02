@@ -50,3 +50,4 @@
 "kRunAway" = "%@ run away!";
 "kGuessCorrect" = "Correct!";
 "kAllUserQuit" = "All users quit! Game Over!";
+"kConfirm" = "Confirm";

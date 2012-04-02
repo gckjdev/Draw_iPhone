@@ -46,6 +46,6 @@
 
 - (UIImage *)selectedPointImage;
 - (UIImage *)unSelectedPointImage;
-
+- (UIImage *)toolPopupImage;
 
 @end

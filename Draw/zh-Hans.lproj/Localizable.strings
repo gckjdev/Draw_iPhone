@@ -48,4 +48,4 @@
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜对了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
-
+"kConfirm" = "确定";
