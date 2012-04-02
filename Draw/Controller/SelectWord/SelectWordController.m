@@ -16,12 +16,12 @@
 #import "LocaleUtils.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
+#import "StableView.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
 @synthesize changeWordButton = _changeWordButton;
 @synthesize titleLabel = _titleLabel;
-@synthesize toolNumberButton = _toolNumberButton;
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
 
@@ -73,12 +73,6 @@
     
 }
 
-- (void)updateToolNumberButton:(NSInteger)number
-{
-    NSString *string = [NSString stringWithFormat:@"%d",number];
-    [self.toolNumberButton setTitle:string forState:UIControlStateNormal];
-}
-
 
 - (void)localeViewText
 {
@@ -86,11 +80,18 @@
     [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
 }
 
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    toolView = [[ToolView alloc] initWithNumber:2];
+//    toolView.frame = CGRectMake(228, 318, 39, 52);
+    toolView.center = CGPointMake(248, 344);
+    [self.changeWordButton setEnabled:(toolView.number > 0)];    
+    [self.view addSubview:toolView];
+
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     retainCount = PICK_WORD_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:NSLS(@"%d"),retainCount]];
@@ -98,8 +99,6 @@
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [self updateToolNumberButton:9];
-    
     [self localeViewText];
 }
 
@@ -112,7 +111,6 @@
     [self setWordArray:nil];
     [self setClockLabel:nil];
     [self setChangeWordButton:nil];
-    [self setToolNumberButton:nil];
     [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -129,13 +127,15 @@
     [_wordTableView release];
     [_clockLabel release];
     [_changeWordButton release];
-    [_toolNumberButton release];
     [_titleLabel release];
+    [toolView release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     [self.wordTableView reloadData];
+    [toolView decreaseNumber];
+    [self.changeWordButton setEnabled:(toolView.number > 0)];    
 }
 
 

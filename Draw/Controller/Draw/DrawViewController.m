@@ -12,8 +12,6 @@
 #import "DrawColor.h"
 #import "GameMessage.pb.h"
 #import "Word.h"
-#import "PickColorView.h"
-#import "PickLineWidthView.h"
 #import "GameSessionUser.h"
 #import "GameSession.h"
 #import "LocaleUtils.h"

@@ -94,6 +94,10 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"tool.png"];
 }
 
+- (UIImage *)toolNumberImage
+{
+    return [UIImage imageNamed:@"number.png"];
+}
 
 #pragma makr - Color Image
 

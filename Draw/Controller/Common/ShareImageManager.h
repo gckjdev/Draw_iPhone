@@ -50,5 +50,6 @@
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
+- (UIImage *)toolNumberImage;
 
 @end
