@@ -94,7 +94,7 @@
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     retainCount = PICK_WORD_TIME;
-    [self.clockLabel setText:[NSString stringWithFormat:NSLS(@"%d"),retainCount]];
+    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
