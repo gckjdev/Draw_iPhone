@@ -107,6 +107,7 @@ static DrawGameService* _defaultService;
 - (void)saveDrawActionType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
 {
     DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
+    NSLog(@"save an action:%d", aType);
     [self.drawActionList addObject:action];
     [action release];
 }
@@ -300,14 +301,15 @@ static DrawGameService* _defaultService;
             if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
                 [_drawDelegate didReceiveDrawData:message];
             }
+            NSArray* array = [[message notification] pointsList];
+            int color = [[message notification] color];
+            float width = [[message notification] width];
+            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array];
+            [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
+            [paint release];
         }
         
-        NSArray* array = [[message notification] pointsList];
-        int color = [[message notification] color];
-        float width = [[message notification] width];
-        Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array];
-        [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
-        [paint release];
+        
     });
 }
 
