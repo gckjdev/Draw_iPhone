@@ -92,6 +92,7 @@
 - (void)updateByGameNotification:(GeneralNotification*)notification
 {
     if ([[notification currentPlayUserId] length] > 0){
+        [self.currentTurn setLastPlayUserId:self.currentTurn.currentPlayUserId];
         [self.currentTurn setCurrentPlayUserId:[notification currentPlayUserId]];
     }
     
@@ -207,5 +208,9 @@
     return nil;
 }
 
+- (NSString *)drawingUserId
+{
+    return [self.currentTurn currentPlayUserId];
+}
 
 @end

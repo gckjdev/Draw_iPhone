@@ -19,6 +19,7 @@
     NSInteger retainCount;
     DrawGameService *drawGameService;
     BOOL hasRankButtons;
+    BOOL _isMyPaint;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
@@ -39,5 +40,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
 - (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has;
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has isMyPaint:(BOOL)isMyPaint;
 
 @end

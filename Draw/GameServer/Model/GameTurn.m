@@ -16,6 +16,7 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize currentPlayUserId = _currentPlayUserId;
 @synthesize nextPlayUserId = _nextPlayUserId;
+@synthesize lastPlayUserId = _lastPlayUserId;
 @synthesize word = _word;
 @synthesize level = _level;
 
@@ -24,6 +25,7 @@
     [_word release];
     [_currentPlayUserId release];
     [_nextPlayUserId release];
+    [_lastPlayUserId release];
     [_playResultList release];
     [_userCommentList release];
     [_drawActionList release];
