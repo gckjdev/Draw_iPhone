@@ -198,8 +198,10 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
-        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
-                                                          port:[[DrawGameService defaultService] serverPort]];
+        // disable this policy at this moment...
+        
+//        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
+//                                                          port:[[DrawGameService defaultService] serverPort]];
     }
 }
 
@@ -226,6 +228,8 @@
 
     [[DrawGameService defaultService] setServerAddress:server.serverAddress];
     [[DrawGameService defaultService] setServerPort:server.port];    
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
 }
@@ -239,6 +243,7 @@
     
     return app.homeController;
 }
+
 + (void)returnRoom:(UIViewController*)superController
 {
     [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
