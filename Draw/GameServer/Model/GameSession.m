@@ -207,5 +207,9 @@
     return nil;
 }
 
+- (NSString *)drawingUserId
+{
+    return [self.currentTurn currentPlayUserId];
+}
 
 @end

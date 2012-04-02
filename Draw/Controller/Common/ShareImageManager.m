@@ -138,5 +138,17 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"tool_popup.png"];    
 }
 
+- (UIImage *)drawingMarkSmallImage
+{
+    return [UIImage imageNamed:@"print_tip.png"];        
+}
+- (UIImage *)drawingMarkLargeImage
+{
+    return [UIImage imageNamed:@"print_tipbig.png"];            
+}
+- (UIImage *)scoreBackgroundImage
+{
+    return [UIImage imageNamed:@"score.png"];            
+}
 
 @end

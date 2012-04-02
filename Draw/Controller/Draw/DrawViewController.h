@@ -15,6 +15,7 @@
 #import "PickPenView.h"
 
 @class Word;
+@class ShareImageManager;
 @interface DrawViewController : UIViewController<DrawViewDelegate, 
             DrawGameServiceDelegate, PickPenDelegate> {
                 
@@ -25,21 +26,24 @@
     NSTimer *drawTimer;
     NSInteger retainCount;
     BOOL gameComplete;
+    ShareImageManager *shareImageManager;
 }
 
-
+- (IBAction)clickChangeRoomButton:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
 
 
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
-@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
+@property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet UIButton *penButton;
+
 
 @property (retain, nonatomic) Word *word;
 

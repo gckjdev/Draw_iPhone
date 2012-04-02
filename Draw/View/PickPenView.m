@@ -9,6 +9,8 @@
 #import "PickPenView.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
+#import "AnimationManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PickPenView
 @synthesize delegate = _delegate;
@@ -18,7 +20,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        [self setBackgroundColor:[UIColor yellowColor]];
         widthButtonArray  = [[NSMutableArray alloc] init];
         self.userInteractionEnabled = YES;
     }
@@ -30,17 +31,30 @@
     return _currentWidth;
 }
 
-- (void)clickButton:(id)sender
+//- (void)dismiss
+//{
+//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:2];
+//    animation.delegate = self;
+//    [self.layer addAnimation:animation forKey:@"dismiss"];
+//}
+
+- (void)selectWidthButton:(UIButton *)button
 {
-    UIButton *button = (UIButton *)sender;
     for (UIButton *button in widthButtonArray) {
         [button setSelected:NO];
     }
     [button setSelected:YES];
-    [self setHidden:YES];
+    self.hidden = YES;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedLineWidth:)]) {
         [self.delegate didPickedLineWidth:button.tag];
     }
+    
+}
+
+- (void)clickButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    [self selectWidthButton:button];
 }
 
 - (void)removeAllWidthButtons
@@ -90,7 +104,7 @@
             _currentWidth = width.integerValue;
             selectedButton = button;
         }
-        [self clickButton:selectedButton];
+        [self selectWidthButton:selectedButton];
     }
 }
 
@@ -144,5 +158,6 @@
         }
     } 
 }
+
 
 @end
