@@ -33,6 +33,7 @@
 - (IBAction)clickPenButton:(id)sender;
 
 
+@property (retain, nonatomic) IBOutlet UIButton *popupButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UILabel *guessMsgLabel;

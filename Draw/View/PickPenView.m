@@ -30,11 +30,6 @@
     return _currentWidth;
 }
 
-//- (void)setColorViews:(NSArray *)colorViews
-//{
-//    
-//}
-
 - (void)clickButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
@@ -42,6 +37,7 @@
         [button setSelected:NO];
     }
     [button setSelected:YES];
+    [self setHidden:YES];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedLineWidth:)]) {
         [self.delegate didPickedLineWidth:button.tag];
     }
@@ -103,50 +99,34 @@
 
 - (void)clickColorView:(id)sender
 {
+    [self setHidden:YES];
     ColorView *colorView = (ColorView *)sender;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedColor:)]) {
-//        DrawColor *color = [_colorList objectAtIndex:button.tag];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedColorView:)]) {
         [self.delegate didPickedColorView:colorView];
     }
 }
 
-- (UIButton *)addAndSetButtonWith:(DrawColor *)color
+
+- (void)removeAllColorViews
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-
-    [self addSubview:button];
-    [color addObject:button];
-    [button addTarget:self action:@selector(didClickButton:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
+    for (ColorView *colorView in colorViewArray) {
+        [colorView removeFromSuperview];
+    }
 }
-
-//- (void)removeAllColorViews
-//{
-//    for (ColorView *colorView in colorViewArray) {
-//        [colorView removeFromSuperview];
-//    }
-//    [colorViewArray removeAllObjects];
-//}
 
 #define BUTTON_COUNT_PER_ROW 5
 
 - (void)setColorViews:(NSArray *)colorViews
 {
-    
     if (colorViews != colorViewArray) {
+        [self removeAllColorViews];
         [colorViewArray release];
         colorViewArray = colorViews;
         [colorViewArray retain];
-        
-        CGFloat w = self.frame.size.width;
-        NSInteger rowNumber = [colorViews count] / BUTTON_COUNT_PER_ROW ;
-        if ([colorViews count] % BUTTON_COUNT_PER_ROW != 0) {
-            rowNumber ++;
-        }
-        
-        CGFloat space = w / (3.0 * BUTTON_COUNT_PER_ROW + 1);
-        CGFloat baseX = 50;
-        CGFloat baseY = 20;    
+        CGFloat baseX = 78;
+        CGFloat baseY = 10;            
+        CGFloat w = self.frame.size.width - baseX;
+        CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW + 5);
         CGFloat x = 0, y = 0;
         int l = 0, r = 0;
         for (ColorView *colorView in colorViews) {
@@ -155,11 +135,14 @@
             x = baseX + width / 2 + (width + space) * r;
             y = baseY + height / 2 + (height + space) * l ;
             colorView.center = CGPointMake(x, y);
-            l = (l+1) % rowNumber;
             r = (r+1) % BUTTON_COUNT_PER_ROW;
+            if (r == 0) {
+                l ++;
+            }
             [self addSubview:colorView];
+            [colorView addTarget:self action:@selector(clickColorView:) forControlEvents:UIControlEventTouchUpInside];
         }
-    }        
+    } 
 }
 
 @end

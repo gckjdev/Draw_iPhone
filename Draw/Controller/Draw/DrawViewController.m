@@ -36,6 +36,7 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 @implementation DrawViewController
+@synthesize popupButton;
 @synthesize eraserButton;
 @synthesize guessMsgLabel;
 @synthesize wordLabel;
@@ -57,6 +58,7 @@ DrawViewController *GlobalGetDrawViewController()
     [cleanButton release];
     [penButton release];
     [pickPenView release];
+    [popupButton release];
     [super dealloc];
 }
 
@@ -97,6 +99,8 @@ DrawViewController *GlobalGetDrawViewController()
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
     [drawView setDrawEnabled:enabled];
+    [penButton setEnabled:enabled];
+    [pickPenView setHidden:YES];
 }
 
 - (NSInteger)userCount
@@ -105,6 +109,24 @@ DrawViewController *GlobalGetDrawViewController()
     return [session.userList count];
 }
 
+- (UIButton *)playerButtonForUserId:(NSString *)userId
+{
+    NSInteger i = PLAYER_BUTTON_TAG_START;
+    NSInteger tag = -1;
+    GameSession *session = [[DrawGameService defaultService] session];
+    for (GameSessionUser *user in session.userList) {
+        if([user.userId isEqualToString:userId])
+        {
+            tag = i;
+        }
+        ++ i;
+    }
+    if (tag != -1 && tag <= PLAYER_BUTTON_TAG_END) {
+        return (UIButton *)[self.view viewWithTag:tag];
+    }
+    return nil;
+
+}
 - (void)makePlayerButtons
 {
     for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
@@ -164,8 +186,8 @@ DrawViewController *GlobalGetDrawViewController()
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
-        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 370)];   
-        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(0, 0, 304, 120)];
+        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
+        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 280, 304, 120)];
         pickPenView.delegate = self;
     }
     return self;
@@ -176,6 +198,7 @@ DrawViewController *GlobalGetDrawViewController()
     [drawView clearAllActions];
     drawGameService.drawDelegate = self;
     [self.guessMsgLabel setHidden:YES];
+    [pickPenView setHidden:YES];
     [self.wordLabel setText:self.word.text];
     retainCount = DRAW_TIME;
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
@@ -187,23 +210,26 @@ DrawViewController *GlobalGetDrawViewController()
 }
 - (void)initPickPenView
 {
-    pickPenView.center = drawView.center;
     [self.view addSubview:pickPenView];
-    pickPenView.hidden = YES;
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
+    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     for (int i = 20; i >= 5 ;i -= 5) {
         NSNumber *number = [NSNumber numberWithInt:i];
-        [array addObject:number];
+        [widthArray addObject:number];
     }
-    [pickPenView setLineWidths:array];
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [pickPenView setLineWidths:widthArray];
+    [widthArray release];
     
-    for (int i = 0; i < 8; ++ i) {
-        ColorView *colorView = [ColorView colorViewWithDrawColor:[DrawColor redColor] image:[imageManager redColorImage] scale:ColorViewScaleLarge];
-        
-    }
-    
-    [array release];
+    [colorViewArray addObject:[ColorView blackColorView]];
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+
+    [pickPenView setColorViews:colorViewArray];
+    [colorViewArray release];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -213,11 +239,8 @@ DrawViewController *GlobalGetDrawViewController()
     drawView.delegate = self;
     [self.view addSubview:drawView];
     [self initPickPenView];
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-//    ColorView *cView = [ColorView colorViewWithDrawColor:nil image:[imageManager redColorImage] scale:ColorViewScaleLarge];
-//    cView.center = drawView.center;
-//    [drawView addSubview:cView];
-    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.popupButton setBackgroundImage:[imageManager popupImage] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -244,6 +267,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self setClockButton:nil];
     [self setCleanButton:nil];
     [self setPenButton:nil];
+    [self setPopupButton:nil];
     [super viewDidUnload];
 }
 
@@ -263,23 +287,20 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 
-
-
-
 - (IBAction)clickRedraw:(id)sender {
-    //send clean request.
     [drawGameService cleanDraw];
     [drawView addCleanAction];
+    [pickPenView setHidden:YES];
 }
 
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
+    [pickPenView setHidden:YES];
 }
 
 - (IBAction)clickPenButton:(id)sender {
+    [pickPenView setHidden:!pickPenView.hidden];
 }
-
-
 
 - (void)didDrawedPaint:(Paint *)paint
 {
@@ -297,7 +318,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didStartedTouch
 {
-//    [self hidePickViews];
+    [pickPenView setHidden:YES];
 }
 
 - (void)popUpGuessMessage:(NSString *)message
@@ -307,6 +328,8 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view bringSubviewToFront:self.guessMsgLabel];
     [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
 }
+
+
 
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
 {
@@ -357,7 +380,8 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark pick view delegate
 - (void)didPickedColorView:(ColorView *)colorView
 {
-    
+    NSLog(@"did didPickedColorView");
+    [drawView setLineColor:colorView.drawColor];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {

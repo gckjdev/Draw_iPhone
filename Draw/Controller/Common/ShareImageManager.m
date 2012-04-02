@@ -110,6 +110,19 @@ static UIImage* _showcaseBackgroundImage;
 {
     return [UIImage imageNamed:@"yellow_color.png"];    
 }
+- (UIImage *)blackColorImage
+{
+    return [UIImage imageNamed:@"black_color.png"];    
+}
+- (UIImage *)addColorImage
+{
+    return [UIImage imageNamed:@"add_color.png"];        
+}
+
+- (UIImage *)popupImage
+{
+    return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
+}
 
 - (UIImage *)selectedPointImage
 {
