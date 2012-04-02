@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 #import "DrawView.h"
 #import "DrawGameService.h"
 #import "PickPenView.h"
@@ -48,7 +46,6 @@
 
 
 + (DrawViewController *)instance;
-
 @end
 
 
