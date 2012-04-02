@@ -49,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.myImageView setImage:self.myImage];
+    UIView* view = [[UIView alloc] initWithFrame:self.myImageView.frame];
     // Do any additional setup after loading the view from its nib.
 }
 

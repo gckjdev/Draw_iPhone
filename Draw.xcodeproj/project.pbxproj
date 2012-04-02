@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C29C12A41529C7EB009B9E5F /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12A31529C7EB009B9E5F /* SynthesisView.m */; };
+		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -425,6 +427,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C29C12A21529C7EB009B9E5F /* SynthesisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesisView.h; sourceTree = "<group>"; };
+		C29C12A31529C7EB009B9E5F /* SynthesisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesisView.m; sourceTree = "<group>"; };
+		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -2295,6 +2300,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */,
 				CAEA70091526F2FD00B3D206 /* point_selected@2x.png */,
 				CAEA700F1527017D00B3D206 /* back@2x.png */,
 				CAEA700A1526F2FF00B3D206 /* point_unselect@2x.png */,
@@ -2674,6 +2680,8 @@
 				CA9F73E415280FB300DB55B6 /* PickPenView.m */,
 				CA0995CC15299C6600A53CB0 /* StableView.h */,
 				CA0995CD15299C6700A53CB0 /* StableView.m */,
+				C29C12A21529C7EB009B9E5F /* SynthesisView.h */,
+				C29C12A31529C7EB009B9E5F /* SynthesisView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2991,6 +2999,7 @@
 				CAEA700D1526F30200B3D206 /* point_unselect@2x.png in Resources */,
 				CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */,
 				CAEA70101527017F00B3D206 /* back@2x.png in Resources */,
+				C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3256,6 +3265,7 @@
 				CAF25AE415289707002D79EE /* DrawView.m in Sources */,
 				CAF25AE515289707002D79EE /* ShowDrawView.m in Sources */,
 				CA0995CE15299C6700A53CB0 /* StableView.m in Sources */,
+				C29C12A41529C7EB009B9E5F /* SynthesisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

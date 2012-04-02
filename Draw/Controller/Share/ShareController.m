@@ -31,7 +31,6 @@
     [paintsFilter release];
     [gallery release];
     [_paints release];
-    [_selectedPaints release];
     [super dealloc];
 }
 
@@ -39,34 +38,17 @@
 {
     [self.paints removeAllObjects];
     [self.paints setArray:[[MyPaintManager defaultManager] findAllPaints]];
-//    for (MyPaint* paint in allPaints) {
-//        NSString* paintName = [paint image];
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {            
-//            NSData* imageData = [[NSData alloc] initWithContentsOfFile:paintName];
-//            UIImage* image = [UIImage imageWithData:imageData];
-//            [self.paints addObject:image];         
-//        }
-//    }
 }
 
 - (void)loadMyPaints
 {
     [self.paints removeAllObjects];
     [self.paints setArray:[[MyPaintManager defaultManager] findOnlyMyPaints]];
-//    for (MyPaint* paint in self.paints) {
-//        NSString* paintName = [paint image];
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {            
-//            NSData* imageData = [[NSData alloc] initWithContentsOfFile:paintName];
-//            UIImage* image = [UIImage imageWithData:imageData];
-//            [self.paints addObject:image];         
-//        }
-//    }
 }
 
 - (void)popTipsWithIndex:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
-    [_selectedPaints removeAllObjects];
     _currentSelectedPaint = btn.tag-BUTTON_INDEX_OFFSET;
     UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"Options") delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Share") otherButtonTitles:NSLS(@"Replay"), NSLS(@"Delete"), nil];
     [tips showInView:self.view];
@@ -95,7 +77,9 @@ enum {
 {
     switch (buttonIndex) {
         case SHARE: {
-            UIImage* myImage = [[_selectedPaints allObjects] objectAtIndex:0];
+            MyPaint* myPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+            NSData* imageData = [NSData dataWithContentsOfFile:myPaint.image];
+            UIImage* myImage = [UIImage imageWithData:imageData];
             ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
@@ -132,7 +116,7 @@ enum {
             if (result && [[NSFileManager defaultManager] fileExistsAtPath:currentPaint.image]) {
                 [[NSFileManager defaultManager] removeItemAtPath:currentPaint.image error:nil];
             }
-            [self changeGalleryFielter:nil]; 
+            [self.paints removeObjectAtIndex:_currentSelectedPaint];
             [self.gallery reloadData];
         }
             break;
@@ -212,7 +196,6 @@ enum {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _paints = [[NSMutableArray alloc] init];
-        _selectedPaints = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -220,7 +203,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _paints = [[NSMutableArray alloc] initWithArray:[[MyPaintManager defaultManager] findAllPaints]];
+    [_paints setArray:[[MyPaintManager defaultManager] findAllPaints]];
 
     // Do any additional setup after loading the view from its nib.
 }
