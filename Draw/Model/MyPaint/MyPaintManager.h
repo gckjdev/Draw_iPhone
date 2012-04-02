@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class MyPaint;
 
 @interface MyPaintManager : NSObject
 
@@ -22,5 +23,5 @@
 - (NSArray*)findAllPaints;
 - (BOOL)deleteAllPaintsAtIndex:(NSInteger)index;
 - (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index;
-
+- (BOOL)deleteMyPaints:(MyPaint*)paint;
 @end

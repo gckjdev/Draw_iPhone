@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ShareController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
-    NSMutableSet* _selectedPaints;
     NSMutableArray *_paints;
     int _currentSelectedPaint;
 }
