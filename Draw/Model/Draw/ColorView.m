@@ -8,6 +8,7 @@
 
 #import "ColorView.h"
 #import "DrawColor.h"
+#import "ShareImageManager.h"
 
 @implementation ColorView
 @synthesize drawColor = _drawColor;
@@ -30,10 +31,27 @@
         self = [super initWithFrame:SCALE_SMALL_FRAME];
     }
     if (self) {
+        _scale = scale;
         [self setImage:image];
         [self setDrawColor:drawColor];
     }
     return self;
+}
+
+- (void)setScale:(ColorViewScale)scale
+{
+    _scale = scale;
+    CGPoint center = self.center;
+    if (scale == ColorViewScaleLarge) {
+        [self setFrame:SCALE_LARGE_FRAME];
+    }else{
+        [self setFrame:SCALE_SMALL_FRAME];
+    }
+    self.center = center;
+}
+- (ColorViewScale)scale
+{
+    return _scale;
 }
 
 + (id)colorViewWithDrawColor:(DrawColor *)drawColor 
@@ -43,6 +61,30 @@
     return [[[ColorView alloc] initWithDrawColor:drawColor 
                                            image:image 
                                            scale:scale]autorelease];
+}
+
++ (ColorView *)blueColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor blueColor] image:[manager blueColorImage] scale:ColorViewScaleSmall];
+}
++ (ColorView *)redColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor redColor] image:[manager redColorImage] scale:ColorViewScaleSmall];
+    
+}
++ (ColorView *)blackColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor blackColor] image:[manager blackColorImage] scale:ColorViewScaleSmall];
+    
+}
++ (ColorView *)yellowColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor yellowColor] image:[manager yellowColorImage] scale:ColorViewScaleSmall];
+    
 }
 
 @end

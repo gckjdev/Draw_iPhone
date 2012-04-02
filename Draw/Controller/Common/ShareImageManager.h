@@ -31,6 +31,8 @@
 - (UIImage *)coinImage;
 - (UIImage *)toolImage;
 
+- (UIImage *)popupImage;
+
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
@@ -39,6 +41,8 @@
 - (UIImage *)redColorImage;
 - (UIImage *)blueColorImage;
 - (UIImage *)yellowColorImage;
+- (UIImage *)blackColorImage;
+- (UIImage *)addColorImage;
 
 - (UIImage *)selectedPointImage;
 - (UIImage *)unSelectedPointImage;
