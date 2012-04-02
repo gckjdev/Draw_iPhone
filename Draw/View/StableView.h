@@ -33,11 +33,13 @@ typedef enum {
     UIButton *markButton;
     AvatarType type;
     HJManagedImageV *imageView;
+    NSString *_userId;
 }
 
 - (void)setUrlString:(NSString *)urlString;
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType;
 @property(nonatomic, assign) NSInteger score;
+@property(nonatomic, retain) NSString *userId;
 //- (void)addTarget:(id)target action:(SEL)action;
 @end
 

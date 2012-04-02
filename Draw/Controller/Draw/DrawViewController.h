@@ -27,17 +27,16 @@
     NSInteger retainCount;
     BOOL gameComplete;
     ShareImageManager *shareImageManager;
+    NSMutableArray *avatarArray;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
-
-
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
-
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
