@@ -28,7 +28,7 @@
 
 "kQuickQuick" = "Quick";
 
-"kWaitForMoreUsers" = "Waiting...";
+"kWaitForMoreUsers" = "Waiting";
 
 "kStartAfter" = "Wait For Start (%d)";
 
