@@ -8,6 +8,8 @@
 
 #import "StableView.h"
 #import "ShareImageManager.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @implementation ToolView
 - (id)initWithNumber:(NSInteger)number
@@ -59,4 +61,68 @@
     self.userInteractionEnabled = YES;
     [self addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 }
+
+@end
+
+
+@implementation AvatarView
+@synthesize score = _score;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType
+{
+    self = [super initWithFrame:CGRectMake(0, 0, 32, 32)];
+    if (self) {
+        type = aType;
+        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+        [imageView clear];
+        [imageView setUrl:[NSURL URLWithString:urlString]];
+        [GlobalGetImageCache() manage:imageView];
+        [self addSubview:imageView];
+        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [markButton retain];
+        markButton.frame = CGRectMake(17,20,16,17);
+        [self addSubview:markButton];
+        markButton.userInteractionEnabled = NO;
+        ShareImageManager *manager = [ShareImageManager defaultManager];
+        if (type == Drawer) {
+            [markButton setImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
+        }else{
+            [markButton setBackgroundImage:[manager scoreBackgroundImage] forState:UIControlStateNormal];            
+            [markButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
+            UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 2, 0);
+            [markButton setTitleEdgeInsets:insets];
+            [self setScore:0];
+        }
+    }
+    return self;
+}
+
+
+- (void)setUrlString:(NSString *)urlString
+{
+    [imageView clear];
+    [imageView setUrl:[NSURL URLWithString:urlString]];
+    [GlobalGetImageCache() manage:imageView];
+}
+- (void)dealloc
+{
+    [imageView release];
+    [markButton release];
+    [super dealloc];
+}
+
+- (void)setScore:(NSInteger)score
+{
+    _score = score;
+    if (type == Drawer) {
+        return;
+    }
+    if (score > 0) {
+        markButton.hidden = NO;
+        [markButton setTitle:[NSString stringWithFormat:@"%d",score] forState:UIControlStateNormal];
+    }else{
+         markButton.hidden = YES;   
+        [markButton setTitle:nil forState:UIControlStateNormal];
+    }
+}
+
 @end
