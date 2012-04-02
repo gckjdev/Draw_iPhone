@@ -54,6 +54,16 @@ enum {
     DELETE,
     CANCEL
 };
+
+- (void)quitReplay
+{
+    UIButton* btn = (UIButton*)[self.view viewWithTag:11111];
+    ShowDrawView* view = (ShowDrawView*)[self.view viewWithTag:22222];
+    UIView* bck = [self.view viewWithTag:33333];
+    [btn removeFromSuperview];
+    [bck removeFromSuperview];
+    [view removeFromSuperview];
+}
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
@@ -78,7 +88,13 @@ enum {
             NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
             [replayView setDrawActionList:actionList];
             [replayView play];
-            
+            UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+            [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:quit];
+            [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+            quit.tag = 11111;
+            replayView.tag = 22222;
+            background.tag = 33333;
             [replayView release];
             [background release];
             
