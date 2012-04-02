@@ -27,6 +27,7 @@
     [aCoder encodeFloat:_green forKey:@"green"];
     [aCoder encodeFloat:_blue forKey:@"blue"];
     [aCoder encodeFloat:_alpha forKey:@"alpha"];
+//    [aCoder encodeObject:_color forKey:@"color"];
     
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -37,6 +38,8 @@
         _green = [aDecoder decodeFloatForKey:@"green"];
         _blue = [aDecoder decodeFloatForKey:@"blue"];
         _alpha = [aDecoder decodeFloatForKey:@"alpha"];
+        self.color = [UIColor colorWithRed:_red green:_green blue:_blue alpha:_alpha];
+//        _color = [aDecoder decodeObjectForKey:@"color"];
     }
     return self;
 }

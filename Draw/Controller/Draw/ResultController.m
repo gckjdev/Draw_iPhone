@@ -71,7 +71,7 @@
         self.wordText = aWordText;
         self.score = aScore;
         hasRankButtons = has;
-        _isMyPaint = _isMyPaint;
+        _isMyPaint = isMyPaint;
     }
     return self;
 }
