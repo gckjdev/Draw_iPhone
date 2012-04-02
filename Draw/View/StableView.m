@@ -67,6 +67,8 @@
 
 @implementation AvatarView
 @synthesize score = _score;
+@synthesize userId = _userId;
+
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType
 {
     self = [super initWithFrame:CGRectMake(0, 0, 32, 32)];
@@ -92,6 +94,7 @@
             [markButton setTitleEdgeInsets:insets];
             [self setScore:0];
         }
+        self.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
@@ -107,6 +110,7 @@
 {
     [imageView release];
     [markButton release];
+    [_userId release];
     [super dealloc];
 }
 
