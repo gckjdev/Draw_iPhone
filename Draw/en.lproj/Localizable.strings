@@ -45,3 +45,8 @@
 "kShopMainTitle" = "Shop";
 "kItemShopTitle"= "Item Shop";
 "kCoinShopTitle"= "Coin Shop";
+
+
+"kRunAway" = "%@ run away!";
+"kGuessCorrect" = "Correct!";
+"kAllUserQuit" = "All users quit! Game Over!";

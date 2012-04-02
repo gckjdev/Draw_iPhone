@@ -61,7 +61,7 @@
 						<string key="NSFrame">{{0, 42}, {320, 370}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="993331354"/>
+						<reference key="NSNextKeyView" ref="640944265"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -293,7 +293,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">小鸟</string>
-						<object class="NSColor" key="IBUITextColor">
+						<object class="NSColor" key="IBUITextColor" id="375456156">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -486,7 +486,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="993331354">
+					<object class="IBUIButton" id="640944265">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{68, 238}, {219, 37}}</string>
@@ -496,15 +496,24 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">3</int>
+						<string key="IBUINormalTitle">棒棒糖</string>
 						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						<reference key="IBUINormalTitleColor" ref="375456156"/>
+						<reference key="IBUINormalTitleShadowColor" ref="373991744"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">guess_popup@2x.png</string>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="309240068"/>
-						<reference key="IBUIFontDescription" ref="816856786"/>
-						<reference key="IBUIFont" ref="698157536"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">1</int>
+							<double key="pointSize">14</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">14</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -586,7 +595,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">popupButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="993331354"/>
+						<reference key="destination" ref="640944265"/>
 					</object>
 					<int key="connectionID">103</int>
 				</object>
@@ -663,7 +672,7 @@
 							<reference ref="220956365"/>
 							<reference ref="204940874"/>
 							<reference ref="823380676"/>
-							<reference ref="993331354"/>
+							<reference ref="640944265"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -759,7 +768,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">102</int>
-						<reference key="object" ref="993331354"/>
+						<reference key="object" ref="640944265"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</object>
@@ -970,6 +979,7 @@
 				<string>changeroom@2x.png</string>
 				<string>clean@2x.png</string>
 				<string>eraser@2x.png</string>
+				<string>guess_popup@2x.png</string>
 				<string>paper@2x.png</string>
 				<string>round@2x.png</string>
 				<string>timeset@2x.png</string>
@@ -983,6 +993,7 @@
 				<string>{74, 74}</string>
 				<string>{55, 66}</string>
 				<string>{42, 67}</string>
+				<string>{57, 67}</string>
 				<string>{640, 960}</string>
 				<string>{69, 70}</string>
 				<string>{76, 74}</string>

@@ -25,6 +25,7 @@
 #import "ShowDrawController.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
+#import "UIButtonExt.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -199,6 +200,7 @@ DrawViewController *GlobalGetDrawViewController()
     drawGameService.drawDelegate = self;
     [self.guessMsgLabel setHidden:YES];
     [pickPenView setHidden:YES];
+    [popupButton setHidden:YES];
     [self.wordLabel setText:self.word.text];
     retainCount = DRAW_TIME;
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
@@ -321,26 +323,66 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
 }
 
-- (void)popUpGuessMessage:(NSString *)message
+//- (void)popUpGuessMessage:(NSString *)message 
+//{
+//    [self.guessMsgLabel setText:message];
+//    [self.guessMsgLabel setHidden:NO];
+//    [self.view bringSubviewToFront:self.guessMsgLabel];
+//    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
+//}
+
+- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
 {
-    [self.guessMsgLabel setText:message];
-    [self.guessMsgLabel setHidden:NO];
-    [self.view bringSubviewToFront:self.guessMsgLabel];
-    [AnimationManager popUpView:self.guessMsgLabel fromPosition:CGPointMake(160, 335) toPosition:CGPointMake(160, 235) interval:2 delegate:self];
+    UIButton *player = [self playerButtonForUserId:userId];
+    if (player == nil) {
+        return;
+    }
+    CGFloat x = player.frame.origin.x;
+    CGFloat y = player.frame.origin.y + player.frame.size.height;
+    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
+    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    [popupButton setTitle:message forState:UIControlStateNormal];
+    [popupButton setHidden:NO];
+    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
+    [popupButton setTitleEdgeInsets:inSets];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
+    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
 }
 
+- (void)popUpRunAwayMessage:(NSString *)userId
+{
+    UIButton *player = [self playerButtonForUserId:userId];
+    if (player == nil) {
+        return;
+    }
+    NSString *nickName = [[drawGameService session] getNickNameByUserId:userId];
+    NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
+    CGFloat x = 8;
+    CGFloat y = player.frame.origin.y + player.frame.size.height;
+    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
+    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    [popupButton setTitle:message forState:UIControlStateNormal];
+    [popupButton setHidden:NO];
+    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
+    [popupButton setTitleEdgeInsets:inSets];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
+    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+    
+}
 
 
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
 {
     if (![drawGameService.userId isEqualToString:guessUserId]) {
-        NSString *nickName = [[drawGameService session]getNickNameByUserId:guessUserId];
+//        NSString *nickName = [[drawGameService session]getNickNameByUserId:guessUserId];
         if (!guessCorrect) {
-            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
-                                     nickName, wordText]];            
+            [self popGuessMessage:wordText userId:guessUserId];
+//            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ : \"%@\""), 
+//                                     nickName, wordText]];            
         }else{
-            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
-                                     nickName]];
+//            [self popUpGuessMessage:[NSString stringWithFormat:NSLS(@"%@ guesss correct!"), 
+//                                     nickName]];
+            [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
         }
 
     }
@@ -367,14 +409,14 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    NSString *nickName = [[drawGameService session]getNickNameByUserId:[message userId]];
-    NSString *quitText = [NSString stringWithFormat:@"%@ quit!",nickName];
+    NSString *userId = [message userId];
+    [self popUpRunAwayMessage:userId];
     [self makePlayerButtons];
-    [self popUpGuessMessage:quitText];
     if ([self userCount] <= 1) {
-        [self alert:NSLS(@"all users quit")];
+        [self alert:NSLS(@"kAllUserQuit")];
+        [RoomController returnRoom:self startNow:NO];
     }
-    [RoomController returnRoom:self startNow:NO];
+
     
 }
 #pragma mark pick view delegate

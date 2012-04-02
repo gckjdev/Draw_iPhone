@@ -44,3 +44,8 @@
 "kShopMainTitle" = "商店";
 "kItemShopTitle"= "购买道具";
 "kCoinShopTitle"= "购买金币";
+
+"kRunAway" = "%@ 逃跑了!";
+"kGuessCorrect" = "猜对了!";
+"kAllUserQuit" = "所有玩家都离开了,游戏结束!";
+
