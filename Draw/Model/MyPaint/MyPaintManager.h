@@ -20,5 +20,7 @@
 
 - (NSArray*)findOnlyMyPaints;
 - (NSArray*)findAllPaints;
+- (BOOL)deleteAllPaintsAtIndex:(NSInteger)index;
+- (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index;
 
 @end

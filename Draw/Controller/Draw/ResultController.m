@@ -14,6 +14,8 @@
 #import "MyPaint.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"
+#import "GameSession.h"
+#import "GameTurn.h"
 
 #define CONTINUE_TIME 10
 
@@ -56,6 +58,20 @@
         self.wordText = aWordText;
         self.score = aScore;
         hasRankButtons = has;
+    }
+    return self;
+}
+
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has isMyPaint:(BOOL)isMyPaint
+{
+    self = [super init];
+    if (self) {
+        _image = image;
+        [_image retain];
+        self.wordText = aWordText;
+        self.score = aScore;
+        hasRankButtons = has;
+        _isMyPaint = _isMyPaint;
     }
     return self;
 }
@@ -218,8 +234,12 @@
         PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
         if (result) {
             NSArray* drawActionList = drawGameService.drawActionList;
+            
+            NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+            NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
+            
             NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:nil drawUserNickName:nil drawByMe:YES];
+            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint];
         }
     }
 }

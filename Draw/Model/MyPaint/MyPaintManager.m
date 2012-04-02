@@ -37,8 +37,10 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
     [newMyPaint setDrawUserId:drawUserId];
     [newMyPaint setDrawUserNickName:drawUserNickName];
+    [newMyPaint setCreateDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     
-    return [dataManager save];
+    BOOL result = [dataManager save];
+    return result;
 }
 
 - (NSArray*)findOnlyMyPaints
@@ -54,6 +56,20 @@ static MyPaintManager* _defaultManager;
 
 }
 
+- (BOOL)deleteAllPaintsAtIndex:(NSInteger)index
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
+    NSManagedObject* object = [array objectAtIndex:index];
+    return [dataManager del:object];
+}
 
+- (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
+    NSManagedObject* object = [array objectAtIndex:index];
+    return [dataManager del:object];
+}
 
 @end
