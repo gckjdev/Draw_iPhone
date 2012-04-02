@@ -7,6 +7,7 @@
 //
 
 #import "SynthesisView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SynthesisView
 @synthesize patternImage;
@@ -34,19 +35,32 @@
 {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+    CGContextTranslateCTM(context, 0.0, self.frame.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
     if (drawImage) {
-        CGRect imageRect = self.bounds;
-        CGContextDrawImage(context, imageRect, patternImage.CGImage);
-    }
-
-    if (patternImage) {
-//        CGRect imageRect = self.bounds;
-        CGRect imageRect = CGRectMake(0, 0, 78, 110);
+        CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         CGContextDrawImage(context, imageRect, drawImage.CGImage);
     }
+    if (patternImage) {
+        //        CGRect imageRect = self.bounds;
+        CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        CGContextDrawImage(context, imageRect, patternImage.CGImage);
+    }
     
+
+
+    
+}
+
+- (UIImage*)createImage
+{
+    CGRect rect = self.frame;
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 

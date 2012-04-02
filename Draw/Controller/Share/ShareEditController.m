@@ -7,19 +7,18 @@
 //
 
 #import "ShareEditController.h"
+#import "SynthesisView.h"
 
 @interface ShareEditController ()
 
 @end
 
 @implementation ShareEditController
-@synthesize myImageView = _myImageView;
 @synthesize myImage = _myImage;
 
 - (void)dealloc
 {
     [_myImage release];
-    [_myImageView release];
     [super dealloc];
 }
 
@@ -49,13 +48,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView* view = [[UIView alloc] initWithFrame:self.myImageView.frame];
+    UIImageView* view1 = [[[UIImageView alloc] initWithFrame:CGRectMake(130, 400, 60, 60)] autorelease];
+    [view1 setImage:self.myImage];
+    [self.view addSubview:view1];
+    SynthesisView* view = [[SynthesisView alloc] initWithFrame:CGRectMake(20, 75, 280, 280)];
+    view.drawImage = self.myImage;
+    view.patternImage = [UIImage imageNamed:@"guess_pattern.png"];
+    [self.view addSubview:view];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
-    [self setMyImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
