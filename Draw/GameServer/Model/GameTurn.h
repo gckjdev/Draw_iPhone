@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSString *currentPlayUserId;
 @property (nonatomic, retain) NSString *nextPlayUserId;
+@property (nonatomic, retain) NSString *lastPlayUserId;
 
 @property (nonatomic, retain) NSArray *playResultList;
 @property (nonatomic, retain) NSArray *userCommentList;

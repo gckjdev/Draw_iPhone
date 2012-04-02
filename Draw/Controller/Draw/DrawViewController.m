@@ -398,7 +398,8 @@ DrawViewController *GlobalGetDrawViewController()
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
                                                                  score:self.word.score 
-                                                        hasRankButtons:NO];
+                                                        hasRankButtons:YES 
+                                                             isMyPaint:YES];
         
         [self.navigationController pushViewController:rc animated:YES];
         [rc release];
