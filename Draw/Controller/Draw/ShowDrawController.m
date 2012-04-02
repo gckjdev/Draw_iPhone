@@ -38,7 +38,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 @implementation ShowDrawController
 @synthesize guessDoneButton;
-@synthesize clockLabel;
+@synthesize clockButton;
 @synthesize popupButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
@@ -48,7 +48,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [_word release];
     [_candidateString release];
     [guessDoneButton release];
-    [clockLabel release];
+    [clockButton release];
     [popupButton release];
     [toolView release];
     [avatarArray release];
@@ -383,7 +383,8 @@ ShowDrawController *GlobalGetShowDrawController()
         [self.guessDoneButton setEnabled:NO];
         retainCount = 0;
     }
-    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
+    [self.clockButton setTitle:clockString forState:UIControlStateNormal];
 }
 
 
@@ -412,7 +413,8 @@ ShowDrawController *GlobalGetShowDrawController()
     [self setGuessAndPickButtonsEnabled:YES];
 //    [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
-    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
+    NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
+    [self.clockButton setTitle:clockString forState:UIControlStateNormal];
     [self updatePlayerAvatars];
     [self updateAnswerViews];
     [self updatePickViewsWithWord:self.word lang:languageType];
@@ -455,7 +457,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidUnload
 {
     [self setGuessDoneButton:nil];
-    [self setClockLabel:nil];
+    [self setClockButton:nil];
     [self setPopupButton:nil];
     [super viewDidUnload];
     [self setWord:nil];

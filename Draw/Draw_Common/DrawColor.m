@@ -30,6 +30,17 @@
 //    [aCoder encodeObject:_color forKey:@"color"];
     
 }
+- (void)setColor:(UIColor *)color
+{
+    if (_color != color) {
+        if (_color) {
+            [_color release];
+        }
+        _color = color;
+        [_color retain];
+    }
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
@@ -44,16 +55,7 @@
     return self;
 }
 
-- (void)setColor:(UIColor *)color
-{
-    if (_color != color) {
-        if (_color) {
-            [_color release];
-        }
-        _color = color;
-        [_color retain];
-    }
-}
+
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {

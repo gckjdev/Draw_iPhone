@@ -33,7 +33,7 @@
 @property(nonatomic, retain)Word *word;
 
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
-@property (retain, nonatomic) IBOutlet UILabel *clockLabel;
+@property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) NSString *candidateString;
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
