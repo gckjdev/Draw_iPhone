@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SynthesisView;
 
-@interface ShareEditController : UIViewController
+@interface ShareEditController : UIViewController 
 @property (retain, nonatomic) UIImage* myImage;
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
-
+@property (retain, nonatomic) IBOutlet SynthesisView* infuseImageView;
 - (id)initWithImage:(UIImage*)anImage;
 @end
