@@ -12,7 +12,6 @@
 #import "MyPaintManager.h"
 #import "MyPaint.h"
 #import "DrawAction.h"
-//#import "DrawView.h"
 #import "ShowDrawView.h"
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGES_PER_LINE 3
@@ -46,10 +45,9 @@
     [self.paints setArray:[[MyPaintManager defaultManager] findOnlyMyPaints]];
 }
 
-- (void)popTipsWithIndex:(id)sender
+- (void)selectImageAtIndex:(int)index
 {
-    UIButton* btn = (UIButton*)sender;
-    _currentSelectedPaint = btn.tag-BUTTON_INDEX_OFFSET;
+    _currentSelectedPaint = index;
     UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"Options") delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Share") otherButtonTitles:NSLS(@"Replay"), NSLS(@"Delete"), nil];
     [tips showInView:self.view];
     [tips release];
@@ -146,30 +144,20 @@ enum {
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"total paints is %d", self.paints.count);
     return self.paints.count/IMAGES_PER_LINE +1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShareControllerCell"];
+    ShareCell* cell = [tableView dequeueReusableCellWithIdentifier:[ShareCell getIdentifier]];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ShareControllerCell"];
-        for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
-            UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(lineIndex*IMAGE_WIDTH, 0, IMAGE_WIDTH, IMAGE_WIDTH)];
-
-            [btn addTarget:self action:@selector(popTipsWithIndex:) forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:btn];
-            [btn release];
-        }
+        cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    NSMutableArray* imageArray = [[NSMutableArray alloc] init];
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
-        
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-        
-        
-        UIButton* paintButton = (UIButton*)[cell viewWithTag:BUTTON_INDEX_OFFSET+indexPath.row * IMAGES_PER_LINE + lineIndex];
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex];
             NSString* paintName = [paint image];
@@ -178,13 +166,14 @@ enum {
                 NSData* data = [[NSData alloc] initWithContentsOfFile:paintName];
                 image = [UIImage imageWithData:data];
                 [data release];
+                [imageArray addObject:image];
             }
-            [paintButton setBackgroundImage:image forState:UIControlStateNormal];
-            [paintButton setHidden:NO];
-        } else {
-            [paintButton setHidden:YES];
+            
         }
     }
+    cell.indexPath = indexPath;
+    [cell setImagesWithArray:imageArray];
+    [imageArray release];
     return cell;
 }
 
