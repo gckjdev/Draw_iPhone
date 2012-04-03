@@ -15,8 +15,10 @@ static ShareImageManager* _defaultManager;
 static UIImage* _woodButtonImage;
 static UIImage* _orangeButtonImage;
 static UIImage* _greenButtonImage;
+static UIImage* _redButtonImage;
 static UIImage *_buyButtonImage;
 static UIImage* _showcaseBackgroundImage;
+static UIImage* _whitePaperImage;
 
 + (ShareImageManager*)defaultManager
 {
@@ -45,6 +47,16 @@ static UIImage* _showcaseBackgroundImage;
     return _greenButtonImage;    
 }
 
+- (UIImage*)redImage
+{
+    if (_redButtonImage == nil){        
+        _redButtonImage = [[UIImage strectchableImageName:@"red_button.png"] retain];
+    }
+    
+    return _redButtonImage;    
+}
+
+
 - (UIImage*)orangeImage
 {
     if (_orangeButtonImage == nil){        
@@ -71,6 +83,15 @@ static UIImage* _showcaseBackgroundImage;
     return _showcaseBackgroundImage;
 }
 
+- (UIImage *)whitePaperImage
+{
+    if (_whitePaperImage == nil) {
+        _whitePaperImage = [[UIImage strectchableImageName:@"white_paper.png"]retain];
+//        _whitePaperImage = [[UIImage strectchableImageName:@"white_paper.png" topCapHeight:40]retain];
+    }
+    return _whitePaperImage;
+}
+
 
 - (UIImage *)pickEasyWordCellImage
 {
@@ -94,6 +115,10 @@ static UIImage* _showcaseBackgroundImage;
     return [UIImage imageNamed:@"tool.png"];
 }
 
+- (UIImage *)toolNumberImage
+{
+    return [UIImage imageNamed:@"number.png"];
+}
 
 #pragma makr - Color Image
 

@@ -16,8 +16,10 @@
 #import "PPDebug.h"
 #import "GameSession.h"
 #import "GameTurn.h"
+#import "ShareImageManager.h"
+#import "LocaleUtils.h"
 
-#define CONTINUE_TIME 10
+#define CONTINUE_TIME 99
 
 @implementation ResultController
 @synthesize drawImage;
@@ -30,6 +32,8 @@
 @synthesize score;
 @synthesize wordLabel;
 @synthesize scoreLabel;
+@synthesize whitePaper;
+@synthesize titleLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,14 +75,14 @@
         self.wordText = aWordText;
         self.score = aScore;
         hasRankButtons = has;
-        _isMyPaint = _isMyPaint;
+        _isMyPaint = isMyPaint;
     }
     return self;
 }
 
 - (void)updateContinueButton:(NSInteger)count
 {
-    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
+    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"kContinue"),count] forState:UIControlStateNormal];
 }
 
 - (void)resetTimer
@@ -125,10 +129,21 @@
     [self startTimer];
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
-    [self didFinishAPaint:drawGameService.drawActionList];
-    upButton.hidden = downButton.hidden = !hasRankButtons;
-    NSLog(@"Result Controller view Did load");
+    upButton.hidden = downButton.hidden = !_isMyPaint;
     
+    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
+    [self.whitePaper setImage:[shareImageManager whitePaperImage]];
+    [self.saveButton setBackgroundImage:[shareImageManager orangeImage] 
+                               forState:UIControlStateNormal];
+    [self.continueButton setBackgroundImage:[shareImageManager greenImage] 
+                                   forState:UIControlStateNormal];
+    [self.exitButton  setBackgroundImage:[shareImageManager redImage] 
+                                forState:UIControlStateNormal];
+
+    [self updateContinueButton:retainCount];
+    [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
+    [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    [self.titleLabel setText:NSLS(@"kTurnResult")];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -159,6 +174,8 @@
     _image = nil;
     [self setWordLabel:nil];
     [self setScoreLabel:nil];
+    [self setWhitePaper:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -182,6 +199,8 @@
     [wordText release];
     [wordLabel release];
     [scoreLabel release];
+    [whitePaper release];
+    [titleLabel release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
@@ -240,6 +259,7 @@
             
             NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
             [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint];
+            [drawGameService.drawActionList removeAllObjects];
         }
     }
 }

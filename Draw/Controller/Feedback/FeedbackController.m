@@ -111,11 +111,6 @@ enum {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)testDialog:(id)sender
-{
-    CommonDialog* dlg = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
-    [self.view addSubview:dlg];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

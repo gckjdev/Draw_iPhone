@@ -12,8 +12,6 @@
 #import "DrawColor.h"
 #import "GameMessage.pb.h"
 #import "Word.h"
-#import "PickColorView.h"
-#import "PickLineWidthView.h"
 #import "GameSessionUser.h"
 #import "GameSession.h"
 #import "LocaleUtils.h"
@@ -27,6 +25,8 @@
 #import "ColorView.h"
 #import "UIButtonExt.h"
 #import "HomeController.h"
+#import "StableView.h"
+
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
 {
@@ -47,7 +47,9 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize word = _word;
 
 #define DRAW_TIME 60
-#define MARK_FRAME CGRectMake(17,20,16,17)
+#define PAPER_VIEW_TAG 20120403
+
+
 - (void)dealloc
 {
 
@@ -60,6 +62,8 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView release];
     [popupButton release];
     [turnNumberButton release];
+    [avatarArray release];
+    [drawView release];
     [super dealloc];
 }
 
@@ -79,8 +83,7 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark - View lifecycle
 
 
-#define PLAYER_BUTTON_TAG_START 1
-#define PLAYER_BUTTON_TAG_END 6
+
 
 - (void)setToolButtonEnabled:(BOOL)enabled
 {
@@ -97,61 +100,49 @@ DrawViewController *GlobalGetDrawViewController()
     return [session.userList count];
 }
 
-- (UIButton *)playerButtonForUserId:(NSString *)userId
+- (void)cleanAvatars
 {
-    NSInteger i = PLAYER_BUTTON_TAG_START;
-    NSInteger tag = -1;
-    GameSession *session = [[DrawGameService defaultService] session];
-    for (GameSessionUser *user in session.userList) {
-        if([user.userId isEqualToString:userId])
-        {
-            tag = i;
-        }
-        ++ i;
+    //remove all the old avatars
+    for (AvatarView *view in avatarArray) {
+        [view removeFromSuperview];
     }
-    if (tag != -1 && tag <= PLAYER_BUTTON_TAG_END) {
-        return (UIButton *)[self.view viewWithTag:tag];
+    [avatarArray removeAllObjects];
+    
+}
+
+- (void)updatePlayerAvatars
+{
+    [self cleanAvatars];
+    GameSession *session = [[DrawGameService defaultService] session];
+    int i = 0;
+    for (GameSessionUser *user in session.userList) {
+        AvatarType type = Guesser;
+        if([user.userId isEqualToString:session.drawingUserId])
+        {
+            type = Drawer;
+        }
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type];
+        [aView setUserId:user.userId];
+        //set center
+        aView.center = CGPointMake(70 + 36 * i, 21);
+        [self.view addSubview:aView];
+        [avatarArray addObject:aView];
+        [aView release];
+        ++ i;                                  
+    }
+}
+
+
+- (AvatarView *)avatarViewForUserId:(NSString *)userId
+{
+
+    for (AvatarView *view in avatarArray) {
+        if ([view.userId isEqualToString:userId]) {
+            return view;
+        }
     }
     return nil;
-
 }
-- (void)makePlayerButtons
-{
-    for (int i = PLAYER_BUTTON_TAG_START; i <= PLAYER_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        button.hidden = YES;
-        for (UIView *view in button.subviews) {
-            [view removeFromSuperview];
-        }
-    }
-    int i = 1;
-    GameSession *session = [[DrawGameService defaultService] session];
-    UIButton *drawingUserButton = nil;
-    for (GameSessionUser *user in session.userList) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        button.hidden = NO;
-        [button setTitle:user.userId forState:UIControlStateNormal];
-        ++ i;
-        if ([user.userId isEqualToString:session.drawingUserId]) {
-            drawingUserButton = button;
-        }
-        HJManagedImageV* imageView = [[HJManagedImageV alloc] initWithFrame:button.bounds];
-        [imageView clear];
-        [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
-        [GlobalGetImageCache() manage:imageView];
-        [button addSubview:imageView];
-        [imageView release];
-    }
-    if (drawingUserButton) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[shareImageManager drawingMarkSmallImage]];
-        imageView.frame = MARK_FRAME;
-        [drawingUserButton addSubview:imageView];
-        [imageView release];
-                                  
-    }
-}
-
-
 
 - (void)resetTimer
 {
@@ -186,6 +177,7 @@ DrawViewController *GlobalGetDrawViewController()
         drawGameService = [DrawGameService defaultService];
         drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
         pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 285, 302, 122)];
+        avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
@@ -203,7 +195,7 @@ DrawViewController *GlobalGetDrawViewController()
     retainCount = DRAW_TIME;
     NSString *second = [NSString stringWithFormat:@"%d",retainCount];
     [self.clockButton setTitle:second forState:UIControlStateNormal];
-    [self makePlayerButtons];
+    [self updatePlayerAvatars];
     [self startTimer];
     [self setToolButtonEnabled:YES];
     gameComplete = NO;
@@ -236,10 +228,15 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [super viewDidLoad];
     drawView.delegate = self;
-    [self.view addSubview:drawView];
+//    [self.view addSubview:drawView];
+    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
+    [self.view insertSubview:drawView aboveSubview:paperView];
+
     [self initPickPenView];
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:wordButton];
+    [self.view bringSubviewToFront:popupButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -322,7 +319,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
 {
-    UIButton *player = [self playerButtonForUserId:userId];
+    AvatarView *player = [self avatarViewForUserId:userId];
     if (player == nil) {
         return;
     }
@@ -340,7 +337,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)popUpRunAwayMessage:(NSString *)userId
 {
-    UIButton *player = [self playerButtonForUserId:userId];
+    AvatarView *player = [self avatarViewForUserId:userId];
     if (player == nil) {
         return;
     }
@@ -359,29 +356,14 @@ DrawViewController *GlobalGetDrawViewController()
     
 }
 
+
+
 #define SCORE_MARK_TAG 20120402
 - (void)addScore:(NSInteger)score toUser:(NSString *)userId
 {
-    //show the result at the user Button
-    UIButton *userButton = [self playerButtonForUserId:userId];
-    if (userButton) {
-            UIButton *scoreButton = (UIButton *)[userButton viewWithTag:SCORE_MARK_TAG];
-            if (scoreButton == nil) {
+    AvatarView *avatarView = [self avatarViewForUserId:userId];
+    [avatarView setScore:score];
 
-            UIButton *scoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            scoreButton.tag = SCORE_MARK_TAG;
-            scoreButton.userInteractionEnabled = NO;
-            [scoreButton setBackgroundImage:[shareImageManager scoreBackgroundImage]];
-            [scoreButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [scoreButton setTitle:[NSString stringWithFormat:@"%d",score] forState:UIControlStateNormal];        
-                scoreButton.frame = MARK_FRAME;
-            [userButton addSubview:scoreButton];
-            [scoreButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
-            UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 2, 0);
-            [scoreButton setTitleEdgeInsets:insets];
-        }
-        [scoreButton setTitle:[NSString stringWithFormat:@"%d",score] forState:UIControlStateNormal];        
-    }
 }
 
 
@@ -421,7 +403,8 @@ DrawViewController *GlobalGetDrawViewController()
 {
     NSString *userId = [message userId];
     [self popUpRunAwayMessage:userId];
-    [self makePlayerButtons];
+
+    [self updatePlayerAvatars];
     if ([self userCount] <= 1) {
         [self alert:NSLS(@"kAllUserQuit")];
         [RoomController returnRoom:self startNow:NO];
@@ -444,8 +427,19 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender {
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    [self.view addSubview:dialog];
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
     [drawGameService quitGame];
-//    [RoomController returnRoom:self startNow:YES];
     [HomeController returnRoom:self];
+
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
 }
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C29C12A41529C7EB009B9E5F /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12A31529C7EB009B9E5F /* SynthesisView.m */; };
+		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
+		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
+		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -16,6 +20,7 @@
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
+		CA0995CE15299C6700A53CB0 /* StableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0995CD15299C6700A53CB0 /* StableView.m */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -332,6 +337,11 @@
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
+		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
+		CA4FF005152AF1FA00F0AC88 /* ColorShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF003152AF1F900F0AC88 /* ColorShopController.m */; };
+		CA4FF006152AF1FA00F0AC88 /* ColorShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */; };
+		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
+		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
@@ -365,8 +375,6 @@
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
 		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
-		CAB3DBE61517096D00E7DBC4 /* PickLineWidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE51517096D00E7DBC4 /* PickLineWidthView.m */; };
-		CAB3DBE91517098B00E7DBC4 /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE81517098B00E7DBC4 /* PickColorView.m */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
@@ -426,6 +434,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C29C12A21529C7EB009B9E5F /* SynthesisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesisView.h; sourceTree = "<group>"; };
+		C29C12A31529C7EB009B9E5F /* SynthesisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesisView.m; sourceTree = "<group>"; };
+		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
+		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
+		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
+		C29C12E0152AE2A7009B9E5F /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -439,6 +453,8 @@
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
+		CA0995CC15299C6600A53CB0 /* StableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StableView.h; sourceTree = "<group>"; };
+		CA0995CD15299C6700A53CB0 /* StableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StableView.m; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -973,6 +989,14 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
+		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
+		CA4FF002152AF1F900F0AC88 /* ColorShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopController.h; sourceTree = "<group>"; };
+		CA4FF003152AF1F900F0AC88 /* ColorShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopController.m; sourceTree = "<group>"; };
+		CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopController.xib; sourceTree = "<group>"; };
+		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
+		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
+		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
 		CA51BD711525DED100C77E50 /* RewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardManager.h; sourceTree = "<group>"; };
 		CA51BD721525DED100C77E50 /* RewardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardManager.m; sourceTree = "<group>"; };
 		CA51BD741525DEDE00C77E50 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
@@ -1025,10 +1049,6 @@
 		CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawController.h; sourceTree = "<group>"; };
 		CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawController.m; sourceTree = "<group>"; };
 		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
-		CAB3DBE41517096D00E7DBC4 /* PickLineWidthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickLineWidthView.h; sourceTree = "<group>"; };
-		CAB3DBE51517096D00E7DBC4 /* PickLineWidthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickLineWidthView.m; sourceTree = "<group>"; };
-		CAB3DBE71517098B00E7DBC4 /* PickColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColorView.h; sourceTree = "<group>"; };
-		CAB3DBE81517098B00E7DBC4 /* PickColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColorView.m; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
 		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 		CADD7FCE1510DC530075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
@@ -2092,6 +2112,7 @@
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
+				CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */,
 				CA32218C151F649C0039A384 /* ShopMainController.h */,
 				CA32218D151F649D0039A384 /* ShopMainController.m */,
 				CA32218E151F64A10039A384 /* ShopMainController.xib */,
@@ -2101,6 +2122,11 @@
 				CA41C9461520179000013DC8 /* ShoppingCell.h */,
 				CA41C9471520179000013DC8 /* ShoppingCell.m */,
 				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
+				CA4FF002152AF1F900F0AC88 /* ColorShopController.h */,
+				CA4FF003152AF1F900F0AC88 /* ColorShopController.m */,
+				CA4FF007152AF21900F0AC88 /* ColorShopCell.h */,
+				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
+				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -2127,6 +2153,9 @@
 				C2E6627F15230B3F00487601 /* ShareController.h */,
 				C2E6628015230B3F00487601 /* ShareController.m */,
 				C2E6628115230B3F00487601 /* ShareController.xib */,
+				C29C12DD152AE23D009B9E5F /* ShareCell.xib */,
+				C29C12DF152AE2A6009B9E5F /* ShareCell.h */,
+				C29C12E0152AE2A7009B9E5F /* ShareCell.m */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -2298,6 +2327,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */,
 				CAEA70091526F2FD00B3D206 /* point_selected@2x.png */,
 				CAEA700F1527017D00B3D206 /* back@2x.png */,
 				CAEA700A1526F2FF00B3D206 /* point_unselect@2x.png */,
@@ -2673,12 +2703,12 @@
 				CAF25AE115289707002D79EE /* DrawView.m */,
 				CAF25AE215289707002D79EE /* ShowDrawView.h */,
 				CAF25AE315289707002D79EE /* ShowDrawView.m */,
-				CAB3DBE41517096D00E7DBC4 /* PickLineWidthView.h */,
-				CAB3DBE51517096D00E7DBC4 /* PickLineWidthView.m */,
-				CAB3DBE71517098B00E7DBC4 /* PickColorView.h */,
-				CAB3DBE81517098B00E7DBC4 /* PickColorView.m */,
 				CA9F73E315280FB300DB55B6 /* PickPenView.h */,
 				CA9F73E415280FB300DB55B6 /* PickPenView.m */,
+				CA0995CC15299C6600A53CB0 /* StableView.h */,
+				CA0995CD15299C6700A53CB0 /* StableView.m */,
+				C29C12A21529C7EB009B9E5F /* SynthesisView.h */,
+				C29C12A31529C7EB009B9E5F /* SynthesisView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2727,6 +2757,8 @@
 				CA41C94C152021C000013DC8 /* ShoppingModel.m */,
 				CA41C95915206C1000013DC8 /* ShoppingManager.h */,
 				CA41C95A15206C1100013DC8 /* ShoppingManager.m */,
+				CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */,
+				CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -2996,6 +3028,10 @@
 				CAEA700D1526F30200B3D206 /* point_unselect@2x.png in Resources */,
 				CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */,
 				CAEA70101527017F00B3D206 /* back@2x.png in Resources */,
+				C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */,
+				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
+				CA4FF006152AF1FA00F0AC88 /* ColorShopController.xib in Resources */,
+				CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3214,8 +3250,6 @@
 				CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */,
 				CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */,
 				CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */,
-				CAB3DBE61517096D00E7DBC4 /* PickLineWidthView.m in Sources */,
-				CAB3DBE91517098B00E7DBC4 /* PickColorView.m in Sources */,
 				CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */,
 				CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */,
 				CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */,
@@ -3262,6 +3296,12 @@
 				CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */,
 				CAF25AE415289707002D79EE /* DrawView.m in Sources */,
 				CAF25AE515289707002D79EE /* ShowDrawView.m in Sources */,
+				CA0995CE15299C6700A53CB0 /* StableView.m in Sources */,
+				C29C12A41529C7EB009B9E5F /* SynthesisView.m in Sources */,
+				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
+				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
+				CA4FF005152AF1FA00F0AC88 /* ColorShopController.m in Sources */,
+				CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

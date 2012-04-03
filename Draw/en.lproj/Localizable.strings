@@ -49,8 +49,22 @@
 
 "kRunAway" = "%@ run away!";
 "kGuessCorrect" = "Correct!";
+"kGuessWrong" = "Wrong!";
 "kAllUserQuit" = "All users quit! Game Over!";
-"kConfirm" = "Confirm";
 
 "kBuying" = "Sending request...";
 "kLoading" = "Loading...";
+
+"kConfirm" = "OK";
+"kOK" = "OK";
+"kSubmit" = "Submit";
+"kCancel" = "Cancel";
+
+"kQuitGameAlertTitle" = "Quit Game";
+"kQuitGameAlertMessage" = "Are you sure to quit the game?";
+
+"kContinue" = "Continue(%d)";
+"kExit" = "Exit";
+"kSave" = "Save";
+"kTurnResult" = "Result of turn";
+"kBuyColor" = "Color Shop";

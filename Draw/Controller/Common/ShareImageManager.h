@@ -25,14 +25,14 @@
 
 - (UIImage*)woodImage;
 - (UIImage*)greenImage;
+- (UIImage*)redImage;
 - (UIImage*)orangeImage;
 - (UIImage *)buyButtonImage;
 - (UIImage*)showcaseBackgroundImage;
 - (UIImage *)coinImage;
 - (UIImage *)toolImage;
-
 - (UIImage *)popupImage;
-
+- (UIImage *)whitePaperImage;
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
@@ -50,5 +50,6 @@
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
+- (UIImage *)toolNumberImage;
 
 @end

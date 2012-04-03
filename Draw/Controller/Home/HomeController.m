@@ -143,11 +143,7 @@
     [sc release];
 }
 
-- (IBAction)testDialog:(id)sender
-{
-    CommonDialog* dialog = [CommonDialog createDialogWithStyle:SINGLE_BUTTON];
-    [self.view addSubview:dialog];
-}
+
 
 - (void)didJoinGame:(GameMessage *)message
 {

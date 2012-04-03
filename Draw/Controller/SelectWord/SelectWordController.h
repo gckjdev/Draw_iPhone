@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class ToolView;
 @interface SelectWordController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *_wordArray;
     NSInteger  retainCount;
     BOOL hasPushController;
+    ToolView *toolView;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
@@ -22,5 +24,4 @@
 @property (retain, nonatomic) IBOutlet UIButton *changeWordButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (retain, nonatomic) IBOutlet UIButton *toolNumberButton;
 @end

@@ -47,8 +47,20 @@
 
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜对了!";
+"kGuessWrong" = "猜错了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
 
 "kBuying" = "发送购买请求中...";
 "kLoading" = "加载数据中...";
+
+"kOK" = "确定";
+"kSubmit" = "提交";
+"kCancel" = "取消";
+"kQuitGameAlertMessage" = "确定要退出游戏吗?";
+"kQuitGameAlertTitle" = "退出游戏";
+"kContinue" = "继续(%d)";
+"kExit" = "退出";
+"kSave" = "保存";
+"kTurnResult" = "本轮结果";
+"kBuyColor" = "购买颜色";

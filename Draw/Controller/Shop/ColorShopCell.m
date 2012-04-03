@@ -1,0 +1,82 @@
+//
+//  ColorShopCell.m
+//  Draw
+//
+//  Created by  on 12-4-3.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "ColorShopCell.h"
+#import "ColorGroup.h"
+#import "ColorView.h"
+
+@implementation ColorShopCell
+@synthesize coinImageView;
+@synthesize priceLabel;
+
++ (id)createCell:(id)delegate
+{
+    NSString* cellId = [self getCellIdentifier];
+    NSLog(@"cellId = %@", cellId);
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        return nil;
+    }
+    
+    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    
+    return [topLevelObjects objectAtIndex:0];
+}
+
++ (NSString*)getCellIdentifier
+{
+    return @"ColorShopCell";
+}
+
++ (CGFloat)getCellHeight
+{
+    return 120.0f;
+}
+
+- (void)updatePrice:(NSInteger)price
+{
+    NSString *priceString = [NSString stringWithFormat:@"x%d",price];
+    [self.priceLabel setText:priceString];
+}
+
+#define BASE_COLOR_VIEW_TAG 10
+#define COLOR_NUMBER_PER_ROW 5
+- (void)setCellInfo:(ColorGroup *)colorGroup hasBought:(BOOL)hasBought
+{
+    priceLabel.hidden = coinImageView.hidden = hasBought;
+    if (colorGroup) {
+        [self updatePrice:colorGroup.price];
+        for (int i = BASE_COLOR_VIEW_TAG; i < BASE_COLOR_VIEW_TAG + COLOR_NUMBER_PER_ROW; ++ i) {
+            ColorView *colorView = (ColorView *)[self viewWithTag:i];
+            if (colorView) {
+                int j = i - BASE_COLOR_VIEW_TAG;
+                if(j < [colorGroup.colorViewList count]){
+                    if (colorView.scale != ColorViewScaleLarge) {
+                        [colorView setScale:ColorViewScaleLarge];
+                    }
+                    ColorView *view = [colorGroup.colorViewList objectAtIndex:j];
+                    [colorView setBackgroundColor:[UIColor clearColor]];
+                    [colorView setImage:[view backgroundImageForState:UIControlStateNormal]];
+                    [colorView setDrawColor:view.drawColor];
+                    [colorView setHidden:NO];
+                }else{
+                    [colorView setHidden:YES];
+                }
+            }
+        }
+    }    
+}
+
+- (void)dealloc {
+    [coinImageView release];
+    [priceLabel release];
+    [super dealloc];
+}
+@end
