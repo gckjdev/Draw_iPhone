@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewCell.h"
+@class ColorGroup;
+@interface ColorShopCell : PPTableViewCell
+{
+    
+}
 
-@interface ColorShopCell : UIViewController
+- (void)setCellInfo:(ColorGroup *)colorGroup hasBought:(BOOL)hasBought;
+@property (retain, nonatomic) IBOutlet UIImageView *coinImageView;
+@property (retain, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

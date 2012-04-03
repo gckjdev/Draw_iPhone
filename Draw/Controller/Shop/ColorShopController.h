@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
 
-@interface ColorShopController : UIViewController
+@interface ColorShopController : PPTableViewController
+{
+    
+}
+@property (retain, nonatomic) IBOutlet UILabel *coinNumberLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)clickBackButton:(id)sender;
+
++(ColorShopController *)instance;
 
 @end
