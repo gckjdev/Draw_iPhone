@@ -55,3 +55,7 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
+"kContinue" = "继续(%d)";
+"kExit" = "退出";
+"kSave" = "保存";
+"kTurnResult" = "本轮结果";

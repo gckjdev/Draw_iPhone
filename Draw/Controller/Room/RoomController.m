@@ -201,7 +201,7 @@
         NSString* title = [NSString stringWithFormat:NSLS(@"kClickToStart"), _currentTimeCounter];                           
         [self.startGameButton setTitle:title forState:UIControlStateNormal];
         [self.startGameButton setEnabled:YES];
-        
+        _hasClickStartGame = NO; // add by Gamy
         [self.prolongButton setTitle:NSLS(@"kWaitABit") forState:UIControlStateNormal];
     }
     else{
