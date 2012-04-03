@@ -2085,8 +2085,10 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
+@property int32_t guessGainCoins;
 @property (retain) NSMutableArray* mutableChatToUserIdList;
 @property (retain) NSString* chatContent;
+@property int32_t turnGainCoins;
 @end
 
 @implementation GeneralNotification
@@ -2216,6 +2218,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 - (void) setGuessCorrect:(BOOL) value {
   guessCorrect_ = !!value;
 }
+- (BOOL) hasGuessGainCoins {
+  return !!hasGuessGainCoins_;
+}
+- (void) setHasGuessGainCoins:(BOOL) value {
+  hasGuessGainCoins_ = !!value;
+}
+@synthesize guessGainCoins;
 @synthesize mutableChatToUserIdList;
 - (BOOL) hasChatContent {
   return !!hasChatContent_;
@@ -2224,6 +2233,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasChatContent_ = !!value;
 }
 @synthesize chatContent;
+- (BOOL) hasTurnGainCoins {
+  return !!hasTurnGainCoins_;
+}
+- (void) setHasTurnGainCoins:(BOOL) value {
+  hasTurnGainCoins_ = !!value;
+}
+@synthesize turnGainCoins;
 - (void) dealloc {
   self.sessionHost = nil;
   self.currentPlayUserId = nil;
@@ -2259,7 +2275,9 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
+    self.guessGainCoins = 0;
     self.chatContent = @"";
+    self.turnGainCoins = 0;
   }
   return self;
 }
@@ -2351,11 +2369,17 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasGuessCorrect) {
     [output writeBool:43 value:self.guessCorrect];
   }
+  if (self.hasGuessGainCoins) {
+    [output writeInt32:44 value:self.guessGainCoins];
+  }
   for (NSString* element in self.mutableChatToUserIdList) {
     [output writeString:51 value:element];
   }
   if (self.hasChatContent) {
     [output writeString:52 value:self.chatContent];
+  }
+  if (self.hasTurnGainCoins) {
+    [output writeInt32:61 value:self.turnGainCoins];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2429,6 +2453,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasGuessCorrect) {
     size += computeBoolSize(43, self.guessCorrect);
   }
+  if (self.hasGuessGainCoins) {
+    size += computeInt32Size(44, self.guessGainCoins);
+  }
   {
     int32_t dataSize = 0;
     for (NSString* element in self.mutableChatToUserIdList) {
@@ -2439,6 +2466,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasChatContent) {
     size += computeStringSize(52, self.chatContent);
+  }
+  if (self.hasTurnGainCoins) {
+    size += computeInt32Size(61, self.turnGainCoins);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2572,6 +2602,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasGuessCorrect) {
     [self setGuessCorrect:other.guessCorrect];
   }
+  if (other.hasGuessGainCoins) {
+    [self setGuessGainCoins:other.guessGainCoins];
+  }
   if (other.mutableChatToUserIdList.count > 0) {
     if (result.mutableChatToUserIdList == nil) {
       result.mutableChatToUserIdList = [NSMutableArray array];
@@ -2580,6 +2613,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (other.hasChatContent) {
     [self setChatContent:other.chatContent];
+  }
+  if (other.hasTurnGainCoins) {
+    [self setTurnGainCoins:other.turnGainCoins];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2679,12 +2715,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
         [self setGuessCorrect:[input readBool]];
         break;
       }
+      case 352: {
+        [self setGuessGainCoins:[input readInt32]];
+        break;
+      }
       case 410: {
         [self addChatToUserId:[input readString]];
         break;
       }
       case 418: {
         [self setChatContent:[input readString]];
+        break;
+      }
+      case 488: {
+        [self setTurnGainCoins:[input readInt32]];
         break;
       }
     }
@@ -2993,6 +3037,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   result.guessCorrect = NO;
   return self;
 }
+- (BOOL) hasGuessGainCoins {
+  return result.hasGuessGainCoins;
+}
+- (int32_t) guessGainCoins {
+  return result.guessGainCoins;
+}
+- (GeneralNotification_Builder*) setGuessGainCoins:(int32_t) value {
+  result.hasGuessGainCoins = YES;
+  result.guessGainCoins = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearGuessGainCoins {
+  result.hasGuessGainCoins = NO;
+  result.guessGainCoins = 0;
+  return self;
+}
 - (NSArray*) chatToUserIdList {
   if (result.mutableChatToUserIdList == nil) {
     return [NSArray array];
@@ -3038,6 +3098,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearChatContent {
   result.hasChatContent = NO;
   result.chatContent = @"";
+  return self;
+}
+- (BOOL) hasTurnGainCoins {
+  return result.hasTurnGainCoins;
+}
+- (int32_t) turnGainCoins {
+  return result.turnGainCoins;
+}
+- (GeneralNotification_Builder*) setTurnGainCoins:(int32_t) value {
+  result.hasTurnGainCoins = YES;
+  result.turnGainCoins = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearTurnGainCoins {
+  result.hasTurnGainCoins = NO;
+  result.turnGainCoins = 0;
   return self;
 }
 @end

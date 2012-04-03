@@ -19,6 +19,7 @@
 //- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language;
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
+- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect gainCoins:(int)gainCoins;
 - (void)didReceiveRedrawResponse:(GameMessage *)message;
 
 // game actions

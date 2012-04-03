@@ -215,7 +215,12 @@
     // one user cannot start...
     if ([self userCount] <= 1){
         [self.startGameButton setTitle:NSLS(@"kWaitForMoreUsers") forState:UIControlStateNormal];
-        [self.startGameButton setEnabled:NO];        
+        [self.startGameButton setEnabled:NO];     
+        
+        [self.prolongButton setHidden:YES];
+    }
+    else{
+        [self.prolongButton setHidden:NO];
     }
 }
 

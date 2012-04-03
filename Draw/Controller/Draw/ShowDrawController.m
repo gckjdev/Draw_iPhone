@@ -520,7 +520,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [avatarView setScore:score];
     
 }
-- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
+- (void)didReceiveGuessWord:(NSString*)wordText 
+                guessUserId:(NSString*)guessUserId 
+               guessCorrect:(BOOL)guessCorrect
+                  gainCoins:(int)gainCoins
 {
 //    if (![drawGameService.userId isEqualToString:guessUserId]) {
     if (!guessCorrect) {

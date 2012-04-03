@@ -96,11 +96,14 @@ message GeneralNotification{
   optional string guessWord = 41;
   optional string guessUserId = 42;
   optional bool guessCorrect = 43;
+  optional int32 guessGainCoins = 44;
   
   // chat
   repeated string chatToUserId = 51;                 // 对谁说，默认对所有
   optional string chatContent = 52;                  // 说的内容
   
+  // game turn result points
+  optional int32 turnGainCoins = 61;
 }
 
 message GameMessage {

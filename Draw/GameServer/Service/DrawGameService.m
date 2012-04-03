@@ -284,15 +284,17 @@ static DrawGameService* _defaultService;
         }
         
         if ([[[message notification] guessWord] length] > 0){
-            PPDebug(@"handleNewDrawDataNotification <Receive Guess Word> %@, %@, %d",
+            PPDebug(@"handleNewDrawDataNotification <Receive Guess Word> %@, %@, %d, %d",
                     [[message notification] guessWord],
                     [[message notification] guessUserId],
-                    [[message notification] guessCorrect]);
+                    [[message notification] guessCorrect],
+                    [[message notification] guessGainCoins]);
             
             if ([_drawDelegate respondsToSelector:@selector(didReceiveGuessWord:guessUserId:guessCorrect:)]) {
                 [_drawDelegate didReceiveGuessWord:[[message notification] guessWord]
                                        guessUserId:[[message notification] guessUserId]
-                                      guessCorrect:[[message notification] guessCorrect]];
+                                      guessCorrect:[[message notification] guessCorrect]
+                                         gainCoins:[[message notification] guessGainCoins]];
             }            
         }
 

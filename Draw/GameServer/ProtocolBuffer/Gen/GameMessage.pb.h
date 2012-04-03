@@ -547,11 +547,13 @@
 @private
   BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
+  BOOL hasTurnGainCoins_:1;
   BOOL hasSessionStatus_:1;
+  BOOL hasGuessGainCoins_:1;
   BOOL hasLanguage_:1;
   BOOL hasRound_:1;
-  BOOL hasLevel_:1;
   BOOL hasColor_:1;
+  BOOL hasLevel_:1;
   BOOL hasChatContent_:1;
   BOOL hasGuessUserId_:1;
   BOOL hasGuessWord_:1;
@@ -565,11 +567,13 @@
   BOOL hasSessionHost_:1;
   BOOL guessCorrect_:1;
   Float32 width;
+  int32_t turnGainCoins;
   int32_t sessionStatus;
+  int32_t guessGainCoins;
   int32_t language;
   int32_t round;
-  int32_t level;
   int32_t color;
+  int32_t level;
   NSString* chatContent;
   NSString* guessUserId;
   NSString* guessWord;
@@ -602,7 +606,9 @@
 - (BOOL) hasGuessWord;
 - (BOOL) hasGuessUserId;
 - (BOOL) hasGuessCorrect;
+- (BOOL) hasGuessGainCoins;
 - (BOOL) hasChatContent;
+- (BOOL) hasTurnGainCoins;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
 @property (readonly, retain) NSString* currentPlayUserId;
@@ -620,7 +626,9 @@
 @property (readonly, retain) NSString* guessWord;
 @property (readonly, retain) NSString* guessUserId;
 - (BOOL) guessCorrect;
+@property (readonly) int32_t guessGainCoins;
 @property (readonly, retain) NSString* chatContent;
+@property (readonly) int32_t turnGainCoins;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) chatToUserIdList;
@@ -752,6 +760,11 @@
 - (GeneralNotification_Builder*) setGuessCorrect:(BOOL) value;
 - (GeneralNotification_Builder*) clearGuessCorrect;
 
+- (BOOL) hasGuessGainCoins;
+- (int32_t) guessGainCoins;
+- (GeneralNotification_Builder*) setGuessGainCoins:(int32_t) value;
+- (GeneralNotification_Builder*) clearGuessGainCoins;
+
 - (NSArray*) chatToUserIdList;
 - (NSString*) chatToUserIdAtIndex:(int32_t) index;
 - (GeneralNotification_Builder*) replaceChatToUserIdAtIndex:(int32_t) index with:(NSString*) value;
@@ -763,6 +776,11 @@
 - (NSString*) chatContent;
 - (GeneralNotification_Builder*) setChatContent:(NSString*) value;
 - (GeneralNotification_Builder*) clearChatContent;
+
+- (BOOL) hasTurnGainCoins;
+- (int32_t) turnGainCoins;
+- (GeneralNotification_Builder*) setTurnGainCoins:(int32_t) value;
+- (GeneralNotification_Builder*) clearTurnGainCoins;
 @end
 
 @interface GameMessage : PBGeneratedMessage {
