@@ -72,7 +72,7 @@ enum {
 {
     UIButton* btn = (UIButton*)[self.view viewWithTag:QUIT_BUTTON_TAG];
     ShowDrawView* view = (ShowDrawView*)[self.view viewWithTag:REPLAY_TAG];
-    UIView* bck = [self.view viewWithTag:QUIT_BUTTON_TAG];
+    UIView* bck = [self.view viewWithTag:BACK_GROUND_TAG];
     [btn removeFromSuperview];
     [bck removeFromSuperview];
     [view removeFromSuperview];
@@ -156,16 +156,20 @@ enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ShareControllerCell"];
         for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
             UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(lineIndex*IMAGE_WIDTH, 0, IMAGE_WIDTH, IMAGE_WIDTH)];
-            btn.tag = BUTTON_INDEX_OFFSET+indexPath.row+lineIndex;
+
             [btn addTarget:self action:@selector(popTipsWithIndex:) forControlEvents:UIControlEventTouchUpInside];
             [cell addSubview:btn];
             [btn release];
         }
     }
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
+        
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        UIButton* paintButton = (UIButton*)[cell viewWithTag:BUTTON_INDEX_OFFSET+indexPath.row+lineIndex];
+        
+        
+        
+        UIButton* paintButton = (UIButton*)[cell viewWithTag:BUTTON_INDEX_OFFSET+indexPath.row * IMAGES_PER_LINE + lineIndex];
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex];
             NSString* paintName = [paint image];
@@ -213,6 +217,7 @@ enum {
 {
     [super viewDidLoad];
     [_paints setArray:[[MyPaintManager defaultManager] findAllPaints]];
+    NSLog(@"get all paints, paints count is %d", _paints.count);
 
     // Do any additional setup after loading the view from its nib.
 }
