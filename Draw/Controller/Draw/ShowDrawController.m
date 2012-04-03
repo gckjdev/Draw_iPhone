@@ -358,7 +358,11 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setEnabled:enabled];
+        if ([button titleForState:UIControlStateNormal] != nil && enabled == YES) {
+            [button setEnabled:YES];
+        }else{
+            [button setEnabled:NO];
+        }
     }
     
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
@@ -411,7 +415,6 @@ ShowDrawController *GlobalGetShowDrawController()
 
     [showView cleanAllActions];
     [self setGuessAndPickButtonsEnabled:YES];
-//    [self.guessDoneButton setEnabled:YES];
     retainCount = GUESS_TIME;
     NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
     [self.clockButton setTitle:clockString forState:UIControlStateNormal];
