@@ -19,7 +19,7 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 
-#define CONTINUE_TIME 1000
+#define CONTINUE_TIME 99
 
 @implementation ResultController
 @synthesize drawImage;
@@ -82,7 +82,7 @@
 
 - (void)updateContinueButton:(NSInteger)count
 {
-    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"Continue(%d)"),count] forState:UIControlStateNormal];
+    [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"kContinue"),count] forState:UIControlStateNormal];
 }
 
 - (void)resetTimer
@@ -139,7 +139,8 @@
                                    forState:UIControlStateNormal];
     [self.exitButton  setBackgroundImage:[shareImageManager redImage] 
                                 forState:UIControlStateNormal];
-    [self.continueButton setTitle:NSLS(@"kContinue") forState:UIControlStateNormal];
+
+    [self updateContinueButton:retainCount];
     [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     [self.titleLabel setText:NSLS(@"kTurnResult")];
