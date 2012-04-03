@@ -11,11 +11,12 @@
 #import "DrawView.h"
 #import "DrawGameService.h"
 #import "PickPenView.h"
+#import "CommonDialog.h"
 
 @class Word;
 @class ShareImageManager;
 @interface DrawViewController : UIViewController<DrawViewDelegate, 
-            DrawGameServiceDelegate, PickPenDelegate> {
+            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
                 
     DrawView *drawView;
     PickPenView *pickPenView;

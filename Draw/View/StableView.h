@@ -19,6 +19,8 @@
 - (NSInteger)number;
 - (void)addTarget:(id)target action:(SEL)action;
 - (void)decreaseNumber;
+- (void)setEnabled:(BOOL)enabled;
+
 @end
 
 

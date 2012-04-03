@@ -35,6 +35,7 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 #define GUESS_TIME 120
+#define PAPER_VIEW_TAG 20120403
 
 @implementation ShowDrawController
 @synthesize guessDoneButton;
@@ -184,7 +185,7 @@ ShowDrawController *GlobalGetShowDrawController()
     NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
     for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        if ([[button titleForState:UIControlStateNormal] length] == 0) {
+        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
             return button;
         }
     }
@@ -214,21 +215,28 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)updateAnswerViews
 {
-    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
-    for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];     
-        [button setEnabled:NO];
-        [button setTitle:nil forState:UIControlStateNormal];
-    }
-    UIButton *lastButton = (UIButton *)[self.view 
-                                        viewWithTag:WRITE_BUTTON_TAG_END];     
+
+    NSInteger endIndex = WRITE_BUTTON_TAG_END;
     if (languageType == ChineseType) {
+        endIndex --;
         [guessDoneButton setHidden:NO];
         [guessDoneButton setEnabled:YES];
-        lastButton.hidden = YES;
     }else{
         [guessDoneButton setHidden:YES];
-        [lastButton setHidden:NO];
+        [guessDoneButton setEnabled:NO];
+        endIndex = WRITE_BUTTON_TAG_START + (self.word.text.length) - 1;
+    }    
+    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];     
+        if (button) {
+            [button setTitle:nil forState:UIControlStateNormal];
+            [button setEnabled:NO];
+            if (i <= endIndex) {
+                [button setHidden:NO];
+            }else{
+                [button setHidden:YES];
+            }
+        }
     }
 }
 
@@ -262,11 +270,11 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updateCandidateViewsWithText:text];
 }
 
-- (void)updatePickWordViews
-{
-    [self updateAnswerViews];
-    [self updateCandidateViews];
-}
+//- (void)updatePickWordViews
+//{
+//    [self updateAnswerViews];
+//    [self updateCandidateViews];
+//}
 
 - (void)updatePickViewsWithWord:(Word *)word lang:(LanguageType)lang
 {
@@ -413,7 +421,11 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)resetData
 {
 
-    [showView cleanAllActions];
+    if (!gameStarted) {
+        [showView cleanAllActions];
+        [showView setStatus:Stop];
+        gameStarted = YES;
+    }
     [self setGuessAndPickButtonsEnabled:YES];
     retainCount = GUESS_TIME;
     NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
@@ -424,6 +436,7 @@ ShowDrawController *GlobalGetShowDrawController()
     gameCompleted = NO;
     [toolView setNumber:3];
     toolView.enabled = YES;
+
 }
 
 #pragma mark - View lifecycle
@@ -431,13 +444,16 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:showView];
+    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
+    [self.view insertSubview:showView aboveSubview:paperView];
+//    [self.view addSubview:showView];
     [self initAnswerAndCadidateViews];
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:popupButton];
     [self.view addSubview:toolView];
     [toolView addTarget:self action:@selector(bomb:)];
-
+    gameStarted = NO;
 }
 
 
@@ -454,6 +470,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [drawGameService unregisterObserver:self];
     [self setWord:nil];
     [self updatePickViewsWithWord:nil lang:languageType];
+    gameStarted = NO;
+    showView.status = Stop;
+    [showView setNeedsDisplay];
+
     [super viewDidDisappear:animated];
 }
 
@@ -502,15 +522,15 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect
 {
-    if (![drawGameService.userId isEqualToString:guessUserId]) {
-        if (!guessCorrect) {
-            [self popGuessMessage:wordText userId:guessUserId];        
-        }else{
-            [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-            [self addScore:self.word.level toUser:guessUserId];
-        }
-        
+//    if (![drawGameService.userId isEqualToString:guessUserId]) {
+    if (!guessCorrect) {
+        [self popGuessMessage:wordText userId:guessUserId];        
+    }else{
+        [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
+        [self addScore:self.word.level toUser:guessUserId];
     }
+        
+//    }
 
 }
 
@@ -521,6 +541,13 @@ ShowDrawController *GlobalGetShowDrawController()
         
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         [self updatePickViewsWithWord:word lang:lang];
+        
+        if (!gameStarted) {
+            gameStarted = YES;
+            [showView cleanAllActions];
+            [showView setStatus:Stop];
+        }
+        
     }
 }
 
@@ -582,6 +609,8 @@ ShowDrawController *GlobalGetShowDrawController()
     if (flag) {
         [self alert:NSLS(@"kGuessCorrect")];
         [self setGuessAndPickButtonsEnabled:NO];
+        self.guessDoneButton.enabled = NO;
+        [self addScore:self.word.score toUser:drawGameService.userId];
     }else{
         [self alert:NSLS(@"kGuessWrong")];
     }
@@ -605,6 +634,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [dialog removeFromSuperview];
     [drawGameService quitGame];
     [HomeController returnRoom:self];
+    [showView cleanAllActions];
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
