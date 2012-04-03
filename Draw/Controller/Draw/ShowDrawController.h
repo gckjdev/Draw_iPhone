@@ -29,6 +29,7 @@
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
     ToolView *toolView;
+    BOOL gameStarted;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;

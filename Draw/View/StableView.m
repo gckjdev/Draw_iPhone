@@ -63,6 +63,12 @@
     
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    [numberButton setEnabled:enabled];
+}
+
 @end
 
 

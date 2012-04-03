@@ -47,6 +47,8 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize word = _word;
 
 #define DRAW_TIME 60
+#define PAPER_VIEW_TAG 20120403
+
 
 - (void)dealloc
 {
@@ -226,7 +228,10 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [super viewDidLoad];
     drawView.delegate = self;
-    [self.view addSubview:drawView];
+//    [self.view addSubview:drawView];
+    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
+    [self.view insertSubview:drawView aboveSubview:paperView];
+
     [self initPickPenView];
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
@@ -422,7 +427,19 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender {
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    [self.view addSubview:dialog];
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
     [drawGameService quitGame];
     [HomeController returnRoom:self];
+
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
 }
 @end
