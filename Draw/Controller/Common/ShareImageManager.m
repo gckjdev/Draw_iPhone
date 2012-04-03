@@ -18,6 +18,7 @@ static UIImage* _greenButtonImage;
 static UIImage* _redButtonImage;
 static UIImage *_buyButtonImage;
 static UIImage* _showcaseBackgroundImage;
+static UIImage* _whitePaperImage;
 
 + (ShareImageManager*)defaultManager
 {
@@ -80,6 +81,15 @@ static UIImage* _showcaseBackgroundImage;
         _showcaseBackgroundImage = [[UIImage strectchableImageName:SHOWCASE_BACKGROUND]retain];
     }
     return _showcaseBackgroundImage;
+}
+
+- (UIImage *)whitePaperImage
+{
+    if (_whitePaperImage == nil) {
+        _whitePaperImage = [[UIImage strectchableImageName:@"white_paper.png"]retain];
+//        _whitePaperImage = [[UIImage strectchableImageName:@"white_paper.png" topCapHeight:40]retain];
+    }
+    return _whitePaperImage;
 }
 
 

@@ -31,9 +31,8 @@
 - (UIImage*)showcaseBackgroundImage;
 - (UIImage *)coinImage;
 - (UIImage *)toolImage;
-
 - (UIImage *)popupImage;
-
+- (UIImage *)whitePaperImage;
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;

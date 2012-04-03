@@ -30,6 +30,8 @@
 @property (assign, nonatomic) NSInteger score;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *whitePaper;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 
 - (IBAction)clickUpButton:(id)sender;
