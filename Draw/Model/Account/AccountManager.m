@@ -109,14 +109,20 @@ AccountManager* GlobalGetAccountManager()
 
 - (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
 {
-    NSInteger result = [self getBalance] - balance;
-    [self updateAccount:result];
+    NSInteger result = [self getBalance] + balance;
+    [self updateAccount:result];    
+    PPDebug(@"<increaseBalance> add %d, blance=%d", balance, [self getBalance]);
 }
 
 
 - (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
 {
-    
+    NSInteger result = [self getBalance] - balance;
+    if (result < 0){
+        result = 0;
+    }
+    [self updateAccount:result];    
+    PPDebug(@"<increaseBalance> add %d, blance=%d", balance, [self getBalance]);    
 }
 
 #pragma mark - Price Delegate

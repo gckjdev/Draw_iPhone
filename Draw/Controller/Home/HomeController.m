@@ -197,12 +197,11 @@
     [self popupUnhappyMessage:@"Network Failure, Connect Server Failure" title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
-    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
-        // disable this policy at this moment...
-        
+    //        // disable this policy at this moment...
+//    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
 //        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
 //                                                          port:[[DrawGameService defaultService] serverPort]];
-    }
+//    }
 }
 
 - (void)didConnected

@@ -19,6 +19,7 @@
 #import "QQWeiboService.h"
 #import "RouterService.h"
 #import "AccountManager.h"
+#import "AccountService.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -63,6 +64,9 @@ NSString* GlobalGetServerURL()
     // Init SNS Service
     [[SinaSNSService defaultService] setAppKey:@"2831348933" Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
     [[QQWeiboService defaultService] setAppKey:@"801063695" Secret:@"e65f5ba72a75725032e5ee26c71d71d3"];        
+    
+    // Init Account Service
+    [AccountService defaultService];
     
     // Init Home
     self.homeController = [[[HomeController alloc] init] autorelease];    

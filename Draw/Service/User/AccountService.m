@@ -10,6 +10,7 @@
 #import "ShoppingModel.h"
 #import "PPDebug.h"
 #import "ShoppingManager.h"
+#import "AccountManager.h"
 
 @implementation AccountService
 
@@ -44,11 +45,22 @@ static AccountService* _defaultAccountService;
     SKProduct *selectedProduct = price.product;
     if (selectedProduct == nil){
         PPDebug(@"<buyCoin> but SKProduct of price is null");
+        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
+            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
+        }
         return;
     }
     PPDebug(@"<buyCoin> on product %@", [selectedProduct productIdentifier]);
     SKPayment *payment = [SKPayment paymentWithProduct:selectedProduct];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+- (void)sendBuyCoinsRequest:(ShoppingModel*)price transaction:(SKPaymentTransaction*)transaction
+{
+    dispatch_async(workingQueue, ^{
+        
+        
+    });
 }
 
 - (void)recordTransaction:(SKPaymentTransaction*)transaction
@@ -66,10 +78,12 @@ static AccountService* _defaultAccountService;
         return;
     }
     
-    // TODO save data into local user account
+    // save data into local user account
+    int coins = [price count];
+    [[AccountManager defaultManager] increaseBalance:coins sourceType:PurchaseType];
     
     // send request to remote server
-    
+    [self sendBuyCoinsRequest:price transaction:transaction];
 }
 
 - (void)provideContent:(NSString*)productId

@@ -13,6 +13,8 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
+#define ERROR_NO_PRODUCT    1000
+
 @class ShoppingModel;
 
 @protocol AccountServiceDelegate <NSObject>

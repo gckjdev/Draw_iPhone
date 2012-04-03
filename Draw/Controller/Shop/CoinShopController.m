@@ -136,14 +136,31 @@ CoinShopController *staticCoinController;
 {
     NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
     
+    
+    [self showActivityWithText:NSLS(@"kBuying")];
+    [[AccountService defaultService] setDelegate:self];
     [[AccountService defaultService] buyCoin:model];
+}
+
+- (void)updateCoinNumberLabel
+{
+    // TODO
 }
 
 #pragma mark - Price service delegate
 - (void)didBeginFetchData
 {
-    [self showActivityWithText:@"Loading..."];
+    [self showActivityWithText:@"kLoading"];
 }
+
+- (void)didFinishBuyProduct:(int)resultCode
+{
+    [self hideActivity];
+    
+    // update product count number label
+    [self updateCoinNumberLabel];
+}
+
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
 {
     [self hideActivity];

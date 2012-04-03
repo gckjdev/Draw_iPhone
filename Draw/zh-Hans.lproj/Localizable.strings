@@ -49,3 +49,6 @@
 "kGuessCorrect" = "猜对了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
+
+"kBuying" = "发送购买请求中...";
+"kLoading" = "加载数据中...";

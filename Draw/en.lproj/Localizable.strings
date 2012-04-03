@@ -51,3 +51,6 @@
 "kGuessCorrect" = "Correct!";
 "kAllUserQuit" = "All users quit! Game Over!";
 "kConfirm" = "Confirm";
+
+"kBuying" = "Sending request...";
+"kLoading" = "Loading...";
