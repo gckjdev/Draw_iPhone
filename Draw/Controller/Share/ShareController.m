@@ -64,15 +64,21 @@ enum {
     CANCEL
 };
 
+#define BACK_GROUND_TAG 120120403
+#define REPLAY_TAG  220120403
+#define QUIT_BUTTON_TAG 320120403
+
 - (void)quitReplay
 {
-    UIButton* btn = (UIButton*)[self.view viewWithTag:11111];
-    ShowDrawView* view = (ShowDrawView*)[self.view viewWithTag:22222];
-    UIView* bck = [self.view viewWithTag:33333];
+    UIButton* btn = (UIButton*)[self.view viewWithTag:QUIT_BUTTON_TAG];
+    ShowDrawView* view = (ShowDrawView*)[self.view viewWithTag:REPLAY_TAG];
+    UIView* bck = [self.view viewWithTag:QUIT_BUTTON_TAG];
     [btn removeFromSuperview];
     [bck removeFromSuperview];
     [view removeFromSuperview];
 }
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
@@ -89,25 +95,28 @@ enum {
             MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
             NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
             NSArray* drawActionList = (NSArray*)currentData;
+            
             UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+            background.tag = BACK_GROUND_TAG;
             [background setBackgroundColor:[UIColor blackColor]];
             [background setAlpha:0.5];
-            ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];
             [self.view addSubview:background];
+            [background release];
+            
+            ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];    
+            replayView.tag = REPLAY_TAG;
             [self.view addSubview:replayView];
+            [replayView release];            
             NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
             [replayView setDrawActionList:actionList];
             [replayView play];
+            
             UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
             [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:quit];
             [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
-            quit.tag = 11111;
-            replayView.tag = 22222;
-            background.tag = 33333;
-            [replayView release];
-            [background release];
-            
+            quit.tag = QUIT_BUTTON_TAG;
+ 
         }
             break;
         case DELETE: {

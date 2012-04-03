@@ -8,6 +8,7 @@
 
 #import "ShareEditController.h"
 #import "SynthesisView.h"
+#define PATTERN_TAG_OFFSET 20120403
 
 @interface ShareEditController ()
 
@@ -17,12 +18,54 @@
 @synthesize myImage = _myImage;
 @synthesize patternsGallery = _patternsGallery;
 @synthesize patternsArray = _patternsArray;
+@synthesize infuseImageView = _infuseImageView;
 
 - (void)dealloc
 {
     [_myImage release];
     [_patternsGallery release];
+    [_patternsArray release];
+    [_infuseImageView release];
     [super dealloc];
+}
+
+- (void)initPatterns
+{
+    UIImage* myPettern = [UIImage imageNamed:@"guess_pattern.png"];
+    [self.patternsArray addObject:myPettern];
+}
+
+- (void)initPattenrsGallery
+{
+    float heigth = self.patternsGallery.frame.size.height;
+    
+    UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
+    noPatternButton.tag = PATTERN_TAG_OFFSET;
+    [self.patternsGallery addSubview:noPatternButton];
+    [noPatternButton addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    for (int index = 1; index <= self.patternsArray.count; index ++) {
+        UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(heigth*index, 0, heigth, heigth)] autorelease];
+        btn.tag = PATTERN_TAG_OFFSET+index;
+        [btn setBackgroundImage:[_patternsArray objectAtIndex:index-1] forState:UIControlStateNormal];
+        [self.patternsGallery addSubview:btn];
+        [btn addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+}
+
+- (void)selectPattern:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    if (btn.tag == PATTERN_TAG_OFFSET) {
+        [self.infuseImageView setPatternImage:nil];
+        [self.infuseImageView setNeedsDisplay];
+    } else {
+        UIImage* patternImage = [_patternsArray objectAtIndex:0];
+        [self.infuseImageView setPatternImage:patternImage];
+    }
+  
 }
 
 - (IBAction)clickBack:(id)sender
@@ -43,6 +86,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _patternsArray = [[NSMutableArray alloc] init];
         // Custom initialization
     }
     return self;
@@ -51,14 +95,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImageView* view1 = [[[UIImageView alloc] initWithFrame:CGRectMake(130, 400, 60, 60)] autorelease];
-    NSArray* patternsImageArray = [NSArray arrayWithObjects:[UIImage imageNamed:@"guess_pattern.png"], nil];
-    [self.view addSubview:view1];
-    SynthesisView* view = [[SynthesisView alloc] initWithFrame:CGRectMake(20, 75, 280, 280)];
-    view.drawImage = self.myImage;
-    view.patternImage = [UIImage imageNamed:@"guess_pattern.png"];
-    [self.view addSubview:view];
-    [view1 setImage:[view createImage]];
+    [self initPatterns];
+    [self initPattenrsGallery];
+    
+    [self.infuseImageView setDrawImage:self.myImage];
     // Do any additional setup after loading the view from its nib.
 }
 
