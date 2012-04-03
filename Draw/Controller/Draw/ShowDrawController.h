@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
 #import "UserManager.h"
+#import "CommonDialog.h"
+
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
-@interface ShowDrawController : UIViewController<DrawGameServiceDelegate>
+@interface ShowDrawController : UIViewController<DrawGameServiceDelegate,CommonDialogDelegate>
 {
     Word *_word;
     DrawGameService *drawGameService;

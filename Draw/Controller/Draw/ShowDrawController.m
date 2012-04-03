@@ -71,8 +71,8 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 - (IBAction)clickRunAway:(id)sender {
-    [drawGameService quitGame];
-    [HomeController returnRoom:self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    [self.view addSubview:dialog];
 }
 
 
@@ -594,5 +594,20 @@ ShowDrawController *GlobalGetShowDrawController()
     [toolView decreaseNumber];
     toolView.enabled = NO;
 }
+
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    //run away
+    [dialog removeFromSuperview];
+    [drawGameService quitGame];
+    [HomeController returnRoom:self];
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    //stay
+    [dialog removeFromSuperview];
+}
+
 
 @end

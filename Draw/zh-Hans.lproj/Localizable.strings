@@ -50,4 +50,8 @@
 "kGuessWrong" = "猜错了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
+"kOK" = "确定";
 "kSubmit" = "提交";
+"kCancel" = "取消";
+"kQuitGameAlertMessage" = "确定要退出游戏吗?";
+"kQuitGameAlertTitle" = "退出游戏";

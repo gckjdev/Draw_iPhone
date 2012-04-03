@@ -51,5 +51,10 @@
 "kGuessCorrect" = "Correct!";
 "kGuessWrong" = "Wrong!";
 "kAllUserQuit" = "All users quit! Game Over!";
-"kConfirm" = "Confirm";
+"kConfirm" = "OK";
+"kOK" = "OK";
 "kSubmit" = "Submit";
+"kCancel" = "Cancel";
+
+"kQuitGameAlertTitle" = "Quit Game";
+"kQuitGameAlertMessage" = "Are you sure to quit the game?";

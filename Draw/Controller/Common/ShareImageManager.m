@@ -15,6 +15,7 @@ static ShareImageManager* _defaultManager;
 static UIImage* _woodButtonImage;
 static UIImage* _orangeButtonImage;
 static UIImage* _greenButtonImage;
+static UIImage* _redButtonImage;
 static UIImage *_buyButtonImage;
 static UIImage* _showcaseBackgroundImage;
 
@@ -44,6 +45,16 @@ static UIImage* _showcaseBackgroundImage;
     
     return _greenButtonImage;    
 }
+
+- (UIImage*)redImage
+{
+    if (_redButtonImage == nil){        
+        _redButtonImage = [[UIImage strectchableImageName:@"red_button.png"] retain];
+    }
+    
+    return _redButtonImage;    
+}
+
 
 - (UIImage*)orangeImage
 {

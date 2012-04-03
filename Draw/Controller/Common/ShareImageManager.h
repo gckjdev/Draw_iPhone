@@ -25,6 +25,7 @@
 
 - (UIImage*)woodImage;
 - (UIImage*)greenImage;
+- (UIImage*)redImage;
 - (UIImage*)orangeImage;
 - (UIImage *)buyButtonImage;
 - (UIImage*)showcaseBackgroundImage;
