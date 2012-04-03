@@ -240,6 +240,7 @@
             
             NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
             [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint];
+            [drawGameService.drawActionList removeAllObjects];
         }
     }
 }
