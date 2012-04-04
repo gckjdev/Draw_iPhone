@@ -16,7 +16,7 @@
 
 "kFeedback" = "反馈";
 
-"kCheckin" = "签 到";
+"kCheckin" = "签到";
 
 "Me" = "我";
 
@@ -74,5 +74,9 @@
 
 "kStartingGame" = "请求开始游戏中...";
 
-"kCoinsNotEnoughTitle" = "";
-"kCoinsNotEnough" = "";
+"kCoinsNotEnoughTitle" = "消息";
+"kCoinsNotEnough" = "不好意思，你的金币不够了啊，是不是现在购买一些金币？";
+
+"kCheckInTitle" = "消息";
+"kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
+"kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";

@@ -22,6 +22,8 @@
 #import "TrafficServer.h"
 #import "Reachability.h"
 #import "ShareImageManager.h"
+#import "AccountService.h"
+#import "CommonDialog.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -168,6 +170,22 @@
     FeedbackController* feedBack = [[FeedbackController alloc] init];
     [self.navigationController pushViewController:feedBack animated:YES];
     [feedBack release];
+}
+
+- (IBAction)clickCheckIn:(id)sender
+{
+    int coins = [[AccountService defaultService] checkIn];
+    NSString* message = nil;
+    if (coins > 0){        
+        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+    }
+    else{
+        message = NSLS(@"kCheckInAlreadyToday");
+    }
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+                                                       message:message
+                                                         style:CommonDialogStyleSingleButton 
+                                                     deelegate:self];    
 }
 
 - (IBAction)clickSettings:(id)sender

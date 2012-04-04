@@ -18,6 +18,7 @@
 #import "GTMBase64.h"
 #import "ItemManager.h"
 #import "UserItem.h"
+#import "TimeUtils.h"
 
 @implementation AccountService
 
@@ -349,6 +350,30 @@ static AccountService* _defaultAccountService;
         return NO;
     
     return [[userItem amount] intValue] >= amount;
+}
+
+#define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
+#define MAX_CHECKIN_COINS       5
+
+- (int)checkIn
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_CHECKIN_DATE];
+    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
+        // already check in, return -1
+        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
+        return -1;
+    }
+
+    // random get some coins
+    int coins = rand() % MAX_CHECKIN_COINS + 1;
+    PPDebug(@"<checkIn> got %d coins", coins);
+    [self chargeAccount:coins source:CheckInType]; 
+    
+    // update check in today flag
+    [userDefaults setObject:[NSDate date] forKey:KEY_LAST_CHECKIN_DATE];
+    [userDefaults synchronize];    
+    return coins;
 }
 
 @end

@@ -16,7 +16,7 @@
 
 "kFeedback" = "Feedback";
 
-"kCheckin" = "Sign";
+"kCheckin" = "Check In";
 
 "Me" = "Me";
 
@@ -78,5 +78,9 @@
 "kStartingGame" = "Starting Game...";
 "kProcessingIAP" = "Processing purchasing request...";
 
-"kCoinsNotEnoughTitle" = "";
-"kCoinsNotEnough" = "";
+"kCoinsNotEnoughTitle" = "Message";
+"kCoinsNotEnough" = "Sorry, you don't have enough coins. Do you want to purchase coins now?";
+
+"kCheckInTitle" = "Message";
+"kCheckInMessage" = "Oh, you got %d coins today!";
+"kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
