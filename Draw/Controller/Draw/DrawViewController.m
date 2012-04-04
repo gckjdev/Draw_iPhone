@@ -26,7 +26,7 @@
 #import "UIButtonExt.h"
 #import "HomeController.h"
 #import "StableView.h"
-
+#import "PPDebug.h"
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
 {
@@ -45,6 +45,7 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize cleanButton;
 @synthesize penButton;
 @synthesize word = _word;
+@synthesize needResetData;
 
 #define DRAW_TIME 60
 #define PAPER_VIEW_TAG 20120403
@@ -80,6 +81,23 @@ DrawViewController *GlobalGetDrawViewController()
     return GlobalGetDrawViewController();
 }
 
++ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
+{
+    DrawViewController *vc = [DrawViewController instance];
+    vc.word = word;
+    int language = [[UserManager defaultManager] getLanguageType];
+    vc.needResetData = YES;
+    [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
+    [fromController.navigationController pushViewController:vc animated:NO];            
+}
+
++ (void)returnFromController:(UIViewController*)fromController
+{
+    DrawViewController *vc = [DrawViewController instance];
+    vc.needResetData = NO;
+    [fromController.navigationController popToViewController:vc animated:YES];
+    
+}
 #pragma mark - View lifecycle
 
 
@@ -181,6 +199,7 @@ DrawViewController *GlobalGetDrawViewController()
         shareImageManager = [ShareImageManager defaultManager];
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
+        drawGameService.drawDelegate = self;
     }
     return self;
 }
@@ -188,8 +207,6 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetData
 {
     [drawView clearAllActions];
-    drawGameService.drawDelegate = self;
-//    [pickPenView setHidden:YES];
     [popupButton setHidden:YES];
     [self.wordButton setTitle:self.word.text forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
@@ -199,7 +216,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self startTimer];
     [self setToolButtonEnabled:YES];
     [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
-    gameComplete = NO;
+//    gameComplete = NO;
 }
 - (void)initPickPenView
 {
@@ -243,21 +260,19 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (!hasPushColorShopController) {
+
+    if (needResetData) {
         [self resetData];
     }
     [pickPenView setHidden:YES];
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
-    hasPushColorShopController = NO;
+
+    hasPushResultController = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    if (!hasPushColorShopController) {
-        [drawGameService unregisterObserver:self];
-        [drawGameService setDrawDelegate:[ShowDrawController instance]];        
-    }
     [super viewDidDisappear:animated];
 }
 
@@ -395,8 +410,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    if (!gameComplete) {
-        gameComplete = YES;
+    if (!hasPushResultController) {
         UIImage *image = [drawView createImage];
         NSInteger gainCoin = [[message notification] turnGainCoins];
         ResultController *rc = [[ResultController alloc] initWithImage:image
@@ -404,10 +418,11 @@ DrawViewController *GlobalGetDrawViewController()
                                                                  score:gainCoin                                                         correct:NO
                                                              isMyPaint:YES];
         [self.navigationController pushViewController:rc animated:YES];
-        hasPushColorShopController = NO;
+        hasPushResultController = YES;
         [rc release];
         [self resetTimer];
-        
+    }else{
+        PPDebug(@"warning:<didGameTurnComplete> but hasPushResultController = YES");
     }
 }
 
@@ -437,8 +452,8 @@ DrawViewController *GlobalGetDrawViewController()
 {
     //present a buy color controller;
     ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
+    colorShop.callFromDrawView = YES;
     [self.navigationController pushViewController:colorShop animated:YES];
-    hasPushColorShopController = YES;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender {

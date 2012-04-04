@@ -23,8 +23,10 @@
 }
 @property (retain, nonatomic) IBOutlet UILabel *coinNumberLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (assign, nonatomic) BOOL callFromDrawView;
 - (IBAction)clickBackButton:(id)sender;
 @property(nonatomic, assign)id<ColorShopControllerDelegate> colorShopControllerDelegate;
 +(ColorShopController *)instance;
 +(ColorShopController *)instanceWithDelegate:(id<ColorShopControllerDelegate>)delegate;
+
 @end

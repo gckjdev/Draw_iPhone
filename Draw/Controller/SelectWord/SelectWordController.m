@@ -52,12 +52,8 @@
 {
     DrawGameService *gameService = [DrawGameService defaultService];
     if (!hasPushController) {
-        hasPushController = YES;
-        DrawViewController *vc = [DrawViewController instance];
-        vc.word = word;
-        int language = 1; // TODO, use formal language from UserManager
-        [gameService startDraw:word.text level:word.level language:language];
-        [self.navigationController pushViewController:vc animated:NO];        
+        hasPushController = YES;        
+        [DrawViewController startDraw:word fromController:self];
     }
     
 }

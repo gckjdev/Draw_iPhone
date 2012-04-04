@@ -18,6 +18,7 @@
 
 typedef enum {
     SESSION_WAITING = 0,
+    SESSION_PICK_WORD,
     SESSION_PLAYING        
 } SessionStatus ;
 
@@ -42,8 +43,9 @@ typedef enum {
 - (BOOL)isMe:(NSString*)userId;
 - (BOOL)isHostUser:(NSString*)userId;
 
-- (void)startPlay;
-- (void)finishPlay;
+//- (void)startPlay;
+//- (void)finishPlay;
+
 - (NSString *)getNickNameByUserId:(NSString *)userId;
 - (NSString *)drawingUserId;
 @end

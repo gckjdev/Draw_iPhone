@@ -189,15 +189,15 @@
     }
 }
 
-- (void)startPlay
-{
-    self.status = SESSION_PLAYING;
-}
-
-- (void)finishPlay
-{
-    self.status = SESSION_WAITING;
-}
+//- (void)startPlay
+//{
+//    self.status = SESSION_PLAYING;
+//}
+//
+//- (void)finishPlay
+//{
+//    self.status = SESSION_WAITING;
+//}
 
 - (NSString *)getNickNameByUserId:(NSString *)userId
 {

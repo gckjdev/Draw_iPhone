@@ -31,6 +31,8 @@ static DrawGameService* _defaultService;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
 @synthesize drawActionList = _drawActionList;
+@synthesize showDelegate = _showDelegate;
+
 - (void)dealloc
 {
     [_serverAddress release];
@@ -180,6 +182,9 @@ static DrawGameService* _defaultService;
 
         // update session data      
         if ([message resultCode] == 0){
+            
+            [_session setStatus:SESSION_PICK_WORD];
+            
             [self.session updateByStartGameResponse:[message startGameResponse]];
             PPDebug(@"<handleStartGameResponse> Update Session = %@", [self.session description]);
         }
@@ -192,6 +197,8 @@ static DrawGameService* _defaultService;
 - (void)handleGameStartNotification:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{      
+        
+        [_session setStatus:SESSION_PICK_WORD];
         
         // update session data
         [self.session updateByGameNotification:[message notification]];
@@ -237,13 +244,19 @@ static DrawGameService* _defaultService;
 {
     dispatch_async(dispatch_get_main_queue(), ^{   
         
+        [_session setStatus:SESSION_WAITING];
+        
         // update session data
         [self.session updateByGameNotification:[message notification]];
         
         PPDebug(@"<handleGameTurnCompleteNotification> Game Turn Completed!");
-        if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
-            [_drawDelegate didGameTurnComplete:message];
-        }
+//        if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
+//            [_drawDelegate didGameTurnComplete:message];
+//        }
+//        
+//        if ([_showDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
+//            [_showDelegate didGameTurnComplete:message];
+//        }
         
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
@@ -269,17 +282,23 @@ static DrawGameService* _defaultService;
         
         // TODO chaneg to notifyGameObserver
         if ([[[message notification] word] length] > 0){
+            
+            // receive user pick word, set status to playing
+            [_session setStatus:SESSION_PLAYING];
+
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
-            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawWord:level:language:)]) {
-                [_drawDelegate didReceiveDrawWord:[[message notification] word] 
+            if ([_showDelegate respondsToSelector:@selector(didReceiveDrawWord:level:language:)]) {
+                [_showDelegate didReceiveDrawWord:[[message notification] word] 
                                             level:[[message notification] level]
                                          language:[[message notification] language]];
             }
             
+            
             PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
-            if ([_drawDelegate respondsToSelector:@selector(didGameTurnGuessStart:)]) {
-                [_drawDelegate didGameTurnGuessStart:message];
-            }
+//            if ([_drawDelegate respondsToSelector:@selector(didGameTurnGuessStart:)]) {
+//                [_drawDelegate didGameTurnGuessStart:message];
+//            }            
+            [self notifyGameObserver:@selector(didGameTurnGuessStart:) message:message];
         }
         
         if ([[[message notification] guessWord] length] > 0){
@@ -295,12 +314,19 @@ static DrawGameService* _defaultService;
                                       guessCorrect:[[message notification] guessCorrect]
                                          gainCoins:[[message notification] guessGainCoins]];
             }            
+
+            if ([_showDelegate respondsToSelector:@selector(didReceiveGuessWord:guessUserId:guessCorrect:gainCoins:)]) {
+                [_showDelegate didReceiveGuessWord:[[message notification] guessWord]
+                                       guessUserId:[[message notification] guessUserId]
+                                      guessCorrect:[[message notification] guessCorrect]
+                                         gainCoins:[[message notification] guessGainCoins]];
+            }            
         }
 
         if ([[[message notification] pointsList] count] > 0){
             PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
-            if ([_drawDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
-                [_drawDelegate didReceiveDrawData:message];
+            if ([_showDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
+                [_showDelegate didReceiveDrawData:message];
             }
             NSArray* array = [[message notification] pointsList];
             int color = [[message notification] color];
@@ -318,8 +344,8 @@ static DrawGameService* _defaultService;
 {
     dispatch_async(dispatch_get_main_queue(), ^{        
         // TODO chaneg to notifyGameObserver
-        if ([_drawDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
-            [_drawDelegate didReceiveRedrawResponse:message];
+        if ([_showDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
+            [_showDelegate didReceiveRedrawResponse:message];
         }
     });
     [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
@@ -410,6 +436,8 @@ static DrawGameService* _defaultService;
 
 - (void)joinGame
 {
+    [_session setStatus:SESSION_WAITING];
+    
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
@@ -425,6 +453,8 @@ static DrawGameService* _defaultService;
 
 - (void)changeRoom
 {
+    [_session setStatus:SESSION_WAITING];    
+    
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
@@ -457,6 +487,8 @@ static DrawGameService* _defaultService;
 
 - (void)startDraw:(NSString*)word level:(int)level language:(int)language
 {
+    [_session setStatus:SESSION_PLAYING];    
+    
     [_networkClient sendStartDraw:_userId
                         sessionId:[_session sessionId]
                              word:word
@@ -488,6 +520,7 @@ static DrawGameService* _defaultService;
 
 - (void)quitGame
 {
+    
     [_networkClient sendQuitGame:_userId
                        sessionId:[_session sessionId]];
     
@@ -511,5 +544,9 @@ static DrawGameService* _defaultService;
 - (NSInteger)roundNumber
 {
     return _session.roundNumber;
+}
+- (SessionStatus) sessionStatus
+{
+    return _session.status;
 }
 @end
