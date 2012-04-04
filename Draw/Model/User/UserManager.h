@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#define DEFAULT_AVATAR          @"http://file11.joyes.com/other/2010/01/25/ad7440f6997c48de85fed5a0527e05c0.jpg"
+#define DEFAULT_AVATAR          @"http://tp4.sinaimg.cn/2198792115/180/0/1"
 #define TEMP_AVATAR_LOCAL_PATH  @"temp"
 #define DEFAULT_AVATAR_BUNDLE   @"default_avatar.jpg"
 

@@ -397,7 +397,6 @@ DrawViewController *GlobalGetDrawViewController()
 {
     if (!gameComplete) {
         gameComplete = YES;
-//        [drawGameService increaseRoundNumber];
         UIImage *image = [drawView createImage];
         NSInteger gainCoin = [[message notification] turnGainCoins];
         ResultController *rc = [[ResultController alloc] initWithImage:image

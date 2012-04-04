@@ -125,7 +125,7 @@
 }
 
 #pragma mark - GUI Update Methods
-
+#define DRAWING_MARK_TAG 20120404
 - (void)updateGameUsers
 {
     
@@ -172,6 +172,18 @@
             [imageView setUrl:[NSURL URLWithString:DEFAULT_AVATAR]];
         }
         [GlobalGetImageCache() manage:imageView];
+        
+        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
+        [view removeFromSuperview];
+        
+        if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
+            UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
+            UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
+            [drawingImageView setFrame:CGRectMake(40, 40, 24, 25)];
+            drawingImageView.tag = DRAWING_MARK_TAG;
+            [imageView addSubview:drawingImageView];
+            [drawingImageView release];
+        }
     }
     
     // clean all data
@@ -186,6 +198,9 @@
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
         imageView.hidden = YES;
+        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
+        [view removeFromSuperview];
+
     }
     
     [self updateStartButton];
