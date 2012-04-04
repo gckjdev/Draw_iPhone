@@ -68,3 +68,5 @@
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
 "kBuyColor" = "Color Shop";
+"kConnectionRecover" = "Connection Recover";
+"kConnectionBroken" = "Connection Broken";

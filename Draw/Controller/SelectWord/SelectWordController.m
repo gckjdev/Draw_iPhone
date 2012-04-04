@@ -17,6 +17,7 @@
 #import "UserManager.h"
 #import "ShareImageManager.h"
 #import "StableView.h"
+#import "RoomController.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -33,6 +34,7 @@
     if (self) {
         // Custom initialization
         hasPushController = NO;
+        drawGameService = [DrawGameService defaultService];
     }
     return self;
 }
@@ -103,7 +105,17 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [drawGameService registerObserver:self];
+    [super viewDidAppear:animated];
+}
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [drawGameService unregisterObserver:self];
+    [super viewDidDisappear:animated];
+}
 
 - (void)viewDidUnload
 {
@@ -167,4 +179,11 @@
 {
     return [SelectWordCell getCellHeight];
 }
+
+- (void)didGameTurnComplete:(GameMessage *)message
+{
+    [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
+    [RoomController returnRoom:self startNow:NO];
+}
+
 @end

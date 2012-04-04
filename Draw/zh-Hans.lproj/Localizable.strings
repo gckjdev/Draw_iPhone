@@ -64,3 +64,5 @@
 "kSave" = "保存";
 "kTurnResult" = "本轮结果";
 "kBuyColor" = "购买颜色";
+"kConnectionRecover" = "连接恢复";
+"kConnectionBroken" = "连接中断";

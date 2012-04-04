@@ -13,7 +13,7 @@
 @implementation ColorShopCell
 @synthesize coinImageView;
 @synthesize priceLabel;
-
+@synthesize colorShopCellDelegate = _colorShopCellDelegate;
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -37,13 +37,20 @@
 
 + (CGFloat)getCellHeight
 {
-    return 120.0f;
+    return 134.0f;
 }
 
 - (void)updatePrice:(NSInteger)price
 {
     NSString *priceString = [NSString stringWithFormat:@"x%d",price];
     [self.priceLabel setText:priceString];
+}
+
+- (void)clickColorView:(id)sender
+{
+    if (_colorShopCellDelegate && [_colorShopCellDelegate respondsToSelector:@selector(didPickedColorView:)]) {
+        [_colorShopCellDelegate didPickedColorView:sender];
+    }
 }
 
 #define BASE_COLOR_VIEW_TAG 10
@@ -69,6 +76,8 @@
                 }else{
                     [colorView setHidden:YES];
                 }
+                colorView.userInteractionEnabled = hasBought;
+                [colorView addTarget:self action:@selector(clickColorView:) forControlEvents:UIControlEventTouchUpInside];
             }
         }
     }    

@@ -12,12 +12,12 @@
 #import "DrawGameService.h"
 #import "PickPenView.h"
 #import "CommonDialog.h"
-
+#import "ColorShopController.h"
+#import "PPViewController.h"
 @class Word;
 @class ShareImageManager;
-@interface DrawViewController : UIViewController<DrawViewDelegate, 
+@interface DrawViewController : PPViewController<DrawViewDelegate, ColorShopControllerDelegate,
             DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
-                
     DrawView *drawView;
     PickPenView *pickPenView;
     DrawGameService *drawGameService;
@@ -27,6 +27,7 @@
     BOOL gameComplete;
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
+    BOOL hasPushColorShopController;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;

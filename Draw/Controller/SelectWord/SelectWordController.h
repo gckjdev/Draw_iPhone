@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DrawGameService.h"
+#import "PPViewController.h"
 @class ToolView;
-@interface SelectWordController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate>
 {
     NSArray *_wordArray;
     NSInteger  retainCount;
     BOOL hasPushController;
     ToolView *toolView;
+    DrawGameService *drawGameService;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
