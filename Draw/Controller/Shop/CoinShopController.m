@@ -11,6 +11,7 @@
 #import "DrawGameService.h"
 #import "AccountService.h"
 #import "ShareImageManager.h"
+#import "AccountManager.h"
 
 CoinShopController *staticCoinController;
 
@@ -68,8 +69,9 @@ CoinShopController *staticCoinController;
     [tableBg release];
     
     [self.titleLabel setText:NSLS(@"kCoinShopTitle")];
-
     
+    [self updateCoinNumberLabel];
+
     // why here??? Benson
 //    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
 }
@@ -144,13 +146,13 @@ CoinShopController *staticCoinController;
 
 - (void)updateCoinNumberLabel
 {
-    // TODO
+    self.coinNumberLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalance]];
 }
 
 #pragma mark - Price service delegate
 - (void)didBeginFetchData
 {
-    [self showActivityWithText:@"kLoading"];
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (void)didFinishBuyProduct:(int)resultCode
@@ -159,6 +161,10 @@ CoinShopController *staticCoinController;
     
     // update product count number label
     [self updateCoinNumberLabel];
+    
+    if (resultCode == 0){
+        [self popupMessage:NSLS(@"kBuyCoinsSucc") title:nil];
+    }
 }
 
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
@@ -179,4 +185,6 @@ CoinShopController *staticCoinController;
     [titleLabel release];
     [super dealloc];
 }
+
+
 @end

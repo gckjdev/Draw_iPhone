@@ -11,6 +11,11 @@
 #import "PPDebug.h"
 #import "ShoppingManager.h"
 #import "AccountManager.h"
+#import "GameNetworkConstants.h"
+#import "GameNetworkRequest.h"
+#import "PPNetworkRequest.h"
+#import "UserManager.h"
+#import "GTMBase64.h"
 
 @implementation AccountService
 
@@ -39,6 +44,8 @@ static AccountService* _defaultAccountService;
     return self;
 }
 
+#pragma mark - methods for buy coins and items
+
 - (void)buyCoin:(ShoppingModel*)price
 {
     // send request to Apple IAP Server and wait for result
@@ -55,12 +62,17 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
-- (void)sendBuyCoinsRequest:(ShoppingModel*)price transaction:(SKPaymentTransaction*)transaction
+
+#pragma mark - IAP transaction handling
+
+- (void)makeBuyCoinsRequest:(ShoppingModel*)price transaction:(SKPaymentTransaction*)transaction
 {
-    dispatch_async(workingQueue, ^{
-        
-        
-    });
+    int amount = [price count];
+    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+    [self chargeAccount:amount 
+                 source:PurchaseType 
+          transactionId:transaction.transactionIdentifier
+     transactionRecepit:base64receipt];
 }
 
 - (void)recordTransaction:(SKPaymentTransaction*)transaction
@@ -77,13 +89,8 @@ static AccountService* _defaultAccountService;
         PPDebug(@"<recordTransaction> but coin price is nil");
         return;
     }
-    
-    // save data into local user account
-    int coins = [price count];
-    [[AccountManager defaultManager] increaseBalance:coins sourceType:PurchaseType];
-    
-    // send request to remote server
-    [self sendBuyCoinsRequest:price transaction:transaction];
+        
+    [self makeBuyCoinsRequest:price transaction:transaction];
 }
 
 - (void)provideContent:(NSString*)productId
@@ -137,6 +144,8 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 
+#pragma mark - IAP delegate methods
+
 // Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate.
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions 
 {
@@ -179,5 +188,75 @@ static AccountService* _defaultAccountService;
 {
     PPDebug(@"<paymentQueueRestoreCompletedTransactionsFinished>");        
 }
+
+#pragma mark - Charge/Deduct Service to Server
+
+- (void)chargeAccount:(int)amount 
+               source:(BalanceSourceType)source 
+        transactionId:(NSString*)transactionId
+   transactionRecepit:(NSString*)transactionRecepit
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    // update balance locally
+    [[AccountManager defaultManager] increaseBalance:amount sourceType:source]; 
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest chargeAccount:SERVER_URL 
+                                            userId:userId 
+                                            amount:amount 
+                                            source:source 
+                                     transactionId:transactionId 
+                                transactionReceipt:transactionRecepit];
+                
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                if (balance != [[AccountManager defaultManager] getBalance]){
+                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
+                            [[AccountManager defaultManager] getBalance], balance);
+                }
+
+            }
+            else{
+                PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
+            }
+        });        
+    });
+}
+
+- (void)deductAccount:(int)amount 
+               source:(BalanceSourceType)source
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    // update balance locally
+    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source]; 
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest deductAccount:SERVER_URL 
+                                            userId:userId 
+                                            amount:amount 
+                                            source:source];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                if (balance != [[AccountManager defaultManager] getBalance]){
+                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
+                            [[AccountManager defaultManager] getBalance], balance);
+                }
+            }
+            else{
+                PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
+            }
+        });        
+    });    
+}
+
 
 @end

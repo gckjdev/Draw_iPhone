@@ -15,6 +15,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "UIImageExt.h"
 #import "SNSConstants.h"
+#import "AccountManager.h"
 
 @implementation UserService
 
@@ -60,7 +61,10 @@ static UserService* _defaultUserService;
                                                 password:password 
                                                 nickName:nickName 
                                                avatarURL:nil];
-                
+
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                  
                 if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
                     [viewController didUserRegistered:output.resultCode];                    
                 }
@@ -156,7 +160,10 @@ static UserService* _defaultUserService;
                                                    avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                              qqAccessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
                                        qqAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]];                    
-                }                
+                }      
+                
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalanceFromServer:balance];
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];

@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum  {
+    CheckInType = 1, // 
+    PurchaseType = 2,
+    BuyItemType = 3
+}BalanceSourceType;
+
 @interface UserAccount : NSObject<NSCoding>
 {
     NSNumber *_balance;
 }
 @property(nonatomic, assign)NSNumber *balance;
 
-+ (UserAccount *)defaultAccount;
-+ (UserAccount *)accountWithBalance:(NSInteger)balance;
-- (NSInteger)intBalanceValue;
+//+ (UserAccount *)defaultAccount;
+//+ (UserAccount *)accountWithBalance:(NSInteger)balance;
+//- (NSInteger)intBalanceValue;
 @end

@@ -56,6 +56,16 @@
 
 + (CommonNetworkOutput*)getAllTrafficeServers:(NSString*)baseURL;
 
++ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+                        transactionId:(NSString*)transactionId
+                   transactionReceipt:(NSString*)transactionRecepit;
 
++ (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source;
 
 @end

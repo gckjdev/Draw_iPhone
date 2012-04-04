@@ -89,6 +89,8 @@
 #define PARA_SERVER_CAPACITY @"sc"
 
 #define METHOD_GET_TRAFFIC_SERVER_LIST @"gt"
+#define METHOD_CHARGE_ACCOUNT @"ca"
+#define METHOD_DEDUCT_ACCOUNT @"da"
 
 //game parameters
 
@@ -97,6 +99,13 @@
 #define PARA_SHOPPING_VALUE @"val"
 #define PARA_APPLE_IAP_PRODUCT_ID @"ipi"
 #define PARA_ACCOUNT_BALANCE @"ab"
+
+#define PARA_AMOUNT @"pa"
+#define PARA_SOURCE @"sr"
+#define PARA_TRANSACTION_ID @"tid"
+#define PARA_TRANSACTION_RECEIPT @"tre"
+
+
 
 // request parameters
 

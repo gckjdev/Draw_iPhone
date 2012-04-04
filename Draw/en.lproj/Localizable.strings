@@ -68,3 +68,7 @@
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
 "kBuyColor" = "Color Shop";
+
+"kNoServerAvailable" = "Sorry, server is full of users. Please try later.";
+
+"kBuyCoinsSucc" = "Purchasing coins successfully.";
