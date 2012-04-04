@@ -19,7 +19,7 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 
-#define CONTINUE_TIME 99
+#define CONTINUE_TIME 15
 
 @implementation ResultController
 @synthesize drawImage;
