@@ -53,20 +53,9 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has
-{
-    self = [super init];
-    if (self) {
-        _image = image;
-        [_image retain];
-        self.wordText = aWordText;
-        self.score = aScore;
-        hasRankButtons = has;
-    }
-    return self;
-}
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has isMyPaint:(BOOL)isMyPaint
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint;
+
 {
     self = [super init];
     if (self) {
@@ -74,7 +63,7 @@
         [_image retain];
         self.wordText = aWordText;
         self.score = aScore;
-        hasRankButtons = has;
+        _correct = correct;
         _isMyPaint = isMyPaint;
     }
     return self;
@@ -143,7 +132,16 @@
     [self updateContinueButton:retainCount];
     [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-    [self.titleLabel setText:NSLS(@"kTurnResult")];
+    if (_isMyPaint) {
+            [self.titleLabel setText:NSLS(@"kTurnResult")];                
+    }else{
+        if (_correct) {
+            [self.titleLabel setText:NSLS(@"kCongratulations")];        
+        }else{
+            [self.titleLabel setText:NSLS(@"kPity")];
+        }
+    }
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated

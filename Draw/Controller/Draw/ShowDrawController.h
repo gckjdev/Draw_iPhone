@@ -30,7 +30,9 @@
     NSMutableArray *avatarArray;
     ToolView *toolView;
     BOOL gameStarted;
+    BOOL _guessCorrect;
 }
+@property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
 @property(nonatomic, retain)Word *word;

@@ -25,6 +25,7 @@
 #import "ShareImageManager.h"
 #import "RoomController.h"
 #import "GameMessage.pb.h"
+#import "PPDebug.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -41,6 +42,7 @@ ShowDrawController *GlobalGetShowDrawController()
 @implementation ShowDrawController
 @synthesize guessDoneButton;
 @synthesize clockButton;
+@synthesize turnNumberButton;
 @synthesize popupButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
@@ -55,6 +57,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [toolView release];
     [avatarArray release];
     [showView release];
+    [turnNumberButton release];
     [super dealloc];
 }
 
@@ -441,8 +444,8 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePickViewsWithWord:self.word lang:languageType];
     gameCompleted = NO;
     [toolView setNumber:3];
-//    toolView.enabled = YES;
-
+    [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
+    _guessCorrect = NO;
 }
 
 #pragma mark - View lifecycle
@@ -488,6 +491,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self setGuessDoneButton:nil];
     [self setClockButton:nil];
     [self setPopupButton:nil];
+    [self setTurnNumberButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -550,18 +554,18 @@ ShowDrawController *GlobalGetShowDrawController()
         
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         [self updatePickViewsWithWord:word lang:lang];
-        
         if (!gameStarted) {
             gameStarted = YES;
             [showView cleanAllActions];
             [showView setStatus:Stop];
         }
-        
     }
 }
 
 - (void)didGameTurnGuessStart:(GameMessage *)message
 {
+    PPDebug(@"didGameTurnGuessStart");
+    _guessCorrect = NO;
     [self startTimer];
     [self setGuessAndPickButtonsEnabled:YES];
     [self.guessDoneButton setEnabled:YES];    
@@ -570,13 +574,14 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     if (!gameCompleted) {
         gameCompleted = YES;
+//        [drawGameService increaseRoundNumber];
         [self resetTimer];
         NSInteger gainCoin = [[message notification] turnGainCoins];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
                                                                  score:gainCoin
-                                                        hasRankButtons:NO 
+                                                               correct:_guessCorrect 
                                                              isMyPaint:NO];
         
         [self.navigationController pushViewController:rc animated:YES];
@@ -609,7 +614,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePlayerAvatars];
     if ([self userCount] <= 1) {
         [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
-        [RoomController returnRoom:self startNow:NO];
     }
 }
 
@@ -619,7 +623,7 @@ ShowDrawController *GlobalGetShowDrawController()
     //alter if the word is correct
     if (flag) {
         [self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
-
+        _guessCorrect = YES;
         [self setGuessAndPickButtonsEnabled:NO];
         self.guessDoneButton.enabled = NO;
         [self addScore:self.word.score toUser:drawGameService.userId];

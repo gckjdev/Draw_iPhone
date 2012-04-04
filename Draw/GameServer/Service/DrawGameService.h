@@ -100,5 +100,6 @@
 - (void)disconnectServer;
 
 - (void)rankGameResult:(int)rank;
-
+- (void)increaseRoundNumber;
+- (NSInteger)roundNumber;
 @end

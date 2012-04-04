@@ -162,7 +162,6 @@ WordManager *GlobalGetWordManager()
         if ([createSet rangeOfString:value].location == NSNotFound) {
             createSet = [NSString stringWithFormat:@"%@%@",createSet,value];            
         }
-        NSLog(@"createSet : %@", createSet);
         [retArray addObject:value];
     }
     

@@ -18,7 +18,7 @@
     NSTimer *continueTimer;
     NSInteger retainCount;
     DrawGameService *drawGameService;
-    BOOL hasRankButtons;
+    BOOL _correct;
     BOOL _isMyPaint;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
@@ -41,7 +41,6 @@
 - (IBAction)clickExitButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has;
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore hasRankButtons:(BOOL)has isMyPaint:(BOOL)isMyPaint;
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint;
 
 @end

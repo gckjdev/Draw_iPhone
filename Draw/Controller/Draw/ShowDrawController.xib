@@ -85,7 +85,7 @@
 						<string key="NSFrame">{{54, 30}, {196, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="55418512"/>
+						<reference key="NSNextKeyView" ref="258493630"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -99,7 +99,7 @@
 						<string key="NSFrameSize">{320, 50}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="423777887"/>
+						<reference key="NSNextKeyView" ref="807406468"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -624,10 +624,10 @@
 					<object class="IBUIButton" id="423777887">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 4}, {37, 37}}</string>
+						<string key="NSFrame">{{278, 4}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="258493630"/>
+						<reference key="NSNextKeyView" ref="497967122"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -665,7 +665,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">guess</string>
 						<reference key="IBUIHighlightedTitleColor" ref="374436567"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
+						<object class="NSColor" key="IBUINormalTitleColor" id="99118195">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -687,10 +687,10 @@
 					<object class="IBUIButton" id="258493630">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{275, 4}, {38, 37}}</string>
+						<string key="NSFrame">{{275, 46}, {38, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="497967122"/>
+						<reference key="NSNextKeyView" ref="55418512"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -713,6 +713,38 @@
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">DBLCDTempBlack</string>
 							<double key="NSSize">15</double>
+							<int key="NSfFlags">16</int>
+						</object>
+					</object>
+					<object class="IBUIButton" id="807406468">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{4, 5}, {37, 37}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="423777887"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">2</string>
+						<reference key="IBUIHighlightedTitleColor" ref="374436567"/>
+						<reference key="IBUINormalTitleColor" ref="99118195"/>
+						<reference key="IBUINormalTitleShadowColor" ref="1024719418"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">round@2x.png</string>
+						</object>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">CourierNewPSMT</string>
+							<string key="family">Courier New</string>
+							<int key="traits">0</int>
+							<double key="pointSize">24</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">CourierNewPSMT</string>
+							<double key="NSSize">24</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -765,6 +797,14 @@
 						<reference key="destination" ref="258493630"/>
 					</object>
 					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">turnNumberButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="807406468"/>
+					</object>
+					<int key="connectionID">81</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -827,9 +867,10 @@
 							<reference ref="56659524"/>
 							<reference ref="198840917"/>
 							<reference ref="871843448"/>
-							<reference ref="258493630"/>
 							<reference ref="973067626"/>
 							<reference ref="577875584"/>
+							<reference ref="258493630"/>
+							<reference ref="807406468"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1009,6 +1050,11 @@
 						<reference key="object" ref="577875584"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">80</int>
+						<reference key="object" ref="807406468"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1050,18 +1096,27 @@
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">79</int>
+			<int key="maxID">81</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">ShowDrawController</string>
+					<string key="className">PPViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ShowDrawController</string>
+					<string key="superclassName">PPViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickGuessDoneButton:">id</string>
 						<string key="clickRunAway:">id</string>
@@ -1080,6 +1135,7 @@
 						<string key="clockButton">UIButton</string>
 						<string key="guessDoneButton">UIButton</string>
 						<string key="popupButton">UIButton</string>
+						<string key="turnNumberButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="clockButton">
@@ -1092,6 +1148,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="popupButton">
 							<string key="name">popupButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="turnNumberButton">
+							<string key="name">turnNumberButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
@@ -1112,6 +1172,7 @@
 			<string key="guess_popup@2x.png">{57, 67}</string>
 			<string key="paper@2x.png">{640, 960}</string>
 			<string key="paperclip@2x.png">{388, 79}</string>
+			<string key="round@2x.png">{69, 70}</string>
 			<string key="setting@2x.png">{74, 74}</string>
 			<string key="timeset@2x.png">{76, 74}</string>
 			<string key="topwood@2x.png">{640, 99}</string>

@@ -31,6 +31,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *userId;
 @property (nonatomic, assign) int status;
 @property (nonatomic, retain) GameTurn *currentTurn;
+@property (nonatomic, assign) NSInteger roundNumber;
 
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 - (void)updateByStartGameResponse:(StartGameResponse*)response;

@@ -68,3 +68,7 @@
 "kConnectionBroken" = "连接中断";
 "kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试";
 "kBuyCoinsSucc" = "购买金币成功";
+"kCongratulations" = "恭喜猜对了!";
+"kPity" = "请再接再厉...";
+
+"kStartingGame" = "请求开始游戏中...";
