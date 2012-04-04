@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Item.h"
+#import "UserItem.h"
 
 @interface ItemManager : NSObject
 {
     
 }
+
 + (ItemManager *)defaultManager;
-- (NSArray *)itemList;
-- (void)updateItemWithType:(ItemType)type amount:(NSInteger)amount;
+
+- (UserItem*)findUserItemByType:(int)type;
+- (BOOL)isUserOwnItem:(int)itemType;
+- (BOOL)addNewItem:(int)itemType amount:(int)amount;
+- (BOOL)increaseItem:(int)itemType amount:(int)amount;
+- (BOOL)decreaseItem:(int)itemType amount:(int)amount;
+
 @end
-extern ItemManager *GlobalGetItemManager();
+

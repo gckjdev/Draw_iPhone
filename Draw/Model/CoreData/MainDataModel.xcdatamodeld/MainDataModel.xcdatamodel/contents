@@ -8,9 +8,14 @@
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="UserItem" representedClassName="UserItem" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
     <elements>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

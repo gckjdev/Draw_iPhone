@@ -73,6 +73,7 @@
 "kNoServerAvailable" = "Sorry, server is full of users. Please try later.";
 "kBuyCoinsSucc" = "Purchasing coins successfully.";
 "kCongratulations" = "Congratulations!";
-"kPity" = "What a pity...";
+"kPity" = "What a pity";
 
 "kStartingGame" = "Starting Game...";
+"kProcessingIAP" = "Processing purchasing request...";

@@ -320,6 +320,7 @@
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
+		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -960,6 +961,8 @@
 		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
+		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
+		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -2749,6 +2752,8 @@
 		CAE2CABB151B2E1D0062ED37 /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				CA355EFE152C03F000A14823 /* UserItem.h */,
+				CA355EFF152C03F100A14823 /* UserItem.m */,
 				CAE2CABF151B2F7C0062ED37 /* Item.h */,
 				CAE2CAC0151B2F7C0062ED37 /* Item.m */,
 				CAF10AFC151C666D008C4512 /* ItemManager.h */,
@@ -3302,6 +3307,7 @@
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
 				CA4FF005152AF1FA00F0AC88 /* ColorShopController.m in Sources */,
 				CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */,
+				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,8 @@
 #import "PPNetworkRequest.h"
 #import "UserManager.h"
 #import "GTMBase64.h"
+#import "ItemManager.h"
+#import "UserItem.h"
 
 @implementation AccountService
 
@@ -165,6 +167,9 @@ static AccountService* _defaultAccountService;
             case SKPaymentTransactionStateRestored:
                 [self restoreTransaction:transaction];
             case SKPaymentTransactionStatePurchasing:
+                if ([_delegate respondsToSelector:@selector(didProcessingBuyProduct:)]){
+                    [_delegate didProcessingBuyProduct];
+                }
                 break;
             default:
                 break;
@@ -264,9 +269,59 @@ static AccountService* _defaultAccountService;
     });    
 }
 
-- (BOOL)hasEnoughBalance:(int)amount
+- (void)syncItemRequest:(UserItem*)userItem
+{
+    
+}
+
+- (int)buyItem:(int)itemType
+      itemCount:(int)itemCount
+      itemCoins:(int)itemCoins
+{
+    
+    if ([self hasEnoughCoins:itemCoins] == NO){
+        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
+                [[AccountManager defaultManager] getBalance], itemCoins);
+        return ERROR_COINS_NOT_ENOUGH;
+    }
+    
+    // save item locally and synchronize remotely
+    [[ItemManager defaultManager] increaseItem:itemType amount:itemCount];
+    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
+    [self syncItemRequest:userItem];
+
+    // deduct account
+    [self deductAccount:itemCoins source:BuyItemType];    
+    
+    return 0;
+}
+
+- (int)consumeItem:(int)itemType
+             amount:(int)amount
+{
+    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
+        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
+                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+        return ERROR_ITEM_NOT_ENOUGH;
+    }
+
+    // TODO
+    
+    return 0;
+}
+
+- (BOOL)hasEnoughCoins:(int)amount
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount];
+}
+
+- (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount
+{
+    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
+    if (userItem == nil)
+        return NO;
+    
+    return [[userItem amount] intValue] >= amount;
 }
 
 @end
