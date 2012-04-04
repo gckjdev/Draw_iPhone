@@ -15,6 +15,8 @@
 #import "AccountManager.h"
 #import "ItemType.h"
 #import "AccountService.h"
+#import "CommonDialog.h"
+#import "CoinShopController.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -138,8 +140,23 @@ ItemShopController *staticItemController = nil;
 {
     NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
     
+    if ([[AccountService defaultService] hasEnoughCoins:[model price]]){
+        _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
+        [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
+        return;
+    }
+              
     [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS itemCount:[model count] itemCoins:[model price]];
     [self updateLabels];
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{    
 }
 
 #pragma mark - Price service delegate

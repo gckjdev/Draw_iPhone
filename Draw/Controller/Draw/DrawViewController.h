@@ -24,10 +24,11 @@
     Word *_word;
     NSTimer *drawTimer;
     NSInteger retainCount;
-    BOOL gameComplete;
+//    BOOL gameComplete;
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
-    BOOL hasPushColorShopController;
+//    BOOL hasPushColorShopController;
+    BOOL hasPushResultController;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
@@ -42,12 +43,13 @@
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet UIButton *penButton;
-
+@property (nonatomic, assign) BOOL needResetData;
 
 @property (retain, nonatomic) Word *word;
 
-
 + (DrawViewController *)instance;
++ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
++ (void)returnFromController:(UIViewController*)fromController;
 @end
 
 

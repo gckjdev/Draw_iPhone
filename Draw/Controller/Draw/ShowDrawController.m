@@ -420,7 +420,7 @@ ShowDrawController *GlobalGetShowDrawController()
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
-        [drawGameService setDrawDelegate:self];
+        [drawGameService setShowDelegate:self];
         showView = [[ShowDrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
 
     }
@@ -471,7 +471,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self resetData];
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -564,7 +563,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didGameTurnGuessStart:(GameMessage *)message
 {
-    PPDebug(@"didGameTurnGuessStart");
+    PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
     _guessCorrect = NO;
     [self startTimer];
     [self setGuessAndPickButtonsEnabled:YES];

@@ -19,7 +19,7 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 
-#define CONTINUE_TIME 99
+#define CONTINUE_TIME 15
 
 @implementation ResultController
 @synthesize drawImage;
@@ -40,7 +40,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        didGameStarted = NO;
     }
     return self;
 }
@@ -214,7 +213,12 @@
 
 - (IBAction)clickContinueButton:(id)sender {
     [self resetTimer];
-    [RoomController returnRoom:self startNow:didGameStarted];
+    if ([drawGameService sessionStatus] == SESSION_WAITING) {
+        [RoomController returnRoom:self startNow:NO];        
+    }else{
+        [RoomController returnRoom:self startNow:YES];
+    }
+
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -225,13 +229,7 @@
     [[DrawGameService defaultService] quitGame];
     [HomeController returnRoom:self];
 }
-- (void)didGameStart:(GameMessage *)message
-{
-    NSLog(@"<ResultController>: didGameStart");
-    didGameStarted = YES;
-//    [self.navigationController popViewControllerAnimated:YES];
 
-}
 
 - (void)didFinishAPaint:(NSArray *)drawAction
 {   

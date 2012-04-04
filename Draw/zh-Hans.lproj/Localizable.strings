@@ -73,3 +73,6 @@
 "kPity" = "请再接再厉!";
 
 "kStartingGame" = "请求开始游戏中...";
+
+"kCoinsNotEnoughTitle" = "";
+"kCoinsNotEnough" = "";
