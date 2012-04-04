@@ -564,7 +564,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didGameTurnGuessStart:(GameMessage *)message
 {
-    PPDebug(@"didGameTurnGuessStart");
+    PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
     _guessCorrect = NO;
     [self startTimer];
     [self setGuessAndPickButtonsEnabled:YES];
