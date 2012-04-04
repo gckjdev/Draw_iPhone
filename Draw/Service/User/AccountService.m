@@ -271,6 +271,7 @@ static AccountService* _defaultAccountService;
 
 - (void)syncItemRequest:(UserItem*)userItem
 {
+    PPDebug(@"<syncItemRequest> item=%@", [userItem description]);
     NSString* userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{
@@ -300,6 +301,7 @@ static AccountService* _defaultAccountService;
       itemCount:(int)itemCount
       itemCoins:(int)itemCoins
 {
+    PPDebug(@"<buyItem> type=%d, count=%d, cost coins=%d", itemType, itemCount, itemCoins);
     
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 

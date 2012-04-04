@@ -35,7 +35,7 @@ ItemManager *GlobalGetItemManager()
 {
     CoreDataManager* dataManager = [CoreDataManager defaultManager];
     return (UserItem*)[dataManager execute:@"findUserItemByType" 
-                                    forKey:@"itemType" 
+                                    forKey:@"ITEM_TYPE" 
                                      value:[NSNumber numberWithInt:type]];
 }
 

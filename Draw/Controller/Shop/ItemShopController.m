@@ -14,6 +14,7 @@
 #import "ShareImageManager.h"
 #import "AccountManager.h"
 #import "ItemType.h"
+#import "AccountService.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -69,15 +70,14 @@ ItemShopController *staticItemController = nil;
     [self.dataTableView setBackgroundView:tableBg];
     [tableBg release];
     
-    [self.titleLabel setText:NSLS(@"kItemShopTitle")];
-    
-    [self updateLabels];
+    [self.titleLabel setText:NSLS(@"kItemShopTitle")];    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     //load the coin number
     [super viewDidAppear:animated];
+    [self updateLabels];
 }
 
 - (void)viewDidUnload
@@ -137,6 +137,9 @@ ItemShopController *staticItemController = nil;
                                model:(ShoppingModel *)model
 {
     NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
+    
+    [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS itemCount:[model count] itemCoins:[model price]];
+    [self updateLabels];
 }
 
 #pragma mark - Price service delegate

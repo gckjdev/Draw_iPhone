@@ -140,7 +140,7 @@ AccountManager* GlobalGetAccountManager()
         result = 0;
     }
     [self updateAccount:result];    
-    PPDebug(@"<increaseBalance> add %d, blance=%d", balance, [self getBalance]);    
+    PPDebug(@"<decreaseBalance> minus %d, blance=%d", balance, [self getBalance]);    
 }
 
 - (BOOL)hasEnoughBalance:(int)amount
