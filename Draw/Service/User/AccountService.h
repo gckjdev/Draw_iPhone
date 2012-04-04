@@ -14,7 +14,9 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
-#define ERROR_NO_PRODUCT    1000
+#define ERROR_NO_PRODUCT            1000
+#define ERROR_COINS_NOT_ENOUGH      1001
+#define ERROR_ITEM_NOT_ENOUGH       1002
 
 @class ShoppingModel;
 
@@ -22,6 +24,7 @@
 
 @optional
 - (void)didFinishBuyProduct:(int)resultCode;
+- (void)didProcessingBuyProduct;
 
 @end
 
@@ -44,6 +47,14 @@
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
 
-- (BOOL)hasEnoughBalance:(int)amount;
+- (int)buyItem:(int)itemType
+      itemCount:(int)itemCount
+      itemCoins:(int)itemCoins;
+
+- (int)consumeItem:(int)itemType
+            amount:(int)amount;
+
+- (BOOL)hasEnoughCoins:(int)amount;
+- (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
 @end

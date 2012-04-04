@@ -167,6 +167,12 @@ CoinShopController *staticCoinController;
     }
 }
 
+- (void)didProcessingBuyProduct
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kProcessingIAP")];
+}
+
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
 {
     [self hideActivity];

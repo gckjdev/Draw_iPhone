@@ -8,6 +8,10 @@
 
 #import "ItemManager.h"
 #import "UserManager.h"
+#import "UserItem.h"
+#import "CoreDataUtil.h"
+#import "PPDebug.h"
+
 ItemManager *staticItemManager = nil;
 
 ItemManager *GlobalGetItemManager()
@@ -26,72 +30,80 @@ ItemManager *GlobalGetItemManager()
     return GlobalGetItemManager();
 }
 
-- (NSArray *)itemListForUserId:(NSString *)userId
+- (UserItem*)findUserItemByType:(int)type
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [defaults objectForKey:ITEM_DICT];
-    if (data) {
-        NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        if (dict) {
-            return [dict objectForKey:userId];
-        }
-    }
-    return nil;
+    CoreDataManager* dataManager = [CoreDataManager defaultManager];
+    return (UserItem*)[dataManager execute:@"findUserItemByType" 
+                                    forKey:@"itemType" 
+                                     value:[NSNumber numberWithInt:type]];
 }
 
-- (NSArray *)itemList
+- (BOOL)isUserOwnItem:(int)itemType
 {
-    NSString *userId = [[UserManager defaultManager] userId];
-    return [self itemListForUserId:userId];
+    return ([self findUserItemByType:itemType] != nil);
 }
 
-- (NSInteger)findItemInItemList:(NSArray *)list withType:(ItemType)type
+- (BOOL)addNewItem:(int)itemType amount:(int)amount
 {
-    if ([list count] != 0) {
-        int i = 0;
-        for (Item *item in list) {
-            if (item.type == type) {
-                return i;
-            }
-            i ++;
-        }
+    
+    CoreDataManager* dataManager = [CoreDataManager defaultManager];
+    UserItem* item = [self findUserItemByType:itemType];
+    if (item == nil){
+        item = [dataManager insert:@"UserItem"];
+        [item setItemType:[NSNumber numberWithInt:itemType]];
+        PPDebug(@"<addNewItem> insert item=%@", [item description]);
     }
-    return -1;
+    
+    [item setAmount:[NSNumber numberWithInt:amount]];
+    PPDebug(@"<addNewItem> update item=%@", [item description]);        
+    return [dataManager save];
 }
 
-- (void)updateItemWithType:(ItemType)type amount:(NSInteger)amount
+- (BOOL)increaseItem:(int)itemType amount:(int)amount
 {
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil) {
-        return;
+    CoreDataManager* dataManager = [CoreDataManager defaultManager];
+    UserItem* item = [self findUserItemByType:itemType];
+    int currentAmount = 0;
+    if (item == nil){
+        item = [dataManager insert:@"UserItem"];
+        [item setItemType:[NSNumber numberWithInt:itemType]];
+        PPDebug(@"<increaseItem> insert item=%@", [item description]);
     }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [defaults objectForKey:ITEM_DICT];
-    NSMutableDictionary *mDict = nil; 
-    if (data) {
-        NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        mDict = [NSMutableDictionary dictionaryWithDictionary:dict];
-        NSArray *list = [mDict objectForKey:userId];
-        if (list) {
-            NSMutableArray *mList = [NSMutableArray arrayWithArray:list];
-            NSInteger index = [self findItemInItemList:mList withType:type];
-            if (index != -1) {
-                Item *item = [mList objectAtIndex:index];
-                [item setAmount:amount];
-            }else{
-                [mList addObject:[Item itemWithType:type amount:amount]];
-            }
-            [mDict setObject:mList forKey:userId];
-        }
-    }else{
-        mDict = [[[NSMutableDictionary alloc] init]autorelease];
-        NSMutableArray *mList = [[[NSMutableArray alloc] init] autorelease];
-        Item *item = [Item itemWithType:type amount:amount];
-        [mList addObject:item];
-        [mDict setObject:mList forKey:userId];
+    else{
+        currentAmount = [[item amount] intValue];
     }
-    NSData *archviedData = [NSKeyedArchiver archivedDataWithRootObject:mDict];
-    [defaults setObject:archviedData forKey:ITEM_DICT];
+    
+    [item setAmount:[NSNumber numberWithInt:(currentAmount + amount)]];
+    PPDebug(@"<increaseItem> update item=%@", [item description]);        
+    return [dataManager save];
+}
+
+- (BOOL)decreaseItem:(int)itemType amount:(int)amount
+{
+    CoreDataManager* dataManager = [CoreDataManager defaultManager];
+    UserItem* item = [self findUserItemByType:itemType];
+    int currentAmount = 0;
+    if (item == nil){
+        item = [dataManager insert:@"UserItem"];
+        [item setItemType:[NSNumber numberWithInt:itemType]];
+        PPDebug(@"<decreaseItem> insert item=%@", [item description]);
+    }
+    else{
+        currentAmount = [[item amount] intValue];
+    }
+    
+    int newAmount = (currentAmount - amount);
+    if (newAmount < 0)
+        newAmount = 0;
+    
+    [item setAmount:[NSNumber numberWithInt:newAmount]];
+    PPDebug(@"<decreaseItem> update item=%@", [item description]);        
+    return [dataManager save];    
+}
+
+- (UserItem*)itemWithType:(int)itemType
+{
+    return [self findUserItemByType:itemType];
 }
 
 @end
