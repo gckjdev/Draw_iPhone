@@ -73,4 +73,13 @@
                                 itemType:(int)itemType
                                   amount:(int)amount;
 
++ (CommonNetworkOutput*)updateBalance:(NSString*)baseURL
+                                  userId:(NSString*)userId
+                              balance:(int)balance;
+
+
++ (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL
+                                       userId:(NSString*)userId;
+
+
 @end

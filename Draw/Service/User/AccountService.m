@@ -43,6 +43,10 @@ static AccountService* _defaultAccountService;
 - (id)init
 {
     self = [super init];
+    
+    _itemManager = [ItemManager defaultManager];
+    _accountManager = [AccountManager defaultManager];
+    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     return self;
 }
@@ -270,6 +274,27 @@ static AccountService* _defaultAccountService;
     });    
 }
 
+- (void)syncAccountBalanceToServer
+{
+    int balance = [_accountManager getBalance];
+    PPDebug(@"<syncAccountBalanceToServer> balance=%d", balance);
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest updateBalance:SERVER_URL 
+                                            userId:userId 
+                                           balance:balance];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            else{
+            }
+        });      
+    });
+}
+
 - (void)syncItemRequest:(UserItem*)userItem
 {
     PPDebug(@"<syncItemRequest> item=%@", [userItem description]);
@@ -375,5 +400,76 @@ static AccountService* _defaultAccountService;
     [userDefaults synchronize];    
     return coins;
 }
+
+#define DEFAULT_DEVIATION       (5000)
+
+- (void)syncAccountAndItem
+{    
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL 
+                                                    userId:userId]; 
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    int deviation = [[output.jsonDataDict objectForKey:PARA_DEVIATION] intValue];
+                    if (deviation == 0){
+                        deviation = DEFAULT_DEVIATION;
+                    }
+                    
+                    int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                    int localBalance = [_accountManager getBalance];
+                    if (localBalance < balance){
+                        // use server balance
+                        [_accountManager updateBalanceFromServer:balance];
+                    }
+                    else if (localBalance > balance){
+                        if ((localBalance - balance) <= deviation){
+                            // valid range for using client balance
+                            [self syncAccountBalanceToServer];                            
+                        }
+                        else{
+                            // maybe client is cheating, use server data
+                            [_accountManager updateBalanceFromServer:balance];
+                        }
+                    }
+                    PPDebug(@"<syncAccountAndItem> OK, account balance = %d", balance);
+
+                    NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+                    for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
+                        int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
+                        int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+                        PPDebug(@"<syncAccountAndItem> OK, item type[%d], amount[%d]", itemType, itemAmount);
+                        
+                        // update DB
+                        UserItem* item = [_itemManager findUserItemByType:itemType];
+                        if (item == nil){
+                            [_itemManager addNewItem:itemType amount:itemAmount];
+                        }
+                        else{
+                            if ([[item amount] intValue] < itemAmount){
+                                // use server item amount
+                                [item setAmount:[NSNumber numberWithInt:itemAmount]];
+                            }
+                            if ([[item amount] intValue] > itemAmount){
+                                // use client item amount
+                                [self syncItemRequest:item];
+                            }
+                        }
+                    }
+                });                
+            }
+            else{
+                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
+            }
+        });      
+    });}
 
 @end

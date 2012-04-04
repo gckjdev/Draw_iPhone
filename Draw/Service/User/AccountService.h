@@ -19,6 +19,8 @@
 #define ERROR_ITEM_NOT_ENOUGH       1002
 
 @class ShoppingModel;
+@class ItemManager;
+@class AccountManager;
 
 @protocol AccountServiceDelegate <NSObject>
 
@@ -29,10 +31,16 @@
 @end
 
 @interface AccountService : CommonService<SKPaymentTransactionObserver>
+{
+    ItemManager *_itemManager;
+    AccountManager *_accountManager;
+}
 
 @property (nonatomic, retain) NSObject<AccountServiceDelegate> *delegate;
 
 + (AccountService *)defaultService;
+
+- (void)syncAccountAndItem;
 
 - (void)buyCoin:(ShoppingModel*)price;
 
@@ -58,5 +66,7 @@
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
 - (int)checkIn;
+
+
 
 @end

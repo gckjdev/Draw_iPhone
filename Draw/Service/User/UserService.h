@@ -33,4 +33,7 @@
 - (void)updateUserAvatar:(UIImage*)avatarImage 
                 nickName:(NSString*)nickName 
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+- (void)checkDevice;
+
 @end

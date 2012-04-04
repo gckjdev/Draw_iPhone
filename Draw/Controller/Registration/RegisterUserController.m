@@ -17,6 +17,7 @@
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "GameNetworkConstants.h"
+#import "AccountService.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -164,6 +165,9 @@
     // go to next view
     PPDebug(@"<didUserRegistered> result code = %d", resultCode);
     if (resultCode == 0){
+        
+        [[AccountService defaultService] syncAccountAndItem];
+        
         if (_currentLoginType == REGISTER_TYPE_EMAIL){
             CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:NO];    
