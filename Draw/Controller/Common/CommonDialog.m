@@ -77,6 +77,11 @@
     
 }
 
+- (void)showInView:(UIView*)view
+{
+    [view addSubview:self];
+}
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle deelegate:(id<CommonDialogDelegate>)aDelegate
 {
     CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];

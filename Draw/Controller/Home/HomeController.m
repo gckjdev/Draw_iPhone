@@ -186,6 +186,8 @@
                                                        message:message
                                                          style:CommonDialogStyleSingleButton 
                                                      deelegate:self];    
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender

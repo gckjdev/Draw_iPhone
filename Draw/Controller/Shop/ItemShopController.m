@@ -17,6 +17,7 @@
 #import "AccountService.h"
 #import "CommonDialog.h"
 #import "CoinShopController.h"
+#import "PPDebug.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -138,11 +139,12 @@ ItemShopController *staticItemController = nil;
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(ShoppingModel *)model
 {
-    NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
     
-    if ([[AccountService defaultService] hasEnoughCoins:[model price]]){
+    if ([[AccountService defaultService] hasEnoughCoins:[model price]] == NO){
+        PPDebug(@"<ItemShopController> click buy item but coins not enough");
         _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
-        [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
+        [dialog showInView:self.view];
         return;
     }
               
