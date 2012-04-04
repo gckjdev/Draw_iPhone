@@ -38,7 +38,12 @@
         transactionId:(NSString*)transactionId
    transactionRecepit:(NSString*)transactionRecepit;
 
+- (void)chargeAccount:(int)amount 
+               source:(BalanceSourceType)source;
+
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
+
+- (BOOL)hasEnoughBalance:(int)amount;
 
 @end

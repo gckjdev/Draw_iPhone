@@ -227,6 +227,12 @@ static AccountService* _defaultAccountService;
     });
 }
 
+- (void)chargeAccount:(int)amount 
+               source:(BalanceSourceType)source
+{
+    [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];
+}
+
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source
 {
@@ -258,5 +264,9 @@ static AccountService* _defaultAccountService;
     });    
 }
 
+- (BOOL)hasEnoughBalance:(int)amount
+{
+    return [[AccountManager defaultManager] hasEnoughBalance:amount];
+}
 
 @end
