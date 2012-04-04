@@ -14,6 +14,7 @@
     </entity>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
+    <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType==$ITEM_TYPE"/>
     <elements>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="135"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>

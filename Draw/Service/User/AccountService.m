@@ -271,13 +271,37 @@ static AccountService* _defaultAccountService;
 
 - (void)syncItemRequest:(UserItem*)userItem
 {
+    PPDebug(@"<syncItemRequest> item=%@", [userItem description]);
+    NSString* userId = [[UserManager defaultManager] userId];
     
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest updateItemAmount:SERVER_URL 
+                                               userId:userId 
+                                             itemType:[[userItem itemType] intValue]
+                                               amount:[[userItem amount] intValue]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+//                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+//                if (balance != [[AccountManager defaultManager] getBalance]){
+//                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
+//                            [[AccountManager defaultManager] getBalance], balance);
+//                }
+            }
+            else{
+//                PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
+            }
+        });      
+    });
 }
 
 - (int)buyItem:(int)itemType
       itemCount:(int)itemCount
       itemCoins:(int)itemCoins
 {
+    PPDebug(@"<buyItem> type=%d, count=%d, cost coins=%d", itemType, itemCount, itemCoins);
     
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
@@ -305,7 +329,10 @@ static AccountService* _defaultAccountService;
         return ERROR_ITEM_NOT_ENOUGH;
     }
 
-    // TODO
+    // save item locally and synchronize remotely
+    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
+    [self syncItemRequest:userItem];
     
     return 0;
 }

@@ -68,4 +68,9 @@
                                amount:(int)amount
                                source:(int)source;
 
++ (CommonNetworkOutput*)updateItemAmount:(NSString*)baseURL
+                                  userId:(NSString*)userId
+                                itemType:(int)itemType
+                                  amount:(int)amount;
+
 @end

@@ -11,6 +11,7 @@
 #import "UserItem.h"
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
+#import "ItemType.h"
 
 ItemManager *staticItemManager = nil;
 
@@ -34,8 +35,20 @@ ItemManager *GlobalGetItemManager()
 {
     CoreDataManager* dataManager = [CoreDataManager defaultManager];
     return (UserItem*)[dataManager execute:@"findUserItemByType" 
-                                    forKey:@"itemType" 
+                                    forKey:@"ITEM_TYPE" 
                                      value:[NSNumber numberWithInt:type]];
+}
+
+- (int)tipsItemAmount
+{
+    UserItem* item = [self findUserItemByType:ITEM_TYPE_TIPS];
+    return [[item amount] intValue];
+}
+
+- (int)amountForItem:(int)itemType
+{
+    UserItem* item = [self findUserItemByType:itemType];
+    return [[item amount] intValue];    
 }
 
 - (BOOL)isUserOwnItem:(int)itemType

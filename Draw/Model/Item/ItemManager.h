@@ -17,6 +17,8 @@
 + (ItemManager *)defaultManager;
 
 - (UserItem*)findUserItemByType:(int)type;
+- (int)amountForItem:(int)itemType;
+- (int)tipsItemAmount;
 - (BOOL)isUserOwnItem:(int)itemType;
 - (BOOL)addNewItem:(int)itemType amount:(int)amount;
 - (BOOL)increaseItem:(int)itemType amount:(int)amount;

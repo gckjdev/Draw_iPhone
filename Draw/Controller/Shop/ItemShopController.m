@@ -12,10 +12,15 @@
 #import "ItemManager.h"
 #import "Item.h"
 #import "ShareImageManager.h"
+#import "AccountManager.h"
+#import "ItemType.h"
+#import "AccountService.h"
 
 ItemShopController *staticItemController = nil;
 
 @implementation ItemShopController
+@synthesize coinsAmountLabel;
+@synthesize itemAmountLabel;
 @synthesize titleLabel;
 
 +(ItemShopController *)instance
@@ -45,6 +50,15 @@ ItemShopController *staticItemController = nil;
 
 #pragma mark - View lifecycle
 
+- (void)updateLabels
+{
+    int itemAmount = [[ItemManager defaultManager] tipsItemAmount]; 
+    int coinsAmount = [[AccountManager defaultManager] getBalance];
+    
+    self.coinsAmountLabel.text = [NSString stringWithFormat:@"%d", coinsAmount];
+    self.itemAmountLabel.text = [NSString stringWithFormat:@"%d", itemAmount];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,18 +70,21 @@ ItemShopController *staticItemController = nil;
     [self.dataTableView setBackgroundView:tableBg];
     [tableBg release];
     
-    [self.titleLabel setText:NSLS(@"kItemShopTitle")];
+    [self.titleLabel setText:NSLS(@"kItemShopTitle")];    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     //load the coin number
     [super viewDidAppear:animated];
+    [self updateLabels];
 }
 
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
+    [self setCoinsAmountLabel:nil];
+    [self setItemAmountLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -120,6 +137,9 @@ ItemShopController *staticItemController = nil;
                                model:(ShoppingModel *)model
 {
     NSLog(@"<ItemShopController>:did click row %d",indexPath.row);
+    
+    [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS itemCount:[model count] itemCoins:[model price]];
+    [self updateLabels];
 }
 
 #pragma mark - Price service delegate
@@ -137,6 +157,8 @@ ItemShopController *staticItemController = nil;
 
 - (void)dealloc {
     [titleLabel release];
+    [coinsAmountLabel release];
+    [itemAmountLabel release];
     [super dealloc];
 }
 @end
