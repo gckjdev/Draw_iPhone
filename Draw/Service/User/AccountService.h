@@ -57,4 +57,6 @@
 - (BOOL)hasEnoughCoins:(int)amount;
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
+- (int)checkIn;
+
 @end

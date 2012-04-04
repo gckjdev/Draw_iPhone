@@ -10,15 +10,16 @@
 #import "PPViewController.h"
 #import "DrawGameService.h"
 #import "RouterService.h"
+#import "CommonDialog.h"
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate>
 {
     BOOL _isTryJoinGame;    
 }
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickShop:(id)sender;
-
+- (IBAction)clickCheckIn:(id)sender;
 - (IBAction)clickFeedback:(id)sender;
 - (IBAction)clickSettings:(id)sender;
 - (IBAction)clickShare:(id)sender;
