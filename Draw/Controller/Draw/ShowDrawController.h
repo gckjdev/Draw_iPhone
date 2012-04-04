@@ -24,12 +24,13 @@
     NSTimer *guessTimer;
     NSInteger retainCount;
     LanguageType languageType;
-    BOOL gameCompleted;
+//    BOOL gameCompleted;
     
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
     ToolView *toolView;
-    BOOL gameStarted;
+//    BOOL gameStarted;
+    BOOL _viewIsAppear;
     BOOL _guessCorrect;
 }
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
@@ -43,7 +44,7 @@
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (IBAction)clickGuessDoneButton:(id)sender;
-
+- (void)setWordButtonsHidden:(BOOL)hidden;
 + (ShowDrawController *)instance;
 
 @end

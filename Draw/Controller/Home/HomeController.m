@@ -90,6 +90,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];

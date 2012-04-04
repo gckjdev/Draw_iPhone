@@ -51,6 +51,29 @@ DrawViewController *GlobalGetDrawViewController()
 #define PAPER_VIEW_TAG 20120403
 
 
+#pragma mark - Static Method
++ (DrawViewController *)instance
+{
+    return GlobalGetDrawViewController();
+}
+
++ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
+{
+    DrawViewController *vc = [DrawViewController instance];
+    vc.word = word;
+    int language = [[UserManager defaultManager] getLanguageType];
+    vc.needResetData = YES;
+    [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
+    [fromController.navigationController pushViewController:vc animated:NO];            
+}
+
++ (void)returnFromController:(UIViewController*)fromController
+{
+    DrawViewController *vc = [DrawViewController instance];
+    vc.needResetData = NO;
+    [fromController.navigationController popToViewController:vc animated:YES];
+    
+}
 - (void)dealloc
 {
 
@@ -76,33 +99,87 @@ DrawViewController *GlobalGetDrawViewController()
     // Release any cached data, images, etc that aren't in use.
 }
 
-+ (DrawViewController *)instance
-{
-    return GlobalGetDrawViewController();
+
+
+#pragma mark - Construction
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        drawGameService = [DrawGameService defaultService];
+        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
+        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 285, 302, 122)];
+        avatarArray = [[NSMutableArray alloc] init];
+        shareImageManager = [ShareImageManager defaultManager];
+        [pickPenView setImage:[shareImageManager toolPopupImage]];
+        pickPenView.delegate = self;
+        drawGameService.drawDelegate = self;
+    }
+    return self;
 }
 
-+ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
-{
-    DrawViewController *vc = [DrawViewController instance];
-    vc.word = word;
-    int language = [[UserManager defaultManager] getLanguageType];
-    vc.needResetData = YES;
-    [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:NO];            
-}
 
-+ (void)returnFromController:(UIViewController*)fromController
+- (void)initPickPenView
 {
-    DrawViewController *vc = [DrawViewController instance];
-    vc.needResetData = NO;
-    [fromController.navigationController popToViewController:vc animated:YES];
+    [self.view addSubview:pickPenView];
+    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
+    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
+    for (int i = 20; i >= 5 ;i -= 5) {
+        NSNumber *number = [NSNumber numberWithInt:i];
+        [widthArray addObject:number];
+    }
+    [pickPenView setLineWidths:widthArray];
+    [widthArray release];
     
+    [colorViewArray addObject:[ColorView blackColorView]];
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+
+    
+    [pickPenView setColorViews:colorViewArray];
+    [colorViewArray release];
 }
-#pragma mark - View lifecycle
+
+#pragma mark - Timer
+- (void)updateTimeButton
+{
+    NSString *second = [NSString stringWithFormat:@"%d",retainCount];
+    [self.clockButton setTitle:second forState:UIControlStateNormal];
+}
+
+- (void)resetTimer
+{
+    if (drawTimer && [drawTimer isValid]) {
+        [drawTimer invalidate];
+    }
+    drawTimer = nil;
+    retainCount = DRAW_TIME;
+}
+- (void)handleTimer:(NSTimer *)theTimer
+{
+    --retainCount;
+    if (retainCount <= 0) {
+        [self resetTimer];
+        retainCount = 0;
+        [self setToolButtonEnabled:NO];
+    }
+    [self updateTimeButton];
+}
 
 
+- (void)startTimer
+{
+    [self resetTimer];
+    [self updateTimeButton];
+    drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+}
 
 
+#pragma mark - Update Data
 - (void)setToolButtonEnabled:(BOOL)enabled
 {
     [eraserButton setEnabled:enabled];
@@ -153,7 +230,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (AvatarView *)avatarViewForUserId:(NSString *)userId
 {
-
+    
     for (AvatarView *view in avatarArray) {
         if ([view.userId isEqualToString:userId]) {
             return view;
@@ -162,47 +239,7 @@ DrawViewController *GlobalGetDrawViewController()
     return nil;
 }
 
-- (void)resetTimer
-{
-    if (drawTimer && [drawTimer isValid]) {
-        [drawTimer invalidate];
-    }
-    drawTimer = nil;
-    retainCount = DRAW_TIME;
-}
-- (void)handleTimer:(NSTimer *)theTimer
-{
-    --retainCount;
-    if (retainCount <= 0) {
-        [self resetTimer];
-        retainCount = 0;
-        [self setToolButtonEnabled:NO];
-    }
-    NSString *second = [NSString stringWithFormat:@"%d",retainCount];
-    [self.clockButton setTitle:second forState:UIControlStateNormal];
-}
 
-
-- (void)startTimer
-{
-    [self resetTimer];
-    drawTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-}
-
-- (id)init{
-    self = [super init];
-    if (self) {
-        drawGameService = [DrawGameService defaultService];
-        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
-        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 285, 302, 122)];
-        avatarArray = [[NSMutableArray alloc] init];
-        shareImageManager = [ShareImageManager defaultManager];
-        [pickPenView setImage:[shareImageManager toolPopupImage]];
-        pickPenView.delegate = self;
-        drawGameService.drawDelegate = self;
-    }
-    return self;
-}
 
 - (void)resetData
 {
@@ -210,44 +247,65 @@ DrawViewController *GlobalGetDrawViewController()
     [popupButton setHidden:YES];
     [self.wordButton setTitle:self.word.text forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
-    NSString *second = [NSString stringWithFormat:@"%d",retainCount];
-    [self.clockButton setTitle:second forState:UIControlStateNormal];
     [self updatePlayerAvatars];
     [self startTimer];
     [self setToolButtonEnabled:YES];
+    
     [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
-//    gameComplete = NO;
 }
-- (void)initPickPenView
-{
-    [self.view addSubview:pickPenView];
-    NSMutableArray *widthArray = [[NSMutableArray alloc] init];
-    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
-    for (int i = 20; i >= 5 ;i -= 5) {
-        NSNumber *number = [NSNumber numberWithInt:i];
-        [widthArray addObject:number];
-    }
-    [pickPenView setLineWidths:widthArray];
-    [widthArray release];
-    
-    [colorViewArray addObject:[ColorView blackColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
 
+
+- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId onLeftTop:(BOOL)onLeftTop
+{
+    AvatarView *player = [self avatarViewForUserId:userId];
+    if (player == nil) {
+        return;
+    }
+    CGFloat x = player.frame.origin.x;
+    CGFloat y = player.frame.origin.y + player.frame.size.height;
+    if (onLeftTop) {
+        x = player.frame.origin.x;
+        y = player.frame.origin.y + player.frame.size.height;
+    }
     
-    [pickPenView setColorViews:colorViewArray];
-    [colorViewArray release];
+    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
+    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    [popupButton setTitle:message forState:UIControlStateNormal];
+    [popupButton setHidden:NO];
+    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
+    [popupButton setTitleEdgeInsets:inSets];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+   
 }
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
+- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
+{
+    [self popGuessMessage:message userId:userId onLeftTop:NO];
+}
+
+- (void)popUpRunAwayMessage:(NSString *)userId
+{
+    NSString *nickName = [[drawGameService session] getNickNameByUserId:userId];
+    NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
+    [self popGuessMessage:message userId:userId onLeftTop:YES];
+}
+
+
+- (void)addScore:(NSInteger)score toUser:(NSString *)userId
+{
+    AvatarView *avatarView = [self avatarViewForUserId:userId];
+    [avatarView setScore:score];
+    
+}
+
+
+#pragma mark - View lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     drawView.delegate = self;
-//    [self.view addSubview:drawView];
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     [self.view insertSubview:drawView aboveSubview:paperView];
 
@@ -267,12 +325,13 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
-
-    hasPushResultController = NO;
+    colorShopConroller = nil;
+//    hasPushResultController = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self resetTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -298,32 +357,96 @@ DrawViewController *GlobalGetDrawViewController()
 
 
 
-//- (void)alert:(NSString *)message
-//{
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kConfirm") otherButtonTitles:nil];
-//    [alertView show];
-//    [alertView release];
-//}
 
-
-- (IBAction)clickRedraw:(id)sender {
-    [drawGameService cleanDraw];
-    [drawView addCleanAction];
-    [pickPenView setHidden:YES];
+#pragma mark - Draw Game Service Delegate
+- (void)didReceiveGuessWord:(NSString*)wordText 
+                guessUserId:(NSString*)guessUserId 
+               guessCorrect:(BOOL)guessCorrect
+                  gainCoins:(int)gainCoins
+{
+    if (![drawGameService.userId isEqualToString:guessUserId]) {
+        if (!guessCorrect) {
+            [self popGuessMessage:wordText userId:guessUserId];        
+        }else{
+            [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
+            [self addScore:gainCoins toUser:guessUserId];
+        }
+        
+    }
 }
 
-- (IBAction)clickEraserButton:(id)sender {
-    [drawView setLineColor:[DrawColor whiteColor]];
-    [pickPenView setHidden:YES];
+
+
+#pragma mark - Observer Method/Game Process
+- (void)didGameTurnComplete:(GameMessage *)message
+{
+    PPDebug(@"DrawViewController:<didGameTurnComplete>");
+
+    UIImage *image = [drawView createImage];
+    NSInteger gainCoin = [[message notification] turnGainCoins];
+    ResultController *rc = [[ResultController alloc] initWithImage:image
+                                                          wordText:self.word.text 
+                                                             score:gainCoin                                                         correct:NO
+                                                             isMyPaint:YES];
+    if (colorShopConroller) {
+        [colorShopConroller.navigationController popViewControllerAnimated:NO];
+        [self.navigationController pushViewController:rc animated:NO];
+    }else{
+        [self.navigationController pushViewController:rc animated:YES];
+    }
+    [rc release];
+    [self resetTimer];
+    [drawGameService unregisterObserver:self];
 }
 
-- (IBAction)clickPenButton:(id)sender {
-    [pickPenView setHidden:!pickPenView.hidden];
+- (void)didUserQuitGame:(GameMessage *)message
+{
+    NSString *userId = [message userId];
+    [self popUpRunAwayMessage:userId];
+    
+    [self updatePlayerAvatars];
+    if ([self userCount] <= 1) {
+        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];        
+    }
 }
+
+#pragma mark - Pick view delegate
+- (void)didPickedColorView:(ColorView *)colorView
+{
+    [drawView setLineColor:colorView.drawColor];
+}
+- (void)didPickedLineWidth:(NSInteger)width
+{
+    [drawView setLineWidth:width];
+}
+- (void)didPickedMoreColor
+{
+    //present a buy color controller;
+    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
+    colorShop.callFromDrawView = YES;
+    [self.navigationController pushViewController:colorShop animated:YES];
+    colorShopConroller = colorShop;
+}
+
+#pragma mark - Common Dialog Delegate
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
+    [drawGameService quitGame];
+    [HomeController returnRoom:self];
+
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
+}
+
+#pragma mark - Draw View Delegate
 
 - (void)didDrawedPaint:(Paint *)paint
 {
-
+    
     NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
     for (NSValue *pointValue in paint.pointList) {
@@ -340,136 +463,26 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 
-- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
-{
-    AvatarView *player = [self avatarViewForUserId:userId];
-    if (player == nil) {
-        return;
-    }
-    CGFloat x = player.frame.origin.x;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-    [popupButton setTitle:message forState:UIControlStateNormal];
-    [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-}
-
-- (void)popUpRunAwayMessage:(NSString *)userId
-{
-    AvatarView *player = [self avatarViewForUserId:userId];
-    if (player == nil) {
-        return;
-    }
-    NSString *nickName = [[drawGameService session] getNickNameByUserId:userId];
-    NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
-    CGFloat x = 8;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-    [popupButton setTitle:message forState:UIControlStateNormal];
-    [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-    
-}
-
-
-
-#define SCORE_MARK_TAG 20120402
-- (void)addScore:(NSInteger)score toUser:(NSString *)userId
-{
-    AvatarView *avatarView = [self avatarViewForUserId:userId];
-    [avatarView setScore:score];
-
-}
-
-
-
-- (void)didReceiveGuessWord:(NSString*)wordText 
-                guessUserId:(NSString*)guessUserId 
-               guessCorrect:(BOOL)guessCorrect
-                  gainCoins:(int)gainCoins
-{
-    if (![drawGameService.userId isEqualToString:guessUserId]) {
-        if (!guessCorrect) {
-            [self popGuessMessage:wordText userId:guessUserId];        
-        }else{
-            [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-            [self addScore:gainCoins toUser:guessUserId];
-        }
-
-    }
-}
-
-
-- (void)didGameTurnComplete:(GameMessage *)message
-{
-    if (!hasPushResultController) {
-        UIImage *image = [drawView createImage];
-        NSInteger gainCoin = [[message notification] turnGainCoins];
-        ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                              wordText:self.word.text 
-                                                                 score:gainCoin                                                         correct:NO
-                                                             isMyPaint:YES];
-        [self.navigationController pushViewController:rc animated:YES];
-        hasPushResultController = YES;
-        [rc release];
-        [self resetTimer];
-    }else{
-        PPDebug(@"warning:<didGameTurnComplete> but hasPushResultController = YES");
-    }
-}
-
-- (void)didUserQuitGame:(GameMessage *)message
-{
-    NSString *userId = [message userId];
-    [self popUpRunAwayMessage:userId];
-
-    [self updatePlayerAvatars];
-    if ([self userCount] <= 1) {
-        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
-        [RoomController returnRoom:self startNow:NO];
-    }
-
-    
-}
-#pragma mark pick view delegate
-- (void)didPickedColorView:(ColorView *)colorView
-{
-    [drawView setLineColor:colorView.drawColor];
-}
-- (void)didPickedLineWidth:(NSInteger)width
-{
-    [drawView setLineWidth:width];
-}
-- (void)didPickedMoreColor
-{
-    //present a buy color controller;
-    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
-    colorShop.callFromDrawView = YES;
-    [self.navigationController pushViewController:colorShop animated:YES];
-}
+#pragma mark - Actions
 
 - (IBAction)clickChangeRoomButton:(id)sender {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
     [self.view addSubview:dialog];
 }
 
-- (void)clickOk:(CommonDialog *)dialog
-{
-    [dialog removeFromSuperview];
-    [drawGameService quitGame];
-    [HomeController returnRoom:self];
+- (IBAction)clickRedraw:(id)sender {
+    [drawGameService cleanDraw];
+    [drawView addCleanAction];
+    [pickPenView setHidden:YES];
+}
 
+- (IBAction)clickEraserButton:(id)sender {
+    [drawView setLineColor:[DrawColor whiteColor]];
+    [pickPenView setHidden:YES];
 }
-- (void)clickBack:(CommonDialog *)dialog
-{
-    [dialog removeFromSuperview];
+
+- (IBAction)clickPenButton:(id)sender {
+    [pickPenView setHidden:!pickPenView.hidden];
 }
+
 @end
