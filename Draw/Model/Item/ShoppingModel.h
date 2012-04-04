@@ -15,6 +15,7 @@ typedef enum{
 }SHOPPING_MODEL_TYPE;
 
 
+
 @interface ShoppingModel : NSObject
 {
     SHOPPING_MODEL_TYPE _type;

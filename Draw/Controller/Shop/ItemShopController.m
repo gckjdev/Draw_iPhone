@@ -12,10 +12,14 @@
 #import "ItemManager.h"
 #import "Item.h"
 #import "ShareImageManager.h"
+#import "AccountManager.h"
+#import "ItemType.h"
 
 ItemShopController *staticItemController = nil;
 
 @implementation ItemShopController
+@synthesize coinsAmountLabel;
+@synthesize itemAmountLabel;
 @synthesize titleLabel;
 
 +(ItemShopController *)instance
@@ -45,6 +49,15 @@ ItemShopController *staticItemController = nil;
 
 #pragma mark - View lifecycle
 
+- (void)updateLabels
+{
+    int itemAmount = [[ItemManager defaultManager] tipsItemAmount]; 
+    int coinsAmount = [[AccountManager defaultManager] getBalance];
+    
+    self.coinsAmountLabel.text = [NSString stringWithFormat:@"%d", coinsAmount];
+    self.itemAmountLabel.text = [NSString stringWithFormat:@"%d", itemAmount];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +70,8 @@ ItemShopController *staticItemController = nil;
     [tableBg release];
     
     [self.titleLabel setText:NSLS(@"kItemShopTitle")];
+    
+    [self updateLabels];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -68,6 +83,8 @@ ItemShopController *staticItemController = nil;
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
+    [self setCoinsAmountLabel:nil];
+    [self setItemAmountLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -137,6 +154,8 @@ ItemShopController *staticItemController = nil;
 
 - (void)dealloc {
     [titleLabel release];
+    [coinsAmountLabel release];
+    [itemAmountLabel release];
     [super dealloc];
 }
 @end

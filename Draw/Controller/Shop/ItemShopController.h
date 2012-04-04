@@ -14,6 +14,8 @@
 @interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickBackButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *itemAmountLabel;
 
 +(ItemShopController *)instance;
 @end
