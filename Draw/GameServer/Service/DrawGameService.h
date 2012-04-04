@@ -8,7 +8,7 @@
 
 #import "CommonService.h"
 #import "GameNetworkClient.h"
-
+#import "GameSession.h"
 @class GameMessage;
 @protocol DrawGameServiceDelegate <NSObject>
 
@@ -63,8 +63,10 @@
 @property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, retain) NSString* avatar;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
+@property (nonatomic, assign) id<DrawGameServiceDelegate> showDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> homeDelegate;
+
 @property (nonatomic, retain) NSMutableArray *gameObserverList;
 @property (nonatomic, retain) NSMutableSet *historySessionSet;
 @property (nonatomic, retain) GameSession* session;
@@ -102,4 +104,5 @@
 - (void)rankGameResult:(int)rank;
 - (void)increaseRoundNumber;
 - (NSInteger)roundNumber;
+- (SessionStatus) sessionStatus;
 @end

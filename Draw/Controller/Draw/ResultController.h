@@ -14,7 +14,6 @@
 {
     UIImage * _image;
     NSArray * _paintList;
-    BOOL didGameStarted;
     NSTimer *continueTimer;
     NSInteger retainCount;
     DrawGameService *drawGameService;

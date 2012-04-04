@@ -77,3 +77,6 @@
 
 "kStartingGame" = "Starting Game...";
 "kProcessingIAP" = "Processing purchasing request...";
+
+"kCoinsNotEnoughTitle" = "";
+"kCoinsNotEnough" = "";

@@ -10,12 +10,22 @@
 #import "PPTableViewController.h"
 #import "ShoppingCell.h"
 #import "PriceService.h"
+#import "CommonDialog.h"
 
-@interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
+enum{
+    DIALOG_ACTION_ASK_BUY_COIN = 1
+};
+
+@interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, CommonDialogDelegate>
+{
+    int _dialogAction;
+}
+
+
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-- (IBAction)clickBackButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemAmountLabel;
 
+- (IBAction)clickBackButton:(id)sender;
 +(ItemShopController *)instance;
 @end

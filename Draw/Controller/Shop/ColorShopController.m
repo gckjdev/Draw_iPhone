@@ -9,6 +9,7 @@
 #import "ColorShopController.h"
 #import "ShareImageManager.h"
 //#import "ColorShopCell.h"
+#import "DrawViewController.h"
 #import "ColorGroup.h"
 #import "ColorView.h"
 
@@ -18,7 +19,7 @@ ColorShopController *staticColorShopController;
 @synthesize coinNumberLabel;
 @synthesize titleLabel;
 @synthesize colorShopControllerDelegate;
-
+@synthesize callFromDrawView;
 +(ColorShopController *)instance
 {
     if (staticColorShopController == nil) {
@@ -85,6 +86,11 @@ ColorShopController *staticColorShopController;
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -97,7 +103,12 @@ ColorShopController *staticColorShopController;
     [super dealloc];
 }
 - (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (callFromDrawView) {
+        [DrawViewController returnFromController:self];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    callFromDrawView = NO;
 }
 
 #pragma mark - Table view delegate
@@ -135,7 +146,13 @@ ColorShopController *staticColorShopController;
 - (void)didPickedColorView:(ColorView *)colorView
 {
     NSLog(@"<ColorShopController>:didPickColor");
-    [self.navigationController popViewControllerAnimated:YES];
+    if (callFromDrawView) {
+        [DrawViewController returnFromController:self];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    callFromDrawView = NO;
+    
     if (self.colorShopControllerDelegate && [self.colorShopControllerDelegate respondsToSelector:@selector(didPickedColorView:)]) {
         [self.colorShopControllerDelegate didPickedColorView:colorView];
     }
