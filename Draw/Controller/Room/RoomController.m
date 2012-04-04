@@ -100,6 +100,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self resetStartTimer];
     [self hideActivity];
     [super viewDidDisappear:animated];
     [[DrawGameService defaultService] unregisterObserver:self]; 
@@ -163,6 +164,7 @@
         // set images
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
+        imageView.hidden = NO;
         if ([[user userAvatar] length] > 0){
             [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
         }
@@ -183,6 +185,7 @@
     for (int i=imageStartTag; i<=imageEndTag; i++){
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
+        imageView.hidden = YES;
     }
     
     [self updateStartButton];
@@ -254,18 +257,18 @@
 }
 
 - (void)didStartGame:(GameMessage *)message
-{
+{    
     _hasClickStartGame = NO;
     [self hideActivity];
-    
-    if ([message resultCode] == 0){
-        [self popupHappyMessage:@"Start Game OK!" title:@""];
-    }
-    else{
-        [self popupHappyMessage:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]] title:@""];
-    }
-    
     [self updateGameUsers];
+    
+    if ([message resultCode] != 0){
+        [self popupHappyMessage:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]] title:@""];
+        return;
+    }
+    
+    [self popupHappyMessage:@"Start Game OK!" title:@""];
+    [self resetStartTimer];
     
     SelectWordController *sw = [[SelectWordController alloc] init];
     [self.navigationController pushViewController:sw animated:NO];
@@ -283,6 +286,8 @@
 
 - (void)didGameStart:(GameMessage *)message
 {
+    PPDebug(@"<RoomController>:didGameStart");
+    [self resetStartTimer];    
     _hasClickStartGame = NO;
     [self updateGameUsers];    
     [self showDrawViewController];
@@ -290,6 +295,7 @@
 
 - (void)didGameTurnComplete:(GameMessage*)message
 {
+    PPDebug(@"<RoomController>:didGameTurnComplete");
     [self updateGameUsers];
 }
 
@@ -446,14 +452,17 @@
 
 #define START_TIMER_INTERVAL    (1)
 #define PROLONG_INTERVAL        (10)
-#define DEFAULT_START_TIME      (60)
+#define DEFAULT_START_TIME      (20)
 
 - (void)resetStartTimer
 {
     _currentTimeCounter = DEFAULT_START_TIME;
     [self updateStartButton];
     if (self.startTimer != nil){
-        [self.startTimer invalidate];
+        if ([self.startTimer isValid]){
+            [self.startTimer invalidate];
+        }
+        
         self.startTimer = nil;
     }
 }
@@ -483,6 +492,8 @@
 
 - (void)handleStartTimer:(id)sender
 {
+    PPDebug(@"<handleStartTimer> fire start game timer");
+    
     _currentTimeCounter --;
     [self updateStartButton];    
 

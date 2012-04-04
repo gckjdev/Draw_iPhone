@@ -198,6 +198,7 @@ DrawViewController *GlobalGetDrawViewController()
     [self updatePlayerAvatars];
     [self startTimer];
     [self setToolButtonEnabled:YES];
+    [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
     gameComplete = NO;
 }
 - (void)initPickPenView
@@ -396,12 +397,12 @@ DrawViewController *GlobalGetDrawViewController()
 {
     if (!gameComplete) {
         gameComplete = YES;
+//        [drawGameService increaseRoundNumber];
         UIImage *image = [drawView createImage];
         NSInteger gainCoin = [[message notification] turnGainCoins];
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
-                                                                 score:gainCoin 
-                                                        hasRankButtons:YES 
+                                                                 score:gainCoin                                                         correct:NO
                                                              isMyPaint:YES];
         [self.navigationController pushViewController:rc animated:YES];
         hasPushColorShopController = NO;

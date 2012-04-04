@@ -33,12 +33,12 @@
 {
     switch (self.level) {
         case WordLevelHigh:
-            return 3;
+            return 5;
         case WordLeveLMedium:
-            return 2;
+            return 4;
         case WordLevelLow:
         default:
-            return 1;
+            return 3;
     }
 }
 

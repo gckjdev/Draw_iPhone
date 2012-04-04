@@ -164,7 +164,6 @@ static DrawGameService* _defaultService;
         if ([message resultCode] == 0){
             PBGameSession* pbSession = [[message joinGameResponse] gameSession];
             self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
-
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
             
             // add into hisotry
@@ -178,7 +177,7 @@ static DrawGameService* _defaultService;
 - (void)handleStartGameResponse:(GameMessage*)message
 {    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         // update session data      
         if ([message resultCode] == 0){
             [self.session updateByStartGameResponse:[message startGameResponse]];
@@ -196,8 +195,8 @@ static DrawGameService* _defaultService;
         
         // update session data
         [self.session updateByGameNotification:[message notification]];
-
-        // notify
+        [self increaseRoundNumber];
+        // notify every user including the drawer By Gamy
         [self notifyGameObserver:@selector(didGameStart:) message:message];
     });
 }
@@ -431,6 +430,7 @@ static DrawGameService* _defaultService;
                                  avatar:_avatar
                               sessionId:[_session sessionId]
                       excludeSessionSet:_historySessionSet];
+//    self.session.roundNumber = 1;
 }
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
@@ -504,5 +504,12 @@ static DrawGameService* _defaultService;
                              sessionId:[_session sessionId]
                                  round:[[_session currentTurn] round]];
 }
-
+- (void)increaseRoundNumber
+{
+    self.session.roundNumber ++;
+}
+- (NSInteger)roundNumber
+{
+    return _session.roundNumber;
+}
 @end

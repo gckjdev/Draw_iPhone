@@ -30,6 +30,7 @@
 @synthesize userId = _userId;
 @synthesize currentTurn = _currentTurn;
 @synthesize status = _status;
+@synthesize roundNumber = _roundNumber;
 
 - (void)dealloc
 {
@@ -49,6 +50,7 @@
     self.turnList = [NSMutableArray array];
     self.currentTurn = [[[GameTurn alloc] init] autorelease];
     self.status = SESSION_WAITING;
+    self.roundNumber = 0;
     return self;
 }
 
