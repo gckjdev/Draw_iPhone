@@ -432,9 +432,9 @@ ShowDrawController *GlobalGetShowDrawController()
 
     if (!gameStarted) {
         [showView cleanAllActions];
-        [showView setStatus:Stop];
         gameStarted = YES;
     }
+    [showView setStatus:Stop];
     [self setGuessAndPickButtonsEnabled:YES];
     retainCount = GUESS_TIME;
     NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
