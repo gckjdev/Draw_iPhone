@@ -14,8 +14,10 @@
 #import "CommonDialog.h"
 #import "ColorShopController.h"
 #import "PPViewController.h"
+
 @class Word;
 @class ShareImageManager;
+@class ColorShopController;
 @interface DrawViewController : PPViewController<DrawViewDelegate, ColorShopControllerDelegate,
             DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
     DrawView *drawView;
@@ -29,6 +31,8 @@
     NSMutableArray *avatarArray;
 //    BOOL hasPushColorShopController;
     BOOL hasPushResultController;
+    ColorShopController *colorShopConroller;
+                
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
@@ -50,6 +54,7 @@
 + (DrawViewController *)instance;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 + (void)returnFromController:(UIViewController*)fromController;
+- (void)setToolButtonEnabled:(BOOL)enabled;
 @end
 
 

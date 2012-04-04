@@ -85,6 +85,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {    
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+    
     [[DrawGameService defaultService] registerObserver:self];
     [[DrawGameService defaultService] setRoomDelegate:self];
     [self updateGameUsers];

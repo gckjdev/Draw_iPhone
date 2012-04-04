@@ -250,14 +250,6 @@ static DrawGameService* _defaultService;
         [self.session updateByGameNotification:[message notification]];
         
         PPDebug(@"<handleGameTurnCompleteNotification> Game Turn Completed!");
-//        if ([_drawDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
-//            [_drawDelegate didGameTurnComplete:message];
-//        }
-//        
-//        if ([_showDelegate respondsToSelector:@selector(didGameTurnComplete:)]) {
-//            [_showDelegate didGameTurnComplete:message];
-//        }
-        
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
 }
@@ -286,19 +278,16 @@ static DrawGameService* _defaultService;
             // receive user pick word, set status to playing
             [_session setStatus:SESSION_PLAYING];
 
+            PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
+            [self notifyGameObserver:@selector(didGameTurnGuessStart:) message:message];
+
             PPDebug(@"handleNewDrawDataNotification <Receive Word>");
             if ([_showDelegate respondsToSelector:@selector(didReceiveDrawWord:level:language:)]) {
                 [_showDelegate didReceiveDrawWord:[[message notification] word] 
                                             level:[[message notification] level]
                                          language:[[message notification] language]];
             }
-            
-            
-            PPDebug(@"handleNewDrawDataNotification <Game Turn Start>");
-//            if ([_drawDelegate respondsToSelector:@selector(didGameTurnGuessStart:)]) {
-//                [_drawDelegate didGameTurnGuessStart:message];
-//            }            
-            [self notifyGameObserver:@selector(didGameTurnGuessStart:) message:message];
+                        
         }
         
         if ([[[message notification] guessWord] length] > 0){
