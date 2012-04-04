@@ -10,12 +10,12 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
-
+#import "PPViewController.h"
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
-@interface ShowDrawController : UIViewController<DrawGameServiceDelegate,CommonDialogDelegate>
+@interface ShowDrawController : PPViewController<DrawGameServiceDelegate,CommonDialogDelegate>
 {
     Word *_word;
     DrawGameService *drawGameService;

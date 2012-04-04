@@ -290,7 +290,7 @@ static DrawGameService* _defaultService;
                     [[message notification] guessCorrect],
                     [[message notification] guessGainCoins]);
             
-            if ([_drawDelegate respondsToSelector:@selector(didReceiveGuessWord:guessUserId:guessCorrect:)]) {
+            if ([_drawDelegate respondsToSelector:@selector(didReceiveGuessWord:guessUserId:guessCorrect:gainCoins:)]) {
                 [_drawDelegate didReceiveGuessWord:[[message notification] guessWord]
                                        guessUserId:[[message notification] guessUserId]
                                       guessCorrect:[[message notification] guessCorrect]

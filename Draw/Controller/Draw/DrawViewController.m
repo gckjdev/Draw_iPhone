@@ -189,7 +189,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [drawView clearAllActions];
     drawGameService.drawDelegate = self;
-    [pickPenView setHidden:YES];
+//    [pickPenView setHidden:YES];
     [popupButton setHidden:YES];
     [self.wordButton setTitle:self.word.text forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
@@ -220,6 +220,7 @@ DrawViewController *GlobalGetDrawViewController()
     [colorViewArray addObject:[ColorView yellowColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
 
+    
     [pickPenView setColorViews:colorViewArray];
     [colorViewArray release];
 }
@@ -241,15 +242,21 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self resetData];
-    [drawGameService registerObserver:self];
+    if (!hasPushColorShopController) {
+        [self resetData];
+    }
+    [pickPenView setHidden:YES];
     [super viewDidAppear:animated];
+    [drawGameService registerObserver:self];        
+    hasPushColorShopController = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [drawGameService unregisterObserver:self];
-    [drawGameService setDrawDelegate:[ShowDrawController instance]];
+    if (!hasPushColorShopController) {
+        [drawGameService unregisterObserver:self];
+        [drawGameService setDrawDelegate:[ShowDrawController instance]];        
+    }
     [super viewDidDisappear:animated];
 }
 
@@ -275,12 +282,12 @@ DrawViewController *GlobalGetDrawViewController()
 
 
 
-- (void)alert:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kConfirm") otherButtonTitles:nil];
-    [alertView show];
-    [alertView release];
-}
+//- (void)alert:(NSString *)message
+//{
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kConfirm") otherButtonTitles:nil];
+//    [alertView show];
+//    [alertView release];
+//}
 
 
 - (IBAction)clickRedraw:(id)sender {
@@ -378,7 +385,7 @@ DrawViewController *GlobalGetDrawViewController()
             [self popGuessMessage:wordText userId:guessUserId];        
         }else{
             [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-            [self addScore:self.word.level toUser:guessUserId];
+            [self addScore:gainCoins toUser:guessUserId];
         }
 
     }
@@ -390,12 +397,14 @@ DrawViewController *GlobalGetDrawViewController()
     if (!gameComplete) {
         gameComplete = YES;
         UIImage *image = [drawView createImage];
+        NSInteger gainCoin = [[message notification] turnGainCoins];
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
-                                                                 score:self.word.score 
+                                                                 score:gainCoin 
                                                         hasRankButtons:YES 
                                                              isMyPaint:YES];
         [self.navigationController pushViewController:rc animated:YES];
+        hasPushColorShopController = NO;
         [rc release];
         [self resetTimer];
         
@@ -409,7 +418,7 @@ DrawViewController *GlobalGetDrawViewController()
 
     [self updatePlayerAvatars];
     if ([self userCount] <= 1) {
-        [self alert:NSLS(@"kAllUserQuit")];
+        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
         [RoomController returnRoom:self startNow:NO];
     }
 
@@ -427,6 +436,9 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)didPickedMoreColor
 {
     //present a buy color controller;
+    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
+    [self.navigationController pushViewController:colorShop animated:YES];
+    hasPushColorShopController = YES;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender {

@@ -64,8 +64,8 @@
 "kSave" = "保存";
 "kTurnResult" = "本轮结果";
 "kBuyColor" = "购买颜色";
-
+"kConnectionRecover" = "连接恢复";
+"kConnectionBroken" = "连接中断";
 "kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试";
-
-"kBuyCoinsSucc" = "购买金币成功";
 "kProcessingIAP" = "处理购买请求中...";
+"kBuyCoinsSucc" = "购买金币成功";

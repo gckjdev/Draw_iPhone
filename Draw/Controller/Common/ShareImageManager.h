@@ -37,7 +37,6 @@
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
 
-
 - (UIImage *)redColorImage;
 - (UIImage *)blueColorImage;
 - (UIImage *)yellowColorImage;

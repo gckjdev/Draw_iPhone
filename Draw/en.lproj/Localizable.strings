@@ -68,8 +68,8 @@
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
 "kBuyColor" = "Color Shop";
-
+"kConnectionRecover" = "Connection Recover";
+"kConnectionBroken" = "Connection Broken";
 "kNoServerAvailable" = "Sorry, server is full of users. Please try later.";
-
 "kBuyCoinsSucc" = "Purchasing coins successfully.";
 "kProcessingIAP" = "Processing purchasing request...";

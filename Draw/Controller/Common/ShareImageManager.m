@@ -176,4 +176,5 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"score.png"];            
 }
 
+
 @end

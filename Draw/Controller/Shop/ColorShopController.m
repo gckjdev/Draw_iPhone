@@ -8,7 +8,7 @@
 
 #import "ColorShopController.h"
 #import "ShareImageManager.h"
-#import "ColorShopCell.h"
+//#import "ColorShopCell.h"
 #import "ColorGroup.h"
 #import "ColorView.h"
 
@@ -17,14 +17,22 @@ ColorShopController *staticColorShopController;
 @implementation ColorShopController
 @synthesize coinNumberLabel;
 @synthesize titleLabel;
-
+@synthesize colorShopControllerDelegate;
 
 +(ColorShopController *)instance
 {
     if (staticColorShopController == nil) {
         staticColorShopController = [[ColorShopController alloc] init];
     }
+    staticColorShopController.colorShopControllerDelegate = nil;
     return staticColorShopController;
+}
+
++(ColorShopController *)instanceWithDelegate:(id<ColorShopControllerDelegate>)delegate
+{
+    ColorShopController *cs = [ColorShopController instance];
+    cs.colorShopControllerDelegate = delegate;
+    return cs;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,7 +60,7 @@ ColorShopController *staticColorShopController;
 
     NSMutableArray *colorList = [[[NSMutableArray alloc] init] autorelease];
     for (int i = 0; i < 10; i ++) {
-        NSArray *array = [NSArray arrayWithObjects:[ColorView redColorView],[ColorView blueColorView],[ColorView blueColorView],[ColorView yellowColorView],[ColorView redColorView], nil];
+        NSArray *array = [NSArray arrayWithObjects:[ColorView redColorView],[ColorView blueColorView],[ColorView blackColorView],[ColorView yellowColorView],[ColorView redColorView], nil];
         ColorGroup *group = [[ColorGroup alloc] initWithGroupId:i colorViewList:array];
         [colorList addObject:group];
         [group release];
@@ -109,6 +117,7 @@ ColorShopController *staticColorShopController;
     ColorGroup *group = [self.dataList objectAtIndex:indexPath.row];
     group.price = 100;
     [cell setCellInfo:group hasBought:rand()%2];
+    cell.colorShopCellDelegate = self;
     return cell;
 }
 
@@ -120,6 +129,16 @@ ColorShopController *staticColorShopController;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [ColorShopCell getCellHeight];
+}
+
+#pragma mark - ColorShopCell delegate
+- (void)didPickedColorView:(ColorView *)colorView
+{
+    NSLog(@"<ColorShopController>:didPickColor");
+    [self.navigationController popViewControllerAnimated:YES];
+    if (self.colorShopControllerDelegate && [self.colorShopControllerDelegate respondsToSelector:@selector(didPickedColorView:)]) {
+        [self.colorShopControllerDelegate didPickedColorView:colorView];
+    }
 }
 
 //#pragma mark - ColorShopCell delegate
@@ -144,3 +163,4 @@ ColorShopController *staticColorShopController;
 //}
 
 @end
+    

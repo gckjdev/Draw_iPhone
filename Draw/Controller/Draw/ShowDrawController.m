@@ -24,6 +24,7 @@
 #import "StableView.h"
 #import "ShareImageManager.h"
 #import "RoomController.h"
+#import "GameMessage.pb.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -257,6 +258,11 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setEnabled:NO];
         }
     }
+    if ([text length] != 0) {
+        toolView.enabled = YES;
+    }else{
+        toolView.enabled = NO;
+    }
 }
 
 - (void) updateCandidateViews
@@ -435,7 +441,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePickViewsWithWord:self.word lang:languageType];
     gameCompleted = NO;
     [toolView setNumber:3];
-    toolView.enabled = YES;
+//    toolView.enabled = YES;
 
 }
 
@@ -493,12 +499,12 @@ ShowDrawController *GlobalGetShowDrawController()
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)alert:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kConfirm") otherButtonTitles:nil];
-    [alertView show];
-    [alertView release];
-}
+//- (void)alert:(NSString *)message
+//{
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kConfirm") otherButtonTitles:nil];
+//    [alertView show];
+//    [alertView release];
+//}
 
 #pragma mark DrawGameServiceDelegate
 - (void)didReceiveDrawData:(GameMessage *)message
@@ -530,7 +536,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self popGuessMessage:wordText userId:guessUserId];        
     }else{
         [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-        [self addScore:self.word.level toUser:guessUserId];
+        [self addScore:gainCoins toUser:guessUserId];
     }
         
 //    }
@@ -563,13 +569,13 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)didGameTurnComplete:(GameMessage *)message
 {
     if (!gameCompleted) {
-        NSLog(@"Game is Complete");        
         gameCompleted = YES;
         [self resetTimer];
+        NSInteger gainCoin = [[message notification] turnGainCoins];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 
-                                                                 score:self.word.score 
+                                                                 score:gainCoin
                                                         hasRankButtons:NO 
                                                              isMyPaint:NO];
         
@@ -581,11 +587,13 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didConnected
 {
-    [self alert:NSLS(@"connection recover")];
+    [self popupHappyMessage:NSLS(@"kConnectionRecover") title:nil];
+
 }
 - (void)didBroken
 {
-    [self alert:NSLS(@"connection broken")];
+    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
+
 }
 
 - (NSInteger)userCount
@@ -600,7 +608,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self popUpRunAwayMessage:userId];
     [self updatePlayerAvatars];
     if ([self userCount] <= 1) {
-        [self alert:NSLS(@"kAllUserQuit")];
+        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
         [RoomController returnRoom:self startNow:NO];
     }
 }
@@ -610,12 +618,14 @@ ShowDrawController *GlobalGetShowDrawController()
     BOOL flag = [ans isEqualToString:self.word.text];    
     //alter if the word is correct
     if (flag) {
-        [self alert:NSLS(@"kGuessCorrect")];
+        [self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
+
         [self setGuessAndPickButtonsEnabled:NO];
         self.guessDoneButton.enabled = NO;
         [self addScore:self.word.score toUser:drawGameService.userId];
     }else{
-        [self alert:NSLS(@"kGuessWrong")];
+        [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
+
     }
     [drawGameService guess:ans guessUserId:drawGameService.session.userId];
 }
