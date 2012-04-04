@@ -282,4 +282,70 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+                        transactionId:(NSString*)transactionId
+                   transactionReceipt:(NSString*)transactionRecepit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CHARGE_ACCOUNT];      
+        str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
+        str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
+        str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+}
+
++ (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_DEDUCT_ACCOUNT];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
+        str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+}
+
+
 @end

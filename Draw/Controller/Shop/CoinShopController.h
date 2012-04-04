@@ -19,4 +19,6 @@
 
 +(CoinShopController *)instance;
 
+- (void)updateCoinNumberLabel;
+
 @end

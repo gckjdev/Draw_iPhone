@@ -22,32 +22,32 @@
 
 #define KEY_BALANCE @"KEY_BALANCE"
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:_balance forKey:KEY_BALANCE];
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [aCoder encodeObject:_balance forKey:KEY_BALANCE];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super init];
+//    if (self) {
+//        self.balance = [aDecoder decodeObjectForKey:KEY_BALANCE];
+//    }
+//    return self;
+//}
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    if (self) {
-        self.balance = [aDecoder decodeObjectForKey:KEY_BALANCE];
-    }
-    return self;
-}
+//+ (UserAccount *)defaultAccount
+//{
+//    return [UserAccount accountWithBalance:3];
+//}
 
-+ (UserAccount *)defaultAccount
-{
-    return [UserAccount accountWithBalance:3];
-}
+//+ (UserAccount *)accountWithBalance:(NSInteger)balance
+//{
+//    return [[[UserAccount alloc] initWithBalance:balance] autorelease];
+//}
 
-+ (UserAccount *)accountWithBalance:(NSInteger)balance
-{
-    return [[[UserAccount alloc] initWithBalance:balance] autorelease];
-}
-
-- (NSInteger)intBalanceValue
-{
-    return self.balance.integerValue;
-}
+//- (NSInteger)intBalanceValue
+//{
+//    return [self.balance intValue];
+//}
 @end

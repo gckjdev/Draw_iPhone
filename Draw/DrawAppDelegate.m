@@ -24,6 +24,7 @@
 NSString* GlobalGetServerURL()
 {
     return @"http://106.187.89.232:8001/api/i?";
+//    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -44,7 +45,7 @@ NSString* GlobalGetServerURL()
 
 - (void)updateDataFromServer
 {
-    [[AccountManager defaultManager] updateAccountForServer];
+//    [[AccountManager defaultManager] updateAccountForServer];
 }
 
 - (void)initGlobalObjects
