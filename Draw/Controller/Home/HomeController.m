@@ -71,6 +71,15 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
+//    NSLog(@"code=%@", 
+//          [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]);
+    if ([[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] isEqualToString:@"zh"]){
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    }
+    else{
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];        
+    }
+    
     [self.settingButton setImage:[UIImage imageNamed:SETTING_BUTTON_IMAGE] forState:UIControlStateNormal];
     [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
     

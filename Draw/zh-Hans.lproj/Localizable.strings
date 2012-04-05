@@ -80,3 +80,21 @@
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
+
+"kRegisterPromptLabel" = "使用已有帐号";
+"kRegisterTitleLabel" = "用户注册";
+"kEnterEmail" = "请输入Email地址注册";
+"kSubmit" = "提交";
+
+"kRegisteringUser" = "发送注册请求中...";
+"kSystemFailure" = "网络错误，请检查手机是否正确连接到互联网";
+"kUnknownRegisterFailure" = "对不起，用户注册无法完成，请联系我们的技术支持以便解决问题";
+"kEmailUsed" = "对不起，该电子邮件已经被注册";
+"kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入";
+"kGeneralFailure" = "对不起，注册失败，请稍候再试";
+
+"kInputNickName" = "请输入昵称";
+"Skip" = "跳过";
+
+"kSelectFromAlbum" = "从相册选择";
+"kTakePhoto" = "拍照";

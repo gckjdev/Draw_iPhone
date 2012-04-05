@@ -12,7 +12,7 @@
 #import "SNSServiceDelegate.h"
 #import "SNSConstants.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate>
 {
     int _currentLoginType;
 }
@@ -23,7 +23,11 @@
 - (IBAction)clickSubmit:(id)sender;
 - (IBAction)clickSinaLogin:(id)sender;
 - (IBAction)clickQQLogin:(id)sender;
+- (IBAction)textFieldDone:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UITextField *userIdTextField;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
+@property (retain, nonatomic) IBOutlet UILabel *promptLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

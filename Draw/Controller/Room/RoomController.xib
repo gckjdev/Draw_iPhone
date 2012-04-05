@@ -204,10 +204,17 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">马上开始</string>
 						<reference key="IBUIHighlightedTitleColor" ref="576231218"/>
 						<reference key="IBUINormalTitleColor" ref="576231218"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1011847968"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="28987532">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="119665998">
+								<int key="NSID">2</int>
+							</object>
+						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
 						<reference key="IBUIFont" ref="200893275"/>
 					</object>
@@ -267,10 +274,11 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">等一下</string>
 						<reference key="IBUIHighlightedTitleColor" ref="576231218"/>
 						<reference key="IBUINormalTitleColor" ref="576231218"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1011847968"/>
+						<reference key="IBUINormalTitleShadowColor" ref="28987532"/>
 						<reference key="IBUIFontDescription" ref="298077694"/>
 						<reference key="IBUIFont" ref="200893275"/>
 					</object>
@@ -292,6 +300,8 @@
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<reference key="IBUIShadowColor" ref="576231218"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -321,6 +331,12 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+							<reference key="NSCustomColorSpace" ref="119665998"/>
+						</object>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -350,6 +366,12 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor" id="338958254">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+							<reference key="NSCustomColorSpace" ref="119665998"/>
+						</object>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -372,6 +394,8 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<reference key="IBUIShadowColor" ref="338958254"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -394,6 +418,8 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<reference key="IBUIShadowColor" ref="338958254"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -416,6 +442,8 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<reference key="IBUIShadowColor" ref="338958254"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -438,6 +466,8 @@
 						<string key="IBUIText">Label</string>
 						<reference key="IBUITextColor" ref="576231218"/>
 						<nil key="IBUIHighlightedColor"/>
+						<reference key="IBUIShadowColor" ref="338958254"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -521,9 +551,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<reference key="NSCustomColorSpace" ref="119665998"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

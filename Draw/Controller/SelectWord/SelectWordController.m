@@ -50,7 +50,6 @@
 
 - (void)startGameWithWord:(Word *)word
 {
-    DrawGameService *gameService = [DrawGameService defaultService];
     if (!hasPushController) {
         hasPushController = YES;        
         [DrawViewController startDraw:word fromController:self];

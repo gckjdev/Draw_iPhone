@@ -84,3 +84,21 @@
 "kCheckInTitle" = "Message";
 "kCheckInMessage" = "Oh, you got %d coins today!";
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
+
+"kRegisterPromptLabel" = "Use Existing Account";
+"kRegisterTitleLabel" = "Registration";
+"kEnterEmail" = "Enter Your Email Address";
+
+"kRegisteringUser" = "Sending Request...";
+"kSystemFailure" = "Fail to send request, please check your network availability";
+"kUnknownRegisterFailure" = "Sorry, your registration fails. Please contact our technical support.";
+"kEmailUsed" = "Sorry, email has been registered.";
+"kEmailNotValid" = "Sorry, the email is not valid. Please try again.";
+"kGeneralFailure" = "Registration fails. Please try again later.";
+
+"kInputNickName" = "Enter Nick Name";
+"Skip" = "Skip";
+
+
+"kSelectFromAlbum" = "Select From Album";
+"kTakePhoto" = "Take Photo";

@@ -19,7 +19,8 @@
 #define KEY_DEVICE_TOKEN    @"USER_KEY_DEVICE_TOKEN"
 #define KEY_EMAIL           @"USER_KEY_EMAIL"
 #define KEY_PASSWORD        @"USER_KEY_PASSWORD"
-#define KEY_LANGUAGE        @"USER_KEY_LANGUAGE "
+#define KEY_LANGUAGE        @"USER_KEY_LANGUAGE"
+#define KEY_GENDER          @"USER_KEY_GENDER"
 
 #define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
 #define KEY_SINA_ACCESS_TOKEN           @"USER_KEY_SINA_ACCESS_TOKEN"
@@ -140,6 +141,17 @@ static UserManager* _defaultManager;
         return;
     
     self.avatarImage = image;
+}
+
+- (void)setGender:(NSString*)gender
+{
+    if (gender == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:gender forKey:KEY_GENDER];    
+    [userDefaults synchronize];
+    
 }
 
 - (void)setNickName:(NSString*)nickName

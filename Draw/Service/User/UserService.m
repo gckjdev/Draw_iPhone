@@ -196,11 +196,13 @@ static UserService* _defaultUserService;
 
 - (void)updateUserAvatar:(UIImage*)avatarImage 
                 nickName:(NSString*)nickName 
+                  gender:(NSString*)gender
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     // save data locally firstly
     [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     [[UserManager defaultManager] setNickName:nickName];
+    [[UserManager defaultManager] setGender:gender];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];

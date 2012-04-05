@@ -14,7 +14,7 @@ typedef enum  {
     BuyItemType = 3
 }BalanceSourceType;
 
-@interface UserAccount : NSObject<NSCoding>
+@interface UserAccount : NSObject
 {
     NSNumber *_balance;
 }
