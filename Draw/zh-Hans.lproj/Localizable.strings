@@ -16,7 +16,7 @@
 
 "kFeedback" = "反馈";
 
-"kCheckin" = "签到";
+"kCheckin" = "签到  ";
 
 "Me" = "我";
 
@@ -24,9 +24,9 @@
 
 "kClickToStart" = "开始画画 (%d)";
 
-"kWaitABit" = "等一下";
+"kWaitABit" = "延时";
 
-"kQuickQuick" = "催一下";
+"kQuickQuick" = "快快开始吧";
 
 "kWaitForMoreUsers" = "等待更多用户";
 
@@ -98,3 +98,12 @@
 
 "kSelectFromAlbum" = "从相册选择";
 "kTakePhoto" = "拍照";
+
+"kConnectingServer" = "连接服务器中...";
+"kJoiningGame" = "正在加入游戏会话中...";
+"kNetworkFailure" = "网络错误，请检查手机是否正确连接到互联网";
+
+"kJoinGameSucc" = "成功进入游戏房间";
+"kJoinGameFailure" = "加入游戏失败，请稍候再试";
+
+"kChangeRoom" = "更换房间中...";

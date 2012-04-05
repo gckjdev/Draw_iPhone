@@ -16,7 +16,7 @@
 
 "kFeedback" = "Feedback";
 
-"kCheckin" = "Check In";
+"kCheckin" = "Check In  ";
 
 "Me" = "Me";
 
@@ -24,13 +24,13 @@
 
 "kClickToStart" = "Draw (%d)";
 
-"kWaitABit" = "Wait";
+"kWaitABit" = "Prolong";
 
-"kQuickQuick" = "Quick";
+"kQuickQuick" = "Hurry Up";
 
 "kWaitForMoreUsers" = "Waiting";
 
-"kStartAfter" = "Wait For Start (%d)";
+"kStartAfter" = "Waiting [%d]";
 
 "kPickWordTitle" = "Word Selection";
 
@@ -102,3 +102,12 @@
 
 "kSelectFromAlbum" = "Select From Album";
 "kTakePhoto" = "Take Photo";
+
+"kConnectingServer" = "Connecting Server...";
+"kJoiningGame" = "Joinging Game...";
+"kNetworkFailure" = "Fail to send request, please check your network availability";
+
+"kJoinGameSucc" = "Join Game Successfully.";
+"kJoinGameFailure" = "Fail to join game. Please try again later.";
+
+"kChangeRoom" = "Loading...";

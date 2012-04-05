@@ -71,9 +71,8 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
-//    NSLog(@"code=%@", 
-//          [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]);
-    if ([[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] isEqualToString:@"zh"]){
+    [LocaleUtils getLanguageCode];
+    if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh"]){
         self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     }
     else{
@@ -135,14 +134,14 @@
 
 - (IBAction)clickStart:(id)sender
 {        
-    [self showActivityWithText:NSLS(@"kJoingGame")];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
     
     if ([[DrawGameService defaultService] isConnected]){        
         [[DrawGameService defaultService] joinGame];    
     }
     else{
         
-        [self showActivityWithText:@"kConnectingServer"];        
+        [self showActivityWithText:NSLS(@"kConnectingServer")];        
         [[RouterService defaultService] tryFetchServerList:self];        
     }
 }
@@ -161,10 +160,10 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [self popupHappyMessage:@"Join Game OK" title:@""];
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
     }
     else{
-        NSString* text = [NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]];
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
         [self popupUnhappyMessage:text title:@""];
         [[DrawGameService defaultService] disconnectServer];
         [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
@@ -220,7 +219,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [self popupUnhappyMessage:@"Network Failure, Connect Server Failure" title:@""];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...
@@ -233,7 +232,7 @@
 - (void)didConnected
 {
     [self hideActivity];
-    [self popupHappyMessage:@"Server Connected" title:@""];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
     if (_isTryJoinGame){
         [[DrawGameService defaultService] joinGame];    
     }
