@@ -373,6 +373,13 @@
 		CA65C1F8152DD2A200462C96 /* QWeiboAsyncApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C1F4152DD2A200462C96 /* QWeiboAsyncApi.m */; };
 		CA65C1F9152DD2A200462C96 /* QWeiboSyncApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C1F6152DD2A200462C96 /* QWeiboSyncApi.m */; };
 		CA65C1FD152DD50E00462C96 /* libQWeiboSDK4iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65C1ED152DD03B00462C96 /* libQWeiboSDK4iOS.a */; };
+		CA65C20F152DE4D700462C96 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C204152DE4D700462C96 /* Facebook.m */; };
+		CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA65C206152DE4D700462C96 /* FBDialog.bundle */; };
+		CA65C211152DE4D700462C96 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C208152DE4D700462C96 /* FBDialog.m */; };
+		CA65C212152DE4D700462C96 /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C20A152DE4D700462C96 /* FBFrictionlessRequestSettings.m */; };
+		CA65C213152DE4D700462C96 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C20C152DE4D700462C96 /* FBLoginDialog.m */; };
+		CA65C214152DE4D700462C96 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C20E152DE4D700462C96 /* FBRequest.m */; };
+		CA65C217152DE52E00462C96 /* FacebookSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C216152DE52E00462C96 /* FacebookSNSService.m */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -1089,6 +1096,20 @@
 		CA65C1F4152DD2A200462C96 /* QWeiboAsyncApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWeiboAsyncApi.m; sourceTree = "<group>"; };
 		CA65C1F5152DD2A200462C96 /* QWeiboSyncApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWeiboSyncApi.h; sourceTree = "<group>"; };
 		CA65C1F6152DD2A200462C96 /* QWeiboSyncApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWeiboSyncApi.m; sourceTree = "<group>"; };
+		CA65C203152DE4D700462C96 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		CA65C204152DE4D700462C96 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
+		CA65C205152DE4D700462C96 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		CA65C206152DE4D700462C96 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		CA65C207152DE4D700462C96 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		CA65C208152DE4D700462C96 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
+		CA65C209152DE4D700462C96 /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFrictionlessRequestSettings.h; sourceTree = "<group>"; };
+		CA65C20A152DE4D700462C96 /* FBFrictionlessRequestSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFrictionlessRequestSettings.m; sourceTree = "<group>"; };
+		CA65C20B152DE4D700462C96 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		CA65C20C152DE4D700462C96 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
+		CA65C20D152DE4D700462C96 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		CA65C20E152DE4D700462C96 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
+		CA65C215152DE52D00462C96 /* FacebookSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookSNSService.h; sourceTree = "<group>"; };
+		CA65C216152DE52E00462C96 /* FacebookSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookSNSService.m; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D221503B1B500600024 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA745D241503B1B500600024 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2574,6 +2595,8 @@
 				CA32217E151EF56E0039A384 /* QQWeiboService.h */,
 				CA32217F151EF56E0039A384 /* QQWeiboService.m */,
 				CA322181151EF66E0039A384 /* SNSServiceDelegate.h */,
+				CA65C215152DE52D00462C96 /* FacebookSNSService.h */,
+				CA65C216152DE52E00462C96 /* FacebookSNSService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2694,6 +2717,26 @@
 			path = "../../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/QWeiboSDK4iOS/QQWeiboEngine";
 			sourceTree = "<group>";
 		};
+		CA65C202152DE4CD00462C96 /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA65C203152DE4D700462C96 /* Facebook.h */,
+				CA65C204152DE4D700462C96 /* Facebook.m */,
+				CA65C205152DE4D700462C96 /* FBConnect.h */,
+				CA65C206152DE4D700462C96 /* FBDialog.bundle */,
+				CA65C207152DE4D700462C96 /* FBDialog.h */,
+				CA65C208152DE4D700462C96 /* FBDialog.m */,
+				CA65C209152DE4D700462C96 /* FBFrictionlessRequestSettings.h */,
+				CA65C20A152DE4D700462C96 /* FBFrictionlessRequestSettings.m */,
+				CA65C20B152DE4D700462C96 /* FBLoginDialog.h */,
+				CA65C20C152DE4D700462C96 /* FBLoginDialog.m */,
+				CA65C20D152DE4D700462C96 /* FBRequest.h */,
+				CA65C20E152DE4D700462C96 /* FBRequest.m */,
+			);
+			name = FacebookSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/FacebookSDK";
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -2741,6 +2784,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA65C202152DE4CD00462C96 /* FacebookSDK */,
 				CA65C1F0152DD29D00462C96 /* QQWeiboEngine */,
 				CA65C161152D993100462C96 /* SinaWeiBoSDK */,
 				CA32214A151EF4950039A384 /* SNS */,
@@ -3251,6 +3295,7 @@
 				CA65C1AB152D993700462C96 /* delete@2x.png in Resources */,
 				CA65C1AC152D993700462C96 /* logo.png in Resources */,
 				CA65C1AD152D993700462C96 /* logo@2x.png in Resources */,
+				CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3534,6 +3579,12 @@
 				CA65C1F7152DD2A200462C96 /* QVerifyWebViewController.m in Sources */,
 				CA65C1F8152DD2A200462C96 /* QWeiboAsyncApi.m in Sources */,
 				CA65C1F9152DD2A200462C96 /* QWeiboSyncApi.m in Sources */,
+				CA65C20F152DE4D700462C96 /* Facebook.m in Sources */,
+				CA65C211152DE4D700462C96 /* FBDialog.m in Sources */,
+				CA65C212152DE4D700462C96 /* FBFrictionlessRequestSettings.m in Sources */,
+				CA65C213152DE4D700462C96 /* FBLoginDialog.m in Sources */,
+				CA65C214152DE4D700462C96 /* FBRequest.m in Sources */,
+				CA65C217152DE52E00462C96 /* FacebookSNSService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

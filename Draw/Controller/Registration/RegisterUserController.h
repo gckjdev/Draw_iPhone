@@ -23,6 +23,7 @@
 - (IBAction)clickSubmit:(id)sender;
 - (IBAction)clickSinaLogin:(id)sender;
 - (IBAction)clickQQLogin:(id)sender;
+- (IBAction)clickFacebookLogin:(id)sender;
 - (IBAction)textFieldDone:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UITextField *userIdTextField;

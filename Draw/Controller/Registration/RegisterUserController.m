@@ -19,6 +19,7 @@
 #import "GameNetworkConstants.h"
 #import "AccountService.h"
 #import "ShareImageManager.h"
+#import "FacebookSNSService.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -176,6 +177,12 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationItem.title = NSLS(@"微博授权");
     [[QQWeiboService defaultService] startLogin:self];
+}
+
+- (IBAction)clickFacebookLogin:(id)sender
+{
+    _currentLoginType = REGISTER_TYPE_FACEBOOK;
+    [[FacebookSNSService defaultService] startLogin:self];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
