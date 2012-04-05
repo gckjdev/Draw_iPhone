@@ -429,38 +429,50 @@ static AccountService* _defaultAccountService;
                     if (localBalance < balance){
                         // use server balance
                         [_accountManager updateBalanceFromServer:balance];
+                        PPDebug(@"<syncAccountAndItem> use server balance = %d", balance);                        
                     }
                     else if (localBalance > balance){
                         if ((localBalance - balance) <= deviation){
                             // valid range for using client balance
                             [self syncAccountBalanceToServer];                            
+                            PPDebug(@"<syncAccountAndItem> use client balance = %d", localBalance);                        
                         }
                         else{
                             // maybe client is cheating, use server data
                             [_accountManager updateBalanceFromServer:balance];
+                            PPDebug(@"<syncAccountAndItem> client cheating (%d)??? use server balance = %d",
+                                    localBalance, balance);                        
                         }
                     }
-                    PPDebug(@"<syncAccountAndItem> OK, account balance = %d", balance);
+                    else{
+                        PPDebug(@"<syncAccountAndItem> no change for balance = %d", balance);                        
+                    }
 
                     NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
                     for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
                         int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
                         int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
-                        PPDebug(@"<syncAccountAndItem> OK, item type[%d], amount[%d]", itemType, itemAmount);
                         
                         // update DB
                         UserItem* item = [_itemManager findUserItemByType:itemType];
                         if (item == nil){
                             [_itemManager addNewItem:itemType amount:itemAmount];
+                            PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
                         }
                         else{
                             if ([[item amount] intValue] < itemAmount){
                                 // use server item amount
                                 [item setAmount:[NSNumber numberWithInt:itemAmount]];
+                                PPDebug(@"<syncAccountAndItem> update client item type[%d], amount[%d]", itemType, itemAmount);
                             }
-                            if ([[item amount] intValue] > itemAmount){
+                            else if ([[item amount] intValue] > itemAmount){
                                 // use client item amount
                                 [self syncItemRequest:item];
+                                PPDebug(@"<syncAccountAndItem> update server item type[%d], amount[%d]", itemType, itemAmount);
+                            }
+                            else{
+                                PPDebug(@"<syncAccountAndItem> no change for item type[%d], amount[%d]", itemType, itemAmount);
+                                
                             }
                         }
                     }
