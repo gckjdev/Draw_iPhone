@@ -196,11 +196,13 @@ static UserService* _defaultUserService;
 
 - (void)updateUserAvatar:(UIImage*)avatarImage 
                 nickName:(NSString*)nickName 
+                  gender:(NSString*)gender
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     // save data locally firstly
     [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     [[UserManager defaultManager] setNickName:nickName];
+    [[UserManager defaultManager] setGender:gender];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -239,5 +241,71 @@ static UserService* _defaultUserService;
     
 }
 
+//- (void)checkDevice
+//{    
+//    NSLog(@"current user Id is %@", user.userId);    
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    if (userId == nil){
+//        // not login yet, read server data later
+//    }
+//    else{
+//        // already has local data, just sync balance & item data
+//    }
+//    
+//    if (userCurrentStatus != USER_EXIST_LOCAL_STATUS_LOGIN){
+//        dispatch_async(workingQueue, ^{
+//            CommonNetworkOutput* output = [GroupBuyNetworkRequest deviceLogin:SERVER_URL appId:GlobalGetPlaceAppId() needReturnUser:YES deviceToken:deviceToken];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (output.resultCode == ERROR_SUCCESS) {
+//                    // save return User ID locally
+//                    NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
+//                    NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR]; 
+//                    NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
+//                    NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+//                    NSString* qqAccessToken = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN];
+//                    NSString* qqAccessTokenSecret = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN_SECRET];
+//                    NSString* sinaAccessToken = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN];
+//                    NSString* sinaAccessTokenSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
+//                    NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
+//                    NSString* sinaLoginId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
+//                    NSString* qqLoginId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+//                    
+//                    [UserManager createUserWithUserId:userId 
+//                                                email:email 
+//                                             password:password 
+//                                             nickName:nickName 
+//                                               avatar:avatar 
+//                                          sinaLoginId:sinaLoginId 
+//                                      sinaAccessToken:sinaAccessToken 
+//                                sinaAccessTokenSecret:sinaAccessTokenSecret                      
+//                                            qqLoginId:qqLoginId                     
+//                                        qqAccessToken:qqAccessToken 
+//                                  qqAccessTokenSecret:qqAccessTokenSecret];
+//                    
+//                    [self updateUserCache];
+//                }
+//                else if (output.resultCode == ERROR_DEVICE_NOT_BIND){
+//                    // send registration request
+//                    [self registerUserByDevice];
+//                }
+//                else{
+//                    // TODO, need to handle different error code
+//                }
+//            });
+//            
+//        });
+//    }
+//    else{
+//        dispatch_async(workingQueue, ^{
+//            [GroupBuyNetworkRequest deviceLogin:SERVER_URL appId:GlobalGetPlaceAppId() needReturnUser:NO deviceToken:deviceToken];        
+//        });
+//    }
+//    
+//    
+//    if (delegate && [delegate respondsToSelector:@selector(checkDeviceResult:)]){
+//        [delegate checkDeviceResult:userCurrentStatus];        
+//    }    
+//}
 
 @end

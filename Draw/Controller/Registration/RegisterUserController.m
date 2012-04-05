@@ -17,9 +17,14 @@
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "GameNetworkConstants.h"
+#import "AccountService.h"
+#import "ShareImageManager.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
+@synthesize submitButton;
+@synthesize promptLabel;
+@synthesize titleLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,12 +53,31 @@
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+            
+    self.promptLabel.text = NSLS(@"kRegisterPromptLabel");
+    self.titleLabel.text = NSLS(@"kRegisterTitleLabel");
+    self.userIdTextField.placeholder = NSLS(@"kEnterEmail");
+    [self.userIdTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
+    userIdTextField.delegate = self;
+    
+    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
+    [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
+                                 forState:UIControlStateNormal];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
 {
     
     [self setUserIdTextField:nil];
+    [self setSubmitButton:nil];
+    [self setPromptLabel:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -131,6 +155,8 @@
     if ([self verifyField] == NO){        
         return;
     }    
+    
+    [self.view endEditing:YES];    
     [[UserService defaultService] registerUser:userId password:@"" viewController:self];    
 }
 
@@ -152,8 +178,22 @@
     [[QQWeiboService defaultService] startLogin:self];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self clickSubmit:textField];
+    return NO;
+}
+
+- (IBAction)textFieldDone:(id)sender
+{
+    [self clickSubmit:sender];
+}
+
 - (void)dealloc {
     [userIdTextField release];
+    [submitButton release];
+    [promptLabel release];
+    [titleLabel release];
     [super dealloc];
 }
 
@@ -164,6 +204,9 @@
     // go to next view
     PPDebug(@"<didUserRegistered> result code = %d", resultCode);
     if (resultCode == 0){
+        
+        [[AccountService defaultService] syncAccountAndItem];
+        
         if (_currentLoginType == REGISTER_TYPE_EMAIL){
             CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:NO];    

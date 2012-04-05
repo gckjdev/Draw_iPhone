@@ -18,6 +18,7 @@
 #import "GTMBase64.h"
 #import "ItemManager.h"
 #import "UserItem.h"
+#import "TimeUtils.h"
 
 @implementation AccountService
 
@@ -42,6 +43,10 @@ static AccountService* _defaultAccountService;
 - (id)init
 {
     self = [super init];
+    
+    _itemManager = [ItemManager defaultManager];
+    _accountManager = [AccountManager defaultManager];
+    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     return self;
 }
@@ -269,6 +274,27 @@ static AccountService* _defaultAccountService;
     });    
 }
 
+- (void)syncAccountBalanceToServer
+{
+    int balance = [_accountManager getBalance];
+    PPDebug(@"<syncAccountBalanceToServer> balance=%d", balance);
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest updateBalance:SERVER_URL 
+                                            userId:userId 
+                                           balance:balance];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            else{
+            }
+        });      
+    });
+}
+
 - (void)syncItemRequest:(UserItem*)userItem
 {
     PPDebug(@"<syncItemRequest> item=%@", [userItem description]);
@@ -350,5 +376,112 @@ static AccountService* _defaultAccountService;
     
     return [[userItem amount] intValue] >= amount;
 }
+
+#define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
+#define MAX_CHECKIN_COINS       5
+
+- (int)checkIn
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_CHECKIN_DATE];
+    if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
+        // already check in, return -1
+        PPDebug(@"<checkIn> but already do it today... come tomorrow :-)");
+        return -1;
+    }
+
+    // random get some coins
+    int coins = rand() % MAX_CHECKIN_COINS + 1;
+    PPDebug(@"<checkIn> got %d coins", coins);
+    [self chargeAccount:coins source:CheckInType]; 
+    
+    // update check in today flag
+    [userDefaults setObject:[NSDate date] forKey:KEY_LAST_CHECKIN_DATE];
+    [userDefaults synchronize];    
+    return coins;
+}
+
+#define DEFAULT_DEVIATION       (5000)
+
+- (void)syncAccountAndItem
+{    
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL 
+                                                    userId:userId]; 
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    int deviation = [[output.jsonDataDict objectForKey:PARA_DEVIATION] intValue];
+                    if (deviation == 0){
+                        deviation = DEFAULT_DEVIATION;
+                    }
+                    
+                    int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                    int localBalance = [_accountManager getBalance];
+                    if (localBalance < balance){
+                        // use server balance
+                        [_accountManager updateBalanceFromServer:balance];
+                        PPDebug(@"<syncAccountAndItem> use server balance = %d", balance);                        
+                    }
+                    else if (localBalance > balance){
+                        if ((localBalance - balance) <= deviation){
+                            // valid range for using client balance
+                            [self syncAccountBalanceToServer];                            
+                            PPDebug(@"<syncAccountAndItem> use client balance = %d", localBalance);                        
+                        }
+                        else{
+                            // maybe client is cheating, use server data
+                            [_accountManager updateBalanceFromServer:balance];
+                            PPDebug(@"<syncAccountAndItem> client cheating (%d)??? use server balance = %d",
+                                    localBalance, balance);                        
+                        }
+                    }
+                    else{
+                        PPDebug(@"<syncAccountAndItem> no change for balance = %d", balance);                        
+                    }
+
+                    NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+                    for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
+                        int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
+                        int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+                        
+                        // update DB
+                        UserItem* item = [_itemManager findUserItemByType:itemType];
+                        if (item == nil){
+                            [_itemManager addNewItem:itemType amount:itemAmount];
+                            PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
+                        }
+                        else{
+                            if ([[item amount] intValue] < itemAmount){
+                                // use server item amount
+                                [item setAmount:[NSNumber numberWithInt:itemAmount]];
+                                PPDebug(@"<syncAccountAndItem> update client item type[%d], amount[%d]", itemType, itemAmount);
+                            }
+                            else if ([[item amount] intValue] > itemAmount){
+                                // use client item amount
+                                [self syncItemRequest:item];
+                                PPDebug(@"<syncAccountAndItem> update server item type[%d], amount[%d]", itemType, itemAmount);
+                            }
+                            else{
+                                PPDebug(@"<syncAccountAndItem> no change for item type[%d], amount[%d]", itemType, itemAmount);
+                                
+                            }
+                        }
+                    }
+                });                
+            }
+            else{
+                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
+            }
+        });      
+    });}
 
 @end

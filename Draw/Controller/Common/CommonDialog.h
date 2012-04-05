@@ -32,4 +32,6 @@ typedef enum {
 + (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle deelegate:(id<CommonDialogDelegate>)aDelegate;
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
+- (void)showInView:(UIView*)view;
+
 @end

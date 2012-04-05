@@ -92,6 +92,8 @@
 #define METHOD_CHARGE_ACCOUNT @"ca"
 #define METHOD_DEDUCT_ACCOUNT @"da"
 #define METHOD_UPDATE_ITEM_AMOUNT @"uia"
+#define METHOD_UPDATE_ACCOUNT_BALANCE @"uab"
+#define METHOD_SYNC_USER_ACCOUNT_ITEM @"sai"
 
 //game parameters
 
@@ -106,6 +108,9 @@
 #define PARA_TRANSACTION_ID @"tid"
 #define PARA_TRANSACTION_RECEIPT @"tre"
 #define PARA_ITEM_TYPE @"it"
+#define PARA_ITEM_AMOUNT @"ia"
+#define PARA_ITEMS @"is"
+#define PARA_DEVIATION @"dv"
 
 
 // request parameters

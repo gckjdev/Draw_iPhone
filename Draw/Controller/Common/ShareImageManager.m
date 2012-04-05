@@ -8,6 +8,7 @@
 
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
+#import "LocaleUtils.h"
 
 @implementation ShareImageManager
 
@@ -92,6 +93,10 @@ static UIImage* _whitePaperImage;
     return _whitePaperImage;
 }
 
+- (UIImage *)inputImage
+{
+    return [UIImage strectchableImageName:@"inputbg.png"];
+}
 
 - (UIImage *)pickEasyWordCellImage
 {
@@ -106,6 +111,16 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:WORD_HARD_CELL_BACKGROUND];
 }
 
+- (UIImage *)avatarSelectImage
+{
+    return [UIImage imageNamed:@"user_pic_bgselected.png"];
+}
+
+- (UIImage *)avatarUnSelectImage
+{
+    return [UIImage imageNamed:@"user_picbg.png"];
+}
+
 - (UIImage *)coinImage
 {
     return [UIImage imageNamed:@"coin.png"];
@@ -118,6 +133,16 @@ static UIImage* _whitePaperImage;
 - (UIImage *)toolNumberImage
 {
     return [UIImage imageNamed:@"number.png"];
+}
+
+- (UIImage*)maleDefaultAvatarImage
+{
+    return [LocaleUtils isChina] ? [UIImage imageNamed:@"man1.png"] : [UIImage imageNamed:@"man2.png"];
+}
+
+- (UIImage*)femaleDefaultAvatarImage
+{
+    return [LocaleUtils isChina] ? [UIImage imageNamed:@"female1.png"] : [UIImage imageNamed:@"female2.png"];
 }
 
 #pragma makr - Color Image

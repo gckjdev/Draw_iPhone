@@ -85,6 +85,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {    
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+    
     [[DrawGameService defaultService] registerObserver:self];
     [[DrawGameService defaultService] setRoomDelegate:self];
     [self updateGameUsers];
@@ -255,10 +257,10 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [UIUtils alert:@"Join Game OK!"];
+        [self popupMessage:NSLS(@"kJoinGameSucc") title:nil];
     }
     else{
-        [UIUtils alert:[NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]]];
+        [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
     }
 
     // update 

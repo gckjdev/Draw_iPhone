@@ -51,4 +51,11 @@
 - (UIImage *)scoreBackgroundImage;
 - (UIImage *)toolNumberImage;
 
+- (UIImage *)inputImage;
+- (UIImage *)avatarUnSelectImage;
+- (UIImage *)avatarSelectImage;
+
+- (UIImage*)femaleDefaultAvatarImage;
+- (UIImage*)maleDefaultAvatarImage;
+
 @end

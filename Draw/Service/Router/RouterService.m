@@ -16,7 +16,8 @@
 #import "UserManager.h"
 #import "Reachability.h"
 
-#define ROUTER_SERVER_URL   @"http://106.187.89.232:8600/api/?"
+#define ROUTER_SERVER_URL   @"http://58.215.188.215:8600/api/?"
+//#define ROUTER_SERVER_URL   @"http://106.187.89.232:8600/api/?"
 
 @implementation RouterService
 

@@ -10,8 +10,9 @@
 #import "PPTableViewController.h"
 #import "ShoppingCell.h"
 #import "PriceService.h"
+#import "AccountService.h"
 
-@interface CoinShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate>
+@interface CoinShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, AccountServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (retain, nonatomic) IBOutlet UILabel *coinNumberLabel;

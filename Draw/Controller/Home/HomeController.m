@@ -22,6 +22,8 @@
 #import "TrafficServer.h"
 #import "Reachability.h"
 #import "ShareImageManager.h"
+#import "AccountService.h"
+#import "CommonDialog.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -69,6 +71,14 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
+    [LocaleUtils getLanguageCode];
+    if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh"]){
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    }
+    else{
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];        
+    }
+    
     [self.settingButton setImage:[UIImage imageNamed:SETTING_BUTTON_IMAGE] forState:UIControlStateNormal];
     [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
     
@@ -90,6 +100,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
@@ -123,14 +134,14 @@
 
 - (IBAction)clickStart:(id)sender
 {        
-    [self showActivityWithText:NSLS(@"kJoingGame")];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
     
     if ([[DrawGameService defaultService] isConnected]){        
         [[DrawGameService defaultService] joinGame];    
     }
     else{
         
-        [self showActivityWithText:@"kConnectingServer"];        
+        [self showActivityWithText:NSLS(@"kConnectingServer")];        
         [[RouterService defaultService] tryFetchServerList:self];        
     }
 }
@@ -149,10 +160,10 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [self popupHappyMessage:@"Join Game OK" title:@""];
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
     }
     else{
-        NSString* text = [NSString stringWithFormat:@"Join Game Fail, Code = %d", [message resultCode]];
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
         [self popupUnhappyMessage:text title:@""];
         [[DrawGameService defaultService] disconnectServer];
         [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
@@ -168,6 +179,24 @@
     FeedbackController* feedBack = [[FeedbackController alloc] init];
     [self.navigationController pushViewController:feedBack animated:YES];
     [feedBack release];
+}
+
+- (IBAction)clickCheckIn:(id)sender
+{
+    int coins = [[AccountService defaultService] checkIn];
+    NSString* message = nil;
+    if (coins > 0){        
+        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+    }
+    else{
+        message = NSLS(@"kCheckInAlreadyToday");
+    }
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+                                                       message:message
+                                                         style:CommonDialogStyleSingleButton 
+                                                     deelegate:self];    
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender
@@ -190,7 +219,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [self popupUnhappyMessage:@"Network Failure, Connect Server Failure" title:@""];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...
@@ -203,7 +232,7 @@
 - (void)didConnected
 {
     [self hideActivity];
-    [self popupHappyMessage:@"Server Connected" title:@""];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
     if (_isTryJoinGame){
         [[DrawGameService defaultService] joinGame];    
     }

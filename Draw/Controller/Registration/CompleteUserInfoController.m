@@ -9,16 +9,20 @@
 #import "CompleteUserInfoController.h"
 #import "UserManager.h"
 #import "UserService.h"
+#import "ShareImageManager.h"
 
 @implementation CompleteUserInfoController
+@synthesize maleSelectImageView;
+@synthesize femaleSelectImageView;
 @synthesize avatarLabel;
 @synthesize nickNameLabel;
-@synthesize avatarButton;
+@synthesize maleAvatarButton;
 @synthesize nickNameTextField;
 @synthesize submitButton;
 @synthesize skipButton;
 @synthesize changeAvatarMenu = _changeAvatarMenu;
 @synthesize avatarImage = _avatarImage;
+@synthesize femaleAvatarButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +43,32 @@
 
 #pragma mark - View lifecycle
 
+- (void)updateSelectImageView
+{
+    if (_isFemale == NO){
+        [self.maleSelectImageView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
+        [self.femaleSelectImageView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
+    }
+    else{
+        [self.maleSelectImageView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
+        [self.femaleSelectImageView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
+    }
+}
+
+- (void)updateAvatarButton
+{
+    if (_isFemale){
+        // set male background to default
+        [self.maleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]
+                                         forState:UIControlStateNormal];
+    }
+    else{
+        // set female background to default
+        [self.maleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]
+                                         forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,18 +76,39 @@
     
     self.nickNameTextField.text = [[UserManager defaultManager] nickName];
         
-    self.avatarImage = [[UserManager defaultManager] avatarImage];
-    [self.avatarButton setBackgroundImage:_avatarImage forState:UIControlStateNormal];
+//    self.avatarImage = [[UserManager defaultManager] avatarImage];
+//    [self.maleAvatarButton setBackgroundImage:_avatarImage forState:UIControlStateNormal];
+    [self.maleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]
+                                     forState:UIControlStateNormal];
+    [self.femaleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]
+                                     forState:UIControlStateNormal];
+    
+    [self.nickNameTextField setPlaceholder:NSLS(@"kInputNickName")];
+    [self.nickNameTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
+    //    userIdTextField.delegate = self;
+    
+    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
+    [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
+                                 forState:UIControlStateNormal];
+    
+    [self.skipButton setTitle:NSLS(@"Skip") forState:UIControlStateNormal];
+    [self.skipButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] 
+                                 forState:UIControlStateNormal];
+    
+    [self updateSelectImageView];
 }
 
 - (void)viewDidUnload
 {
     [self setAvatarLabel:nil];
     [self setNickNameLabel:nil];
-    [self setAvatarButton:nil];
+    [self setMaleAvatarButton:nil];
     [self setNickNameTextField:nil];
     [self setSubmitButton:nil];
     [self setSkipButton:nil];
+    [self setFemaleAvatarButton:nil];
+    [self setMaleSelectImageView:nil];
+    [self setFemaleSelectImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -74,11 +125,22 @@
     [_changeAvatarMenu release];
     [avatarLabel release];
     [nickNameLabel release];
-    [avatarButton release];
+    [maleAvatarButton release];
     [nickNameTextField release];
     [submitButton release];
     [skipButton release];
+    [femaleAvatarButton release];
+    [maleSelectImageView release];
+    [femaleSelectImageView release];
     [super dealloc];
+}
+
+- (NSString*)getGender
+{
+    if (_isFemale)
+        return @"f";
+    else
+        return @"m";
 }
 
 - (IBAction)clickSkip:(id)sender
@@ -97,18 +159,41 @@
     [self.nickNameTextField endEditing:YES];    
     [[UserService defaultService] updateUserAvatar:_avatarImage 
                                           nickName:self.nickNameTextField.text
+                                            gender:[self getGender]
                                     viewController:self];
 }
 
-- (IBAction)clickAvatar:(id)sender
+- (IBAction)clickMaleAvatar:(id)sender
 {
+    _isFemale = NO;
+    [self updateSelectImageView];
+    
     self.changeAvatarMenu = [[[ChangeAvatar alloc] init] autorelease];
+    [self.changeAvatarMenu setAutoRoundRect:NO];
     [self.changeAvatarMenu showSelectionView:self];
 }
 
-- (void)didImageSelected:(UIImage *)image
+- (IBAction)clickFemaleAvatar:(id)sender
 {
-    [self.avatarButton setBackgroundImage:image forState:UIControlStateNormal];
+    _isFemale = YES;
+    [self updateSelectImageView];
+    
+    self.changeAvatarMenu = [[[ChangeAvatar alloc] init] autorelease];
+    [self.changeAvatarMenu setAutoRoundRect:NO];
+    [self.changeAvatarMenu showSelectionView:self];    
+}
+
+- (void)didImageSelected:(UIImage *)image
+{    
+    if (_isFemale){
+        [self.femaleAvatarButton setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    else{
+        [self.maleAvatarButton setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    
+    [self updateAvatarButton];
+
     self.avatarImage = image;
 }
 

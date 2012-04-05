@@ -6,9 +6,11 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
+#import "LocaleUtils.h"
+
 #define DEFAULT_AVATAR          @"http://tp4.sinaimg.cn/2198792115/180/0/1"
 #define TEMP_AVATAR_LOCAL_PATH  @"temp"
-#define DEFAULT_AVATAR_BUNDLE   @"default_avatar.jpg"
+#define DEFAULT_AVATAR_BUNDLE   ([LocaleUtils isChina] ? @"man1.png" : @"man2.png")
 
 typedef enum {
     ChineseType = 1,
@@ -37,6 +39,7 @@ typedef enum {
 - (void)saveAvatarLocally:(UIImage*)image;
 - (void)setNickName:(NSString*)nickName;
 - (void)setAvatar:(NSString*)avatarURL;
+- (void)setGender:(NSString*)gender;
 
 - (BOOL)hasUser;
 
