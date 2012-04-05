@@ -23,8 +23,8 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.198:8000/api/i?";    
+//    return @"http://106.187.89.232:8001/api/i?";    
+    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -64,7 +64,7 @@ NSString* GlobalGetServerURL()
         
     // Init SNS Service
     [[SinaSNSService defaultService] setAppKey:@"2831348933" Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
-    [[QQWeiboService defaultService] setAppKey:@"801063695" Secret:@"e65f5ba72a75725032e5ee26c71d71d3"];        
+    [[QQWeiboService defaultService] setAppKey:@"801123669" Secret:@"30169d80923b984109ee24ade9914a5c"];        
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];

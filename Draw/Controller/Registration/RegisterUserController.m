@@ -164,8 +164,8 @@
 {
     _currentLoginType = REGISTER_TYPE_SINA;
     
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationItem.title = NSLS(@"微博授权");
+//    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationItem.title = NSLS(@"微博授权");
     [[SinaSNSService defaultService] startLogin:self];
 }
 
