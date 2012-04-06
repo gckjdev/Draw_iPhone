@@ -119,7 +119,7 @@
 "kNoTipsItemMessage" = "你的道具不够了，是不是现在购买一些？";
 "kQuickMessage" = "%@说: 快点快点，我等到花儿都谢了！";
 "kWaitMessage" = "%@说: 等一会，我来给花儿洒洒水。";
-"kClickTooFast" = "你的点击频率太高了，请休息一下。";
+"kClickTooFast" = "你的点击频率太快了，不妨休息一下。";
 
 "kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试";
 "kExceedMaxProlongTimes" = "不好意思，你已经延时好多次了，不能再延时了";
