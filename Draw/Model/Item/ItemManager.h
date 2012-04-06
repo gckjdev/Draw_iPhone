@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserItem.h"
+#import "ItemType.h"
 
 @interface ItemManager : NSObject
 {

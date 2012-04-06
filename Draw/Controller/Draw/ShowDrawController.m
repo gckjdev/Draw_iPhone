@@ -26,6 +26,9 @@
 #import "RoomController.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
+#import "ItemManager.h"
+#import "AccountService.h"
+
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -218,14 +221,14 @@ ShowDrawController *GlobalGetShowDrawController()
     self.word.text = upperString;
     languageType = lang;
     
-    //TODO get the bomb count from the user default
-    NSInteger bombCount = 1;
-    toolView.number = bombCount;
+    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
     toolView.hidden = NO;
-    if (bombCount > 0 && [word.text length] != 0) {
+    if (toolView.number > 0 && [word.text length] != 0) {
         toolView.enabled = YES;
+        toolView.hidden = NO;
     }else{
         toolView.enabled = NO;
+        toolView.hidden = YES;
     }
     [self updateCandidateViews];
     [self updateAnswerViews];
@@ -639,8 +642,9 @@ ShowDrawController *GlobalGetShowDrawController()
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateAnswerViews];
     [self updateCandidateViewsWithText:result];
-    
-    [toolView decreaseNumber];
+//    [toolView decreaseNumber];
+    [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+    [toolView setNumber:[ItemManager defaultManager].tipsItemAmount];
     toolView.enabled = NO;
 }
 

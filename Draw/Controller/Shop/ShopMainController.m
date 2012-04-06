@@ -12,6 +12,8 @@
 #import <StoreKit/StoreKit.h>
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "AccountManager.h"
+#import "ItemManager.h"
 
 @implementation ShopMainController
 @synthesize coinNumberLabel;
@@ -39,6 +41,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)updateAccountAndItemNumber
+{
+    NSInteger balance = [[AccountManager defaultManager] getBalance];
+    NSInteger tipsCount = [[ItemManager defaultManager] tipsItemAmount];
+    [self.coinNumberLabel setText:[NSString stringWithFormat:@"x%d",balance]];
+    [self.itemNumberLabel setText:[NSString stringWithFormat:@"x%d",tipsCount]];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -48,10 +58,16 @@
     [self.showcaseBg setImage:[imageManager showcaseBackgroundImage]];
     [self.buyCoinButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
     [self.buyItemButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
+        
     [self.buyCoinButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
     [self.buyItemButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];    
     [self.titleLabel setText:NSLS(@"kShopMainTitle")];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updateAccountAndItemNumber];
 }
 
 - (void)viewDidUnload

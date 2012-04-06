@@ -69,8 +69,7 @@ CoinShopController *staticCoinController;
     [tableBg release];
     
     [self.titleLabel setText:NSLS(@"kCoinShopTitle")];
-    
-    [self updateCoinNumberLabel];
+
 
     // why here??? Benson
 //    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
@@ -79,7 +78,7 @@ CoinShopController *staticCoinController;
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //load the coin number
+    [self updateCoinNumberLabel];
     [super viewDidAppear:animated];
 }
 

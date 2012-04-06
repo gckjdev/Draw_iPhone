@@ -18,6 +18,8 @@
 #import "GameTurn.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "AccountService.h"
+#import "Account.h"
 
 #define CONTINUE_TIME 15
 
@@ -118,6 +120,7 @@
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
     upButton.hidden = downButton.hidden = !_isMyPaint;
+    [self didFinishAPaint:drawGameService.drawActionList];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     [self.whitePaper setImage:[shareImageManager whitePaperImage]];
@@ -141,6 +144,12 @@
         }
     }
 
+    //add score
+    if (self.score > 0) {
+        BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
+        [[AccountService defaultService] chargeAccount:self.score source:type];    
+    }
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
