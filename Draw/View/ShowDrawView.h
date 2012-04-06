@@ -34,7 +34,7 @@ typedef enum{
     NSInteger playingActionIndex;
     NSInteger playingPointIndex;
     NSInteger startPlayIndex;
-    NSMutableArray* _indexShouldSave;
+    NSMutableSet* _indexShouldSave;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
