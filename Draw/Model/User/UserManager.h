@@ -40,6 +40,7 @@ typedef enum {
 - (void)setNickName:(NSString*)nickName;
 - (void)setAvatar:(NSString*)avatarURL;
 - (void)setGender:(NSString*)gender;
+- (void)setPassword:(NSString*)password;
 
 - (BOOL)hasUser;
 

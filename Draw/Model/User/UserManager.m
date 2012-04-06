@@ -156,13 +156,25 @@ static UserManager* _defaultManager;
     
 }
 
-- (void)setNickName:(NSString*)nickName
+- (void)setNickName:(NSString *)nickName
 {
     if (nickName == nil)
         return;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:nickName forKey:KEY_NICKNAME];    
+    [userDefaults synchronize];
+    
+}
+
+
+- (void)setPassword:(NSString*)password
+{
+    if (password == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:password forKey:KEY_PASSWORD];    
     [userDefaults synchronize];
 
 }
