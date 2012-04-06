@@ -68,6 +68,7 @@ NSString* GlobalGetServerURL()
     [[QQWeiboService defaultService] setAppKey:@"801123669" Secret:@"30169d80923b984109ee24ade9914a5c"];        
     [[FacebookSNSService defaultService] setAppId:@"197575977024536" appKey:@"197575977024536" Secret:@"91afdaf4164eac1b68724c6debb73785"];
     
+    
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
     

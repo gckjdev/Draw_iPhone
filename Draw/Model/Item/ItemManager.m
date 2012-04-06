@@ -11,7 +11,7 @@
 #import "UserItem.h"
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
-#import "ItemType.h"
+
 
 ItemManager *staticItemManager = nil;
 

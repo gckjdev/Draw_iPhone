@@ -240,12 +240,18 @@ static AccountService* _defaultAccountService;
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source
 {
-    [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];
+    if (amount > 0) {
+        [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];        
+    }
+
 }
 
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source
 {
+    if (amount <= 0) {
+        return;
+    }
     NSString* userId = [[UserManager defaultManager] userId];
     
     // update balance locally

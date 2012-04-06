@@ -22,7 +22,7 @@
 - (void)updateBalanceFromServer:(int)balance;
 - (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
 - (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
-- (NSInteger)getBalance;
+//- (NSInteger)getBalance;
 + (AccountManager *)defaultManager;
 - (BOOL)hasEnoughBalance:(int)amount;
 

@@ -7,6 +7,10 @@
 //
 
 // buttons images
+#import "LocaleUtils.h"
+
+#define DEFAULT_AVATAR_BUNDLE   ([LocaleUtils isChina] ? @"man1.png" : @"man2.png")
+
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"
 #define FEEDBACK_BUTTON_IMAGE   @"feedback.png"
 

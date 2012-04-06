@@ -27,6 +27,9 @@
 #import "HomeController.h"
 #import "StableView.h"
 #import "PPDebug.h"
+#import "AccountManager.h"
+#import "AccountService.h"
+
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
 {
@@ -429,12 +432,16 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 #pragma mark - Common Dialog Delegate
-
+#define ESCAPE_DEDUT_COIN 1
 - (void)clickOk:(CommonDialog *)dialog
 {
     [dialog removeFromSuperview];
-    [drawGameService quitGame];
-    [HomeController returnRoom:self];
+    
+    if (dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
+        [drawGameService quitGame];
+        [HomeController returnRoom:self];
+        [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
+    }
 
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -466,8 +473,18 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark - Actions
 
 - (IBAction)clickChangeRoomButton:(id)sender {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
-    [self.view addSubview:dialog];
+    CommonDialogStyle style;
+    NSString *message = nil;
+    if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
+        style = CommonDialogStyleDoubleButton;
+        message = NSLS(@"kDedutCoinQuitGameAlertMessage");
+    }else{
+        style = CommonDialogStyleSingleButton;
+        message = NSLS(@"kNoCoinQuitGameAlertMessage");
+    }
+
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style deelegate:self];
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickRedraw:(id)sender {
