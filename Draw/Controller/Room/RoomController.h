@@ -9,18 +9,28 @@
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
 #import "DrawGameService.h"
+#import "CommonDialog.h"
 
-@interface RoomController : PPViewController<DrawGameServiceDelegate>
+enum{
+    ROOM_DIALOG_QUIT_ROOM = 9001,
+    ROOM_DIALOG_CHANGE_ROOM
+};
+
+@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate>
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;
     time_t quickDuration;
+    int _clickCount;
+    
+    int _dialogAction;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *prolongButton;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 @property (retain, nonatomic) NSTimer *startTimer;
+@property (assign, nonatomic) int clickCount;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;

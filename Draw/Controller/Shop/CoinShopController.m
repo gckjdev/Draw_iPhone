@@ -57,9 +57,6 @@ CoinShopController *staticCoinController;
     }
     
     
-    [[PriceService defaultService] fetchCoinProductList:self];
-    NSString *userId = [[DrawGameService defaultService] userId];
-    NSLog(@"userID = %@",userId);
 
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     UIImageView *tableBg = [[UIImageView alloc] initWithFrame:self.dataTableView.bounds];
@@ -78,6 +75,10 @@ CoinShopController *staticCoinController;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if ([self.dataList count] == 0){
+        [[PriceService defaultService] fetchCoinProductList:self];        
+    }
+    
     [self updateCoinNumberLabel];
     [super viewDidAppear:animated];
 }
@@ -157,6 +158,12 @@ CoinShopController *staticCoinController;
 - (void)didFinishBuyProduct:(int)resultCode
 {
     [self hideActivity];
+    
+    if (resultCode != 0){
+        [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil]; 
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     
     // update product count number label
     [self updateCoinNumberLabel];

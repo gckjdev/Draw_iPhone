@@ -15,8 +15,8 @@ typedef enum  {
     DrawRewardType = 4,
     GuessRewardType = 5,
     
-    
-    EscapeType = 10
+    EscapeType = 10,
+    ChangeRoomType = 11
 }BalanceSourceType;
 
 @interface UserAccount : NSObject

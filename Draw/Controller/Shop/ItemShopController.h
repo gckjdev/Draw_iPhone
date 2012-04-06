@@ -26,8 +26,10 @@ enum{
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemAmountLabel;
+@property (retain, nonatomic) IBOutlet UIButton *gotoCoinShopButton;
 @property (assign, nonatomic) BOOL callFromShowViewController;
 
 - (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickGotoCoinShopButton:(id)sender;
 +(ItemShopController *)instance;
 @end

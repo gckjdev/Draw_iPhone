@@ -206,16 +206,17 @@ static UserService* _defaultUserService;
     
 }
 
-
 - (void)updateUserAvatar:(UIImage*)avatarImage 
                 nickName:(NSString*)nickName 
                   gender:(NSString*)gender
+                password:(NSString*)pwd
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     // save data locally firstly
     [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     [[UserManager defaultManager] setNickName:nickName];
     [[UserManager defaultManager] setGender:gender];
+    [[UserManager defaultManager] setPassword:pwd];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -252,6 +253,20 @@ static UserService* _defaultUserService;
         });
     });
     
+}
+
+
+
+- (void)updateUserAvatar:(UIImage*)avatarImage 
+                nickName:(NSString*)nickName 
+                  gender:(NSString*)gender
+          viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    [self updateUserAvatar:avatarImage 
+                  nickName:nickName 
+                    gender:gender 
+                  password:nil 
+            viewController:viewController];
 }
 
 //- (void)checkDevice

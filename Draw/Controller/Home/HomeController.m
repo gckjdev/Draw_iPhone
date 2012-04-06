@@ -25,6 +25,7 @@
 #import "AccountService.h"
 #import "CommonDialog.h"
 #import "FacebookSNSService.h"
+#import "ItemShopController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -150,9 +151,13 @@
 
 
 - (IBAction)clickShop:(id)sender {
-    ShopMainController *sc = [[ShopMainController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+//    ShopMainController *sc = [[ShopMainController alloc] init];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    [sc release];
+    
+    ItemShopController *ic = [ItemShopController instance];
+    [self.navigationController pushViewController:ic animated:YES];
+
 }
 
 

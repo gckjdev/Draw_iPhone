@@ -20,6 +20,7 @@
 #import "GameMessage.pb.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
+#import "AccountService.h"
 
 @interface RoomController ()
 
@@ -42,9 +43,11 @@
 @synthesize roomNameLabel;
 @synthesize startGameButton;
 @synthesize startTimer = _startTimer;
+@synthesize clickCount = _clickCount;
 
 
-#define QUICK_DURATION 5
+#define QUICK_DURATION  2
+#define MAX_CLICK_COUNT 5   
 
 - (void)dealloc {
     [_startTimer release];
@@ -130,7 +133,9 @@
 }
 
 #pragma mark - GUI Update Methods
-#define DRAWING_MARK_TAG 20120404
+#define DRAWING_MARK_TAG    20120404
+#define AVATAR_FRAME_TAG    20120406
+
 - (void)updateGameUsers
 {        
     GameSession* session = [[DrawGameService defaultService] session];
@@ -164,6 +169,8 @@
         
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
+                
+        UIImage* frameImage = nil;
         
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
             UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
@@ -172,7 +179,28 @@
             drawingImageView.tag = DRAWING_MARK_TAG;
             [imageView addSubview:drawingImageView];
             [drawingImageView release];
+            
+            frameImage = [[ShareImageManager defaultManager] avatarSelectImage];
         }
+        else{
+            
+            frameImage = [[ShareImageManager defaultManager] avatarUnSelectImage];            
+        }
+        
+        // create image view
+        CGRect frame = imageView.bounds;
+        frame.origin.x = -3;
+        frame.origin.y = -3;
+        frame.size.width += 6;
+        frame.size.height += 10;
+        UIImageView *frameView = [[UIImageView alloc] initWithImage:frameImage];
+        frameView.frame = frame;
+        frameView.tag = AVATAR_FRAME_TAG;
+        [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
+        [imageView addSubview:frameView];     
+        [imageView sendSubviewToBack:frameView];
+        [frameView release];
+
     }
     
     // clean other label display
@@ -188,7 +216,8 @@
         imageView.hidden = YES;
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
-
+        
+        [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
     
     [self updateStartButton];
@@ -377,6 +406,36 @@
 }
 
 
+#pragma mark - Dialog Delegates
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    switch (dialog.tag) {
+        case ROOM_DIALOG_CHANGE_ROOM:
+        {
+            [self showActivityWithText:NSLS(@"kChangeRoom")];
+            [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+            [[DrawGameService defaultService] changeRoom];            
+        }
+            break;
+        
+        case ROOM_DIALOG_QUIT_ROOM:
+        {
+            [[DrawGameService defaultService] quitGame];
+            [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];            
+        }
+            break;
+        
+        default:
+            break;
+    }
+}
+
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
+}
+
 
 #pragma mark - Button Click Action
 
@@ -387,8 +446,13 @@
 
 - (IBAction)clickChangeRoom:(id)sender
 {
-    [self showActivityWithText:NSLS(@"kChangeRoom")];
-    [[DrawGameService defaultService] changeRoom];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
+                                message:NSLS(@"kChangeRoomConfirm") 
+                                  style:CommonDialogStyleDoubleButton 
+                              deelegate:self];
+    dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
+    [dialog showInView:self.view];
+    
     
 }
 
@@ -397,8 +461,14 @@
     time_t currentTime = time(0);
     if ([self isMyTurn]){
         if (currentTime - quickDuration > QUICK_DURATION) {
-            [self prolongStartTimer];
-            quickDuration = currentTime;
+            if (_clickCount <= MAX_CLICK_COUNT){
+                [self prolongStartTimer];
+                quickDuration = currentTime;
+                _clickCount ++;
+            }
+            else{
+                [self popupMessage:NSLS(@"kExceedMaxProlongTimes") title:nil];
+            }
         }else{
             [self popupMessage:NSLS(@"kClickTooFast") title:nil];
         }
@@ -417,8 +487,13 @@
 
 - (IBAction)clickMenu:(id)sender
 {
-    [[DrawGameService defaultService] quitGame];
-    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
+                                message:NSLS(@"kQuitGameConfirm") 
+                                  style:CommonDialogStyleDoubleButton
+                              deelegate:self];
+    dialog.tag = ROOM_DIALOG_QUIT_ROOM;
+    [dialog showInView:self.view];
+    
 }
 
 #pragma mark - Room Enter/Return
@@ -439,7 +514,10 @@
     if (app.roomController == nil){    
         app.roomController = [[[RoomController alloc] init] autorelease];
     }
-    
+            
+    [[app.roomController.view viewWithTag:ROOM_DIALOG_QUIT_ROOM] removeFromSuperview];
+    [[app.roomController.view viewWithTag:ROOM_DIALOG_CHANGE_ROOM] removeFromSuperview];
+
     [superController.navigationController pushViewController:app.roomController 
                            animatedWithTransition:UIViewAnimationTransitionCurlUp];
     
@@ -449,14 +527,22 @@
     }else{
         [app.roomController resetStartTimer];
     }    
+    
+    
+    [app.roomController setClickCount:0];
     [app.roomController updateGameUsers];
-    [app.roomController updateRoomName];    
+    [app.roomController updateRoomName];            
 }
 
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow
 {
     RoomController *roomController = [RoomController defaultInstance];
     [superController.navigationController popToViewController:roomController animated:NO];
+    
+    [roomController setClickCount:0];
+
+    [[roomController.view viewWithTag:ROOM_DIALOG_QUIT_ROOM] removeFromSuperview];
+    [[roomController.view viewWithTag:ROOM_DIALOG_CHANGE_ROOM] removeFromSuperview];
     
     if (startNow) {
 //        [roomController performSelector:@selector(showDrawViewController) withObject:nil afterDelay:0.0f];
@@ -477,7 +563,7 @@
 
 #define START_TIMER_INTERVAL    (1)
 #define PROLONG_INTERVAL        (10)
-#define DEFAULT_START_TIME      (60)
+#define DEFAULT_START_TIME      (20)
 
 - (void)resetStartTimer
 {

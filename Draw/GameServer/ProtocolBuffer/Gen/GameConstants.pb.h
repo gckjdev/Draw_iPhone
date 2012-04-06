@@ -60,6 +60,17 @@ typedef enum {
 
 BOOL GameResultCodeIsValidValue(GameResultCode value);
 
+typedef enum {
+  GameCompleteReasonReasonNotComplete = 0,
+  GameCompleteReasonReasonAllUserGuess = 1,
+  GameCompleteReasonReasonAllUserQuit = 11,
+  GameCompleteReasonReasonDrawUserQuit = 12,
+  GameCompleteReasonReasonOnlyOneUser = 13,
+  GameCompleteReasonReasonExpired = 21,
+} GameCompleteReason;
+
+BOOL GameCompleteReasonIsValidValue(GameCompleteReason value);
+
 
 @interface GameConstantsRoot : NSObject {
 }

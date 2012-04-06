@@ -398,7 +398,10 @@ DrawViewController *GlobalGetDrawViewController()
     }
     [rc release];
     [self resetTimer];
-    [drawGameService unregisterObserver:self];
+    
+    // rem by Benson, // this will crash the app, see log below
+    //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
+    [drawGameService unregisterObserver:self];  
 }
 
 - (void)didUserQuitGame:(GameMessage *)message

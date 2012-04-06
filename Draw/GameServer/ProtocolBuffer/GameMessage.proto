@@ -114,6 +114,7 @@ message GameMessage {
   optional string userId = 4;
   optional int64  sessionId = 5 [default=0];
   optional int32  round = 6;
+  optional GameCompleteReason completeReason = 7;
   
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;

@@ -27,6 +27,8 @@ ItemShopController *staticItemController = nil;
 @synthesize itemAmountLabel;
 @synthesize titleLabel;
 @synthesize callFromShowViewController;
+@synthesize gotoCoinShopButton;
+
 +(ItemShopController *)instance
 {
     if (staticItemController == nil) {
@@ -82,6 +84,10 @@ ItemShopController *staticItemController = nil;
     //load the coin number
     [super viewDidAppear:animated];
     [self updateLabels];
+    
+    [self.gotoCoinShopButton setTitle:NSLS(@"kGotoCoinShop") forState:UIControlStateNormal];
+    [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -183,6 +189,11 @@ ItemShopController *staticItemController = nil;
 - (void)clickBack:(CommonDialog *)dialog
 {    
     [dialog removeFromSuperview];
+}
+
+- (IBAction)clickGotoCoinShopButton:(id)sender
+{
+    [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
 }
 
 #pragma mark - Price service delegate

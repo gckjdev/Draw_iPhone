@@ -35,6 +35,13 @@
                   gender:(NSString*)gender
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
+- (void)updateUserAvatar:(UIImage*)avatarImage 
+                nickName:(NSString*)nickName 
+                  gender:(NSString*)gender
+                password:(NSString*)password
+          viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+
 //- (void)checkDevice;
 
 @end
