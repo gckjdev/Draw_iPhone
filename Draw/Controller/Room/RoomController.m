@@ -451,7 +451,7 @@
 
 #define START_TIMER_INTERVAL    (1)
 #define PROLONG_INTERVAL        (10)
-#define DEFAULT_START_TIME      (60)
+#define DEFAULT_START_TIME      (20)
 
 - (void)resetStartTimer
 {

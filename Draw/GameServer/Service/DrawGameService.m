@@ -153,7 +153,9 @@ static DrawGameService* _defaultService;
 
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer
 {
-    [self.gameObserverList removeObject:observer];
+    // use this to avoid the issue of enumerate observer and call this method
+    [self.gameObserverList performSelector:@selector(removeObject:) withObject:observer afterDelay:0.0f];
+//    [self.gameObserverList removeObject:observer];
 }
 
 #pragma mark Message Delegae Handle Methods
@@ -243,13 +245,22 @@ static DrawGameService* _defaultService;
 - (void)handleGameTurnCompleteNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{   
+
+        PPDebug(@"<handleGameTurnCompleteNotification> Game Turn[%d] Completed! Reason[%d][%@]",
+                [message round], [message completeReason], [self reasonDescription:[message computeReason]]);
+        
+//        int serverRoundId = [message round];
+//        if (serverRoundId != [[_session currentTurn] round]){
+//            PPDebug(@"<handleGameTurnCompleteNotification> server round id(%d) not the same as session one(%d)",
+//                    serverRoundId, [[_session currentTurn] round]);
+//            return;
+//        }
         
         [_session setStatus:SESSION_WAITING];
         
         // update session data
         [self.session updateByGameNotification:[message notification]];
         
-        PPDebug(@"<handleGameTurnCompleteNotification> Game Turn Completed!");
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
 }

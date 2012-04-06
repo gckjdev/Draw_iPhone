@@ -3125,6 +3125,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property (retain) NSString* userId;
 @property int64_t sessionId;
 @property int32_t round;
+@property GameCompleteReason completeReason;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
@@ -3180,6 +3181,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasRound_ = !!value;
 }
 @synthesize round;
+- (BOOL) hasCompleteReason {
+  return !!hasCompleteReason_;
+}
+- (void) setHasCompleteReason:(BOOL) value {
+  hasCompleteReason_ = !!value;
+}
+@synthesize completeReason;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -3264,6 +3272,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.userId = @"";
     self.sessionId = 0L;
     self.round = 0;
+    self.completeReason = GameCompleteReasonReasonNotComplete;
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
@@ -3326,6 +3335,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasRound) {
     [output writeInt32:6 value:self.round];
   }
+  if (self.hasCompleteReason) {
+    [output writeEnum:7 value:self.completeReason];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
   }
@@ -3379,6 +3391,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasRound) {
     size += computeInt32Size(6, self.round);
+  }
+  if (self.hasCompleteReason) {
+    size += computeEnumSize(7, self.completeReason);
   }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
@@ -3500,6 +3515,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasRound) {
     [self setRound:other.round];
   }
+  if (other.hasCompleteReason) {
+    [self setCompleteReason:other.completeReason];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
@@ -3580,6 +3598,15 @@ static GameMessage* defaultGameMessageInstance = nil;
       }
       case 48: {
         [self setRound:[input readInt32]];
+        break;
+      }
+      case 56: {
+        int32_t value = [input readEnum];
+        if (GameCompleteReasonIsValidValue(value)) {
+          [self setCompleteReason:value];
+        } else {
+          [unknownFields mergeVarintField:7 value:value];
+        }
         break;
       }
       case 90: {
@@ -3760,6 +3787,22 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearRound {
   result.hasRound = NO;
   result.round = 0;
+  return self;
+}
+- (BOOL) hasCompleteReason {
+  return result.hasCompleteReason;
+}
+- (GameCompleteReason) completeReason {
+  return result.completeReason;
+}
+- (GameMessage_Builder*) setCompleteReason:(GameCompleteReason) value {
+  result.hasCompleteReason = YES;
+  result.completeReason = value;
+  return self;
+}
+- (GameMessage_Builder*) clearCompleteReason {
+  result.hasCompleteReason = NO;
+  result.completeReason = GameCompleteReasonReasonNotComplete;
   return self;
 }
 - (BOOL) hasJoinGameRequest {

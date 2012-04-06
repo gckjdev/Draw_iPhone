@@ -99,3 +99,17 @@ enum GameResultCode {
   ERROR_SYSTEM_EXCEPTION = 911;
 }
 
+enum GameCompleteReason {
+
+  REASON_NOT_COMPLETE = 0;
+
+  REASON_ALL_USER_GUESS = 1;
+  
+  REASON_ALL_USER_QUIT = 11;
+  REASON_DRAW_USER_QUIT = 12;
+  REASON_ONLY_ONE_USER = 13;
+  
+  REASON_EXPIRED = 21;
+  
+}
+

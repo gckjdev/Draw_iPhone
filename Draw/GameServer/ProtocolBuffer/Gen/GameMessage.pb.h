@@ -800,6 +800,7 @@
   BOOL hasNotification_:1;
   BOOL hasCommand_:1;
   BOOL hasResultCode_:1;
+  BOOL hasCompleteReason_:1;
   int64_t sessionId;
   int32_t messageId;
   int32_t round;
@@ -815,6 +816,7 @@
   GeneralNotification* notification;
   GameCommandType command;
   GameResultCode resultCode;
+  GameCompleteReason completeReason;
 }
 - (BOOL) hasCommand;
 - (BOOL) hasMessageId;
@@ -822,6 +824,7 @@
 - (BOOL) hasUserId;
 - (BOOL) hasSessionId;
 - (BOOL) hasRound;
+- (BOOL) hasCompleteReason;
 - (BOOL) hasJoinGameRequest;
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
@@ -837,6 +840,7 @@
 @property (readonly, retain) NSString* userId;
 @property (readonly) int64_t sessionId;
 @property (readonly) int32_t round;
+@property (readonly) GameCompleteReason completeReason;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
@@ -910,6 +914,11 @@
 - (int32_t) round;
 - (GameMessage_Builder*) setRound:(int32_t) value;
 - (GameMessage_Builder*) clearRound;
+
+- (BOOL) hasCompleteReason;
+- (GameCompleteReason) completeReason;
+- (GameMessage_Builder*) setCompleteReason:(GameCompleteReason) value;
+- (GameMessage_Builder*) clearCompleteReason;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;

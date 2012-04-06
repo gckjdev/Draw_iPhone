@@ -81,3 +81,16 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
       return NO;
   }
 }
+BOOL GameCompleteReasonIsValidValue(GameCompleteReason value) {
+  switch (value) {
+    case GameCompleteReasonReasonNotComplete:
+    case GameCompleteReasonReasonAllUserGuess:
+    case GameCompleteReasonReasonAllUserQuit:
+    case GameCompleteReasonReasonDrawUserQuit:
+    case GameCompleteReasonReasonOnlyOneUser:
+    case GameCompleteReasonReasonExpired:
+      return YES;
+    default:
+      return NO;
+  }
+}
