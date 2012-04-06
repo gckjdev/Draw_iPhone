@@ -18,6 +18,9 @@
 #import "ShareImageManager.h"
 #import "StableView.h"
 #import "RoomController.h"
+#import "ItemManager.h"
+#import "AccountService.h"
+#import "ItemType.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -83,8 +86,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    toolView = [[ToolView alloc] initWithNumber:2];
-//    toolView.frame = CGRectMake(228, 318, 39, 52);
+    toolView = [[ToolView alloc] initWithNumber:0];
+    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
     toolView.center = CGPointMake(248, 344);
     [self.changeWordButton setEnabled:(toolView.number > 0)];    
     [self.view addSubview:toolView];
@@ -141,7 +144,9 @@
 - (IBAction)clickChangeWordButton:(id)sender {
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     [self.wordTableView reloadData];
-    [toolView decreaseNumber];
+    [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+    [toolView setNumber:[[ItemManager defaultManager]tipsItemAmount]];
+
     [self.changeWordButton setEnabled:(toolView.number > 0)];    
 }
 

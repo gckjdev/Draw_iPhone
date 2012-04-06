@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    Bomb = 1, 
-    Kit = 2
-}ItemType;
+//typedef enum {
+//    Bomb = 1, 
+//    Kit = 2
+//}ItemType;
 
 @interface Item : NSObject<NSCoding>
 {
-    ItemType _type;
+    int _type;
     NSInteger _amount;
 }
 
-@property(nonatomic, assign)ItemType type;
+@property(nonatomic, assign)int type;
 @property(nonatomic, assign)NSInteger amount;
-- (id)initWithType:(ItemType)type amount:(NSInteger)amount;
-+ (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
+- (id)initWithType:(int)type amount:(NSInteger)amount;
++ (Item *)itemWithType:(int)type amount:(NSInteger)amount;
 @end

@@ -12,7 +12,7 @@
 @synthesize amount = _amount;
 @synthesize type = _type;
 
-- (id)initWithType:(ItemType)type amount:(NSInteger)amount
+- (id)initWithType:(int)type amount:(NSInteger)amount
 {
     self = [super init];
     if (self) {
@@ -40,7 +40,7 @@
     return self;
 }
 
-+ (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount
++ (Item *)itemWithType:(int)type amount:(NSInteger)amount
 {
     return [[[Item alloc] initWithType:type amount:amount]autorelease];
 }

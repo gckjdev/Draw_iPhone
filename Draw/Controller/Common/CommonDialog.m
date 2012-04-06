@@ -20,7 +20,7 @@
 @synthesize messageLabel = _messageLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize delegate = _delegate;
-
+@synthesize style = _style;
 - (void)dealloc
 {
     [_contentView release];
@@ -38,6 +38,7 @@
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
 {
+    self.style = aStyle;
     switch (aStyle) {
         case CommonDialogStyleSingleButton: {
             [self.oKButton setFrame:CGRectMake(self.oKButton.frame.origin.x, self.oKButton.frame.origin.y, self.oKButton.frame.size.width*2, self.oKButton.frame.size.height)];
@@ -98,6 +99,12 @@
 }
 - (void)setMessage:(NSString *)message
 {
+    CGSize size = [message sizeWithFont:_messageLabel.font];
+    if (size.width > _messageLabel.frame.size.width) {
+        [self.messageLabel setTextAlignment:UITextAlignmentLeft];
+    }else{
+        [self.messageLabel setTextAlignment:UITextAlignmentCenter];
+    }
     [self.messageLabel setText:message];
 }
 
