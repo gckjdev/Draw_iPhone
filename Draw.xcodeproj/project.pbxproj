@@ -423,6 +423,8 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
+		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
 		CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E275150DE8AA00292335 /* GameBasic.proto */; };
@@ -1216,6 +1218,9 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
+		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
+		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
 		CA96E26D150DE4FD00292335 /* GameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSession.m; sourceTree = "<group>"; };
 		CA96E26F150DE56400292335 /* GameSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionManager.h; sourceTree = "<group>"; };
@@ -2430,6 +2435,9 @@
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
 				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
 				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
+				CA959892152F546F0093FEDB /* InputDialog.h */,
+				CA959893152F54700093FEDB /* InputDialog.m */,
+				CA959894152F54700093FEDB /* InputDialog.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3535,6 +3543,7 @@
 				CA65C1AD152D993700462C96 /* logo@2x.png in Resources */,
 				CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */,
 				C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */,
+				CA959896152F54700093FEDB /* InputDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3852,6 +3861,7 @@
 				C2A09758152ECCB5006535F7 /* GifManager.m in Sources */,
 				C2A0975B152ECD31006535F7 /* GifView.m in Sources */,
 				C2A0975F152ECD7C006535F7 /* ShareGifController.m in Sources */,
+				CA959895152F54700093FEDB /* InputDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

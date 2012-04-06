@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "ChangeAvatar.h"
+#import "InputDialog.h"
+
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate>
 {
     UserManager *userManager;
     
@@ -22,10 +25,13 @@
     NSInteger rowOfFacebook;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
+    ChangeAvatar *changeAvatar;
     
 }
+- (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;

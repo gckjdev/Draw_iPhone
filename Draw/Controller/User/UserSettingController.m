@@ -13,7 +13,7 @@
 #import "ShareImageManager.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
-
+#import "InputDialog.h"
 enum{
     SECTION_LANGUAGE = 0,
     SECTION_COUNT
@@ -22,6 +22,7 @@ enum{
 
 
 @implementation UserSettingController
+@synthesize saveButton;
 @synthesize titleLabel;
 @synthesize avatarButton;
 @synthesize tableViewBG;
@@ -62,7 +63,7 @@ enum{
 
 - (void)updateAvatar:(UIImage *)image
 {
-    
+    [imageView setImage:image];
 }
 
 #pragma mark - View lifecycle
@@ -71,20 +72,22 @@ enum{
 {
     [super viewDidLoad];
     userManager = [UserManager defaultManager];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [titleLabel setText:NSLS(@"kSettings")];
-    [tableViewBG setImage:[[ShareImageManager defaultManager]whitePaperImage]];
-    
+    [tableViewBG setImage:[imageManager whitePaperImage]];
+    [saveButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     
     imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
     [imageView clear];
-    if (userManager.avatarImage){
-        [imageView setImage:userManager.avatarImage];
+    if ([userManager.avatarURL length] > 0){
+        [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
     }
     else{
         [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
     }
     [GlobalGetImageCache() manage:imageView];
-    [self addSubview:imageView];
+    [avatarButton addSubview:imageView];
 
     
 }
@@ -94,6 +97,7 @@ enum{
     [self setTitleLabel:nil];
     [self setTableViewBG:nil];
     [self setAvatarButton:nil];
+    [self setSaveButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -167,6 +171,10 @@ enum{
         [actionSheet setDestructiveButtonIndex:type - 1];
         [actionSheet showInView:self.view];
         [actionSheet release];        
+    }else if(row == rowOfNickName)
+    {
+        InputDialog *dialog = [InputDialog inputDialogWith:NSLS(@"kNickname") delegate:self];
+        [dialog showInView:self.view];
     }
 }
 
@@ -181,17 +189,31 @@ enum{
     }
 }
 
+- (IBAction)clickSaveButton:(id)sender {
+}
+
 - (IBAction)clickAvatar:(id)sender {
-    NSLog(@"clickAvatar");
+    if (changeAvatar == nil) {
+        changeAvatar = [[ChangeAvatar alloc] init];
+    }
+    [changeAvatar showSelectionView:self];
 }
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)didImageSelected:(UIImage*)image
+{
+    [self updateAvatar:image];
+}
 - (void)dealloc {
     [titleLabel release];
     [tableViewBG release];
     [avatarButton release];
+    [saveButton release];
+    [imageView release];
+    [changeAvatar release];
     [super dealloc];
 }
 @end
