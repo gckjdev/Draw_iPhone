@@ -242,12 +242,38 @@ static DrawGameService* _defaultService;
     });    
 }
 
+- (NSString*)reasonDescription:(int)reason
+{
+    switch (reason) {        
+        case GameCompleteReasonReasonNotComplete:
+            return @"NotComplete";
+            
+        case GameCompleteReasonReasonAllUserGuess:            
+            return @"AllUserGuess";
+            
+        case GameCompleteReasonReasonAllUserQuit:
+            return @"AllUserQuit";
+            
+        case GameCompleteReasonReasonDrawUserQuit:
+            return @"DrawUserQuit";
+            
+        case GameCompleteReasonReasonOnlyOneUser:
+            return @"OnlyOneUser";
+            
+        case GameCompleteReasonReasonExpired:
+            return @"Expired";
+            
+        default:
+            return @"";
+    }
+}
+
 - (void)handleGameTurnCompleteNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{   
 
         PPDebug(@"<handleGameTurnCompleteNotification> Game Turn[%d] Completed! Reason[%d][%@]",
-                [message round], [message completeReason], [self reasonDescription:[message computeReason]]);
+                [message round], [message completeReason], [self reasonDescription:[message completeReason]]);
         
 //        int serverRoundId = [message round];
 //        if (serverRoundId != [[_session currentTurn] round]){
