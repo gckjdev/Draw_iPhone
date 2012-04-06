@@ -11,6 +11,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 
+
 @implementation ToolView
 - (id)initWithNumber:(NSInteger)number
 {
@@ -83,7 +84,12 @@
         type = aType;
         imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
         [imageView clear];
-        [imageView setUrl:[NSURL URLWithString:urlString]];
+        if ([urlString length] > 0){
+            [imageView setUrl:[NSURL URLWithString:urlString]];
+        }
+        else{
+            [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+        }
         [GlobalGetImageCache() manage:imageView];
         [self addSubview:imageView];
         markButton = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -12,6 +12,7 @@
 #import "ASIHTTPRequest.h"
 #import "FileUtil.h"
 #import "LocaleUtils.h"
+#import "ShareImageManager.h"
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"

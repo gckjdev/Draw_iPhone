@@ -24,6 +24,7 @@
 #import "ShareImageManager.h"
 #import "AccountService.h"
 #import "CommonDialog.h"
+#import "FacebookSNSService.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
