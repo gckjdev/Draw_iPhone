@@ -120,6 +120,7 @@
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
     upButton.hidden = downButton.hidden = !_isMyPaint;
+    [self didFinishAPaint:drawGameService.drawActionList];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     [self.whitePaper setImage:[shareImageManager whitePaperImage]];

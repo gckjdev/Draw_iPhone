@@ -12,6 +12,7 @@
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageExt.h"
 
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
@@ -23,6 +24,8 @@
 @synthesize delegate = _delegate;
 @synthesize drawActionList = _drawActionList;
 @synthesize status = _status;
+@synthesize gifFrameArray = _gifFrameArray;
+@synthesize shouldCreateGif =  _shouldCreateGif;
 #pragma mark Action Funtion
 
 
@@ -55,6 +58,20 @@
 - (void)play
 {
     [self playFromDrawActionIndex:0];
+    
+    int frameCount = [_drawActionList count];
+    if (frameCount > 200) {
+        for (int index = 0; index < 200; index ++) {
+            int j = frameCount*index/200;
+            NSNumber* sholudPlayIndex = [NSNumber numberWithInt:j];
+            [_indexShouldSave addObject:sholudPlayIndex];
+        }
+    } else {
+        for (int index = 0; index < frameCount; index ++) {
+            NSNumber* sholudPlayIndex = [NSNumber numberWithInt:index];
+            [_indexShouldSave addObject:sholudPlayIndex];
+        }
+    }
 }
 
 
@@ -83,6 +100,9 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView)]) {
         [self.delegate didPlayDrawView];
     }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
+        [self.delegate didPlayDrawView:self.gifFrameArray];
+    }
 }
 
 - (void)nextFrame:(NSTimer *)theTimer;
@@ -102,10 +122,18 @@
             if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView)]) {
                 [self.delegate didPlayDrawView];
             }
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
+                [self.delegate didPlayDrawView:self.gifFrameArray];
+            }
             return;
         }
     }
     [self setNeedsDisplay];
+    if (_shouldCreateGif) {
+        [self.gifFrameArray addObject:[[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(160, 160)]];
+        NSLog(@"creating frame %d", self.gifFrameArray.count);
+    }
+    
     
 }
 
@@ -120,6 +148,8 @@
         self.status = Stop;
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
+        _gifFrameArray = [[NSMutableArray alloc] init];
+        _indexShouldSave = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         
     }
@@ -129,6 +159,8 @@
 - (void)dealloc
 {
     [_drawActionList release];
+    [_gifFrameArray release];
+    [_indexShouldSave release];
     [super dealloc];
 }
 
