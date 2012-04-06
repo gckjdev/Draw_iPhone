@@ -19,12 +19,14 @@ enum{
 @interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, CommonDialogDelegate>
 {
     int _dialogAction;
+    
 }
 
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemAmountLabel;
+@property (assign, nonatomic) BOOL callFromShowViewController;
 
 - (IBAction)clickBackButton:(id)sender;
 +(ItemShopController *)instance;

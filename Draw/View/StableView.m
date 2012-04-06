@@ -40,7 +40,7 @@
     _number = number;
     NSString *numberString = nil;
     numberButton.hidden = YES;
-    if (number > 0) {
+    if (number >= 0) {
         numberString = [NSString stringWithFormat:@"%d",number];    
         numberButton.hidden = NO;
     }

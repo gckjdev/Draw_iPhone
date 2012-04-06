@@ -296,8 +296,7 @@
 - (void)showDrawViewController
 {
     if (![self isMyTurn]) {
-        ShowDrawController *sd = [ShowDrawController instance];
-        [self.navigationController pushViewController:sd animated:NO];        
+        [ShowDrawController startGuessFromController:self];
     }
 }
 

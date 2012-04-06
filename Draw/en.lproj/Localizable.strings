@@ -83,6 +83,7 @@
 
 "kCoinsNotEnoughTitle" = "Message";
 "kCoinsNotEnough" = "Sorry, you don't have enough coins. Do you want to purchase coins now?";
+"kCoinsNotEnoughTips" = "Sorry, you don't have enough coins. You can purchase coins after the game";
 
 "kCheckInTitle" = "Message";
 "kCheckInMessage" = "Oh, you got %d coins today!";
@@ -114,3 +115,6 @@
 "kJoinGameFailure" = "Fail to join game. Please try again later.";
 
 "kChangeRoom" = "Loading...";
+
+"kNoTipsItemTitle" = "Message";
+"kNoTipsItemMessage" = "Your tip item is not enough, do you want to buy some?";

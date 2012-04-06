@@ -28,7 +28,7 @@
 #import "PPDebug.h"
 #import "ItemManager.h"
 #import "AccountService.h"
-
+#import "ItemShopController.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -49,7 +49,7 @@ ShowDrawController *GlobalGetShowDrawController()
 @synthesize popupButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
-
+@synthesize needResetData;
 - (void)dealloc
 {
     [_word release];
@@ -67,6 +67,20 @@ ShowDrawController *GlobalGetShowDrawController()
 + (ShowDrawController *)instance
 {
     return GlobalGetShowDrawController();
+}
+
++ (void)returnFromController:(UIViewController*)fromController
+{
+    ShowDrawController *sc = [ShowDrawController instance];
+    sc.needResetData = NO;
+    [fromController.navigationController popToViewController:sc animated:YES];
+}
+
++ (void)startGuessFromController:(UIViewController*)fromController
+{
+    ShowDrawController *sc = [ShowDrawController instance];
+    sc.needResetData = YES;
+    [fromController.navigationController pushViewController:sc animated:NO];            
 }
 
 
@@ -213,6 +227,11 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updateCandidateViewsWithText:text];
 }
 
+- (void)updateBomb
+{
+    [toolView setEnabled:YES];
+    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
+}
 
 - (void)updatePickViewsWithWord:(Word *)word lang:(LanguageType)lang
 {
@@ -220,16 +239,8 @@ ShowDrawController *GlobalGetShowDrawController()
     self.word = word;
     self.word.text = upperString;
     languageType = lang;
-    
-    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
-    toolView.hidden = NO;
-    if (toolView.number > 0 && [word.text length] != 0) {
-        toolView.enabled = YES;
-        toolView.hidden = NO;
-    }else{
-        toolView.enabled = NO;
-        toolView.hidden = YES;
-    }
+    [self updateBomb];
+    [toolView setHidden:NO];
     [self updateCandidateViews];
     [self updateAnswerViews];
 }
@@ -434,6 +445,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self updatePlayerAvatars];
     [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
     _guessCorrect = NO;
+    _shopController = nil;
 }
 
 #pragma mark - View lifecycle
@@ -464,15 +476,20 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidAppear:(BOOL)animated
 {
     _viewIsAppear = YES;
-    [self resetData];
+    if (needResetData) {
+        [self resetData];        
+    }
+    [self updateBomb];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    _viewIsAppear = NO;
-    [self setWord:nil];
-    [self setWordButtonsHidden:YES];
+    if (!_shopController) {
+        _viewIsAppear = NO;
+        [self setWord:nil];
+        [self setWordButtonsHidden:YES];        
+    }
     [super viewDidDisappear:animated];
 }
 
@@ -585,6 +602,7 @@ ShowDrawController *GlobalGetShowDrawController()
     PPDebug(@"<ShowDrawController>didGameTurnComplete");
     [self resetTimer];
     if (_viewIsAppear) {
+        _viewIsAppear = NO;
         NSInteger gainCoin = [[message notification] turnGainCoins];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
@@ -592,8 +610,12 @@ ShowDrawController *GlobalGetShowDrawController()
                                                                  score:gainCoin
                                                                correct:_guessCorrect 
                                                              isMyPaint:NO];
-        
-        [self.navigationController pushViewController:rc animated:YES];
+        if (_shopController) {
+            [_shopController.navigationController popViewControllerAnimated:NO];
+            [self.navigationController pushViewController:rc animated:NO];
+        }else{
+            [self.navigationController pushViewController:rc animated:YES];
+        }
         [rc release];
         [self updatePickViewsWithWord:nil lang:languageType];        
     }
@@ -603,15 +625,24 @@ ShowDrawController *GlobalGetShowDrawController()
 
 
 #pragma mark - Common Dialog Delegate
+#define SHOP_DIALOG_TAG 20120406
+
 
 - (void)clickOk:(CommonDialog *)dialog
 {
     //run away
     [dialog removeFromSuperview];
-    [drawGameService quitGame];
-    [HomeController returnRoom:self];
-    [showView cleanAllActions];
-    [self resetTimer];
+    if (dialog.tag == SHOP_DIALOG_TAG) {
+        ItemShopController *itemShop = [ItemShopController instance];
+        itemShop.callFromShowViewController = YES;
+        [self.navigationController pushViewController:itemShop animated:YES];
+        _shopController = itemShop;
+    }else{
+        [drawGameService quitGame];
+        [HomeController returnRoom:self];
+        [showView cleanAllActions];
+        [self resetTimer];
+    }
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
@@ -639,13 +670,20 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)bomb:(id)sender
 {
-    NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
-    [self updateAnswerViews];
-    [self updateCandidateViewsWithText:result];
-//    [toolView decreaseNumber];
-    [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
-    [toolView setNumber:[ItemManager defaultManager].tipsItemAmount];
-    toolView.enabled = NO;
+    
+    if ([[ItemManager defaultManager] tipsItemAmount] <= 0) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoTipsItemTitle") message:NSLS(@"kNoTipsItemMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+        dialog.tag = SHOP_DIALOG_TAG;
+        [dialog showInView:self.view];
+    }else{
+        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+        [self updateAnswerViews];
+        [self updateCandidateViewsWithText:result];
+        [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+        [toolView setNumber:[ItemManager defaultManager].tipsItemAmount];
+        toolView.enabled = NO;
+    }
+    
 }
 
 - (IBAction)clickRunAway:(id)sender {

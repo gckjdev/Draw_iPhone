@@ -18,6 +18,7 @@
 #import "CommonDialog.h"
 #import "CoinShopController.h"
 #import "PPDebug.h"
+#import "ShowDrawController.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -25,7 +26,7 @@ ItemShopController *staticItemController = nil;
 @synthesize coinsAmountLabel;
 @synthesize itemAmountLabel;
 @synthesize titleLabel;
-
+@synthesize callFromShowViewController;
 +(ItemShopController *)instance
 {
     if (staticItemController == nil) {
@@ -83,6 +84,12 @@ ItemShopController *staticItemController = nil;
     [self updateLabels];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.callFromShowViewController = NO;
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
@@ -100,14 +107,17 @@ ItemShopController *staticItemController = nil;
 }
 
 - (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (callFromShowViewController) {
+        [ShowDrawController returnFromController:self];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.dataList count];
-//    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,15 +146,24 @@ ItemShopController *staticItemController = nil;
 
 
 #pragma mark - ShoppingCell delegate
+#define DIALOG_NOT_BUY_COIN_TAG 20120406
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(ShoppingModel *)model
 {
     
     if ([[AccountService defaultService] hasEnoughCoins:[model price]] == NO){
-        PPDebug(@"<ItemShopController> click buy item but coins not enough");
-        _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
-        [dialog showInView:self.view];
+        PPDebug(@"<ItemShopController> click buy item but coins not enough");        
+        if (callFromShowViewController) {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleDoubleButton deelegate:self];
+            dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
+            [dialog showInView:self.view];
+            
+        }else{        
+            _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleSingleButton deelegate:self];
+            dialog.tag = DIALOG_ACTION_ASK_BUY_COIN;
+            [dialog showInView:self.view];
+        }
         return;
     }
               
@@ -154,11 +173,16 @@ ItemShopController *staticItemController = nil;
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+    if (dialog.tag == DIALOG_NOT_BUY_COIN_TAG) {
+        [dialog removeFromSuperview];
+    }else{
+        [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {    
+    [dialog removeFromSuperview];
 }
 
 #pragma mark - Price service delegate

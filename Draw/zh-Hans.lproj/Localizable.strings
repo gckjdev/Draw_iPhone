@@ -59,8 +59,8 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
-"kDedutCoinQuitGameAlertMessage" = "如果您退出游戏，系统将会扣除1个金币。";
-"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除1个金币，您的账户余额不足，现在不能退出游戏！";
+"kDedutCoinQuitGameAlertMessage" = "如果你退出游戏，系统将会扣除1个金币哦。";
+"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除1个金币，你的账户余额不足，现在不能退出游戏哦！";
 
 
 "kContinue" = "继续(%d)";
@@ -79,7 +79,8 @@
 "kStartingGame" = "请求开始游戏中...";
 
 "kCoinsNotEnoughTitle" = "消息";
-"kCoinsNotEnough" = "不好意思，你的金币不够了啊，是不是现在购买一些金币？";
+"kCoinsNotEnough" = "不好意思，你的金币不够了，是不是现在购买一些金币？";
+"kCoinsNotEnoughTips" = "不好意思，你的金币不够了，请在游戏之后购买。";
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
@@ -111,3 +112,5 @@
 "kJoinGameFailure" = "加入游戏失败，请稍候再试";
 
 "kChangeRoom" = "更换房间中...";
+"kNoTipsItemTitle" = "消息";
+"kNoTipsItemMessage" = "你的道具不够了，是不是现在购买一些？";

@@ -329,7 +329,6 @@ DrawViewController *GlobalGetDrawViewController()
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
     colorShopConroller = nil;
-//    hasPushResultController = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

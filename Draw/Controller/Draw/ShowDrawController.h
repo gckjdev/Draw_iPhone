@@ -24,12 +24,10 @@
     NSTimer *guessTimer;
     NSInteger retainCount;
     LanguageType languageType;
-//    BOOL gameCompleted;
-    
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
+    UIViewController *_shopController;
     ToolView *toolView;
-//    BOOL gameStarted;
     BOOL _viewIsAppear;
     BOOL _guessCorrect;
 }
@@ -41,11 +39,14 @@
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) NSString *candidateString;
+@property (nonatomic, assign) BOOL needResetData;
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (IBAction)clickGuessDoneButton:(id)sender;
 - (void)setWordButtonsHidden:(BOOL)hidden;
 + (ShowDrawController *)instance;
++ (void)returnFromController:(UIViewController*)fromController;
++ (void)startGuessFromController:(UIViewController*)fromController;
 
 @end
 
