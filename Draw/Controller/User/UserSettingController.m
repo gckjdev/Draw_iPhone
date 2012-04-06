@@ -11,6 +11,9 @@
 #import "UserManager.h"
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
+
 enum{
     SECTION_LANGUAGE = 0,
     SECTION_COUNT
@@ -20,6 +23,7 @@ enum{
 
 @implementation UserSettingController
 @synthesize titleLabel;
+@synthesize avatarButton;
 @synthesize tableViewBG;
 
 - (void)updateRowIndexs
@@ -56,6 +60,11 @@ enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)updateAvatar:(UIImage *)image
+{
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -66,12 +75,25 @@ enum{
     [tableViewBG setImage:[[ShareImageManager defaultManager]whitePaperImage]];
     
     
+    imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
+    [imageView clear];
+    if (userManager.avatarImage){
+        [imageView setImage:userManager.avatarImage];
+    }
+    else{
+        [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+    }
+    [GlobalGetImageCache() manage:imageView];
+    [self addSubview:imageView];
+
+    
 }
 
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
     [self setTableViewBG:nil];
+    [self setAvatarButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -159,12 +181,17 @@ enum{
     }
 }
 
+- (IBAction)clickAvatar:(id)sender {
+    NSLog(@"clickAvatar");
+}
+
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)dealloc {
     [titleLabel release];
     [tableViewBG release];
+    [avatarButton release];
     [super dealloc];
 }
 @end
