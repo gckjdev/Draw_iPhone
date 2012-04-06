@@ -251,10 +251,10 @@
         return;
     }
 
-//    [[DrawGameService defaultService] setServerAddress:server.serverAddress];
-//    [[DrawGameService defaultService] setServerPort:server.port];    
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] setServerAddress:server.serverAddress];
+    [[DrawGameService defaultService] setServerPort:server.port];    
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
 }
