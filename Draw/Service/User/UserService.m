@@ -102,6 +102,12 @@ static UserService* _defaultUserService;
     else if ([networkName isEqualToString:SNS_QQ_WEIBO]){
         return REGISTER_TYPE_QQ;
     }
+    else if ([networkName isEqualToString:SNS_FACEBOOK]){
+        return REGISTER_TYPE_FACEBOOK;
+    }
+    else if ([networkName isEqualToString:SNS_TWITTER]){
+        return REGISTER_TYPE_TWITTER;
+    }
     
     NSLog(@"<getRegisterType> cannot find SNS type for network name = %@", networkName);
     return -1;
@@ -152,7 +158,7 @@ static UserService* _defaultUserService;
                                              sinaAccessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
                                        sinaAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]];
                 }
-                else{  
+                else if (loginIdType == REGISTER_TYPE_QQ) {  
                     [[UserManager defaultManager] saveUserId:userId
                                                       qqId:loginId
                                                     password:nil 
@@ -160,7 +166,14 @@ static UserService* _defaultUserService;
                                                    avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                              qqAccessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
                                        qqAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]];                    
-                }      
+                }   
+                else if (loginIdType == REGISTER_TYPE_FACEBOOK) {  
+                    [[UserManager defaultManager] saveUserId:userId
+                                                  facebookId:loginId
+                                                    password:nil 
+                                                    nickName:[userInfo objectForKey:SNS_NICK_NAME] 
+                                                   avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]];                    
+                }   
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];

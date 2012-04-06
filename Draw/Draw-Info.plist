@@ -33,6 +33,15 @@
 	<string>MainWindow</string>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb197575977024536</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

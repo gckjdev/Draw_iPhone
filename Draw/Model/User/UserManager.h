@@ -67,6 +67,12 @@ typedef enum {
    qqAccessToken:(NSString*)accessToken
 qqAccessTokenSecret:(NSString*)accessTokenSecret;
 
+- (void)saveUserId:(NSString*)userId
+        facebookId:(NSString*)loginId
+          password:(NSString*)password 
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL;
+
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
 

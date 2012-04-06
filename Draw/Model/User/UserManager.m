@@ -30,6 +30,7 @@
 #define KEY_QQ_ACCESS_TOKEN           @"USER_KEY_QQ_ACCESS_TOKEN"
 #define KEY_QQ_ACCESS_TOKEN_SECRET    @"USER_KEY_QQ_ACCESS_TOKEN_SECRET"
 
+#define KEY_FACEBOOK_LOGINID            @"USER_KEY_FACEBOOK_LOGINID"
 
 #define AVATAR_LOCAL_FILENAME   @"user_avatar.png"
     
@@ -264,7 +265,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
           password:(NSString*)password 
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
-   qqAccessToken:(NSString*)accessToken
+     qqAccessToken:(NSString*)accessToken
 qqAccessTokenSecret:(NSString*)accessTokenSecret
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
@@ -292,6 +293,40 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     
     if (accessTokenSecret != nil){
         [userDefaults setObject:accessTokenSecret forKey:KEY_QQ_ACCESS_TOKEN_SECRET];
+    }
+    
+    if ([avatarURL length] > 0){
+        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+        [self avatarImage];
+    }
+    
+    [userDefaults synchronize];     
+}
+
+
+- (void)saveUserId:(NSString*)userId
+        facebookId:(NSString*)loginId
+          password:(NSString*)password 
+          nickName:(NSString*)nickName
+         avatarURL:(NSString*)avatarURL
+{
+    PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (userId != nil){
+        [userDefaults setObject:userId forKey:KEY_USERID];
+    }
+    
+    if ([nickName length] > 0){
+        [userDefaults setObject:nickName forKey:KEY_NICKNAME];
+    }
+    
+    if (loginId != nil){
+        [userDefaults setObject:loginId forKey:KEY_FACEBOOK_LOGINID];
+    }
+    
+    if ([password length] > 0){
+        [userDefaults setObject:password forKey:KEY_PASSWORD];
     }
     
     if ([avatarURL length] > 0){

@@ -71,8 +71,7 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
-    [LocaleUtils getLanguageCode];
-    if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh"]){
+    if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh-Hans"]){
         self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     }
     else{
