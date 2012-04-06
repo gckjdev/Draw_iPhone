@@ -22,7 +22,7 @@
 
 "kRoomName" = "Room [%@]";
 
-"kClickToStart" = "Draw (%d)";
+"kClickToStart" = "My Turn [%d]";
 
 "kWaitABit" = "Prolong";
 
@@ -66,7 +66,7 @@
 "kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct 1 coin.";
 "kNoCoinQuitGameAlertMessage" = "You have no coins, cannot quit the game!";
 
-"kContinue" = "Continue(%d)";
+"kContinue" = "Continue [%d]";
 "kExit" = "Exit";
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
@@ -117,7 +117,19 @@
 "kChangeRoom" = "Loading...";
 
 "kNoTipsItemTitle" = "Message";
-"kNoTipsItemMessage" = "Your tip item is not enough, do you want to buy some?";
-"kQuickMessage" = "%@ says: Quickly!";
+"kNoTipsItemMessage" = "You don't have any tip now. Do you want to buy some?";
+"kQuickMessage" = "%@ says: Hurry Up!";
 "kWaitMessage" = "%@ says: Wait a minute!";
-"kClickTooFast" = "Your click rate is too high, please take a break.";
+"kClickTooFast" = "You clicks too frequently. Please take a break.";
+
+"kFailToConnectIAPServer" = "Fail to connect to Apple purchasing server. Please try again.";
+"kExceedMaxProlongTimes" = "Sorry, you have prolong too many times.";
+
+"kGotoCoinShop" = "Coin Shop";
+
+"kChangeRoomTitle" = "Switch Room";
+"kChangeRoomConfirm" = "Do you want to switch to another room? This will cost you 1 coin";
+"kQuitGameTitle" = "Quit Game";
+"kQuitGameConfirm" = "Do you want to leave the room now?";
+
+
