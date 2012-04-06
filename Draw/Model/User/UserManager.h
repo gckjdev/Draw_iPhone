@@ -76,5 +76,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret;
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
 
-
+- (BOOL)hasBindSinaWeibo;
+- (BOOL)hasBindQQWeibo;
+- (BOOL)hasBindFacebook;
 @end

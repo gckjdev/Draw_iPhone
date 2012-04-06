@@ -9,6 +9,8 @@
 #import "UserSettingController.h"
 #import "PPDebug.h"
 #import "UserManager.h"
+#import "LocaleUtils.h"
+#import "ShareImageManager.h"
 enum{
     SECTION_LANGUAGE = 0,
     SECTION_COUNT
@@ -17,12 +19,31 @@ enum{
 
 
 @implementation UserSettingController
+@synthesize titleLabel;
+@synthesize tableViewBG;
+
+- (void)updateRowIndexs
+{
+    rowOfPassword = 0;
+    rowOfNickName = 1;
+    rowOfLanguage = 2;
+    if ([LocaleUtils isChina]) {
+        rowOfSinaWeibo = 3;
+        rowOfQQWeibo = 4;
+        rowOfFacebook = 5;
+        rowNumber = 6;
+    }else{
+        rowOfSinaWeibo = rowOfQQWeibo = -1;        
+        rowOfFacebook = 3;
+        rowNumber = 4;
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self updateRowIndexs];
     }
     return self;
 }
@@ -41,11 +62,16 @@ enum{
 {
     [super viewDidLoad];
     userManager = [UserManager defaultManager];
+    [titleLabel setText:NSLS(@"kSettings")];
+    [tableViewBG setImage:[[ShareImageManager defaultManager]whitePaperImage]];
+    
     
 }
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
+    [self setTableViewBG:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -61,14 +87,7 @@ enum{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case SECTION_LANGUAGE:
-            return 1;
-            
-        default:
-            break;
-    }
-    return 0;
+    return rowNumber;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,16 +95,36 @@ enum{
     static NSString *cellIdentifier = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    switch (indexPath.section) {
-        case SECTION_LANGUAGE:
-            [cell.textLabel setText:NSLS(@"Language")];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            break;
-            
-        default:
-            break;
+    NSInteger row = indexPath.row;
+    if (row == rowOfPassword) {
+        [cell.textLabel setText:NSLS(@"kPassword")];           
+    }else if(row == rowOfNickName)
+    {
+        [cell.textLabel setText:NSLS(@"kNickname")];           
+    }else if(row == rowOfLanguage)
+    {
+        [cell.textLabel setText:NSLS(@"kLanguageSettings")];           
+    }else if(row == rowOfSinaWeibo)
+    {
+        [cell.textLabel setText:NSLS(@"kSinaWeibo")];              
+        if ([userManager hasBindSinaWeibo]) {
+            [cell.detailTextLabel setText:NSLS(@"kBind")];            
+        }
+    }else if(row == rowOfQQWeibo)
+    {
+        [cell.textLabel setText:NSLS(@"kQQWeibo")];    
+        if ([userManager hasBindQQWeibo]) {
+            [cell.detailTextLabel setText:NSLS(@"kBind")];            
+        }
+    }else if(row == rowOfFacebook)
+    {
+        [cell.textLabel setText:NSLS(@"kFacebook")];     
+        if ([userManager hasBindFacebook]) {
+            [cell.detailTextLabel setText:NSLS(@"kBind")];            
+        }
     }
     return cell;
 }
@@ -99,11 +138,14 @@ enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"Language Selection" ) delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Chinese") otherButtonTitles:NSLS(@"English"), nil];
-    LanguageType type = [userManager getLanguageType];
-    [actionSheet setDestructiveButtonIndex:type - 1];
-    [actionSheet showInView:self.view];
-    [actionSheet release];
+    NSInteger row = indexPath.row;
+    if (row == rowOfLanguage) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
+        LanguageType type = [userManager getLanguageType];
+        [actionSheet setDestructiveButtonIndex:type - 1];
+        [actionSheet showInView:self.view];
+        [actionSheet release];        
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -119,5 +161,10 @@ enum{
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)dealloc {
+    [titleLabel release];
+    [tableViewBG release];
+    [super dealloc];
 }
 @end

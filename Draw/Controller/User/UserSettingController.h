@@ -13,6 +13,18 @@
 @interface UserSettingController : PPTableViewController<UIActionSheetDelegate>
 {
     UserManager *userManager;
+    
+    NSInteger rowOfPassword;
+    NSInteger rowOfNickName;
+    NSInteger rowOfLanguage;
+    NSInteger rowOfSinaWeibo;
+    NSInteger rowOfQQWeibo;
+    NSInteger rowOfFacebook;
+    NSInteger rowNumber;
+    
 }
 - (IBAction)clickBackButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
+- (void)updateRowIndexs;
 @end

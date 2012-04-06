@@ -360,4 +360,18 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return type;
 }
 
+- (BOOL)hasBindSinaWeibo
+{
+    return YES;
+}
+- (BOOL)hasBindQQWeibo
+{
+    return NO;
+}
+- (BOOL)hasBindFacebook
+{
+    return YES;
+}
+
+
 @end

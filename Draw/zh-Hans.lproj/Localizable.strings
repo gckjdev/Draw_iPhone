@@ -51,6 +51,7 @@
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
 
+
 "kBuying" = "发送购买请求中...";
 "kLoading" = "加载数据中...";
 
@@ -117,3 +118,16 @@
 "kQuickMessage" = "%@说: 快点快点，我等到花儿都谢了！";
 "kWaitMessage" = "%@说: 等一会，我来给花儿洒洒水。";
 "kClickTooFast" = "你的点击频率太高了，请休息一下。";
+
+"kEnglish" = "英语";
+"kChinese" = "中文";
+"kLanguageSettings" = "选择猜词语言";
+"kLanguageSelection" = "语言选择";
+
+"kPassword" = "修改密码";
+"kNickname" = "修改昵称";
+"kSinaWeibo" = "绑定新浪微博";  
+"kQQWeibo" = "绑定腾讯微博";           
+"kFacebook" = "绑定Facebook";
+"kBind" = "已绑定";
+"kUnBind" = "未绑定";

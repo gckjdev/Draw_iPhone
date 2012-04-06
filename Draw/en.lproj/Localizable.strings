@@ -121,3 +121,15 @@
 "kQuickMessage" = "%@ says: Quickly!";
 "kWaitMessage" = "%@ says: Wait a minute!";
 "kClickTooFast" = "Your click rate is too high, please take a break.";
+
+"kEnglish" = "English";
+"kChinese" = "Chinese";
+"kLanguageSettings" = "Language";
+"kLanguageSelection" = "Language Selection";
+"kPassword" = "Password";
+"kNickname" = "Nickname";
+"kSinaWeibo" = "Sina Weibo";              
+"kQQWeibo" = "QQ Weibo";           
+"kFacebook" = "Facebook"; 
+"kBind" = "Connected";
+"kUnBind" = "Unconnected";
