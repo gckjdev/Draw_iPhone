@@ -43,6 +43,9 @@
 @synthesize startGameButton;
 @synthesize startTimer = _startTimer;
 
+
+#define QUICK_DURATION 5
+
 - (void)dealloc {
     [_startTimer release];
     [startGameButton release];
@@ -317,18 +320,29 @@
    
 }
 
-- (void)didGameAskQuick:(GameMessage *)message
+//just for the wait and quit message
+- (void)userId:(NSString *)userId says:(NSString *)message
 {
-    NSString* text = [NSString stringWithFormat:@"%@ says quick quick!", [message userId]];    
-    [UIUtils alert:text];
+    NSString *nickName = [[[DrawGameService defaultService] session] getNickNameByUserId:userId];
+    NSString *text = [NSString stringWithFormat:message,nickName];
+    [self popupUnhappyMessage:text title:nil];    
+    //NSLS("kQuickMessage")
+}
+
+- (void)didGameAskQuick:(GameMessage *)message
+{  
+    if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
+        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
+    }
+
 }
 
 - (void)didGameProlong:(GameMessage *)message
 {
-    // receive host prolong game message, prolong the timer
-    if ([self isMyTurn] == NO){
-        [self prolongStartTimer];
+    if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
+        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];         
     }
+
 }
 
 #pragma mark - Core Methods
@@ -380,12 +394,24 @@
 
 - (IBAction)clickProlongStart:(id)sender
 {
+    time_t currentTime = time(0);
     if ([self isMyTurn]){
-        [self prolongStartTimer];
+        if (currentTime - quickDuration > QUICK_DURATION) {
+            [self prolongStartTimer];
+            quickDuration = currentTime;
+        }else{
+            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
+        }
     }
     else{
         // TODO send an urge request
-        [[DrawGameService defaultService] askQuickGame];
+        if (currentTime - quickDuration > QUICK_DURATION) {
+            [[DrawGameService defaultService] askQuickGame];            
+            quickDuration = currentTime;
+        }else{
+            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
+        }
+
     }
 }
 

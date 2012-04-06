@@ -80,7 +80,7 @@
 
 "kCoinsNotEnoughTitle" = "消息";
 "kCoinsNotEnough" = "不好意思，你的金币不够了，是不是现在购买一些金币？";
-"kCoinsNotEnoughTips" = "不好意思，你的金币不够了，请在游戏之后购买。";
+"kCoinsNotEnoughTips" = "不好意思，你的金币不够了，请在游戏结束之后购买。";
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
@@ -114,3 +114,6 @@
 "kChangeRoom" = "更换房间中...";
 "kNoTipsItemTitle" = "消息";
 "kNoTipsItemMessage" = "你的道具不够了，是不是现在购买一些？";
+"kQuickMessage" = "%@说: 快点快点，我等到花儿都谢了！";
+"kWaitMessage" = "%@说: 等一会，我来给花儿洒洒水。";
+"kClickTooFast" = "你的点击频率太高了，请休息一下。";

@@ -38,16 +38,18 @@
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
 {
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     self.style = aStyle;
     switch (aStyle) {
         case CommonDialogStyleSingleButton: {
             [self.oKButton setFrame:CGRectMake(self.oKButton.frame.origin.x, self.oKButton.frame.origin.y, self.oKButton.frame.size.width*2, self.oKButton.frame.size.height)];
             [self.oKButton setCenter:CGPointMake(self.contentView.center.x, self.oKButton.frame.origin.y)];
+            [self.oKButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [self.backButton setHidden:YES];
         }
             break;
         case CommonDialogStyleDoubleButton: {
-            
+            [self.oKButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         }
             break;
         default:
@@ -71,7 +73,6 @@
     //init the button
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.oKButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
     [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     return view;
