@@ -14,6 +14,7 @@
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;
+    time_t quickDuration;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *prolongButton;
