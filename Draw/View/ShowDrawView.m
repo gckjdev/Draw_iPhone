@@ -106,7 +106,8 @@
 }
 
 - (void)nextFrame:(NSTimer *)theTimer;
-{    
+{   
+    
     DrawAction *currentAction = [self playingAction];
     playingPointIndex ++;
     if (playingPointIndex < [currentAction pointCount]) {
@@ -115,6 +116,10 @@
         //play next action
         playingPointIndex = 0;
         playingActionIndex ++;
+        if (_shouldCreateGif && playingActionIndex%2 == 0) {
+            [self.gifFrameArray addObject:[[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(160, 160)]];
+            NSLog(@"creating frame %d", self.gifFrameArray.count);
+        }
         if ([self.drawActionList count] > playingActionIndex) {
         }else{
             //illegal
@@ -129,10 +134,7 @@
         }
     }
     [self setNeedsDisplay];
-    if (_shouldCreateGif) {
-        [self.gifFrameArray addObject:[[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(160, 160)]];
-        NSLog(@"creating frame %d", self.gifFrameArray.count);
-    }
+    
     
     
 }
@@ -149,7 +151,7 @@
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
         _gifFrameArray = [[NSMutableArray alloc] init];
-        _indexShouldSave = [[NSMutableArray alloc] init];
+        _indexShouldSave = [[NSMutableSet alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         
     }

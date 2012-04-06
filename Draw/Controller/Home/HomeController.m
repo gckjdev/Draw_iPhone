@@ -24,6 +24,7 @@
 #import "ShareImageManager.h"
 #import "AccountService.h"
 #import "CommonDialog.h"
+#import "FacebookSNSService.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -32,6 +33,8 @@
 @synthesize checkinButton = _checkinButton;
 @synthesize settingButton = _settingButton;
 @synthesize feedbackButton = _feedbackButton;
+@synthesize settingsLabel = _settingsLabel;
+@synthesize feedbackLabel = _feedbackLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,11 +81,8 @@
         self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];        
     }
     
-    [self.settingButton setImage:[UIImage imageNamed:SETTING_BUTTON_IMAGE] forState:UIControlStateNormal];
-    [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
-    
-    [self.feedbackButton setImage:[UIImage imageNamed:FEEDBACK_BUTTON_IMAGE] forState:UIControlStateNormal];
-    [self.feedbackButton setTitle:NSLS(@"kFeedback") forState:UIControlStateNormal];
+    self.feedbackLabel.text = NSLS(@"kFeedback");
+    self.settingsLabel.text = NSLS(@"kSettings");
 
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -120,6 +120,8 @@
     [self setCheckinButton:nil];
     [self setSettingButton:nil];
     [self setFeedbackButton:nil];
+    [self setSettingsLabel:nil];
+    [self setFeedbackLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -279,6 +281,8 @@
     [_checkinButton release];
     [_settingButton release];
     [_feedbackButton release];
+    [_settingsLabel release];
+    [_feedbackLabel release];
     [super dealloc];
 }
 @end

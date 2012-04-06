@@ -48,7 +48,7 @@
 - (void)selectImageAtIndex:(int)index
 {
     _currentSelectedPaint = index;
-    UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"Options") delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Share") otherButtonTitles:NSLS(@"Replay"), NSLS(@"Delete"), nil];
+    UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"Options") delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:NSLS(@"Share") otherButtonTitles:NSLS(@"Replay"), NSLS(@"Create gif"), NSLS(@"Delete"), nil];
     [tips showInView:self.view];
     [tips release];
     
@@ -58,6 +58,7 @@
 enum {
     SHARE = 0,
     REPLAY,
+    SHARE_GIF,
     DELETE,
     CANCEL
 };
@@ -70,11 +71,13 @@ enum {
 - (void)quitReplay
 {
     UIButton* btn = (UIButton*)[self.view viewWithTag:QUIT_BUTTON_TAG];
+    UIButton* creatGifBtn = (UIButton*)[self.view viewWithTag:CREATE_GIF_BUTTON_TAG];
     ShowDrawView* view = (ShowDrawView*)[self.view viewWithTag:REPLAY_TAG];
     UIView* bck = [self.view viewWithTag:BACK_GROUND_TAG];
     [btn removeFromSuperview];
     [bck removeFromSuperview];
     [view removeFromSuperview];
+    [creatGifBtn removeFromSuperview];
 }
 
 - (ANGifImageFrame *)imageFrameWithImage:(UIImage *)anImage fitting:(CGSize)imageSize {
@@ -96,7 +99,15 @@ enum {
 
 - (void)didPlayDrawView:(NSMutableArray*)gifFrameArray
 {
+    UIButton* createGif = [[UIButton alloc] initWithFrame:CGRectMake(200, 0, 80, 30)];
+    [createGif addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:createGif];
+    [createGif setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];            
+    createGif.tag = CREATE_GIF_BUTTON_TAG;
     NSString * tempFile = [NSString stringWithFormat:@"%@/test1.gif", NSTemporaryDirectory()];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:tempFile]) {
+        [[NSFileManager defaultManager] removeItemAtPath:tempFile error:nil];
+    }
     UIImage * firstImage = nil;
     if ([gifFrameArray count] > 0) {
         firstImage = [gifFrameArray objectAtIndex:0];
@@ -117,7 +128,7 @@ enum {
         NSLog(@"dealing with No.%d image", i);
         UIImage * image = [gifFrameArray objectAtIndex:i];
         ANGifImageFrame * theFrame = [self imageFrameWithImage:image fitting:canvasSize];
-        theFrame.delayTime = 0.05;
+        theFrame.delayTime = 0.5;
 //        [self setProgressLabel:[NSString stringWithFormat:@"Encoding Frame (%d/%d)", i + 1, (int)[images count]]];
         [encoder addImageFrame:theFrame];
     }
@@ -138,7 +149,7 @@ enum {
 		[self performSelector:@selector(showViewController:) withObject:compose afterDelay:1];
 		[compose release];
         NSDictionary * attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:tempFile error:nil];
-        NSLog(@"file size = %d", [(NSNumber*)[attributes objectForKey:NSFileSize] intValue]);
+        NSLog(@"file size = %.2fMB", [(NSNumber*)[attributes objectForKey:NSFileSize] intValue]/1024/1024.0);
 
 }
 
@@ -187,13 +198,38 @@ enum {
             [self.view addSubview:quit];
             [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
             quit.tag = QUIT_BUTTON_TAG;
-            
-            UIButton* createGif = [[UIButton alloc] initWithFrame:CGRectMake(200, 0, 80, 30)];
-            [createGif addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:createGif];
-            [createGif setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];            
-            createGif.tag = CREATE_GIF_BUTTON_TAG;
  
+        }
+            break;
+        case SHARE_GIF: {
+            MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+            NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
+            NSArray* drawActionList = (NSArray*)currentData;
+            
+            UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+            background.tag = BACK_GROUND_TAG;
+            [background setBackgroundColor:[UIColor blackColor]];
+            [background setAlpha:0.5];
+            [self.view addSubview:background];
+            [background release];
+            
+            ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 75, 320, 330)];    
+            replayView.tag = REPLAY_TAG;
+            [self.view addSubview:replayView];
+            [replayView release];            
+            NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
+            [replayView setDrawActionList:actionList];
+            [replayView play];
+            replayView.shouldCreateGif = YES;
+            replayView.delegate = self;
+            
+            UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+            [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:quit];
+            [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+            quit.tag = QUIT_BUTTON_TAG;
+            
+            
         }
             break;
         case DELETE: {

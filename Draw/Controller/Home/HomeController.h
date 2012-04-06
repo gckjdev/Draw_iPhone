@@ -29,6 +29,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *checkinButton;
 @property (retain, nonatomic) IBOutlet UIButton *settingButton;
 @property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
+@property (retain, nonatomic) IBOutlet UILabel *settingsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *feedbackLabel;
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;

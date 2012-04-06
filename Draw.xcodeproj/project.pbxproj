@@ -36,6 +36,11 @@
 		C2A0974F152E979C006535F7 /* BitmapRotationManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09734152E979C006535F7 /* BitmapRotationManipulator.m */; };
 		C2A09750152E979C006535F7 /* BitmapScaleManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */; };
 		C2A09751152E979C006535F7 /* UIImagePixelSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09738152E979C006535F7 /* UIImagePixelSource.m */; };
+		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
+		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
+		C2A0975F152ECD7C006535F7 /* ShareGifController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975D152ECD7B006535F7 /* ShareGifController.m */; };
+		C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A0975E152ECD7B006535F7 /* ShareGifController.xib */; };
+		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -566,6 +571,14 @@
 		C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapScaleManipulator.m; sourceTree = "<group>"; };
 		C2A09737152E979C006535F7 /* UIImagePixelSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePixelSource.h; sourceTree = "<group>"; };
 		C2A09738152E979C006535F7 /* UIImagePixelSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePixelSource.m; sourceTree = "<group>"; };
+		C2A09756152ECCB5006535F7 /* GifManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifManager.h; sourceTree = "<group>"; };
+		C2A09757152ECCB5006535F7 /* GifManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifManager.m; sourceTree = "<group>"; };
+		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
+		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
+		C2A0975C152ECD7B006535F7 /* ShareGifController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareGifController.h; sourceTree = "<group>"; };
+		C2A0975D152ECD7B006535F7 /* ShareGifController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareGifController.m; sourceTree = "<group>"; };
+		C2A0975E152ECD7B006535F7 /* ShareGifController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareGifController.xib; sourceTree = "<group>"; };
+		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -1270,11 +1283,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
+				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CA65C1FD152DD50E00462C96 /* libQWeiboSDK4iOS.a in Frameworks */,
 				CA65C1BE152D9A7E00462C96 /* Security.framework in Frameworks */,
 				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
-				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
 				CA103F341509A70800F60C03 /* MessageUI.framework in Frameworks */,
@@ -1307,10 +1321,14 @@
 		C2A096FB152E979C006535F7 /* Component-Gif */ = {
 			isa = PBXGroup;
 			children = (
+				C2A09759152ECD30006535F7 /* GifView.h */,
+				C2A0975A152ECD30006535F7 /* GifView.m */,
 				C2A096FC152E979C006535F7 /* ANGif */,
 				C2A0971D152E979C006535F7 /* ANImageBitmapRep */,
 				C2A09737152E979C006535F7 /* UIImagePixelSource.h */,
 				C2A09738152E979C006535F7 /* UIImagePixelSource.m */,
+				C2A09756152ECCB5006535F7 /* GifManager.h */,
+				C2A09757152ECCB5006535F7 /* GifManager.m */,
 			);
 			name = "Component-Gif";
 			path = "../../Common_iPhone_20/Components/Component-Gif";
@@ -2482,6 +2500,9 @@
 				C29C12DD152AE23D009B9E5F /* ShareCell.xib */,
 				C29C12DF152AE2A6009B9E5F /* ShareCell.h */,
 				C29C12E0152AE2A7009B9E5F /* ShareCell.m */,
+				C2A0975C152ECD7B006535F7 /* ShareGifController.h */,
+				C2A0975D152ECD7B006535F7 /* ShareGifController.m */,
+				C2A0975E152ECD7B006535F7 /* ShareGifController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -2955,6 +2976,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				C2A09761152ECDEA006535F7 /* ImageIO.framework */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -3512,6 +3534,7 @@
 				CA65C1AC152D993700462C96 /* logo.png in Resources */,
 				CA65C1AD152D993700462C96 /* logo@2x.png in Resources */,
 				CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */,
+				C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3826,6 +3849,9 @@
 				C2A0974F152E979C006535F7 /* BitmapRotationManipulator.m in Sources */,
 				C2A09750152E979C006535F7 /* BitmapScaleManipulator.m in Sources */,
 				C2A09751152E979C006535F7 /* UIImagePixelSource.m in Sources */,
+				C2A09758152ECCB5006535F7 /* GifManager.m in Sources */,
+				C2A0975B152ECD31006535F7 /* GifView.m in Sources */,
+				C2A0975F152ECD7C006535F7 /* ShareGifController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

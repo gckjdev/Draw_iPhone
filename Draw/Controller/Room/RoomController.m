@@ -129,39 +129,23 @@
 #pragma mark - GUI Update Methods
 #define DRAWING_MARK_TAG 20120404
 - (void)updateGameUsers
-{
-    
-    
+{        
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
     int startTag = 21;
     int endTag = 26;
     int imageStartTag = 31;
-    int imageEndTag = 32;
+    int imageEndTag = 36;
     
     for (GameSessionUser* user in userList){
-//        UIButton* button = (UIButton*)[self.view viewWithTag:startTag++];
-//        [button setTitle:[user userId] forState:UIControlStateNormal];
-//        button.titleLabel.numberOfLines = 2;
 
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:[user nickName]];
         
-//        if ([session isHostUser:[user userId]]){
-//            NSString* title = [NSString stringWithFormat:@"%@ (Host)", [user userId]];
-////            [button setTitle:title forState:UIControlStateNormal];
-//            [label setText:title];
-//        }
-        
         if ([session isMe:[user userId]]){
             NSString* title = [NSString stringWithFormat:NSLS(@"Me")];
             [label setText:title];
-//            [button setTitle:title forState:UIControlStateNormal];
         }
-
-//        if ([session isCurrentPlayUser:[user userId]]){
-//            [label setTextColor:[UIColor redColor]];
-//        }
         
         // set images
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
@@ -171,7 +155,7 @@
             [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
         }
         else{
-            [imageView setUrl:[NSURL URLWithString:DEFAULT_AVATAR]];
+            [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
         }
         [GlobalGetImageCache() manage:imageView];
         
@@ -188,14 +172,13 @@
         }
     }
     
-    // clean all data
+    // clean other label display
     for (int i=startTag; i<=endTag; i++){
-//        UIButton* button = (UIButton*)[self.view viewWithTag:i];
-//        [button setTitle:@"" forState:UIControlStateNormal];
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:@""];
     }
     
+    // clean other image display
     for (int i=imageStartTag; i<=imageEndTag; i++){
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
