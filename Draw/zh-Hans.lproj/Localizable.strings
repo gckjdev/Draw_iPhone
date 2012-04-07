@@ -143,3 +143,10 @@
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，同时需要花费你一个金币，确定换个房间吗？";
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
+
+"kShare_to_friends" = "分享给好友";
+"kReport_problems" = "问题反馈";
+"kGive_some_advice" = "给些建议";
+"kAbout_us" = "关于我们";
+"kMore_apps" = "更多应用";
+"kGive_a_5-star_review" = "给个好评吧";

@@ -19,13 +19,15 @@ enum{
     SECTION_COUNT
 };
 
-
+#define DIALOG_TAG_NICKNAME 201204071
+#define DIALOG_TAG_PASSWORD 201204072
 
 @implementation UserSettingController
 @synthesize saveButton;
 @synthesize titleLabel;
 @synthesize avatarButton;
 @synthesize tableViewBG;
+@synthesize nicknameLabel;
 
 - (void)updateRowIndexs
 {
@@ -66,6 +68,11 @@ enum{
     [imageView setImage:image];
 }
 
+- (void)updateNickname:(NSString *)nick
+{
+    [self.nicknameLabel setText:nick];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -88,7 +95,7 @@ enum{
     }
     [GlobalGetImageCache() manage:imageView];
     [avatarButton addSubview:imageView];
-
+    [self updateNickname:[userManager nickName]];
     
 }
 
@@ -98,6 +105,7 @@ enum{
     [self setTableViewBG:nil];
     [self setAvatarButton:nil];
     [self setSaveButton:nil];
+    [self setNicknameLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -130,6 +138,7 @@ enum{
     }else if(row == rowOfNickName)
     {
         [cell.textLabel setText:NSLS(@"kNickname")];           
+        [cell.detailTextLabel setText:nicknameLabel.text];            
     }else if(row == rowOfLanguage)
     {
         [cell.textLabel setText:NSLS(@"kLanguageSettings")];           
@@ -174,6 +183,8 @@ enum{
     }else if(row == rowOfNickName)
     {
         InputDialog *dialog = [InputDialog inputDialogWith:NSLS(@"kNickname") delegate:self];
+        dialog.tag = DIALOG_TAG_NICKNAME;
+        [dialog setTargetText:nicknameLabel.text];
         [dialog showInView:self.view];
     }
 }
@@ -214,6 +225,21 @@ enum{
     [saveButton release];
     [imageView release];
     [changeAvatar release];
+    [nicknameLabel release];
     [super dealloc];
 }
+
+
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    if (dialog.tag == DIALOG_TAG_NICKNAME) {
+        [self updateNickname:targetText];
+        [self.dataTableView reloadData];
+    }
+}
+- (void)clickCancel:(InputDialog *)dialog
+{
+    
+}
+
 @end

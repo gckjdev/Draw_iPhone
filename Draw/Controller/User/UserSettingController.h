@@ -35,5 +35,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
+@property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 - (void)updateRowIndexs;
 @end
