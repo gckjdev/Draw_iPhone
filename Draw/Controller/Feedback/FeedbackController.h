@@ -10,5 +10,6 @@
 
 @interface FeedbackController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
+@property (retain, nonatomic) IBOutlet UILabel *TitleLabel;
 
 @end

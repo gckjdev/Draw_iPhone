@@ -19,13 +19,13 @@
 #import "FeedbackController.h"
 #import "UserSettingController.h"
 #import "ShareController.h"
-#import "TrafficServer.h"
 #import "Reachability.h"
 #import "ShareImageManager.h"
 #import "AccountService.h"
 #import "CommonDialog.h"
 #import "FacebookSNSService.h"
 #import "ItemShopController.h"
+#import "RouterTrafficServer.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -101,7 +101,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [[RouterService defaultService] fetchServerListAtBackground];
+//    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
 }
@@ -172,8 +172,8 @@
         NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
         [self popupUnhappyMessage:text title:@""];
         [[DrawGameService defaultService] disconnectServer];
-        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
-                                                          port:[[DrawGameService defaultService] serverPort]];
+//        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
+//                                                          port:[[DrawGameService defaultService] serverPort]];
         return;
     }
 
@@ -249,15 +249,16 @@
 
 - (void)didServerListFetched:(int)result
 {
-    TrafficServer* server = [[RouterService defaultService] assignTrafficServer];
+    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
     if (server == nil){
         [self hideActivity];
-        [UIUtils alert:NSLS(@"kNoServerAvailable")];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton deelegate:nil];
+        [dialog showInView:self.view];
         return;
     }
 
-    [[DrawGameService defaultService] setServerAddress:server.serverAddress];
-    [[DrawGameService defaultService] setServerPort:server.port];    
+    [[DrawGameService defaultService] setServerAddress:server.address];
+    [[DrawGameService defaultService] setServerPort:[server.port intValue]];    
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];

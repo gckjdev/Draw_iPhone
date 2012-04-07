@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
-#import "ShoppingModel.h"
+//#import "ShoppingModel.h"
+#import "PriceModel.h"
 #import "PPTableViewController.h"
 #import <StoreKit/StoreKit.h>
 
@@ -35,4 +36,7 @@
 - (void)fetchCoinProductList:(PPViewController<PriceServiceDelegate> *)viewController;
 
 - (void)fetchAccountBalanceWithUserId:(NSString *)userId viewController:(id<PriceServiceDelegate> )priceServiceDelegate;
+
+- (void)syncShoppingListAtBackground;
+
 @end

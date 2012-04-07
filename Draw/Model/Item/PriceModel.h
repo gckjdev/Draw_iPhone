@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <StoreKit/StoreKit.h>
 
+typedef enum{
+    SHOPPING_COIN_TYPE = 1,
+    SHOPPING_ITEM_TYPE = 2
+}SHOPPING_MODEL_TYPE;
 
 @interface PriceModel : NSManagedObject
 
@@ -17,5 +22,6 @@
 @property (nonatomic, retain) NSString * productId;
 @property (nonatomic, retain) NSNumber * savePercent;
 @property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSNumber * seq;
 
 @end

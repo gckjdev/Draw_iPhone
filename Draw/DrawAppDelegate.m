@@ -21,12 +21,13 @@
 #import "AccountManager.h"
 #import "AccountService.h"
 #import "FacebookSNSService.h"
+#import "PriceService.h"
 
 NSString* GlobalGetServerURL()
 {    
-    return @"http://you100.me:8001/api/i?";    
+//    return @"http://you100.me:8001/api/i?";    
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.198:8000/api/i?";    
+    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -121,7 +122,9 @@ NSString* GlobalGetServerURL()
      */
     
     // Fetch Server List At Background
-    [[RouterService defaultService] startUpdateTimer];
+    [[RouterService defaultService] fetchServerListAtBackground];
+    [[PriceService defaultService] syncShoppingListAtBackground];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

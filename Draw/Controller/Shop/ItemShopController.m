@@ -19,6 +19,7 @@
 #import "CoinShopController.h"
 #import "PPDebug.h"
 #import "ShowDrawController.h"
+#import "ShoppingManager.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -68,7 +69,15 @@ ItemShopController *staticItemController = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[PriceService defaultService] fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:self];
+    
+    NSArray* itemList = [[ShoppingManager defaultManager] findItemPriceList];
+    if ([itemList count] == 0){
+        [[PriceService defaultService] fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:self];
+    }
+    else{
+        self.dataList = itemList;
+    }
+    
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     UIImageView *tableBg = [[UIImageView alloc] initWithFrame:self.dataTableView.bounds];
     
@@ -83,6 +92,8 @@ ItemShopController *staticItemController = nil;
 {
     //load the coin number
     [super viewDidAppear:animated];
+        
+    self.dataList = [[ShoppingManager defaultManager] findItemPriceList];
     [self updateLabels];
     
     [self.gotoCoinShopButton setTitle:NSLS(@"kGotoCoinShop") forState:UIControlStateNormal];
@@ -135,7 +146,7 @@ ItemShopController *staticItemController = nil;
         cell.shoppingDelegate = self;
     }
     cell.indexPath = indexPath;
-    ShoppingModel *model = [self.dataList objectAtIndex:indexPath.row];
+    PriceModel *model = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:model indexPath:indexPath];
     return cell;
 }
@@ -154,10 +165,10 @@ ItemShopController *staticItemController = nil;
 #pragma mark - ShoppingCell delegate
 #define DIALOG_NOT_BUY_COIN_TAG 20120406
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
-                               model:(ShoppingModel *)model
+                               model:(PriceModel *)model
 {
     
-    if ([[AccountService defaultService] hasEnoughCoins:[model price]] == NO){
+    if ([[AccountService defaultService] hasEnoughCoins:[[model price] intValue]] == NO){
         PPDebug(@"<ItemShopController> click buy item but coins not enough");        
         if (callFromShowViewController) {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleDoubleButton deelegate:self];
@@ -173,7 +184,9 @@ ItemShopController *staticItemController = nil;
         return;
     }
               
-    [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS itemCount:[model count] itemCoins:[model price]];
+    [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS 
+                                   itemCount:[[model count] intValue]
+                                   itemCoins:[[model price] intValue]];
     [self updateLabels];
 }
 
@@ -199,13 +212,18 @@ ItemShopController *staticItemController = nil;
 #pragma mark - Price service delegate
 - (void)didBeginFetchData
 {
-    [self showActivityWithText:@"Loading..."];
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 - (void)didFinishFetchShoppingList:(NSArray *)shoppingList resultCode:(int)resultCode
 {
     [self hideActivity];
-    self.dataList = shoppingList;
-    [self.dataTableView reloadData];
+    if (resultCode == 0){
+        self.dataList = [[ShoppingManager defaultManager] findItemPriceList];
+        [self.dataTableView reloadData];
+    }
+    else{
+        [self popupMessage:NSLS(@"kNetworkFailure") title:nil];
+    }
 }
 
 

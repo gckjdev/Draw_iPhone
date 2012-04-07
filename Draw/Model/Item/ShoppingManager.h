@@ -7,24 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "ShoppingModel.h"
+#import "PriceModel.h"
+#import <StoreKit/StoreKit.h>
 
 @interface ShoppingManager : NSObject
 {
     
 }
 
-@property (nonatomic, retain) NSArray *coinPriceList;
+@property (nonatomic, retain) NSMutableDictionary *appleProductList;
 
 +(ShoppingManager *)defaultManager;
 
 
 // coin price handling
-- (ShoppingModel*)findCoinPriceByProductId:(NSString*)productId;
+- (PriceModel*)findCoinPriceByProductId:(NSString*)productId;
 - (void)updateCoinSKProduct:(SKProduct*)product;
 
 - (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type;
 - (NSArray *)getShoppingListFromOutputList:(NSArray *)list type:(SHOPPING_MODEL_TYPE)type;
+
+- (NSArray*)findCoinPriceList;
+- (NSArray*)findItemPriceList;
+
+- (SKProduct*)productWithId:(NSString*)product;
 
 @end

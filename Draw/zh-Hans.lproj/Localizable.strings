@@ -161,3 +161,9 @@
 "kNoUpdate" = "没有更新的信息";
 "kInfoUnSaved" = "更改的信息尚未保存，你确定要退出吗？";
 "kNotice" = "通知";
+"kShare_to_friends" = "分享给好友";
+"kReport_problems" = "问题反馈";
+"kGive_some_advice" = "给些建议";
+"kAbout_us" = "关于我们";
+"kMore_apps" = "更多应用";
+"kGive_a_5-star_review" = "给个好评吧";

@@ -10,6 +10,7 @@
 #import "SKProduct+LocalizedPrice.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "ShoppingManager.h"
 
 #define ITEM_PRICE_CENTER CGPointMake(195,34)
 #define COIN_PRICE_CENTER CGPointMake(180,34)
@@ -61,25 +62,29 @@
 
 
 
-- (void)setCellInfo:(ShoppingModel *)model indexPath:(NSIndexPath *)aIndexPath
+- (void)setCellInfo:(PriceModel *)model indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
     self.model = model;
     NSString *countString = nil;
     NSString *priceString = nil;
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    if (model.type == SHOPPING_COIN_TYPE) {
-        countString = [NSString stringWithFormat:@"x%d", model.count];
-        priceString = [NSString stringWithFormat:@"%@", [model.product localizedPrice]];
+    if ([model.type integerValue] == SHOPPING_COIN_TYPE) {
+        countString = [NSString stringWithFormat:@"x%d", [model.count intValue]];
+        NSString* localPrice = [[[ShoppingManager defaultManager] productWithId:model.productId] localizedPrice];
+        if (localPrice == nil){
+            localPrice = [NSString stringWithFormat:@"$%.2f", [model.price doubleValue]];
+        }
+        priceString = [NSString stringWithFormat:@"%@", localPrice];
         [self.priceLabel setCenter:COIN_PRICE_CENTER];
         [self.coinImage setHidden:NO];
         [self.toolImage setHidden:YES];        
         [self.costCoinImage setHidden:YES];
         
-    }else if(model.type == SHOPPING_ITEM_TYPE)
+    }else if([model.type integerValue] == SHOPPING_ITEM_TYPE)
     {
-        countString = [NSString stringWithFormat:@"x%d",model.count];
-        priceString = [NSString stringWithFormat:@"%.0f",model.price];
+        countString = [NSString stringWithFormat:@"x%d",[model.count intValue]];
+        priceString = [NSString stringWithFormat:@"%.0f",[model.price doubleValue]];
         [self.costCoinImage setHidden:NO];
         [self.coinImage setHidden:YES];
         [self.toolImage setHidden:NO];

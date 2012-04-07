@@ -45,7 +45,16 @@
 
 - (IBAction)publish:(id)sender
 {
-    [[SinaSNSService defaultService] publishWeibo:@"test gif" imageFilePath:GIF_PATH delegate:self];
+    [[SinaSNSService defaultService] publishWeibo:@"@zsu_kira大人 测试一下" delegate:self];
+}
+
+- (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
+{
+    NSLog(@"user did login");
+}
+- (void)didPublishWeibo:(int)result
+{
+    NSLog(@"publish weibo success");
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

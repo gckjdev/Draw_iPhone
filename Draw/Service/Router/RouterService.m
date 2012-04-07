@@ -10,7 +10,6 @@
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
 #import "PPNetworkRequest.h"
-#import "TrafficServer.h"
 #import "TrafficServerManager.h"
 #import "PPDebug.h"
 #import "UserManager.h"
@@ -63,16 +62,21 @@ static RouterService* _defaultRouterService;
             }
             
             for (NSDictionary* server in jsonArray){
-                TrafficServer* trafficServer = 
-                    [[TrafficServer alloc] initWithServerAddress:[server objectForKey:PARA_SERVER_ADDRESS]
-                                                            port:[[server objectForKey:PARA_SERVER_PORT] intValue]
-                                                        language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]
-                                                           usage:[[server objectForKey:PARA_SERVER_USAGE] intValue]                     
-                                                        capacity:[[server objectForKey:PARA_SERVER_CAPACITY] intValue]];
+//                TrafficServer* trafficServer = 
+//                    [[TrafficServer alloc] initWithServerAddress:[server objectForKey:PARA_SERVER_ADDRESS]
+//                                                            port:[[server objectForKey:PARA_SERVER_PORT] intValue]
+//                                                        language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]
+//                                                           usage:[[server objectForKey:PARA_SERVER_USAGE] intValue]                     
+//                                                        capacity:[[server objectForKey:PARA_SERVER_CAPACITY] intValue]];
+//                
+//                
+//                [manager addTrafficServer:trafficServer];
+//                PPDebug(@"ADD %@", [trafficServer description]);
                 
                 
-                [manager addTrafficServer:trafficServer];
-                PPDebug(@"ADD %@", [trafficServer description]);
+                [manager createTrafficServer:[server objectForKey:PARA_SERVER_ADDRESS] 
+                                        port:[[server objectForKey:PARA_SERVER_PORT] intValue]
+                                    language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]];
             }
         }
         
@@ -125,18 +129,17 @@ static RouterService* _defaultRouterService;
 #define MAX_USAGE            7000   // 70%
 
 
-- (TrafficServer*)assignTrafficServer
+- (RouterTrafficServer*)assignTrafficServer
 {        
     int language = [[UserManager defaultManager] getLanguageType];
     TrafficServerManager* manager = [TrafficServerManager defaultManager];
 
-    NSArray* serverList = [manager serverList];
-
+    NSArray* serverList = [manager findAllTrafficServers];
     NSMutableArray* candidateList = [[[NSMutableArray alloc] init] autorelease];
     
     // create candidate server list
-    for (TrafficServer* server in serverList){
-        if ([server language] == language){            
+    for (RouterTrafficServer* server in serverList){
+        if ([[server language] intValue] == language){            
             [candidateList addObject:server];
         }
     }
@@ -209,11 +212,11 @@ static RouterService* _defaultRouterService;
     
 }
 
-- (void)putServerInFailureList:(NSString*)serverAddress port:(int)port
-{
-    NSString* key = [TrafficServer keyWithServerAddress:serverAddress port:port];
-    PPDebug(@"<putServerInFailureList> key = %@", key);
-    [_failureServerList addObject:key];
-}
+//- (void)putServerInFailureList:(NSString*)serverAddress port:(int)port
+//{
+//    NSString* key = [TrafficServer keyWithServerAddress:serverAddress port:port];
+//    PPDebug(@"<putServerInFailureList> key = %@", key);
+//    [_failureServerList addObject:key];
+//}
 
 @end

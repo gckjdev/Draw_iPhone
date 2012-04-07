@@ -27,6 +27,13 @@ static PriceService* staticPriceService = nil;
     return staticPriceService;
 }
 
+- (void)syncShoppingListAtBackground
+{
+    [self fetchCoinProductList:nil];
+    [self fetchShoppingListByType:SHOPPING_COIN_TYPE viewController:nil];
+    [self fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:nil];
+}
+
 - (void)fetchShoppingListByType:(SHOPPING_MODEL_TYPE)type
                  viewController:(PPViewController<PriceServiceDelegate> *)viewController
 {
@@ -61,7 +68,7 @@ static PriceService* staticPriceService = nil;
     // read IAP Product Identifier from shopping manager
     NSArray* priceList = [[ShoppingManager defaultManager] getShoppingListByType:SHOPPING_COIN_TYPE];    
     NSMutableSet* productIdSet = [[[NSMutableSet alloc] init] autorelease];
-    for (ShoppingModel* price in priceList){
+    for (PriceModel* price in priceList){
         if ([price productId] != nil){
             [productIdSet addObject:[price productId]];
         }
@@ -91,7 +98,7 @@ static PriceService* staticPriceService = nil;
     }
     
     // notify UI to update
-    NSArray* coinPriceList = [[ShoppingManager defaultManager] coinPriceList];
+    NSArray* coinPriceList = [[ShoppingManager defaultManager] findCoinPriceList];
     if (delegate &&[delegate respondsToSelector:@selector(didFinishFetchShoppingList:resultCode:)]) {
         [delegate didFinishFetchShoppingList:coinPriceList resultCode:0];
     }

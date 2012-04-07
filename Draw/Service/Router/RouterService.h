@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
-
-@class TrafficServer;
+#import "RouterTrafficServer.h"
 
 @protocol RouterServiceDelegate <NSObject>
 
@@ -31,8 +30,8 @@
 - (void)startUpdateTimer;
 - (void)stopUpdateTimer;
 
-- (TrafficServer*)assignTrafficServer;
+- (RouterTrafficServer*)assignTrafficServer;
 
-- (void)putServerInFailureList:(NSString*)serverAddress port:(int)port;
+//- (void)putServerInFailureList:(NSString*)serverAddress port:(int)port;
 
 @end
