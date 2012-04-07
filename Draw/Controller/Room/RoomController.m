@@ -159,12 +159,20 @@
         HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
         [imageView clear];
         imageView.hidden = NO;
-        if ([[user userAvatar] length] > 0){
-            [imageView setUrl:[NSURL URLWithString:[user userAvatar]]];
+        
+        NSString* avatar = nil;
+        if ([session isMe:[user userId]]){
+            avatar = [[UserManager defaultManager]avatarURL];
         }
         else{
+            avatar = [user userAvatar];
+        }   
+        if ([avatar length] > 0){            
+            [imageView setUrl:[NSURL URLWithString:avatar]];
+        }else{
             [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
         }
+        
         [GlobalGetImageCache() manage:imageView];
         
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
@@ -175,7 +183,7 @@
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
             UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
             UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
-            [drawingImageView setFrame:CGRectMake(40, 40, 24, 25)];
+            [drawingImageView setFrame:CGRectMake(40, 40, 25, 25)];
             drawingImageView.tag = DRAWING_MARK_TAG;
             [imageView addSubview:drawingImageView];
             [drawingImageView release];

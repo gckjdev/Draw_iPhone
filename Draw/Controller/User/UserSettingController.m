@@ -146,6 +146,8 @@ enum{
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
+        [cell.textLabel setTextColor:[UIColor brownColor]];
     }
     NSInteger row = indexPath.row;
     if (row == rowOfPassword) {
@@ -230,6 +232,7 @@ enum{
         return;
     }else {
         languageType = buttonIndex + 1;
+        [self.dataTableView reloadData];
         hasEdited = YES;
     }
 }
@@ -247,6 +250,7 @@ enum{
 - (IBAction)clickAvatar:(id)sender {
     if (changeAvatar == nil) {
         changeAvatar = [[ChangeAvatar alloc] init];
+        changeAvatar.autoRoundRect = NO;
     }
     [changeAvatar showSelectionView:self];
 }
@@ -264,12 +268,11 @@ enum{
 - (void)clickOk:(CommonDialog *)dialog
 {
     [dialog removeFromSuperview];
-    [self clickSaveButton:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
-    [self.navigationController popViewControllerAnimated:YES];
+    [dialog removeFromSuperview];    
 }
 
 
