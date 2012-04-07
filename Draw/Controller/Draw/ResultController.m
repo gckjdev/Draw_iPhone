@@ -119,7 +119,7 @@
     [self startTimer];
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
-    upButton.hidden = downButton.hidden = _isMyPaint;
+//    upButton.hidden = downButton.hidden = _isMyPaint;
     [self didFinishAPaint:drawGameService.drawActionList];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
@@ -165,8 +165,8 @@
         
     [drawGameService setRoomDelegate:self];
     [drawGameService registerObserver:self];
-    [self.upButton setEnabled:YES];
-    [self.downButton setEnabled:YES];
+//    [self.upButton setEnabled:YES];
+//    [self.downButton setEnabled:YES];
 }
 
 - (void)viewDidUnload

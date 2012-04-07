@@ -102,6 +102,9 @@
 
 "kInputNickName" = "Enter Nick Name";
 "Skip" = "Skip";
+"kUpdatingUser" = "Updating Data...";
+"kUpdateUserSucc" = "Update user profile successfully.";
+"kUpdateUserFail" = "Fail To update user profile. Please try again later.";
 
 
 "kSelectFromAlbum" = "Select From Album";
@@ -118,8 +121,8 @@
 
 "kNoTipsItemTitle" = "Message";
 "kNoTipsItemMessage" = "You don't have any tip now. Do you want to buy some?";
-"kQuickMessage" = "%@ says: Hurry Up!";
-"kWaitMessage" = "%@ says: Wait a minute!";
+"kQuickMessage" = "Hurry Up!";
+"kWaitMessage" = "Wait a minute!";
 "kClickTooFast" = "Your click rate is too high, please take a break.";
 
 "kEnglish" = "English";
@@ -145,6 +148,21 @@
 "kQuitGameTitle" = "Quit Game";
 "kQuitGameConfirm" = "Do you want to leave the room now?";
 
+"kOldPasswordHolder" = "Input old password";
+"kNewPasswordHolder" = "Input new password";
+"kConfirmPasswordHolder" = "Confirm new password";
+"kNicknameHolder" = "Input new nickname";
+"kPasswordWrong" = "Old password not correct";
+"kPasswordDifferent" = "Two inputs different";
+"kPasswordIllegal" = "Password length not less than 6";
+
+"kUnset" = "Unset";
+"kUpdatingUser" = "Updating information...";
+"kUpdateUserSucc" = "Update information successfully.";
+"kUpdateUserFail" = "Update information failure. Try again";
+"kNoUpdate" = "No information update";
+"kInfoUnSaved" = "There is unsaved information. Do you want to quit now?";
+"kNotice" = "Notice";
 "kShare_to_friends" = "Share to friends";
 "kReport_problems" = "Report problems";
 "kGive_some_advice" = "Give some advices";
@@ -167,3 +185,7 @@
 "kShare_via_tencent_weibo" = "Share via tencent weibo";
 "kShare_via_Facebook" = "Share via Facebook";
 "kShare_via_Twitter" = "Share via Twitter";
+"Message" = "Message";
+
+"kEmailEmpty" = "Email address cannot be empty.";
+"kInvalidEmail" = "Invalid email address. Please enter again.";

@@ -90,7 +90,7 @@
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
 
-"kRegisterPromptLabel" = "使用已有帐号";
+"kRegisterPromptLabel" = "微博登录";
 "kRegisterTitleLabel" = "用户注册";
 "kEnterEmail" = "请输入Email地址注册";
 "kSubmit" = "提交";
@@ -104,6 +104,9 @@
 
 "kInputNickName" = "请输入昵称";
 "Skip" = "跳过";
+"kUpdatingUser" = "更新用户数据中...";
+"kUpdateUserSucc" = "用户数据已成功更新.";
+"kUpdateUserFail" = "更新用户数据失败，请稍候再试";
 
 "kSelectFromAlbum" = "从相册选择";
 "kTakePhoto" = "拍照";
@@ -118,8 +121,8 @@
 "kChangeRoom" = "更换房间中...";
 "kNoTipsItemTitle" = "消息";
 "kNoTipsItemMessage" = "你的道具不够了，是不是现在购买一些？";
-"kQuickMessage" = "%@说: 快点快点，我等到花儿都谢了！";
-"kWaitMessage" = "%@说: 等一会，我来给花儿洒洒水。";
+"kQuickMessage" = "快点快点，我等到花儿都谢了！";
+"kWaitMessage" = "等一会，我来给花儿洒洒水。";
 "kClickTooFast" = "你的点击频率太快了，不妨休息一下。";
 
 "kEnglish" = "英语";
@@ -144,6 +147,23 @@
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
 
+"kOldPasswordHolder" = "请输入旧密码";
+"kNewPasswordHolder" = "请输入新密码（长度不少于6）";
+"kConfirmPasswordHolder" = "请再次输入新密码";
+"kNicknameHolder" = "请输入新昵称";
+
+"kPasswordWrong" = "旧密码输入不正确";
+"kPasswordDifferent" = "两次输入不一致";
+"kPasswordIllegal" = "密码长度不小于6";
+
+"kUpdatingUser" = "更新用户信息中...";
+"kUpdateUserSucc" = "更新用户信息成功!";
+"kUpdateUserFail" = "更新用户资料失败，请重试。";
+
+"kUnset" = "未设定";
+"kNoUpdate" = "没有更新的信息";
+"kInfoUnSaved" = "更改的信息尚未保存，你确定要退出吗？";
+"kNotice" = "通知";
 "kShare_to_friends" = "分享给好友";
 "kReport_problems" = "问题反馈";
 "kGive_some_advice" = "给些建议";
@@ -164,3 +184,10 @@
 "kShare_via_tencent_weibo" = "通过腾讯微博分享";
 "kShare_via_Facebook" = "通过Facebook分享";
 "kShare_via_Twitter" = "通过Twitter分享";
+
+
+"Message" = "消息";
+
+"kEmailEmpty" = "电子邮件地址不能为空";
+"kInvalidEmail" = "输入的电子邮件地址不合法，请重新输入";
+

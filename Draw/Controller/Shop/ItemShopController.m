@@ -42,7 +42,7 @@ ItemShopController *staticItemController = nil;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        callFromShowViewController = NO;
     }
     return self;
 }
@@ -99,6 +99,7 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setTitle:NSLS(@"kGotoCoinShop") forState:UIControlStateNormal];
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
+    self.gotoCoinShopButton.hidden = callFromShowViewController;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -171,13 +172,13 @@ ItemShopController *staticItemController = nil;
     if ([[AccountService defaultService] hasEnoughCoins:[[model price] intValue]] == NO){
         PPDebug(@"<ItemShopController> click buy item but coins not enough");        
         if (callFromShowViewController) {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleDoubleButton deelegate:self];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton deelegate:self];
             dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
             [dialog showInView:self.view];
             
         }else{        
             _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleSingleButton deelegate:self];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
             dialog.tag = DIALOG_ACTION_ASK_BUY_COIN;
             [dialog showInView:self.view];
         }

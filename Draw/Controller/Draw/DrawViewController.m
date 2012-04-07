@@ -271,11 +271,13 @@ DrawViewController *GlobalGetDrawViewController()
         y = player.frame.origin.y + player.frame.size.height;
     }
     
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
+    CGFloat fontSize = 18;    
+    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
     [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
     [popupButton setTitle:message forState:UIControlStateNormal];
     [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
+    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
     [popupButton setTitleEdgeInsets:inSets];
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];

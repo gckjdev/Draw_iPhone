@@ -9,7 +9,7 @@
 #import "InputDialog.h"
 #import "AnimationManager.h"
 #import "ShareImageManager.h"
-
+#import "LocaleUtils.h"
 
 @implementation InputDialog
 @synthesize cancelButton;
@@ -23,8 +23,18 @@
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
+- (void)updateTextFields
+{
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.targetTextField setBackground:[imageManager inputImage]];
+    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+}
+
 - (IBAction)clickCancelButton:(id)sender {
     [self removeFromSuperview];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickCancel:)]) {
+        [self.delegate clickCancel:self];
+    }
 }
 
 - (IBAction)clickOkButton:(id)sender {
@@ -34,7 +44,7 @@
     }
 }
 
-+ (InputDialog *)inputDialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
++ (InputDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"InputDialog" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -45,9 +55,7 @@
     
     //init the button
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view.targetTextField setBackground:[imageManager inputImage]];
-//    [view.bgView setImage:[imageManager inputImage]];
-//    [view.titleLabel setBackgroundImage:[imageManager woodImage] forState:UIControlStateNormal];
+    [view updateTextFields];
     [view setDialogTitle:title];
     [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
@@ -84,7 +92,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self clickOkButton:nil];
+    [self clickOkButton:okButton];
     return YES;
 }
 
