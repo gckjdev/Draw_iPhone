@@ -511,6 +511,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarButton">UIButton</string>
+						<string key="nicknameLabel">UILabel</string>
 						<string key="saveButton">UIButton</string>
 						<string key="tableViewBG">UIImageView</string>
 						<string key="titleLabel">UILabel</string>
@@ -519,6 +520,10 @@
 						<object class="IBToOneOutletInfo" key="avatarButton">
 							<string key="name">avatarButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="nicknameLabel">
+							<string key="name">nicknameLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="saveButton">
 							<string key="name">saveButton</string>

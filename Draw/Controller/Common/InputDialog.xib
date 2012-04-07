@@ -67,18 +67,16 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="936743186">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
+								<object class="NSColor" key="IBUINormalTitleColor" id="963500386">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="551494979">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="936743186"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
 									<double key="pointSize">20</double>
@@ -141,9 +139,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<reference key="IBUIHighlightedTitleColor" ref="936743186"/>
 								<reference key="IBUINormalTitleColor" ref="936743186"/>
-								<reference key="IBUINormalTitleShadowColor" ref="551494979"/>
+								<reference key="IBUINormalTitleShadowColor" ref="963500386"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="862062167">
 									<int key="type">2</int>
 									<double key="pointSize">16</double>
@@ -160,14 +159,14 @@
 								<string key="NSFrame">{{158, 104}, {72, 37}}</string>
 								<reference key="NSSuperview" ref="843572510"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<reference key="IBUIHighlightedTitleColor" ref="936743186"/>
 								<reference key="IBUINormalTitleColor" ref="936743186"/>
-								<reference key="IBUINormalTitleShadowColor" ref="551494979"/>
+								<reference key="IBUINormalTitleShadowColor" ref="963500386"/>
 								<reference key="IBUIFontDescription" ref="862062167"/>
 								<reference key="IBUIFont" ref="163840336"/>
 							</object>

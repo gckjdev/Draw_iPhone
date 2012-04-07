@@ -14,6 +14,9 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "InputDialog.h"
+#import "PassWordDialog.h"
+#import "StringUtil.h"
+
 enum{
     SECTION_LANGUAGE = 0,
     SECTION_COUNT
@@ -28,6 +31,8 @@ enum{
 @synthesize avatarButton;
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
+@synthesize updatePassword = _updatePassword;
+
 
 - (void)updateRowIndexs
 {
@@ -37,19 +42,45 @@ enum{
     if ([LocaleUtils isChina]) {
         rowOfSinaWeibo = 3;
         rowOfQQWeibo = 4;
-        rowOfFacebook = 5;
-        rowNumber = 6;
+        rowOfFacebook = -1;
+        rowNumber = 5;
     }else{
         rowOfSinaWeibo = rowOfQQWeibo = -1;        
         rowOfFacebook = 3;
         rowNumber = 4;
     }
 }
+- (void)updateAvatar:(UIImage *)image
+{
+    [imageView setImage:image];
+}
+
+- (void)updateNickname:(NSString *)nick
+{
+    [self.nicknameLabel setText:nick];
+}
+
+- (void)updateInfoFromUserManager
+{
+    [imageView clear];
+    if ([userManager.avatarURL length] > 0){
+        [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
+    }
+    else{
+        [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+    }
+    [GlobalGetImageCache() manage:imageView];
+    [self updateNickname:[userManager nickName]];
+    hasEdited = NO;
+    avatarChanged = NO;
+    languageType = [userManager getLanguageType];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.updatePassword = nil;
         [self updateRowIndexs];
     }
     return self;
@@ -63,15 +94,7 @@ enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)updateAvatar:(UIImage *)image
-{
-    [imageView setImage:image];
-}
 
-- (void)updateNickname:(NSString *)nick
-{
-    [self.nicknameLabel setText:nick];
-}
 
 #pragma mark - View lifecycle
 
@@ -86,17 +109,9 @@ enum{
     [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     
     imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
-    [imageView clear];
-    if ([userManager.avatarURL length] > 0){
-        [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
-    }
-    else{
-        [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
-    }
-    [GlobalGetImageCache() manage:imageView];
     [avatarButton addSubview:imageView];
-    [self updateNickname:[userManager nickName]];
-    
+
+    [self updateInfoFromUserManager];
 }
 
 - (void)viewDidUnload
@@ -134,14 +149,22 @@ enum{
     }
     NSInteger row = indexPath.row;
     if (row == rowOfPassword) {
-        [cell.textLabel setText:NSLS(@"kPassword")];           
+        [cell.textLabel setText:NSLS(@"kPassword")];      
+        if ([userManager isPasswordEmpty]) {
+            [cell.detailTextLabel setText:NSLS(@"kUnset")];
+        }
     }else if(row == rowOfNickName)
     {
         [cell.textLabel setText:NSLS(@"kNickname")];           
         [cell.detailTextLabel setText:nicknameLabel.text];            
     }else if(row == rowOfLanguage)
     {
-        [cell.textLabel setText:NSLS(@"kLanguageSettings")];           
+        [cell.textLabel setText:NSLS(@"kLanguageSettings")];     
+        if (languageType == ChineseType) {
+            [cell.detailTextLabel setText:NSLS(@"kChinese")];
+        }else{
+            [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+        }
     }else if(row == rowOfSinaWeibo)
     {
         [cell.textLabel setText:NSLS(@"kSinaWeibo")];              
@@ -182,10 +205,21 @@ enum{
         [actionSheet release];        
     }else if(row == rowOfNickName)
     {
-        InputDialog *dialog = [InputDialog inputDialogWith:NSLS(@"kNickname") delegate:self];
+        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
         dialog.tag = DIALOG_TAG_NICKNAME;
         [dialog setTargetText:nicknameLabel.text];
         [dialog showInView:self.view];
+    }else if(row == rowOfPassword)
+    {
+        PassWordDialog *dialog = [PassWordDialog dialogWith:NSLS(@"kPassword") delegate:self];
+        dialog.tag = DIALOG_TAG_PASSWORD;
+        [dialog showInView:self.view];
+    }else if(row == rowOfSinaWeibo){
+        //TODO bind Sina weibo
+    }else if(row == rowOfQQWeibo){
+        //TODO bind QQ Weibo
+    }else if(row == rowOfFacebook){
+        //TODO bind Facebook
     }
 }
 
@@ -195,12 +229,19 @@ enum{
     if (buttonIndex == [actionSheet cancelButtonIndex] || buttonIndex == [actionSheet destructiveButtonIndex]) {
         return;
     }else {
-        LanguageType type = buttonIndex + 1;
-        [userManager setLanguageType:type];
+        languageType = buttonIndex + 1;
+        hasEdited = YES;
     }
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+    if (hasEdited) {
+        [userManager setLanguageType:languageType];
+        UIImage *image = avatarChanged ?  imageView.image : nil;
+        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
+    }else{
+        [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
+    }
 }
 
 - (IBAction)clickAvatar:(id)sender {
@@ -211,12 +252,33 @@ enum{
 }
 
 - (IBAction)clickBackButton:(id)sender {
+    if (hasEdited) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
+        [dialog showInView:self.view];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
+    [self clickSaveButton:nil];
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    [dialog removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 - (void)didImageSelected:(UIImage*)image
 {
     [self updateAvatar:image];
+    avatarChanged = YES;
+    hasEdited = YES;
 }
 - (void)dealloc {
     [titleLabel release];
@@ -235,11 +297,40 @@ enum{
     if (dialog.tag == DIALOG_TAG_NICKNAME) {
         [self updateNickname:targetText];
         [self.dataTableView reloadData];
+    }else if(dialog.tag == DIALOG_TAG_PASSWORD)
+    {
+        self.updatePassword = [targetText encodeMD5Base64:PASSWORD_KEY];        
+        NSLog(@"password = %@", self.updatePassword);
     }
+    hasEdited = YES;
 }
 - (void)clickCancel:(InputDialog *)dialog
 {
-    
+
+}
+
+#pragma mark - Password Dialog Delegate
+- (void)passwordIsWrong:(NSString *)password
+{
+    [self popupHappyMessage:NSLS(@"kPasswordWrong") title:nil];    
+}
+- (void)twoInputDifferent
+{
+    [self popupHappyMessage:NSLS(@"kPasswordDifferent") title:nil];    
+}
+- (void)passwordIsIllegal:(NSString *)password
+{
+    [self popupHappyMessage:NSLS(@"kPasswordIllegal") title:nil];    
+}
+
+- (void)didUserUpdated:(int)resultCode
+{
+    if(resultCode == 0){
+        [self updateInfoFromUserManager];
+        [self.dataTableView reloadData];
+    }else{
+
+    }
 }
 
 @end

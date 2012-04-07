@@ -15,6 +15,10 @@
 - (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText;
 - (void)clickCancel:(InputDialog *)dialog;
 
+//used for password dialog
+- (void)passwordIsWrong:(NSString *)password;
+- (void)passwordIsIllegal:(NSString *)password;
+- (void)twoInputDifferent;
 @end
 
 @interface InputDialog : UIView<UITextFieldDelegate>
@@ -35,7 +39,7 @@
 - (IBAction)clickCancelButton:(id)sender;
 - (IBAction)clickOkButton:(id)sender;
 
-+ (InputDialog *)inputDialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate;
++ (InputDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate;
 - (void)showInView:(UIView *)view;
 
 @end
