@@ -13,6 +13,7 @@
 #import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageExt.h"
+#import "UIImageUtil.h"
 
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
@@ -117,8 +118,9 @@
         playingPointIndex = 0;
         playingActionIndex ++;
         if (_shouldCreateGif && playingActionIndex%2 == 0) {
-            [self.gifFrameArray addObject:[[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(160, 160)]];
-            NSLog(@"creating frame %d", self.gifFrameArray.count);
+            UIImage* frame = [self createImage];
+            [self.gifFrameArray addObject:frame];
+            NSLog(@"creating frame %d size= %d", self.gifFrameArray.count, [(NSData*)UIImageJPEGRepresentation(frame, 1.0) length]);
         }
         if ([self.drawActionList count] > playingActionIndex) {
         }else{

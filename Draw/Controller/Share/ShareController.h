@@ -7,15 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
 #import "ShareCell.h"
 #import "ShowDrawView.h"
 
-#import "ANGifEncoder.h"
-#import "ANCutColorTable.h"
-#import "ANGifNetscapeAppExtension.h"
-#import "ANImageBitmapRep.h"
-#import "UIImagePixelSource.h"
+
 
 @interface ShareController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate> {
     NSMutableArray *_paints;
