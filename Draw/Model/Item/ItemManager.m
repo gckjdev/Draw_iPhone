@@ -41,7 +41,6 @@ ItemManager *GlobalGetItemManager()
 
 - (int)tipsItemAmount
 {
-    return 0;
     UserItem* item = [self findUserItemByType:ITEM_TYPE_TIPS];
     return [[item amount] intValue];
 }
