@@ -16,7 +16,7 @@
 #import "UserManager.h"
 #import "Reachability.h"
 
-#define ROUTER_SERVER_URL   @"http://58.215.188.215:8600/api/?"
+#define ROUTER_SERVER_URL   @"http://www.place100.com:8600/api/?"
 //#define ROUTER_SERVER_URL   @"http://106.187.89.232:8600/api/?"
 
 @implementation RouterService
@@ -131,6 +131,23 @@ static RouterService* _defaultRouterService;
     TrafficServerManager* manager = [TrafficServerManager defaultManager];
 
     NSArray* serverList = [manager serverList];
+
+    NSMutableArray* candidateList = [[[NSMutableArray alloc] init] autorelease];
+    
+    // create candidate server list
+    for (TrafficServer* server in serverList){
+        if ([server language] == language){            
+            [candidateList addObject:server];
+        }
+    }
+    
+    if ([candidateList count] == 0)
+        return nil;
+    
+    int randomSelect = rand() % [candidateList count];
+    return [candidateList objectAtIndex:randomSelect];
+    
+    /* rem by Benson, use random assignment now
     NSMutableArray* lowCandidateList = [[[NSMutableArray alloc] init] autorelease];
     NSMutableArray* normalCandidateList = [[[NSMutableArray alloc] init] autorelease];
     
@@ -185,8 +202,11 @@ static RouterService* _defaultRouterService;
                 
         PPDebug(@"Choose server in normal candidate, %@", selectedServer);
     }
+     
+     return selectedServer;
+    */
     
-    return selectedServer;
+    
 }
 
 - (void)putServerInFailureList:(NSString*)serverAddress port:(int)port

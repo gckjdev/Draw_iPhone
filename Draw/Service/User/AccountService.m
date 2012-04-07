@@ -65,7 +65,7 @@ static AccountService* _defaultAccountService;
         return;
     }
     PPDebug(@"<buyCoin> on product %@", [selectedProduct productIdentifier]);
-    SKPayment *payment = [SKPayment paymentWithProduct:selectedProduct];
+    SKPayment *payment = [SKPayment paymentWithProductIdentifier:[selectedProduct productIdentifier]];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
