@@ -202,6 +202,16 @@ NSString* GlobalGetServerURL()
 	}	
 }
 
+#pragma mark - Alert View Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
+        if (buttonIndex == 1){
+            [self openAppForUpgrade:APP_ID];
+        }
+    }
+}
+
 
 
 @end
