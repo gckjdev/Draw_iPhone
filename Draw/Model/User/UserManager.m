@@ -183,6 +183,16 @@ static UserManager* _defaultManager;
     
 }
 
+- (void)setDeviceToken:(NSString*)deviceToken
+{
+    if (deviceToken == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:deviceToken forKey:KEY_DEVICE_TOKEN];    
+    [userDefaults synchronize];
+    
+}
 
 - (void)setPassword:(NSString*)password
 {

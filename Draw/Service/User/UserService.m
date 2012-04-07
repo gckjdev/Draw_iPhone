@@ -117,7 +117,7 @@ static UserService* _defaultUserService;
                      viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     NSString* appId = APP_ID;
-    NSString* deviceToken = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
@@ -233,7 +233,7 @@ static UserService* _defaultUserService;
                                                             nickName:nickName 
                                                             password:password 
                                                               avatar:[avatarImage data]];
-        
+                
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){

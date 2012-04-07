@@ -52,37 +52,27 @@ static RouterService* _defaultRouterService;
     PPDebug(@"<fetchServerList> ...");
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getAllTrafficeServers:ROUTER_SERVER_URL];
-        if (output.resultCode == 0){
-            
-            NSArray* jsonArray = output.jsonDataArray;
-            TrafficServerManager* manager = [TrafficServerManager defaultManager];
-            
-            if ([jsonArray count] > 0){
-                [manager clearAllServers];
-            }
-            
-            for (NSDictionary* server in jsonArray){
-//                TrafficServer* trafficServer = 
-//                    [[TrafficServer alloc] initWithServerAddress:[server objectForKey:PARA_SERVER_ADDRESS]
-//                                                            port:[[server objectForKey:PARA_SERVER_PORT] intValue]
-//                                                        language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]
-//                                                           usage:[[server objectForKey:PARA_SERVER_USAGE] intValue]                     
-//                                                        capacity:[[server objectForKey:PARA_SERVER_CAPACITY] intValue]];
-//                
-//                
-//                [manager addTrafficServer:trafficServer];
-//                PPDebug(@"ADD %@", [trafficServer description]);
-                
-                
-                [manager createTrafficServer:[server objectForKey:PARA_SERVER_ADDRESS] 
-                                        port:[[server objectForKey:PARA_SERVER_PORT] intValue]
-                                    language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]];
-            }
-        }
         
-        if ([delegate respondsToSelector:@selector(didServerListFetched:)]){
-            [delegate didServerListFetched:output.resultCode];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == 0){            
+                NSArray* jsonArray = output.jsonDataArray;
+                TrafficServerManager* manager = [TrafficServerManager defaultManager];
+                
+                if ([jsonArray count] > 0){
+                    [manager clearAllServers];
+                }
+                
+                for (NSDictionary* server in jsonArray){
+                    [manager createTrafficServer:[server objectForKey:PARA_SERVER_ADDRESS] 
+                                            port:[[server objectForKey:PARA_SERVER_PORT] intValue]
+                                        language:[[server objectForKey:PARA_SERVER_LANGUAGE] intValue]];
+                }
+            }
+            
+            if ([delegate respondsToSelector:@selector(didServerListFetched:)]){
+                [delegate didServerListFetched:output.resultCode];
+            }
+        });
     });
 }
 

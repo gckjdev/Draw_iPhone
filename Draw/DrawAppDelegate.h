@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommonNetworkClient.h"
 #import "PPApplication.h"
+#import "ReviewRequest.h"
 
 @class DrawViewController;
 @class RoomController;
@@ -16,10 +17,12 @@
 
 @interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet DrawViewController *viewController;
+@property (nonatomic, retain) ReviewRequest *reviewRequest; 
 
 @property (nonatomic, retain) RoomController *roomController;
 @property (nonatomic, retain) HomeController *homeController;

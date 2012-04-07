@@ -30,5 +30,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UILabel *promptLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *facebookButton;
+@property (retain, nonatomic) IBOutlet UIButton *sinaButton;
+@property (retain, nonatomic) IBOutlet UIButton *qqButton;
 
 @end
