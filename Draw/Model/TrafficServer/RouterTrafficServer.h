@@ -21,4 +21,7 @@
 @property (nonatomic, retain) NSString * serverKey;
 @property (nonatomic, retain) NSNumber * usage;
 
++ (NSString*)keyWithServerAddress:(NSString*)address port:(int)port;
+- (NSString*)key;
+
 @end

@@ -121,7 +121,7 @@ NSString* GlobalGetServerURL()
      */
     
     // Fetch Server List At Background
-    [[RouterService defaultService] startUpdateTimer];
+    [[RouterService defaultService] fetchServerListAtBackground];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

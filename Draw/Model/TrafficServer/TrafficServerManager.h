@@ -8,17 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
-#import "TrafficServer.h"
+#import "RouterTrafficServer.h"
 
 @interface TrafficServerManager : NSObject
 
-@property (nonatomic, retain) NSMutableArray* serverList;
+//@property (nonatomic, retain) NSMutableArray* serverList;
 
 + (TrafficServerManager*)defaultManager;
 
 - (void)clearAllServers;
-- (void)addTrafficServer:(TrafficServer*)server;
+- (NSArray*)findAllTrafficServers;
 - (BOOL)hasData;
+
+
+- (void)createTrafficServer:(NSString*)address
+                       port:(int)port
+                   language:(int)language;
 
 
 @end

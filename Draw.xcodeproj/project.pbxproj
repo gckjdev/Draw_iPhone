@@ -241,7 +241,6 @@
 		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
 		CA13771B152425CF00B5790B /* RouterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771A152425CF00B5790B /* RouterService.m */; };
-		CA13771F1524282600B5790B /* TrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13771E1524282600B5790B /* TrafficServer.m */; };
 		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		CA13772D15245AAB00B5790B /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
@@ -965,8 +964,6 @@
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
 		CA137719152425CF00B5790B /* RouterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterService.h; sourceTree = "<group>"; };
 		CA13771A152425CF00B5790B /* RouterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterService.m; sourceTree = "<group>"; };
-		CA13771D1524282600B5790B /* TrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServer.h; sourceTree = "<group>"; };
-		CA13771E1524282600B5790B /* TrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServer.m; sourceTree = "<group>"; };
 		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
 		CA1377211524283A00B5790B /* TrafficServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServerManager.m; sourceTree = "<group>"; };
 		CA1377281524598700B5790B /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -2626,8 +2623,6 @@
 		CA13771C1524280D00B5790B /* TrafficServer */ = {
 			isa = PBXGroup;
 			children = (
-				CA13771D1524282600B5790B /* TrafficServer.h */,
-				CA13771E1524282600B5790B /* TrafficServer.m */,
 				CA1377201524283A00B5790B /* TrafficServerManager.h */,
 				CA1377211524283A00B5790B /* TrafficServerManager.m */,
 				CA639115152FEA3D007564C6 /* RouterTrafficServer.h */,
@@ -3805,7 +3800,6 @@
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 				CA13771B152425CF00B5790B /* RouterService.m in Sources */,
-				CA13771F1524282600B5790B /* TrafficServer.m in Sources */,
 				CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */,
 				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,

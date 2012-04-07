@@ -20,4 +20,15 @@
 @dynamic serverKey;
 @dynamic usage;
 
+- (NSString*)key
+{
+    return [NSString stringWithFormat:@"%@:%d", self.address, self.port];
+}
+
++ (NSString*)keyWithServerAddress:(NSString*)address port:(int)port
+{
+    return [NSString stringWithFormat:@"%@:%d", address, port];    
+}
+
+
 @end
