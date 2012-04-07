@@ -18,7 +18,7 @@
 #define ERROR_COINS_NOT_ENOUGH      1001
 #define ERROR_ITEM_NOT_ENOUGH       1002
 
-@class ShoppingModel;
+@class PriceModel;
 @class ItemManager;
 @class AccountManager;
 
@@ -42,7 +42,7 @@
 
 - (void)syncAccountAndItem;
 
-- (void)buyCoin:(ShoppingModel*)price;
+- (void)buyCoin:(PriceModel*)price;
 
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source 

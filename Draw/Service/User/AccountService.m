@@ -7,7 +7,6 @@
 //
 
 #import "AccountService.h"
-#import "ShoppingModel.h"
 #import "PPDebug.h"
 #import "ShoppingManager.h"
 #import "AccountManager.h"
@@ -53,28 +52,36 @@ static AccountService* _defaultAccountService;
 
 #pragma mark - methods for buy coins and items
 
-- (void)buyCoin:(ShoppingModel*)price
+- (void)buyCoin:(PriceModel*)price
 {
     // send request to Apple IAP Server and wait for result
-    SKProduct *selectedProduct = price.product;
+    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
+//    if (selectedProduct == nil){
+//        PPDebug(@"<buyCoin> but SKProduct of price is null");
+//        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
+//            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
+//        }
+//        return;
+//    }
+    PPDebug(@"<buyCoin> on product %@", 
+            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier]);    
+    
+    SKPayment *payment = nil;
     if (selectedProduct == nil){
-        PPDebug(@"<buyCoin> but SKProduct of price is null");
-        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
-        }
-        return;
+        payment = [SKPayment paymentWithProductIdentifier:price.productId];
     }
-    PPDebug(@"<buyCoin> on product %@", [selectedProduct productIdentifier]);
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:[selectedProduct productIdentifier]];
+    else{
+        payment = [SKPayment paymentWithProduct:selectedProduct];
+    }
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 
 #pragma mark - IAP transaction handling
 
-- (void)makeBuyCoinsRequest:(ShoppingModel*)price transaction:(SKPaymentTransaction*)transaction
+- (void)makeBuyCoinsRequest:(PriceModel*)price transaction:(SKPaymentTransaction*)transaction
 {
-    int amount = [price count];
+    int amount = [[price count] intValue];
     NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
     [self chargeAccount:amount 
                  source:PurchaseType 
@@ -91,7 +98,7 @@ static AccountService* _defaultAccountService;
     // TODO Must Record transactionIdentifier & transactionReceipt in server
     
     NSString* productId  = transaction.payment.productIdentifier;
-    ShoppingModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
+    PriceModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
     if (price == nil){
         PPDebug(@"<recordTransaction> but coin price is nil");
         return;

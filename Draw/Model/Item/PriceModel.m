@@ -16,5 +16,12 @@
 @dynamic productId;
 @dynamic savePercent;
 @dynamic type;
+@dynamic seq;
+
+- (void)dealloc
+{
+//    [product release];
+    [super dealloc];
+}
 
 @end

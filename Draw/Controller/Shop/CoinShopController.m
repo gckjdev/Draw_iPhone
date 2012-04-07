@@ -12,6 +12,7 @@
 #import "AccountService.h"
 #import "ShareImageManager.h"
 #import "AccountManager.h"
+#import "ShoppingManager.h"
 
 CoinShopController *staticCoinController;
 
@@ -75,9 +76,11 @@ CoinShopController *staticCoinController;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.dataList = [[ShoppingManager defaultManager] findCoinPriceList];
     if ([self.dataList count] == 0){
         [[PriceService defaultService] fetchCoinProductList:self];        
     }
+    [self.dataTableView reloadData];
     
     [self updateCoinNumberLabel];
     [super viewDidAppear:animated];
@@ -117,7 +120,7 @@ CoinShopController *staticCoinController;
         cell.shoppingDelegate = self;
     }
     cell.indexPath = indexPath;
-    ShoppingModel *model = [self.dataList objectAtIndex:indexPath.row];
+    PriceModel *model = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:model indexPath:indexPath];
     return cell;
 }
@@ -134,7 +137,7 @@ CoinShopController *staticCoinController;
 
 #pragma mark - ShoppingCell delegate
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
-                               model:(ShoppingModel *)model
+                               model:(PriceModel *)model
 {
     NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
     

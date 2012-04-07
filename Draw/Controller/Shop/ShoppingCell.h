@@ -8,25 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
-#import "ShoppingModel.h"
+#import "PriceModel.h"
 
 
 @protocol ShoppingCellDelegate <NSObject>
 
 @optional
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
-                                model:(ShoppingModel *)model;
+                                model:(PriceModel *)model;
 
 @end
 
 @interface ShoppingCell : PPTableViewCell
 {
 
-    ShoppingModel *_model;
+    PriceModel *_model;
     id<ShoppingCellDelegate>_shoppingDelegate;
 }
 
-@property(nonatomic, retain) ShoppingModel *model;
+@property(nonatomic, retain) PriceModel *model;
 @property(nonatomic, assign)id<ShoppingCellDelegate>shoppingDelegate;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
 
@@ -37,5 +37,5 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolImage;
 @property (retain, nonatomic) IBOutlet UIImageView *costCoinImage;
 
-- (void)setCellInfo:(ShoppingModel *)model indexPath:(NSIndexPath *)aIndexPath;
+- (void)setCellInfo:(PriceModel *)model indexPath:(NSIndexPath *)aIndexPath;
 @end

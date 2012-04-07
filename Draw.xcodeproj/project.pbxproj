@@ -359,7 +359,6 @@
 		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
 		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
 		CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
-		CA41C94D152021C000013DC8 /* ShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94C152021C000013DC8 /* ShoppingModel.m */; };
 		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA4215FC1521915300FAA008 /* 57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4215FA1521915300FAA008 /* 57@2x.png */; };
@@ -1121,8 +1120,6 @@
 		CA41C9461520179000013DC8 /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
 		CA41C9471520179000013DC8 /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
 		CA41C9481520179100013DC8 /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
-		CA41C94B152021C000013DC8 /* ShoppingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingModel.h; sourceTree = "<group>"; };
-		CA41C94C152021C000013DC8 /* ShoppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingModel.m; sourceTree = "<group>"; };
 		CA41C94E1520608D00013DC8 /* PriceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceService.h; sourceTree = "<group>"; };
 		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
 		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
@@ -3246,8 +3243,6 @@
 				CAE2CAC0151B2F7C0062ED37 /* Item.m */,
 				CAF10AFC151C666D008C4512 /* ItemManager.h */,
 				CAF10AFD151C666E008C4512 /* ItemManager.m */,
-				CA41C94B152021C000013DC8 /* ShoppingModel.h */,
-				CA41C94C152021C000013DC8 /* ShoppingModel.m */,
 				CA41C95915206C1000013DC8 /* ShoppingManager.h */,
 				CA41C95A15206C1100013DC8 /* ShoppingManager.m */,
 				CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */,
@@ -3800,7 +3795,6 @@
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
 				CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */,
 				CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */,
-				CA41C94D152021C000013DC8 /* ShoppingModel.m in Sources */,
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
