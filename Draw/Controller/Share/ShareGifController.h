@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SNSServiceDelegate.h"
 
-@interface ShareGifController : UIViewController
+@interface ShareGifController : UIViewController <SNSServiceDelegate>{
+    NSArray* _gifFrames;
+}
 
+@property (retain, nonatomic) NSArray* gifFrames;
+
+- (id)initWithGifFrames:(NSArray*)frames;
 @end

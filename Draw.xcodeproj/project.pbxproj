@@ -2984,7 +2984,6 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
-				C2A09761152ECDEA006535F7 /* ImageIO.framework */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -3004,6 +3003,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2A09761152ECDEA006535F7 /* ImageIO.framework */,
 				CA65C1E5152DD03B00462C96 /* QWeiboSDK4iOS.xcodeproj */,
 				CA65C1BD152D9A7C00462C96 /* Security.framework */,
 				CA4216021521973A00FAA008 /* StoreKit.framework */,
