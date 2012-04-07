@@ -39,7 +39,7 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define GUESS_TIME 120
+#define GUESS_TIME 60
 #define PAPER_VIEW_TAG 20120403
 
 @implementation ShowDrawController
@@ -402,7 +402,7 @@ ShowDrawController *GlobalGetShowDrawController()
     return nil;
 }
 
-- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
+- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId onLeftTop:(BOOL)onLeftTop
 {
     AvatarView *player = [self avatarViewForUserId:userId];
     if (player == nil) {
@@ -410,35 +410,35 @@ ShowDrawController *GlobalGetShowDrawController()
     }
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
+    if (onLeftTop) {
+        x = player.frame.origin.x;
+        y = player.frame.origin.y + player.frame.size.height;
+    }
+    
+    CGFloat fontSize = 18;    
+    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
+
     [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
     [popupButton setTitle:message forState:UIControlStateNormal];
     [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
+    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
     [popupButton setTitleEdgeInsets:inSets];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+    
+}
+
+- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
+{
+    [self popGuessMessage:message userId:userId onLeftTop:NO];
 }
 
 - (void)popUpRunAwayMessage:(NSString *)userId
 {
-    AvatarView *player = [self avatarViewForUserId:userId];
-    if (player == nil) {
-        return;
-    }
     NSString *nickName = [[drawGameService session] getNickNameByUserId:userId];
     NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
-    CGFloat x = 8;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:14]];
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-    [popupButton setTitle:message forState:UIControlStateNormal];
-    [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(7, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:4];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-    
+    [self popGuessMessage:message userId:userId onLeftTop:YES];
 }
 - (void)resetData
 {
@@ -593,7 +593,7 @@ ShowDrawController *GlobalGetShowDrawController()
     NSString *userId = [message userId];
     [self popUpRunAwayMessage:userId];
     [self updatePlayerAvatars];
-    if ([self userCount] <= 1) {
+    if (_viewIsAppear && [self userCount] <= 1) {
         [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
     }
 }

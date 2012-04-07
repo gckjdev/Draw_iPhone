@@ -118,8 +118,8 @@
 
 "kNoTipsItemTitle" = "Message";
 "kNoTipsItemMessage" = "You don't have any tip now. Do you want to buy some?";
-"kQuickMessage" = "%@ says: Hurry Up!";
-"kWaitMessage" = "%@ says: Wait a minute!";
+"kQuickMessage" = "Hurry Up!";
+"kWaitMessage" = "Wait a minute!";
 "kClickTooFast" = "Your click rate is too high, please take a break.";
 
 "kEnglish" = "English";

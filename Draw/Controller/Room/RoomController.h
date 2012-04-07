@@ -22,7 +22,7 @@ enum{
     BOOL _hasClickStartGame;
     time_t quickDuration;
     int _clickCount;
-    
+    UIButton *popupButton;
     int _dialogAction;
 }
 

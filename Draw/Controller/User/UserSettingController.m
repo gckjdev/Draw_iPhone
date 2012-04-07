@@ -152,8 +152,10 @@ enum{
     NSInteger row = indexPath.row;
     if (row == rowOfPassword) {
         [cell.textLabel setText:NSLS(@"kPassword")];      
-        if ([userManager isPasswordEmpty]) {
+        if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
             [cell.detailTextLabel setText:NSLS(@"kUnset")];
+        }else{
+            [cell.detailTextLabel setText:nil];            
         }
     }else if(row == rowOfNickName)
     {
@@ -232,9 +234,9 @@ enum{
         return;
     }else {
         languageType = buttonIndex + 1;
-        [self.dataTableView reloadData];
         hasEdited = YES;
     }
+    [self.dataTableView reloadData];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -306,10 +308,12 @@ enum{
         NSLog(@"password = %@", self.updatePassword);
     }
     hasEdited = YES;
+    [self.dataTableView reloadData];
+
 }
 - (void)clickCancel:(InputDialog *)dialog
 {
-
+    [self.dataTableView reloadData];
 }
 
 #pragma mark - Password Dialog Delegate

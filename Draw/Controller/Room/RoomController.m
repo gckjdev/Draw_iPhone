@@ -21,7 +21,7 @@
 #import "UserManager.h"
 #import "ShareImageManager.h"
 #import "AccountService.h"
-
+#import "AnimationManager.h"
 @interface RoomController ()
 
 - (void)updateGameUsers;
@@ -54,6 +54,7 @@
     [startGameButton release];
     [roomNameLabel release];
     [_prolongButton release];
+    [popupButton release];
     [super dealloc];
 }
 
@@ -64,6 +65,8 @@
     if (self) {
         // Custom initialization
         [self resetStartTimer];
+        popupButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [popupButton retain];
     }
     return self;
 }
@@ -85,6 +88,12 @@
     self.roomNameLabel.text = @"";
     
     [super viewDidLoad];
+    [self.view addSubview:popupButton];
+    popupButton.hidden = YES;
+    [popupButton setBackgroundImage:[[ShareImageManager defaultManager] popupImage] 
+                                forState:UIControlStateNormal];
+    [popupButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
 }
@@ -274,6 +283,48 @@
     return [userList count];
 }
 
+
+- (HJManagedImageV *)userAvatarForUserId:(NSString *)userId
+{
+    GameSession* session = [[DrawGameService defaultService] session];
+    NSArray* userList = [session userList];
+
+    int imageStartTag = 31;
+    
+    for (GameSessionUser* user in userList){
+        HJManagedImageV *imageView = (HJManagedImageV *)[self.view 
+                                                         viewWithTag:imageStartTag ++];
+        if([user.userId isEqualToString:userId]){
+            return imageView;
+        }
+    }
+    return nil;
+
+}
+
+- (void)userId:(NSString *)userId popupMessage:(NSString *)message
+{
+    
+    HJManagedImageV *player = [self userAvatarForUserId:userId];
+    if (player == nil) {
+        return;
+    }
+    CGFloat x = player.frame.origin.x;
+    CGFloat y = player.frame.origin.y + player.frame.size.height;
+
+    
+    CGFloat fontSize = 18;    
+    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
+    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    [popupButton setTitle:message forState:UIControlStateNormal];
+    [popupButton setHidden:NO];
+    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
+    [popupButton setTitleEdgeInsets:inSets];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+}
+
 #pragma mark - Draw Game Service Delegate
 
 - (void)didJoinGame:(GameMessage *)message
@@ -358,18 +409,22 @@
 }
 
 //just for the wait and quit message
-- (void)userId:(NSString *)userId says:(NSString *)message
-{
-    NSString *nickName = [[[DrawGameService defaultService] session] getNickNameByUserId:userId];
-    NSString *text = [NSString stringWithFormat:message,nickName];
-    [self popupUnhappyMessage:text title:nil];    
+//- (void)userId:(NSString *)userId says:(NSString *)message
+//{
+//    NSString *nickName = [[[DrawGameService defaultService] session] getNickNameByUserId:userId];
+//    NSString *text = [NSString stringWithFormat:message,nickName];
+//    [self popupUnhappyMessage:text title:nil];    
+//    [self popupMessage:message title:userId];
+//    [self userId:userId popupMessage:message];
     //NSLS("kQuickMessage")
-}
+//}
 
 - (void)didGameAskQuick:(GameMessage *)message
 {  
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
-        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
+//        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
+        [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
+
     }
 
 }
@@ -377,7 +432,8 @@
 - (void)didGameProlong:(GameMessage *)message
 {
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
-        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];         
+//        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];   
+            [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))];         
     }
 
 }

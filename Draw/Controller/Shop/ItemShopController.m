@@ -99,6 +99,7 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setTitle:NSLS(@"kGotoCoinShop") forState:UIControlStateNormal];
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
+    self.gotoCoinShopButton.hidden = callFromShowViewController;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

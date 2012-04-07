@@ -32,6 +32,9 @@
 
 - (IBAction)clickCancelButton:(id)sender {
     [self removeFromSuperview];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickCancel:)]) {
+        [self.delegate clickCancel:self];
+    }
 }
 
 - (IBAction)clickOkButton:(id)sender {
