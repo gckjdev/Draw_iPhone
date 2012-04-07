@@ -439,6 +439,8 @@
 		CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E7152817C700DB55B6 /* ColorView.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
+		CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA47813152FF70D005EDB24 /* PassWordDialog.m */; };
+		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -1249,6 +1251,9 @@
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
 		CAA0E6A815147F6E00FD8C3E /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
+		CAA47812152FF70D005EDB24 /* PassWordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassWordDialog.h; sourceTree = "<group>"; };
+		CAA47813152FF70D005EDB24 /* PassWordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordDialog.m; sourceTree = "<group>"; };
+		CAA47814152FF70D005EDB24 /* PassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassWordDialog.xib; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
@@ -2444,6 +2449,9 @@
 				CA959892152F546F0093FEDB /* InputDialog.h */,
 				CA959893152F54700093FEDB /* InputDialog.m */,
 				CA959894152F54700093FEDB /* InputDialog.xib */,
+				CAA47812152FF70D005EDB24 /* PassWordDialog.h */,
+				CAA47813152FF70D005EDB24 /* PassWordDialog.m */,
+				CAA47814152FF70D005EDB24 /* PassWordDialog.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3554,6 +3562,7 @@
 				CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */,
 				C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */,
 				CA959896152F54700093FEDB /* InputDialog.xib in Resources */,
+				CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3874,6 +3883,7 @@
 				CA959895152F54700093FEDB /* InputDialog.m in Sources */,
 				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
+				CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
