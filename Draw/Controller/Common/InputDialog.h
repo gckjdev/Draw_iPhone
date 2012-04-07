@@ -8,28 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class InputDialog;
 @protocol InputDialogDelegate <NSObject>
 
 @optional
-- (void)clickOk;
-- (void)clickCancel;
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText;
+- (void)clickCancel:(InputDialog *)dialog;
 
 @end
 
-@interface InputDialog : UIViewController<UITextFieldDelegate>
+@interface InputDialog : UIView<UITextFieldDelegate>
 {
     
 }
 
 - (void)setDialogTitle:(NSString *)title;
+- (void)setTargetText:(NSString *)text;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
-
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UIButton *titleLabel;
 @property (retain, nonatomic) IBOutlet UITextField *targetTextField;
+@property (assign, nonatomic) id<InputDialogDelegate> delegate;
+
 - (IBAction)clickCancelButton:(id)sender;
 - (IBAction)clickOkButton:(id)sender;
 
