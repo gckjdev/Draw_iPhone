@@ -96,7 +96,7 @@ NSString* GlobalGetServerURL()
         [RegisterUserController showAt:self.homeController];
     }
 
-//    [self checkAppVersion:APP_ID];
+    [self checkAppVersion:APP_ID];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

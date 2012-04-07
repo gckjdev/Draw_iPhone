@@ -189,3 +189,6 @@
 
 "kEmailEmpty" = "Email address cannot be empty.";
 "kInvalidEmail" = "Invalid email address. Please enter again.";
+
+"kNewVersionMessage" = "Found new version %@, do you want to upgrade?";
+"kNewVersionTitle" = "New Version";

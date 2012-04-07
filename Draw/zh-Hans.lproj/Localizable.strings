@@ -191,3 +191,6 @@
 "kEmailEmpty" = "电子邮件地址不能为空";
 "kInvalidEmail" = "输入的电子邮件地址不合法，请重新输入";
 
+"kNewVersionMessage" = "检测到有新版本[%@]，是否要升级到最新版本？";
+"kNewVersionTitle" = "版本升级";
+
