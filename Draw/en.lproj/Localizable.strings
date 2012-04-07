@@ -102,6 +102,9 @@
 
 "kInputNickName" = "Enter Nick Name";
 "Skip" = "Skip";
+"kUpdatingUser" = "Updating Data...";
+"kUpdateUserSucc" = "Update user profile successfully.";
+"kUpdateUserFail" = "Fail To update user profile. Please try again later.";
 
 
 "kSelectFromAlbum" = "Select From Album";
@@ -152,3 +155,7 @@
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
 
+"Message" = "Message";
+
+"kEmailEmpty" = "Email address cannot be empty.";
+"kInvalidEmail" = "Invalid email address. Please enter again.";

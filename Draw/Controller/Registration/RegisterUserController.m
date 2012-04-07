@@ -26,6 +26,9 @@
 @synthesize submitButton;
 @synthesize promptLabel;
 @synthesize titleLabel;
+@synthesize facebookButton;
+@synthesize sinaButton;
+@synthesize qqButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +67,17 @@
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
                                  forState:UIControlStateNormal];
+    
+    if ([LocaleUtils isChina]){
+        sinaButton.hidden = NO;
+        qqButton.hidden = NO;
+        facebookButton.hidden = YES;
+    }
+    else{
+        sinaButton.hidden = YES;
+        qqButton.hidden = YES;
+        facebookButton.hidden = NO;        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -79,6 +93,9 @@
     [self setSubmitButton:nil];
     [self setPromptLabel:nil];
     [self setTitleLabel:nil];
+    [self setFacebookButton:nil];
+    [self setSinaButton:nil];
+    [self setQqButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -124,6 +141,7 @@
 
 - (BOOL)verifyField
 {
+    
     if ([userIdTextField.text length] == 0){
         // [UIUtils alert:@"电子邮件地址不能为空"];
         [UIUtils alert:NSLS(@"kEmailEmpty")];
@@ -201,6 +219,9 @@
     [submitButton release];
     [promptLabel release];
     [titleLabel release];
+    [facebookButton release];
+    [sinaButton release];
+    [qqButton release];
     [super dealloc];
 }
 

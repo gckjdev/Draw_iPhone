@@ -23,6 +23,8 @@
 #import "FacebookSNSService.h"
 #import "PriceService.h"
 
+#define APP_ID      @"513819630"
+
 NSString* GlobalGetServerURL()
 {    
 //    return @"http://you100.me:8001/api/i?";    
@@ -36,9 +38,11 @@ NSString* GlobalGetServerURL()
 @synthesize viewController = _viewController;
 @synthesize roomController = _roomController;
 @synthesize homeController = _homeController;
+@synthesize reviewRequest = _reviewRequest;
 
 - (void)dealloc
 {
+    [_reviewRequest release];
     [_homeController release];
     [_roomController release];
     [_window release];
@@ -77,6 +81,14 @@ NSString* GlobalGetServerURL()
     // Init Home
     self.homeController = [[[HomeController alloc] init] autorelease];    
     
+    // Push Setup
+    if (![self isPushNotificationEnable]){
+        [self bindDevice];
+    }
+    
+    // Ask For Review
+    self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+    
     UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:self.homeController] autorelease];
     navigationController.navigationBarHidden = YES;
     
@@ -84,6 +96,7 @@ NSString* GlobalGetServerURL()
         [RegisterUserController showAt:self.homeController];
     }
 
+//    [self checkAppVersion:APP_ID];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
@@ -136,6 +149,8 @@ NSString* GlobalGetServerURL()
      */
 }
 
+#pragma mark - Device Notification Delegate
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
@@ -143,6 +158,50 @@ NSString* GlobalGetServerURL()
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
+
+#pragma mark - Device Notification Delegate
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+	
+    //	if ([application enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone){
+    //        [UIUtils alert:@"由于您未同意接受推送通知功能，团购购物推送通知功能无法正常使用"];
+    //		return;
+    //	}
+	
+    // Get a hex string from the device token with no spaces or < >	
+	[self saveDeviceToken:deviceToken];    
+    
+    // user already register
+    [[UserManager defaultManager] setDeviceToken:[self getDeviceToken]];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {
+	NSString *message = [error localizedDescription];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLS(@"Message")
+													message: message
+                                                   delegate: nil
+                                          cancelButtonTitle: NSLS(@"OK")
+                                          otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+	
+	// try again
+	// [self bindDevice];
+}
+
+- (void)showNotification:(NSDictionary*)payload
+{
+	NSDictionary *dict = [[payload objectForKey:@"aps"] objectForKey:@"alert"];
+	NSString* msg = [dict valueForKey:@"loc-key"];
+	NSArray*  args = [dict objectForKey:@"loc-args"];
+	
+	if (args != nil && [args count] >= 2){
+		NSString* from = [args objectAtIndex:0];
+		NSString* text = [args objectAtIndex:1];		
+		[UIUtils alert:[NSString stringWithFormat:NSLS(msg), from, text]];
+	}	
+}
+
 
 
 @end

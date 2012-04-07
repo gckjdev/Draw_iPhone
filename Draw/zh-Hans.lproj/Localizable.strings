@@ -90,7 +90,7 @@
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
 
-"kRegisterPromptLabel" = "使用已有帐号";
+"kRegisterPromptLabel" = "微博登录";
 "kRegisterTitleLabel" = "用户注册";
 "kEnterEmail" = "请输入Email地址注册";
 "kSubmit" = "提交";
@@ -104,6 +104,9 @@
 
 "kInputNickName" = "请输入昵称";
 "Skip" = "跳过";
+"kUpdatingUser" = "更新用户数据中...";
+"kUpdateUserSucc" = "用户数据已成功更新.";
+"kUpdateUserFail" = "更新用户数据失败，请稍候再试";
 
 "kSelectFromAlbum" = "从相册选择";
 "kTakePhoto" = "拍照";
@@ -150,3 +153,8 @@
 "kAbout_us" = "关于我们";
 "kMore_apps" = "更多应用";
 "kGive_a_5-star_review" = "给个好评吧";
+
+"Message" = "消息";
+
+"kEmailEmpty" = "电子邮件地址不能为空";
+"kInvalidEmail" = "输入的电子邮件地址不合法，请重新输入";

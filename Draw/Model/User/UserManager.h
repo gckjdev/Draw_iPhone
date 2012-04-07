@@ -35,12 +35,14 @@ typedef enum {
 - (NSString*)avatarURL;
 - (NSString*)deviceToken;
 - (NSString*)password;
+- (NSString*)deviceToken;
 
 - (void)saveAvatarLocally:(UIImage*)image;
 - (void)setNickName:(NSString*)nickName;
 - (void)setAvatar:(NSString*)avatarURL;
 - (void)setGender:(NSString*)gender;
 - (void)setPassword:(NSString*)password;
+- (void)setDeviceToken:(NSString*)deviceToken;
 
 - (BOOL)hasUser;
 
