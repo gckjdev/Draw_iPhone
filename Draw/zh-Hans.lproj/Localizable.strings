@@ -147,6 +147,23 @@
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
 
+"kOldPasswordHolder" = "请输入旧密码";
+"kNewPasswordHolder" = "请输入新密码（长度不少于6）";
+"kConfirmPasswordHolder" = "请再次输入新密码";
+"kNicknameHolder" = "请输入新昵称";
+
+"kPasswordWrong" = "旧密码输入不正确";
+"kPasswordDifferent" = "两次输入不一致";
+"kPasswordIllegal" = "密码长度不小于6";
+
+"kUpdatingUser" = "更新用户信息中...";
+"kUpdateUserSucc" = "更新用户信息成功!";
+"kUpdateUserFail" = "更新用户资料失败，请重试。";
+
+"kUnset" = "未设定";
+"kNoUpdate" = "没有更新的信息";
+"kInfoUnSaved" = "更改的信息尚未保存，你确定要退出吗？";
+"kNotice" = "通知";
 "kShare_to_friends" = "分享给好友";
 "kReport_problems" = "问题反馈";
 "kGive_some_advice" = "给些建议";

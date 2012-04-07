@@ -13,6 +13,8 @@
 #import "FileUtil.h"
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
+#import "StringUtil.h"
+
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -94,6 +96,20 @@ static UserManager* _defaultManager;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_PASSWORD];
     return value;    
+}
+
+- (BOOL)isPasswordEmpty
+{
+    if ([self.password length] == 0) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isPasswordCorrect:(NSString *)userInput
+{
+    NSString *md5Password = [userInput encodeMD5Base64:PASSWORD_KEY];
+    return [md5Password isEqualToString:self.password];
 }
 
 - (BOOL)hasUser
@@ -384,15 +400,29 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasBindSinaWeibo
 {
-    return YES;
+    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SINA_LOGINID];
+    if (obj != nil) {
+        return YES;
+    }
+    return NO;
+
 }
 - (BOOL)hasBindQQWeibo
 {
+    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_QQ_LOGINID];
+    if (obj != nil) {
+        return YES;
+    }
     return NO;
+
 }
 - (BOOL)hasBindFacebook
 {
-    return YES;
+    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FACEBOOK_LOGINID];
+    if (obj != nil) {
+        return YES;
+    }
+    return NO;
 }
 
 

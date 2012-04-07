@@ -10,10 +10,13 @@
 #import "PPTableViewController.h"
 #import "ChangeAvatar.h"
 #import "InputDialog.h"
+#import "UserService.h"
+#import "UserManager.h"
+#import "CommonDialog.h"
 
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate>
 {
     UserManager *userManager;
     
@@ -26,6 +29,11 @@
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
+    NSString *_updatePassword;
+    
+    BOOL hasEdited;
+    BOOL avatarChanged;
+    LanguageType languageType;
     
 }
 - (IBAction)clickSaveButton:(id)sender;
@@ -36,5 +44,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (retain, nonatomic) NSString *updatePassword;
 - (void)updateRowIndexs;
 @end

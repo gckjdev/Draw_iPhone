@@ -148,6 +148,21 @@
 "kQuitGameTitle" = "Quit Game";
 "kQuitGameConfirm" = "Do you want to leave the room now?";
 
+"kOldPasswordHolder" = "Input old password";
+"kNewPasswordHolder" = "Input new password";
+"kConfirmPasswordHolder" = "Confirm new password";
+"kNicknameHolder" = "Input new nickname";
+"kPasswordWrong" = "Old password not correct";
+"kPasswordDifferent" = "Two inputs different";
+"kPasswordIllegal" = "Password length not less than 6";
+
+"kUnset" = "Unset";
+"kUpdatingUser" = "Updating information...";
+"kUpdateUserSucc" = "Update information successfully.";
+"kUpdateUserFail" = "Update information failure. Try again";
+"kNoUpdate" = "No information update";
+"kInfoUnSaved" = "There is unsaved information. Do you want to quit now?";
+"kNotice" = "Notice";
 "kShare_to_friends" = "Share to friends";
 "kReport_problems" = "Report problems";
 "kGive_some_advice" = "Give some advices";

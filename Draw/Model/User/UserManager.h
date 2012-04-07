@@ -17,6 +17,7 @@ typedef enum {
     EnglishType = 2
 }LanguageType;
 
+#define PASSWORD_KEY        @"PASSWORD_KEY_DRAW_DSAQC"
 
 @protocol AvatarImageDelegate <NSObject>
 
@@ -37,6 +38,8 @@ typedef enum {
 - (NSString*)password;
 - (NSString*)deviceToken;
 
+- (BOOL)isPasswordEmpty;
+- (BOOL)isPasswordCorrect:(NSString *)userInput;
 - (void)saveAvatarLocally:(UIImage*)image;
 - (void)setNickName:(NSString*)nickName;
 - (void)setAvatar:(NSString*)avatarURL;
