@@ -151,4 +151,19 @@
 "kAbout_us" = "About us";
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
+"kSure_delete" = "Sure delete?";
+"kAre_you_sure" = "Are you sure?";
 
+"kOptions" = "Options";
+"kShare" = "Share";
+"kReplay" = "Replay";
+"kDelete" = "Delete";
+
+"kShare" = "Share";
+"kShare_via" = "Share via";
+"kSave_to_album" = "Save to album";
+"kShare_via_Email" = "Share via Email";
+"kShare_via_Sina_weibo" = "Share via Sina weibo";
+"kShare_via_tencent_weibo" = "Share via tencent weibo";
+"kShare_via_Facebook" = "Share via Facebook";
+"kShare_via_Twitter" = "Share via Twitter";

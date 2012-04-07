@@ -118,7 +118,7 @@
         playingPointIndex = 0;
         playingActionIndex ++;
         if (_shouldCreateGif && playingActionIndex%2 == 0) {
-            UIImage* frame = [self createImage];
+            UIImage* frame = [[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(self.frame.size.width/2, self.frame.size.height/2)];
             [self.gifFrameArray addObject:frame];
             NSLog(@"creating frame %d size= %d", self.gifFrameArray.count, [(NSData*)UIImageJPEGRepresentation(frame, 1.0) length]);
         }

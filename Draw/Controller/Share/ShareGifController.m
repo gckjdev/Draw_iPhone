@@ -12,6 +12,8 @@
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "FacebookSNSService.h"
+#import "ShareImageManager.h"
+#import "LocaleUtils.h"
 
 #define GIF_PATH [NSString stringWithFormat:@"%@/tempory.gif", NSTemporaryDirectory()]
 
@@ -22,11 +24,41 @@
 
 @implementation ShareGifController
 @synthesize gifFrames = _gifFrames;
+@synthesize inputBackground = _inputBackground;
+@synthesize shareButton = _shareButton;
 
 - (void)dealloc
 {
     [_gifFrames release];
+    [_inputBackground release];
+    [_shareButton release];
     [super dealloc];
+}
+#pragma mark - UIActionSheetDelegate
+enum {
+    SAVE_TO_ALBUM = 0,
+    SHARE_VIA_EMAIL,
+    SHARE_VIA_SINA,
+    SHARE_VIA_QQ
+};
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case SAVE_TO_ALBUM:
+            //
+            break;
+        case SHARE_VIA_EMAIL: {
+            
+        } break;
+        case SHARE_VIA_SINA: {
+            
+        } break;
+        case SHARE_VIA_QQ: {
+            
+        } break;
+        default:
+            break;
+    }
 }
 
 - (id)initWithGifFrames:(NSArray*)frames
@@ -45,7 +77,15 @@
 
 - (IBAction)publish:(id)sender
 {
-    [[SinaSNSService defaultService] publishWeibo:@"@zsu_kira大人 测试一下" delegate:self];
+    if ([LocaleUtils isChina]) {
+        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), nil];
+        [shareOptions showInView:self.view];
+        [shareOptions release];
+    } else {
+        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Facebook"), NSLS(@"kShare_via_Twitter"), nil];
+        [shareOptions showInView:self.view];
+        [shareOptions release];
+    }
 }
 
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
@@ -69,8 +109,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     [GifManager createGifToPath:GIF_PATH byImages:self.gifFrames];
-    GifView* view = [[GifView alloc] initWithFrame:CGRectMake(0, 0, 320, 330) filePath:GIF_PATH playTimeInterval:0.5];
+    GifView* view = [[GifView alloc] initWithFrame:CGRectMake(16, 120, 288, 323) filePath:GIF_PATH playTimeInterval:0.5];
     [self.view addSubview:view];
     // Do any additional setup after loading the view from its nib.
 }
@@ -78,6 +120,8 @@
 - (void)viewDidUnload
 {
     [self setGifFrames:nil];
+    [self setInputBackground:nil];
+    [self setShareButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

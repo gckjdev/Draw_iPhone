@@ -16,7 +16,7 @@ typedef enum {
 }ReportType;
 
 
-@interface ReportController : UIViewController <UITextViewDelegate ,SNSServiceDelegate> {
+@interface ReportController : PPViewController <UITextViewDelegate ,SNSServiceDelegate> {
     ReportType _reportType;
 }
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;

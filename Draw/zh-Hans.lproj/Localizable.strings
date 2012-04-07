@@ -150,3 +150,17 @@
 "kAbout_us" = "关于我们";
 "kMore_apps" = "更多应用";
 "kGive_a_5-star_review" = "给个好评吧";
+"kSure_delete" = "删除图片";
+"kAre_you_sure" = "确定删除?";
+"kOptions" = "选项";
+"kShare" = "分享";
+"kReplay" = "回放";
+"kDelete" = "删除";
+
+"kShare_via" = "分享选项";
+"kSave_to_album" = "保存到相册";
+"kShare_via_Email" = "通过邮件分享";
+"kShare_via_Sina_weibo" = "通过新浪微博分享";
+"kShare_via_tencent_weibo" = "通过腾讯微博分享";
+"kShare_via_Facebook" = "通过Facebook分享";
+"kShare_via_Twitter" = "通过Twitter分享";

@@ -42,7 +42,7 @@
 {
     switch (_reportType) {
         case SNS_SHARE: {
-            [[SinaSNSService defaultService] publishWeibo:self.contentText.text delegate:self];
+            [[SinaSNSService defaultService] publishWeibo:[NSString stringWithFormat:@"@zsu_kira大人 %d", time(0)]delegate:self];
         }
             break;            
         default:

@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SNSServiceDelegate.h"
 @class SynthesisView;
 
-@interface ShareEditController : UIViewController 
+@interface ShareEditController : UIViewController <UIActionSheetDelegate, SNSServiceDelegate>
 @property (retain, nonatomic) UIImage* myImage;
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
+@property (retain, nonatomic) IBOutlet UIImageView *myImageView;
 @property (retain, nonatomic) IBOutlet SynthesisView* infuseImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
+@property (retain, nonatomic) IBOutlet UIButton *shareButton;
 - (id)initWithImage:(UIImage*)anImage;
 @end

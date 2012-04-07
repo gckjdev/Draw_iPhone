@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 #import "ShareCell.h"
 #import "ShowDrawView.h"
+#import "CommonDialog.h"
 
 
 
-@interface ShareController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate> {
+@interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
     NSMutableArray *_paints;
     int _currentSelectedPaint;
 }
