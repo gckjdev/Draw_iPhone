@@ -9,6 +9,7 @@
 #import "FeedbackController.h"
 #import "ReportController.h"
 #import "CommonDialog.h"
+#import "DrawAppDelegate.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -84,7 +85,8 @@ enum {
         }
             break;
         case GIVE_REVIEW: {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/tuan-gou/id456494464?l=en&mt=8"]];
+            [UIUtils gotoReview:APP_ID];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/tuan-gou/id456494464?l=en&mt=8"]];
         }
             break;
         default:

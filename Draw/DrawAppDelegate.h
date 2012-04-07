@@ -11,6 +11,8 @@
 #import "PPApplication.h"
 #import "ReviewRequest.h"
 
+#define APP_ID      @"513819630"
+
 @class DrawViewController;
 @class RoomController;
 @class HomeController;

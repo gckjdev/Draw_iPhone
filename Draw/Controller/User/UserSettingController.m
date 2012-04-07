@@ -39,6 +39,9 @@ enum{
     rowOfPassword = 0;
     rowOfNickName = 1;
     rowOfLanguage = 2;
+    rowNumber = 3;
+    
+    /*
     if ([LocaleUtils isChina]) {
         rowOfSinaWeibo = 3;
         rowOfQQWeibo = 4;
@@ -49,6 +52,7 @@ enum{
         rowOfFacebook = 3;
         rowNumber = 4;
     }
+     */
 }
 - (void)updateAvatar:(UIImage *)image
 {

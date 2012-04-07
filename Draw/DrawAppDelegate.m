@@ -23,13 +23,13 @@
 #import "FacebookSNSService.h"
 #import "PriceService.h"
 
-#define APP_ID      @"513819630"
+
 
 NSString* GlobalGetServerURL()
 {    
-//    return @"http://you100.me:8001/api/i?";    
+    return @"http://you100.me:8001/api/i?";    
 //    return @"http://106.187.89.232:8001/api/i?";    
-    return @"http://192.168.1.198:8000/api/i?";    
+//    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate

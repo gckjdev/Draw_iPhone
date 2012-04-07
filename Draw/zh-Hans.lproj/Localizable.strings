@@ -130,8 +130,8 @@
 "kLanguageSettings" = "选择猜词语言";
 "kLanguageSelection" = "语言选择";
 
-"kPassword" = "修改密码";
-"kNickname" = "修改昵称";
+"kPassword" = "密码";
+"kNickname" = "昵称";
 "kSinaWeibo" = "绑定新浪微博";  
 "kQQWeibo" = "绑定腾讯微博";           
 "kFacebook" = "绑定Facebook";
