@@ -6,6 +6,7 @@
         <attribute name="drawByMe" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PriceModel" representedClassName="PriceModel" syncable="YES">
@@ -36,7 +37,7 @@
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType==$ITEM_TYPE"/>
     <elements>
-        <element name="MyPaint" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="150"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>

@@ -75,7 +75,8 @@ static MyPaintManager* _defaultManager;
 - (BOOL)deleteMyPaints:(MyPaint*)paint
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    return [dataManager del:paint];
+    [dataManager del:paint];
+    return [dataManager save];
 }
 
 @end

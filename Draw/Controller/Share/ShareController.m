@@ -44,14 +44,12 @@
 
 - (void)loadAllPaints
 {
-    [self.paints removeAllObjects];
-    [self.paints setArray:[[MyPaintManager defaultManager] findAllPaints]];
+    self.paints = [[MyPaintManager defaultManager] findAllPaints];
 }
 
 - (void)loadMyPaints
 {
-    [self.paints removeAllObjects];
-    [self.paints setArray:[[MyPaintManager defaultManager] findOnlyMyPaints]];
+    self.paints = [[MyPaintManager defaultManager] findOnlyMyPaints];
 }
 
 - (void)selectImageAtIndex:(int)index
@@ -214,8 +212,8 @@ enum {
                 [paperClip setImage:[UIImage imageNamed:@"paperclip.png"]];
                 [background addSubview:paperClip];
                 
-                UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 410, 80, 40)];
-                [quit setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
+                UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(10, 410, 80, 40)];
+                [quit setTitle:NSLS(@"Back") forState:UIControlStateNormal];
                 [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:quit];
                 [quit setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
@@ -225,7 +223,7 @@ enum {
                 break;
                 break;
             case DELETE: {
-                CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete?") message:NSLS(@"kAre_you_sure?") style:CommonDialogStyleDoubleButton deelegate:self];
+                CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton deelegate:self];
                 [dialog showInView:self.view];
             }
                 break;
@@ -296,7 +294,16 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"total paints is %d", self.paints.count);
-    return (self.paints.count+IMAGES_PER_LINE-1)/IMAGES_PER_LINE ;
+    
+    int number = 0;
+    if (self.paints.count % IMAGES_PER_LINE == 0){
+        number = self.paints.count / IMAGES_PER_LINE;
+    }
+    else{
+        number = self.paints.count / IMAGES_PER_LINE + 1;
+    }
+    
+    return number;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

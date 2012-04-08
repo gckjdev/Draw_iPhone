@@ -21,12 +21,12 @@ enum{
 
 
 @interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
-    NSMutableArray *_paints;
+    NSArray*_paints;
     int _currentSelectedPaint;
 }
 @property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
-@property (retain, nonatomic) NSMutableArray* paints;
+@property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

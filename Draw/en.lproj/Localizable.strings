@@ -16,7 +16,7 @@
 
 "kFeedback" = "Feedback";
 
-"kCheckin" = "Check In  ";
+"kCheckin" = "Check In    ";
 
 "Me" = "Me";
 
@@ -170,8 +170,8 @@
 "kAbout_us" = "About us";
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
-"kSure_delete" = "Sure delete?";
-"kAre_you_sure" = "Are you sure?";
+"kSure_delete" = "Delete Drawing";
+"kAre_you_sure" = "Are you sure to delete this drawing?";
 
 "kOptions" = "Options";
 "kShare" = "Share";
@@ -181,7 +181,7 @@
 "kShareAsPhoto" = "Share As Photo";
 "kShareAsGif" = "Share As Gif";
 "kShare_via" = "Share via";
-"kSave_to_album" = "Save to album";
+"kSave_to_album" = "Save to Album";
 "kShare_Options" = "Options";
 "kShare_via_Email" = "Share via Email";
 "kShare_via_Sina_weibo" = "Share via Sina weibo";
@@ -215,3 +215,4 @@
 "Avatar" = "Avatar";
 
 "kDone" = "Done";
+"Back" = "Back";
