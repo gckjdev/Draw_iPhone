@@ -13,9 +13,9 @@
 #import "MyPaint.h"
 #import "DrawAction.h"
 #import "ShareGifController.h"
+#import "ShareCell.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
-#define IMAGES_PER_LINE 3
 #define IMAGE_WIDTH 93
 
 #define IMAGE_OPTION 20120407
@@ -29,11 +29,13 @@
 @synthesize paintsFilter;
 @synthesize gallery;
 @synthesize paints = _paints;
+@synthesize titleLabel;
 
 - (void)dealloc {
     [paintsFilter release];
     [gallery release];
     [_paints release];
+    [titleLabel release];
     [super dealloc];
 }
 
@@ -53,9 +55,11 @@
 {
     _currentSelectedPaint = index;
     UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                                      delegate:self cancelButtonTitle:NSLS(@"kCancel") 
-                                        destructiveButtonTitle:NSLS(@"kShare") 
-                                             otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+                                                      delegate:self 
+                                             cancelButtonTitle:NSLS(@"kCancel") 
+                                        destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                             otherButtonTitles:NSLS(@"kShareAsGif"),
+                                                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
     tips.tag = IMAGE_OPTION;
     [tips showInView:self.view];
     [tips release];
@@ -64,7 +68,8 @@
 
 #pragma mark - UIActionSheetDelegate
 enum {
-    SHARE = 0,
+    SHARE_AS_PHOTO = 0,
+    SHARE_AS_GIF,
     REPLAY,
     DELETE,
     CANCEL
@@ -108,12 +113,22 @@ enum {
 {
     if (actionSheet.tag == IMAGE_OPTION) {
         switch (buttonIndex) {
-            case SHARE: {
-                UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kShare_image") otherButtonTitles:NSLS(@"kShare_gif"), nil];
+            case SHARE_AS_PHOTO: {
+                UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
+                                                                          delegate:self 
+                                                                 cancelButtonTitle:NSLS(@"kCancel") 
+                                                            destructiveButtonTitle:NSLS(@"kShare_image") 
+                                                                 otherButtonTitles:NSLS(@"kShare_gif"), nil];
                 shareOptions.tag = SHARE_IMAGE_OPTION;
                 [shareOptions showInView:self.view];
+            }                            
+                break;
+            case SHARE_AS_GIF:
+            {
+                
             }
                 break;
+                
             case REPLAY: {
                 MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
                 NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
@@ -241,6 +256,12 @@ enum {
 {
     return NO;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"total paints is %d", self.paints.count);
@@ -308,6 +329,7 @@ enum {
     NSLog(@"get all paints, paints count is %d", _paints.count);
 
     // Do any additional setup after loading the view from its nib.
+    self.titleLabel.text = NSLS(@"kShareTitle");
 }
 
 - (void)viewDidUnload
@@ -315,6 +337,7 @@ enum {
     [self setPaintsFilter:nil];
     [self setGallery:nil];
     [self setPaints:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

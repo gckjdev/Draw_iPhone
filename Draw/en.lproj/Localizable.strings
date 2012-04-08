@@ -179,6 +179,8 @@
 "kDelete" = "Delete";
 
 "kShare" = "Share";
+"kShareAsPhoto" = "Share As Photo";
+"kShareAsGif" = "Share As Gif";
 "kShare_via" = "Share via";
 "kSave_to_album" = "Save to album";
 "kShare_via_Email" = "Share via Email";
@@ -203,3 +205,5 @@
 "kAnswer" = "Answer: %@";
 
 "kSavePercent" = "SAVE %02d%%";
+
+"kShareTitle" = "Share";

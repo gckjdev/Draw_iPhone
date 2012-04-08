@@ -42,15 +42,21 @@
 
 - (void)setImagesWithArray:(NSArray*)imageArray
 {
-    for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + 3; ++i) {
+    for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
         UIButton *button = (UIButton *)[self viewWithTag:i];
+        
+        // image view start from 30, button start from 10, the gap is 20
+        UIImageView* bgImageView = (UIImageView *)[self viewWithTag:i+20]; 
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < [imageArray count]) {
             UIImage *image = [imageArray objectAtIndex:j];
             [button setImage:image forState:UIControlStateNormal];
             button.hidden = NO;
+            bgImageView.hidden = NO;
+            
         }else {
             button.hidden = YES;
+            bgImageView.hidden = YES;
         }
     }
 //    NSArray* buttonsArray = [NSArray arrayWithObjects:self.leftButton, self.middleButton, self.rightButton, nil];
@@ -68,7 +74,7 @@
     UIButton *button = (UIButton *)sender;
     int j = button.tag - BASE_BUTTON_INDEX;
     if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-        [_delegate selectImageAtIndex:self.indexPath.row*3 + j];
+        [_delegate selectImageAtIndex:self.indexPath.row*IMAGES_PER_LINE + j];
     }
 
 }
