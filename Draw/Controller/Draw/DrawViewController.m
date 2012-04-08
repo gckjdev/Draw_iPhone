@@ -50,7 +50,7 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize word = _word;
 @synthesize needResetData;
 
-#define DRAW_TIME 15
+#define DRAW_TIME 60
 #define PAPER_VIEW_TAG 20120403
 
 
@@ -128,10 +128,16 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
-    for (int i = 20; i >= 5 ;i -= 5) {
-        NSNumber *number = [NSNumber numberWithInt:i];
-        [widthArray addObject:number];
-    }
+//    for (int i = 3; i < 25;i += 7) {
+//       NSNumber *number = [NSNumber numberWithInt:i];
+//        [widthArray insertObject:number atIndex:0];
+//        [widthArray addObject:number];
+//    }
+    
+    [widthArray addObject:[NSNumber numberWithInt:20]];
+    [widthArray addObject:[NSNumber numberWithInt:15]];
+    [widthArray addObject:[NSNumber numberWithInt:10]];
+    [widthArray addObject:[NSNumber numberWithInt:3]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
     
@@ -246,11 +252,18 @@ DrawViewController *GlobalGetDrawViewController()
     return nil;
 }
 
-
+- (void)resetDrawView
+{
+    [drawView clearAllActions];
+    penWidth = 2;
+    eraserWidth = 15;
+    [drawView setLineWidth:penWidth];
+    [drawView setLineColor:[DrawColor blackColor]];
+}
 
 - (void)resetData
 {
-    [drawView clearAllActions];
+    [self resetDrawView];
     [popupButton setHidden:YES];
     NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
@@ -427,10 +440,12 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)didPickedColorView:(ColorView *)colorView
 {
     [drawView setLineColor:colorView.drawColor];
+    [drawView setLineWidth:penWidth];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
     [drawView setLineWidth:width];
+    penWidth = width;
 }
 - (void)didPickedMoreColor
 {
@@ -514,6 +529,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
+    [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
 }
 

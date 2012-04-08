@@ -39,7 +39,7 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define GUESS_TIME 15
+#define GUESS_TIME 60
 #define PAPER_VIEW_TAG 20120403
 
 @implementation ShowDrawController

@@ -33,6 +33,9 @@
     BOOL hasPushResultController;
     ColorShopController *colorShopConroller;
                 
+                NSInteger penWidth;
+                NSInteger eraserWidth;
+                
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
