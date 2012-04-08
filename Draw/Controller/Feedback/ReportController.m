@@ -110,6 +110,12 @@
     [self.contactText setBackground:[[ShareImageManager defaultManager] inputImage]];
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
     [doneButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
+    
+    if (_reportType == SNS_SHARE) {
+        [self.contactText setHidden:YES];
+        [self.submitButton setFrame:CGRectOffset(self.submitButton.frame, 0, -40)];
+        [self.submitButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
