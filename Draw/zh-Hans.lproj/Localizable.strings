@@ -217,3 +217,5 @@
 "kNickNameEmpty" = "昵称不能为空";
 "Nick" = "昵称";
 "Avatar" = "头像";
+
+"kDone" = "完成";

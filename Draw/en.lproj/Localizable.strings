@@ -213,3 +213,5 @@
 "kNickNameEmpty" = "Nick name cannot be empty.";
 "Nick" = "Nick";
 "Avatar" = "Avatar";
+
+"kDone" = "Done";

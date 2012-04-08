@@ -30,6 +30,7 @@ enum {
 
 - (void)initCell:(UITableViewCell*)aCell withIndex:(int)anIndex
 {
+    [aCell.textLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     switch (anIndex) {
         case SHARE: {
             [aCell.textLabel setText:NSLS(@"kShare_to_friends")];

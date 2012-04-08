@@ -8,28 +8,57 @@
 
 #import "ReportController.h"
 #import "SNSServiceDelegate.h"
+#import "ShareImageManager.h"
 
 @interface ReportController ()
 
 @end
 
 @implementation ReportController
+@synthesize contentBackground;
 @synthesize submitButton;
 @synthesize backButton;
 @synthesize contentText;
+@synthesize contactText;
+@synthesize doneButton;
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+- (void)fitKeyboardComeOut
 {
-    [self.contentText resignFirstResponder];
-    return YES;
+    [self.contentText setFrame:CGRectMake(40, 93, 240, 109)];
+    [self.contentBackground setFrame:self.contentText.frame];
+    [self.contactText setFrame:CGRectMake(40, 205, 240, 31)];
+}
+
+- (void)resetFrame
+{
+    [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
+    [self.contentBackground setFrame:self.contentText.frame];
+    [self.contactText setFrame:CGRectMake(40, 260, 240, 31)];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self.contentText setFrame:CGRectMake(26, 20, 268, 160)];
-    [self.backButton setFrame:CGRectOffset(self.backButton.frame, 0, -200)];
-    [self.submitButton setFrame:CGRectOffset(self.submitButton.frame, 0, -200)];
+    [self fitKeyboardComeOut];
+    [self.doneButton setHidden:NO];
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self fitKeyboardComeOut];
+}
+
+- (IBAction)hideKeyboard:(id)sender
+{
+    [contentText resignFirstResponder];
+    [self.doneButton setHidden:YES];
+    [self resetFrame];
+}
+
+- (IBAction)endEditingContact:(id)sender
+{    
+    [self.contactText resignFirstResponder];
+    [self resetFrame];
 }
 
 #pragma mark - publish weibo delegate
@@ -76,6 +105,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
+    [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];
+    [self.contactText setBackground:[[ShareImageManager defaultManager] inputImage]];
+    [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
+    [doneButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -84,6 +118,9 @@
     [self setContentText:nil];
     [self setSubmitButton:nil];
     [self setBackButton:nil];
+    [self setContactText:nil];
+    [self setContentBackground:nil];
+    [self setDoneButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -98,6 +135,9 @@
     [contentText release];
     [submitButton release];
     [backButton release];
+    [contactText release];
+    [contentBackground release];
+    [doneButton release];
     [super dealloc];
 }
 @end
