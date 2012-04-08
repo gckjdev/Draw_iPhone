@@ -42,7 +42,7 @@
 							<object class="IBUIButton" id="532043362">
 								<reference key="NSNextResponder" ref="1015859549"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{89, 89}</string>
+								<string key="NSFrame">{{0, 3}, {89, 89}}</string>
 								<reference key="NSSuperview" ref="1015859549"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="562252175"/>
@@ -64,6 +64,10 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="9879671">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">user_picbg@2x.png</string>
+								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="331446166">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
@@ -77,7 +81,7 @@
 							<object class="IBUIButton" id="562252175">
 								<reference key="NSNextResponder" ref="1015859549"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{96, 0}, {89, 89}}</string>
+								<string key="NSFrame">{{96, 3}, {89, 89}}</string>
 								<reference key="NSSuperview" ref="1015859549"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="87693641"/>
@@ -93,15 +97,17 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="463138712"/>
+								<reference key="IBUINormalBackgroundImage" ref="9879671"/>
 								<reference key="IBUIFontDescription" ref="331446166"/>
 								<reference key="IBUIFont" ref="589791467"/>
 							</object>
 							<object class="IBUIButton" id="87693641">
 								<reference key="NSNextResponder" ref="1015859549"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{191, 0}, {89, 89}}</string>
+								<string key="NSFrame">{{191, 3}, {89, 89}}</string>
 								<reference key="NSSuperview" ref="1015859549"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">12</int>
@@ -114,6 +120,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="463138712"/>
+								<reference key="IBUINormalBackgroundImage" ref="9879671"/>
 								<reference key="IBUIFontDescription" ref="331446166"/>
 								<reference key="IBUIFont" ref="589791467"/>
 							</object>
@@ -270,6 +277,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">user_picbg@2x.png</string>
+			<string key="NS.object.0">{142, 147}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1179</string>
 	</data>
 </archive>
