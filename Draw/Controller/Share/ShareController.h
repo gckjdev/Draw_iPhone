@@ -29,4 +29,6 @@ enum{
 @property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
+- (IBAction)changeGalleryFielter:(id)sender;
+
 @end

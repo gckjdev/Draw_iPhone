@@ -16,6 +16,7 @@
 #import "ShareCell.h"
 #import "ShareImageManager.h"
 #import "UserManager.h"
+#import "ReplayController.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -187,7 +188,13 @@ enum {
                 break;
                 
             case REPLAY: {
+                                
                 MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+                ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
+                [self.navigationController pushViewController:replayController animated:YES];
+                [replayController release];
+                
+                /*
                 NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
                 NSArray* drawActionList = (NSArray*)currentData;
                 
@@ -218,6 +225,7 @@ enum {
                 [self.view addSubview:quit];
                 [quit setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
                 quit.tag = QUIT_BUTTON_TAG;
+                 */
  
             }
                 break;
@@ -266,7 +274,7 @@ enum {
     if (result && [[NSFileManager defaultManager] fileExistsAtPath:currentPaint.image]) {
         [[NSFileManager defaultManager] removeItemAtPath:currentPaint.image error:nil];
     }
-    [self.paints removeObjectAtIndex:_currentSelectedPaint];
+    [self changeGalleryFielter:nil];
     [self.gallery reloadData];
 }
 
@@ -363,7 +371,9 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_paints setArray:[[MyPaintManager defaultManager] findAllPaints]];
+    
+    [self changeGalleryFielter:nil];
+    
     NSLog(@"get all paints, paints count is %d", _paints.count);
 
     // Do any additional setup after loading the view from its nib.

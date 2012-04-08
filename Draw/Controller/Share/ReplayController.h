@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MyPaint;
+
 @interface ReplayController : UIViewController
+
+@property (nonatomic, assign) MyPaint *paint;
+
+- (id)initWithPaint:(MyPaint*)paint;
 
 @end
