@@ -200,4 +200,5 @@
 
 "kDrawWord" = "Drawing: %@";
 "kAnswer" = "Answer: %@";
-
+"kNoWord" = "Unselect word";
+"kCleanDrawTitle" = "Clean Draw";

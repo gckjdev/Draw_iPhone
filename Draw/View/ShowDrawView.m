@@ -44,6 +44,7 @@
     [self setStatus:Stop];
     playingActionIndex = 0;
     playingPointIndex = 0;
+    startPlayIndex = 0;
     [self setNeedsDisplay];    
 }
 
@@ -154,8 +155,7 @@
         _drawActionList = [[NSMutableArray alloc] init];
         _gifFrameArray = [[NSMutableArray alloc] init];
         _indexShouldSave = [[NSMutableSet alloc] init];
-        self.backgroundColor = [UIColor whiteColor];
-        
+          self.backgroundColor = [UIColor whiteColor];      
     }
     return self;
 }

@@ -50,7 +50,7 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize word = _word;
 @synthesize needResetData;
 
-#define DRAW_TIME 60
+#define DRAW_TIME 15
 #define PAPER_VIEW_TAG 20120403
 
 
@@ -111,6 +111,7 @@ DrawViewController *GlobalGetDrawViewController()
     if (self) {
         drawGameService = [DrawGameService defaultService];
         drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
+        [drawView setDrawEnabled:YES];
         pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 250, 302, 122)];
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
@@ -141,7 +142,10 @@ DrawViewController *GlobalGetDrawViewController()
     [colorViewArray addObject:[ColorView redColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
-
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+    
     
     [pickPenView setColorViews:colorViewArray];
     [colorViewArray release];
@@ -187,7 +191,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
-    [drawView setDrawEnabled:enabled];
+//    [drawView setDrawEnabled:enabled];
     [penButton setEnabled:enabled];
     [pickPenView setHidden:YES];
 }
@@ -331,6 +335,7 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
+    [drawView setDrawEnabled:YES];
     colorShopConroller = nil;
 }
 
@@ -401,7 +406,7 @@ DrawViewController *GlobalGetDrawViewController()
     }
     [rc release];
     [self resetTimer];
-    
+    [drawView clearAllActions];
     // rem by Benson, // this will crash the app, see log below
     //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
     [drawGameService unregisterObserver:self];  
@@ -438,14 +443,22 @@ DrawViewController *GlobalGetDrawViewController()
 
 #pragma mark - Common Dialog Delegate
 #define ESCAPE_DEDUT_COIN 1
+#define DIALOG_TAG_CLEAN_DRAW 201204081
+#define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
     [dialog removeFromSuperview];
     
-    if (dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
+    if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
+        [drawGameService cleanDraw];
+        [drawView addCleanAction];
+        [pickPenView setHidden:YES];        
+    }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
+        [drawView clearAllActions];
+        [drawGameService unregisterObserver:self];
     }
 
 }
@@ -489,13 +502,14 @@ DrawViewController *GlobalGetDrawViewController()
     }
 
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style deelegate:self];
+    dialog.tag = DIALOG_TAG_ESCAPE;
     [dialog showInView:self.view];
 }
-
 - (IBAction)clickRedraw:(id)sender {
-    [drawGameService cleanDraw];
-    [drawView addCleanAction];
     [pickPenView setHidden:YES];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    dialog.tag = DIALOG_TAG_CLEAN_DRAW;
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickEraserButton:(id)sender {

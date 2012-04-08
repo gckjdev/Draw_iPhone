@@ -39,7 +39,7 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define GUESS_TIME 60
+#define GUESS_TIME 15
 #define PAPER_VIEW_TAG 20120403
 
 @implementation ShowDrawController
@@ -595,6 +595,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
     [self startTimer];
+    [showView cleanAllActions];
 }
 
 
@@ -630,8 +631,9 @@ ShowDrawController *GlobalGetShowDrawController()
         [self updatePickViewsWithWord:nil lang:languageType];        
         
     }
-    [drawGameService unregisterObserver:self];
     [showView cleanAllActions];
+    [drawGameService unregisterObserver:self];
+
 }
 
 

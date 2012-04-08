@@ -31,7 +31,7 @@
 
 "kQuickQuick" = "快快开始吧";
 
-"kWaitForMoreUsers" = "等待更多用户";
+"kWaitForMoreUsers" = "等待更多玩家";
 
 "kStartAfter" = "即将开始 [%d]";
 
@@ -143,7 +143,7 @@
 "kGotoCoinShop" = "金币充值";
 
 "kChangeRoomTitle" = "更换房间";
-"kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，同时需要花费你一个金币，确定换个房间吗？";
+"kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
 
@@ -202,3 +202,5 @@
 "kDrawWord" = "你正在画: %@";
 "kAnswer" = "答案: %@";
 
+"kNoWord" = "玩家没选词";
+"kCleanDrawTitle" = "Clean Draw";

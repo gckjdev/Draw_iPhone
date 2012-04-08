@@ -270,6 +270,7 @@
 						<string key="IBUIText">购买道具</string>
 						<reference key="IBUITextColor" ref="162227285"/>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">10</float>
