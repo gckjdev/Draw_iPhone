@@ -108,7 +108,7 @@
     for (NSNumber *width in widthArray) {
         totalHeight += width.integerValue;
     }
-    CGFloat space = (self.frame.size.height - totalHeight) / ([widthArray count] + 1);
+    CGFloat space = (self.frame.size.height - totalHeight) / ([widthArray count] + 2);
     CGFloat y = 0;
     _currentWidth = 1000;
     UIButton *selectedButton = nil;
@@ -116,7 +116,11 @@
         UIButton *button = [self addAndSetButtonWithWidth:width.integerValue];
         CGFloat x = self.frame.size.width / 5.0;
         y += space;
-        button.frame = CGRectMake(x, y, width.integerValue + 3, width.integerValue + 3);
+        if (width.integerValue < 7) {
+            button.frame = CGRectMake(x, y, 7, 7);            
+        }else{
+            button.frame = CGRectMake(x, y, width.integerValue , width.integerValue);
+        }
         y += width.integerValue;
         [button setCenter:CGPointMake(25, button.center.y)];
         if (width.integerValue < _currentWidth) {

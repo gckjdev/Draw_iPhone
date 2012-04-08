@@ -29,7 +29,7 @@
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
 
-#define PICK_WORD_TIME 5
+#define PICK_WORD_TIME 10
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,28 +51,44 @@
 }
 
 
+
+
+
+- (void)resetTimer
+{
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+        }
+        _timer = nil;
+    }
+    retainCount = PICK_WORD_TIME;
+}
+
+- (void)startTimer
+{
+    [self resetTimer];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+}
+
 - (void)startGameWithWord:(Word *)word
 {
     if (!hasPushController) {
         hasPushController = YES;        
         [DrawViewController startDraw:word fromController:self];
     }
-    
+    [self resetTimer];
 }
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
     --retainCount;
     if (retainCount <= 0) {
-        [theTimer invalidate];
-        theTimer = nil;
         [self startGameWithWord:[self.wordArray objectAtIndex:1]];
-        retainCount = 0;
+        [self resetTimer];
     }
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
-    
 }
-
 
 - (void)localeViewText
 {
@@ -95,11 +111,12 @@
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     retainCount = PICK_WORD_TIME;
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [self localeViewText];
+    
+    [self startTimer];
 }
 
 
@@ -142,12 +159,13 @@
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
+    [self startTimer];
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     [self.wordTableView reloadData];
     [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
     [toolView setNumber:[[ItemManager defaultManager]tipsItemAmount]];
-
     [self.changeWordButton setEnabled:(toolView.number > 0)];    
+    
 }
 
 
@@ -173,6 +191,7 @@
 {
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
     [self startGameWithWord:word];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

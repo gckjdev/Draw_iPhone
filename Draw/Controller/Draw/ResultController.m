@@ -21,7 +21,7 @@
 #import "AccountService.h"
 #import "Account.h"
 
-#define CONTINUE_TIME 5
+#define CONTINUE_TIME 10
 
 @implementation ResultController
 @synthesize drawImage;
