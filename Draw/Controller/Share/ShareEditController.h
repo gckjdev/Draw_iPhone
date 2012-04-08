@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "SNSServiceDelegate.h"
 @class SynthesisView;
 
-@interface ShareEditController : UIViewController <UIActionSheetDelegate, SNSServiceDelegate>
+@interface ShareEditController : UIViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate>
 @property (retain, nonatomic) UIImage* myImage;
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
