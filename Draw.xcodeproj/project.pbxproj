@@ -457,6 +457,8 @@
 		CA8D603D1531CF0A00E016ED /* brown_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60371531CF0A00E016ED /* brown_color@2x.png */; };
 		CA8D603E1531CF0A00E016ED /* sky_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60381531CF0A00E016ED /* sky_color@2x.png */; };
 		CA8D603F1531CF0A00E016ED /* white_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60391531CF0A00E016ED /* white_color@2x.png */; };
+		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
+		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
@@ -1292,6 +1294,9 @@
 		CA8D60371531CF0A00E016ED /* brown_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brown_color@2x.png"; sourceTree = "<group>"; };
 		CA8D60381531CF0A00E016ED /* sky_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sky_color@2x.png"; sourceTree = "<group>"; };
 		CA8D60391531CF0A00E016ED /* white_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_color@2x.png"; sourceTree = "<group>"; };
+		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
+		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
+		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
@@ -2596,6 +2601,9 @@
 				C2A0975C152ECD7B006535F7 /* ShareGifController.h */,
 				C2A0975D152ECD7B006535F7 /* ShareGifController.m */,
 				C2A0975E152ECD7B006535F7 /* ShareGifController.xib */,
+				CA8D60601531EC5500E016ED /* ReplayController.h */,
+				CA8D60611531EC5500E016ED /* ReplayController.m */,
+				CA8D60621531EC5500E016ED /* ReplayController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3701,6 +3709,7 @@
 				CA8D603E1531CF0A00E016ED /* sky_color@2x.png in Resources */,
 				CA8D603F1531CF0A00E016ED /* white_color@2x.png in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
+				CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4021,6 +4030,7 @@
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
 				CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
+				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
