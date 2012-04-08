@@ -10,7 +10,7 @@
 
 "kShop" = "Shop";
 
-"kShare" = "Share";
+"kHomeShare" = "Share";
 
 "kSettings" = "Settings";
 
@@ -179,6 +179,8 @@
 "kDelete" = "Delete";
 
 "kShare" = "Share";
+"kShareAsPhoto" = "Share As Photo";
+"kShareAsGif" = "Share As Gif";
 "kShare_via" = "Share via";
 "kSave_to_album" = "Save to album";
 "kShare_via_Email" = "Share via Email";
@@ -206,3 +208,4 @@
 "kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
 
+"kShareTitle" = "Share";

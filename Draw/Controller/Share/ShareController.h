@@ -21,5 +21,6 @@
 @property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
 @property (retain, nonatomic) NSMutableArray* paints;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
