@@ -65,14 +65,14 @@ enum {
 {
     switch (indexPath.row) {
         case SHARE: {
-            ReportController* rc = [[ReportController alloc] init];
+            ReportController* rc = [[ReportController alloc] initWithType:SNS_SHARE];
             [self.navigationController pushViewController:rc animated:YES];
             [rc release];
         }
             break;
         case FEEDBACK:
         case REPORT_BUG: {
-            ReportController* rc = [[ReportController alloc] init];
+            ReportController* rc = [[ReportController alloc] initWithType:REPORT_BUG];
             [self.navigationController pushViewController:rc animated:YES];
             [rc release];
         }
