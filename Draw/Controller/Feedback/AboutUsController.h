@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutUsController : UIViewController
+@property (retain, nonatomic) IBOutlet UILabel *aboutTitle;
 
 @end

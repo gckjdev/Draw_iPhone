@@ -15,6 +15,7 @@
 @end
 
 @implementation ReportController
+@synthesize reporterTitle;
 @synthesize contentBackground;
 @synthesize submitButton;
 @synthesize backButton;
@@ -127,6 +128,7 @@
     [self setContactText:nil];
     [self setContentBackground:nil];
     [self setDoneButton:nil];
+    [self setReporterTitle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -144,6 +146,7 @@
     [contactText release];
     [contentBackground release];
     [doneButton release];
+    [reporterTitle release];
     [super dealloc];
 }
 @end

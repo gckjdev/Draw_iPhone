@@ -10,6 +10,7 @@
 #import "ReportController.h"
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
+#import "AboutUsController.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -78,7 +79,9 @@ enum {
         }
             break;
         case ABOUT: {
-            
+            AboutUsController* rc = [[AboutUsController alloc] init];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
         case MORE_APP: {
