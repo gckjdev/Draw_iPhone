@@ -38,8 +38,10 @@
 - (IBAction)clickContinueButton:(id)sender;
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickExitButton:(id)sender;
+
+
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
 - (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint;
-
+- (void)didFinishAPaint:(NSArray *)drawAction;
 @end

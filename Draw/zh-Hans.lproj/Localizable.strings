@@ -13,7 +13,7 @@
 
 "kShop" = "商店";
 
-"kShare" = "分享";
+"kHomeShare" = "作品分享";
 
 "kSettings" = "设置";
 
@@ -31,7 +31,7 @@
 
 "kQuickQuick" = "快快开始吧";
 
-"kWaitForMoreUsers" = "等待更多用户";
+"kWaitForMoreUsers" = "等待更多玩家";
 
 "kStartAfter" = "即将开始 [%d]";
 
@@ -144,7 +144,11 @@
 
 "kChangeRoomMaxTimes" = "你一天内已经换超过5次房间了，不能再换房间了。";
 "kChangeRoomTitle" = "更换房间";
+<<<<<<< HEAD
+"kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
+=======
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，一天只能更换5次房间，确定换个房间吗？";
+>>>>>>> origin/master
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
 
@@ -205,6 +209,9 @@
 "kDrawWord" = "你正在画: %@";
 "kAnswer" = "答案: %@";
 
+"kNoWord" = "玩家没选词";
+"kCleanDrawTitle" = "清屏";
+"kCleanDrawMessage" = "清屏之后之前所画的东西都会消失，确定吗？";
 "kSavePercent" = "节省%02d%%";
 
 "kShareTitle" = "作品分享";

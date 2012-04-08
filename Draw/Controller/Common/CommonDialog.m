@@ -75,6 +75,7 @@
     [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    view.tag = 0;
     return view;
     
 }

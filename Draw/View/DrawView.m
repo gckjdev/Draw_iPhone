@@ -45,6 +45,7 @@
 - (void)clearAllActions
 {
     [self.drawActionList removeAllObjects];
+    startDrawActionIndex = 0;
     [self setNeedsDisplay];
 }
 
@@ -158,6 +159,7 @@
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
+//        self.backgroundColor = [UIColor yellowColor];
         //add gesture recognizer;
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];
         [self addGestureRecognizer:pan];

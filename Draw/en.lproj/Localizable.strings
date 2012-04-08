@@ -10,7 +10,7 @@
 
 "kShop" = "Shop";
 
-"kShare" = "Share";
+"kHomeShare" = "Share";
 
 "kSettings" = "Settings";
 
@@ -203,7 +203,9 @@
 
 "kDrawWord" = "Drawing: %@";
 "kAnswer" = "Answer: %@";
-
+"kNoWord" = "Unselect word";
+"kCleanDrawTitle" = "Clean Draw";
+"kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "Share";
