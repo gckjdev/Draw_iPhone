@@ -477,8 +477,9 @@
     switch (dialog.tag) {
         case ROOM_DIALOG_CHANGE_ROOM:
         {
+            _changeRoomTimes ++;
             [self showActivityWithText:NSLS(@"kChangeRoom")];
-            [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+//            [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
             [[DrawGameService defaultService] changeRoom];            
         }
             break;
@@ -508,8 +509,20 @@
     [self startGame];
 }
 
+#define MAX_CHANGE_ROOM_PER_DAY     5
+
 - (IBAction)clickChangeRoom:(id)sender
 {
+    if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
+                                                           message:NSLS(@"kChangeRoomMaxTimes") 
+                                                             style:CommonDialogStyleSingleButton 
+                                                         deelegate:self];
+        
+        [dialog showInView:self.view];
+        return;
+    }
+    
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
                                 message:NSLS(@"kChangeRoomConfirm") 
                                   style:CommonDialogStyleDoubleButton 

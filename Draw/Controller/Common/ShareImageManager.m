@@ -76,6 +76,11 @@ static UIImage* _whitePaperImage;
     return _buyButtonImage;
 }
 
+- (UIImage *)savePercentImage
+{
+    return [UIImage strectchableImageName:@"mumber.png"];
+}
+
 - (UIImage*)showcaseBackgroundImage
 {
     if (_showcaseBackgroundImage == nil) {

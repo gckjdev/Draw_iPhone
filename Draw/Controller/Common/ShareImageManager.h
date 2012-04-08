@@ -62,4 +62,6 @@
 - (UIImage*)femaleDefaultAvatarImage;
 - (UIImage*)maleDefaultAvatarImage;
 
+- (UIImage *)savePercentImage;
+
 @end
