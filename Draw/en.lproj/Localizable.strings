@@ -178,11 +178,11 @@
 "kReplay" = "Replay";
 "kDelete" = "Delete";
 
-"kShare" = "Share";
 "kShareAsPhoto" = "Share As Photo";
 "kShareAsGif" = "Share As Gif";
 "kShare_via" = "Share via";
 "kSave_to_album" = "Save to album";
+"kShare_Options" = "Options";
 "kShare_via_Email" = "Share via Email";
 "kShare_via_Sina_weibo" = "Share via Sina weibo";
 "kShare_via_tencent_weibo" = "Share via tencent weibo";
@@ -196,8 +196,8 @@
 "kNewVersionMessage" = "Found new version %@, do you want to upgrade?";
 "kNewVersionTitle" = "New Version";
 
-"Remind Later" = "Remind Later";
-"Upgrade Now" = "Upgrade Now";
+"Remind Later" = "Later";
+"Upgrade Now" = "Upgrade";
 "OK" = "OK";
 "Cancel" = "Cancel";
 

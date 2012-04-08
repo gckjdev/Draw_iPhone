@@ -12,6 +12,12 @@
 #import "ShowDrawView.h"
 #import "CommonDialog.h"
 
+enum{
+    
+    SHARE_VIA_ALBUM = 0,
+    SHARE_VIA_EMAIL,
+    SHARE_VIA_SNS    
+};
 
 
 @interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
