@@ -34,19 +34,20 @@
     [_shareButton release];
     [super dealloc];
 }
+#pragma mark Navigation Controller
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+	[self dismissModalViewControllerAnimated:YES];
+}
 #pragma mark - UIActionSheetDelegate
 enum {
-    SAVE_TO_ALBUM = 0,
-    SHARE_VIA_EMAIL,
+    SHARE_VIA_EMAIL = 0,
     SHARE_VIA_SINA,
     SHARE_VIA_QQ
 };
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case SAVE_TO_ALBUM:
-            //
-            break;
         case SHARE_VIA_EMAIL: {
             
         } break;
@@ -78,11 +79,11 @@ enum {
 - (IBAction)publish:(id)sender
 {
     if ([LocaleUtils isChina]) {
-        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), nil];
+        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kShare_via_Email") otherButtonTitles:NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), nil];
         [shareOptions showInView:self.view];
         [shareOptions release];
     } else {
-        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Facebook"), NSLS(@"kShare_via_Twitter"), nil];
+        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kShare_via_Email") otherButtonTitles:NSLS(@"kShare_via_Facebook"), NSLS(@"kShare_via_Twitter"), nil];
         [shareOptions showInView:self.view];
         [shareOptions release];
     }

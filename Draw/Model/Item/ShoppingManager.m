@@ -156,13 +156,14 @@ static ShoppingManager *staticShoppingManager = nil;
         NSNumber * amount = [dictionary objectForKey:PARA_SHOPPING_AMOUNT];
         NSNumber * value = [dictionary objectForKey:PARA_SHOPPING_VALUE];
         NSString * productId = [dictionary objectForKey:PARA_APPLE_IAP_PRODUCT_ID];
+        NSNumber * savePercent = [dictionary objectForKey:PARA_SAVE_PERCENT];
 //        ShoppingModel *model = [[ShoppingModel alloc] initWithType:type count:amount.integerValue price:value.floatValue savePercen:0 productId:productId];
 //        [array addObject:model];
         
         [self createPriceModel:type
                          price:value.floatValue
                          count:amount.integerValue
-                   savePercent:0
+                   savePercent:savePercent.integerValue
                      productId:productId
                            seq:seq];
         seq ++;

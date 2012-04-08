@@ -143,8 +143,9 @@
 
 "kGotoCoinShop" = "Coin Shop";
 
+"kChangeRoomMaxTimes" = "You have changed room more than 5 times a day. Cannot change any more.";
 "kChangeRoomTitle" = "Switch Room";
-"kChangeRoomConfirm" = "Do you want to switch to another room? This will cost you 1 coin";
+"kChangeRoomConfirm" = "Do you want to switch to another room? You can try 5 times per day.";
 "kQuitGameTitle" = "Quit Game";
 "kQuitGameConfirm" = "Do you want to leave the room now?";
 
@@ -202,3 +203,6 @@
 "kAnswer" = "Answer: %@";
 "kNoWord" = "Unselect word";
 "kCleanDrawTitle" = "Clean Draw";
+"kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
+"kSavePercent" = "SAVE %02d%%";
+

@@ -9,6 +9,7 @@
 #import "ShareEditController.h"
 #import "SynthesisView.h"
 #import "ShareImageManager.h"
+#import "UIImageUtil.h"
 #define PATTERN_TAG_OFFSET 20120403
 
 @interface ShareEditController ()
@@ -75,6 +76,12 @@
   
 }
 
+#pragma mark Navigation Controller
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark - UIActionSheetDelegate
 enum {
     SAVE_TO_ALBUM = 0,
@@ -85,11 +92,16 @@ enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case SAVE_TO_ALBUM:
-            //
-            break;
+        case SAVE_TO_ALBUM: {
+            UIImageWriteToSavedPhotosAlbum(self.myImage, nil, nil, nil);
+        } break;
         case SHARE_VIA_EMAIL: {
-            
+            MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
+            [compose setSubject:@"Gif Image"];
+            [compose setMessageBody:@"I have kindly attached a GIF image to this E-mail. I made this GIF using ANGif, an open source Objective-C library for exporting animated GIFs." isHTML:NO];
+            [compose addAttachmentData:[UIImage compressImage:self.myImage byQuality:0.3] mimeType:@"image/png" fileName:@"image.png"];
+            [compose setMailComposeDelegate:self];
+            [self presentModalViewController:compose animated:YES];
         } break;
         case SHARE_VIA_SINA: {
             

@@ -24,6 +24,7 @@ enum{
     int _clickCount;
     UIButton *popupButton;
     int _dialogAction;
+    int _changeRoomTimes;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *prolongButton;

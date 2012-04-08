@@ -21,6 +21,7 @@
 @synthesize countLabel;
 @synthesize toolImage;
 @synthesize costCoinImage;
+@synthesize savePercentButton;
 @synthesize model = _model;
 @synthesize shoppingDelegate = _shoppingDelegate;
 @synthesize buyButton;
@@ -57,6 +58,7 @@
     [toolImage release];
     [buyButton release];
     [costCoinImage release];
+    [savePercentButton release];
     [super dealloc];
 }
 
@@ -91,7 +93,21 @@
         [self.priceLabel setCenter:ITEM_PRICE_CENTER];
     }
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
-    [self.buyButton setBackgroundImage:[imageManager buyButtonImage] forState:UIControlStateNormal];
+    [self.buyButton setBackgroundImage:[imageManager buyButtonImage] 
+                              forState:UIControlStateNormal];
+    
+    if ([model.savePercent intValue] > 0){
+        NSString* saveTitle = [NSString stringWithFormat:NSLS(@"kSavePercent"), 
+                               [model.savePercent intValue]];
+        [self.savePercentButton setBackgroundImage:[imageManager savePercentImage] 
+                                          forState:UIControlStateNormal];
+        [self.savePercentButton setTitle:saveTitle forState:UIControlStateNormal];
+        self.savePercentButton.userInteractionEnabled = NO;
+        self.savePercentButton.hidden = NO;
+    }
+    else{
+        self.savePercentButton.hidden = YES;
+    }
     
     [self.countLabel setText:countString];
     [self.priceLabel setText:priceString];
