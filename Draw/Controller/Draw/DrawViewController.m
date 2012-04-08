@@ -410,7 +410,8 @@ DrawViewController *GlobalGetDrawViewController()
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                           wordText:self.word.text 
                                                              score:gainCoin                                                         correct:NO
-                                                             isMyPaint:YES];
+                                                             isMyPaint:YES 
+                                                    drawActionList:drawView.drawActionList];
     if (colorShopConroller) {
         [colorShopConroller.navigationController popViewControllerAnimated:NO];
         [self.navigationController pushViewController:rc animated:NO];

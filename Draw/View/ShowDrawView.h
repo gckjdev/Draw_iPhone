@@ -48,4 +48,5 @@ typedef enum{
 - (UIImage*)createImage;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)cleanAllActions;
+- (BOOL)isViewBlank;
 @end

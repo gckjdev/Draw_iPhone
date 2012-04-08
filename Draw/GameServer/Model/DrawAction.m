@@ -56,4 +56,39 @@
     }
     return 0;
 }
+
++ (BOOL)isDrawActionListBlank:(NSArray *)actionList
+{
+    if ([actionList count] == 0) {
+        return YES;
+    }
+    DrawAction *action = [actionList lastObject];
+    if (action.type == DRAW_ACTION_TYPE_DRAW && action.pointCount > 0){
+        return NO;
+    }
+    return YES;
+
+}
++ (NSArray *)getTheLastActionListWithoutClean:(NSArray *)actionList
+{
+    int count = actionList.count;
+    int i;
+    for (i = count - 1; i >= 0; --i) {
+        DrawAction *action = [actionList objectAtIndex:i];
+        if (action.type == DRAW_ACTION_TYPE_CLEAN) {
+            break;
+        }
+    }
+    NSInteger index = i + 1;
+    if(index >= actionList.count){
+        return nil;
+    }
+    NSMutableArray *array =[[[NSMutableArray alloc] init]autorelease];
+    for (int j = index; j < actionList.count; ++ j) {
+        DrawAction *action = [actionList objectAtIndex:j];
+        [array addObject:action];
+    }
+    return array;
+}
+
 @end
