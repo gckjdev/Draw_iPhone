@@ -89,7 +89,7 @@
 "kCheckInMessage" = "Oh, you got %d coins today!";
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
-"kRegisterPromptLabel" = "Use Existing Account";
+"kRegisterPromptLabel" = "Existing Account";
 "kRegisterTitleLabel" = "Registration";
 "kEnterEmail" = "Enter Your Email Address";
 
@@ -209,3 +209,7 @@
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "Share";
+
+"kNickNameEmpty" = "Nick name cannot be empty.";
+"Nick" = "Nick";
+"Avatar" = "Avatar";

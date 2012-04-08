@@ -8,8 +8,9 @@
 
 // buttons images
 #import "LocaleUtils.h"
+#import "UserManager.h"
 
-#define DEFAULT_AVATAR_BUNDLE   ([LocaleUtils isChina] ? @"man1.png" : @"man2.png")
+//#define DEFAULT_AVATAR_BUNDLE   ([[UserManager defaultManager] defaultAvatar])
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"
 #define FEEDBACK_BUTTON_IMAGE   @"feedback.png"

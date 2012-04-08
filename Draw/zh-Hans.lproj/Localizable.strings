@@ -213,3 +213,7 @@
 "kSavePercent" = "节省%02d%%";
 
 "kShareTitle" = "作品分享";
+
+"kNickNameEmpty" = "昵称不能为空";
+"Nick" = "昵称";
+"Avatar" = "头像";

@@ -11,7 +11,7 @@
 #import "ChangeAvatar.h"
 #import "UserService.h"
 
-@interface CompleteUserInfoController : PPViewController<ChangeAvatarDelegate, UserServiceDelegate>
+@interface CompleteUserInfoController : PPViewController<ChangeAvatarDelegate, UserServiceDelegate, UITextFieldDelegate>
 {
     BOOL _isFemale;
 }

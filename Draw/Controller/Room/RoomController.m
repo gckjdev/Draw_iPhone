@@ -170,16 +170,24 @@
         imageView.hidden = NO;
         
         NSString* avatar = nil;
-        if ([session isMe:[user userId]]){
-            avatar = [[UserManager defaultManager]avatarURL];
+        BOOL isMe = [session isMe:[user userId]];
+        if (isMe){
+            avatar = [[UserManager defaultManager] avatarURL];
         }
         else{
             avatar = [user userAvatar];
         }   
+        
         if ([avatar length] > 0){            
             [imageView setUrl:[NSURL URLWithString:avatar]];
         }else{
-            [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+            if (isMe){
+                [imageView setImage:[[UserManager defaultManager] avatarImage]];
+            }
+            else{
+                // TODO set user avtar by user gender later
+                [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+            }
         }
         
         [GlobalGetImageCache() manage:imageView];
