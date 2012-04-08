@@ -17,5 +17,6 @@
 @dynamic drawByMe;
 @dynamic drawUserNickName;
 @dynamic drawUserId;
+@dynamic drawWord;
 
 @end

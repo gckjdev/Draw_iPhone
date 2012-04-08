@@ -18,5 +18,5 @@
 @property (nonatomic, retain) NSNumber * drawByMe;
 @property (nonatomic, retain) NSString * drawUserNickName;
 @property (nonatomic, retain) NSString * drawUserId;
-
+@property (nonatomic, retain) NSString * drawWord;
 @end
