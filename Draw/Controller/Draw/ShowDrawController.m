@@ -105,7 +105,7 @@ ShowDrawController *GlobalGetShowDrawController()
         _viewIsAppear = NO;
         drawGameService = [DrawGameService defaultService];
         [drawGameService setShowDelegate:self];
-        showView = [[ShowDrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
+        showView = [[ShowDrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
         
     }
     return self;
@@ -149,8 +149,9 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.guessDoneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.view bringSubviewToFront:guessDoneButton];
     self.guessDoneButton.enabled = NO;
+    
+
     toolView.enabled = NO;
-    [self setWordButtonsHidden:YES];
 }
 
 
@@ -175,7 +176,7 @@ ShowDrawController *GlobalGetShowDrawController()
     if (languageType == ChineseType) {
         endIndex --;
         [guessDoneButton setHidden:NO];
-        [guessDoneButton setEnabled:YES];
+        [guessDoneButton setEnabled:(self.word.text != nil)];
     }else{
         [guessDoneButton setHidden:YES];
         [guessDoneButton setEnabled:NO];
@@ -200,7 +201,6 @@ ShowDrawController *GlobalGetShowDrawController()
     self.candidateString = text;
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setHidden:NO];
         [button setEnabled:YES];
         if (self.candidateString != nil) {
             NSString *string = [self.candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
@@ -240,7 +240,6 @@ ShowDrawController *GlobalGetShowDrawController()
     self.word.text = upperString;
     languageType = lang;
     [self updateBomb];
-    [toolView setHidden:NO];
     [self updateCandidateViews];
     [self updateAnswerViews];
 }
@@ -306,19 +305,19 @@ ShowDrawController *GlobalGetShowDrawController()
     [toolView setEnabled:enabled];
 }
 
-- (void)setWordButtonsHidden:(BOOL)hidden
-{
-    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setHidden:hidden];
-    }
-    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setHidden:hidden];
-    }
-    [guessDoneButton setHidden:hidden];
-    [toolView setHidden:hidden];
-}
+//- (void)setWordButtonsHidden:(BOOL)hidden
+//{
+//    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
+//        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+//        [button setHidden:hidden];
+//    }
+//    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
+//        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+//        [button setHidden:hidden];
+//    }
+//    [guessDoneButton setHidden:hidden];
+//    [toolView setHidden:hidden];
+//}
 
 #pragma makr - Timer Handle
 - (void)resetTimer
@@ -440,12 +439,25 @@ ShowDrawController *GlobalGetShowDrawController()
     NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
     [self popGuessMessage:message userId:userId onLeftTop:YES];
 }
+
+
+- (void)updateLastAnswerButton
+{
+    UIView *lastAnwserButton = [self.view viewWithTag:WRITE_BUTTON_TAG_END];
+    BOOL flag = [[UserManager defaultManager]getLanguageType] == ChineseType;
+    self.guessDoneButton.hidden = !flag;
+    lastAnwserButton.hidden = flag;
+}
+
 - (void)resetData
 {
+    [self startTimer];
     [self updatePlayerAvatars];
     [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
+    [self updateLastAnswerButton];
     _guessCorrect = NO;
     _shopController = nil;
+
 }
 
 #pragma mark - View lifecycle
@@ -453,7 +465,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [drawGameService registerObserver:self];
+
     
     //put the show view above the paper background
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
@@ -480,6 +492,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self resetData];        
     }
     [self updateBomb];
+    [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
 }
 
@@ -488,7 +501,6 @@ ShowDrawController *GlobalGetShowDrawController()
     if (!_shopController) {
         _viewIsAppear = NO;
         [self setWord:nil];
-        [self setWordButtonsHidden:YES];        
     }
     [super viewDidDisappear:animated];
 }
@@ -543,8 +555,7 @@ ShowDrawController *GlobalGetShowDrawController()
     PPDebug(@"<ShowDrawController> ReceiveWord:%@", wordText);
     if (wordText) {
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-        LanguageType lang = [[UserManager defaultManager] getLanguageType];
-        [self updatePickViewsWithWord:word lang:lang];
+        [self updatePickViewsWithWord:word lang:language];
         [showView cleanAllActions];
     }
 }
@@ -581,10 +592,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)didGameTurnGuessStart:(GameMessage *)message
 {
     PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
-    _guessCorrect = NO;
     [self startTimer];
-    //make the show view can play the actions
-    [showView cleanAllActions];
 }
 
 
@@ -618,7 +626,9 @@ ShowDrawController *GlobalGetShowDrawController()
         }
         [rc release];
         [self updatePickViewsWithWord:nil lang:languageType];        
+        
     }
+    [drawGameService unregisterObserver:self];
     [showView cleanAllActions];
 }
 
@@ -642,6 +652,8 @@ ShowDrawController *GlobalGetShowDrawController()
         [HomeController returnRoom:self];
         [showView cleanAllActions];
         [self resetTimer];
+        _viewIsAppear = NO;
+        [self updatePickViewsWithWord:nil lang:languageType];        
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -653,6 +665,13 @@ ShowDrawController *GlobalGetShowDrawController()
 #pragma mark - Actions
 - (IBAction)clickGuessDoneButton:(id)sender {
     NSString *ans = [self getAnswer];
+    
+    //if the answer is nil, don't send the answer.
+    if ([ans length] == 0) {
+        [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
+        return;
+    }
+    
     BOOL flag = [ans isEqualToString:self.word.text];    
     //alter if the word is correct
     if (flag) {

@@ -248,14 +248,17 @@ enum{
     
     if (languageChanged) {
         [userManager setLanguageType:languageType];
-        languageChanged = NO;
+        if (!hasEdited) {
+            [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
+        }
     }
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
         [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
-    }else{
+    }else if(!languageChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
+    languageChanged = NO;
 }
 
 - (IBAction)clickAvatar:(id)sender {
@@ -267,7 +270,7 @@ enum{
 }
 
 - (IBAction)clickBackButton:(id)sender {
-    if (hasEdited) {
+    if (languageChanged || hasEdited) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
         [dialog showInView:self.view];
     }else{
