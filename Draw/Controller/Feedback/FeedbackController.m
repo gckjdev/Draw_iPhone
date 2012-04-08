@@ -10,6 +10,7 @@
 #import "ReportController.h"
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
+#import "AboutUsController.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -30,6 +31,7 @@ enum {
 
 - (void)initCell:(UITableViewCell*)aCell withIndex:(int)anIndex
 {
+    [aCell.textLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     switch (anIndex) {
         case SHARE: {
             [aCell.textLabel setText:NSLS(@"kShare_to_friends")];
@@ -64,20 +66,22 @@ enum {
 {
     switch (indexPath.row) {
         case SHARE: {
-            ReportController* rc = [[ReportController alloc] init];
+            ReportController* rc = [[ReportController alloc] initWithType:SNS_SHARE];
             [self.navigationController pushViewController:rc animated:YES];
             [rc release];
         }
             break;
         case FEEDBACK:
         case REPORT_BUG: {
-            ReportController* rc = [[ReportController alloc] init];
+            ReportController* rc = [[ReportController alloc] initWithType:REPORT_BUG];
             [self.navigationController pushViewController:rc animated:YES];
             [rc release];
         }
             break;
         case ABOUT: {
-            
+            AboutUsController* rc = [[AboutUsController alloc] init];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
         case MORE_APP: {

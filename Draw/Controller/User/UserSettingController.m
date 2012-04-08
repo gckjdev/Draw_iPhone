@@ -71,7 +71,7 @@ enum{
         [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
     }
     else{
-        [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+        [imageView setImage:[UIImage imageNamed:[userManager defaultAvatar]]];
     }
     [GlobalGetImageCache() manage:imageView];
     [self updateNickname:[userManager nickName]];

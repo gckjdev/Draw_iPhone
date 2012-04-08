@@ -88,7 +88,7 @@
             [imageView setUrl:[NSURL URLWithString:urlString]];
         }
         else{
-            [imageView setImage:[UIImage imageNamed:DEFAULT_AVATAR_BUNDLE]];
+            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
         }
         [GlobalGetImageCache() manage:imageView];
         [self addSubview:imageView];

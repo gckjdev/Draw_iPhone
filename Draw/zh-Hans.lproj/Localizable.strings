@@ -144,11 +144,8 @@
 
 "kChangeRoomMaxTimes" = "你一天内已经换超过5次房间了，不能再换房间了。";
 "kChangeRoomTitle" = "更换房间";
-<<<<<<< HEAD
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
-=======
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，一天只能更换5次房间，确定换个房间吗？";
->>>>>>> origin/master
 "kQuitGameTitle" = "退出房间";
 "kQuitGameConfirm" = "请问是否要退出当前房间，回到主菜单？";
 
@@ -185,6 +182,7 @@
 "kShare_via" = "分享选项";
 "kShareAsPhoto" = "图片方式分享";
 "kShareAsGif" = "动画方式分享";
+"kShare_Options" = "请选择分享方式";
 "kSave_to_album" = "保存到相册";
 "kShare_via_Email" = "通过邮件分享";
 "kShare_via_Sina_weibo" = "通过新浪微博分享";
@@ -215,3 +213,10 @@
 "kSavePercent" = "节省%02d%%";
 
 "kShareTitle" = "作品分享";
+
+"kNickNameEmpty" = "昵称不能为空";
+"Nick" = "昵称";
+"Avatar" = "头像";
+
+"kDone" = "完成";
+"Back" = "返回";

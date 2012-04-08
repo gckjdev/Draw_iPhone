@@ -101,6 +101,11 @@
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
+								<object class="NSColor" key="IBUIShadowColor" id="51701944">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+								</object>
+								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
@@ -125,15 +130,16 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">取消</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="51701944">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="IBUIHighlightedTitleColor" ref="51701944"/>
 								<reference key="IBUINormalTitleColor" ref="51701944"/>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="117959064">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="440558810">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
+									<bytes key="NSWhite">MAA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">2</int>
+									</object>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="63278127">
 									<int key="type">2</int>
@@ -151,14 +157,16 @@
 								<string key="NSFrame">{{185, 200}, {99, 37}}</string>
 								<reference key="NSSuperview" ref="398737041"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">确定</string>
 								<reference key="IBUIHighlightedTitleColor" ref="51701944"/>
 								<reference key="IBUINormalTitleColor" ref="51701944"/>
-								<reference key="IBUINormalTitleShadowColor" ref="117959064"/>
+								<reference key="IBUINormalTitleShadowColor" ref="440558810"/>
 								<reference key="IBUIFontDescription" ref="63278127"/>
 								<reference key="IBUIFont" ref="463299706"/>
 							</object>

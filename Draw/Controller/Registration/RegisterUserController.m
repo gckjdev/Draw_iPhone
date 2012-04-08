@@ -20,6 +20,7 @@
 #import "AccountService.h"
 #import "ShareImageManager.h"
 #import "FacebookSNSService.h"
+#import "UserManager.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -239,13 +240,17 @@
             CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:NO];    
         }
+        else if (_currentLoginType == REGISTER_TYPE_SINA && 
+                 [[[UserManager defaultManager] nickName] hasPrefix:@"新浪微博"]){
+            CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:NO];    
+        }
         else{
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];            
         }
     }
-    else{
-        // TODO show error code?
-        [self.navigationController popToViewController:self animated:YES];
+    else{        
+        // do nothing here
     }
 }
 

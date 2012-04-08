@@ -117,6 +117,31 @@ static UserManager* _defaultManager;
     return ([[self userId] length] > 0);
 }
 
+- (NSString*)gender
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:KEY_GENDER];
+}
+
+- (NSString*)defaultAvatar
+{
+    if ([self isUserMale]){
+        return [LocaleUtils isChina] ? @"man1.png" : @"man2.png";                
+    }
+    else{        
+        return [LocaleUtils isChina] ? @"female1.png" : @"female2.png";
+    }
+}
+
+- (BOOL)isUserMale
+{
+    NSString* gender = [self gender];
+    if (gender == nil)
+        return YES;
+    else
+        return [gender isEqualToString:@"m"];
+}
+
 - (void)saveUserId:(NSString*)userId 
              email:(NSString*)email
           password:(NSString*)password
@@ -235,7 +260,7 @@ static UserManager* _defaultManager;
         NSString* url = [self avatarURL];
         if ([url length] == 0){
             // use default avatar in application bundle
-            self.avatarImage = [UIImage imageNamed:DEFAULT_AVATAR_BUNDLE];
+            self.avatarImage = [UIImage imageNamed:[self defaultAvatar]];
         }
         else{
             // read from server and save it locally

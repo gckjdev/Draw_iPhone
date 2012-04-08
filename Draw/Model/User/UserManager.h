@@ -48,6 +48,8 @@ typedef enum {
 - (void)setDeviceToken:(NSString*)deviceToken;
 
 - (BOOL)hasUser;
+- (BOOL)isUserMale;
+- (NSString*)defaultAvatar;
 
 - (void)saveUserId:(NSString*)userId 
              email:(NSString*)email

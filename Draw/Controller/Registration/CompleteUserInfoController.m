@@ -64,7 +64,7 @@
     }
     else{
         // set female background to default
-        [self.maleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]
+        [self.femaleAvatarButton setBackgroundImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]
                                          forState:UIControlStateNormal];
     }
 }
@@ -74,7 +74,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.nickNameTextField.text = [[UserManager defaultManager] nickName];
+    NSString* nickName = [[UserManager defaultManager] nickName];
+    if ([nickName hasPrefix:@"新浪微博"]){
+        self.nickNameTextField.text = @"";
+    }
+    else{
+        self.nickNameTextField.text = nickName;
+    }
+    self.nickNameTextField.delegate = self;
         
 //    self.avatarImage = [[UserManager defaultManager] avatarImage];
 //    [self.maleAvatarButton setBackgroundImage:_avatarImage forState:UIControlStateNormal];
@@ -94,6 +101,9 @@
     [self.skipButton setTitle:NSLS(@"Skip") forState:UIControlStateNormal];
     [self.skipButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] 
                                  forState:UIControlStateNormal];
+    
+    self.nickNameLabel.text = NSLS(@"Nick");
+    self.avatarLabel.text = NSLS(@"Avatar");
     
     [self updateSelectImageView];
 }
@@ -145,6 +155,12 @@
 
 - (IBAction)clickSkip:(id)sender
 {
+    if ([self.nickNameTextField.text length] <= 0){
+        [UIUtils alert:NSLS(@"kNickNameEmpty")];
+        [self.nickNameTextField becomeFirstResponder];
+        return;
+    }    
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -201,5 +217,13 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    [self clickSubmit:textField];
+    return NO;
+}
+
 
 @end
