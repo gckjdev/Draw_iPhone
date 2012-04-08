@@ -248,7 +248,8 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [drawView clearAllActions];
     [popupButton setHidden:YES];
-    [self.wordButton setTitle:self.word.text forState:UIControlStateNormal];
+    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+    [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
     [self updatePlayerAvatars];
     [self startTimer];

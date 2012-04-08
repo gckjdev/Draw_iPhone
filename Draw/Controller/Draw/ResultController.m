@@ -113,7 +113,8 @@
 {
     [super viewDidLoad];
     [self.drawImage setImage:_image];
-    [self.wordLabel setText:self.wordText];
+    NSString *answer = [NSString stringWithFormat:NSLS(@"kAnswer"),self.wordText];
+    [self.wordLabel setText:answer];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
 
     [self startTimer];

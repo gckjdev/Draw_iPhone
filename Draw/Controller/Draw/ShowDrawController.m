@@ -229,7 +229,9 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)updateBomb
 {
-    [toolView setEnabled:YES];
+    if ([self.candidateString length] != 0) {
+        [toolView setEnabled:YES];        
+    }
     toolView.number = [[ItemManager defaultManager] tipsItemAmount];
 }
 
@@ -239,8 +241,8 @@ ShowDrawController *GlobalGetShowDrawController()
     self.word = word;
     self.word.text = upperString;
     languageType = lang;
-    [self updateBomb];
     [self updateCandidateViews];
+    [self updateBomb];
     [self updateAnswerViews];
 }
 
@@ -689,7 +691,9 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)bomb:(id)sender
 {
-    
+    if ([self.candidateString length] == 0) {
+        return;
+    }
     if ([[ItemManager defaultManager] tipsItemAmount] <= 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoTipsItemTitle") message:NSLS(@"kNoTipsItemMessage") style:CommonDialogStyleDoubleButton deelegate:self];
         dialog.tag = SHOP_DIALOG_TAG;

@@ -192,3 +192,12 @@
 
 "kNewVersionMessage" = "Found new version %@, do you want to upgrade?";
 "kNewVersionTitle" = "New Version";
+
+"Remind Later" = "Remind Later";
+"Upgrade Now" = "Upgrade Now";
+"OK" = "OK";
+"Cancel" = "Cancel";
+
+"kDrawWord" = "Drawing: %@";
+"kAnswer" = "Answer: %@";
+
