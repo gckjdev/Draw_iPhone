@@ -21,7 +21,7 @@
 #import "AccountService.h"
 #import "Account.h"
 
-#define CONTINUE_TIME 15
+#define CONTINUE_TIME 10
 
 @implementation ResultController
 @synthesize drawImage;
@@ -113,7 +113,13 @@
 {
     [super viewDidLoad];
     [self.drawImage setImage:_image];
-    NSString *answer = [NSString stringWithFormat:NSLS(@"kAnswer"),self.wordText];
+    NSString *answer = nil;
+    if (self.wordText) {
+        answer = [NSString stringWithFormat:NSLS(@"kAnswer"),self.wordText];        
+    }else{
+        answer = NSLS(@"kNoWord");
+    }
+
     [self.wordLabel setText:answer];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
 
@@ -156,16 +162,16 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [drawGameService unregisterObserver:self];
-    [drawGameService setRoomDelegate:nil];
+//    [drawGameService unregisterObserver:self];
+//    [drawGameService setRoomDelegate:nil];
     
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
         
-    [drawGameService setRoomDelegate:self];
-    [drawGameService registerObserver:self];
+//    [drawGameService setRoomDelegate:self];
+//    [drawGameService registerObserver:self];
 //    [self.upButton setEnabled:YES];
 //    [self.downButton setEnabled:YES];
 }

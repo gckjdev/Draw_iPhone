@@ -595,6 +595,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
     [self startTimer];
+    [showView cleanAllActions];
 }
 
 
@@ -630,8 +631,9 @@ ShowDrawController *GlobalGetShowDrawController()
         [self updatePickViewsWithWord:nil lang:languageType];        
         
     }
-    [drawGameService unregisterObserver:self];
     [showView cleanAllActions];
+    [drawGameService unregisterObserver:self];
+
 }
 
 

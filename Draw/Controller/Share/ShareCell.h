@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#define IMAGES_PER_LINE 4
+
 @protocol ShareCellDelegate <NSObject>
 
 - (void)selectImageAtIndex:(int)index;

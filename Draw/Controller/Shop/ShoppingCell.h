@@ -36,6 +36,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *toolImage;
 @property (retain, nonatomic) IBOutlet UIImageView *costCoinImage;
+@property (retain, nonatomic) IBOutlet UIButton *savePercentButton;
 
 - (void)setCellInfo:(PriceModel *)model indexPath:(NSIndexPath *)aIndexPath;
 @end

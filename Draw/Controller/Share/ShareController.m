@@ -13,13 +13,16 @@
 #import "MyPaint.h"
 #import "DrawAction.h"
 #import "ShareGifController.h"
+#import "ShareCell.h"
+#import "ShareImageManager.h"
+#import "UserManager.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
-#define IMAGES_PER_LINE 3
 #define IMAGE_WIDTH 93
 
-#define IMAGE_OPTION 20120407
-#define SHARE_IMAGE_OPTION 120120407
+#define IMAGE_OPTION            20120407
+#define SHARE_IMAGE_OPTION      120120407
+#define SHARE_AS_PHOTO_OPTION   220120407
 
 @interface ShareController ()
 
@@ -29,11 +32,13 @@
 @synthesize paintsFilter;
 @synthesize gallery;
 @synthesize paints = _paints;
+@synthesize titleLabel;
 
 - (void)dealloc {
     [paintsFilter release];
     [gallery release];
     [_paints release];
+    [titleLabel release];
     [super dealloc];
 }
 
@@ -53,9 +58,11 @@
 {
     _currentSelectedPaint = index;
     UIActionSheet* tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                                      delegate:self cancelButtonTitle:NSLS(@"kCancel") 
-                                        destructiveButtonTitle:NSLS(@"kShare") 
-                                             otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+                                                      delegate:self 
+                                             cancelButtonTitle:NSLS(@"kCancel") 
+                                        destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                             otherButtonTitles:NSLS(@"kShareAsGif"),
+                                                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
     tips.tag = IMAGE_OPTION;
     [tips showInView:self.view];
     [tips release];
@@ -64,7 +71,8 @@
 
 #pragma mark - UIActionSheetDelegate
 enum {
-    SHARE = 0,
+    SHARE_AS_PHOTO = 0,
+    SHARE_AS_GIF,
     REPLAY,
     DELETE,
     CANCEL
@@ -103,17 +111,83 @@ enum {
     [self.navigationController presentModalViewController:controller animated:YES];
 }
 
+- (void)shareAsGif
+{
+    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+    NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
+    NSArray* drawActionList = (NSArray*)currentData;
+    
+    UIImageView* background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [background setImage:[UIImage imageNamed:@"wood_bg.png"]];
+    background.tag = BACK_GROUND_TAG;
+    UIImageView* paper = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
+    [paper setImage:[UIImage imageNamed:@"paper.png"]];
+    [background addSubview:paper];
+    
+    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];    
+    replayView.tag = REPLAY_TAG;
+    [background addSubview:replayView];
+    [replayView release];            
+    [replayView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
+    [replayView play];
+    replayView.delegate = self;
+    replayView.shouldCreateGif = YES;
+    replayView.playSpeed = 0.01;
+    [self.view addSubview:background];
+    [background release];
+    
+    UIImageView* paperClip = [[UIImageView alloc] initWithFrame:CGRectMake(53, -2, 194, 40)];
+    [paperClip setImage:[UIImage imageNamed:@"paperclip.png"]];
+    [background addSubview:paperClip];
+    
+    UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 410, 80, 40)];
+    [quit setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
+    [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:quit];
+    [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+    quit.tag = QUIT_BUTTON_TAG;
+    
+    [self showActivityWithText:NSLS(@"kCreating_gif")];    
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == IMAGE_OPTION) {
         switch (buttonIndex) {
-            case SHARE: {
-                UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kShare_image") otherButtonTitles:NSLS(@"kShare_gif"), nil];
-                shareOptions.tag = SHARE_IMAGE_OPTION;
+            case SHARE_AS_PHOTO: {
+                
+                UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
+                                                                          delegate:self 
+                                                                 cancelButtonTitle:NSLS(@"kCancel") 
+                                                            destructiveButtonTitle:NSLS(@"kSave_to_album") 
+                                                                 otherButtonTitles:NSLS(@"kShare_via_Email"), 
+//                                                                                NSLS(@"kShare_via_Sina_weibo"),
+//                                                                                NSLS(@"kShare_via_tencent_weibo"),
+//                                                                                NSLS(@"kShare_via_Facebook"),
+                                                                                nil];
+
+                if ([[UserManager defaultManager] hasBindSinaWeibo]){
+                    [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
+                }
+                
+                if ([[UserManager defaultManager] hasBindQQWeibo]){
+                    [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
+                }
+                
+                if ([[UserManager defaultManager] hasBindFacebook]){
+                    [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
+                }                
+                
+                shareOptions.tag = SHARE_AS_PHOTO_OPTION;
                 [shareOptions showInView:self.view];
+            }                            
+                break;
+            case SHARE_AS_GIF:
+            {
+                [self shareAsGif];
             }
                 break;
+                
             case REPLAY: {
                 MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
                 NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
@@ -144,7 +218,7 @@ enum {
                 [quit setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
                 [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:quit];
-                [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+                [quit setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
                 quit.tag = QUIT_BUTTON_TAG;
  
             }
@@ -160,54 +234,26 @@ enum {
         }
     }
     
-    if (actionSheet.tag == SHARE_IMAGE_OPTION) {
+    if (actionSheet.tag == SHARE_AS_PHOTO_OPTION && buttonIndex != actionSheet.cancelButtonIndex) {                
         switch (buttonIndex) {
-            case SHARE_PNG: {
+                
+            case SHARE_VIA_ALBUM:
+                // TODO save image to album
+                break;
+                
+            case SHARE_VIA_EMAIL:
+                // TODO send by email
+                break;
+                
+            default: 
+            {
                 MyPaint* myPaint = [self.paints objectAtIndex:_currentSelectedPaint];
                 NSData* imageData = [NSData dataWithContentsOfFile:myPaint.image];
                 UIImage* myImage = [UIImage imageWithData:imageData];
                 ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
                 [self.navigationController pushViewController:controller animated:YES];
                 [controller release];
-            } break;
-            case SHARE_GIF: {
-                MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-                NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
-                NSArray* drawActionList = (NSArray*)currentData;
-                
-                UIImageView* background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-                [background setImage:[UIImage imageNamed:@"wood_bg.png"]];
-                background.tag = BACK_GROUND_TAG;
-                UIImageView* paper = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
-                [paper setImage:[UIImage imageNamed:@"paper.png"]];
-                [background addSubview:paper];
-                
-                ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];    
-                replayView.tag = REPLAY_TAG;
-                [background addSubview:replayView];
-                [replayView release];            
-                [replayView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
-                [replayView play];
-                replayView.delegate = self;
-                replayView.shouldCreateGif = YES;
-                replayView.playSpeed = 0.01;
-                [self.view addSubview:background];
-                [background release];
-                
-                UIImageView* paperClip = [[UIImageView alloc] initWithFrame:CGRectMake(53, -2, 194, 40)];
-                [paperClip setImage:[UIImage imageNamed:@"paperclip.png"]];
-                [background addSubview:paperClip];
-                
-                UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(0, 410, 80, 40)];
-                [quit setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
-                [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:quit];
-                [quit setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
-                quit.tag = QUIT_BUTTON_TAG;
-                
-                [self showActivityWithText:NSLS(@"kCreating_gif")];
-            } break;
-            default:
+            } 
                 break;
         }
     }
@@ -241,6 +287,12 @@ enum {
 {
     return NO;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"total paints is %d", self.paints.count);
@@ -308,6 +360,7 @@ enum {
     NSLog(@"get all paints, paints count is %d", _paints.count);
 
     // Do any additional setup after loading the view from its nib.
+    self.titleLabel.text = NSLS(@"kShareTitle");
 }
 
 - (void)viewDidUnload
@@ -315,6 +368,7 @@ enum {
     [self setPaintsFilter:nil];
     [self setGallery:nil];
     [self setPaints:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -62,6 +62,7 @@
     [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
     view.delegate = delegate;
+    view.tag = 0;
     return view;
 
 }

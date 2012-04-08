@@ -17,6 +17,7 @@
     BOOL hasPushController;
     ToolView *toolView;
     DrawGameService *drawGameService;
+    NSTimer *_timer;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;

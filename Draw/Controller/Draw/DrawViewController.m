@@ -111,6 +111,7 @@ DrawViewController *GlobalGetDrawViewController()
     if (self) {
         drawGameService = [DrawGameService defaultService];
         drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
+        [drawView setDrawEnabled:YES];
         pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 250, 302, 122)];
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
@@ -127,10 +128,16 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
-    for (int i = 20; i >= 5 ;i -= 5) {
-        NSNumber *number = [NSNumber numberWithInt:i];
-        [widthArray addObject:number];
-    }
+//    for (int i = 3; i < 25;i += 7) {
+//       NSNumber *number = [NSNumber numberWithInt:i];
+//        [widthArray insertObject:number atIndex:0];
+//        [widthArray addObject:number];
+//    }
+    
+    [widthArray addObject:[NSNumber numberWithInt:20]];
+    [widthArray addObject:[NSNumber numberWithInt:15]];
+    [widthArray addObject:[NSNumber numberWithInt:10]];
+    [widthArray addObject:[NSNumber numberWithInt:3]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
     
@@ -141,7 +148,10 @@ DrawViewController *GlobalGetDrawViewController()
     [colorViewArray addObject:[ColorView redColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
-
+    [colorViewArray addObject:[ColorView redColorView]];
+    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView blueColorView]];
+    
     
     [pickPenView setColorViews:colorViewArray];
     [colorViewArray release];
@@ -187,7 +197,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
-    [drawView setDrawEnabled:enabled];
+//    [drawView setDrawEnabled:enabled];
     [penButton setEnabled:enabled];
     [pickPenView setHidden:YES];
 }
@@ -242,11 +252,18 @@ DrawViewController *GlobalGetDrawViewController()
     return nil;
 }
 
-
+- (void)resetDrawView
+{
+    [drawView clearAllActions];
+    penWidth = 2;
+    eraserWidth = 15;
+    [drawView setLineWidth:penWidth];
+    [drawView setLineColor:[DrawColor blackColor]];
+}
 
 - (void)resetData
 {
-    [drawView clearAllActions];
+    [self resetDrawView];
     [popupButton setHidden:YES];
     NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
@@ -331,6 +348,7 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
+    [drawView setDrawEnabled:YES];
     colorShopConroller = nil;
 }
 
@@ -401,7 +419,7 @@ DrawViewController *GlobalGetDrawViewController()
     }
     [rc release];
     [self resetTimer];
-    
+    [drawView clearAllActions];
     // rem by Benson, // this will crash the app, see log below
     //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
     [drawGameService unregisterObserver:self];  
@@ -422,10 +440,12 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)didPickedColorView:(ColorView *)colorView
 {
     [drawView setLineColor:colorView.drawColor];
+    [drawView setLineWidth:penWidth];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
     [drawView setLineWidth:width];
+    penWidth = width;
 }
 - (void)didPickedMoreColor
 {
@@ -438,14 +458,22 @@ DrawViewController *GlobalGetDrawViewController()
 
 #pragma mark - Common Dialog Delegate
 #define ESCAPE_DEDUT_COIN 1
+#define DIALOG_TAG_CLEAN_DRAW 201204081
+#define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
     [dialog removeFromSuperview];
     
-    if (dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
+    if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
+        [drawGameService cleanDraw];
+        [drawView addCleanAction];
+        [pickPenView setHidden:YES];        
+    }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
+        [drawView clearAllActions];
+        [drawGameService unregisterObserver:self];
     }
 
 }
@@ -489,17 +517,19 @@ DrawViewController *GlobalGetDrawViewController()
     }
 
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style deelegate:self];
+    dialog.tag = DIALOG_TAG_ESCAPE;
     [dialog showInView:self.view];
 }
-
 - (IBAction)clickRedraw:(id)sender {
-    [drawGameService cleanDraw];
-    [drawView addCleanAction];
     [pickPenView setHidden:YES];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    dialog.tag = DIALOG_TAG_CLEAN_DRAW;
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
+    [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
 }
 
