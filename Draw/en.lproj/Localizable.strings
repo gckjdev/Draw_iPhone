@@ -192,3 +192,6 @@
 
 "kNewVersionMessage" = "Found new version %@, do you want to upgrade?";
 "kNewVersionTitle" = "New Version";
+"kDrawWord" = "You are drawing: %@";
+"kAnswer" = "Answer: %@";
+

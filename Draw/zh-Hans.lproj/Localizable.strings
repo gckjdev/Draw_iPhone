@@ -194,3 +194,6 @@
 "kNewVersionMessage" = "检测到有新版本[%@]，是否要升级到最新版本？";
 "kNewVersionTitle" = "版本升级";
 
+"kDrawWord" = "你正在画: %@";
+"kAnswer" = "答案: %@";
+
