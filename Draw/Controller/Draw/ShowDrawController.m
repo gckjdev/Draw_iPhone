@@ -126,7 +126,7 @@ ShowDrawController *GlobalGetShowDrawController()
 #define WRITE_BUTTON_TAG_START 11
 #define WRITE_BUTTON_TAG_END 18
 #define PICK_BUTTON_TAG_START 21
-#define PICK_BUTTON_TAG_END 36
+#define PICK_BUTTON_TAG_END 34
 
 - (void)initAnswerAndCadidateViews
 {
@@ -220,9 +220,9 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     NSString *text = nil;
     if (languageType == ChineseType) {
-        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:16];
+        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:14];
     }else{
-        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:16];
+        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:14];
     }
     [self updateCandidateViewsWithText:text];
 }

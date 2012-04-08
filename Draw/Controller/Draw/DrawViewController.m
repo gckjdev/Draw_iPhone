@@ -110,8 +110,8 @@ DrawViewController *GlobalGetDrawViewController()
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
-        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 355)];   
-        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 285, 302, 122)];
+        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
+        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 250, 302, 122)];
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
         [pickPenView setImage:[shareImageManager toolPopupImage]];

@@ -40,6 +40,7 @@
         [addColorButton addTarget:self action:@selector(clickAddColorButton:) forControlEvents:UIControlEventTouchUpInside];
         [addColorButton setImage:[[ShareImageManager defaultManager]addColorImage] forState:UIControlStateNormal];
         [self addSubview:addColorButton];
+        addColorButton.hidden = YES; //hide the add button this version
     }
     return self;
 }

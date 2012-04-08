@@ -281,7 +281,7 @@
 					<object class="IBUIButton" id="198840917">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{246, 359}, {67, 39}}</string>
+						<string key="NSFrame">{{246, 359}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="343379080"/>
@@ -294,6 +294,10 @@
 						<reference key="IBUIHighlightedTitleColor" ref="374436567"/>
 						<reference key="IBUINormalTitleColor" ref="90917541"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1024719418"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">submit.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">buybutton@2x.png</string>
@@ -640,7 +644,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="1024719418"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">setting@2x.png</string>
+							<string key="NSResourceName">run@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -687,7 +691,7 @@
 					<object class="IBUIButton" id="258493630">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{275, 46}, {38, 37}}</string>
+						<string key="NSFrame">{{271, 50}, {38, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="55418512"/>
@@ -1172,8 +1176,9 @@
 			<string key="guess_popup@2x.png">{57, 67}</string>
 			<string key="paper@2x.png">{640, 960}</string>
 			<string key="paperclip@2x.png">{388, 79}</string>
-			<string key="round@2x.png">{69, 70}</string>
-			<string key="setting@2x.png">{74, 74}</string>
+			<string key="round@2x.png">{74, 74}</string>
+			<string key="run@2x.png">{74, 74}</string>
+			<string key="submit.png">{16, 16}</string>
 			<string key="timeset@2x.png">{76, 74}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="wood_bg@2x.png">{640, 960}</string>

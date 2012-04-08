@@ -33,6 +33,7 @@
     
     BOOL hasEdited;
     BOOL avatarChanged;
+    BOOL languageChanged;
     LanguageType languageType;
     
 }

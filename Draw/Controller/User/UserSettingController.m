@@ -77,6 +77,7 @@ enum{
     [self updateNickname:[userManager nickName]];
     hasEdited = NO;
     avatarChanged = NO;
+    languageChanged = NO;
     languageType = [userManager getLanguageType];
 }
 
@@ -238,14 +239,18 @@ enum{
         return;
     }else {
         languageType = buttonIndex + 1;
-        hasEdited = YES;
+        languageChanged = YES;
     }
     [self.dataTableView reloadData];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
-    if (hasEdited) {
+    
+    if (languageChanged) {
         [userManager setLanguageType:languageType];
+        languageChanged = NO;
+    }
+    if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
         [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
     }else{
