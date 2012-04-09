@@ -10,6 +10,7 @@
 #import "SNSServiceDelegate.h"
 #import "ShareImageManager.h"
 
+
 @interface ReportController ()
 
 @end
@@ -64,15 +65,18 @@
     
 }
 
-#pragma mark - publish weibo delegate
-- (void)didPublishWeibo:(int)result
-{
-    
-}
+
 
 - (IBAction)submit:(id)sender
 {
-    switch (_reportType) {           
+    switch (_reportType) {   
+        case SUBMIT_BUG: {
+            [[UserService defaultService] reportBugs:self.contentText.text withContact:self.contactText.text viewController:self];
+        } break;
+        case SUBMIT_FEEDBACK: {
+            [[UserService defaultService] feedback:self.contentText.text WithContact:self.contactText.text viewController:self];
+            
+        } break;
         default:
             break;
     }

@@ -433,5 +433,44 @@
     
 }
 
++ (CommonNetworkOutput*)feedbackUser:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId 
+                          feedback:(NSString*)feedback 
+                              type:(int)type
+                          
+//                       newPassword:(NSString*)newPassword
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        
+        if ([feedback length] > 0){
+            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:feedback];            
+        }
+        str = [str stringByAddQueryParameter:PARA_FEEDBACK_TYPE intValue:type];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 @end

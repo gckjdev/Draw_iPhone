@@ -37,6 +37,7 @@
 #define METHOD_DELETEMESSAGE @"dmm"
 #define METHOD_GETMEPOST @"gmep"
 #define METHOD_UPDATEUSER @"uu"
+#define METHOD_USERFEEDBACK @"ufb"
 
 #define METHOD_REGISTERUSER @"ru"
 #define METHOD_BINDUSER @"bu"
@@ -294,6 +295,9 @@
 #define PARA_CATEGORY_PRODUCTS_NUM @"cpn"
 
 #define PARA_REGISTER_TYPE  @"rt"
+
+#define PARA_FEEDBACK @"fb"
+#define PARA_FEEDBACK_TYPE @"fbt"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

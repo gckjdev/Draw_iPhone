@@ -73,6 +73,10 @@ enum {
     SHARE_VIA_FACEBOOK = 2,
     SHARE_COUNT
 };
+- (void)didPublishWeibo:(int)result
+{
+    NSLog(@"publish weibo result --- %d", result);
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

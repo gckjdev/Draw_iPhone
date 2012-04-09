@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "SinaSNSService.h"
-
+#import "UserService.h"
 typedef enum {
     SUBMIT_BUG = 0,
     SUBMIT_FEEDBACK
 }ReportType;
 
 
-@interface ReportController : PPViewController <UITextViewDelegate ,SNSServiceDelegate, UITextFieldDelegate> {
+@interface ReportController : PPViewController <UITextViewDelegate ,SNSServiceDelegate, UITextFieldDelegate, UserServiceDelegate> {
     ReportType _reportType;
 }
 @property (retain, nonatomic) IBOutlet UILabel *reporterTitle;

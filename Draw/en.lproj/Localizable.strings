@@ -229,4 +229,5 @@
 "kShare_message_body" = "I found a very funny game recently, its name is \"draw lively\"\n%@";
 "kEmail_subject" = "Share a game";
 "kAbout_us_title" = "About us";
-
+"kFeedbackSucc" = "Thanks for your feedback";
+"kFeedbackFail" = "Feedback failed, try later";

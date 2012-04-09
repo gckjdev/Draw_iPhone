@@ -234,4 +234,5 @@
 "kEmail_subject" = "分享个游戏";
 
 "kAbout_us_title" = "关于我们";
-
+"kFeedbackSucc" = "感谢您的反馈";
+"kFeedbackFail" = "发送失败，稍后再试试";

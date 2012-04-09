@@ -268,7 +268,67 @@ static UserService* _defaultUserService;
                   password:nil 
             viewController:viewController];
 }
+#define FEED_BACK_TYPE_ADVICE 1
+#define FEED_BACK_TYPE_BUGS 0
+- (void)feedback:(NSString*)feedback 
+     WithContact:(NSString*)contact  
+  viewController:(PPViewController<UserServiceDelegate>*)viewController
+{    
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
+                                                               appId:APP_ID 
+                                                              userId:userId 
+                                                            feedback:feedback 
+                                                                  type:FEED_BACK_TYPE_ADVICE];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                [viewController popupHappyMessage:NSLS(@"kFeedbackSucc") title:@""];
+            }
+            else{
+                [viewController popupUnhappyMessage:NSLS(@"kFeedbackFail") title:@""];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didSendFeedback::)]){
+                [viewController didSendFeedback:output.resultCode];
+            }
+        });
+    });
+}
 
+- (void)reportBugs:(NSString*)bugDescription 
+       withContact:(NSString*)contact  
+    viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
+                                                                 appId:APP_ID 
+                                                                userId:userId 
+                                                              feedback:bugDescription 
+                                                                  type:FEED_BACK_TYPE_BUGS];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                [viewController popupHappyMessage:NSLS(@"kFeedbackSucc") title:@""];
+            }
+            else{
+                [viewController popupUnhappyMessage:NSLS(@"kFeedbackFail") title:@""];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didSendFeedback::)]){
+                [viewController didSendFeedback:output.resultCode];
+            }
+        });
+    });
+}
 //- (void)checkDevice
 //{    
 //    NSLog(@"current user Id is %@", user.userId);    
