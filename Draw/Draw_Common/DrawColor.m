@@ -122,6 +122,15 @@
 {
     return [DrawColor colorWithRed:1 green:0 blue:1 alpha:1];
 }
++ (DrawColor *)pinkColor       // 1.0, 0.0, 1.0 RGB 
+{
+    return [DrawColor magentaColor];
+}
++ (DrawColor *)skyColor       // 0.4, 0.87, 1.0 RGB
+{
+    return [DrawColor colorWithRed:0.4 green:0.87 blue:1.0 alpha:1];
+}
+
 + (DrawColor *)orangeColor     // 1.0, 0.5, 0.0 RGB 
 {
     return [DrawColor colorWithRed:1 green:0.5 blue:0 alpha:1];

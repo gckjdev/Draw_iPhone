@@ -42,11 +42,19 @@
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
 
+- (UIImage *)blackColorImage;
 - (UIImage *)redColorImage;
+- (UIImage *)greenColorImage;
 - (UIImage *)blueColorImage;
 - (UIImage *)yellowColorImage;
-- (UIImage *)blackColorImage;
+- (UIImage *)orangeColorImage;
+- (UIImage *)pinkColorImage;
+- (UIImage *)brownColorImage;
+- (UIImage *)skyColorImage;
+- (UIImage *)whiteColorImage;
+
 - (UIImage *)addColorImage;
+
 
 - (UIImage *)selectedPointImage;
 - (UIImage *)unSelectedPointImage;

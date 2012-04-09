@@ -87,4 +87,41 @@
     
 }
 
++ (ColorView *)orangeColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor orangeColor] image:[manager orangeColorImage] scale:ColorViewScaleSmall];
+
+}
++ (ColorView *)greenColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor greenColor] image:[manager greenColorImage] scale:ColorViewScaleSmall];
+
+}
++ (ColorView *)pinkColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor pinkColor] image:[manager pinkColorImage] scale:ColorViewScaleSmall];
+
+}
++ (ColorView *)brownColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor brownColor] image:[manager brownColorImage] scale:ColorViewScaleSmall];
+
+}
++ (ColorView *)skyColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor skyColor] image:[manager skyColorImage] scale:ColorViewScaleSmall];
+
+}
++ (ColorView *)whiteColorView
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    return [ColorView colorViewWithDrawColor:[DrawColor whiteColor] image:[manager whiteColorImage] scale:ColorViewScaleSmall];
+
+}
+
 @end

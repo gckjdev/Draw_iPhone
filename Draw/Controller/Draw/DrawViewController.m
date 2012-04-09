@@ -140,17 +140,17 @@ DrawViewController *GlobalGetDrawViewController()
     [widthArray addObject:[NSNumber numberWithInt:3]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
-    
+
     [colorViewArray addObject:[ColorView blackColorView]];
     [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView greenColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
+    [colorViewArray addObject:[ColorView orangeColorView]];
+    [colorViewArray addObject:[ColorView pinkColorView]];
+    [colorViewArray addObject:[ColorView brownColorView]];
+    [colorViewArray addObject:[ColorView skyColorView]];
+    [colorViewArray addObject:[ColorView whiteColorView]];
     
     
     [pickPenView setColorViews:colorViewArray];
