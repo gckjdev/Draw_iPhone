@@ -272,6 +272,7 @@ enum {
 
 #pragma mark - Show Draw View Delegate
 #define COMPRESS_SCALE 0.6
+#define POINT_COUNT_PER_FRAME 4
 - (void)createImageAndSave:(ShowDrawView *)showView
 {
     UIImage *image = [showView createImageWithScale:0.6];
@@ -290,7 +291,7 @@ enum {
                 return;
             }
             
-            if (pointCount < 10) {
+            if (pointCount < POINT_COUNT_PER_FRAME) {
                 if (pointIndex == pointCount - 1) {
                     [self createImageAndSave:showDrawView];
                     NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
@@ -302,7 +303,7 @@ enum {
             {
                 NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
                 [self createImageAndSave:showDrawView];
-            }else if(pointIndex == (pointCount / 2))
+            }else if((pointIndex % POINT_COUNT_PER_FRAME) == (POINT_COUNT_PER_FRAME - 1 ) && (pointIndex + POINT_COUNT_PER_FRAME / 2) < pointCount)
             {
                 NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
                 [self createImageAndSave:showDrawView];
