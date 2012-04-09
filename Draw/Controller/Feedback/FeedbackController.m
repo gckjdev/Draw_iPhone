@@ -11,6 +11,10 @@
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
 #import "AboutUsController.h"
+#import "UserManager.h"
+#import "SinaSNSService.h"
+#import "QQWeiboService.h"
+#import "FacebookSNSService.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -61,19 +65,81 @@ enum {
             break;
     }
 }
+enum {
+    SHARE_VIA_SMS = 0,
+    SHARE_VIA_EMAIL,
+    SHARE_VIA_SINA = 2,
+    SHARE_VIA_QQ = 2,
+    SHARE_VIA_FACEBOOK = 2,
+    SHARE_COUNT
+};
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case SHARE_VIA_SMS: {
+            [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]]];
+        } break;
+        case SHARE_VIA_EMAIL: {
+            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] isHTML:YES delegate:self];
+        } break;
+        case SHARE_VIA_FACEBOOK: {
+            if ([[UserManager defaultManager] hasBindSinaWeibo]){
+                SinaSNSService* service = [[[SinaSNSService alloc] init] autorelease];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+                
+            }
+            
+            if ([[UserManager defaultManager] hasBindQQWeibo]){
+                QQWeiboService* service = [[[QQWeiboService alloc] init] autorelease];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+            }
+            
+            if ([[UserManager defaultManager] hasBindFacebook]){
+                FacebookSNSService* service = [[[FacebookSNSService alloc] init] autorelease];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+            } 
+        } break;
+        default:
+            break;
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
         case SHARE: {
-            ReportController* rc = [[ReportController alloc] initWithType:SNS_SHARE];
-            [self.navigationController pushViewController:rc animated:YES];
-            [rc release];
+            UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
+                                                                      delegate:self 
+                                                             cancelButtonTitle:nil 
+                                                        destructiveButtonTitle:NSLS(@"kShare_via_SMS") 
+                                                             otherButtonTitles:NSLS(@"kShare_via_Email"), 
+                                           nil];
+            
+            if ([[UserManager defaultManager] hasBindSinaWeibo]){
+                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
+            }
+            
+            if ([[UserManager defaultManager] hasBindQQWeibo]){
+                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
+            }
+            
+            if ([[UserManager defaultManager] hasBindFacebook]){
+                [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
+            } 
+            [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
+            [shareOptions setCancelButtonIndex:SHARE_COUNT];
+            [shareOptions showInView:self.view];
+            [shareOptions release];
         }
             break;
-        case FEEDBACK:
+        case FEEDBACK: {
+            ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_FEEDBACK];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
+        } break;
         case REPORT_BUG: {
-            ReportController* rc = [[ReportController alloc] initWithType:REPORT_BUG];
+            ReportController* rc = [[ReportController alloc] initWithType:SUBMIT_BUG];
             [self.navigationController pushViewController:rc animated:YES];
             [rc release];
         }

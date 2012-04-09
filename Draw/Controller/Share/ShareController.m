@@ -154,7 +154,6 @@ enum {
     if (actionSheet.tag == IMAGE_OPTION) {
         switch (buttonIndex) {
             case SHARE_AS_PHOTO: {
-                
                 UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
                                                                           delegate:self 
                                                                  cancelButtonTitle:NSLS(@"kCancel") 
@@ -179,6 +178,7 @@ enum {
                 
                 shareOptions.tag = SHARE_AS_PHOTO_OPTION;
                 [shareOptions showInView:self.view];
+                [shareOptions release];
             }                            
                 break;
             case SHARE_AS_GIF:

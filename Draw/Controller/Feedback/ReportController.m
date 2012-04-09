@@ -70,11 +70,7 @@
 
 - (IBAction)submit:(id)sender
 {
-    switch (_reportType) {
-        case SNS_SHARE: {
-            [[SinaSNSService defaultService] publishWeibo:[NSString stringWithFormat:@"@zsu_kira大人 %d", time(0)]delegate:self];
-        }
-            break;            
+    switch (_reportType) {           
         default:
             break;
     }
@@ -110,12 +106,22 @@
     [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     [self.contactText setBackground:[[ShareImageManager defaultManager] inputImage]];
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
+    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [doneButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
+    [self.contactText setPlaceholder:NSLS(@"kInput_your_contact")];
     
-    if (_reportType == SNS_SHARE) {
-        [self.contactText setHidden:YES];
-        [self.submitButton setFrame:CGRectOffset(self.submitButton.frame, 0, -40)];
-        [self.submitButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    switch (_reportType) {
+        case SUBMIT_BUG: {
+            [self.reporterTitle setText:NSLS(@"kReport_bug")];
+            [self.contentText setText:NSLS(@"kHave_problems?")];
+            
+        } break;
+        case SUBMIT_FEEDBACK: {
+            [self.reporterTitle setText:NSLS(@"kAdvices")];
+            [self.contentText setText:NSLS(@"kSay something...")];
+        } break;
+        default:
+            break;
     }
     // Do any additional setup after loading the view from its nib.
 }
