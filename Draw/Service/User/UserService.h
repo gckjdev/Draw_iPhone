@@ -15,7 +15,7 @@
 @optional
 - (void)didUserRegistered:(int)resultCode;
 - (void)didUserUpdated:(int)resultCode;
-
+- (void)didSendFeedback:(int)resultCode;
 
 @end
 
@@ -41,7 +41,13 @@
                 password:(NSString*)password
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
+- (void)feedback:(NSString*)feedback 
+             WithContact:(NSString*)contact  
+  viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
+- (void)reportBugs:(NSString*)bugDescription 
+       withContact:(NSString*)contact  
+    viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
 
 @end

@@ -73,6 +73,10 @@ enum {
     SHARE_VIA_FACEBOOK = 2,
     SHARE_COUNT
 };
+- (void)didPublishWeibo:(int)result
+{
+    NSLog(@"publish weibo result --- %d", result);
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -81,23 +85,23 @@ enum {
             [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]]];
         } break;
         case SHARE_VIA_EMAIL: {
-            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] isHTML:YES delegate:self];
+            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] isHTML:YES delegate:self];
         } break;
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
                 SinaSNSService* service = [[[SinaSNSService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
                 
             }
             
             if ([[UserManager defaultManager] hasBindQQWeibo]){
                 QQWeiboService* service = [[[QQWeiboService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindFacebook]){
                 FacebookSNSService* service = [[[FacebookSNSService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
             } 
         } break;
         default:

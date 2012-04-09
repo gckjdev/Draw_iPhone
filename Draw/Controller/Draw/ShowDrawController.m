@@ -498,10 +498,23 @@ ShowDrawController *GlobalGetShowDrawController()
     [super viewDidAppear:animated];
 }
 
+- (void)cleanScreen
+{
+    [popupButton.layer removeAllAnimations];
+    [popupButton setHidden:YES];    
+    [self clearUnPopupMessages];
+    for (UIView *view in self.view.subviews) {
+        if (view && [view isKindOfClass:[CommonDialog class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     if (!_shopController) {
         _viewIsAppear = NO;
+        [self cleanScreen];
         [self setWord:nil];
     }
     [super viewDidDisappear:animated];
@@ -684,7 +697,7 @@ ShowDrawController *GlobalGetShowDrawController()
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
         [self setAnswerButtonsEnabled];
-        [self addScore:self.word.score toUser:drawGameService.userId];
+//        [self addScore:self.word.score toUser:drawGameService.userId];
     }else{
         [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
         

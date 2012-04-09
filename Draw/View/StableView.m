@@ -42,7 +42,10 @@
     NSString *numberString = nil;
     numberButton.hidden = YES;
     if (number >= 0) {
-        numberString = [NSString stringWithFormat:@"%d",number];    
+        numberString = @"99+";
+        if (number < 100) {
+            numberString = [NSString stringWithFormat:@"%d",number];                
+        }
         numberButton.hidden = NO;
     }
     [numberButton setTitle:numberString forState:UIControlStateNormal];

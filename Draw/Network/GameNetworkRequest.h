@@ -81,5 +81,9 @@
 + (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL
                                        userId:(NSString*)userId;
 
-
++ (CommonNetworkOutput*)feedbackUser:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId 
+                          feedback:(NSString*)feedback 
+                              type:(int)type;
 @end
