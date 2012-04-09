@@ -9,10 +9,18 @@
 #import "ReplayController.h"
 #import "MyPaint.h"
 #import "ShowDrawView.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
+#import "LocaleUtils.h"
+#import "ShareImageManager.h"
 
 @implementation ReplayController
 
 @synthesize paint = _paint;
+@synthesize titleLabel = _titleLabel;
+@synthesize shareButton = _shareButton;
+@synthesize backButton = _backButton;
+@synthesize showHolderView = _showHolderView;
+@synthesize wordLabel = _wordLabel;
 
 - (id)initWithPaint:(MyPaint*)paint
 {
@@ -21,9 +29,21 @@
     return self;
 }
 
+- (IBAction)clickShareButton:(id)sender {
+}
+
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+}
+
 - (void)dealloc
 {
     [_paint release];
+    [_titleLabel release];
+    [_shareButton release];
+    [_backButton release];
+    [_showHolderView release];
+    [_wordLabel release];
     [super dealloc];
 }
 
@@ -62,14 +82,30 @@
 //    [background addSubview:paper];
     
     int REPLAY_TAG = 1234;
-    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];    
+    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];   
+    replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
-    [self.view addSubview:replayView];
+    replayView.frame = self.showHolderView.bounds;
+    [self.showHolderView addSubview:replayView];
     [replayView release];            
 
     NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
     [replayView setDrawActionList:actionList];
     [replayView play];
+    
+    
+    self.titleLabel.text = NSLS(@"kReplayTitle");
+    [self.shareButton setTitle:NSLS(@"kReplayShare") forState:UIControlStateNormal];
+    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
+                                forState:UIControlStateNormal];
+
+    if (_paint.drawWord == nil){
+        self.wordLabel.text = @"";
+    }
+    else{
+        self.wordLabel.text = [_paint drawWord];
+    }
+    
 
 //    [self.view addSubview:background];
 //    [background release];
@@ -88,6 +124,11 @@
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
+    [self setShareButton:nil];
+    [self setBackButton:nil];
+    [self setShowHolderView:nil];
+    [self setWordLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

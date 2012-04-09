@@ -9,6 +9,7 @@
 #import "MyPaintManager.h"
 #import "CoreDataUtil.h"
 #import "MyPaint.h"
+#import "PPDebug.h"
 
 @implementation MyPaintManager
 
@@ -28,6 +29,8 @@ static MyPaintManager* _defaultManager;
                     drawUserId:(NSString*)drawUserId
               drawUserNickName:(NSString*)drawUserNickName
                       drawByMe:(BOOL)drawByMe
+                      drawWord:(NSString*)drawWord
+
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -37,8 +40,10 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
     [newMyPaint setDrawUserId:drawUserId];
     [newMyPaint setDrawUserNickName:drawUserNickName];
-    [newMyPaint setCreateDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    [newMyPaint setCreateDate:[NSDate date]];
+    [newMyPaint setDrawWord:drawWord];
     
+    PPDebug(@"<createMyPaintWithImage> %@", [newMyPaint description]);
     BOOL result = [dataManager save];
     return result;
 }
@@ -74,9 +79,18 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)deleteMyPaints:(MyPaint*)paint
 {
+    NSString* image = [NSString stringWithString:paint.image];
+
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [dataManager del:paint];
-    return [dataManager save];
+    BOOL result = [dataManager save];
+
+    if (result && [[NSFileManager defaultManager] fileExistsAtPath:image]) {
+        [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+        PPDebug(@"<deleteMyPaints> remove image at %@", image);
+    }
+    
+    return result;
 }
 
 @end

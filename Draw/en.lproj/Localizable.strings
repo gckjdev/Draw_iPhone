@@ -215,6 +215,11 @@
 "Avatar" = "Avatar";
 
 "kDone" = "Done";
+"Back" = "Back";
+
+"kReplayTitle" = "Replay";
+"kReplayShare" = "Share";
+
 "kReport_bug" = "Report problems";
 "kAdvices" = "Advices";
 "kInput_your_contact" = "Enter your contact here(Email,facebook,twitter,etc)";

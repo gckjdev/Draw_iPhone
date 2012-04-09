@@ -22,7 +22,7 @@
 #import "AccountService.h"
 #import "FacebookSNSService.h"
 #import "PriceService.h"
-
+#import "DeviceDetection.h"
 
 
 NSString* GlobalGetServerURL()
@@ -82,12 +82,16 @@ NSString* GlobalGetServerURL()
     self.homeController = [[[HomeController alloc] init] autorelease];    
     
     // Push Setup
+    BOOL isAskBindDevice = NO;
     if (![self isPushNotificationEnable]){
+        isAskBindDevice = YES;
         [self bindDevice];
     }
     
     // Ask For Review
-    self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+    if ([DeviceDetection isOS5]){
+        self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+    }
     
     UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:self.homeController] autorelease];
     navigationController.navigationBarHidden = YES;
@@ -96,7 +100,12 @@ NSString* GlobalGetServerURL()
         [RegisterUserController showAt:self.homeController];
     }
 
-    [self checkAppVersion:APP_ID];
+    if ([DeviceDetection isOS5]){
+        [self checkAppVersion:APP_ID];
+    }
+    else if (isAskBindDevice == NO){        
+        [self checkAppVersion:APP_ID];
+    }
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

@@ -219,6 +219,11 @@
 "Avatar" = "头像";
 
 "kDone" = "完成";
+"Back" = "返回";
+
+"kReplayTitle" = "回放作品";
+"kReplayShare" = "分享";
+
 "kReport_bug" = "问题反馈";
 "kAdvices" = "给些建议";
 "kInput_your_contact" = "在这里留下您的联系方式，EMAIL，QQ,手机号码啥的...";
@@ -227,4 +232,6 @@
 "kShare_via_SMS" = "短信分享给朋友";
 "kShare_message_body" = "我最近发现了一个非常好玩的游戏，叫 \"draw lively\"\n%@";
 "kEmail_subject" = "分享个游戏";
+
 "kAbout_us_title" = "关于我们";
+

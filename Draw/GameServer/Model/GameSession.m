@@ -127,6 +127,7 @@
     }
 
     if ([notification hasWord] && [[notification word] length] > 0){
+        [self.currentTurn setLastWord:self.currentTurn.word];
         [self.currentTurn setWord:[notification word]];    
         PPDebug(@"set current turn word to %@", [notification word]);
     }
