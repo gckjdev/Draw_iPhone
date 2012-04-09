@@ -463,7 +463,7 @@ DrawViewController *GlobalGetDrawViewController()
 #define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
     
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
@@ -480,7 +480,7 @@ DrawViewController *GlobalGetDrawViewController()
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
 }
 
 #pragma mark - Draw View Delegate

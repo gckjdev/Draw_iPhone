@@ -110,26 +110,14 @@
     [self.messageLabel setText:message];
 }
 
-- (IBAction)clickOk:(id)sender
+
+- (void)startRunOutAnimation
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
-        [_delegate clickOk:self];
-    }
     CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
     [runOut setValue:@"runOut" forKey:@"AnimationKey"];
     [_contentView.layer addAnimation:runOut forKey:@"runOut"];
+    
 }
-
-- (IBAction)clickBack:(id)sender
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
-        [_delegate clickBack:self];
-    }
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
-    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
-    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
-}
-
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
@@ -139,6 +127,24 @@
         [self removeFromSuperview];
     }
 }
+
+- (IBAction)clickOk:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
+        [_delegate clickOk:self];
+    }
+    [self startRunOutAnimation];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
+        [_delegate clickBack:self];
+    }
+        [self startRunOutAnimation];
+}
+
+
 
 
 - (id)initWithFrame:(CGRect)frame

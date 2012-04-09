@@ -194,7 +194,7 @@ ItemShopController *staticItemController = nil;
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_NOT_BUY_COIN_TAG) {
-        [dialog removeFromSuperview];
+//        [dialog removeFromSuperview];
     }else{
         [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
     }
@@ -202,7 +202,7 @@ ItemShopController *staticItemController = nil;
 
 - (void)clickBack:(CommonDialog *)dialog
 {    
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
 }
 
 - (IBAction)clickGotoCoinShopButton:(id)sender

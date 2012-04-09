@@ -646,7 +646,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickOk:(CommonDialog *)dialog
 {
     //run away
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
     if (dialog.tag == SHOP_DIALOG_TAG) {
         ItemShopController *itemShop = [ItemShopController instance];
         itemShop.callFromShowViewController = YES;
@@ -664,7 +664,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickBack:(CommonDialog *)dialog
 {
     //stay
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
 }
 
 #pragma mark - Actions

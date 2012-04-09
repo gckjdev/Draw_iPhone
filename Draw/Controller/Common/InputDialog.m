@@ -30,15 +30,36 @@
     [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
 }
 
+- (void)startRunOutAnimation
+{
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
+    [self.contentView.layer addAnimation:runOut forKey:@"runOut"];
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* value = [anim valueForKey:@"AnimationKey"];
+    if ([value isEqualToString:@"runOut"]) {
+        [self setHidden:YES];
+        [self removeFromSuperview];
+    }else{
+        [self.targetTextField becomeFirstResponder];
+    }
+    [self.contentView.layer removeAllAnimations];
+}
+
+
 - (IBAction)clickCancelButton:(id)sender {
-    [self removeFromSuperview];
+    [self startRunOutAnimation];
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickCancel:)]) {
         [self.delegate clickCancel:self];
     }
 }
 
 - (IBAction)clickOkButton:(id)sender {
-    [self removeFromSuperview];
+    [self startRunOutAnimation];
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickOk:targetText:)]) {
         [self.delegate clickOk:self targetText:self.targetTextField.text];
     }
@@ -84,10 +105,10 @@
     [self.targetTextField setText:text];
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [self.targetTextField becomeFirstResponder];
-}
+//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+//{
+//    [self.targetTextField becomeFirstResponder];
+//}
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

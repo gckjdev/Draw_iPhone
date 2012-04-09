@@ -236,7 +236,6 @@ enum{
 {
     
     if (buttonIndex == [actionSheet cancelButtonIndex] || buttonIndex == [actionSheet destructiveButtonIndex]) {
-        return;
     }else {
         languageType = buttonIndex + 1;
         languageChanged = YES;
@@ -281,12 +280,12 @@ enum{
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];    
+//    [dialog removeFromSuperview];    
 }
 
 
