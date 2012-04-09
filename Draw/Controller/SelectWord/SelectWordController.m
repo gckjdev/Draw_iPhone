@@ -105,7 +105,9 @@
     toolView = [[ToolView alloc] initWithNumber:0];
     toolView.number = [[ItemManager defaultManager] tipsItemAmount];
     toolView.center = CGPointMake(248, 344);
-    [self.changeWordButton setEnabled:(toolView.number > 0)];    
+
+    //    [self.changeWordButton setEnabled:(toolView.number > 0)];    
+    
     [self.view addSubview:toolView];
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
@@ -128,6 +130,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self clearUnPopupMessages];
     [drawGameService unregisterObserver:self];
     [super viewDidDisappear:animated];
 }
@@ -159,13 +162,15 @@
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
-    [self startTimer];
-    self.wordArray = [[WordManager defaultManager]randDrawWordList];
-    [self.wordTableView reloadData];
-    [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
-    [toolView setNumber:[[ItemManager defaultManager]tipsItemAmount]];
-    [self.changeWordButton setEnabled:(toolView.number > 0)];    
-    
+    if (toolView.number > 0 ) {
+        [self startTimer];
+        self.wordArray = [[WordManager defaultManager]randDrawWordList];
+        [self.wordTableView reloadData];
+        [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+        [toolView setNumber:[[ItemManager defaultManager]tipsItemAmount]];        
+    }else{
+        [self popupUnhappyMessage:NSLS(@"kNoTipItem") title:nil];
+    }    
 }
 
 

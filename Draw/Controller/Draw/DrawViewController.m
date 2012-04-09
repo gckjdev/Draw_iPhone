@@ -352,8 +352,22 @@ DrawViewController *GlobalGetDrawViewController()
     colorShopConroller = nil;
 }
 
+
+- (void)cleanScreen
+{
+    [popupButton.layer removeAllAnimations];
+    [popupButton setHidden:YES];  
+    [self clearUnPopupMessages];
+    for (UIView *view in self.view.subviews) {
+        if (view && [view isKindOfClass:[CommonDialog class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self cleanScreen];
     [self resetTimer];
     [super viewDidDisappear:animated];
 }

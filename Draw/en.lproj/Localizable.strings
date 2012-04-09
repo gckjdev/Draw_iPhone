@@ -244,4 +244,4 @@
 "kPublishWeiboFail" = "Fail to send message, please try again later.";
 
 "kFailCreateGIF" = "Sorry, fail to create GIF file.";
-
+"kNoTipItem" = "Sorry, you have no tip item, you can buy some in the shop.";
