@@ -16,7 +16,8 @@
                           data:(NSData*)data
                     drawUserId:(NSString*)drawUserId
               drawUserNickName:(NSString*)drawUserNickName
-                      drawByMe:(BOOL)drawByMe;
+                      drawByMe:(BOOL)drawByMe
+                      drawWord:(NSString*)drawWord;
 
 
 - (NSArray*)findOnlyMyPaints;

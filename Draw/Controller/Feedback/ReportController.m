@@ -47,6 +47,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
+    [self.doneButton setHidden:YES];
 }
 
 - (IBAction)hideKeyboard:(id)sender
@@ -60,6 +61,7 @@
 {    
     [self.contactText resignFirstResponder];
     [self resetFrame];
+    
 }
 
 #pragma mark - publish weibo delegate

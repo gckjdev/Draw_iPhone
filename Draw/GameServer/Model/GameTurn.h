@@ -22,7 +22,10 @@
 
 //@property (nonatomic, retain) 
 
+@property (nonatomic, retain) NSString *lastWord;
 @property (nonatomic, retain) NSString* word;
 @property (nonatomic, assign) int level;
+
+- (void)updateLastWord;
 
 @end

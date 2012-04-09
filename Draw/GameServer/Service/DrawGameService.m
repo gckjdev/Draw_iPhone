@@ -513,7 +513,10 @@ static DrawGameService* _defaultService;
 
 - (void)startDraw:(NSString*)word level:(int)level language:(int)language
 {
-    [_session setStatus:SESSION_PLAYING];    
+    [_session setStatus:SESSION_PLAYING];   
+    [[_session currentTurn] updateLastWord];
+    [[_session currentTurn] setWord:word];
+    [[_session currentTurn] setLevel:level];
     
     [_networkClient sendStartDraw:_userId
                         sessionId:[_session sessionId]
