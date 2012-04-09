@@ -241,3 +241,8 @@
 
 "kFailCreateGIF" = "Sorry, fail to create GIF file.";
 
+"kPaymentCannotMake" = "Your iOS/Device cannot make payment.";
+
+"kSharePhotoEmailSubject" = "Share Fun Drawing From %@";
+"kSharePhotoEmailBody" = "A funny drawing for you";
+"kShareWeiboTitle" = "Share";

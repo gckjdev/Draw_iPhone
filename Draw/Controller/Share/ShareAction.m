@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "ShareEditController.h"
+#import "MyPaintManager.h"
 
 @implementation ShareAction
 
@@ -46,11 +47,8 @@
                                                               delegate:self 
                                                      cancelButtonTitle:nil 
                                                 destructiveButtonTitle:NSLS(@"kSave_to_album") 
-                                                     otherButtonTitles:NSLS(@"kShare_via_Email"), 
-                                   //                                                                                NSLS(@"kShare_via_Sina_weibo"),
-                                   //                                                                                NSLS(@"kShare_via_tencent_weibo"),
-                                   //                                                                                NSLS(@"kShare_via_Facebook"),
-                                   nil];
+                                                     otherButtonTitles:NSLS(@"kShare_via_Email"), nil];
+
     int buttonIndex = 1;
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
         buttonIndex ++;
@@ -71,10 +69,59 @@
     [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
     [shareOptions setCancelButtonIndex:buttonIndex];
     
-//    shareOptions.tag = SHARE_AS_PHOTO_OPTION;
     self.superViewController = superViewController;
     [shareOptions showInView:superViewController.view];
     [shareOptions release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller 
+          didFinishWithResult:(MFMailComposeResult)result 
+                        error:(NSError *)error 
+{
+	[self.superViewController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)shareViaEmail
+{
+    NSString* appName = NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @"");
+    
+    MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
+    NSString* subject = [NSString stringWithFormat:NSLS(@"kSharePhotoEmailSubject"), appName];
+    NSString* body = [NSString stringWithFormat:NSLS(@"kSharePhotoEmailBody"), appName];
+    
+    NSString* mime = nil;
+    if ([_imageFilePath hasSuffix:@"gif"]){
+        mime = @"image/gif";
+    }
+    else{
+        mime = @"image/png";        
+    }
+    
+    NSString* fileName = [_imageFilePath lastPathComponent];
+                         
+    [compose setSubject:subject];
+    [compose setMessageBody:body
+                     isHTML:YES];
+    [compose addAttachmentData:[NSData dataWithContentsOfFile:_imageFilePath]
+                      mimeType:mime
+                      fileName:fileName];
+    [compose setMailComposeDelegate:self];
+    [self.superViewController presentModalViewController:compose animated:YES];    
+}
+
+- (void)shareViaSNS
+{
+    NSString* text = nil;
+    if (_isDrawByMe){
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
+    }
+    else{
+        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];
+    }
+    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
+                                                                                text:text];
+    [self.superViewController.navigationController pushViewController:controller animated:YES];
+    [controller release];    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -83,35 +130,22 @@
         switch (buttonIndex) {
                 
             case SHARE_VIA_ALBUM:
-                // TODO save image to album
+            {
+                [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
                 break;
+            }
                 
             case SHARE_VIA_EMAIL:
-                // TODO send by email
+            {
+                [self shareViaEmail];
                 break;
+            }
                 
             default: 
             {
-                NSString* text = nil;
-                if (_isDrawByMe){
-                    text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
-                }
-                else{
-                    text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];
-                }
-                ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                            text:text];
-                [self.superViewController.navigationController pushViewController:controller animated:YES];
-                [controller release];
-                
-//                MyPaint* myPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-//                NSData* imageData = [NSData dataWithContentsOfFile:myPaint.image];
-//                UIImage* myImage = [UIImage imageWithData:imageData];
-//                ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
-//                [self.navigationController pushViewController:controller animated:YES];
-//                [controller release];
-            } 
+                [self shareViaSNS];
                 break;
+            } 
         }
     }    
     else{

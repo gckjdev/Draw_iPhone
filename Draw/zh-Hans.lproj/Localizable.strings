@@ -247,3 +247,8 @@
 
 "kAbout_us_title" = "关于我们";
 
+"kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能";
+
+"kSharePhotoEmailSubject" = "分享有趣的画画";
+"kSharePhotoEmailBody" = "一副有趣的画，分享来自%@";
+"kShareWeiboTitle" = "微博分享";

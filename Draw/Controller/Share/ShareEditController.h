@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
 @property (retain, nonatomic) IBOutlet UITextView *shareTextField;
+@property (retain, nonatomic) IBOutlet UILabel *shareTitleLabel;
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text;

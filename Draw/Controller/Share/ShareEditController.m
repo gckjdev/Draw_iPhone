@@ -12,6 +12,8 @@
 #import "UIImageUtil.h"
 #import "UserManager.h"
 #import "SinaSNSService.h"
+#import "FacebookSNSService.h"
+#import "QQWeiboService.h"
 #import "GifView.h"
 
 #define PATTERN_TAG_OFFSET 20120403
@@ -31,9 +33,11 @@
 @synthesize shareTextField = _shareTextField;
 @synthesize imageFilePath = _imageFilePath;
 @synthesize text = _text;
+@synthesize shareTitleLabel;
 
 - (void)dealloc
 {
+    [shareTitleLabel release];
     [_imageFilePath release];
     [_text release];
     [_myImage release];
@@ -132,7 +136,8 @@ enum {
 - (IBAction)publish:(id)sender
 {
     if ([[UserManager defaultManager] hasBindQQWeibo]){
-        
+        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];        
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
@@ -141,7 +146,9 @@ enum {
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){
-        
+        [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];        
+        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -150,10 +157,12 @@ enum {
     [self hideActivity];
     if (result == 0){
         [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else{
         [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
     }
+    
 }
 
 - (IBAction)clickBack:(id)sender
@@ -190,8 +199,11 @@ enum {
 //    [self initPatterns];
 //    [self initPattenrsGallery];
 //    [self.infuseImageView setDrawImage:self.myImage];
+    
+    self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
     [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
-    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
+    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
+                                forState:UIControlStateNormal];
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     
     if ([self.imageFilePath hasSuffix:@"gif"]){                              

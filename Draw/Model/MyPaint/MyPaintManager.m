@@ -93,4 +93,27 @@ static MyPaintManager* _defaultManager;
     return result;
 }
 
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+{
+    PPDebug(@"Save Photo, Result=%@", [error description]);
+}
+
+- (void)savePhoto:(NSString*)filePath
+{
+    PPDebug(@"Save Photo, File=%@", filePath);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    if (queue == NULL){
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    }
+    
+    dispatch_async(queue, ^{
+        UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
+        UIImageWriteToSavedPhotosAlbum(image, 
+                                       self, 
+                                       @selector(image:didFinishSavingWithError:contextInfo:), 
+                                       nil);
+        [image release];    
+    });
+}
+
 @end

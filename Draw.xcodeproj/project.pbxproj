@@ -40,8 +40,6 @@
 		C2A09751152E979C006535F7 /* UIImagePixelSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09738152E979C006535F7 /* UIImagePixelSource.m */; };
 		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
 		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
-		C2A0975F152ECD7C006535F7 /* ShareGifController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975D152ECD7B006535F7 /* ShareGifController.m */; };
-		C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A0975E152ECD7B006535F7 /* ShareGifController.xib */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
@@ -468,6 +466,7 @@
 		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
 		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
+		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CA9F73E515280FB400DB55B6 /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E415280FB300DB55B6 /* PickPenView.m */; };
 		CA9F73E8152817C700DB55B6 /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9F73E7152817C700DB55B6 /* ColorView.m */; };
@@ -619,9 +618,6 @@
 		C2A09757152ECCB5006535F7 /* GifManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifManager.m; sourceTree = "<group>"; };
 		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
 		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
-		C2A0975C152ECD7B006535F7 /* ShareGifController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareGifController.h; sourceTree = "<group>"; };
-		C2A0975D152ECD7B006535F7 /* ShareGifController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareGifController.m; sourceTree = "<group>"; };
-		C2A0975E152ECD7B006535F7 /* ShareGifController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareGifController.xib; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
@@ -1313,6 +1309,8 @@
 		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
 		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
 		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
+		CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QAdditions.m"; sourceTree = "<group>"; };
+		CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QAdditions.h"; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CA9F73E315280FB300DB55B6 /* PickPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickPenView.h; sourceTree = "<group>"; };
@@ -2601,9 +2599,6 @@
 				C29C12DD152AE23D009B9E5F /* ShareCell.xib */,
 				C29C12DF152AE2A6009B9E5F /* ShareCell.h */,
 				C29C12E0152AE2A7009B9E5F /* ShareCell.m */,
-				C2A0975C152ECD7B006535F7 /* ShareGifController.h */,
-				C2A0975D152ECD7B006535F7 /* ShareGifController.m */,
-				C2A0975E152ECD7B006535F7 /* ShareGifController.xib */,
 				CA8D60601531EC5500E016ED /* ReplayController.h */,
 				CA8D60611531EC5500E016ED /* ReplayController.m */,
 				CA8D60621531EC5500E016ED /* ReplayController.xib */,
@@ -3069,6 +3064,8 @@
 		CA65C1F0152DD29D00462C96 /* QQWeiboEngine */ = {
 			isa = PBXGroup;
 			children = (
+				CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */,
+				CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */,
 				CA65C1F1152DD2A200462C96 /* QVerifyWebViewController.h */,
 				CA65C1F2152DD2A200462C96 /* QVerifyWebViewController.m */,
 				CA65C1F3152DD2A200462C96 /* QWeiboAsyncApi.h */,
@@ -3676,7 +3673,6 @@
 				CA65C1AC152D993700462C96 /* logo.png in Resources */,
 				CA65C1AD152D993700462C96 /* logo@2x.png in Resources */,
 				CA65C210152DE4D700462C96 /* FBDialog.bundle in Resources */,
-				C2A09760152ECD7C006535F7 /* ShareGifController.xib in Resources */,
 				CA959896152F54700093FEDB /* InputDialog.xib in Resources */,
 				CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */,
 				CA8D60271531C98000E016ED /* Default.png in Resources */,
@@ -4029,7 +4025,6 @@
 				C2A09751152E979C006535F7 /* UIImagePixelSource.m in Sources */,
 				C2A09758152ECCB5006535F7 /* GifManager.m in Sources */,
 				C2A0975B152ECD31006535F7 /* GifView.m in Sources */,
-				C2A0975F152ECD7C006535F7 /* ShareGifController.m in Sources */,
 				CA959895152F54700093FEDB /* InputDialog.m in Sources */,
 				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
@@ -4037,6 +4032,7 @@
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
 				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
+				CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
