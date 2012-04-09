@@ -15,12 +15,12 @@ typedef enum{
     Playing = 0x1 << 1 
 }DrawViewStatus;
 
-
+@class ShowDrawView;
 @protocol ShowDrawViewDelegate <NSObject>
 
 @optional
-- (void)didPlayDrawView;
-- (void)didPlayDrawView:(NSMutableArray*)gifFrameArray;
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView;
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex;
 
 
 @end
@@ -34,19 +34,19 @@ typedef enum{
     NSInteger playingActionIndex;
     NSInteger playingPointIndex;
     NSInteger startPlayIndex;
-    NSMutableSet* _indexShouldSave;
+
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
 @property(nonatomic, assign) CGFloat playSpeed; //default is 1/40.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) NSInteger status;
-@property (nonatomic, retain) NSMutableArray* gifFrameArray;
-@property (assign, nonatomic) BOOL shouldCreateGif;
 
 - (void)play;
-- (UIImage*)createImage;
+- (UIImage *)createImage;
+- (UIImage *)createImageWithScale:(CGFloat)scale;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)cleanAllActions;
 - (BOOL)isViewBlank;
+
 @end

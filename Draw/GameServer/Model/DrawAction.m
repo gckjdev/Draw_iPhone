@@ -69,7 +69,7 @@
     return YES;
 
 }
-+ (NSArray *)getTheLastActionListWithoutClean:(NSArray *)actionList
++ (NSMutableArray *)getTheLastActionListWithoutClean:(NSArray *)actionList
 {
     int count = actionList.count;
     int i;

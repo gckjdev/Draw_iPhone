@@ -23,6 +23,7 @@ enum{
 @interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
     NSArray*_paints;
     int _currentSelectedPaint;
+    NSMutableArray *_gifImages;
 }
 @property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
