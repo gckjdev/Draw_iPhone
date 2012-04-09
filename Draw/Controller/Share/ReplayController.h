@@ -19,6 +19,7 @@
 @property (nonatomic, retain) ShareAction *shareAction;
 @property (nonatomic, assign) BOOL replayForCreateGif;
 @property (nonatomic, retain) NSString *tempGIFFilePath;
+@property (nonatomic, retain) NSMutableArray *gifImages;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;

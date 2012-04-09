@@ -16,6 +16,10 @@
 #import "StringUtil.h"
 #import "GifView.h"
 
+#define REPLAY_TAG 1234
+#define COMPRESS_SCALE 0.6
+#define POINT_COUNT_PER_FRAME 4
+
 @implementation ReplayController
 
 @synthesize paint = _paint;
@@ -27,11 +31,13 @@
 @synthesize replayForCreateGif = _replayForCreateGif;
 @synthesize shareAction = _shareAction;
 @synthesize tempGIFFilePath = _tempGIFFilePath;
+@synthesize gifImages = _gifImages;
 
 - (id)initWithPaint:(MyPaint*)paint
 {
     self = [super init];
     self.paint = paint;
+    _gifImages = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -58,6 +64,7 @@
 
 - (void)dealloc
 {
+    [_gifImages release];
     [_tempGIFFilePath release];
     [_paint release];
     [_titleLabel release];
@@ -95,13 +102,13 @@
     NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
     NSArray* drawActionList = (NSArray*)currentData;
     
-    int REPLAY_TAG = 1234;
+
     ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];   
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
         replayView.delegate = self;
-        replayView.shouldCreateGif = YES;
+//        replayView.shouldCreateGif = YES;
         replayView.playSpeed = 0.01;
     }
     replayView.frame = self.showHolderView.bounds;
@@ -164,17 +171,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)didPlayDrawView:(NSMutableArray*)gifFrameArray
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
     [self hideActivity];
     
     // create gif files here
-    if (gifFrameArray == nil || [gifFrameArray count] == 0){
+    if (_gifImages == nil || [_gifImages count] == 0){
         [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
     }
     else{
         self.tempGIFFilePath = [NSString stringWithFormat:@"%@/%@.gif", NSTemporaryDirectory(), [NSString GetUUID]];
-        [GifManager createGifToPath:self.tempGIFFilePath byImages:gifFrameArray];
+        [GifManager createGifToPath:self.tempGIFFilePath byImages:_gifImages];
         if ([[NSFileManager defaultManager] fileExistsAtPath:self.tempGIFFilePath] == NO){
             [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
         }
@@ -187,5 +194,47 @@
 //    [self.navigationController pushViewController:controller animated:YES];
 //    [controller release];
 }
+
+- (void)createImageAndSave:(ShowDrawView *)showView
+{
+    UIImage *image = [showView createImageWithScale:0.6];
+    [_gifImages addObject:image];
+    
+}
+
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex
+{
+    NSInteger actionCount = [showDrawView.drawActionList count];
+    
+    if (showDrawView.tag == REPLAY_TAG) {
+        if (actionIndex < actionCount && actionIndex >= 0) {
+            DrawAction *action = [showDrawView.drawActionList objectAtIndex:actionIndex];
+            NSInteger pointCount = [action pointCount];
+            if (pointCount < 1) {
+                return;
+            }
+            
+            if (pointCount < POINT_COUNT_PER_FRAME) {
+                if (pointIndex == pointCount - 1) {
+                    [self createImageAndSave:showDrawView];
+                    NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                }
+                return;
+            }
+            
+            if (pointIndex == pointCount - 1) 
+            {
+                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                [self createImageAndSave:showDrawView];
+            }else if((pointIndex % POINT_COUNT_PER_FRAME) == (POINT_COUNT_PER_FRAME - 1 ) && (pointIndex + POINT_COUNT_PER_FRAME / 2) < pointCount)
+            {
+                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                [self createImageAndSave:showDrawView];
+            }
+        }
+        
+    }
+}
+
 
 @end
