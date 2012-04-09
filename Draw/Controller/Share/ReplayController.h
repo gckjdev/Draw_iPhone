@@ -12,8 +12,15 @@
 
 @interface ReplayController : UIViewController
 
-@property (nonatomic, assign) MyPaint *paint;
+@property (nonatomic, retain) MyPaint *paint;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *shareButton;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIView *showHolderView;
+@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 
 - (id)initWithPaint:(MyPaint*)paint;
+- (IBAction)clickShareButton:(id)sender;
+- (IBAction)clickBackButton:(id)sender;
 
 @end

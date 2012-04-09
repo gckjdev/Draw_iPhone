@@ -268,9 +268,19 @@
             
             NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
             NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
+            NSString* drawWord = [[[drawGameService session] currentTurn] word];
+            if (drawWord == nil){
+                drawWord = [[[drawGameService session] currentTurn] lastWord];
+            }
             
             NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint];
+            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+                                                                data:drawActionListData 
+                                                          drawUserId:drawUserId 
+                                                    drawUserNickName:drawUserNickName 
+                                                            drawByMe:_isMyPaint 
+                                                            drawWord:drawWord];
+            
             [drawGameService.drawActionList removeAllObjects];
         }
     }

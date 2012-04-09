@@ -216,3 +216,6 @@
 
 "kDone" = "Done";
 "Back" = "Back";
+
+"kReplayTitle" = "Replay";
+"kReplayShare" = "Share";

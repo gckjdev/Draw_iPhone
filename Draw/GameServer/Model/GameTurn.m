@@ -19,9 +19,11 @@
 @synthesize lastPlayUserId = _lastPlayUserId;
 @synthesize word = _word;
 @synthesize level = _level;
+@synthesize lastWord = _lastWord;
 
 - (void)dealloc
 {
+    [_lastWord release];
     [_word release];
     [_currentPlayUserId release];
     [_nextPlayUserId release];
@@ -36,6 +38,11 @@
 {
     return [NSString stringWithFormat:@"[round=%d, currentPlayUserId=%@, nextPlayUserId=%@]",
             _round, _currentPlayUserId, _nextPlayUserId];
+}
+
+- (void)updateLastWord
+{
+    self.lastWord = self.word;
 }
 
 @end
