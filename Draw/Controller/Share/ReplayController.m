@@ -12,6 +12,9 @@
 #import "UINavigationController+UINavigationControllerAdditions.h"
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
+#import "GifManager.h"
+#import "StringUtil.h"
+#import "GifView.h"
 
 @implementation ReplayController
 
@@ -21,6 +24,9 @@
 @synthesize backButton = _backButton;
 @synthesize showHolderView = _showHolderView;
 @synthesize wordLabel = _wordLabel;
+@synthesize replayForCreateGif = _replayForCreateGif;
+@synthesize shareAction = _shareAction;
+@synthesize tempGIFFilePath = _tempGIFFilePath;
 
 - (id)initWithPaint:(MyPaint*)paint
 {
@@ -30,6 +36,20 @@
 }
 
 - (IBAction)clickShareButton:(id)sender {
+    
+    [self.view endEditing:YES];
+    
+    NSString* path = nil;
+    if (_replayForCreateGif)
+        path = _tempGIFFilePath;
+    else
+        path = _paint.image;
+    
+    self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:path
+                                                             isGIF:_replayForCreateGif
+                                                         drawWord:_paint.drawWord
+                                                             isMe:[_paint.drawByMe boolValue]] autorelease];
+    [_shareAction displayWithViewController:self];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -38,6 +58,7 @@
 
 - (void)dealloc
 {
+    [_tempGIFFilePath release];
     [_paint release];
     [_titleLabel release];
     [_shareButton release];
@@ -74,20 +95,18 @@
     NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
     NSArray* drawActionList = (NSArray*)currentData;
     
-//    UIImageView* background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-//    [background setImage:[UIImage imageNamed:@"wood_bg.png"]];
-//    background.tag = BACK_GROUND_TAG;
-//    UIImageView* paper = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
-//    [paper setImage:[UIImage imageNamed:@"paper.png"]];
-//    [background addSubview:paper];
-    
     int REPLAY_TAG = 1234;
     ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];   
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
+    if (_replayForCreateGif){
+        replayView.delegate = self;
+        replayView.shouldCreateGif = YES;
+        replayView.playSpeed = 0.01;
+    }
     replayView.frame = self.showHolderView.bounds;
     [self.showHolderView addSubview:replayView];
-    [replayView release];            
+    [replayView release];       
 
     NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
     [replayView setDrawActionList:actionList];
@@ -106,6 +125,9 @@
         self.wordLabel.text = [_paint drawWord];
     }
     
+    if (_replayForCreateGif){
+        [self showActivityWithText:NSLS(@"kCreating_gif")];
+    }
 
 //    [self.view addSubview:background];
 //    [background release];
@@ -121,6 +143,8 @@
 //    [quit setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
 //    quit.tag = QUIT_BUTTON_TAG;    
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -138,6 +162,30 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didPlayDrawView:(NSMutableArray*)gifFrameArray
+{
+    [self hideActivity];
+    
+    // create gif files here
+    if (gifFrameArray == nil || [gifFrameArray count] == 0){
+        [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
+    }
+    else{
+        self.tempGIFFilePath = [NSString stringWithFormat:@"%@/%@.gif", NSTemporaryDirectory(), [NSString GetUUID]];
+        [GifManager createGifToPath:self.tempGIFFilePath byImages:gifFrameArray];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:self.tempGIFFilePath] == NO){
+            [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];
+        }
+        else{
+            [self clickShareButton:nil];
+        }
+    }
+    
+//    ShareGifController* controller = [[ShareGifController alloc] initWithGifFrames:gifFrameArray];
+//    [self.navigationController pushViewController:controller animated:YES];
+//    [controller release];
 }
 
 @end

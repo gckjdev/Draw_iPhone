@@ -11,14 +11,7 @@
 #import "ShareCell.h"
 #import "ShowDrawView.h"
 #import "CommonDialog.h"
-
-enum{
-    
-    SHARE_VIA_ALBUM = 0,
-    SHARE_VIA_EMAIL,
-    SHARE_VIA_SNS    
-};
-
+#import "ShareAction.h"
 
 @interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
     NSArray*_paints;
@@ -28,6 +21,7 @@ enum{
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
 @property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) ShareAction *shareAction;
 
 - (IBAction)changeGalleryFielter:(id)sender;
 

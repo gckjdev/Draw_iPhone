@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ShareAction : NSObject
+enum{
+    
+    SHARE_VIA_ALBUM = 0,
+    SHARE_VIA_EMAIL,
+    SHARE_VIA_SNS    
+};
+
+@interface ShareAction : NSObject<UIActionSheetDelegate>
+
+@property (nonatomic, retain) UIViewController* superViewController;
+@property (nonatomic, copy) NSString* drawWord;
+@property (nonatomic, copy) NSString* imageFilePath;
+@property (nonatomic, assign) BOOL isDrawByMe;
+@property (nonatomic, assign) BOOL isGIF;
+
+- (id)initWithDrawImageFile:(NSString*)imageFilePath isGIF:(BOOL)isGIF drawWord:(NSString*)drawWord isMe:(BOOL)isDrawByMe;
+- (void)displayWithViewController:(UIViewController*)superViewController;
 
 @end
