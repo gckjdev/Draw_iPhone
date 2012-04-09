@@ -222,7 +222,7 @@
 
 "kReport_bug" = "Report problems";
 "kAdvices" = "Advices";
-"kInput_your_contact" = "Enter your contact here(Email,facebook,twitter,etc)";
+"kInput_your_contact" = "Your contact(Email,facebook,etc)";
 "kHave_problems?" = "I have some problems while playing this game...";
 "kSay something..." = "I want to say ...";
 "kShare_via_SMS" = "Share via SMS";
@@ -231,3 +231,4 @@
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
 "kFeedbackFail" = "Feedback failed, try later";
+"kSendingFeedback" = "sending your feedback";

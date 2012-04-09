@@ -276,7 +276,7 @@ static UserService* _defaultUserService;
 {    
     NSString* userId = [[UserManager defaultManager] userId];
     
-    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
                                                                appId:APP_ID 
@@ -306,7 +306,7 @@ static UserService* _defaultUserService;
 {
     NSString* userId = [[UserManager defaultManager] userId];
     
-    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
                                                                  appId:APP_ID 

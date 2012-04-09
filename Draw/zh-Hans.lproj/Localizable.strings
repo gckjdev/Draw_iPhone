@@ -226,7 +226,7 @@
 
 "kReport_bug" = "问题反馈";
 "kAdvices" = "给些建议";
-"kInput_your_contact" = "在这里留下您的联系方式，EMAIL，QQ,手机号码啥的...";
+"kInput_your_contact" = "您的联系方(EMAIL，QQ,手机号等）";
 "kHave_problems?" = "我在玩的过程中遇到些问题...";
 "kSay something..." = "说些什么吧 ...";
 "kShare_via_SMS" = "短信分享给朋友";
@@ -236,3 +236,4 @@
 "kAbout_us_title" = "关于我们";
 "kFeedbackSucc" = "感谢您的反馈";
 "kFeedbackFail" = "发送失败，稍后再试试";
+"kSendingFeedback" = "正在发送...";

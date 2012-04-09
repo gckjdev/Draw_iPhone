@@ -90,7 +90,7 @@ enum {
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
                 SinaSNSService* service = [[[SinaSNSService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]] delegate:self];
+                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), nil] delegate:self];
                 
             }
             
