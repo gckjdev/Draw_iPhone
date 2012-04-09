@@ -17,6 +17,12 @@
     NSArray*_paints;
     int _currentSelectedPaint;
     NSMutableArray *_gifImages;
+    
+    int SHARE_AS_PHOTO;
+    int SHARE_AS_GIF;
+    int REPLAY;
+    int DELETE;
+    int CANCEL;    
 }
 @property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;

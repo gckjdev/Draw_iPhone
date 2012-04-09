@@ -227,7 +227,7 @@
 "kHave_problems?" = "I have some problems while playing this game...";
 "kSay something..." = "I want to say ...";
 "kShare_via_SMS" = "Share via SMS";
-"kShare_message_body" = "I found a very funny game recently, its name is \"draw lively\"\n%@";
+"kShare_message_body" = "I found a very funny game recently, its name is 《%@》.\nHere is the URL:\n%@";
 "kEmail_subject" = "Share a game";
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
@@ -244,4 +244,12 @@
 "kPublishWeiboFail" = "Fail to send message, please try again later.";
 
 "kFailCreateGIF" = "Sorry, fail to create GIF file.";
+
+"kPaymentCannotMake" = "Your iOS/Device cannot make payment.";
+
+"kSharePhotoEmailSubject" = "Share Fun Drawing From %@";
+"kSharePhotoEmailBody" = "A funny drawing for you";
+"kShareWeiboTitle" = "Share";
+
 "kNoTipItem" = "Sorry, you have no tip item, you can buy some in the shop.";
+

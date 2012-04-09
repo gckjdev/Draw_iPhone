@@ -108,7 +108,6 @@
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
         replayView.delegate = self;
-//        replayView.shouldCreateGif = YES;
         replayView.playSpeed = 0.01;
     }
     replayView.frame = self.showHolderView.bounds;
@@ -136,19 +135,6 @@
         [self showActivityWithText:NSLS(@"kCreating_gif")];
     }
 
-//    [self.view addSubview:background];
-//    [background release];
-    
-//    UIImageView* paperClip = [[UIImageView alloc] initWithFrame:CGRectMake(53, -2, 194, 40)];
-//    [paperClip setImage:[UIImage imageNamed:@"paperclip.png"]];
-//    [background addSubview:paperClip];
-//    
-//    UIButton* quit = [[UIButton alloc] initWithFrame:CGRectMake(10, 410, 80, 40)];
-//    [quit setTitle:NSLS(@"Back") forState:UIControlStateNormal];
-//    [quit addTarget:self action:@selector(quitReplay) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:quit];
-//    [quit setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
-//    quit.tag = QUIT_BUTTON_TAG;    
 }
 
 
@@ -189,10 +175,6 @@
             [self clickShareButton:nil];
         }
     }
-    
-//    ShareGifController* controller = [[ShareGifController alloc] initWithGifFrames:gifFrameArray];
-//    [self.navigationController pushViewController:controller animated:YES];
-//    [controller release];
 }
 
 - (void)createImageAndSave:(ShowDrawView *)showView

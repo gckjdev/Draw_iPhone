@@ -25,4 +25,7 @@
 - (BOOL)deleteAllPaintsAtIndex:(NSInteger)index;
 - (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index;
 - (BOOL)deleteMyPaints:(MyPaint*)paint;
+
+- (void)savePhoto:(NSString*)filePath;
+
 @end

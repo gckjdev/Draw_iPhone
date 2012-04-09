@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MessageUI/MessageUI.h>
 
 enum{
     
@@ -15,7 +16,7 @@ enum{
     SHARE_VIA_SNS    
 };
 
-@interface ShareAction : NSObject<UIActionSheetDelegate>
+@interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain) UIViewController* superViewController;
 @property (nonatomic, copy) NSString* drawWord;
