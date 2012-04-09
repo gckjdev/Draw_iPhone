@@ -79,9 +79,18 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)deleteMyPaints:(MyPaint*)paint
 {
+    NSString* image = [NSString stringWithString:paint.image];
+
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [dataManager del:paint];
-    return [dataManager save];
+    BOOL result = [dataManager save];
+
+    if (result && [[NSFileManager defaultManager] fileExistsAtPath:image]) {
+        [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+        PPDebug(@"<deleteMyPaints> remove image at %@", image);
+    }
+    
+    return result;
 }
 
 @end

@@ -270,10 +270,7 @@ enum {
 - (void)clickOk:(CommonDialog *)dialog
 {
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-    BOOL result = [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
-    if (result && [[NSFileManager defaultManager] fileExistsAtPath:currentPaint.image]) {
-        [[NSFileManager defaultManager] removeItemAtPath:currentPaint.image error:nil];
-    }
+    [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
     [self changeGalleryFielter:nil];
     [self.gallery reloadData];
 }
