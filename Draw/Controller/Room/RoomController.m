@@ -119,6 +119,7 @@
 {
     [self resetStartTimer];
     [self hideActivity];
+    [self clearUnPopupMessages];
     [super viewDidDisappear:animated];
     [[DrawGameService defaultService] unregisterObserver:self]; 
     PPDebug(@"<unregisterObserver> room controller");
@@ -441,7 +442,8 @@
 {
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];   
-            [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))];         
+        [self prolongStartTimer];
+        [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))];         
     }
 
 }

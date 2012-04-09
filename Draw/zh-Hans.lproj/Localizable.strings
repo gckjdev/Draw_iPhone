@@ -249,3 +249,4 @@
 "kFeedbackSucc" = "感谢您的反馈";
 "kFeedbackFail" = "发送失败，稍后再试试";
 "kSendingFeedback" = "正在发送...";
+"kNoTipItem" = "对不起，你没有锦囊了，请去商店购买。";
