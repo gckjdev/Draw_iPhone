@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "SNSServiceDelegate.h"
+#import "PPViewController.h"
+
 @class SynthesisView;
 
-@interface ShareEditController : UIViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate>
+@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate>
+
+@property (nonatomic, copy) NSString* imageFilePath;
+@property (nonatomic, copy) NSString* text;
 @property (retain, nonatomic) UIImage* myImage;
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
@@ -19,5 +24,8 @@
 @property (retain, nonatomic) IBOutlet SynthesisView* infuseImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
-- (id)initWithImage:(UIImage*)anImage;
+@property (retain, nonatomic) IBOutlet UITextView *shareTextField;
+
+- (id)initWithImageFile:(NSString*)imageFile
+                   text:(NSString*)text;
 @end

@@ -14,6 +14,7 @@
 #import "GameConstants.h"
 #import "DrawAction.h"
 #import "Paint.h"
+#import "GameTurn.h"
 
 @implementation DrawGameService
 

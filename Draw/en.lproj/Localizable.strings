@@ -53,6 +53,7 @@
 "kAllUserQuit" = "All users quit! Game Over!";
 
 "kBuying" = "Sending request...";
+"kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
 
 "kConfirm" = "OK";
@@ -232,3 +233,15 @@
 "kFeedbackSucc" = "Thanks for your feedback";
 "kFeedbackFail" = "Feedback failed, try later";
 "kSendingFeedback" = "sending your feedback";
+
+
+"kCreating_gif" = "Creating GIF Files...";
+"kShareOtherText" = "What An Awesome Drawing for %@";
+"kShareMeText" = "My Awesome Drawing for %@";
+"kShareSend" = "Send";
+
+"kPublishWeiboSucc" = "Message Sent";
+"kPublishWeiboFail" = "Fail to send message, please try again later.";
+
+"kFailCreateGIF" = "Sorry, fail to create GIF file.";
+

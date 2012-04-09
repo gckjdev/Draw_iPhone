@@ -17,6 +17,7 @@
 #import "ShareImageManager.h"
 #import "UserManager.h"
 #import "ReplayController.h"
+#import "GifView.h"
 
 
 #define BUTTON_INDEX_OFFSET 20120229
@@ -35,8 +36,10 @@
 @synthesize gallery;
 @synthesize paints = _paints;
 @synthesize titleLabel;
+@synthesize shareAction = _shareAction;
 
 - (void)dealloc {
+    [_shareAction release];
     [paintsFilter release];
     [gallery release];
     [_paints release];
@@ -111,6 +114,13 @@ enum {
     [_gifImages removeAllObjects];
     
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+    ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
+    [replayController setReplayForCreateGif:YES];    
+    [self.navigationController pushViewController:replayController animated:YES];
+    [replayController release];
+    
+    /*
+    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
     NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
     NSArray* drawActionList = (NSArray*)currentData;
     
@@ -150,13 +160,27 @@ enum {
     quit.tag = QUIT_BUTTON_TAG;
     
     [self showActivityWithText:NSLS(@"kCreating_gif")];    
+    */
 }
+
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+    
     if (actionSheet.tag == IMAGE_OPTION) {
         switch (buttonIndex) {
             case SHARE_AS_PHOTO: {
+                
+                
+                self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:currentPaint.image 
+                                                                         isGIF:NO
+                                                                     drawWord:currentPaint.drawWord
+                                                                         isMe:[currentPaint.drawByMe boolValue]] autorelease];
+                
+                [_shareAction displayWithViewController:self];
+                
+                /*
                 UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
                                                                           delegate:self 
                                                                  cancelButtonTitle:NSLS(@"kCancel") 
@@ -182,6 +206,7 @@ enum {
                 shareOptions.tag = SHARE_AS_PHOTO_OPTION;
                 [shareOptions showInView:self.view];
                 [shareOptions release];
+                 */
             }                            
                 break;
             case SHARE_AS_GIF:
@@ -192,7 +217,7 @@ enum {
                 
             case REPLAY: {
                                 
-                MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+                
                 ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
                 [self.navigationController pushViewController:replayController animated:YES];
                 [replayController release];
@@ -243,29 +268,29 @@ enum {
         }
     }
     
-    if (actionSheet.tag == SHARE_AS_PHOTO_OPTION && buttonIndex != actionSheet.cancelButtonIndex) {                
-        switch (buttonIndex) {
-                
-            case SHARE_VIA_ALBUM:
-                // TODO save image to album
-                break;
-                
-            case SHARE_VIA_EMAIL:
-                // TODO send by email
-                break;
-                
-            default: 
-            {
-                MyPaint* myPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-                NSData* imageData = [NSData dataWithContentsOfFile:myPaint.image];
-                UIImage* myImage = [UIImage imageWithData:imageData];
-                ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
-                [self.navigationController pushViewController:controller animated:YES];
-                [controller release];
-            } 
-                break;
-        }
-    }
+//    if (actionSheet.tag == SHARE_AS_PHOTO_OPTION && buttonIndex != actionSheet.cancelButtonIndex) {                
+//        switch (buttonIndex) {
+//                
+//            case SHARE_VIA_ALBUM:
+//                // TODO save image to album
+//                break;
+//                
+//            case SHARE_VIA_EMAIL:
+//                // TODO send by email
+//                break;
+//                
+//            default: 
+//            {
+//                MyPaint* myPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+//                NSData* imageData = [NSData dataWithContentsOfFile:myPaint.image];
+//                UIImage* myImage = [UIImage imageWithData:imageData];
+//                ShareEditController* controller = [[ShareEditController alloc] initWithImage:myImage];
+//                [self.navigationController pushViewController:controller animated:YES];
+//                [controller release];
+//            } 
+//                break;
+//        }
+//    }
     
 }
 
@@ -324,6 +349,8 @@ enum {
     }
     
 }
+
+
 
 
 #pragma mark - Common Dialog Delegate

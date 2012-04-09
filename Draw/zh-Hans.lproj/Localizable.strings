@@ -56,6 +56,7 @@
 
 
 "kBuying" = "发送购买请求中...";
+"kSendingRequest" = "发送消息中...";
 "kLoading" = "加载数据中...";
 
 "kOK" = "确定";
@@ -232,6 +233,17 @@
 "kShare_via_SMS" = "短信分享给朋友";
 "kShare_message_body" = "我最近发现了一个非常好玩的游戏，叫 \"draw lively\"\n%@";
 "kEmail_subject" = "分享个游戏";
+
+"kCreating_gif" = "正在生成GIF动画文件...";
+
+"kShareOtherText" = "酷图分享，画的词是［%@］";
+"kShareMeText" = "看看我画的酷图，画的词是［%@］";
+"kShareSend" = "发送微博";
+
+"kPublishWeiboSucc" = "微博已成功发送";
+"kPublishWeiboFail" = "微博发送失败，请稍候再试";
+
+"kFailCreateGIF" = "对不起，生成GIF动画文件失败";
 
 "kAbout_us_title" = "关于我们";
 "kFeedbackSucc" = "感谢您的反馈";

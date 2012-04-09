@@ -10,6 +10,10 @@
 #import "SynthesisView.h"
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
+#import "UserManager.h"
+#import "SinaSNSService.h"
+#import "GifView.h"
+
 #define PATTERN_TAG_OFFSET 20120403
 
 @interface ShareEditController ()
@@ -24,9 +28,14 @@
 @synthesize infuseImageView = _infuseImageView;
 @synthesize inputBackground = _inputBackground;
 @synthesize shareButton = _shareButton;
+@synthesize shareTextField = _shareTextField;
+@synthesize imageFilePath = _imageFilePath;
+@synthesize text = _text;
 
 - (void)dealloc
 {
+    [_imageFilePath release];
+    [_text release];
     [_myImage release];
     [_patternsGallery release];
     [_patternsArray release];
@@ -34,6 +43,7 @@
     [_inputBackground release];
     [_myImageView release];
     [_shareButton release];
+    [_shareTextField release];
     [super dealloc];
 }
 
@@ -114,16 +124,35 @@ enum {
     }
 }
 
+
+- (void)updatePhotoView
+{
+}
+
 - (IBAction)publish:(id)sender
 {
-    if ([LocaleUtils isChina]) {
-        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), nil];
-        [shareOptions showInView:self.view];
-        [shareOptions release];
-    } else {
-        UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_via") delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSave_to_album") otherButtonTitles:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Facebook"), NSLS(@"kShare_via_Twitter"), nil];
-        [shareOptions showInView:self.view];
-        [shareOptions release];
+    if ([[UserManager defaultManager] hasBindQQWeibo]){
+        
+    }
+    
+    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];
+    }
+    
+    if ([[UserManager defaultManager] hasBindFacebook]){
+        
+    }
+}
+
+- (void)didPublishWeibo:(int)result
+{
+    [self hideActivity];
+    if (result == 0){
+        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+    }
+    else{
+        [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
     }
 }
 
@@ -132,11 +161,15 @@ enum {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (id)initWithImage:(UIImage*)anImage
+- (id)initWithImageFile:(NSString*)imageFile
+                         text:(NSString*)text
 {
     self = [super init];
     if (self) {
-        self.myImage = anImage;
+        self.imageFilePath = imageFile;
+        self.text = text;
+        NSData* data = [NSData dataWithContentsOfFile:imageFile];
+        self.myImage = [UIImage imageWithData:data];
     }
     return self;
 }
@@ -157,10 +190,29 @@ enum {
 //    [self initPatterns];
 //    [self initPattenrsGallery];
 //    [self.infuseImageView setDrawImage:self.myImage];
-    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
+    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
-    [self.myImageView setImage:self.myImage];
+    
+    if ([self.imageFilePath hasSuffix:@"gif"]){                              
+        GifView* view = [[GifView alloc] initWithFrame:CGRectMake(self.myImageView.frame.origin.x, 
+                                                                  self.myImageView.frame.origin.y, 304, 320)
+                                                filePath:self.imageFilePath
+                                        playTimeInterval:0.5];    
+        [self.view addSubview:view];
+    }
+    else{
+        [self.myImageView setImage:self.myImage];
+    }        
+    
+    self.shareTextField.text = self.text;    
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self addBlankView:self.shareTextField];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -169,6 +221,7 @@ enum {
     [self setInputBackground:nil];
     [self setMyImageView:nil];
     [self setShareButton:nil];
+    [self setShareTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
