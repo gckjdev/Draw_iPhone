@@ -10,9 +10,8 @@
 #import "SinaSNSService.h"
 
 typedef enum {
-    SNS_SHARE = 0,
-    SUBMIT_BUG,
-    SUMIT_FEEDBACK
+    SUBMIT_BUG = 0,
+    SUBMIT_FEEDBACK
 }ReportType;
 
 

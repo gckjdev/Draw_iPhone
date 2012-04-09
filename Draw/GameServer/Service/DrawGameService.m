@@ -30,7 +30,7 @@ static DrawGameService* _defaultService;
 @synthesize avatar = _avatar;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
-@synthesize drawActionList = _drawActionList;
+//@synthesize drawActionList = _drawActionList;
 @synthesize showDelegate = _showDelegate;
 
 - (void)dealloc
@@ -44,7 +44,7 @@ static DrawGameService* _defaultService;
     [_networkClient disconnect];
     [_networkClient release];
     [_gameObserverList release];
-    [_drawActionList release];
+//    [_drawActionList release];
     [super dealloc];
 }
 
@@ -66,7 +66,7 @@ static DrawGameService* _defaultService;
         
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self]; 
-    _drawActionList = [[NSMutableArray alloc] init];
+//    _drawActionList = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -110,7 +110,7 @@ static DrawGameService* _defaultService;
 {
     DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
     NSLog(@"save an action:%d", aType);
-    [self.drawActionList addObject:action];
+//    [self.drawActionList addObject:action];
     [action release];
 }
 
@@ -193,7 +193,7 @@ static DrawGameService* _defaultService;
         
         [self notifyGameObserver:@selector(didStartGame:) message:message];        
     });
-    [self.drawActionList removeAllObjects];
+//    [self.drawActionList removeAllObjects];
 }
 
 - (void)handleGameStartNotification:(GameMessage*)message
@@ -474,7 +474,7 @@ static DrawGameService* _defaultService;
 - (void)startGame
 {
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
-    [_drawActionList removeAllObjects];
+//    [_drawActionList removeAllObjects];
 }
 
 - (void)changeRoom

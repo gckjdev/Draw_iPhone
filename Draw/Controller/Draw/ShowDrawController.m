@@ -620,7 +620,8 @@ ShowDrawController *GlobalGetShowDrawController()
                                                               wordText:self.word.text 
                                                                  score:gainCoin
                                                                correct:_guessCorrect 
-                                                             isMyPaint:NO];
+                                                             isMyPaint:NO 
+                                                        drawActionList:showView.drawActionList];
         if (_shopController) {
             [_shopController.navigationController popViewControllerAnimated:NO];
             [self.navigationController pushViewController:rc animated:NO];

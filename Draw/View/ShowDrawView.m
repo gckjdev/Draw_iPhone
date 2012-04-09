@@ -253,5 +253,8 @@
     return img;
 }
 
-
+- (BOOL)isViewBlank
+{
+    return [DrawAction isDrawActionListBlank:self.drawActionList];
+}
 @end

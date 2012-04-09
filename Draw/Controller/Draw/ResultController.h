@@ -19,6 +19,7 @@
     DrawGameService *drawGameService;
     BOOL _correct;
     BOOL _isMyPaint;
+    NSArray *_drawActionList;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
@@ -31,7 +32,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *whitePaper;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (retain, nonatomic) NSArray *drawActionList;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;
@@ -42,6 +43,9 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint;
-- (void)didFinishAPaint:(NSArray *)drawAction;
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint drawActionList:(NSArray *)drawActionList;
+
+- (void)saveActionList:(NSArray *)actionList;
+
+//- (void)didFinishAPaint:(NSArray *)drawAction;
 @end

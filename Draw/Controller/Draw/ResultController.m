@@ -20,6 +20,7 @@
 #import "LocaleUtils.h"
 #import "AccountService.h"
 #import "Account.h"
+#import "DrawAction.h"
 
 #define CONTINUE_TIME 10
 
@@ -36,6 +37,7 @@
 @synthesize scoreLabel;
 @synthesize whitePaper;
 @synthesize titleLabel;
+@synthesize drawActionList = _drawActionList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +57,7 @@
 }
 
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint;
+- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint drawActionList:(NSArray *)drawActionList;
 
 {
     self = [super init];
@@ -66,6 +68,7 @@
         self.score = aScore;
         _correct = correct;
         _isMyPaint = isMyPaint;
+        self.drawActionList = [NSArray arrayWithArray:drawActionList];
     }
     return self;
 }
@@ -112,6 +115,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self saveActionList:self.drawActionList];
+    
     [self.drawImage setImage:_image];
     NSString *answer = nil;
     if (self.wordText) {
@@ -126,8 +132,6 @@
     [self startTimer];
     drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
-//    upButton.hidden = downButton.hidden = _isMyPaint;
-    [self didFinishAPaint:drawGameService.drawActionList];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     [self.whitePaper setImage:[shareImageManager whitePaperImage]];
@@ -214,6 +218,7 @@
     [scoreLabel release];
     [whitePaper release];
     [titleLabel release];
+    [_drawActionList release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
@@ -245,9 +250,16 @@
     [HomeController returnRoom:self];
 }
 
+- (void)saveActionList:(NSArray *)actionList
+{
+ 
+    if (actionList.count == 0) {
+        PPDebug(@"actionList has no object");        
+    }
 
-- (void)didFinishAPaint:(NSArray *)drawAction
-{   
+    if ([DrawAction isDrawActionListBlank:actionList]) {
+        return;
+    }
     time_t aTime = time(0);
     NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     if (_image!=nil) 
@@ -264,8 +276,6 @@
         BOOL result=[imageData writeToFile:uniquePath atomically:YES];
         PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
         if (result) {
-            NSArray* drawActionList = drawGameService.drawActionList;
-            
             NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
             NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
             NSString* drawWord = [[[drawGameService session] currentTurn] word];
@@ -273,17 +283,20 @@
                 drawWord = [[[drawGameService session] currentTurn] lastWord];
             }
             
-            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
-                                                                data:drawActionListData 
-                                                          drawUserId:drawUserId 
-                                                    drawUserNickName:drawUserNickName 
-                                                            drawByMe:_isMyPaint 
-                                                            drawWord:drawWord];
-            
-            [drawGameService.drawActionList removeAllObjects];
+//            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+//            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+//                                                                data:drawActionListData 
+//                                                          drawUserId:drawUserId 
+//                                                    drawUserNickName:drawUserNickName 
+//                                                            drawByMe:_isMyPaint 
+//                                                            drawWord:drawWord];
+//            
+//            [drawGameService.drawActionList removeAllObjects];
+            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
+            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint drawWord:drawWord];
         }
     }
+   
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId

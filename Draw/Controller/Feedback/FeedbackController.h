@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
+#import "SNSServiceDelegate.h"
 
-@interface FeedbackController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FeedbackController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SNSServiceDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) IBOutlet UILabel *TitleLabel;
 

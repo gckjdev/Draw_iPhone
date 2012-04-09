@@ -42,5 +42,5 @@
 - (void)addAction:(DrawAction *)drawAction;
 - (UIImage*)createImage;
 - (void)setDrawEnabled:(BOOL)enabled;
-
+- (BOOL)isViewBlank;
 @end

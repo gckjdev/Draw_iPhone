@@ -219,3 +219,13 @@
 
 "kReplayTitle" = "Replay";
 "kReplayShare" = "Share";
+
+"kReport_bug" = "Report problems";
+"kAdvices" = "Advices";
+"kInput_your_contact" = "Enter your contact here(Email,facebook,twitter,etc)";
+"kHave_problems?" = "I have some problems while playing this game...";
+"kSay something..." = "I want to say ...";
+"kShare_via_SMS" = "Share via SMS";
+"kShare_message_body" = "I found a very funny game recently, its name is \"draw lively\"\n%@";
+"kEmail_subject" = "Share a game";
+
