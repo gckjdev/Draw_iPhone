@@ -7,6 +7,7 @@
 //
 
 #import "AboutUsController.h"
+#import "LocaleUtils.h"
 
 @interface AboutUsController ()
 
@@ -27,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.aboutTitle setText:NSLS(@"kAbout_us_title")];
     // Do any additional setup after loading the view from its nib.
 }
 

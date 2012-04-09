@@ -41,5 +41,6 @@
 
 + (InputDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate;
 - (void)showInView:(UIView *)view;
+- (void)startRunOutAnimation;
 
 @end

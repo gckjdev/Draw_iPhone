@@ -37,6 +37,10 @@
 + (DrawColor *)cyanColor;       // 0.0, 1.0, 1.0 RGB 
 + (DrawColor *)yellowColor;     // 1.0, 1.0, 0.0 RGB 
 + (DrawColor *)magentaColor;    // 1.0, 0.0, 1.0 RGB 
+
++ (DrawColor *)pinkColor;       // 1.0, 0.0, 1.0 RGB 
++ (DrawColor *)skyColor;       // 1.0, 0.0, 1.0 RGB 
+
 + (DrawColor *)orangeColor;     // 1.0, 0.5, 0.0 RGB 
 + (DrawColor *)purpleColor;     // 0.5, 0.0, 0.5 RGB 
 + (DrawColor *)brownColor;      // 0.6, 0.4, 0.2 RGB 

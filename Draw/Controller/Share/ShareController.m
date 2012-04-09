@@ -19,6 +19,7 @@
 #import "ReplayController.h"
 #import "GifView.h"
 
+
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
 
@@ -43,6 +44,7 @@
     [gallery release];
     [_paints release];
     [titleLabel release];
+    [_gifImages release];
     [super dealloc];
 }
 
@@ -99,22 +101,18 @@ enum {
 
 
 
-- (void)didPlayDrawView:(NSMutableArray*)gifFrameArray
-{
-    [self hideActivity];
-    [self quitReplay];
-    ShareGifController* controller = [[ShareGifController alloc] initWithGifFrames:gifFrameArray];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-}
 
 - (void)showViewController:(UIViewController*)controller
 {
     [self.navigationController presentModalViewController:controller animated:YES];
 }
 
+
+#define SHARE_GIF_DRAW_VIEW_TAG 20120409
 - (void)shareAsGif
 {
+    [_gifImages removeAllObjects];
+    
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
     ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
     [replayController setReplayForCreateGif:YES];    
@@ -137,11 +135,16 @@ enum {
     replayView.tag = REPLAY_TAG;
     [background addSubview:replayView];
     [replayView release];            
-    [replayView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
-    [replayView play];
+
+    NSMutableArray *gifActionList = [DrawAction 
+                                     getTheLastActionListWithoutClean:drawActionList];
+    
+    [replayView setDrawActionList:gifActionList];
     replayView.delegate = self;
-    replayView.shouldCreateGif = YES;
     replayView.playSpeed = 0.01;
+    
+    [replayView play];
+    
     [self.view addSubview:background];
     [background release];
     
@@ -291,6 +294,63 @@ enum {
     
 }
 
+
+#pragma mark - Show Draw View Delegate
+#define COMPRESS_SCALE 0.6
+#define POINT_COUNT_PER_FRAME 4
+- (void)createImageAndSave:(ShowDrawView *)showView
+{
+    UIImage *image = [showView createImageWithScale:0.6];
+    [_gifImages addObject:image];
+
+}
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex
+{
+    NSInteger actionCount = [showDrawView.drawActionList count];
+
+    if (showDrawView.tag == REPLAY_TAG) {
+        if (actionIndex < actionCount && actionIndex >= 0) {
+            DrawAction *action = [showDrawView.drawActionList objectAtIndex:actionIndex];
+            NSInteger pointCount = [action pointCount];
+            if (pointCount < 1) {
+                return;
+            }
+            
+            if (pointCount < POINT_COUNT_PER_FRAME) {
+                if (pointIndex == pointCount - 1) {
+                    [self createImageAndSave:showDrawView];
+                    NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                }
+                return;
+            }
+            
+            if (pointIndex == pointCount - 1) 
+            {
+                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                [self createImageAndSave:showDrawView];
+            }else if((pointIndex % POINT_COUNT_PER_FRAME) == (POINT_COUNT_PER_FRAME - 1 ) && (pointIndex + POINT_COUNT_PER_FRAME / 2) < pointCount)
+            {
+                NSLog(@"action Index: %d; point index: %d",actionIndex,pointIndex);
+                [self createImageAndSave:showDrawView];
+            }
+        }
+
+    }
+}
+
+- (void)didPlayDrawView:(ShowDrawView *)showDrawView;
+{
+    if (showDrawView.tag == REPLAY_TAG) {
+        [self hideActivity];
+        [self quitReplay];
+        ShareGifController* controller = [[ShareGifController alloc] initWithGifFrames:_gifImages];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+    
+}
+
+
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
@@ -386,6 +446,7 @@ enum {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _paints = [[NSMutableArray alloc] init];
+        _gifImages = [[NSMutableArray alloc] init];
     }
     return self;
 }

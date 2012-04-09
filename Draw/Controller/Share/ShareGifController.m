@@ -113,7 +113,7 @@ enum {
     [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     [GifManager createGifToPath:GIF_PATH byImages:self.gifFrames];
-    GifView* view = [[GifView alloc] initWithFrame:CGRectMake(16, 120, 288, 323) filePath:GIF_PATH playTimeInterval:0.5];
+    GifView* view = [[GifView alloc] initWithFrame:CGRectMake(16, 120, 288, 323) filePath:GIF_PATH playTimeInterval:3/24.0];
     [self.view addSubview:view];
     // Do any additional setup after loading the view from its nib.
 }

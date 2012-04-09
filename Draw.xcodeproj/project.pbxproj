@@ -2831,10 +2831,6 @@
 				CA13777C15259C1400B5790B /* finish@2x.png */,
 				CA13777D15259C1400B5790B /* coin@2x.png */,
 				CA13777E15259C1400B5790B /* buyitems_bg@2x.png */,
-				CA13777F15259C1400B5790B /* blue_color@2x.png */,
-				CA13778015259C1400B5790B /* yellow_color@2x.png */,
-				CA13778115259C1400B5790B /* red_color@2x.png */,
-				CA13778215259C1400B5790B /* black_color@2x.png */,
 				CA13778315259C1400B5790B /* add_color@2x.png */,
 				CA13778415259C1400B5790B /* clean@2x.png */,
 				CA13778515259C1400B5790B /* red_pen@2x.png */,
@@ -3209,6 +3205,10 @@
 		CA8D60331531CEF300E016ED /* pen_colors */ = {
 			isa = PBXGroup;
 			children = (
+				CA13777F15259C1400B5790B /* blue_color@2x.png */,
+				CA13778015259C1400B5790B /* yellow_color@2x.png */,
+				CA13778115259C1400B5790B /* red_color@2x.png */,
+				CA13778215259C1400B5790B /* black_color@2x.png */,
 				CA8D60341531CF0A00E016ED /* orange_color@2x.png */,
 				CA8D60351531CF0A00E016ED /* green_color@2x.png */,
 				CA8D60361531CF0A00E016ED /* pink_color@2x.png */,

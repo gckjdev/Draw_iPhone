@@ -140,17 +140,17 @@ DrawViewController *GlobalGetDrawViewController()
     [widthArray addObject:[NSNumber numberWithInt:3]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
-    
+
     [colorViewArray addObject:[ColorView blackColorView]];
     [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
+    [colorViewArray addObject:[ColorView greenColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
-    [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
+    [colorViewArray addObject:[ColorView orangeColorView]];
+    [colorViewArray addObject:[ColorView pinkColorView]];
+    [colorViewArray addObject:[ColorView brownColorView]];
+    [colorViewArray addObject:[ColorView skyColorView]];
+    [colorViewArray addObject:[ColorView whiteColorView]];
     
     
     [pickPenView setColorViews:colorViewArray];
@@ -463,7 +463,7 @@ DrawViewController *GlobalGetDrawViewController()
 #define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
     
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
@@ -480,7 +480,7 @@ DrawViewController *GlobalGetDrawViewController()
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    [dialog removeFromSuperview];
+//    [dialog removeFromSuperview];
 }
 
 #pragma mark - Draw View Delegate

@@ -25,8 +25,6 @@
 @synthesize delegate = _delegate;
 @synthesize drawActionList = _drawActionList;
 @synthesize status = _status;
-@synthesize gifFrameArray = _gifFrameArray;
-@synthesize shouldCreateGif =  _shouldCreateGif;
 #pragma mark Action Funtion
 
 
@@ -60,20 +58,6 @@
 - (void)play
 {
     [self playFromDrawActionIndex:0];
-    
-    int frameCount = [_drawActionList count];
-    if (frameCount > 200) {
-        for (int index = 0; index < 200; index ++) {
-            int j = frameCount*index/200;
-            NSNumber* sholudPlayIndex = [NSNumber numberWithInt:j];
-            [_indexShouldSave addObject:sholudPlayIndex];
-        }
-    } else {
-        for (int index = 0; index < frameCount; index ++) {
-            NSNumber* sholudPlayIndex = [NSNumber numberWithInt:index];
-            [_indexShouldSave addObject:sholudPlayIndex];
-        }
-    }
 }
 
 
@@ -99,17 +83,18 @@
 {
     self.status = Stop;
     [self setNeedsDisplay];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView)]) {
-        [self.delegate didPlayDrawView];
-    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
-        [self.delegate didPlayDrawView:self.gifFrameArray];
+        [self.delegate didPlayDrawView:self];
     }
 }
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {   
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
+        [self.delegate didPlayDrawView:self AtActionIndex:playingActionIndex 
+                                      pointIndex:playingPointIndex];
+    }
     DrawAction *currentAction = [self playingAction];
     playingPointIndex ++;
     if (playingPointIndex < [currentAction pointCount]) {
@@ -118,20 +103,12 @@
         //play next action
         playingPointIndex = 0;
         playingActionIndex ++;
-        if (_shouldCreateGif && playingActionIndex%2 == 0) {
-            UIImage* frame = [[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(self.frame.size.width/2, self.frame.size.height/2)];
-            [self.gifFrameArray addObject:frame];
-            NSLog(@"creating frame %d size= %d", self.gifFrameArray.count, [(NSData*)UIImageJPEGRepresentation(frame, 1.0) length]);
-        }
         if ([self.drawActionList count] > playingActionIndex) {
         }else{
             //illegal
             _status = Stop;
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView)]) {
-                [self.delegate didPlayDrawView];
-            }
             if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
-                [self.delegate didPlayDrawView:self.gifFrameArray];
+                [self.delegate didPlayDrawView:self];
             }
             return;
         }
@@ -153,8 +130,6 @@
         self.status = Stop;
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
-        _gifFrameArray = [[NSMutableArray alloc] init];
-        _indexShouldSave = [[NSMutableSet alloc] init];
           self.backgroundColor = [UIColor whiteColor];      
     }
     return self;
@@ -163,8 +138,6 @@
 - (void)dealloc
 {
     [_drawActionList release];
-    [_gifFrameArray release];
-    [_indexShouldSave release];
     [super dealloc];
 }
 
@@ -253,8 +226,16 @@
     return img;
 }
 
+- (UIImage *)createImageWithScale:(CGFloat)scale
+{
+    UIImage *image = [self createImage];
+    UIImage* frame = [[self createImage] imageByScalingAndCroppingForSize:CGSizeMake(image.size.width * scale, image.size.height * scale)];
+    return frame;
+}
+
 - (BOOL)isViewBlank
 {
     return [DrawAction isDrawActionListBlank:self.drawActionList];
 }
+
 @end

@@ -34,4 +34,13 @@ typedef enum{
 + (ColorView *)redColorView;
 + (ColorView *)blackColorView;
 + (ColorView *)yellowColorView;
+
++ (ColorView *)orangeColorView;
++ (ColorView *)greenColorView;
++ (ColorView *)pinkColorView;
++ (ColorView *)brownColorView;
++ (ColorView *)skyColorView;
++ (ColorView *)whiteColorView;
+
+
 @end

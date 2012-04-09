@@ -92,12 +92,19 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    UserManager *userManager = [UserManager defaultManager];
-    if ([userManager isPasswordEmpty]) {
-        [self.anotherPasswordTextField becomeFirstResponder];
+    NSString* value = [anim valueForKey:@"AnimationKey"];
+    if ([value isEqualToString:@"runOut"]) {
+        [self setHidden:YES];
+        [self removeFromSuperview];
     }else{
-        [self.oldPasswordTextField becomeFirstResponder];
+        UserManager *userManager = [UserManager defaultManager];
+        if ([userManager isPasswordEmpty]) {
+            [self.anotherPasswordTextField becomeFirstResponder];
+        }else{
+            [self.oldPasswordTextField becomeFirstResponder];
+        }
     }
+
 }
 
 
@@ -157,7 +164,8 @@
 }
 
 - (IBAction)clickOkButton:(id)sender {
-    
+
+    [self startRunOutAnimation];
     if ([self isPasswordWrong]) 
     {
         [self handlePasswordWrong];

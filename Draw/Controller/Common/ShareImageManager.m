@@ -169,6 +169,33 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"black_color.png"];    
 }
+
+- (UIImage *)orangeColorImage
+{
+    return [UIImage imageNamed:@"orange_color.png"];    
+}
+- (UIImage *)greenColorImage
+{
+    return [UIImage imageNamed:@"green_color.png"];    
+}
+- (UIImage *)pinkColorImage
+{
+    return [UIImage imageNamed:@"pink_color.png"];    
+}
+- (UIImage *)brownColorImage
+{
+    return [UIImage imageNamed:@"brown_color.png"];    
+}
+- (UIImage *)skyColorImage
+{
+    return [UIImage imageNamed:@"sky_color.png"];    
+}
+- (UIImage *)whiteColorImage
+{
+    return [UIImage imageNamed:@"white_color.png"];    
+}
+
+
 - (UIImage *)addColorImage
 {
     return [UIImage imageNamed:@"add_color.png"];        
