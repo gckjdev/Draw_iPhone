@@ -197,7 +197,7 @@
 
 - (void)createImageAndSave:(ShowDrawView *)showView
 {
-    UIImage *image = [showView createImageWithScale:0.6];
+    UIImage *image = [showView createImage];
     [_gifImages addObject:image];
     
 }
