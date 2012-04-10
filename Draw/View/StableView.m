@@ -80,7 +80,7 @@
 @synthesize score = _score;
 @synthesize userId = _userId;
 
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
 {
     self = [super initWithFrame:CGRectMake(0, 0, 32, 32)];
     if (self) {
@@ -91,8 +91,14 @@
             [imageView setUrl:[NSURL URLWithString:urlString]];
         }
         else{
-            // TODO set user avatar by gender            
-            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+            if (gender) {
+                [imageView setImage:[[ShareImageManager defaultManager] 
+                                     maleDefaultAvatarImage]];
+            }else{
+                [imageView setImage:[[ShareImageManager defaultManager] 
+                                     maleDefaultAvatarImage]];                
+            }
+
         }
         [GlobalGetImageCache() manage:imageView];
         [self addSubview:imageView];
