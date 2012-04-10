@@ -83,7 +83,7 @@ enum {
 {
     switch (buttonIndex) {
         case SHARE_VIA_SMS: {
-            [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [UIUtils getAppLink:APP_ID]]];
+            [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), [NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]]]];
         } break;
         case SHARE_VIA_EMAIL: {
             [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] isHTML:YES delegate:self];
