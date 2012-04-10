@@ -110,6 +110,11 @@ NSString* GlobalGetServerURL()
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
+    
+    // Fetch Server List At Background
+    [[RouterService defaultService] fetchServerListAtBackground];
+    [[PriceService defaultService] syncShoppingListAtBackground];
+    
     return YES;
 }
 
@@ -144,9 +149,6 @@ NSString* GlobalGetServerURL()
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    // Fetch Server List At Background
-    [[RouterService defaultService] fetchServerListAtBackground];
-    [[PriceService defaultService] syncShoppingListAtBackground];
 
 }
 
