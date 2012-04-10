@@ -40,7 +40,10 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 #define GUESS_TIME 60
+#define WORD_LENGTH_TIP_TIME 20
 #define PAPER_VIEW_TAG 20120403
+
+
 
 @implementation ShowDrawController
 @synthesize guessDoneButton;
@@ -307,20 +310,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [toolView setEnabled:enabled];
 }
 
-//- (void)setWordButtonsHidden:(BOOL)hidden
-//{
-//    for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
-//        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-//        [button setHidden:hidden];
-//    }
-//    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
-//        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-//        [button setHidden:hidden];
-//    }
-//    [guessDoneButton setHidden:hidden];
-//    [toolView setHidden:hidden];
-//}
-
 #pragma makr - Timer Handle
 - (void)resetTimer
 {
@@ -344,6 +333,8 @@ ShowDrawController *GlobalGetShowDrawController()
         [self setGuessAndPickButtonsEnabled:NO];
         [self.guessDoneButton setEnabled:NO];
         retainCount = 0;
+    }else if(retainCount == WORD_LENGTH_TIP_TIME){
+        [self popupWordLengthMessage];
     }
     [self updateClockButton];
 }
@@ -412,8 +403,8 @@ ShowDrawController *GlobalGetShowDrawController()
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
     if (onLeftTop) {
-        x = player.frame.origin.x;
-        y = player.frame.origin.y + player.frame.size.height;
+        x = 10;//player.frame.origin.x;
+        y = 50;//player.frame.origin.y + player.frame.size.height;
     }
     
     CGFloat fontSize = 18;    
@@ -442,7 +433,13 @@ ShowDrawController *GlobalGetShowDrawController()
     [self popGuessMessage:message userId:userId onLeftTop:YES];
 }
 
-
+- (void)popupWordLengthMessage
+{
+    if (languageType == ChineseType && !_guessCorrect && [self.word.text length] > 0) {
+        NSString *tip = [NSString stringWithFormat:NSLS(@"kWordLengthTip"),[self.word.text length]];
+        [self popupHappyMessage:tip title:nil];
+    }
+}
 - (void)updateLastAnswerButton
 {
     UIView *lastAnwserButton = [self.view viewWithTag:WRITE_BUTTON_TAG_END];

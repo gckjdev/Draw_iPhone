@@ -260,3 +260,4 @@
 "kNoTipItem" = "对不起，你没有锦囊了，请去商店购买。";
 "kMore_apps" = "更多应用";
 "kNextStep" = "下一步";
+"kWordLengthTip" = "温馨小提示：词的字数是 %d 哦";

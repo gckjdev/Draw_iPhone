@@ -254,3 +254,4 @@
 "kNoTipItem" = "Sorry, you have no tip item, you can buy some in the shop.";
 "kMore_apps" = "More apps";
 "kNextStep" = "Next";
+"kWordLengthTip" = "tips:word length is %d .";

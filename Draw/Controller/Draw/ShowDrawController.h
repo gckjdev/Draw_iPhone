@@ -43,6 +43,8 @@
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (IBAction)clickGuessDoneButton:(id)sender;
+- (void)popupWordLengthMessage;
+
 //- (void)setWordButtonsHidden:(BOOL)hidden;
 + (ShowDrawController *)instance;
 + (void)returnFromController:(UIViewController*)fromController;

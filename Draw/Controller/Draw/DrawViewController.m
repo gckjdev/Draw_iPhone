@@ -285,8 +285,8 @@ DrawViewController *GlobalGetDrawViewController()
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
     if (onLeftTop) {
-        x = player.frame.origin.x;
-        y = player.frame.origin.y + player.frame.size.height;
+        x = 10;//player.frame.origin.x;
+        y = 50;//player.frame.origin.y + player.frame.size.height;
     }
     
     CGFloat fontSize = 18;    
