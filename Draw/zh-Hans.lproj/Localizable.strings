@@ -75,7 +75,7 @@
 "kBuyColor" = "购买颜色";
 "kConnectionRecover" = "连接恢复";
 "kConnectionBroken" = "连接中断";
-"kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试";
+"kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试。";
 "kProcessingIAP" = "处理购买请求中...";
 "kBuyCoinsSucc" = "购买金币成功";
 "kCongratulations" = "恭喜猜对了!";
@@ -97,11 +97,11 @@
 "kSubmit" = "提交";
 
 "kRegisteringUser" = "发送注册请求中...";
-"kSystemFailure" = "网络错误，请检查手机是否正确连接到互联网";
-"kUnknownRegisterFailure" = "对不起，用户注册无法完成，请联系我们的技术支持以便解决问题";
-"kEmailUsed" = "对不起，该电子邮件已经被注册";
-"kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入";
-"kGeneralFailure" = "对不起，注册失败，请稍候再试";
+"kSystemFailure" = "网络错误，请检查手机是否正确连接到互联网。";
+"kUnknownRegisterFailure" = "对不起，用户注册无法完成，请联系我们的技术支持以便解决问题。";
+"kEmailUsed" = "对不起，该电子邮件已经被注册。";
+"kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入。";
+"kGeneralFailure" = "对不起，注册失败，请稍候再试。";
 
 "kInputNickName" = "请输入昵称";
 "Skip" = "跳过";
@@ -114,7 +114,7 @@
 
 "kConnectingServer" = "连接服务器中...";
 "kJoiningGame" = "正在加入游戏会话中...";
-"kNetworkFailure" = "网络错误，请检查手机是否正确连接到互联网";
+"kNetworkFailure" = "网络错误，请检查手机是否正确连接到互联网。";
 
 "kJoinGameSucc" = "成功进入游戏房间";
 "kJoinGameFailure" = "加入游戏失败，请稍候再试";
@@ -138,8 +138,8 @@
 "kFacebook" = "绑定Facebook";
 "kBind" = "已绑定";
 "kUnBind" = "未绑定";
-"kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试";
-"kExceedMaxProlongTimes" = "不好意思，你已经延时好多次了，不能再延时了";
+"kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试。";
+"kExceedMaxProlongTimes" = "不好意思，你已经延时好多次了，不能再延时了。";
 
 "kGotoCoinShop" = "金币充值";
 
@@ -194,8 +194,8 @@
 
 "Message" = "消息";
 
-"kEmailEmpty" = "电子邮件地址不能为空";
-"kInvalidEmail" = "输入的电子邮件地址不合法，请重新输入";
+"kEmailEmpty" = "电子邮件地址不能为空。";
+"kInvalidEmail" = "输入的电子邮件地址不合法，请重新输入。";
 
 "kNewVersionMessage" = "检测到有新版本[%@]，是否要升级到最新版本？";
 "kNewVersionTitle" = "版本升级";
@@ -243,23 +243,24 @@
 "kShareSend" = "发送微博";
 
 "kPublishWeiboSucc" = "微博已成功发送";
-"kPublishWeiboFail" = "微博发送失败，请稍候再试";
+"kPublishWeiboFail" = "微博发送失败，请稍候再试。";
 
-"kFailCreateGIF" = "对不起，生成GIF动画文件失败";
+"kFailCreateGIF" = "对不起，生成GIF动画文件失败。";
 
 "kAbout_us_title" = "关于我们";
 
 
-"kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能";
+"kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能。";
 
 "kSharePhotoEmailSubject" = "分享有趣的画画";
 "kSharePhotoEmailBody" = "一副有趣的画，分享来自%@";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感谢您的反馈";
-"kFeedbackFail" = "发送失败，稍后再试试";
+"kFeedbackFail" = "发送失败，稍后再试试。";
 "kSendingFeedback" = "正在发送...";
 "kNoTipItem" = "对不起，你没有锦囊了，请去商店购买。";
 "kMore_apps" = "更多应用";
 "kNextStep" = "下一步";
-"kWordLengthTip" = "小提示：词的字数是 %d ";
+"kWordLengthTip" = "小提示：词的字数是 %d";
+"kContentNull" = "内容不能为空哦。";

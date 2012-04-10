@@ -255,3 +255,5 @@
 "kMore_apps" = "More apps";
 "kNextStep" = "Next";
 "kWordLengthTip" = "tips:word length is %d .";
+"kContentNull" = "Content can not be empty.";
+

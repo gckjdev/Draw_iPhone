@@ -51,14 +51,12 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
-//    self.contentText.text = nil;
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
-//    [self.doneButton setHidden:YES];
     [self.doneButton setTag:BUTTON_TAG_DONE];
     [doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
 }
@@ -78,6 +76,7 @@
 - (IBAction)submit:(id)sender
 {
     if ([self.contactText.text length] == 0) {
+        [self popupMessage:NSLS(@"kContentNull") title:nil];
         return;
     }
     switch (_reportType) {   
