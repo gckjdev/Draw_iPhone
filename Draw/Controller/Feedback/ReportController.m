@@ -24,45 +24,47 @@
 @synthesize contactText;
 @synthesize doneButton;
 
+
+#define BUTTON_TAG_NEXT 201204101
+#define BUTTON_TAG_DONE 201204102
+
 - (void)fitKeyboardComeOut
 {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.8];
     [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
     [self.contentBackground setFrame:self.contentText.frame];
     [self.contactText setFrame:CGRectMake(40, 175, 240, 31)];
+    [UIView commitAnimations];
 }
 
 - (void)resetFrame
 {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.8];
     [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
     [self.contentBackground setFrame:self.contentText.frame];
     [self.contactText setFrame:CGRectMake(40, 260, 240, 31)];
+    [UIView commitAnimations];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
-    self.contentText.text = nil;
+//    self.contentText.text = nil;
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
-    [self.doneButton setHidden:YES];
+//    [self.doneButton setHidden:YES];
+    [self.doneButton setTag:BUTTON_TAG_DONE];
+    [doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
 }
 
-- (IBAction)hideKeyboard:(id)sender
-{
-    [self.contactText becomeFirstResponder];
-}
 
-- (IBAction)endEditingContact:(id)sender
-{    
-    [self.contactText resignFirstResponder];
-    [self resetFrame];
-    [self submit:nil];
-    
-}
+
 
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -75,6 +77,9 @@
 
 - (IBAction)submit:(id)sender
 {
+    if ([self.contactText.text length] == 0) {
+        return;
+    }
     switch (_reportType) {   
         case SUBMIT_BUG: {
             [[UserService defaultService] reportBugs:self.contentText.text withContact:self.contactText.text viewController:self];
@@ -88,6 +93,24 @@
     }
 }
 
+- (IBAction)hideKeyboard:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if(button.tag == BUTTON_TAG_NEXT){
+        [self.contactText becomeFirstResponder];
+    }else if(button.tag == BUTTON_TAG_DONE)
+    {
+        [self submit:nil];
+    }
+}
+
+- (IBAction)endEditingContact:(id)sender
+{    
+    [self.contactText resignFirstResponder];
+    [self resetFrame];
+    [self submit:nil];
+    
+}
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -120,6 +143,9 @@
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [doneButton setTitle:NSLS(@"kNextStep") forState:UIControlStateNormal];
+    
+    [doneButton setTag:BUTTON_TAG_NEXT];
+    
     [self.contactText setPlaceholder:NSLS(@"kInput_your_contact")];
     
     switch (_reportType) {
