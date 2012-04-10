@@ -31,6 +31,7 @@ static DrawGameService* _defaultService;
 @synthesize avatar = _avatar;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
+@synthesize gender = _gender;
 //@synthesize drawActionList = _drawActionList;
 @synthesize showDelegate = _showDelegate;
 
@@ -461,13 +462,19 @@ static DrawGameService* _defaultService;
 
 #pragma mark Methods for External (UI Thread)
 
-- (void)joinGame
+- (void)joinGame:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender
 {
     [_session setStatus:SESSION_WAITING];
+    
+    [self setUserId:userId];
+    [self setNickName:nickName];
+    [self setAvatar:avatar];
+    [self setGender:gender];
     
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
+                                 gender:_gender
                               sessionId:-1
                       excludeSessionSet:_historySessionSet];
 }
@@ -485,8 +492,10 @@ static DrawGameService* _defaultService;
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
+                                 gender:_gender
                               sessionId:[_session sessionId]
                       excludeSessionSet:_historySessionSet];
+
 //    self.session.roundNumber = 1;
 }
 

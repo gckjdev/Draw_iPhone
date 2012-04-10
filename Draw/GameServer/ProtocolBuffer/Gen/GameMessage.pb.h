@@ -38,12 +38,14 @@
 
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
+  BOOL hasGender_:1;
   BOOL hasSessionToBeChange_:1;
   BOOL hasAutoNew_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL gender_:1;
   int64_t sessionToBeChange;
   int32_t autoNew;
   NSString* userId;
@@ -58,12 +60,14 @@
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasSessionToBeChange;
+- (BOOL) hasGender;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 @property (readonly) int64_t sessionToBeChange;
+- (BOOL) gender;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 
@@ -137,6 +141,11 @@
 - (int64_t) sessionToBeChange;
 - (JoinGameRequest_Builder*) setSessionToBeChange:(int64_t) value;
 - (JoinGameRequest_Builder*) clearSessionToBeChange;
+
+- (BOOL) hasGender;
+- (BOOL) gender;
+- (JoinGameRequest_Builder*) setGender:(BOOL) value;
+- (JoinGameRequest_Builder*) clearGender;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {
@@ -546,44 +555,46 @@
 @interface GeneralNotification : PBGeneratedMessage {
 @private
   BOOL hasGuessCorrect_:1;
+  BOOL hasUserGender_:1;
   BOOL hasWidth_:1;
   BOOL hasTurnGainCoins_:1;
-  BOOL hasSessionStatus_:1;
   BOOL hasGuessGainCoins_:1;
   BOOL hasLanguage_:1;
   BOOL hasRound_:1;
-  BOOL hasColor_:1;
   BOOL hasLevel_:1;
-  BOOL hasChatContent_:1;
-  BOOL hasGuessUserId_:1;
-  BOOL hasGuessWord_:1;
-  BOOL hasWord_:1;
+  BOOL hasColor_:1;
+  BOOL hasSessionStatus_:1;
   BOOL hasUserAvatar_:1;
   BOOL hasNickName_:1;
+  BOOL hasWord_:1;
   BOOL hasQuitUserId_:1;
   BOOL hasNewUserId_:1;
   BOOL hasNextPlayUserId_:1;
+  BOOL hasGuessWord_:1;
+  BOOL hasGuessUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
+  BOOL hasChatContent_:1;
   BOOL hasSessionHost_:1;
   BOOL guessCorrect_:1;
+  BOOL userGender_:1;
   Float32 width;
   int32_t turnGainCoins;
-  int32_t sessionStatus;
   int32_t guessGainCoins;
   int32_t language;
   int32_t round;
-  int32_t color;
   int32_t level;
-  NSString* chatContent;
-  NSString* guessUserId;
-  NSString* guessWord;
-  NSString* word;
+  int32_t color;
+  int32_t sessionStatus;
   NSString* userAvatar;
   NSString* nickName;
+  NSString* word;
   NSString* quitUserId;
   NSString* newUserId;
   NSString* nextPlayUserId;
+  NSString* guessWord;
+  NSString* guessUserId;
   NSString* currentPlayUserId;
+  NSString* chatContent;
   NSString* sessionHost;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
@@ -597,6 +608,7 @@
 - (BOOL) hasQuitUserId;
 - (BOOL) hasNickName;
 - (BOOL) hasUserAvatar;
+- (BOOL) hasUserGender;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasWord;
@@ -617,6 +629,7 @@
 @property (readonly, retain) NSString* quitUserId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* userAvatar;
+- (BOOL) userGender;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly, retain) NSString* word;
@@ -707,6 +720,11 @@
 - (NSString*) userAvatar;
 - (GeneralNotification_Builder*) setUserAvatar:(NSString*) value;
 - (GeneralNotification_Builder*) clearUserAvatar;
+
+- (BOOL) hasUserGender;
+- (BOOL) userGender;
+- (GeneralNotification_Builder*) setUserGender:(BOOL) value;
+- (GeneralNotification_Builder*) clearUserGender;
 
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;

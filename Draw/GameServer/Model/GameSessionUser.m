@@ -14,6 +14,7 @@
 @synthesize userId = _userId;
 @synthesize nickName = _nickName;
 @synthesize userAvatar = _userAvatar;
+@synthesize gender = _gender;
 
 - (void)dealloc
 {
@@ -29,14 +30,15 @@
     user.userId = [pbUser userId];
     user.nickName = [pbUser nickName];
     user.userAvatar = [pbUser avatar]; 
+    user.gender = [pbUser gender];
     
     return user;
 }
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@]",
-            _userId, _nickName, _userAvatar];            
+    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d]",
+            _userId, _nickName, _userAvatar, _gender];            
 }
 
 @end

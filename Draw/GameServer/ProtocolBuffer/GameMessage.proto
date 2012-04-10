@@ -12,10 +12,10 @@ message JoinGameRequest {
   required string gameId = 2;                  // 游戏ID，比如你画我猜为：draw
   optional int32  autoNew=3 [default=0];       // 没有合适的游戏加入，则自动创建一个新的
   required string nickName = 4;                // 用户在游戏中的昵称
-     optional string avatar = 5;
-     repeated int64 excludeSessionId = 6;    
-     
-     optional int64 sessionToBeChange = 7;
+  optional string avatar = 5;
+  repeated int64 excludeSessionId = 6;         
+  optional int64 sessionToBeChange = 7;
+  optional bool gender = 8;
 }
 
 message JoinGameResponse {
@@ -80,6 +80,7 @@ message GeneralNotification{
   optional string quitUserId = 8;
   optional string nickName = 9;
   optional string userAvatar = 10;
+  optional bool   userGender = 11;
   
   // draw data
   repeated int32 points = 21 [packed=true];

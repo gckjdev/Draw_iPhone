@@ -52,6 +52,7 @@
     
     NSString *_userId;
     NSString *_nickName;
+    BOOL _gender;
 
 //    int _sessionId;
     BOOL start;
@@ -62,6 +63,7 @@
 @property (nonatomic, retain) NSString* userId;
 @property (nonatomic, retain) NSString* nickName;
 @property (nonatomic, retain) NSString* avatar;
+@property (nonatomic, assign) BOOL gender;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> showDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
@@ -82,7 +84,7 @@
 
 - (void)cleanDraw;
 - (void)startGame;
-- (void)joinGame;
+- (void)joinGame:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender;
 - (void)quitGame;
 
 - (BOOL)isMyTurn;

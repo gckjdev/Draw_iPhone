@@ -15,7 +15,7 @@
 
 @interface GameSession ()
 
-- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar;
+- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender;
 - (void)removeUser:(NSString*)userId;
 
 @end
@@ -24,6 +24,7 @@
 
 @synthesize roomName = _roomName;
 @synthesize userList = _userList;
+@synthesize deletedUserSet = _deletedUserSet;
 @synthesize turnList = _turnList;
 @synthesize sessionId = _sessionId;
 @synthesize hostUserId = _hostUserId;
@@ -34,6 +35,7 @@
 
 - (void)dealloc
 {
+    [_deletedUserSet release];
     [_currentTurn release];
     [_userId release];
     [_roomName release];
@@ -105,7 +107,8 @@
     if ([[notification newUserId] length] > 0){
         [self addNewUser:[notification newUserId]
                 nickName:[notification nickName]
-                  avatar:[notification userAvatar]];
+                  avatar:[notification userAvatar]
+                  gender:[notification userGender]];
     }
     
     if ([[notification quitUserId] length] > 0){
@@ -156,7 +159,7 @@
 
 
 #pragma User Management
-- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar
+- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender
 {
     for (GameSessionUser* user in _userList){
         if ([[user userId] isEqualToString:userId]){
@@ -169,6 +172,7 @@
     [user setUserId:userId];
     [user setNickName:nickName];
     [user setUserAvatar:avatar];
+    [user setGender:gender];
     [_userList addObject:user];
     [user release];
     

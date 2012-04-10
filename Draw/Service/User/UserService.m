@@ -213,10 +213,10 @@ static UserService* _defaultUserService;
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     // save data locally firstly
-    [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     [[UserManager defaultManager] setNickName:nickName];
     [[UserManager defaultManager] setGender:gender];
     [[UserManager defaultManager] setPassword:pwd];
+    [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -268,8 +268,11 @@ static UserService* _defaultUserService;
                   password:nil 
             viewController:viewController];
 }
+
+
 #define FEED_BACK_TYPE_ADVICE 1
 #define FEED_BACK_TYPE_BUGS 0
+
 - (void)feedback:(NSString*)feedback 
      WithContact:(NSString*)contact  
   viewController:(PPViewController<UserServiceDelegate>*)viewController

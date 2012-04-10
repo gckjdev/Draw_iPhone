@@ -91,6 +91,7 @@
             [imageView setUrl:[NSURL URLWithString:urlString]];
         }
         else{
+            // TODO set user avatar by gender
             [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
         }
         [GlobalGetImageCache() manage:imageView];
