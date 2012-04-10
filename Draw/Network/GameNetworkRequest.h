@@ -84,6 +84,7 @@
 + (CommonNetworkOutput*)feedbackUser:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId 
-                          feedback:(NSString*)feedback 
+                            feedback:(NSString*)feedback 
+                             contact:(NSString*)contact
                               type:(int)type;
 @end

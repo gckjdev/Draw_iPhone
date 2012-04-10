@@ -284,7 +284,8 @@ static UserService* _defaultUserService;
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
                                                                appId:APP_ID 
                                                               userId:userId 
-                                                            feedback:feedback 
+                                                              feedback:feedback 
+                                                               contact:contact
                                                                   type:FEED_BACK_TYPE_ADVICE];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -315,6 +316,7 @@ static UserService* _defaultUserService;
                                                                  appId:APP_ID 
                                                                 userId:userId 
                                                               feedback:bugDescription 
+                                                               contact:contact
                                                                   type:FEED_BACK_TYPE_BUGS];
         
         dispatch_async(dispatch_get_main_queue(), ^{
