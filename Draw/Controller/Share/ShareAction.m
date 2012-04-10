@@ -101,7 +101,7 @@
                          
     [compose setSubject:subject];
     [compose setMessageBody:body
-                     isHTML:YES];
+                     isHTML:NO];
     [compose addAttachmentData:[NSData dataWithContentsOfFile:_imageFilePath]
                       mimeType:mime
                       fileName:fileName];

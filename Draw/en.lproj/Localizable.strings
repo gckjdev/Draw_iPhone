@@ -222,21 +222,21 @@
 "kReplayShare" = "Share";
 
 "kReport_bug" = "Report problems";
-"kAdvices" = "Advices";
-"kInput_your_contact" = "Your contact(Email,facebook,etc)";
-"kHave_problems?" = "I have some problems while playing this game...";
-"kSay something..." = "I want to say ...";
+"kAdvices" = "Feedback";
+"kInput_your_contact" = "  Contact(Email,MSN,etc)";
+"kHave_problems?" = "";
+"kSay something..." = "";
 "kShare_via_SMS" = "Share via SMS";
-"kShare_message_body" = "I found a very funny game recently, its name is 《%@》.\nHere is the URL:\n%@";
-"kEmail_subject" = "Share a game";
+"kShare_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
+"kEmail_subject" = "Share a funny iOS game - Draw Lively";
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
 "kFeedbackFail" = "Feedback failed, try later";
-"kSendingFeedback" = "sending your feedback";
+"kSendingFeedback" = "Sending your feedback";
 
 
 "kCreating_gif" = "Creating GIF Files...";
-"kShareOtherText" = "What An Awesome Drawing for %@";
+"kShareOtherText" = "What An Awesome Drawing - %@";
 "kShareMeText" = "My Awesome Drawing for %@";
 "kShareSend" = "Send";
 
@@ -247,13 +247,14 @@
 
 "kPaymentCannotMake" = "Your iOS/Device cannot make payment.";
 
-"kSharePhotoEmailSubject" = "Share Fun Drawing From %@";
-"kSharePhotoEmailBody" = "A funny drawing for you";
+"kSharePhotoEmailSubject" = "Share Funny Drawing From %@";
+"kSharePhotoEmailBody" = "A funny drawing, can you guess what it is? \n\n- Sent from %@";
 "kShareWeiboTitle" = "Share";
 
 "kNoTipItem" = "Sorry, you have no tip item, you can buy some in the shop.";
 "kMore_apps" = "More apps";
 "kNextStep" = "Next";
-"kWordLengthTip" = "tips:word length is %d .";
+"kWordLengthTip" = "Tips: Word length is %d.";
 "kContentNull" = "Content can not be empty.";
 
+"kNoDrawings" = "No Drawing";

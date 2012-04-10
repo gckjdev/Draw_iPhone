@@ -95,6 +95,7 @@
 #define METHOD_UPDATE_ITEM_AMOUNT @"uia"
 #define METHOD_UPDATE_ACCOUNT_BALANCE @"uab"
 #define METHOD_SYNC_USER_ACCOUNT_ITEM @"sai"
+#define METHOD_FEEDBACK @"fb"
 
 //game parameters
 
@@ -297,8 +298,7 @@
 #define PARA_REGISTER_TYPE  @"rt"
 
 #define PARA_FEEDBACK @"fb"
-#define PARA_CONTACT @"fc"
-#define PARA_FEEDBACK_TYPE @"fbt"
+#define PARA_CONTACT @"ca"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

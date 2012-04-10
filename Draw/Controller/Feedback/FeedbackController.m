@@ -93,19 +93,15 @@ enum {
         } break;
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
-                SinaSNSService* service = [[[SinaSNSService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
-                
+                [[SinaSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindQQWeibo]){
-                QQWeiboService* service = [[[QQWeiboService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
+                [[QQWeiboService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindFacebook]){
-                FacebookSNSService* service = [[[FacebookSNSService alloc] init] autorelease];
-                [service publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
+                [[FacebookSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] delegate:self];
             } 
         } break;
         default:
@@ -166,7 +162,6 @@ enum {
             break;
         case GIVE_REVIEW: {
             [UIUtils gotoReview:APP_ID];
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/tuan-gou/id456494464?l=en&mt=8"]];
         }
             break;
         default:

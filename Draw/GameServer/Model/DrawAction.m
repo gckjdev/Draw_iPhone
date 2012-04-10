@@ -91,4 +91,9 @@
     return array;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"[type=%d, paint=%@]", _type, [_paint description]];
+}
+
 @end

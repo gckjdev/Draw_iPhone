@@ -37,6 +37,7 @@ typedef enum {
 - (NSString*)deviceToken;
 - (NSString*)password;
 - (NSString*)deviceToken;
+- (NSString*)gender;
 
 - (BOOL)isPasswordEmpty;
 - (BOOL)isPasswordCorrect:(NSString *)userInput;

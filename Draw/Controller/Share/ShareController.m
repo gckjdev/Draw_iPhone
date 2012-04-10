@@ -36,8 +36,10 @@
 @synthesize paints = _paints;
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
+@synthesize noDrawingLabel;
 
 - (void)dealloc {
+    [noDrawingLabel release];
     [_shareAction release];
     [paintsFilter release];
     [gallery release];
@@ -217,6 +219,15 @@
         [self loadMyPaints];
         [self.gallery reloadData];
     }
+    
+    if ([self.paints count] > 0){
+        self.noDrawingLabel.text = NSLS(@"");
+        self.noDrawingLabel.hidden = YES;
+    }
+    else{
+        self.noDrawingLabel.text = NSLS(@"kNoDrawings");
+        self.noDrawingLabel.hidden = NO;        
+    }
 }
 
 -(IBAction)clickBackButton:(id)sender
@@ -261,6 +272,7 @@
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
+
 }
 
 - (void)viewDidUnload

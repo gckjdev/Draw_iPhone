@@ -447,17 +447,17 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];       
         
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FEEDBACK];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         
         if ([feedback length] > 0){
-            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:feedback];            
+            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:[feedback stringByURLEncode]];            
         }
         if ([contact length] > 0) {
-            str = [str stringByAddQueryParameter:PARA_CONTACT value:contact];  
+            str = [str stringByAddQueryParameter:PARA_CONTACT value:[contact stringByURLEncode]];  
         }
-        str = [str stringByAddQueryParameter:PARA_FEEDBACK_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         
         return str;
     };

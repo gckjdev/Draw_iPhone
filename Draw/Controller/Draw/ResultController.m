@@ -69,6 +69,8 @@
         _correct = correct;
         _isMyPaint = isMyPaint;
         self.drawActionList = [NSArray arrayWithArray:drawActionList];
+        
+        drawGameService = [DrawGameService defaultService];
     }
     return self;
 }
@@ -130,7 +132,6 @@
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
 
     [self startTimer];
-    drawGameService = [DrawGameService defaultService];
     [self setUpAndDownButtonEnabled:YES];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
@@ -283,17 +284,13 @@
                 drawWord = [[[drawGameService session] currentTurn] lastWord];
             }
             
-//            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-//            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
-//                                                                data:drawActionListData 
-//                                                          drawUserId:drawUserId 
-//                                                    drawUserNickName:drawUserNickName 
-//                                                            drawByMe:_isMyPaint 
-//                                                            drawWord:drawWord];
-//            
-//            [drawGameService.drawActionList removeAllObjects];
             NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath data:drawActionListData drawUserId:drawUserId drawUserNickName:drawUserNickName drawByMe:_isMyPaint drawWord:drawWord];
+            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+                                                                data:drawActionListData 
+                                                          drawUserId:drawUserId 
+                                                    drawUserNickName:drawUserNickName 
+                                                            drawByMe:_isMyPaint 
+                                                            drawWord:drawWord];
         }
     }
    

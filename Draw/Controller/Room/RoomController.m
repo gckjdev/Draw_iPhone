@@ -22,6 +22,8 @@
 #import "ShareImageManager.h"
 #import "AccountService.h"
 #import "AnimationManager.h"
+#import "UserManager.h"
+
 @interface RoomController ()
 
 - (void)updateGameUsers;
@@ -64,6 +66,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _userManager = [UserManager defaultManager];
         [self resetStartTimer];
         popupButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [popupButton retain];
@@ -460,7 +463,10 @@
     [[DrawGameService defaultService] registerObserver:self];
     PPDebug(@"<registerObserver> room controller");
     
-    [[DrawGameService defaultService] joinGame];        
+    [[DrawGameService defaultService] joinGame:[_userManager userId]
+                                      nickName:[_userManager nickName]
+                                        avatar:[_userManager avatarURL]
+                                        gender:[_userManager isUserMale]];
 }
 
 - (void)startGame

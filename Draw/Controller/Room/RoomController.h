@@ -16,6 +16,8 @@ enum{
     ROOM_DIALOG_CHANGE_ROOM
 };
 
+@class UserManager;
+
 @interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate>
 {
     int _currentTimeCounter;
@@ -25,6 +27,8 @@ enum{
     UIButton *popupButton;
     int _dialogAction;
     int _changeRoomTimes;
+    
+    UserManager *_userManager;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *prolongButton;

@@ -53,8 +53,8 @@
 - (void)viewDidLoad
 {
     // TODO for test
-    int i = rand() % 100;
-    self.userIdTextField.text = [NSString stringWithFormat:@"mark_%d@21cn.com", i];
+//    int i = rand() % 100;
+//    self.userIdTextField.text = [NSString stringWithFormat:@"mark_%d@21cn.com", i];
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

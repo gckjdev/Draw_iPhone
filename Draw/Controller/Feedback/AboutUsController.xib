@@ -148,8 +148,8 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIEditable">NO</bool>
 						<string type="base64-UTF8" key="IBUIText">UHJvZ3JhbSBCeQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUElQSSBQZW5nCkdhbXkgSHVh
-bmcKS2lyYSBPdQoKCgpEZXNpZ24gQnkKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpSb3kg
-SGUKA</string>
+bmcKS2lyYSBPdQoKCgpEZXNpZ25lZCBCeQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tClJv
+eSBIZQo</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MjM1Mjk0MTE4IDAuMTkyMTU2ODYyNyAwLjAzMTM3MjU0OTAyAA</bytes>
@@ -207,7 +207,6 @@ SGUKA</string>
 						<string key="NSFrame">{{0, 429}, {320, 21}}</string>
 						<reference key="NSSuperview" ref="502016194"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -309,9 +308,9 @@ SGUKA</string>
 							<reference ref="87350878"/>
 							<reference ref="643868262"/>
 							<reference ref="306816811"/>
-							<reference ref="86431694"/>
 							<reference ref="401127547"/>
 							<reference ref="237823086"/>
+							<reference ref="86431694"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

@@ -116,6 +116,11 @@
     return [NSString stringWithFormat:@"<Paint>:[width = %f,point = %@]",self.width, [self getPointListString:self.pointList]];
 }
 
+- (NSString*)description
+{
+    return [self toString];
+}
+
 - (void)dealloc
 {
     [_color release];
