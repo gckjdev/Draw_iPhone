@@ -41,20 +41,17 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
-    [self.doneButton setHidden:NO];
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
-//    [self.doneButton setHidden:YES];
 }
 
 - (IBAction)hideKeyboard:(id)sender
 {
     [contentText resignFirstResponder];
-//    [self.doneButton setHidden:YES];
     [self resetFrame];
 }
 
