@@ -109,6 +109,8 @@
     if (_replayForCreateGif){
         replayView.delegate = self;
         replayView.playSpeed = 0.01;
+        [self.shareButton setHidden:YES];
+        [self.backButton setHidden:YES];
     }
     replayView.frame = self.showHolderView.bounds;
     [self.showHolderView addSubview:replayView];
