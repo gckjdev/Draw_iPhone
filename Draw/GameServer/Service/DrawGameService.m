@@ -116,6 +116,11 @@ static DrawGameService* _defaultService;
     [action release];
 }
 
+- (void)clearHistoryUser
+{
+    [_historySessionSet removeAllObjects];
+}
+
 #pragma mark Notification Handling
 
 - (void)notifyGameObserver:(SEL)selector message:(GameMessage*)message
@@ -465,6 +470,7 @@ static DrawGameService* _defaultService;
 - (void)joinGame:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender
 {
     [_session setStatus:SESSION_WAITING];
+    [self clearHistoryUser];
     
     [self setUserId:userId];
     [self setNickName:nickName];
