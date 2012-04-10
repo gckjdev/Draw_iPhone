@@ -26,9 +26,9 @@
 
 - (void)fitKeyboardComeOut
 {
-    [self.contentText setFrame:CGRectMake(40, 93, 240, 109)];
+    [self.contentText setFrame:CGRectMake(40, 73, 240, 109)];
     [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(40, 205, 240, 31)];
+    [self.contactText setFrame:CGRectMake(40, 185, 240, 31)];
 }
 
 - (void)resetFrame
@@ -41,20 +41,17 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
-    [self.doneButton setHidden:NO];
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
-    [self.doneButton setHidden:YES];
 }
 
 - (IBAction)hideKeyboard:(id)sender
 {
     [contentText resignFirstResponder];
-    [self.doneButton setHidden:YES];
     [self resetFrame];
 }
 
@@ -65,7 +62,14 @@
     
 }
 
-
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length] == 0) {
+        self.doneButton.hidden = YES;
+    }else{
+        self.doneButton.hidden = NO;
+    }
+}
 
 - (IBAction)submit:(id)sender
 {
@@ -130,6 +134,26 @@
             break;
     }
     // Do any additional setup after loading the view from its nib.
+}
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    NSLog(@"textView text:%@",contentText.text);
+    NSLog(@"SUBMIT_BUG:%@",NSLS(@"kHave_problems?"));
+    NSLog(@"SUBMIT_FEEDBACK:%@",NSLS(@"kSay something..."));
+    if (_reportType == SUBMIT_BUG && 
+        [contentText.text isEqualToString:NSLS(@"kHave_problems?")]) {
+        [contentText setText:nil];
+        return;
+    }
+    
+    if (_reportType == SUBMIT_FEEDBACK && 
+        [contentText.text isEqualToString:NSLS(@"kSay something...")]) {
+        [contentText setText:nil];
+        return;
+    }
+
 }
 
 - (void)viewDidUnload

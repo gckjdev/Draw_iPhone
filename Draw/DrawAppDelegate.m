@@ -23,7 +23,7 @@
 #import "FacebookSNSService.h"
 #import "PriceService.h"
 #import "DeviceDetection.h"
-
+#import "MobClick.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -107,7 +107,7 @@ NSString* GlobalGetServerURL()
     else if (isAskBindDevice == NO){        
         [self checkAppVersion:APP_ID];
     }
-    
+    [MobClick startWithAppkey:@"4e2d3cc0431fe371c3000029"];
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     

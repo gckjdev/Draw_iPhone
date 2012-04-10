@@ -231,7 +231,7 @@
 "kHave_problems?" = "我在玩的过程中遇到些问题...";
 "kSay something..." = "说些什么吧 ...";
 "kShare_via_SMS" = "短信分享给朋友";
-"kShare_message_body" = "我最近发现了一个非常好玩的游戏，叫《%@》\n。附上链接:\n%@";
+"kShare_message_body" = "我最近在玩一个手机游戏，叫《%@》。很好玩哦。是不是觉得离线版的猜画游戏太慢了？现在给你们带来了福音，让你们随时随地在线尽享猜画欢乐。赶紧下载吧:\n%@";
 "kEmail_subject" = "分享个游戏";
 
 "kCreating_gif" = "正在生成GIF动画文件...";
@@ -258,4 +258,4 @@
 "kFeedbackFail" = "发送失败，稍后再试试";
 "kSendingFeedback" = "正在发送...";
 "kNoTipItem" = "对不起，你没有锦囊了，请去商店购买。";
-
+"kMore_apps" = "更多应用";
