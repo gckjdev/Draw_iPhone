@@ -297,6 +297,7 @@
 #define PARA_REGISTER_TYPE  @"rt"
 
 #define PARA_FEEDBACK @"fb"
+#define PARA_CONTACT @"fc"
 #define PARA_FEEDBACK_TYPE @"fbt"
 
 #define REGISTER_TYPE_EMAIL     1

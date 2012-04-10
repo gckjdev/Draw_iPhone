@@ -436,7 +436,8 @@
 + (CommonNetworkOutput*)feedbackUser:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId 
-                          feedback:(NSString*)feedback 
+                            feedback:(NSString*)feedback 
+                             contact:(NSString*)contact
                               type:(int)type
                           
 //                       newPassword:(NSString*)newPassword
@@ -454,6 +455,9 @@
         
         if ([feedback length] > 0){
             str = [str stringByAddQueryParameter:PARA_FEEDBACK value:feedback];            
+        }
+        if ([contact length] > 0) {
+            str = [str stringByAddQueryParameter:PARA_CONTACT value:contact];  
         }
         str = [str stringByAddQueryParameter:PARA_FEEDBACK_TYPE intValue:type];
         
