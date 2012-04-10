@@ -122,13 +122,17 @@ WordManager *GlobalGetWordManager()
     
     NSArray *list = [dict objectForKey:key];
     int br = 0;
+    
+    // find the word list with the letter in string
     while (list == nil && br < [string length]) {
         NSString *tempKey = [string substringWithRange:NSMakeRange(br, 1)];
         list = [dict objectForKey:tempKey];
         ++ br;
     }
+    
     if (list) {
         for (int i = 0; i < [list count]; ++ i) {
+            //find the letter in the list but not in the string.
             NSString *value = [list objectAtIndex:rand() % [list count]];            
             NSString *str1 = [value substringFromIndex:1];
             NSString *str2 = [value substringWithRange:NSMakeRange(0, 1)];
@@ -141,7 +145,14 @@ WordManager *GlobalGetWordManager()
             }
         }    
     }
-    return key;
+    
+    //if can find the unique letter, then rand a word.
+    NSInteger index = rand() % 3 + 1;
+    NSArray *wordArray = [self wordArrayOfLevel:index];
+    index = rand() %[wordArray count];
+    Word *word = [wordArray objectAtIndex:index];
+    NSString *str = [word.text substringToIndex:1];
+    return str;
 }
 
 
