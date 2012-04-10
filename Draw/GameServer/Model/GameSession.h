@@ -27,7 +27,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *roomName;
 @property (nonatomic, retain) NSMutableArray *userList;
 @property (nonatomic, retain) NSMutableArray *turnList;
-@property (nonatomic, retain) NSMutableSet *deletedUserSet;
+@property (nonatomic, retain) NSMutableDictionary *deletedUserList;
 @property (nonatomic, assign) int sessionId;
 @property (nonatomic, retain) NSString *hostUserId;
 @property (nonatomic, retain) NSString *userId;

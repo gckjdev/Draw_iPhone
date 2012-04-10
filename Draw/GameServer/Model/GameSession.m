@@ -24,7 +24,7 @@
 
 @synthesize roomName = _roomName;
 @synthesize userList = _userList;
-@synthesize deletedUserSet = _deletedUserSet;
+@synthesize deletedUserList = _deletedUserList;
 @synthesize turnList = _turnList;
 @synthesize sessionId = _sessionId;
 @synthesize hostUserId = _hostUserId;
@@ -35,7 +35,7 @@
 
 - (void)dealloc
 {
-    [_deletedUserSet release];
+    [_deletedUserList release];
     [_currentTurn release];
     [_userId release];
     [_roomName release];
@@ -51,6 +51,7 @@
     self.userList = [NSMutableArray array];
     self.turnList = [NSMutableArray array];
     self.currentTurn = [[[GameTurn alloc] init] autorelease];
+    self.deletedUserList = [NSMutableDictionary dictionary];
     self.status = SESSION_WAITING;
     self.roundNumber = 0;
     return self;
@@ -190,6 +191,7 @@
     
     if (userFound != nil){
         PPDebug(@"<removeUser> userId = %@", userId);
+        [_deletedUserList setObject:userFound forKey:[userFound userId]];
         [_userList removeObject:userFound];
     }
 }
@@ -212,7 +214,8 @@
             return user.nickName;
         }
     }
-    return nil;
+    
+    return [[_deletedUserList objectForKey:userId] nickName];
 }
 
 - (NSString *)drawingUserId
