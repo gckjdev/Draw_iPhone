@@ -15,6 +15,7 @@
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "FacebookSNSService.h"
+#import "UFPController.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -155,7 +156,9 @@ enum {
         }
             break;
         case MORE_APP: {
-            
+            UFPController* rc = [[UFPController alloc] init];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
         case GIVE_REVIEW: {

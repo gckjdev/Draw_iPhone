@@ -48,6 +48,11 @@
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
+		C2F947CC1533D8BF0034C895 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F947C01533D8BF0034C895 /* libMobClickLibrary.a */; };
+		C2F947CE1533D8BF0034C895 /* libUMUFP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F947C41533D8BF0034C895 /* libUMUFP.a */; };
+		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
+		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
+		C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
 		CA0995CE15299C6700A53CB0 /* StableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0995CD15299C6700A53CB0 /* StableView.m */; };
@@ -630,6 +635,16 @@
 		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
 		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
+		C2F947C01533D8BF0034C895 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		C2F947C11533D8BF0034C895 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		C2F947C41533D8BF0034C895 /* libUMUFP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMUFP.a; sourceTree = "<group>"; };
+		C2F947C81533D8BF0034C895 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
+		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
+		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
+		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
+		C2F947D41533E2560034C895 /* UMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewCell.h; sourceTree = "<group>"; };
+		C2F947D51533E2560034C895 /* UMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewCell.m; sourceTree = "<group>"; };
+		C2F947D71533E40A0034C895 /* UMImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMImageView.h; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA0995CC15299C6600A53CB0 /* StableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StableView.h; sourceTree = "<group>"; };
@@ -1390,6 +1405,8 @@
 				CA745D231503B1B500600024 /* UIKit.framework in Frameworks */,
 				CA745D251503B1B500600024 /* Foundation.framework in Frameworks */,
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
+				C2F947CC1533D8BF0034C895 /* libMobClickLibrary.a in Frameworks */,
+				C2F947CE1533D8BF0034C895 /* libUMUFP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1547,6 +1564,27 @@
 				C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */,
 			);
 			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		C2F947BE1533D8BF0034C895 /* MobClick */ = {
+			isa = PBXGroup;
+			children = (
+				C2F947C01533D8BF0034C895 /* libMobClickLibrary.a */,
+				C2F947C11533D8BF0034C895 /* MobClick.h */,
+			);
+			name = MobClick;
+			path = "../../Common_iPhone_20/3PP-SDK/MobClick";
+			sourceTree = "<group>";
+		};
+		C2F947C31533D8BF0034C895 /* UMUFP_iPhone_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				C2F947D71533E40A0034C895 /* UMImageView.h */,
+				C2F947C41533D8BF0034C895 /* libUMUFP.a */,
+				C2F947C81533D8BF0034C895 /* UMUFPTableView.h */,
+			);
+			name = UMUFP_iPhone_SDK;
+			path = "../../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK";
 			sourceTree = "<group>";
 		};
 		CA103B361509A55000F60C03 /* Resource */ = {
@@ -2574,6 +2612,8 @@
 		CA1041DE1509B6E700F60C03 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				C2F947D41533E2560034C895 /* UMTableViewCell.h */,
+				C2F947D51533E2560034C895 /* UMTableViewCell.m */,
 				CA3221A1151F657F0039A384 /* FeedbackController.h */,
 				CA3221A2151F657F0039A384 /* FeedbackController.m */,
 				CA3221A3151F657F0039A384 /* FeedbackController.xib */,
@@ -2583,6 +2623,9 @@
 				C284E87C1531D89800DD5B77 /* AboutUsController.h */,
 				C284E87D1531D89800DD5B77 /* AboutUsController.m */,
 				C284E87E1531D89800DD5B77 /* AboutUsController.xib */,
+				C2F947CF1533D91E0034C895 /* UFPController.h */,
+				C2F947D01533D91E0034C895 /* UFPController.m */,
+				C2F947D11533D91E0034C895 /* UFPController.xib */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -3145,6 +3188,8 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2F947BE1533D8BF0034C895 /* MobClick */,
+				C2F947C31533D8BF0034C895 /* UMUFP_iPhone_SDK */,
 				C2A096FB152E979C006535F7 /* Component-Gif */,
 				CA65C202152DE4CD00462C96 /* FacebookSDK */,
 				CA65C1F0152DD29D00462C96 /* QQWeiboEngine */,
@@ -3711,6 +3756,7 @@
 				CA8D603F1531CF0A00E016ED /* white_color@2x.png in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
 				CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */,
+				C2F947D31533D91E0034C895 /* UFPController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4033,6 +4079,8 @@
 				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
 				CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */,
+				C2F947D21533D91E0034C895 /* UFPController.m in Sources */,
+				C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4218,6 +4266,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4231,6 +4284,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
