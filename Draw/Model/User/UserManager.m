@@ -176,8 +176,9 @@ static UserManager* _defaultManager;
 
 - (void)saveAvatarLocally:(UIImage*)image
 {
-    if (image == nil)
-        return;
+    if (image == nil){
+        image = [UIImage imageNamed:[self defaultAvatar]];
+    }
     
     BOOL result = [image saveImageToFile:[FileUtil getFileFullPath:AVATAR_LOCAL_FILENAME]];
     if (!result)
@@ -193,8 +194,7 @@ static UserManager* _defaultManager;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:gender forKey:KEY_GENDER];    
-    [userDefaults synchronize];
-    
+    [userDefaults synchronize];    
 }
 
 - (void)setNickName:(NSString *)nickName

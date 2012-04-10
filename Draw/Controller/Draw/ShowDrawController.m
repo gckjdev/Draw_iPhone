@@ -380,7 +380,7 @@ ShowDrawController *GlobalGetShowDrawController()
         {
             type = Drawer;
         }
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:user.gender];
         [aView setUserId:user.userId];
         //set center
         aView.center = CGPointMake(70 + 36 * i, 21);
@@ -614,7 +614,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    NSString *userId = [message userId];
+    NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
     [self updatePlayerAvatars];
     if (_viewIsAppear && [self userCount] <= 1) {

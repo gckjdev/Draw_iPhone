@@ -23,6 +23,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* userId;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
+@property BOOL gender;
 @end
 
 @implementation PBGameUser
@@ -48,6 +49,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasAvatar_ = !!value;
 }
 @synthesize avatar;
+- (BOOL) hasGender {
+  return !!hasGender_;
+}
+- (void) setHasGender:(BOOL) value {
+  hasGender_ = !!value;
+}
+- (BOOL) gender {
+  return !!gender_;
+}
+- (void) setGender:(BOOL) value {
+  gender_ = !!value;
+}
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -59,6 +72,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.userId = @"";
     self.nickName = @"";
     self.avatar = @"";
+    self.gender = NO;
   }
   return self;
 }
@@ -93,6 +107,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasAvatar) {
     [output writeString:3 value:self.avatar];
   }
+  if (self.hasGender) {
+    [output writeBool:4 value:self.gender];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -110,6 +127,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasAvatar) {
     size += computeStringSize(3, self.avatar);
+  }
+  if (self.hasGender) {
+    size += computeBoolSize(4, self.gender);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -195,6 +215,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasAvatar) {
     [self setAvatar:other.avatar];
   }
+  if (other.hasGender) {
+    [self setGender:other.gender];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -226,6 +249,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 26: {
         [self setAvatar:[input readString]];
+        break;
+      }
+      case 32: {
+        [self setGender:[input readBool]];
         break;
       }
     }
@@ -277,6 +304,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearAvatar {
   result.hasAvatar = NO;
   result.avatar = @"";
+  return self;
+}
+- (BOOL) hasGender {
+  return result.hasGender;
+}
+- (BOOL) gender {
+  return result.gender;
+}
+- (PBGameUser_Builder*) setGender:(BOOL) value {
+  result.hasGender = YES;
+  result.gender = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearGender {
+  result.hasGender = NO;
+  result.gender = NO;
   return self;
 }
 @end

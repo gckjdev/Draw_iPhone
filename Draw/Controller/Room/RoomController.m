@@ -186,8 +186,10 @@
                 [imageView setImage:[[UserManager defaultManager] avatarImage]];
             }
             else{
-                // TODO set user avtar by user gender later
-                [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+                if ([user gender])
+                    [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+                else
+                    [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
             }
         }
         

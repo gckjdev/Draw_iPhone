@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString *userId;
 @property (nonatomic, retain) NSString *nickName;
 @property (nonatomic, retain) NSString *userAvatar;
+@property (nonatomic, assign) BOOL gender;
 
 + (GameSessionUser*)fromPBUser:(PBGameUser*)pbUser;
 

@@ -42,6 +42,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _userManager = [UserManager defaultManager];
     }
     return self;
 }
@@ -139,7 +140,10 @@
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     
     if ([[DrawGameService defaultService] isConnected]){        
-        [[DrawGameService defaultService] joinGame];    
+        [[DrawGameService defaultService] joinGame:[_userManager userId]
+                                          nickName:[_userManager nickName]
+                                            avatar:[_userManager avatarURL]
+                                            gender:[_userManager isUserMale]];    
     }
     else{
         
@@ -240,7 +244,10 @@
     [self hideActivity];
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     if (_isTryJoinGame){
-        [[DrawGameService defaultService] joinGame];    
+        [[DrawGameService defaultService] joinGame:[_userManager userId]
+                                          nickName:[_userManager nickName]
+                                            avatar:[_userManager avatarURL]
+                                            gender:[_userManager isUserMale]];    
     }
     
     _isTryJoinGame = NO;

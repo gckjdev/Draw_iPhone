@@ -81,6 +81,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
 - (void)sendJoinGameRequest:(NSString*)userId 
                    nickName:(NSString*)nickName 
                      avatar:(NSString*)avatar
+                     gender:(BOOL)gender
                   sessionId:(int)currentSessionId
           excludeSessionSet:(NSSet*)excludeSessionSet
 {
@@ -90,6 +91,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setGameId:@""];
     [requestBuilder setNickName:nickName];    
     [requestBuilder setAvatar:avatar];
+    [requestBuilder setGender:gender];
     [requestBuilder addAllExcludeSessionId:[excludeSessionSet allObjects]];
     if (currentSessionId > 0){
         [requestBuilder setSessionToBeChange:currentSessionId];

@@ -6,9 +6,10 @@ option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "GameBasicProtos";
 
 message PBGameUser {
-  required string userId = 1;                // 用户ID
-  required string nickName = 2;             // 用户昵称
-    optional string avatar = 3;                        // 用户头像
+  required string userId = 1;                  // 用户ID
+  required string nickName = 2;                // 用户昵称
+  optional string avatar = 3;                  // 用户头像
+  optional bool gender = 4;                    // 用户性别，TRUE：男；FALSE：女
 }
 
 message PBGameSession {

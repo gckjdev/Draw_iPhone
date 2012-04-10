@@ -18,7 +18,7 @@
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
-#define POINT_COUNT_PER_FRAME 4
+#define POINT_COUNT_PER_FRAME 15
 
 @implementation ReplayController
 

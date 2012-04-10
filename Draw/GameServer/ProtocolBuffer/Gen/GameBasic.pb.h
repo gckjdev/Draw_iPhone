@@ -15,9 +15,11 @@
 
 @interface PBGameUser : PBGeneratedMessage {
 @private
+  BOOL hasGender_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL gender_:1;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -25,9 +27,11 @@
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
+- (BOOL) hasGender;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
+- (BOOL) gender;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -77,6 +81,11 @@
 - (NSString*) avatar;
 - (PBGameUser_Builder*) setAvatar:(NSString*) value;
 - (PBGameUser_Builder*) clearAvatar;
+
+- (BOOL) hasGender;
+- (BOOL) gender;
+- (PBGameUser_Builder*) setGender:(BOOL) value;
+- (PBGameUser_Builder*) clearGender;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
