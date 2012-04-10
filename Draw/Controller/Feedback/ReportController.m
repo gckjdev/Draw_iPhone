@@ -26,9 +26,9 @@
 
 - (void)fitKeyboardComeOut
 {
-    [self.contentText setFrame:CGRectMake(40, 73, 240, 109)];
+    [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
     [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(40, 185, 240, 31)];
+    [self.contactText setFrame:CGRectMake(40, 175, 240, 31)];
 }
 
 - (void)resetFrame
@@ -41,24 +41,26 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
+    self.contentText.text = nil;
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self fitKeyboardComeOut];
+    [self.doneButton setHidden:YES];
 }
 
 - (IBAction)hideKeyboard:(id)sender
 {
-    [contentText resignFirstResponder];
-    [self resetFrame];
+    [self.contactText becomeFirstResponder];
 }
 
 - (IBAction)endEditingContact:(id)sender
 {    
     [self.contactText resignFirstResponder];
     [self resetFrame];
+    [self submit:nil];
     
 }
 
@@ -117,7 +119,7 @@
     [self.contactText setBackground:[[ShareImageManager defaultManager] inputImage]];
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
-    [doneButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
+    [doneButton setTitle:NSLS(@"kNextStep") forState:UIControlStateNormal];
     [self.contactText setPlaceholder:NSLS(@"kInput_your_contact")];
     
     switch (_reportType) {
