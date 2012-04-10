@@ -167,9 +167,6 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    NSLog(@"textView text:%@",contentText.text);
-    NSLog(@"SUBMIT_BUG:%@",NSLS(@"kHave_problems?"));
-    NSLog(@"SUBMIT_FEEDBACK:%@",NSLS(@"kSay something..."));
     if (_reportType == SUBMIT_BUG && 
         [contentText.text isEqualToString:NSLS(@"kHave_problems?")]) {
         [contentText setText:nil];
