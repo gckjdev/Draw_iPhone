@@ -140,7 +140,7 @@
 
 
 - (void)viewDidUnload
-{
+{   
     [self setTitleLabel:nil];
     [self setShareButton:nil];
     [self setBackButton:nil];
@@ -160,7 +160,8 @@
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
     [self hideActivity];
-    
+    [self.backButton setHidden:NO];
+    [self.shareButton setHidden:NO];
     // create gif files here
     if (_gifImages == nil || [_gifImages count] == 0){
         [self popupMessage:NSLS(@"kFailCreateGIF") title:nil];

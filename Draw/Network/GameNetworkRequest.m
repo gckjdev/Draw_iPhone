@@ -439,8 +439,6 @@
                             feedback:(NSString*)feedback 
                              contact:(NSString*)contact
                               type:(int)type
-                          
-//                       newPassword:(NSString*)newPassword
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
