@@ -26,9 +26,9 @@
 
 - (void)fitKeyboardComeOut
 {
-    [self.contentText setFrame:CGRectMake(40, 93, 240, 109)];
+    [self.contentText setFrame:CGRectMake(40, 73, 240, 109)];
     [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(40, 205, 240, 31)];
+    [self.contactText setFrame:CGRectMake(40, 185, 240, 31)];
 }
 
 - (void)resetFrame
