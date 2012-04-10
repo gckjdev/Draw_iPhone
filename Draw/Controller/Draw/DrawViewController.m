@@ -442,7 +442,7 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    NSString *userId = [message userId];
+    NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
     
     [self updatePlayerAvatars];

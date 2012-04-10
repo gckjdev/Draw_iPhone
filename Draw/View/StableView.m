@@ -42,7 +42,7 @@
     NSString *numberString = nil;
     numberButton.hidden = YES;
     if (number >= 0) {
-        numberString = @"99+";
+        numberString = @"N";
         if (number < 100) {
             numberString = [NSString stringWithFormat:@"%d",number];                
         }
@@ -96,7 +96,7 @@
                                      maleDefaultAvatarImage]];
             }else{
                 [imageView setImage:[[ShareImageManager defaultManager] 
-                                     maleDefaultAvatarImage]];                
+                                     femaleDefaultAvatarImage]];                
             }
 
         }

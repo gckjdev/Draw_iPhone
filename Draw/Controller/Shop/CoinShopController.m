@@ -13,6 +13,7 @@
 #import "ShareImageManager.h"
 #import "AccountManager.h"
 #import "ShoppingManager.h"
+#import "PPDebug.h"
 
 CoinShopController *staticCoinController;
 
@@ -76,6 +77,7 @@ CoinShopController *staticCoinController;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    PPDebug(@"<CoinShop> viewDidAppear");
     self.dataList = [[ShoppingManager defaultManager] findCoinPriceList];
     if ([self.dataList count] == 0){
         [[PriceService defaultService] fetchCoinProductList:self];        
@@ -162,9 +164,12 @@ CoinShopController *staticCoinController;
 {
     [self hideActivity];
     
-    if (resultCode != 0){
+    if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
         [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil]; 
         [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    else if (resultCode == PAYMENT_CANCEL){
         return;
     }
     

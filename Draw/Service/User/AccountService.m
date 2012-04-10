@@ -63,8 +63,9 @@ static AccountService* _defaultAccountService;
 //        }
 //        return;
 //    }
-    PPDebug(@"<buyCoin> on product %@", 
-            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier]);    
+    PPDebug(@"<buyCoin> on product %@ price productId=%@", 
+            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
+            price.productId);    
     
     SKPayment *payment = nil;
     if (selectedProduct == nil){
