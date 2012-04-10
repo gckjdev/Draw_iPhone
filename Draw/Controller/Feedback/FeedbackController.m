@@ -16,6 +16,7 @@
 #import "QQWeiboService.h"
 #import "FacebookSNSService.h"
 #import "UFPController.h"
+#import "PPDebug.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -76,7 +77,9 @@ enum {
 };
 - (void)didPublishWeibo:(int)result
 {
-    NSLog(@"publish weibo result --- %d", result);
+#ifdef DEBUG
+    PPDebug(@"publish weibo result : %d", result);
+#endif
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
