@@ -13,6 +13,7 @@
 @interface UFPController :  PPTableViewController<UMUFPTableViewDataLoadDelegate, UITableViewDataSource, UITableViewDelegate> {
     
 }
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UMUFPTableView* mTableView;
 @property (retain, nonatomic) NSArray* mPromoterDatas;
 @end

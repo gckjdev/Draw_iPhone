@@ -14,12 +14,16 @@
 @end
 
 @implementation UFPController
+@synthesize titleLabel = _titleLabel;
 @synthesize mTableView = _mTableView;
 @synthesize mPromoterDatas = _mPromoterDatas;
 - (void)dealloc
 {
-    [_mTableView release];
+    _mTableView.dataLoadDelegate = nil;
+    [_mTableView removeFromSuperview];
+    _mTableView = nil;
     [_mPromoterDatas release];
+    _mPromoterDatas = nil;
     [super dealloc];
 }
 
@@ -35,20 +39,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _mTableView = [[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 50, 320, 460-50) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self]; 
+    [self.titleLabel setText:NSLS(@"kMore_apps")];
+    _mTableView = [[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self]; 
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
     self.mTableView.dataLoadDelegate = self; 
     [self.view addSubview:self.mTableView]; 
     //[self.view insertSubview:maskView aboveSubview:self.mTableView]; 
-    [self showActivityWithText:@"loading"];
+    [self showActivityWithText:NSLS(@"kLoading")];
     [self.mTableView requestPromoterDataInBackground];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
