@@ -98,6 +98,7 @@
                 [imageView setImage:[[ShareImageManager defaultManager] 
                                      maleDefaultAvatarImage]];                
             }
+
         }
         [GlobalGetImageCache() manage:imageView];
         [self addSubview:imageView];

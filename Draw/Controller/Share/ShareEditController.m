@@ -210,7 +210,7 @@ enum {
         GifView* view = [[GifView alloc] initWithFrame:CGRectMake(self.myImageView.frame.origin.x, 
                                                                   self.myImageView.frame.origin.y, 304, 320)
                                                 filePath:self.imageFilePath
-                                        playTimeInterval:0.5];    
+                                        playTimeInterval:0.3];    
         [self.view addSubview:view];
     }
     else{

@@ -12,9 +12,12 @@
 #import "RouterService.h"
 #import "CommonDialog.h"
 
+@class UserManager;
+
 @interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate>
 {
-    BOOL _isTryJoinGame;    
+    BOOL        _isTryJoinGame;    
+    UserManager *_userManager;
 }
 
 - (IBAction)clickStart:(id)sender;

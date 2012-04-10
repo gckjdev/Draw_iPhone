@@ -29,6 +29,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* avatar;
 @property (retain) NSMutableArray* mutableExcludeSessionIdList;
 @property int64_t sessionToBeChange;
+@property BOOL gender;
 @end
 
 @implementation JoinGameRequest
@@ -76,6 +77,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasSessionToBeChange_ = !!value;
 }
 @synthesize sessionToBeChange;
+- (BOOL) hasGender {
+  return !!hasGender_;
+}
+- (void) setHasGender:(BOOL) value {
+  hasGender_ = !!value;
+}
+- (BOOL) gender {
+  return !!gender_;
+}
+- (void) setGender:(BOOL) value {
+  gender_ = !!value;
+}
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -92,6 +105,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.nickName = @"";
     self.avatar = @"";
     self.sessionToBeChange = 0L;
+    self.gender = NO;
   }
   return self;
 }
@@ -148,6 +162,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasSessionToBeChange) {
     [output writeInt64:7 value:self.sessionToBeChange];
   }
+  if (self.hasGender) {
+    [output writeBool:8 value:self.gender];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -182,6 +199,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasSessionToBeChange) {
     size += computeInt64Size(7, self.sessionToBeChange);
+  }
+  if (self.hasGender) {
+    size += computeBoolSize(8, self.gender);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -282,6 +302,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasSessionToBeChange) {
     [self setSessionToBeChange:other.sessionToBeChange];
   }
+  if (other.hasGender) {
+    [self setGender:other.gender];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -329,6 +352,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 56: {
         [self setSessionToBeChange:[input readInt64]];
+        break;
+      }
+      case 64: {
+        [self setGender:[input readBool]];
         break;
       }
     }
@@ -459,6 +486,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearSessionToBeChange {
   result.hasSessionToBeChange = NO;
   result.sessionToBeChange = 0L;
+  return self;
+}
+- (BOOL) hasGender {
+  return result.hasGender;
+}
+- (BOOL) gender {
+  return result.gender;
+}
+- (JoinGameRequest_Builder*) setGender:(BOOL) value {
+  result.hasGender = YES;
+  result.gender = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearGender {
+  result.hasGender = NO;
+  result.gender = NO;
   return self;
 }
 @end
@@ -2075,6 +2118,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* quitUserId;
 @property (retain) NSString* nickName;
 @property (retain) NSString* userAvatar;
+@property BOOL userGender;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -2149,6 +2193,18 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasUserAvatar_ = !!value;
 }
 @synthesize userAvatar;
+- (BOOL) hasUserGender {
+  return !!hasUserGender_;
+}
+- (void) setHasUserGender:(BOOL) value {
+  hasUserGender_ = !!value;
+}
+- (BOOL) userGender {
+  return !!userGender_;
+}
+- (void) setUserGender:(BOOL) value {
+  userGender_ = !!value;
+}
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -2266,6 +2322,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.quitUserId = @"";
     self.nickName = @"";
     self.userAvatar = @"";
+    self.userGender = NO;
     self.width = 0;
     self.color = 0;
     self.word = @"";
@@ -2334,6 +2391,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasUserAvatar) {
     [output writeString:10 value:self.userAvatar];
+  }
+  if (self.hasUserGender) {
+    [output writeBool:11 value:self.userGender];
   }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
@@ -2413,6 +2473,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasUserAvatar) {
     size += computeStringSize(10, self.userAvatar);
+  }
+  if (self.hasUserGender) {
+    size += computeBoolSize(11, self.userGender);
   }
   {
     int32_t dataSize = 0;
@@ -2569,6 +2632,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasUserAvatar) {
     [self setUserAvatar:other.userAvatar];
   }
+  if (other.hasUserGender) {
+    [self setUserGender:other.userGender];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -2668,6 +2734,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 82: {
         [self setUserAvatar:[input readString]];
+        break;
+      }
+      case 88: {
+        [self setUserGender:[input readBool]];
         break;
       }
       case 170: {
@@ -2860,6 +2930,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearUserAvatar {
   result.hasUserAvatar = NO;
   result.userAvatar = @"";
+  return self;
+}
+- (BOOL) hasUserGender {
+  return result.hasUserGender;
+}
+- (BOOL) userGender {
+  return result.userGender;
+}
+- (GeneralNotification_Builder*) setUserGender:(BOOL) value {
+  result.hasUserGender = YES;
+  result.userGender = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearUserGender {
+  result.hasUserGender = NO;
+  result.userGender = NO;
   return self;
 }
 - (NSArray*) pointsList {
