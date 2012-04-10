@@ -482,19 +482,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.view addSubview:toolView];
     [toolView addTarget:self action:@selector(bomb:)];
 }
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    _viewIsAppear = YES;
-    if (needResetData) {
-        [self resetData];        
-    }
-    [self updateBomb];
-    [drawGameService registerObserver:self];
-    [super viewDidAppear:animated];
-}
-
 - (void)cleanScreen
 {
     [popupButton.layer removeAllAnimations];
@@ -507,13 +494,27 @@ ShowDrawController *GlobalGetShowDrawController()
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    _viewIsAppear = YES;
+    if (needResetData) {
+        [self resetData];        
+    }
+    [self cleanScreen];
+    [self updateBomb];
+    [drawGameService registerObserver:self];
+    [super viewDidAppear:animated];
+}
+
+
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     if (!_shopController) {
         _viewIsAppear = NO;
-        [self cleanScreen];
         [self setWord:nil];
     }
+    [self cleanScreen];
     [super viewDidDisappear:animated];
 }
 

@@ -339,20 +339,6 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view bringSubviewToFront:popupButton];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-
-    if (needResetData) {
-        [self resetData];
-    }
-    [pickPenView setHidden:YES];
-    [super viewDidAppear:animated];
-    [drawGameService registerObserver:self];        
-    [drawView setDrawEnabled:YES];
-    colorShopConroller = nil;
-}
-
-
 - (void)cleanScreen
 {
     [popupButton.layer removeAllAnimations];
@@ -364,6 +350,23 @@ DrawViewController *GlobalGetDrawViewController()
         }
     }
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+
+    if (needResetData) {
+        [self resetData];
+    }
+    [self cleanScreen];
+    [pickPenView setHidden:YES];
+    [super viewDidAppear:animated];
+    [drawGameService registerObserver:self];        
+    [drawView setDrawEnabled:YES];
+    colorShopConroller = nil;
+}
+
+
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
