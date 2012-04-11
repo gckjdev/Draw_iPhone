@@ -58,8 +58,9 @@
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < [imageArray count]) {
             MyPaint *paint = [imageArray objectAtIndex:j];
-            NSData* data = [[[NSData alloc] initWithContentsOfFile:paint.image] autorelease];
+            NSData* data = [[NSData alloc] initWithContentsOfFile:paint.image];
             UIImage* image = [UIImage imageWithData:data];
+            [data release];
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
             [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
