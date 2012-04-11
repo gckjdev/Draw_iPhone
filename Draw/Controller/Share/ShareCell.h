@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyPaintButton.h"
 #define IMAGES_PER_LINE 4
 
 @protocol ShareCellDelegate <NSObject>
@@ -16,7 +16,7 @@
 
 @end
 
-@interface ShareCell : UITableViewCell <UIActionSheetDelegate>
+@interface ShareCell : UITableViewCell <UIActionSheetDelegate, MyPaintButtonDelegate>
 {
     
 }

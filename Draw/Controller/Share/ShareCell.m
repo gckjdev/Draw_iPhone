@@ -7,6 +7,7 @@
 //
 
 #import "ShareCell.h"
+#import "MyPaint.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -32,6 +33,13 @@
     ShareCell* cell = [self creatShareCell];
     cell.indexPath = indexPath;
     cell.delegate = aDelegate;
+    for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
+        MyPaintButton* button = [MyPaintButton creatMyPaintButton];
+        [button setFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
+        button.delegate= cell;
+        button.tag = i;
+        [cell addSubview:button];
+    }
     return cell;
 }
 
@@ -43,20 +51,24 @@
 - (void)setImagesWithArray:(NSArray*)imageArray
 {
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
-        UIButton *button = (UIButton *)[self viewWithTag:i];
+        MyPaintButton *button = (MyPaintButton *)[self viewWithTag:i];
         
         // image view start from 30, button start from 10, the gap is 20
-        UIImageView* bgImageView = (UIImageView *)[self viewWithTag:i+20]; 
+        //UIImageView* bgImageView = (UIImageView *)[self viewWithTag:i+20]; 
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < [imageArray count]) {
-            UIImage *image = [imageArray objectAtIndex:j];
-            [button setImage:image forState:UIControlStateNormal];
+            MyPaint *paint = [imageArray objectAtIndex:j];
+            NSData* data = [[[NSData alloc] initWithContentsOfFile:paint.image] autorelease];
+            UIImage* image = [UIImage imageWithData:data];
+            [button.clickButton setImage:image forState:UIControlStateNormal];
+            [button.drawWord setText:paint.drawWord];
+            [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
             button.hidden = NO;
-            bgImageView.hidden = NO;
+            //bgImageView.hidden = NO;
             
         }else {
             button.hidden = YES;
-            bgImageView.hidden = YES;
+            //bgImageView.hidden = YES;
         }
     }
 //    NSArray* buttonsArray = [NSArray arrayWithObjects:self.leftButton, self.middleButton, self.rightButton, nil];
@@ -68,6 +80,14 @@
 //        [btn setImage:[imageArray objectAtIndex:index]  forState:UIControlStateNormal];
 //        [btn setHidden:NO];
 //    }
+}
+
+- (void)clickImage:(MyPaintButton *)myPaintButton
+{
+    int j = myPaintButton.tag - BASE_BUTTON_INDEX;
+    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
+        [_delegate selectImageAtIndex:self.indexPath.row*IMAGES_PER_LINE + j];
+    }
 }
 
 - (IBAction)clickImageButton:(id)sender {

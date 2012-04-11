@@ -55,6 +55,8 @@
 		C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D51533E2560034C895 /* UMTableViewCell.m */; };
 		C2FA6E6C1535262A00EEB530 /* all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E6A1535262A00EEB530 /* all@2x.png */; };
 		C2FA6E6D1535262A00EEB530 /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E6B1535262A00EEB530 /* me@2x.png */; };
+		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
+		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
 		CA0995CE15299C6700A53CB0 /* StableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0995CD15299C6700A53CB0 /* StableView.m */; };
@@ -649,6 +651,9 @@
 		C2F947D71533E40A0034C895 /* UMImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMImageView.h; sourceTree = "<group>"; };
 		C2FA6E6A1535262A00EEB530 /* all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all@2x.png"; sourceTree = "<group>"; };
 		C2FA6E6B1535262A00EEB530 /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me@2x.png"; sourceTree = "<group>"; };
+		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
+		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
+		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA0995CC15299C6600A53CB0 /* StableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StableView.h; sourceTree = "<group>"; };
@@ -2651,6 +2656,9 @@
 				CA8D60621531EC5500E016ED /* ReplayController.xib */,
 				CACC084C1532B02600D9F8E9 /* ShareAction.h */,
 				CACC084D1532B02600D9F8E9 /* ShareAction.m */,
+				C2FA6E6E1535352200EEB530 /* MyPaintButton.h */,
+				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
+				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3765,6 +3773,7 @@
 				C2F947D31533D91E0034C895 /* UFPController.xib in Resources */,
 				C2FA6E6C1535262A00EEB530 /* all@2x.png in Resources */,
 				C2FA6E6D1535262A00EEB530 /* me@2x.png in Resources */,
+				C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4089,6 +4098,7 @@
 				CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */,
 				C2F947D21533D91E0034C895 /* UFPController.m in Sources */,
 				C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */,
+				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

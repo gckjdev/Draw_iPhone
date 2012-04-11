@@ -199,25 +199,27 @@
         cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSMutableArray* imageArray = [[NSMutableArray alloc] init];
+    NSMutableArray* myPaintArray = [[NSMutableArray alloc] init];
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex];
-            NSString* paintName = [paint image];
-            UIImage* image = nil;
-            if ([[NSFileManager defaultManager] fileExistsAtPath:paintName]) {
-                NSData* data = [[NSData alloc] initWithContentsOfFile:paintName];
-                image = [UIImage imageWithData:data];
-                [data release];
-                [imageArray addObject:image];
+            
+//            NSString* paintName = [paint image];
+//            UIImage* image = nil;
+            if ([[NSFileManager defaultManager] fileExistsAtPath:paint.image]) {
+                [myPaintArray addObject:paint];
+//                NSData* data = [[NSData alloc] initWithContentsOfFile:paintName];
+//                image = [UIImage imageWithData:data];
+//                [data release];
+//                [imageArray addObject:image];
             }
             
         }
     }
     cell.indexPath = indexPath;
-    [cell setImagesWithArray:imageArray];
-    [imageArray release];
+    [cell setImagesWithArray:myPaintArray];
+    [myPaintArray release];
     return cell;
 }
 
