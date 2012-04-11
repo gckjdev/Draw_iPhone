@@ -42,6 +42,15 @@ WordManager *GlobalGetWordManager()
     return manager;
 }
 
+- (NSDictionary *)getWordBaseDictionary
+{
+    if (wordBaseDictionary == nil) {
+        wordBaseDictionary = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
+        [wordBaseDictionary retain];
+    }
+    return wordBaseDictionary;
+}
+
 - (NSArray *)wordArrayOfLevel:(WordLevel)level
 {
     switch (level) {
@@ -99,6 +108,7 @@ WordManager *GlobalGetWordManager()
             pathDictionary = [NSDictionary dictionaryWithContentsOfFile:EN_WORD_DICT];            
         }
         self.wordDict = [self parsePathDict:pathDictionary];
+        self.languageType = languageType;
     }
 }
 
@@ -114,6 +124,7 @@ WordManager *GlobalGetWordManager()
 - (void)dealloc
 {
     [_wordDict release];
+    [wordBaseDictionary release];
     [super dealloc];
 }
 
@@ -162,7 +173,7 @@ WordManager *GlobalGetWordManager()
     if (word == nil || [word.text length] == 0) {
         return nil;
     }
-    NSDictionary *wordBase = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
+    NSDictionary *wordBase = [self getWordBaseDictionary];
     NSInteger length = word.text.length;
     NSMutableArray *retArray = [[NSMutableArray alloc] init];
     NSString *createSet = [NSString stringWithFormat:@"%@",word.text];
