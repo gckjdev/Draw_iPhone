@@ -14,6 +14,7 @@
 @end
 
 @interface MyPaintButton : UIView
+@property (retain, nonatomic) IBOutlet UIImageView *wordsBackground;
 
 @property (retain, nonatomic) IBOutlet UIButton *clickButton;
 @property (retain, nonatomic) IBOutlet UILabel *drawWord;

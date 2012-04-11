@@ -8,6 +8,7 @@
 
 #import "ShareCell.h"
 #import "MyPaint.h"
+#import "UIImageUtil.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -34,11 +35,13 @@
     cell.indexPath = indexPath;
     cell.delegate = aDelegate;
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
+        //MyPaintButton* button = [[MyPaintButton alloc] initWithFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
         MyPaintButton* button = [MyPaintButton creatMyPaintButton];
         [button setFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
         button.delegate= cell;
         button.tag = i;
         [cell addSubview:button];
+        [button release];
     }
     return cell;
 }
@@ -58,12 +61,13 @@
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < [imageArray count]) {
             MyPaint *paint = [imageArray objectAtIndex:j];
-            NSData* data = [[[NSData alloc] initWithContentsOfFile:paint.image] autorelease];
-            UIImage* image = [UIImage imageWithData:data];
+            NSData* data = [[NSData alloc] initWithContentsOfFile:paint.image];
+            UIImage* image = [UIImage creatThumbnailsWithData:data withSize:CGSizeMake(70, 75)];
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
             [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
             button.hidden = NO;
+            [data release];
             //bgImageView.hidden = NO;
             
         }else {

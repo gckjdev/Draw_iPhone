@@ -49,6 +49,12 @@
     [super dealloc];
 }
 
+- (void)refleshGallery
+{
+    [self loadPaintsOnlyMine:self.paintsFilter.isSelected];
+    [self.gallery reloadData];
+}
+
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
     if (onlyMine) {
@@ -152,8 +158,7 @@
 {
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
     [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
-    //[self changeGalleryFielter:nil];
-    [self.gallery reloadData];
+    [self refleshGallery];
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -227,13 +232,10 @@
 {
     if ([self.paintsFilter isSelected]) {
         [self.paintsFilter setSelected:NO];
-        [self loadPaintsOnlyMine:NO];
-        [self.gallery reloadData];
     } else {
         [self.paintsFilter setSelected:YES];
-        [self loadPaintsOnlyMine:YES];
-        [self.gallery reloadData];
     }
+    [self refleshGallery];
 }
 
 -(IBAction)clickBackButton:(id)sender
@@ -271,8 +273,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];  
-    [self loadPaintsOnlyMine:NO];
-    [self.gallery reloadData];
+    [self refleshGallery];
     
     NSLog(@"get all paints, paints count is %d", _paints.count);
 
