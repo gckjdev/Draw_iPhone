@@ -265,33 +265,43 @@
     NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
     if (_image!=nil) 
     {
-        //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        if (!paths) {
-            PPDebug(@"Document directory not found!");
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (queue == NULL){
+            return;
         }
-        //并给文件起个文件名
-        NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
-        //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
-        NSData* imageData = UIImagePNGRepresentation(_image);
-        BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-        PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-        if (result) {
-            NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
-            NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
-            NSString* drawWord = [[[drawGameService session] currentTurn] word];
-            if (drawWord == nil){
-                drawWord = [[[drawGameService session] currentTurn] lastWord];
+        
+        dispatch_async(queue, ^{
+            //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+            if (!paths) {
+                PPDebug(@"Document directory not found!");
             }
+            //并给文件起个文件名
+            NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
+            //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
+            NSData* imageData = UIImagePNGRepresentation(_image);
+            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+            PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
             
-            NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-            [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
-                                                                data:drawActionListData 
-                                                          drawUserId:drawUserId 
-                                                    drawUserNickName:drawUserNickName 
-                                                            drawByMe:_isMyPaint 
-                                                            drawWord:drawWord];
-        }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (result) {
+                    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+                    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
+                    NSString* drawWord = [[[drawGameService session] currentTurn] word];
+                    if (drawWord == nil){
+                        drawWord = [[[drawGameService session] currentTurn] lastWord];
+                    }
+                    
+                    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
+                    [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+                                                                        data:drawActionListData 
+                                                                  drawUserId:drawUserId 
+                                                            drawUserNickName:drawUserNickName 
+                                                                    drawByMe:_isMyPaint 
+                                                                    drawWord:drawWord];
+                }
+            });
+        });
     }
    
 }
