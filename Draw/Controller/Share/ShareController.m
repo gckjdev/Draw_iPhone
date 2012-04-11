@@ -199,6 +199,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
     ShareCell* cell = [tableView dequeueReusableCellWithIdentifier:[ShareCell getIdentifier]];
     if (cell == nil) {
         cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
@@ -219,12 +220,12 @@
 //                [data release];
 //                [imageArray addObject:image];
             }
-            
         }
     }
     cell.indexPath = indexPath;
     [cell setImagesWithArray:myPaintArray];
     [myPaintArray release];
+    [loopPool release];
     return cell;
 }
 

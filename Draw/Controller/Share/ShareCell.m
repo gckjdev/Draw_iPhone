@@ -35,13 +35,13 @@
     cell.indexPath = indexPath;
     cell.delegate = aDelegate;
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
-        //MyPaintButton* button = [[MyPaintButton alloc] initWithFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
+       // MyPaintButton* button = [[MyPaintButton alloc] initWithFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
         MyPaintButton* button = [MyPaintButton creatMyPaintButton];
         [button setFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
         button.delegate= cell;
         button.tag = i;
         [cell addSubview:button];
-        [button release];
+        //[button release];
     }
     return cell;
 }
