@@ -108,7 +108,7 @@ ShowDrawController *GlobalGetShowDrawController()
         _viewIsAppear = NO;
         drawGameService = [DrawGameService defaultService];
         [drawGameService setShowDelegate:self];
-        showView = [[ShowDrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
+        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
         
     }
     return self;
