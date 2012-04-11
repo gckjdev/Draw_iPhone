@@ -110,7 +110,7 @@ DrawViewController *GlobalGetDrawViewController()
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
-        drawView = [[DrawView alloc] initWithFrame:CGRectMake(8, 46, 304, 320)];   
+        drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
         [drawView setDrawEnabled:YES];
         pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 250, 302, 122)];
         avatarArray = [[NSMutableArray alloc] init];

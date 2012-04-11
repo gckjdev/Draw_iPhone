@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #define ILLEGAL_POINT CGPointMake(-100000, -100000)
+#define DRAW_VEIW_FRAME CGRectMake(8, 46, 304, 320)
+
 
 @class DrawColor;
 @interface DrawUtils : NSObject
