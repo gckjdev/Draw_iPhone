@@ -418,8 +418,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         }else{
             type = EnglishType;
         }
+        [self setLanguageType:type];
     }
-    [self setLanguageType:type];
     return type;
 }
 
