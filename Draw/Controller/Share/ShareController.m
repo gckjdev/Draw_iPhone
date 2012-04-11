@@ -49,14 +49,22 @@
     [super dealloc];
 }
 
-- (void)loadAllPaints
+- (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
-    self.paints = [[MyPaintManager defaultManager] findAllPaints];
-}
-
-- (void)loadMyPaints
-{
-    self.paints = [[MyPaintManager defaultManager] findOnlyMyPaints];
+    if (onlyMine) {
+        self.paints = [[MyPaintManager defaultManager] findOnlyMyPaints];
+    } else {
+        self.paints = [[MyPaintManager defaultManager] findAllPaints];
+    }
+    
+    if ([self.paints count] > 0){
+        self.noDrawingLabel.text = NSLS(@"");
+        self.noDrawingLabel.hidden = YES;
+    }
+    else{
+        self.noDrawingLabel.text = NSLS(@"kNoDrawings");
+        self.noDrawingLabel.hidden = NO;        
+    }
 }
 
 - (void)selectImageAtIndex:(int)index
@@ -144,7 +152,7 @@
 {
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
     [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
-    [self changeGalleryFielter:nil];
+    //[self changeGalleryFielter:nil];
     [self.gallery reloadData];
 }
 
@@ -215,21 +223,14 @@
 
 - (IBAction)changeGalleryFielter:(id)sender
 {
-    if (self.paintsFilter.selectedSegmentIndex == 0) {
-        [self loadAllPaints];
+    if ([self.paintsFilter isSelected]) {
+        [self.paintsFilter setSelected:NO];
+        [self loadPaintsOnlyMine:NO];
         [self.gallery reloadData];
     } else {
-        [self loadMyPaints];
+        [self.paintsFilter setSelected:YES];
+        [self loadPaintsOnlyMine:YES];
         [self.gallery reloadData];
-    }
-    
-    if ([self.paints count] > 0){
-        self.noDrawingLabel.text = NSLS(@"");
-        self.noDrawingLabel.hidden = YES;
-    }
-    else{
-        self.noDrawingLabel.text = NSLS(@"kNoDrawings");
-        self.noDrawingLabel.hidden = NO;        
     }
 }
 
@@ -267,9 +268,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    [self changeGalleryFielter:nil];
+    [super viewDidLoad];  
+    [self loadPaintsOnlyMine:NO];
+    [self.gallery reloadData];
     
     NSLog(@"get all paints, paints count is %d", _paints.count);
 

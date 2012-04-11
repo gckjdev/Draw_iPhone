@@ -24,7 +24,7 @@
     int DELETE;
     int CANCEL;    
 }
-@property (retain, nonatomic) IBOutlet UISegmentedControl *paintsFilter;
+@property (retain, nonatomic) IBOutlet UIButton *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
 @property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
