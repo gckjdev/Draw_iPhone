@@ -103,31 +103,6 @@ enum {
     SHARE_VIA_SINA,
     SHARE_VIA_QQ
 };
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case SAVE_TO_ALBUM: {
-            UIImageWriteToSavedPhotosAlbum(self.myImage, nil, nil, nil);
-        } break;
-        case SHARE_VIA_EMAIL: {
-            MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
-            [compose setSubject:@"Gif Image"];
-            [compose setMessageBody:@"I have kindly attached a GIF image to this E-mail. I made this GIF using ANGif, an open source Objective-C library for exporting animated GIFs." isHTML:NO];
-            [compose addAttachmentData:[UIImage compressImage:self.myImage byQuality:0.3] mimeType:@"image/png" fileName:@"image.png"];
-            [compose setMailComposeDelegate:self];
-            [self presentModalViewController:compose animated:YES];
-        } break;
-        case SHARE_VIA_SINA: {
-            
-        } break;
-        case SHARE_VIA_QQ: {
-            
-        } break;
-        default:
-            break;
-    }
-}
-
 
 - (void)updatePhotoView
 {
@@ -137,16 +112,23 @@ enum {
 {
     if ([[UserManager defaultManager] hasBindQQWeibo]){
         [self showActivityWithText:NSLS(@"kSendingRequest")];
-        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];        
+        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
+                                        imageFilePath:_imageFilePath 
+                                             delegate:self];        
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
         [self showActivityWithText:NSLS(@"kSendingRequest")];
-        [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];
+        [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
+                                        imageFilePath:_imageFilePath 
+                                             delegate:self];
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){
-        [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text imageFilePath:_imageFilePath delegate:self];        
+        [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
+                                            imageFilePath:_imageFilePath 
+                                                 delegate:self];        
+        
         [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
         [self.navigationController popViewControllerAnimated:YES];
     }

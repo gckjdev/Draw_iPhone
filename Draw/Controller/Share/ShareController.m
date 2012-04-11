@@ -129,8 +129,11 @@
         [replayController release];            
     }
     else if (buttonIndex ==  DELETE) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton deelegate:self];
-            [dialog showInView:self.view];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
+                                                           message:NSLS(@"kAre_you_sure") 
+                                                             style:CommonDialogStyleDoubleButton 
+                                                         deelegate:self];            
+        [dialog showInView:self.view];
     }
     
 }
