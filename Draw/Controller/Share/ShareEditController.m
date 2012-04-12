@@ -53,6 +53,21 @@
     [super dealloc];
 }
 
+- (void)putUpInputDialog
+{
+    [self.shareTextField setFrame:CGRectMake(7, 133, 306, 61)];
+    [self.inputBackground setFrame:CGRectMake(7, 133, 306, 61)];
+    [self.view bringSubviewToFront:self.inputBackground];
+    [self.view bringSubviewToFront:self.shareTextField];
+}
+
+- (void)resetInputDialog
+{
+    [self.shareTextField setFrame:CGRectMake(7, 399, 306, 61)];
+    [self.inputBackground setFrame:CGRectMake(7, 399, 306, 61)];
+    
+}
+
 - (void)initPatternsWithImagesName:(NSArray*)names
 {
     for (NSString* name in names) {
@@ -99,6 +114,12 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self putUpInputDialog];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -191,7 +212,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template1", @"pic_template2", nil]];
+    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template1", @"pic_template2", @"pic_template3",  @"pic_template4", @"pic_template5", nil]];
     [self initPattenrsGallery];
     
     

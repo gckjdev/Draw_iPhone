@@ -258,3 +258,5 @@
 "kContentNull" = "Content can not be empty.";
 
 "kNoDrawings" = "No Drawing";
+"kAll" = "  All";
+"kMine" = "Mine  ";

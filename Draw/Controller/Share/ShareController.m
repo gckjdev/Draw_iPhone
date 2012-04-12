@@ -232,9 +232,9 @@
 - (IBAction)changeGalleryFielter:(id)sender
 {
     if ([self.paintsFilter isSelected]) {
-        [self.paintsFilter setSelected:NO];
+        [self.paintsFilter setSelected:NO];       
     } else {
-        [self.paintsFilter setSelected:YES];
+        [self.paintsFilter setSelected:YES];  
     }
     [self refleshGallery];
 }
@@ -280,6 +280,8 @@
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
+    [self.paintsFilter setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.paintsFilter setTitle:NSLS(@"kMine") forState:UIControlStateSelected];
 
 }
 
