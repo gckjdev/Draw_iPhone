@@ -9,6 +9,7 @@
 #import "ShareCell.h"
 #import "MyPaint.h"
 #import "UIImageUtil.h"
+#import "DrawUtils.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -62,7 +63,8 @@
         if (button && j < [imageArray count]) {
             MyPaint *paint = [imageArray objectAtIndex:j];
             NSData* data = [[NSData alloc] initWithContentsOfFile:paint.image];
-            UIImage* image = [UIImage creatThumbnailsWithData:data withSize:CGSizeMake(70, 75)];
+            CGRect frame = DRAW_VEIW_FRAME;
+            UIImage* image = [UIImage creatThumbnailsWithData:data withSize:CGSizeMake(frame.size.width/4, frame.size.height/4)];
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
             [button.myPrintTag setHidden:!paint.drawByMe.boolValue];

@@ -42,7 +42,7 @@
 						<int key="NSvFlags">310</int>
 						<string key="NSFrameSize">{130, 128}</string>
 						<reference key="NSSuperview" ref="517575855"/>
-						<reference key="NSNextKeyView" ref="741618665"/>
+						<reference key="NSNextKeyView" ref="262538153"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -70,7 +70,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{7, 7}, {117, 108}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
-						<reference key="NSNextKeyView" ref="974610835"/>
+						<reference key="NSNextKeyView" ref="741618665"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -80,7 +80,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="816850181">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="673437246">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -118,7 +118,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
-						<reference key="IBUIHighlightedColor" ref="816850181"/>
+						<reference key="IBUIHighlightedColor" ref="673437246"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">1</float>
@@ -136,9 +136,9 @@
 					<object class="IBUIImageView" id="741618665">
 						<reference key="NSNextResponder" ref="517575855"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{3, 86}, {32, 34}}</string>
+						<string key="NSFrame">{{98, 86}, {32, 34}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
-						<reference key="NSNextKeyView" ref="262538153"/>
+						<reference key="NSNextKeyView" ref="974610835"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

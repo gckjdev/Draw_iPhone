@@ -15,6 +15,8 @@
 #import "FacebookSNSService.h"
 #import "QQWeiboService.h"
 #import "GifView.h"
+#import "StringUtil.h"
+#import "PPDebug.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 
@@ -51,10 +53,13 @@
     [super dealloc];
 }
 
-- (void)initPatterns
+- (void)initPatternsWithImagesName:(NSArray*)names
 {
-    UIImage* myPettern = [UIImage imageNamed:@"guess_pattern.png"];
-    [self.patternsArray addObject:myPettern];
+    for (NSString* name in names) {
+        UIImage* myPettern = [UIImage imageNamed:name];
+        [self.patternsArray addObject:myPettern];
+    }
+        
 }
 
 - (void)initPattenrsGallery
@@ -83,8 +88,8 @@
     if (btn.tag == PATTERN_TAG_OFFSET) {
         [self.infuseImageView setPatternImage:nil];
         [self.infuseImageView setNeedsDisplay];
-    } else {
-        UIImage* patternImage = [_patternsArray objectAtIndex:0];
+    } else if (btn.tag-PATTERN_TAG_OFFSET <= self.patternsArray.count){
+        UIImage* patternImage = [_patternsArray objectAtIndex:btn.tag-PATTERN_TAG_OFFSET-1];
         [self.infuseImageView setPatternImage:patternImage];
     }
   
@@ -110,23 +115,31 @@ enum {
 
 - (IBAction)publish:(id)sender
 {
+    UIImage* image = [self.infuseImageView createImage];
+    NSData* imageData = UIImagePNGRepresentation(image);
+    NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
+    BOOL result=[imageData writeToFile:path atomically:YES];
+    if (!result) {
+        PPDebug(@"creat temp image failed");
+        return;
+    }
     if ([[UserManager defaultManager] hasBindQQWeibo]){
         [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
-                                        imageFilePath:_imageFilePath 
+                                        imageFilePath:path 
                                              delegate:self];        
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
         [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
-                                        imageFilePath:_imageFilePath 
+                                        imageFilePath:path 
                                              delegate:self];
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){
         [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
-                                            imageFilePath:_imageFilePath 
+                                            imageFilePath:path 
                                                  delegate:self];        
         
         [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
@@ -178,9 +191,9 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self initPatterns];
-//    [self initPattenrsGallery];
-//    [self.infuseImageView setDrawImage:self.myImage];
+    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template1", @"pic_template2", nil]];
+    [self initPattenrsGallery];
+    
     
     self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
     [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
@@ -189,14 +202,17 @@ enum {
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     
     if ([self.imageFilePath hasSuffix:@"gif"]){                              
-        GifView* view = [[GifView alloc] initWithFrame:CGRectMake(self.myImageView.frame.origin.x, 
-                                                                  self.myImageView.frame.origin.y, 304, 320)
+        GifView* view = [[GifView alloc] initWithFrame:self.myImageView.frame
                                                 filePath:self.imageFilePath
                                         playTimeInterval:0.3];    
         [self.view addSubview:view];
     }
     else{
         [self.myImageView setImage:self.myImage];
+        _infuseImageView = [[SynthesisView alloc] init];
+        [self.infuseImageView setDrawImage:self.myImage];
+        [self.infuseImageView setFrame:self.myImageView.frame];
+        [self.view addSubview:self.infuseImageView];
     }        
     
     self.shareTextField.text = self.text;    
