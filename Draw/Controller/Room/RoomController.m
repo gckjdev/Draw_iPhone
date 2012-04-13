@@ -160,6 +160,10 @@
     
     for (GameSessionUser* user in userList){
 
+        if (startTag > endTag) {
+            return;
+        }
+        
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:[user nickName]];
         
