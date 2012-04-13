@@ -680,6 +680,10 @@ ShowDrawController *GlobalGetShowDrawController()
 
 #pragma mark - Actions
 - (IBAction)clickGuessDoneButton:(id)sender {
+    if (_guessCorrect) {
+        return;
+    }
+    
     NSString *ans = [self getAnswer];
     
     //if the answer is nil, don't send the answer.
@@ -752,14 +756,16 @@ ShowDrawController *GlobalGetShowDrawController()
             [wButton setEnabled:YES];
             [button setEnabled:NO];
             [button setTitle:nil forState:UIControlStateNormal];            
+            
+            if (languageType != ChineseType) {
+                NSString *ans = [self getAnswer];
+                BOOL flag = [ans length] == [self.word.text length];
+                if (flag) {
+                    [self clickGuessDoneButton:nil];
+                } 
+            }
+            
         }
-    }
-    if (languageType != ChineseType) {
-        NSString *ans = [self getAnswer];
-        BOOL flag = [ans isEqualToString:self.word.text];
-        if (flag) {
-            [self clickGuessDoneButton:nil];
-        }        
     }
 }
 
