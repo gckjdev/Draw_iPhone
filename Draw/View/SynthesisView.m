@@ -54,17 +54,31 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    self.backgroundColor = [UIColor whiteColor];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0.0, self.frame.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
     if (_drawImage) {
-        CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        CGContextDrawImage(context, imageRect, _drawImage.CGImage);
-    }
+        if (_patternImage) {
+            
+            
+            CGRect imageRect = CGRectMake(self.frame.size.width*0.1, self.frame.size.height*0.1, self.frame.size.width*0.8, self.frame.size.height*0.8);
+            CGContextDrawImage(context, imageRect, _drawImage.CGImage);
+            
+            CGRect imageRectPattern = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            
+            CGContextDrawImage(context, imageRectPattern, _patternImage.CGImage);
+            
+
+        } else {
+            CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            CGContextDrawImage(context, imageRect, _drawImage.CGImage);
+
+        }
+            }
     if (_patternImage) {
         //        CGRect imageRect = self.bounds;
-        CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        CGContextDrawImage(context, imageRect, _patternImage.CGImage);
+        
     }
     
 

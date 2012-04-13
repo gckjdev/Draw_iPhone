@@ -55,8 +55,8 @@
 
 - (void)putUpInputDialog
 {
-    [self.shareTextField setFrame:CGRectMake(7, 133, 306, 61)];
-    [self.inputBackground setFrame:CGRectMake(7, 133, 306, 61)];
+    [self.shareTextField setFrame:CGRectMake(7, 123, 306, 121)];
+    [self.inputBackground setFrame:CGRectMake(7, 123, 306, 121)];
     [self.view bringSubviewToFront:self.inputBackground];
     [self.view bringSubviewToFront:self.shareTextField];
 }
@@ -84,6 +84,7 @@
     UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
     noPatternButton.tag = PATTERN_TAG_OFFSET;
     [self.patternsGallery addSubview:noPatternButton];
+    [noPatternButton setTitle:NSLS(@"kNone") forState:UIControlStateNormal];
     [noPatternButton addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -99,6 +100,7 @@
 
 - (void)selectPattern:(id)sender
 {
+    [self resignFirstResponder];
     UIButton* btn = (UIButton*)sender;
     if (btn.tag == PATTERN_TAG_OFFSET) {
         [self.infuseImageView setPatternImage:nil];
@@ -120,6 +122,7 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self putUpInputDialog];
+    return YES;
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -234,6 +237,8 @@ enum {
         [self.infuseImageView setDrawImage:self.myImage];
         [self.infuseImageView setFrame:self.myImageView.frame];
         [self.view addSubview:self.infuseImageView];
+        [self.infuseImageView setPatternImage:nil];
+        [self.infuseImageView setNeedsDisplay];
     }        
     
     self.shareTextField.text = self.text;    
