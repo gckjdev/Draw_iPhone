@@ -415,7 +415,6 @@ magnet 2
 funnel 2
 connect 2
 laugh 1
-sad 0
 behind 1
 beneath 1
 pearl 1
@@ -1416,15 +1415,17 @@ Jack 0
 Lin 0
 snake 1
 
-
-
-
-
-
-
-
-
-
-
-
-
+git 2
+java 1
+stack 0
+interface 1
+macbook 0
+imac 1
+vista 0
+turf 2
+hill 1
+heap 1
+vector 2
+bitch 1
+rich 2
+poor 2
