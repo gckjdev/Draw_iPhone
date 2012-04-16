@@ -16,7 +16,9 @@
 @interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, copy) NSString* imageFilePath;
+@property (retain, nonatomic) IBOutlet UIImageView *patternBar;
 @property (nonatomic, copy) NSString* text;
+@property (retain, nonatomic) IBOutlet UIImageView *myImageBackground;
 @property (retain, nonatomic) UIImage* myImage;
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
