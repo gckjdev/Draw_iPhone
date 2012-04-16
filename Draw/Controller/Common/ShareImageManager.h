@@ -42,16 +42,16 @@
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
 
-- (UIImage *)blackColorImage;
-- (UIImage *)redColorImage;
-- (UIImage *)greenColorImage;
-- (UIImage *)blueColorImage;
-- (UIImage *)yellowColorImage;
-- (UIImage *)orangeColorImage;
-- (UIImage *)pinkColorImage;
-- (UIImage *)brownColorImage;
-- (UIImage *)skyColorImage;
-- (UIImage *)whiteColorImage;
+//- (UIImage *)blackColorImage;
+//- (UIImage *)redColorImage;
+//- (UIImage *)greenColorImage;
+//- (UIImage *)blueColorImage;
+//- (UIImage *)yellowColorImage;
+//- (UIImage *)orangeColorImage;
+//- (UIImage *)pinkColorImage;
+//- (UIImage *)brownColorImage;
+//- (UIImage *)skyColorImage;
+//- (UIImage *)whiteColorImage;
 
 - (UIImage *)addColorImage;
 

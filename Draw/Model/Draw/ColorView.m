@@ -7,6 +7,7 @@
 //
 
 #import "ColorView.h"
+#import "ShareImageManager.h"
 
 #define SCALE_SMALL_FRAME CGRectMake(0,0,32,34)
 #define SCALE_LARGE_FRAME CGRectMake(0,0,32.0*1.5,34.0*1.5)
@@ -18,7 +19,7 @@
 - (void)initMaskImage
 {
     if (!maskImage) {
-        maskImage = [UIImage imageNamed:@"color_mask.png"].CGImage;
+        maskImage = [[ShareImageManager defaultManager] colorMaskImage].CGImage;
         CGImageRetain(maskImage);
         self.backgroundColor = [UIColor clearColor];
     }
