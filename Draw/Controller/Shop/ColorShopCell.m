@@ -69,8 +69,6 @@
                         [colorView setScale:ColorViewScaleLarge];
                     }
                     ColorView *view = [colorGroup.colorViewList objectAtIndex:j];
-                    [colorView setBackgroundColor:[UIColor clearColor]];
-                    [colorView setImage:[view backgroundImageForState:UIControlStateNormal]];
                     [colorView setDrawColor:view.drawColor];
                     [colorView setHidden:NO];
                 }else{
