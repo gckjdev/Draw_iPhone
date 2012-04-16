@@ -29,6 +29,7 @@
 #import "PPDebug.h"
 #import "AccountManager.h"
 #import "AccountService.h"
+#import "PenView.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -259,6 +260,7 @@ DrawViewController *GlobalGetDrawViewController()
     eraserWidth = 15;
     [drawView setLineWidth:penWidth];
     [drawView setLineColor:[DrawColor blackColor]];
+    [penButton setPenColor:[DrawColor blackColor]];
 }
 
 - (void)resetData
@@ -459,6 +461,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
+    [penButton setPenColor:colorView.drawColor];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
