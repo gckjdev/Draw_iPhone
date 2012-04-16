@@ -73,4 +73,7 @@
 
 - (UIImage *)savePercentImage;
 
+- (UIImage *)penMaskImage;
+- (UIImage *)colorMaskImage;
+
 @end

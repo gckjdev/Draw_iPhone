@@ -233,5 +233,15 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"score.png"];            
 }
 
+- (UIImage *)penMaskImage
+{
+    return [UIImage imageNamed:@"pen_mask.png"];
+}
+- (UIImage *)colorMaskImage
+{
+    return [UIImage imageNamed:@"color_mask.png"];    
+}
+
+
 
 @end
