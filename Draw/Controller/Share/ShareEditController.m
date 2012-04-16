@@ -34,7 +34,9 @@
 @synthesize shareButton = _shareButton;
 @synthesize shareTextField = _shareTextField;
 @synthesize imageFilePath = _imageFilePath;
+@synthesize patternBar = _patternBar;
 @synthesize text = _text;
+@synthesize myImageBackground = _myImageBackground;
 @synthesize shareTitleLabel;
 
 - (void)dealloc
@@ -50,21 +52,25 @@
     [_myImageView release];
     [_shareButton release];
     [_shareTextField release];
+    [_myImageBackground release];
+    [_patternBar release];
     [super dealloc];
 }
 
 - (void)putUpInputDialog
 {
-    [self.shareTextField setFrame:CGRectMake(7, 123, 306, 121)];
-    [self.inputBackground setFrame:CGRectMake(7, 123, 306, 121)];
+    [self.shareTextField setFrame:CGRectMake(7, 50, 306, 60)];
+    [self.inputBackground setFrame:CGRectMake(7, 50, 306, 60)];
     [self.view bringSubviewToFront:self.inputBackground];
     [self.view bringSubviewToFront:self.shareTextField];
+    self.patternBar.hidden = YES;
+    self.patternsGallery.hidden = YES;
 }
 
 - (void)resetInputDialog
 {
-    [self.shareTextField setFrame:CGRectMake(7, 399, 306, 61)];
-    [self.inputBackground setFrame:CGRectMake(7, 399, 306, 61)];
+    [self.shareTextField setFrame:CGRectMake(7, 389, 306, 61)];
+    [self.inputBackground setFrame:CGRectMake(7, 389, 306, 61)];
     
 }
 
@@ -122,6 +128,7 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self putUpInputDialog];
+    [self addBlankView:self.shareTextField];
     return YES;
 }
 
@@ -139,13 +146,18 @@ enum {
 
 - (IBAction)publish:(id)sender
 {
-    UIImage* image = [self.infuseImageView createImage];
-    NSData* imageData = UIImagePNGRepresentation(image);
-    NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
-    BOOL result=[imageData writeToFile:path atomically:YES];
-    if (!result) {
-        PPDebug(@"creat temp image failed");
-        return;
+    NSString* path;
+    if ([self.imageFilePath hasSuffix:@"gif"]) {
+        path = self.imageFilePath;
+    } else {
+        UIImage* image = [self.infuseImageView createImage];
+        NSData* imageData = UIImagePNGRepresentation(image);
+        path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
+        BOOL result=[imageData writeToFile:path atomically:YES];
+        if (!result) {
+            PPDebug(@"creat temp image failed");
+            return;
+        }
     }
     if ([[UserManager defaultManager] hasBindQQWeibo]){
         [self showActivityWithText:NSLS(@"kSendingRequest")];
@@ -230,6 +242,10 @@ enum {
                                                 filePath:self.imageFilePath
                                         playTimeInterval:0.3];    
         [self.view addSubview:view];
+        [self putUpInputDialog];
+        //[view setFrame:CGRectMake(10, 170, 300, 300)];
+        //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
+        
     }
     else{
         [self.myImageView setImage:self.myImage];
@@ -247,7 +263,7 @@ enum {
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self addBlankView:self.shareTextField];
+    //[self addBlankView:self.shareTextField];
     [super viewDidAppear:animated];
 }
 
@@ -258,6 +274,8 @@ enum {
     [self setMyImageView:nil];
     [self setShareButton:nil];
     [self setShareTextField:nil];
+    [self setMyImageBackground:nil];
+    [self setPatternBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

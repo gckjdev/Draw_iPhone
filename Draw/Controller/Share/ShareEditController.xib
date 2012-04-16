@@ -84,7 +84,7 @@
 					<object class="IBUIImageView" id="13981569">
 						<reference key="NSNextResponder" ref="1033168711"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 399}, {307, 61}}</string>
+						<string key="NSFrame">{{7, 396}, {307, 61}}</string>
 						<reference key="NSSuperview" ref="1033168711"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="730877834"/>
@@ -134,7 +134,7 @@
 						<string key="NSFrame">{{238, 7}, {75, 31}}</string>
 						<reference key="NSSuperview" ref="1033168711"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="42812519"/>
+						<reference key="NSNextKeyView" ref="1026007545"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -152,7 +152,7 @@
 					<object class="IBUITextView" id="730877834">
 						<reference key="NSNextResponder" ref="1033168711"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 399}, {306, 61}}</string>
+						<string key="NSFrame">{{7, 396}, {306, 61}}</string>
 						<reference key="NSSuperview" ref="1033168711"/>
 						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -180,7 +180,7 @@
 					<object class="IBUIImageView" id="976250215">
 						<reference key="NSNextResponder" ref="1033168711"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 130}, {289, 259}}</string>
+						<string key="NSFrame">{{31, 130}, {259, 259}}</string>
 						<reference key="NSSuperview" ref="1033168711"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="13981569"/>
@@ -223,7 +223,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="1016570639">
+					<object class="IBUIImageView" id="980914031">
 						<reference key="NSNextResponder" ref="1033168711"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 93}, {320, 40}}</string>
@@ -238,13 +238,13 @@
 							<string key="NSResourceName">normalpallets@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIScrollView" id="42812519">
+					<object class="IBUIScrollView" id="1026007545">
 						<reference key="NSNextResponder" ref="1033168711"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{0, 46}, {320, 48}}</string>
 						<reference key="NSSuperview" ref="1033168711"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1016570639"/>
+						<reference key="NSNextKeyView" ref="980914031"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -318,9 +318,25 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">patternsGallery</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="42812519"/>
+						<reference key="destination" ref="1026007545"/>
 					</object>
 					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">myImageBackground</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="304575801"/>
+					</object>
+					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">patternBar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="980914031"/>
+					</object>
+					<int key="connectionID">42</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -379,8 +395,8 @@
 							<reference ref="637044409"/>
 							<reference ref="304575801"/>
 							<reference ref="976250215"/>
-							<reference ref="1016570639"/>
-							<reference ref="42812519"/>
+							<reference ref="980914031"/>
+							<reference ref="1026007545"/>
 							<reference ref="13981569"/>
 							<reference ref="730877834"/>
 						</array>
@@ -433,12 +449,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="1016570639"/>
+						<reference key="object" ref="980914031"/>
 						<reference key="parent" ref="1033168711"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
-						<reference key="object" ref="42812519"/>
+						<reference key="object" ref="1026007545"/>
 						<reference key="parent" ref="1033168711"/>
 					</object>
 				</array>
@@ -466,7 +482,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -484,7 +500,9 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="infuseImageView">SynthesisView</string>
 						<string key="inputBackground">UIImageView</string>
+						<string key="myImageBackground">UIImageView</string>
 						<string key="myImageView">UIImageView</string>
+						<string key="patternBar">UIImageView</string>
 						<string key="patternsGallery">UIScrollView</string>
 						<string key="shareButton">UIButton</string>
 						<string key="shareTextField">UITextView</string>
@@ -499,8 +517,16 @@
 							<string key="name">inputBackground</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="myImageBackground">
+							<string key="name">myImageBackground</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="myImageView">
 							<string key="name">myImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="patternBar">
+							<string key="name">patternBar</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="patternsGallery">
