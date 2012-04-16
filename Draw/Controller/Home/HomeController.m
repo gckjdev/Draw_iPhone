@@ -266,7 +266,7 @@
 
     [[DrawGameService defaultService] setServerAddress:server.address];
     [[DrawGameService defaultService] setServerPort:[server.port intValue]];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.12"];
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;

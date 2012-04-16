@@ -37,6 +37,7 @@ typedef enum {
   GameCommandTypeLocalFinishGame = 203,
   GameCommandTypeLocalJoinGame = 204,
   GameCommandTypeLocalGameTurnComplete = 205,
+  GameCommandTypeLocalUserTimeOut = 206,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);

@@ -70,6 +70,7 @@ enum GameCommandType {
   LOCAL_FINISH_GAME = 203;
   LOCAL_JOIN_GAME = 204;
   LOCAL_GAME_TURN_COMPLETE = 205;
+  LOCAL_USER_TIME_OUT = 206;
 }
 
 enum GameResultCode {

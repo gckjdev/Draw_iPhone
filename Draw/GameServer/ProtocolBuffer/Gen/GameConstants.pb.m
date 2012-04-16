@@ -55,6 +55,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalFinishGame:
     case GameCommandTypeLocalJoinGame:
     case GameCommandTypeLocalGameTurnComplete:
+    case GameCommandTypeLocalUserTimeOut:
       return YES;
     default:
       return NO;

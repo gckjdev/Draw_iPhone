@@ -72,6 +72,42 @@ static DrawGameService* _defaultService;
     return self;
 }
 
+#define DISCONNECT_TIMER_INTERVAL   5
+
+- (void)startDisconnectTimer
+{
+    [self clearDisconnectTimer];
+    
+    PPDebug(@"Set disconnect timer");
+
+    _disconnectTimer = [NSTimer scheduledTimerWithTimeInterval:DISCONNECT_TIMER_INTERVAL 
+                                                        target:self 
+                                                      selector:@selector(handleDisconnect:) 
+                                                      userInfo:nil 
+                                                       repeats:NO];
+    [_disconnectTimer retain];
+}
+
+- (void)clearDisconnectTimer
+{
+    if (_disconnectTimer){
+        PPDebug(@"Clear disconnect timer");
+        [_disconnectTimer invalidate];
+        [_disconnectTimer release];
+        _disconnectTimer = nil;
+    }        
+}
+
+- (void)handleDisconnect:(NSTimer*)theTimer
+{
+    PPDebug(@"Fire disconnect timer");
+    [self disconnectServer];
+    
+    if ([self.homeDelegate respondsToSelector:@selector(didBroken)]){
+        [_homeDelegate didBroken];
+    }
+}
+
 - (BOOL)isConnected
 {
     return [_networkClient isConnected];
