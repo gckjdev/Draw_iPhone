@@ -72,7 +72,7 @@ static DrawGameService* _defaultService;
     return self;
 }
 
-#define DISCONNECT_TIMER_INTERVAL   5
+#define DISCONNECT_TIMER_INTERVAL   30
 
 - (void)startDisconnectTimer
 {
