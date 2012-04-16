@@ -1416,15 +1416,8 @@ Jack 0
 Lin 0
 snake 1
 
-
-
-
-
-
-
-
-
-
-
-
+oscar 1
+idol 2
+youtube 2
+google 0
 

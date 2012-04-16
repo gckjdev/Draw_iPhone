@@ -1,0 +1,271 @@
+/* 
+ Localizable.strings
+ GhostGame
+ 
+ Created by haodong qiu on 12年3月1日.
+ Copyright (c) 2012年 orange. All rights reserved.
+ 
+ 【】
+ 
+ */
+
+"kStart" = "開始遊戲";
+
+"kShop" = "商店";
+
+"kHomeShare" = "作品分享";
+
+"kSettings" = "設置";
+
+"kFeedback" = "反饋";
+
+"kCheckin" = "簽到 ";
+
+"Me" = "我";
+
+"kRoomName" = "房間 [%@]";
+
+"kClickToStart" = "開始畫畫 [%d]";
+
+"kWaitABit" = "延時";
+
+"kQuickQuick" = "快快開始吧";
+
+"kWaitForMoreUsers" = "等待更多玩家";
+
+"kStartAfter" = "即將開始 [%d]";
+
+"kPickWordTitle" = "請選擇一個詞來畫";
+
+"kChangeWords" = "換一組詞語";
+
+"kEasy" = "容易";
+"kNormal" = "一般";
+"kHard" = "困難";
+
+"kBuy" = "購買";
+"kShopMainTitle" = "商店";
+"kItemShopTitle"= "購買道具";
+"kCoinShopTitle"= "購買金幣";
+
+"kRunAway" = "%@ 逃跑了!";
+"kGuessCorrect" = "猜對了​​!";
+"kGuessWrong" = "猜錯了!";
+"kAllUserQuit" = "所有玩家都離開了,遊戲結束!";
+"kConfirm" = "確定";
+
+
+"kBuying" = "發送購買請求中...";
+"kSendingRequest" = "發送消息中...";
+"kLoading" = "加載數據中...";
+
+"kOK" = "確定";
+"kSubmit" = "提交";
+"kCancel" = "取消";
+"kQuitGameAlertMessage" = "確定要退出遊戲嗎?";
+"kQuitGameAlertTitle" = "退出遊戲";
+"kDedutCoinQuitGameAlertMessage" = "如果你退出遊戲，系統將會扣除1個金幣哦。";
+"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除1個金幣，你的賬戶餘額不足，現在不能退出遊戲哦！";
+
+
+"kContinue" = "繼續 [%d]";
+"kExit" = "退出";
+"kSave" = "保存";
+"kTurnResult" = "本輪結果";
+"kBuyColor" = "購買顏色";
+"kConnectionRecover" = "連接恢復";
+"kConnectionBroken" = "連接中斷";
+"kNoServerAvailable" = "非常抱歉，服務器已經滿了，請稍候再試。";
+"kProcessingIAP" = "處理購買請求中...";
+"kBuyCoinsSucc" = "購買金幣成功";
+"kCongratulations" = "恭喜猜對了!";
+"kPity" = "請再接再厲!";
+
+"kStartingGame" = "請求開始遊戲中...";
+
+"kCoinsNotEnoughTitle" = "消息";
+"kCoinsNotEnough" = "不好意思，你的金幣不夠了，是不是現在購買一些金幣？";
+"kCoinsNotEnoughTips" = "不好意思，你的金幣不夠了，請在遊戲結束之後購買。";
+
+"kCheckInTitle" = "消息";
+"kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
+"kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來哦!";
+
+"kRegisterPromptLabel" = "微博登錄";
+"kRegisterTitleLabel" = "用戶註冊";
+"kEnterEmail" = "請輸入Email地址註冊";
+"kSubmit" = "提交";
+
+"kRegisteringUser" = "發送註冊請求中...";
+"kSystemFailure" = "網絡錯誤，請檢查手機是否正確連接到互聯網。";
+"kUnknownRegisterFailure" = "對不起，用戶註冊無法完成，請聯繫我們的技術支持以便解決問題。";
+"kEmailUsed" = "對不起，該電子郵件已經被註冊。";
+"kEmailNotValid" = "對不起，該電子郵件格式不正確，請重新輸入。";
+"kGeneralFailure" = "對不起，註冊失敗，請稍候再試。";
+
+"kInputNickName" = "請輸入暱稱";
+"Skip" = "跳過";
+"kUpdatingUser" = "更新用戶數據中...";
+"kUpdateUserSucc" = "用戶數據已成功更新.";
+"kUpdateUserFail" = "更新用戶數據失敗，請稍候再試";
+
+"kSelectFromAlbum" = "從相冊選擇";
+"kTakePhoto" = "拍照";
+
+"kConnectingServer" = "連接服務器中...";
+"kJoiningGame" = "正在加入遊戲會話中...";
+"kNetworkFailure" = "網絡錯誤，請檢查手機是否正確連接到互聯網。";
+
+"kJoinGameSucc" = "成功進入遊戲房間";
+"kJoinGameFailure" = "加入遊戲失敗，請稍候再試";
+
+"kChangeRoom" = "更換房間中...";
+"kNoTipsItemTitle" = "消息";
+"kNoTipsItemMessage" = "你的道具不夠了，是不是現在購買一些？";
+"kQuickMessage" = "快點，快點啦！";
+"kWaitMessage" = "等等，等等吧！";
+"kClickTooFast" = "你的點擊頻率太快了，不妨休息一下。";
+
+"kEnglish" = "英語";
+"kChinese" = "中文";
+"kLanguageSettings" = "選擇猜詞語言";
+"kLanguageSelection" = "語言選擇";
+
+"kPassword" = "密碼";
+"kNickname" = "暱稱";
+"kSinaWeibo" = "綁定新浪微博";
+"kQQWeibo" = "綁定騰訊微博";
+"kFacebook" = "綁定Facebook";
+"kBind" = "已綁定";
+"kUnBind" = "未綁定";
+"kFailToConnectIAPServer" = "連接蘋果購買服務器失敗，請稍候再試。";
+"kExceedMaxProlongTimes" = "不好意思，你已經延時好多次了，不能再延時了。";
+
+"kGotoCoinShop" = "金幣充值";
+
+"kChangeRoomMaxTimes" = "你一天內已經換超過5次房間了，不能再換房間了。";
+"kChangeRoomTitle" = "更換房間";
+"kChangeRoomConfirm" = "換房間會影響當前一起玩的玩家哦，同時需要花費你一個金幣，確定換個房間嗎？";
+"kChangeRoomConfirm" = "換房間會影響當前一起玩的用戶哦，一天只能更換5次房間，確定換個房間嗎？";
+"kQuitGameTitle" = "退出房間";
+"kQuitGameConfirm" = "請問是否要退出當前房間，回到主菜單？";
+
+"kOldPasswordHolder" = "請輸入舊密碼";
+"kNewPasswordHolder" = "請輸入新密碼（長度不少於6）";
+"kConfirmPasswordHolder" = "請再次輸入新密碼";
+"kNicknameHolder" = "請輸入新暱稱";
+
+"kPasswordWrong" = "舊密碼輸入不正確";
+"kPasswordDifferent" = "兩次輸入不一致";
+"kPasswordIllegal" = "密碼長度不小於6";
+
+"kUpdatingUser" = "更新用戶信息中...";
+"kUpdateUserSucc" = "更新用戶信息成功!";
+"kUpdateUserFail" = "更新用戶資料失敗，請重試。";
+
+"kUnset" = "未設定";
+"kNoUpdate" = "沒有更新的信息";
+"kInfoUnSaved" = "更改的信息尚未保存，你確定要退出嗎？";
+"kNotice" = "通知";
+"kShare_to_friends" = "分享給好友";
+"kReport_problems" = "報告問題";
+"kGive_some_advice" = "反饋意見";
+"kAbout_us" = "關於我們";
+"kMore_apps" = "更多應用";
+"kGive_a_5-star_review" = "給個好評";
+"kSure_delete" = "刪除圖片";
+"kAre_you_sure" = "確定刪除?";
+"kOptions" = "選項";
+"kShare" = "分享";
+"kReplay" = "回放";
+"kDelete" = "刪除";
+
+"kShare_via" = "分享選項";
+"kShareAsPhoto" = "圖片方式分享";
+"kShareAsGif" = "動畫方式分享";
+"kShare_Options" = "請選擇分享方式";
+"kSave_to_album" = "保存到相冊";
+"kShare_via_Email" = "通過郵件分享";
+"kShare_via_Sina_weibo" = "通過新浪微博分享";
+"kShare_via_tencent_weibo" = "通過騰訊微博分享";
+"kShare_via_Facebook" = "通過Facebook分享";
+"kShare_via_Twitter" = "通過Twitter分享";
+
+
+"Message" = "消息";
+
+"kEmailEmpty" = "電子郵件地址不能為空。";
+"kInvalidEmail" = "輸入的電子郵件地址不合法，請重新輸入。";
+
+"kNewVersionMessage" = "檢測到有新版本[%@]，是否要升級到最新版本？";
+"kNewVersionTitle" = "版本升級";
+
+"Remind Later" = "下次提醒";
+"Upgrade Now" = "馬上升級";
+"OK" = "確定";
+"Cancel" = "取消";
+
+"kDrawWord" = "你正在畫: %@";
+"kAnswer" = "答案: %@";
+
+"kNoWord" = "玩家沒選詞";
+"kCleanDrawTitle" = "清屏";
+"kCleanDrawMessage" = "清屏之後之前所畫的東西都會消失，確定嗎？";
+"kSavePercent" = "節省%02d%%";
+
+"kShareTitle" = "作品分享";
+
+"kNickNameEmpty" = "暱稱不能為空";
+"Nick" = "暱稱";
+"Avatar" = "頭像";
+
+"kDone" = "完成";
+"Back" = "返回";
+
+"kReplayTitle" = "回放作品";
+"kReplayShare" = "分享";
+
+"kReport_bug" = "報告問題";
+"kAdvices" = "反饋意見";
+"kInput_your_contact" = " 聯繫方式(EMAIL,QQ,手機號等)";
+"kHave_problems?" = "";
+"kSay something..." = "";
+"kShare_via_SMS" = "短信分享給朋友";
+
+"kShare_message_body" = "你還在玩離線版的Draw Something遊戲？太慢了！我們短暫的青春等不起！現在我用燃燒的生命發出內心的吶喊！隆重推荐一款在線版的猜畫遊戲——《%@》！不要再等待！不要再猶豫了！趕緊下載吧！\n%@";
+
+"kEmail_subject" = "分享［猜猜畫畫］移動版遊戲";
+
+"kCreating_gif" = "正在生成GIF動畫文件...";
+
+"kShareOtherText" = "酷圖分享，畫的詞是［%@］";
+"kShareMeText" = "看看我畫的酷圖，畫的詞是［%@］";
+"kShareSend" = "發送微博";
+
+"kPublishWeiboSucc" = "微博已成功發送";
+"kPublishWeiboFail" = "微博發送失敗，請稍候再試。";
+
+"kFailCreateGIF" = "對不起，生成GIF動畫文件失敗。";
+
+"kAbout_us_title" = "關於我們";
+
+
+"kPaymentCannotMake" = "對不起，你的設備或者iOS版本未接受應用內程序購買功能。";
+
+"kSharePhotoEmailSubject" = "分享有趣的畫畫";
+"kSharePhotoEmailBody" = "Hi，分享一副有趣的畫，能猜到畫的是什麼嗎？\n\n- 來自%@";
+"kShareWeiboTitle" = "微博分享";
+
+"kFeedbackSucc" = "感謝您的反饋";
+"kFeedbackFail" = "發送失敗，稍後再試試。";
+"kSendingFeedback" = "正在發送...";
+"kNoTipItem" = "對不起，你沒有錦囊了，請去商店購買。";
+"kMore_apps" = "更多應用";
+"kNextStep" = "下一步";
+"kWordLengthTip" = "溫馨小提示：當前猜詞的字數為［%d］";
+"kContentNull" = "內容不能為空哦。";
+
+"kNoDrawings" = "你還沒有任何作品呢";
+"kAll" = " 所有";
+"kMine" = "我的 ";
+"kNone" = "無";

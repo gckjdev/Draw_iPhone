@@ -1394,6 +1394,8 @@
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAEA70051526D85700B3D206 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number@2x.png"; sourceTree = "<group>"; };
 		CAEA70061526D85700B3D206 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
 		CAEA70091526F2FD00B3D206 /* point_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_selected@2x.png"; sourceTree = "<group>"; };
@@ -4212,6 +4214,7 @@
 			children = (
 				CA1377F11525A7CB00B5790B /* en */,
 				CA1377F31525A80200B5790B /* zh-Hans */,
+				CAE57D27153BD77F00C4C63A /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4221,6 +4224,7 @@
 			children = (
 				CA745D2C1503B1B500600024 /* en */,
 				CA1377F41525A80D00B5790B /* zh-Hans */,
+				CAE57D2B153BD7B000C4C63A /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
