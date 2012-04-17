@@ -179,7 +179,7 @@ enum {
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeedBackCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"FeedBackCell"];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"FeedBackCell"] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     [self initCell:cell withIndex:indexPath.row];

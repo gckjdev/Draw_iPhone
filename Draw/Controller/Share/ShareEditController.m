@@ -243,6 +243,7 @@ enum {
                                         playTimeInterval:0.3];    
         [self.view addSubview:view];
         [self putUpInputDialog];
+        [view release];
         //[view setFrame:CGRectMake(10, 170, 300, 300)];
         //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
         

@@ -195,8 +195,9 @@ WordManager *GlobalGetWordManager()
         int k = rand() % retArray.count;
         [retArray insertObject:value atIndex:k];
     }
-    return [retArray componentsJoinedByString:@""];
-
+    NSString* retString = [retArray componentsJoinedByString:@""];
+    [retArray release];
+    return retString;
     
 }
 
@@ -236,7 +237,9 @@ WordManager *GlobalGetWordManager()
         NSString *string = [word.text substringWithRange:NSMakeRange(i, 1)];
         [array insertObject:string atIndex:index];
     }
-    return [array componentsJoinedByString:@""];
+    NSString* retString = [array componentsJoinedByString:@""];
+    [array release];
+    return retString;
 }
 
 
