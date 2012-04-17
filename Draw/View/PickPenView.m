@@ -11,6 +11,7 @@
 #import "ColorView.h"
 #import "AnimationManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WidthView.h"
 
 @implementation PickPenView
 @synthesize delegate = _delegate;
@@ -50,29 +51,25 @@
     return _currentWidth;
 }
 
-//- (void)dismiss
-//{
-//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:2];
-//    animation.delegate = self;
-//    [self.layer addAnimation:animation forKey:@"dismiss"];
-//}
-
-- (void)selectWidthButton:(UIButton *)button
+- (void)selectWidthButton:(WidthView *)button
 {
+    if (button == nil) {
+        return;
+    }
     for (UIButton *button in widthButtonArray) {
         [button setSelected:NO];
     }
     [button setSelected:YES];
     self.hidden = YES;
+    _currentWidth = button.width;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedLineWidth:)]) {
-        [self.delegate didPickedLineWidth:button.tag];
+        [self.delegate didPickedLineWidth:button.width];
     }
-    
 }
 
 - (void)clickButton:(id)sender
 {
-    UIButton *button = (UIButton *)sender;
+    WidthView *button = (WidthView *)sender;
     [self selectWidthButton:button];
 }
 
@@ -84,51 +81,38 @@
     [widthButtonArray removeAllObjects];
 }
 
-- (UIButton *)addAndSetButtonWithWidth:(NSInteger)width
+- (void)resetWidth
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.tag = width;
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-
-    [button setBackgroundImage:[imageManager unSelectedPointImage] 
-                      forState:UIControlStateNormal];
-    [button setBackgroundImage:[imageManager selectedPointImage] 
-                      forState:UIControlStateSelected];
-
-    [self addSubview:button];
-    [widthButtonArray addObject:button];
-    [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
+    WidthView *wView = nil;
+    CGFloat width = 999;
+    for (WidthView *view in widthButtonArray) {
+        if (view.width < width) {
+            width = view.width;
+            wView = view;
+        }
+    }
+    [self selectWidthButton:wView];
 }
 
 - (void)setLineWidths:(NSArray *)widthArray
 {
     [self removeAllWidthButtons];
-    CGFloat totalHeight = 0;
+    CGFloat x = 12;//self.frame.size.width / 10.0;
+    CGFloat count = [widthArray count];
+    CGFloat space = (self.frame.size.height - 10 - (count * [WidthView height])) / (count + 1);
+    CGFloat y = 5;
+    
     for (NSNumber *width in widthArray) {
-        totalHeight += width.integerValue;
+        y +=  space;
+        WidthView *widthView = [[WidthView alloc] initWithWidth:width.floatValue];
+        widthView.frame = CGRectMake(x, y, [WidthView height], [WidthView height]);
+        [self addSubview:widthView];
+        [widthButtonArray addObject:widthView];
+        [widthView release];
+        [widthView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        y += [WidthView height];
     }
-    CGFloat space = (self.frame.size.height - totalHeight) / ([widthArray count] + 2);
-    CGFloat y = 0;
-    _currentWidth = 1000;
-    UIButton *selectedButton = nil;
-    for (NSNumber *width in widthArray) {
-        UIButton *button = [self addAndSetButtonWithWidth:width.integerValue];
-        CGFloat x = self.frame.size.width / 5.0;
-        y += space;
-        if (width.integerValue < 7) {
-            button.frame = CGRectMake(x, y, 7, 7);            
-        }else{
-            button.frame = CGRectMake(x, y, width.integerValue , width.integerValue);
-        }
-        y += width.integerValue;
-        [button setCenter:CGPointMake(25, button.center.y)];
-        if (width.integerValue < _currentWidth) {
-            _currentWidth = width.integerValue;
-            selectedButton = button;
-        }
-        [self selectWidthButton:selectedButton];
-    }
+    [self resetWidth];
 }
 
 #pragma mark - init colorView

@@ -460,6 +460,7 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA8B3528153D12D800B15CBF /* WidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8B3527153D12D800B15CBF /* WidthView.m */; };
 		CA8D60271531C98000E016ED /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60291531C98000E016ED /* Default.png */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
@@ -1308,6 +1309,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA8B3526153D12D800B15CBF /* WidthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthView.h; sourceTree = "<group>"; };
+		CA8B3527153D12D800B15CBF /* WidthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidthView.m; sourceTree = "<group>"; };
 		CA8D60281531C98000E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Default.png; sourceTree = "<group>"; };
 		CA8D602B1531C98400E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CA8D602D1531C98B00E016ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default.png"; sourceTree = "<group>"; };
@@ -3368,6 +3371,8 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA8B3526153D12D800B15CBF /* WidthView.h */,
+				CA8B3527153D12D800B15CBF /* WidthView.m */,
 				CA6F0584153C14DD00B1AE11 /* PenView.h */,
 				CA6F0585153C14DD00B1AE11 /* PenView.m */,
 				CAF25AE015289707002D79EE /* DrawView.h */,
@@ -4099,6 +4104,7 @@
 				C2F947D61533E2570034C895 /* UMTableViewCell.m in Sources */,
 				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
 				CA6F0586153C14DD00B1AE11 /* PenView.m in Sources */,
+				CA8B3528153D12D800B15CBF /* WidthView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
