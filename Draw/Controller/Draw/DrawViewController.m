@@ -30,6 +30,7 @@
 #import "AccountManager.h"
 #import "AccountService.h"
 #import "PenView.h"
+#import "WordManager.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -263,7 +264,13 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [self resetDrawView];
     [popupButton setHidden:YES];
-    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+    
+    NSString *text = [self.word text];
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [WordManager changeToTraditionalChinese:text];
+    }
+    
+    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
     [self updatePlayerAvatars];
@@ -404,7 +411,11 @@ DrawViewController *GlobalGetDrawViewController()
 {
     if (![drawGameService.userId isEqualToString:guessUserId]) {
         if (!guessCorrect) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                wordText = [WordManager changeToTraditionalChinese:wordText];                
+            }
             [self popGuessMessage:wordText userId:guessUserId];        
+
         }else{
             [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
             [self addScore:gainCoins toUser:guessUserId];

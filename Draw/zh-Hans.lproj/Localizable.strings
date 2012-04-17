@@ -206,9 +206,9 @@
 "Cancel" = "取消";
 
 "kDrawWord" = "你正在画: %@";
-"kAnswer" = "答案: %@";
+"kAnswer" = "答案: [%@]";
 
-"kNoWord" = "玩家没选词";
+"kNoWord" = "画家逃跑了!";
 "kCleanDrawTitle" = "清屏";
 "kCleanDrawMessage" = "清屏之后之前所画的东西都会消失，确定吗？";
 "kSavePercent" = "节省%02d%%";

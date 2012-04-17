@@ -207,6 +207,11 @@ ShowDrawController *GlobalGetShowDrawController()
         [button setEnabled:YES];
         if (self.candidateString != nil) {
             NSString *string = [self.candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
+            
+            if ([LocaleUtils isTraditionalChinese]) {
+                string = [WordManager changeToTraditionalChinese:string];
+            }
+            
             [button setTitle:string forState:UIControlStateNormal];
             if ([string isEqualToString:@" "]) {
                 [button setEnabled:NO];
@@ -258,7 +263,14 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         NSString *text = [button titleForState:UIControlStateNormal];
+
         if ([text length] == 1 && ![text isEqualToString:@" "]) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSString *temp = [button titleForState:UIControlStateSelected];
+                if (temp) {
+                    text = temp;
+                }
+            }
             answer = [NSString stringWithFormat:@"%@%@",answer,text];
         }
     }
@@ -556,6 +568,9 @@ ShowDrawController *GlobalGetShowDrawController()
                   gainCoins:(int)gainCoins
 {
     if (!guessCorrect) {
+        if ([LocaleUtils isTraditionalChinese]) {
+            wordText = [WordManager changeToTraditionalChinese:wordText];            
+        }
         [self popGuessMessage:wordText userId:guessUserId];        
     }else{
         [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
@@ -735,6 +750,9 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickWriteButton:(UIButton *)button
 {
     NSString *text = [button titleForState:UIControlStateNormal];
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [button titleForState:UIControlStateSelected];
+    }
     if ([text length] != 0) {
         UIButton *pButton = [self getTheCandidateButtonForText:text];
         if (pButton) {
@@ -746,14 +764,27 @@ ShowDrawController *GlobalGetShowDrawController()
         
     }
 }
+
+
+
 - (void)clickPickingButton:(UIButton *)button
 {
-    NSString *text = [button titleForState:UIControlStateNormal];
+    NSString *text = [button titleForState:UIControlStateNormal];    
     if ([text length] != 0) {
         UIButton *wButton = [self getTheFirstEmptyButton];
         if (wButton) {
             [wButton setTitle:text forState:UIControlStateNormal];
+            [wButton setTitle:nil forState:UIControlStateSelected];
             [wButton setEnabled:YES];
+
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSInteger index = button.tag - PICK_BUTTON_TAG_START;
+                if (index < [self.candidateString length]) {
+                    NSString *simpleChineseText = [self.candidateString substringWithRange:NSMakeRange(index, 1)];
+                    [wButton setTitle:simpleChineseText forState:UIControlStateSelected];
+                }
+            }
+            
             [button setEnabled:NO];
             [button setTitle:nil forState:UIControlStateNormal];            
             

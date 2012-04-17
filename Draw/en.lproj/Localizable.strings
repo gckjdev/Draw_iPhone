@@ -203,8 +203,8 @@
 "Cancel" = "Cancel";
 
 "kDrawWord" = "Drawing: %@";
-"kAnswer" = "Answer: %@";
-"kNoWord" = "Unselect word";
+"kAnswer" = "Answer: [%@]";
+"kNoWord" = "Maybe Drawer Quit!";
 "kCleanDrawTitle" = "Clean Draw";
 "kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
