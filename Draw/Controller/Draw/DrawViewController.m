@@ -119,6 +119,8 @@ DrawViewController *GlobalGetDrawViewController()
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
         drawGameService.drawDelegate = self;
+        eraserWidth = 15;
+
     }
     return self;
 }
@@ -129,11 +131,6 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
-//    for (int i = 3; i < 25;i += 7) {
-//       NSNumber *number = [NSNumber numberWithInt:i];
-//        [widthArray insertObject:number atIndex:0];
-//        [widthArray addObject:number];
-//    }
     
     [widthArray addObject:[NSNumber numberWithInt:20]];
     [widthArray addObject:[NSNumber numberWithInt:15]];
@@ -198,7 +195,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
-//    [drawView setDrawEnabled:enabled];
+
     [penButton setEnabled:enabled];
     [pickPenView setHidden:YES];
 }
@@ -258,7 +255,6 @@ DrawViewController *GlobalGetDrawViewController()
     [drawView clearAllActions];
     [pickPenView resetWidth];
     [drawView setLineWidth:pickPenView.currentWidth];
-    eraserWidth = 15;
     [drawView setLineColor:[DrawColor blackColor]];
     [penButton setPenColor:[DrawColor blackColor]];
 }
@@ -527,6 +523,9 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark - Actions
 
 - (IBAction)clickChangeRoomButton:(id)sender {
+    
+    [pickPenView setHidden:YES animated:YES];
+    
     CommonDialogStyle style;
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
@@ -542,7 +541,7 @@ DrawViewController *GlobalGetDrawViewController()
     [dialog showInView:self.view];
 }
 - (IBAction)clickRedraw:(id)sender {
-    [pickPenView setHidden:YES];
+    [pickPenView setHidden:YES animated:YES];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton deelegate:self];
     dialog.tag = DIALOG_TAG_CLEAN_DRAW;
     [dialog showInView:self.view];
@@ -551,11 +550,15 @@ DrawViewController *GlobalGetDrawViewController()
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
-    [pickPenView setHidden:YES];
+//    [pickPenView setHidden:YES animated:YES];
 }
 
 - (IBAction)clickPenButton:(id)sender {
-    [pickPenView setHidden:!pickPenView.hidden];
+    [pickPenView setHidden:!pickPenView.hidden animated:YES];
+    if (pickPenView.hidden == NO) {
+        PenView *penView = (PenView *)sender;
+        [drawView setLineColor:penView.penColor];
+    }
 }
 
 @end
