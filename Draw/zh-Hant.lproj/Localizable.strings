@@ -143,7 +143,7 @@
 
 "kGotoCoinShop" = "金幣充值";
 
-"kChangeRoomMaxTimes" = "你一天內已經換超過5次房間了，不能再換房間了。";
+"kChangeRoomMaxTimes" = "你換房間次數已經超過限制，現在換房間需要花費你一個金幣，確定嗎？";
 "kChangeRoomTitle" = "更換房間";
 "kChangeRoomConfirm" = "換房間會影響當前一起玩的玩家哦，同時需要花費你一個金幣，確定換個房間嗎？";
 "kChangeRoomConfirm" = "換房間會影響當前一起玩的用戶哦，一天只能更換5次房間，確定換個房間嗎？";
@@ -240,6 +240,9 @@
 
 "kShareOtherText" = "酷圖分享，畫的詞是［%@］";
 "kShareMeText" = "看看我畫的酷圖，畫的詞是［%@］";
+"kShareGIFOtherText" = "酷圖分享，畫的詞是［%@］";
+"kShareGIFMeText" = "看看我畫的酷圖，畫的詞是［%@］";
+
 "kShareSend" = "發送微博";
 
 "kPublishWeiboSucc" = "微博已成功發送";

@@ -144,7 +144,7 @@
 
 "kGotoCoinShop" = "Coin Shop";
 
-"kChangeRoomMaxTimes" = "You have changed room more than 5 times a day. Cannot change any more.";
+"kChangeRoomMaxTimes" = "You changed room too many times. Now it costs you 1 coin to change room. Are you sure?";
 "kChangeRoomTitle" = "Switch Room";
 "kChangeRoomConfirm" = "Do you want to switch to another room? You can try 5 times per day.";
 "kQuitGameTitle" = "Quit Game";
@@ -238,6 +238,8 @@
 "kCreating_gif" = "Creating GIF Files...";
 "kShareOtherText" = "What An Awesome Drawing - %@";
 "kShareMeText" = "My Awesome Drawing for %@";
+"kShareGIFOtherText" = "What An Awesome Drawing - %@";
+"kShareGIFMeText" = "My Awesome Drawing for %@";
 "kShareSend" = "Send";
 
 "kPublishWeiboSucc" = "Message Sent";
