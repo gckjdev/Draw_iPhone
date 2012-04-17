@@ -32,6 +32,9 @@ enum GameCommandType {
   COMPLETE_GAME_REQUEST = 17;
   COMPLETE_GAME_RESPONSE = 18;  
 
+  FORCE_USER_QUIT_REQUEST = 19;
+  FORCE_USER_QUIT_RESPONSE = 20;
+  
   // server --> client
   
   // notifications

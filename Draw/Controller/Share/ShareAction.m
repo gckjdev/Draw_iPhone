@@ -113,10 +113,20 @@
 {
     NSString* text = nil;
     if (_isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
+        if (_isGIF){
+            text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
+        }
+        else{
+            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];            
+        }
     }
     else{
-        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), _drawWord];
+        if (_isGIF){
+            text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
+        }
+        else{
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
+        }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text];
