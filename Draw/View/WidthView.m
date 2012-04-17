@@ -13,7 +13,7 @@
 @synthesize width = _width;
 
 
-#define SIZE 40
+#define SIZE 27
 
 + (id)viewWithWidth:(CGFloat)width
 {
@@ -47,18 +47,25 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();    
     if (self.selected) {
         CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     }else{
         CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
     }
     
-    CGFloat x = (SIZE - _width) / 2;
-    CGFloat showWidth = self.width + 3;
+    CGFloat showWidth = self.width;
+    if (showWidth < 5) {
+        showWidth = 5;
+    }
+    CGFloat x = (SIZE - showWidth) / 2;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);
 }
 
++ (CGFloat)height
+{
+    return SIZE;
+}
 
 @end

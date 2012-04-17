@@ -256,9 +256,9 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetDrawView
 {
     [drawView clearAllActions];
-    penWidth = 2;
+    [pickPenView resetWidth];
+    [drawView setLineWidth:pickPenView.currentWidth];
     eraserWidth = 15;
-    [drawView setLineWidth:penWidth];
     [drawView setLineColor:[DrawColor blackColor]];
     [penButton setPenColor:[DrawColor blackColor]];
 }
