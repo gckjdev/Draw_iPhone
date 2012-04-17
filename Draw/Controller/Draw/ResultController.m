@@ -21,6 +21,7 @@
 #import "AccountService.h"
 #import "Account.h"
 #import "DrawAction.h"
+#import "WordManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -124,6 +125,9 @@
     NSString *answer = nil;
     if (self.wordText) {
         answer = [NSString stringWithFormat:NSLS(@"kAnswer"),self.wordText];        
+        if ([LocaleUtils isTraditionalChinese]) {
+            answer = [WordManager changeToTraditionalChinese:answer];
+        }
     }else{
         answer = NSLS(@"kNoWord");
     }

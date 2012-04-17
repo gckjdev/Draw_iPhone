@@ -24,6 +24,8 @@
 #import "AnimationManager.h"
 #import "UserManager.h"
 
+#define MAX_CHANGE_ROOM_PER_DAY     5
+
 @interface RoomController ()
 
 - (void)updateGameUsers;
@@ -501,7 +503,9 @@
         {
             _changeRoomTimes ++;
             [self showActivityWithText:NSLS(@"kChangeRoom")];
-//            [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+            if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
+                [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+            }
             [[DrawGameService defaultService] changeRoom];            
         }
             break;
@@ -531,26 +535,29 @@
     [self startGame];
 }
 
-#define MAX_CHANGE_ROOM_PER_DAY     5
+
 
 - (IBAction)clickChangeRoom:(id)sender
 {
     if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 
-                                                             style:CommonDialogStyleSingleButton 
+                                                             style:CommonDialogStyleDoubleButton 
                                                          deelegate:self];
         
+        dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
         return;
     }
+    else{
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
-                                message:NSLS(@"kChangeRoomConfirm") 
-                                  style:CommonDialogStyleDoubleButton 
-                              deelegate:self];
-    dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
-    [dialog showInView:self.view];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
+                                    message:NSLS(@"kChangeRoomConfirm") 
+                                      style:CommonDialogStyleDoubleButton 
+                                  deelegate:self];
+        dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
+        [dialog showInView:self.view];
+    }
     
     
 }

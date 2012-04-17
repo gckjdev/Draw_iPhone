@@ -14,6 +14,9 @@
 
 #define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
 
+#define TSLS(X) NSLocalizedStringFromTable(X, @"TraditionalChineseWord", nil)
+
+
 NSString *UPPER_LETTER_LIST[] = {@"A", @"B", @"C", @"D", @"E", 
     @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", 
     @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"};
@@ -301,6 +304,20 @@ WordManager *GlobalGetWordManager()
         }
     }
     return string;
+}
+
++ (NSString *)changeToTraditionalChinese:(NSString *)text
+{
+    if (text == nil) {
+        return nil;
+    }
+    NSString *ret = @"";
+    for (int i = 0; i < text.length; ++ i) {
+        NSString *sub = [text substringWithRange:NSMakeRange(i, 1)];
+        sub = TSLS(sub);
+        ret = [NSString stringWithFormat:@"%@%@",ret,sub];
+    }
+    return ret;
 }
 
 @end

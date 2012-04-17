@@ -143,7 +143,7 @@
 
 "kGotoCoinShop" = "金币充值";
 
-"kChangeRoomMaxTimes" = "你一天内已经换超过5次房间了，不能再换房间了。";
+"kChangeRoomMaxTimes" = "你换房间次数已经超过限制，现在换房间需要花费你一个金币，确定吗？";
 "kChangeRoomTitle" = "更换房间";
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，一天只能更换5次房间，确定换个房间吗？";
@@ -206,9 +206,9 @@
 "Cancel" = "取消";
 
 "kDrawWord" = "你正在画: %@";
-"kAnswer" = "答案: %@";
+"kAnswer" = "答案: [%@]";
 
-"kNoWord" = "玩家没选词";
+"kNoWord" = "画家逃跑了!";
 "kCleanDrawTitle" = "清屏";
 "kCleanDrawMessage" = "清屏之后之前所画的东西都会消失，确定吗？";
 "kSavePercent" = "节省%02d%%";
@@ -240,6 +240,8 @@
 
 "kShareOtherText" = "酷图分享，画的词是［%@］";
 "kShareMeText" = "看看我画的酷图，画的词是［%@］";
+"kShareGIFOtherText" = "猜猜画画GIF酷图分享，画的词是［%@］";
+"kShareGIFMeText" = "我画的酷图的GIF动画，画的词是［%@］";
 "kShareSend" = "发送微博";
 
 "kPublishWeiboSucc" = "微博已成功发送";
