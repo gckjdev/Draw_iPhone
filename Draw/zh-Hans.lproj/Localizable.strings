@@ -238,10 +238,13 @@
 
 "kCreating_gif" = "正在生成GIF动画文件...";
 
-"kShareOtherText" = "酷图分享，画的词是［%@］";
-"kShareMeText" = "看看我画的酷图，画的词是［%@］";
-"kShareGIFOtherText" = "猜猜画画GIF酷图分享，画的词是［%@］";
-"kShareGIFMeText" = "我画的酷图的GIF动画，画的词是［%@］";
+
+"kShareOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画美图分享# http://caicaihuahua.me";
+"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://caicaihuahua.me";
+
+"kShareGIFOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://caicaihuahua.me";
+"kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://caicaihuahua.me";
+
 "kShareSend" = "发送微博";
 
 "kPublishWeiboSucc" = "微博已成功发送";

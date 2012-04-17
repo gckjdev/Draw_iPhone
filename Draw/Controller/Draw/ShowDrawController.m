@@ -593,6 +593,7 @@ ShowDrawController *GlobalGetShowDrawController()
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
     DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
     [showView addDrawAction:action play:YES];
+    [paint release];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
