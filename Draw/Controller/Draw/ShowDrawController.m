@@ -372,6 +372,31 @@ ShowDrawController *GlobalGetShowDrawController()
     
 }
 
+#define AVATAR_VIEW_SPACE 36.0
+
+- (void)adjustPlayerAvatars:(NSString *)quitUserId
+{
+    
+    PPDebug(@"[adjustPlayerAvatars] userID = %@", quitUserId);
+    
+    BOOL needMove = NO;
+    AvatarView *removeAvatar = nil;
+    
+    for (AvatarView *aView in avatarArray) {
+        if ([aView.userId isEqualToString:quitUserId]) {
+            needMove = YES;
+            removeAvatar = aView;
+        }else if (needMove) {
+            aView.center = CGPointMake(aView.center.x - AVATAR_VIEW_SPACE,
+                                       aView.center.y);
+        }
+    }
+    if (removeAvatar) {
+        [removeAvatar removeFromSuperview];
+        [avatarArray removeObject:removeAvatar];
+    }
+}
+
 - (void)updatePlayerAvatars
 {
     [self cleanAvatars];
@@ -386,7 +411,7 @@ ShowDrawController *GlobalGetShowDrawController()
         AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:user.gender];
         [aView setUserId:user.userId];
         //set center
-        aView.center = CGPointMake(70 + 36 * i, 21);
+        aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
         [self.view addSubview:aView];
         [avatarArray addObject:aView];
         [aView release];
@@ -647,7 +672,8 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
-    [self updatePlayerAvatars];
+//    [self updatePlayerAvatars];
+    [self adjustPlayerAvatars:userId];
     if (_viewIsAppear && [self userCount] <= 1) {
         [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
     }
