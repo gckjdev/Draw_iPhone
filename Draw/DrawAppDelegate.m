@@ -108,7 +108,7 @@ NSString* GlobalGetServerURL()
         [self checkAppVersion:APP_ID];
     }
     
-    [MobClick startWithAppkey:@"4f83980852701565c500003a"];
+    [MobClick startWithAppkey:@"4f83980852701565c500003a"]; // reportPolicy:BATCH channelId:@"91"];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

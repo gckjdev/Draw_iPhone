@@ -503,7 +503,7 @@
         {
             _changeRoomTimes ++;
             [self showActivityWithText:NSLS(@"kChangeRoom")];
-            if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
+            if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
                 [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
             }
             [[DrawGameService defaultService] changeRoom];            
@@ -539,7 +539,7 @@
 
 - (IBAction)clickChangeRoom:(id)sender
 {
-    if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
+    if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 
                                                              style:CommonDialogStyleDoubleButton 
@@ -667,13 +667,20 @@
 
 #pragma mark - Timer Handling
 
-#define START_TIMER_INTERVAL    (1)
-#define PROLONG_INTERVAL        (10)
-#define DEFAULT_START_TIME      (20)
+#define START_TIMER_INTERVAL            (1)
+#define PROLONG_INTERVAL                (10)
+#define DEFAULT_START_TIME_FOR_DRAW     (20)
+#define DEFAULT_START_TIME_FOR_GUESS    (30)
 
 - (void)resetStartTimer
 {
-    _currentTimeCounter = DEFAULT_START_TIME;
+    if ([self isMyTurn]){
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_DRAW;
+    }
+    else{
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_GUESS;
+    }
+    
     [self updateStartButton];
     if (self.startTimer != nil){
         if ([self.startTimer isValid]){
@@ -697,8 +704,8 @@
 - (void)prolongStartTimer
 {
     _currentTimeCounter += PROLONG_INTERVAL;
-    if (_currentTimeCounter >= DEFAULT_START_TIME){
-        _currentTimeCounter = DEFAULT_START_TIME;
+    if (_currentTimeCounter >= DEFAULT_START_TIME_FOR_DRAW){
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_DRAW;
     }
     
     // notice all other users
