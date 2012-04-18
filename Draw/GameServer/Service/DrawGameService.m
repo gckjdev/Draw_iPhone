@@ -602,8 +602,8 @@ static DrawGameService* _defaultService;
 - (void)quitGame
 {
     
-    [_networkClient sendQuitGame:_userId
-                       sessionId:[_session sessionId]];
+//    [_networkClient sendQuitGame:_userId
+//                       sessionId:[_session sessionId]];
     
     [_networkClient disconnect];
 
