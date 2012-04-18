@@ -8,6 +8,7 @@
 
 #import "WordManager.h"
 #import "Word.h"
+#import "PPDebug.h"
 
 #define CN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"CN_Words_Dict" ofType:@"plist"]
 #define EN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"EN_Words_Dict" ofType:@"plist"]
@@ -314,12 +315,15 @@ WordManager *GlobalGetWordManager()
     if (text == nil) {
         return nil;
     }
+    PPDebug(@"<changeToTraditionalChinese>: before text = %@", text);    
+    
     NSString *ret = @"";
     for (int i = 0; i < text.length; ++ i) {
         NSString *sub = [text substringWithRange:NSMakeRange(i, 1)];
         sub = TSLS(sub);
         ret = [NSString stringWithFormat:@"%@%@",ret,sub];
     }
+    PPDebug(@"<changeToTraditionalChinese>: after text = %@", text);
     return ret;
 }
 

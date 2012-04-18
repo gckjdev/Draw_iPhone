@@ -31,6 +31,7 @@
 #import "AccountService.h"
 #import "PenView.h"
 #import "WordManager.h"
+#import "GameTurn.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -69,7 +70,9 @@ DrawViewController *GlobalGetDrawViewController()
     int language = [[UserManager defaultManager] getLanguageType];
     vc.needResetData = YES;
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:NO];            
+    PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
+    
+    [fromController.navigationController pushViewController:vc animated:NO];           
 }
 
 + (void)returnFromController:(UIViewController*)fromController
@@ -77,7 +80,7 @@ DrawViewController *GlobalGetDrawViewController()
     DrawViewController *vc = [DrawViewController instance];
     vc.needResetData = NO;
     [fromController.navigationController popToViewController:vc animated:YES];
-    
+    PPDebug(@"<returnDrawViewController>: not need reset Data");   
 }
 - (void)dealloc
 {
@@ -265,7 +268,12 @@ DrawViewController *GlobalGetDrawViewController()
     [self resetDrawView];
     [popupButton setHidden:YES];
     
+//    if get the word from the current turn, 
+//    the word is null, I Don't know why. By Gamy
     NSString *text = [self.word text];
+    
+    PPDebug(@"<DrawViewController>: reset data, word = %@", text);
+    
     if ([LocaleUtils isTraditionalChinese]) {
         text = [WordManager changeToTraditionalChinese:text];
     }
@@ -360,7 +368,10 @@ DrawViewController *GlobalGetDrawViewController()
 {
 
     if (needResetData) {
+        PPDebug(@"<DrawViewController>: viewDidAppear start reset data");
         [self resetData];
+    }else{
+        PPDebug(@"<DrawViewController>: viewDidAppear skip reset data");        
     }
     [self cleanScreen];
     [pickPenView setHidden:YES];
