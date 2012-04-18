@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<int key="IBDocument.SystemTarget">1296</int>
+		<string key="IBDocument.SystemVersion">11D50d</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1179</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIButton</string>
@@ -72,7 +72,7 @@
 							<object class="IBUIImageView" id="1056444846">
 								<reference key="NSNextResponder" ref="398737041"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{32, 73}, {240, 98}}</string>
+								<string key="NSFrame">{{32, 56}, {240, 136}}</string>
 								<reference key="NSSuperview" ref="398737041"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="556649116"/>
@@ -80,7 +80,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">white_paper.png</string>
+									<string key="NSResourceName">white_paper@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="136130484">
@@ -157,7 +157,6 @@
 								<string key="NSFrame">{{185, 200}, {99, 37}}</string>
 								<reference key="NSSuperview" ref="398737041"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -173,7 +172,7 @@
 							<object class="IBUILabel" id="556649116">
 								<reference key="NSNextResponder" ref="398737041"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{53, 90}, {198, 65}}</string>
+								<string key="NSFrame">{{53, 56}, {198, 136}}</string>
 								<reference key="NSSuperview" ref="398737041"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="489598899"/>
@@ -185,9 +184,10 @@
 								<string key="IBUIText">确定要退出游戏吗？确定要退出游戏吗？</string>
 								<reference key="IBUITextColor" ref="809577702"/>
 								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
+								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">6</int>
+								<int key="IBUILineBreakMode">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">14</double>
@@ -423,12 +423,16 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="logout.png">{16, 16}</string>
-			<string key="white_paper.png">{16, 16}</string>
+			<string key="white_paper@2x.png">{480, 168}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1179</string>
 	</data>
 </archive>

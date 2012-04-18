@@ -10,10 +10,11 @@
 #import <MessageUI/MessageUI.h>
 #import "SNSServiceDelegate.h"
 #import "PPViewController.h"
+#import "CommonDialog.h"
 
 @class SynthesisView;
 
-@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate>
+@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate>
 
 @property (nonatomic, copy) NSString* imageFilePath;
 @property (retain, nonatomic) IBOutlet UIImageView *patternBar;

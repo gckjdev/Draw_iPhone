@@ -18,6 +18,7 @@
 #import "StringUtil.h"
 #import "PPDebug.h"
 
+
 #define PATTERN_TAG_OFFSET 20120403
 
 @interface ShareEditController ()
@@ -144,11 +145,49 @@ enum {
 {
 }
 
+- (void)clickOk:(CommonDialog *)dialog
+{
+    if ([[UserManager defaultManager] hasBindQQWeibo]){
+        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
+                                        imageFilePath:self.imageFilePath 
+                                             delegate:self];        
+    }
+    
+    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
+                                        imageFilePath:self.imageFilePath  
+                                             delegate:self];
+    }
+    
+    if ([[UserManager defaultManager] hasBindFacebook]){
+        [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
+                                            imageFilePath:self.imageFilePath  
+                                                 delegate:self];        
+        
+        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (IBAction)publish:(id)sender
 {
     NSString* path;
     if ([self.imageFilePath hasSuffix:@"gif"]) {
         path = self.imageFilePath;
+        NSDictionary * attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
+        float size = ((NSNumber*)[attributes objectForKey:NSFileSize]).floatValue/1024.0/1024.0;
+        if (size > 1.0) {
+            NSString* gifNotice = [NSString stringWithFormat:NSLS(@"kGifNotice"),size];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") 
+                                                               message:gifNotice
+                                                                 style:CommonDialogStyleDoubleButton 
+                                                             deelegate:self];
+            [dialog showInView:self.view];
+            return;
+        }
+        
     } else {
         UIImage* image = [self.infuseImageView createImage];
         NSData* imageData = UIImagePNGRepresentation(image);
