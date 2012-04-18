@@ -263,6 +263,14 @@ DrawViewController *GlobalGetDrawViewController()
     [penButton setPenColor:[DrawColor blackColor]];
 }
 
+- (void)cleanData
+{
+    [self resetTimer];
+    [drawView clearAllActions];
+    [self setWord:nil];
+    [drawGameService unregisterObserver:self];
+}
+
 - (void)resetData
 {
     [self resetDrawView];
@@ -434,7 +442,12 @@ DrawViewController *GlobalGetDrawViewController()
         
     }
 }
-
+- (void)didBroken
+{
+    //clean data
+    PPDebug(@"<DrawViewController>:didBroken");
+    [self cleanData];
+}
 
 
 #pragma mark - Observer Method/Game Process
@@ -456,11 +469,12 @@ DrawViewController *GlobalGetDrawViewController()
         [self.navigationController pushViewController:rc animated:YES];
     }
     [rc release];
-    [self resetTimer];
-    [drawView clearAllActions];
-    // rem by Benson, // this will crash the app, see log below
-    //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
-    [drawGameService unregisterObserver:self];  
+    [self cleanData];
+//    [self resetTimer];
+//    [drawView clearAllActions];
+//    // rem by Benson, // this will crash the app, see log below
+//    //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
+//    [drawGameService unregisterObserver:self];  
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -511,8 +525,9 @@ DrawViewController *GlobalGetDrawViewController()
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
-        [drawView clearAllActions];
-        [drawGameService unregisterObserver:self];
+//        [drawView clearAllActions];
+//        [drawGameService unregisterObserver:self];
+        [self cleanData];
     }
 
 }

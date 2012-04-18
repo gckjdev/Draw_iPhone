@@ -471,6 +471,20 @@ ShowDrawController *GlobalGetShowDrawController()
 
 }
 
+- (void)cleanData
+{
+    [self resetTimer];
+    [showView cleanAllActions];
+    [self setWord:nil];
+    [drawGameService unregisterObserver:self];
+    _viewIsAppear = NO;
+    
+    [self updateCandidateViews];
+    [self updateBomb];
+    [self updateAnswerViews];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -608,12 +622,15 @@ ShowDrawController *GlobalGetShowDrawController()
     [self popupHappyMessage:NSLS(@"kConnectionRecover") title:nil];
 
 }
+ */
 - (void)didBroken
 {
-    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
+//    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
+    PPDebug(@"<ShowDrawController>:didBroken");
+    [self cleanData];
 
 }
-*/
+
 
 
 
@@ -640,7 +657,6 @@ ShowDrawController *GlobalGetShowDrawController()
     PPDebug(@"<ShowDrawController>didGameTurnComplete");
     [self resetTimer];
     if (_viewIsAppear) {
-        _viewIsAppear = NO;
         NSInteger gainCoin = [[message notification] turnGainCoins];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
@@ -659,8 +675,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self updatePickViewsWithWord:nil lang:languageType];        
         
     }
-    [showView cleanAllActions];
-    [drawGameService unregisterObserver:self];
+    [self cleanData];
 
 }
 
@@ -682,9 +697,7 @@ ShowDrawController *GlobalGetShowDrawController()
     }else{
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [showView cleanAllActions];
-        [self resetTimer];
-        _viewIsAppear = NO;
+        [self cleanData];
         [self updatePickViewsWithWord:nil lang:languageType];        
     }
 }

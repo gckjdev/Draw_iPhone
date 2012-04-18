@@ -106,6 +106,13 @@ static DrawGameService* _defaultService;
     if ([self.homeDelegate respondsToSelector:@selector(didBroken)]){
         [_homeDelegate didBroken];
     }
+    if ([self.drawDelegate respondsToSelector:@selector(didBroken)]){
+        [_drawDelegate didBroken];
+    }
+    if ([self.showDelegate respondsToSelector:@selector(didBroken)]){
+        [_showDelegate didBroken];
+    }
+    
 }
 
 - (BOOL)isConnected
