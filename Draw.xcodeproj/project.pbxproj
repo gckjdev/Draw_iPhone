@@ -1374,6 +1374,7 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
+		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		CAE2CABC151B2ECA0062ED37 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
@@ -4417,9 +4418,10 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA1377281524598700B5790B /* MainDataModel.xcdatamodel */;
+			currentVersion = CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
