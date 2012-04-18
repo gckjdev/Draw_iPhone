@@ -53,7 +53,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (nonatomic, assign) BOOL needResetData;
-
 @property (retain, nonatomic) Word *word;
 
 + (DrawViewController *)instance;
