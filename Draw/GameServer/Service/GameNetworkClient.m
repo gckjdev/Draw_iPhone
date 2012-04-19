@@ -266,4 +266,12 @@ static GameNetworkClient* _defaultGameNetworkClient;
                     round:round];
 }
 
+- (void)sendKeepAlive:(NSString*)userId
+            sessionId:(long)sessionId
+{
+    [self sendSimpleMessage:GameCommandTypeKeepAliveRequest userId:userId sessionId:sessionId];        
+}
+
+
+
 @end

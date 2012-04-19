@@ -19,6 +19,8 @@ typedef enum {
   GameCommandTypeCompleteGameResponse = 18,
   GameCommandTypeForceUserQuitRequest = 19,
   GameCommandTypeForceUserQuitResponse = 20,
+  GameCommandTypeKeepAliveRequest = 91,
+  GameCommandTypeKeepAliveResponse = 92,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeUserQuitNotificationRequest = 53,

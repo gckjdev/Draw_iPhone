@@ -35,6 +35,9 @@ enum GameCommandType {
   FORCE_USER_QUIT_REQUEST = 19;
   FORCE_USER_QUIT_RESPONSE = 20;
   
+  KEEP_ALIVE_REQUEST = 91;
+  KEEP_ALIVE_RESPONSE = 92;
+  
   // server --> client
   
   // notifications
