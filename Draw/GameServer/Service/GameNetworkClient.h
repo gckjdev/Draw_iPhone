@@ -15,6 +15,7 @@
 @interface GameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
     int _messageIdIndex;
+
 }
 
 + (GameNetworkClient*)defaultInstance;
@@ -64,7 +65,12 @@
                  sessionId:(long)sessionId
                      round:(int)round;
 
+- (void)sendKeepAlive:(NSString*)userId
+            sessionId:(long)sessionId;
+
 - (int)stringToRank:(NSString*)rankString;
 - (NSString*)rankToString:(int)rank;
+
+
 
 @end
