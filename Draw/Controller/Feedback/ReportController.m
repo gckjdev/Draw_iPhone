@@ -24,7 +24,7 @@
 @synthesize contentText;
 @synthesize contactText;
 @synthesize doneButton;
-
+@synthesize lastReport = _lastReport;
 
 #define BUTTON_TAG_NEXT 201204101
 #define BUTTON_TAG_DONE 201204102
@@ -85,6 +85,10 @@
         [self popupMessage:NSLS(@"kContentNull") title:nil];
         return;
     }
+    if ([self.contentText.text isEqualToString:_lastReport]) {
+        [self popupMessage:NSLS(@"kContentRepeat") title:nil];
+        return;
+    }
     switch (_reportType) {   
         case SUBMIT_BUG: {
             [[UserService defaultService] reportBugs:self.contentText.text withContact:self.contactText.text viewController:self];
@@ -96,6 +100,7 @@
         default:
             break;
     }
+    self.lastReport = [self.contentText.text copy];
 }
 
 - (IBAction)hideKeyboard:(id)sender
@@ -126,6 +131,7 @@
     self = [super init];
     if (self) {
         _reportType = aType;
+        _lastReport = [[NSString alloc] init];
     }
     return self;
 }
@@ -213,6 +219,7 @@
     [doneButton release];
     [reporterTitle release];
     [contactBackground release];
+    [_lastReport release];
     [super dealloc];
 }
 @end
