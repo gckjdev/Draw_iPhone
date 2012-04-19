@@ -16,6 +16,7 @@
 @end
 
 @implementation ReportController
+@synthesize contactBackground;
 @synthesize reporterTitle;
 @synthesize contentBackground;
 @synthesize submitButton;
@@ -34,7 +35,8 @@
     [UIView setAnimationDuration:0.8];
     [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
     [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(40, 175, 240, 31)];
+    [self.contactText setFrame:CGRectMake(50, 175, 230, 31)];
+    [self.contactBackground setFrame:CGRectMake(40, 175, 240, 31)];
     [UIView commitAnimations];
 }
 
@@ -44,13 +46,17 @@
     [UIView setAnimationDuration:0.8];
     [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
     [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(40, 260, 240, 31)];
+    [self.contactText setFrame:CGRectMake(50, 260, 230, 31)];
+    [self.contactBackground setFrame:CGRectMake(40, 260, 240, 31)];
     [UIView commitAnimations];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
+    [doneButton setTitle:NSLS(@"kNextStep") forState:UIControlStateNormal];
+    
+    [doneButton setTag:BUTTON_TAG_NEXT];
     return YES;
 }
 
@@ -99,7 +105,7 @@
         [self.contactText becomeFirstResponder];
     }else if(button.tag == BUTTON_TAG_DONE)
     {
-        [self submit:nil];
+        [self endEditingContact:nil];
     }
 }
 
@@ -137,13 +143,11 @@
 {
     [super viewDidLoad];
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
-    [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];
-    [self.contactText setBackground:[[ShareImageManager defaultManager] inputImage]];
+    [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];    
+    [self.contactBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
-    [doneButton setTitle:NSLS(@"kNextStep") forState:UIControlStateNormal];
     
-    [doneButton setTag:BUTTON_TAG_NEXT];
     
     [self.contactText setPlaceholder:NSLS(@"kInput_your_contact")];
     
@@ -189,6 +193,7 @@
     [self setContentBackground:nil];
     [self setDoneButton:nil];
     [self setReporterTitle:nil];
+    [self setContactBackground:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -207,6 +212,7 @@
     [contentBackground release];
     [doneButton release];
     [reporterTitle release];
+    [contactBackground release];
     [super dealloc];
 }
 @end
