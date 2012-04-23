@@ -27,7 +27,10 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return @"http://you100.me:8001/api/i?";    
+    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+    return (url == nil) ? @"http://you100.me:8001/api/i?" : url;
+    
+//    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.198:8000/api/i?";    
 }
@@ -109,6 +112,7 @@ NSString* GlobalGetServerURL()
     }
     
     [MobClick startWithAppkey:@"4f83980852701565c500003a"]; // reportPolicy:BATCH channelId:@"91"];
+    [MobClick updateOnlineConfig];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
@@ -116,6 +120,7 @@ NSString* GlobalGetServerURL()
     // Fetch Server List At Background
     [[RouterService defaultService] fetchServerListAtBackground];
     [[PriceService defaultService] syncShoppingListAtBackground];
+    [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
     return YES;
 }

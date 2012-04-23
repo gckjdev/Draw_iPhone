@@ -19,6 +19,7 @@
 #import "UserItem.h"
 #import "TimeUtils.h"
 #import "StoreKitUtils.h"
+#import "TransactionReceiptManager.h"
 
 @implementation AccountService
 
@@ -210,15 +211,72 @@ static AccountService* _defaultAccountService;
 
 #pragma mark - Charge/Deduct Service to Server
 
+- (void)retryVerifyReceiptAtBackground
+{
+    NSArray* retryList = [[TransactionReceiptManager defaultManager] findAllUnverfiedReceipts];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    if (queue == NULL)
+        return;
+    
+    
+    for (TransactionReceipt* receipt in retryList){
+        NSString* receiptString = [NSString stringWithFormat:@"%@",receipt.transactionReceipt];
+        dispatch_async(queue, ^{
+            TransactionVerifyResult result = [StoreKitUtils verifyReceipt:receiptString];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (result == VERIFY_UNKNOWN){
+                    PPDebug(@"<verifyReceiptWithAmount> UNKNOWN, Maybe Network Failure");
+                    [[TransactionReceiptManager defaultManager] verifyUnknown:receipt];                    
+                }
+                else if (result == VERIFY_OK){
+                    PPDebug(@"<verifyReceiptWithAmount> OK");
+                    [[TransactionReceiptManager defaultManager] verifySuccess:receipt];                    
+                }
+                else{
+                    PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                
+                    [[TransactionReceiptManager defaultManager] verifyFailure:receipt errorCode:result];                    
+                    
+                    // reset account balance
+                    [self deductAccount:[receipt.amount intValue] source:RefundForVerifyReceiptFailure];
+                }
+            });    
+        });
+    }
+}
+
 - (void)verifyReceiptWithAmount:(int)amount
                   transactionId:(NSString*)transactionId
              transactionRecepit:(NSString*)transactionRecepit
 {
     dispatch_async(workingQueue, ^{
         
-        BOOL result = [StoreKitUtils verifyReceipt:transactionRecepit];
+        TransactionVerifyResult result = [StoreKitUtils verifyReceipt:transactionRecepit];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (result == VERIFY_UNKNOWN){
+                PPDebug(@"<verifyReceiptWithAmount> UNKNOWN, Maybe Network Failure");
+                
+                [[TransactionReceiptManager defaultManager] createReceipt:transactionId 
+                                                                productId:nil 
+                                                                   amount:amount 
+                                                       transactionReceipt:transactionRecepit];
+            }
+            else if (result == VERIFY_OK){
+                PPDebug(@"<verifyReceiptWithAmount> OK");
+
+                // for test
+//                [[TransactionReceiptManager defaultManager] createReceipt:transactionId 
+//                                                                productId:nil 
+//                                                                   amount:amount 
+//                                                       transactionReceipt:transactionRecepit];
+            }
+            else{
+                PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                
+                
+                // reset account balance
+                [self deductAccount:amount source:RefundForVerifyReceiptFailure];
+            }
         });        
     });
     
@@ -257,9 +315,11 @@ static AccountService* _defaultAccountService;
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
             }
             
-            [self verifyReceiptWithAmount:amount 
-                            transactionId:transactionId 
-                       transactionRecepit:transactionRecepit];
+            if (source == PurchaseType){
+                [self verifyReceiptWithAmount:amount 
+                                transactionId:transactionId 
+                           transactionRecepit:transactionRecepit];
+            }
         });        
     });
 }

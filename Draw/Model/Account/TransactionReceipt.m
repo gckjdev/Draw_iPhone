@@ -22,4 +22,6 @@
 @dynamic lastRetryDate;
 @dynamic retryTimes;
 
+
+
 @end

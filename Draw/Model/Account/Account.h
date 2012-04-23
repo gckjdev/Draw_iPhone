@@ -16,7 +16,10 @@ typedef enum  {
     GuessRewardType = 5,
     
     EscapeType = 10,
-    ChangeRoomType = 11
+    ChangeRoomType = 11,
+    
+    RefundForVerifyReceiptFailure = 21
+    
 }BalanceSourceType;
 
 @interface UserAccount : NSObject

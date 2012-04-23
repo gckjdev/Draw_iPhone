@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TransactionReceipt.h"
 
 @interface TransactionReceiptManager : NSObject
+
+- (NSArray*)findAllUnverfiedReceipts;
+- (void)createReceipt:(NSString*)transactionId
+            productId:(NSString*)productId
+               amount:(int)amount
+   transactionReceipt:(NSString*)transactionReceipt;
+
+
++ (TransactionReceiptManager*)defaultManager;
+- (void)verifyUnknown:(TransactionReceipt*)receipt;
+- (void)verifySuccess:(TransactionReceipt*)receipt;
+- (void)verifyFailure:(TransactionReceipt*)receipt errorCode:(int)errorCode;
 
 @end
