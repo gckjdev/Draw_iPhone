@@ -241,6 +241,9 @@ static AccountService* _defaultAccountService;
             else{
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
             }
+            
+            //
+            [self verifyReceipt];
         });        
     });
 }

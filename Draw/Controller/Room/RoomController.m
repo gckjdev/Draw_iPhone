@@ -148,7 +148,7 @@
 }
 
 #pragma mark - GUI Update Methods
-#define DRAWING_MARK_TAG    20120404
+#define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 
 - (void)updateGameUsers

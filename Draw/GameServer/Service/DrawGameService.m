@@ -80,6 +80,11 @@ static DrawGameService* _defaultService;
 {
     [self clearDisconnectTimer];
     
+    if ([self isConnected] == NO){
+        PPDebug(@"<startDisconnectTimer> but server not connected");
+        return;
+    }
+    
     PPDebug(@"Set disconnect timer");
 
     _disconnectTimer = [NSTimer scheduledTimerWithTimeInterval:DISCONNECT_TIMER_INTERVAL 
