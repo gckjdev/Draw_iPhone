@@ -18,6 +18,9 @@
 @property (nonatomic, retain) NSString * transactionReceipt;
 @property (nonatomic, retain) NSNumber * verifyStatus;
 @property (nonatomic, retain) NSDate * verifyDate;
-@property (nonatomic, retain) NSDate * createDate;
+@property (nonatomic, retain) NSNumber * createDate;
+@property (nonatomic, retain) NSNumber * isVerified;
+@property (nonatomic, retain) NSDate * lastRetryDate;
+@property (nonatomic, retain) NSNumber * retryTimes;
 
 @end

@@ -18,5 +18,8 @@
 @dynamic verifyStatus;
 @dynamic verifyDate;
 @dynamic createDate;
+@dynamic isVerified;
+@dynamic lastRetryDate;
+@dynamic retryTimes;
 
 @end
