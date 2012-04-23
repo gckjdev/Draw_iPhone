@@ -18,6 +18,7 @@
 #import "ItemManager.h"
 #import "UserItem.h"
 #import "TimeUtils.h"
+#import "StoreKitUtils.h"
 
 @implementation AccountService
 
@@ -209,6 +210,20 @@ static AccountService* _defaultAccountService;
 
 #pragma mark - Charge/Deduct Service to Server
 
+- (void)verifyReceiptWithAmount:(int)amount
+                  transactionId:(NSString*)transactionId
+             transactionRecepit:(NSString*)transactionRecepit
+{
+    dispatch_async(workingQueue, ^{
+        
+        BOOL result = [StoreKitUtils verifyReceipt:transactionRecepit];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });        
+    });
+    
+}
+
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source 
         transactionId:(NSString*)transactionId
@@ -242,8 +257,9 @@ static AccountService* _defaultAccountService;
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
             }
             
-            //
-            [self verifyReceipt];
+            [self verifyReceiptWithAmount:amount 
+                            transactionId:transactionId 
+                       transactionRecepit:transactionRecepit];
         });        
     });
 }

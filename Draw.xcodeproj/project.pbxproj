@@ -491,6 +491,7 @@
 		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
 		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
+		CAC4DCE51545261900A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE41545261900A42CF2 /* TransactionReceipt.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
@@ -1364,6 +1365,8 @@
 		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
 		CAC4DCE015450E8F00A42CF2 /* StoreKitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitUtils.h; sourceTree = "<group>"; };
 		CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreKitUtils.m; sourceTree = "<group>"; };
+		CAC4DCE31545261900A42CF2 /* TransactionReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceipt.h; sourceTree = "<group>"; };
+		CAC4DCE41545261900A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
@@ -3429,6 +3432,8 @@
 				CAE2CABD151B2ECA0062ED37 /* Account.m */,
 				CAF10AF9151C665D008C4512 /* AccountManager.h */,
 				CAF10AFA151C665D008C4512 /* AccountManager.m */,
+				CAC4DCE31545261900A42CF2 /* TransactionReceipt.h */,
+				CAC4DCE41545261900A42CF2 /* TransactionReceipt.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -4116,6 +4121,7 @@
 				CA6F0586153C14DD00B1AE11 /* PenView.m in Sources */,
 				CA8B3528153D12D800B15CBF /* WidthView.m in Sources */,
 				CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */,
+				CAC4DCE51545261900A42CF2 /* TransactionReceipt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

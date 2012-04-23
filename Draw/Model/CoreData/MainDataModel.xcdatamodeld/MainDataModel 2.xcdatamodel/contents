@@ -27,6 +27,15 @@
         <attribute name="serverKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="usage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="TransactionReceipt" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transactionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transactionReceipt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="verifyDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="verifyStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="UserItem" representedClassName="UserItem" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -41,5 +50,6 @@
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>
