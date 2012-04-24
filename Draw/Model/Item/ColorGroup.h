@@ -18,7 +18,14 @@
 @property(nonatomic, assign) NSInteger groupId;
 @property(nonatomic, retain) NSArray *colorViewList;
 @property(nonatomic, assign) NSInteger price;
+@property(nonatomic, assign) BOOL hasBought;
 - (NSInteger)colorViewCount;
-- (id)initWithGroupId:(NSInteger)groupId colorViewList:(NSArray *)colorViewList;
+- (id)initWithGroupId:(NSInteger)groupId 
+        colorViewList:(NSArray *)colorViewList;
+
+- (id)initWithGroupId:(NSInteger)groupId 
+        colorViewList:(NSArray *)colorViewList 
+            hasBought:(BOOL)hasBought;
+
 
 @end

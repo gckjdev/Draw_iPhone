@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ColorShopView : UIViewController
+@class ColorGroup;
+
+@interface ColorShopView : UIView<UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray *colorGroups;
+}
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *coinCountLabel;
+@property (retain, nonatomic) IBOutlet UITableView *dataTableView;
+
+//- (id)initWithFrame:(CGRect)frame colorGroups:(NSArray *)colorGroups;
 
 @end
