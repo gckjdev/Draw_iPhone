@@ -16,7 +16,7 @@
 - (void)didUserRegistered:(int)resultCode;
 - (void)didUserUpdated:(int)resultCode;
 - (void)didSendFeedback:(int)resultCode;
-
+- (void)didUserLogined:(int)resultCode;
 @end
 
 @interface UserService : CommonService
@@ -48,6 +48,11 @@
 - (void)reportBugs:(NSString*)bugDescription 
        withContact:(NSString*)contact  
     viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+- (void)loginUserByEmail:(NSString*)email 
+                password:(NSString*)password 
+          viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
+
 
 @end

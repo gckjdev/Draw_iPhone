@@ -254,6 +254,20 @@
     }
 }
 
+- (void)didUserLogined:(int)resultCode
+{
+    self.navigationController.navigationBarHidden = YES;
+    
+    // go to next view
+    PPDebug(@"<didUserRegistered> result code = %d", resultCode);
+    if (resultCode == 0){
+        
+        [[AccountService defaultService] syncAccountAndItem];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES]; 
+    }
+}
+
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
 {        
     if (result == 0){
@@ -262,6 +276,18 @@
     else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+#pragma mark - input idalog delegate
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    [[UserService defaultService] loginUserByEmail:userIdTextField.text 
+                                          password:[targetText encodeMD5Base64:PASSWORD_KEY]
+                                    viewController:self];
+}
+- (void)clickCancel:(InputDialog *)dialog
+{
+    
 }
 
 @end
