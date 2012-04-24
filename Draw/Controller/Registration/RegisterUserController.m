@@ -254,6 +254,20 @@
     }
 }
 
+- (void)didUserLogined:(int)resultCode
+{
+    self.navigationController.navigationBarHidden = YES;
+    
+    // go to next view
+    PPDebug(@"<didUserRegistered> result code = %d", resultCode);
+    if (resultCode == 0){
+        
+        [[AccountService defaultService] syncAccountAndItem];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES]; 
+    }
+}
+
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
 {        
     if (result == 0){

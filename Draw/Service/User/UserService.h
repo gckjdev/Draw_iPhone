@@ -16,7 +16,7 @@
 - (void)didUserRegistered:(int)resultCode;
 - (void)didUserUpdated:(int)resultCode;
 - (void)didSendFeedback:(int)resultCode;
-
+- (void)didUserLogined:(int)resultCode;
 @end
 
 @interface UserService : CommonService

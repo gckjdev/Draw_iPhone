@@ -374,8 +374,8 @@ static UserService* _defaultUserService;
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
                 
-                if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
-                    [viewController didUserRegistered:output.resultCode];                    
+                if ([viewController respondsToSelector:@selector(didUserLogined:)]){
+                    [viewController didUserLogined:output.resultCode];                    
                 }
             }
             else if (output.resultCode == ERROR_NETWORK) {
