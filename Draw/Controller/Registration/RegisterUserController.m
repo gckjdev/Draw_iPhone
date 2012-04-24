@@ -264,4 +264,16 @@
     }
 }
 
+#pragma mark - input idalog delegate
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    [[UserService defaultService] loginUserByEmail:userIdTextField.text 
+                                          password:[targetText encodeMD5Base64:PASSWORD_KEY]
+                                    viewController:self];
+}
+- (void)clickCancel:(InputDialog *)dialog
+{
+    
+}
+
 @end

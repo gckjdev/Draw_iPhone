@@ -16,6 +16,7 @@
 #import "UIImageExt.h"
 #import "SNSConstants.h"
 #import "AccountManager.h"
+#import "InputDialog.h"
 
 @implementation UserService
 
@@ -31,7 +32,7 @@ static UserService* _defaultUserService;
 
 - (void)registerUser:(NSString*)email 
             password:(NSString*)password 
-      viewController:(PPViewController<UserServiceDelegate>*)viewController
+      viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
 {
     
     // TODO send device id later
@@ -78,7 +79,10 @@ static UserService* _defaultUserService;
             }
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                //[viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kPassword") delegate:viewController];
+                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                [dialog showInView:viewController.view];
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
@@ -333,6 +337,73 @@ static UserService* _defaultUserService;
             }
         });
     });
+}
+
+- (void)loginUserByEmail:(NSString*)email 
+                password:(NSString*)password 
+          viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    NSString* appId = APP_ID;
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    
+    [viewController showActivityWithText:NSLS(@"kLoginUser")];    
+    dispatch_async(workingQueue, ^{            
+        
+        CommonNetworkOutput* output = 
+        [GameNetworkRequest loginUser:SERVER_URL 
+                                appId:appId 
+                                email:email 
+                             password:password 
+                          deviceToken:deviceToken];                
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                // save return User ID locally
+                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
+                NSString* nickName = [UserManager nickNameByEmail:email];
+                
+                // save data                
+                [[UserManager defaultManager] saveUserId:userId 
+                                                   email:email 
+                                                password:password 
+                                                nickName:nickName 
+                                               avatarURL:nil];
+                
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                
+                if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                    [viewController didUserRegistered:output.resultCode];                    
+                }
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_USER_EMAIL_NOT_FOUND) {
+                // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
+                [viewController popupUnhappyMessage:NSLS(@"kEmailNotFound") title:nil];
+            }
+            else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
+                // @"对不起，该电子邮件已经被注册"
+                [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
+            }
+            else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
+                // @"对不起，该电子邮件格式不正确，请重新输入"
+                [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+            }
+            else {
+                // @"对不起，注册失败，请稍候再试"
+                [viewController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                [viewController didUserRegistered:output.resultCode];                    
+            }
+        }); 
+    });
+    
 }
 //- (void)checkDevice
 //{    

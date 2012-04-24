@@ -266,3 +266,8 @@
 "kGifNotice" = "The size of GIF is %.2fMB,it may cost some time for publishing";
 "kGifTips" = "Tips";
 "kContentRepeat" = "You have reported it just now!";
+//4月23新增
+"kEnterPassword" = "Please enter password";
+"kPsdNotMatch" = "Incorrect password";
+"kEmailNotFound" = "Email not found";
+

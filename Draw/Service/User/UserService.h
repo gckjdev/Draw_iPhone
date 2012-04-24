@@ -48,6 +48,11 @@
 - (void)reportBugs:(NSString*)bugDescription 
        withContact:(NSString*)contact  
     viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+- (void)loginUserByEmail:(NSString*)email 
+                password:(NSString*)password 
+          viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
+
 
 @end
