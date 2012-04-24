@@ -16,6 +16,7 @@
 @class DrawViewController;
 @class RoomController;
 @class HomeController;
+@class NetworkDetector;
 
 @interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
@@ -28,6 +29,6 @@
 
 @property (nonatomic, retain) RoomController *roomController;
 @property (nonatomic, retain) HomeController *homeController;
-
+@property (nonatomic, retain) NetworkDetector *networkDetector;
 
 @end
