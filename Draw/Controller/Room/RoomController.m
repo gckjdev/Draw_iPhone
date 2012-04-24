@@ -571,6 +571,7 @@
                 [self prolongStartTimer];
                 quickDuration = currentTime;
                 _clickCount ++;
+                [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kWaitMessage"))];
             }
             else{
                 [self popupMessage:NSLS(@"kExceedMaxProlongTimes") title:nil];
@@ -584,6 +585,7 @@
         if (currentTime - quickDuration > QUICK_DURATION) {
             [[DrawGameService defaultService] askQuickGame];            
             quickDuration = currentTime;
+            [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kQuickMessage"))];
         }else{
             [self popupMessage:NSLS(@"kClickTooFast") title:nil];
         }
