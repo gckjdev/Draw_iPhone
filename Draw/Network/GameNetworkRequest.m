@@ -223,11 +223,11 @@
     
 }
 
-+ (CommonNetworkOutput*)loginUserByEmail:(NSString*)baseURL
-                                   appId:(NSString*)appId
-                                   email:(NSString*)email
-                                password:(NSString*)password
-                             deviceToken:(NSString*)deviceToken
++ (CommonNetworkOutput*)loginUser:(NSString*)baseURL
+                            appId:(NSString*)appId
+                            email:(NSString*)email 
+                         password:(NSString*)password 
+                      deviceToken:(NSString*)deviceToken
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];

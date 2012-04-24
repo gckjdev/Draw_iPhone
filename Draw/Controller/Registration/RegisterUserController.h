@@ -11,8 +11,9 @@
 #import "PPViewController.h"
 #import "SNSServiceDelegate.h"
 #import "SNSConstants.h"
+#import "PassWordDialog.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate, InputDialogDelegate>
 {
     int _currentLoginType;
 }

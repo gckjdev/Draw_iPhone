@@ -267,8 +267,15 @@
 "kGifTips" = "Tips";
 "kContentRepeat" = "You have reported it just now!";
 
+
+
+
 /*the new words below without Japanese*/
 
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
+//4月23新增
+"kEnterPassword" = "Please enter password";
+"kPsdNotMatch" = "Incorrect password";
+"kEmailNotFound" = "Email not found";
 
