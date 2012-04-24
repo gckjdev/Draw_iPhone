@@ -21,6 +21,8 @@
     DrawGameService *drawGameService;
     ShowDrawView *showView;
     NSString *_candidateString;
+//    NSString *_traditionalCandidateString;
+    
     NSTimer *guessTimer;
     NSInteger retainCount;
     LanguageType languageType;

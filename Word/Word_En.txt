@@ -1416,15 +1416,83 @@ Jack 0
 Lin 0
 snake 1
 
+oscar 1
+idol 2
+youtube 2
+google 0
 
+greece 0
 
-
-
-
-
-
-
-
-
-
-
+bling 0
+pitfall 1
+AVATAR 2
+macbook 0
+yoyo 0
+visine 1
+alien 0
+android 0
+triplet 2
+carseat 0
+yoda 0
+fireball 0
+tweezers 1
+traffic 1
+pyramid 0
+grave 0
+Lincoln 2
+snoopy 0
+parrot 0
+sombrero 2
+seasick 1
+jigsaw 0
+ariel 0
+code 0
+strategy 2
+keyboard 0
+alpaca 1
+diamond 0
+sofa 0
+calendar 0
+ladygaga 2
+avirl 2
+assassin 2
+SLAMDUNK 2
+pikachu 1
+antenna 0
+bromance 2
+MOZART 2
+GOOFY 2
+peeps 1
+ironman 1
+Fuji 1
+aquaman 2
+hotsauce 2
+ALADDIN 2
+butt 0
+venom 1
+goddess 1
+kungfu 1
+swoosh 1
+KOBE 1
+dunk 1
+scooby 1
+pancake 1
+SHREK 2
+ADELE 2
+riddler 2
+vader 2
+pegasus 2
+Arnold 2
+caveman 1
+bigpipes 2
+skrillex 2
+camping 1
+drapes 1
+greenday 2
+strawman 0
+leopard 2
+butcher 2
+claw 0
+weight 0
+height 0
+Bieber 2

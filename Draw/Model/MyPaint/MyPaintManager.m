@@ -86,8 +86,17 @@ static MyPaintManager* _defaultManager;
     BOOL result = [dataManager save];
 
     if (result && [[NSFileManager defaultManager] fileExistsAtPath:image]) {
-        [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
-        PPDebug(@"<deleteMyPaints> remove image at %@", image);
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        if (queue == NULL){
+            queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        }
+
+        if (queue != NULL){
+            dispatch_async(queue, ^{
+                [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+                PPDebug(@"<deleteMyPaints> remove image at %@", image);
+            });
+        }
     }
     
     return result;

@@ -18,6 +18,8 @@
 @class Word;
 @class ShareImageManager;
 @class ColorShopController;
+@class PenView;
+
 @interface DrawViewController : PPViewController<DrawViewDelegate, ColorShopControllerDelegate,
             DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
     DrawView *drawView;
@@ -49,9 +51,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
-@property (retain, nonatomic) IBOutlet UIButton *penButton;
+@property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (nonatomic, assign) BOOL needResetData;
-
 @property (retain, nonatomic) Word *word;
 
 + (DrawViewController *)instance;

@@ -144,7 +144,7 @@
 
 "kGotoCoinShop" = "Coin Shop";
 
-"kChangeRoomMaxTimes" = "You have changed room more than 5 times a day. Cannot change any more.";
+"kChangeRoomMaxTimes" = "You changed room too many times. Now it costs you 1 coin to change room. Are you sure?";
 "kChangeRoomTitle" = "Switch Room";
 "kChangeRoomConfirm" = "Do you want to switch to another room? You can try 5 times per day.";
 "kQuitGameTitle" = "Quit Game";
@@ -203,8 +203,8 @@
 "Cancel" = "Cancel";
 
 "kDrawWord" = "Drawing: %@";
-"kAnswer" = "Answer: %@";
-"kNoWord" = "Unselect word";
+"kAnswer" = "Answer: [%@]";
+"kNoWord" = "Maybe Drawer Quit!";
 "kCleanDrawTitle" = "Clean Draw";
 "kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
@@ -238,6 +238,8 @@
 "kCreating_gif" = "Creating GIF Files...";
 "kShareOtherText" = "What An Awesome Drawing - %@";
 "kShareMeText" = "My Awesome Drawing for %@";
+"kShareGIFOtherText" = "What An Awesome Drawing - %@";
+"kShareGIFMeText" = "My Awesome Drawing for %@";
 "kShareSend" = "Send";
 
 "kPublishWeiboSucc" = "Message Sent";
@@ -258,3 +260,9 @@
 "kContentNull" = "Content can not be empty.";
 
 "kNoDrawings" = "No Drawing";
+"kAll" = "  All";
+"kMine" = "Mine  ";
+"kNone" = "None";
+"kGifNotice" = "The size of GIF is %.2fMB,it may cost some time for publishing";
+"kGifTips" = "Tips";
+"kContentRepeat" = "You have reported it just now!";

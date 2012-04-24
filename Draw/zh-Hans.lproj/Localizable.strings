@@ -143,7 +143,7 @@
 
 "kGotoCoinShop" = "金币充值";
 
-"kChangeRoomMaxTimes" = "你一天内已经换超过5次房间了，不能再换房间了。";
+"kChangeRoomMaxTimes" = "你换房间次数已经超过限制，现在换房间需要花费你一个金币，确定吗？";
 "kChangeRoomTitle" = "更换房间";
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
 "kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，一天只能更换5次房间，确定换个房间吗？";
@@ -206,9 +206,9 @@
 "Cancel" = "取消";
 
 "kDrawWord" = "你正在画: %@";
-"kAnswer" = "答案: %@";
+"kAnswer" = "答案: [%@]";
 
-"kNoWord" = "玩家没选词";
+"kNoWord" = "画家逃跑了!";
 "kCleanDrawTitle" = "清屏";
 "kCleanDrawMessage" = "清屏之后之前所画的东西都会消失，确定吗？";
 "kSavePercent" = "节省%02d%%";
@@ -238,8 +238,13 @@
 
 "kCreating_gif" = "正在生成GIF动画文件...";
 
-"kShareOtherText" = "酷图分享，画的词是［%@］";
-"kShareMeText" = "看看我画的酷图，画的词是［%@］";
+
+"kShareOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画美图分享# http://caicaihuahua.me";
+"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://caicaihuahua.me";
+
+"kShareGIFOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://caicaihuahua.me";
+"kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://caicaihuahua.me";
+
 "kShareSend" = "发送微博";
 
 "kPublishWeiboSucc" = "微博已成功发送";
@@ -266,3 +271,9 @@
 "kContentNull" = "内容不能为空哦。";
 
 "kNoDrawings" = "你还没有任何作品呢";
+"kAll" = "  所有";
+"kMine" = "我的  ";
+"kNone" = "无";
+"kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片";
+"kGifTips" = "温馨提示";
+"kContentRepeat" = "您已经汇报过这个问题了!";

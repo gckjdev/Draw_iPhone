@@ -42,6 +42,9 @@
 - (void)didConnected;
 - (void)didBroken;
 
+
+
+
 @end
 
 @class GameSession;
@@ -56,6 +59,9 @@
 
 //    int _sessionId;
     BOOL start;
+    
+    NSTimer *_disconnectTimer;
+    NSTimer *_keepAliveTimer;    
     
     NSMutableSet *_historySessionSet;
 }
@@ -103,8 +109,15 @@
 - (void)connectServer;
 - (void)disconnectServer;
 
+- (void)startDisconnectTimer;
+- (void)clearDisconnectTimer;
+
 - (void)rankGameResult:(int)rank;
 - (void)increaseRoundNumber;
 - (NSInteger)roundNumber;
 - (SessionStatus) sessionStatus;
+
+- (void)scheduleKeepAliveTimer;
+- (void)clearKeepAliveTimer;
+
 @end

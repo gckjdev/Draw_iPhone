@@ -67,6 +67,6 @@
 
 - (int)checkIn;
 
-
+- (void)retryVerifyReceiptAtBackground;
 
 @end

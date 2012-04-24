@@ -207,6 +207,11 @@ ShowDrawController *GlobalGetShowDrawController()
         [button setEnabled:YES];
         if (self.candidateString != nil) {
             NSString *string = [self.candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
+            
+            if ([LocaleUtils isTraditionalChinese]) {
+                string = [WordManager changeToTraditionalChinese:string];
+            }
+            
             [button setTitle:string forState:UIControlStateNormal];
             if ([string isEqualToString:@" "]) {
                 [button setEnabled:NO];
@@ -258,7 +263,14 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         NSString *text = [button titleForState:UIControlStateNormal];
+
         if ([text length] == 1 && ![text isEqualToString:@" "]) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSString *temp = [button titleForState:UIControlStateSelected];
+                if (temp) {
+                    text = temp;
+                }
+            }
             answer = [NSString stringWithFormat:@"%@%@",answer,text];
         }
     }
@@ -360,6 +372,31 @@ ShowDrawController *GlobalGetShowDrawController()
     
 }
 
+#define AVATAR_VIEW_SPACE 36.0
+
+- (void)adjustPlayerAvatars:(NSString *)quitUserId
+{
+    
+    PPDebug(@"[adjustPlayerAvatars] userID = %@", quitUserId);
+    
+    BOOL needMove = NO;
+    AvatarView *removeAvatar = nil;
+    
+    for (AvatarView *aView in avatarArray) {
+        if ([aView.userId isEqualToString:quitUserId]) {
+            needMove = YES;
+            removeAvatar = aView;
+        }else if (needMove) {
+            aView.center = CGPointMake(aView.center.x - AVATAR_VIEW_SPACE,
+                                       aView.center.y);
+        }
+    }
+    if (removeAvatar) {
+        [removeAvatar removeFromSuperview];
+        [avatarArray removeObject:removeAvatar];
+    }
+}
+
 - (void)updatePlayerAvatars
 {
     [self cleanAvatars];
@@ -371,10 +408,14 @@ ShowDrawController *GlobalGetShowDrawController()
         {
             type = Drawer;
         }
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:user.gender];
+        BOOL gender = user.gender;
+        if ([session isMe:user.userId]) {
+            gender = [[UserManager defaultManager] isUserMale];
+        }
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
         [aView setUserId:user.userId];
         //set center
-        aView.center = CGPointMake(70 + 36 * i, 21);
+        aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
         [self.view addSubview:aView];
         [avatarArray addObject:aView];
         [aView release];
@@ -458,6 +499,20 @@ ShowDrawController *GlobalGetShowDrawController()
     _shopController = nil;
 
 }
+
+- (void)cleanData
+{
+    [self resetTimer];
+    [showView cleanAllActions];
+    [self setWord:nil];
+    [drawGameService unregisterObserver:self];
+    _viewIsAppear = NO;
+    
+    [self updateCandidateViews];
+    [self updateBomb];
+    [self updateAnswerViews];
+}
+
 
 #pragma mark - View lifecycle
 
@@ -556,6 +611,9 @@ ShowDrawController *GlobalGetShowDrawController()
                   gainCoins:(int)gainCoins
 {
     if (!guessCorrect) {
+        if ([LocaleUtils isTraditionalChinese]) {
+            wordText = [WordManager changeToTraditionalChinese:wordText];            
+        }
         [self popGuessMessage:wordText userId:guessUserId];        
     }else{
         [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
@@ -578,6 +636,7 @@ ShowDrawController *GlobalGetShowDrawController()
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
     DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
     [showView addDrawAction:action play:YES];
+    [paint release];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
@@ -592,12 +651,15 @@ ShowDrawController *GlobalGetShowDrawController()
     [self popupHappyMessage:NSLS(@"kConnectionRecover") title:nil];
 
 }
+ */
 - (void)didBroken
 {
-    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
+//    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
+    PPDebug(@"<ShowDrawController>:didBroken");
+    [self cleanData];
 
 }
-*/
+
 
 
 
@@ -614,7 +676,8 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
-    [self updatePlayerAvatars];
+//    [self updatePlayerAvatars];
+    [self adjustPlayerAvatars:userId];
     if (_viewIsAppear && [self userCount] <= 1) {
         [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
     }
@@ -624,7 +687,6 @@ ShowDrawController *GlobalGetShowDrawController()
     PPDebug(@"<ShowDrawController>didGameTurnComplete");
     [self resetTimer];
     if (_viewIsAppear) {
-        _viewIsAppear = NO;
         NSInteger gainCoin = [[message notification] turnGainCoins];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
@@ -643,8 +705,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self updatePickViewsWithWord:nil lang:languageType];        
         
     }
-    [showView cleanAllActions];
-    [drawGameService unregisterObserver:self];
+    [self cleanData];
 
 }
 
@@ -666,9 +727,7 @@ ShowDrawController *GlobalGetShowDrawController()
     }else{
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [showView cleanAllActions];
-        [self resetTimer];
-        _viewIsAppear = NO;
+        [self cleanData];
         [self updatePickViewsWithWord:nil lang:languageType];        
     }
 }
@@ -680,6 +739,10 @@ ShowDrawController *GlobalGetShowDrawController()
 
 #pragma mark - Actions
 - (IBAction)clickGuessDoneButton:(id)sender {
+    if (_guessCorrect) {
+        return;
+    }
+    
     NSString *ans = [self getAnswer];
     
     //if the answer is nil, don't send the answer.
@@ -731,6 +794,9 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickWriteButton:(UIButton *)button
 {
     NSString *text = [button titleForState:UIControlStateNormal];
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [button titleForState:UIControlStateSelected];
+    }
     if ([text length] != 0) {
         UIButton *pButton = [self getTheCandidateButtonForText:text];
         if (pButton) {
@@ -742,24 +808,39 @@ ShowDrawController *GlobalGetShowDrawController()
         
     }
 }
+
+
+
 - (void)clickPickingButton:(UIButton *)button
 {
-    NSString *text = [button titleForState:UIControlStateNormal];
+    NSString *text = [button titleForState:UIControlStateNormal];    
     if ([text length] != 0) {
         UIButton *wButton = [self getTheFirstEmptyButton];
         if (wButton) {
             [wButton setTitle:text forState:UIControlStateNormal];
+            [wButton setTitle:nil forState:UIControlStateSelected];
             [wButton setEnabled:YES];
+
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSInteger index = button.tag - PICK_BUTTON_TAG_START;
+                if (index < [self.candidateString length]) {
+                    NSString *simpleChineseText = [self.candidateString substringWithRange:NSMakeRange(index, 1)];
+                    [wButton setTitle:simpleChineseText forState:UIControlStateSelected];
+                }
+            }
+            
             [button setEnabled:NO];
             [button setTitle:nil forState:UIControlStateNormal];            
+            
+            if (languageType != ChineseType) {
+                NSString *ans = [self getAnswer];
+                BOOL flag = [ans length] == [self.word.text length];
+                if (flag) {
+                    [self clickGuessDoneButton:nil];
+                } 
+            }
+            
         }
-    }
-    if (languageType != ChineseType) {
-        NSString *ans = [self getAnswer];
-        BOOL flag = [ans isEqualToString:self.word.text];
-        if (flag) {
-            [self clickGuessDoneButton:nil];
-        }        
     }
 }
 

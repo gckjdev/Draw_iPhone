@@ -249,6 +249,7 @@ enum{
         [userManager setLanguageType:languageType];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
     if (hasEdited) {
@@ -346,6 +347,7 @@ enum{
     if(resultCode == 0){
         [self updateInfoFromUserManager];
         [self.dataTableView reloadData];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
 
     }

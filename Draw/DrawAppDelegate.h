@@ -19,7 +19,7 @@
 
 @interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate> {
 
-    
+    UIBackgroundTaskIdentifier bgTask;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

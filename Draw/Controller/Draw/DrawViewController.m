@@ -29,6 +29,9 @@
 #import "PPDebug.h"
 #import "AccountManager.h"
 #import "AccountService.h"
+#import "PenView.h"
+#import "WordManager.h"
+#import "GameTurn.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -67,7 +70,9 @@ DrawViewController *GlobalGetDrawViewController()
     int language = [[UserManager defaultManager] getLanguageType];
     vc.needResetData = YES;
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:NO];            
+    PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
+    
+    [fromController.navigationController pushViewController:vc animated:NO];           
 }
 
 + (void)returnFromController:(UIViewController*)fromController
@@ -75,7 +80,7 @@ DrawViewController *GlobalGetDrawViewController()
     DrawViewController *vc = [DrawViewController instance];
     vc.needResetData = NO;
     [fromController.navigationController popToViewController:vc animated:YES];
-    
+    PPDebug(@"<returnDrawViewController>: not need reset Data");   
 }
 - (void)dealloc
 {
@@ -118,6 +123,8 @@ DrawViewController *GlobalGetDrawViewController()
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
         drawGameService.drawDelegate = self;
+        eraserWidth = 15;
+
     }
     return self;
 }
@@ -128,11 +135,6 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
-//    for (int i = 3; i < 25;i += 7) {
-//       NSNumber *number = [NSNumber numberWithInt:i];
-//        [widthArray insertObject:number atIndex:0];
-//        [widthArray addObject:number];
-//    }
     
     [widthArray addObject:[NSNumber numberWithInt:20]];
     [widthArray addObject:[NSNumber numberWithInt:15]];
@@ -197,7 +199,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [eraserButton setEnabled:enabled];
     [cleanButton setEnabled:enabled];
-//    [drawView setDrawEnabled:enabled];
+
     [penButton setEnabled:enabled];
     [pickPenView setHidden:YES];
 }
@@ -218,6 +220,31 @@ DrawViewController *GlobalGetDrawViewController()
     
 }
 
+
+#define AVATAR_VIEW_SPACE 36.0
+
+- (void)adjustPlayerAvatars:(NSString *)quitUserId
+{
+    PPDebug(@"[adjustPlayerAvatars] userID = %@", quitUserId);
+    BOOL needMove = NO;
+    AvatarView *removeAvatar = nil;
+    
+    for (AvatarView *aView in avatarArray) {
+        if ([aView.userId isEqualToString:quitUserId]) {
+            needMove = YES;
+            removeAvatar = aView;
+        }else if (needMove) {
+            aView.center = CGPointMake(aView.center.x - AVATAR_VIEW_SPACE,
+                                       aView.center.y);
+        }
+    }
+    if (removeAvatar) {
+        [removeAvatar removeFromSuperview];
+        [avatarArray removeObject:removeAvatar];
+    }
+}
+
+
 - (void)updatePlayerAvatars
 {
     [self cleanAvatars];
@@ -229,10 +256,15 @@ DrawViewController *GlobalGetDrawViewController()
         {
             type = Drawer;
         }
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:user.gender];
+        BOOL gender = user.gender;
+        if ([session isMe:user.userId]) {
+            gender = [[UserManager defaultManager] isUserMale];
+        }
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
         [aView setUserId:user.userId];
+
         //set center
-        aView.center = CGPointMake(70 + 36 * i, 21);
+        aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
         [self.view addSubview:aView];
         [avatarArray addObject:aView];
         [aView release];
@@ -255,17 +287,36 @@ DrawViewController *GlobalGetDrawViewController()
 - (void)resetDrawView
 {
     [drawView clearAllActions];
-    penWidth = 2;
-    eraserWidth = 15;
-    [drawView setLineWidth:penWidth];
+    [pickPenView resetWidth];
+    [drawView setLineWidth:pickPenView.currentWidth];
     [drawView setLineColor:[DrawColor blackColor]];
+    [penButton setPenColor:[DrawColor blackColor]];
+}
+
+- (void)cleanData
+{
+    [self resetTimer];
+    [drawView clearAllActions];
+    [self setWord:nil];
+    [drawGameService unregisterObserver:self];
 }
 
 - (void)resetData
 {
     [self resetDrawView];
     [popupButton setHidden:YES];
-    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+    
+//    if get the word from the current turn, 
+//    the word is null, I Don't know why. By Gamy
+    NSString *text = [self.word text];
+    
+    PPDebug(@"<DrawViewController>: reset data, word = %@", text);
+    
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [WordManager changeToTraditionalChinese:text];
+    }
+    
+    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     retainCount = DRAW_TIME;
     [self updatePlayerAvatars];
@@ -355,7 +406,10 @@ DrawViewController *GlobalGetDrawViewController()
 {
 
     if (needResetData) {
+        PPDebug(@"<DrawViewController>: viewDidAppear start reset data");
         [self resetData];
+    }else{
+        PPDebug(@"<DrawViewController>: viewDidAppear skip reset data");        
     }
     [self cleanScreen];
     [pickPenView setHidden:YES];
@@ -406,7 +460,11 @@ DrawViewController *GlobalGetDrawViewController()
 {
     if (![drawGameService.userId isEqualToString:guessUserId]) {
         if (!guessCorrect) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                wordText = [WordManager changeToTraditionalChinese:wordText];                
+            }
             [self popGuessMessage:wordText userId:guessUserId];        
+
         }else{
             [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
             [self addScore:gainCoins toUser:guessUserId];
@@ -414,7 +472,12 @@ DrawViewController *GlobalGetDrawViewController()
         
     }
 }
-
+- (void)didBroken
+{
+    //clean data
+    PPDebug(@"<DrawViewController>:didBroken");
+    [self cleanData];
+}
 
 
 #pragma mark - Observer Method/Game Process
@@ -436,11 +499,12 @@ DrawViewController *GlobalGetDrawViewController()
         [self.navigationController pushViewController:rc animated:YES];
     }
     [rc release];
-    [self resetTimer];
-    [drawView clearAllActions];
-    // rem by Benson, // this will crash the app, see log below
-    //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
-    [drawGameService unregisterObserver:self];  
+    [self cleanData];
+//    [self resetTimer];
+//    [drawView clearAllActions];
+//    // rem by Benson, // this will crash the app, see log below
+//    //  *** Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x933fb10> was mutated while being enumerated.'
+//    [drawGameService unregisterObserver:self];  
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -448,7 +512,8 @@ DrawViewController *GlobalGetDrawViewController()
     NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
     
-    [self updatePlayerAvatars];
+//    [self updatePlayerAvatars];
+    [self adjustPlayerAvatars:userId];
     if ([self userCount] <= 1) {
         [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];        
     }
@@ -459,6 +524,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
+    [penButton setPenColor:colorView.drawColor];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
@@ -490,8 +556,9 @@ DrawViewController *GlobalGetDrawViewController()
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
-        [drawView clearAllActions];
-        [drawGameService unregisterObserver:self];
+//        [drawView clearAllActions];
+//        [drawGameService unregisterObserver:self];
+        [self cleanData];
     }
 
 }
@@ -524,6 +591,9 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark - Actions
 
 - (IBAction)clickChangeRoomButton:(id)sender {
+    
+    [pickPenView setHidden:YES animated:YES];
+    
     CommonDialogStyle style;
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
@@ -539,7 +609,7 @@ DrawViewController *GlobalGetDrawViewController()
     [dialog showInView:self.view];
 }
 - (IBAction)clickRedraw:(id)sender {
-    [pickPenView setHidden:YES];
+    [pickPenView setHidden:YES animated:YES];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton deelegate:self];
     dialog.tag = DIALOG_TAG_CLEAN_DRAW;
     [dialog showInView:self.view];
@@ -548,11 +618,15 @@ DrawViewController *GlobalGetDrawViewController()
 - (IBAction)clickEraserButton:(id)sender {
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
-    [pickPenView setHidden:YES];
+//    [pickPenView setHidden:YES animated:YES];
 }
 
 - (IBAction)clickPenButton:(id)sender {
-    [pickPenView setHidden:!pickPenView.hidden];
+    [pickPenView setHidden:!pickPenView.hidden animated:YES];
+    if (pickPenView.hidden == NO) {
+        PenView *penView = (PenView *)sender;
+        [drawView setLineColor:penView.penColor];
+    }
 }
 
 @end

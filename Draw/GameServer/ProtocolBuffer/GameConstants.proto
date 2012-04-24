@@ -32,6 +32,12 @@ enum GameCommandType {
   COMPLETE_GAME_REQUEST = 17;
   COMPLETE_GAME_RESPONSE = 18;  
 
+  FORCE_USER_QUIT_REQUEST = 19;
+  FORCE_USER_QUIT_RESPONSE = 20;
+  
+  KEEP_ALIVE_REQUEST = 91;
+  KEEP_ALIVE_RESPONSE = 92;
+  
   // server --> client
   
   // notifications
@@ -70,6 +76,7 @@ enum GameCommandType {
   LOCAL_FINISH_GAME = 203;
   LOCAL_JOIN_GAME = 204;
   LOCAL_GAME_TURN_COMPLETE = 205;
+  LOCAL_USER_TIME_OUT = 206;
 }
 
 enum GameResultCode {

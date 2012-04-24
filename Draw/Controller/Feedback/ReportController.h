@@ -17,7 +17,9 @@ typedef enum {
 
 @interface ReportController : PPViewController <UITextViewDelegate ,SNSServiceDelegate, UITextFieldDelegate, UserServiceDelegate> {
     ReportType _reportType;
+    NSString* _lastReport;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *contactBackground;
 @property (retain, nonatomic) IBOutlet UILabel *reporterTitle;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
@@ -25,6 +27,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UITextView *contentText;
 @property (retain, nonatomic) IBOutlet UITextField *contactText;
 @property (retain, nonatomic) IBOutlet UIButton *doneButton;
+@property (retain, nonatomic) NSString* lastReport;
 
 - (id)initWithType:(ReportType)aType;
 

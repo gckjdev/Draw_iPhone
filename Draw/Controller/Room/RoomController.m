@@ -24,6 +24,8 @@
 #import "AnimationManager.h"
 #import "UserManager.h"
 
+#define MAX_CHANGE_ROOM_PER_DAY     5
+
 @interface RoomController ()
 
 - (void)updateGameUsers;
@@ -146,7 +148,7 @@
 }
 
 #pragma mark - GUI Update Methods
-#define DRAWING_MARK_TAG    20120404
+#define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 
 - (void)updateGameUsers
@@ -160,6 +162,10 @@
     
     for (GameSessionUser* user in userList){
 
+        if (startTag > endTag) {
+            return;
+        }
+        
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:[user nickName]];
         
@@ -497,7 +503,9 @@
         {
             _changeRoomTimes ++;
             [self showActivityWithText:NSLS(@"kChangeRoom")];
-//            [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+            if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
+                [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+            }
             [[DrawGameService defaultService] changeRoom];            
         }
             break;
@@ -527,26 +535,29 @@
     [self startGame];
 }
 
-#define MAX_CHANGE_ROOM_PER_DAY     5
+
 
 - (IBAction)clickChangeRoom:(id)sender
 {
-    if (_changeRoomTimes > MAX_CHANGE_ROOM_PER_DAY){
+    if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 
-                                                             style:CommonDialogStyleSingleButton 
+                                                             style:CommonDialogStyleDoubleButton 
                                                          deelegate:self];
         
+        dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
         return;
     }
+    else{
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
-                                message:NSLS(@"kChangeRoomConfirm") 
-                                  style:CommonDialogStyleDoubleButton 
-                              deelegate:self];
-    dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
-    [dialog showInView:self.view];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
+                                    message:NSLS(@"kChangeRoomConfirm") 
+                                      style:CommonDialogStyleDoubleButton 
+                                  deelegate:self];
+        dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
+        [dialog showInView:self.view];
+    }
     
     
 }
@@ -656,13 +667,20 @@
 
 #pragma mark - Timer Handling
 
-#define START_TIMER_INTERVAL    (1)
-#define PROLONG_INTERVAL        (10)
-#define DEFAULT_START_TIME      (20)
+#define START_TIMER_INTERVAL            (1)
+#define PROLONG_INTERVAL                (10)
+#define DEFAULT_START_TIME_FOR_DRAW     (20)
+#define DEFAULT_START_TIME_FOR_GUESS    (30)
 
 - (void)resetStartTimer
 {
-    _currentTimeCounter = DEFAULT_START_TIME;
+    if ([self isMyTurn]){
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_DRAW;
+    }
+    else{
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_GUESS;
+    }
+    
     [self updateStartButton];
     if (self.startTimer != nil){
         if ([self.startTimer isValid]){
@@ -686,8 +704,8 @@
 - (void)prolongStartTimer
 {
     _currentTimeCounter += PROLONG_INTERVAL;
-    if (_currentTimeCounter >= DEFAULT_START_TIME){
-        _currentTimeCounter = DEFAULT_START_TIME;
+    if (_currentTimeCounter >= DEFAULT_START_TIME_FOR_DRAW){
+        _currentTimeCounter = DEFAULT_START_TIME_FOR_DRAW;
     }
     
     // notice all other users

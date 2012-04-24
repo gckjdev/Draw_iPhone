@@ -46,7 +46,13 @@
 - (void)setCellInfo:(Word *)word
 {
     NSString *score = [NSString stringWithFormat:@"X%d",word.score];
-    [self.wordLabel setText:word.text];
+    
+    NSString *text = word.text;
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [WordManager changeToTraditionalChinese:text];
+    }
+    
+    [self.wordLabel setText:text];
     [self.levelLabel setText:word.levelDesc];
     [self.scoreLabel setText:score];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];

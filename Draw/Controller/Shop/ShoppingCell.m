@@ -48,7 +48,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 96.0f;
+    return 88.0f;
 }
 - (void)dealloc {
     [countLabel release];

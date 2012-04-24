@@ -1,35 +1,37 @@
 //
 //  ColorView.h
-//  Draw
+//  DrawViewTest
 //
-//  Created by  on 12-4-1.
+//  Created by  on 12-4-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "DrawColor.h"
 
 typedef enum{
     ColorViewScaleSmall = 0,
     ColorViewScaleLarge = 1
 }ColorViewScale;
 
-@class DrawColor;
 @interface ColorView : UIButton
 {
-    DrawColor *_drawColor;
+    CGImageRef maskImage;
     ColorViewScale _scale;
 }
+
 @property(nonatomic, retain)DrawColor *drawColor;
-- (void)setImage:(UIImage *)image;
+
 - (id)initWithDrawColor:(DrawColor *)drawColor 
-                  image:(UIImage *)image 
                   scale:(ColorViewScale)scale;
++ (id)colorViewWithDrawColor:(DrawColor *)drawColor 
+                       scale:(ColorViewScale)scale;
+
 - (void)setScale:(ColorViewScale)scale;
 - (ColorViewScale)scale;
 
-+ (id)colorViewWithDrawColor:(DrawColor *)drawColor 
-                  image:(UIImage *)image 
-                  scale:(ColorViewScale)scale;
+
+
 + (ColorView *)blueColorView;
 + (ColorView *)redColorView;
 + (ColorView *)blackColorView;
@@ -41,6 +43,4 @@ typedef enum{
 + (ColorView *)brownColorView;
 + (ColorView *)skyColorView;
 + (ColorView *)whiteColorView;
-
-
 @end

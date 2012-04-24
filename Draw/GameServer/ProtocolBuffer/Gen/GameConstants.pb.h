@@ -17,6 +17,10 @@ typedef enum {
   GameCommandTypeChatResponse = 16,
   GameCommandTypeCompleteGameRequest = 17,
   GameCommandTypeCompleteGameResponse = 18,
+  GameCommandTypeForceUserQuitRequest = 19,
+  GameCommandTypeForceUserQuitResponse = 20,
+  GameCommandTypeKeepAliveRequest = 91,
+  GameCommandTypeKeepAliveResponse = 92,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeUserQuitNotificationRequest = 53,
@@ -37,6 +41,7 @@ typedef enum {
   GameCommandTypeLocalFinishGame = 203,
   GameCommandTypeLocalJoinGame = 204,
   GameCommandTypeLocalGameTurnComplete = 205,
+  GameCommandTypeLocalUserTimeOut = 206,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);

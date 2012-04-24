@@ -8,11 +8,15 @@
 
 #import "WordManager.h"
 #import "Word.h"
+#import "PPDebug.h"
 
 #define CN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"CN_Words_Dict" ofType:@"plist"]
 #define EN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"EN_Words_Dict" ofType:@"plist"]
 
 #define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
+
+#define TSLS(X) NSLocalizedStringFromTable(X, @"TraditionalChineseWord", nil)
+
 
 NSString *UPPER_LETTER_LIST[] = {@"A", @"B", @"C", @"D", @"E", 
     @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", 
@@ -192,8 +196,9 @@ WordManager *GlobalGetWordManager()
         int k = rand() % retArray.count;
         [retArray insertObject:value atIndex:k];
     }
-    return [retArray componentsJoinedByString:@""];
-
+    NSString* retString = [retArray componentsJoinedByString:@""];
+    [retArray release];
+    return retString;
     
 }
 
@@ -233,7 +238,9 @@ WordManager *GlobalGetWordManager()
         NSString *string = [word.text substringWithRange:NSMakeRange(i, 1)];
         [array insertObject:string atIndex:index];
     }
-    return [array componentsJoinedByString:@""];
+    NSString* retString = [array componentsJoinedByString:@""];
+    [array release];
+    return retString;
 }
 
 
@@ -301,6 +308,23 @@ WordManager *GlobalGetWordManager()
         }
     }
     return string;
+}
+
++ (NSString *)changeToTraditionalChinese:(NSString *)text
+{
+    if (text == nil) {
+        return nil;
+    }
+    PPDebug(@"<changeToTraditionalChinese>: before text = %@", text);    
+    
+    NSString *ret = @"";
+    for (int i = 0; i < text.length; ++ i) {
+        NSString *sub = [text substringWithRange:NSMakeRange(i, 1)];
+        sub = TSLS(sub);
+        ret = [NSString stringWithFormat:@"%@%@",ret,sub];
+    }
+    PPDebug(@"<changeToTraditionalChinese>: after text = %@", text);
+    return ret;
 }
 
 @end

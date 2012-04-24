@@ -37,6 +37,8 @@ static DrawGameService* _defaultService;
 
 - (void)dealloc
 {
+    [self clearKeepAliveTimer];
+
     [_serverAddress release];
     [_avatar release];
     [_historySessionSet release];
@@ -72,6 +74,54 @@ static DrawGameService* _defaultService;
     return self;
 }
 
+#define DISCONNECT_TIMER_INTERVAL   30
+
+- (void)startDisconnectTimer
+{
+    [self clearDisconnectTimer];
+    
+    if ([self isConnected] == NO){
+        PPDebug(@"<startDisconnectTimer> but server not connected");
+        return;
+    }
+    
+    PPDebug(@"Set disconnect timer");
+
+    _disconnectTimer = [NSTimer scheduledTimerWithTimeInterval:DISCONNECT_TIMER_INTERVAL 
+                                                        target:self 
+                                                      selector:@selector(handleDisconnect:) 
+                                                      userInfo:nil 
+                                                       repeats:NO];
+    [_disconnectTimer retain];
+}
+
+- (void)clearDisconnectTimer
+{
+    if (_disconnectTimer){
+        PPDebug(@"Clear disconnect timer");
+        [_disconnectTimer invalidate];
+        [_disconnectTimer release];
+        _disconnectTimer = nil;
+    }        
+}
+
+- (void)handleDisconnect:(NSTimer*)theTimer
+{
+    PPDebug(@"Fire disconnect timer");
+    [self disconnectServer];
+    
+    if ([self.homeDelegate respondsToSelector:@selector(didBroken)]){
+        [_homeDelegate didBroken];
+    }
+    if ([self.drawDelegate respondsToSelector:@selector(didBroken)]){
+        [_drawDelegate didBroken];
+    }
+    if ([self.showDelegate respondsToSelector:@selector(didBroken)]){
+        [_showDelegate didBroken];
+    }
+    
+}
+
 - (BOOL)isConnected
 {
     return [_networkClient isConnected];
@@ -90,6 +140,7 @@ static DrawGameService* _defaultService;
 - (void)disconnectServer
 {
     [_networkClient disconnect];
+    [self clearKeepAliveTimer];
 }
 
 - (BOOL)isMeHost
@@ -457,7 +508,10 @@ static DrawGameService* _defaultService;
 
 - (void)didBroken
 {    
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{                
+        
+        [self clearKeepAliveTimer];
+        
         if ([_homeDelegate respondsToSelector:@selector(didBroken)]){
             [_homeDelegate didBroken];
         }
@@ -482,12 +536,17 @@ static DrawGameService* _defaultService;
                                  avatar:_avatar
                                  gender:_gender
                               sessionId:-1
-                      excludeSessionSet:_historySessionSet];
+                      excludeSessionSet:_historySessionSet];  
+    
+    [self scheduleKeepAliveTimer];
 }
 
 - (void)startGame
 {
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
+    
+    [self scheduleKeepAliveTimer];
+    
 //    [_drawActionList removeAllObjects];
 }
 
@@ -501,6 +560,9 @@ static DrawGameService* _defaultService;
                                  gender:_gender
                               sessionId:[_session sessionId]
                       excludeSessionSet:_historySessionSet];
+    
+    [self scheduleKeepAliveTimer];
+    
 
 //    self.session.roundNumber = 1;
 }
@@ -518,6 +580,9 @@ static DrawGameService* _defaultService;
     [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
     [paint release];
     
+    [self scheduleKeepAliveTimer];
+    
+    
 }
 
 - (void)cleanDraw
@@ -525,6 +590,9 @@ static DrawGameService* _defaultService;
     [_networkClient sendCleanDraw:_userId
                         sessionId:[_session sessionId]];  
     [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    
+    [self scheduleKeepAliveTimer];
+    
 }
 
 - (void)startDraw:(NSString*)word level:(int)level language:(int)language
@@ -539,6 +607,9 @@ static DrawGameService* _defaultService;
                              word:word
                             level:level
                          language:language];
+    
+    [self scheduleKeepAliveTimer];
+    
      
 }
 
@@ -546,12 +617,17 @@ static DrawGameService* _defaultService;
 {
     [_networkClient sendProlongGame:_userId
                           sessionId:[_session sessionId]];
+    
+    [self scheduleKeepAliveTimer];
+    
 }
 
 - (void)askQuickGame
 {
     [_networkClient sendAskQuickGame:_userId
                            sessionId:[_session sessionId]];
+
+    [self scheduleKeepAliveTimer];
 }
 
 
@@ -561,13 +637,16 @@ static DrawGameService* _defaultService;
                       guessUserId:guessUserId
                            userId:_userId
                         sessionId:[_session sessionId]];
+    
+    [self scheduleKeepAliveTimer];
+    
 }
 
 - (void)quitGame
 {
     
-    [_networkClient sendQuitGame:_userId
-                       sessionId:[_session sessionId]];
+//    [_networkClient sendQuitGame:_userId
+//                       sessionId:[_session sessionId]];
     
     [_networkClient disconnect];
 
@@ -581,6 +660,9 @@ static DrawGameService* _defaultService;
                                 userId:[_session userId]
                              sessionId:[_session sessionId]
                                  round:[[_session currentTurn] round]];
+    
+    [self scheduleKeepAliveTimer];
+    
 }
 - (void)increaseRoundNumber
 {
@@ -594,4 +676,37 @@ static DrawGameService* _defaultService;
 {
     return _session.status;
 }
+
+#pragma mark - Keep Network Alive Timer Handling
+
+- (void)keepAlive:(NSTimer*)timer
+{
+    PPDebug(@"<keepAlive>");
+    
+    [_networkClient sendKeepAlive:_userId sessionId:[_session sessionId]];
+}
+
+#define KEEP_ALIVE_TIMER_INTERVAL       90
+
+- (void)clearKeepAliveTimer
+{
+    if (_keepAliveTimer){
+        PPDebug(@"clearKeepAliveTimer");
+        [_keepAliveTimer invalidate];
+        [_keepAliveTimer release];
+        _keepAliveTimer = nil;
+    }
+}
+
+- (void)scheduleKeepAliveTimer
+{
+    [self clearKeepAliveTimer];
+    
+    PPDebug(@"<scheduleKeepAliveTimer>");
+    
+    _keepAliveTimer = [NSTimer scheduledTimerWithTimeInterval:KEEP_ALIVE_TIMER_INTERVAL target:self selector:@selector(keepAlive:) userInfo:nil repeats:YES];
+    [_keepAliveTimer retain];
+}
+ 
+
 @end

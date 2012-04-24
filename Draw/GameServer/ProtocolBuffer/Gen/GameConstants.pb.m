@@ -35,6 +35,10 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeChatResponse:
     case GameCommandTypeCompleteGameRequest:
     case GameCommandTypeCompleteGameResponse:
+    case GameCommandTypeForceUserQuitRequest:
+    case GameCommandTypeForceUserQuitResponse:
+    case GameCommandTypeKeepAliveRequest:
+    case GameCommandTypeKeepAliveResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:
@@ -55,6 +59,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalFinishGame:
     case GameCommandTypeLocalJoinGame:
     case GameCommandTypeLocalGameTurnComplete:
+    case GameCommandTypeLocalUserTimeOut:
       return YES;
     default:
       return NO;
