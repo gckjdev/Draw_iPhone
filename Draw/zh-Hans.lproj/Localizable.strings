@@ -274,9 +274,18 @@
 "kAll" = "  所有";
 "kMine" = "我的  ";
 "kNone" = "无";
-"kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片";
+"kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片。";
 "kGifTips" = "温馨提示";
+
 "kContentRepeat" = "您已经反馈过了";
+
+
+"kContentRepeat" = "您已经汇报过这个问题了!";
+
+/*the new words below without Japanese*/
+
+"kNetworkErrorTitle" = "网络连接失效";
+"kNetworkErrorMessage" = "网络连接失效，请检查网络设置。";
 //4月23新增
 "kEnterPassword" = "请输入密码";
 "kPsdNotMatch" = "密码错误";

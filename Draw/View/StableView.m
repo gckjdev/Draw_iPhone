@@ -10,6 +10,7 @@
 #import "ShareImageManager.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
+#import "PPDebug.h"
 
 
 @implementation ToolView
@@ -82,13 +83,16 @@
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
 {
+    
+    PPDebug(@"<alloc Avatar View>: url = %@, gender = %d", urlString, gender);
     self = [super initWithFrame:CGRectMake(0, 0, 32, 32)];
     if (self) {
         type = aType;
         imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-        [imageView clear];
+//        [imageView clear];
         if ([urlString length] > 0){
             [imageView setUrl:[NSURL URLWithString:urlString]];
+            [GlobalGetImageCache() manage:imageView];
         }
         else{
             if (gender) {
@@ -100,7 +104,6 @@
             }
 
         }
-        [GlobalGetImageCache() manage:imageView];
         [self addSubview:imageView];
         markButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [markButton retain];
@@ -150,6 +153,13 @@
          markButton.hidden = YES;   
         [markButton setTitle:nil forState:UIControlStateNormal];
     }
+}
+
+- (void)setImage:(UIImage *)image
+{
+    [imageView clear];
+    [imageView setImage:image];
+    [GlobalGetImageCache() manage:imageView];
 }
 
 @end

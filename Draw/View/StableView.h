@@ -40,6 +40,8 @@ typedef enum {
 
 - (void)setUrlString:(NSString *)urlString;
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
+- (void)setImage:(UIImage *)image;
+
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 //- (void)addTarget:(id)target action:(SEL)action;

@@ -275,7 +275,16 @@
 "kNone" = "無";
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片";
 "kGifTips" = "溫馨提示";
+
 "kContentRepeat" = "您已經反饋過了";
+
+
+"kContentRepeat" = "您已經匯報過這個問題了!";
+
+/*the new words below without Japanese*/
+
+"kNetworkErrorTitle" = "網絡連接失效";
+"kNetworkErrorMessage" = "網絡連接失效，請檢查網絡設置。";
 //4月23新增
 "kEnterPassword" = "請輸入密碼";
 "kPsdNotMatch" = "密碼錯誤";

@@ -408,7 +408,11 @@ ShowDrawController *GlobalGetShowDrawController()
         {
             type = Drawer;
         }
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:user.gender];
+        BOOL gender = user.gender;
+        if ([session isMe:user.userId]) {
+            gender = [[UserManager defaultManager] isUserMale];
+        }
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
         [aView setUserId:user.userId];
         //set center
         aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);

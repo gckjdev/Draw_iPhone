@@ -23,6 +23,7 @@
 #import "FacebookSNSService.h"
 #import "PriceService.h"
 #import "DeviceDetection.h"
+#import "NetworkDetector.h"
 #import "MobClick.h"
 
 NSString* GlobalGetServerURL()
@@ -42,6 +43,7 @@ NSString* GlobalGetServerURL()
 @synthesize roomController = _roomController;
 @synthesize homeController = _homeController;
 @synthesize reviewRequest = _reviewRequest;
+@synthesize networkDetector = _networkDetector;
 
 - (void)dealloc
 {
@@ -122,6 +124,9 @@ NSString* GlobalGetServerURL()
     [[PriceService defaultService] syncShoppingListAtBackground];
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
+    self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
+    [self.networkDetector start];
+    
     return YES;
 }
 
@@ -134,6 +139,7 @@ NSString* GlobalGetServerURL()
     
     [[RouterService defaultService] stopUpdateTimer];
     [[DrawGameService defaultService] startDisconnectTimer];
+    [self.networkDetector stop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -173,7 +179,7 @@ NSString* GlobalGetServerURL()
      */
     
     [[DrawGameService defaultService] clearDisconnectTimer];
-
+    [self.networkDetector start];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
