@@ -33,6 +33,7 @@
 #import "WordManager.h"
 #import "GameTurn.h"
 
+
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
 {
@@ -152,7 +153,7 @@ DrawViewController *GlobalGetDrawViewController()
     [colorViewArray addObject:[ColorView pinkColorView]];
     [colorViewArray addObject:[ColorView brownColorView]];
     [colorViewArray addObject:[ColorView skyColorView]];
-    [colorViewArray addObject:[ColorView whiteColorView]];
+//    [colorViewArray addObject:[ColorView whiteColorView]];
     
     
     [pickPenView setColorViews:colorViewArray];
@@ -283,6 +284,9 @@ DrawViewController *GlobalGetDrawViewController()
     }
     return nil;
 }
+
+
+
 
 - (void)resetDrawView
 {
@@ -525,6 +529,7 @@ DrawViewController *GlobalGetDrawViewController()
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
     [penButton setPenColor:colorView.drawColor];
+    [pickPenView updatePickPenView:colorView];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
@@ -533,11 +538,14 @@ DrawViewController *GlobalGetDrawViewController()
 }
 - (void)didPickedMoreColor
 {
+    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+    colorShop.delegate = self;
+    [colorShop showInView:self.view animated:YES];
     //present a buy color controller;
-    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
-    colorShop.callFromDrawView = YES;
-    [self.navigationController pushViewController:colorShop animated:YES];
-    colorShopConroller = colorShop;
+//    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
+//    colorShop.callFromDrawView = YES;
+//    [self.navigationController pushViewController:colorShop animated:YES];
+//    colorShopConroller = colorShop;
 }
 
 #pragma mark - Common Dialog Delegate

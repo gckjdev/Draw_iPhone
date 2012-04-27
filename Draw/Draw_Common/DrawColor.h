@@ -24,6 +24,8 @@
 //@property(nonatomic, retain)UIColor color;
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+
+- (BOOL)isEqual:(id)object;
 - (UIColor *)color;
 - (CGColorRef)CGColor;
 - (NSString *)toString;

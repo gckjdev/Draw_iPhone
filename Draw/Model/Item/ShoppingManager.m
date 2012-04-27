@@ -12,6 +12,7 @@
 #import <StoreKit/StoreKit.h>
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
+#import "MobClick.h"
 
 static ShoppingManager *staticShoppingManager = nil;
 
@@ -172,5 +173,16 @@ static ShoppingManager *staticShoppingManager = nil;
     return array;
 }
 
-
+#define DEFAULT_COLOR_PRICE 100
+- (NSInteger)getColorPrice
+{
+    NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getColorPrice>: price is nil, return default price = %d",DEFAULT_COLOR_PRICE);
+        return DEFAULT_COLOR_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getColorPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
 @end

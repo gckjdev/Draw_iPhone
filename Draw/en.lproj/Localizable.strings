@@ -279,3 +279,7 @@
 "kPsdNotMatch" = "Incorrect password";
 "kEmailNotFound" = "Email not found";
 
+//4.27 add by Gamy
+"kBuyColorDialogTitle" = "Buy Color";
+"kBuyColorDialogMessage" = "It will cost you %d coins. Are you sure?";
+

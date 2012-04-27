@@ -14,6 +14,7 @@
 #import "CommonDialog.h"
 #import "ColorShopController.h"
 #import "PPViewController.h"
+#import "ColorShopView.h"
 
 @class Word;
 @class ShareImageManager;
@@ -21,7 +22,7 @@
 @class PenView;
 
 @interface DrawViewController : PPViewController<DrawViewDelegate, ColorShopControllerDelegate,
-            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
+            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickPenView *pickPenView;
     DrawGameService *drawGameService;

@@ -99,7 +99,9 @@ NSString* GlobalGetServerURL()
         self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
     }
     
-    UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:self.homeController] autorelease];
+    UINavigationController* navigationController = [[[UINavigationController alloc] 
+                                                     initWithRootViewController:self.homeController] 
+                                                    autorelease];
     navigationController.navigationBarHidden = YES;
     
     if ([[UserManager defaultManager] hasUser] == NO){
