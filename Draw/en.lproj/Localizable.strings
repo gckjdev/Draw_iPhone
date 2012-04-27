@@ -274,8 +274,10 @@
 
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
+
 //4月23新增
 "kEnterPassword" = "Please enter password";
 "kPsdNotMatch" = "Incorrect password";
 "kEmailNotFound" = "Email not found";
-
+"kSaveImageOK" = "Drawing Saved";
+"kDeleteAll" = "Delete All";

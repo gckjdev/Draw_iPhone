@@ -10,6 +10,9 @@
 #import "MyPaint.h"
 #import "UIImageUtil.h"
 #import "DrawUtils.h"
+#import <QuartzCore/QuartzCore.h>
+#include <ImageIO/ImageIO.h>
+#include "CoreDataUtil.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -54,38 +57,47 @@
 
 - (void)setImagesWithArray:(NSArray*)imageArray
 {
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:DRAW_VIEW_WIDTH/IMAGES_PER_LINE] forKey:(NSString*)kCGImageSourceThumbnailMaxPixelSize];
+    
+    int count = [imageArray count];
+    BOOL hasUpdateThumbnailData = NO;
+    
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
         MyPaintButton *button = (MyPaintButton *)[self viewWithTag:i];
         
-        // image view start from 30, button start from 10, the gap is 20
-        //UIImageView* bgImageView = (UIImageView *)[self viewWithTag:i+20]; 
         int j = i - BASE_BUTTON_INDEX;
-        if (button && j < [imageArray count]) {
+        if (button && j < count) {
             MyPaint *paint = [imageArray objectAtIndex:j];
-            NSData* data = [[NSData alloc] initWithContentsOfFile:paint.image];
-            CGRect frame = DRAW_VEIW_FRAME;
-            UIImage* image = [UIImage creatThumbnailsWithData:data withSize:CGSizeMake(frame.size.width/4, frame.size.height/4)];
+            
+            NSData* data = nil;
+            
+            if (paint.drawThumbnailData == nil){
+                data = [[[NSData alloc] initWithContentsOfFile:paint.image] autorelease];
+                paint.drawThumbnailData = data;
+                hasUpdateThumbnailData = YES;
+            }
+            else{
+                data = paint.drawThumbnailData;
+            }
+            
+            CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
+            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
+            CFRelease(imageRef);
+            
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
             [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
             button.hidden = NO;
-            [data release];
-            //bgImageView.hidden = NO;
             
         }else {
             button.hidden = YES;
-            //bgImageView.hidden = YES;
         }
     }
-//    NSArray* buttonsArray = [NSArray arrayWithObjects:self.leftButton, self.middleButton, self.rightButton, nil];
-//    for (UIButton* btn in buttonsArray) {
-//        [btn setHidden:YES];
-//    }
-//    for (int index = 0; index < imageArray.count; index ++) {
-//        UIButton* btn = [buttonsArray objectAtIndex:index];
-//        [btn setImage:[imageArray objectAtIndex:index]  forState:UIControlStateNormal];
-//        [btn setHidden:NO];
-//    }
+    
+    if (hasUpdateThumbnailData){
+        [[CoreDataManager dataManager] save];
+    }
+
 }
 
 - (void)clickImage:(MyPaintButton *)myPaintButton

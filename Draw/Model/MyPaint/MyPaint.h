@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString * drawUserNickName;
 @property (nonatomic, retain) NSString * drawUserId;
 @property (nonatomic, retain) NSString * drawWord;
+@property (nonatomic, retain) NSData * drawThumbnailData;
+
 @end

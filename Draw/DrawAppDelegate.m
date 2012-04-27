@@ -115,7 +115,7 @@ NSString* GlobalGetServerURL()
     
     [MobClick startWithAppkey:@"4f83980852701565c500003a"]; // reportPolicy:BATCH channelId:@"91"];
     [MobClick updateOnlineConfig];
-    
+        
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     

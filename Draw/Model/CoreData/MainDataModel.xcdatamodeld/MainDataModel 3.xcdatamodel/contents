@@ -4,6 +4,7 @@
         <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="drawByMe" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="drawThumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,10 +51,10 @@
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType==$ITEM_TYPE"/>
     <elements>
-        <element name="MyPaint" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

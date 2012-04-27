@@ -118,9 +118,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self saveActionList:self.drawActionList];
-    
+        
     [self.drawImage setImage:_image];
     NSString *answer = nil;
     if (self.wordText) {
@@ -247,7 +245,8 @@
 }
 
 - (IBAction)clickSaveButton:(id)sender {
-    UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
+//    UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
+    [self saveActionList:self.drawActionList];
 }
 
 - (IBAction)clickExitButton:(id)sender {
@@ -303,6 +302,8 @@
                                                             drawUserNickName:drawUserNickName 
                                                                     drawByMe:_isMyPaint 
                                                                     drawWord:drawWord];
+                    
+                    [self popupMessage:NSLS(@"kSaveImageOK") title:nil];
                 }
             });
         });

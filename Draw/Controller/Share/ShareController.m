@@ -84,7 +84,7 @@
                                              cancelButtonTitle:NSLS(@"kCancel") 
                                         destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
                                              otherButtonTitles:NSLS(@"kShareAsGif"),
-                                                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+                                                    NSLS(@"kReplay"), NSLS(@"kDelete"), NSLS(@"kDeleteAll"), nil];
     }
     else{
         tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
@@ -146,8 +146,19 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
                                                            message:NSLS(@"kAre_you_sure") 
                                                              style:CommonDialogStyleDoubleButton 
-                                                         deelegate:self];            
+                                                         deelegate:self];  
+        
+        dialog.tag = DELETE;
+        
         [dialog showInView:self.view];
+    }
+    else if (buttonIndex == DELETE_ALL){
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
+                                                           message:NSLS(@"kAre_you_sure") 
+                                                             style:CommonDialogStyleDoubleButton 
+                                                         deelegate:self];            
+        dialog.tag = DELETE_ALL;
+        [dialog showInView:self.view];        
     }
     
 }
@@ -156,9 +167,16 @@
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-    [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
-    [self refleshGallery];
+    if (dialog.tag == DELETE){
+        MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+        [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
+        [self refleshGallery];
+    }
+    else if (dialog.tag == DELETE_ALL){
+        [[MyPaintManager defaultManager] deleteAllPaints];
+        [self refleshGallery];
+        return;
+    }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -257,6 +275,7 @@
             SHARE_AS_GIF = index++;
             REPLAY = index++;
             DELETE = index++;
+            DELETE_ALL = index++;
             CANCEL = index++;
         }
         else{
@@ -264,6 +283,7 @@
             SHARE_AS_PHOTO = index++;
             REPLAY = index++;
             DELETE = index++;
+            DELETE_ALL = index++;
             CANCEL = index++;            
         }
         
