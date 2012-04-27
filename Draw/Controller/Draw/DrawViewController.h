@@ -12,28 +12,25 @@
 #import "DrawGameService.h"
 #import "PickPenView.h"
 #import "CommonDialog.h"
-#import "ColorShopController.h"
 #import "PPViewController.h"
+#import "ColorShopView.h"
 
 @class Word;
 @class ShareImageManager;
 @class ColorShopController;
 @class PenView;
 
-@interface DrawViewController : PPViewController<DrawViewDelegate, ColorShopControllerDelegate,
-            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate> {
+@interface DrawViewController : PPViewController<DrawViewDelegate,
+            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickPenView *pickPenView;
     DrawGameService *drawGameService;
     Word *_word;
     NSTimer *drawTimer;
     NSInteger retainCount;
-//    BOOL gameComplete;
     ShareImageManager *shareImageManager;
     NSMutableArray *avatarArray;
-//    BOOL hasPushColorShopController;
     BOOL hasPushResultController;
-    ColorShopController *colorShopConroller;
                 
                 NSInteger penWidth;
                 NSInteger eraserWidth;

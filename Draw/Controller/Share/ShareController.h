@@ -22,6 +22,7 @@
     int SHARE_AS_GIF;
     int REPLAY;
     int DELETE;
+    int DELETE_ALL;
     int CANCEL;    
 }
 @property (retain, nonatomic) IBOutlet UIButton *paintsFilter;

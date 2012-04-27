@@ -26,7 +26,7 @@
     if (self.hidden) {
         return;
     }
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
+    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.00001 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
     [runOut setValue:@"runOut" forKey:@"AnimationKey"];
     [self.layer addAnimation:runOut forKey:@"runOut"];
     
@@ -82,6 +82,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedMoreColor)]) {
         [self.delegate didPickedMoreColor];
     }
+    [self startRunOutAnimation];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -97,7 +98,7 @@
         [addColorButton addTarget:self action:@selector(clickAddColorButton:) forControlEvents:UIControlEventTouchUpInside];
         [addColorButton setImage:[[ShareImageManager defaultManager]addColorImage] forState:UIControlStateNormal];
         [self addSubview:addColorButton];
-        addColorButton.hidden = YES; //hide the add button this version
+//        addColorButton.hidden = YES; //hide the add button this version
     }
     return self;
 }
@@ -196,36 +197,83 @@
 
 #define BUTTON_COUNT_PER_ROW 5
 
+- (void)updatePickPenView
+{
+    
+    for (ColorView *colorView in colorViewArray) {
+        [colorView removeFromSuperview];
+    }
+    
+    CGFloat baseX = 78;
+    CGFloat baseY = 10;            
+    CGFloat w = self.frame.size.width - baseX;
+    CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW + 5);
+    CGFloat x = 0, y = 0;
+    int l = 0, r = 0;
+    for (ColorView *colorView in colorViewArray) {
+        CGFloat width = colorView.frame.size.width;
+        CGFloat height= colorView.frame.size.height;
+        x = baseX + width / 2 + (width + space) * r;
+        y = baseY + height / 2 + (height + space) * l ;
+        colorView.center = CGPointMake(x, y);
+        r = (r+1) % BUTTON_COUNT_PER_ROW;
+        if (r == 0) {
+            l ++;
+        }
+        [self addSubview:colorView];
+        [colorView addTarget:self action:@selector(clickColorView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
 - (void)setColorViews:(NSArray *)colorViews
 {
     if (colorViews != colorViewArray) {
         [self removeAllColorViews];
         [colorViewArray release];
-        colorViewArray = colorViews;
+        colorViewArray = [NSMutableArray arrayWithArray:colorViews];
         [colorViewArray retain];
-        CGFloat baseX = 78;
-        CGFloat baseY = 10;            
-        CGFloat w = self.frame.size.width - baseX;
-        CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW + 5);
-        CGFloat x = 0, y = 0;
-        int l = 0, r = 0;
-        for (ColorView *colorView in colorViews) {
-            CGFloat width = colorView.frame.size.width;
-            CGFloat height= colorView.frame.size.height;
-            x = baseX + width / 2 + (width + space) * r;
-            y = baseY + height / 2 + (height + space) * l ;
-            colorView.center = CGPointMake(x, y);
-            NSLog(@"(%d,%d):center(%f,%f)",r,l,x,y);
-            r = (r+1) % BUTTON_COUNT_PER_ROW;
-            if (r == 0) {
-                l ++;
-            }
-            
-            [self addSubview:colorView];
-            [colorView addTarget:self action:@selector(clickColorView:) forControlEvents:UIControlEventTouchUpInside];
-        }
+        [self updatePickPenView];
     } 
 }
 
+- (NSInteger)indexOfColorView:(ColorView *)colorView
+{
+    if (colorView) {
+        int i = 0;
+        for (ColorView *view in colorViewArray) {
+            if ([view isEqual:colorView]) {
+                return i;
+            }
+            ++ i;
+        }
+    }
+    return -1;
+}
 
+#define INSERT_INDEX 5
+- (void)updatePickPenView:(ColorView *)lastUsedColorView
+{
+    if (lastUsedColorView && [colorViewArray count] >= INSERT_INDEX) {
+        [lastUsedColorView setScale:ColorViewScaleSmall];
+        NSInteger index = [self indexOfColorView:lastUsedColorView];
+        if (index == -1) {
+            //the color view not in the list
+            [colorViewArray removeLastObject];
+            
+            ColorView *newColorView = [ColorView colorViewWithDrawColor:lastUsedColorView.drawColor 
+                                                                  scale:ColorViewScaleSmall];
+            
+            [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
+            [self updatePickPenView];
+        }else if(index > INSERT_INDEX){
+            //if the color the last list, move it to the first position
+            [colorViewArray removeObject:lastUsedColorView];
+            [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
+            [self updatePickPenView];
+        }else{
+            //if the color is the const color, don't move
+        }
+        
+    }
+}
 @end

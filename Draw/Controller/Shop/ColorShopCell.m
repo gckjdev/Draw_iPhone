@@ -37,7 +37,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 134.0f;
+    return 123.0f;
 }
 
 - (void)updatePrice:(NSInteger)price
@@ -48,6 +48,7 @@
 
 - (void)clickColorView:(id)sender
 {
+    NSLog(@"click color view");
     if (_colorShopCellDelegate && [_colorShopCellDelegate respondsToSelector:@selector(didPickedColorView:)]) {
         [_colorShopCellDelegate didPickedColorView:sender];
     }
@@ -65,9 +66,9 @@
             if (colorView) {
                 int j = i - BASE_COLOR_VIEW_TAG;
                 if(j < [colorGroup.colorViewList count]){
-                    if (colorView.scale != ColorViewScaleLarge) {
+//                    if (colorView.scale != ColorViewScaleLarge) {
                         [colorView setScale:ColorViewScaleLarge];
-                    }
+//                    }
                     ColorView *view = [colorGroup.colorViewList objectAtIndex:j];
                     [colorView setDrawColor:view.drawColor];
                     [colorView setHidden:NO];

@@ -77,6 +77,17 @@ static MyPaintManager* _defaultManager;
     return [dataManager del:object];
 }
 
+- (void)deleteAllPaints
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
+    for (NSManagedObject* paint in array){
+        [dataManager del:paint];
+    }
+    
+    [dataManager save];    
+}
+
 - (BOOL)deleteMyPaints:(MyPaint*)paint
 {
     NSString* image = [NSString stringWithString:paint.image];

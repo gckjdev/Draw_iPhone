@@ -18,5 +18,6 @@
 @dynamic drawUserNickName;
 @dynamic drawUserId;
 @dynamic drawWord;
+@dynamic drawThumbnailData;
 
 @end
