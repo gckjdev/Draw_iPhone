@@ -290,5 +290,10 @@
 "kEnterPassword" = "请输入密码";
 "kPsdNotMatch" = "密码错误";
 "kEmailNotFound" = "E-mail地址尚未注册";
+
 "kSaveImageOK" = "作品已成功保存";
 "kDeleteAll" = "删除所有作品";
+
+//4.27 add by Gamy
+"kBuyColorDialogTitle" = "购买颜色";
+"kBuyColorDialogMessage" = "购买颜色将花费%d金币，确定吗？";

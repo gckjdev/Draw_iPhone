@@ -73,6 +73,20 @@
 {
     return _color;
 }
+
+- (BOOL)isEqual:(id)object
+{
+    if ([super isEqual:object]) {
+        return YES;
+    }else if([object isKindOfClass:[DrawColor class]])
+    {
+        DrawColor *other = (DrawColor *)object;
+        if (other.red == self.red && other.green == self.green && other.blue == self.blue && other.alpha == self.alpha) {
+            return YES;
+        }
+    }
+    return NO;
+}
 - (CGColorRef)CGColor
 {
     return _color.CGColor;

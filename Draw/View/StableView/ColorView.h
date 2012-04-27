@@ -27,9 +27,14 @@ typedef enum{
 + (id)colorViewWithDrawColor:(DrawColor *)drawColor 
                        scale:(ColorViewScale)scale;
 
+- (id)initWithRed:(NSInteger)red 
+            green:(NSInteger) green 
+             blue:(NSInteger)blue 
+            scale:(ColorViewScale)scale;
+
 - (void)setScale:(ColorViewScale)scale;
 - (ColorViewScale)scale;
-
+- (BOOL)isEqual:(id)object;
 
 
 + (ColorView *)blueColorView;
