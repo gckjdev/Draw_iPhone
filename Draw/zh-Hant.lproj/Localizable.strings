@@ -289,7 +289,11 @@
 "kEnterPassword" = "請輸入密碼";
 "kPsdNotMatch" = "密碼錯誤";
 "kEmailNotFound" = "E-mail地址尚未註冊";
+"kLoginFailure" = "登入失敗，請稍後再試";
+"kLoginUser" = "正在登入...";
+
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "購買顏色";
 "kBuyColorDialogMessage" = "購買顏色將花費%d金幣，確定嗎？";
+

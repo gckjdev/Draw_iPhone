@@ -87,4 +87,9 @@
                             feedback:(NSString*)feedback 
                              contact:(NSString*)contact
                               type:(int)type;
+
++ (CommonNetworkOutput*)loginUser:(NSString*)baseURL
+                            appId:(NSString*)appId
+                         deviceId:(NSString*)deviceId
+                      deviceToken:(NSString*)deviceToken;
 @end
