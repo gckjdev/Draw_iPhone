@@ -32,7 +32,7 @@
 #import "PenView.h"
 #import "WordManager.h"
 #import "GameTurn.h"
-
+#import "DrawUtils.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -568,10 +568,16 @@ DrawViewController *GlobalGetDrawViewController()
     
     NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
+    CGPoint lastPoint = ILLEGAL_POINT;
+    int i = 0;
     for (NSValue *pointValue in paint.pointList) {
         CGPoint point = [pointValue CGPointValue];
-        NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
-        [pointList addObject:pointNumber];
+        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 5) 
+        {
+            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+            [pointList addObject:pointNumber];
+        }
+        lastPoint = point;
     }
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
 }
