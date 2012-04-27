@@ -52,6 +52,7 @@
 - (void)loginUserByEmail:(NSString*)email 
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
+- (void)loginByDeviceWithViewController:(PPViewController*)viewController;
 //- (void)checkDevice;
 
 

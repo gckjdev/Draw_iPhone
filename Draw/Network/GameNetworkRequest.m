@@ -474,5 +474,37 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)loginUser:(NSString*)baseURL
+                            appId:(NSString*)appId
+                            deviceId:(NSString*)deviceId
+                      deviceToken:(NSString*)deviceToken
 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_DEVICELOGIN];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+}
 @end

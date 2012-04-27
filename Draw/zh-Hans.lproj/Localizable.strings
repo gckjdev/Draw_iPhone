@@ -290,3 +290,5 @@
 "kEnterPassword" = "请输入密码";
 "kPsdNotMatch" = "密码错误";
 "kEmailNotFound" = "E-mail地址尚未注册";
+"kLoginFailure" = "登录失败，请稍后再试";
+"kLoginUser" = "正在登录...";

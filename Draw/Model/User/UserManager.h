@@ -82,6 +82,19 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret;
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL;
 
+- (void)saveUserId:(NSString*)userId 
+             email:(NSString*)email
+          password:(NSString*)password
+          nickName:(NSString*)nickName 
+              qqId:(NSString*)qqId 
+     qqAccessToken:(NSString*)accessToken 
+qqAccessTokenSecret:(NSString*)accessTokenSecret 
+            sinaId:(NSString*)loginId 
+   sinaAccessToken:(NSString*)accessToken 
+sinaAccessTokenSecret:(NSString*)accessTokenSecret 
+        facebookId:(NSString*)loginId
+         avatarURL:(NSString*)avatarURL;
+
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
 

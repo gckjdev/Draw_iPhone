@@ -278,4 +278,6 @@
 "kEnterPassword" = "Please enter password";
 "kPsdNotMatch" = "Incorrect password";
 "kEmailNotFound" = "Email not found";
+"kLoginFailure" = "Login failed, please login later";
+"kLoginUser" = "Loading...";
 

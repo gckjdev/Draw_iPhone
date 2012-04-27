@@ -33,7 +33,7 @@ NSString* GlobalGetServerURL()
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.8:8000/api/i?";    
+//    return @"http://192.168.1.11:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -103,8 +103,9 @@ NSString* GlobalGetServerURL()
     navigationController.navigationBarHidden = YES;
     
     if ([[UserManager defaultManager] hasUser] == NO){
-        [RegisterUserController showAt:self.homeController];
+        [[UserService defaultService] loginByDeviceWithViewController:self.homeController];
     }
+
 
     if ([DeviceDetection isOS5]){
         [self checkAppVersion:APP_ID];

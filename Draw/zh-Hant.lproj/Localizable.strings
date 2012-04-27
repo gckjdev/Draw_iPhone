@@ -289,3 +289,5 @@
 "kEnterPassword" = "請輸入密碼";
 "kPsdNotMatch" = "密碼錯誤";
 "kEmailNotFound" = "E-mail地址尚未註冊";
+"kLoginFailure" = "登入失敗，請稍後再試";
+"kLoginUser" = "正在登入...";
