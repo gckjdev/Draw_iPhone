@@ -179,7 +179,7 @@
 {
     
     CGContextRef context = UIGraphicsGetCurrentContext(); 
-    CGContextSetLineCap(context, kCGLineCapRound);
+//    CGContextSetLineCap(context, kCGLineCapRound);
     
     
     for (int j = startDrawActionIndex; j < self.drawActionList.count; ++ j) {
@@ -198,6 +198,7 @@
                     [path moveToPoint:point];
                     [path setLineWidth:paint.width];
                     [path setLineCapStyle:kCGLineCapRound];
+                    [path setLineJoinStyle:kCGLineJoinRound];
                 }
                 [path addLineToPoint:point];
             }
