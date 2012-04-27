@@ -25,6 +25,7 @@
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
 #import "MobClick.h"
+#import "TKAlertCenter.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -129,7 +130,21 @@ NSString* GlobalGetServerURL()
     self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
     [self.networkDetector start];
     
+    [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
+    
     return YES;
+}
+
+- (void)showNews
+{
+    if ([LocaleUtils isChina] == NO)
+        return;
+    
+    NSString* news = [MobClick getConfigParams:@"NEWS"];
+    if ([news length] <= 1)
+        return;
+    
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:news];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

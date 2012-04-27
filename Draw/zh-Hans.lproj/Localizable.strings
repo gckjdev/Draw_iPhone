@@ -236,7 +236,7 @@
 
 "kEmail_subject" = "分享［猜猜画画］移动版游戏";
 
-"kCreating_gif" = "正在生成GIF动画文件...";
+"kCreating_gif" = "正在生成GIF动画文件中... 文件可能比较大，请耐心等待";
 
 
 "kShareOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画美图分享# http://caicaihuahua.me";
@@ -297,3 +297,5 @@
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "购买颜色";
 "kBuyColorDialogMessage" = "购买颜色将花费%d金币，确定吗？";
+
+"kPublishWeiboSuccAndEarnCoins" = "微博已发送，你获得了%d金币！";

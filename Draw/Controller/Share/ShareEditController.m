@@ -17,7 +17,7 @@
 #import "GifView.h"
 #import "StringUtil.h"
 #import "PPDebug.h"
-
+#import "AccountService.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 
@@ -226,7 +226,14 @@ enum {
 {
     [self hideActivity];
     if (result == 0){
-        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+        if (earnCoins > 0){
+            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+            [self popupMessage:msg title:nil]; 
+        }
+        else{
+            [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
     else{

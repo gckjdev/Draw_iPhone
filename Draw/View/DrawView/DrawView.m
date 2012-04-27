@@ -60,11 +60,21 @@
 //    [self printListCount:nil];
 
     if (drawAction) {
+        
+        
+        if (point.x <= 0 && point.y <= 0) {
+            return;
+        }
+        
+        if (point.x >= self.bounds.size.width && point.y >= self.bounds.size.height) {
+            return;
+        }
+        
         point.x = MAX(point.x, 0);
         point.y = MAX(point.y, 0);
         point.x = MIN(point.x, self.bounds.size.width);
         point.y = MIN(point.y, self.bounds.size.height);
-
+        
         CGPoint lastPoint = ILLEGAL_POINT;
         if ([self.drawActionList count] != 0) {
             //simpling the point distance
