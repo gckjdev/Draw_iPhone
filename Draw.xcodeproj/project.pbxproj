@@ -404,8 +404,6 @@
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
-		CA4FF005152AF1FA00F0AC88 /* ColorShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF003152AF1F900F0AC88 /* ColorShopController.m */; };
-		CA4FF006152AF1FA00F0AC88 /* ColorShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
@@ -1235,9 +1233,6 @@
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
 		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
-		CA4FF002152AF1F900F0AC88 /* ColorShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopController.h; sourceTree = "<group>"; };
-		CA4FF003152AF1F900F0AC88 /* ColorShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopController.m; sourceTree = "<group>"; };
-		CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopController.xib; sourceTree = "<group>"; };
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
 		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
@@ -2692,7 +2687,6 @@
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
-				CA4FF004152AF1FA00F0AC88 /* ColorShopController.xib */,
 				CA32218C151F649C0039A384 /* ShopMainController.h */,
 				CA32218D151F649D0039A384 /* ShopMainController.m */,
 				CA32218E151F64A10039A384 /* ShopMainController.xib */,
@@ -2702,8 +2696,6 @@
 				CA41C9461520179000013DC8 /* ShoppingCell.h */,
 				CA41C9471520179000013DC8 /* ShoppingCell.m */,
 				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
-				CA4FF002152AF1F900F0AC88 /* ColorShopController.h */,
-				CA4FF003152AF1F900F0AC88 /* ColorShopController.m */,
 				CA4FF007152AF21900F0AC88 /* ColorShopCell.h */,
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
@@ -3782,7 +3774,6 @@
 				CAEA70101527017F00B3D206 /* back@2x.png in Resources */,
 				C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
-				CA4FF006152AF1FA00F0AC88 /* ColorShopController.xib in Resources */,
 				CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */,
 				CA65C1A0152D993600462C96 /* bg.png in Resources */,
 				CA65C1A1152D993600462C96 /* bg@2x.png in Resources */,
@@ -4108,7 +4099,6 @@
 				CA51BD761525DEDE00C77E50 /* Reward.m in Sources */,
 				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
-				CA4FF005152AF1FA00F0AC88 /* ColorShopController.m in Sources */,
 				CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
 				CA65C1B4152D993700462C96 /* SFHFKeychainUtils.m in Sources */,

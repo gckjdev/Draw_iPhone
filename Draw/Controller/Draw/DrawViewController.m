@@ -400,7 +400,7 @@ DrawViewController *GlobalGetDrawViewController()
     [popupButton setHidden:YES];  
     [self clearUnPopupMessages];
     for (UIView *view in self.view.subviews) {
-        if (view && [view isKindOfClass:[CommonDialog class]]) {
+        if (view && ([view isKindOfClass:[CommonDialog class]] || [view isKindOfClass:[ColorShopView class]])) {
             [view removeFromSuperview];
         }
     }
@@ -420,7 +420,6 @@ DrawViewController *GlobalGetDrawViewController()
     [super viewDidAppear:animated];
     [drawGameService registerObserver:self];        
     [drawView setDrawEnabled:YES];
-    colorShopConroller = nil;
 }
 
 
@@ -494,14 +493,9 @@ DrawViewController *GlobalGetDrawViewController()
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                           wordText:self.word.text 
                                                              score:gainCoin                                                         correct:NO
-                                                             isMyPaint:YES 
+                                                         isMyPaint:YES
                                                     drawActionList:drawView.drawActionList];
-    if (colorShopConroller) {
-        [colorShopConroller.navigationController popViewControllerAnimated:NO];
-        [self.navigationController pushViewController:rc animated:NO];
-    }else{
-        [self.navigationController pushViewController:rc animated:YES];
-    }
+    [self.navigationController pushViewController:rc animated:YES];
     [rc release];
     [self cleanData];
 //    [self resetTimer];
@@ -541,11 +535,7 @@ DrawViewController *GlobalGetDrawViewController()
     ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
     colorShop.delegate = self;
     [colorShop showInView:self.view animated:YES];
-    //present a buy color controller;
-//    ColorShopController *colorShop = [ColorShopController instanceWithDelegate:self];
-//    colorShop.callFromDrawView = YES;
-//    [self.navigationController pushViewController:colorShop animated:YES];
-//    colorShopConroller = colorShop;
+
 }
 
 #pragma mark - Common Dialog Delegate
@@ -554,8 +544,6 @@ DrawViewController *GlobalGetDrawViewController()
 #define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
-//    [dialog removeFromSuperview];
-    
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
         [drawView addCleanAction];
@@ -564,8 +552,6 @@ DrawViewController *GlobalGetDrawViewController()
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
-//        [drawView clearAllActions];
-//        [drawGameService unregisterObserver:self];
         [self cleanData];
     }
 
