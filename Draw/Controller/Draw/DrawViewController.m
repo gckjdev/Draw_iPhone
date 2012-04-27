@@ -139,8 +139,8 @@ DrawViewController *GlobalGetDrawViewController()
     
     [widthArray addObject:[NSNumber numberWithInt:20]];
     [widthArray addObject:[NSNumber numberWithInt:15]];
-    [widthArray addObject:[NSNumber numberWithInt:10]];
-    [widthArray addObject:[NSNumber numberWithInt:3]];
+    [widthArray addObject:[NSNumber numberWithInt:9]];
+    [widthArray addObject:[NSNumber numberWithInt:2]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
 
@@ -572,7 +572,7 @@ DrawViewController *GlobalGetDrawViewController()
     int i = 0;
     for (NSValue *pointValue in paint.pointList) {
         CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 5) 
+        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > MIN(4, (paint.width / 2))) 
         {
             NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
             [pointList addObject:pointNumber];

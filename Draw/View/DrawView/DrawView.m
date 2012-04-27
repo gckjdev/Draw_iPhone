@@ -15,8 +15,8 @@
 
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
-#define DEFAULT_SIMPLING_DISTANCE (1.0)
-#define DEFAULT_LINE_WIDTH (4.0 * 1.414)
+#define DEFAULT_SIMPLING_DISTANCE (5.0)
+#define DEFAULT_LINE_WIDTH (2.0 * 1.414)
 
 @implementation DrawView
 
@@ -56,11 +56,8 @@
 
 #pragma mark Gesture Handler
 - (void)addPoint:(CGPoint)point toDrawAction:(DrawAction *)drawAction
-{
-//    [self printListCount:nil];
-
+{    
     if (drawAction) {
-        
         
         if (point.x <= 0 && point.y <= 0) {
             return;
@@ -69,7 +66,6 @@
         if (point.x >= self.bounds.size.width && point.y >= self.bounds.size.height) {
             return;
         }
-        
         point.x = MAX(point.x, 0);
         point.y = MAX(point.y, 0);
         point.x = MIN(point.x, self.bounds.size.width);
@@ -86,9 +82,8 @@
                     return;
                 }
             }
-            
         }
-
+        
         [drawAction.paint addPoint:point];   
         if (![DrawUtils isIllegalPoint:lastPoint]) {
             CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:point edgeWidth:_lineWidth];        
@@ -96,66 +91,61 @@
         }else{
             [self setNeedsDisplay];
         }
-        
-    }
-
-}
-
-- (void) performPan:(UIPanGestureRecognizer *)panGestuereReconizer
-{
-    CGPoint point = [panGestuereReconizer locationInView:self];
-    if (panGestuereReconizer.state == UIGestureRecognizerStateBegan) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch)]) {
-            [self.delegate didStartedTouch];
-        }
-        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
-        _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
-        [self.drawActionList addObject:_currentDrawAction];
-        [self addPoint:point toDrawAction:_currentDrawAction];
-
-    }else if(panGestuereReconizer.state == UIGestureRecognizerStateChanged)
-    {
-        [self addPoint:point toDrawAction:_currentDrawAction];
-
-    }else if(panGestuereReconizer.state == UIGestureRecognizerStateEnded)
-    {
-        [self addPoint:point toDrawAction:_currentDrawAction];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
-            [self.delegate didDrawedPaint:_currentDrawAction.paint];
-        }
-
     }
 }
 
-- (void) performTap:(UITapGestureRecognizer *)tapGestuereReconizer
+
+- (BOOL)isEventLegal:(UIEvent *)event
 {
+    if(event && ([[event allTouches] count] == 1))
+    {
+        return YES;
+    }
+    return NO;
+}
+- (CGPoint)touchPoint:(UIEvent *)event
+{
+    for (UITouch *touch in [event allTouches]) {
+        CGPoint point = [touch locationInView:self];
+        return point;
+    }    
+    return ILLEGAL_POINT;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    if(tapGestuereReconizer.state == UIGestureRecognizerStateEnded)
-    {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch)]) {
-            [self.delegate didStartedTouch];
-        }
-        CGPoint point = [tapGestuereReconizer locationInView:self];
+    NSLog(@"touches began");
+    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
+    if ([self isEventLegal:event]) {
+        CGPoint point = [self touchPoint:event];
         Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
         _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
+        
         [self.drawActionList addObject:_currentDrawAction];
         [self addPoint:point toDrawAction:_currentDrawAction];
-        
+    }    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touches end");
+    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
+    if ([self isEventLegal:event]) {
+        CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
             [self.delegate didDrawedPaint:_currentDrawAction.paint];
         }
     }
 }
 
-#pragma mark Gesture Delegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    return (gestureRecognizer.view == self);
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touches move");
+    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);    
+    if ([self isEventLegal:event]) {
+        CGPoint point = [self touchPoint:event];
+        [self addPoint:point toDrawAction:_currentDrawAction];
+    }
 }
-
-
 
 #pragma mark Constructor & Destructor
 
@@ -163,25 +153,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        
         self.lineColor = [DrawColor blackColor];
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
-        originalActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
-//        self.backgroundColor = [UIColor yellowColor];
-        //add gesture recognizer;
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];
-        [self addGestureRecognizer:pan];
-        [pan release];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTap:)];
-        [self addGestureRecognizer:tap];
-        [tap release];
-        
         startDrawActionIndex = 0;
-        
     }
     
     
@@ -192,7 +170,6 @@
 {
     [_drawActionList release];
     [_lineColor release];
-    [originalActionList release];
     [super dealloc];
 }
 
@@ -200,10 +177,10 @@
 
 - (void)drawRect:(CGRect)rect
 {
-
+    
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetLineCap(context, kCGLineCapRound);
-
+    
     
     for (int j = startDrawActionIndex; j < self.drawActionList.count; ++ j) {
         
@@ -211,32 +188,23 @@
         Paint *paint = drawAction.paint;
         if (drawAction.type == DRAW_ACTION_TYPE_DRAW) { //if is draw action 
             CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-            CGContextSetLineWidth(context, paint.width);
+            CGContextSetFillColorWithColor(context, paint.color.CGColor);
+            
+            UIBezierPath *path;
+            path = [UIBezierPath bezierPath];
             for (int i = 0; i < [paint pointCount]; ++ i) {
                 CGPoint point = [paint pointAtIndex:i];
-                if ([paint pointCount] == 1) {
-                    //if tap gesture, draw a circle
-                    CGContextSetFillColorWithColor(context, paint.color.CGColor);
-                    CGFloat r = paint.width / 2;
-                    CGFloat x = point.x - r;
-                    CGFloat y = point.y - r;
-                    CGFloat width = paint.width;
-                    CGRect rect = CGRectMake(x, y, width, width);
-                    CGContextFillEllipseInRect(context, rect);
-                }else{
-                    //if is pan gesture, draw a line.
-                    if (i == 0) {
-                        CGContextMoveToPoint(context, point.x, point.y);   
-                    }else{
-                        CGContextAddLineToPoint(context, point.x, point.y);
-                        CGContextSetLineJoin(context, kCGLineJoinRound);
-                    }
+                if (i == 0) {
+                    [path moveToPoint:point];
+                    [path setLineWidth:paint.width];
+                    [path setLineCapStyle:kCGLineCapRound];
                 }
-            //if is playing then play the next frame
+                [path addLineToPoint:point];
             }
+            [path stroke];
         }
-
-        CGContextStrokePath(context); 
+        
+        
     }
 }
 
@@ -257,5 +225,7 @@
 {
     return [DrawAction isDrawActionListBlank:self.drawActionList];
 }
+
+
 
 @end
