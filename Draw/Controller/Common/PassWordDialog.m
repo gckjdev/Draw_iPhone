@@ -80,9 +80,9 @@
 {
     self.oldPasswordTextField.hidden = YES;
     
-    const NSInteger UP_HEIGHT = 46;
-    [self upView:self.anotherPasswordTextField height:UP_HEIGHT];
-    [self upView:self.targetTextField height:UP_HEIGHT];
+    const NSInteger UP_HEIGHT = 15;
+    [self upView:self.anotherPasswordTextField height:UP_HEIGHT+10];
+    [self upView:self.targetTextField height:UP_HEIGHT+5];
     [self upView:self.cancelButton height:UP_HEIGHT];
     [self upView:self.okButton height:UP_HEIGHT];
     

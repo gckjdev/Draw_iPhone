@@ -401,6 +401,71 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [userDefaults synchronize];     
 }
 
+- (void)saveUserId:(NSString*)userId 
+             email:(NSString*)email
+          password:(NSString*)password
+          nickName:(NSString*)nickName 
+              qqId:(NSString*)qqId 
+     qqAccessToken:(NSString*)qqAccessToken 
+qqAccessTokenSecret:(NSString*)qqAccessTokenSecret 
+            sinaId:(NSString*)sinaId 
+   sinaAccessToken:(NSString*)sinaAccessToken 
+sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret 
+        facebookId:(NSString*)facebookId
+         avatarURL:(NSString*)avatarURL
+{
+    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    //email用户
+    if (userId != nil) {
+        [userDefaults setObject:userId forKey:KEY_USERID];
+    }
+    if (nickName != nil) {
+        [userDefaults setObject:nickName forKey:KEY_NICKNAME];
+    }
+    if (email != nil) {
+        [userDefaults setObject:email forKey:KEY_EMAIL];
+    }
+    if (password != nil) {
+        [userDefaults setObject:password forKey:KEY_PASSWORD];
+    }
+    //facebook用户
+    if (facebookId != nil){
+        [userDefaults setObject:facebookId forKey:KEY_FACEBOOK_LOGINID];
+    }
+    //qq绑定用户
+    if (qqId != nil){
+        [userDefaults setObject:qqId forKey:KEY_QQ_LOGINID];
+    }
+    if (qqAccessToken != nil){
+        [userDefaults setObject:qqAccessToken forKey:KEY_QQ_ACCESS_TOKEN];
+    }
+    
+    if (qqAccessTokenSecret != nil){
+        [userDefaults setObject:qqAccessTokenSecret forKey:KEY_QQ_ACCESS_TOKEN_SECRET];
+    }
+    //渣浪绑定用户
+    if (sinaId != nil){
+        [userDefaults setObject:sinaId forKey:KEY_SINA_LOGINID];
+    }
+    if (sinaAccessToken != nil){
+        [userDefaults setObject:sinaAccessToken forKey:KEY_SINA_ACCESS_TOKEN];
+    }
+    
+    if (sinaAccessTokenSecret != nil){
+        [userDefaults setObject:sinaAccessTokenSecret forKey:KEY_SINA_ACCESS_TOKEN_SECRET];
+    }
+    
+    if (avatarURL != nil){
+        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+        if (email == nil) {
+            [self avatarImage];
+        }
+    }
+    
+    [userDefaults synchronize];
+}
+
 - (void)setLanguageType:(LanguageType)type
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

@@ -17,6 +17,7 @@
 #import "SNSConstants.h"
 #import "AccountManager.h"
 #import "InputDialog.h"
+#import "RegisterUserController.h"
 
 @implementation UserService
 
@@ -382,11 +383,11 @@ static UserService* _defaultUserService;
                 [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
             }
             else if (output.resultCode == ERROR_USER_EMAIL_NOT_FOUND) {
-                // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
+                // @"该邮箱地址尚未注册"
                 [viewController popupUnhappyMessage:NSLS(@"kEmailNotFound") title:nil];
             }
             else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
-                // @"对不起，该电子邮件已经被注册"
+                // @"密码错误 "
                 [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
@@ -394,12 +395,76 @@ static UserService* _defaultUserService;
                 [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
             }
             else {
-                // @"对不起，注册失败，请稍候再试"
+                // @"登录失败，稍后尝试"
                 [viewController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
             }
             
             if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
                 [viewController didUserRegistered:output.resultCode];                    
+            }
+        }); 
+    });
+    
+}
+
+- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+{
+    NSString* appId = APP_ID;
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    
+    [homeController showActivityWithText:NSLS(@"kLoginUser")];    
+    dispatch_async(workingQueue, ^{            
+        
+        CommonNetworkOutput* output = 
+        [GameNetworkRequest loginUser:SERVER_URL 
+                                appId:appId 
+                             deviceId:deviceId
+                          deviceToken:deviceToken];                
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [homeController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
+                NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
+                NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+                NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
+                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+                NSString* qqAccessToken = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN];
+                NSString* qqAccessSecret = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN_SECRET];
+                NSString* qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+                NSString* sinaAccessToken = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN];
+                NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
+                NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
+                NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
+                [[UserManager defaultManager] saveUserId:userId 
+                                                   email:email 
+                                                password:password 
+                                                nickName:nickName 
+                                                    qqId:qqId 
+                                           qqAccessToken:qqAccessToken 
+                                     qqAccessTokenSecret:qqAccessSecret 
+                                                  sinaId:sinaId 
+                                         sinaAccessToken:sinaAccessToken
+                                   sinaAccessTokenSecret:sinaAccessSecret 
+                                              facebookId:facebookId 
+                                               avatarURL:avatar];
+                
+                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
+                // @"设备未绑定任何用户"
+                [RegisterUserController showAt:homeController];
+            }
+            else {
+                // @"登录失败，稍后尝试"
+                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
             }
         }); 
     });

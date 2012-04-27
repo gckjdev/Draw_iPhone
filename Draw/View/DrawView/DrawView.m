@@ -15,7 +15,7 @@
 
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
-#define DEFAULT_SIMPLING_DISTANCE (5.0)
+#define DEFAULT_SIMPLING_DISTANCE (1.0)
 #define DEFAULT_LINE_WIDTH (4.0 * 1.414)
 
 @implementation DrawView
@@ -168,6 +168,7 @@
         self.lineWidth = DEFAULT_LINE_WIDTH;
         self.simplingDistance = DEFAULT_SIMPLING_DISTANCE;
         _drawActionList = [[NSMutableArray alloc] init];
+        originalActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
 //        self.backgroundColor = [UIColor yellowColor];
         //add gesture recognizer;
@@ -191,6 +192,7 @@
 {
     [_drawActionList release];
     [_lineColor release];
+    [originalActionList release];
     [super dealloc];
 }
 
