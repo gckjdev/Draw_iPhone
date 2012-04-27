@@ -1232,6 +1232,7 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
 		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
 		CA4FF002152AF1F900F0AC88 /* ColorShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopController.h; sourceTree = "<group>"; };
@@ -4333,7 +4334,7 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "5EC82328-A64F-479D-A1F0-5403356A0AFF";
+				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				SDKROOT = iphoneos;
 			};
@@ -4346,7 +4347,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -4358,7 +4359,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "5EC82328-A64F-479D-A1F0-5403356A0AFF";
+				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "567D364C-8715-407A-A12E-EB426A08C30F";
 				SDKROOT = iphoneos;
 			};
@@ -4380,7 +4381,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5EC82328-A64F-479D-A1F0-5403356A0AFF";
+				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4389,7 +4390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -4400,7 +4401,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5EC82328-A64F-479D-A1F0-5403356A0AFF";
+				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4486,10 +4487,11 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */,
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */;
+			currentVersion = CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
