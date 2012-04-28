@@ -34,6 +34,7 @@ static DrawGameService* _defaultService;
 @synthesize gender = _gender;
 //@synthesize drawActionList = _drawActionList;
 @synthesize showDelegate = _showDelegate;
+@synthesize onlineUserCount = _onlineUserCount;
 
 - (void)dealloc
 {

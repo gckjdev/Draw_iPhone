@@ -36,6 +36,7 @@ enum{
 @property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 @property (retain, nonatomic) NSTimer *startTimer;
 @property (assign, nonatomic) int clickCount;
+@property (retain, nonatomic) IBOutlet UILabel *onlinePlayerCountLabel;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;

@@ -63,8 +63,7 @@
                             appId:(NSString*)appId
                             email:(NSString*)email 
                          password:(NSString*)password 
-                      deviceToken:(NSString*)deviceToken 
-                           device:(NSString*)deviceId;
+                      deviceToken:(NSString*)deviceToken;
 
 + (CommonNetworkOutput*)updateUser:(NSString*)baseURL
                              appId:(NSString*)appId
@@ -73,8 +72,7 @@
                        deviceToken:(NSString*)deviceToken
                           nickName:(NSString*)nickName
                           password:(NSString*)newPassword
-                            avatar:(NSData*)avatar 
-                          deviceId:(NSString*)deviceId;
+                            avatar:(NSData*)avatar;
 
 + (CommonNetworkOutput*)fetchShoppingList:(NSString*)baseURL 
                                      type:(int)type;

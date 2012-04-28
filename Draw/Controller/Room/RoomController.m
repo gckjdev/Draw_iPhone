@@ -48,6 +48,7 @@
 @synthesize startGameButton;
 @synthesize startTimer = _startTimer;
 @synthesize clickCount = _clickCount;
+@synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
 
 
 #define QUICK_DURATION  2
@@ -59,6 +60,7 @@
     [roomNameLabel release];
     [_prolongButton release];
     [popupButton release];
+    [_onlinePlayerCountLabel release];
     [super dealloc];
 }
 
@@ -136,6 +138,7 @@
     [self setStartGameButton:nil];
     [self setRoomNameLabel:nil];
     [self setProlongButton:nil];
+    [self setOnlinePlayerCountLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
