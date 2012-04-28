@@ -10,4 +10,9 @@
 
 @implementation ConfigManager
 
++ (int)getGuessRewardNormal
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];
+}
+
 @end

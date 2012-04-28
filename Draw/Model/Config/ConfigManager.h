@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MobClickUtils.h"
 
 @interface ConfigManager : NSObject
+
++ (int)getGuessRewardNormal;
 
 @end
