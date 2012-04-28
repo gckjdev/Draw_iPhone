@@ -35,11 +35,36 @@
                                  birthday:(NSString*)birthday
                                    domain:(NSString*)domain;
 
++ (CommonNetworkOutput*)registerUserByEmail:(NSString*)baseURL
+                                      appId:(NSString*)appId
+                                      email:(NSString*)email
+                                   password:(NSString*)password
+                                deviceToken:(NSString*)deviceToken 
+                                   deviceId:(NSString*)deviceId;
+
++ (CommonNetworkOutput*)registerUserBySNS:(NSString*)baseURL
+                                    snsId:(NSString*)snsId
+                             registerType:(int)registerType                                      
+                                    appId:(NSString*)appId
+                              deviceToken:(NSString*)deviceToken
+                                 nickName:(NSString*)nickName
+                                   avatar:(NSString*)avatar
+                              accessToken:(NSString*)accessToken
+                        accessTokenSecret:(NSString*)accessTokenSecret
+                                 province:(int)province
+                                     city:(int)city
+                                 location:(NSString*)location
+                                   gender:(NSString*)gender
+                                 birthday:(NSString*)birthday
+                                   domain:(NSString*)domain 
+                                 deviceId:(NSString*)deviceId;
+
 + (CommonNetworkOutput*)loginUser:(NSString*)baseURL
                             appId:(NSString*)appId
                             email:(NSString*)email 
                          password:(NSString*)password 
-                      deviceToken:(NSString*)deviceToken;
+                      deviceToken:(NSString*)deviceToken 
+                           device:(NSString*)deviceId;
 
 + (CommonNetworkOutput*)updateUser:(NSString*)baseURL
                              appId:(NSString*)appId
@@ -48,7 +73,8 @@
                        deviceToken:(NSString*)deviceToken
                           nickName:(NSString*)nickName
                           password:(NSString*)newPassword
-                            avatar:(NSData*)avatar;
+                            avatar:(NSData*)avatar 
+                          deviceId:(NSString*)deviceId;
 
 + (CommonNetworkOutput*)fetchShoppingList:(NSString*)baseURL 
                                      type:(int)type;
@@ -80,6 +106,9 @@
 
 + (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL
                                        userId:(NSString*)userId;
++ (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL 
+                                       userId:(NSString*)userId 
+                                     deviceId:(NSString*)deviceId;
 
 + (CommonNetworkOutput*)feedbackUser:(NSString*)baseURL
                              appId:(NSString*)appId
