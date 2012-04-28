@@ -10,8 +10,6 @@
 
 @implementation MyPaintButton
 
-static MyPaintButton* shareMyPaintButton;
-
 @synthesize wordsBackground = _wordsBackground;
 @synthesize clickButton = _clickButton;
 @synthesize drawWord = _drawWord;

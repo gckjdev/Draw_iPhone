@@ -28,7 +28,7 @@
     NSInteger startDrawActionIndex;
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
-
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;

@@ -14,6 +14,8 @@ typedef enum  {
     BuyItemType = 3,
     DrawRewardType = 4,
     GuessRewardType = 5,
+    ShareWeiboReward = 6,
+    ShareAppReward = 7,
     
     EscapeType = 10,
     ChangeRoomType = 11,

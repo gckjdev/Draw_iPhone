@@ -69,4 +69,6 @@
 
 - (void)retryVerifyReceiptAtBackground;
 
+- (int)rewardForShareWeibo;
+
 @end

@@ -3212,6 +3212,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property int64_t sessionId;
 @property int32_t round;
 @property GameCompleteReason completeReason;
+@property int32_t onlineUserCount;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
@@ -3274,6 +3275,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasCompleteReason_ = !!value;
 }
 @synthesize completeReason;
+- (BOOL) hasOnlineUserCount {
+  return !!hasOnlineUserCount_;
+}
+- (void) setHasOnlineUserCount:(BOOL) value {
+  hasOnlineUserCount_ = !!value;
+}
+@synthesize onlineUserCount;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -3359,6 +3367,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.sessionId = 0L;
     self.round = 0;
     self.completeReason = GameCompleteReasonReasonNotComplete;
+    self.onlineUserCount = 0;
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
@@ -3424,6 +3433,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasCompleteReason) {
     [output writeEnum:7 value:self.completeReason];
   }
+  if (self.hasOnlineUserCount) {
+    [output writeInt32:8 value:self.onlineUserCount];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
   }
@@ -3480,6 +3492,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCompleteReason) {
     size += computeEnumSize(7, self.completeReason);
+  }
+  if (self.hasOnlineUserCount) {
+    size += computeInt32Size(8, self.onlineUserCount);
   }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
@@ -3604,6 +3619,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasCompleteReason) {
     [self setCompleteReason:other.completeReason];
   }
+  if (other.hasOnlineUserCount) {
+    [self setOnlineUserCount:other.onlineUserCount];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
@@ -3693,6 +3711,10 @@ static GameMessage* defaultGameMessageInstance = nil;
         } else {
           [unknownFields mergeVarintField:7 value:value];
         }
+        break;
+      }
+      case 64: {
+        [self setOnlineUserCount:[input readInt32]];
         break;
       }
       case 90: {
@@ -3889,6 +3911,22 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearCompleteReason {
   result.hasCompleteReason = NO;
   result.completeReason = GameCompleteReasonReasonNotComplete;
+  return self;
+}
+- (BOOL) hasOnlineUserCount {
+  return result.hasOnlineUserCount;
+}
+- (int32_t) onlineUserCount {
+  return result.onlineUserCount;
+}
+- (GameMessage_Builder*) setOnlineUserCount:(int32_t) value {
+  result.hasOnlineUserCount = YES;
+  result.onlineUserCount = value;
+  return self;
+}
+- (GameMessage_Builder*) clearOnlineUserCount {
+  result.hasOnlineUserCount = NO;
+  result.onlineUserCount = 0;
   return self;
 }
 - (BOOL) hasJoinGameRequest {

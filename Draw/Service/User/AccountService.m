@@ -20,6 +20,7 @@
 #import "TimeUtils.h"
 #import "StoreKitUtils.h"
 #import "TransactionReceiptManager.h"
+#import "MobClick.h"
 
 @implementation AccountService
 
@@ -575,6 +576,26 @@ static AccountService* _defaultAccountService;
                 PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
             }
         });      
-    });}
+    });
+}
+
+- (int)rewardForShareWeibo
+{
+    NSString* value = [MobClick getConfigParams:@"REWARD_SHARE_WEIBO"];
+    if ([value length] == 0)
+        value = @"100";
+            
+    [self chargeAccount:[value intValue] source:ShareWeiboReward];
+    return [value intValue];
+}
+
+- (void)rewardForShareApp
+{
+    NSString* value = [MobClick getConfigParams:@"REWARD_SHARE_APP"];
+    if ([value length] == 0)
+        value = @"100";
+    
+    [self chargeAccount:[value intValue] source:ShareAppReward];
+}
 
 @end
