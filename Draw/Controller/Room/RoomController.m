@@ -23,6 +23,7 @@
 #import "AccountService.h"
 #import "AnimationManager.h"
 #import "UserManager.h"
+#import "LocaleUtils.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -31,6 +32,7 @@
 - (void)updateGameUsers;
 - (void)updateRoomName;
 - (void)updateStartButton;
+- (void)updateOnlineUserLabel;
 
 - (void)resetStartTimer;
 - (void)scheduleStartTimer;
@@ -48,6 +50,7 @@
 @synthesize startGameButton;
 @synthesize startTimer = _startTimer;
 @synthesize clickCount = _clickCount;
+@synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
 
 
 #define QUICK_DURATION  2
@@ -59,6 +62,7 @@
     [roomNameLabel release];
     [_prolongButton release];
     [popupButton release];
+    [_onlinePlayerCountLabel release];
     [super dealloc];
 }
 
@@ -109,6 +113,8 @@
     
     [[DrawGameService defaultService] registerObserver:self];
     [[DrawGameService defaultService] setRoomDelegate:self];
+    
+    [self updateOnlineUserLabel];
     [self updateGameUsers];
     [self updateRoomName];
     [self updateStartButton];
@@ -136,6 +142,7 @@
     [self setStartGameButton:nil];
     [self setRoomNameLabel:nil];
     [self setProlongButton:nil];
+    [self setOnlinePlayerCountLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -150,6 +157,11 @@
 #pragma mark - GUI Update Methods
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
+
+- (void)updateOnlineUserLabel
+{
+    [self.onlinePlayerCountLabel setText:[NSString stringWithFormat:NSLS(@"kOnlineUserCount"), [DrawGameService defaultService].onlineUserCount]];
+}
 
 - (void)updateGameUsers
 {        
@@ -360,6 +372,7 @@
     // update 
     [self updateGameUsers];
     [self updateRoomName];    
+    [self updateOnlineUserLabel];
     if ([self userCount] > 1) {
         [self scheduleStartTimer];        
     }else{
@@ -407,11 +420,15 @@
 {
     PPDebug(@"<RoomController>:didGameTurnComplete");
     [self updateGameUsers];
+    [self updateOnlineUserLabel];
+    
 }
 
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
-    [self updateGameUsers];    
+    [self updateGameUsers]; 
+    [self updateOnlineUserLabel];
+
     if (self.startTimer == nil && [self userCount] > 1) {
         [self scheduleStartTimer];
     }
@@ -419,7 +436,9 @@
 
 - (void)didUserQuitGame:(GameMessage *)message
 {
-    [self updateGameUsers];    
+    [self updateGameUsers];   
+    [self updateOnlineUserLabel];
+
     if ([self userCount] > 1) {
         [self scheduleStartTimer];        
     }else{
@@ -441,6 +460,8 @@
 
 - (void)didGameAskQuick:(GameMessage *)message
 {  
+    [self updateOnlineUserLabel];
+    
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
         [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
@@ -451,6 +472,8 @@
 
 - (void)didGameProlong:(GameMessage *)message
 {
+    [self updateOnlineUserLabel];
+    
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];   
         [self prolongStartTimer];

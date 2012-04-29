@@ -288,3 +288,5 @@
 "kBuyColorDialogTitle" = "Buy Color";
 "kBuyColorDialogMessage" = "It will cost you %d coins. Are you sure?";
 "kPublishWeiboSuccAndEarnCoins" = "Message Sent. You got %d coins!";
+"guest" = "guest";
+"kOnlineUserCount" = "Online:%d";

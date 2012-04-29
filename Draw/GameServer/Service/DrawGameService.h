@@ -64,6 +64,8 @@
     NSTimer *_keepAliveTimer;    
     
     NSMutableSet *_historySessionSet;
+    
+    int _onlineUserCount;
 }
 
 @property (nonatomic, retain) NSString* userId;
@@ -81,6 +83,8 @@
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property (nonatomic, retain) NSString* serverAddress;
 @property (nonatomic, assign) int serverPort;
+
+@property (nonatomic, assign) int onlineUserCount;
 
 + (DrawGameService*)defaultService;
 

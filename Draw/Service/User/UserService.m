@@ -18,6 +18,7 @@
 #import "AccountManager.h"
 #import "InputDialog.h"
 #import "RegisterUserController.h"
+#import "AccountService.h"
 
 @implementation UserService
 
@@ -39,6 +40,7 @@ static UserService* _defaultUserService;
     // TODO send device id later
     
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
     [viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
     dispatch_async(workingQueue, ^{
@@ -48,7 +50,8 @@ static UserService* _defaultUserService;
                                                        appId:APP_ID 
                                                        email:email 
                                                     password:password
-                                                 deviceToken:deviceToken];
+                                                 deviceToken:deviceToken 
+                                                deviceId:deviceId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
@@ -123,7 +126,7 @@ static UserService* _defaultUserService;
 {
     NSString* appId = APP_ID;
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
-    
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
     
@@ -132,20 +135,21 @@ static UserService* _defaultUserService;
         
         CommonNetworkOutput* output = 
         [GameNetworkRequest registerUserBySNS:SERVER_URL
-                                            snsId:loginId
-                                     registerType:loginIdType                                       
-                                            appId:appId
-                                      deviceToken:deviceToken
-                                         nickName:[userInfo objectForKey:SNS_NICK_NAME]
-                                           avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
-                                      accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
-                                accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
-                                         province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
-                                             city:[[userInfo objectForKey:SNS_CITY] intValue]
-                                         location:[userInfo objectForKey:SNS_LOCATION]
-                                           gender:[userInfo objectForKey:SNS_GENDER]
-                                         birthday:[userInfo objectForKey:SNS_BIRTHDAY]                                      
-                                           domain:[userInfo objectForKey:SNS_DOMAIN]];                
+                                        snsId:loginId
+                                 registerType:loginIdType
+                                        appId:appId
+                                  deviceToken:deviceToken
+                                     nickName:[userInfo objectForKey:SNS_NICK_NAME]
+                                       avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
+                                  accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
+                            accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
+                                     province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
+                                         city:[[userInfo objectForKey:SNS_CITY] intValue]
+                                     location:[userInfo objectForKey:SNS_LOCATION]
+                                       gender:[userInfo objectForKey:SNS_GENDER]
+                                     birthday:[userInfo objectForKey:SNS_BIRTHDAY]
+                                       domain:[userInfo objectForKey:SNS_DOMAIN]
+                                     deviceId:deviceId];                
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -439,6 +443,12 @@ static UserService* _defaultUserService;
                 NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
                 NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
                 NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
+                if (nickName == nil || [nickName length] == 0) {
+                    nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
+                    if (nickName == nil || [nickName length] == 0) {
+                        nickName = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
+                    }
+                } 
                 [[UserManager defaultManager] saveUserId:userId 
                                                    email:email 
                                                 password:password 
@@ -453,6 +463,7 @@ static UserService* _defaultUserService;
                                                avatarURL:avatar];
                 
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                [[AccountService defaultService] syncAccountAndItem];
                 
             }
             else if (output.resultCode == ERROR_NETWORK) {

@@ -34,6 +34,7 @@ static DrawGameService* _defaultService;
 @synthesize gender = _gender;
 //@synthesize drawActionList = _drawActionList;
 @synthesize showDelegate = _showDelegate;
+@synthesize onlineUserCount = _onlineUserCount;
 
 - (void)dealloc
 {
@@ -174,6 +175,15 @@ static DrawGameService* _defaultService;
     [_historySessionSet removeAllObjects];
 }
 
+#pragma mark Online User Count
+
+- (void)updateOnlineUserCount:(GameMessage*)message
+{
+    if ([message hasOnlineUserCount]){
+        _onlineUserCount = [message onlineUserCount];
+    }
+}
+
 #pragma mark Notification Handling
 
 - (void)notifyGameObserver:(SEL)selector message:(GameMessage*)message
@@ -230,6 +240,8 @@ static DrawGameService* _defaultService;
             self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
             
+            [self updateOnlineUserCount:message];
+            
             // add into hisotry
             [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
         }
@@ -275,6 +287,8 @@ static DrawGameService* _defaultService;
     dispatch_async(dispatch_get_main_queue(), ^{
         // update session data
         [self.session updateByGameNotification:[message notification]];
+        
+        [self updateOnlineUserCount:message];
 
         // notify
         [self notifyGameObserver:@selector(didNewUserJoinGame:) message:message];
@@ -344,6 +358,8 @@ static DrawGameService* _defaultService;
         
         [_session setStatus:SESSION_WAITING];
         
+        [self updateOnlineUserCount:message];
+        
         // update session data
         [self.session updateByGameNotification:[message notification]];
         
@@ -356,6 +372,8 @@ static DrawGameService* _defaultService;
     dispatch_async(dispatch_get_main_queue(), ^{
         // update session data
         [self.session updateByGameNotification:[message notification]];
+        
+        [self updateOnlineUserCount:message];
         
         // notify
         [self notifyGameObserver:@selector(didUserQuitGame:) message:message];
@@ -494,7 +512,7 @@ static DrawGameService* _defaultService;
             break;
     }
     
-    
+    [self updateOnlineUserCount:message];
 }
 
 #pragma CommonNetworkClientDelegate
