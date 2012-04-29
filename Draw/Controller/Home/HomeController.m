@@ -26,6 +26,7 @@
 #import "FacebookSNSService.h"
 #import "ItemShopController.h"
 #import "RouterTrafficServer.h"
+#import "StringUtil.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -139,9 +140,20 @@
 {        
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     
+    NSString* userId = [_userManager userId];
+    NSString* nickName = [_userManager userId];
+    
+    if (userId == nil){
+        userId = [NSString GetUUID];
+    }
+    
+    if (nickName == nil){
+        nickName = NSLS(@"guest");
+    }
+    
     if ([[DrawGameService defaultService] isConnected]){        
-        [[DrawGameService defaultService] joinGame:[_userManager userId]
-                                          nickName:[_userManager nickName]
+        [[DrawGameService defaultService] joinGame:userId
+                                          nickName:nickName
                                             avatar:[_userManager avatarURL]
                                             gender:[_userManager isUserMale]];    
     }

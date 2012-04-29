@@ -302,3 +302,5 @@
 "kBuyColorDialogMessage" = "购买颜色将花费%d金币，确定吗？";
 
 "kPublishWeiboSuccAndEarnCoins" = "微博已发送，你获得了%d金币！";
+"guest" = "路人甲";
+"kOnlineUserCount" = "当前在线:%d";

@@ -18,6 +18,7 @@
 #import "AccountManager.h"
 #import "InputDialog.h"
 #import "RegisterUserController.h"
+#import "AccountService.h"
 
 @implementation UserService
 
@@ -462,6 +463,7 @@ static UserService* _defaultUserService;
                                                avatarURL:avatar];
                 
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                [[AccountService defaultService] syncAccountAndItem];
                 
             }
             else if (output.resultCode == ERROR_NETWORK) {
