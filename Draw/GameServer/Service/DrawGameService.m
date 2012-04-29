@@ -74,7 +74,7 @@ static DrawGameService* _defaultService;
     return self;
 }
 
-#define DISCONNECT_TIMER_INTERVAL   30
+#define DISCONNECT_TIMER_INTERVAL   10
 
 - (void)startDisconnectTimer
 {
@@ -133,6 +133,8 @@ static DrawGameService* _defaultService;
 //    [_networkClient start:@"192.167.1.103" port:8080];
 //    [_networkClient start:@"192.168.1.6" port:8080];    
 
+    [self clearKeepAliveTimer];
+    [self clearDisconnectTimer];
     [_networkClient start:_serverAddress port:_serverPort];    
 
 }
