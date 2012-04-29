@@ -474,8 +474,26 @@ static AccountService* _defaultAccountService;
 #define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
 #define MAX_CHECKIN_COINS       5
 
+- (int)getCheckInMaxReward
+{
+    NSString* value = [MobClick getConfigParams:@"REWARD_CHECKIN"];
+    int maxReward = 0;
+    if ([value length] > 0){
+        maxReward = [value intValue];
+    }
+    
+    if (maxReward <= 0){
+        maxReward = MAX_CHECKIN_COINS;
+    }
+    
+    return maxReward;
+}
+
 - (int)checkIn
 {
+    
+    int maxReward = [self getCheckInMaxReward];    
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDate* lastCheckInDate = [userDefaults objectForKey:KEY_LAST_CHECKIN_DATE];
     if (lastCheckInDate != nil && isLocalToday(lastCheckInDate)){
@@ -485,7 +503,7 @@ static AccountService* _defaultAccountService;
     }
 
     // random get some coins
-    int coins = rand() % MAX_CHECKIN_COINS + 1;
+    int coins = rand() % maxReward + 1;
     PPDebug(@"<checkIn> got %d coins", coins);
     [self chargeAccount:coins source:CheckInType]; 
     
