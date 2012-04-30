@@ -13,6 +13,8 @@
 
 @interface ReportController ()
 
+- (IBAction)endEditingContact:(id)sender;
+
 @end
 
 @implementation ReportController

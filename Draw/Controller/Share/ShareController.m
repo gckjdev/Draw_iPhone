@@ -28,6 +28,8 @@
 
 @interface ShareController ()
 
+- (void)loadPaintsOnlyMine:(BOOL)onlyMine;
+
 @end
 
 @implementation ShareController

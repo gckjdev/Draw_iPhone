@@ -309,13 +309,11 @@
 		CA1377D815259C1500B5790B /* weibo_selectedbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */; };
 		CA1377D915259C1500B5790B /* qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779815259C1400B5790B /* qq@2x.png */; };
 		CA1377DA15259C1500B5790B /* sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779915259C1400B5790B /* sina@2x.png */; };
-		CA1377DB15259C1500B5790B /* user_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779A15259C1400B5790B /* user_login@2x.png */; };
 		CA1377DC15259C1500B5790B /* female2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779B15259C1400B5790B /* female2@2x.png */; };
 		CA1377DD15259C1500B5790B /* female1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779C15259C1400B5790B /* female1@2x.png */; };
 		CA1377DE15259C1500B5790B /* man1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779D15259C1400B5790B /* man1@2x.png */; };
 		CA1377DF15259C1500B5790B /* user_pic_bgselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779E15259C1400B5790B /* user_pic_bgselected@2x.png */; };
 		CA1377E015259C1500B5790B /* user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779F15259C1400B5790B /* user_picbg@2x.png */; };
-		CA1377E115259C1500B5790B /* user_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377A015259C1400B5790B /* user_setting@2x.png */; };
 		CA1377E215259C1500B5790B /* home_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377A115259C1400B5790B /* home_setting@2x.png */; };
 		CA1377E315259C1500B5790B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377A215259C1400B5790B /* feedback@2x.png */; };
 		CA1377E415259C1500B5790B /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377A315259C1400B5790B /* home@2x.png */; };
@@ -1097,13 +1095,11 @@
 		CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_selectedbg@2x.png"; sourceTree = "<group>"; };
 		CA13779815259C1400B5790B /* qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq@2x.png"; sourceTree = "<group>"; };
 		CA13779915259C1400B5790B /* sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina@2x.png"; sourceTree = "<group>"; };
-		CA13779A15259C1400B5790B /* user_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_login@2x.png"; sourceTree = "<group>"; };
 		CA13779B15259C1400B5790B /* female2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "female2@2x.png"; sourceTree = "<group>"; };
 		CA13779C15259C1400B5790B /* female1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "female1@2x.png"; sourceTree = "<group>"; };
 		CA13779D15259C1400B5790B /* man1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man1@2x.png"; sourceTree = "<group>"; };
 		CA13779E15259C1400B5790B /* user_pic_bgselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pic_bgselected@2x.png"; sourceTree = "<group>"; };
 		CA13779F15259C1400B5790B /* user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_picbg@2x.png"; sourceTree = "<group>"; };
-		CA1377A015259C1400B5790B /* user_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting@2x.png"; sourceTree = "<group>"; };
 		CA1377A115259C1400B5790B /* home_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_setting@2x.png"; sourceTree = "<group>"; };
 		CA1377A215259C1400B5790B /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
 		CA1377A315259C1400B5790B /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
@@ -1699,6 +1695,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA9DB92D154E75410031DBBD /* Friend */,
 				CA137718152425BD00B5790B /* Router */,
 				CA1041ED1509B9AB00F60C03 /* Common */,
 				CA1041EE1509B9AB00F60C03 /* User */,
@@ -2985,13 +2982,11 @@
 				CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */,
 				CA13779815259C1400B5790B /* qq@2x.png */,
 				CA13779915259C1400B5790B /* sina@2x.png */,
-				CA13779A15259C1400B5790B /* user_login@2x.png */,
 				CA13779B15259C1400B5790B /* female2@2x.png */,
 				CA13779C15259C1400B5790B /* female1@2x.png */,
 				CA13779D15259C1400B5790B /* man1@2x.png */,
 				CA13779E15259C1400B5790B /* user_pic_bgselected@2x.png */,
 				CA13779F15259C1400B5790B /* user_picbg@2x.png */,
-				CA1377A015259C1400B5790B /* user_setting@2x.png */,
 				CA1377A115259C1400B5790B /* home_setting@2x.png */,
 				CA1377A215259C1400B5790B /* feedback@2x.png */,
 				CA1377A315259C1400B5790B /* home@2x.png */,
@@ -3290,13 +3285,13 @@
 				CA65C1F0152DD29D00462C96 /* QQWeiboEngine */,
 				CA65C161152D993100462C96 /* SinaWeiBoSDK */,
 				CA32214A151EF4950039A384 /* SNS */,
-				CA9AA973150F423C009D1CB6 /* Draw_Common */,
-				CA9AA963150F4071009D1CB6 /* View */,
 				CA103B391509A56000F60C03 /* Core */,
 				CA103B361509A55000F60C03 /* Resource */,
 				CA96E264150DD55400292335 /* GameServer */,
+				CA9AA973150F423C009D1CB6 /* Draw_Common */,
 				CA103B371509A55000F60C03 /* Service */,
 				CAECE0271503B25500BC2404 /* Controller */,
+				CA9AA963150F4071009D1CB6 /* View */,
 				CAECE0291503B25500BC2404 /* Model */,
 				CA3220FF151B6A490039A384 /* Network */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
@@ -3456,6 +3451,41 @@
 			path = Draw_Common;
 			sourceTree = "<group>";
 		};
+		CA9DB929154E75070031DBBD /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		CA9DB92A154E75190031DBBD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		CA9DB92B154E75190031DBBD /* FriendManage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendManage;
+			sourceTree = "<group>";
+		};
+		CA9DB92C154E751A0031DBBD /* FriendPlay */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendPlay;
+			sourceTree = "<group>";
+		};
+		CA9DB92D154E75410031DBBD /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
 		CAA0E6A315147DEF00FD8C3E /* Word */ = {
 			isa = PBXGroup;
 			children = (
@@ -3514,6 +3544,9 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA9DB92A154E75190031DBBD /* Chat */,
+				CA9DB92B154E75190031DBBD /* FriendManage */,
+				CA9DB92C154E751A0031DBBD /* FriendPlay */,
 				CA32213A151DEDBF0039A384 /* User */,
 				CA1041F41509BC8700F60C03 /* Home */,
 				CA1041D51509B6E700F60C03 /* Common */,
@@ -3532,6 +3565,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA9DB929154E75070031DBBD /* Friend */,
 				CAC13243154C28B9000A8C8F /* Config */,
 				CA51BD701525DEBF00C77E50 /* Reward */,
 				CA1377231524591500B5790B /* CoreData */,
@@ -3755,13 +3789,11 @@
 				CA1377D815259C1500B5790B /* weibo_selectedbg@2x.png in Resources */,
 				CA1377D915259C1500B5790B /* qq@2x.png in Resources */,
 				CA1377DA15259C1500B5790B /* sina@2x.png in Resources */,
-				CA1377DB15259C1500B5790B /* user_login@2x.png in Resources */,
 				CA1377DC15259C1500B5790B /* female2@2x.png in Resources */,
 				CA1377DD15259C1500B5790B /* female1@2x.png in Resources */,
 				CA1377DE15259C1500B5790B /* man1@2x.png in Resources */,
 				CA1377DF15259C1500B5790B /* user_pic_bgselected@2x.png in Resources */,
 				CA1377E015259C1500B5790B /* user_picbg@2x.png in Resources */,
-				CA1377E115259C1500B5790B /* user_setting@2x.png in Resources */,
 				CA1377E215259C1500B5790B /* home_setting@2x.png in Resources */,
 				CA1377E315259C1500B5790B /* feedback@2x.png in Resources */,
 				CA1377E415259C1500B5790B /* home@2x.png in Resources */,
@@ -4371,7 +4403,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EC82328-A64F-479D-A1F0-5403356A0AFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
