@@ -21,6 +21,8 @@
 #import "StoreKitUtils.h"
 #import "TransactionReceiptManager.h"
 #import "MobClick.h"
+#import "UIDevice+IdentifierAddition.h"
+
 
 @implementation AccountService
 
@@ -518,6 +520,7 @@ static AccountService* _defaultAccountService;
 - (void)syncAccountAndItem
 {    
     NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     if (userId == nil){
         return;
     }
@@ -525,7 +528,8 @@ static AccountService* _defaultAccountService;
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL 
-                                                    userId:userId]; 
+                                                    userId:userId 
+                                                  deviceId:deviceId]; 
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {                

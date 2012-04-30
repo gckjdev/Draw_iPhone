@@ -83,7 +83,7 @@ static UserService* _defaultUserService;
             }
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
-                //[viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
                 InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kPassword") delegate:viewController];
                 [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
@@ -366,15 +366,17 @@ static UserService* _defaultUserService;
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
                 // save return User ID locally
-                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
-                NSString* nickName = [UserManager nickNameByEmail:email];
-                
+                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
+                NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
+                NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+                NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
+                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];                
                 // save data                
                 [[UserManager defaultManager] saveUserId:userId 
                                                    email:email 
                                                 password:password 
                                                 nickName:nickName 
-                                               avatarURL:nil];
+                                               avatarURL:avatar];
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
