@@ -27,6 +27,7 @@
 #import "ItemShopController.h"
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"
+#import "DeviceDetection.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -77,11 +78,19 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     
+    int size;
     if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh-Hans"]){
-        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        size = 15;
     }
     else{
-        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];        
+        size = 12;
+    }
+
+    if ([DeviceDetection isIPAD]){
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:size*2];
+    }
+    else{
+        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:size];        
     }
     
     self.feedbackLabel.text = NSLS(@"kFeedback");
