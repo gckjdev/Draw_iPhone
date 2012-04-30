@@ -2781,13 +2781,6 @@
 			path = SelectWord;
 			sourceTree = "<group>";
 		};
-		CA1041E31509B6E700F60C03 /* Select */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Select;
-			sourceTree = "<group>";
-		};
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
@@ -3557,7 +3550,6 @@
 				CA1041E01509B6E700F60C03 /* Room */,
 				CA1041E11509B6E700F60C03 /* Registration */,
 				CA1041E21509B6E700F60C03 /* SelectWord */,
-				CA1041E31509B6E700F60C03 /* Select */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
