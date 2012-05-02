@@ -77,7 +77,7 @@
 
 #define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
 
-#define ADD_BUTTON_CENTER ([DeviceDetection isIPAD] ? CGPointMake(267 * 2, 72 * 2) : CGPointMake(267, 72))
+#define ADD_BUTTON_CENTER ([DeviceDetection isIPAD] ? CGPointMake(539.6,145.9) : CGPointMake(266.8, 72.2))
 
 - (void)clickAddColorButton:(id)sender
 {
@@ -98,7 +98,7 @@
         addColorButton.frame = ADD_BUTTON_FRAME;
         addColorButton.center = ADD_BUTTON_CENTER;
         [addColorButton addTarget:self action:@selector(clickAddColorButton:) forControlEvents:UIControlEventTouchUpInside];
-        [addColorButton setImage:[[ShareImageManager defaultManager]addColorImage] forState:UIControlStateNormal];
+        [addColorButton setBackgroundImage:[[ShareImageManager defaultManager]addColorImage] forState:UIControlStateNormal];
         [self addSubview:addColorButton];
 //        addColorButton.hidden = YES; //hide the add button this version
     }
@@ -222,6 +222,7 @@
         x = baseX + width / 2 + (width + space) * r;
         y = baseY + height / 2 + (height + space) * l ;
         colorView.center = CGPointMake(x, y);
+        NSLog(@"(x,y) = (%f,%f)",x,y);
         r = (r+1) % BUTTON_COUNT_PER_ROW;
         if (r == 0) {
             l ++;
