@@ -274,18 +274,28 @@
     
 }
 
+#define BACKUP_SERVER   @"58.215.190.75"
+#define BACKUP_PORT     9000
+
 - (void)didServerListFetched:(int)result
 {
     RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
-    if (server == nil){
-        [self hideActivity];
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton deelegate:nil];
-        [dialog showInView:self.view];
-        return;
+    NSString* address = BACKUP_SERVER;
+    int port = BACKUP_PORT;
+    
+    if (server != nil){
+//        [self hideActivity];
+//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton deelegate:nil];
+//        [dialog showInView:self.view];
+//        return;
+        
+        // update by Benson, to avoid "server full/busy issue"
+        address = [server address];
+        port = [server.port intValue];
     }
 
-    [[DrawGameService defaultService] setServerAddress:server.address];
-    [[DrawGameService defaultService] setServerPort:[server.port intValue]];    
+    [[DrawGameService defaultService] setServerAddress:address];
+    [[DrawGameService defaultService] setServerPort:port];    
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];

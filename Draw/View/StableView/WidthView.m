@@ -7,16 +7,18 @@
 //
 
 #import "WidthView.h"
-
+#import "DeviceDetection.h"
 @implementation WidthView
 
 @synthesize width = _width;
 
 
-#define SIZE 27
+#define SIZE  (([DeviceDetection isIPAD]) ? 27*2 : 27)
+#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 5 * 2 : 5)
 
 + (id)viewWithWidth:(CGFloat)width
 {
+    
     return [[[WidthView alloc] initWithWidth:width]autorelease];
 }
 
@@ -55,8 +57,8 @@
     }
     
     CGFloat showWidth = self.width;
-    if (showWidth < 5) {
-        showWidth = 5;
+    if (showWidth < MIN_WIDTH) {
+        showWidth = MIN_WIDTH;
     }
     CGFloat x = (SIZE - showWidth) / 2;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);

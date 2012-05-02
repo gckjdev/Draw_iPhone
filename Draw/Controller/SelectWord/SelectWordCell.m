@@ -10,6 +10,7 @@
 #import "Word.h"
 #import "WordManager.h"
 #import "ShareImageManager.h"
+#import "DeviceDetection.h"
 
 @implementation SelectWordCell
 @synthesize wordLabel;
@@ -38,9 +39,10 @@
     return @"SelectWordCell";
 }
 
+#define CELL_HEIGHT ([DeviceDetection isIPAD] ? 74 * 2 : 74)
 + (CGFloat)getCellHeight
 {
-    return 74.0f;
+    return CELL_HEIGHT;
 }
 
 - (void)setCellInfo:(Word *)word

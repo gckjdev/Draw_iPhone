@@ -21,6 +21,8 @@
 #import "ItemManager.h"
 #import "AccountService.h"
 #import "ItemType.h"
+#import "DeviceDetection.h"
+
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -99,15 +101,14 @@
 
 #pragma mark - View lifecycle
 
+#define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(605, 780) : CGPointMake(248, 344))
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     toolView = [[ToolView alloc] initWithNumber:0];
     toolView.number = [[ItemManager defaultManager] tipsItemAmount];
-    toolView.center = CGPointMake(248, 344);
-
-    //    [self.changeWordButton setEnabled:(toolView.number > 0)];    
-    
+    toolView.center = TOOLVIEW_CENTER;
+       
     [self.view addSubview:toolView];
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];

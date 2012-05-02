@@ -15,6 +15,8 @@
 		A316C3E91550D85B00AD44E9 /* RegisterUserController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3E81550D85B00AD44E9 /* RegisterUserController~iPad.xib */; };
 		A316C3EB1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3EA1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib */; };
 		A316C3ED1550D8CB00AD44E9 /* ResultController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3EC1550D8CB00AD44E9 /* ResultController~iPad.xib */; };
+		A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A316C43A15513B1E00AD44E9 /* Default-Portrait.png */; };
+		A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */; };
 		A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */; };
 		A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */; };
@@ -597,9 +599,9 @@
 		A316C3E81550D85B00AD44E9 /* RegisterUserController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RegisterUserController~iPad.xib"; sourceTree = "<group>"; };
 		A316C3EA1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~iPad.xib"; sourceTree = "<group>"; };
 		A316C3EC1550D8CB00AD44E9 /* ResultController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~iPad.xib"; sourceTree = "<group>"; };
-		A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy-Info.plist"; sourceTree = "<absolute>"; };
+		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
+		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
-		A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy2-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy2-Info.plist"; sourceTree = "<absolute>"; };
 		A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~iPad.xib"; sourceTree = "<group>"; };
 		A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
 		A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~iPad.xib"; sourceTree = "<group>"; };
@@ -1736,6 +1738,7 @@
 		CA103B361509A55000F60C03 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A316C43A15513B1E00AD44E9 /* Default-Portrait.png */,
 				CA8D602C1531C98400E016ED /* Default@2x.png */,
 				CA32213E151E0FC00039A384 /* Icons */,
 				CA32213F151E0FC00039A384 /* Images */,
@@ -3305,8 +3308,6 @@
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
-				A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */,
-				A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3971,6 +3972,8 @@
 				A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */,
 				A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */,
 				A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */,
+				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
+				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4334,6 +4337,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A316C43A15513B1E00AD44E9 /* Default-Portrait.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A316C43B15513B1E00AD44E9 /* zh-Hans */,
+				A316C43D15513B2500AD44E9 /* en */,
+			);
+			name = "Default-Portrait.png";
+			sourceTree = "<group>";
+		};
 		CA103CFD1509A56100F60C03 /* ReviewRequest.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4462,7 +4474,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -4474,7 +4486,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
+				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "567D364C-8715-407A-A12E-EB426A08C30F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4508,7 +4520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -4519,7 +4531,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
+				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

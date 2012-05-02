@@ -12,5 +12,6 @@
 @interface ConfigManager : NSObject
 
 + (int)getGuessRewardNormal;
++ (NSString*)getChannelId;
 
 @end

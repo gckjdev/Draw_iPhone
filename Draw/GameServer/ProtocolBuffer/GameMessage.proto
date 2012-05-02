@@ -16,6 +16,8 @@ message JoinGameRequest {
   repeated int64 excludeSessionId = 6;         
   optional int64 sessionToBeChange = 7;
   optional bool gender = 8;
+  optional bool isRobot = 9;                    // 是否是机器人用户
+  optional int32 targetSessionId = 10;          // 指定加入的Session ID
 }
 
 message JoinGameResponse {

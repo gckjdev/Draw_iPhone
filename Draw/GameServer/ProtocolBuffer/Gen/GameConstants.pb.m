@@ -78,6 +78,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorSessionAlreadyStart:
     case GameResultCodeErrorSessionNotStart:
     case GameResultCodeErrorNoSessionAvailable:
+    case GameResultCodeErrorSessionidFull:
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:

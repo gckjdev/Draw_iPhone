@@ -30,6 +30,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSMutableArray* mutableExcludeSessionIdList;
 @property int64_t sessionToBeChange;
 @property BOOL gender;
+@property BOOL isRobot;
+@property int32_t targetSessionId;
 @end
 
 @implementation JoinGameRequest
@@ -89,6 +91,25 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (void) setGender:(BOOL) value {
   gender_ = !!value;
 }
+- (BOOL) hasIsRobot {
+  return !!hasIsRobot_;
+}
+- (void) setHasIsRobot:(BOOL) value {
+  hasIsRobot_ = !!value;
+}
+- (BOOL) isRobot {
+  return !!isRobot_;
+}
+- (void) setIsRobot:(BOOL) value {
+  isRobot_ = !!value;
+}
+- (BOOL) hasTargetSessionId {
+  return !!hasTargetSessionId_;
+}
+- (void) setHasTargetSessionId:(BOOL) value {
+  hasTargetSessionId_ = !!value;
+}
+@synthesize targetSessionId;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -106,6 +127,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.avatar = @"";
     self.sessionToBeChange = 0L;
     self.gender = NO;
+    self.isRobot = NO;
+    self.targetSessionId = 0;
   }
   return self;
 }
@@ -165,6 +188,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasGender) {
     [output writeBool:8 value:self.gender];
   }
+  if (self.hasIsRobot) {
+    [output writeBool:9 value:self.isRobot];
+  }
+  if (self.hasTargetSessionId) {
+    [output writeInt32:10 value:self.targetSessionId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -202,6 +231,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasGender) {
     size += computeBoolSize(8, self.gender);
+  }
+  if (self.hasIsRobot) {
+    size += computeBoolSize(9, self.isRobot);
+  }
+  if (self.hasTargetSessionId) {
+    size += computeInt32Size(10, self.targetSessionId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -305,6 +340,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasGender) {
     [self setGender:other.gender];
   }
+  if (other.hasIsRobot) {
+    [self setIsRobot:other.isRobot];
+  }
+  if (other.hasTargetSessionId) {
+    [self setTargetSessionId:other.targetSessionId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -356,6 +397,14 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 64: {
         [self setGender:[input readBool]];
+        break;
+      }
+      case 72: {
+        [self setIsRobot:[input readBool]];
+        break;
+      }
+      case 80: {
+        [self setTargetSessionId:[input readInt32]];
         break;
       }
     }
@@ -502,6 +551,38 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearGender {
   result.hasGender = NO;
   result.gender = NO;
+  return self;
+}
+- (BOOL) hasIsRobot {
+  return result.hasIsRobot;
+}
+- (BOOL) isRobot {
+  return result.isRobot;
+}
+- (JoinGameRequest_Builder*) setIsRobot:(BOOL) value {
+  result.hasIsRobot = YES;
+  result.isRobot = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearIsRobot {
+  result.hasIsRobot = NO;
+  result.isRobot = NO;
+  return self;
+}
+- (BOOL) hasTargetSessionId {
+  return result.hasTargetSessionId;
+}
+- (int32_t) targetSessionId {
+  return result.targetSessionId;
+}
+- (JoinGameRequest_Builder*) setTargetSessionId:(int32_t) value {
+  result.hasTargetSessionId = YES;
+  result.targetSessionId = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearTargetSessionId {
+  result.hasTargetSessionId = NO;
+  result.targetSessionId = 0;
   return self;
 }
 @end
