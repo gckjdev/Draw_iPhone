@@ -8,6 +8,7 @@
 
 #import "UFPController.h"
 #import "UMTableViewCell.h"
+#import "DeviceDetection.h"
 
 @interface UFPController ()
 
@@ -40,7 +41,11 @@
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kMore_apps")];
-    _mTableView = [[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self]; 
+    if ([DeviceDetection isIPAD]) {
+        self.mTableView = [[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 110, 768, 1004-110) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self]; 
+    } else {
+        self.mTableView = [[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self]; 
+    }    
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
     self.mTableView.dataLoadDelegate = self; 
