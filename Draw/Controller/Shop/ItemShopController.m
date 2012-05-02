@@ -20,6 +20,7 @@
 #import "PPDebug.h"
 #import "ShowDrawController.h"
 #import "ShoppingManager.h"
+#import "ColorShopView.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -100,6 +101,10 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
+    
+    ColorShopView *view = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+    [view showInView:self.view animated:YES];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated

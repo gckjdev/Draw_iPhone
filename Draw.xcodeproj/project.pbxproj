@@ -15,6 +15,13 @@
 		A316C3E91550D85B00AD44E9 /* RegisterUserController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3E81550D85B00AD44E9 /* RegisterUserController~iPad.xib */; };
 		A316C3EB1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3EA1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib */; };
 		A316C3ED1550D8CB00AD44E9 /* ResultController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A316C3EC1550D8CB00AD44E9 /* ResultController~iPad.xib */; };
+		A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A316C43A15513B1E00AD44E9 /* Default-Portrait.png */; };
+		A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
+		A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */; };
+		A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */; };
+		A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */; };
+		A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */; };
+		A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */; };
 		C21CDA141550D9C9007E0F66 /* FeedbackController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA131550D9C9007E0F66 /* FeedbackController~iPad.xib */; };
 		C21CDA161550D9F9007E0F66 /* ReportController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA151550D9F9007E0F66 /* ReportController~iPad.xib */; };
 		C21CDA181550DA24007E0F66 /* AboutUsController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA171550DA24007E0F66 /* AboutUsController~iPad.xib */; };
@@ -393,8 +400,6 @@
 		CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217F151EF56E0039A384 /* QQWeiboService.m */; };
 		CA322185151F62C00039A384 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
 		CA322186151F62C00039A384 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA32218F151F64A60039A384 /* ShopMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32218D151F649D0039A384 /* ShopMainController.m */; };
-		CA322190151F64A60039A384 /* ShopMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32218E151F64A10039A384 /* ShopMainController.xib */; };
 		CA322194151F64F90039A384 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322192151F64F90039A384 /* CommonDialog.m */; };
 		CA322195151F64F90039A384 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322193151F64F90039A384 /* CommonDialog.xib */; };
 		CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
@@ -594,6 +599,15 @@
 		A316C3E81550D85B00AD44E9 /* RegisterUserController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RegisterUserController~iPad.xib"; sourceTree = "<group>"; };
 		A316C3EA1550D87F00AD44E9 /* CompleteUserInfoController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~iPad.xib"; sourceTree = "<group>"; };
 		A316C3EC1550D8CB00AD44E9 /* ResultController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~iPad.xib"; sourceTree = "<group>"; };
+		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
+		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
+		A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy-Info.plist"; sourceTree = "<absolute>"; };
+		A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
+		A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy2-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy2-Info.plist"; sourceTree = "<absolute>"; };
+		A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~iPad.xib"; sourceTree = "<group>"; };
+		A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
+		A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~iPad.xib"; sourceTree = "<group>"; };
+		A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~iPad.xib"; sourceTree = "<group>"; };
 		C21CDA131550D9C9007E0F66 /* FeedbackController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~iPad.xib"; sourceTree = "<group>"; };
 		C21CDA151550D9F9007E0F66 /* ReportController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~iPad.xib"; sourceTree = "<group>"; };
 		C21CDA171550DA24007E0F66 /* AboutUsController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~iPad.xib"; sourceTree = "<group>"; };
@@ -1221,9 +1235,6 @@
 		CA322182151F62C00039A384 /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
 		CA322183151F62C00039A384 /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
 		CA322184151F62C00039A384 /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
-		CA32218C151F649C0039A384 /* ShopMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainController.h; sourceTree = "<group>"; };
-		CA32218D151F649D0039A384 /* ShopMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainController.m; sourceTree = "<group>"; };
-		CA32218E151F64A10039A384 /* ShopMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopMainController.xib; sourceTree = "<group>"; };
 		CA322191151F64F90039A384 /* CommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDialog.h; sourceTree = "<group>"; };
 		CA322192151F64F90039A384 /* CommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonDialog.m; sourceTree = "<group>"; };
 		CA322193151F64F90039A384 /* CommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDialog.xib; sourceTree = "<group>"; };
@@ -1697,6 +1708,7 @@
 				CA051DCB1546808500D0A00A /* ColorShopView.h */,
 				CA051DCC1546808500D0A00A /* ColorShopView.m */,
 				CA051DCD1546808500D0A00A /* ColorShopView.xib */,
+				A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */,
 			);
 			path = ShopView;
 			sourceTree = "<group>";
@@ -1728,6 +1740,7 @@
 		CA103B361509A55000F60C03 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A316C43A15513B1E00AD44E9 /* Default-Portrait.png */,
 				CA8D602C1531C98400E016ED /* Default@2x.png */,
 				CA32213E151E0FC00039A384 /* Icons */,
 				CA32213F151E0FC00039A384 /* Images */,
@@ -2734,18 +2747,19 @@
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
-				CA32218C151F649C0039A384 /* ShopMainController.h */,
-				CA32218D151F649D0039A384 /* ShopMainController.m */,
-				CA32218E151F64A10039A384 /* ShopMainController.xib */,
+				A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */,
 				CA41C941152010FF00013DC8 /* ItemShopController.h */,
 				CA41C942152010FF00013DC8 /* ItemShopController.m */,
 				CA41C943152010FF00013DC8 /* ItemShopController.xib */,
+				A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */,
 				CA41C9461520179000013DC8 /* ShoppingCell.h */,
 				CA41C9471520179000013DC8 /* ShoppingCell.m */,
 				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
+				A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */,
 				CA4FF007152AF21900F0AC88 /* ColorShopCell.h */,
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
+				A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -3296,6 +3310,8 @@
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
+				A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */,
+				A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3796,7 +3812,6 @@
 				CA322177151EF49B0039A384 /* sinaico_big.png in Resources */,
 				CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */,
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
-				CA322190151F64A60039A384 /* ShopMainController.xib in Resources */,
 				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
@@ -3956,6 +3971,13 @@
 				CA3217E51550DEAC007E95B6 /* ShowDrawController~iPad.xib in Resources */,
 				CA3217E71550DECD007E95B6 /* SelectWordController~iPad.xib in Resources */,
 				CA3217E91550DEF0007E95B6 /* SelectWordCell~iPad.xib in Resources */,
+				A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */,
+				A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */,
+				A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */,
+				A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */,
+				A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */,
+				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
+				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4192,7 +4214,6 @@
 				CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */,
 				CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */,
 				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,
-				CA32218F151F64A60039A384 /* ShopMainController.m in Sources */,
 				CA322194151F64F90039A384 /* CommonDialog.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
@@ -4320,6 +4341,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A316C43A15513B1E00AD44E9 /* Default-Portrait.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A316C43B15513B1E00AD44E9 /* zh-Hans */,
+				A316C43D15513B2500AD44E9 /* en */,
+			);
+			name = "Default-Portrait.png";
+			sourceTree = "<group>";
+		};
 		CA103CFD1509A56100F60C03 /* ReviewRequest.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

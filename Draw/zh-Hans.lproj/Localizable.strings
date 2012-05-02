@@ -304,3 +304,4 @@
 "kPublishWeiboSuccAndEarnCoins" = "微博已发送，你获得了%d金币！";
 "guest" = "路人甲";
 "kOnlineUserCount" = "在线用户共%d人";
+"kContactNull" = "联系方式不能为空哦。";

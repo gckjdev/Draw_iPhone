@@ -298,3 +298,4 @@
 "kBuyColorDialogMessage" = "購買顏色將花費%d金幣，確定嗎？";
 "guest" = "路人甲";
 "kOnlineUserCount" = "當前在線:%d";
+"kContactNull" = "聯繫方式不能為空哦。";

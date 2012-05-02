@@ -8,10 +8,24 @@
 
 #import "ColorView.h"
 #import "ShareImageManager.h"
+#import "DeviceDetection.h"
 
-#define SCALE_SMALL_FRAME CGRectMake(0,0,32,34)
 #define SCALE 1.3
-#define SCALE_LARGE_FRAME CGRectMake(0,0,32.0*SCALE,34.0*SCALE)
+#define SCALE_SMALL_FRAME_IPHONE CGRectMake(0,0,32,34)
+#define SCALE_SMALL_FRAME_IPAD CGRectMake(0,0,32*2,34*2)
+#define SCALE_SMALL_FRAME ([DeviceDetection isIPAD] ? (SCALE_SMALL_FRAME_IPAD) : (SCALE_SMALL_FRAME_IPHONE))
+
+#define SCALE_LARGE_FRAME_IPHONE CGRectMake(0,0,32*SCALE,34*SCALE)
+#define SCALE_LARGE_FRAME_IPAD CGRectMake(0,0,32*2*SCALE,34*2*SCALE)
+#define SCALE_LARGE_FRAME ([DeviceDetection isIPAD] ? (SCALE_LARGE_FRAME_IPAD) : (SCALE_LARGE_FRAME_IPHONE))
+
+#define SCALE_SMALL_FILL_RECT_IPHONE CGRectMake(3, 3, 26, 27)
+#define SCALE_SMALL_FILL_RECT_IPAD CGRectMake(3*2, 3*2, 26*2, 27*2)
+#define SCALE_SMALL_FILL_RECT ([DeviceDetection isIPAD] ? (SCALE_SMALL_FILL_RECT_IPAD) : (SCALE_SMALL_FILL_RECT_IPHONE))
+
+#define SCALE_LARGE_FILL_RECT_IPHONE CGRectMake(3*SCALE, 3*SCALE, 26*SCALE, 27*SCALE)
+#define SCALE_LARGE_FILL_RECT_IPAD CGRectMake(3*2*SCALE, 3*2*SCALE, 26*2*SCALE, 27*2*SCALE)
+#define SCALE_LARGE_FILL_RECT ([DeviceDetection isIPAD] ? (SCALE_LARGE_FILL_RECT_IPAD) : (SCALE_LARGE_FILL_RECT_IPHONE))
 
 @implementation ColorView
 @synthesize drawColor = _drawColor;
@@ -105,9 +119,9 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, self.drawColor.CGColor);
     
-    CGRect fillRect = CGRectMake(3, 3, 26, 27);
+    CGRect fillRect = SCALE_SMALL_FILL_RECT;    
     if (self.scale == ColorViewScaleLarge) {
-        fillRect = CGRectMake(3*SCALE, 3*SCALE, 26*SCALE, 27*SCALE);
+        fillRect = SCALE_LARGE_FILL_RECT;
     }
     CGContextFillRect(context, fillRect);
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);

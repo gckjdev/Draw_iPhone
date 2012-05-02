@@ -9,6 +9,7 @@
 #import "ReportController.h"
 #import "SNSServiceDelegate.h"
 #import "ShareImageManager.h"
+#import "DeviceDetection.h"
 
 
 @interface ReportController ()
@@ -33,24 +34,29 @@
 
 - (void)fitKeyboardComeOut
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.8];
-    [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
-    [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(50, 175, 230, 31)];
-    [self.contactBackground setFrame:CGRectMake(40, 175, 240, 31)];
-    [UIView commitAnimations];
+    if (![DeviceDetection isIPAD]) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.8];
+        [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
+        [self.contentBackground setFrame:self.contentText.frame];
+        [self.contactText setFrame:CGRectMake(50, 175, 230, 31)];
+        [self.contactBackground setFrame:CGRectMake(40, 175, 240, 31)];
+        [UIView commitAnimations];
+    }
+    
 }
 
 - (void)resetFrame
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.8];
-    [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
-    [self.contentBackground setFrame:self.contentText.frame];
-    [self.contactText setFrame:CGRectMake(50, 260, 230, 31)];
-    [self.contactBackground setFrame:CGRectMake(40, 260, 240, 31)];
-    [UIView commitAnimations];
+    if (![DeviceDetection isIPAD]) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.8];
+        [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
+        [self.contentBackground setFrame:self.contentText.frame];
+        [self.contactText setFrame:CGRectMake(50, 260, 230, 31)];
+        [self.contactBackground setFrame:CGRectMake(40, 260, 240, 31)];
+        [UIView commitAnimations];
+    }
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -83,8 +89,12 @@
 
 - (IBAction)submit:(id)sender
 {
-    if ([self.contactText.text length] == 0) {
+    if ([self.contentText.text length] == 0) {
         [self popupMessage:NSLS(@"kContentNull") title:nil];
+        return;
+    }
+    if ([self.contactText.text length] == 0) {
+        [self popupMessage:NSLS(@"kContactNull") title:nil];
         return;
     }
     if ([self.contentText.text isEqualToString:_lastReport]) {

@@ -17,6 +17,7 @@
 #import "FacebookSNSService.h"
 #import "UFPController.h"
 #import "PPDebug.h"
+#import "DeviceDetection.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -65,6 +66,9 @@ enum {
             break;
         default:
             break;
+    }
+    if ([DeviceDetection isIPAD]) {
+        [aCell.textLabel setFont:[UIFont systemFontOfSize:40]];
     }
 }
 enum {
