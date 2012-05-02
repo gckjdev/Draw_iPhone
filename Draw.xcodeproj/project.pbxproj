@@ -601,9 +601,7 @@
 		A316C3EC1550D8CB00AD44E9 /* ResultController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~iPad.xib"; sourceTree = "<group>"; };
 		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
-		A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy-Info.plist"; sourceTree = "<absolute>"; };
 		A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
-		A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy2-Info.plist"; path = "/Users/Linruin/gitdata/Draw_iPhone/Draw copy2-Info.plist"; sourceTree = "<absolute>"; };
 		A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~iPad.xib"; sourceTree = "<group>"; };
 		A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
 		A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~iPad.xib"; sourceTree = "<group>"; };
@@ -3310,8 +3308,6 @@
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
-				A4678BAA15510EC00028DEEE /* Draw copy-Info.plist */,
-				A4678DC5155114B70028DEEE /* Draw copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
