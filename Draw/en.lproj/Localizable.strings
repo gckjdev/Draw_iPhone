@@ -290,3 +290,4 @@
 "kPublishWeiboSuccAndEarnCoins" = "Message Sent. You got %d coins!";
 "guest" = "guest";
 "kOnlineUserCount" = "Online:%d";
+"kContactNull" = "Contact could not be empty.";
