@@ -17,6 +17,10 @@
 @class JoinGameRequest_Builder;
 @class JoinGameResponse;
 @class JoinGameResponse_Builder;
+@class PBDraw;
+@class PBDrawAction;
+@class PBDrawAction_Builder;
+@class PBDraw_Builder;
 @class PBGameSession;
 @class PBGameSession_Builder;
 @class PBGameUser;
