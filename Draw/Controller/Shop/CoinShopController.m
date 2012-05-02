@@ -141,7 +141,7 @@ CoinShopController *staticCoinController;
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(PriceModel *)model
 {
-    NSLog(@"<CoinShopController>:did click row %d",indexPath.row);
+    PPDebug(@"<CoinShopController>:did click row %d",indexPath.row);
     
     
     [self showActivityWithText:NSLS(@"kBuying")];
@@ -197,7 +197,7 @@ CoinShopController *staticCoinController;
 - (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode
 {
     [self hideActivity];
-    NSLog(@"did get balance: %d",balance);
+    PPDebug(@"did get balance: %d",balance);
 }
 
 - (void)dealloc {

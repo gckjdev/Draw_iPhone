@@ -11,9 +11,18 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 #import "ShoppingManager.h"
+#import "DeviceDetection.h"
 
-#define ITEM_PRICE_CENTER CGPointMake(195,34)
-#define COIN_PRICE_CENTER CGPointMake(180,34)
+#define ITEM_PRICE_CENTER_IPHONE CGPointMake(195,34)
+#define ITEM_PRICE_CENTER_IPAD CGPointMake(400,73)
+#define COIN_PRICE_CENTER_IPHONE CGPointMake(180,34)
+#define COIN_PRICE_CENTER_IPAD CGPointMake(345,73)
+#define CELL_HEIHT_IPHONE 88.0
+#define CELL_HEIHT_IPAD ((CELL_HEIHT_IPHONE)*2.0)
+
+#define ITEM_PRICE_CENTER ([DeviceDetection isIPAD] ? ITEM_PRICE_CENTER_IPAD : ITEM_PRICE_CENTER_IPHONE)
+#define COIN_PRICE_CENTER ([DeviceDetection isIPAD] ? COIN_PRICE_CENTER_IPAD : COIN_PRICE_CENTER_IPHONE)
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (CELL_HEIHT_IPAD) : (CELL_HEIHT_IPHONE))
 
 @implementation ShoppingCell
 @synthesize priceLabel;
@@ -48,8 +57,9 @@
 
 + (CGFloat)getCellHeight
 {
-    return 88.0f;
+    return CELL_HEIHT;
 }
+
 - (void)dealloc {
     [countLabel release];
     [priceLabel release];
@@ -78,11 +88,12 @@
             localPrice = [NSString stringWithFormat:@"$%.2f", [model.price doubleValue]];
         }
         priceString = [NSString stringWithFormat:@"%@", localPrice];
+
         [self.priceLabel setCenter:COIN_PRICE_CENTER];
         [self.coinImage setHidden:NO];
         [self.toolImage setHidden:YES];        
         [self.costCoinImage setHidden:YES];
-        
+    
     }else if([model.type integerValue] == SHOPPING_ITEM_TYPE)
     {
         countString = [NSString stringWithFormat:@"x%d",[model.count intValue]];

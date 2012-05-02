@@ -14,7 +14,6 @@
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "GameMessage.pb.h"
-#import "ShopMainController.h"
 #import "CommonDialog.h"
 #import "FeedbackController.h"
 #import "UserSettingController.h"

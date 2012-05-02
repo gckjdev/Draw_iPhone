@@ -12,6 +12,7 @@
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PPDebug.h"
 
 
 #define DEFAULT_PLAY_SPEED (1/40.0)
@@ -113,8 +114,8 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    NSLog(@"touches began");
-    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
+    PPDebug(@"<DrawView>touches began");
+    PPDebug(@"<DrawView>touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
     if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
@@ -126,8 +127,8 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touches end");
-    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
+    PPDebug(@"<DrawView>touches end");
+    PPDebug(@"<DrawView>touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
     if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];
@@ -139,8 +140,8 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touches move");
-    NSLog(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);    
+    PPDebug(@"<DrawView>touches move");
+    PPDebug(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);    
     if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];

@@ -72,9 +72,9 @@
     return array;
 }
 
-#define GROUP_GRAY 101
-#define GROUP_DARK_BLUE 102
-#define GROUP_SKY_BLUE 103
+
+
+
 + (ColorGroup *)colorGroupForGroupId:(NSInteger)groupId
 {
     NSInteger *colorValues = NULL;
@@ -97,10 +97,91 @@
             colorValues = values;
             break;            
         }
-            
-        default:
+        case GROUP_PURPLE:
         {
             NSInteger values[] = {128,0,128,153,50,204,186,85,211,218,112,214,221,160,221};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_PINK:
+        {
+            NSInteger values[] = {219,112,147,255,20,147,255,106,180,255,182,193,255,192,203};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_PINK_PURPLE:
+        {
+            NSInteger values[] = {139,0,139, 148,0,211,255,0,255,238,130,238,216,191,216 };
+            colorValues = values;
+            break;            
+        }
+        case GROUP_LIGHT_BLUE:
+        {
+            NSInteger values[] = {25,25,112,72,61,139,0,0,128,106,90,205,0,0,255};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_BLUE:
+        {
+            NSInteger values[] = {0,0,139,0,0,205,65,105,225,100,149,237,176,196,222};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_BRIGHT_BLUE:
+        {
+            NSInteger values[] = {70,130,180,0,191,255,135,206,250,173,216,230,230,230,250};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_LIGHT_ORANGE:
+        {
+            NSInteger values[] = {139,69,19,210,105,30,244,164,96,255,222,173,255,235,205};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_TREE:
+        {
+            NSInteger values[] = {128,0,0,222,184,135,178,34,34,205,92,92,240,128,128};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_ORANGE:
+        {
+            NSInteger values[] =    {255,69,0,255,140,0,255,127,80,255,160,122,255,216,165};
+            colorValues = values;
+            break;            
+        }   
+            
+        case GROUP_DARK_ORANGE:
+        {
+            NSInteger values[] =   {218,165,32,255,165,0,255,215,0,240,230,140,245,222,179};
+            colorValues = values;
+            break;            
+        }
+            
+        case GROUP_LIGHT_PINK:
+        {
+            NSInteger values[] =   {218,165,32,255,165,0,255,215,0,240,230,140,245,222,179};
+            colorValues = values;
+            break;            
+        }
+        
+        case GROUP_GRAY_GREEN:
+        {
+            NSInteger values[] =   {0,100,0, 0,128,0, 85,107,47, 128,128,0, 127,255,170};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_BRIGHT_GREEN:
+        {
+            NSInteger values[] =   {34,139,34,50,205,50,0,255,0,124,252,0,173,255,47};
+            colorValues = values;
+            break;            
+        }
+        case GROUP_BROWN:
+        default:
+        {
+            NSInteger values[] = {139,0,0,165,42,42,160,82,45,205,133,63,210,180,140};
             colorValues = values;
             break;
         }

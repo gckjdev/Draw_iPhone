@@ -9,6 +9,13 @@
 #import "ColorShopCell.h"
 #import "ColorGroup.h"
 #import "ColorView.h"
+#import "PPDebug.h"
+#import "DeviceDetection.h"
+
+#define CELL_HEIHT_IPHONE 123.0
+#define CELL_HEIHT_IPAD ((CELL_HEIHT_IPHONE)*2.0)
+
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (CELL_HEIHT_IPAD) : (CELL_HEIHT_IPHONE))
 
 @implementation ColorShopCell
 @synthesize coinImageView;
@@ -17,11 +24,11 @@
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    NSLog(@"cellId = %@", cellId);
+    PPDebug(@"<ColorShopCell>cellId = %@", cellId);
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        PPDebug(@"<ColorShopCell>create %@ but cannot find cell object from Nib", cellId);
         return nil;
     }
     
@@ -37,7 +44,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 123.0f;
+    return CELL_HEIHT;
 }
 
 - (void)updatePrice:(NSInteger)price
@@ -48,7 +55,7 @@
 
 - (void)clickColorView:(id)sender
 {
-    NSLog(@"click color view");
+    PPDebug(@"<ColorShopCell>click color view");
     if (_colorShopCellDelegate && [_colorShopCellDelegate respondsToSelector:@selector(didPickedColorView:)]) {
         [_colorShopCellDelegate didPickedColorView:sender];
     }

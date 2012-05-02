@@ -30,7 +30,7 @@
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ColorShopView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <ColorShopView> but cannot find cell object from Nib");
+        PPDebug(@"create <ColorShopView> but cannot find cell object from Nib");
         return nil;
     }
     ColorShopView* view =  (ColorShopView*)[topLevelObjects objectAtIndex:0];
@@ -49,14 +49,15 @@
     //get the datalist
     
     view.colorGroups = [[[NSMutableArray alloc] init]autorelease];
-    for (int i = 101; i < 114; i++) {
+    for (int i = GROUP_START; i < GROUP_COUNT; i++) {
         ColorGroup *group = [ColorGroup colorGroupForGroupId:i];
         if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
-            group.hasBought = YES;
+            group.hasBought = NO;
         }else{
             group.hasBought = NO;
         }
-        group.price = [[ShoppingManager defaultManager] getColorPrice];
+//        group.price = [[ShoppingManager defaultManager] getColorPrice];
+        group.price = i;
         [view.colorGroups addObject:group];
     }
     

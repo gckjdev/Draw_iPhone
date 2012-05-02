@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Draw copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Draw.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>A467899415510EBF0028DEEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A4678BAF155114B70028DEEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CA745D1D1503B1B400600024</key>
 		<dict>
 			<key>primary</key>
