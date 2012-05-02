@@ -15,4 +15,9 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];
 }
 
++ (NSString*)getChannelId
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFChannelId"];
+}
+
 @end

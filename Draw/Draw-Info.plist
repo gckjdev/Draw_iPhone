@@ -45,6 +45,8 @@
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>CFChannelId</key>
+	<string>AppStore</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

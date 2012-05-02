@@ -58,6 +58,7 @@ typedef enum {
   GameResultCodeErrorSessionAlreadyStart = 203,
   GameResultCodeErrorSessionNotStart = 204,
   GameResultCodeErrorNoSessionAvailable = 205,
+  GameResultCodeErrorSessionidFull = 206,
   GameResultCodeErrorNoDrawData = 301,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
