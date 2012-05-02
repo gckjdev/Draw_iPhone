@@ -165,7 +165,7 @@ static DrawGameService* _defaultService;
 - (void)saveDrawActionType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
 {
     DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
-    NSLog(@"save an action:%d", aType);
+    PPDebug(@"<DrawGameService>save an action:%d", aType);
 //    [self.drawActionList addObject:action];
     [action release];
 }
