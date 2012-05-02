@@ -10,6 +10,12 @@
 #import "ColorGroup.h"
 #import "ColorView.h"
 #import "PPDebug.h"
+#import "DeviceDetection.h"
+
+#define CELL_HEIHT_IPHONE 123.0
+#define CELL_HEIHT_IPAD ((CELL_HEIHT_IPHONE)*2.0)
+
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (CELL_HEIHT_IPAD) : (CELL_HEIHT_IPHONE))
 
 @implementation ColorShopCell
 @synthesize coinImageView;
@@ -38,7 +44,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 123.0f;
+    return CELL_HEIHT;
 }
 
 - (void)updatePrice:(NSInteger)price
