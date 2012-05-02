@@ -30,7 +30,7 @@
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ColorShopView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <ColorShopView> but cannot find cell object from Nib");
+        PPDebug(@"create <ColorShopView> but cannot find cell object from Nib");
         return nil;
     }
     ColorShopView* view =  (ColorShopView*)[topLevelObjects objectAtIndex:0];
