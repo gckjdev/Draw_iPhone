@@ -595,7 +595,12 @@ DrawViewController *GlobalGetDrawViewController()
         CGPoint point = [pointValue CGPointValue];
         if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > MIN(4, (paint.width / 2))) 
         {
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+            
+            CGPoint tempPoint = point;
+            if ([DeviceDetection isIPAD]) {
+                tempPoint = CGPointMake(point.x / IPAD_SCALE, point.y / IPAD_SCALE);
+            }
+            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
             [pointList addObject:pointNumber];
         }
         lastPoint = point;
