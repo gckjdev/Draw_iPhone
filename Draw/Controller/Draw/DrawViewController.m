@@ -124,7 +124,7 @@ DrawViewController *GlobalGetDrawViewController()
         eraserWidth = ERASER_WIDTH;
         
         [drawView setDrawEnabled:YES];
-        drawView.backgroundColor = [UIColor yellowColor];
+//        drawView.backgroundColor = [UIColor yellowColor];
         
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
