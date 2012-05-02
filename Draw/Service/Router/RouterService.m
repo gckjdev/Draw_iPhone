@@ -18,7 +18,7 @@
 
 //#define ROUTER_SERVER_URL   @"http://www.place100.com:8600/api/?"
 
-#define ROUTER_SERVER_URL     ([MobClick getConfigParams:@"ROUTER_SERVER_URL"] == nil ? @"http://www.place100.com:8600/api/?" : [MobClick getConfigParams:@"ROUTER_SERVER_URL"])
+#define ROUTER_SERVER_URL     ([MobClick getConfigParams:@"ROUTER_SERVER_URL"] == nil ? @"http://58.215.188.215:8600/api/?" : [MobClick getConfigParams:@"ROUTER_SERVER_URL"])
 //#define ROUTER_SERVER_URL   @"http://106.187.89.232:8600/api/?"
 
 @implementation RouterService
