@@ -39,15 +39,19 @@
 @interface JoinGameRequest : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasIsRobot_:1;
   BOOL hasSessionToBeChange_:1;
   BOOL hasAutoNew_:1;
+  BOOL hasTargetSessionId_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL gender_:1;
+  BOOL isRobot_:1;
   int64_t sessionToBeChange;
   int32_t autoNew;
+  int32_t targetSessionId;
   NSString* userId;
   NSString* gameId;
   NSString* nickName;
@@ -61,6 +65,8 @@
 - (BOOL) hasAvatar;
 - (BOOL) hasSessionToBeChange;
 - (BOOL) hasGender;
+- (BOOL) hasIsRobot;
+- (BOOL) hasTargetSessionId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -68,6 +74,8 @@
 @property (readonly, retain) NSString* avatar;
 @property (readonly) int64_t sessionToBeChange;
 - (BOOL) gender;
+- (BOOL) isRobot;
+@property (readonly) int32_t targetSessionId;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 
@@ -146,6 +154,16 @@
 - (BOOL) gender;
 - (JoinGameRequest_Builder*) setGender:(BOOL) value;
 - (JoinGameRequest_Builder*) clearGender;
+
+- (BOOL) hasIsRobot;
+- (BOOL) isRobot;
+- (JoinGameRequest_Builder*) setIsRobot:(BOOL) value;
+- (JoinGameRequest_Builder*) clearIsRobot;
+
+- (BOOL) hasTargetSessionId;
+- (int32_t) targetSessionId;
+- (JoinGameRequest_Builder*) setTargetSessionId:(int32_t) value;
+- (JoinGameRequest_Builder*) clearTargetSessionId;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

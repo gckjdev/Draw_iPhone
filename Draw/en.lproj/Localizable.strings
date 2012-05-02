@@ -137,7 +137,7 @@
 "kFacebook" = "Facebook"; 
 "kBind" = "Connected";
 "kUnBind" = "Unconnected";
-"kClickTooFast" = "You clicks too frequently. Please take a break.";
+"kClickTooFast" = "You click too frequently. Please take a break.";
 
 "kFailToConnectIAPServer" = "Fail to connect to Apple purchasing server. Please try again.";
 "kExceedMaxProlongTimes" = "Sorry, you have prolong too many times.";
