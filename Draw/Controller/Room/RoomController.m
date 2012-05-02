@@ -24,7 +24,7 @@
 #import "AnimationManager.h"
 #import "UserManager.h"
 #import "LocaleUtils.h"
-
+#import "DeviceDetection.h"
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
 @interface RoomController ()
@@ -157,7 +157,7 @@
 #pragma mark - GUI Update Methods
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
-
+#define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
 - (void)updateOnlineUserLabel
 {
     [self.onlinePlayerCountLabel setText:[NSString stringWithFormat:NSLS(@"kOnlineUserCount"), [DrawGameService defaultService].onlineUserCount]];
@@ -224,7 +224,7 @@
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
             UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
             UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
-            [drawingImageView setFrame:CGRectMake(40, 40, 25, 25)];
+            [drawingImageView setFrame:DRAWING_MARK_FRAME];
             drawingImageView.tag = DRAWING_MARK_TAG;
             [imageView addSubview:drawingImageView];
             [drawingImageView release];
