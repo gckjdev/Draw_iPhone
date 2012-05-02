@@ -12,6 +12,7 @@
 #import "AnimationManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WidthView.h"
+#import "DeviceDetection.h"
 
 @implementation PickPenView
 @synthesize delegate = _delegate;
@@ -74,8 +75,9 @@
 //    [self startRunInAnimation];
 //}
 
-#define ADD_BUTTON_FRAME CGRectMake(0, 0, 32, 34)
-#define ADD_BUTTON_CENTER CGPointMake(267, 72)
+#define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
+
+#define ADD_BUTTON_CENTER ([DeviceDetection isIPAD] ? CGPointMake(267 * 2, 72 * 2) : CGPointMake(267, 72))
 
 - (void)clickAddColorButton:(id)sender
 {
@@ -153,13 +155,16 @@
     [self selectWidthButton:wView];
 }
 
+#define LINE_START_X ([DeviceDetection isIPAD] ? 12 * 2 : 12)
+#define LINE_START_Y ([DeviceDetection isIPAD] ? 6 * 2 : 5)
+
 - (void)setLineWidths:(NSArray *)widthArray
 {
     [self removeAllWidthButtons];
-    CGFloat x = 12;//self.frame.size.width / 10.0;
+    CGFloat x = LINE_START_X;//self.frame.size.width / 10.0;
     CGFloat count = [widthArray count];
     CGFloat space = (self.frame.size.height - 10 - (count * [WidthView height])) / (count + 1);
-    CGFloat y = 5;
+    CGFloat y = LINE_START_Y;
     
     for (NSNumber *width in widthArray) {
         y +=  space;
@@ -179,7 +184,6 @@
 
 - (void)clickColorView:(id)sender
 {
-//    [self setHidden:YES];
     ColorView *colorView = (ColorView *)sender;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedColorView:)]) {
         [self.delegate didPickedColorView:colorView];
@@ -197,6 +201,8 @@
 
 #define BUTTON_COUNT_PER_ROW 5
 
+#define PEN_STATR_X ([DeviceDetection isIPAD] ? 78 * 2 : 78)
+#define PEN_STATR_Y ([DeviceDetection isIPAD] ? 10 * 2 : 10)
 - (void)updatePickPenView
 {
     
@@ -204,8 +210,8 @@
         [colorView removeFromSuperview];
     }
     
-    CGFloat baseX = 78;
-    CGFloat baseY = 10;            
+    CGFloat baseX = PEN_STATR_X;
+    CGFloat baseY = PEN_STATR_Y;            
     CGFloat w = self.frame.size.width - baseX;
     CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW + 5);
     CGFloat x = 0, y = 0;

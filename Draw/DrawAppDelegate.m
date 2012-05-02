@@ -26,6 +26,7 @@
 #import "NetworkDetector.h"
 #import "MobClick.h"
 #import "TKAlertCenter.h"
+#import "ConfigManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -57,11 +58,6 @@ NSString* GlobalGetServerURL()
     [super dealloc];
 }
 
-- (void)updateDataFromServer
-{
-//    [[AccountManager defaultManager] updateAccountForServer];
-}
-
 - (void)initGlobalObjects
 {
     [DrawViewController instance];
@@ -70,24 +66,29 @@ NSString* GlobalGetServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     srand(time(0));
     [self initGlobalObjects];
     [self initImageCacheManager];
-    [self updateDataFromServer];
         
+    // init mob click 
+    [MobClick startWithAppkey:@"4f83980852701565c500003a" 
+                 reportPolicy:BATCH 
+                    channelId:[ConfigManager getChannelId]];
+    [MobClick updateOnlineConfig];
+    
     // Init SNS Service
-    [[SinaSNSService defaultService] setAppKey:@"2831348933" Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
-//    [[SinaSNSService defaultService] setAppKey:@"2457135690" Secret:@"9886c6c3a5683950bad471b44f47a312"];
-    [[QQWeiboService defaultService] setAppKey:@"801123669" Secret:@"30169d80923b984109ee24ade9914a5c"];        
-    [[FacebookSNSService defaultService] setAppId:@"352182988165711" appKey:@"352182988165711" Secret:@"51c65d7fbef9858a5d8bc60014d33ce2"];
+    [[SinaSNSService defaultService] setAppKey:@"2831348933" 
+                                        Secret:@"ff89c2f5667b0199ee7a8bad6c44b265"];
+    [[QQWeiboService defaultService] setAppKey:@"801123669" 
+                                        Secret:@"30169d80923b984109ee24ade9914a5c"];        
+    [[FacebookSNSService defaultService] setAppId:@"352182988165711" 
+                                           appKey:@"352182988165711" 
+                                           Secret:@"51c65d7fbef9858a5d8bc60014d33ce2"];
     
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
-    
-    // Init Home
-    self.homeController = [[[HomeController alloc] init] autorelease];            
+    [[RouterService defaultService] fetchServerListAtBackground];    
     
     // Push Setup
     BOOL isAskBindDevice = NO;
@@ -100,38 +101,41 @@ NSString* GlobalGetServerURL()
     if ([DeviceDetection isOS5]){
         self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
     }
-    
+
+    // Init Home Controller As Root View Controller
+    self.homeController = [[[HomeController alloc] init] autorelease];            
     UINavigationController* navigationController = [[[UINavigationController alloc] 
                                                      initWithRootViewController:self.homeController] 
                                                     autorelease];
     navigationController.navigationBarHidden = YES;
-    
+
+    // Try Fetch User Data By Device Id
     if ([[UserManager defaultManager] hasUser] == NO){
         [[UserService defaultService] loginByDeviceWithViewController:self.homeController];
     }
 
 
+    // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
         [self checkAppVersion:APP_ID];
     }
     else if (isAskBindDevice == NO){        
         [self checkAppVersion:APP_ID];
     }
-    
-    [MobClick startWithAppkey:@"4f83980852701565c500003a"]; // reportPolicy:BATCH channelId:@"91"];
-    [MobClick updateOnlineConfig];
-        
+
+    // Show Root View
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    [[RouterService defaultService] fetchServerListAtBackground];
     [[PriceService defaultService] syncShoppingListAtBackground];
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
+    // Detect Network Availability
     self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
     [self.networkDetector start];
-    
+
+    // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     return YES;
