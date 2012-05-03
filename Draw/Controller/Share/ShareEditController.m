@@ -18,8 +18,12 @@
 #import "StringUtil.h"
 #import "PPDebug.h"
 #import "AccountService.h"
+#import "DeviceDetection.h"
 
 #define PATTERN_TAG_OFFSET 20120403
+#define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
+#define IPHONE_INFUSEVIEW_FRAME CGRectMake(31,130,259,259)
+#define INFUSE_VEIW_FRAME ([DeviceDetection isIPAD] ? IPAD_INFUSEVIEW_FRAME : IPHONE_INFUSEVIEW_FRAME)
 
 @interface ShareEditController ()
 
@@ -60,8 +64,13 @@
 
 - (void)putUpInputDialog
 {
-    [self.shareTextField setFrame:CGRectMake(7, 50, 306, 60)];
-    [self.inputBackground setFrame:CGRectMake(7, 50, 306, 60)];
+    if ([DeviceDetection isIPAD]) {
+        [self.shareTextField setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
+        [self.inputBackground setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
+    } else {
+        [self.shareTextField setFrame:CGRectMake(7, 50, 306, 60)];
+        [self.inputBackground setFrame:CGRectMake(7, 50, 306, 60)];
+    }    
     [self.view bringSubviewToFront:self.inputBackground];
     [self.view bringSubviewToFront:self.shareTextField];
     self.patternBar.hidden = YES;
@@ -70,8 +79,14 @@
 
 - (void)resetInputDialog
 {
-    [self.shareTextField setFrame:CGRectMake(7, 389, 306, 61)];
-    [self.inputBackground setFrame:CGRectMake(7, 389, 306, 61)];
+    if ([DeviceDetection isIPAD]) {
+        [self.shareTextField setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
+        [self.inputBackground setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
+    } else {
+        [self.shareTextField setFrame:CGRectMake(7, 389, 306, 61)];
+        [self.inputBackground setFrame:CGRectMake(7, 389, 306, 61)];
+    }
+    
     
 }
 
@@ -87,6 +102,9 @@
 - (void)initPattenrsGallery
 {
     float heigth = self.patternsGallery.frame.size.height;
+    if ([DeviceDetection isIPAD]) {
+        heigth = heigth*1024/480;
+    }
     
     UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
     noPatternButton.tag = PATTERN_TAG_OFFSET;
@@ -129,7 +147,9 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self putUpInputDialog];
-    [self addBlankView:self.shareTextField];
+    if (![DeviceDetection isIPAD]) {
+        [self addBlankView:self.shareTextField];
+    }    
     return YES;
 }
 
@@ -284,12 +304,13 @@ enum {
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     
     if ([self.imageFilePath hasSuffix:@"gif"]){                              
-        GifView* view = [[GifView alloc] initWithFrame:self.myImageView.frame
+        GifView* view = [[GifView alloc] initWithFrame:INFUSE_VEIW_FRAME
                                                 filePath:self.imageFilePath
                                         playTimeInterval:0.3];    
         [self.view addSubview:view];
-        [self putUpInputDialog];
         [view release];
+        //[self putUpInputDialog];
+        [self performSelector:@selector(putUpInputDialog) withObject:nil afterDelay:0.1];
         //[view setFrame:CGRectMake(10, 170, 300, 300)];
         //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
         
@@ -297,8 +318,8 @@ enum {
     else{
         [self.myImageView setImage:self.myImage];
         _infuseImageView = [[SynthesisView alloc] init];
+        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];
         [self.infuseImageView setDrawImage:self.myImage];
-        [self.infuseImageView setFrame:self.myImageView.frame];
         [self.view addSubview:self.infuseImageView];
         [self.infuseImageView setPatternImage:nil];
         [self.infuseImageView setNeedsDisplay];

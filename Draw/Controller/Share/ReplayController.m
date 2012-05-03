@@ -15,10 +15,14 @@
 #import "GifManager.h"
 #import "StringUtil.h"
 #import "GifView.h"
+#import "DeviceDetection.h"
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
 #define POINT_COUNT_PER_FRAME 30
+#define IPAD_SHOW_DRAW_VIEW_FRAME CGRectMake(10*2.4, 15*2.13, 300*2.4, 370*2.13)
+#define IPHONE_SHOW_DRAW_VIEW_FRAME CGRectMake(10, 15, 300, 370)
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ? IPAD_SHOW_DRAW_VIEW_FRAME : IPHONE_SHOW_DRAW_VIEW_FRAME)
 
 @implementation ReplayController
 
@@ -103,7 +107,7 @@
     NSArray* drawActionList = (NSArray*)currentData;
     
 
-    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(10, 15, 300, 370)];   
+    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 0, self.showHolderView.frame.size.width, self.showHolderView.frame.size.height)];
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
