@@ -11,18 +11,30 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "PPDebug.h"
+#import "DeviceDetection.h"
 
+#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 39, 52))
+
+#define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
+
+#define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 32 * 2, 32 * 2) : CGRectMake(0, 0, 32, 32))
+#define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(17 * 2,20 * 2,16 * 2,17 * 2) : CGRectMake(17,20,16,17))
+
+#define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
+
+#define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
 @implementation ToolView
 - (id)initWithNumber:(NSInteger)number
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 39, 52)];
+
+    self = [super initWithFrame:TOOL_VIEW_FRAM];
     if(self){
         self.userInteractionEnabled = NO;
         ShareImageManager *imageManager = [ShareImageManager defaultManager];
         [self setBackgroundImage:[imageManager toolImage] forState:UIControlStateNormal];
         numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [numberButton setFrame:CGRectMake(27, 10, 24, 24)];
+        [numberButton setFrame:NUMBER_VIEW_FRAME];
         [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
         [numberButton setUserInteractionEnabled:NO];
         [self addSubview:numberButton];
@@ -85,7 +97,7 @@
 {
     
     PPDebug(@"<alloc Avatar View>: url = %@, gender = %d", urlString, gender);
-    self = [super initWithFrame:CGRectMake(0, 0, 32, 32)];
+    self = [super initWithFrame:AVATAR_VIEW_FRAME];
     if (self) {
         type = aType;
         imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
@@ -107,17 +119,16 @@
         [self addSubview:imageView];
         markButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [markButton retain];
-        markButton.frame = CGRectMake(17,20,16,17);
+        markButton.frame = MARK_VIEW_FRAME;
         [self addSubview:markButton];
         markButton.userInteractionEnabled = NO;
         ShareImageManager *manager = [ShareImageManager defaultManager];
         if (type == Drawer) {
-            [markButton setImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
+            [markButton setBackgroundImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
         }else{
             [markButton setBackgroundImage:[manager scoreBackgroundImage] forState:UIControlStateNormal];            
-            [markButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
-            UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 2, 0);
-            [markButton setTitleEdgeInsets:insets];
+            [markButton.titleLabel setFont:[UIFont boldSystemFontOfSize:MARK_FONT_SIZE]];
+            [markButton setTitleEdgeInsets:MARK_INSET];
             [self setScore:0];
         }
         self.backgroundColor = [UIColor grayColor];

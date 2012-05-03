@@ -102,8 +102,8 @@ ItemShopController *staticItemController = nil;
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
     
-    ColorShopView *view = [ColorShopView colorShopViewWithFrame:self.view.bounds];
-    [view showInView:self.view animated:YES];
+//    ColorShopView *view = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+//    [view showInView:self.view animated:YES];
     
 }
 

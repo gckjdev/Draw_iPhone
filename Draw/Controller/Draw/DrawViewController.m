@@ -33,6 +33,7 @@
 #import "WordManager.h"
 #import "GameTurn.h"
 #import "DrawUtils.h"
+#import "DeviceDetection.h"
 
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
@@ -111,21 +112,25 @@ DrawViewController *GlobalGetDrawViewController()
 
 
 #pragma mark - Construction
+#define ERASER_WIDTH ([DeviceDetection isIPAD] ? 15 * 2 : 15)
+#define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
 - (id)init{
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];
         drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
+        pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
+        eraserWidth = ERASER_WIDTH;
+        
         [drawView setDrawEnabled:YES];
-        pickPenView = [[PickPenView alloc] initWithFrame:CGRectMake(8, 250, 302, 122)];
+        drawView.backgroundColor = [UIColor yellowColor];
+        
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
         drawGameService.drawDelegate = self;
-        eraserWidth = 15;
-
     }
     return self;
 }
@@ -136,11 +141,18 @@ DrawViewController *GlobalGetDrawViewController()
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
+    if ([DeviceDetection isIPAD]) {
+        [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
+        [widthArray addObject:[NSNumber numberWithInt:15 * 2]];
+        [widthArray addObject:[NSNumber numberWithInt:9 * 2]];
+        [widthArray addObject:[NSNumber numberWithInt:2 * 2]];
+    }else{
+        [widthArray addObject:[NSNumber numberWithInt:20]];
+        [widthArray addObject:[NSNumber numberWithInt:15]];
+        [widthArray addObject:[NSNumber numberWithInt:9]];
+        [widthArray addObject:[NSNumber numberWithInt:2]];        
+    }
     
-    [widthArray addObject:[NSNumber numberWithInt:20]];
-    [widthArray addObject:[NSNumber numberWithInt:15]];
-    [widthArray addObject:[NSNumber numberWithInt:9]];
-    [widthArray addObject:[NSNumber numberWithInt:2]];
     [pickPenView setLineWidths:widthArray];
     [widthArray release];
 
@@ -222,8 +234,7 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 
-#define AVATAR_VIEW_SPACE 36.0
-
+#define AVATAR_VIEW_SPACE ([DeviceDetection isIPAD] ? 36.0 * 2 : 36.0)
 - (void)adjustPlayerAvatars:(NSString *)quitUserId
 {
     PPDebug(@"[adjustPlayerAvatars] userID = %@", quitUserId);
@@ -236,7 +247,7 @@ DrawViewController *GlobalGetDrawViewController()
             removeAvatar = aView;
         }else if (needMove) {
             aView.center = CGPointMake(aView.center.x - AVATAR_VIEW_SPACE,
-                                       aView.center.y);
+                                           aView.center.y);                
         }
     }
     if (removeAvatar) {
@@ -265,7 +276,12 @@ DrawViewController *GlobalGetDrawViewController()
         [aView setUserId:user.userId];
 
         //set center
-        aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
+        if ([DeviceDetection isIPAD]) {
+            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 25 * 2);            
+        }else{
+            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 25);
+        }
+        
         [self.view addSubview:aView];
         [avatarArray addObject:aView];
         [aView release];
@@ -340,18 +356,23 @@ DrawViewController *GlobalGetDrawViewController()
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
     if (onLeftTop) {
-        x = 10;//player.frame.origin.x;
-        y = 50;//player.frame.origin.y + player.frame.size.height;
+        if ([DeviceDetection isIPAD]) {
+            x = 10 * 2;//player.frame.origin.x;
+            y = 55 * 2;//player.frame.origin.y + player.frame.size.height;            
+        }else{
+            x = 10;//player.frame.origin.x;
+            y = 50;//player.frame.origin.y + player.frame.size.height;                        
+        }
     }
+    CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
     
-    CGFloat fontSize = 18;    
-    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
-    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    if ([DeviceDetection isIPAD]) {
+        [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];
+    }else{
+        [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    }
     [popupButton setTitle:message forState:UIControlStateNormal];
     [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
    
@@ -574,12 +595,20 @@ DrawViewController *GlobalGetDrawViewController()
         CGPoint point = [pointValue CGPointValue];
         if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > MIN(4, (paint.width / 2))) 
         {
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+            CGPoint tempPoint = point;
+            if ([DeviceDetection isIPAD]) {
+                tempPoint = CGPointMake(point.x / IPAD_WIDTH_SCALE, point.y / IPAD_HEIGHT_SCALE);
+            }
+            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
             [pointList addObject:pointNumber];
         }
         lastPoint = point;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
+    CGFloat width = paint.width;
+    if ([DeviceDetection isIPAD]) {
+        width /= 2;
+    }
+    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
 }
 
 - (void)didStartedTouch
@@ -623,10 +652,11 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (IBAction)clickPenButton:(id)sender {
     [pickPenView setHidden:!pickPenView.hidden animated:YES];
-    if (pickPenView.hidden == NO) {
+//    if (pickPenView.hidden == NO) {
         PenView *penView = (PenView *)sender;
         [drawView setLineColor:penView.penColor];
-    }
+        [drawView setLineWidth:penWidth];
+//    }
 }
 
 @end
