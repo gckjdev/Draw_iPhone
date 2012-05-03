@@ -99,6 +99,15 @@
     [super viewDidLoad];
     [self.view addSubview:popupButton];
     popupButton.hidden = YES;
+    CGFloat fontSize = 18;    
+    if ([DeviceDetection isIPAD]) {
+        fontSize = 18 * 2;
+        [popupButton setTitleEdgeInsets:UIEdgeInsetsMake(8 * 2, 0, 0, 0)];
+    }else {
+        [popupButton setTitleEdgeInsets:UIEdgeInsetsMake(8, 0, 0, 0)];
+    }
+    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
+
     [popupButton setBackgroundImage:[[ShareImageManager defaultManager] popupImage] 
                                 forState:UIControlStateNormal];
     [popupButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -344,15 +353,14 @@
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
 
-    
-    CGFloat fontSize = 18;    
-    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
-    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
+    if ([DeviceDetection isIPAD]) {
+        [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];        
+    }else{
+        [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+    }
     [popupButton setTitle:message forState:UIControlStateNormal];
     [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
 }
