@@ -44,7 +44,6 @@
     self = [super init];
     if (self) {
         drawGameService = [DrawGameService defaultService];    
-//        [drawGameService setShowDelegate:self];
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
     }

@@ -41,6 +41,8 @@ ShowDrawController *GlobalGetShowDrawController()
 
 #define WORD_LENGTH_TIP_TIME 20
 #define PAPER_VIEW_TAG 20120403
+#define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(675, 920):CGPointMake(284, 428))
+
 
 
 
@@ -87,7 +89,7 @@ ShowDrawController *GlobalGetShowDrawController()
         // Custom initialization
         self.word = nil;
         toolView = [[ToolView alloc] initWithNumber:0];
-        toolView.center = CGPointMake(284, 428);
+        toolView.center = TOOLVIEW_CENTER;
     }
     return self;
 }
@@ -565,8 +567,7 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    //stay
-//    [dialog removeFromSuperview];
+    
 }
 
 #pragma mark - Actions
@@ -640,7 +641,6 @@ ShowDrawController *GlobalGetShowDrawController()
         
     }
 }
-
 
 
 - (void)clickPickingButton:(UIButton *)button

@@ -21,6 +21,7 @@
 #define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(17 * 2,20 * 2,16 * 2,17 * 2) : CGRectMake(17,20,16,17))
 
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
+#define TOOL_NUMBER_SIZE (([DeviceDetection isIPAD]) ? 16 * 2 : 16)
 
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
@@ -38,6 +39,8 @@
         [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
         [numberButton setUserInteractionEnabled:NO];
         [self addSubview:numberButton];
+        [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
+        numberButton.titleLabel.minimumFontSize = 10;
         [self setNumber:number];
         [numberButton retain];
     }
