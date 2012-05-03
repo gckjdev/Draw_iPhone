@@ -235,18 +235,14 @@
                guessCorrect:(BOOL)guessCorrect
                   gainCoins:(int)gainCoins
 {
-    
-    if (![drawGameService.userId isEqualToString:guessUserId]) {
-        if (!guessCorrect) {
-            if ([LocaleUtils isTraditionalChinese]) {
-                wordText = [WordManager changeToTraditionalChinese:wordText];                
-            }
-            [self popGuessMessage:wordText userId:guessUserId];        
-            
-        }else{
-            [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-            [self addScore:gainCoins toUser:guessUserId];
+    if (!guessCorrect) {
+        if ([LocaleUtils isTraditionalChinese]) {
+            wordText = [WordManager changeToTraditionalChinese:wordText];                
         }
+        [self popGuessMessage:wordText userId:guessUserId]; 
+    }else{
+        [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
+        [self addScore:gainCoins toUser:guessUserId];
     }
 }
 @end
