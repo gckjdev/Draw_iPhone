@@ -199,7 +199,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;    
+    if ([DeviceDetection isIPAD]) {
+        return 180;
+    } else {
+        return 90;
+    }
+        
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
