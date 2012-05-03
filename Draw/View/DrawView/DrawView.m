@@ -113,10 +113,7 @@
     return ILLEGAL_POINT;
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    PPDebug(@"<DrawView>touches began");
-    PPDebug(@"<DrawView>touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
-    if ([self isEventLegal:event]) {
+        if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
         _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
@@ -127,8 +124,6 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    PPDebug(@"<DrawView>touches end");
-    PPDebug(@"<DrawView>touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);
     if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];
@@ -140,8 +135,6 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    PPDebug(@"<DrawView>touches move");
-    PPDebug(@"touches size = %d, event all touches size = %d",[touches count],[[event allTouches]count]);    
     if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
         [self addPoint:point toDrawAction:_currentDrawAction];
