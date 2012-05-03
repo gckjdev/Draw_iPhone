@@ -9,7 +9,7 @@
 #import "Paint.h"
 #import "DrawUtils.h"
 #import "GameMessage.pb.h"
-
+#import "DeviceDetection.h"
 @implementation Paint
 @synthesize width = _width;
 @synthesize color = _color;
@@ -49,7 +49,11 @@
 {
     self = [super init];
     if (self) {
-        self.width = width;
+        if ([DeviceDetection isIPAD]) {
+            self.width = width * 2;            
+        }else{
+            self.width = width;
+        }
         self.color = [DrawUtils decompressIntDrawColor:color];
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in numberPointList) {
@@ -72,6 +76,10 @@
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in pointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+            if ([DeviceDetection isIPAD]) {
+                point.x = point.x * IPAD_WIDTH_SCALE;
+                point.y = point.y * IPAD_HEIGHT_SCALE;
+            }
             [self addPoint:point];
         }
     }

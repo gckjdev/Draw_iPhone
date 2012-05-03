@@ -104,7 +104,6 @@ ItemShopController *staticItemController = nil;
     
 //    ColorShopView *view = [ColorShopView colorShopViewWithFrame:self.view.bounds];
 //    [view showInView:self.view animated:YES];
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated

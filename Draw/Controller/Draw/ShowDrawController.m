@@ -39,17 +39,15 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define GUESS_TIME 60
 #define WORD_LENGTH_TIP_TIME 20
 #define PAPER_VIEW_TAG 20120403
+#define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(675, 920):CGPointMake(284, 428))
+
 
 
 
 @implementation ShowDrawController
 @synthesize guessDoneButton;
-@synthesize clockButton;
-@synthesize turnNumberButton;
-@synthesize popupButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
 @synthesize needResetData;
@@ -58,12 +56,8 @@ ShowDrawController *GlobalGetShowDrawController()
     [_word release];
     [_candidateString release];
     [guessDoneButton release];
-    [clockButton release];
-    [popupButton release];
     [toolView release];
-    [avatarArray release];
     [showView release];
-    [turnNumberButton release];
     [super dealloc];
 }
 #pragma mark - Static Method
@@ -94,10 +88,8 @@ ShowDrawController *GlobalGetShowDrawController()
     if (self) {
         // Custom initialization
         self.word = nil;
-        avatarArray = [[NSMutableArray alloc] init];
-        shareImageManager = [ShareImageManager defaultManager];
         toolView = [[ToolView alloc] initWithNumber:0];
-        toolView.center = CGPointMake(284, 428);
+        toolView.center = TOOLVIEW_CENTER;
     }
     return self;
 }
@@ -106,10 +98,8 @@ ShowDrawController *GlobalGetShowDrawController()
     self = [super init];
     if (self) {
         _viewIsAppear = NO;
-        drawGameService = [DrawGameService defaultService];
-        [drawGameService setShowDelegate:self];
         showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
-        
+        drawGameService.showDelegate = self;
     }
     return self;
 }
@@ -323,19 +313,6 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 #pragma makr - Timer Handle
-- (void)resetTimer
-{
-    if (guessTimer && [guessTimer isValid]) {
-        [guessTimer invalidate];
-    }
-    guessTimer = nil;
-    retainCount = GUESS_TIME;
-}
-- (void)updateClockButton
-{
-    NSString *clockString = [NSString stringWithFormat:@"%d",retainCount];
-    [self.clockButton setTitle:clockString forState:UIControlStateNormal];
-}
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
@@ -352,127 +329,10 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
-- (void)startTimer
-{
-    [self resetTimer];
-    [self updateClockButton];
-    guessTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-}
-
 
 
 
 #pragma mark - Update Data
-- (void)cleanAvatars
-{
-    for (AvatarView *view in avatarArray) {
-        [view removeFromSuperview];
-    }
-    [avatarArray removeAllObjects];
-    
-}
-
-#define AVATAR_VIEW_SPACE 36.0
-
-- (void)adjustPlayerAvatars:(NSString *)quitUserId
-{
-    
-    PPDebug(@"[adjustPlayerAvatars] userID = %@", quitUserId);
-    
-    BOOL needMove = NO;
-    AvatarView *removeAvatar = nil;
-    
-    for (AvatarView *aView in avatarArray) {
-        if ([aView.userId isEqualToString:quitUserId]) {
-            needMove = YES;
-            removeAvatar = aView;
-        }else if (needMove) {
-            aView.center = CGPointMake(aView.center.x - AVATAR_VIEW_SPACE,
-                                       aView.center.y);
-        }
-    }
-    if (removeAvatar) {
-        [removeAvatar removeFromSuperview];
-        [avatarArray removeObject:removeAvatar];
-    }
-}
-
-- (void)updatePlayerAvatars
-{
-    [self cleanAvatars];
-    GameSession *session = [[DrawGameService defaultService] session];
-    int i = 0;
-    for (GameSessionUser *user in session.userList) {
-        AvatarType type = Guesser;
-        if([user.userId isEqualToString:session.drawingUserId])
-        {
-            type = Drawer;
-        }
-        BOOL gender = user.gender;
-        if ([session isMe:user.userId]) {
-            gender = [[UserManager defaultManager] isUserMale];
-        }
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
-        [aView setUserId:user.userId];
-        //set center
-        aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
-        [self.view addSubview:aView];
-        [avatarArray addObject:aView];
-        [aView release];
-        ++ i;                                  
-    }
-}
-
-
-- (AvatarView *)avatarViewForUserId:(NSString *)userId
-{
-    
-    for (AvatarView *view in avatarArray) {
-        if ([view.userId isEqualToString:userId]) {
-            return view;
-        }
-    }
-    return nil;
-}
-
-- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId onLeftTop:(BOOL)onLeftTop
-{
-    AvatarView *player = [self avatarViewForUserId:userId];
-    if (player == nil) {
-        return;
-    }
-    CGFloat x = player.frame.origin.x;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    if (onLeftTop) {
-        x = 10;//player.frame.origin.x;
-        y = 50;//player.frame.origin.y + player.frame.size.height;
-    }
-    
-    CGFloat fontSize = 18;    
-    [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
-    CGSize size = [message sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
-
-    [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-    [popupButton setTitle:message forState:UIControlStateNormal];
-    [popupButton setHidden:NO];
-    UIEdgeInsets inSets = UIEdgeInsetsMake(8, 0, 0, 0);
-    [popupButton setTitleEdgeInsets:inSets];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-    
-}
-
-- (void)popGuessMessage:(NSString *)message userId:(NSString *)userId
-{
-    [self popGuessMessage:message userId:userId onLeftTop:NO];
-}
-
-- (void)popUpRunAwayMessage:(NSString *)userId
-{
-    NSString *nickName = [[drawGameService session] getNickNameByUserId:userId];
-    NSString *message = [NSString stringWithFormat:NSLS(@"kRunAway"),nickName];
-    [self popGuessMessage:message userId:userId onLeftTop:YES];
-}
 
 - (void)popupWordLengthMessage
 {
@@ -481,6 +341,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self popupHappyMessage:tip title:nil];
     }
 }
+
 - (void)updateLastAnswerButton
 {
     UIView *lastAnwserButton = [self.view viewWithTag:WRITE_BUTTON_TAG_END];
@@ -531,7 +392,7 @@ ShowDrawController *GlobalGetShowDrawController()
     //init the popup buttons
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
-    [self.view bringSubviewToFront:popupButton];
+    [self.view bringSubviewToFront:self.popupButton];
     
     //init the toolView for bomb the candidate words
     [self.view addSubview:toolView];
@@ -539,8 +400,8 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)cleanScreen
 {
-    [popupButton.layer removeAllAnimations];
-    [popupButton setHidden:YES];    
+    [self.popupButton.layer removeAllAnimations];
+    [self.popupButton setHidden:YES];    
     [self clearUnPopupMessages];
     for (UIView *view in self.view.subviews) {
         if (view && [view isKindOfClass:[CommonDialog class]]) {
@@ -592,34 +453,8 @@ ShowDrawController *GlobalGetShowDrawController()
 
 
 
-- (NSInteger)userCount
-{
-    GameSession *session = [[DrawGameService defaultService] session];
-    return [session.userList count];
-}
-- (void)addScore:(NSInteger)score toUser:(NSString *)userId
-{
-    AvatarView *avatarView = [self avatarViewForUserId:userId];
-    [avatarView setScore:score];
-}
 
 #pragma mark - Draw Game Service Delegate
-
-- (void)didReceiveGuessWord:(NSString*)wordText 
-                guessUserId:(NSString*)guessUserId 
-               guessCorrect:(BOOL)guessCorrect
-                  gainCoins:(int)gainCoins
-{
-    if (!guessCorrect) {
-        if ([LocaleUtils isTraditionalChinese]) {
-            wordText = [WordManager changeToTraditionalChinese:wordText];            
-        }
-        [self popGuessMessage:wordText userId:guessUserId];        
-    }else{
-        [self popGuessMessage:NSLS(@"kGuessCorrect") userId:guessUserId];
-        [self addScore:gainCoins toUser:guessUserId];
-    }
-}
 
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
 {
@@ -654,7 +489,6 @@ ShowDrawController *GlobalGetShowDrawController()
  */
 - (void)didBroken
 {
-//    [self popupUnhappyMessage:NSLS(@"kConnectionBroken") title:nil];
     PPDebug(@"<ShowDrawController>:didBroken");
     [self cleanData];
 
@@ -733,8 +567,7 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
-    //stay
-//    [dialog removeFromSuperview];
+    
 }
 
 #pragma mark - Actions
@@ -808,7 +641,6 @@ ShowDrawController *GlobalGetShowDrawController()
         
     }
 }
-
 
 
 - (void)clickPickingButton:(UIButton *)button

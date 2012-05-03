@@ -118,12 +118,12 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)avatarSelectImage
 {
-    return [UIImage imageNamed:@"user_pic_bgselected.png"];
+    return [UIImage strectchableImageName:@"user_pic_bgselected.png"];
 }
 
 - (UIImage *)avatarUnSelectImage
 {
-    return [UIImage imageNamed:@"user_picbg.png"];
+    return [UIImage strectchableImageName:@"user_picbg.png"];
 }
 
 - (UIImage *)coinImage

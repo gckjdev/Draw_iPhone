@@ -12,7 +12,7 @@
 #import "DrawGameService.h"
 #import "PickPenView.h"
 #import "CommonDialog.h"
-#import "PPViewController.h"
+#import "SuperDrawViewController.h"
 #import "ColorShopView.h"
 
 @class Word;
@@ -20,20 +20,14 @@
 @class ColorShopController;
 @class PenView;
 
-@interface DrawViewController : PPViewController<DrawViewDelegate,
-            DrawGameServiceDelegate, PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickPenView *pickPenView;
-    DrawGameService *drawGameService;
+
     Word *_word;
-    NSTimer *drawTimer;
-    NSInteger retainCount;
-    ShareImageManager *shareImageManager;
-    NSMutableArray *avatarArray;
     BOOL hasPushResultController;
-                
-                NSInteger penWidth;
-                NSInteger eraserWidth;
+    NSInteger penWidth;
+    NSInteger eraserWidth;
                 
 }
 
@@ -42,11 +36,8 @@
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
-@property (retain, nonatomic) IBOutlet UIButton *popupButton;
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
-@property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (nonatomic, assign) BOOL needResetData;
