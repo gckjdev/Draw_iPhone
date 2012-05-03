@@ -102,6 +102,8 @@
 		CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
 		CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
+		CA06BE4015521E3B00B94FB1 /* ShowDrawController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */; };
+		CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -371,7 +373,6 @@
 		CA28C0DF1531327300E531AE /* normalpallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0DE1531327300E531AE /* normalpallets@2x.png */; };
 		CA28C0E115313B9400E531AE /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0E015313B9400E531AE /* submit@2x.png */; };
 		CA3217E31550DE53007E95B6 /* DrawViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E21550DE53007E95B6 /* DrawViewController~iPad.xib */; };
-		CA3217E51550DEAC007E95B6 /* ShowDrawController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */; };
 		CA3217E71550DECD007E95B6 /* SelectWordController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E61550DECD007E95B6 /* SelectWordController~iPad.xib */; };
 		CA3217E91550DEF0007E95B6 /* SelectWordCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E81550DEF0007E95B6 /* SelectWordCell~iPad.xib */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
@@ -735,6 +736,9 @@
 		CA051DCB1546808500D0A00A /* ColorShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopView.h; sourceTree = "<group>"; };
 		CA051DCC1546808500D0A00A /* ColorShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopView.m; sourceTree = "<group>"; };
 		CA051DCD1546808500D0A00A /* ColorShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopView.xib; sourceTree = "<group>"; };
+		CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~iPad.xib"; sourceTree = "<group>"; };
+		CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawViewController.h; sourceTree = "<group>"; };
+		CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawViewController.m; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -1188,7 +1192,6 @@
 		CA28C0DE1531327300E531AE /* normalpallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalpallets@2x.png"; sourceTree = "<group>"; };
 		CA28C0E015313B9400E531AE /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		CA3217E21550DE53007E95B6 /* DrawViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawViewController~iPad.xib"; sourceTree = "<group>"; };
-		CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~iPad.xib"; sourceTree = "<group>"; };
 		CA3217E61550DECD007E95B6 /* SelectWordController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~iPad.xib"; sourceTree = "<group>"; };
 		CA3217E81550DEF0007E95B6 /* SelectWordCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~iPad.xib"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
@@ -2723,6 +2726,8 @@
 		CA1041D61509B6E700F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */,
+				CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */,
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
@@ -2730,7 +2735,7 @@
 				CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */,
 				CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */,
 				CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */,
-				CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */,
+				CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */,
 				CA32CD0B15197B6900BF86BA /* ResultController.h */,
 				CA32CD0C15197B6900BF86BA /* ResultController.m */,
 				CA32CD0D15197B6900BF86BA /* ResultController.xib */,
@@ -3964,7 +3969,6 @@
 				C21CDA221550DAF9007E0F66 /* ReplayController~iPad.xib in Resources */,
 				C21CDA241550DB1C007E0F66 /* MyPaintButton~iPad.xib in Resources */,
 				CA3217E31550DE53007E95B6 /* DrawViewController~iPad.xib in Resources */,
-				CA3217E51550DEAC007E95B6 /* ShowDrawController~iPad.xib in Resources */,
 				CA3217E71550DECD007E95B6 /* SelectWordController~iPad.xib in Resources */,
 				CA3217E91550DEF0007E95B6 /* SelectWordCell~iPad.xib in Resources */,
 				A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */,
@@ -3974,6 +3978,7 @@
 				A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */,
 				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
 				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
+				CA06BE4015521E3B00B94FB1 /* ShowDrawController~iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4305,6 +4310,7 @@
 				CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */,
 				CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */,
 				CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */,
+				CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4474,7 +4480,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -4486,7 +4492,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
+				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "567D364C-8715-407A-A12E-EB426A08C30F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4520,7 +4526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -4531,7 +4537,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";
+				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

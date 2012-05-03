@@ -2,6 +2,10 @@
 
 #import "ProtocolBuffers.h"
 
+@class PBDraw;
+@class PBDrawAction;
+@class PBDrawAction_Builder;
+@class PBDraw_Builder;
 @class PBGameSession;
 @class PBGameSession_Builder;
 @class PBGameUser;
@@ -216,5 +220,185 @@
 - (PBGameSession_Builder*) addUsers:(PBGameUser*) value;
 - (PBGameSession_Builder*) addAllUsers:(NSArray*) values;
 - (PBGameSession_Builder*) clearUsersList;
+@end
+
+@interface PBDrawAction : PBGeneratedMessage {
+@private
+  BOOL hasWidth_:1;
+  BOOL hasType_:1;
+  BOOL hasColor_:1;
+  Float32 width;
+  int32_t type;
+  int32_t color;
+  NSMutableArray* mutablePointsList;
+  int32_t pointsMemoizedSerializedSize;
+}
+- (BOOL) hasType;
+- (BOOL) hasWidth;
+- (BOOL) hasColor;
+@property (readonly) int32_t type;
+@property (readonly) Float32 width;
+@property (readonly) int32_t color;
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
+
++ (PBDrawAction*) defaultInstance;
+- (PBDrawAction*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDrawAction_Builder*) builder;
++ (PBDrawAction_Builder*) builder;
++ (PBDrawAction_Builder*) builderWithPrototype:(PBDrawAction*) prototype;
+
++ (PBDrawAction*) parseFromData:(NSData*) data;
++ (PBDrawAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawAction*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDrawAction_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDrawAction* result;
+}
+
+- (PBDrawAction*) defaultInstance;
+
+- (PBDrawAction_Builder*) clear;
+- (PBDrawAction_Builder*) clone;
+
+- (PBDrawAction*) build;
+- (PBDrawAction*) buildPartial;
+
+- (PBDrawAction_Builder*) mergeFrom:(PBDrawAction*) other;
+- (PBDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBDrawAction_Builder*) setType:(int32_t) value;
+- (PBDrawAction_Builder*) clearType;
+
+- (NSArray*) pointsList;
+- (int32_t) pointsAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
+- (PBDrawAction_Builder*) addPoints:(int32_t) value;
+- (PBDrawAction_Builder*) addAllPoints:(NSArray*) values;
+- (PBDrawAction_Builder*) clearPointsList;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBDrawAction_Builder*) setWidth:(Float32) value;
+- (PBDrawAction_Builder*) clearWidth;
+
+- (BOOL) hasColor;
+- (int32_t) color;
+- (PBDrawAction_Builder*) setColor:(int32_t) value;
+- (PBDrawAction_Builder*) clearColor;
+@end
+
+@interface PBDraw : PBGeneratedMessage {
+@private
+  BOOL hasLevel_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasUserId_:1;
+  BOOL hasWord_:1;
+  BOOL hasNickName_:1;
+  int32_t level;
+  int32_t language;
+  int32_t createDate;
+  NSString* userId;
+  NSString* word;
+  NSString* nickName;
+  NSMutableArray* mutableDrawDataList;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasWord;
+- (BOOL) hasLevel;
+- (BOOL) hasLanguage;
+- (BOOL) hasCreateDate;
+- (BOOL) hasNickName;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) NSString* word;
+@property (readonly) int32_t level;
+@property (readonly) int32_t language;
+@property (readonly) int32_t createDate;
+@property (readonly, retain) NSString* nickName;
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+
++ (PBDraw*) defaultInstance;
+- (PBDraw*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDraw_Builder*) builder;
++ (PBDraw_Builder*) builder;
++ (PBDraw_Builder*) builderWithPrototype:(PBDraw*) prototype;
+
++ (PBDraw*) parseFromData:(NSData*) data;
++ (PBDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDraw*) parseFromInputStream:(NSInputStream*) input;
++ (PBDraw*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDraw_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDraw* result;
+}
+
+- (PBDraw*) defaultInstance;
+
+- (PBDraw_Builder*) clear;
+- (PBDraw_Builder*) clone;
+
+- (PBDraw*) build;
+- (PBDraw*) buildPartial;
+
+- (PBDraw_Builder*) mergeFrom:(PBDraw*) other;
+- (PBDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBDraw_Builder*) setUserId:(NSString*) value;
+- (PBDraw_Builder*) clearUserId;
+
+- (BOOL) hasWord;
+- (NSString*) word;
+- (PBDraw_Builder*) setWord:(NSString*) value;
+- (PBDraw_Builder*) clearWord;
+
+- (BOOL) hasLevel;
+- (int32_t) level;
+- (PBDraw_Builder*) setLevel:(int32_t) value;
+- (PBDraw_Builder*) clearLevel;
+
+- (BOOL) hasLanguage;
+- (int32_t) language;
+- (PBDraw_Builder*) setLanguage:(int32_t) value;
+- (PBDraw_Builder*) clearLanguage;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBDraw_Builder*) setCreateDate:(int32_t) value;
+- (PBDraw_Builder*) clearCreateDate;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (PBDraw_Builder*) setNickName:(NSString*) value;
+- (PBDraw_Builder*) clearNickName;
+
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+- (PBDraw_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBDraw_Builder*) addDrawData:(PBDrawAction*) value;
+- (PBDraw_Builder*) addAllDrawData:(NSArray*) values;
+- (PBDraw_Builder*) clearDrawDataList;
 @end
 

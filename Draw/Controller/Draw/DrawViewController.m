@@ -124,7 +124,7 @@ DrawViewController *GlobalGetDrawViewController()
         eraserWidth = ERASER_WIDTH;
         
         [drawView setDrawEnabled:YES];
-        drawView.backgroundColor = [UIColor yellowColor];
+//        drawView.backgroundColor = [UIColor yellowColor];
         
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
@@ -277,9 +277,9 @@ DrawViewController *GlobalGetDrawViewController()
 
         //set center
         if ([DeviceDetection isIPAD]) {
-            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 21 * 2);            
+            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 25 * 2);            
         }else{
-            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 21);
+            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 25);
         }
         
         [self.view addSubview:aView];
@@ -595,12 +595,20 @@ DrawViewController *GlobalGetDrawViewController()
         CGPoint point = [pointValue CGPointValue];
         if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > MIN(4, (paint.width / 2))) 
         {
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:point]];
+            CGPoint tempPoint = point;
+            if ([DeviceDetection isIPAD]) {
+                tempPoint = CGPointMake(point.x / IPAD_WIDTH_SCALE, point.y / IPAD_HEIGHT_SCALE);
+            }
+            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
             [pointList addObject:pointNumber];
         }
         lastPoint = point;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:paint.width];
+    CGFloat width = paint.width;
+    if ([DeviceDetection isIPAD]) {
+        width /= 2;
+    }
+    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
 }
 
 - (void)didStartedTouch

@@ -18,6 +18,8 @@
 #import "AccountService.h"
 #import "ShoppingManager.h"
 #import "AccountManager.h"
+#import "DeviceDetection.h"
+
 
 @implementation ColorShopView
 @synthesize titleLabel;
@@ -178,7 +180,11 @@
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-        [animation setToValue:[NSNumber numberWithInt:center.y + 480]];
+        if([DeviceDetection isIPAD]){
+            [animation setToValue:[NSNumber numberWithInt:center.y + 1024]];    
+        }else{
+            [animation setToValue:[NSNumber numberWithInt:center.y + 480]];
+        }
         [self.layer addAnimation:animation forKey:@"dismiss"];
     }else{
         [self removeFromSuperview];

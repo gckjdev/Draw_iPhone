@@ -119,12 +119,12 @@
         [self addSubview:imageView];
         markButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [markButton retain];
-        markButton.frame = CGRectMake(17,20,16,17);
+        markButton.frame = MARK_VIEW_FRAME;
         [self addSubview:markButton];
         markButton.userInteractionEnabled = NO;
         ShareImageManager *manager = [ShareImageManager defaultManager];
         if (type == Drawer) {
-            [markButton setImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
+            [markButton setBackgroundImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
         }else{
             [markButton setBackgroundImage:[manager scoreBackgroundImage] forState:UIControlStateNormal];            
             [markButton.titleLabel setFont:[UIFont boldSystemFontOfSize:MARK_FONT_SIZE]];
