@@ -77,7 +77,7 @@
 
 #define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
 
-#define ADD_BUTTON_CENTER ([DeviceDetection isIPAD] ? CGPointMake(539.6,145.9) : CGPointMake(266.8, 72.2))
+#define ADD_BUTTON_CENTER ([DeviceDetection isIPAD] ? CGPointMake(650.84,204) : CGPointMake(276, 82))
 
 - (void)clickAddColorButton:(id)sender
 {
@@ -155,7 +155,7 @@
     [self selectWidthButton:wView];
 }
 
-#define LINE_START_X ([DeviceDetection isIPAD] ? 12 * 2 : 12)
+#define LINE_START_X ([DeviceDetection isIPAD] ? 12 * 3 : 12)
 #define LINE_START_Y ([DeviceDetection isIPAD] ? 6 * 2 : 5)
 
 - (void)setLineWidths:(NSArray *)widthArray
@@ -201,8 +201,8 @@
 
 #define BUTTON_COUNT_PER_ROW 5
 
-#define PEN_STATR_X ([DeviceDetection isIPAD] ? 78 * 2 : 78)
-#define PEN_STATR_Y ([DeviceDetection isIPAD] ? 10 * 2 : 10)
+#define PEN_STATR_X ([DeviceDetection isIPAD] ? 78 * 2: 70)
+#define PEN_STATR_Y ([DeviceDetection isIPAD] ? 10 * 5 : 15)
 - (void)updatePickPenView
 {
     
@@ -213,7 +213,10 @@
     CGFloat baseX = PEN_STATR_X;
     CGFloat baseY = PEN_STATR_Y;            
     CGFloat w = self.frame.size.width - baseX;
-    CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW + 5);
+    CGFloat space = w  / (3.0 * BUTTON_COUNT_PER_ROW );
+    if ([DeviceDetection isIPAD]) {
+        space = w  / (3.0 * BUTTON_COUNT_PER_ROW - 4);
+    }
     CGFloat x = 0, y = 0;
     int l = 0, r = 0;
     for (ColorView *colorView in colorViewArray) {
