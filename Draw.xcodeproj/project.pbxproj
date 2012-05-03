@@ -102,6 +102,7 @@
 		CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
 		CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
+		CA06BE4015521E3B00B94FB1 /* ShowDrawController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -371,7 +372,6 @@
 		CA28C0DF1531327300E531AE /* normalpallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0DE1531327300E531AE /* normalpallets@2x.png */; };
 		CA28C0E115313B9400E531AE /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0E015313B9400E531AE /* submit@2x.png */; };
 		CA3217E31550DE53007E95B6 /* DrawViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E21550DE53007E95B6 /* DrawViewController~iPad.xib */; };
-		CA3217E51550DEAC007E95B6 /* ShowDrawController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */; };
 		CA3217E71550DECD007E95B6 /* SelectWordController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E61550DECD007E95B6 /* SelectWordController~iPad.xib */; };
 		CA3217E91550DEF0007E95B6 /* SelectWordCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3217E81550DEF0007E95B6 /* SelectWordCell~iPad.xib */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
@@ -735,6 +735,7 @@
 		CA051DCB1546808500D0A00A /* ColorShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopView.h; sourceTree = "<group>"; };
 		CA051DCC1546808500D0A00A /* ColorShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopView.m; sourceTree = "<group>"; };
 		CA051DCD1546808500D0A00A /* ColorShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopView.xib; sourceTree = "<group>"; };
+		CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~iPad.xib"; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -1188,7 +1189,6 @@
 		CA28C0DE1531327300E531AE /* normalpallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalpallets@2x.png"; sourceTree = "<group>"; };
 		CA28C0E015313B9400E531AE /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		CA3217E21550DE53007E95B6 /* DrawViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawViewController~iPad.xib"; sourceTree = "<group>"; };
-		CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~iPad.xib"; sourceTree = "<group>"; };
 		CA3217E61550DECD007E95B6 /* SelectWordController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~iPad.xib"; sourceTree = "<group>"; };
 		CA3217E81550DEF0007E95B6 /* SelectWordCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~iPad.xib"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
@@ -2730,7 +2730,7 @@
 				CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */,
 				CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */,
 				CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */,
-				CA3217E41550DEAC007E95B6 /* ShowDrawController~iPad.xib */,
+				CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */,
 				CA32CD0B15197B6900BF86BA /* ResultController.h */,
 				CA32CD0C15197B6900BF86BA /* ResultController.m */,
 				CA32CD0D15197B6900BF86BA /* ResultController.xib */,
@@ -3964,7 +3964,6 @@
 				C21CDA221550DAF9007E0F66 /* ReplayController~iPad.xib in Resources */,
 				C21CDA241550DB1C007E0F66 /* MyPaintButton~iPad.xib in Resources */,
 				CA3217E31550DE53007E95B6 /* DrawViewController~iPad.xib in Resources */,
-				CA3217E51550DEAC007E95B6 /* ShowDrawController~iPad.xib in Resources */,
 				CA3217E71550DECD007E95B6 /* SelectWordController~iPad.xib in Resources */,
 				CA3217E91550DEF0007E95B6 /* SelectWordCell~iPad.xib in Resources */,
 				A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */,
@@ -3974,6 +3973,7 @@
 				A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */,
 				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
 				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
+				CA06BE4015521E3B00B94FB1 /* ShowDrawController~iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
