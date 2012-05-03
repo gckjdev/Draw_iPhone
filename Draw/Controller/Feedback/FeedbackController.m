@@ -88,6 +88,9 @@ enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
     switch (buttonIndex) {
         case SHARE_VIA_SMS: {
             [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]]];
@@ -135,8 +138,11 @@ enum {
             if ([[UserManager defaultManager] hasBindFacebook]){
                 [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
             } 
-            [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
-            [shareOptions setCancelButtonIndex:SHARE_COUNT];
+            
+            if (![DeviceDetection isIPAD]) {
+                [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
+                [shareOptions setCancelButtonIndex:SHARE_COUNT];
+            }
             [shareOptions showInView:self.view];
             [shareOptions release];
         }

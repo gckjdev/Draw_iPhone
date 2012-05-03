@@ -597,7 +597,7 @@ DrawViewController *GlobalGetDrawViewController()
         {
             CGPoint tempPoint = point;
             if ([DeviceDetection isIPAD]) {
-                tempPoint = CGPointMake(point.x / IPAD_SCALE, point.y / IPAD_SCALE);
+                tempPoint = CGPointMake(point.x / IPAD_WIDTH_SCALE, point.y / IPAD_HEIGHT_SCALE);
             }
             NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
             [pointList addObject:pointNumber];
