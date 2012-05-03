@@ -16,6 +16,7 @@
 #import "InputDialog.h"
 #import "PassWordDialog.h"
 #import "StringUtil.h"
+#import "DeviceDetection.h"
 
 enum{
     SECTION_LANGUAGE = 0,
@@ -137,7 +138,15 @@ enum{
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([DeviceDetection isIPAD]) {
+        return 110;
+    }
+    else {
+        return 55;
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -151,7 +160,14 @@ enum{
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
+        
+        if ([DeviceDetection isIPAD]) {
+            [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:36]];
+        }else {
+            [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:18]];
+        }
         [cell.textLabel setTextColor:[UIColor brownColor]];
     }
     NSInteger row = indexPath.row;
