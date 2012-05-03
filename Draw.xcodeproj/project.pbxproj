@@ -103,6 +103,7 @@
 		CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
 		CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		CA06BE4015521E3B00B94FB1 /* ShowDrawController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */; };
+		CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -736,6 +737,8 @@
 		CA051DCC1546808500D0A00A /* ColorShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopView.m; sourceTree = "<group>"; };
 		CA051DCD1546808500D0A00A /* ColorShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopView.xib; sourceTree = "<group>"; };
 		CA06BE3F15521E3B00B94FB1 /* ShowDrawController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~iPad.xib"; sourceTree = "<group>"; };
+		CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawViewController.h; sourceTree = "<group>"; };
+		CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawViewController.m; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -2723,6 +2726,8 @@
 		CA1041D61509B6E700F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */,
+				CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */,
 				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
 				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
 				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
@@ -4305,6 +4310,7 @@
 				CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */,
 				CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */,
 				CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */,
+				CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
