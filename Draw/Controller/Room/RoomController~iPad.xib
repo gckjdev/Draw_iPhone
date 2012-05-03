@@ -557,7 +557,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="719521877"/>
 						<reference key="IBUIBackgroundColor" ref="1007901558"/>
-						<int key="IBUITag">33</int>
+						<int key="IBUITag">32</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="982556276">
