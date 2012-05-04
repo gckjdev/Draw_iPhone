@@ -394,7 +394,7 @@ DrawViewController *GlobalGetDrawViewController()
     int i = 0;
     for (NSValue *pointValue in paint.pointList) {
         CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > MIN(4, (paint.width / 2))) 
+        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 2) 
         {
             CGPoint tempPoint = point;
             if ([DeviceDetection isIPAD]) {
