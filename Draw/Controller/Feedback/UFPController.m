@@ -103,6 +103,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if ([DeviceDetection isIPAD]) {
+        return 140.0f;
+    }
+    
     return 70.0f;
 }
 
