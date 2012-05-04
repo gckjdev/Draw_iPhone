@@ -20,6 +20,7 @@
 #import "RegisterUserController.h"
 #import "AccountService.h"
 
+
 @implementation UserService
 
 static UserService* _defaultUserService;
@@ -432,7 +433,6 @@ static UserService* _defaultUserService;
             
             [homeController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
                 NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
                 NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
@@ -451,6 +451,8 @@ static UserService* _defaultUserService;
                         nickName = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
                     }
                 } 
+                NSNumber* balance = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
+                NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
                 [[UserManager defaultManager] saveUserId:userId 
                                                    email:email 
                                                 password:password 
@@ -462,10 +464,10 @@ static UserService* _defaultUserService;
                                          sinaAccessToken:sinaAccessToken
                                    sinaAccessTokenSecret:sinaAccessSecret 
                                               facebookId:facebookId 
-                                               avatarURL:avatar];
-                
-                [[AccountManager defaultManager] updateBalanceFromServer:balance];
-                [[AccountService defaultService] syncAccountAndItem];
+                                               avatarURL:avatar 
+                                                 balance:balance 
+                                                   items:itemTypeBalanceArray];
+            
                 
             }
             else if (output.resultCode == ERROR_NETWORK) {

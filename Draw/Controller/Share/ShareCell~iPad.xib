@@ -30,15 +30,16 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
-			<object class="IBUITableViewCell" id="526461406">
+			<object class="IBUITableViewCell" id="679347075">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="189594784">
-						<reference key="NSNextResponder" ref="526461406"/>
+					<object class="IBUIView" id="501689767">
+						<reference key="NSNextResponder" ref="679347075"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{768, 179}</string>
-						<reference key="NSSuperview" ref="526461406"/>
+						<reference key="NSSuperview" ref="679347075"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -52,13 +53,13 @@
 				</array>
 				<string key="NSFrameSize">{768, 180}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="189594784"/>
+				<reference key="NSNextKeyView" ref="501689767"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC42NTg4MjM1Mjk0IDAuNTAxOTYwNzg0MyAwLjM0NTA5ODAzOTIAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-				<reference key="IBUIContentView" ref="189594784"/>
+				<reference key="IBUIContentView" ref="501689767"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -84,7 +85,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="526461406"/>
+						<reference key="object" ref="679347075"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>

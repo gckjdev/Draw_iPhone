@@ -17,6 +17,7 @@
 #import "UserManager.h"
 #import "ReplayController.h"
 #import "GifView.h"
+#import "PPDebug.h"
 
 
 #define BUTTON_INDEX_OFFSET 20120229
@@ -199,12 +200,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;    
+    if ([DeviceDetection isIPAD]) {
+        return 180;
+    } else {
+        return 90;
+    }
+        
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"total paints is %d", self.paints.count);
+    PPDebug(@"total paints is %d", self.paints.count);
     
     int number = 0;
     if (self.paints.count % IMAGES_PER_LINE == 0){
@@ -298,7 +304,7 @@
     [super viewDidLoad];  
     [self refleshGallery];
     
-    NSLog(@"get all paints, paints count is %d", _paints.count);
+    PPDebug(@"get all paints, paints count is %d", _paints.count);
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");

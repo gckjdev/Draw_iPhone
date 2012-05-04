@@ -93,7 +93,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
    sinaAccessToken:(NSString*)accessToken 
 sinaAccessTokenSecret:(NSString*)accessTokenSecret 
         facebookId:(NSString*)loginId
-         avatarURL:(NSString*)avatarURL;
+         avatarURL:(NSString*)avatarURL 
+           balance:(NSNumber*)balance 
+             items:(NSArray*)items;
 
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
