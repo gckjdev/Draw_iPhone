@@ -4615,7 +4615,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */;
+			currentVersion = CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

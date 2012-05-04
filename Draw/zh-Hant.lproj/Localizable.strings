@@ -284,18 +284,24 @@
 /*the new words below without Japanese*/
 
 "kNetworkErrorTitle" = "網絡連接失效";
-"kNetworkErrorMessage" = "網絡連接失效，請檢查網絡設置。";
+"kNetworkErrorMessage" = "無法訪問互聯網，請檢查手機是否正確連接到網絡或者WIFI。";
 //4月23新增
 "kEnterPassword" = "請輸入密碼";
 "kPsdNotMatch" = "密碼錯誤";
 "kEmailNotFound" = "E-mail地址尚未註冊";
-"kLoginFailure" = "登入失敗，請稍後再試";
-"kLoginUser" = "正在登入...";
+"kLoginFailure" = "登錄失敗，請稍後再試";
+"kLoginUser" = "正在登錄...";
 
+
+"kSaveImageOK" = "作品已成功保存";
+"kDeleteAll" = "刪除所有作品";
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "購買顏色";
 "kBuyColorDialogMessage" = "購買顏色將花費%d金幣，確定嗎？";
+
+"kPublishWeiboSuccAndEarnCoins" = "微博已發送，你獲得了%d金幣！";
 "guest" = "路人甲";
-"kOnlineUserCount" = "當前在線:%d";
+"kOnlineUserCount" = "在線用戶共%d人";
 "kContactNull" = "聯繫方式不能為空哦。";
+"kFailStartGame" = "房間已經開始玩了，請選擇另一個房間吧。";
