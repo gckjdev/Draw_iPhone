@@ -72,10 +72,7 @@
     return array;
 }
 
-
-
-
-+ (ColorGroup *)colorGroupForGroupId:(NSInteger)groupId
++ (NSMutableArray *)colorGroupForGroupId:(NSInteger)groupId
 {
     NSInteger *colorValues = NULL;
     switch (groupId) {
@@ -117,7 +114,7 @@
         }
         case GROUP_LIGHT_BLUE:
         {
-            NSInteger values[] = {25,25,112,72,61,139,0,0,128,106,90,205,0,0,255};
+            NSInteger values[] = {25,25,112,0,0,128,0,0,255,72,61,139,106,90,205};
             colorValues = values;
             break;            
         }
@@ -165,7 +162,7 @@
             colorValues = values;
             break;            
         }
-        
+            
         case GROUP_GRAY_GREEN:
         {
             NSInteger values[] =   {0,100,0, 0,128,0, 85,107,47, 128,128,0, 127,255,170};
@@ -186,7 +183,33 @@
             break;
         }
     }
-    NSArray *array = [ColorGroup colorViewListWithColorValues:colorValues];
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:15] autorelease];
+    for (int i = 0; i<15; i++) {
+        [array addObject:[NSNumber numberWithInt:colorValues[i]]];
+    }
+    return array;
+    //    NSArray *array = [ColorGroup colorViewListWithColorValues:colorValues];
+    //    return [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
+}
+
++ (ColorGroup *)randomColorGroupForGroupId:(NSInteger)groupId
+{
+    NSInteger randomColorValues[15];
+    NSMutableArray *colorValues;
+    for (int i = 0; i < 5; i++) {
+        int offset = 4;
+        if (groupId+i*offset >= GROUP_COUNT) {
+            colorValues = [ColorGroup colorGroupForGroupId:GROUP_START+groupId+i*offset-GROUP_COUNT];
+        } else {
+            colorValues = [ColorGroup colorGroupForGroupId:groupId+i*offset];
+        }
+        for (int j = 0; j < 3; j++) {
+            randomColorValues[j+i*3] = [(NSNumber*)[colorValues objectAtIndex:(j+i*3)] intValue];
+        }
+    }
+    NSArray *array = [ColorGroup colorViewListWithColorValues:randomColorValues];
     return [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
 }
+
+
 @end

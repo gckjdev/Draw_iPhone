@@ -62,7 +62,6 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [self fitKeyboardComeOut];
-    [doneButton setTitle:NSLS(@"kNextStep") forState:UIControlStateNormal];
     
     [doneButton setTag:BUTTON_TAG_NEXT];
     return YES;
@@ -72,7 +71,6 @@
 {
     [self fitKeyboardComeOut];
     [self.doneButton setTag:BUTTON_TAG_DONE];
-    [doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
 }
 
 
@@ -91,10 +89,12 @@
 {
     if ([self.contentText.text length] == 0) {
         [self popupMessage:NSLS(@"kContentNull") title:nil];
+        [self.contentText becomeFirstResponder];
         return;
     }
     if ([self.contactText.text length] == 0) {
         [self popupMessage:NSLS(@"kContactNull") title:nil];
+        [self.contactText becomeFirstResponder];
         return;
     }
     if ([self.contentText.text isEqualToString:_lastReport]) {
@@ -164,6 +164,7 @@
     [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];    
     [self.contactBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
+    [self.doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     
     

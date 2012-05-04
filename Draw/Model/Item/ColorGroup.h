@@ -52,6 +52,6 @@ enum{
 - (id)initWithGroupId:(NSInteger)groupId 
         colorViewList:(NSArray *)colorViewList 
             hasBought:(BOOL)hasBought;
-+ (ColorGroup *)colorGroupForGroupId:(NSInteger)groupId;
++ (ColorGroup *)randomColorGroupForGroupId:(NSInteger)groupId;
 
 @end
