@@ -203,17 +203,19 @@
             avatar = [user userAvatar];
         }   
         
-        if ([avatar length] > 0){            
+        // set default image firstly
+        if ([user gender])
+            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+        else
+            [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+
+        if ([avatar length] > 0){     
+            // set URL for download avatar
             [imageView setUrl:[NSURL URLWithString:avatar]];
+
         }else{
             if (isMe){
                 [imageView setImage:[[UserManager defaultManager] avatarImage]];
-            }
-            else{
-                if ([user gender])
-                    [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-                else
-                    [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
             }
         }
         
