@@ -52,7 +52,7 @@
     
     view.colorGroups = [[[NSMutableArray alloc] init]autorelease];
     for (int i = GROUP_START; i < GROUP_COUNT; i++) {
-        ColorGroup *group = [ColorGroup colorGroupForGroupId:i];
+        ColorGroup *group = [ColorGroup randomColorGroupForGroupId:i];
         if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
             group.hasBought = NO;
         }else{

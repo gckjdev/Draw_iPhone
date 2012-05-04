@@ -9,6 +9,10 @@
 #import "ColorGroup.h"
 #import "ColorView.h"
 
+#define COLOR_VALUE_COUNT 15
+#define RGB_COUNT 3
+#define RANDOM_OFFSET 4
+
 @implementation ColorGroup
 @synthesize colorViewList = _colorViewList;
 @synthesize groupId = _groupId;
@@ -72,10 +76,7 @@
     return array;
 }
 
-
-
-
-+ (ColorGroup *)colorGroupForGroupId:(NSInteger)groupId
++ (NSMutableArray *)colorGroupForGroupId:(NSInteger)groupId
 {
     NSInteger *colorValues = NULL;
     switch (groupId) {
@@ -117,7 +118,7 @@
         }
         case GROUP_LIGHT_BLUE:
         {
-            NSInteger values[] = {25,25,112,72,61,139,0,0,128,106,90,205,0,0,255};
+            NSInteger values[] = {25,25,112,0,0,128,0,0,255,72,61,139,106,90,205};
             colorValues = values;
             break;            
         }
@@ -165,7 +166,7 @@
             colorValues = values;
             break;            
         }
-        
+            
         case GROUP_GRAY_GREEN:
         {
             NSInteger values[] =   {0,100,0, 0,128,0, 85,107,47, 128,128,0, 127,255,170};
@@ -186,7 +187,32 @@
             break;
         }
     }
-    NSArray *array = [ColorGroup colorViewListWithColorValues:colorValues];
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:COLOR_VALUE_COUNT] autorelease];
+    for (int i = 0; i<COLOR_VALUE_COUNT; i++) {
+        [array addObject:[NSNumber numberWithInt:colorValues[i]]];
+    }
+    return array;
+    //    NSArray *array = [ColorGroup colorViewListWithColorValues:colorValues];
+    //    return [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
+} 
+
++ (ColorGroup *)randomColorGroupForGroupId:(NSInteger)groupId
+{
+    NSInteger randomColorValues[COLOR_VALUE_COUNT];
+    NSMutableArray *colorValues;
+    for (int i = 0; i < COLOR_VALUE_COUNT/RGB_COUNT; i++) {
+        if (groupId+i*RANDOM_OFFSET >= GROUP_COUNT) {
+            colorValues = [ColorGroup colorGroupForGroupId:GROUP_START+groupId+i*RANDOM_OFFSET-GROUP_COUNT];
+        } else {
+            colorValues = [ColorGroup colorGroupForGroupId:groupId+i*RANDOM_OFFSET];
+        }
+        for (int j = 0; j < RGB_COUNT; j++) {
+            randomColorValues[j+i*RGB_COUNT] = [(NSNumber*)[colorValues objectAtIndex:(j+i*RGB_COUNT)] intValue];
+        }
+    }
+    NSArray *array = [ColorGroup colorViewListWithColorValues:randomColorValues];
     return [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
 }
+
+
 @end
