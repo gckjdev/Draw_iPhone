@@ -245,7 +245,10 @@
         [self updatePickPenView];
     } 
 }
-
+- (NSArray *)colorViews
+{
+    return colorViewArray;
+}
 - (NSInteger)indexOfColorView:(ColorView *)colorView
 {
     if (colorView) {

@@ -33,6 +33,7 @@
 - (void)resetWidth;
 - (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
 - (void)setColorViews:(NSArray *)colorViews;
+- (NSArray *)colorViews;
 - (NSInteger)currentWidth;
 //- (void)showInView:(UIView *)view;
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
