@@ -9,6 +9,10 @@
 #import "ColorGroup.h"
 #import "ColorView.h"
 
+#define COLOR_VALUE_COUNT 15
+#define RGB_COUNT 3
+#define RANDOM_OFFSET 4
+
 @implementation ColorGroup
 @synthesize colorViewList = _colorViewList;
 @synthesize groupId = _groupId;
@@ -183,28 +187,27 @@
             break;
         }
     }
-    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:15] autorelease];
-    for (int i = 0; i<15; i++) {
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:COLOR_VALUE_COUNT] autorelease];
+    for (int i = 0; i<COLOR_VALUE_COUNT; i++) {
         [array addObject:[NSNumber numberWithInt:colorValues[i]]];
     }
     return array;
     //    NSArray *array = [ColorGroup colorViewListWithColorValues:colorValues];
     //    return [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
-}
+} 
 
 + (ColorGroup *)randomColorGroupForGroupId:(NSInteger)groupId
 {
-    NSInteger randomColorValues[15];
+    NSInteger randomColorValues[COLOR_VALUE_COUNT];
     NSMutableArray *colorValues;
-    for (int i = 0; i < 5; i++) {
-        int offset = 4;
-        if (groupId+i*offset >= GROUP_COUNT) {
-            colorValues = [ColorGroup colorGroupForGroupId:GROUP_START+groupId+i*offset-GROUP_COUNT];
+    for (int i = 0; i < COLOR_VALUE_COUNT/RGB_COUNT; i++) {
+        if (groupId+i*RANDOM_OFFSET >= GROUP_COUNT) {
+            colorValues = [ColorGroup colorGroupForGroupId:GROUP_START+groupId+i*RANDOM_OFFSET-GROUP_COUNT];
         } else {
-            colorValues = [ColorGroup colorGroupForGroupId:groupId+i*offset];
+            colorValues = [ColorGroup colorGroupForGroupId:groupId+i*RANDOM_OFFSET];
         }
-        for (int j = 0; j < 3; j++) {
-            randomColorValues[j+i*3] = [(NSNumber*)[colorValues objectAtIndex:(j+i*3)] intValue];
+        for (int j = 0; j < RGB_COUNT; j++) {
+            randomColorValues[j+i*RGB_COUNT] = [(NSNumber*)[colorValues objectAtIndex:(j+i*RGB_COUNT)] intValue];
         }
     }
     NSArray *array = [ColorGroup colorViewListWithColorValues:randomColorValues];
