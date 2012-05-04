@@ -14,6 +14,9 @@
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
 #import "StringUtil.h"
+#import "AccountManager.h"
+#import "ItemManager.h"
+#import "GameNetworkConstants.h"
 
 
 #define KEY_USERID          @"USER_KEY_USERID"
@@ -412,7 +415,9 @@ qqAccessTokenSecret:(NSString*)qqAccessTokenSecret
    sinaAccessToken:(NSString*)sinaAccessToken 
 sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret 
         facebookId:(NSString*)facebookId
-         avatarURL:(NSString*)avatarURL
+         avatarURL:(NSString*)avatarURL 
+           balance:(NSNumber*)balance 
+             items:(NSArray *)items
 {
     PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -462,7 +467,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
             [self avatarImage];
         }
     }
-    
+    if (balance != nil) {
+        [[AccountManager defaultManager] updateBalanceFromServer:balance.intValue];
+    }
+    if (items != nil) {
+        for (NSDictionary* itemTypeBalance in items){
+            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
+            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+            
+            // update DB
+            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
+            PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
+        }
+    }
     [userDefaults synchronize];
 }
 
