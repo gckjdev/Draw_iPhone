@@ -173,6 +173,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [scrollView setFrame:CN_WORD_FRAME];       
         leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = NO;
         pageControl.center = CGPointMake(scrollView.center.x,scrollView.center.y + SCOROLLVIEW_SPACE);
+        [self clickLeftPage:leftPageButton];
         pageControl.currentPage = 0;
         [self enablePageButton:0];
     }
