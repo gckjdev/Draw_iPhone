@@ -305,3 +305,4 @@
 "guest" = "路人甲";
 "kOnlineUserCount" = "在线用户共%d人";
 "kContactNull" = "联系方式不能为空哦。";
+"kFailStartGame" = "房间已经开始玩了，请选择另一个房间吧。";
