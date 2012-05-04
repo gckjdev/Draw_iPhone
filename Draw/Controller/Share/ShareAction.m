@@ -83,6 +83,11 @@
 
 - (void)shareViaEmail
 {
+    if ([MFMailComposeViewController canSendMail] == NO){
+        // TODO 
+        return;
+    }
+    
     NSString* appName = NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @"");
     
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
@@ -107,6 +112,7 @@
                       fileName:fileName];
     [compose setMailComposeDelegate:self];
     [self.superViewController presentModalViewController:compose animated:YES];    
+    [compose release];
 }
 
 - (void)shareViaSNS
