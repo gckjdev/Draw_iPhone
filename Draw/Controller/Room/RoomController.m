@@ -157,12 +157,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - GUI Update Methods
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
