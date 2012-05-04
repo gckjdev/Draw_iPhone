@@ -41,7 +41,7 @@
 					<object class="IBUIImageView" id="828185291">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 460}</string>
+						<string key="NSFrameSize">{768, 1004}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="353237098"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -54,7 +54,7 @@
 					<object class="IBUIImageView" id="353237098">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">306</int>
-						<string key="NSFrameSize">{320, 50}</string>
+						<string key="NSFrameSize">{768, 109}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="921632836"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -67,7 +67,7 @@
 					<object class="IBUIButton" id="342817569">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{230, 6}, {70, 37}}</string>
+						<string key="NSFrame">{{552, 13}, {168, 80}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="533394264"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -99,7 +99,7 @@
 					<object class="IBUIButton" id="921632836">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{7, 6}, {37, 37}}</string>
+						<string key="NSFrame">{{16, 13}, {88, 80}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="942335936"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -122,7 +122,7 @@
 					<object class="IBUITableView" id="396200480">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{0, 51}, {320, 409}}</string>
+						<string key="NSFrame">{{0, 111}, {768, 892}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="822474594"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -141,7 +141,7 @@
 					<object class="IBUILabel" id="942335936">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{70, 13}, {168, 21}}</string>
+						<string key="NSFrame">{{168, 28}, {403, 45}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="342817569"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -176,7 +176,7 @@
 					<object class="IBUILabel" id="822474594">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{66, 61}, {179, 21}}</string>
+						<string key="NSFrame">{{158, 133}, {429, 45}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -208,7 +208,7 @@
 					<object class="IBUIButton" id="533394264">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{248, 5}, {68, 37}}</string>
+						<string key="NSFrame">{{595, 11}, {163, 80}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSNextKeyView" ref="396200480"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -241,16 +241,13 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
+				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="828185291"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
 					<reference key="NSCustomColorSpace" ref="113963961"/>
-				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
-					<int key="IBUIStatusBarStyle">2</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>

@@ -12,6 +12,8 @@
 	<array>
 		<string>57.png</string>
 		<string>57@2x.png</string>
+		<string>50.png</string>
+		<string>72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.draw</string>

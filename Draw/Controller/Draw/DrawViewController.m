@@ -300,13 +300,6 @@ DrawViewController *GlobalGetDrawViewController()
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 
 
 #pragma mark - Draw Game Service Delegate

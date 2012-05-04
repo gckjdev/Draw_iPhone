@@ -102,9 +102,6 @@
 - (void)initPattenrsGallery
 {
     float heigth = self.patternsGallery.frame.size.height;
-    if ([DeviceDetection isIPAD]) {
-        heigth = heigth*1024/480;
-    }
     
     UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
     noPatternButton.tag = PATTERN_TAG_OFFSET;
@@ -349,9 +346,5 @@ enum {
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end
