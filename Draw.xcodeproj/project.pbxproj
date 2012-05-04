@@ -100,6 +100,8 @@
 		CA0378201553692200CF41E3 /* ShowDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA03781E1553692200CF41E3 /* ShowDrawController~ipad.xib */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
+		CA037881155378A600CF41E3 /* left_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03787F155378A600CF41E3 /* left_button@2x.png */; };
+		CA037882155378A600CF41E3 /* right_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA037880155378A600CF41E3 /* right_button@2x.png */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC51546802D00D0A00A /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB51546802D00D0A00A /* PickPenView.m */; };
@@ -730,6 +732,8 @@
 		CA03781E1553692200CF41E3 /* ShowDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
+		CA03787F155378A600CF41E3 /* left_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_button@2x.png"; sourceTree = "<group>"; };
+		CA037880155378A600CF41E3 /* right_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_button@2x.png"; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
@@ -3020,6 +3024,8 @@
 				CA6F0582153C14CC00B1AE11 /* pen_mask@2x.png */,
 				CA28C0CD15312FF300E531AE /* flower@2x.png */,
 				CA28C0CE15312FF300E531AE /* room_mumber@2x.png */,
+				CA03787F155378A600CF41E3 /* left_button@2x.png */,
+				CA037880155378A600CF41E3 /* right_button@2x.png */,
 				CA28C0CF15312FF300E531AE /* top_menu_left_bg.png */,
 				CA28C0D015312FF300E531AE /* top_menu_right_bg.png */,
 				CA1FB7E6153086ED00237D3F /* top_menu_right_bg.png */,
@@ -4004,6 +4010,8 @@
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
 				C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */,
 				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
+				CA037881155378A600CF41E3 /* left_button@2x.png in Resources */,
+				CA037882155378A600CF41E3 /* right_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
