@@ -72,8 +72,6 @@
     [super dealloc];
 }
 
-
-
 - (void)setCellInfo:(PriceModel *)model indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
@@ -123,7 +121,6 @@
     [self.countLabel setText:countString];
     [self.priceLabel setText:priceString];
 }
-
 
 
 - (IBAction)clickBuyButton:(id)sender {
