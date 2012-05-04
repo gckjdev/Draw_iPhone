@@ -16,6 +16,7 @@
 #import "StringUtil.h"
 #import "GifView.h"
 #import "DeviceDetection.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
@@ -107,7 +108,8 @@
     NSArray* drawActionList = (NSArray*)currentData;
     
 
-    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];   
+    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:CGRectMake(0, 0, DRAW_VEIW_FRAME.size.width, DRAW_VEIW_FRAME.size.height)];  
+    replayView.layer.transform = CATransform3DMakeScale(self.showHolderView.frame.size.width/DRAW_VEIW_FRAME.size.width, self.showHolderView.frame.size.height/DRAW_VEIW_FRAME.size.height, 1);
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
@@ -157,11 +159,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
