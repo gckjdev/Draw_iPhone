@@ -10,6 +10,7 @@
 #import "LocaleUtils.h"
 #import "PPViewController.h"
 #import "UIImageExt.h"
+#import "DeviceDetection.h"
 
 #define DEFAULT_AVATAR_SIZE 57
 
@@ -18,6 +19,7 @@
 @synthesize superViewController = _superViewController;
 @synthesize autoRoundRect = _autoRoundRect;
 @synthesize imageSize = _imageSize;
+@synthesize popoverController = _popoverController;
 
 - (id)init
 {
@@ -30,6 +32,7 @@
 - (void)dealloc
 {
     [_superViewController release];
+    [_popoverController release];
     [super dealloc];
 }
 
@@ -87,7 +90,21 @@
         picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
         picker.allowsEditing = YES;
         picker.delegate = self;
-        [_superViewController presentModalViewController:picker animated:YES];     
+        
+        if ([DeviceDetection isIPAD]){
+            UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
+            self.popoverController = controller;
+            [controller release];
+            CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
+            [_popoverController presentPopoverFromRect:popoverRect 
+                                               inView:_superViewController.view
+                             permittedArrowDirections:UIPopoverArrowDirectionUp
+                                             animated:YES];
+            
+        }else {
+            [_superViewController presentModalViewController:picker animated:YES];
+        }
+        
         [picker release];
     }
     

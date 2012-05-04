@@ -21,6 +21,7 @@
 @property (nonatomic, retain) PPViewController<ChangeAvatarDelegate> *superViewController;
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) BOOL autoRoundRect;
+@property (nonatomic, retain) UIPopoverController *popoverController;
 
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 

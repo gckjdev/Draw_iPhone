@@ -40,6 +40,7 @@
 
 - (BOOL)isMyTurn;
 - (NSInteger)userCount;
+- (void)quitRoom;
 
 @end
 
@@ -203,17 +204,19 @@
             avatar = [user userAvatar];
         }   
         
-        if ([avatar length] > 0){            
+        // set default image firstly
+        if ([user gender])
+            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+        else
+            [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+
+        if ([avatar length] > 0){     
+            // set URL for download avatar
             [imageView setUrl:[NSURL URLWithString:avatar]];
+
         }else{
             if (isMe){
                 [imageView setImage:[[UserManager defaultManager] avatarImage]];
-            }
-            else{
-                if ([user gender])
-                    [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-                else
-                    [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
             }
         }
         
@@ -389,7 +392,9 @@
     [self updateGameUsers];
     
     if ([message resultCode] != 0){
-        [self popupHappyMessage:[NSString stringWithFormat:@"Start Game Fail, Code = %d", [message resultCode]] title:@""];
+        PPDebug(@"Start Game Failure Code=%d", [message resultCode]);
+        [self popupHappyMessage:NSLS(@"kFailStartGame") title:@""];
+        [self quitRoom];
         return;
     }
     
@@ -518,7 +523,13 @@
     return [[DrawGameService defaultService] isMyTurn];
 }
 
-
+- (void)quitRoom
+{
+    [[DrawGameService defaultService] quitGame];
+    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];             
+}
+         
+         
 #pragma mark - Dialog Delegates
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -537,8 +548,9 @@
         
         case ROOM_DIALOG_QUIT_ROOM:
         {
-            [[DrawGameService defaultService] quitGame];
-            [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];            
+            [self quitRoom];
+//            [[DrawGameService defaultService] quitGame];
+//            [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];            
         }
             break;
         

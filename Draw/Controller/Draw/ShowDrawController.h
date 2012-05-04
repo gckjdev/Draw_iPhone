@@ -17,7 +17,7 @@
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
-@interface ShowDrawController : SuperDrawViewController<CommonDialogDelegate>
+@interface ShowDrawController : SuperDrawViewController<CommonDialogDelegate,UIScrollViewDelegate>
 {
     Word *_word;
     ShowDrawView *showView;
@@ -35,7 +35,16 @@
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (IBAction)clickGuessDoneButton:(id)sender;
+- (IBAction)clickLeftPage:(id)sender;
+- (IBAction)clickRightPage:(id)sender;
+
+
+
 - (void)popupWordLengthMessage;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
+@property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 
 //- (void)setWordButtonsHidden:(BOOL)hidden;
 + (ShowDrawController *)instance;

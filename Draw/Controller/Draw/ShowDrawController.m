@@ -41,12 +41,16 @@ ShowDrawController *GlobalGetShowDrawController()
 
 #define WORD_LENGTH_TIP_TIME 20
 #define PAPER_VIEW_TAG 20120403
-#define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(675, 920):CGPointMake(284, 428))
+#define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 
 
 
 
 @implementation ShowDrawController
+@synthesize scrollView;
+@synthesize pageControl;
+@synthesize leftPageButton;
+@synthesize rightPageButton;
 @synthesize guessDoneButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
@@ -58,6 +62,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [guessDoneButton release];
     [toolView release];
     [showView release];
+    [scrollView release];
+    [pageControl release];
+    [leftPageButton release];
+    [rightPageButton release];
     [super dealloc];
 }
 #pragma mark - Static Method
@@ -119,9 +127,140 @@ ShowDrawController *GlobalGetShowDrawController()
 #define WRITE_BUTTON_TAG_START 11
 #define WRITE_BUTTON_TAG_END 18
 #define PICK_BUTTON_TAG_START 21
-#define PICK_BUTTON_TAG_END 34
+#define PICK_BUTTON_TAG_END 44
 
-- (void)initAnswerAndCadidateViews
+#define RowNumber 2
+#define CN_WORD_WIDTH (([DeviceDetection isIPAD])? 496:218) 
+#define WORD_HEIGHT (([DeviceDetection isIPAD])? 75 * 2 : 75)
+#define CN_WORD_FRAME (([DeviceDetection isIPAD])? CGRectMake(80, 845, CN_WORD_WIDTH, WORD_HEIGHT): CGRectMake(24, 385, CN_WORD_WIDTH, WORD_HEIGHT))
+#define CN_WORD_PAGE 2
+#define CN_WORD_COUNT_PER_PAGE 12
+
+#define EN_WORD_WIDTH (([DeviceDetection isIPAD])?  650 : 253)
+#define EN_WORD_PAGE 1
+#define EN_WORD_COUNT_PER_PAGE (([DeviceDetection isIPAD]) ? 16 : 14)
+#define EN_WORD_FRAME (([DeviceDetection isIPAD])? CGRectMake(1*2, 845, EN_WORD_WIDTH, WORD_HEIGHT):CGRectMake(1, 385, EN_WORD_WIDTH, WORD_HEIGHT))
+#define SCOROLLVIEW_SPACE (([DeviceDetection isIPAD])? 28 * 2: 28)
+
+
+#define WORD_BUTTON_WIDTH (([DeviceDetection isIPAD])? 30 * 2: 30)
+#define WORD_BUTTON_HEIGHT (([DeviceDetection isIPAD])? 30 * 2: 30)
+
+- (void)enablePageButton:(NSInteger)pageIndex
+{
+    if (pageIndex == 0) {
+        leftPageButton.enabled = NO;
+        rightPageButton.enabled = YES;
+    }
+    if (pageIndex == pageControl.numberOfPages - 1) {
+        rightPageButton.enabled = NO;
+        leftPageButton.enabled = YES;
+    }
+}
+
+//count is per page count, page is the total page count
+- (void)resetWordButtons:(NSInteger)count page:(NSInteger)page
+{
+    
+    CGFloat width = CN_WORD_WIDTH;
+    CGFloat height = WORD_HEIGHT;
+    if (page < 2) {
+        pageControl.hidden = leftPageButton.hidden = rightPageButton.hidden = YES;
+        [scrollView setFrame:EN_WORD_FRAME];       
+        width = EN_WORD_WIDTH;
+        height = WORD_HEIGHT;
+    }else{
+        [scrollView setFrame:CN_WORD_FRAME];       
+        leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = NO;
+        pageControl.center = CGPointMake(scrollView.center.x,scrollView.center.y + SCOROLLVIEW_SPACE);
+        [self clickLeftPage:leftPageButton];
+        pageControl.currentPage = 0;
+        [self enablePageButton:0];
+    }
+    
+    CGFloat contentWidth = width * page;
+    [scrollView setContentSize:CGSizeMake(contentWidth, height)];
+    pageControl.numberOfPages = page;
+    int tag = PICK_BUTTON_TAG_START;
+    for (int p = 0; p < page; ++ p) {
+        CGFloat xStart = 7 + width * p;
+        CGFloat yStart = 5;
+        CGFloat xSpace = 5;
+        CGFloat ySpace = 7;
+        if ([DeviceDetection isIPAD]) {
+             xStart = 7*2 + width * p;
+             yStart = 5*2;
+             xSpace = 20;
+             ySpace = 7*2.2;
+        }
+        
+        CGFloat x,y;
+        for (int i = 0; i < count; ++ i) {
+            UIButton *button = (UIButton *)[scrollView viewWithTag:tag ++];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setBackgroundImage:[shareImageManager woodImage]
+                              forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
+            if ([DeviceDetection isIPAD]) {
+                [button.titleLabel setFont:[UIFont systemFontOfSize:18 * 2]];                
+            }else{
+                [button.titleLabel setFont:[UIFont systemFontOfSize:18]];
+            }
+            
+            x = xStart + (WORD_BUTTON_WIDTH + xSpace) * (i % (count / RowNumber));
+            if (i < count / RowNumber) {
+                y = yStart;
+            }else{
+                y = yStart + WORD_BUTTON_HEIGHT + ySpace;
+            }
+            button.frame = CGRectMake(x, y, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
+            button.hidden = NO;
+            button.enabled = NO;
+        }
+    }
+    for (; tag <= PICK_BUTTON_TAG_END; ++ tag) {
+        UIButton *button = (UIButton *)[scrollView viewWithTag:tag];
+        [button setTitle:nil forState:UIControlStateNormal];
+        button.hidden = YES;
+    }
+}
+
+- (void)initWordButtons
+{
+    scrollView.delegate = self;
+    scrollView.pagingEnabled = YES;
+
+    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setBackgroundImage:[shareImageManager woodImage]
+                          forState:UIControlStateNormal];
+        [button setTag:i];
+
+        [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.enabled = NO;
+        button.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
+        [scrollView addSubview:button];
+    }
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [self resetWordButtons:CN_WORD_COUNT_PER_PAGE page:CN_WORD_PAGE];
+    }else{
+        [self resetWordButtons:EN_WORD_COUNT_PER_PAGE page:EN_WORD_PAGE];
+    }
+    
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)sender {
+    CGFloat pageWidth = sender.frame.size.width;
+    int currentPage = floor((sender.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if (currentPage != pageControl.currentPage) {
+        pageControl.currentPage = currentPage;
+        [self enablePageButton:currentPage];        
+    }
+}
+
+- (void)initAnswerViews
 {
     for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i)
     {
@@ -131,19 +270,10 @@ ShowDrawController *GlobalGetShowDrawController()
         [self.view bringSubviewToFront:button];
         button.enabled = NO;
     }
-    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END + 1; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setTitle:nil forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view bringSubviewToFront:button];
-        button.enabled = NO;
-    }
     [self.guessDoneButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
     [self.guessDoneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.view bringSubviewToFront:guessDoneButton];
     self.guessDoneButton.enabled = NO;
-    
-
     toolView.enabled = NO;
 }
 
@@ -192,24 +322,26 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)updateCandidateViewsWithText:(NSString *)text
 {
     self.candidateString = text;
-    for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+    
+    NSInteger tag = PICK_BUTTON_TAG_START;
+    
+    for (; tag < PICK_BUTTON_TAG_START + [text length]; ++ tag) {
+        UIButton *button = (UIButton *)[scrollView viewWithTag:tag];
         [button setEnabled:YES];
-        if (self.candidateString != nil) {
-            NSString *string = [self.candidateString substringWithRange:NSMakeRange(i - PICK_BUTTON_TAG_START, 1)];
-            
-            if ([LocaleUtils isTraditionalChinese]) {
-                string = [WordManager changeToTraditionalChinese:string];
-            }
-            
-            [button setTitle:string forState:UIControlStateNormal];
-            if ([string isEqualToString:@" "]) {
-                [button setEnabled:NO];
-            }
-        }else{
-            [button setTitle:nil forState:UIControlStateNormal];
+            NSString *string = [self.candidateString substringWithRange:NSMakeRange(tag - PICK_BUTTON_TAG_START, 1)];
+        if ([LocaleUtils isTraditionalChinese]) {
+            string = [WordManager changeToTraditionalChinese:string];
+        }
+        [button setTitle:string forState:UIControlStateNormal];
+        if ([string isEqualToString:@" "]) {
             [button setEnabled:NO];
         }
+    }
+
+    for (; tag <= PICK_BUTTON_TAG_END; ++ tag) {
+        UIButton *button = (UIButton *)[scrollView viewWithTag:tag];
+        [button setTitle:nil forState:UIControlStateNormal];
+        [button setEnabled:NO];
     }
 
 }
@@ -218,9 +350,11 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     NSString *text = nil;
     if (languageType == ChineseType) {
-        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:14];
+        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:CN_WORD_COUNT_PER_PAGE * CN_WORD_PAGE];
+        [self resetWordButtons:CN_WORD_COUNT_PER_PAGE page:CN_WORD_PAGE];
     }else{
-        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:14];
+        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:EN_WORD_COUNT_PER_PAGE];
+        [self resetWordButtons:EN_WORD_COUNT_PER_PAGE page:EN_WORD_PAGE];
     }
     [self updateCandidateViewsWithText:text];
 }
@@ -253,7 +387,6 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         NSString *text = [button titleForState:UIControlStateNormal];
-
         if ([text length] == 1 && ![text isEqualToString:@" "]) {
             if ([LocaleUtils isTraditionalChinese]) {
                 NSString *temp = [button titleForState:UIControlStateSelected];
@@ -273,7 +406,7 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = 0; i < [self.candidateString length]; ++ i) {
         NSString *sub = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
         if ([sub isEqualToString:text]) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:PICK_BUTTON_TAG_START + i];
+            UIButton *button = (UIButton *)[scrollView viewWithTag:PICK_BUTTON_TAG_START + i];
             if ([[button titleForState:UIControlStateNormal] length] == 0) {
                 return button;
             }
@@ -300,7 +433,7 @@ ShowDrawController *GlobalGetShowDrawController()
     }
     
     for (int i = PICK_BUTTON_TAG_START; i <= PICK_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        UIButton *button = (UIButton *)[scrollView viewWithTag:i];
         [button setEnabled:enabled];
     }
 }
@@ -386,9 +519,11 @@ ShowDrawController *GlobalGetShowDrawController()
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     [self.view insertSubview:showView aboveSubview:paperView];
     
+    [self initWordButtons];
+        
     //init the word buttons
-    [self initAnswerAndCadidateViews];
-    
+    [self initAnswerViews];
+        
     //init the popup buttons
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
@@ -440,6 +575,10 @@ ShowDrawController *GlobalGetShowDrawController()
     [self setClockButton:nil];
     [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
+    [self setScrollView:nil];
+    [self setPageControl:nil];
+    [self setLeftPageButton:nil];
+    [self setRightPageButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
     showView = nil;
@@ -591,6 +730,26 @@ ShowDrawController *GlobalGetShowDrawController()
     [drawGameService guess:ans guessUserId:drawGameService.session.userId];
 }
 
+- (IBAction)clickLeftPage:(id)sender {
+    CGFloat width = scrollView.frame.size.width;
+    CGRect frame = CGRectMake(0, 0, width , scrollView.frame.size.height);
+    [scrollView scrollRectToVisible:frame animated:YES];
+    if (pageControl.currentPage != 0) {
+        pageControl.currentPage --;
+        [self enablePageButton:pageControl.currentPage];
+    }
+    
+}
+
+- (IBAction)clickRightPage:(id)sender {
+    CGFloat width = scrollView.frame.size.width;
+    CGRect frame = CGRectMake(width, 0, width, scrollView.frame.size.height);
+    [scrollView scrollRectToVisible:frame animated:YES];
+    if (pageControl.currentPage < pageControl.numberOfPages - 1) {
+        pageControl.currentPage ++;
+        [self enablePageButton:pageControl.currentPage];
+    }
+}
 - (void)bomb:(id)sender
 {
     if ([self.candidateString length] == 0) {

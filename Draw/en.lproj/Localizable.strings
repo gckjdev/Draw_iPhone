@@ -291,3 +291,4 @@
 "guest" = "guest";
 "kOnlineUserCount" = "Online:%d";
 "kContactNull" = "Contact could not be empty.";
+"kFailStartGame" = "Room is playing. Please try another room.";
