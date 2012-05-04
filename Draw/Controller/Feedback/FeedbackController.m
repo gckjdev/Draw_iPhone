@@ -96,7 +96,7 @@ enum {
             [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]]];
         } break;
         case SHARE_VIA_EMAIL: {
-            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] isHTML:YES delegate:self];
+            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:APP_ID]] isHTML:NO delegate:self];
         } break;
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
