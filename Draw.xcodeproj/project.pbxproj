@@ -386,16 +386,6 @@
 		CA32216C151EF49A0039A384 /* SNSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322155151EF49A0039A384 /* SNSWebViewController.m */; };
 		CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322156151EF49A0039A384 /* SNSWebViewController.xib */; };
 		CA32216E151EF49A0039A384 /* QQWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322159151EF49A0039A384 /* QQWeiboRequest.m */; };
-		CA32216F151EF49A0039A384 /* qqico.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215B151EF49A0039A384 /* qqico.png */; };
-		CA322170151EF49A0039A384 /* qqico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215C151EF49A0039A384 /* qqico@2x.png */; };
-		CA322171151EF49A0039A384 /* qqico_big.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215D151EF49A0039A384 /* qqico_big.png */; };
-		CA322172151EF49A0039A384 /* qqico_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215E151EF49A0039A384 /* qqico_big@2x.png */; };
-		CA322173151EF49A0039A384 /* renrenicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215F151EF49A0039A384 /* renrenicon.png */; };
-		CA322174151EF49A0039A384 /* renrenicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322160151EF49A0039A384 /* renrenicon@2x.png */; };
-		CA322175151EF49A0039A384 /* sinaico.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322161151EF49A0039A384 /* sinaico.png */; };
-		CA322176151EF49B0039A384 /* sinaico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322162151EF49A0039A384 /* sinaico@2x.png */; };
-		CA322177151EF49B0039A384 /* sinaico_big.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322163151EF49A0039A384 /* sinaico_big.png */; };
-		CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322164151EF49A0039A384 /* sinaico_big@2x.png */; };
 		CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322167151EF49A0039A384 /* SINAWeiboRequest.m */; };
 		CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217C151EF5570039A384 /* SinaSNSService.m */; };
 		CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217F151EF56E0039A384 /* QQWeiboService.m */; };
@@ -1216,16 +1206,6 @@
 		CA322156151EF49A0039A384 /* SNSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSWebViewController.xib; sourceTree = "<group>"; };
 		CA322158151EF49A0039A384 /* QQWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQWeiboRequest.h; sourceTree = "<group>"; };
 		CA322159151EF49A0039A384 /* QQWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQWeiboRequest.m; sourceTree = "<group>"; };
-		CA32215B151EF49A0039A384 /* qqico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqico.png; sourceTree = "<group>"; };
-		CA32215C151EF49A0039A384 /* qqico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqico@2x.png"; sourceTree = "<group>"; };
-		CA32215D151EF49A0039A384 /* qqico_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqico_big.png; sourceTree = "<group>"; };
-		CA32215E151EF49A0039A384 /* qqico_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqico_big@2x.png"; sourceTree = "<group>"; };
-		CA32215F151EF49A0039A384 /* renrenicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renrenicon.png; sourceTree = "<group>"; };
-		CA322160151EF49A0039A384 /* renrenicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renrenicon@2x.png"; sourceTree = "<group>"; };
-		CA322161151EF49A0039A384 /* sinaico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaico.png; sourceTree = "<group>"; };
-		CA322162151EF49A0039A384 /* sinaico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sinaico@2x.png"; sourceTree = "<group>"; };
-		CA322163151EF49A0039A384 /* sinaico_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaico_big.png; sourceTree = "<group>"; };
-		CA322164151EF49A0039A384 /* sinaico_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sinaico_big@2x.png"; sourceTree = "<group>"; };
 		CA322166151EF49A0039A384 /* SINAWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINAWeiboRequest.h; sourceTree = "<group>"; };
 		CA322167151EF49A0039A384 /* SINAWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINAWeiboRequest.m; sourceTree = "<group>"; };
 		CA32217B151EF5570039A384 /* SinaSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaSNSService.h; sourceTree = "<group>"; };
@@ -3093,7 +3073,6 @@
 				CA32217A151EF5330039A384 /* Service */,
 				CA32214C151EF49A0039A384 /* Common */,
 				CA322157151EF49A0039A384 /* QQ */,
-				CA32215A151EF49A0039A384 /* Resource */,
 				CA322165151EF49A0039A384 /* SINA */,
 			);
 			name = SNS;
@@ -3124,23 +3103,6 @@
 				CA322159151EF49A0039A384 /* QQWeiboRequest.m */,
 			);
 			path = QQ;
-			sourceTree = "<group>";
-		};
-		CA32215A151EF49A0039A384 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				CA32215B151EF49A0039A384 /* qqico.png */,
-				CA32215C151EF49A0039A384 /* qqico@2x.png */,
-				CA32215D151EF49A0039A384 /* qqico_big.png */,
-				CA32215E151EF49A0039A384 /* qqico_big@2x.png */,
-				CA32215F151EF49A0039A384 /* renrenicon.png */,
-				CA322160151EF49A0039A384 /* renrenicon@2x.png */,
-				CA322161151EF49A0039A384 /* sinaico.png */,
-				CA322162151EF49A0039A384 /* sinaico@2x.png */,
-				CA322163151EF49A0039A384 /* sinaico_big.png */,
-				CA322164151EF49A0039A384 /* sinaico_big@2x.png */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		CA322165151EF49A0039A384 /* SINA */ = {
@@ -3802,16 +3764,6 @@
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 				CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */,
-				CA32216F151EF49A0039A384 /* qqico.png in Resources */,
-				CA322170151EF49A0039A384 /* qqico@2x.png in Resources */,
-				CA322171151EF49A0039A384 /* qqico_big.png in Resources */,
-				CA322172151EF49A0039A384 /* qqico_big@2x.png in Resources */,
-				CA322173151EF49A0039A384 /* renrenicon.png in Resources */,
-				CA322174151EF49A0039A384 /* renrenicon@2x.png in Resources */,
-				CA322175151EF49A0039A384 /* sinaico.png in Resources */,
-				CA322176151EF49B0039A384 /* sinaico@2x.png in Resources */,
-				CA322177151EF49B0039A384 /* sinaico_big.png in Resources */,
-				CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */,
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
 				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
