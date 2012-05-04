@@ -25,15 +25,6 @@
 		A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */; };
 		A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */; };
 		A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */; };
-		C21CDA141550D9C9007E0F66 /* FeedbackController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA131550D9C9007E0F66 /* FeedbackController~iPad.xib */; };
-		C21CDA161550D9F9007E0F66 /* ReportController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA151550D9F9007E0F66 /* ReportController~iPad.xib */; };
-		C21CDA181550DA24007E0F66 /* AboutUsController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA171550DA24007E0F66 /* AboutUsController~iPad.xib */; };
-		C21CDA1A1550DA45007E0F66 /* UFPController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA191550DA45007E0F66 /* UFPController~iPad.xib */; };
-		C21CDA1C1550DAB3007E0F66 /* ShareEditController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA1B1550DAB3007E0F66 /* ShareEditController~iPad.xib */; };
-		C21CDA1E1550DACA007E0F66 /* ShareController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA1D1550DAC9007E0F66 /* ShareController~iPad.xib */; };
-		C21CDA201550DADD007E0F66 /* ShareCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA1F1550DADD007E0F66 /* ShareCell~iPad.xib */; };
-		C21CDA221550DAF9007E0F66 /* ReplayController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA211550DAF9007E0F66 /* ReplayController~iPad.xib */; };
-		C21CDA241550DB1C007E0F66 /* MyPaintButton~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21CDA231550DB1C007E0F66 /* MyPaintButton~iPad.xib */; };
 		C246AF2715367F4800983C44 /* pic_template_small3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */; };
 		C246AF2815367F4800983C44 /* pic_template_small4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2015367F4800983C44 /* pic_template_small4@2x.png */; };
 		C246AF2915367F4800983C44 /* pic_template_small5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2115367F4800983C44 /* pic_template_small5@2x.png */; };
@@ -78,6 +69,15 @@
 		C2A09758152ECCB5006535F7 /* GifManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A09757152ECCB5006535F7 /* GifManager.m */; };
 		C2A0975B152ECD31006535F7 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A0975A152ECD30006535F7 /* GifView.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
+		C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
+		C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
+		C2B3E938155373DB00CCF52C /* UFPController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */; };
+		C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
+		C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
+		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
+		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
+		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C2E662621521B91900487601 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
@@ -614,15 +614,6 @@
 		A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
 		A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~iPad.xib"; sourceTree = "<group>"; };
 		A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA131550D9C9007E0F66 /* FeedbackController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA151550D9F9007E0F66 /* ReportController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA171550DA24007E0F66 /* AboutUsController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA191550DA45007E0F66 /* UFPController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UFPController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA1B1550DAB3007E0F66 /* ShareEditController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareEditController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA1D1550DAC9007E0F66 /* ShareController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA1F1550DADD007E0F66 /* ShareCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareCell~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA211550DAF9007E0F66 /* ReplayController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~iPad.xib"; sourceTree = "<group>"; };
-		C21CDA231550DB1C007E0F66 /* MyPaintButton~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~iPad.xib"; sourceTree = "<group>"; };
 		C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small3@2x.png"; sourceTree = "<group>"; };
 		C246AF2015367F4800983C44 /* pic_template_small4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small4@2x.png"; sourceTree = "<group>"; };
 		C246AF2115367F4800983C44 /* pic_template_small5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small5@2x.png"; sourceTree = "<group>"; };
@@ -698,6 +689,15 @@
 		C2A09759152ECD30006535F7 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
 		C2A0975A152ECD30006535F7 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UFPController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareEditController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareCell~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
+		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		C2E5241815218E21008913CC /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
 		C2E6625E1521B91900487601 /* ReportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportController.h; sourceTree = "<group>"; };
@@ -2795,19 +2795,19 @@
 				CA3221A1151F657F0039A384 /* FeedbackController.h */,
 				CA3221A2151F657F0039A384 /* FeedbackController.m */,
 				CA3221A3151F657F0039A384 /* FeedbackController.xib */,
-				C21CDA131550D9C9007E0F66 /* FeedbackController~iPad.xib */,
+				C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */,
 				C2E6625E1521B91900487601 /* ReportController.h */,
 				C2E6625F1521B91900487601 /* ReportController.m */,
 				C2E662601521B91900487601 /* ReportController.xib */,
-				C21CDA151550D9F9007E0F66 /* ReportController~iPad.xib */,
+				C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */,
 				C284E87C1531D89800DD5B77 /* AboutUsController.h */,
 				C284E87D1531D89800DD5B77 /* AboutUsController.m */,
 				C284E87E1531D89800DD5B77 /* AboutUsController.xib */,
-				C21CDA171550DA24007E0F66 /* AboutUsController~iPad.xib */,
+				C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */,
 				C2F947CF1533D91E0034C895 /* UFPController.h */,
 				C2F947D01533D91E0034C895 /* UFPController.m */,
 				C2F947D11533D91E0034C895 /* UFPController.xib */,
-				C21CDA191550DA45007E0F66 /* UFPController~iPad.xib */,
+				C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -2818,25 +2818,25 @@
 				C2E6629C152463B900487601 /* ShareEditController.h */,
 				C2E6629D152463B900487601 /* ShareEditController.m */,
 				C2E6629E152463B900487601 /* ShareEditController.xib */,
-				C21CDA1B1550DAB3007E0F66 /* ShareEditController~iPad.xib */,
+				C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */,
 				C2E6627F15230B3F00487601 /* ShareController.h */,
 				C2E6628015230B3F00487601 /* ShareController.m */,
 				C2E6628115230B3F00487601 /* ShareController.xib */,
-				C21CDA1D1550DAC9007E0F66 /* ShareController~iPad.xib */,
+				C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */,
 				C29C12DD152AE23D009B9E5F /* ShareCell.xib */,
-				C21CDA1F1550DADD007E0F66 /* ShareCell~iPad.xib */,
+				C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */,
 				C29C12DF152AE2A6009B9E5F /* ShareCell.h */,
 				C29C12E0152AE2A7009B9E5F /* ShareCell.m */,
 				CA8D60601531EC5500E016ED /* ReplayController.h */,
 				CA8D60611531EC5500E016ED /* ReplayController.m */,
 				CA8D60621531EC5500E016ED /* ReplayController.xib */,
-				C21CDA211550DAF9007E0F66 /* ReplayController~iPad.xib */,
+				C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */,
 				CACC084C1532B02600D9F8E9 /* ShareAction.h */,
 				CACC084D1532B02600D9F8E9 /* ShareAction.m */,
 				C2FA6E6E1535352200EEB530 /* MyPaintButton.h */,
 				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
 				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
-				C21CDA231550DB1C007E0F66 /* MyPaintButton~iPad.xib */,
+				C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3973,15 +3973,6 @@
 				CA6F0583153C14CC00B1AE11 /* pen_mask@2x.png in Resources */,
 				CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
-				C21CDA141550D9C9007E0F66 /* FeedbackController~iPad.xib in Resources */,
-				C21CDA161550D9F9007E0F66 /* ReportController~iPad.xib in Resources */,
-				C21CDA181550DA24007E0F66 /* AboutUsController~iPad.xib in Resources */,
-				C21CDA1A1550DA45007E0F66 /* UFPController~iPad.xib in Resources */,
-				C21CDA1C1550DAB3007E0F66 /* ShareEditController~iPad.xib in Resources */,
-				C21CDA1E1550DACA007E0F66 /* ShareController~iPad.xib in Resources */,
-				C21CDA201550DADD007E0F66 /* ShareCell~iPad.xib in Resources */,
-				C21CDA221550DAF9007E0F66 /* ReplayController~iPad.xib in Resources */,
-				C21CDA241550DB1C007E0F66 /* MyPaintButton~iPad.xib in Resources */,
 				A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */,
 				A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */,
 				A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */,
@@ -4004,6 +3995,15 @@
 				A3FAE0EA1553706D008B5827 /* ResultController~ipad.xib in Resources */,
 				A3FAE0F11553712E008B5827 /* 50.png in Resources */,
 				A3FAE0F21553712E008B5827 /* 72.png in Resources */,
+				C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */,
+				C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */,
+				C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */,
+				C2B3E938155373DB00CCF52C /* UFPController~ipad.xib in Resources */,
+				C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */,
+				C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */,
+				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
+				C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */,
+				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
