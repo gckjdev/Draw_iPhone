@@ -96,4 +96,48 @@
     return [NSString stringWithFormat:@"[type=%d, paint=%@]", _type, [_paint description]];
 }
 
++ (DrawAction *)scaleAction:(DrawAction *)action 
+                      xScale:(CGFloat)xScale 
+                     yScale:(CGFloat)yScale
+{
+    if (action.type == DRAW_ACTION_TYPE_DRAW) {
+        Paint *paint = action.paint;
+        if (paint.pointCount == 0) {
+            return [DrawAction actionWithType:action.type paint:action.paint];
+        }
+        NSMutableArray *list = [[NSMutableArray alloc] 
+                                initWithCapacity:paint.pointCount];
+        for (NSValue *value in paint.pointList) {
+            CGPoint point = [value CGPointValue];
+            point.x = point.x * xScale;
+            point.y = point.y * yScale;
+            NSValue *pValue = [NSValue valueWithCGPoint:point];
+            [list addObject:pValue];
+        }
+        Paint *newPaint = [Paint paintWithWidth:paint.width * yScale color:paint.color];
+        [newPaint setPointList:list];
+        [list release];
+        DrawAction *dAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:newPaint];
+        return dAction;
+    }
+    return [DrawAction actionWithType:action.type paint:action.paint];
+}
+
++ (NSMutableArray *)scaleActionList:(NSArray *)list 
+                       xScale:(CGFloat)xScale 
+                      yScale:(CGFloat)yScale
+{
+    if ([list count] != 0) {
+        NSMutableArray *retList = [[[NSMutableArray alloc] 
+                                    initWithCapacity:[list count]]autorelease];
+        for (DrawAction *action in list) {
+            DrawAction *nAction = [DrawAction scaleAction:action xScale:xScale yScale:yScale];
+            [retList addObject:nAction];
+        }
+        return retList;
+    }
+    return nil;
+}
+
+
 @end
