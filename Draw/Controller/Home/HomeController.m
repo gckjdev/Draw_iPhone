@@ -27,6 +27,7 @@
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"
 #import "DeviceDetection.h"
+#import "ConfigManager.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -274,14 +275,29 @@
     
 }
 
-#define BACKUP_SERVER   @"58.215.190.75"
-#define BACKUP_PORT     9000
+#define BACKUP_CN_SERVER   @"58.215.190.75"
+#define BACKUP_CN_PORT     9000
+
+#define BACKUP_EN_SERVER   @"106.187.89.232"
+#define BACKUP_EN_PORT     9000
+
 
 - (void)didServerListFetched:(int)result
 {
     RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
-    NSString* address = BACKUP_SERVER;
-    int port = BACKUP_PORT;
+    NSString* address = nil;
+    int port = 9000;
+
+    // update by Benson, to avoid "server full/busy issue"
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
+        address = [ConfigManager defaultChineseServer];
+        port = [ConfigManager defaultChinesePort];
+    }
+    else{
+        address = [ConfigManager defaultEnglishServer];
+        port = [ConfigManager defaultEnglishPort];
+    }
+    
     
     if (server != nil){
 //        [self hideActivity];
@@ -289,9 +305,8 @@
 //        [dialog showInView:self.view];
 //        return;
         
-        // update by Benson, to avoid "server full/busy issue"
         address = [server address];
-        port = [server.port intValue];
+        port = [server.port intValue];            
     }
 
     [[DrawGameService defaultService] setServerAddress:address];

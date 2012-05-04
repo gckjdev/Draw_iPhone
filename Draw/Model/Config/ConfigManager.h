@@ -14,4 +14,9 @@
 + (int)getGuessRewardNormal;
 + (NSString*)getChannelId;
 
++ (NSString*)defaultEnglishServer;
++ (NSString*)defaultChineseServer;
++ (int)defaultEnglishPort;
++ (int)defaultChinesePort;
+
 @end
