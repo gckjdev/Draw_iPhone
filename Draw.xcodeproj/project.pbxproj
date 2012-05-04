@@ -20,11 +20,11 @@
 		A3FAE0EA1553706D008B5827 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E91553706D008B5827 /* ResultController~ipad.xib */; };
 		A3FAE0F11553712E008B5827 /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0EF1553712E008B5827 /* 50.png */; };
 		A3FAE0F21553712E008B5827 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0F01553712E008B5827 /* 72.png */; };
-		A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */; };
-		A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */; };
-		A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */; };
-		A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */; };
-		A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */; };
+		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
+		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
+		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
+		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
+		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		C246AF2715367F4800983C44 /* pic_template_small3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */; };
 		C246AF2815367F4800983C44 /* pic_template_small4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2015367F4800983C44 /* pic_template_small4@2x.png */; };
 		C246AF2915367F4800983C44 /* pic_template_small5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2115367F4800983C44 /* pic_template_small5@2x.png */; };
@@ -392,16 +392,6 @@
 		CA32216C151EF49A0039A384 /* SNSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322155151EF49A0039A384 /* SNSWebViewController.m */; };
 		CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322156151EF49A0039A384 /* SNSWebViewController.xib */; };
 		CA32216E151EF49A0039A384 /* QQWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322159151EF49A0039A384 /* QQWeiboRequest.m */; };
-		CA32216F151EF49A0039A384 /* qqico.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215B151EF49A0039A384 /* qqico.png */; };
-		CA322170151EF49A0039A384 /* qqico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215C151EF49A0039A384 /* qqico@2x.png */; };
-		CA322171151EF49A0039A384 /* qqico_big.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215D151EF49A0039A384 /* qqico_big.png */; };
-		CA322172151EF49A0039A384 /* qqico_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215E151EF49A0039A384 /* qqico_big@2x.png */; };
-		CA322173151EF49A0039A384 /* renrenicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CA32215F151EF49A0039A384 /* renrenicon.png */; };
-		CA322174151EF49A0039A384 /* renrenicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322160151EF49A0039A384 /* renrenicon@2x.png */; };
-		CA322175151EF49A0039A384 /* sinaico.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322161151EF49A0039A384 /* sinaico.png */; };
-		CA322176151EF49B0039A384 /* sinaico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322162151EF49A0039A384 /* sinaico@2x.png */; };
-		CA322177151EF49B0039A384 /* sinaico_big.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322163151EF49A0039A384 /* sinaico_big.png */; };
-		CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA322164151EF49A0039A384 /* sinaico_big@2x.png */; };
 		CA322179151EF49B0039A384 /* SINAWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322167151EF49A0039A384 /* SINAWeiboRequest.m */; };
 		CA32217D151EF5570039A384 /* SinaSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217C151EF5570039A384 /* SinaSNSService.m */; };
 		CA322180151EF56F0039A384 /* QQWeiboService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32217F151EF56E0039A384 /* QQWeiboService.m */; };
@@ -611,11 +601,11 @@
 		A3FAE0E91553706D008B5827 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0EF1553712E008B5827 /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
 		A3FAE0F01553712E008B5827 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
-		A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
-		A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~iPad.xib"; sourceTree = "<group>"; };
-		A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
-		A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~iPad.xib"; sourceTree = "<group>"; };
-		A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~iPad.xib"; sourceTree = "<group>"; };
+		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
+		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
+		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
+		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
+		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small3@2x.png"; sourceTree = "<group>"; };
 		C246AF2015367F4800983C44 /* pic_template_small4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small4@2x.png"; sourceTree = "<group>"; };
 		C246AF2115367F4800983C44 /* pic_template_small5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small5@2x.png"; sourceTree = "<group>"; };
@@ -1229,16 +1219,6 @@
 		CA322156151EF49A0039A384 /* SNSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSWebViewController.xib; sourceTree = "<group>"; };
 		CA322158151EF49A0039A384 /* QQWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQWeiboRequest.h; sourceTree = "<group>"; };
 		CA322159151EF49A0039A384 /* QQWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQWeiboRequest.m; sourceTree = "<group>"; };
-		CA32215B151EF49A0039A384 /* qqico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqico.png; sourceTree = "<group>"; };
-		CA32215C151EF49A0039A384 /* qqico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqico@2x.png"; sourceTree = "<group>"; };
-		CA32215D151EF49A0039A384 /* qqico_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qqico_big.png; sourceTree = "<group>"; };
-		CA32215E151EF49A0039A384 /* qqico_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qqico_big@2x.png"; sourceTree = "<group>"; };
-		CA32215F151EF49A0039A384 /* renrenicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renrenicon.png; sourceTree = "<group>"; };
-		CA322160151EF49A0039A384 /* renrenicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renrenicon@2x.png"; sourceTree = "<group>"; };
-		CA322161151EF49A0039A384 /* sinaico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaico.png; sourceTree = "<group>"; };
-		CA322162151EF49A0039A384 /* sinaico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sinaico@2x.png"; sourceTree = "<group>"; };
-		CA322163151EF49A0039A384 /* sinaico_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaico_big.png; sourceTree = "<group>"; };
-		CA322164151EF49A0039A384 /* sinaico_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sinaico_big@2x.png"; sourceTree = "<group>"; };
 		CA322166151EF49A0039A384 /* SINAWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINAWeiboRequest.h; sourceTree = "<group>"; };
 		CA322167151EF49A0039A384 /* SINAWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINAWeiboRequest.m; sourceTree = "<group>"; };
 		CA32217B151EF5570039A384 /* SinaSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaSNSService.h; sourceTree = "<group>"; };
@@ -1732,7 +1712,7 @@
 				CA051DCB1546808500D0A00A /* ColorShopView.h */,
 				CA051DCC1546808500D0A00A /* ColorShopView.m */,
 				CA051DCD1546808500D0A00A /* ColorShopView.xib */,
-				A4678DCA155119E10028DEEE /* ColorShopView~iPad.xib */,
+				A42D9047155380760023AF32 /* ColorShopView~ipad.xib */,
 			);
 			path = ShopView;
 			sourceTree = "<group>";
@@ -2774,19 +2754,19 @@
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
-				A4678DCC15511CD70028DEEE /* CoinShopController~iPad.xib */,
+				A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */,
 				CA41C941152010FF00013DC8 /* ItemShopController.h */,
 				CA41C942152010FF00013DC8 /* ItemShopController.m */,
 				CA41C943152010FF00013DC8 /* ItemShopController.xib */,
-				A4678DCD15511CD80028DEEE /* ItemShopController~iPad.xib */,
+				A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */,
 				CA41C9461520179000013DC8 /* ShoppingCell.h */,
 				CA41C9471520179000013DC8 /* ShoppingCell.m */,
 				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
-				A4678BAD155111D60028DEEE /* ShoppingCell~iPad.xib */,
+				A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */,
 				CA4FF007152AF21900F0AC88 /* ColorShopCell.h */,
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
-				A4678DD015512E160028DEEE /* ColorShopCell~iPad.xib */,
+				A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -3121,7 +3101,6 @@
 				CA32217A151EF5330039A384 /* Service */,
 				CA32214C151EF49A0039A384 /* Common */,
 				CA322157151EF49A0039A384 /* QQ */,
-				CA32215A151EF49A0039A384 /* Resource */,
 				CA322165151EF49A0039A384 /* SINA */,
 			);
 			name = SNS;
@@ -3152,23 +3131,6 @@
 				CA322159151EF49A0039A384 /* QQWeiboRequest.m */,
 			);
 			path = QQ;
-			sourceTree = "<group>";
-		};
-		CA32215A151EF49A0039A384 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				CA32215B151EF49A0039A384 /* qqico.png */,
-				CA32215C151EF49A0039A384 /* qqico@2x.png */,
-				CA32215D151EF49A0039A384 /* qqico_big.png */,
-				CA32215E151EF49A0039A384 /* qqico_big@2x.png */,
-				CA32215F151EF49A0039A384 /* renrenicon.png */,
-				CA322160151EF49A0039A384 /* renrenicon@2x.png */,
-				CA322161151EF49A0039A384 /* sinaico.png */,
-				CA322162151EF49A0039A384 /* sinaico@2x.png */,
-				CA322163151EF49A0039A384 /* sinaico_big.png */,
-				CA322164151EF49A0039A384 /* sinaico_big@2x.png */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		CA322165151EF49A0039A384 /* SINA */ = {
@@ -3831,16 +3793,6 @@
 				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 				CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */,
-				CA32216F151EF49A0039A384 /* qqico.png in Resources */,
-				CA322170151EF49A0039A384 /* qqico@2x.png in Resources */,
-				CA322171151EF49A0039A384 /* qqico_big.png in Resources */,
-				CA322172151EF49A0039A384 /* qqico_big@2x.png in Resources */,
-				CA322173151EF49A0039A384 /* renrenicon.png in Resources */,
-				CA322174151EF49A0039A384 /* renrenicon@2x.png in Resources */,
-				CA322175151EF49A0039A384 /* sinaico.png in Resources */,
-				CA322176151EF49B0039A384 /* sinaico@2x.png in Resources */,
-				CA322177151EF49B0039A384 /* sinaico_big.png in Resources */,
-				CA322178151EF49B0039A384 /* sinaico_big@2x.png in Resources */,
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
 				CA322195151F64F90039A384 /* CommonDialog.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
@@ -3979,11 +3931,6 @@
 				CA6F0583153C14CC00B1AE11 /* pen_mask@2x.png in Resources */,
 				CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
-				A4678BAE155111D70028DEEE /* ShoppingCell~iPad.xib in Resources */,
-				A4678DCB155119E10028DEEE /* ColorShopView~iPad.xib in Resources */,
-				A4678DCE15511CD80028DEEE /* CoinShopController~iPad.xib in Resources */,
-				A4678DCF15511CD80028DEEE /* ItemShopController~iPad.xib in Resources */,
-				A4678DD115512E170028DEEE /* ColorShopCell~iPad.xib in Resources */,
 				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
 				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
 				CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */,
@@ -4012,6 +3959,11 @@
 				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
 				CA037881155378A600CF41E3 /* left_button@2x.png in Resources */,
 				CA037882155378A600CF41E3 /* right_button@2x.png in Resources */,
+				A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */,
+				A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */,
+				A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */,
+				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
+				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
