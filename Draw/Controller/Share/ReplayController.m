@@ -16,6 +16,8 @@
 #import "StringUtil.h"
 #import "GifView.h"
 #import "DeviceDetection.h"
+#import <QuartzCore/QuartzCore.h>
+#import "DrawAction.h"
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
@@ -106,8 +108,17 @@
     NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
     NSArray* drawActionList = (NSArray*)currentData;
     
+    CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VEIW_FRAME.size.width;
+    CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VEIW_FRAME.size.height;
+    
+    ShowDrawView* replayView = [[ShowDrawView alloc]initWithFrame:
+                                self.showHolderView.frame];
+    
+    NSMutableArray *actionList = [DrawAction scaleActionList:drawActionList 
+                                                      xScale:xScale 
+                                                      yScale:yScale];
+    [replayView setDrawActionList:actionList];
 
-    ShowDrawView* replayView = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];   
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
@@ -117,11 +128,9 @@
         [self.backButton setHidden:YES];
     }
 
-    [self.showHolderView addSubview:replayView];
+    [self.view addSubview:replayView];
     [replayView release];       
 
-    NSMutableArray *actionList = [NSMutableArray arrayWithArray:drawActionList];
-    [replayView setDrawActionList:actionList];
     [replayView play];
     
     
@@ -157,14 +166,12 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
+    UIImage *image = [showDrawView createImage];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
     [self hideActivity];
     [self.backButton setHidden:NO];
     [self.shareButton setHidden:NO];

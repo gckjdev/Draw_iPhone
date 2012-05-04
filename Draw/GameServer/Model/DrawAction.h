@@ -27,4 +27,11 @@ typedef enum {
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 + (BOOL)isDrawActionListBlank:(NSArray *)actionList;
 + (NSMutableArray *)getTheLastActionListWithoutClean:(NSArray *)actionList;
++ (DrawAction *)scaleAction:(DrawAction *)action 
+                      xScale:(CGFloat)xScale 
+                     yScale:(CGFloat)yScale;
+
++ (NSMutableArray *)scaleActionList:(NSArray *)list 
+                       xScale:(CGFloat)xScale 
+                      yScale:(CGFloat)yScale;
 @end

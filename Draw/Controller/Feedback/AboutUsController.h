@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface AboutUsController : UIViewController
+@interface AboutUsController : PPViewController
 @property (retain, nonatomic) IBOutlet UILabel *aboutTitle;
 
 @end

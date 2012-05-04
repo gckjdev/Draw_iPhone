@@ -105,20 +105,31 @@
         type = aType;
         imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
 //        [imageView clear];
+
+        if (gender) {
+            [imageView setImage:[[ShareImageManager defaultManager] 
+                                 maleDefaultAvatarImage]];
+        }else{
+            [imageView setImage:[[ShareImageManager defaultManager] 
+                                 femaleDefaultAvatarImage]];                
+        }
+
         if ([urlString length] > 0){
             [imageView setUrl:[NSURL URLWithString:urlString]];
             [GlobalGetImageCache() manage:imageView];
         }
-        else{
-            if (gender) {
-                [imageView setImage:[[ShareImageManager defaultManager] 
-                                     maleDefaultAvatarImage]];
-            }else{
-                [imageView setImage:[[ShareImageManager defaultManager] 
-                                     femaleDefaultAvatarImage]];                
-            }
 
-        }
+        // move up to show default image before image is loading from web
+//        else{
+//            if (gender) {
+//                [imageView setImage:[[ShareImageManager defaultManager] 
+//                                     maleDefaultAvatarImage]];
+//            }else{
+//                [imageView setImage:[[ShareImageManager defaultManager] 
+//                                     femaleDefaultAvatarImage]];                
+//            }
+//        }
+
         [self addSubview:imageView];
         markButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [markButton retain];
