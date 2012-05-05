@@ -190,11 +190,12 @@ WordManager *GlobalGetWordManager()
         }
         [retArray addObject:value];
     }
-    
-    for (int i = 0 ; i < length; ++ i) {
+    int k = rand() % retArray.count;
+    for (int i = length - 1 ; i >= 0; -- i) {
         NSString *value = [word.text substringWithRange:NSMakeRange(i, 1)];
-        int k = rand() % retArray.count;
         [retArray insertObject:value atIndex:k];
+        NSInteger t = count / 3 + (rand() % (count / 4));
+        k = (k + t) % retArray.count;
     }
     NSString* retString = [retArray componentsJoinedByString:@""];
     [retArray release];

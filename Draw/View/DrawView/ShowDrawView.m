@@ -103,7 +103,7 @@
             if (pen.hidden) {
                 pen.hidden = NO;                
             }
-            if (playingPointIndex == 0) {
+            if (playingPointIndex == 0 && ![pen.penColor isEqual:currentAction.paint.color]) {
                 [pen setPenColor:currentAction.paint.color];                
             }
             CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
