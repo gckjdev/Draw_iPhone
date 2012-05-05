@@ -676,7 +676,7 @@ ShowDrawController *GlobalGetShowDrawController()
     //init the word buttons
     [self initAnswerViews];
     
-    [self didReceiveDrawWord:@"永远" level:1 language:ChineseType];
+//    [self didReceiveDrawWord:@"永远" level:1 language:ChineseType];
     //init the popup buttons
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
