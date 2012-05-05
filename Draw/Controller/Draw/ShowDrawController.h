@@ -27,6 +27,8 @@
     ToolView *toolView;
     BOOL _viewIsAppear;
     BOOL _guessCorrect;
+    UIButton *moveButton;
+    UIButton *lastScaleTarget;
 }
 @property(nonatomic, retain)Word *word;
 @property (retain, nonatomic) IBOutlet UIButton *guessDoneButton;
@@ -37,10 +39,9 @@
 - (IBAction)clickGuessDoneButton:(id)sender;
 - (IBAction)clickLeftPage:(id)sender;
 - (IBAction)clickRightPage:(id)sender;
-
-
-
 - (void)popupWordLengthMessage;
+
+
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;

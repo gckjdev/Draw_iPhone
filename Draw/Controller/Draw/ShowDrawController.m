@@ -146,6 +146,8 @@ ShowDrawController *GlobalGetShowDrawController()
 #define WORD_BUTTON_WIDTH (([DeviceDetection isIPAD])? 30 * 2: 30)
 #define WORD_BUTTON_HEIGHT (([DeviceDetection isIPAD])? 30 * 2: 30)
 
+#define ZOOM_SCALE 1.2
+
 - (void)enablePageButton:(NSInteger)pageIndex
 {
     if (pageIndex == 0) {
@@ -201,7 +203,7 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setBackgroundImage:[shareImageManager woodImage]
                               forState:UIControlStateNormal];
             
-            [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
+//            [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
             if ([DeviceDetection isIPAD]) {
                 [button.titleLabel setFont:[UIFont systemFontOfSize:18 * 2]];                
             }else{
@@ -226,6 +228,175 @@ ShowDrawController *GlobalGetShowDrawController()
     }
 }
 
+- (UIButton *)targetButton:(CGPoint)point
+{
+    
+    for (int tag = WRITE_BUTTON_TAG_START; tag <= WRITE_BUTTON_TAG_END; ++ tag) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
+        //can write
+        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
+            //distance
+            if ([DrawUtils distanceBetweenPoint:point point2:button.center] < button.frame.size.width) {
+                return button;
+            }
+        }
+    }
+    return nil;
+}
+
+
+- (void)clickWriteButton:(UIButton *)button
+{
+    NSString *text = [button titleForState:UIControlStateNormal];
+    if ([LocaleUtils isTraditionalChinese]) {
+        text = [button titleForState:UIControlStateSelected];
+    }
+    if ([text length] != 0) {
+        UIButton *pButton = [self getTheCandidateButtonForText:text];
+        if (pButton) {
+            [pButton setTitle:text forState:UIControlStateNormal];            
+            [button setTitle:nil forState:UIControlStateNormal];
+            [pButton setEnabled:YES];
+            [button setEnabled:NO];
+        }
+        
+    }
+}
+
+
+- (NSString *)getAnswer
+{
+    //get the word
+    NSString *answer = @"";
+    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
+    for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        NSString *text = [button titleForState:UIControlStateNormal];
+        if ([text length] == 1 && ![text isEqualToString:@" "]) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSString *temp = [button titleForState:UIControlStateSelected];
+                if (temp) {
+                    text = temp;
+                }
+            }
+            answer = [NSString stringWithFormat:@"%@%@",answer,text];
+        }
+    }
+    return answer;
+}
+
+- (UIButton *)getTheFirstEmptyButton
+{
+    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
+    for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i];
+        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
+            return button;
+        }
+    }
+    return nil;
+}
+
+- (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
+{
+    if ([text length] != 0) {
+        if (target) {
+            [target setTitle:text forState:UIControlStateNormal];
+            [target setTitle:nil forState:UIControlStateSelected];
+            [target setEnabled:YES];
+            
+            if ([LocaleUtils isTraditionalChinese]) {
+                NSInteger index = button.tag - PICK_BUTTON_TAG_START;
+                if (index < [self.candidateString length]) {
+                    NSString *simpleChineseText = [self.candidateString substringWithRange:NSMakeRange(index, 1)];
+                    [target setTitle:simpleChineseText forState:UIControlStateSelected];
+                }
+            }
+            
+            [button setEnabled:NO];
+            [button setTitle:nil forState:UIControlStateNormal];            
+            
+            if (languageType != ChineseType) {
+                NSString *ans = [self getAnswer];
+                BOOL flag = [ans length] == [self.word.text length];
+                if (flag) {
+                    [self clickGuessDoneButton:nil];
+                } 
+            }
+            
+        }
+    }
+}
+
+- (void) dragBegan: (UIControl *) c withEvent:ev
+{
+    scrollView.scrollEnabled = NO;
+    UIButton *bt = (UIButton *)c;
+    NSString *title = [bt titleForState:UIControlStateNormal];
+    
+    moveButton.hidden = NO;
+    [moveButton setTitle:title forState:UIControlStateNormal];
+    [bt setTitle:nil forState:UIControlStateNormal];
+    bt.enabled = NO;
+    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    
+}
+- (void) dragMoving: (UIControl *) c withEvent:ev
+{
+    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    UIButton *targetButton = [self targetButton:moveButton.center];
+    if (targetButton != lastScaleTarget) {
+        //scale
+        lastScaleTarget.layer.transform = CATransform3DMakeScale(1, 1, 1);
+        targetButton.layer.transform = CATransform3DMakeScale(ZOOM_SCALE, ZOOM_SCALE, 1);
+        lastScaleTarget = targetButton;
+    }
+}
+- (void) dragEnded: (UIControl *) c withEvent:ev
+{
+    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    CGPoint touchPoint = [[[ev allTouches] anyObject] locationInView:scrollView]; 
+    NSString *title = [moveButton titleForState:UIControlStateNormal];
+    UIButton *targetButton = [self targetButton:moveButton.center];
+    UIButton *bt = (UIButton *)c;    
+    
+    lastScaleTarget.layer.transform = CATransform3DMakeScale(1, 1, 1);
+    lastScaleTarget = nil;
+
+    
+    if (targetButton != nil) {
+        [self clickPickingButton:bt target:targetButton text:title];
+    }else{ 
+        NSInteger distance = [DrawUtils distanceBetweenPoint:touchPoint point2:c.center];
+        if(distance < c.frame.size.width / 4 && (targetButton = [self getTheFirstEmptyButton]) != nil)
+        {
+            [self clickPickingButton:bt target:targetButton text:title];            
+        }else{
+            [bt setTitle:title forState:UIControlStateNormal];
+            bt.enabled = YES;
+        }
+    }
+    [moveButton setTitle:nil forState:UIControlStateNormal];
+    moveButton.hidden = YES;
+    scrollView.scrollEnabled = YES;
+}
+
+- (void)addDragActions:(UIButton *)button
+{
+    [button addTarget:self action:@selector(dragBegan:withEvent: )
+     forControlEvents: UIControlEventTouchDown];
+    [button addTarget:self action:@selector(dragMoving:withEvent: )
+     forControlEvents: UIControlEventTouchDragInside];
+    [button addTarget:self action:@selector(dragMoving:withEvent: )
+     forControlEvents: UIControlEventTouchDragOutside];
+    
+    [button addTarget:self action:@selector(dragEnded:withEvent: )
+     forControlEvents: UIControlEventTouchUpInside | 
+     UIControlEventTouchUpOutside];
+    [button addTarget:self action:@selector(dragEnded:withEvent:) forControlEvents:UIControlEventTouchCancel];
+    
+}
+
 - (void)initWordButtons
 {
     scrollView.delegate = self;
@@ -238,9 +409,9 @@ ShowDrawController *GlobalGetShowDrawController()
                           forState:UIControlStateNormal];
         [button setTag:i];
 
-        [button addTarget:self action:@selector(clickPickingButton:) forControlEvents:UIControlEventTouchUpInside];
         button.enabled = NO;
         button.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
+        [self addDragActions:button];
         [scrollView addSubview:button];
     }
     if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
@@ -248,6 +419,15 @@ ShowDrawController *GlobalGetShowDrawController()
     }else{
         [self resetWordButtons:EN_WORD_COUNT_PER_PAGE page:EN_WORD_PAGE];
     }
+    
+    
+    moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [moveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [moveButton setBackgroundImage:[UIImage imageNamed:@"wood_button.png"] forState:UIControlStateNormal];
+    moveButton.hidden = YES;
+    moveButton.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
+    moveButton.layer.transform = CATransform3DMakeScale(ZOOM_SCALE, ZOOM_SCALE, 1);
+    [self.view addSubview:moveButton];
     
 }
 
@@ -280,17 +460,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 #pragma mark - Word && Word Views
 
-- (UIButton *)getTheFirstEmptyButton
-{
-    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
-    for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
-            return button;
-        }
-    }
-    return nil;
-}
+
 
 - (void)updateAnswerViews
 {
@@ -379,26 +549,6 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
-- (NSString *)getAnswer
-{
-    //get the word
-    NSString *answer = @"";
-    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
-    for (int i = WRITE_BUTTON_TAG_START; i <= endIndex; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        NSString *text = [button titleForState:UIControlStateNormal];
-        if ([text length] == 1 && ![text isEqualToString:@" "]) {
-            if ([LocaleUtils isTraditionalChinese]) {
-                NSString *temp = [button titleForState:UIControlStateSelected];
-                if (temp) {
-                    text = temp;
-                }
-            }
-            answer = [NSString stringWithFormat:@"%@%@",answer,text];
-        }
-    }
-    return answer;
-}
 
 
 - (UIButton *)getTheCandidateButtonForText:(NSString *)text
@@ -523,7 +673,8 @@ ShowDrawController *GlobalGetShowDrawController()
         
     //init the word buttons
     [self initAnswerViews];
-        
+    
+    [self didReceiveDrawWord:@"永远" level:1 language:ChineseType];
     //init the popup buttons
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
@@ -775,56 +926,6 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.view addSubview:dialog];
 }
 
-- (void)clickWriteButton:(UIButton *)button
-{
-    NSString *text = [button titleForState:UIControlStateNormal];
-    if ([LocaleUtils isTraditionalChinese]) {
-        text = [button titleForState:UIControlStateSelected];
-    }
-    if ([text length] != 0) {
-        UIButton *pButton = [self getTheCandidateButtonForText:text];
-        if (pButton) {
-            [pButton setTitle:text forState:UIControlStateNormal];            
-            [button setTitle:nil forState:UIControlStateNormal];
-            [pButton setEnabled:YES];
-            [button setEnabled:NO];
-        }
-        
-    }
-}
 
-
-- (void)clickPickingButton:(UIButton *)button
-{
-    NSString *text = [button titleForState:UIControlStateNormal];    
-    if ([text length] != 0) {
-        UIButton *wButton = [self getTheFirstEmptyButton];
-        if (wButton) {
-            [wButton setTitle:text forState:UIControlStateNormal];
-            [wButton setTitle:nil forState:UIControlStateSelected];
-            [wButton setEnabled:YES];
-
-            if ([LocaleUtils isTraditionalChinese]) {
-                NSInteger index = button.tag - PICK_BUTTON_TAG_START;
-                if (index < [self.candidateString length]) {
-                    NSString *simpleChineseText = [self.candidateString substringWithRange:NSMakeRange(index, 1)];
-                    [wButton setTitle:simpleChineseText forState:UIControlStateSelected];
-                }
-            }
-            
-            [button setEnabled:NO];
-            [button setTitle:nil forState:UIControlStateNormal];            
-            
-            if (languageType != ChineseType) {
-                NSString *ans = [self getAnswer];
-                BOOL flag = [ans length] == [self.word.text length];
-                if (flag) {
-                    [self clickGuessDoneButton:nil];
-                } 
-            }
-            
-        }
-    }
-}
 
 @end
