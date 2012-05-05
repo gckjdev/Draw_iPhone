@@ -27,6 +27,8 @@ typedef enum{
 
 @class DrawColor;
 @class DrawAction;
+@class PenView;
+
 @interface ShowDrawView : UIView
 {
     NSMutableArray *_drawActionList;
@@ -34,7 +36,8 @@ typedef enum{
     NSInteger playingActionIndex;
     NSInteger playingPointIndex;
     NSInteger startPlayIndex;
-
+    BOOL _showPenHidden;
+    PenView *pen;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -48,5 +51,6 @@ typedef enum{
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 - (void)cleanAllActions;
 - (BOOL)isViewBlank;
-
+- (void)setShowPenHidden:(BOOL)showPenHidden;
+- (BOOL)isShowPenHidden;
 @end
