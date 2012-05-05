@@ -120,7 +120,6 @@ DrawViewController *GlobalGetDrawViewController()
         [drawView setDrawEnabled:YES];
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
-
     }
     return self;
 }
@@ -435,7 +434,7 @@ enum{
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
 }
 
-- (void)didStartedTouch
+- (void)didStartedTouch:(Paint *)paint
 {
     [pickPenView setHidden:YES];
 }
