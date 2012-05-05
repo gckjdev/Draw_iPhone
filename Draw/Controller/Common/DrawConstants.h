@@ -12,11 +12,13 @@
 typedef enum {
     CLICK_WORD = 0,
     ENTER_ROOM,
-    ANSWER,
     BINGO,
     WRONG,
     GAME_OVER,
     RUN_AWAY,
+    QUICK_QUICK,
+    WAIT_WAIT,
+    
     
 }Draw_sound_index;
 

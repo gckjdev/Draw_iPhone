@@ -25,6 +25,8 @@
 #import "UserManager.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
+#import "AudioManager.h"
+#import "DrawConstants.h"
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
 @interface RoomController ()
@@ -433,6 +435,7 @@
 
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
+    [[AudioManager defaultManager] playSoundById:ENTER_ROOM];
     [self updateGameUsers]; 
     [self updateOnlineUserLabel];
 
@@ -472,7 +475,7 @@
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
         [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
-
+        [[AudioManager defaultManager] playSoundById:QUICK_QUICK];
     }
 
 }
@@ -484,7 +487,8 @@
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];   
         [self prolongStartTimer];
-        [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))];         
+        [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))]; 
+        [[AudioManager defaultManager] playSoundById:WAIT_WAIT];
     }
 
 }
