@@ -15,7 +15,7 @@
 
 @optional
 - (void)didDrawedPaint:(Paint *)paint;
-- (void)didStartedTouch;
+- (void)didStartedTouch:(Paint *)paint;
 
 @end
 

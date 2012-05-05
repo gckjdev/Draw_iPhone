@@ -14,9 +14,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageExt.h"
 #import "UIImageUtil.h"
+#import "PenView.h"
 
-
-#define DEFAULT_PLAY_SPEED (1/40.0)
+#define DEFAULT_PLAY_SPEED (1/30.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
 #define DEFAULT_LINE_WIDTH (4.0 * 1.414)
 
@@ -82,6 +82,7 @@
 - (void)cleanFrame:(NSTimer *)theTimer
 {
     self.status = Stop;
+    pen.hidden = YES;
     [self setNeedsDisplay];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
         [self.delegate didPlayDrawView:self];
@@ -90,12 +91,33 @@
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {   
+
+
+    DrawAction *currentAction = [self playingAction];
+    if (!_showPenHidden) {
+        if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {
+            if (pen.hidden == NO) {
+                pen.hidden = YES;                
+            }
+        }else{
+            if (pen.hidden) {
+                pen.hidden = NO;                
+            }
+            if (playingPointIndex == 0 && ![pen.penColor isEqual:currentAction.paint.color]) {
+                [pen setPenColor:currentAction.paint.color];                
+            }
+            CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
+            if (![DrawUtils isIllegalPoint:point]) {
+                pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);
+            }
+        }
+    }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
         [self.delegate didPlayDrawView:self AtActionIndex:playingActionIndex 
-                                      pointIndex:playingPointIndex];
+                            pointIndex:playingPointIndex];
     }
-    DrawAction *currentAction = [self playingAction];
+    
     playingPointIndex ++;
     if (playingPointIndex < [currentAction pointCount]) {
         //can play this action
@@ -107,6 +129,7 @@
         }else{
             //illegal
             _status = Stop;
+            pen.hidden = YES;
             if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
                 [self.delegate didPlayDrawView:self];
             }
@@ -130,7 +153,12 @@
         self.status = Stop;
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
-          self.backgroundColor = [UIColor whiteColor];      
+        self.backgroundColor = [UIColor whiteColor];      
+        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+        [self setShowPenHidden:NO];
+        pen.hidden = YES;
+        pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
+        [self addSubview:pen];
     }
     return self;
 }
@@ -138,6 +166,7 @@
 - (void)dealloc
 {
     [_drawActionList release];
+    [pen release];
     [super dealloc];
 }
 
@@ -237,5 +266,16 @@
 {
     return [DrawAction isDrawActionListBlank:self.drawActionList];
 }
+
+- (void)setShowPenHidden:(BOOL)showPenHidden
+{
+    _showPenHidden = showPenHidden;
+    pen.hidden = showPenHidden;
+}
+- (BOOL)isShowPenHidden
+{
+    return _showPenHidden;
+}
+
 
 @end

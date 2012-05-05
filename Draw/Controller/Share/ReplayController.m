@@ -113,12 +113,14 @@
     
     ShowDrawView* replayView = [[ShowDrawView alloc]initWithFrame:
                                 self.showHolderView.frame];
+    if (self.replayForCreateGif) {
+        [replayView setShowPenHidden:YES];
+    }
     
     NSMutableArray *actionList = [DrawAction scaleActionList:drawActionList 
                                                       xScale:xScale 
                                                       yScale:yScale];
     [replayView setDrawActionList:actionList];
-
     replayView.backgroundColor = [UIColor clearColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){

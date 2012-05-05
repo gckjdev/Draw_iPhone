@@ -120,7 +120,6 @@ DrawViewController *GlobalGetDrawViewController()
         [drawView setDrawEnabled:YES];
         [pickPenView setImage:[shareImageManager toolPopupImage]];
         pickPenView.delegate = self;
-
     }
     return self;
 }
@@ -186,14 +185,41 @@ DrawViewController *GlobalGetDrawViewController()
     [pickPenView setHidden:YES];
 }
 
+enum{
+  BLACK_COLOR = 0,
+  RED_COLOR,
+  BLUE_COLOR,
+  GREEN_COLOR,
+  ORANGE_COLOR,
+  COLOR_COUNT
+};
+
+- (DrawColor *)randColor
+{
+    NSInteger rand = random() % COLOR_COUNT;
+    switch (rand) {
+        case RED_COLOR:
+            return [DrawColor redColor];
+        case BLUE_COLOR:
+            return [DrawColor blueColor];
+        case GREEN_COLOR:
+            return [DrawColor greenColor];
+        case ORANGE_COLOR:
+            return [DrawColor orangeColor];
+        case BLACK_COLOR:
+        default:
+            return [DrawColor blackColor];            
+    }
+}
 
 - (void)resetDrawView
 {
     [drawView clearAllActions];
     [pickPenView resetWidth];
     [drawView setLineWidth:pickPenView.currentWidth];
-    [drawView setLineColor:[DrawColor blackColor]];
-    [penButton setPenColor:[DrawColor blackColor]];
+    DrawColor *randColor = [self randColor];
+    [drawView setLineColor:randColor];
+    [penButton setPenColor:randColor];
 }
 
 - (void)cleanData
@@ -208,11 +234,7 @@ DrawViewController *GlobalGetDrawViewController()
 {
     [self resetDrawView];
     [self.popupButton setHidden:YES];
-    
-//    if get the word from the current turn, 
-//    the word is null, I Don't know why. By Gamy
-    NSString *text = [self.word text];
-    
+    NSString *text = [self.word text];    
     PPDebug(@"<DrawViewController>: reset data, word = %@", text);
     
     if ([LocaleUtils isTraditionalChinese]) {
@@ -412,7 +434,7 @@ DrawViewController *GlobalGetDrawViewController()
     [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
 }
 
-- (void)didStartedTouch
+- (void)didStartedTouch:(Paint *)paint
 {
     [pickPenView setHidden:YES];
 }

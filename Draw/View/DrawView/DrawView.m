@@ -117,9 +117,11 @@
         CGPoint point = [self touchPoint:event];
         Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
         _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
-        
         [self.drawActionList addObject:_currentDrawAction];
         [self addPoint:point toDrawAction:_currentDrawAction];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didStartedTouch:)]) {
+            [self.delegate didStartedTouch:currentPaint];
+        }
     }    
 }
 
