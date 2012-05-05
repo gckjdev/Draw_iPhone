@@ -17,6 +17,8 @@
 #import "PassWordDialog.h"
 #import "StringUtil.h"
 #import "DeviceDetection.h"
+#import "AudioManager.h"
+#import "DeviceDetection.h"
 
 enum{
     SECTION_LANGUAGE = 0,
@@ -40,7 +42,9 @@ enum{
     rowOfPassword = 0;
     rowOfNickName = 1;
     rowOfLanguage = 2;
-    rowNumber = 3;
+    rowOfSoundSwitcher = 3;
+    rowNumber = 4;
+    
     
     /*
     if ([LocaleUtils isChina]) {
@@ -146,6 +150,13 @@ enum{
 {
     return rowNumber;
 }
+#define SWITCHER_TAG 20120505
+- (void)clickSoundSwitcher:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+    [[AudioManager defaultManager] setIsSoundOn:!btn.selected];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -163,6 +174,27 @@ enum{
             [cell.detailTextLabel setFont:[UIFont systemFontOfSize:18]];
         }
         [cell.textLabel setTextColor:[UIColor brownColor]];
+        
+        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(184, 7, 70, 37)];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        if ([DeviceDetection isIPAD]) {
+            btn.frame = CGRectMake(184*2, 7*2, 70*2, 37*2);
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+        }
+        [btn setBackgroundImage:[UIImage imageNamed:@"all.png"] forState:UIControlStateNormal];
+        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"me.png"] forState:UIControlStateSelected];
+        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setSelected:![AudioManager defaultManager].isSoundOn];
+        [cell addSubview:btn];
+        [btn setTag:SWITCHER_TAG];
+        [btn setHidden:YES];
+        [btn release];
+        
     }
     NSInteger row = indexPath.row;
     if (row == rowOfPassword) {
@@ -202,6 +234,15 @@ enum{
         if ([userManager hasBindFacebook]) {
             [cell.detailTextLabel setText:NSLS(@"kBind")];            
         }
+    }else if(row == rowOfSoundSwitcher) 
+    {
+        [cell.textLabel setText:NSLS(@"kSound")];
+        UIView* btn = [cell viewWithTag:SWITCHER_TAG];
+        if (btn) {
+            [btn setHidden:NO];   
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
     }
     return cell;
 }

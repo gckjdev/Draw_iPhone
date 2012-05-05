@@ -26,6 +26,7 @@
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;
     NSInteger rowOfFacebook;
+    NSInteger rowOfSoundSwitcher;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;

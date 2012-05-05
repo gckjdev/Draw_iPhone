@@ -27,6 +27,7 @@
 #import "MobClick.h"
 #import "TKAlertCenter.h"
 #import "ConfigManager.h"
+#import "AudioManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -69,6 +70,12 @@ NSString* GlobalGetServerURL()
     srand(time(0));
     [self initGlobalObjects];
     [self initImageCacheManager];
+    
+    //init sounds
+    [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
+                                               @"clickWorld.wav", 
+                                               @"enterRoom.wav", 
+                                               @"answer.wav", nil]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 
