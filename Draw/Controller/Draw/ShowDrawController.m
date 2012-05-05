@@ -29,6 +29,8 @@
 #import "ItemManager.h"
 #import "AccountService.h"
 #import "ItemShopController.h"
+#import "DrawConstants.h"
+#import "AudioManager.h"
 
 ShowDrawController *staticShowDrawController = nil;
 ShowDrawController *GlobalGetShowDrawController()
@@ -712,6 +714,7 @@ ShowDrawController *GlobalGetShowDrawController()
     //if the answer is nil, don't send the answer.
     if ([ans length] == 0) {
         [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
+        [[AudioManager defaultManager] playSoundById:WRONG];
         return;
     }
     
@@ -719,13 +722,14 @@ ShowDrawController *GlobalGetShowDrawController()
     //alter if the word is correct
     if (flag) {
         [self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
+        [[AudioManager defaultManager] playSoundById:BINGO];
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
         [self setAnswerButtonsEnabled];
 //        [self addScore:self.word.score toUser:drawGameService.userId];
     }else{
         [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
-        
+        [[AudioManager defaultManager] playSoundById:WRONG];
     }
     [drawGameService guess:ans guessUserId:drawGameService.session.userId];
 }
@@ -796,6 +800,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)clickPickingButton:(UIButton *)button
 {
+    [[AudioManager defaultManager] playSoundById:CLICK_WORD];
     NSString *text = [button titleForState:UIControlStateNormal];    
     if ([text length] != 0) {
         UIButton *wButton = [self getTheFirstEmptyButton];
