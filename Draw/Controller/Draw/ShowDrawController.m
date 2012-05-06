@@ -370,7 +370,7 @@ ShowDrawController *GlobalGetShowDrawController()
         [self clickPickingButton:bt target:targetButton text:title];
     }else{ 
         NSInteger distance = [DrawUtils distanceBetweenPoint:touchPoint point2:c.center];
-        if(distance < c.frame.size.width / 4 && (targetButton = [self getTheFirstEmptyButton]) != nil)
+        if(distance < c.frame.size.width / 2 && (targetButton = [self getTheFirstEmptyButton]) != nil)
         {
             [self clickPickingButton:bt target:targetButton text:title];            
         }else{
