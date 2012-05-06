@@ -806,6 +806,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self resetTimer];
     if (_viewIsAppear) {
         NSInteger gainCoin = [[message notification] turnGainCoins];
+        [showView setShowPenHidden:YES];
         UIImage *image = [showView createImage];
         ResultController *rc = [[ResultController alloc] initWithImage:image
                                                               wordText:self.word.text 

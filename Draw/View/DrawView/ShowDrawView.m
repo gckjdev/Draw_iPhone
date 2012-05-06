@@ -129,7 +129,7 @@
         }else{
             //illegal
             _status = Stop;
-            pen.hidden = YES;
+//            pen.hidden = YES;
             if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
                 [self.delegate didPlayDrawView:self];
             }
