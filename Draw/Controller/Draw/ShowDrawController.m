@@ -837,6 +837,7 @@ ShowDrawController *GlobalGetShowDrawController()
         UIButton *button = (UIButton *)[self.view viewWithTag: tag ++];
         [button setTitle:nil forState:UIControlStateNormal];
         button.hidden = NO;
+        button.enabled = NO;
     }
     
 }
