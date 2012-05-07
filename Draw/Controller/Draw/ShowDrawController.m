@@ -318,13 +318,11 @@ ShowDrawController *GlobalGetShowDrawController()
             [button setEnabled:NO];
             [button setTitle:nil forState:UIControlStateNormal];            
             
-            if (languageType != ChineseType) {
-                NSString *ans = [self getAnswer];
-                BOOL flag = [ans length] == [self.word.text length];
-                if (flag) {
-                    [self clickGuessDoneButton:nil];
-                } 
-            }
+            NSString *ans = [self getAnswer];
+            if ([ans length] == [self.word.text length]) {
+                [self clickGuessDoneButton:nil];
+            } 
+
             
         }
     }
@@ -467,16 +465,16 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)updateAnswerViews
 {
 
-    NSInteger endIndex = WRITE_BUTTON_TAG_END;
-    if (languageType == ChineseType) {
-        endIndex --;
-        [guessDoneButton setHidden:NO];
-        [guessDoneButton setEnabled:(self.word.text != nil)];
-    }else{
+//    NSInteger endIndex = WRITE_BUTTON_TAG_END;
+//    if (languageType == ChineseType) {
+//        endIndex --;
+//        [guessDoneButton setHidden:NO];
+//        [guessDoneButton setEnabled:(self.word.text != nil)];
+//    }else{
         [guessDoneButton setHidden:YES];
         [guessDoneButton setEnabled:NO];
-        endIndex = WRITE_BUTTON_TAG_START + (self.word.text.length) - 1;
-    }    
+    NSInteger endIndex = WRITE_BUTTON_TAG_START + (self.word.text.length) - 1;
+//    }    
     for (int i = WRITE_BUTTON_TAG_START; i <= WRITE_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];     
         if (button) {
@@ -501,7 +499,7 @@ ShowDrawController *GlobalGetShowDrawController()
         UIButton *button = (UIButton *)[scrollView viewWithTag:tag];
         [button setEnabled:YES];
             NSString *string = [self.candidateString substringWithRange:NSMakeRange(tag - PICK_BUTTON_TAG_START, 1)];
-        if ([LocaleUtils isTraditionalChinese]) {
+        if (languageType == ChineseType && [LocaleUtils isTraditionalChinese]) {
             string = [WordManager changeToTraditionalChinese:string];
         }
         [button setTitle:string forState:UIControlStateNormal];
