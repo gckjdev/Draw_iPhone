@@ -41,7 +41,6 @@ ShowDrawController *GlobalGetShowDrawController()
     return staticShowDrawController;
 }
 
-#define WORD_LENGTH_TIP_TIME 20
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 
@@ -544,8 +543,6 @@ ShowDrawController *GlobalGetShowDrawController()
         [self resetTimer];
         [self setGuessAndPickButtonsEnabled:NO];
         retainCount = 0;
-    }else if(retainCount == WORD_LENGTH_TIP_TIME){
-        [self popupWordLengthMessage];
     }
     [self updateClockButton];
 }
