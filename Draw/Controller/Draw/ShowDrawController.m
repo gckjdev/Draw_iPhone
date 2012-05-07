@@ -221,13 +221,13 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)clickWriteButton:(UIButton *)button
 {
-    NSString *text = [button titleForState:UIControlStateNormal];
-    if ([LocaleUtils isTraditionalChinese]) {
-        text = [button titleForState:UIControlStateSelected];
-    }
+    NSString *text = [button titleForState:UIControlStateSelected];
     if ([text length] != 0) {
         UIButton *pButton = [self getTheCandidateButtonForText:text];
         if (pButton) {
+            if ([LocaleUtils isTraditionalChinese]) {
+                text = [button titleForState:UIControlStateNormal];
+            }
             [pButton setTitle:text forState:UIControlStateNormal];            
             [button setTitle:nil forState:UIControlStateNormal];
             [pButton setEnabled:YES];
@@ -245,14 +245,8 @@ ShowDrawController *GlobalGetShowDrawController()
     NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
     for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        NSString *text = [button titleForState:UIControlStateNormal];
+        NSString *text = [button titleForState:UIControlStateSelected];
         if ([text length] == 1 && ![text isEqualToString:@" "]) {
-            if ([LocaleUtils isTraditionalChinese]) {
-                NSString *temp = [button titleForState:UIControlStateSelected];
-                if (temp) {
-                    text = temp;
-                }
-            }
             answer = [NSString stringWithFormat:@"%@%@",answer,text];
         }
     }
@@ -277,7 +271,7 @@ ShowDrawController *GlobalGetShowDrawController()
     if ([text length] != 0) {
         if (target) {
             [target setTitle:text forState:UIControlStateNormal];
-            [target setTitle:nil forState:UIControlStateSelected];
+            [target setTitle:text forState:UIControlStateSelected];
             [target setEnabled:YES];
             
             if ([LocaleUtils isTraditionalChinese]) {
