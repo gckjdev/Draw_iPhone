@@ -54,12 +54,11 @@
     for (int i = GROUP_START; i < GROUP_COUNT; i++) {
         ColorGroup *group = [ColorGroup randomColorGroupForGroupId:i];
         if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
-            group.hasBought = NO;
+            group.hasBought = YES;
         }else{
             group.hasBought = NO;
         }
-//        group.price = [[ShoppingManager defaultManager] getColorPrice];
-        group.price = i;
+        group.price = [[ShoppingManager defaultManager] getColorPrice];
         [view.colorGroups addObject:group];
     }
     
