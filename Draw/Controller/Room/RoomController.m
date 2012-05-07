@@ -409,10 +409,13 @@
 
 }
 
-- (void)showDrawViewController
+- (void)showDrawViewController:(BOOL)animated
 {
     if (![self isMyTurn]) {
-        [ShowDrawController startGuessFromController:self];
+//        [ShowDrawController startGuessFromController:self];
+        ShowDrawController *controller = [[ShowDrawController alloc] init];
+        [self.navigationController pushViewController:controller animated:animated];
+        [controller release];
     }
 }
 
@@ -422,7 +425,7 @@
     [self resetStartTimer];    
     _hasClickStartGame = NO;
     [self updateGameUsers];    
-    [self showDrawViewController];
+    [self showDrawViewController:YES];
 }
 
 - (void)didGameTurnComplete:(GameMessage*)message
@@ -695,7 +698,7 @@
     
     if (startNow) {
 //        [roomController performSelector:@selector(showDrawViewController) withObject:nil afterDelay:0.0f];
-        [roomController showDrawViewController];
+        [roomController showDrawViewController:NO];
         return;
     }
     

@@ -15,6 +15,7 @@
 @class GameTurn;
 @class StartGameResponse;
 @class JoinGameResponse;
+@class DrawAction;
 
 typedef enum {
     SESSION_WAITING = 0,
@@ -43,6 +44,9 @@ typedef enum {
 - (BOOL)isCurrentPlayUser:(NSString*)userId;
 - (BOOL)isMe:(NSString*)userId;
 - (BOOL)isHostUser:(NSString*)userId;
+- (void)addDrawAction:(DrawAction *)action;
+- (void)removeAllDrawActions;
+
 
 //- (void)startPlay;
 //- (void)finishPlay;

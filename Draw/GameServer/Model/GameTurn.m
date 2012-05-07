@@ -20,7 +20,7 @@
 @synthesize word = _word;
 @synthesize level = _level;
 @synthesize lastWord = _lastWord;
-
+@synthesize language = _language;
 - (void)dealloc
 {
     [_lastWord release];
@@ -34,6 +34,15 @@
     [super dealloc];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _drawActionList = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"[round=%d, currentPlayUserId=%@, nextPlayUserId=%@]",
@@ -44,5 +53,11 @@
 {
     self.lastWord = self.word;
 }
-
+- (void)resetData
+{
+    self.word = nil;
+    self.level = 0;
+    self.language = 0;
+    [self.drawActionList removeAllObjects];
+}
 @end

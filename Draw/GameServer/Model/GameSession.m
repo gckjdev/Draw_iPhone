@@ -142,6 +142,12 @@
         PPDebug(@"set current turn level to %d", [notification level]);
     }
     
+    if ([notification hasLanguage] && [notification language] > 0){
+        [self.currentTurn setLanguage:[notification language]];
+        PPDebug(@"set current turn language to %d", [notification language]);
+    }
+
+    
 }
 
 - (BOOL)isCurrentPlayUser:(NSString*)userId
@@ -158,7 +164,6 @@
 {
     return [[self hostUserId] isEqualToString:userId];    
 }
-
 
 
 #pragma User Management
@@ -225,4 +230,13 @@
     return [self.currentTurn currentPlayUserId];
 }
 
+- (void)addDrawAction:(DrawAction *)action
+{
+    [self.currentTurn.drawActionList addObject:action];
+}
+
+- (void)removeAllDrawActions
+{
+    [self.currentTurn.drawActionList removeAllObjects];
+}
 @end

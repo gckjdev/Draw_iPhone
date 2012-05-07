@@ -18,14 +18,15 @@
 
 @property (nonatomic, retain) NSArray *playResultList;
 @property (nonatomic, retain) NSArray *userCommentList;
-@property (nonatomic, retain) NSArray *drawActionList;
+@property (nonatomic, retain) NSMutableArray *drawActionList;
 
 //@property (nonatomic, retain) 
 
 @property (nonatomic, copy) NSString *lastWord;
 @property (nonatomic, copy) NSString* word;
 @property (nonatomic, assign) int level;
-
+@property (nonatomic, assign) int language;
 - (void)updateLastWord;
-
+- (id)init;
+- (void)resetData;
 @end

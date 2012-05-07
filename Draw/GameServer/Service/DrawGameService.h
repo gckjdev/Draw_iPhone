@@ -48,6 +48,7 @@
 @end
 
 @class GameSession;
+@class Word;
 
 @interface DrawGameService : CommonService<CommonNetworkClientDelegate>
 {
@@ -124,4 +125,7 @@
 - (void)scheduleKeepAliveTimer;
 - (void)clearKeepAliveTimer;
 
+- (NSArray *)drawActionList;
+- (Word *)word;
+- (NSInteger)language;
 @end

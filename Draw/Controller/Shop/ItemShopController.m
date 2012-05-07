@@ -101,9 +101,8 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
+    _coinController = nil;
     
-//    ColorShopView *view = [ColorShopView colorShopViewWithFrame:self.view.bounds];
-//    [view showInView:self.view animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -111,6 +110,7 @@ ItemShopController *staticItemController = nil;
     self.callFromShowViewController = NO;
     [super viewDidDisappear:animated];
 }
+
 
 - (void)viewDidUnload
 {
@@ -122,18 +122,8 @@ ItemShopController *staticItemController = nil;
     // e.g. self.myOutlet = nil;
 }
 
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    // Return YES for supported orientations
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//}
-
 - (IBAction)clickBackButton:(id)sender {
-    if (callFromShowViewController) {
-        [ShowDrawController returnFromController:self];
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view delegate
@@ -201,6 +191,7 @@ ItemShopController *staticItemController = nil;
 //        [dialog removeFromSuperview];
     }else{
         [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+        _coinController = [CoinShopController instance];
     }
 }
 
@@ -212,6 +203,7 @@ ItemShopController *staticItemController = nil;
 - (IBAction)clickGotoCoinShopButton:(id)sender
 {
     [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+    _coinController = [CoinShopController instance];
 }
 
 #pragma mark - Price service delegate
@@ -231,6 +223,14 @@ ItemShopController *staticItemController = nil;
     }
 }
 
+
+- (UINavigationController *)topNavigationController
+{
+    if (_coinController) {
+        return _coinController.navigationController;
+    }
+    return self.navigationController;
+}
 
 - (void)dealloc {
     [titleLabel release];

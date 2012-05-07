@@ -62,7 +62,7 @@ NSString* GlobalGetServerURL()
 - (void)initGlobalObjects
 {
     [DrawViewController instance];
-    [ShowDrawController instance];
+//    [ShowDrawController instance];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

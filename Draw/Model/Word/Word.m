@@ -58,4 +58,9 @@
 {
     return [[[Word alloc] initWithText:text level:level]autorelease];
 }
+
+- (NSInteger)length
+{
+    return self.text.length;
+}
 @end

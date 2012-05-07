@@ -12,6 +12,8 @@
 #import "PriceService.h"
 #import "CommonDialog.h"
 
+@class CoinShopController;
+
 enum{
     DIALOG_ACTION_ASK_BUY_COIN = 1
 };
@@ -19,7 +21,7 @@ enum{
 @interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, CommonDialogDelegate>
 {
     int _dialogAction;
-    
+    CoinShopController *_coinController;
 }
 
 
@@ -32,4 +34,7 @@ enum{
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickGotoCoinShopButton:(id)sender;
 +(ItemShopController *)instance;
+- (UINavigationController *)topNavigationController;
+
+
 @end

@@ -15,6 +15,7 @@
 #import "DrawAction.h"
 #import "Paint.h"
 #import "GameTurn.h"
+#import "Word.h"
 
 @implementation DrawGameService
 
@@ -167,6 +168,7 @@ static DrawGameService* _defaultService;
     DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
     PPDebug(@"<DrawGameService>save an action:%d", aType);
 //    [self.drawActionList addObject:action];
+    [self.session addDrawAction:action];
     [action release];
 }
 
@@ -266,6 +268,8 @@ static DrawGameService* _defaultService;
         [self notifyGameObserver:@selector(didStartGame:) message:message];        
     });
 //    [self.drawActionList removeAllObjects];
+    [self.session removeAllDrawActions];
+    
 }
 
 - (void)handleGameStartNotification:(GameMessage*)message
@@ -362,7 +366,9 @@ static DrawGameService* _defaultService;
         
         // update session data
         [self.session updateByGameNotification:[message notification]];
-        
+//        [self.session removeAllDrawActions];
+        [self.session.currentTurn resetData];
+
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
 }
@@ -566,7 +572,7 @@ static DrawGameService* _defaultService;
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
     
     [self scheduleKeepAliveTimer];
-    
+    [self.session removeAllDrawActions];
 //    [_drawActionList removeAllObjects];
 }
 
@@ -728,5 +734,21 @@ static DrawGameService* _defaultService;
     [_keepAliveTimer retain];
 }
  
+- (NSArray *)drawActionList
+{
+    return self.session.currentTurn.drawActionList;
+}
+- (Word *)word
+{
+    if (self.session.currentTurn.word) {
+        return [Word wordWithText:self.session.currentTurn.word level:self.session.currentTurn.level];
+    }
+    return nil;
+}
+
+- (NSInteger)language
+{
+    return self.session.currentTurn.language;
+}
 
 @end
