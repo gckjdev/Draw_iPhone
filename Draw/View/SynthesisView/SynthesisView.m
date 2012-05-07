@@ -54,15 +54,13 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0.0, self.frame.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
     if (_drawImage) {
         if (_patternImage) {
-            
-            
-            CGRect imageRect = CGRectMake(self.frame.size.width*0.1, self.frame.size.height*0.1, self.frame.size.width*0.8, self.frame.size.height*0.8);
+            CGRect imageRect = CGRectMake(self.frame.size.width*0.06, self.frame.size.height*0.06, self.frame.size.width*0.88, self.frame.size.height*0.88);
             CGContextDrawImage(context, imageRect, _drawImage.CGImage);
             
             CGRect imageRectPattern = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);

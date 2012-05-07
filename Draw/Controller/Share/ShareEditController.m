@@ -103,17 +103,18 @@
 {
     float heigth = self.patternsGallery.frame.size.height;
     
-    UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
-    noPatternButton.tag = PATTERN_TAG_OFFSET;
-    [self.patternsGallery addSubview:noPatternButton];
-    [noPatternButton setTitle:NSLS(@"kNone") forState:UIControlStateNormal];
-    [noPatternButton addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
+//    noPatternButton.tag = PATTERN_TAG_OFFSET;
+//    [self.patternsGallery addSubview:noPatternButton];
+//    [noPatternButton setTitle:NSLS(@"kNone") forState:UIControlStateNormal];
+//    [noPatternButton addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    for (int index = 1; index <= self.patternsArray.count; index ++) {
+    for (int index = 0; index < self.patternsArray.count; index ++) {
         UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(heigth*index, 0, heigth, heigth)] autorelease];
         btn.tag = PATTERN_TAG_OFFSET+index;
-        [btn setBackgroundImage:[_patternsArray objectAtIndex:index-1] forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        [btn setImage:[_patternsArray objectAtIndex:index] forState:UIControlStateNormal];
         [self.patternsGallery addSubview:btn];
         [btn addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -124,12 +125,10 @@
 {
     [self resignFirstResponder];
     UIButton* btn = (UIButton*)sender;
-    if (btn.tag == PATTERN_TAG_OFFSET) {
-        [self.infuseImageView setPatternImage:nil];
-        [self.infuseImageView setNeedsDisplay];
-    } else if (btn.tag-PATTERN_TAG_OFFSET <= self.patternsArray.count){
-        UIImage* patternImage = [_patternsArray objectAtIndex:btn.tag-PATTERN_TAG_OFFSET-1];
+    if (btn.tag-PATTERN_TAG_OFFSET < self.patternsArray.count){
+        UIImage* patternImage = [_patternsArray objectAtIndex:btn.tag-PATTERN_TAG_OFFSET];
         [self.infuseImageView setPatternImage:patternImage];
+        
     }
   
 }
@@ -290,7 +289,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template1", @"pic_template2", @"pic_template3",  @"pic_template4", @"pic_template5", nil]];
+    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template3", @"pic_template2", @"pic_template1",  @"pic_template4", @"pic_template5", nil]];
     [self initPattenrsGallery];
     
     
@@ -313,13 +312,16 @@ enum {
         
     }
     else{
-        [self.myImageView setImage:self.myImage];
         _infuseImageView = [[SynthesisView alloc] init];
-        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];
+        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];   
+        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
         [self.infuseImageView setDrawImage:self.myImage];
+        if (self.patternsArray) {
+            [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
+        }
         [self.view addSubview:self.infuseImageView];
-        [self.infuseImageView setPatternImage:nil];
         [self.infuseImageView setNeedsDisplay];
+        
     }        
     
     self.shareTextField.text = self.text;    
