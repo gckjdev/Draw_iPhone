@@ -37,7 +37,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.6:8000/api/i?";    
-//    return @"http://192.168.1.198:8000/api/i?";    
+//    return @"http://127.0.0.1:8000/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -73,9 +73,10 @@ NSString* GlobalGetServerURL()
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-                                               @"clickWorld.wav", 
+                                               @"clickWord.wav", 
                                                @"enterRoom.wav", 
-                                               @"answer.wav", nil]];
+                                               @"correct.mp3", 
+                                               @"wrong.wav", nil]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 
