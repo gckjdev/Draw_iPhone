@@ -155,6 +155,7 @@ enum{
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
+    hasEdited = YES;
     [[AudioManager defaultManager] setIsSoundOn:!btn.selected];
 }
 
