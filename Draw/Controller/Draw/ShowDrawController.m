@@ -222,7 +222,7 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickWriteButton:(UIButton *)button
 {
     NSString *text = [button titleForState:UIControlStateSelected];
-    if ([text length] != 0) {
+    if (!_guessCorrect && [text length] != 0) {
         UIButton *pButton = [self getTheCandidateButtonForText:text];
         if (pButton) {
             if ([LocaleUtils isTraditionalChinese]) {
@@ -410,19 +410,6 @@ ShowDrawController *GlobalGetShowDrawController()
         pageControl.currentPage = currentPage;
         [self enablePageButton:currentPage];        
     }
-}
-
-- (void)initAnswerViews
-{
-    for (int i = TARGET_BASE_TAG; i <= WRITE_BUTTON_TAG_END; ++ i)
-    {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:nil forState:UIControlStateNormal];
-        [self.view bringSubviewToFront:button];
-        button.enabled = NO;
-    }
-    toolView.enabled = NO;
 }
 
 

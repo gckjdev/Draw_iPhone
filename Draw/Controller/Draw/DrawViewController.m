@@ -76,13 +76,6 @@ DrawViewController *GlobalGetDrawViewController()
     [fromController.navigationController pushViewController:vc animated:NO];           
 }
 
-+ (void)returnFromController:(UIViewController*)fromController
-{
-    DrawViewController *vc = [DrawViewController instance];
-    vc.needResetData = NO;
-    [fromController.navigationController popToViewController:vc animated:YES];
-    PPDebug(@"<returnDrawViewController>: not need reset Data");   
-}
 - (void)dealloc
 {
 

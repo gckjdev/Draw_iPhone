@@ -45,7 +45,6 @@
 
 + (DrawViewController *)instance;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
-+ (void)returnFromController:(UIViewController*)fromController;
 - (void)setToolButtonEnabled:(BOOL)enabled;
 @end
 
