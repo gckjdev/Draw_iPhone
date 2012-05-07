@@ -301,6 +301,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
 {
+    [[AudioManager defaultManager] playSoundById:CLICK_WORD];
     if ([text length] != 0) {
         if (target) {
             [target setTitle:text forState:UIControlStateNormal];
