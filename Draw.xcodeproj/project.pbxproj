@@ -25,6 +25,10 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
+		C23163A315577B8E00AC132B /* clickWord.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A015577B8E00AC132B /* clickWord.wav */; };
+		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
+		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
+		C23163A715577D2200AC132B /* enterRoom.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A615577D2200AC132B /* enterRoom.wav */; };
 		C246AF2715367F4800983C44 /* pic_template_small3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */; };
 		C246AF2815367F4800983C44 /* pic_template_small4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2015367F4800983C44 /* pic_template_small4@2x.png */; };
 		C246AF2915367F4800983C44 /* pic_template_small5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2115367F4800983C44 /* pic_template_small5@2x.png */; };
@@ -606,6 +610,10 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
+		C23163A015577B8E00AC132B /* clickWord.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickWord.wav; sourceTree = "<group>"; };
+		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
+		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
+		C23163A615577D2200AC132B /* enterRoom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enterRoom.wav; sourceTree = "<group>"; };
 		C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small3@2x.png"; sourceTree = "<group>"; };
 		C246AF2015367F4800983C44 /* pic_template_small4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small4@2x.png"; sourceTree = "<group>"; };
 		C246AF2115367F4800983C44 /* pic_template_small5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small5@2x.png"; sourceTree = "<group>"; };
@@ -1496,6 +1504,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C231639F15577B8E00AC132B /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C23163A615577D2200AC132B /* enterRoom.wav */,
+				C23163A015577B8E00AC132B /* clickWord.wav */,
+				C23163A115577B8E00AC132B /* correct.mp3 */,
+				C23163A215577B8E00AC132B /* wrong.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		C246AF2F15367F5500983C44 /* pic_template */ = {
 			isa = PBXGroup;
 			children = (
@@ -1746,6 +1765,7 @@
 		CA103B361509A55000F60C03 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C231639F15577B8E00AC132B /* sounds */,
 				A316C43A15513B1E00AD44E9 /* Default-Portrait.png */,
 				CA8D602C1531C98400E016ED /* Default@2x.png */,
 				CA32213E151E0FC00039A384 /* Icons */,
@@ -3967,6 +3987,10 @@
 				A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */,
 				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
+				C23163A315577B8E00AC132B /* clickWord.wav in Resources */,
+				C23163A415577B8E00AC132B /* correct.mp3 in Resources */,
+				C23163A515577B8E00AC132B /* wrong.wav in Resources */,
+				C23163A715577D2200AC132B /* enterRoom.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
