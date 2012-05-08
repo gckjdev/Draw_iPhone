@@ -32,14 +32,7 @@
 #import "DrawConstants.h"
 #import "AudioManager.h"
 
-ShowDrawController *staticShowDrawController = nil;
-ShowDrawController *GlobalGetShowDrawController()
-{
-    if (staticShowDrawController == nil) {
-        staticShowDrawController = [[ShowDrawController alloc] init];
-    }
-    return staticShowDrawController;
-}
+
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -55,7 +48,6 @@ ShowDrawController *GlobalGetShowDrawController()
 @synthesize rightPageButton;
 @synthesize word = _word;
 @synthesize candidateString = _candidateString;
-@synthesize needResetData;
 @synthesize drawBackground;
 - (void)dealloc
 {
@@ -126,13 +118,12 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)enablePageButton:(NSInteger)pageIndex
 {
+    leftPageButton.enabled = rightPageButton.enabled = YES;
     if (pageIndex == 0) {
         leftPageButton.enabled = NO;
-        rightPageButton.enabled = YES;
     }
     if (pageIndex == pageControl.numberOfPages - 1) {
         rightPageButton.enabled = NO;
-        leftPageButton.enabled = YES;
     }
 }
 
@@ -219,19 +210,28 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
+- (UIButton *)candidateButtonForText:(NSString *)text
+{
+    for (int i = 0; i < [self.candidateString length]; ++ i) {
+        NSString *sub = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
+        if ([sub isEqualToString:text]) {
+            UIButton *button = (UIButton *)[scrollView viewWithTag:CANDIDATE_BASE_TAG + i];
+            if ([[button titleForState:UIControlStateNormal] length] == 0) {
+                return button;
+            }
+        }
+    }
+    return nil;
+}
+
 - (void)clickWriteButton:(UIButton *)button
 {
-    NSString *text = [button titleForState:UIControlStateSelected];
+    NSString *text = [self realValueForButton:button];
     if (!_guessCorrect && [text length] != 0) {
-        UIButton *pButton = [self getTheCandidateButtonForText:text];
+        UIButton *pButton = [self candidateButtonForText:text];
         if (pButton) {
-            if ([LocaleUtils isTraditionalChinese]) {
-                text = [button titleForState:UIControlStateNormal];
-            }
-            [pButton setTitle:text forState:UIControlStateNormal];            
-            [button setTitle:nil forState:UIControlStateNormal];
-            [pButton setEnabled:YES];
-            [button setEnabled:NO];
+            [self setButton:button title:nil enabled:NO];
+            [self setButton:pButton title:text enabled:YES];
         }
         
     }
@@ -245,7 +245,7 @@ ShowDrawController *GlobalGetShowDrawController()
     NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
     for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        NSString *text = [button titleForState:UIControlStateSelected];
+        NSString *text = [self realValueForButton:button];
         if ([text length] == 1 && ![text isEqualToString:@" "]) {
             answer = [NSString stringWithFormat:@"%@%@",answer,text];
         }
@@ -270,20 +270,8 @@ ShowDrawController *GlobalGetShowDrawController()
     [[AudioManager defaultManager] playSoundById:CLICK_WORD];
     if ([text length] != 0) {
         if (target) {
-            [target setTitle:text forState:UIControlStateNormal];
-            [target setTitle:text forState:UIControlStateSelected];
-            [target setEnabled:YES];
-            
-            if ([LocaleUtils isTraditionalChinese]) {
-                NSInteger index = button.tag - CANDIDATE_BASE_TAG;
-                if (index < [self.candidateString length]) {
-                    NSString *simpleChineseText = [self.candidateString substringWithRange:NSMakeRange(index, 1)];
-                    [target setTitle:simpleChineseText forState:UIControlStateSelected];
-                }
-            }
-            
-            [button setEnabled:NO];
-            [button setTitle:nil forState:UIControlStateNormal];            
+            [self setButton:target title:text enabled:YES];
+            [self setButton:button title:nil enabled:NO];
             
             NSString *ans = [self getAnswer];
             if ([ans length] == [self.word.text length]) {
@@ -297,12 +285,10 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     scrollView.scrollEnabled = NO;
     UIButton *bt = (UIButton *)c;
-    NSString *title = [bt titleForState:UIControlStateNormal];
-    
+    NSString *title = [self realValueForButton:bt];
     moveButton.hidden = NO;
-    [moveButton setTitle:title forState:UIControlStateNormal];
-    [bt setTitle:nil forState:UIControlStateNormal];
-    bt.enabled = NO;
+    [self setButton:bt title:nil enabled:NO];
+    [self setButton:moveButton title:title enabled:YES];
     moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
     
 }
@@ -321,7 +307,7 @@ ShowDrawController *GlobalGetShowDrawController()
 {
     moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
     CGPoint touchPoint = [[[ev allTouches] anyObject] locationInView:scrollView]; 
-    NSString *title = [moveButton titleForState:UIControlStateNormal];
+    NSString *title = [self realValueForButton:moveButton];
     UIButton *targetButton = [self targetButton:moveButton.center];
     UIButton *bt = (UIButton *)c;    
     
@@ -333,15 +319,15 @@ ShowDrawController *GlobalGetShowDrawController()
         [self clickPickingButton:bt target:targetButton text:title];
     }else{ 
         NSInteger distance = [DrawUtils distanceBetweenPoint:touchPoint point2:c.center];
-        if(distance < c.frame.size.width / 2 && (targetButton = [self getTheFirstEmptyButton]) != nil)
+        if(distance < c.frame.size.width / 2 && 
+           (targetButton = [self getTheFirstEmptyButton]) != nil)
         {
             [self clickPickingButton:bt target:targetButton text:title];            
         }else{
-            [bt setTitle:title forState:UIControlStateNormal];
-            bt.enabled = YES;
+            [self setButton:bt title:title enabled:YES];
         }
     }
-    [moveButton setTitle:nil forState:UIControlStateNormal];
+    [self setButton:moveButton title:nil enabled:NO];
     moveButton.hidden = YES;
     scrollView.scrollEnabled = YES;
 }
@@ -423,24 +409,17 @@ ShowDrawController *GlobalGetShowDrawController()
     
     for (int i = 0; i < text.length; ++ i) {
         UIButton *button = (UIButton *)[scrollView viewWithTag:tag ++];
-        NSString *selectedTitle = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
-        NSString *normalTitle = selectedTitle;
-        if ([selectedTitle isEqualToString:@" "]) {
-            [button setEnabled:NO];
+        NSString *title = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
+        if ([title isEqualToString:@" "]) {
+            [self setButton:button title:nil enabled:NO];
         }else{
-            [button setEnabled:YES];
-            if (languageType == ChineseType && [LocaleUtils isTraditionalChinese]) {
-                normalTitle = [WordManager changeToTraditionalChinese:selectedTitle];
-            }
+            [self setButton:button title:title enabled:YES];
         }
-        [button setTitle:normalTitle forState:UIControlStateNormal];
-        [button setTitle:selectedTitle forState:UIControlStateSelected];
     }
-
     for (; tag <= CANDIDATE_END_TAG; ++ tag) {
         UIButton *button = (UIButton *)[scrollView viewWithTag:tag];
-        [button setTitle:nil forState:UIControlStateNormal];
-        [button setEnabled:NO];
+        [self setButton:button title:nil enabled:NO];
+        button.hidden = YES;
     }
 }
 
@@ -470,21 +449,6 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
-
-
-- (UIButton *)getTheCandidateButtonForText:(NSString *)text
-{
-    for (int i = 0; i < [self.candidateString length]; ++ i) {
-        NSString *sub = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
-        if ([sub isEqualToString:text]) {
-            UIButton *button = (UIButton *)[scrollView viewWithTag:CANDIDATE_BASE_TAG + i];
-            if ([[button titleForState:UIControlStateNormal] length] == 0) {
-                return button;
-            }
-        }
-    }
-    return nil;
-}
 
 - (void)setAnswerButtonsEnabled
 {
@@ -556,6 +520,7 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self updateBomb];
     [super viewDidAppear:animated];
 }
 
@@ -671,10 +636,8 @@ ShowDrawController *GlobalGetShowDrawController()
 - (void)clickOk:(CommonDialog *)dialog
 {
     //run away
-//    [dialog removeFromSuperview];
     if (dialog.tag == SHOP_DIALOG_TAG) {
         ItemShopController *itemShop = [ItemShopController instance];
-//        itemShop.callFromShowViewController = YES;
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else{
@@ -706,23 +669,25 @@ ShowDrawController *GlobalGetShowDrawController()
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
 
-- (IBAction)clickLeftPage:(id)sender {
+- (void)scrollToPage:(NSInteger)pageIndex
+{
     CGFloat width = scrollView.frame.size.width;
-    CGRect frame = CGRectMake(0, 0, width , scrollView.frame.size.height);
-    [scrollView scrollRectToVisible:frame animated:YES];
-    if (pageControl.currentPage != 0) {
-        pageControl.currentPage --;
-        [self enablePageButton:pageControl.currentPage];
+    CGFloat height = scrollView.frame.size.height;
+    CGRect frame = CGRectMake(width * pageIndex, 0, width, height);
+    [scrollView scrollRectToVisible:frame animated:YES];        
+}
+
+
+- (IBAction)clickLeftPage:(id)sender {
+    if (pageControl.currentPage > 0) {
+        [self scrollToPage: --pageControl.currentPage];
+            [self enablePageButton:pageControl.currentPage];            
     }
-    
 }
 
 - (IBAction)clickRightPage:(id)sender {
-    CGFloat width = scrollView.frame.size.width;
-    CGRect frame = CGRectMake(width, 0, width, scrollView.frame.size.height);
-    [scrollView scrollRectToVisible:frame animated:YES];
     if (pageControl.currentPage < pageControl.numberOfPages - 1) {
-        pageControl.currentPage ++;
+        [self scrollToPage: ++pageControl.currentPage];
         [self enablePageButton:pageControl.currentPage];
     }
 }
@@ -736,11 +701,18 @@ ShowDrawController *GlobalGetShowDrawController()
         dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
     }else{
-        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
         [self updateTargetViews:self.word];
+        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+        if (languageType == ChineseType && [result length]) {
+            NSString *temp = [WordManager removeSpaceFromString:result];
+            if ([temp length] == [result length] / 2) {
+                leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = YES;
+                [scrollView setContentSize:scrollView.bounds.size];
+            }
+        }
         [self updateCandidateViewsWithText:result];
         [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
-        [toolView setNumber:[ItemManager defaultManager].tipsItemAmount];
+        [self updateBomb];
         toolView.enabled = NO;
     }
     
@@ -750,9 +722,6 @@ ShowDrawController *GlobalGetShowDrawController()
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton deelegate:self];
     [self.view addSubview:dialog];
 }
-
-
-
 
 
 
@@ -783,9 +752,8 @@ ShowDrawController *GlobalGetShowDrawController()
     for (int i = 0; i < word.length; ++ i)
     {
         UIButton *button = (UIButton *)[self.view viewWithTag: tag ++];
-        [button setTitle:nil forState:UIControlStateNormal];
+        [self setButton:button title:nil enabled:NO];
         button.hidden = NO;
-        button.enabled = NO;
     }
     
 }
@@ -817,5 +785,20 @@ ShowDrawController *GlobalGetShowDrawController()
 
 }
 
+- (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
+{
+    [button setTitle:title forState:UIControlStateSelected];
+    [button setEnabled:enabled];
+    if (languageType == ChineseType && [LocaleUtils isTraditionalChinese]) {
+        NSString *realValue = [WordManager changeToTraditionalChinese:title];
+        [button setTitle:realValue forState:UIControlStateNormal];
+    }else{
+        [button setTitle:title forState:UIControlStateNormal];
+    }
+}
+- (NSString *)realValueForButton:(UIButton *)button
+{
+    return [button titleForState:UIControlStateSelected];
+}
 
 @end

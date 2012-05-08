@@ -294,6 +294,13 @@ WordManager *GlobalGetWordManager()
 
     return s;
 }
+
++ (NSString *)removeSpaceFromString:(NSString *)string
+{
+    NSArray *temp = [string componentsSeparatedByString:@" "];
+    return [temp componentsJoinedByString:@""];
+}
+
 + (NSString *)upperText:(NSString *)text
 {
     if (text == nil) {

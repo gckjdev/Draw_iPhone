@@ -25,7 +25,6 @@
     PickPenView *pickPenView;
 
     Word *_word;
-    BOOL hasPushResultController;
     NSInteger penWidth;
     NSInteger eraserWidth;
                 
@@ -45,7 +44,7 @@
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 - (void)setToolButtonEnabled:(BOOL)enabled;
 
-- (id)initWithWord:(Word *)word;
+- (id)initWithWord:(Word *)word lang:(LanguageType)lang;
 - (void)initEraser;
 - (void)initPens;
 - (void)initDrawView;
