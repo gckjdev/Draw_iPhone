@@ -830,6 +830,7 @@
   BOOL hasRound_:1;
   BOOL hasOnlineUserCount_:1;
   BOOL hasUserId_:1;
+  BOOL hasToUserId_:1;
   BOOL hasNotification_:1;
   BOOL hasChatResponse_:1;
   BOOL hasChatRequest_:1;
@@ -847,6 +848,7 @@
   int32_t round;
   int32_t onlineUserCount;
   NSString* userId;
+  NSString* toUserId;
   GeneralNotification* notification;
   GameChatResponse* chatResponse;
   GameChatRequest* chatRequest;
@@ -868,6 +870,7 @@
 - (BOOL) hasRound;
 - (BOOL) hasCompleteReason;
 - (BOOL) hasOnlineUserCount;
+- (BOOL) hasToUserId;
 - (BOOL) hasJoinGameRequest;
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
@@ -885,6 +888,7 @@
 @property (readonly) int32_t round;
 @property (readonly) GameCompleteReason completeReason;
 @property (readonly) int32_t onlineUserCount;
+@property (readonly, retain) NSString* toUserId;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
@@ -968,6 +972,11 @@
 - (int32_t) onlineUserCount;
 - (GameMessage_Builder*) setOnlineUserCount:(int32_t) value;
 - (GameMessage_Builder*) clearOnlineUserCount;
+
+- (BOOL) hasToUserId;
+- (NSString*) toUserId;
+- (GameMessage_Builder*) setToUserId:(NSString*) value;
+- (GameMessage_Builder*) clearToUserId;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;

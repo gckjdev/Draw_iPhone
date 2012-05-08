@@ -3294,6 +3294,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property int32_t round;
 @property GameCompleteReason completeReason;
 @property int32_t onlineUserCount;
+@property (retain) NSString* toUserId;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
@@ -3363,6 +3364,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasOnlineUserCount_ = !!value;
 }
 @synthesize onlineUserCount;
+- (BOOL) hasToUserId {
+  return !!hasToUserId_;
+}
+- (void) setHasToUserId:(BOOL) value {
+  hasToUserId_ = !!value;
+}
+@synthesize toUserId;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -3428,6 +3436,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @synthesize notification;
 - (void) dealloc {
   self.userId = nil;
+  self.toUserId = nil;
   self.joinGameRequest = nil;
   self.joinGameResponse = nil;
   self.startGameRequest = nil;
@@ -3449,6 +3458,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.round = 0;
     self.completeReason = GameCompleteReasonReasonNotComplete;
     self.onlineUserCount = 0;
+    self.toUserId = @"";
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
@@ -3517,6 +3527,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasOnlineUserCount) {
     [output writeInt32:8 value:self.onlineUserCount];
   }
+  if (self.hasToUserId) {
+    [output writeString:9 value:self.toUserId];
+  }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
   }
@@ -3576,6 +3589,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasOnlineUserCount) {
     size += computeInt32Size(8, self.onlineUserCount);
+  }
+  if (self.hasToUserId) {
+    size += computeStringSize(9, self.toUserId);
   }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
@@ -3703,6 +3719,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasOnlineUserCount) {
     [self setOnlineUserCount:other.onlineUserCount];
   }
+  if (other.hasToUserId) {
+    [self setToUserId:other.toUserId];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
@@ -3796,6 +3815,10 @@ static GameMessage* defaultGameMessageInstance = nil;
       }
       case 64: {
         [self setOnlineUserCount:[input readInt32]];
+        break;
+      }
+      case 74: {
+        [self setToUserId:[input readString]];
         break;
       }
       case 90: {
@@ -4008,6 +4031,22 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearOnlineUserCount {
   result.hasOnlineUserCount = NO;
   result.onlineUserCount = 0;
+  return self;
+}
+- (BOOL) hasToUserId {
+  return result.hasToUserId;
+}
+- (NSString*) toUserId {
+  return result.toUserId;
+}
+- (GameMessage_Builder*) setToUserId:(NSString*) value {
+  result.hasToUserId = YES;
+  result.toUserId = value;
+  return self;
+}
+- (GameMessage_Builder*) clearToUserId {
+  result.hasToUserId = NO;
+  result.toUserId = @"";
   return self;
 }
 - (BOOL) hasJoinGameRequest {

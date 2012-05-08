@@ -114,11 +114,12 @@ message GameMessage {
   required int32 messageId = 2;                             // 和请求消息对应的消息ID
   optional GameResultCode resultCode = 3 [default=SUCCESS]; // 响应结果，用于响应消息，0为成功
   
-  optional string userId = 4;
+  optional string userId = 4;                               // 消息来自哪个用户
   optional int64  sessionId = 5 [default=0];
   optional int32  round = 6;
   optional GameCompleteReason completeReason = 7;
   optional int32  onlineUserCount = 8;
+  optional string toUserId = 9;                             // 消息要发给哪个用户
   
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;
