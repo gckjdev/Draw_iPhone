@@ -40,12 +40,16 @@
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
-@property (nonatomic, assign) BOOL needResetData;
 @property (retain, nonatomic) Word *word;
 
-+ (DrawViewController *)instance;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 - (void)setToolButtonEnabled:(BOOL)enabled;
+
+- (id)initWithWord:(Word *)word;
+- (void)initEraser;
+- (void)initPens;
+- (void)initDrawView;
+
 @end
 
 

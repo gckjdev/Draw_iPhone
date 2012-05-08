@@ -59,16 +59,11 @@ NSString* GlobalGetServerURL()
     [super dealloc];
 }
 
-- (void)initGlobalObjects
-{
-    [DrawViewController instance];
-//    [ShowDrawController instance];
-}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
-    [self initGlobalObjects];
     [self initImageCacheManager];
     
     //init sounds

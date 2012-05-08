@@ -53,6 +53,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [drawGameService registerObserver:self];    
+    [self initRoundNumber];
+    [self initAvatars];
+    [self initPopButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -229,6 +233,30 @@
     [avatarView setScore:score];
 }
 
+- (void)initRoundNumber
+{
+    [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
+}
+
+- (void)initPopButton
+{
+    [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
+                                forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:self.popupButton];
+}
+- (void)initAvatars
+{
+    [self updatePlayerAvatars];
+}
+
+- (void)cleanData
+{
+    [self resetTimer];
+    drawGameService.showDelegate = nil;
+    drawGameService.drawDelegate = nil;
+    [drawGameService unregisterObserver:self];
+
+}
 
 - (void)didReceiveGuessWord:(NSString*)wordText 
                 guessUserId:(NSString*)guessUserId 

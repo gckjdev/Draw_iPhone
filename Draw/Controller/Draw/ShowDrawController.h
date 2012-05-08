@@ -41,13 +41,11 @@
 - (IBAction)clickRightPage:(id)sender;
 - (void)popupWordLengthMessage;
 
-- (void)initRoundNumber;
-- (void)initClock;
-- (void)initAvatars;
+
 - (void)initShowView;
 - (void)initWordButtons;
 - (void)initBomb;
-- (void)initPopButton;
+
 - (void)initTargetViews;
 
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
@@ -57,7 +55,6 @@
 
 //- (void)updateBomb;
 
-- (void)cleanData;
 
 
 @property (retain, nonatomic) ShowDrawView *showView;

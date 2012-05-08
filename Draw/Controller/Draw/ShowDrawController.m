@@ -532,42 +532,19 @@ ShowDrawController *GlobalGetShowDrawController()
 
 
 
-#pragma mark - Update Data
-
-- (void)popupWordLengthMessage
-{
-    if (languageType == ChineseType && !_guessCorrect && [self.word.text length] > 0) {
-        NSString *tip = [NSString stringWithFormat:NSLS(@"kWordLengthTip"),[self.word.text length]];
-        [self popupHappyMessage:tip title:nil];
-    }
-}
-
-
-- (void)cleanData
-{
-    [self resetTimer];
-    drawGameService.showDelegate = nil;
-    [drawGameService unregisterObserver:self];
-}
-
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [drawGameService registerObserver:self];
     [drawGameService setShowDelegate:self];
     
-    [self initRoundNumber];
-    [self updatePlayerAvatars];
     [self initShowView];
-    [self initClock];
     
     //init the toolView for bomb the candidate words
     [self initBomb];
     [self initWordViews];
-    [self initPopButton];
     [self initTargetViews];
     [self initWithCachData];
 
@@ -775,16 +752,9 @@ ShowDrawController *GlobalGetShowDrawController()
 }
 
 
-- (void)initRoundNumber
-{
-    [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
-}
 
 
-- (void)initClock
-{
-//    [self startTimer];
-}
+
 
 - (void)initBomb
 {
@@ -826,12 +796,7 @@ ShowDrawController *GlobalGetShowDrawController()
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
 
-- (void)initPopButton
-{
-    [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
-                                forState:UIControlStateNormal];
-    [self.view bringSubviewToFront:self.popupButton];
-}
+
 
 
 - (void)initWithCachData

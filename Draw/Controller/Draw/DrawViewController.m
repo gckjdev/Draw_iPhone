@@ -45,35 +45,25 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 @implementation DrawViewController
-//@synthesize turnNumberButton;
-//@synthesize popupButton;
-//@synthesize clockButton;
+
 @synthesize eraserButton;
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
 @synthesize word = _word;
-@synthesize needResetData;
 
 #define PAPER_VIEW_TAG 20120403
 
 
 #pragma mark - Static Method
-+ (DrawViewController *)instance
-{
-    return GlobalGetDrawViewController();
-}
-
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
-    DrawViewController *vc = [DrawViewController instance];
-    vc.word = word;
+    DrawViewController *vc = [[DrawViewController alloc] initWithWord:word];
     int language = [[UserManager defaultManager] getLanguageType];
-    vc.needResetData = YES;
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
+    [fromController.navigationController pushViewController:vc animated:YES];           
     
-    [fromController.navigationController pushViewController:vc animated:NO];           
+    PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
 }
 
 - (void)dealloc
@@ -103,16 +93,10 @@ DrawViewController *GlobalGetDrawViewController()
 #define ERASER_WIDTH ([DeviceDetection isIPAD] ? 15 * 2 : 15)
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
-- (id)init{
+- (id)initWithWord:(Word *)word{
     self = [super init];
     if (self) {
-        drawGameService.drawDelegate = self;
-        drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
-        pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
-        eraserWidth = ERASER_WIDTH;
-        [drawView setDrawEnabled:YES];
-        [pickPenView setImage:[shareImageManager toolPopupImage]];
-        pickPenView.delegate = self;
+        self.word = word;
     }
     return self;
 }
@@ -120,6 +104,9 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)initPickPenView
 {
+    pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
+    [pickPenView setImage:[shareImageManager toolPopupImage]];
+    pickPenView.delegate = self;
     [self.view addSubview:pickPenView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
@@ -148,8 +135,7 @@ DrawViewController *GlobalGetDrawViewController()
     [colorViewArray addObject:[ColorView brownColorView]];
     [colorViewArray addObject:[ColorView skyColorView]];
 //    [colorViewArray addObject:[ColorView whiteColorView]];
-    
-    
+        
     [pickPenView setColorViews:colorViewArray];
     [colorViewArray release];
 }
@@ -205,89 +191,54 @@ enum{
     }
 }
 
-- (void)resetDrawView
+
+
+- (void)initEraser
 {
-    [drawView clearAllActions];
-    [pickPenView resetWidth];
-    [drawView setLineWidth:pickPenView.currentWidth];
+    eraserWidth = ERASER_WIDTH;
+}
+- (void)initPens
+{
+    [self initPickPenView];
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [penButton setPenColor:randColor];
+    [drawView setLineWidth:pickPenView.currentWidth];
+    penWidth = pickPenView.currentWidth;
 }
 
-- (void)cleanData
+- (void)initDrawView
 {
-    [self resetTimer];
-    [drawView clearAllActions];
-    [self setWord:nil];
-    [drawGameService unregisterObserver:self];
+
+    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
+    drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
+    [drawView setDrawEnabled:YES];
+    drawView.delegate = self;
+    [self.view insertSubview:drawView aboveSubview:paperView];
 }
 
-- (void)resetData
+- (void)initWordLabel
 {
-    [self resetDrawView];
-    [self.popupButton setHidden:YES];
-    NSString *text = [self.word text];    
-    PPDebug(@"<DrawViewController>: reset data, word = %@", text);
-    
-    if ([LocaleUtils isTraditionalChinese]) {
-        text = [WordManager changeToTraditionalChinese:text];
-    }
-    
-    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),text];
+    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
-    retainCount = GAME_TIME;
-    [self updatePlayerAvatars];
-    [self startTimer];
-    [self setToolButtonEnabled:YES];
-    
-    [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
 }
-
-
-
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawView.delegate = self;
-    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    [self.view insertSubview:drawView aboveSubview:paperView];
-
-    [self initPickPenView];
-    [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
-                                forState:UIControlStateNormal];
-    [self.view bringSubviewToFront:wordButton];
-    [self.view bringSubviewToFront:self.popupButton];
+    drawGameService.drawDelegate = self;
+    [self initDrawView];
+    [self initEraser];
+    [self initPens];
+    [self initWordLabel];
+    [self startTimer];
 }
 
-- (void)cleanScreen
-{
-    [self.popupButton.layer removeAllAnimations];
-    [self.popupButton setHidden:YES];  
-    [self clearUnPopupMessages];
-    for (UIView *view in self.view.subviews) {
-        if (view && ([view isKindOfClass:[CommonDialog class]] || [view isKindOfClass:[ColorShopView class]])) {
-            [view removeFromSuperview];
-        }
-    }
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
-
-    if (needResetData) {
-        PPDebug(@"<DrawViewController>: viewDidAppear start reset data");
-        [self resetData];
-    }else{
-        PPDebug(@"<DrawViewController>: viewDidAppear skip reset data");        
-    }
-    [self cleanScreen];
-    [pickPenView setHidden:YES];
-    [drawGameService registerObserver:self];        
-    [drawView setDrawEnabled:YES];
     [super viewDidAppear:animated];
 }
 
@@ -296,8 +247,6 @@ enum{
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self cleanScreen];
-    [self resetTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -321,9 +270,9 @@ enum{
 
 - (void)didBroken
 {
-    //clean data
     PPDebug(@"<DrawViewController>:didBroken");
     [self cleanData];
+    [HomeController returnRoom:self];
 }
 
 
@@ -393,10 +342,12 @@ enum{
     }
 
 }
+
 - (void)clickBack:(CommonDialog *)dialog
 {
-//    [dialog removeFromSuperview];
+    //    [dialog removeFromSuperview];
 }
+
 
 #pragma mark - Draw View Delegate
 
