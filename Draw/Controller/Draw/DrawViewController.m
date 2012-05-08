@@ -58,8 +58,8 @@ DrawViewController *GlobalGetDrawViewController()
 #pragma mark - Static Method
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
-    DrawViewController *vc = [[DrawViewController alloc] initWithWord:word];
-    int language = [[UserManager defaultManager] getLanguageType];
+    LanguageType language = [[UserManager defaultManager] getLanguageType];
+    DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
     [fromController.navigationController pushViewController:vc animated:YES];           
     
@@ -93,10 +93,11 @@ DrawViewController *GlobalGetDrawViewController()
 #define ERASER_WIDTH ([DeviceDetection isIPAD] ? 15 * 2 : 15)
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
-- (id)initWithWord:(Word *)word{
+- (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
         self.word = word;
+        languageType = lang;
     }
     return self;
 }

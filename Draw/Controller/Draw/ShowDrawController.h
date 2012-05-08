@@ -23,7 +23,6 @@
     Word *_word;
     ShowDrawView *showView;
     NSString *_candidateString;
-    LanguageType languageType;
     ItemShopController *_shopController;
     ToolView *toolView;
     BOOL _guessCorrect;
@@ -50,12 +49,11 @@
 
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
 - (void)updateTargetViews:(Word *)word;
-
 - (void)initWithCachData;
 
 //- (void)updateBomb;
 
-
+- (void)scrollToPage:(NSInteger)pageIndex;
 
 @property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
