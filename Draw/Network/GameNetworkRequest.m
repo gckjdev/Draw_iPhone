@@ -630,16 +630,20 @@
 
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL 
                             userId:(NSString*)userId
-                      targetUserId:(NSString*)targetUserId
+                 targetUserIdArray:(NSArray*)targetUserIdArray
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
+        NSString* targetUserIdstr;
+        for (NSString* targetUserId in targetUserIdArray) {
+            targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
+        }
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];        
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
         return str;
     };
     
@@ -657,18 +661,22 @@
     
 }
 
-+ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL 
-                            userId:(NSString*)userId
-                      targetUserId:(NSString*)targetUserId
++ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
+                              userId:(NSString*)userId
+                   targetUserIdArray:(NSArray*)targetUserIdArray
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
+        NSString* targetUserIdstr;
+        for (NSString* targetUserId in targetUserIdArray) {
+            targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
+        }
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];        
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
         return str;
     };
     
@@ -688,7 +696,9 @@
 
 + (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
                              userId:(NSString*)userId
-                               type:(int)type
+                               type:(int)type 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -716,7 +726,9 @@
 }
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
-                       searchString:(NSString*)searchString
+                          keyString:(NSString*)keyString 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -724,7 +736,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];   
-        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:searchString];        
+        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString];        
         return str;
     };
     

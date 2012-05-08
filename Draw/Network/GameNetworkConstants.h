@@ -10,6 +10,8 @@
 #define SERVER_URL                  (GlobalGetServerURL())
 #define APP_ID                      @"Game"
 
+#define STRING_SEPERATOR @"$"
+
 #define SHARE_KEY @"NetworkRequestShareKey"
 
 // method name
