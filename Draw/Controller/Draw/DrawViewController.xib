@@ -289,7 +289,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
-						<string key="IBUINormalTitle">80</string>
+						<string key="IBUINormalTitle">60</string>
 						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">2</int>
@@ -683,7 +683,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawViewController</string>
-					<string key="superclassName">PPViewController</string>
+					<string key="superclassName">SuperDrawViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -735,21 +735,15 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cleanButton</string>
-							<string>clockButton</string>
 							<string>eraserButton</string>
 							<string>penButton</string>
-							<string>popupButton</string>
-							<string>turnNumberButton</string>
 							<string>wordButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UIButton</string>
 							<string>PenView</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
 					</object>
@@ -758,11 +752,8 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cleanButton</string>
-							<string>clockButton</string>
 							<string>eraserButton</string>
 							<string>penButton</string>
-							<string>popupButton</string>
-							<string>turnNumberButton</string>
 							<string>wordButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -772,24 +763,12 @@
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">clockButton</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">eraserButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">penButton</string>
 								<string key="candidateClassName">PenView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">popupButton</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">turnNumberButton</string>
-								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">wordButton</string>
@@ -816,6 +795,53 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PenView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SuperDrawViewController</string>
+					<string key="superclassName">PPViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clockButton</string>
+							<string>popupButton</string>
+							<string>turnNumberButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clockButton</string>
+							<string>popupButton</string>
+							<string>turnNumberButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">clockButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">popupButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">turnNumberButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SuperDrawViewController.h</string>
 					</object>
 				</object>
 			</object>

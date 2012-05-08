@@ -34,6 +34,11 @@
 - (void)handleTimer:(NSTimer *)theTimer;// this method needs over ride
 
 - (id)init;
+- (void)initRoundNumber;
+//- (void)initClock;
+- (void)initAvatars;
+- (void)initPopButton;
+- (void)cleanData;
 
 //avatar views
 - (void)adjustPlayerAvatars:(NSString *)quitUserId;
