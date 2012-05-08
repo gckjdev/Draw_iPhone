@@ -76,4 +76,9 @@
 - (UIImage *)penMaskImage;
 - (UIImage *)colorMaskImage;
 
+- (UIImage *)myFoucsImage;
+- (UIImage *)myFoucsSelectedImage;
+- (UIImage *)foucsMeImage;
+- (UIImage *)foucsMeSelectedImage;
+
 @end
