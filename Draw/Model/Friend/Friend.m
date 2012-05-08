@@ -24,5 +24,7 @@
 @dynamic type;
 @dynamic onlineStatus;
 @dynamic createDate;
+@dynamic lastModifiedDate;
+@dynamic deleteFlag;
 
 @end
