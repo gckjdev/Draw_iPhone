@@ -10,6 +10,8 @@
 #define SERVER_URL                  (GlobalGetServerURL())
 #define APP_ID                      @"Game"
 
+#define STRING_SEPERATOR @"$"
+
 #define SHARE_KEY @"NetworkRequestShareKey"
 
 // method name
@@ -76,10 +78,17 @@
 #define METHOD_SEGMENTTEXT @"st"
 #define METHOD_COMPAREPRODUCT @"comp"
 
+//friends method
+#define METHOD_FINDFRIENDS @"ff"
+#define METHOD_SEARCHUSER @"su"
+#define METHOD_FOLLOWUSER @"fu"
+#define METHOD_UNFOLLOWUSER @"ufu"
+
 
 //game method
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
 #define METHOD_GET_ACCOUNT_BALANCE @"gab"
+
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -299,6 +308,15 @@
 
 #define PARA_FEEDBACK @"fb"
 #define PARA_CONTACT @"ca"
+
+//friends operation
+#define PARA_TARGETUSERID   @"tid"
+#define PARA_FRIENDSTYPE    @"ft"
+#define PARA_SEARCHSTRING   @"ss"
+
+#define FRIENDS_TYPE_FOLLOW 0
+#define FRIENDS_TYPE_FAN    1
+
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

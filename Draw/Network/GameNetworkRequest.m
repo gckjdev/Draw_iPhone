@@ -627,4 +627,131 @@
                                   output:output];
     
 }
+
++ (CommonNetworkOutput*)followUser:(NSString*)baseURL 
+                            userId:(NSString*)userId
+                 targetUserIdArray:(NSArray*)targetUserIdArray
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* targetUserIdstr;
+        for (NSString* targetUserId in targetUserIdArray) {
+            targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
+        }
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
++ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
+                              userId:(NSString*)userId
+                   targetUserIdArray:(NSArray*)targetUserIdArray
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* targetUserIdstr;
+        for (NSString* targetUserId in targetUserIdArray) {
+            targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
+        }
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
++ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
+                             userId:(NSString*)userId
+                               type:(int)type 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
++ (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
+                          keyString:(NSString*)keyString 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];   
+        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString];        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
 @end
