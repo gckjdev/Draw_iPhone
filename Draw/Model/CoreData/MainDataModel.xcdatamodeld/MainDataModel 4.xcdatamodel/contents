@@ -3,10 +3,12 @@
     <entity name="Friend" representedClassName="Friend" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deleteFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="facebookId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookNick" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="onlineStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="qqId" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,8 +67,8 @@
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2"/>
-    <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1"/>
+    <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
+    <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
@@ -79,6 +81,6 @@
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Friend" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="Friend" positionX="160" positionY="192" width="128" height="270"/>
     </elements>
 </model>

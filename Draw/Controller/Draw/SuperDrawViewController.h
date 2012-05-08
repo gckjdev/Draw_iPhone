@@ -18,7 +18,7 @@
     ShareImageManager *shareImageManager;
     NSTimer *gameTimer;
     NSInteger retainCount;
-    
+    LanguageType languageType;
     DrawGameService *drawGameService;
     NSMutableArray *avatarArray;
 

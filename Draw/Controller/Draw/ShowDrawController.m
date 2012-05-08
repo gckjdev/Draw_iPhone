@@ -126,13 +126,12 @@ ShowDrawController *GlobalGetShowDrawController()
 
 - (void)enablePageButton:(NSInteger)pageIndex
 {
+    leftPageButton.enabled = rightPageButton.enabled = YES;
     if (pageIndex == 0) {
         leftPageButton.enabled = NO;
-        rightPageButton.enabled = YES;
     }
     if (pageIndex == pageControl.numberOfPages - 1) {
         rightPageButton.enabled = NO;
-        leftPageButton.enabled = YES;
     }
 }
 
@@ -706,23 +705,27 @@ ShowDrawController *GlobalGetShowDrawController()
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
 
-- (IBAction)clickLeftPage:(id)sender {
+- (void)scrollToPage:(NSInteger)pageIndex
+{
     CGFloat width = scrollView.frame.size.width;
-    CGRect frame = CGRectMake(0, 0, width , scrollView.frame.size.height);
-    [scrollView scrollRectToVisible:frame animated:YES];
-    if (pageControl.currentPage != 0) {
-        pageControl.currentPage --;
-        [self enablePageButton:pageControl.currentPage];
+    CGFloat height = scrollView.frame.size.height;
+    CGRect frame = CGRectMake(width * pageIndex, 0, width, height);
+    [scrollView scrollRectToVisible:frame animated:YES];        
+}
+
+
+- (IBAction)clickLeftPage:(id)sender {
+    if (pageControl.currentPage > 0) {
+        [self scrollToPage: --pageControl.currentPage];
+//        if (pageControl.currentPage == 0) {
+            [self enablePageButton:pageControl.currentPage];            
+//        }
     }
-    
 }
 
 - (IBAction)clickRightPage:(id)sender {
-    CGFloat width = scrollView.frame.size.width;
-    CGRect frame = CGRectMake(width, 0, width, scrollView.frame.size.height);
-    [scrollView scrollRectToVisible:frame animated:YES];
     if (pageControl.currentPage < pageControl.numberOfPages - 1) {
-        pageControl.currentPage ++;
+        [self scrollToPage: ++pageControl.currentPage];
         [self enablePageButton:pageControl.currentPage];
     }
 }
@@ -736,8 +739,15 @@ ShowDrawController *GlobalGetShowDrawController()
         dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
     }else{
-        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
         [self updateTargetViews:self.word];
+        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+        if (languageType == ChineseType && [result length]) {
+            NSString *temp = [WordManager removeSpaceFromString:result];
+            if ([temp length] == [result length] / 2) {
+                leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = YES;
+                [scrollView setContentSize:scrollView.bounds.size];
+            }
+        }
         [self updateCandidateViewsWithText:result];
         [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
         [toolView setNumber:[ItemManager defaultManager].tipsItemAmount];

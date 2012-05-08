@@ -24,5 +24,8 @@
 @property (nonatomic, retain) NSString * facebookNick;
 @property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSNumber * onlineStatus;
+@property (nonatomic, retain) NSDate   * createDate;
+@property (nonatomic, retain) NSDate   * lastModifiedDate;
+@property (nonatomic, retain) NSNumber * deleteFlag;
 
 @end
