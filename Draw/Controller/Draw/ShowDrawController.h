@@ -31,36 +31,34 @@
 }
 @property(nonatomic, retain)Word *word;
 @property (retain, nonatomic) NSString *candidateString;
-@property (nonatomic, assign) BOOL needResetData;
-@property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
-- (IBAction)clickRunAway:(id)sender;
-- (void)bomb:(id)sender;
-- (void)commitAnswer:(NSString *)answer;
-- (IBAction)clickLeftPage:(id)sender;
-- (IBAction)clickRightPage:(id)sender;
-- (void)popupWordLengthMessage;
-
-
-- (void)initShowView;
-- (void)initWordButtons;
-- (void)initBomb;
-
-- (void)initTargetViews;
-
-- (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
-- (void)updateTargetViews:(Word *)word;
-- (void)initWithCachData;
-
-//- (void)updateBomb;
-
-- (void)scrollToPage:(NSInteger)pageIndex;
-
 @property (retain, nonatomic) ShowDrawView *showView;
+
+@property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 
+- (IBAction)clickRunAway:(id)sender;
+- (void)bomb:(id)sender;
+- (void)commitAnswer:(NSString *)answer;
+- (IBAction)clickLeftPage:(id)sender;
+- (IBAction)clickRightPage:(id)sender;
+
+- (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
+- (NSString *)realValueForButton:(UIButton *)button;
+- (void)initShowView;
+- (void)initWordButtons;
+- (void)initBomb;
+
+- (void)initTargetViews;
+- (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
+- (void)updateTargetViews:(Word *)word;
+- (void)initWithCachData;
+
+- (void)scrollToPage:(NSInteger)pageIndex;
+
+
 @end
 
-extern ShowDrawController *GlobalGetShowDrawController();
+

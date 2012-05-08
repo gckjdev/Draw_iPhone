@@ -25,7 +25,6 @@
     PickPenView *pickPenView;
 
     Word *_word;
-    BOOL hasPushResultController;
     NSInteger penWidth;
     NSInteger eraserWidth;
                 
