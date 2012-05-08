@@ -557,6 +557,7 @@
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
         [self updateTargetViews:word];
         [self updateCandidateViews:word lang:language];
+        toolView.enabled = YES;
     }else{
         PPDebug(@"warn:<ShowDrawController> word is nil");
     }
@@ -731,6 +732,7 @@
     toolView.center = TOOLVIEW_CENTER;
     [self.view addSubview:toolView];
     [toolView addTarget:self action:@selector(bomb:)];
+    [toolView setEnabled:NO];
     [self updateBomb];
 }
 
@@ -782,7 +784,6 @@
         }
         [self startTimer];
     }
-
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
