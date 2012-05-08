@@ -10,4 +10,11 @@
 
 @interface MyFriendsController : PPTableViewController
 
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *editButton;
+@property (retain, nonatomic) IBOutlet UIButton *myFollowButton;
+@property (retain, nonatomic) IBOutlet UIButton *myFanButton;
+
+- (IBAction)clickBackButton:(id)sender;
+
 @end
