@@ -119,4 +119,19 @@
                             appId:(NSString*)appId
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken;
+
++ (CommonNetworkOutput*)followUser:(NSString*)baseURL 
+                            userId:(NSString*)userId
+                      targetUserId:(NSString*)targetUserId;
+
++ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL 
+                              userId:(NSString*)userId
+                        targetUserId:(NSString*)targetUserId;
+
++ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
+                             userId:(NSString*)userId
+                               type:(int)type;
+
++ (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
+                       searchString:(NSString*)searchString;
 @end

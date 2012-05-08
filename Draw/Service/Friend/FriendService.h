@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface FriendService : NSObject
++ (FriendService*)defaultService;
+
+- (void)findFriendsByType:(int)type;
+- (void)searchUsersByString:(NSString*)searchString;
+- (void)followUser:(NSString*)targetUserId;
+- (void)unFollowUser:(NSString*)targetUserId;
 
 @end
