@@ -23,5 +23,6 @@
 @dynamic facebookNick;
 @dynamic type;
 @dynamic onlineStatus;
+@dynamic createDate;
 
 @end

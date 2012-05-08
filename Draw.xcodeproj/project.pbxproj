@@ -507,6 +507,9 @@
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
 		CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA361DA15529F530081D3EB /* HomeController~ipad.xib */; };
+		CAA362421558C3090081D3EB /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
+		CAA362451558C3400081D3EB /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362441558C3400081D3EB /* FriendManager.m */; };
+		CAA362481558C3780081D3EB /* FriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362471558C3780081D3EB /* FriendService.m */; };
 		CAA47815152FF70D005EDB24 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA47813152FF70D005EDB24 /* PassWordDialog.m */; };
 		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
@@ -1407,6 +1410,12 @@
 		CAA0E6A815147F6E00FD8C3E /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
 		CAA361DA15529F530081D3EB /* HomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 4.xcdatamodel"; sourceTree = "<group>"; };
+		CAA362401558C3090081D3EB /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		CAA362411558C3090081D3EB /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		CAA362431558C33F0081D3EB /* FriendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendManager.h; sourceTree = "<group>"; };
+		CAA362441558C3400081D3EB /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
+		CAA362461558C3780081D3EB /* FriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendService.h; sourceTree = "<group>"; };
+		CAA362471558C3780081D3EB /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
 		CAA47812152FF70D005EDB24 /* PassWordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassWordDialog.h; sourceTree = "<group>"; };
 		CAA47813152FF70D005EDB24 /* PassWordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordDialog.m; sourceTree = "<group>"; };
 		CAA47814152FF70D005EDB24 /* PassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassWordDialog.xib; sourceTree = "<group>"; };
@@ -3544,6 +3553,10 @@
 		CA9DB929154E75070031DBBD /* Friend */ = {
 			isa = PBXGroup;
 			children = (
+				CAA362401558C3090081D3EB /* Friend.h */,
+				CAA362411558C3090081D3EB /* Friend.m */,
+				CAA362431558C33F0081D3EB /* FriendManager.h */,
+				CAA362441558C3400081D3EB /* FriendManager.m */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -3572,6 +3585,8 @@
 		CA9DB92D154E75410031DBBD /* Friend */ = {
 			isa = PBXGroup;
 			children = (
+				CAA362461558C3780081D3EB /* FriendService.h */,
+				CAA362471558C3780081D3EB /* FriendService.m */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -4324,6 +4339,9 @@
 				CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */,
 				CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */,
 				C28207E31552D974006FBB0F /* AudioManager.m in Sources */,
+				CAA362421558C3090081D3EB /* Friend.m in Sources */,
+				CAA362451558C3400081D3EB /* FriendManager.m in Sources */,
+				CAA362481558C3780081D3EB /* FriendService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

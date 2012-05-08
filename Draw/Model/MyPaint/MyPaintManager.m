@@ -66,7 +66,8 @@ static MyPaintManager* _defaultManager;
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     NSArray* array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
     NSManagedObject* object = [array objectAtIndex:index];
-    return [dataManager del:object];
+    [dataManager del:object];
+    return [dataManager save];
 }
 
 - (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index
@@ -74,7 +75,8 @@ static MyPaintManager* _defaultManager;
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     NSArray* array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
     NSManagedObject* object = [array objectAtIndex:index];
-    return [dataManager del:object];
+    [dataManager del:object];
+    return [dataManager save];
 }
 
 - (void)deleteAllPaints
