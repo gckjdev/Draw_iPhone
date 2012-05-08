@@ -122,16 +122,20 @@
 
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL 
                             userId:(NSString*)userId
-                      targetUserId:(NSString*)targetUserId;
+                 targetUserIdArray:(NSArray*)targetUserIdArray;
 
-+ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL 
++ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
                               userId:(NSString*)userId
-                        targetUserId:(NSString*)targetUserId;
+                   targetUserIdArray:(NSArray*)targetUserIdArray;
 
 + (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
                              userId:(NSString*)userId
-                               type:(int)type;
+                               type:(int)type 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex;
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
-                       searchString:(NSString*)searchString;
+                          keyString:(NSString*)keyString 
+                         startIndex:(NSInteger)startIndex 
+                           endIndex:(NSInteger)endIndex;
 @end

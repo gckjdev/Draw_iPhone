@@ -91,8 +91,6 @@
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {   
-
-
     DrawAction *currentAction = [self playingAction];
     if (!_showPenHidden) {
         if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {
@@ -129,7 +127,6 @@
         }else{
             //illegal
             _status = Stop;
-//            pen.hidden = YES;
             if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]) {
                 [self.delegate didPlayDrawView:self];
             }

@@ -10,7 +10,7 @@
 
 @interface FriendManager : NSObject
 
-- (void)createFriendWithUserId:(NSString *)friendUserId 
+- (BOOL)createFriendWithUserId:(NSString *)friendUserId 
                       nickName:(NSString *)nickName 
                         avatar:(NSString *)avatar 
                         gender:(NSString *)gender
@@ -22,5 +22,11 @@
                   facebookNick:(NSString *)facebookNick
                           type:(NSNumber *)type
                   onlineStatus:(NSNumber *)onlineStatus;
+
+- (NSArray *)findAllFanFriends;
+
+- (NSArray *)findAllFollowFriends;
+
+- (BOOL)deleteFollowFriend:(NSString *)friendUserId;
 
 @end
