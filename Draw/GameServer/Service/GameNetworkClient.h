@@ -25,6 +25,7 @@
                    nickName:(NSString*)nickName 
                      avatar:(NSString*)avatar
                      gender:(BOOL)gender
+             guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
           excludeSessionSet:(NSSet*)excludeSessionSet;
 

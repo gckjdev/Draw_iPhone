@@ -33,7 +33,7 @@ static DrawGameService* _defaultService;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
 @synthesize gender = _gender;
-//@synthesize drawActionList = _drawActionList;
+@synthesize guessDiffLevel = _guessDiffLevel;
 @synthesize showDelegate = _showDelegate;
 @synthesize onlineUserCount = _onlineUserCount;
 
@@ -547,7 +547,11 @@ static DrawGameService* _defaultService;
 
 #pragma mark Methods for External (UI Thread)
 
-- (void)joinGame:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender
+- (void)joinGame:(NSString*)userId 
+        nickName:(NSString*)nickName 
+          avatar:(NSString*)avatar 
+          gender:(BOOL)gender
+  guessDiffLevel:(int)guessDiffLevel
 {
     [_session setStatus:SESSION_WAITING];
     [self clearHistoryUser];
@@ -556,11 +560,13 @@ static DrawGameService* _defaultService;
     [self setNickName:nickName];
     [self setAvatar:avatar];
     [self setGender:gender];
+    [self setGuessDiffLevel:guessDiffLevel];
     
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
+                         guessDiffLevel:guessDiffLevel
                               sessionId:-1
                       excludeSessionSet:_historySessionSet];  
     
@@ -584,6 +590,7 @@ static DrawGameService* _defaultService;
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
+                         guessDiffLevel:_guessDiffLevel
                               sessionId:[_session sessionId]
                       excludeSessionSet:_historySessionSet];
     

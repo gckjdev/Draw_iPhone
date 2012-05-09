@@ -32,6 +32,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property BOOL gender;
 @property BOOL isRobot;
 @property int32_t targetSessionId;
+@property int32_t guessDifficultLevel;
 @end
 
 @implementation JoinGameRequest
@@ -110,6 +111,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasTargetSessionId_ = !!value;
 }
 @synthesize targetSessionId;
+- (BOOL) hasGuessDifficultLevel {
+  return !!hasGuessDifficultLevel_;
+}
+- (void) setHasGuessDifficultLevel:(BOOL) value {
+  hasGuessDifficultLevel_ = !!value;
+}
+@synthesize guessDifficultLevel;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -129,6 +137,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.gender = NO;
     self.isRobot = NO;
     self.targetSessionId = 0;
+    self.guessDifficultLevel = 0;
   }
   return self;
 }
@@ -194,6 +203,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasTargetSessionId) {
     [output writeInt32:10 value:self.targetSessionId];
   }
+  if (self.hasGuessDifficultLevel) {
+    [output writeInt32:11 value:self.guessDifficultLevel];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -237,6 +249,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasTargetSessionId) {
     size += computeInt32Size(10, self.targetSessionId);
+  }
+  if (self.hasGuessDifficultLevel) {
+    size += computeInt32Size(11, self.guessDifficultLevel);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -346,6 +361,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasTargetSessionId) {
     [self setTargetSessionId:other.targetSessionId];
   }
+  if (other.hasGuessDifficultLevel) {
+    [self setGuessDifficultLevel:other.guessDifficultLevel];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -405,6 +423,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 80: {
         [self setTargetSessionId:[input readInt32]];
+        break;
+      }
+      case 88: {
+        [self setGuessDifficultLevel:[input readInt32]];
         break;
       }
     }
@@ -583,6 +605,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearTargetSessionId {
   result.hasTargetSessionId = NO;
   result.targetSessionId = 0;
+  return self;
+}
+- (BOOL) hasGuessDifficultLevel {
+  return result.hasGuessDifficultLevel;
+}
+- (int32_t) guessDifficultLevel {
+  return result.guessDifficultLevel;
+}
+- (JoinGameRequest_Builder*) setGuessDifficultLevel:(int32_t) value {
+  result.hasGuessDifficultLevel = YES;
+  result.guessDifficultLevel = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearGuessDifficultLevel {
+  result.hasGuessDifficultLevel = NO;
+  result.guessDifficultLevel = 0;
   return self;
 }
 @end
