@@ -54,14 +54,14 @@
 {
     [super viewDidLoad];
     
-    [titleLabel setText:NSLS(@"我的好友")];
+    [titleLabel setText:NSLS(@"kMyFriends")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [editButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-    [editButton setTitle:NSLS(@"编辑") forState:UIControlStateNormal];
-    [editButton setTitle:NSLS(@"完成") forState:UIControlStateSelected];
+    [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
+    [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     
-    NSString *followTitle = NSLS(@"关注");
-    NSString *fanTitle = NSLS(@"粉丝") ;
+    NSString *followTitle = NSLS(@"kFollow");
+    NSString *fanTitle = NSLS(@"kFans") ;
     [myFollowButton setTitle:followTitle forState:UIControlStateNormal];
     [myFanButton setTitle:fanTitle forState:UIControlStateNormal];
     [myFollowButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
@@ -70,7 +70,7 @@
     [myFanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
     myFollowButton.selected = YES;
     
-    [searchUserButton setTitle:NSLS(@"添加好友") forState:UIControlStateNormal];
+    [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
     [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
     
@@ -131,13 +131,14 @@
 #define NICK_TAG    72
 - (void)createCellContent:(UITableViewCell *)cell
 {
-    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space;
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, nickLabelFont;
     cellHeight = CELL_HEIGHT_IPHONE;
     avatarWidth = 37;
     avatarHeight = 39;
     nickWidth = 100;
     nickHeight = 40;
     space = 8;
+    nickLabelFont = 14;
     
     if ([DeviceDetection isIPAD]) {
         cellHeight = CELL_HEIGHT_IPAD;
@@ -146,6 +147,7 @@
         nickWidth = 2 * nickWidth;
         nickHeight = 2* nickHeight;
         space = 2 * space;
+        nickLabelFont = 2 * nickLabelFont;
     }
     
     UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
@@ -160,6 +162,7 @@
     
     UILabel *nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth+space, (cellHeight-nickHeight)/2, nickWidth, nickHeight)];
     nickLabel.backgroundColor = [UIColor clearColor];
+    nickLabel.font = [UIFont systemFontOfSize:nickLabelFont];
     nickLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     nickLabel.tag = NICK_TAG;
     [cell.contentView addSubview:nickLabel];

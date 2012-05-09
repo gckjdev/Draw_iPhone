@@ -309,3 +309,13 @@
 "kSound" = "音效";
 "kON" = " 开";
 "kOFF" = "关 ";
+
+"kMyFriends" = "我的好友";
+"kFollow" = "关注";
+"kFans" = "粉丝";
+"kEdit" = "编辑";
+"kAddFriend" = "添加好友";
+"kSearch" = "搜索";
+"kAddAsFriend" = "加为好友";
+"kAlreadyBeFriend" = "已经是好友";
+"kDidNottFindThisUser" = "没有找到此用户";

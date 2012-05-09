@@ -43,11 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [titleLabel setText:@"添加好友"];
+    [titleLabel setText:NSLS(@"kAddFriend")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     
     resultLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     resultLabel.hidden = YES;
@@ -85,7 +85,7 @@
 #define FOLLOW_TAG  74
 - (void)createCellContent:(UITableViewCell *)cell
 {
-    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight;
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight, nickLabelFont, statusLabelFont;
     cellHeight = CELL_HEIGHT_IPHONE;
     avatarWidth = 37;
     avatarHeight = 39;
@@ -94,6 +94,8 @@
     space = 6;
     statusWidth = 66;
     statusHeight = 26;
+    nickLabelFont = 14;
+    statusLabelFont = 13;
     
     if ([DeviceDetection isIPAD]) {
         cellHeight = CELL_HEIGHT_IPAD;
@@ -104,6 +106,8 @@
         space = 2 * space;
         statusWidth = 2 * statusWidth;
         statusHeight = 2 * statusHeight;
+        nickLabelFont = 2 * nickLabelFont;
+        statusLabelFont = 2 * statusLabelFont;
     }
     
     UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
@@ -118,24 +122,25 @@
     
     UILabel *nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth+space, (cellHeight-nickHeight)/2, nickWidth, nickHeight)];
     nickLabel.backgroundColor = [UIColor clearColor];
+    nickLabel.font = [UIFont systemFontOfSize:nickLabelFont];
     nickLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     nickLabel.tag = NICK_TAG;
     [cell.contentView addSubview:nickLabel];
     [nickLabel release];    
     
     UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
-    statusLabel.font = [UIFont systemFontOfSize:13];
+    statusLabel.font = [UIFont systemFontOfSize:statusLabelFont];
     statusLabel.backgroundColor = [UIColor clearColor];
-    statusLabel.text = NSLS(@"已经是好友");
+    statusLabel.text = NSLS(@"kAlreadyBeFriend");
     statusLabel.tag = STATUS_TAG;
     [cell.contentView addSubview:statusLabel];
     [statusLabel release];
 
     UIButton *followButton = [[UIButton alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
     [followButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
-    [followButton.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    [followButton.titleLabel setFont:[UIFont systemFontOfSize:statusLabelFont]];
     [followButton.titleLabel setTextColor:[UIColor blackColor]];
-    [followButton setTitle:NSLS(@"加为好友") forState:UIControlStateNormal];
+    [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
     followButton.tag = FOLLOW_TAG;
     [cell.contentView addSubview:followButton];
     [followButton release];
@@ -189,11 +194,12 @@
     
     if ([inputTextField.text length] == 0) {
         resultLabel.hidden = NO;
-        [resultLabel setText:@"没有找到此用户"];
+        dataTableView.hidden = YES;
+        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
     }else {
         resultLabel.hidden = YES;
-        self.dataList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
         dataTableView.hidden = NO;
+        self.dataList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
         [dataTableView reloadData];
     }
 }

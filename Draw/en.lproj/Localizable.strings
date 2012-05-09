@@ -295,3 +295,13 @@
 "kSound" = "Sound";
 "kON" = " ON";
 "kOFF" = "OFF ";
+
+"kMyFriends" = "My Friends";
+"kFollow" = "Follow";
+"kFans" = "Fans";
+"kEdit" = "Edit";
+"kAddFriend" = "Add Friend";
+"kSearch" = "Search";
+"kAddAsFriend" = "Add as friend";
+"kAlreadyBeFriend" = "Friend";
+"kDidNottFindThisUser" = "No matching users";

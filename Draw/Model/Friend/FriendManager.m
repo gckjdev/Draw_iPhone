@@ -11,9 +11,14 @@
 #import "CoreDataUtil.h"
 #import "LogUtil.h"
 
+enum type {
+    FOLLOW = 0,
+    FAN = 1
+};
+
 enum deleteFlag {
-    notDeleted = 0,
-    isDeleted = 1
+    NOT_DELETED = 0,
+    IS_DELETED = 1
 };
 
 @implementation FriendManager
@@ -57,10 +62,40 @@ static FriendManager *_defaultFriendManager = nil;
     [newFriend setOnlineStatus:onlineStatus];
     [newFriend setCreateDate:[NSDate date]];
     [newFriend setLastModifiedDate:[NSData data]];
-    [newFriend setDeleteFlag:[NSNumber numberWithInt:notDeleted]];
+    [newFriend setDeleteFlag:[NSNumber numberWithInt:NOT_DELETED]];
     
     PPDebug(@"<createFriendWithUserId> %@", [newFriend description]);
     return [dataManager save];
+}
+
+- (BOOL)updateFriendWithUserId:(NSString *)friendUserId 
+                          type:(NSNumber *)type 
+                        newFriend:(Friend *)newFriend
+{
+    Friend *updateFriend = nil;
+    if (type.intValue == FOLLOW) {
+        updateFriend = [self findFollowFriendByUserId:friendUserId];
+    }else if (type.intValue == FAN){
+        updateFriend = [self findFanFriendByUserId:friendUserId];
+    }
+    
+    if (updateFriend == nil) {
+        return NO;
+    }
+    
+    updateFriend.nickName = newFriend.nickName;
+    updateFriend.avatar = newFriend.avatar;
+    updateFriend.gender = newFriend.gender;
+    updateFriend.sinaId = newFriend.sinaId;
+    updateFriend.qqId = newFriend.qqId;
+    updateFriend.facebookId = newFriend.facebookId;
+    updateFriend.sinaNick = newFriend.sinaNick;
+    updateFriend.qqNick = newFriend.qqNick;
+    updateFriend.facebookNick = newFriend.facebookNick;
+    updateFriend.onlineStatus = newFriend.onlineStatus;
+    updateFriend.lastModifiedDate = [NSDate date];
+    
+    return  [[CoreDataManager dataManager] save];
 }
 
 - (NSArray *)findAllFanFriends
@@ -81,11 +116,27 @@ static FriendManager *_defaultFriendManager = nil;
     return (Friend*)[dataManager execute:@"findFollowByFriendUserId" forKey:@"FRIEND_USER_ID" value:friendUserId];
 }
 
+- (BOOL)isFollowFriend:(NSString *)friendUserId
+{
+    return ([self findFollowFriendByUserId:friendUserId] != nil);
+}
+
 - (BOOL)deleteFollowFriend:(NSString *)friendUserId
 {
     Friend *friend = [self findFollowFriendByUserId:friendUserId];
-    [friend setDeleteFlag:[NSNumber numberWithInt:isDeleted]];
+    [friend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]];
     return [[CoreDataManager defaultManager] save];
+}
+
+- (Friend *)findFanFriendByUserId:(NSString *)friendUserId
+{
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    return (Friend*)[dataManager execute:@"findFanByFriendUserId" forKey:@"FRIEND_USER_ID" value:friendUserId];
+}
+
+- (BOOL)isFanFriend:(NSString *)friendUserId
+{
+    return ([self findFanFriendByUserId:friendUserId] != nil);
 }
 
 @end

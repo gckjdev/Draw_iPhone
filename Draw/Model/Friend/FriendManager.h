@@ -27,12 +27,18 @@
                           type:(NSNumber *)type
                   onlineStatus:(NSNumber *)onlineStatus;
 
-- (NSArray *)findAllFanFriends;
+- (BOOL)updateFriendWithUserId:(NSString *)friendUserId 
+                          type:(NSNumber *)type 
+                     newFriend:(Friend *)newFriend;
 
+- (NSArray *)findAllFanFriends;
 - (NSArray *)findAllFollowFriends;
 
 - (Friend *)findFollowFriendByUserId:(NSString *)friendUserId;
-
+- (BOOL)isFollowFriend:(NSString *)friendUserId;
 - (BOOL)deleteFollowFriend:(NSString *)friendUserId;
+
+- (Friend *)findFanFriendByUserId:(NSString *)friendUserId;
+- (BOOL)isFanFriend:(NSString *)friendUserId;
 
 @end

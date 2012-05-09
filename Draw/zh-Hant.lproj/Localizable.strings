@@ -308,3 +308,13 @@
 "kSound" = "音效";
 "kON" = " 開";
 "kOFF" = "關 ";
+
+"kMyFriends" = "我的好友";
+"kFollow" = "關注";
+"kFans" = "粉絲";
+"kEdit" = "編輯";
+"kAddFriend" = "添加好友";
+"kSearch" = "搜索";
+"kAddAsFriend" = "加為好友";
+"kAlreadyBeFriend" = "已經是好友";
+"kDidNottFindThisUser" = "沒有找到此用戶";
