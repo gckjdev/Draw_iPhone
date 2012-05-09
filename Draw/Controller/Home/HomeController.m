@@ -166,7 +166,8 @@
         [[DrawGameService defaultService] joinGame:userId
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
-                                            gender:[_userManager isUserMale]];    
+                                            gender:[_userManager isUserMale]
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
     }
     else{
         
@@ -271,23 +272,31 @@
 {
     [self hideActivity];
     [self showActivityWithText:NSLS(@"kJoiningGame")];
+    
+    
+    NSString* userId = [_userManager userId];
+    NSString* nickName = [_userManager userId];
+    
+    if (userId == nil){
+        userId = [NSString GetUUID];
+    }
+    
+    if (nickName == nil){
+        nickName = NSLS(@"guest");
+    }
+
+    
     if (_isTryJoinGame){
-        [[DrawGameService defaultService] joinGame:[_userManager userId]
-                                          nickName:[_userManager nickName]
+        [[DrawGameService defaultService] joinGame:userId
+                                          nickName:nickName
                                             avatar:[_userManager avatarURL]
-                                            gender:[_userManager isUserMale]];    
+                                            gender:[_userManager isUserMale]
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
     }
     
     _isTryJoinGame = NO;
     
 }
-
-#define BACKUP_CN_SERVER   @"58.215.190.75"
-#define BACKUP_CN_PORT     9000
-
-#define BACKUP_EN_SERVER   @"106.187.89.232"
-#define BACKUP_EN_PORT     9000
-
 
 - (void)didServerListFetched:(int)result
 {
@@ -316,10 +325,10 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.15"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
 }

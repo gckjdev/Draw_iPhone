@@ -8,6 +8,8 @@
 
 #import "ConfigManager.h"
 
+#define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
+
 @implementation ConfigManager
 
 + (int)getGuessRewardNormal
@@ -40,5 +42,15 @@
     return [MobClickUtils getIntValueByKey:@"CHINESE_SERVER_PORT" defaultValue:9000];
 }
 
++ (int)guessDifficultLevel
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
+}
+
++ (void)setGuessDifficultLevel:(int)level
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:level] forKey:KEY_GUESS_DIFF_LEVEL];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 @end

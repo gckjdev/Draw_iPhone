@@ -19,4 +19,7 @@
 + (int)defaultEnglishPort;
 + (int)defaultChinesePort;
 
++ (int)guessDifficultLevel;
++ (void)setGuessDifficultLevel:(int)level;
+
 @end
