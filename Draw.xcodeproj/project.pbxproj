@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3092467155ABEAF00235A55 /* MyFriendsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */; };
+		A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
+		A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */; };
 		A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A316C43A15513B1E00AD44E9 /* Default-Portrait.png */; };
 		A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		A329332215591D3300621789 /* light_yellow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A329332115591D3300621789 /* light_yellow_bg@2x.png */; };
@@ -20,6 +23,7 @@
 		A329333A1559304500621789 /* foucsme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933361559304500621789 /* foucsme@2x.png */; };
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
+		A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
 		A3FAE0DE15536EF0008B5827 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */; };
@@ -618,6 +622,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyFriendsController~ipad.xib"; sourceTree = "<group>"; };
+		A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchUserController~ipad.xib"; sourceTree = "<group>"; };
+		A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowUserController~ipad.xib"; sourceTree = "<group>"; };
 		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A329332115591D3300621789 /* light_yellow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_yellow_bg@2x.png"; sourceTree = "<group>"; };
@@ -634,6 +641,7 @@
 		A32933361559304500621789 /* foucsme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foucsme@2x.png"; sourceTree = "<group>"; };
 		A32933371559304500621789 /* myfoucs_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs_selected@2x.png"; sourceTree = "<group>"; };
 		A32933381559304500621789 /* myfoucs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs@2x.png"; sourceTree = "<group>"; };
+		A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_button@2x.png"; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDialog~ipad.xib"; sourceTree = "<group>"; };
@@ -3102,6 +3110,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */,
 				A454CBBD155A17F500896761 /* group_message@2x.png */,
 				A454CBBE155A17F500896761 /* message@2x.png */,
 				A32933351559304500621789 /* foucsme_selected@2x.png */,
@@ -3653,12 +3662,15 @@
 				A329332615591D4D00621789 /* MyFriendsController.h */,
 				A329332715591D4D00621789 /* MyFriendsController.m */,
 				A329332815591D4D00621789 /* MyFriendsController.xib */,
+				A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */,
 				A329332915591D4D00621789 /* SearchUserController.h */,
 				A329332A15591D4D00621789 /* SearchUserController.m */,
 				A329332B15591D4D00621789 /* SearchUserController.xib */,
+				A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */,
 				A329332C15591D4D00621789 /* ShowUserController.h */,
 				A329332D15591D4D00621789 /* ShowUserController.m */,
 				A329332E15591D4D00621789 /* ShowUserController.xib */,
+				A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */,
 			);
 			path = FriendManage;
 			sourceTree = "<group>";
@@ -4112,6 +4124,10 @@
 				A454CBBF155A17F500896761 /* group_message@2x.png in Resources */,
 				A454CBC0155A17F500896761 /* message@2x.png in Resources */,
 				A454CBC5155A181500896761 /* MessageCell.xib in Resources */,
+				A3092467155ABEAF00235A55 /* MyFriendsController~ipad.xib in Resources */,
+				A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */,
+				A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */,
+				A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
