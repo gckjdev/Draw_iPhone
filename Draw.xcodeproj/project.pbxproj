@@ -47,6 +47,7 @@
 		A454CBC0155A17F500896761 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CBBE155A17F500896761 /* message@2x.png */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
+		A454CBCC155A19D700896761 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBCB155A19D700896761 /* ExpressionManager.m */; };
 		C23163A315577B8E00AC132B /* clickWord.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A015577B8E00AC132B /* clickWord.wav */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
@@ -662,6 +663,8 @@
 		A454CBC1155A181500896761 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		A454CBC2155A181500896761 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		A454CBC3155A181500896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A454CBCA155A19D700896761 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
+		A454CBCB155A19D700896761 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		C23163A015577B8E00AC132B /* clickWord.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickWord.wav; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
@@ -1573,6 +1576,15 @@
 				A454CB6E1558F5CE00896761 /* ChatController.xib */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		A454CBC9155A19D700896761 /* Expression */ = {
+			isa = PBXGroup;
+			children = (
+				A454CBCA155A19D700896761 /* ExpressionManager.h */,
+				A454CBCB155A19D700896761 /* ExpressionManager.m */,
+			);
+			path = Expression;
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -3745,6 +3757,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A454CBC9155A19D700896761 /* Expression */,
 				CA9DB929154E75070031DBBD /* Friend */,
 				CAC13243154C28B9000A8C8F /* Config */,
 				CA51BD701525DEBF00C77E50 /* Reward */,
@@ -4440,6 +4453,7 @@
 				A329333115591D4D00621789 /* SearchUserController.m in Sources */,
 				A329333315591D4D00621789 /* ShowUserController.m in Sources */,
 				A454CBC4155A181500896761 /* MessageCell.m in Sources */,
+				A454CBCC155A19D700896761 /* ExpressionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

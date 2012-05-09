@@ -8,6 +8,7 @@
 
 #import "ChatController.h"
 #import "MessageCell.h"
+#import "ExpressionManager.h"
 #import "PPDebug.h"
 
 #define WIDTH_EXPRESSION_VIEW 46.5
@@ -44,7 +45,17 @@
     // Do any additional setup after loading the view from its nib.
     [dataTableView setBackgroundColor:[UIColor blackColor]];
     
-    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*5, HEIGHT_EXPRESSION_VIEW)];
+    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
+    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*[expressions count], HEIGHT_EXPRESSION_VIEW)];
+    int i = 0;
+    for (NSString *key in expressions) {
+        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i++, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
+        [imageView setCenter:CGPointMake(imageView.center.x, expressionScrollView.center.y)];
+        [imageView setImage:image];
+        [expressionScrollView addSubview:imageView];
+        [imageView release];
+    }
 }
 
 - (void)viewDidUnload
