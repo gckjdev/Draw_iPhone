@@ -10,8 +10,14 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "SearchUserController.h"
+#import "DeviceDetection.h"
+#import "FriendService.h"
+#import "LogUtil.h"
 
 @interface MyFriendsController ()
+
+- (void)createCellContent:(UITableViewCell *)cell;
+- (void)loadMyFriends;
 
 @end
 
@@ -72,12 +78,30 @@
     self.myFollowList = [NSArray arrayWithObjects:@"jack", @"jack", @"jack", @"jack",@"jack", @"jack", @"jack", @"jack", @"jack",@"jack", @"jack",nil];
     self.myFanList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
     
+    
+    
     [myFollowButton setTitle:[NSString stringWithFormat:@"%@(%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
     [myFanButton setTitle:[NSString stringWithFormat:@"%@(%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
     
     
     self.dataList = _myFollowList;
     dataTableView.separatorColor = [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0];
+    
+    [self loadMyFriends];
+}
+
+- (void)loadMyFriends
+{
+    [[FriendService defaultService] findFriendsByType:1 viewController:self];
+    //[[FriendService defaultService] followUser:@"4fa258c98de2d017ce06711b"];
+}
+
+- (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
+{
+    PPDebug(@"didfindFriendsByType");
+    if (type == 1) {
+        
+    }
 }
 
 - (void)viewDidUnload
@@ -92,6 +116,56 @@
     // e.g. self.myOutlet = nil;
 }
 
+#define CELL_HEIGHT_IPHONE  55
+#define CELL_HEIGHT_IPAD    110
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([DeviceDetection isIPAD]) {
+        return CELL_HEIGHT_IPAD;
+    }else {
+        return CELL_HEIGHT_IPHONE;
+    }
+}
+
+#define AVATAR_TAG  71
+#define NICK_TAG    72
+- (void)createCellContent:(UITableViewCell *)cell
+{
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space;
+    cellHeight = CELL_HEIGHT_IPHONE;
+    avatarWidth = 37;
+    avatarHeight = 39;
+    nickWidth = 100;
+    nickHeight = 40;
+    space = 8;
+    
+    if ([DeviceDetection isIPAD]) {
+        cellHeight = CELL_HEIGHT_IPAD;
+        avatarWidth = 2 * avatarWidth;
+        avatarHeight = 2 * avatarHeight;
+        nickWidth = 2 * nickWidth;
+        nickHeight = 2* nickHeight;
+        space = 2 * space;
+    }
+    
+    UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
+    [avatarBackground setImage:[UIImage imageNamed:@"user_picbg.png"]];
+    [cell.contentView addSubview:avatarBackground];
+    [avatarBackground release];
+    
+    UIImageView *avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
+    avatarImageView.tag = AVATAR_TAG;
+    [cell.contentView addSubview:avatarImageView];
+    [avatarImageView release];
+    
+    UILabel *nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth+space, (cellHeight-nickHeight)/2, nickWidth, nickHeight)];
+    nickLabel.backgroundColor = [UIColor clearColor];
+    nickLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
+    nickLabel.tag = NICK_TAG;
+    [cell.contentView addSubview:nickLabel];
+    [nickLabel release];
+}
+
 #pragma -mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -100,26 +174,14 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [cell.textLabel setTextColor:[UIColor brownColor]];
         
-        UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (55-39)/2, 37, 39)];
-        [avatarBackground setImage:[UIImage imageNamed:@"user_picbg.png"]];
-        [cell.contentView addSubview:avatarBackground];
-        [avatarBackground release];
+        [self createCellContent:cell];
     }
     
-    UIImageView *avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (55-39)/2, 37, 36)];
-    [avatarImageView setImage:[UIImage imageNamed:@"man1.png"]];
-    [cell.contentView addSubview:avatarImageView];
-    [avatarImageView release];
-    
-    UILabel *nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(39+6, (55-40)/2, 100, 40)];
-    //nickLabel.backgroundColor = [UIColor blueColor];
-    //nickLabel.backgroundColor = [UIColor clearColor];
-    nickLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
+    UIImageView *avatarImageView = (UIImageView *)[cell.contentView viewWithTag:AVATAR_TAG];
+    UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
+    avatarImageView.image = [UIImage imageNamed:@"man1.png"];
     nickLabel.text = [dataList objectAtIndex:[indexPath row]];
-    [cell.contentView addSubview:nickLabel];
-    [nickLabel release];
     
     return cell;
 }
@@ -162,5 +224,6 @@
     [self.navigationController pushViewController:searchUser animated:YES];
     [searchUser release];
 }
+
 
 @end

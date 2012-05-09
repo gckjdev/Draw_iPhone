@@ -11,25 +11,8 @@
 #import "GameNetworkConstants.h"
 #import "UserManager.h"
 #import "PPNetworkRequest.h"
-
-//+ (CommonNetworkOutput*)followUser:(NSString*)baseURL 
-//userId:(NSString*)userId
-//targetUserIdArray:(NSArray*)targetUserIdArray;
-//
-//+ (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
-//userId:(NSString*)userId
-//targetUserIdArray:(NSArray*)targetUserIdArray;
-//
-//+ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
-//userId:(NSString*)userId
-//type:(int)type 
-//startIndex:(NSInteger)startIndex 
-//endIndex:(NSInteger)endIndex;
-//
-//+ (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
-//keyString:(NSString*)keyString 
-//startIndex:(NSInteger)startIndex 
-//endIndex:(NSInteger)endIndex;
+#import "LogUtil.h"
+#import "FriendManager.h"
 
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
@@ -47,7 +30,7 @@ FriendService* globalGetFriendService()
     return globalGetFriendService();
 }
 
-- (void)findFriendsByType:(int)type
+- (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
@@ -60,7 +43,19 @@ FriendService* globalGetFriendService()
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
-                //to do 
+                //to do
+                PPDebug(@"%@",[output description]);
+//                NSDictionary *dataDict = [[output jsonDataDict] objectForKey:@"dat"];
+//                
+//                NSString *friendUserId = [dataDict objectForKey:@"uid"];
+//                NSString *ncikName = [dataDict objectForKey:@"nn"];
+//                NSString *avatar = [dataDict objectForKey:@"av"];
+//                NSString *sinaNick = [dataDict objectForKey:@"sn"];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]){
+                NSArray *friendList = [[FriendManager defaultManager] findAllFanFriends];
+                [viewController didfindFriendsByType:type friendList:friendList result:output.resultCode];
             }
         }); 
     });
@@ -96,6 +91,11 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 //to do 
+                NSDictionary *dataDict = [[output jsonDataDict] objectForKey:@"dat"];
+                NSString *friendUserId = [dataDict objectForKey:@"uid"];
+                
+                PPDebug(@"%@",[dataDict description]);
+                PPDebug(@"%@", friendUserId);
             }
             
         }); 

@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class Friend;
+
 @interface FriendManager : NSObject
+
++ (FriendManager *)defaultManager;
 
 - (BOOL)createFriendWithUserId:(NSString *)friendUserId 
                       nickName:(NSString *)nickName 
@@ -26,6 +30,8 @@
 - (NSArray *)findAllFanFriends;
 
 - (NSArray *)findAllFollowFriends;
+
+- (Friend *)findFollowFriendByUserId:(NSString *)friendUserId;
 
 - (BOOL)deleteFollowFriend:(NSString *)friendUserId;
 

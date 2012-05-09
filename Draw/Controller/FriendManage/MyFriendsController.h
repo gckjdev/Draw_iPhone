@@ -7,8 +7,9 @@
 //
 
 #import "PPTableViewController.h"
+#import "FriendService.h"
 
-@interface MyFriendsController : PPTableViewController
+@interface MyFriendsController : PPTableViewController <FriendServiceDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;

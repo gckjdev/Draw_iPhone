@@ -636,7 +636,7 @@
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
-        NSString* targetUserIdstr;
+        NSString* targetUserIdstr = @""; 
         for (NSString* targetUserId in targetUserIdArray) {
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
@@ -670,7 +670,7 @@
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
-        NSString* targetUserIdstr;
+        NSString* targetUserIdstr = @"";
         for (NSString* targetUserId in targetUserIdArray) {
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
