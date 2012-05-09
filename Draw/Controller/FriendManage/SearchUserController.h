@@ -6,8 +6,16 @@
 //  Copyright (c) 2012年 orange. All rights reserved.
 //
 
-#import "PPViewController.h"
+#import "PPTableViewController.h"
 
-@interface SearchUserController : PPViewController
+@interface SearchUserController :PPTableViewController 
+@property (retain, nonatomic) IBOutlet UIButton *searchButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *resultLabel;
+@property (retain, nonatomic) IBOutlet UITextField *inputTextField;
+
+- (IBAction)clickBack:(id)sender;
+- (IBAction)clickSearch:(id)sender;
+- (IBAction)backgroundTap:(id)sender;
 
 @end

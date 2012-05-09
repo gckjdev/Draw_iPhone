@@ -75,12 +75,17 @@ static FriendManager *_defaultFriendManager = nil;
     return [dataManager execute:@"findAllFollowFriends" sortBy:@"createDate" ascending:NO];
 }
 
-- (BOOL)deleteFollowFriend:(NSString *)friendUserId
+- (Friend *)findFollowFriendByUserId:(NSString *)friendUserId
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    Friend *friend = (Friend*)[dataManager execute:@"findFollowByFriendUserId" forKey:@"FRIEND_USER_ID" value:friendUserId];
+    return (Friend*)[dataManager execute:@"findFollowByFriendUserId" forKey:@"FRIEND_USER_ID" value:friendUserId];
+}
+
+- (BOOL)deleteFollowFriend:(NSString *)friendUserId
+{
+    Friend *friend = [self findFollowFriendByUserId:friendUserId];
     [friend setDeleteFlag:[NSNumber numberWithInt:isDeleted]];
-    return [dataManager save];
+    return [[CoreDataManager defaultManager] save];
 }
 
 @end

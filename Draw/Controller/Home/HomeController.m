@@ -29,6 +29,7 @@
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
 #import "MyFriendsController.h"
+#import "ChatController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -216,20 +217,25 @@
 
 - (IBAction)clickCheckIn:(id)sender
 {
-    int coins = [[AccountService defaultService] checkIn];
-    NSString* message = nil;
-    if (coins > 0){        
-        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-    }
-    else{
-        message = NSLS(@"kCheckInAlreadyToday");
-    }
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-                                                       message:message
-                                                         style:CommonDialogStyleSingleButton 
-                                                     deelegate:self];    
-    
-    [dialog showInView:self.view];
+    ChatController *controller = [[ChatController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+
+//    
+//    int coins = [[AccountService defaultService] checkIn];
+//    NSString* message = nil;
+//    if (coins > 0){        
+//        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+//    }
+//    else{
+//        message = NSLS(@"kCheckInAlreadyToday");
+//    }
+//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+//                                                       message:message
+//                                                         style:CommonDialogStyleSingleButton 
+//                                                     deelegate:self];    
+//    
+//    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender
