@@ -28,6 +28,7 @@
 #import "StringUtil.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
+#import "MyFriendsController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -343,4 +344,12 @@
     [_feedbackLabel release];
     [super dealloc];
 }
+
+- (IBAction)clickFriend:(id)sender
+{
+    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
+    [self.navigationController pushViewController:myFriends animated:YES];
+    [myFriends release];
+}
+
 @end

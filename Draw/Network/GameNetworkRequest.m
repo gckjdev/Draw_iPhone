@@ -643,7 +643,8 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr]; 
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     
@@ -676,7 +677,8 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];        
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     

@@ -48,7 +48,6 @@
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
 - (NSString *)realValueForButton:(UIButton *)button;
 - (void)initShowView;
-- (void)initWordButtons;
 - (void)initBomb;
 
 - (void)initTargetViews;

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonService.h"
 
-@interface FriendService : NSObject
+@interface FriendService : CommonService
 + (FriendService*)defaultService;
 
 - (void)findFriendsByType:(int)type;

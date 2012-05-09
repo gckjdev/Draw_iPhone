@@ -7,12 +7,18 @@
 //
 
 #import "MyFriendsController.h"
+#import "ShareImageManager.h"
+#import "UIImageUtil.h"
 
 @interface MyFriendsController ()
 
 @end
 
 @implementation MyFriendsController
+@synthesize titleLabel;
+@synthesize editButton;
+@synthesize myFollowButton;
+@synthesize myFanButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,19 +32,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [titleLabel setText:NSLS(@"我的好友")];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [editButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    
+    [myFollowButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
+    [myFollowButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+    [myFanButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [myFanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    
+    myFollowButton.selected = YES;
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
+    [self setEditButton:nil];
+    [self setMyFollowButton:nil];
+    [self setMyFanButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)dealloc {
+    [titleLabel release];
+    [editButton release];
+    [myFollowButton release];
+    [myFanButton release];
+    [super dealloc];
+}
 @end
