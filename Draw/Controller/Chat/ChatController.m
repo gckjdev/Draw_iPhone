@@ -11,9 +11,10 @@
 #import "ExpressionManager.h"
 #import "PPDebug.h"
 
-#define WIDTH_EXPRESSION_VIEW 46.5
-#define HEIGHT_EXPRESSION_VIEW 46.5
-#define DISTANCE_BETWEEN_EXPRESSION_VIEW 10
+#define WIDTH_EXPRESSION_VIEW 45
+#define HEIGHT_EXPRESSION_VIEW 45
+#define DISTANCE_BETWEEN_EXPRESSION_VIEW 12
+#define TAG_EXPRESSION_BUTTON 210
 
 @interface ChatController ()
 
@@ -50,11 +51,13 @@
     int i = 0;
     for (NSString *key in expressions) {
         UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i++, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
-        [imageView setCenter:CGPointMake(imageView.center.x, expressionScrollView.center.y)];
-        [imageView setImage:image];
-        [expressionScrollView addSubview:imageView];
-        [imageView release];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i, /*expressionScrollView.frame.size.height*/0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
+        button.tag = TAG_EXPRESSION_BUTTON+i++;
+        [button setImage:image forState:UIControlStateNormal];
+        [button setTitle:key forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
+        [expressionScrollView addSubview:button];
+        [button release];
     }
 }
 
@@ -134,6 +137,13 @@
 }
 
 - (IBAction)clickClose:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickExpression:(id)sender
+{
+    NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
+    PPDebug(@"key = %@", key);
     [self.navigationController popViewControllerAnimated:YES];
 }
 

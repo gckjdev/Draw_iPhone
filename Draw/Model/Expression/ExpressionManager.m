@@ -7,6 +7,7 @@
 //
 
 #import "ExpressionManager.h"
+#import "PPDebug.h"
 
 #define KEY_SMILE @"[smile]"
 #define VALUE_SMILE @"face_smile.png"
@@ -66,6 +67,7 @@ static ExpressionManager *_instance = nil;
 - (UIImage *)expressionForKey:(NSString*)key
 {
     NSString *value = [_expressionDictionary valueForKey:key];
+    PPDebug(@"value = %@", value);
     UIImage *image = [UIImage imageNamed:value];
     return image;
 }
