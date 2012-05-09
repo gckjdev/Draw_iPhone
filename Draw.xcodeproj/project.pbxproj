@@ -32,6 +32,11 @@
 		A454CB8A1559099F00896761 /* face_proud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB851559099F00896761 /* face_proud@2x.png */; };
 		A454CB8B1559099F00896761 /* face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB861559099F00896761 /* face_smile@2x.png */; };
 		A454CB8C1559099F00896761 /* face_wry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB871559099F00896761 /* face_wry@2x.png */; };
+		A454CB951559248C00896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB931559248A00896761 /* MessageCell.m */; };
+		A454CB961559248C00896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB941559248B00896761 /* MessageCell.xib */; };
+		A454CB99155A021500896761 /* group_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB97155A020A00896761 /* group_message@2x.png */; };
+		A454CB9A155A021500896761 /* light_yellow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB98155A020C00896761 /* light_yellow_bg@2x.png */; };
+		A454CB9C155A03F200896761 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB9B155A03F100896761 /* message@2x.png */; };
 		C23163A315577B8E00AC132B /* clickWord.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A015577B8E00AC132B /* clickWord.wav */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
@@ -628,6 +633,12 @@
 		A454CB851559099F00896761 /* face_proud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_proud@2x.png"; sourceTree = "<group>"; };
 		A454CB861559099F00896761 /* face_smile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_smile@2x.png"; sourceTree = "<group>"; };
 		A454CB871559099F00896761 /* face_wry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_wry@2x.png"; sourceTree = "<group>"; };
+		A454CB921559248A00896761 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		A454CB931559248A00896761 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		A454CB941559248B00896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A454CB97155A020A00896761 /* group_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_message@2x.png"; sourceTree = "<group>"; };
+		A454CB98155A020C00896761 /* light_yellow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_yellow_bg@2x.png"; sourceTree = "<group>"; };
+		A454CB9B155A03F100896761 /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		C23163A015577B8E00AC132B /* clickWord.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickWord.wav; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
@@ -1531,6 +1542,9 @@
 		A454CB6B1558F57E00896761 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				A454CB921559248A00896761 /* MessageCell.h */,
+				A454CB931559248A00896761 /* MessageCell.m */,
+				A454CB941559248B00896761 /* MessageCell.xib */,
 				A454CB6C1558F5CE00896761 /* ChatController.h */,
 				A454CB6D1558F5CE00896761 /* ChatController.m */,
 				A454CB6E1558F5CE00896761 /* ChatController.xib */,
@@ -3053,6 +3067,9 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A454CB9B155A03F100896761 /* message@2x.png */,
+				A454CB97155A020A00896761 /* group_message@2x.png */,
+				A454CB98155A020C00896761 /* light_yellow_bg@2x.png */,
 				CA6F0580153C149A00B1AE11 /* color_mask@2x.png */,
 				C246AF2F15367F5500983C44 /* pic_template */,
 				C2FA6E6A1535262A00EEB530 /* all@2x.png */,
@@ -4035,6 +4052,10 @@
 				A454CB8A1559099F00896761 /* face_proud@2x.png in Resources */,
 				A454CB8B1559099F00896761 /* face_smile@2x.png in Resources */,
 				A454CB8C1559099F00896761 /* face_wry@2x.png in Resources */,
+				A454CB961559248C00896761 /* MessageCell.xib in Resources */,
+				A454CB99155A021500896761 /* group_message@2x.png in Resources */,
+				A454CB9A155A021500896761 /* light_yellow_bg@2x.png in Resources */,
+				A454CB9C155A03F200896761 /* message@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4372,6 +4393,7 @@
 				CAA362451558C3400081D3EB /* FriendManager.m in Sources */,
 				CAA362481558C3780081D3EB /* FriendService.m in Sources */,
 				A454CB6F1558F5CE00896761 /* ChatController.m in Sources */,
+				A454CB951559248C00896761 /* MessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

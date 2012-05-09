@@ -7,19 +7,18 @@
 //
 
 #import "PPTableViewController.h"
+#import "MessageCell.h"
 
 @class AvatarView;
 
-@interface ChatController : PPTableViewController
-@property (retain, nonatomic) IBOutlet UIView *headImageHolderView;
+@interface ChatController : PPTableViewController <MessageCellDelegate>
 
+@property (retain, nonatomic) IBOutlet UIView *headImageHolderView;
 @property (retain, nonatomic) IBOutlet AvatarView *headView;
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *microBlogImageView;
 @property (retain, nonatomic) IBOutlet UILabel *sexLabel;
 @property (retain, nonatomic) IBOutlet UILabel *cityLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *microBlogImageView;
-
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionScrollView;
-@property (retain, nonatomic) IBOutlet UITableView *messageTableView;
 
 @end

@@ -12,10 +12,10 @@
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 
-#define CELL_HEIHT_IPHONE 123.0
-#define CELL_HEIHT_IPAD ((CELL_HEIHT_IPHONE)*2.0)
+#define CELL_HEIGHT_IPHONE 123.0
+#define CELL_HEIGHT_IPAD ((CELL_HEIGHT_IPHONE)*2.0)
 
-#define CELL_HEIHT ([DeviceDetection isIPAD] ? (CELL_HEIHT_IPAD) : (CELL_HEIHT_IPHONE))
+#define CELL_HEIGHT ([DeviceDetection isIPAD] ? (CELL_HEIGHT_IPAD) : (CELL_HEIGHT_IPHONE))
 
 @implementation ColorShopCell
 @synthesize coinImageView;
@@ -44,7 +44,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return CELL_HEIHT;
+    return CELL_HEIGHT;
 }
 
 - (void)updatePrice:(NSInteger)price
