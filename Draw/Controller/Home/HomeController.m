@@ -28,6 +28,7 @@
 #import "StringUtil.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
+#import "MyFriendsController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -323,10 +324,10 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.10"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.15"];
+    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
 }
@@ -357,4 +358,12 @@
     [_feedbackLabel release];
     [super dealloc];
 }
+
+- (IBAction)clickFriend:(id)sender
+{
+    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
+    [self.navigationController pushViewController:myFriends animated:YES];
+    [myFriends release];
+}
+
 @end

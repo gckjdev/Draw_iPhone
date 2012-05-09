@@ -241,6 +241,24 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"color_mask.png"];    
 }
 
+- (UIImage *)myFoucsImage
+{
+    return [UIImage strectchableImageName:@"myfoucs.png"];
+}
 
+- (UIImage *)myFoucsSelectedImage
+{
+     return [UIImage strectchableImageName:@"myfoucs_selected.png"];
+}
+
+- (UIImage *)foucsMeImage
+{
+    return [UIImage strectchableImageName:@"foucsme.png"];
+}
+
+- (UIImage *)foucsMeSelectedImage
+{
+    return [UIImage strectchableImageName:@"foucsme_selected.png"];
+}
 
 @end

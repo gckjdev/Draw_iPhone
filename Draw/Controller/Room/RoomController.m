@@ -27,6 +27,8 @@
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DrawConstants.h"
+#import "ChatController.h"
+
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
 @interface RoomController ()
@@ -633,8 +635,17 @@
         }else{
             [self popupMessage:NSLS(@"kClickTooFast") title:nil];
         }
-
     }
+}
+
+- (IBAction)clickGroupChat:(id)sender {
+    
+}
+
+- (IBAction)clickPrivateChat:(id)sender {
+    ChatController *controller = [[ChatController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)clickMenu:(id)sender

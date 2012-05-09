@@ -242,6 +242,7 @@
 {
     [self.popupButton setBackgroundImage:[shareImageManager popupImage] 
                                 forState:UIControlStateNormal];
+    self.popupButton.userInteractionEnabled = NO;
     [self.view bringSubviewToFront:self.popupButton];
 }
 - (void)initAvatars
