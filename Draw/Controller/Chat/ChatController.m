@@ -7,6 +7,13 @@
 //
 
 #import "ChatController.h"
+#import "MessageCell.h"
+#import "ExpressionManager.h"
+#import "PPDebug.h"
+
+#define WIDTH_EXPRESSION_VIEW 46.5
+#define HEIGHT_EXPRESSION_VIEW 46.5
+#define DISTANCE_BETWEEN_EXPRESSION_VIEW 10
 
 @interface ChatController ()
 
@@ -16,11 +23,10 @@
 @synthesize headImageHolderView;
 @synthesize headView;
 @synthesize nameLabel;
+@synthesize microBlogImageView;
 @synthesize sexLabel;
 @synthesize cityLabel;
-@synthesize microBlogImageView;
 @synthesize expressionScrollView;
-@synthesize messageTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,8 +39,23 @@
 
 - (void)viewDidLoad
 {
+    self.dataList = [NSArray arrayWithObjects:@"a", @"b",  @"c",  @"d",  @"e",  @"f",  @"g",  @"h",  @"i",  @"j", nil];
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    [dataTableView setBackgroundColor:[UIColor blackColor]];
+    
+    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
+    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*[expressions count], HEIGHT_EXPRESSION_VIEW)];
+    int i = 0;
+    for (NSString *key in expressions) {
+        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i++, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
+        [imageView setCenter:CGPointMake(imageView.center.x, expressionScrollView.center.y)];
+        [imageView setImage:image];
+        [expressionScrollView addSubview:imageView];
+        [imageView release];
+    }
 }
 
 - (void)viewDidUnload
@@ -44,7 +65,6 @@
     [self setSexLabel:nil];
     [self setCityLabel:nil];
     [self setExpressionScrollView:nil];
-    [self setMessageTableView:nil];
     [self setHeadImageHolderView:nil];
     [self setMicroBlogImageView:nil];
     [super viewDidUnload];
@@ -58,12 +78,70 @@
     [sexLabel release];
     [cityLabel release];
     [expressionScrollView release];
-    [messageTableView release];
     [headImageHolderView release];
     [microBlogImageView release];
     [super dealloc];
 }
 
+
+#pragma mark - Table view delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MessageCell getCellHeight];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return ([dataList count]/3+1);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *indentifier = [MessageCell getCellIdentifier];
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
+    if (cell == nil) {
+        cell = [MessageCell createCell:self];
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        cell.messageCellDelegate = self;
+    }
+    cell.indexPath = indexPath;
+    NSInteger index = indexPath.row;
+    
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for (int i = index * 3; i < (index * 3 + 3) && i < [dataList count]; ++ i) {
+        NSString *message = [self.dataList objectAtIndex:i];
+        [messages addObject:message];
+        [cell setCellData:messages];
+    }
+    [messages release];
+
+    return cell;
+}
+
+// Called after the user changes the selection.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+
+#pragma mark - Button actions.
 - (IBAction)clickPayAttentionButton:(id)sender {
 }
+
+- (IBAction)clickClose:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - MessageCell delegate.
+- (void)didSelectMessage:(NSString*)message
+{
+    PPDebug(@"message = %@", message);
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

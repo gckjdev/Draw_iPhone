@@ -287,8 +287,8 @@
     UIButton *bt = (UIButton *)c;
     NSString *title = [self realValueForButton:bt];
     moveButton.hidden = NO;
-    [self setButton:bt title:nil enabled:NO];
     [self setButton:moveButton title:title enabled:YES];
+    [self setButton:bt title:nil enabled:NO];
     moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
     
 }
@@ -709,6 +709,7 @@
             if ([temp length] == [result length] / 2) {
                 leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = YES;
                 [scrollView setContentSize:scrollView.bounds.size];
+                result = temp;
             }
         }
         [self updateCandidateViewsWithText:result];
