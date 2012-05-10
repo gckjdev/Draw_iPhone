@@ -313,6 +313,8 @@
 #define PARA_TARGETUSERID   @"tid"
 #define PARA_FRIENDSTYPE    @"ft"
 #define PARA_SEARCHSTRING   @"ss"
+#define PARA_START_INDEX    @"si"
+#define PARA_END_INDEX      @"ei"
 
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1

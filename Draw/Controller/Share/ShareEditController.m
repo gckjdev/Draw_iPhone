@@ -34,6 +34,7 @@
 @synthesize patternsGallery = _patternsGallery;
 @synthesize patternsArray = _patternsArray;
 @synthesize myImageView = _myImageView;
+@synthesize paperBackground = _paperBackground;
 @synthesize infuseImageView = _infuseImageView;
 @synthesize inputBackground = _inputBackground;
 @synthesize shareButton = _shareButton;
@@ -59,6 +60,7 @@
     [_shareTextField release];
     [_myImageBackground release];
     [_patternBar release];
+    [_paperBackground release];
     [super dealloc];
 }
 
@@ -302,7 +304,8 @@ enum {
     if ([self.imageFilePath hasSuffix:@"gif"]){                              
         GifView* view = [[GifView alloc] initWithFrame:INFUSE_VEIW_FRAME
                                                 filePath:self.imageFilePath
-                                        playTimeInterval:0.3];    
+                                        playTimeInterval:0.3]; 
+        [self.paperBackground setHidden:NO];
         [self.view addSubview:view];
         [view release];
         //[self putUpInputDialog];
@@ -343,6 +346,7 @@ enum {
     [self setShareTextField:nil];
     [self setMyImageBackground:nil];
     [self setPatternBar:nil];
+    [self setPaperBackground:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
