@@ -272,9 +272,6 @@ enum{
             [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
         }
     }
-    
-    
-    
     return cell;
 }
 
@@ -301,8 +298,7 @@ enum{
         [actionSheet release];        
     }else if (row == rowOfLevel) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kEasyLevel") otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
-        GuessLevel type = [ConfigManager guessDifficultLevel];
-        [actionSheet setDestructiveButtonIndex:type - 1];
+        [actionSheet setDestructiveButtonIndex:guessLevel - 1];
         [actionSheet showInView:self.view];
         actionSheet.tag = LEVEL_TAG;
         [actionSheet release];        
@@ -331,6 +327,7 @@ enum{
 {
     
     if (buttonIndex == [actionSheet cancelButtonIndex] || buttonIndex == [actionSheet destructiveButtonIndex]) {
+        
     }else {
         if (actionSheet.tag == LANGUAGE_TAG) {
             languageType = buttonIndex + 1;

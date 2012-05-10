@@ -215,7 +215,7 @@ WordManager *GlobalGetWordManager()
         if ([array count] == 0) {
             return nil;
         }
-        NSInteger index = rand() % [array count];
+        NSInteger index = rand() % array.count;
         Word *word = [array objectAtIndex:index];
         [wordArray addObject:word];
     }
@@ -243,6 +243,7 @@ WordManager *GlobalGetWordManager()
     [array release];
     return retString;
 }
+
 
 
 + (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word
@@ -275,11 +276,17 @@ WordManager *GlobalGetWordManager()
     }
     [dict release];
     
-    NSInteger count = MIN(candidateString.length/2, candidateString.length - text.length);
+    NSInteger count = 0;
+    NSInteger canLenth = candidateString.length;
+    if (canLenth == EN_WORD_COUNT_PER_PAGE) {
+        count = MIN(canLenth / 2,canLenth - [[word text] length]);
+    }else{
+        count = canLenth - 12;
+    }
     NSMutableString *s = [NSMutableString stringWithString:candidateString];
 
     NSInteger index = rand() % s.length;
-    while (count) {
+    while (count > 0) {
         unichar ch = [s characterAtIndex:index];
         if (ch != ' ' && canDeleteIndex[index]) {
             count --;

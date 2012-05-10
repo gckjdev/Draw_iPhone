@@ -28,6 +28,9 @@
     BOOL _guessCorrect;
     UIButton *moveButton;
     UIButton *lastScaleTarget;
+    
+    NSInteger numberPerPage;
+    NSInteger pageCount;
 }
 @property(nonatomic, retain)Word *word;
 @property (retain, nonatomic) NSString *candidateString;

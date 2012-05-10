@@ -31,7 +31,7 @@
 #import "ItemShopController.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
-
+#import "ConfigManager.h"
 
 
 #define PAPER_VIEW_TAG 20120403
@@ -95,14 +95,13 @@
 #define TARGET_BASE_TAG 11
 #define WRITE_BUTTON_TAG_END 18
 #define CANDIDATE_BASE_TAG 21
-#define CANDIDATE_END_TAG 44
+#define CANDIDATE_END_TAG 56
 
 #define RowNumber 2
 #define CN_WORD_WIDTH (([DeviceDetection isIPAD])? 496:218) 
 #define WORD_HEIGHT (([DeviceDetection isIPAD])? 75 * 2 : 75)
 #define CN_WORD_FRAME (([DeviceDetection isIPAD])? CGRectMake(80, 845, CN_WORD_WIDTH, WORD_HEIGHT): CGRectMake(24, 385, CN_WORD_WIDTH, WORD_HEIGHT))
-#define CN_WORD_PAGE 2
-#define CN_WORD_COUNT_PER_PAGE 12
+//#define CN_WORD_PAGE 2
 
 #define EN_WORD_WIDTH (([DeviceDetection isIPAD])?  650 : 253)
 #define EN_WORD_PAGE 1
@@ -242,7 +241,7 @@
 {
     //get the word
     NSString *answer = @"";
-    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
+    NSInteger endIndex = WRITE_BUTTON_TAG_END;
     for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         NSString *text = [self realValueForButton:button];
@@ -255,7 +254,7 @@
 
 - (UIButton *)getTheFirstEmptyButton
 {
-    NSInteger endIndex = (languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
+    NSInteger endIndex = WRITE_BUTTON_TAG_END;//(languageType == ChineseType) ? (WRITE_BUTTON_TAG_END - 1) : WRITE_BUTTON_TAG_END;
     for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
         if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
@@ -374,18 +373,28 @@
 {
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
-
+    
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTag:i];
         [self initCandidateButton:button];
         [scrollView addSubview:button];
     }
+    numberPerPage = EN_WORD_COUNT_PER_PAGE;
+    pageCount = EN_WORD_PAGE;
+
     if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
-        [self resetWordButtons:CN_WORD_COUNT_PER_PAGE page:CN_WORD_PAGE];
-    }else{
-        [self resetWordButtons:EN_WORD_COUNT_PER_PAGE page:EN_WORD_PAGE];
+        GuessLevel level = [ConfigManager guessDifficultLevel];
+        if(level == NormalLevel){
+            numberPerPage = CN_WORD_COUNT_PER_PAGE;
+            pageCount = 2;        
+        }else if(level == HardLevel)
+        {
+            numberPerPage = CN_WORD_COUNT_PER_PAGE;
+            pageCount = 3;                    
+        }
     }
+    [self resetWordButtons:numberPerPage page:pageCount];
     [self initMoveButton];
 }
 
@@ -439,28 +448,20 @@
     }
     NSString *text = nil;
     if (languageType == ChineseType) {
-        text = [[WordManager defaultManager] randChinesStringWithWord:self.word count:CN_WORD_COUNT_PER_PAGE * CN_WORD_PAGE];
-        [self resetWordButtons:CN_WORD_COUNT_PER_PAGE page:CN_WORD_PAGE];
+        text = [[WordManager defaultManager] randChinesStringWithWord:
+                self.word count:numberPerPage * pageCount];
+        [self resetWordButtons:numberPerPage page:pageCount];
     }else{
-        text = [[WordManager defaultManager] randEnglishStringWithWord:self.word count:EN_WORD_COUNT_PER_PAGE];
-        [self resetWordButtons:EN_WORD_COUNT_PER_PAGE page:EN_WORD_PAGE];
+        text = [[WordManager defaultManager] randEnglishStringWithWord:
+                self.word count:numberPerPage * pageCount];        
     }
+    [self resetWordButtons:numberPerPage page:pageCount];
     [self updateCandidateViewsWithText:text];
 }
 
 
 
-- (void)setAnswerButtonsEnabled
-{
-    for (int i = TARGET_BASE_TAG; i <= WRITE_BUTTON_TAG_END; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        if ([button titleForState:UIControlStateNormal]) {
-            button.enabled = YES;
-        }
-    }
-}
-
-- (void)setGuessAndPickButtonsEnabled:(BOOL)enabled
+- (void)setWordButtonsEnabled:(BOOL)enabled
 {
     for (int i = TARGET_BASE_TAG; i <= WRITE_BUTTON_TAG_END; ++ i) {
         UIButton *button = (UIButton *)[self.view viewWithTag:i];
@@ -471,11 +472,6 @@
         UIButton *button = (UIButton *)[scrollView viewWithTag:i];
         [button setEnabled:enabled];
     }
-}
-
-- (void)setWordButtonsEnabled:(BOOL)enabled
-{
-    [self setGuessAndPickButtonsEnabled:enabled];
     [toolView setEnabled:enabled];
 }
 
@@ -486,7 +482,6 @@
     --retainCount;
     if (retainCount <= 0) {
         [self resetTimer];
-        [self setGuessAndPickButtonsEnabled:NO];
         retainCount = 0;
     }
     [self updateClockButton];
@@ -662,7 +657,7 @@
         [[AudioManager defaultManager] playSoundById:BINGO];
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
-        [self setAnswerButtonsEnabled];
+//        [self setAnswerButtonsEnabled];
     }else{
         [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
         [[AudioManager defaultManager] playSoundById:WRONG];
@@ -704,9 +699,11 @@
     }else{
         [self updateTargetViews:self.word];
         NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
-        if (languageType == ChineseType && [result length]) {
+        if (languageType == ChineseType && pageCount > 1 && [result length] != 0) {
+            NSLog(@"result = %@",result);
             NSString *temp = [WordManager removeSpaceFromString:result];
-            if ([temp length] == [result length] / 2) {
+            NSLog(@"temp = %@",temp);
+            if ([temp length] == CN_WORD_COUNT_PER_PAGE) {
                 leftPageButton.hidden = rightPageButton.hidden = pageControl.hidden = YES;
                 [scrollView setContentSize:scrollView.bounds.size];
                 result = temp;
