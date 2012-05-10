@@ -311,7 +311,6 @@
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"
-#define PARA_TARGETUSERCOUNT    @"tuc"
 #define PARA_FRIENDSTYPE    @"ft"
 #define PARA_SEARCHSTRING   @"ss"
 
