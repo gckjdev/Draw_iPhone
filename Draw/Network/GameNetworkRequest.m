@@ -629,6 +629,7 @@
 }
 
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL 
+                             appId:(NSString*)appId
                             userId:(NSString*)userId
                  targetUserIdArray:(NSArray*)targetUserIdArray
 {
@@ -641,7 +642,8 @@
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER]; 
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr]; 
         return str;
@@ -662,6 +664,7 @@
 }
 
 + (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
+                               appId:(NSString*)appId
                               userId:(NSString*)userId
                    targetUserIdArray:(NSArray*)targetUserIdArray
 {
@@ -674,7 +677,8 @@
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];
         return str;
@@ -694,7 +698,8 @@
     
 }
 
-+ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
++ (CommonNetworkOutput*)findFriends:(NSString*)baseURL
+                              appId:(NSString*)appId 
                              userId:(NSString*)userId
                                type:(int)type 
                          startIndex:(NSInteger)startIndex 
@@ -706,6 +711,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
@@ -728,6 +734,7 @@
 }
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
+                              appId:(NSString*)appId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex
@@ -737,7 +744,8 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
         str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
