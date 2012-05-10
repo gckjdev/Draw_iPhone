@@ -137,9 +137,9 @@
     [statusLabel release];
 
     UIButton *followButton = [[UIButton alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
-    [followButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
+    [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
     [followButton.titleLabel setFont:[UIFont systemFontOfSize:statusLabelFont]];
-    [followButton.titleLabel setTextColor:[UIColor blackColor]];
+    [followButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
     followButton.tag = FOLLOW_TAG;
     [cell.contentView addSubview:followButton];

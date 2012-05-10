@@ -13,6 +13,7 @@
 #import "DeviceDetection.h"
 #import "FriendService.h"
 #import "LogUtil.h"
+#import "Friend.h"
 
 @interface MyFriendsController ()
 
@@ -75,8 +76,8 @@
     
     
     //test
-    self.myFollowList = [NSArray arrayWithObjects:@"jack", @"jack", @"jack", @"jack",@"jack", @"jack", @"jack", @"jack", @"jack",@"jack", @"jack",nil];
-    self.myFanList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
+    //self.myFollowList = [NSArray arrayWithObjects:@"jack", @"jack", @"jack", @"jack",@"jack", @"jack", @"jack", @"jack", @"jack",@"jack", @"jack",nil];
+    //self.myFanList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
     
     
     
@@ -93,15 +94,24 @@
 - (void)loadMyFriends
 {
     [[FriendService defaultService] findFriendsByType:1 viewController:self];
-    //[[FriendService defaultService] followUser:@"4fa258c98de2d017ce06711b"];
+    [[FriendService defaultService] followUser:@"4faa5ea70364fb688b463589" viewController:self];
 }
 
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
     PPDebug(@"didfindFriendsByType");
+
     if (type == 1) {
-        
+        self.myFollowList = friendList;
+    }else if(type == 2)
+    {
+        self.myFanList = friendList;
     }
+}
+
+- (void)didFollowUser:(int)resultCode
+{
+    PPDebug(@"didFollowUser");
 }
 
 - (void)viewDidUnload
@@ -183,8 +193,12 @@
     
     UIImageView *avatarImageView = (UIImageView *)[cell.contentView viewWithTag:AVATAR_TAG];
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
+    
+    Friend *friend = (Friend *)[dataList objectAtIndex:[indexPath row]];
+    
+    
     avatarImageView.image = [UIImage imageNamed:@"man1.png"];
-    nickLabel.text = [dataList objectAtIndex:[indexPath row]];
+    nickLabel.text = friend.nickName;
     
     return cell;
 }

@@ -261,4 +261,9 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"foucsme_selected.png"];
 }
 
+- (UIImage *)normalButtonImage
+{
+    return [UIImage strectchableImageName:@"normal_button.png"];
+}
+
 @end

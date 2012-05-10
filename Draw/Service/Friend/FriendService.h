@@ -14,7 +14,7 @@
 
 @optional
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode;
-- (void)searchUsers:(NSArray *)userList result:(int)resultCode;
+- (void)didsearchUsers:(NSArray *)userList result:(int)resultCode;
 - (void)didFollowUser:(int)resultCode;
 - (void)didUnFollowUser:(int)resultCode;
 
@@ -24,8 +24,8 @@
 + (FriendService*)defaultService;
 
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
-- (void)searchUsersByString:(NSString*)searchString;
-- (void)followUser:(NSString*)targetUserId;
-- (void)unFollowUser:(NSString*)targetUserId;
+- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 
 @end
