@@ -293,8 +293,8 @@
 "kContactNull" = "Contact could not be empty.";
 "kFailStartGame" = "Room is playing. Please try another room.";
 "kSound" = "Sound";
-"kON" = " ON";
-"kOFF" = "OFF ";
+"kON" = "ON ";
+"kOFF" = " OFF";
 
 "kMyFriends" = "My Friends";
 "kFollow" = "Follow";

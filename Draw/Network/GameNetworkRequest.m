@@ -644,7 +644,6 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr]; 
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     
@@ -678,7 +677,6 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     
@@ -709,7 +707,9 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];        
+        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
+        str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
+        str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
         return str;
     };
     
@@ -738,7 +738,9 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];   
-        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString];        
+        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
+        str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
+        str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
         return str;
     };
     

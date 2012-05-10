@@ -182,9 +182,9 @@ enum{
             btn.frame = CGRectMake(184*2, 7*2, 70*2, 37*2);
             [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
         }
-        [btn setBackgroundImage:[UIImage imageNamed:@"all.png"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
         [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"me.png"] forState:UIControlStateSelected];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
         [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
         [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

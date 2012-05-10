@@ -18,6 +18,7 @@
 #import "DeviceDetection.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DrawAction.h"
+#import "UIImageExt.h"
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
@@ -196,6 +197,9 @@
 - (void)createImageAndSave:(ShowDrawView *)showView
 {
     UIImage *image = [showView createImage];
+    if ([DeviceDetection isIPAD]) {
+        image = [image imageByScalingAndCroppingForSize:CGSizeMake(280, 295)];
+    }
     [_gifImages addObject:image];
     
 }

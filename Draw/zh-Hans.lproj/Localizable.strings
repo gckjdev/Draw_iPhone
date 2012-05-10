@@ -307,8 +307,8 @@
 "kContactNull" = "联系方式不能为空哦。";
 "kFailStartGame" = "房间已经开始玩了，请选择另一个房间吧。";
 "kSound" = "音效";
-"kON" = " 开";
-"kOFF" = "关 ";
+"kON" = "开 ";
+"kOFF" = " 关";
 
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
