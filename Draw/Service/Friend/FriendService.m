@@ -43,14 +43,40 @@ FriendService* globalGetFriendService()
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
-                //to do
-                PPDebug(@"%@",[output description]);
-//                NSDictionary *dataDict = [[output jsonDataDict] objectForKey:@"dat"];
-//                
-//                NSString *friendUserId = [dataDict objectForKey:@"uid"];
-//                NSString *ncikName = [dataDict objectForKey:@"nn"];
-//                NSString *avatar = [dataDict objectForKey:@"av"];
-//                NSString *sinaNick = [dataDict objectForKey:@"sn"];
+                NSArray* userList = [output.jsonDataDict objectForKey:@"users"];
+                for (NSDictionary* user in userList){
+                    NSString* friendUserId = [user objectForKey:@"uid"];
+                    NSString* nickName = [user objectForKey:@"nn"];
+                    NSString* avatar = [user objectForKey:@"av"];     
+                    NSString* gender = [user objectForKey:@"ge"];
+                    NSString* sinaId = [user objectForKey:@"siid"];
+                    NSString* qqId = [user objectForKey:@"qid"];
+                    NSString* facebookId = [user objectForKey:@"fid"];
+                    NSString* sinaNick = [user objectForKey:@"sn"];
+                    NSString* qqNick = [user objectForKey:@"qn"];
+                    NSString* facebookNick = [user objectForKey:@"fn"];
+                    NSNumber* type = [user objectForKey:@"ft"];
+                    NSNumber* onlineStatus = [user objectForKey:@"ols"];
+                    NSNumber* deleteFlag = [user objectForKey:@"fl"];
+                    NSDate* lastModifiedDate = [user objectForKey:@"lsmd"];
+                    
+                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
+                                                                      type:type 
+                                                                  nickName:nickName 
+                                                                    avatar:avatar 
+                                                                    gender:gender 
+                                                                    sinaId:sinaId 
+                                                                      qqId:qqId 
+                                                                facebookId:facebookId 
+                                                                  sinaNick:sinaNick 
+                                                                    qqNick:qqNick 
+                                                              facebookNick:facebookNick 
+                                                              onlineStatus:onlineStatus 
+                                                                createDate:[NSDate date]
+                                                          lastModifiedDate:lastModifiedDate 
+                                                                deleteFlag:deleteFlag];
+                }
+
             }
             
             if ([viewController respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]){
@@ -61,7 +87,7 @@ FriendService* globalGetFriendService()
     });
 }
 
-- (void)searchUsersByString:(NSString*)searchString
+- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
@@ -72,13 +98,16 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 //to do 
+                
             }
-            
+            if ([viewController respondsToSelector:@selector(didsearchUsers:result:)]){
+                //[viewController didsearchUsers:<#(NSArray *)#> result:output.resultCode];
+            }
         }); 
     });
 }
 
-- (void)followUser:(NSString*)targetUserId
+- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
@@ -89,23 +118,56 @@ FriendService* globalGetFriendService()
                                                    targetUserIdArray:targetList];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             if (output.resultCode == ERROR_SUCCESS){
-                //to do 
-                NSDictionary *dataDict = [[output jsonDataDict] objectForKey:@"dat"];
-                NSString *friendUserId = [dataDict objectForKey:@"uid"];
-                
-                PPDebug(@"%@",[dataDict description]);
-                PPDebug(@"%@", friendUserId);
+                NSArray* userList = [output.jsonDataDict objectForKey:@"users"];
+                for (NSDictionary* user in userList){
+                    NSString* friendUserId = [user objectForKey:@"uid"];
+                    NSString* nickName = [user objectForKey:@"nn"];
+                    NSString* avatar = [user objectForKey:@"av"];     
+                    NSString* gender = [user objectForKey:@"ge"];
+                    NSString* sinaId = [user objectForKey:@"siid"];
+                    NSString* qqId = [user objectForKey:@"qid"];
+                    NSString* facebookId = [user objectForKey:@"fid"];
+                    NSString* sinaNick = [user objectForKey:@"sn"];
+                    NSString* qqNick = [user objectForKey:@"qn"];
+                    NSString* facebookNick = [user objectForKey:@"fn"];
+                    NSNumber* type = [user objectForKey:@"ft"];
+                    NSNumber* onlineStatus = [user objectForKey:@"ols"];
+                    NSNumber* deleteFlag = [user objectForKey:@"fl"];
+                    NSDate* lastModifiedDate = [user objectForKey:@"lsmd"];
+                    
+                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
+                                                                      type:type 
+                                                                  nickName:nickName 
+                                                                    avatar:avatar 
+                                                                    gender:gender 
+                                                                    sinaId:sinaId 
+                                                                      qqId:qqId 
+                                                                facebookId:facebookId 
+                                                                  sinaNick:sinaNick 
+                                                                    qqNick:qqNick 
+                                                              facebookNick:facebookNick 
+                                                              onlineStatus:onlineStatus 
+                                                                createDate:[NSDate date]
+                                                          lastModifiedDate:lastModifiedDate 
+                                                                deleteFlag:deleteFlag];
+                }
             }
             
+            if ([viewController respondsToSelector:@selector(didFollowUser:)]){
+                [viewController didFollowUser:output.resultCode];
+            }
         }); 
     });
 }
 
-- (void)unFollowUser:(NSString*)targetUserId
+- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
+    
+    [[FriendManager defaultManager] deleteFollowFriend:targetUserId];
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
@@ -115,6 +177,42 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 //to do 
+                NSArray* userList = [output.jsonDataDict objectForKey:@"users"];
+                for (NSDictionary* user in userList){
+                    NSString* friendUserId = [user objectForKey:@"uid"];
+                    NSString* nickName = [user objectForKey:@"nn"];
+                    NSString* avatar = [user objectForKey:@"av"];     
+                    NSString* gender = [user objectForKey:@"ge"];
+                    NSString* sinaId = [user objectForKey:@"siid"];
+                    NSString* qqId = [user objectForKey:@"qid"];
+                    NSString* facebookId = [user objectForKey:@"fid"];
+                    NSString* sinaNick = [user objectForKey:@"sn"];
+                    NSString* qqNick = [user objectForKey:@"qn"];
+                    NSString* facebookNick = [user objectForKey:@"fn"];
+                    NSNumber* type = [user objectForKey:@"ft"];
+                    NSNumber* onlineStatus = [user objectForKey:@"ols"];
+                    NSNumber* deleteFlag = [user objectForKey:@"fl"];
+                    NSDate* lastModifiedDate = [user objectForKey:@"lsmd"];
+                    
+                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
+                                                                      type:type 
+                                                                  nickName:nickName 
+                                                                    avatar:avatar 
+                                                                    gender:gender 
+                                                                    sinaId:sinaId 
+                                                                      qqId:qqId 
+                                                                facebookId:facebookId 
+                                                                  sinaNick:sinaNick 
+                                                                    qqNick:qqNick 
+                                                              facebookNick:facebookNick 
+                                                              onlineStatus:onlineStatus 
+                                                                createDate:[NSDate date]
+                                                          lastModifiedDate:lastModifiedDate 
+                                                                deleteFlag:deleteFlag];
+                }
+            }
+            if ([viewController respondsToSelector:@selector(didUnFollowUser:)]){
+                [viewController didUnFollowUser:output.resultCode];
             }
         }); 
     });
