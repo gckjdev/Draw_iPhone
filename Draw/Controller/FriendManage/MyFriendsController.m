@@ -13,12 +13,15 @@
 #import "DeviceDetection.h"
 #import "FriendService.h"
 #import "LogUtil.h"
+#import "FriendManager.h"
 #import "Friend.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @interface MyFriendsController ()
 
 - (void)createCellContent:(UITableViewCell *)cell;
-- (void)loadMyFriends;
+- (void)updateFriendsCount;
 
 @end
 
@@ -75,43 +78,44 @@
     [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
     
-    //test
-    //self.myFollowList = [NSArray arrayWithObjects:@"jack", @"jack", @"jack", @"jack",@"jack", @"jack", @"jack", @"jack", @"jack",@"jack", @"jack",nil];
-    //self.myFanList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
-    
-    
-    
-    [myFollowButton setTitle:[NSString stringWithFormat:@"%@(%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
-    [myFanButton setTitle:[NSString stringWithFormat:@"%@(%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
-    
-    
     self.dataList = _myFollowList;
     dataTableView.separatorColor = [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0];
     
-    [self loadMyFriends];
+    [self loadMyFollow];
+    [self loadMyFans];
 }
 
-- (void)loadMyFriends
+- (void)updateFriendsCount
 {
-    [[FriendService defaultService] findFriendsByType:1 viewController:self];
-    [[FriendService defaultService] followUser:@"4faa5ea70364fb688b463589" viewController:self];
+    NSString *followTitle = NSLS(@"kFollow");
+    NSString *fanTitle = NSLS(@"kFans") ;
+    [myFollowButton setTitle:[NSString stringWithFormat:@"%@(%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
+    [myFanButton setTitle:[NSString stringWithFormat:@"%@(%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
+}
+
+- (void)loadMyFollow
+{
+    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+}
+
+- (void)loadMyFans
+{
+    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
 }
 
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
     PPDebug(@"didfindFriendsByType");
 
-    if (type == 1) {
+    if (type == FOLLOW) {
         self.myFollowList = friendList;
-    }else if(type == 2)
+        self.dataList = _myFollowList;
+        [dataTableView reloadData];
+    }else if(type == FAN)
     {
         self.myFanList = friendList;
     }
-}
-
-- (void)didFollowUser:(int)resultCode
-{
-    PPDebug(@"didFollowUser");
+    [self updateFriendsCount];
 }
 
 - (void)viewDidUnload
@@ -165,7 +169,7 @@
     [cell.contentView addSubview:avatarBackground];
     [avatarBackground release];
     
-    UIImageView *avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
+    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
     avatarImageView.tag = AVATAR_TAG;
     [cell.contentView addSubview:avatarImageView];
     [avatarImageView release];
@@ -191,14 +195,34 @@
         [self createCellContent:cell];
     }
     
-    UIImageView *avatarImageView = (UIImageView *)[cell.contentView viewWithTag:AVATAR_TAG];
+    HJManagedImageV *avatarImageView = (HJManagedImageV *)[cell.contentView viewWithTag:AVATAR_TAG];
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
     
     Friend *friend = (Friend *)[dataList objectAtIndex:[indexPath row]];
+    //set avatar
+    if (friend.gender == @"m")
+    {
+        [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    }else{
+        [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    }
+    [avatarImageView setUrl:[NSURL URLWithString:friend.avatar]];
+    [GlobalGetImageCache() manage:avatarImageView];
     
+    //set nick
+    if (friend.nickName) {
+        nickLabel.text = friend.nickName;
+    }
+    else if (friend.sinaNick){
+        nickLabel.text = friend.sinaNick;
+    }
+    else if (friend.qqNick){
+        nickLabel.text = friend.qqNick;
+    }
+    else if (friend.facebookNick){
+        nickLabel.text = friend.facebookNick;
+    }
     
-    avatarImageView.image = [UIImage imageNamed:@"man1.png"];
-    nickLabel.text = friend.nickName;
     
     return cell;
 }

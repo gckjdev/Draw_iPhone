@@ -10,9 +10,15 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "DeviceDetection.h"
+#import "FriendService.h"
+#import "LogUtil.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
+#import "FriendManager.h"
 
 @interface SearchUserController ()
 
+- (void)clickFollowButton:(id)sender;
 - (void)createCellContent:(UITableViewCell *)cell;
 
 @end
@@ -115,7 +121,7 @@
     [cell.contentView addSubview:avatarBackground];
     [avatarBackground release];
     
-    UIImageView *avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
+    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
     avatarImageView.tag = AVATAR_TAG;
     [cell.contentView addSubview:avatarImageView];
     [avatarImageView release];
@@ -141,6 +147,7 @@
     [followButton.titleLabel setFont:[UIFont systemFontOfSize:statusLabelFont]];
     [followButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+    [followButton addTarget:self action:@selector(clickFollowButton:) forControlEvents:UIControlEventTouchUpInside];
     followButton.tag = FOLLOW_TAG;
     [cell.contentView addSubview:followButton];
     [followButton release];
@@ -158,21 +165,55 @@
         [self createCellContent:cell];
     }
     
-    UIImageView *avatarImageView = (UIImageView *)[cell.contentView viewWithTag:AVATAR_TAG];
+    HJManagedImageV *avatarImageView = (HJManagedImageV *)[cell.contentView viewWithTag:AVATAR_TAG];
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
     UILabel *statusLabel = (UILabel *)[cell.contentView viewWithTag:STATUS_TAG];
     UIButton *followButton = (UIButton *)[cell.contentView viewWithTag:FOLLOW_TAG];
     
-    //test data 
-    avatarImageView.image = [UIImage imageNamed:@"man1.png"];
-    nickLabel.text = [dataList objectAtIndex:[indexPath row]];
-    if ([indexPath row] % 2 == 0) {
-        statusLabel.hidden = YES;
-        followButton.hidden = NO;
+    
+    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
+    NSString* userId = [userDic objectForKey:@"uid"];
+    NSString* avatar = [userDic objectForKey:@"av"];
+    NSString* gender = [userDic objectForKey:@"ge"];
+    NSString* nickName = [userDic objectForKey:@"nn"];
+    NSString* sinaNick = [userDic objectForKey:@"sn"];
+    NSString* qqNick = [userDic objectForKey:@"qn"];
+    NSString* facebookNick = [userDic objectForKey:@"fn"];
+    
+    
+    //set avatar
+    if (gender == @"m")
+    {
+        [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    }else{
+        [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
-    else {
+    [avatarImageView setUrl:[NSURL URLWithString:avatar]];
+    [GlobalGetImageCache() manage:avatarImageView];
+    
+    //set nick
+    if (nickName) {
+        nickLabel.text = nickName;
+    }
+    else if (sinaNick){
+        nickLabel.text = sinaNick;
+    }
+    else if (qqNick){
+        nickLabel.text = qqNick;
+    }
+    else if (facebookNick){
+        nickLabel.text = facebookNick;
+    }
+    
+    //set button or label
+    if ([[FriendManager defaultManager] isFollowFriend:userId]) {
         statusLabel.hidden = NO;
         followButton.hidden = YES;
+    }
+    else {
+        statusLabel.hidden = YES;
+        followButton.hidden = NO; 
+        followButton.tag = [indexPath row];
     }
     
     return cell;
@@ -199,9 +240,30 @@
     }else {
         resultLabel.hidden = YES;
         dataTableView.hidden = NO;
-        self.dataList = [NSArray arrayWithObjects:@"Jenny", @"Jenny", @"Jenny", @"Jenny",nil];
-        [dataTableView reloadData];
+        
+        [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];
     }
+}
+
+- (void)clickFollowButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:button.tag];
+    NSString *userId = [userDic objectForKey:@"uid"];
+    [[FriendService defaultService] followUser:userId viewController:self
+     ];
+}
+
+- (void)didSearchUsers:(NSArray *)userList result:(int)resultCode
+{
+    PPDebug(@"<didSearchUsers>");
+    self.dataList = userList;
+    [dataTableView reloadData];
+}
+
+- (void)didFollowUser:(int)resultCode
+{
+    PPDebug(@"didFollowUser");
 }
 
 @end

@@ -744,7 +744,7 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCHUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
