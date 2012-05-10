@@ -319,3 +319,10 @@
 "kAddAsFriend" = "加为好友";
 "kAlreadyBeFriend" = "已经是好友";
 "kDidNottFindThisUser" = "没有找到此用户";
+
+
+"kLevelSettings" = "猜词难度";
+"kEasyLevel" = "业余";
+"kNormalLevel" = "专业";
+"kHardLevel" = "大师";
+"kLevelSelection" = "难度选择";

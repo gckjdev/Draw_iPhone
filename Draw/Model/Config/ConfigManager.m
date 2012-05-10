@@ -42,12 +42,16 @@
     return [MobClickUtils getIntValueByKey:@"CHINESE_SERVER_PORT" defaultValue:9000];
 }
 
-+ (int)guessDifficultLevel
++ (GuessLevel)guessDifficultLevel
 {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
+    NSInteger level = [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
+    if (level == 0) {
+        return NormalLevel;
+    }
+    return level;
 }
 
-+ (void)setGuessDifficultLevel:(int)level
++ (void)setGuessDifficultLevel:(GuessLevel)level
 {
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:level] forKey:KEY_GUESS_DIFF_LEVEL];
     [[NSUserDefaults standardUserDefaults] synchronize];

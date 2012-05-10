@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "MobClickUtils.h"
 
+typedef enum{
+    
+    EasyLevel = 1,
+    NormalLevel = 2,
+    HardLevel = 3
+    
+}GuessLevel;
+
+
 @interface ConfigManager : NSObject
 
 + (int)getGuessRewardNormal;
@@ -19,7 +28,7 @@
 + (int)defaultEnglishPort;
 + (int)defaultChinesePort;
 
-+ (int)guessDifficultLevel;
-+ (void)setGuessDifficultLevel:(int)level;
++ (GuessLevel)guessDifficultLevel;
++ (void)setGuessDifficultLevel:(GuessLevel)level;
 
 @end
