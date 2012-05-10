@@ -14,7 +14,7 @@
 
 @optional
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode;
-- (void)didsearchUsers:(NSArray *)userList result:(int)resultCode;
+- (void)didSearchUsers:(NSArray *)userList result:(int)resultCode;
 - (void)didFollowUser:(int)resultCode;
 - (void)didUnFollowUser:(int)resultCode;
 

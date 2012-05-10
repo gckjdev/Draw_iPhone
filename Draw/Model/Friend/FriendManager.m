@@ -11,15 +11,7 @@
 #import "CoreDataUtil.h"
 #import "LogUtil.h"
 
-enum type {
-    FOLLOW = 0,
-    FAN = 1
-};
 
-enum deleteFlag {
-    NOT_DELETED = 0,
-    IS_DELETED = 1
-};
 
 @interface FriendManager()
 

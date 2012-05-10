@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+enum type {
+    FOLLOW = 1,
+    FAN = 2
+};
+
+enum deleteFlag {
+    NOT_DELETED = 0,
+    IS_DELETED = 1
+};
+
 @class Friend;
 
 @interface FriendManager : NSObject
