@@ -142,4 +142,13 @@
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
+
++ (CommonNetworkOutput*)CreateRoom:(NSString*)baseURL 
+                          roomName:(NSString *)roomName  
+                          password:(NSString *)password 
+                            userId:(NSString *)userId 
+                              nick:(NSString *)nick 
+                            avatar:(NSString *)avatar 
+                            gender:(NSString *)gender;
+
 @end

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "RoomService.h"
 
-@interface FriendRoomController : PPTableViewController
+@interface FriendRoomController : PPTableViewController<RoomServiceDelegate>
 {
     
 }

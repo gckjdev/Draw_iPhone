@@ -89,6 +89,14 @@
 #define METHOD_FETCH_SHOPPING_LIST @"gpri"
 #define METHOD_GET_ACCOUNT_BALANCE @"gab"
 
+#define METHOD_FIND_ROOM_BY_USER @"fru"
+#define METHOD_INVITE_USER @"ivu"    
+#define METHOD_SEARCH_ROOM @"scr"
+#define METHOD_UPDATE_ROOM @"udr"
+#define METHOD_CREATE_ROOM @"cr"
+#define METHOD_JOIN_ROOM @"jr"
+
+
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -124,6 +132,15 @@
 #define PARA_ITEMS @"is"
 #define PARA_DEVIATION @"dv"
 
+
+#define PARA_ROOM_ID @"frid"
+#define PARA_ROOM_NAME @"rn"
+#define PARA_USERID_LIST @"uids"
+#define PARA_LAST_PLAY_DATE @"lpd"
+#define PARA_PLAY_TIMES @"pt"
+#define PAPA_ROOM_USERS @"rus"
+#define PARA_OFFSET @"os"
+#define PARA_COUNT @"ct"
 
 // request parameters
 

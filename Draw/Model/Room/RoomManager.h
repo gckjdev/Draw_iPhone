@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class Room;
 @interface RoomManager : NSObject
+{
+    NSMutableArray *_roomList;
+}
+
+@property(nonatomic, retain)NSMutableArray *roomList;
++ (RoomManager *)defaultManager;
+
+- (void)cleanData;
+- (NSArray *)getLocalRoomList;
+- (NSArray *)getMyRoomList;
+- (NSArray *)getInvitedRoomList;
+- (NSArray *)getJoinedRoomList;
+- (Room *)paserRoom:(NSDictionary *)dict;
+- (NSArray *)paserRoomList:(NSArray *)data;
 
 @end
