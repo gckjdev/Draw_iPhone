@@ -9,7 +9,8 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
-
+#import "PPDebug.h"
+#import "Room.h"
 @implementation FriendRoomController
 @synthesize editButton;
 @synthesize createButton;
@@ -80,6 +81,7 @@
 }
 
 - (IBAction)clickCreateButton:(id)sender {
+    [[RoomService defaultService] createRoom:@"甘米的房间" password:@"sysu" delegate:self];
 }
 
 - (IBAction)clickSearchButton:(id)sender {
@@ -89,5 +91,15 @@
     MyFriendsController *mfc = [[MyFriendsController alloc] init];
     [self.navigationController pushViewController:mfc animated:YES];
     [mfc release];
+}
+
+- (void)didCreateRoom:(Room*)room resultCode:(int)resultCode;
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupMessage:NSLS(@"kCreateFail") title:nil];
+    }else{
+        PPDebug(@"room = %@", [room description]);
+    }
 }
 @end
