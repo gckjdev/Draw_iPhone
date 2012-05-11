@@ -155,6 +155,9 @@
 		CA0CB75C155CB08A009C8EE6 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75B155CB08A009C8EE6 /* FriendRoomController~ipad.xib */; };
 		CA0CB75E155CB0BC009C8EE6 /* SearchRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */; };
 		CA0CB760155CB0D4009C8EE6 /* RoomCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */; };
+		CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB761155CB556009C8EE6 /* myfriends@2x.png */; };
+		CA0CB764155CB583009C8EE6 /* loading_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB763155CB583009C8EE6 /* loading_bg@2x.png */; };
+		CA0CB766155CB680009C8EE6 /* wood_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB765155CB680009C8EE6 /* wood_bg2@2x.png */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -842,6 +845,9 @@
 		CA0CB75B155CB08A009C8EE6 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomCell~ipad.xib"; sourceTree = "<group>"; };
+		CA0CB761155CB556009C8EE6 /* myfriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfriends@2x.png"; sourceTree = "<group>"; };
+		CA0CB763155CB583009C8EE6 /* loading_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_bg@2x.png"; sourceTree = "<group>"; };
+		CA0CB765155CB680009C8EE6 /* wood_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_bg2@2x.png"; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -3147,6 +3153,8 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CA0CB765155CB680009C8EE6 /* wood_bg2@2x.png */,
+				CA0CB763155CB583009C8EE6 /* loading_bg@2x.png */,
 				C2D9E570155BA9CD007DBD01 /* volume_off@2x.png */,
 				C2D9E571155BA9CD007DBD01 /* volume_on@2x.png */,
 				A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */,
@@ -3219,6 +3227,7 @@
 				CA13778915259C1400B5790B /* eraser@2x.png */,
 				CA13778A15259C1400B5790B /* paper@2x.png */,
 				CA13778B15259C1400B5790B /* paperclip@2x.png */,
+				CA0CB761155CB556009C8EE6 /* myfriends@2x.png */,
 				CA13778C15259C1400B5790B /* guessword_pallets@2x.png */,
 				CA13778D15259C1400B5790B /* wood_bg@2x.png */,
 				CA13778E15259C1400B5790B /* topwood@2x.png */,
@@ -4175,6 +4184,9 @@
 				CA0CB75C155CB08A009C8EE6 /* FriendRoomController~ipad.xib in Resources */,
 				CA0CB75E155CB0BC009C8EE6 /* SearchRoomController~ipad.xib in Resources */,
 				CA0CB760155CB0D4009C8EE6 /* RoomCell~ipad.xib in Resources */,
+				CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */,
+				CA0CB764155CB583009C8EE6 /* loading_bg@2x.png in Resources */,
+				CA0CB766155CB680009C8EE6 /* wood_bg2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

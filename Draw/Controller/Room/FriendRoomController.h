@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
 
-@interface FriendRoomController : UIViewController
+@interface FriendRoomController : PPTableViewController
+{
+    
+}
 
 @end
