@@ -158,6 +158,9 @@
 		CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB761155CB556009C8EE6 /* myfriends@2x.png */; };
 		CA0CB764155CB583009C8EE6 /* loading_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB763155CB583009C8EE6 /* loading_bg@2x.png */; };
 		CA0CB766155CB680009C8EE6 /* wood_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB765155CB680009C8EE6 /* wood_bg2@2x.png */; };
+		CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB769155CB773009C8EE6 /* RoomService.m */; };
+		CA0CB76E155CB799009C8EE6 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB76D155CB799009C8EE6 /* Room.m */; };
+		CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB770155CB7A9009C8EE6 /* RoomManager.m */; };
 		CA103EA01509A56200F60C03 /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
 		CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC61509A56100F60C03 /* EnhanceUIApplication.m */; };
 		CA103EA21509A56200F60C03 /* PPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC81509A56100F60C03 /* PPApplication.m */; };
@@ -848,6 +851,12 @@
 		CA0CB761155CB556009C8EE6 /* myfriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfriends@2x.png"; sourceTree = "<group>"; };
 		CA0CB763155CB583009C8EE6 /* loading_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading_bg@2x.png"; sourceTree = "<group>"; };
 		CA0CB765155CB680009C8EE6 /* wood_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_bg2@2x.png"; sourceTree = "<group>"; };
+		CA0CB768155CB773009C8EE6 /* RoomService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomService.h; sourceTree = "<group>"; };
+		CA0CB769155CB773009C8EE6 /* RoomService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomService.m; sourceTree = "<group>"; };
+		CA0CB76C155CB799009C8EE6 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		CA0CB76D155CB799009C8EE6 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		CA0CB76F155CB7A9009C8EE6 /* RoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomManager.h; sourceTree = "<group>"; };
+		CA0CB770155CB7A9009C8EE6 /* RoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomManager.m; sourceTree = "<group>"; };
 		CA103CC31509A56100F60C03 /* CommonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonService.h; sourceTree = "<group>"; };
 		CA103CC41509A56100F60C03 /* CommonService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonService.m; sourceTree = "<group>"; };
 		CA103CC51509A56100F60C03 /* EnhanceUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhanceUIApplication.h; sourceTree = "<group>"; };
@@ -1889,6 +1898,26 @@
 			path = SynthesisView;
 			sourceTree = "<group>";
 		};
+		CA0CB767155CB75F009C8EE6 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				CA0CB768155CB773009C8EE6 /* RoomService.h */,
+				CA0CB769155CB773009C8EE6 /* RoomService.m */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		CA0CB76B155CB78A009C8EE6 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				CA0CB76C155CB799009C8EE6 /* Room.h */,
+				CA0CB76D155CB799009C8EE6 /* Room.m */,
+				CA0CB76F155CB7A9009C8EE6 /* RoomManager.h */,
+				CA0CB770155CB7A9009C8EE6 /* RoomManager.m */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
 		CA103B361509A55000F60C03 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1934,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA0CB767155CB75F009C8EE6 /* Room */,
 				CA9DB92D154E75410031DBBD /* Friend */,
 				CA137718152425BD00B5790B /* Router */,
 				CA1041ED1509B9AB00F60C03 /* Common */,
@@ -3817,6 +3847,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA0CB76B155CB78A009C8EE6 /* Room */,
 				A454CBC9155A19D700896761 /* Expression */,
 				CA9DB929154E75070031DBBD /* Friend */,
 				CAC13243154C28B9000A8C8F /* Config */,
@@ -4532,6 +4563,9 @@
 				CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */,
 				CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */,
 				CA0CB759155CB064009C8EE6 /* RoomCell.m in Sources */,
+				CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */,
+				CA0CB76E155CB799009C8EE6 /* Room.m in Sources */,
+				CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
