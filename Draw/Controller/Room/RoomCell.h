@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewCell.h"
+#import "Room.h"
 
-@interface RoomCell : UIViewController
+@class HJManagedImageV;
+@interface RoomCell : PPTableViewCell
 
+@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarImage;
+@property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *roomStatusLabel;
+
+- (void)setInfo:(Room *)room;
 @end

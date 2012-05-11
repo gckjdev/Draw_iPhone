@@ -318,3 +318,8 @@
 "kPlayWithFriend" = "Friend Play";
 "kCreateRoom" = "Create Room";
 "kSearchRoom" = "Search Room";
+
+
+"kPlaying" = "Playing";
+"kWaitting" = "Waitting";
+"kFull" = "Full";

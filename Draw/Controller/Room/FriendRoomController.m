@@ -9,8 +9,11 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
+#import "UserManager.h"
 #import "PPDebug.h"
 #import "Room.h"
+#import "RoomCell.h"
+
 @implementation FriendRoomController
 @synthesize editButton;
 @synthesize createButton;
@@ -52,6 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
 }
 
@@ -81,7 +85,11 @@
 }
 
 - (IBAction)clickCreateButton:(id)sender {
-    [[RoomService defaultService] createRoom:@"甘米的房间" password:@"sysu" delegate:self];
+    static NSInteger number = 1;
+    NSString *nick = [[UserManager defaultManager]nickName];
+    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
+    [[RoomService defaultService] createRoom:string password:@"sysu" delegate:self];
+    [self showActivity];
 }
 
 - (IBAction)clickSearchButton:(id)sender {
@@ -100,6 +108,42 @@
         [self popupMessage:NSLS(@"kCreateFail") title:nil];
     }else{
         PPDebug(@"room = %@", [room description]);
+        if (room) {
+//            self.dataList 
+            NSMutableArray *list = (NSMutableArray *)self.dataList;
+            [list insertObject:room atIndex:0];
+            [dataTableView beginUpdates];
+            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+            [dataTableView endUpdates];
+        }
     }
 }
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [RoomCell getCellHeight];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [dataList count];			// default implementation
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *CellIdentifier = [RoomCell getCellIdentifier];
+	RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+        cell = [RoomCell createCell:self];
+	}
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [cell setInfo:room];
+	return cell;
+}
+
 @end

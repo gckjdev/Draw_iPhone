@@ -332,3 +332,8 @@
 
 "kCreateRoom" = "创建房间";
 "kSearchRoom" = "搜索房间";
+
+"kPlaying" = "游戏中";
+"kWaitting" = "等待中";
+"kFull" = "已满人";
+

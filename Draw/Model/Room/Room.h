@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    RoomPlaying = 1,
-    RoomWaitting = 2,
+    RoomWaitting = 1,
+    RoomPlaying = 2,
     RoomFull = 3
 }RoomStatus;
 
@@ -55,5 +55,7 @@ typedef enum {
 @property(nonatomic, assign)RoomStatus status;
 
 
+- (BOOL)isFemale;
+- (BOOL)isMe;
 
 @end

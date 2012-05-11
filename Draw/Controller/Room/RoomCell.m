@@ -7,45 +7,105 @@
 //
 
 #import "RoomCell.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
+#import "ShareImageManager.h"
 
 @implementation RoomCell
+@synthesize avatarImage;
+@synthesize roomNameLabel;
+@synthesize roomStatusLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (id)createCell:(id)delegate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    NSString* cellId = [self getCellIdentifier];
+    //    NSLog(@"cellId = %@", cellId);
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        return nil;
     }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    
+    return [topLevelObjects objectAtIndex:0];
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
++ (NSString*)getCellIdentifier
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    return @"RoomCell";
 }
 
-- (void)viewDidUnload
++ (CGFloat)getCellHeight
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    return 44.0f;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+
+- (void)setStatus:(RoomStatus)status
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    NSString *text;
+    UIColor *color;
+    switch (status) {
+        case RoomFull:
+            text = NSLS(@"kFull");
+            color = [UIColor redColor];
+            break;
+        case RoomPlaying:
+            text = NSLS(@"kPlaying");
+            color = [UIColor orangeColor];
+            break;
+        case RoomWaitting:
+        default:
+            text = NSLS(@"kWaitting");
+            color = [UIColor greenColor];
+            break;
+    }
+    [self.roomStatusLabel setText:text];
+    [self.roomStatusLabel setTextColor:color];
 }
 
+- (void)setAvatar:(RoomUser *)user
+{
+    [self.avatarImage clear];
+    
+    NSString *avatar = user.avatar;
+    avatarImage.hidden = NO;
+    
+    BOOL isFemale = [user isFemale];
+    if (!isFemale)
+        [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    else
+        [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    
+    if ([avatar length] > 0){     
+        // set URL for download avatar
+        [self.avatarImage setUrl:[NSURL URLWithString:avatar]];
+        
+    }else{
+        if ([user isMe]){
+            [avatarImage setImage:[[UserManager defaultManager] avatarImage]];
+        }
+    }
+
+}
+
+
+- (void)setInfo:(Room *)room
+{
+    //set room name
+    [self.roomNameLabel setText:room.roomName];
+    //set avatar image
+    [self setAvatar:room.creator];
+    //set status
+    [self setStatus:room.status];
+    
+}
+- (void)dealloc {
+    [avatarImage release];
+    [roomNameLabel release];
+    [roomStatusLabel release];
+    [super dealloc];
+}
 @end

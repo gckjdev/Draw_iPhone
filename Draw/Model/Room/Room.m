@@ -7,6 +7,7 @@
 //
 
 #import "Room.h"
+#import "UserManager.h"
 
 @implementation Room
 
@@ -113,5 +114,18 @@
     text = [self string:text appendKey:@"avatar" value:self.avatar];
     
     return [NSString stringWithFormat:@"%@%@%@",prefix,text,suffux];
+}
+
+- (BOOL)isFemale
+{
+    if ([self.gender isEqualToString:@"f"] || [self.gender isEqualToString:@"F"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isMe
+{
+    return [self.userId isEqualToString:[[UserManager defaultManager] userId]];
 }
 @end
