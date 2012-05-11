@@ -325,3 +325,7 @@
 "kNormalLevel" = "專業";
 "kHardLevel" = "大師";
 "kLevelSelection" = "難度選擇";
+"kPlayWithFriend" = "以畫會友";
+
+"kCreateRoom" = "創建房間";
+"kSearchRoom" = "搜索房間";

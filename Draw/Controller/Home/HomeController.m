@@ -30,6 +30,7 @@
 #import "ConfigManager.h"
 #import "MyFriendsController.h"
 #import "ChatController.h"
+#import "FriendRoomController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -40,6 +41,7 @@
 @synthesize feedbackButton = _feedbackButton;
 @synthesize settingsLabel = _settingsLabel;
 @synthesize feedbackLabel = _feedbackLabel;
+@synthesize playWithFriendButton = _playWithFriendButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,12 +75,14 @@
     [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.shopButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    
+    [self.playWithFriendButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
     // set text
     [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.shareButton setTitle:NSLS(@"kHomeShare") forState:UIControlStateNormal];
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
+    [self.playWithFriendButton setTitle:NSLS(@"kPlayWithFriend") forState:UIControlStateNormal];
+
     
     int size;
     if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh-Hans"]){
@@ -136,6 +140,7 @@
     [self setFeedbackButton:nil];
     [self setSettingsLabel:nil];
     [self setFeedbackLabel:nil];
+    [self setPlayWithFriendButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -174,6 +179,12 @@
         [self showActivityWithText:NSLS(@"kConnectingServer")];        
         [[RouterService defaultService] tryFetchServerList:self];        
     }
+}
+
+- (IBAction)clickPlayWithFriend:(id)sender {
+    FriendRoomController *frc = [[FriendRoomController alloc] init];
+    [self.navigationController pushViewController:frc animated:YES];
+    [frc release];
 }
 
 
@@ -357,6 +368,7 @@
     [_feedbackButton release];
     [_settingsLabel release];
     [_feedbackLabel release];
+    [_playWithFriendButton release];
     [super dealloc];
 }
 

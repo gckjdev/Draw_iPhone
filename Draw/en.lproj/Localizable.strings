@@ -313,3 +313,6 @@
 "kNormalLevel" = "Normal";
 "kHardLevel" = "Hard";
 "kLevelSelection" = "Level Selection";
+"kPlayWithFriend" = "Friend Play";
+"kCreateRoom" = "Create Room";
+"kSearchRoom" = "Search Room";

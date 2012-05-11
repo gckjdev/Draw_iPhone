@@ -7,8 +7,14 @@
 //
 
 #import "FriendRoomController.h"
+#import "ShareImageManager.h"
+#import "MyFriendsController.h"
 
 @implementation FriendRoomController
+@synthesize editButton;
+@synthesize createButton;
+@synthesize searchButton;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,14 +35,30 @@
 
 #pragma mark - View lifecycle
 
+- (void)initButtons
+{
+    //bg image
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    [self.editButton setBackgroundImage:[manager redImage] forState:UIControlStateNormal];
+    [self.createButton setBackgroundImage:[manager greenImage] forState:UIControlStateNormal];
+    [self.searchButton setBackgroundImage:[manager orangeImage] forState:UIControlStateNormal];
+    //text
+    [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
+    [self.createButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
+    [self.searchButton setTitle:NSLS(@"kSearchRoom") forState:UIControlStateNormal];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initButtons];
 }
 
 - (void)viewDidUnload
 {
+    [self setEditButton:nil];
+    [self setCreateButton:nil];
+    [self setSearchButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +70,24 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [editButton release];
+    [createButton release];
+    [searchButton release];
+    [super dealloc];
+}
+- (IBAction)clickEditButton:(id)sender {
+}
+
+- (IBAction)clickCreateButton:(id)sender {
+}
+
+- (IBAction)clickSearchButton:(id)sender {
+}
+
+- (IBAction)clickMyFriendButton:(id)sender {
+    MyFriendsController *mfc = [[MyFriendsController alloc] init];
+    [self.navigationController pushViewController:mfc animated:YES];
+    [mfc release];
+}
 @end
