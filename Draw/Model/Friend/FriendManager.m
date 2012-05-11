@@ -78,6 +78,7 @@ static FriendManager *_defaultFriendManager = nil;
         [newFriend setFacebookNick:facebookNick];
         [newFriend setCreateDate:createDate];
         [newFriend setLastModifiedDate:lastModifiedDate];
+        [newFriend setDeleteFlag:[NSNumber numberWithInt:NOT_DELETED]];
         
         return [dataManager save];
     }
@@ -165,7 +166,6 @@ static FriendManager *_defaultFriendManager = nil;
     }
     return NO;
 }
-
 
 
 

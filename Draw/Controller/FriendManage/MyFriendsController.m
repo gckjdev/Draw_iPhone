@@ -25,6 +25,8 @@
 - (void)updateFriendsCount;
 - (void)setAndReloadData:(NSArray *)newDataList;
 - (void)showNoDataTips;
+- (void)loadMyFollow;
+- (void)loadMyFans;
 
 @end
 
@@ -81,9 +83,8 @@
     
     [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
     [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [dataTableView setSeparatorColor: [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0]];
     
-    
-    dataTableView.separatorColor = [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0];
     tipsLabel.hidden = YES;
     dataTableView.hidden = YES;
     
@@ -91,47 +92,6 @@
     [self loadMyFans];
 }
 
-- (void)updateFriendsCount
-{
-    NSString *followTitle = NSLS(@"kFollow");
-    NSString *fanTitle = NSLS(@"kFans") ;
-    [myFollowButton setTitle:[NSString stringWithFormat:@"%@(%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
-    [myFanButton setTitle:[NSString stringWithFormat:@"%@(%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
-}
-
-- (void)loadMyFollow
-{
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
-}
-
-- (void)loadMyFans
-{
-    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
-}
-
-- (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
-{
-    PPDebug(@"didfindFriendsByType");
-
-    if (type == FOLLOW) {
-        self.myFollowList = friendList;
-    }else if(type == FAN)
-    {
-        self.myFanList = friendList;
-    }
-    
-    [self updateFriendsCount];
-    if (myFollowButton.selected) {
-        [self setAndReloadData:_myFollowList];
-    }else {
-        [self setAndReloadData:_myFanList];
-    }
-}
-
-- (void)didUnFollowUser:(int)resultCode
-{
-    PPDebug(@"didUnFollowUser");
-}
 
 - (void)viewDidUnload
 {
@@ -146,6 +106,20 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    PPDebug(@"<MyFriendsController> viewWillAppear");
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+    
+    if (myFollowButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else if (myFanButton.selected){
+        [self setAndReloadData:_myFanList];
+    }
+}
+
 #define CELL_HEIGHT_IPHONE  55
 #define CELL_HEIGHT_IPAD    110
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,18 +131,20 @@
     }
 }
 
+
 #define AVATAR_TAG  71
 #define NICK_TAG    72
 - (void)createCellContent:(UITableViewCell *)cell
 {
-    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, nickLabelFont;
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, nickLabelFont, edge;
     cellHeight = CELL_HEIGHT_IPHONE;
     avatarWidth = 37;
     avatarHeight = 39;
-    nickWidth = 100;
+    nickWidth = 160;
     nickHeight = 40;
     space = 8;
     nickLabelFont = 14;
+    edge = 2;
     
     if ([DeviceDetection isIPAD]) {
         cellHeight = CELL_HEIGHT_IPAD;
@@ -178,6 +154,7 @@
         nickHeight = 2* nickHeight;
         space = 2 * space;
         nickLabelFont = 2 * nickLabelFont;
+        edge = 2 * edge;
     }
     
     UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
@@ -185,7 +162,7 @@
     [cell.contentView addSubview:avatarBackground];
     [avatarBackground release];
     
-    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
+    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(edge, (cellHeight-avatarHeight)/2 + edge, avatarWidth-2*edge, avatarWidth-2*edge)];
     avatarImageView.tag = AVATAR_TAG;
     [cell.contentView addSubview:avatarImageView];
     [avatarImageView release];
@@ -199,14 +176,13 @@
     [nickLabel release];
 }
 
-#pragma -mark UITableViewDataSource
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"MyFriendsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         [self createCellContent:cell];
     }
@@ -214,12 +190,12 @@
     HJManagedImageV *avatarImageView = (HJManagedImageV *)[cell.contentView viewWithTag:AVATAR_TAG];
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
     
-    Friend *friend = (Friend *)[dataList objectAtIndex:[indexPath row]];
     //set avatar
+    Friend *friend = (Friend *)[dataList objectAtIndex:[indexPath row]];
     if ([friend.gender isEqualToString:MALE])
     {
         [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    }else if ([friend.gender isEqualToString:FEMALE]){
+    }else {
         [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
     [avatarImageView setUrl:[NSURL URLWithString:friend.avatar]];
@@ -239,21 +215,19 @@
         nickLabel.text = friend.facebookNick;
     }
     
-    
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *friend = (Friend *)[dataList objectAtIndex:indexPath.row];
     [[FriendService defaultService] unFollowUser:friend.friendUserId viewController:self];
     
-    
     NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:dataList];
     [mutableDataList removeObjectAtIndex:indexPath.row];
     self.myFollowList = mutableDataList;
     self.dataList = mutableDataList;
-    
     
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
@@ -264,9 +238,12 @@
     }
 }
 
+
+#pragma -mark Button Action
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 - (IBAction)clickMyFollow:(id)sender
 {
@@ -276,6 +253,7 @@
     myFanButton.selected = NO;
     [self setAndReloadData:_myFollowList];
 }
+
 
 - (IBAction)clickMyFan:(id)sender
 {
@@ -288,11 +266,13 @@
     editButton.hidden = YES;
 }
 
+
 - (IBAction)clickEdit:(id)sender
 {
     editButton.selected = !editButton.selected;
     [dataTableView setEditing:editButton.selected animated:YES];
 }
+
 
 - (IBAction)clickSearchUser:(id)sender
 {
@@ -301,6 +281,8 @@
     [searchUser release];
 }
 
+
+#pragma -mark Custom methods
 - (void)showNoDataTips
 {
     dataTableView.hidden = YES;
@@ -311,6 +293,7 @@
         self.tipsLabel.text = NSLS(@"kNoFans");
     }
 }
+
 
 - (void)setAndReloadData:(NSArray *)newDataList
 {
@@ -325,6 +308,51 @@
         tipsLabel.hidden = YES;
         [dataTableView reloadData];
     }
+}
+
+
+- (void)updateFriendsCount
+{
+    NSString *followTitle = NSLS(@"kFollow");
+    NSString *fanTitle = NSLS(@"kFans") ;
+    [myFollowButton setTitle:[NSString stringWithFormat:@"%@ (%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
+    [myFanButton setTitle:[NSString stringWithFormat:@"%@ (%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
+}
+
+
+- (void)loadMyFollow
+{
+    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+}
+
+
+- (void)loadMyFans
+{
+    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+}
+
+
+#pragma -mark FriendServiceDelegate Method
+- (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
+{
+    if (type == FOLLOW) {
+        self.myFollowList = friendList;
+    }else if(type == FAN)
+    {
+        self.myFanList = friendList;
+    }
+    
+    [self updateFriendsCount];
+    if (myFollowButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else {
+        [self setAndReloadData:_myFanList];
+    }
+}
+
+- (void)didUnFollowUser:(int)resultCode
+{
+    
 }
 
 @end
