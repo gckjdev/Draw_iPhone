@@ -16,6 +16,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *myFollowButton;
 @property (retain, nonatomic) IBOutlet UIButton *myFanButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchUserButton;
+@property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
+
 @property (retain, nonatomic) NSArray *myFollowList;
 @property (retain, nonatomic) NSArray *myFanList;
 

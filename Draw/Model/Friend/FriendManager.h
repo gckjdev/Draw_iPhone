@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define MALE    @"m"
+#define FEMALE  @"f"
+
 enum type {
     FOLLOW = 1,
     FAN = 2
@@ -35,10 +38,8 @@ enum deleteFlag {
                       sinaNick:(NSString *)sinaNick
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
-                  onlineStatus:(NSNumber *)onlineStatus 
                     createDate:(NSDate *)createDate 
-              lastModifiedDate:(NSDate *)lastModifiedDate 
-                    deleteFlag:(NSNumber *)deleteFlag;
+              lastModifiedDate:(NSDate *)lastModifiedDate;
 
 - (BOOL)updateFriendWithUserId:(NSString *)friendUserId 
                           type:(NSNumber *)type 
@@ -51,9 +52,7 @@ enum deleteFlag {
                       sinaNick:(NSString *)sinaNick
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
-                  onlineStatus:(NSNumber *)onlineStatus
-              lastModifiedDate:(NSDate *)lastModifiedDate 
-                    deleteFlag:(NSNumber *)deleteFlag;
+              lastModifiedDate:(NSDate *)lastModifiedDate;
 
 - (NSArray *)findAllFanFriends;
 - (NSArray *)findAllFollowFriends;

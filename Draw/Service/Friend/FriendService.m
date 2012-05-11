@@ -33,6 +33,7 @@ FriendService* globalGetFriendService()
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
+    [viewController showActivity];
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
@@ -43,29 +44,25 @@ FriendService* globalGetFriendService()
                                                              endIndex:5000];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                NSArray* userList = [output.jsonDataDict objectForKey:@"users"];
+                NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 for (NSDictionary* user in userList){
-                    NSString* friendUserId = [user objectForKey:@"uid"];
-                    NSString* nickName = [user objectForKey:@"nn"];
-                    NSString* avatar = [user objectForKey:@"av"];     
-                    NSString* gender = [user objectForKey:@"ge"];
-                    NSString* sinaId = [user objectForKey:@"siid"];
-                    NSString* qqId = [user objectForKey:@"qid"];
-                    NSString* facebookId = [user objectForKey:@"fid"];
-                    NSString* sinaNick = [user objectForKey:@"sn"];
-                    NSString* qqNick = [user objectForKey:@"qn"];
-                    NSString* facebookNick = [user objectForKey:@"fn"];
-                    
-                    NSString* typeStr =[user objectForKey:@"ft"];
-                    NSString* onlineStatusStr = [user objectForKey:@"ols"];
-                    NSString* deleteFlagStr = [user objectForKey:@"fl"];
-                    NSString* lastModifiedDateStr = [user objectForKey:@"lsmd"];
+                    NSString* friendUserId = [user objectForKey:PARA_USERID];
+                    NSString* nickName = [user objectForKey:PARA_NICKNAME];
+                    NSString* avatar = [user objectForKey:PARA_AVATAR];     
+                    NSString* gender = [user objectForKey:PARA_GENDER];
+                    NSString* sinaId = [user objectForKey:PARA_SINA_ID];
+                    NSString* qqId = [user objectForKey:PARA_QQ_ID];
+                    NSString* facebookId = [user objectForKey:PARA_FACEBOOKID];
+                    NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
+                    NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
+                    NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
+                    NSString* typeStr =[user objectForKey:PARA_FRIENDSTYPE];
+                    NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
                     NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
-                    NSNumber* onlineStatus = [NSNumber numberWithInt:[onlineStatusStr intValue]];
-                    NSNumber* deleteFlag = [NSNumber numberWithInt:[deleteFlagStr intValue]];;
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-                    NSDate* lastModifiedDate = nil;//[dateFormatter dateFromString:lastModifiedDateStr];
+                    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
                     
                     [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
                                                                       type:type 
@@ -78,10 +75,8 @@ FriendService* globalGetFriendService()
                                                                   sinaNick:sinaNick 
                                                                     qqNick:qqNick 
                                                               facebookNick:facebookNick 
-                                                              onlineStatus:onlineStatus 
                                                                 createDate:[NSDate date]
-                                                          lastModifiedDate:lastModifiedDate 
-                                                                deleteFlag:deleteFlag];
+                                                          lastModifiedDate:lastModifiedDate];
                 }
 
             }
@@ -137,7 +132,37 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
-                
+                NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+                for (NSDictionary* user in userList){
+                    NSString* friendUserId = [user objectForKey:PARA_USERID];
+                    NSString* nickName = [user objectForKey:PARA_NICKNAME];
+                    NSString* avatar = [user objectForKey:PARA_AVATAR];     
+                    NSString* gender = [user objectForKey:PARA_GENDER];
+                    NSString* sinaId = [user objectForKey:PARA_SINA_ID];
+                    NSString* qqId = [user objectForKey:PARA_QQ_ID];
+                    NSString* facebookId = [user objectForKey:PARA_FACEBOOKID];
+                    NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
+                    NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
+                    NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
+                    NSString* typeStr =[user objectForKey:PARA_FRIENDSTYPE];
+                    NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
+                    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
+                    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+                    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+                    
+                    [[FriendManager defaultManager] updateFriendWithUserId:friendUserId 
+                                                                      type:type 
+                                                                  nickName:nickName 
+                                                                    avatar:avatar 
+                                                                    gender:gender 
+                                                                    sinaId:sinaId 
+                                                                      qqId:qqId 
+                                                                facebookId:facebookId 
+                                                                  sinaNick:sinaNick 
+                                                                    qqNick:qqNick 
+                                                              facebookNick:facebookNick 
+                                                          lastModifiedDate:lastModifiedDate];
+                }
             }
             
             if ([viewController respondsToSelector:@selector(didFollowUser:)]){
@@ -161,10 +186,11 @@ FriendService* globalGetFriendService()
                                                      targetUserIdArray:targetList];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             if (output.resultCode == ERROR_SUCCESS){
-                //to do 
-  
+                PPDebug(@"<FriendService> unFollowUser success!");
             }
+            
             if ([viewController respondsToSelector:@selector(didUnFollowUser:)]){
                 [viewController didUnFollowUser:output.resultCode];
             }

@@ -313,6 +313,8 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
 "kFans" = "粉丝";
+"kNoFollow" = "还没有关注呢";
+"kNoFans" = "还没有粉丝呢";
 "kEdit" = "编辑";
 "kAddFriend" = "添加好友";
 "kSearch" = "搜索";

@@ -299,6 +299,8 @@
 "kMyFriends" = "My Friends";
 "kFollow" = "Follow";
 "kFans" = "Fans";
+"kNoFollow" = "No follow";
+"kNoFans" = "No fans";
 "kEdit" = "Edit";
 "kAddFriend" = "Add Friend";
 "kSearch" = "Search";

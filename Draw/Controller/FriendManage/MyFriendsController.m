@@ -17,11 +17,14 @@
 #import "Friend.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
+#import "GameNetworkConstants.h"
 
 @interface MyFriendsController ()
 
 - (void)createCellContent:(UITableViewCell *)cell;
 - (void)updateFriendsCount;
+- (void)setAndReloadData:(NSArray *)newDataList;
+- (void)showNoDataTips;
 
 @end
 
@@ -33,6 +36,7 @@
 @synthesize searchUserButton;
 @synthesize myFollowList = _myFollowList;
 @synthesize myFanList = _myFanList;
+@synthesize tipsLabel;
 
 - (void)dealloc {
     [titleLabel release];
@@ -42,6 +46,7 @@
     [searchUserButton release];
     [_myFollowList release];
     [_myFanList release];
+    [tipsLabel release];
     [super dealloc];
 }
 
@@ -78,8 +83,9 @@
     [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
     
-    self.dataList = _myFollowList;
     dataTableView.separatorColor = [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0];
+    tipsLabel.hidden = YES;
+    dataTableView.hidden = YES;
     
     [self loadMyFollow];
     [self loadMyFans];
@@ -109,13 +115,22 @@
 
     if (type == FOLLOW) {
         self.myFollowList = friendList;
-        self.dataList = _myFollowList;
-        [dataTableView reloadData];
     }else if(type == FAN)
     {
         self.myFanList = friendList;
     }
+    
     [self updateFriendsCount];
+    if (myFollowButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else {
+        [self setAndReloadData:_myFanList];
+    }
+}
+
+- (void)didUnFollowUser:(int)resultCode
+{
+    PPDebug(@"didUnFollowUser");
 }
 
 - (void)viewDidUnload
@@ -125,6 +140,7 @@
     [self setMyFollowButton:nil];
     [self setMyFanButton:nil];
     [self setSearchUserButton:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -200,10 +216,10 @@
     
     Friend *friend = (Friend *)[dataList objectAtIndex:[indexPath row]];
     //set avatar
-    if (friend.gender == @"m")
+    if ([friend.gender isEqualToString:MALE])
     {
         [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    }else{
+    }else if ([friend.gender isEqualToString:FEMALE]){
         [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
     [avatarImageView setUrl:[NSURL URLWithString:friend.avatar]];
@@ -227,6 +243,27 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Friend *friend = (Friend *)[dataList objectAtIndex:indexPath.row];
+    [[FriendService defaultService] unFollowUser:friend.friendUserId viewController:self];
+    
+    
+    NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:dataList];
+    [mutableDataList removeObjectAtIndex:indexPath.row];
+    self.myFollowList = mutableDataList;
+    self.dataList = mutableDataList;
+    
+    
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self updateFriendsCount];
+    
+    if ([dataList count] == 0) {
+        [self showNoDataTips];
+    }
+}
+
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -237,16 +274,14 @@
     
     myFollowButton.selected = YES;
     myFanButton.selected = NO;
-    self.dataList = _myFollowList;
-    [self.dataTableView reloadData];
+    [self setAndReloadData:_myFollowList];
 }
 
 - (IBAction)clickMyFan:(id)sender
 {
     myFollowButton.selected = NO;
     myFanButton.selected = YES;
-    self.dataList = _myFanList;
-    [self.dataTableView reloadData];
+    [self setAndReloadData:_myFanList];
     
     editButton.selected = NO;
     [dataTableView setEditing:NO animated:YES];
@@ -266,5 +301,30 @@
     [searchUser release];
 }
 
+- (void)showNoDataTips
+{
+    dataTableView.hidden = YES;
+    tipsLabel.hidden = NO;
+    if (myFollowButton.selected) {
+        self.tipsLabel.text = NSLS(@"kNoFollow");
+    }else if (myFanButton.selected){
+        self.tipsLabel.text = NSLS(@"kNoFans");
+    }
+}
+
+- (void)setAndReloadData:(NSArray *)newDataList
+{
+    self.dataList = newDataList;
+    [self updateFriendsCount];
+    
+    if ([dataList count] == 0) {
+        [self showNoDataTips];
+    }
+    else {
+        dataTableView.hidden = NO;
+        tipsLabel.hidden = YES;
+        [dataTableView reloadData];
+    }
+}
 
 @end

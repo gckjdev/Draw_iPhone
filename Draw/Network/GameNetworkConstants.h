@@ -127,6 +127,7 @@
 
 // request parameters
 
+#define PARA_USERS @"users"
 #define PARA_USERID @"uid"
 #define PARA_LOGINID @"lid"
 #define PARA_LOGINIDTYPE @"lty"
@@ -182,6 +183,7 @@
 #define PARA_QQ_NICKNAME                @"qn"
 #define PARA_QQ_DOMAIN                  @"qd"
 #define PARA_GPS                        @"gps"
+#define PARA_FACEBOOK_NICKNAME          @"fn"
 
 #define PARA_DOMAIN                     @"d"
 #define PARA_SNS_ID                     @"sid"
@@ -315,6 +317,7 @@
 #define PARA_SEARCHSTRING   @"ss"
 #define PARA_START_INDEX    @"si"
 #define PARA_END_INDEX      @"ei"
+#define PARA_LASTMODIFIEDDATE @"lsmd"
 
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1

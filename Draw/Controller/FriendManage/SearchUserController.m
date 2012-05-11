@@ -15,6 +15,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "FriendManager.h"
+#import "GameNetworkConstants.h"
 
 @interface SearchUserController ()
 
@@ -172,20 +173,20 @@
     
     
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
-    NSString* userId = [userDic objectForKey:@"uid"];
-    NSString* avatar = [userDic objectForKey:@"av"];
-    NSString* gender = [userDic objectForKey:@"ge"];
-    NSString* nickName = [userDic objectForKey:@"nn"];
-    NSString* sinaNick = [userDic objectForKey:@"sn"];
-    NSString* qqNick = [userDic objectForKey:@"qn"];
-    NSString* facebookNick = [userDic objectForKey:@"fn"];
+    NSString* userId = [userDic objectForKey:PARA_USERID];
+    NSString* avatar = [userDic objectForKey:PARA_AVATAR];
+    NSString* gender = [userDic objectForKey:PARA_GENDER];
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
     
     
     //set avatar
-    if (gender == @"m")
+    if ([gender isEqualToString:MALE])
     {
         [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    }else{
+    }else if ([gender isEqualToString:FEMALE]){
         [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
     [avatarImageView setUrl:[NSURL URLWithString:avatar]];
@@ -249,7 +250,7 @@
 {
     UIButton *button = (UIButton *)sender;
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:button.tag];
-    NSString *userId = [userDic objectForKey:@"uid"];
+    NSString *userId = [userDic objectForKey:PARA_USERID];
     [[FriendService defaultService] followUser:userId viewController:self
      ];
 }
