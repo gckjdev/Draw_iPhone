@@ -13,6 +13,7 @@
 #import "PPNetworkRequest.h"
 #import "LogUtil.h"
 #import "FriendManager.h"
+#import "TimeUtils.h"
 
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
@@ -30,6 +31,7 @@ FriendService* globalGetFriendService()
     return globalGetFriendService();
 }
 
+
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
@@ -46,6 +48,7 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<FriendService> findFriends success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 for (NSDictionary* user in userList){
                     NSString* friendUserId = [user objectForKey:PARA_USERID];
@@ -62,6 +65,7 @@ FriendService* globalGetFriendService()
                     NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
                     NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+                    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
                     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
                     
                     [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
@@ -78,7 +82,8 @@ FriendService* globalGetFriendService()
                                                                 createDate:[NSDate date]
                                                           lastModifiedDate:lastModifiedDate];
                 }
-
+            }else {
+                PPDebug(@"<FriendService> findFriends Failed!");
             }
             
             if ([viewController respondsToSelector:@selector(didfindFriendsByType:friendList:result:)]){
@@ -94,8 +99,10 @@ FriendService* globalGetFriendService()
     });
 }
 
+
 - (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
+    [viewController showActivity];
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
                                                                 appId:APP_ID
@@ -104,11 +111,13 @@ FriendService* globalGetFriendService()
                                                              endIndex:100];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [viewController hideActivity];
             NSArray* userList = nil;
-            
             if (output.resultCode == ERROR_SUCCESS){ 
-                userList= [output.jsonDataDict objectForKey:@"users"];
+                PPDebug(@"<FriendService> searchUsers success!");
+                userList= [output.jsonDataDict objectForKey:PARA_USERS];
+            }else {
+                PPDebug(@"<FriendService> searchUsers Failed!");
             }
             
             if ([viewController respondsToSelector:@selector(didSearchUsers:result:)]){
@@ -118,8 +127,10 @@ FriendService* globalGetFriendService()
     });
 }
 
+
 - (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
+    [viewController showActivity];
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
     
@@ -130,8 +141,9 @@ FriendService* globalGetFriendService()
                                                    targetUserIdArray:targetList];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<FriendService> unFollowUser success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 for (NSDictionary* user in userList){
                     NSString* friendUserId = [user objectForKey:PARA_USERID];
@@ -148,6 +160,7 @@ FriendService* globalGetFriendService()
                     NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
                     NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+                    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
                     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
                     
                     [[FriendManager defaultManager] updateFriendWithUserId:friendUserId 
@@ -163,6 +176,8 @@ FriendService* globalGetFriendService()
                                                               facebookNick:facebookNick 
                                                           lastModifiedDate:lastModifiedDate];
                 }
+            }else {
+                PPDebug(@"<FriendService> unFollowUser Failed!");
             }
             
             if ([viewController respondsToSelector:@selector(didFollowUser:)]){
@@ -171,6 +186,7 @@ FriendService* globalGetFriendService()
         }); 
     });
 }
+
 
 - (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
@@ -189,6 +205,8 @@ FriendService* globalGetFriendService()
             
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> unFollowUser success!");
+            }else {
+                PPDebug(@"<FriendService> unFollowUser Failed!");
             }
             
             if ([viewController respondsToSelector:@selector(didUnFollowUser:)]){

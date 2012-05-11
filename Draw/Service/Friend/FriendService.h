@@ -21,6 +21,7 @@
 @end
 
 @interface FriendService : CommonService
+
 + (FriendService*)defaultService;
 
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
