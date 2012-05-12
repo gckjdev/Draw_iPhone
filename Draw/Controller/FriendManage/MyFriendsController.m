@@ -223,19 +223,12 @@
 {
     Friend *friend = (Friend *)[dataList objectAtIndex:indexPath.row];
     [[FriendService defaultService] unFollowUser:friend.friendUserId viewController:self];
-    
-    NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:dataList];
-    [mutableDataList removeObjectAtIndex:indexPath.row];
-    self.myFollowList = mutableDataList;
-    self.dataList = mutableDataList;
-    
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-    [self updateFriendsCount];
-    
-    if ([dataList count] == 0) {
-        [self showNoDataTips];
-    }
+}
+
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
 }
 
 
@@ -335,6 +328,14 @@
 #pragma -mark FriendServiceDelegate Method
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
+    if (resultCode != 0) {
+        if (type == FOLLOW) {
+            [self popupMessage:NSLS(@"kUpdateFollowFailed") title:nil];
+        }else if(type == FAN) {
+            [self popupMessage:NSLS(@"kUpdateFansFailed") title:nil];
+        }
+    }
+    
     if (type == FOLLOW) {
         self.myFollowList = friendList;
     }else if(type == FAN)
@@ -350,9 +351,15 @@
     }
 }
 
+
 - (void)didUnFollowUser:(int)resultCode
 {
-    
+    if (resultCode == 0) {
+        self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+        [self setAndReloadData:_myFollowList];
+    }else {
+        [self popupMessage:NSLS(@"kUnfollowFailed") title:nil];
+    }
 }
 
 @end

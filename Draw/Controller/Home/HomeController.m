@@ -157,7 +157,7 @@
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     
     NSString* userId = [_userManager userId];
-    NSString* nickName = [_userManager userId];
+    NSString* nickName = [_userManager nickName];
     
     if (userId == nil){
         userId = [NSString GetUUID];
@@ -286,7 +286,7 @@
     
     
     NSString* userId = [_userManager userId];
-    NSString* nickName = [_userManager userId];
+    NSString* nickName = [_userManager nickName];
     
     if (userId == nil){
         userId = [NSString GetUUID];

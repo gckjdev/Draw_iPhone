@@ -190,10 +190,9 @@ FriendService* globalGetFriendService()
 
 - (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
+    [viewController showActivity];
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
-    
-    [[FriendManager defaultManager] deleteFollowFriend:targetUserId];
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
@@ -203,7 +202,10 @@ FriendService* globalGetFriendService()
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            [viewController hideActivity];
+            
             if (output.resultCode == ERROR_SUCCESS){
+                [[FriendManager defaultManager] deleteFollowFriend:targetUserId];
                 PPDebug(@"<FriendService> unFollowUser success!");
             }else {
                 PPDebug(@"<FriendService> unFollowUser Failed!");
