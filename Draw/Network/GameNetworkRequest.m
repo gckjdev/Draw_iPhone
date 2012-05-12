@@ -116,8 +116,6 @@
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
                                   output:output];
-    
-    
 }
 
 
@@ -764,6 +762,46 @@
                                   output:output];
     
     
+}
+
+
+#pragma mark - Friend Room
+
++ (CommonNetworkOutput*)CreateRoom:(NSString*)baseURL 
+                          roomName:(NSString *)roomName  
+                          password:(NSString *)password 
+                            userId:(NSString *)userId 
+                              nick:(NSString *)nick 
+                            avatar:(NSString *)avatar 
+                            gender:(NSString *)gender
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CREATE_ROOM];
+        str = [str stringByAddQueryParameter:PARA_ROOM_NAME value:roomName];
+        str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
 }
 
 @end

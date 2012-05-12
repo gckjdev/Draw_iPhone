@@ -299,6 +299,8 @@
 "kMyFriends" = "My Friends";
 "kFollow" = "Follow";
 "kFans" = "Fans";
+"kNoFollow" = "No follow";
+"kNoFans" = "No fans";
 "kEdit" = "Edit";
 "kAddFriend" = "Add Friend";
 "kSearch" = "Search";
@@ -313,3 +315,11 @@
 "kNormalLevel" = "Normal";
 "kHardLevel" = "Hard";
 "kLevelSelection" = "Level Selection";
+"kPlayWithFriend" = "Friend Play";
+"kCreateRoom" = "Create Room";
+"kSearchRoom" = "Search Room";
+
+
+"kPlaying" = "Playing";
+"kWaitting" = "Waitting";
+"kFull" = "Full";

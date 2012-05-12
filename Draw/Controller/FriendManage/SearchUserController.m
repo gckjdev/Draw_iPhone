@@ -15,6 +15,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "FriendManager.h"
+#import "GameNetworkConstants.h"
 
 @interface SearchUserController ()
 
@@ -29,6 +30,7 @@
 @synthesize resultLabel;
 @synthesize inputTextField;
 
+
 - (void)dealloc {
     [searchButton release];
     [titleLabel release];
@@ -36,6 +38,7 @@
     [inputTextField release];
     [super dealloc];
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +48,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -58,10 +62,12 @@
     resultLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     resultLabel.hidden = YES;
     
-    
     dataTableView.separatorColor = [UIColor colorWithRed:175.0/255.0 green:124.0/255.0 blue:68.0/255.0 alpha:1.0];
     dataTableView.hidden = YES;
+    
+    [inputTextField becomeFirstResponder];
 }
+
 
 - (void)viewDidUnload
 {
@@ -74,6 +80,7 @@
     // e.g. self.myOutlet = nil;
 }
 
+
 #define CELL_HEIGHT_IPHONE  55
 #define CELL_HEIGHT_IPAD    110
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,13 +92,14 @@
     }
 }
 
+
 #define AVATAR_TAG  71
 #define NICK_TAG    72
 #define STATUS_TAG  73
 #define FOLLOW_TAG  74
 - (void)createCellContent:(UITableViewCell *)cell
 {
-    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight, nickLabelFont, statusLabelFont;
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight, nickLabelFont, statusLabelFont, edge;
     cellHeight = CELL_HEIGHT_IPHONE;
     avatarWidth = 37;
     avatarHeight = 39;
@@ -102,6 +110,7 @@
     statusHeight = 26;
     nickLabelFont = 14;
     statusLabelFont = 13;
+    edge = 2;
     
     if ([DeviceDetection isIPAD]) {
         cellHeight = CELL_HEIGHT_IPAD;
@@ -114,6 +123,7 @@
         statusHeight = 2 * statusHeight;
         nickLabelFont = 2 * nickLabelFont;
         statusLabelFont = 2 * statusLabelFont;
+        edge = 2 * edge;
     }
     
     UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
@@ -121,7 +131,7 @@
     [cell.contentView addSubview:avatarBackground];
     [avatarBackground release];
     
-    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarWidth)];
+    HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(edge, (cellHeight-avatarHeight)/2 + edge, avatarWidth-2*edge, avatarWidth-2*edge)];
     avatarImageView.tag = AVATAR_TAG;
     [cell.contentView addSubview:avatarImageView];
     [avatarImageView release];
@@ -141,55 +151,47 @@
     statusLabel.tag = STATUS_TAG;
     [cell.contentView addSubview:statusLabel];
     [statusLabel release];
-
-    UIButton *followButton = [[UIButton alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
-    [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
-    [followButton.titleLabel setFont:[UIFont systemFontOfSize:statusLabelFont]];
-    [followButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
-    [followButton addTarget:self action:@selector(clickFollowButton:) forControlEvents:UIControlEventTouchUpInside];
-    followButton.tag = FOLLOW_TAG;
-    [cell.contentView addSubview:followButton];
-    [followButton release];
+    
+    UIView *followView = [[UIView alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
+    followView.tag = FOLLOW_TAG;
+    [cell.contentView addSubview:followView];
+    [followView release];
 }
 
-#pragma -mark UITableViewDataSource
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"SearchUserCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         [self createCellContent:cell];
     }
-    
     HJManagedImageV *avatarImageView = (HJManagedImageV *)[cell.contentView viewWithTag:AVATAR_TAG];
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
     UILabel *statusLabel = (UILabel *)[cell.contentView viewWithTag:STATUS_TAG];
-    UIButton *followButton = (UIButton *)[cell.contentView viewWithTag:FOLLOW_TAG];
-    
+    UIView  *followView = (UIView *)[cell.contentView viewWithTag:FOLLOW_TAG];
     
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
-    NSString* userId = [userDic objectForKey:@"uid"];
-    NSString* avatar = [userDic objectForKey:@"av"];
-    NSString* gender = [userDic objectForKey:@"ge"];
-    NSString* nickName = [userDic objectForKey:@"nn"];
-    NSString* sinaNick = [userDic objectForKey:@"sn"];
-    NSString* qqNick = [userDic objectForKey:@"qn"];
-    NSString* facebookNick = [userDic objectForKey:@"fn"];
-    
+    NSString* userId = [userDic objectForKey:PARA_USERID];
+    NSString* avatar = [userDic objectForKey:PARA_AVATAR];
+    NSString* gender = [userDic objectForKey:PARA_GENDER];
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
     
     //set avatar
-    if (gender == @"m")
+    if ([gender isEqualToString:MALE])
     {
         [avatarImageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    }else{
+    }else {
         [avatarImageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
     [avatarImageView setUrl:[NSURL URLWithString:avatar]];
     [GlobalGetImageCache() manage:avatarImageView];
+    
     
     //set nick
     if (nickName) {
@@ -205,33 +207,50 @@
         nickLabel.text = facebookNick;
     }
     
+    
+    CGFloat followButtonFont = 13;
+    if ([DeviceDetection isIPAD]) {
+        followButtonFont = 2 * followButtonFont;
+    }
+    UIButton *followButton = [[UIButton alloc] initWithFrame:followView.bounds];
+    [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+    [followButton.titleLabel setFont:[UIFont systemFontOfSize:followButtonFont]];
+    [followButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+    followButton.tag = [indexPath row];
+    [followButton addTarget:self action:@selector(clickFollowButton:) forControlEvents:UIControlEventTouchUpInside];
+    [followView addSubview:followButton];
+    [followButton release];
+    
     //set button or label
     if ([[FriendManager defaultManager] isFollowFriend:userId]) {
         statusLabel.hidden = NO;
-        followButton.hidden = YES;
+        followView.hidden = YES;
     }
     else {
         statusLabel.hidden = YES;
-        followButton.hidden = NO; 
-        followButton.tag = [indexPath row];
+        followView.hidden = NO; 
     }
     
     return cell;
 }
 
+
+#pragma -mark Button Action
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 - (IBAction)backgroundTap:(id)sender
 {
     [inputTextField resignFirstResponder];
 }
 
+
 - (IBAction)clickSearch:(id)sender
 {
     [inputTextField resignFirstResponder];
-    //to do
     
     if ([inputTextField.text length] == 0) {
         resultLabel.hidden = NO;
@@ -239,31 +258,74 @@
         [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
     }else {
         resultLabel.hidden = YES;
-        dataTableView.hidden = NO;
-        
         [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];
     }
 }
+
 
 - (void)clickFollowButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:button.tag];
-    NSString *userId = [userDic objectForKey:@"uid"];
+    NSString* userId = [userDic objectForKey:PARA_USERID];
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
+    NSString* gender = [userDic objectForKey:PARA_GENDER];
+    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
+    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
+    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
+    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
+    NSNumber* type = [NSNumber numberWithInt:FOLLOW];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+    
+    [[FriendManager defaultManager] createFriendWithUserId:userId type:type nickName:nickName avatar:avatar gender:gender sinaId:sinaId qqId:qqId facebookId:facebookId sinaNick:sinaNick qqNick:qqNick facebookNick:facebookNick createDate:[NSDate date] lastModifiedDate:lastModifiedDate];
+    
     [[FriendService defaultService] followUser:userId viewController:self
      ];
 }
 
+
+#pragma -mark FriendServiceDelegate Method
 - (void)didSearchUsers:(NSArray *)userList result:(int)resultCode
 {
-    PPDebug(@"<didSearchUsers>");
     self.dataList = userList;
+    
+    
+    /**********************************/
+    //test data
+//    NSMutableArray *testUserList = [[NSMutableArray alloc] init];
+//    for (int i=0; i<10; i++) {
+//        NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
+//        [userDic setObject:[NSString stringWithFormat:@"4fab294a03649bc45d248e3%d",i]  forKey:PARA_USERID];
+//        [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_NICKNAME];
+//        [testUserList addObject:userDic];
+//        [userDic release];
+//    }
+//    self.dataList = testUserList;
+//    [testUserList release];
+    /**********************************/
+    
+    
     [dataTableView reloadData];
+    if ([dataList count] == 0) {
+        dataTableView.hidden = YES;
+        resultLabel.hidden = NO;
+        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
+    }
+    else {
+        dataTableView.hidden = NO;
+        resultLabel.hidden = YES;
+    }
 }
+
 
 - (void)didFollowUser:(int)resultCode
 {
-    PPDebug(@"didFollowUser");
+    [dataTableView reloadData];
 }
 
 @end

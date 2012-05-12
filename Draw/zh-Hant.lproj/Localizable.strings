@@ -312,6 +312,8 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "關注";
 "kFans" = "粉絲";
+"kNoFollow" = "還沒有關注呢";
+"kNoFans" = "還沒有粉絲呢";
 "kEdit" = "編輯";
 "kAddFriend" = "添加好友";
 "kSearch" = "搜索";
@@ -325,3 +327,11 @@
 "kNormalLevel" = "專業";
 "kHardLevel" = "大師";
 "kLevelSelection" = "難度選擇";
+"kPlayWithFriend" = "以畫會友";
+
+"kCreateRoom" = "創建房間";
+"kSearchRoom" = "搜索房間";
+
+"kPlaying" = "遊戲中";
+"kWaitting" = "等待中";
+"kFull" = "已滿人";
