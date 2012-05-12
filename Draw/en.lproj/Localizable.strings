@@ -307,8 +307,13 @@
 "kAddAsFriend" = "Add as friend";
 "kAlreadyBeFriend" = "Friend";
 "kDidNottFindThisUser" = "No matching users";
-
-
+"kUpdateFollowFailed" = "Network error, update follows failed!";
+"kUpdateFansFailed" = "Network error, update fans failed!";
+"kFollowFailed" = "Network error, follow failed!";
+"kUnfollowFailed" = "Network error, unfollow failed!";
+"kEnterWords" = "Please enter user nickname";
+"kSearchFailed" = "Network errors, search failed!";
+"kMyself" = "Myself";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";

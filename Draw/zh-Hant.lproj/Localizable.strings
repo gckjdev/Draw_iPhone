@@ -320,7 +320,13 @@
 "kAddAsFriend" = "加為好友";
 "kAlreadyBeFriend" = "已經是好友";
 "kDidNottFindThisUser" = "沒有找到此用戶";
-
+"kUpdateFollowFailed" = "網絡錯誤,更新關注失敗!";
+"kUpdateFansFailed" = "網絡錯誤,更新粉絲失敗!";
+"kFollowFailed" = "網絡錯誤,關注失敗!";
+"kUnfollowFailed" = "網絡錯誤,取消關注失敗!";
+"kEnterWords" = "請輸入用戶暱稱";
+"kSearchFailed" = "網絡錯誤,搜索失敗!";
+"kMyself" = "我";
 
 "kLevelSettings" = "猜詞難度";
 "kEasyLevel" = "業餘";
