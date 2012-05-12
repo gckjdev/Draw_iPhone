@@ -61,6 +61,7 @@
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
     [inputImageView setImage:[imageManager inputImage]];
+    [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
     
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
@@ -313,21 +314,6 @@
     if (resultCode == 0)
     {
         self.dataList = userList;
-        
-        /**********************************/
-        //test data
-        //    NSMutableArray *testUserList = [[NSMutableArray alloc] init];
-        //    for (int i=0; i<10; i++) {
-        //        NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
-        //        [userDic setObject:[NSString stringWithFormat:@"4fab294a03649bc45d248e3%d",i]  forKey:PARA_USERID];
-        //        [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_NICKNAME];
-        //        [testUserList addObject:userDic];
-        //        [userDic release];
-        //    }
-        //    self.dataList = testUserList;
-        //    [testUserList release];
-        /**********************************/
-        
         [dataTableView reloadData];
         if ([dataList count] == 0) {
             dataTableView.hidden = YES;
