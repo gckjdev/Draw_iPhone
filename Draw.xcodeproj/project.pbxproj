@@ -590,6 +590,7 @@
 		EAF5AFDA155E2EDF008CD8EE /* MusicSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFD9155E2EDE008CD8EE /* MusicSettingController~ipad.xib */; };
 		EAF5AFDE155E2F30008CD8EE /* MusicSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */; };
 		EAF5AFDF155E2F30008CD8EE /* MusicSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */; };
+		EAF5AFE2155E3251008CD8EE /* MusicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFE1155E3251008CD8EE /* MusicItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1583,6 +1584,8 @@
 		EAF5AFDB155E2F2F008CD8EE /* MusicSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingCell.h; sourceTree = "<group>"; };
 		EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingCell.m; sourceTree = "<group>"; };
 		EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSettingCell.xib; sourceTree = "<group>"; };
+		EAF5AFE0155E3251008CD8EE /* MusicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItem.h; sourceTree = "<group>"; };
+		EAF5AFE1155E3251008CD8EE /* MusicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3892,6 +3895,8 @@
 				EAF5AFDB155E2F2F008CD8EE /* MusicSettingCell.h */,
 				EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */,
 				EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */,
+				EAF5AFE0155E3251008CD8EE /* MusicItem.h */,
+				EAF5AFE1155E3251008CD8EE /* MusicItem.m */,
 			);
 			path = MusicSettings;
 			sourceTree = "<group>";
@@ -4604,6 +4609,7 @@
 				EAF5AFD4155E2DD3008CD8EE /* MusicSettingController.m in Sources */,
 				EAF5AFD8155E2DFD008CD8EE /* MusicDownloadService.m in Sources */,
 				EAF5AFDE155E2F30008CD8EE /* MusicSettingCell.m in Sources */,
+				EAF5AFE2155E3251008CD8EE /* MusicItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
