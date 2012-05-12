@@ -16,6 +16,7 @@
 #import "PPApplication.h"
 #import "FriendManager.h"
 #import "GameNetworkConstants.h"
+#import "TimeUtils.h"
 
 @interface SearchUserController ()
 
@@ -287,21 +288,6 @@
     selectedIndex = button.tag;
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
     NSString* userId = [userDic objectForKey:PARA_USERID];
-//    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
-//    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
-//    NSString* gender = [userDic objectForKey:PARA_GENDER];
-//    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
-//    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
-//    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
-//    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
-//    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
-//    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
-//    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
-//    NSNumber* type = [NSNumber numberWithInt:FOLLOW];
-//    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-//    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
-//    
-//    [[FriendManager defaultManager] createFriendWithUserId:userId type:type nickName:nickName avatar:avatar gender:gender sinaId:sinaId qqId:qqId facebookId:facebookId sinaNick:sinaNick qqNick:qqNick facebookNick:facebookNick createDate:[NSDate date] lastModifiedDate:lastModifiedDate];
     
     [[FriendService defaultService] followUser:userId viewController:self
      ];
@@ -349,6 +335,7 @@
         NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
         NSNumber* type = [NSNumber numberWithInt:FOLLOW];
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
         NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
         
         [[FriendManager defaultManager] createFriendWithUserId:userId type:type nickName:nickName avatar:avatar gender:gender sinaId:sinaId qqId:qqId facebookId:facebookId sinaNick:sinaNick qqNick:qqNick facebookNick:facebookNick createDate:[NSDate date] lastModifiedDate:lastModifiedDate];
