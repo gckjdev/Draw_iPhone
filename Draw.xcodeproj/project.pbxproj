@@ -584,6 +584,13 @@
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		EAF5AFD4155E2DD3008CD8EE /* MusicSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */; };
+		EAF5AFD5155E2DD3008CD8EE /* MusicSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */; };
+		EAF5AFD8155E2DFD008CD8EE /* MusicDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFD7155E2DFD008CD8EE /* MusicDownloadService.m */; };
+		EAF5AFDA155E2EDF008CD8EE /* MusicSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFD9155E2EDE008CD8EE /* MusicSettingController~ipad.xib */; };
+		EAF5AFDE155E2F30008CD8EE /* MusicSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */; };
+		EAF5AFDF155E2F30008CD8EE /* MusicSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */; };
+		EAF5AFE2155E3251008CD8EE /* MusicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFE1155E3251008CD8EE /* MusicItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1568,6 +1575,17 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		EAF5AFD1155E2DD3008CD8EE /* MusicSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingController.h; sourceTree = "<group>"; };
+		EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingController.m; sourceTree = "<group>"; };
+		EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSettingController.xib; sourceTree = "<group>"; };
+		EAF5AFD6155E2DFD008CD8EE /* MusicDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDownloadService.h; sourceTree = "<group>"; };
+		EAF5AFD7155E2DFD008CD8EE /* MusicDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDownloadService.m; sourceTree = "<group>"; };
+		EAF5AFD9155E2EDE008CD8EE /* MusicSettingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MusicSettingController~ipad.xib"; sourceTree = "<group>"; };
+		EAF5AFDB155E2F2F008CD8EE /* MusicSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingCell.h; sourceTree = "<group>"; };
+		EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingCell.m; sourceTree = "<group>"; };
+		EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSettingCell.xib; sourceTree = "<group>"; };
+		EAF5AFE0155E3251008CD8EE /* MusicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItem.h; sourceTree = "<group>"; };
+		EAF5AFE1155E3251008CD8EE /* MusicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3827,6 +3845,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A454CB6B1558F57E00896761 /* Chat */,
 				CA9DB92B154E75190031DBBD /* FriendManage */,
 				CA9DB92C154E751A0031DBBD /* FriendPlay */,
@@ -3862,6 +3881,24 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
+			isa = PBXGroup;
+			children = (
+				EAF5AFD1155E2DD3008CD8EE /* MusicSettingController.h */,
+				EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */,
+				EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */,
+				EAF5AFD9155E2EDE008CD8EE /* MusicSettingController~ipad.xib */,
+				EAF5AFD6155E2DFD008CD8EE /* MusicDownloadService.h */,
+				EAF5AFD7155E2DFD008CD8EE /* MusicDownloadService.m */,
+				EAF5AFDB155E2F2F008CD8EE /* MusicSettingCell.h */,
+				EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */,
+				EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */,
+				EAF5AFE0155E3251008CD8EE /* MusicItem.h */,
+				EAF5AFE1155E3251008CD8EE /* MusicItem.m */,
+			);
+			path = MusicSettings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4218,6 +4255,9 @@
 				CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */,
 				CA0CB764155CB583009C8EE6 /* loading_bg@2x.png in Resources */,
 				CA0CB766155CB680009C8EE6 /* wood_bg2@2x.png in Resources */,
+				EAF5AFD5155E2DD3008CD8EE /* MusicSettingController.xib in Resources */,
+				EAF5AFDA155E2EDF008CD8EE /* MusicSettingController~ipad.xib in Resources */,
+				EAF5AFDF155E2F30008CD8EE /* MusicSettingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4566,6 +4606,10 @@
 				CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */,
 				CA0CB76E155CB799009C8EE6 /* Room.m in Sources */,
 				CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */,
+				EAF5AFD4155E2DD3008CD8EE /* MusicSettingController.m in Sources */,
+				EAF5AFD8155E2DFD008CD8EE /* MusicDownloadService.m in Sources */,
+				EAF5AFDE155E2F30008CD8EE /* MusicSettingCell.m in Sources */,
+				EAF5AFE2155E3251008CD8EE /* MusicItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
