@@ -31,4 +31,6 @@ typedef enum{
 + (GuessLevel)guessDifficultLevel;
 + (void)setGuessDifficultLevel:(GuessLevel)level;
 
++ (BOOL)enableReview;
+
 @end

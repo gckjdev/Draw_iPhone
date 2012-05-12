@@ -57,4 +57,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)enableReview
+{
+    return ([MobClickUtils getIntValueByKey:@"ENABLE_REVIEW" defaultValue:0] == 1);
+}
+
 @end

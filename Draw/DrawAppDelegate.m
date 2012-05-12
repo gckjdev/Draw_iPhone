@@ -101,8 +101,10 @@ NSString* GlobalGetServerURL()
     }
     
     // Ask For Review
-    if ([DeviceDetection isOS5]){
-        self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+    if ([ConfigManager enableReview]){
+        if ([DeviceDetection isOS5]){
+            self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+        }
     }
 
     // Init Home Controller As Root View Controller
