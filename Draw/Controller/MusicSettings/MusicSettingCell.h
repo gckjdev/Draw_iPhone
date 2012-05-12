@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewCell.h"
+#import "MusicItem.h"
 
-@interface MusicSettingCell : UIViewController
+@interface MusicSettingCell : PPTableViewCell
+
+
+@property (retain, nonatomic) IBOutlet UILabel *musicNameLabel;
+@property (retain, nonatomic) IBOutlet UIProgressView *downloadProgress;
+
++ (MusicSettingCell*) createCell:(id)delegate;
+- (void)setCellInfoWithItem:(MusicItem*)item indexPath:(NSIndexPath*)indexPath;
 
 @end
