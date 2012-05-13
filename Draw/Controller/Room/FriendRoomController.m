@@ -9,6 +9,7 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
+#import "SearchRoomController.h"
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "Room.h"
@@ -56,8 +57,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataList = [[[NSMutableArray alloc] init]autorelease];
+//    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidUnload
@@ -83,7 +85,7 @@
     [super dealloc];
 }
 - (IBAction)clickEditButton:(id)sender {
-    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+
 }
 
 - (IBAction)clickCreateButton:(id)sender {
@@ -95,7 +97,10 @@
 }
 
 - (IBAction)clickSearchButton:(id)sender {
-    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+//    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+    SearchRoomController *src = [[SearchRoomController alloc] init];
+    [self.navigationController pushViewController:src animated:YES];
+    [src release];
 }
 
 - (IBAction)clickMyFriendButton:(id)sender {
@@ -133,18 +138,6 @@
     }
 
 }
-- (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode
-{    
-    [self hideActivity];
-    if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
-    }else{
-        self.dataList = roomList;
-        [self.dataTableView reloadData];
-    }
-}
-
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
