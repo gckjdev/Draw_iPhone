@@ -40,18 +40,18 @@ RoomService *staticRoomService = nil;
           delegate:(id<RoomServiceDelegate>) delegate
 {
     dispatch_async(workingQueue, ^{
-        
-        
         NSString *userId = [userManager userId]; 
         NSString *nickName = [userManager nickName];
         NSString *gender = [userManager gender];
         NSString *avatar = [userManager avatarURL];
         
-        CommonNetworkOutput* output = [GameNetworkRequest CreateRoom:SERVER_URL roomName:roomName password:password userId:userId nick:nickName avatar:avatar gender:gender];        
-        
+        CommonNetworkOutput* output = [GameNetworkRequest createRoom:SERVER_URL roomName:roomName password:password userId:userId nick:nickName avatar:avatar gender:gender];        
+        Room *room = nil;
+        if (output.resultCode == ERROR_SUCCESS) {
+            room = [[RoomManager defaultManager] paserRoom:output.jsonDataDict];
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didCreateRoom:resultCode:)]) {
-                Room *room = [[RoomManager defaultManager] paserRoom:output.jsonDataDict];
                 [delegate didCreateRoom:room resultCode:output.resultCode];
             }
         });
@@ -65,6 +65,22 @@ RoomService *staticRoomService = nil;
                      delegate: (id<RoomServiceDelegate>) delegate
 {
     
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [userManager userId]; 
+        
+        CommonNetworkOutput* output = [GameNetworkRequest findRoomByUser:SERVER_URL userId:userId offset:offset limit:limit];
+        NSArray *roomList = nil;
+        if (output.resultCode == ERROR_SUCCESS) {
+            roomList = [[RoomManager defaultManager] paserRoomList:output.jsonDataArray];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didFindRoomByUser:roomList:resultCode:)]) {
+                [delegate didFindRoomByUser:userId roomList:roomList resultCode:output.resultCode];
+            }
+        });
+        
+    });    
+    
 }
 
 - (void)searchRoomsWithKeyWords:(NSString *)key 
@@ -72,7 +88,22 @@ RoomService *staticRoomService = nil;
                           limit:(NSInteger)limit 
                        delegate: (id<RoomServiceDelegate>) delegate
 {
-    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest searhRoomWithKey:SERVER_URL keyword:key offset:offset limit:limit];
+        
+        NSArray *roomList = nil;
+        if (output.resultCode == ERROR_SUCCESS) {
+            roomList = [[RoomManager defaultManager] paserRoomList:output.jsonDataArray];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didSearhRoomWithKey:roomList:resultCode:)]) {
+                [delegate didSearhRoomWithKey:key roomList:roomList resultCode:output.resultCode];
+            }
+        });
+        
+    });    
+
 }
 
 - (void)inviteUsers:(NSString *)roomId 

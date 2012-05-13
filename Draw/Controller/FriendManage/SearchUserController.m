@@ -16,9 +16,11 @@
 #import "PPApplication.h"
 #import "FriendManager.h"
 #import "GameNetworkConstants.h"
+#import "TimeUtils.h"
 
 @interface SearchUserController ()
 
+@property (assign, nonatomic) int selectedIndex;
 - (void)clickFollowButton:(id)sender;
 - (void)createCellContent:(UITableViewCell *)cell;
 
@@ -28,14 +30,16 @@
 @synthesize searchButton;
 @synthesize titleLabel;
 @synthesize resultLabel;
+@synthesize inputImageView;
 @synthesize inputTextField;
-
+@synthesize selectedIndex;
 
 - (void)dealloc {
     [searchButton release];
     [titleLabel release];
     [resultLabel release];
     [inputTextField release];
+    [inputImageView release];
     [super dealloc];
 }
 
@@ -56,6 +60,10 @@
     [titleLabel setText:NSLS(@"kAddFriend")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
+    [inputImageView setImage:[imageManager inputImage]];
+    [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
+    
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     
@@ -75,6 +83,7 @@
     [self setTitleLabel:nil];
     [self setResultLabel:nil];
     [self setInputTextField:nil];
+    [self setInputImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -147,7 +156,6 @@
     UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
     statusLabel.font = [UIFont systemFontOfSize:statusLabelFont];
     statusLabel.backgroundColor = [UIColor clearColor];
-    statusLabel.text = NSLS(@"kAlreadyBeFriend");
     statusLabel.tag = STATUS_TAG;
     [cell.contentView addSubview:statusLabel];
     [statusLabel release];
@@ -226,6 +234,12 @@
     if ([[FriendManager defaultManager] isFollowFriend:userId]) {
         statusLabel.hidden = NO;
         followView.hidden = YES;
+        statusLabel.text = NSLS(@"kAlreadyBeFriend");
+    }
+    else if ([[[UserManager defaultManager] userId] isEqualToString:userId]){
+        statusLabel.hidden = NO;
+        followView.hidden = YES;
+        statusLabel.text = NSLS(@"kMyself");
     }
     else {
         statusLabel.hidden = YES;
@@ -233,6 +247,12 @@
     }
     
     return cell;
+}
+
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
 }
 
 
@@ -255,9 +275,8 @@
     if ([inputTextField.text length] == 0) {
         resultLabel.hidden = NO;
         dataTableView.hidden = YES;
-        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
+        [resultLabel setText:NSLS(@"kEnterWords")];
     }else {
-        resultLabel.hidden = YES;
         [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];
     }
 }
@@ -266,23 +285,9 @@
 - (void)clickFollowButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:button.tag];
+    selectedIndex = button.tag;
+    NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
     NSString* userId = [userDic objectForKey:PARA_USERID];
-    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
-    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
-    NSString* gender = [userDic objectForKey:PARA_GENDER];
-    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
-    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
-    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
-    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
-    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
-    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
-    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
-    NSNumber* type = [NSNumber numberWithInt:FOLLOW];
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
-    
-    [[FriendManager defaultManager] createFriendWithUserId:userId type:type nickName:nickName avatar:avatar gender:gender sinaId:sinaId qqId:qqId facebookId:facebookId sinaNick:sinaNick qqNick:qqNick facebookNick:facebookNick createDate:[NSDate date] lastModifiedDate:lastModifiedDate];
     
     [[FriendService defaultService] followUser:userId viewController:self
      ];
@@ -292,40 +297,54 @@
 #pragma -mark FriendServiceDelegate Method
 - (void)didSearchUsers:(NSArray *)userList result:(int)resultCode
 {
-    self.dataList = userList;
-    
-    
-    /**********************************/
-    //test data
-//    NSMutableArray *testUserList = [[NSMutableArray alloc] init];
-//    for (int i=0; i<10; i++) {
-//        NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
-//        [userDic setObject:[NSString stringWithFormat:@"4fab294a03649bc45d248e3%d",i]  forKey:PARA_USERID];
-//        [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_NICKNAME];
-//        [testUserList addObject:userDic];
-//        [userDic release];
-//    }
-//    self.dataList = testUserList;
-//    [testUserList release];
-    /**********************************/
-    
-    
-    [dataTableView reloadData];
-    if ([dataList count] == 0) {
+    if (resultCode == 0)
+    {
+        self.dataList = userList;
+        [dataTableView reloadData];
+        if ([dataList count] == 0) {
+            dataTableView.hidden = YES;
+            resultLabel.hidden = NO;
+            [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
+        }
+        else {
+            dataTableView.hidden = NO;
+            resultLabel.hidden = YES;
+        }
+    }else {
         dataTableView.hidden = YES;
         resultLabel.hidden = NO;
-        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
-    }
-    else {
-        dataTableView.hidden = NO;
-        resultLabel.hidden = YES;
+        [resultLabel setText:NSLS(@"kSearchFailed")];
     }
 }
 
 
 - (void)didFollowUser:(int)resultCode
 {
-    [dataTableView reloadData];
+    if (resultCode == 0) {
+        NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
+        NSString* userId = [userDic objectForKey:PARA_USERID];
+        NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+        NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
+        NSString* gender = [userDic objectForKey:PARA_GENDER];
+        NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
+        NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
+        NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
+        NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+        NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+        NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
+        NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
+        NSNumber* type = [NSNumber numberWithInt:FOLLOW];
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
+        NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+        
+        [[FriendManager defaultManager] createFriendWithUserId:userId type:type nickName:nickName avatar:avatar gender:gender sinaId:sinaId qqId:qqId facebookId:facebookId sinaNick:sinaNick qqNick:qqNick facebookNick:facebookNick createDate:[NSDate date] lastModifiedDate:lastModifiedDate];
+        
+        [dataTableView reloadData];
+    } else {
+        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+    }
+    
 }
 
 @end

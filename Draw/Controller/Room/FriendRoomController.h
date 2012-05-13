@@ -12,7 +12,7 @@
 
 @interface FriendRoomController : PPTableViewController<RoomServiceDelegate>
 {
-    
+    RoomService *roomService;
 }
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *createButton;

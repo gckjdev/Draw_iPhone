@@ -13,6 +13,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *resultLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *inputImageView;
 @property (retain, nonatomic) IBOutlet UITextField *inputTextField;
 
 - (IBAction)clickBack:(id)sender;

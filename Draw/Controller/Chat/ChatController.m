@@ -46,19 +46,7 @@
     // Do any additional setup after loading the view from its nib.
     [dataTableView setBackgroundColor:[UIColor blackColor]];
     
-    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
-    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*[expressions count], HEIGHT_EXPRESSION_VIEW)];
-    int i = 0;
-    for (NSString *key in expressions) {
-        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i, /*expressionScrollView.frame.size.height*/0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
-        button.tag = TAG_EXPRESSION_BUTTON+i++;
-        [button setImage:image forState:UIControlStateNormal];
-        [button setTitle:key forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
-        [expressionScrollView addSubview:button];
-        [button release];
-    }
+    [self configureExpressionScrollView];
 }
 
 - (void)viewDidUnload
@@ -153,5 +141,64 @@
     PPDebug(@"message = %@", message);
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)configureExpressionScrollView
+{
+    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
+    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*[expressions count], HEIGHT_EXPRESSION_VIEW)];
+    int i = 0;
+    for (NSString *key in expressions) {
+        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i, /*expressionScrollView.frame.size.height*/0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
+        button.tag = TAG_EXPRESSION_BUTTON+i++;
+        [button setImage:image forState:UIControlStateNormal];
+        [button setTitle:key forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
+        [expressionScrollView addSubview:button];
+        [button release];
+    }
+}
+
+//- (void)cleanAvatars
+//{
+//    //remove all the old avatars
+//    for (AvatarView *view in avatarArray) {
+//        [view removeFromSuperview];
+//    }
+//    [avatarArray removeAllObjects];
+//}
+//
+//- (void)updatePlayerAvatars
+//{
+//    [self cleanAvatars];
+//    GameSession *session = [[DrawGameService defaultService] session];
+//    int i = 0;
+//    for (GameSessionUser *user in session.userList) {
+//        AvatarType type = Guesser;
+//        if([user.userId isEqualToString:session.drawingUserId])
+//        {
+//            type = Drawer;
+//        }
+//        BOOL gender = user.gender;
+//        if ([session isMe:user.userId]) {
+//            gender = [[UserManager defaultManager] isUserMale];
+//        }
+//        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
+//        [aView setUserId:user.userId];
+//        
+//        //set center
+//        if ([DeviceDetection isIPAD]) {
+//            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 22 * 2.2);            
+//        }else{
+//            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 22);
+//        }
+//        
+//        [self.view addSubview:aView];
+//        [avatarArray addObject:aView];
+//        [aView release];
+//        ++ i;                                  
+//    }
+//}
+
 
 @end
