@@ -42,8 +42,17 @@ enum{
     rowOfPassword = 0;
     rowOfNickName = 1;
     rowOfLanguage = 2;
-    rowOfSoundSwitcher = 3;
-    rowNumber = 4;
+    
+    if (languageType == ChineseType) {
+        rowOfLevel = 3;
+        rowOfSoundSwitcher = 4;
+        rowNumber = 5;        
+    }else{
+        rowOfLevel = -1;
+        rowOfSoundSwitcher = 3;
+        rowNumber = 4;
+    }
+    
     
     
     /*
@@ -80,18 +89,18 @@ enum{
     }
     [GlobalGetImageCache() manage:imageView];
     [self updateNickname:[userManager nickName]];
+    self.updatePassword = nil;
     hasEdited = NO;
     avatarChanged = NO;
-    languageChanged = NO;
     languageType = [userManager getLanguageType];
+    guessLevel = [ConfigManager guessDifficultLevel];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.updatePassword = nil;
-        [self updateRowIndexs];
+        
     }
     return self;
 }
@@ -111,17 +120,21 @@ enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     userManager = [UserManager defaultManager];
+
+
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
-    [saveButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [saveButton setBackgroundImage:[imageManager orangeImage] 
+                          forState:UIControlStateNormal];
     [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-    
     imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
     [avatarButton addSubview:imageView];
-
+    
     [self updateInfoFromUserManager];
+    [self updateRowIndexs];
 }
 
 - (void)viewDidUnload
@@ -182,9 +195,9 @@ enum{
             btn.frame = CGRectMake(184*2, 7*2, 70*2, 37*2);
             [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
         }
-        [btn setBackgroundImage:[UIImage imageNamed:@"all.png"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
         [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"me.png"] forState:UIControlStateSelected];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
         [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
         [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -198,6 +211,11 @@ enum{
         
     }
     NSInteger row = indexPath.row;
+    UIView* btn = [cell viewWithTag:SWITCHER_TAG];
+    if (btn) {
+        [btn setHidden:YES];   
+    }        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if (row == rowOfPassword) {
         [cell.textLabel setText:NSLS(@"kPassword")];      
         if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
@@ -243,7 +261,16 @@ enum{
             [btn setHidden:NO];   
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
-
+        [cell.detailTextLabel setText:nil];
+    }else if(row == rowOfLevel){
+        [cell.textLabel setText:NSLS(@"kLevelSettings")];     
+        if (guessLevel == EasyLevel) {
+            [cell.detailTextLabel setText:NSLS(@"kEasyLevel")];
+        }else if(guessLevel == NormalLevel){
+            [cell.detailTextLabel setText:NSLS(@"kNormalLevel")];
+        }else{
+            [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
+        }
     }
     return cell;
 }
@@ -254,17 +281,29 @@ enum{
     return SECTION_COUNT;
 }
 
+
+#define LANGUAGE_TAG 123
+#define LEVEL_TAG 124
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     NSInteger row = indexPath.row;
     if (row == rowOfLanguage) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
-        LanguageType type = [userManager getLanguageType];
-        [actionSheet setDestructiveButtonIndex:type - 1];
+//        LanguageType type = [userManager getLanguageType];
+        [actionSheet setDestructiveButtonIndex:languageType - 1];
         [actionSheet showInView:self.view];
+        actionSheet.tag = LANGUAGE_TAG;
         [actionSheet release];        
-    }else if(row == rowOfNickName)
+    }else if (row == rowOfLevel) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kEasyLevel") otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
+        [actionSheet setDestructiveButtonIndex:guessLevel - 1];
+        [actionSheet showInView:self.view];
+        actionSheet.tag = LEVEL_TAG;
+        [actionSheet release];        
+    }
+    else if(row == rowOfNickName)
     {
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
         dialog.tag = DIALOG_TAG_NICKNAME;
@@ -288,17 +327,32 @@ enum{
 {
     
     if (buttonIndex == [actionSheet cancelButtonIndex] || buttonIndex == [actionSheet destructiveButtonIndex]) {
+        
     }else {
-        languageType = buttonIndex + 1;
-        languageChanged = YES;
+        if (actionSheet.tag == LANGUAGE_TAG) {
+            languageType = buttonIndex + 1;
+        }else if(actionSheet.tag == LEVEL_TAG){
+            guessLevel = buttonIndex + 1;
+        }
     }
+    [self updateRowIndexs];
     [self.dataTableView reloadData];
+}
+
+- (BOOL)isLocalChanged
+{    
+    BOOL localChanged = (languageType != [userManager getLanguageType]) 
+    || (guessLevel != [ConfigManager guessDifficultLevel]);
+    return localChanged;
 }
 
 - (IBAction)clickSaveButton:(id)sender {
     
-    if (languageChanged) {
+    BOOL localChanged = [self isLocalChanged];
+
+    if (localChanged) {
         [userManager setLanguageType:languageType];
+        [ConfigManager setGuessDifficultLevel:guessLevel];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
@@ -307,10 +361,9 @@ enum{
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
         [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
-    }else if(!languageChanged){
+    }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
-    languageChanged = NO;
 }
 
 - (IBAction)clickAvatar:(id)sender {
@@ -322,7 +375,8 @@ enum{
 }
 
 - (IBAction)clickBackButton:(id)sender {
-    if (languageChanged || hasEdited) {
+    BOOL localChanged = [self isLocalChanged];
+    if (localChanged || hasEdited) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
         [dialog showInView:self.view];
     }else{

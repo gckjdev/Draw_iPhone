@@ -47,6 +47,7 @@
   BOOL hasSessionToBeChange_:1;
   BOOL hasAutoNew_:1;
   BOOL hasTargetSessionId_:1;
+  BOOL hasGuessDifficultLevel_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
@@ -56,6 +57,7 @@
   int64_t sessionToBeChange;
   int32_t autoNew;
   int32_t targetSessionId;
+  int32_t guessDifficultLevel;
   NSString* userId;
   NSString* gameId;
   NSString* nickName;
@@ -71,6 +73,7 @@
 - (BOOL) hasGender;
 - (BOOL) hasIsRobot;
 - (BOOL) hasTargetSessionId;
+- (BOOL) hasGuessDifficultLevel;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -80,6 +83,7 @@
 - (BOOL) gender;
 - (BOOL) isRobot;
 @property (readonly) int32_t targetSessionId;
+@property (readonly) int32_t guessDifficultLevel;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 
@@ -168,6 +172,11 @@
 - (int32_t) targetSessionId;
 - (JoinGameRequest_Builder*) setTargetSessionId:(int32_t) value;
 - (JoinGameRequest_Builder*) clearTargetSessionId;
+
+- (BOOL) hasGuessDifficultLevel;
+- (int32_t) guessDifficultLevel;
+- (JoinGameRequest_Builder*) setGuessDifficultLevel:(int32_t) value;
+- (JoinGameRequest_Builder*) clearGuessDifficultLevel;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

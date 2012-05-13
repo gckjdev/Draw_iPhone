@@ -116,8 +116,6 @@
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
                                   output:output];
-    
-    
 }
 
 
@@ -629,6 +627,7 @@
 }
 
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL 
+                             appId:(NSString*)appId
                             userId:(NSString*)userId
                  targetUserIdArray:(NSArray*)targetUserIdArray
 {
@@ -636,15 +635,15 @@
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
-        NSString* targetUserIdstr;
+        NSString* targetUserIdstr = @""; 
         for (NSString* targetUserId in targetUserIdArray) {
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FOLLOWUSER]; 
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr]; 
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     
@@ -663,6 +662,7 @@
 }
 
 + (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
+                               appId:(NSString*)appId
                               userId:(NSString*)userId
                    targetUserIdArray:(NSArray*)targetUserIdArray
 {
@@ -670,15 +670,15 @@
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
-        NSString* targetUserIdstr;
+        NSString* targetUserIdstr = @"";
         for (NSString* targetUserId in targetUserIdArray) {
             targetUserIdstr = [targetUserIdstr stringByAppendingFormat:@"%@%@", STRING_SEPERATOR, targetUserId];
         }
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UNFOLLOWUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIdstr];
-        str = [str stringByAddQueryParameter:PARA_TARGETUSERCOUNT intValue:targetUserIdArray.count];
         return str;
     };
     
@@ -696,7 +696,8 @@
     
 }
 
-+ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
++ (CommonNetworkOutput*)findFriends:(NSString*)baseURL
+                              appId:(NSString*)appId 
                              userId:(NSString*)userId
                                type:(int)type 
                          startIndex:(NSInteger)startIndex 
@@ -708,8 +709,11 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];        
+        str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
+        str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
+        str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
         return str;
     };
     
@@ -728,6 +732,7 @@
 }
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
+                              appId:(NSString*)appId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex
@@ -737,8 +742,11 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];   
-        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString];        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCHUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
+        str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
+        str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
         return str;
     };
     
@@ -755,5 +763,109 @@
     
     
 }
+
+
+#pragma mark - Friend Room
+
++ (CommonNetworkOutput*)createRoom:(NSString*)baseURL 
+                          roomName:(NSString *)roomName  
+                          password:(NSString *)password 
+                            userId:(NSString *)userId 
+                              nick:(NSString *)nick 
+                            avatar:(NSString *)avatar 
+                            gender:(NSString *)gender
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CREATE_ROOM];
+        str = [str stringByAddQueryParameter:PARA_ROOM_NAME value:roomName];
+        str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
+
++ (CommonNetworkOutput*)findRoomByUser:(NSString*)baseURL 
+                            userId:(NSString *)userId 
+                              offset:(NSInteger)offset
+                            limit:(NSInteger)limit 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FIND_ROOM_BY_USER];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)searhRoomWithKey:(NSString*)baseURL 
+                                keyword:(NSString *)keyword 
+                                offset:(NSInteger)offset
+                                 limit:(NSInteger)limit 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCH_ROOM];
+        str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyword];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 @end

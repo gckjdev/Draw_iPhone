@@ -13,6 +13,7 @@
 #import "UserService.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
+#import "ConfigManager.h"
 
 @class UserManager;
 @class HJManagedImageV;
@@ -26,6 +27,7 @@
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;
     NSInteger rowOfFacebook;
+    NSInteger rowOfLevel;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
@@ -34,8 +36,10 @@
     
     BOOL hasEdited;
     BOOL avatarChanged;
-    BOOL languageChanged;
+//    BOOL languageChanged;
     LanguageType languageType;
+    GuessLevel guessLevel;
+//    LevelType
     
 }
 - (IBAction)clickSaveButton:(id)sender;

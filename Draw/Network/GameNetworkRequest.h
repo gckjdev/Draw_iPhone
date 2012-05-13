@@ -120,22 +120,45 @@
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken;
 
-+ (CommonNetworkOutput*)followUser:(NSString*)baseURL 
++ (CommonNetworkOutput*)followUser:(NSString*)baseURL
+                             appId:(NSString*)appId 
                             userId:(NSString*)userId
                  targetUserIdArray:(NSArray*)targetUserIdArray;
 
 + (CommonNetworkOutput*)unFollowUser:(NSString*)baseURL
+                               appId:(NSString*)appId
                               userId:(NSString*)userId
                    targetUserIdArray:(NSArray*)targetUserIdArray;
 
-+ (CommonNetworkOutput*)findFriends:(NSString*)baseURL 
++ (CommonNetworkOutput*)findFriends:(NSString*)baseURL
+                              appId:(NSString*)appId 
                              userId:(NSString*)userId
                                type:(int)type 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
+                              appId:(NSString*)appId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
+
++ (CommonNetworkOutput*)createRoom:(NSString*)baseURL 
+                          roomName:(NSString *)roomName  
+                          password:(NSString *)password 
+                            userId:(NSString *)userId 
+                              nick:(NSString *)nick 
+                            avatar:(NSString *)avatar 
+                            gender:(NSString *)gender;
+
++ (CommonNetworkOutput*)findRoomByUser:(NSString*)baseURL 
+                                userId:(NSString *)userId 
+                                offset:(NSInteger)offset
+                                 limit:(NSInteger)limit;
+
++ (CommonNetworkOutput*)searhRoomWithKey:(NSString*)baseURL 
+                                 keyword:(NSString *)keyword 
+                                  offset:(NSInteger)offset
+                                   limit:(NSInteger)limit;
+
 @end

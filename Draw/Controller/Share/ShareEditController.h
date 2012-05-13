@@ -24,7 +24,8 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *patternsGallery;
 @property (retain, nonatomic) NSMutableArray* patternsArray;
 @property (retain, nonatomic) IBOutlet UIImageView *myImageView;
-@property (retain, nonatomic) IBOutlet SynthesisView* infuseImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *paperBackground;
+@property (retain, nonatomic) SynthesisView* infuseImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
 @property (retain, nonatomic) IBOutlet UITextView *shareTextField;

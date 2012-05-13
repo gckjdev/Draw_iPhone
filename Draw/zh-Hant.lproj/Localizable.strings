@@ -306,5 +306,39 @@
 "kContactNull" = "聯繫方式不能為空哦。";
 "kFailStartGame" = "房間已經開始玩了，請選擇另一個房間吧。";
 "kSound" = "音效";
-"kON" = " 開";
-"kOFF" = "關 ";
+"kON" = "開 ";
+"kOFF" = " 關";
+
+"kMyFriends" = "我的好友";
+"kFollow" = "關注";
+"kFans" = "粉絲";
+"kNoFollow" = "還沒有關注呢";
+"kNoFans" = "還沒有粉絲呢";
+"kEdit" = "編輯";
+"kAddFriend" = "添加好友";
+"kSearch" = "搜索";
+"kAddAsFriend" = "加為好友";
+"kAlreadyBeFriend" = "已經是好友";
+"kDidNottFindThisUser" = "沒有找到此用戶";
+"kUpdateFollowFailed" = "網絡錯誤，更新關注失敗！";
+"kUpdateFansFailed" = "網絡錯誤，更新粉絲失敗！";
+"kFollowFailed" = "網絡錯誤，關注失敗！";
+"kUnfollowFailed" = "網絡錯誤，取消關注失敗！";
+"kEnterWords" = "請輸入內容";
+"kSearchUserPlaceholder" = "暱稱/微博暱稱/QQ號/郵箱";
+"kSearchFailed" = "網絡錯誤，搜索失敗！";
+"kMyself" = "我";
+
+"kLevelSettings" = "猜詞難度";
+"kEasyLevel" = "業餘";
+"kNormalLevel" = "專業";
+"kHardLevel" = "大師";
+"kLevelSelection" = "難度選擇";
+"kPlayWithFriend" = "以畫會友";
+
+"kCreateRoom" = "創建房間";
+"kSearchRoom" = "搜索房間";
+
+"kPlaying" = "遊戲中";
+"kWaitting" = "等待中";
+"kFull" = "已滿人";

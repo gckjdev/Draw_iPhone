@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
+#import "DeviceDetection.h"
+
+#define CN_WORD_COUNT_PER_PAGE 12
+#define EN_WORD_COUNT_PER_PAGE (([DeviceDetection isIPAD]) ? 16 : 14)
 
 
 #define KEY_LOW_LEVEL @"Low"

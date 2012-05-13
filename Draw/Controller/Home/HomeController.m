@@ -30,6 +30,7 @@
 #import "ConfigManager.h"
 #import "MyFriendsController.h"
 #import "ChatController.h"
+#import "FriendRoomController.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -40,6 +41,7 @@
 @synthesize feedbackButton = _feedbackButton;
 @synthesize settingsLabel = _settingsLabel;
 @synthesize feedbackLabel = _feedbackLabel;
+@synthesize playWithFriendButton = _playWithFriendButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,12 +75,14 @@
     [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.shopButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    
+    [self.playWithFriendButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
     // set text
     [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.shareButton setTitle:NSLS(@"kHomeShare") forState:UIControlStateNormal];
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
+    [self.playWithFriendButton setTitle:NSLS(@"kPlayWithFriend") forState:UIControlStateNormal];
+
     
     int size;
     if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh-Hans"]){
@@ -136,6 +140,7 @@
     [self setFeedbackButton:nil];
     [self setSettingsLabel:nil];
     [self setFeedbackLabel:nil];
+    [self setPlayWithFriendButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -152,7 +157,7 @@
     [self showActivityWithText:NSLS(@"kJoiningGame")];
     
     NSString* userId = [_userManager userId];
-    NSString* nickName = [_userManager userId];
+    NSString* nickName = [_userManager nickName];
     
     if (userId == nil){
         userId = [NSString GetUUID];
@@ -166,13 +171,20 @@
         [[DrawGameService defaultService] joinGame:userId
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
-                                            gender:[_userManager isUserMale]];    
+                                            gender:[_userManager isUserMale]
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
     }
     else{
         
         [self showActivityWithText:NSLS(@"kConnectingServer")];        
         [[RouterService defaultService] tryFetchServerList:self];        
     }
+}
+
+- (IBAction)clickPlayWithFriend:(id)sender {
+    FriendRoomController *frc = [[FriendRoomController alloc] init];
+    [self.navigationController pushViewController:frc animated:YES];
+    [frc release];
 }
 
 
@@ -271,23 +283,31 @@
 {
     [self hideActivity];
     [self showActivityWithText:NSLS(@"kJoiningGame")];
+    
+    
+    NSString* userId = [_userManager userId];
+    NSString* nickName = [_userManager nickName];
+    
+    if (userId == nil){
+        userId = [NSString GetUUID];
+    }
+    
+    if (nickName == nil){
+        nickName = NSLS(@"guest");
+    }
+
+    
     if (_isTryJoinGame){
-        [[DrawGameService defaultService] joinGame:[_userManager userId]
-                                          nickName:[_userManager nickName]
+        [[DrawGameService defaultService] joinGame:userId
+                                          nickName:nickName
                                             avatar:[_userManager avatarURL]
-                                            gender:[_userManager isUserMale]];    
+                                            gender:[_userManager isUserMale]
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
     }
     
     _isTryJoinGame = NO;
     
 }
-
-#define BACKUP_CN_SERVER   @"58.215.190.75"
-#define BACKUP_CN_PORT     9000
-
-#define BACKUP_EN_SERVER   @"106.187.89.232"
-#define BACKUP_EN_PORT     9000
-
 
 - (void)didServerListFetched:(int)result
 {
@@ -318,7 +338,7 @@
 
     [[DrawGameService defaultService] setServerAddress:address];
     [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.15"];
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
@@ -348,6 +368,7 @@
     [_feedbackButton release];
     [_settingsLabel release];
     [_feedbackLabel release];
+    [_playWithFriendButton release];
     [super dealloc];
 }
 

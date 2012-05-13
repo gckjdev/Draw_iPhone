@@ -28,6 +28,7 @@
 #import "AudioManager.h"
 #import "DrawConstants.h"
 #import "ChatController.h"
+#import "ConfigManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -209,6 +210,7 @@
         }   
         
         // set default image firstly
+        PPDebug(@"user gender=%d", [user gender]);
         if ([user gender])
             [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
         else
@@ -509,9 +511,11 @@
     PPDebug(@"<registerObserver> room controller");
     
     [[DrawGameService defaultService] joinGame:[_userManager userId]
-                                      nickName:[_userManager nickName]
-                                        avatar:[_userManager avatarURL]
-                                        gender:[_userManager isUserMale]];
+                                      nickName:[_userManager nickName] 
+                                        avatar:[_userManager avatarURL] 
+                                        gender:[_userManager isUserMale] 
+                                guessDiffLevel:[ConfigManager guessDifficultLevel]];
+    
 }
 
 - (void)startGame
@@ -585,6 +589,12 @@
 
 - (IBAction)clickChangeRoom:(id)sender
 {
+    // update data before change room
+    [[DrawGameService defaultService] setNickName:[_userManager nickName]];
+    [[DrawGameService defaultService] setAvatar:[_userManager avatarURL]];
+    [[DrawGameService defaultService] setGender:[_userManager isUserMale]];
+    [[DrawGameService defaultService] setGuessDiffLevel:[ConfigManager guessDifficultLevel]];
+    
     if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 

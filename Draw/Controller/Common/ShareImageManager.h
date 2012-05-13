@@ -80,5 +80,6 @@
 - (UIImage *)myFoucsSelectedImage;
 - (UIImage *)foucsMeImage;
 - (UIImage *)foucsMeSelectedImage;
+- (UIImage *)normalButtonImage;
 
 @end
