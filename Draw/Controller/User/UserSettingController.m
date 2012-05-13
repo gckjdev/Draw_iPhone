@@ -19,6 +19,7 @@
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DeviceDetection.h"
+#import "MusicSettingController.h"
 
 enum{
     SECTION_LANGUAGE = 0,
@@ -46,11 +47,13 @@ enum{
     if (languageType == ChineseType) {
         rowOfLevel = 3;
         rowOfSoundSwitcher = 4;
-        rowNumber = 5;        
+        rowOfMusicSettings = 5;
+        rowNumber = 6;        
     }else{
         rowOfLevel = -1;
         rowOfSoundSwitcher = 3;
-        rowNumber = 4;
+        rowOfMusicSettings = 4;
+        rowNumber = 5;
     }
     
     
@@ -271,6 +274,8 @@ enum{
         }else{
             [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
         }
+    }else if (row == rowOfMusicSettings) {
+        [cell.textLabel setText:NSLS(@"kMusicSettings")];
     }
     return cell;
 }
@@ -320,6 +325,9 @@ enum{
         //TODO bind QQ Weibo
     }else if(row == rowOfFacebook){
         //TODO bind Facebook
+    }else if (row == rowOfMusicSettings) {
+        MusicSettingController *controller = [[MusicSettingController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

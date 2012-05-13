@@ -10,6 +10,8 @@
 #import "MusicSettingCell.h"
 #import "MusicItem.h"
 #import "MusicDownloadService.h"
+#import "MusicItem.h"
+#import "LogUtil.h"
 
 #define MUSIC_URL @"http://m.easou.com/"
 
@@ -44,7 +46,7 @@
 
 - (void)openURL:(NSString *)URLString
 {
-    [self showActivityWithText:NSLS(@"kLoadingURL")];
+//    [self showActivityWithText:NSLS(@"kLoadingURL")];
     
     NSLog(@"url = %@",URLString);
     
@@ -56,24 +58,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     [self openURL:MUSIC_URL];
     
-    self.musicList = [MusicDownloadService findAllItems];
+    _musicList = [MusicDownloadService findAllItems];
+    
+    //for test
+//    MusicItem *item = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test" filePath:@"" tempPath:@""];
+//    MusicItem *item2 = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test2" filePath:@"" tempPath:@""];
+//    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:item, item2, nil];
+//    self.musicList = array ;
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressTimer) userInfo:nil repeats:YES];
     
 }
 
+- (void)updateProgressTimer
+{
+//    _musicList = [MusicDownloadService findAllItems];
+//    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
+//    [self.tableView reloadData];
+
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
     self.webView = nil;
     self.tableView = nil;
     self.request = nil;
     self.musicList = nil;
+    
+    [timer invalidate];
+    timer = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -82,8 +99,6 @@
     [super viewDidAppear:animated];
 }
 
-
-
 - (void)dealloc
 {
     [super dealloc];
@@ -91,6 +106,7 @@
     [self.request release];
     [self.tableView release];
     [self.musicList release];
+    [self.timer release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -127,7 +143,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  30.0f;
+    return  40.0f;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -179,6 +195,15 @@
 }
 
 #pragma mark - webView delegate method
+
+- (IBAction) clickBackButton
+{
+    if (self.webView.canGoBack) {
+        [self.webView stopLoading];
+        [self.webView goBack];
+    }
+}
+
 - (BOOL)canDownload:(NSString*)urlString
 {    
     NSString* pathExtension = [[urlString pathExtension] lowercaseString];
@@ -217,6 +242,7 @@
         case CLICK_DOWNLOAD:
         {
             [[MusicDownloadService defaultService] downloadFile:urlForAction];
+            
         }
             break;
             
@@ -245,7 +271,7 @@
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)requestURL navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    NSLog(@"Loading URL = %@", [[requestURL URL] absoluteURL]); 
+    PPDebug(@"Loading URL = %@", [[requestURL URL] absoluteURL]); 
 
     NSString* urlString = [[[requestURL URL] absoluteURL] description];
     if ([self isURLSkip:urlString]){

@@ -29,6 +29,7 @@
     NSInteger rowOfFacebook;
     NSInteger rowOfLevel;
     NSInteger rowOfSoundSwitcher;
+    NSInteger rowOfMusicSettings;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;

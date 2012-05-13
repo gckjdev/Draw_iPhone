@@ -13,6 +13,7 @@
 @interface MusicItem : NSObject<ASIProgressDelegate, ASIHTTPRequestDelegate>
 
 @property (nonatomic, retain) NSNumber * downloadSize;
+@property (nonatomic, retain) NSNumber * fileSize;
 @property (nonatomic, copy) NSString * musicName;
 @property (nonatomic, copy) NSString * localPath;
 @property (nonatomic, copy) NSString * tempPath;
@@ -27,4 +28,6 @@
           tempPath:(NSString*)tempPath;
 
 - (NSDictionary*)dictionaryForRequest;
+
++ (MusicItem*)fromDictionary:(NSDictionary*)dict;
 @end
