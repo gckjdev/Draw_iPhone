@@ -10,12 +10,20 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "ShareImageManager.h"
+#import "StableView.h"
+#import "RoomManager.h"
 
 @implementation RoomCell
 @synthesize avatarImage;
 @synthesize roomNameLabel;
 @synthesize roomStatusLabel;
+@synthesize creatorLabel;
+@synthesize userListLabel;
+@synthesize inviteInfoButton;
+@synthesize inviteButton;
 
+
+#define AVATAR_FRAME CGRectMake(18, 3, 36, 37)
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -27,9 +35,14 @@
         return nil;
     }
     
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    RoomCell *cell = ((RoomCell*)[topLevelObjects objectAtIndex:0]);
+    cell.delegate = delegate;
+
     
-    return [topLevelObjects objectAtIndex:0];
+    cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
+    [cell addSubview:cell.avatarImage];
+    
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
@@ -39,7 +52,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 44.0f;
+    return 65.0f;
 }
 
 
@@ -62,36 +75,65 @@
             color = [UIColor greenColor];
             break;
     }
-    [self.roomStatusLabel setText:text];
+    [self.roomStatusLabel setText:[NSString stringWithFormat:@"[%@]",text]];
     [self.roomStatusLabel setTextColor:color];
 }
 
 - (void)setAvatar:(RoomUser *)user
 {
-    [self.avatarImage clear];
-    
     NSString *avatar = user.avatar;
+    BOOL gender = ![user isFemale];
+    [avatarImage setAvatarUrl:avatar gender:gender];
+    [avatarImage setAvatarSelected:YES];
     avatarImage.hidden = NO;
-    
-    BOOL isFemale = [user isFemale];
-    if (!isFemale)
-        [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    else
-        [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-    
-    if ([avatar length] > 0){     
-        // set URL for download avatar
-        [self.avatarImage setUrl:[NSURL URLWithString:avatar]];
-        
-    }else{
-//        if ([user isMe]){
-//            [avatarImage setImage:[[UserManager defaultManager] avatarImage]];
-//        }
-    }
-    [GlobalGetImageCache() manage:avatarImage];
-
 }
 
+
+- (void)setInviteInfo:(Room *)room
+{
+    self.inviteButton.hidden = YES;
+    self.inviteInfoButton.hidden = YES;
+    if (room.myStatus == UserCreator) {
+        self.inviteButton.hidden = NO;
+    }else if(room.myStatus == UserInvited)
+    {
+        self.inviteInfoButton = NO;
+    }
+}
+
+
+#define USER_LIST_COUNT 3
+
+- (void)setUserListInfo:(Room *)room
+{
+    NSArray *array = [room playingUserList];
+    RoomUserStatus stat = UserPlaying;
+    if ([array count] == 0) {
+        array = [room joinedUserList];
+        stat = UserJoined;
+    }
+    if ([array count] == 0) {
+        array = [room invitedUserList];
+        stat = UserInvited;
+    }
+
+    if ([array count] == 0) {
+        self.userListLabel.hidden = YES;
+    }else{
+        self.userListLabel.hidden = NO;
+        //join the string.
+        NSString *listString = [[RoomManager defaultManager] 
+                                nickStringFromUsers:array 
+                                split:@"、" 
+                                count:USER_LIST_COUNT];
+        [self.userListLabel setText:listString];
+    }
+    
+}
+
+- (IBAction)clickInviteButton:(id)sender {
+    
+}
 
 - (void)setInfo:(Room *)room
 {
@@ -101,12 +143,20 @@
     [self setAvatar:room.creator];
     //set status
     [self setStatus:room.status];
+    //setInviteInfo
+    [self setInviteInfo:room];
+    //set user list
+    [self setUserListInfo:room];
     
 }
 - (void)dealloc {
     [avatarImage release];
     [roomNameLabel release];
     [roomStatusLabel release];
+    [creatorLabel release];
+    [userListLabel release];
+    [inviteInfoButton release];
+    [inviteButton release];
     [super dealloc];
 }
 @end

@@ -17,6 +17,7 @@
 #import "FriendManager.h"
 #import "GameNetworkConstants.h"
 #import "TimeUtils.h"
+#import "CommonDialog.h"
 
 @interface SearchUserController ()
 
@@ -106,9 +107,11 @@
 #define NICK_TAG    72
 #define STATUS_TAG  73
 #define FOLLOW_TAG  74
+#define GENDER_TAG  75
+#define WEIBO_TAG   76
 - (void)createCellContent:(UITableViewCell *)cell
 {
-    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight, nickLabelFont, statusLabelFont, edge;
+    CGFloat cellHeight, avatarWidth, avatarHeight, nickWidth, nickHeight, space, statusWidth, statusHeight, nickLabelFont, statusLabelFont, edge, weiboWidth, areaWidth, areaHeight, areaFont;
     cellHeight = CELL_HEIGHT_IPHONE;
     avatarWidth = 37;
     avatarHeight = 39;
@@ -120,6 +123,10 @@
     nickLabelFont = 14;
     statusLabelFont = 13;
     edge = 2;
+    weiboWidth = 20;
+    areaWidth = 60;
+    areaHeight = 20;
+    areaFont = 11;
     
     if ([DeviceDetection isIPAD]) {
         cellHeight = CELL_HEIGHT_IPAD;
@@ -133,18 +140,25 @@
         nickLabelFont = 2 * nickLabelFont;
         statusLabelFont = 2 * statusLabelFont;
         edge = 2 * edge;
+        weiboWidth = 2 * weiboWidth;
+        areaWidth = 2 * areaWidth;
+        areaHeight = 2 * areaHeight;
+        areaFont = 2 * areaFont;
     }
     
+    //set avatar Background
     UIImageView *avatarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, (cellHeight-avatarHeight)/2, avatarWidth, avatarHeight)];
     [avatarBackground setImage:[UIImage imageNamed:@"user_picbg.png"]];
     [cell.contentView addSubview:avatarBackground];
     [avatarBackground release];
     
+    //set avatarImageView
     HJManagedImageV *avatarImageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(edge, (cellHeight-avatarHeight)/2 + edge, avatarWidth-2*edge, avatarWidth-2*edge)];
     avatarImageView.tag = AVATAR_TAG;
     [cell.contentView addSubview:avatarImageView];
     [avatarImageView release];
     
+    //set nick label
     UILabel *nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth+space, (cellHeight-nickHeight)/2, nickWidth, nickHeight)];
     nickLabel.backgroundColor = [UIColor clearColor];
     nickLabel.font = [UIFont systemFontOfSize:nickLabelFont];
@@ -153,14 +167,38 @@
     [cell.contentView addSubview:nickLabel];
     [nickLabel release];    
     
-    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
+    //set gender label
+    UILabel *genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-nickHeight)/2, weiboWidth, weiboWidth)];
+    genderLabel.backgroundColor = [UIColor clearColor];
+    genderLabel.font = [UIFont systemFontOfSize:areaFont];
+    genderLabel.tag = GENDER_TAG;
+    [cell.contentView addSubview:genderLabel];
+    [genderLabel release];
+    
+    //set weibo image
+    UIImageView *weiboImageView = [[UIImageView alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + weiboWidth + 2*space, (cellHeight-nickHeight)/2, weiboWidth, weiboWidth)];
+    weiboImageView.tag = WEIBO_TAG;
+    [cell.contentView addSubview:weiboImageView];
+    [weiboImageView release];
+    
+    //set area label
+    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-nickHeight)/2+areaHeight, areaWidth, areaHeight)];
+    areaLabel.backgroundColor = [UIColor clearColor];
+    //test 
+    areaLabel.text = @"乌鲁木齐";
+    areaLabel.font = [UIFont systemFontOfSize:areaFont];
+    [cell.contentView addSubview:areaLabel];
+    [areaLabel release];
+    
+    //set stattus label
+    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 12*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
     statusLabel.font = [UIFont systemFontOfSize:statusLabelFont];
     statusLabel.backgroundColor = [UIColor clearColor];
     statusLabel.tag = STATUS_TAG;
     [cell.contentView addSubview:statusLabel];
     [statusLabel release];
     
-    UIView *followView = [[UIView alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 2*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
+    UIView *followView = [[UIView alloc] initWithFrame:CGRectMake(avatarWidth + nickWidth + 12*space, (cellHeight-statusHeight)/2, statusWidth, statusHeight)];
     followView.tag = FOLLOW_TAG;
     [cell.contentView addSubview:followView];
     [followView release];
@@ -180,6 +218,8 @@
     UILabel *nickLabel = (UILabel *)[cell.contentView viewWithTag:NICK_TAG];
     UILabel *statusLabel = (UILabel *)[cell.contentView viewWithTag:STATUS_TAG];
     UIView  *followView = (UIView *)[cell.contentView viewWithTag:FOLLOW_TAG];
+    UILabel *genderLabel = (UILabel *)[cell.contentView viewWithTag:GENDER_TAG];
+    UIImageView *weiboImageView = (UIImageView *)[cell.contentView viewWithTag:WEIBO_TAG];
     
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
     NSString* userId = [userDic objectForKey:PARA_USERID];
@@ -216,6 +256,33 @@
     }
     
     
+    //set gender
+    if ([gender isEqualToString:MALE]) {
+        genderLabel.hidden = NO;
+        genderLabel.text = @"男";
+    }else if ([gender isEqualToString:FEMALE]) {
+        genderLabel.hidden = NO;
+        genderLabel.text = @"女";
+    }else {
+        genderLabel.hidden = YES;
+    }
+    
+    //set weibo image
+    if (sinaNick) {
+        weiboImageView.hidden = NO;
+        [weiboImageView setImage:[UIImage imageNamed:@"sina.png"]];
+    }else if (qqNick){
+        weiboImageView.hidden = NO;
+        [weiboImageView setImage:[UIImage imageNamed:@"qq.png"]];
+    }else if (facebookNick){
+        weiboImageView.hidden = NO;
+        [weiboImageView setImage:[UIImage imageNamed:@"facebook.png"]];
+    }else {
+        weiboImageView.hidden = YES;
+    }
+    
+    
+    //set button or label
     CGFloat followButtonFont = 13;
     if ([DeviceDetection isIPAD]) {
         followButtonFont = 2 * followButtonFont;
@@ -230,7 +297,6 @@
     [followView addSubview:followButton];
     [followButton release];
     
-    //set button or label
     if ([[FriendManager defaultManager] isFollowFriend:userId]) {
         statusLabel.hidden = NO;
         followView.hidden = YES;
@@ -277,6 +343,7 @@
         dataTableView.hidden = YES;
         [resultLabel setText:NSLS(@"kEnterWords")];
     }else {
+        resultLabel.hidden = YES;
         [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];
     }
 }
@@ -311,10 +378,43 @@
             resultLabel.hidden = YES;
         }
     }else {
-        dataTableView.hidden = YES;
-        resultLabel.hidden = NO;
-        [resultLabel setText:NSLS(@"kSearchFailed")];
+        CommonDialog *searchFailedDialog = [CommonDialog createDialogWithTitle:NSLS(@"kSearchFailedTitle") message:NSLS(@"kSearchFailed") style:CommonDialogStyleSingleButton deelegate:nil];
+        [searchFailedDialog showInView:self.view];
     }
+    
+    
+    /**********************************/
+    //test data
+//    NSMutableArray *testUserList = [[NSMutableArray alloc] init];
+//    for (int i=0; i<10; i++) {
+//        NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
+//        [userDic setObject:[NSString stringWithFormat:@"4fab294a03649bc45d248e3%d",i]  forKey:PARA_USERID];
+//        [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_NICKNAME];
+//        
+//        if (i%2 ==0) {
+//            [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_SINA_NICKNAME];
+//            [userDic setObject:@"m" forKey:PARA_GENDER];
+//        }else {
+//            [userDic setObject:[NSString stringWithFormat:@"name%d",i] forKey:PARA_QQ_NICKNAME];
+//            [userDic setObject:@"f" forKey:PARA_GENDER];
+//        }
+//        
+//        [testUserList addObject:userDic];
+//        [userDic release];
+//    }
+//    self.dataList = testUserList;
+//    [testUserList release];
+//    [dataTableView reloadData];
+//    if ([dataList count] == 0) {
+//        dataTableView.hidden = YES;
+//        resultLabel.hidden = NO;
+//        [resultLabel setText:NSLS(@"kDidNottFindThisUser")];
+//    }
+//    else {
+//        dataTableView.hidden = NO;
+//        resultLabel.hidden = YES;
+//    }
+    /**********************************/
 }
 
 

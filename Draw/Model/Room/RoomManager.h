@@ -23,5 +23,7 @@
 - (NSArray *)getJoinedRoomList;
 - (Room *)paserRoom:(NSDictionary *)dict;
 - (NSArray *)paserRoomList:(NSArray *)data;
-
+- (NSString *)nickStringFromUsers:(NSArray *)userList 
+                            split:(NSString *)split 
+                            count:(NSInteger)count;
 @end

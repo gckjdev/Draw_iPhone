@@ -35,11 +35,15 @@ typedef enum {
 @property(nonatomic, retain)NSString *gameServerPort;
 @property(nonatomic, retain)NSString *password;
 @property(nonatomic, assign)RoomStatus status;
+@property(nonatomic, assign)RoomUserStatus myStatus;
 @property(nonatomic, retain)NSDate *createDate;
 @property(nonatomic, retain)NSDate *expireDate;
 @property(nonatomic, retain)RoomUser *creator;
 @property(nonatomic, retain)NSArray *userList;
 
+- (NSArray *)invitedUserList;
+- (NSArray *)playingUserList;
+- (NSArray *)joinedUserList;
 
 @end
 
