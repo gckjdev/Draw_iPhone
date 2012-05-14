@@ -10,6 +10,7 @@
 #import "GameNetworkConstants.h"
 #import "Room.h"
 #import "TimeUtils.h"
+#import "UserManager.h"
 
 RoomManager *staticRoomManager = nil;
 @implementation RoomManager
@@ -59,15 +60,40 @@ RoomManager *staticRoomManager = nil;
     return self.roomList;
 }
 
+- (NSString *)nickStringFromUsers:(NSArray *)userList 
+                            split:(NSString *)split 
+                            count:(NSInteger)count
+{
+    if ([userList count] == 0) {
+        return nil;
+    }
+    NSMutableArray *nickList = [[NSMutableArray alloc]init];
+    int i = 0;
+    for (RoomUser *user in userList) {
+        if (user.nickName) {
+            [nickList addObject:userList];
+            if (++ i == count) {
+                break;
+            }
+        }
+    }
+    NSString *retString = [nickList componentsJoinedByString:split];
+    [nickList release];
+    return retString;
+}
 
 - (RoomUser *)paserRoomUser:(NSDictionary *)dict
 {
     if (dict && [[dict allKeys] count] != 0) {
+        UserManager *userManager = [UserManager defaultManager];
         RoomUser *user = [[[RoomUser alloc] init] autorelease];
         user.userId = [dict objectForKey:PARA_USERID];
         user.nickName = [dict objectForKey:PARA_NICKNAME];
         user.gender = [dict objectForKey:PARA_GENDER];
         user.avatar = [dict objectForKey:PARA_AVATAR];
+        if ([userManager isMe:user.userId] && [user.avatar length] == 0) {
+            user.avatar = [userManager avatarURL];
+        }
         user.status = ((NSNumber *)[dict objectForKey:PARA_STATUS]).intValue;
         user.playTimes = ((NSNumber *)[dict objectForKey:PARA_PLAY_TIMES]).integerValue;
         NSString *lastPlayDateString = [dict objectForKey:PARA_LAST_PLAY_DATE];
@@ -112,8 +138,12 @@ RoomManager *staticRoomManager = nil;
                 if (user) {
                     if ([user.userId isEqualToString:room.creator.userId]) {
                         room.creator = user;
+                        room.myStatus = UserCreator;
                     }else{
                         [userList addObject:user];
+                        if ([[UserManager defaultManager] isMe:user.userId]) {
+                            room.myStatus = user.status;
+                        }
                     }
                 }
             }

@@ -101,6 +101,14 @@ static UserManager* _defaultManager;
     return value;    
 }
 
+- (BOOL)isMe:(NSString *)userId
+{
+    if ([userId isEqualToString:[self userId]]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)isPasswordEmpty
 {
     if ([self.password length] == 0) {
