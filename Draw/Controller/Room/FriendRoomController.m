@@ -61,7 +61,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.dataList = [[[NSMutableArray alloc] init]autorelease];
+    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
@@ -157,7 +157,12 @@
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
-        self.dataList = roomList;
+        if (roomList == nil) {
+            [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
+        }else
+        {
+            self.dataList = roomList;            
+        }
         [self.dataTableView reloadData];
     }
 
@@ -181,7 +186,7 @@
 	if (cell == nil) {
         cell = [RoomCell createCell:self];
 	}
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
 	return cell;

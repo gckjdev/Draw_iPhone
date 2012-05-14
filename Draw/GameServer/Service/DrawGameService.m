@@ -678,6 +678,8 @@ static DrawGameService* _defaultService;
 
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId
 {
+    
+    PPDebug(@"<DrawGameService> userId = %@, guess word = %@", guessUserId,word);
     [_networkClient sendGuessWord:word
                       guessUserId:guessUserId
                            userId:_userId
