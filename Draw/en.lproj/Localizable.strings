@@ -313,6 +313,7 @@
 "kUnfollowFailed" = "Network error, unfollow failed!";
 "kEnterWords" = "Please enter the content";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
+"kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
 "kMyself" = "Myself";
 
