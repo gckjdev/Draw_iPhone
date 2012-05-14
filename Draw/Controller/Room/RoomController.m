@@ -27,7 +27,6 @@
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DrawConstants.h"
-#import "ChatController.h"
 #import "ConfigManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
@@ -57,6 +56,7 @@
 @synthesize startTimer = _startTimer;
 @synthesize clickCount = _clickCount;
 @synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
+@synthesize chatController = _chatController;
 
 
 #define QUICK_DURATION  2
@@ -69,6 +69,7 @@
     [_prolongButton release];
     [popupButton release];
     [_onlinePlayerCountLabel release];
+    [_chatController release];
     [super dealloc];
 }
 
@@ -653,9 +654,11 @@
 }
 
 - (IBAction)clickPrivateChat:(id)sender {
-    ChatController *controller = [[ChatController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    if (_chatController == nil) {
+        _chatController = [[ChatController alloc] init];
+    }
+   
+    [_chatController showInView:self.view];
 }
 
 - (IBAction)clickMenu:(id)sender
@@ -800,5 +803,7 @@
         }
     }
 }
+
+
 
 @end

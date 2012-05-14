@@ -140,9 +140,7 @@
             type = Drawer;
         }
         BOOL gender = user.gender;
-        if ([session isMe:user.userId]) {
-            gender = [[UserManager defaultManager] isUserMale];
-        }
+
         AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
         [aView setUserId:user.userId];
         
