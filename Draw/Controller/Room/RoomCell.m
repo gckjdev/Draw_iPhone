@@ -88,6 +88,7 @@
             [avatarImage setImage:[[UserManager defaultManager] avatarImage]];
         }
     }
+    [GlobalGetImageCache() manage:avatarImage];
 
 }
 

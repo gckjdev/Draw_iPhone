@@ -45,7 +45,7 @@ RoomService *staticRoomService = nil;
         NSString *gender = [userManager gender];
         NSString *avatar = [userManager avatarURL];
         
-        CommonNetworkOutput* output = [GameNetworkRequest createRoom:SERVER_URL roomName:roomName password:password userId:userId nick:nickName avatar:avatar gender:gender];        
+        CommonNetworkOutput* output = [GameNetworkRequest createRoom:TRAFFIC_SERVER_URL roomName:roomName password:password userId:userId nick:nickName avatar:avatar gender:gender];        
         Room *room = nil;
         if (output.resultCode == ERROR_SUCCESS) {
             room = [[RoomManager defaultManager] paserRoom:output.jsonDataDict];
@@ -68,7 +68,7 @@ RoomService *staticRoomService = nil;
     dispatch_async(workingQueue, ^{
         NSString *userId = [userManager userId]; 
         
-        CommonNetworkOutput* output = [GameNetworkRequest findRoomByUser:SERVER_URL userId:userId offset:offset limit:limit];
+        CommonNetworkOutput* output = [GameNetworkRequest findRoomByUser:TRAFFIC_SERVER_URL userId:userId offset:offset limit:limit];
         NSArray *roomList = nil;
         if (output.resultCode == ERROR_SUCCESS) {
             roomList = [[RoomManager defaultManager] paserRoomList:output.jsonDataArray];
@@ -90,7 +90,7 @@ RoomService *staticRoomService = nil;
 {
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest searhRoomWithKey:SERVER_URL keyword:key offset:offset limit:limit];
+        CommonNetworkOutput* output = [GameNetworkRequest searhRoomWithKey:TRAFFIC_SERVER_URL keyword:key offset:offset limit:limit];
         
         NSArray *roomList = nil;
         if (output.resultCode == ERROR_SUCCESS) {

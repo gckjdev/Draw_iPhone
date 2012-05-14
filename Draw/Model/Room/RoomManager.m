@@ -90,9 +90,8 @@ RoomManager *staticRoomManager = nil;
         room.gameServerPort = [dict objectForKey:PARA_SERVER_PORT];
         room.status = ((NSNumber *)[dict objectForKey:PARA_STATUS]).integerValue;
         room.creator = [[[RoomUser alloc] init] autorelease];
-        room.creator.userId = [dict objectForKey:PARA_USERID];
+        room.creator.userId = [dict objectForKey:PARA_CREATOR_USERID];
         room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
-
         
         NSString *createrDateString = [dict objectForKey:PARA_CREATE_DATE];
         if ([createrDateString length] != 0) {

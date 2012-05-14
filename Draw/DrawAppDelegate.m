@@ -37,8 +37,13 @@ NSString* GlobalGetServerURL()
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.6:8000/api/i?";    
-//    return @"http://127.0.0.1:8000/api/i?";  
+
 //    return @"http://192.168.1.101:8000/api/i?";  
+}
+
+NSString* GlobalGetTrafficServerURL()
+{
+    return @"http://127.0.0.1:8100/api/i?";      
 }
 
 @implementation DrawAppDelegate
