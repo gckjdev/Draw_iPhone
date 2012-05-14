@@ -18,6 +18,9 @@
     UserManager *_userManager;
     BOOL _isTryJoinGame;    
     Room *_currentSelectRoom;
+
+    RoomService *roomService;
+
 }
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *createButton;

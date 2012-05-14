@@ -15,6 +15,9 @@
 @optional
 - (void)didFetchData:(int)resultCode;
 - (void)didCreateRoom:(Room*)room resultCode:(int)resultCode; 
+- (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode;
+- (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode;
+
 //- (void)didFetchData:(int)resultCode;
 
 @end

@@ -9,83 +9,87 @@
 #import "ChatController.h"
 #import "MessageCell.h"
 #import "ExpressionManager.h"
+#import "DrawGameService.h"
+#import "GameSessionUser.h"
+#import "UserManager.h"
+#import "DeviceDetection.h"
 #import "PPDebug.h"
 
-#define WIDTH_EXPRESSION_VIEW 45
-#define HEIGHT_EXPRESSION_VIEW 45
-#define DISTANCE_BETWEEN_EXPRESSION_VIEW 12
+#define NUM_EXPRESSION_IN_ONE_PAGE 5
+#define DISTANCE_BETWEEN_EXPRESSION 10
 #define TAG_EXPRESSION_BUTTON 210
 
-@interface ChatController ()
+#define DISTANCE_BETWEEN_AVATAR 5
 
+@interface ChatController()
+{
+    NSMutableArray *_avatarArray;
+    NSString *_userId;
+    ChatType _type;
+}
 @end
 
 @implementation ChatController
-@synthesize headImageHolderView;
-@synthesize headView;
+
+@synthesize chatControllerDelegate;
+@synthesize chatView;
+@synthesize avatarHolderView;
+@synthesize avatarView;
 @synthesize nameLabel;
 @synthesize microBlogImageView;
 @synthesize sexLabel;
 @synthesize cityLabel;
 @synthesize expressionScrollView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithChatType:(ChatType)type
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        _type = type;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    self.dataList = [NSArray arrayWithObjects:@"a", @"b",  @"c",  @"d",  @"e",  @"f",  @"g",  @"h",  @"i",  @"j", nil];
     [super viewDidLoad];
-    
     // Do any additional setup after loading the view from its nib.
-    [dataTableView setBackgroundColor:[UIColor blackColor]];
+    self.chatView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:234.0/255.0 blue:155.0/255.0 alpha:1.0];
     
-    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
-    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*[expressions count], HEIGHT_EXPRESSION_VIEW)];
-    int i = 0;
-    for (NSString *key in expressions) {
-        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION_VIEW+(WIDTH_EXPRESSION_VIEW+DISTANCE_BETWEEN_EXPRESSION_VIEW)*i, /*expressionScrollView.frame.size.height*/0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW)];
-        button.tag = TAG_EXPRESSION_BUTTON+i++;
-        [button setImage:image forState:UIControlStateNormal];
-        [button setTitle:key forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
-        [expressionScrollView addSubview:button];
-        [button release];
-    }
+    self.dataList = [[MessageManager defaultManager] messagesForChatType:_type];;
+    [self configureExpressionScrollView];
+    
+    _avatarArray = [[[NSMutableArray alloc] init] retain];
 }
 
 - (void)viewDidUnload
 {
-    [self setHeadView:nil];
     [self setNameLabel:nil];
     [self setSexLabel:nil];
     [self setCityLabel:nil];
     [self setExpressionScrollView:nil];
-    [self setHeadImageHolderView:nil];
+    [self setAvatarHolderView:nil];
     [self setMicroBlogImageView:nil];
+    [self setChatView:nil];
+    [self setAvatarView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)dealloc {
-    [headView release];
+    [_avatarArray release];
+    [_userId release];
     [nameLabel release];
     [sexLabel release];
     [cityLabel release];
     [expressionScrollView release];
-    [headImageHolderView release];
+    [avatarHolderView release];
     [microBlogImageView release];
+    [chatView release];
+    [avatarView release];
     [super dealloc];
 }
-
 
 #pragma mark - Table view delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -137,21 +141,113 @@
 }
 
 - (IBAction)clickClose:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.view removeFromSuperview];
 }
 
 - (void)clickExpression:(id)sender
 {
     NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
     PPDebug(@"key = %@", key);
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.view removeFromSuperview];
 }
 
 #pragma mark - MessageCell delegate.
 - (void)didSelectMessage:(NSString*)message
+{    
+    [self.view removeFromSuperview];
+    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
+        if(chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(wantProlongStart)]){
+            [chatControllerDelegate wantProlongStart];
+        }
+            
+        return;
+    }
+    
+}
+
+- (void)configureExpressionScrollView
 {
-    PPDebug(@"message = %@", message);
-    [self.navigationController popViewControllerAnimated:YES];
+    float width = (self.expressionScrollView.frame.size.width-DISTANCE_BETWEEN_EXPRESSION)/NUM_EXPRESSION_IN_ONE_PAGE-DISTANCE_BETWEEN_EXPRESSION;
+    float heigth = width;
+    
+    NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
+    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION+(width+DISTANCE_BETWEEN_EXPRESSION)*[expressions count]+1, heigth)];
+    int i = 0;
+    for (NSString *key in expressions) {
+        UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION+(width+DISTANCE_BETWEEN_EXPRESSION)*i, /*expressionScrollView.frame.size.height*/0, width, heigth)];
+        button.tag = TAG_EXPRESSION_BUTTON+i++;
+        [button setImage:image forState:UIControlStateNormal];
+        [button setTitle:key forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
+        [expressionScrollView addSubview:button];
+        [button release];
+    }
+}
+
+- (void)cleanAvatars
+{
+    //remove all the old avatars
+    for (AvatarView *view in _avatarArray) {
+        [view removeFromSuperview];
+    }
+    [_avatarArray removeAllObjects];
+}
+
+- (void)updatePlayerAvatars
+{
+    [self cleanAvatars];
+    GameSession *session = [[DrawGameService defaultService] session];
+    
+    // Get avatar frame.
+    float width = (self.avatarHolderView.frame.size.width-DISTANCE_BETWEEN_AVATAR)/6-DISTANCE_BETWEEN_AVATAR;
+    float height = width;
+    CGRect frame = CGRectMake(0, 0, width, height);
+    
+    int i = 0;
+    for (GameSessionUser *user in session.userList) {
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender];
+        
+        aView.delegate = self;
+        [aView setUserId:user.userId];
+
+        if ([DeviceDetection isIPAD]) {
+            aView.center = CGPointMake(DISTANCE_BETWEEN_AVATAR+width/2 + (width+DISTANCE_BETWEEN_AVATAR) * i, height);            
+        }else{
+            aView.center = CGPointMake(DISTANCE_BETWEEN_AVATAR+width/2 + (width+DISTANCE_BETWEEN_AVATAR) * i, height);   
+        }
+        
+        [self.avatarHolderView addSubview:aView];
+        [_avatarArray addObject:aView];
+        [aView release];
+        ++ i;                                  
+    }
+}
+
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    PPDebug(@"click user: %@", userId);
+    _userId = [userId retain];
+    DrawGameService* drawService = [DrawGameService defaultService];
+    GameSessionUser* user = [[drawService session] getUserByUserId:userId];
+    nameLabel.text = user.nickName;
+    sexLabel.text = (user.gender==YES) ? NSLS(@"Male") : NSLS(@"Female");
+    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.frame gender:user.gender];
+    [avatarView addSubview:aView];
+}
+
+- (void)showInView:(UIView*)superView
+{
+    // Add to superview.
+    [superView addSubview:self.view];
+
+    // Update player avatars.
+    [self updatePlayerAvatars];
+    
+    // Selected a user as defalut selected.
+    GameSession *session = [[DrawGameService defaultService] session];
+    GameSessionUser *user = [session.userList objectAtIndex:0];
+    [self didClickOnAvatar:user.userId];
 }
 
 @end

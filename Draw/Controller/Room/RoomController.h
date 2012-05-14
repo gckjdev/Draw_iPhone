@@ -10,6 +10,7 @@
 #import "PPViewController.h"
 #import "DrawGameService.h"
 #import "CommonDialog.h"
+#import "ChatController.h"
 
 enum{
     ROOM_DIALOG_QUIT_ROOM = 9001,
@@ -18,7 +19,7 @@ enum{
 
 @class UserManager;
 
-@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate>
+@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate, ChatControllerDelegate>
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;
@@ -37,6 +38,7 @@ enum{
 @property (retain, nonatomic) NSTimer *startTimer;
 @property (assign, nonatomic) int clickCount;
 @property (retain, nonatomic) IBOutlet UILabel *onlinePlayerCountLabel;
+@property (retain, nonatomic) ChatController *chatController;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;

@@ -10,42 +10,30 @@
 
 @implementation MusicSettingCell
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize musicNameLabel;
+@synthesize downloadProgress;
+
++ (MusicSettingCell*) createCell:(id)delegate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MusicSettingCell" owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create <MusicSettingCell> but cannot find cell object from Nib");
+        return nil;
     }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    MusicSettingCell* cell = (MusicSettingCell*)[topLevelObjects objectAtIndex:0];
+    cell.delegate = delegate;
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    return cell;
+
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void)setCellInfoWithItem:(MusicItem*)item indexPath:(NSIndexPath*)indexPath
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.musicNameLabel.text = item.musicName;
+    self.downloadProgress.progress = [item.downloadProgress floatValue];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end

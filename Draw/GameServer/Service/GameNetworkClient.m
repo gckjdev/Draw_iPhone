@@ -243,9 +243,17 @@ static GameNetworkClient* _defaultGameNetworkClient;
 }
 
 - (void)sendAskQuickGame:(NSString*)userId 
-              sessionId:(long)sessionId
+               sessionId:(long)sessionId
 {
     [self sendChatMessage:userId sessionId:sessionId toUserList:nil content:ASK_QUICK_GAME];
+}
+
+- (void)sendChatMessage:(NSString*)userId 
+              sessionId:(long)sessionId
+               userList:(NSArray*)userList
+                message:(NSString*)message
+{
+    [self sendChatMessage:userId sessionId:sessionId toUserList:userList content:[NORMAL_CHAT stringByAppendingString:message]];
 }
 
 - (void)sendQuitGame:(NSString*)userId 

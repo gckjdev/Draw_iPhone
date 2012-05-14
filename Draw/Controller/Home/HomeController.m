@@ -228,25 +228,20 @@
 
 - (IBAction)clickCheckIn:(id)sender
 {
-    ChatController *controller = [[ChatController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-
-//    
-//    int coins = [[AccountService defaultService] checkIn];
-//    NSString* message = nil;
-//    if (coins > 0){        
-//        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-//    }
-//    else{
-//        message = NSLS(@"kCheckInAlreadyToday");
-//    }
-//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-//                                                       message:message
-//                                                         style:CommonDialogStyleSingleButton 
-//                                                     deelegate:self];    
-//    
-//    [dialog showInView:self.view];
+    int coins = [[AccountService defaultService] checkIn];
+    NSString* message = nil;
+    if (coins > 0){        
+        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+    }
+    else{
+        message = NSLS(@"kCheckInAlreadyToday");
+    }
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+                                                       message:message
+                                                         style:CommonDialogStyleSingleButton 
+                                                     deelegate:self];    
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender

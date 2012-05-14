@@ -46,12 +46,6 @@ static ExpressionManager *_instance = nil;
         NSArray *keys = [NSArray arrayWithObjects:KEY_SMILE, KEY_PROUD, KEY_EMBARRASS, KEY_WRY, KEY_ANGER, nil];
         NSArray *values = [NSArray arrayWithObjects:VALUE_SMILE, VALUE_PROUD, VALUE_EMBARRASS, VALUE_WRY, VALUE_ANGER, nil];
 
-//        _expressionDictionary = [[NSDictionary dictionaryWithObjectsAndKeys:VALUE_SMILE, KEY_SMILE, 
-//                                VALUE_PROUD, KEY_PROUD, 
-//                                VALUE_EMBARRASS, KEY_EMBARRASS,
-//                                VALUE_WRY, KEY_WRY, 
-//                                VALUE_ANGER, KEY_ANGER, 
-//                                nil] retain];
         _expressionDictionary = [[NSDictionary dictionaryWithObjects:values forKeys:keys] retain];
     }
     

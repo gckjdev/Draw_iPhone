@@ -767,7 +767,7 @@
 
 #pragma mark - Friend Room
 
-+ (CommonNetworkOutput*)CreateRoom:(NSString*)baseURL 
++ (CommonNetworkOutput*)createRoom:(NSString*)baseURL 
                           roomName:(NSString *)roomName  
                           password:(NSString *)password 
                             userId:(NSString *)userId 
@@ -803,5 +803,69 @@
                          responseHandler:responseHandler
                                   output:output];
 }
+
+
++ (CommonNetworkOutput*)findRoomByUser:(NSString*)baseURL 
+                            userId:(NSString *)userId 
+                              offset:(NSInteger)offset
+                            limit:(NSInteger)limit 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FIND_ROOM_BY_USER];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)searhRoomWithKey:(NSString*)baseURL 
+                                keyword:(NSString *)keyword 
+                                offset:(NSInteger)offset
+                                 limit:(NSInteger)limit 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCH_ROOM];
+        str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyword];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 @end

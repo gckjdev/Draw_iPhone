@@ -89,6 +89,9 @@ RoomManager *staticRoomManager = nil;
         room.gameServerAddress = [dict objectForKey:PARA_SERVER_ADDRESS];
         room.gameServerPort = [dict objectForKey:PARA_SERVER_PORT];
         room.status = ((NSNumber *)[dict objectForKey:PARA_STATUS]).integerValue;
+        room.creator = [[[RoomUser alloc] init] autorelease];
+        room.creator.userId = [dict objectForKey:PARA_CREATOR_USERID];
+        room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
         
         NSString *createrDateString = [dict objectForKey:PARA_CREATE_DATE];
         if ([createrDateString length] != 0) {
@@ -98,7 +101,7 @@ RoomManager *staticRoomManager = nil;
         if ([expireDateString length] != 0) {
             room.createDate = dateFromStringByFormat(expireDateString, DEFAULT_DATE_FORMAT);    
         }
-
+        
         
         //set the creator and the room user list
         NSArray *usersData = [dict objectForKey:PAPA_ROOM_USERS];
@@ -106,24 +109,18 @@ RoomManager *staticRoomManager = nil;
             NSMutableArray *userList = [[NSMutableArray alloc] init];
             for (NSDictionary *userDict in usersData) {
                 RoomUser *user = [self paserRoomUser:userDict];
-                if (user == nil) {
-                    continue;
-                }
-                if (user.status == UserCreator) {
-                    room.creator = user;
-                }else{
-                    [userList addObject:user];
+                if (user) {
+                    if ([user.userId isEqualToString:room.creator.userId]) {
+                        room.creator = user;
+                    }else{
+                        [userList addObject:user];
+                    }
                 }
             }
             if ([userList count] != 0) {
                 room.userList = userList;    
             }
             [userList release];
-        }
-        if (room.creator == nil || [room.creator.userId length] == 0) {
-            room.creator = [[[RoomUser alloc] init] autorelease];
-            room.creator.userId = [dict objectForKey:PARA_USERID];
-            room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
         }
         return room;
     }

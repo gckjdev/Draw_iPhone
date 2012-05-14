@@ -9,6 +9,7 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
+#import "SearchRoomController.h"
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "Room.h"
@@ -29,6 +30,7 @@
     if (self) {
         // Custom initialization
         _userManager = [UserManager defaultManager];
+        roomService = [RoomService defaultService];
     }
     return self;
 }
@@ -59,8 +61,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataList = [[[NSMutableArray alloc] init]autorelease];
+//    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidUnload
@@ -86,17 +89,22 @@
     [super dealloc];
 }
 - (IBAction)clickEditButton:(id)sender {
+
 }
 
 - (IBAction)clickCreateButton:(id)sender {
     static NSInteger number = 1;
     NSString *nick = [[UserManager defaultManager]nickName];
     NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
-    [[RoomService defaultService] createRoom:string password:@"sysu" delegate:self];
+    [roomService createRoom:string password:@"sysu" delegate:self];
     [self showActivity];
 }
 
 - (IBAction)clickSearchButton:(id)sender {
+//    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+    SearchRoomController *src = [[SearchRoomController alloc] init];
+    [self.navigationController pushViewController:src animated:YES];
+    [src release];
 }
 
 - (IBAction)clickMyFriendButton:(id)sender {
@@ -113,7 +121,6 @@
     }else{
         PPDebug(@"room = %@", [room description]);
         if (room) {
-//            self.dataList 
             NSMutableArray *list = (NSMutableArray *)self.dataList;
             [list insertObject:room atIndex:0];
             [dataTableView beginUpdates];
@@ -142,6 +149,18 @@
     _isTryJoinGame = YES;    
     
     _currentSelectRoom = room;    
+}
+
+- (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
+    }else{
+        self.dataList = roomList;
+        [self.dataTableView reloadData];
+    }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -84,10 +84,11 @@
         [self.avatarImage setUrl:[NSURL URLWithString:avatar]];
         
     }else{
-        if ([user isMe]){
-            [avatarImage setImage:[[UserManager defaultManager] avatarImage]];
-        }
+//        if ([user isMe]){
+//            [avatarImage setImage:[[UserManager defaultManager] avatarImage]];
+//        }
     }
+    [GlobalGetImageCache() manage:avatarImage];
 
 }
 
