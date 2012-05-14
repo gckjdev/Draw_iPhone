@@ -228,25 +228,20 @@
 
 - (IBAction)clickCheckIn:(id)sender
 {
-    ChatController *controller = [[ChatController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-
-//    
-//    int coins = [[AccountService defaultService] checkIn];
-//    NSString* message = nil;
-//    if (coins > 0){        
-//        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-//    }
-//    else{
-//        message = NSLS(@"kCheckInAlreadyToday");
-//    }
-//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-//                                                       message:message
-//                                                         style:CommonDialogStyleSingleButton 
-//                                                     deelegate:self];    
-//    
-//    [dialog showInView:self.view];
+    int coins = [[AccountService defaultService] checkIn];
+    NSString* message = nil;
+    if (coins > 0){        
+        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+    }
+    else{
+        message = NSLS(@"kCheckInAlreadyToday");
+    }
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+                                                       message:message
+                                                         style:CommonDialogStyleSingleButton 
+                                                     deelegate:self];    
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender
@@ -336,10 +331,10 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
+    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer];
     _isTryJoinGame = YES;
 }

@@ -23,12 +23,20 @@
 
 @end
 
-
-
 typedef enum {
     Drawer = 1,
-    Guesser = 2
+    Guesser = 2,
 }AvatarType;
+
+
+@protocol AvatarViewDelegate <NSObject>
+
+@optional
+- (void)didClickOnAvatar:(NSString*)userId;
+
+@end
+
+
 @interface AvatarView : UIView
 {
     NSInteger _score;
@@ -40,10 +48,14 @@ typedef enum {
 
 - (void)setUrlString:(NSString *)urlString;
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
+
 - (void)setImage:(UIImage *)image;
+//- (void)setAvatarFrame:(CGRect)frame;
 
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
+@property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 //- (void)addTarget:(id)target action:(SEL)action;
 @end
 

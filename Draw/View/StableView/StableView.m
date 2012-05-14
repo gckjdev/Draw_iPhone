@@ -18,6 +18,7 @@
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
 #define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 32 * 2, 32 * 2) : CGRectMake(0, 0, 32, 32))
+
 #define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(17 * 2,20 * 2,16 * 2,17 * 2) : CGRectMake(17,20,16,17))
 
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
@@ -95,12 +96,15 @@
 @implementation AvatarView
 @synthesize score = _score;
 @synthesize userId = _userId;
+@synthesize delegate = _delegate;
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
 {
     
     PPDebug(@"<alloc Avatar View>: url = %@, gender = %d", urlString, gender);
+
     self = [super initWithFrame:AVATAR_VIEW_FRAME];
+
     if (self) {
         type = aType;
         imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
@@ -139,7 +143,7 @@
         ShareImageManager *manager = [ShareImageManager defaultManager];
         if (type == Drawer) {
             [markButton setBackgroundImage:[manager drawingMarkSmallImage] forState:UIControlStateNormal];
-        }else{
+        }else if(type == Guesser){
             [markButton setBackgroundImage:[manager scoreBackgroundImage] forState:UIControlStateNormal];            
             [markButton.titleLabel setFont:[UIFont boldSystemFontOfSize:MARK_FONT_SIZE]];
             [markButton setTitleEdgeInsets:MARK_INSET];
@@ -147,6 +151,44 @@
         }
         self.backgroundColor = [UIColor grayColor];
     }
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self addGestureRecognizer:tapGestureRecognizer];
+    [tapGestureRecognizer release];
+    
+    return self;
+}
+
+
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
+{
+    self = [super initWithFrame:frame];    
+    if (self) {
+        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+        //        [imageView clear];
+        
+        if (gender) {
+            [imageView setImage:[[ShareImageManager defaultManager] 
+                                 maleDefaultAvatarImage]];
+        }else{
+            [imageView setImage:[[ShareImageManager defaultManager] 
+                                 femaleDefaultAvatarImage]];                
+        }
+        
+        if ([urlString length] > 0){
+            [imageView setUrl:[NSURL URLWithString:urlString]];
+            [GlobalGetImageCache() manage:imageView];
+        }
+        [self addSubview:imageView];
+        self.backgroundColor = [UIColor grayColor];
+    }
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self addGestureRecognizer:tapGestureRecognizer];
+    [tapGestureRecognizer release];
+    
     return self;
 }
 
@@ -187,4 +229,16 @@
     [GlobalGetImageCache() manage:imageView];
 }
 
+- (void)clickOnAvatar
+{
+//    PPDebug(@"clickOnAvatar");
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
+        [_delegate didClickOnAvatar:_userId];
+    }
+}
+//- (void)setAvatarFrame:(CGRect)frame
+//{
+//    self.frame = frame;
+//    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
+//}
 @end
