@@ -49,12 +49,12 @@ FriendService* globalGetFriendService()
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> findFriends success!");
-                 
-                //NSArray *localFollowFriends = [[FriendManager defaultManager] findAllFollowFriends];
-                //NSArray *localFanFriends = [[FriendManager defaultManager] findAllFanFriends];
-                
-                
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+                
+                if ([userList count] != 0) {
+                    [[FriendManager defaultManager] deleteAllFriends];
+                }
+                
                 for (NSDictionary* user in userList){
                     NSString* friendUserId = [user objectForKey:PARA_USERID];
                     NSString* nickName = [user objectForKey:PARA_NICKNAME];

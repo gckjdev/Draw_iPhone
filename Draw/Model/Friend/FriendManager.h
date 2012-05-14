@@ -61,5 +61,10 @@ enum deleteFlag {
 - (BOOL)deleteFollowFriend:(NSString *)friendUserId;
 
 - (BOOL)isFanFriend:(NSString *)friendUserId;
+- (BOOL)deleteFanFriend:(NSString *)friendUserId;
+
+- (BOOL)deleteAllFriends;
+
+- (BOOL)removeAllDeletedFriends;
 
 @end
