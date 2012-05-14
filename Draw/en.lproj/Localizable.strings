@@ -299,17 +299,33 @@
 "kMyFriends" = "My Friends";
 "kFollow" = "Follow";
 "kFans" = "Fans";
+"kNoFollow" = "No follow";
+"kNoFans" = "No fans";
 "kEdit" = "Edit";
 "kAddFriend" = "Add Friend";
 "kSearch" = "Search";
 "kAddAsFriend" = "Add as friend";
 "kAlreadyBeFriend" = "Friend";
 "kDidNottFindThisUser" = "No matching users";
-
-
+"kUpdateFollowFailed" = "Network error, update follows failed!";
+"kUpdateFansFailed" = "Network error, update fans failed!";
+"kFollowFailed" = "Network error, follow failed!";
+"kUnfollowFailed" = "Network error, unfollow failed!";
+"kEnterWords" = "Please enter the content";
+"kSearchUserPlaceholder" = "Nickname/Facebook/Email";
+"kSearchFailed" = "Network error, search failed!";
+"kMyself" = "Myself";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
 "kNormalLevel" = "Normal";
 "kHardLevel" = "Hard";
 "kLevelSelection" = "Level Selection";
+"kPlayWithFriend" = "Friend Play";
+"kCreateRoom" = "Create Room";
+"kSearchRoom" = "Search Room";
+
+
+"kPlaying" = "Playing";
+"kWaitting" = "Waitting";
+"kFull" = "Full";

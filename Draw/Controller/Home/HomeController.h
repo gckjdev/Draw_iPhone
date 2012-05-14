@@ -21,6 +21,7 @@
 }
 
 - (IBAction)clickStart:(id)sender;
+- (IBAction)clickPlayWithFriend:(id)sender;
 - (IBAction)clickShop:(id)sender;
 - (IBAction)clickCheckIn:(id)sender;
 - (IBAction)clickFeedback:(id)sender;
@@ -34,6 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
 @property (retain, nonatomic) IBOutlet UILabel *settingsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *feedbackLabel;
+@property (retain, nonatomic) IBOutlet UIButton *playWithFriendButton;
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;

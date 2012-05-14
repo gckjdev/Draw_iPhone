@@ -142,4 +142,23 @@
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
+
++ (CommonNetworkOutput*)createRoom:(NSString*)baseURL 
+                          roomName:(NSString *)roomName  
+                          password:(NSString *)password 
+                            userId:(NSString *)userId 
+                              nick:(NSString *)nick 
+                            avatar:(NSString *)avatar 
+                            gender:(NSString *)gender;
+
++ (CommonNetworkOutput*)findRoomByUser:(NSString*)baseURL 
+                                userId:(NSString *)userId 
+                                offset:(NSInteger)offset
+                                 limit:(NSInteger)limit;
+
++ (CommonNetworkOutput*)searhRoomWithKey:(NSString*)baseURL 
+                                 keyword:(NSString *)keyword 
+                                  offset:(NSInteger)offset
+                                   limit:(NSInteger)limit;
+
 @end

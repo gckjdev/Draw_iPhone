@@ -43,11 +43,9 @@ static FriendManager *_defaultFriendManager = nil;
                     facebookId:(NSString *)facebookId
                       sinaNick:(NSString *)sinaNick
                         qqNick:(NSString *)qqNick
-                  facebookNick:(NSString *)facebookNick
-                  onlineStatus:(NSNumber *)onlineStatus 
+                  facebookNick:(NSString *)facebookNick 
                     createDate:(NSDate *)createDate 
               lastModifiedDate:(NSDate *)lastModifiedDate 
-                    deleteFlag:(NSNumber *)deleteFlag
 {
     if ([self hasRecord:friendUserId type:type]) {
         return [self updateFriendWithUserId:friendUserId 
@@ -60,10 +58,8 @@ static FriendManager *_defaultFriendManager = nil;
                                  facebookId:facebookId 
                                    sinaNick:sinaNick 
                                      qqNick:qqNick 
-                               facebookNick:facebookNick 
-                               onlineStatus:onlineStatus 
-                           lastModifiedDate:lastModifiedDate 
-                                 deleteFlag:deleteFlag];
+                               facebookNick:facebookNick  
+                           lastModifiedDate:lastModifiedDate ];
     }else {
         PPDebug(@"<createFriendWithUserId>");
         
@@ -80,10 +76,9 @@ static FriendManager *_defaultFriendManager = nil;
         [newFriend setSinaNick:sinaNick];
         [newFriend setQqNick:qqNick];
         [newFriend setFacebookNick:facebookNick];
-        [newFriend setOnlineStatus:onlineStatus];
         [newFriend setCreateDate:createDate];
         [newFriend setLastModifiedDate:lastModifiedDate];
-        [newFriend setDeleteFlag:deleteFlag];
+        [newFriend setDeleteFlag:[NSNumber numberWithInt:NOT_DELETED]];
         
         return [dataManager save];
     }
@@ -101,9 +96,7 @@ static FriendManager *_defaultFriendManager = nil;
                       sinaNick:(NSString *)sinaNick
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
-                  onlineStatus:(NSNumber *)onlineStatus
               lastModifiedDate:(NSDate *)lastModifiedDate 
-                    deleteFlag:(NSNumber *)deleteFlag
 {
     Friend *updateFriend = nil;
     if (type.intValue == FOLLOW) {
@@ -124,9 +117,7 @@ static FriendManager *_defaultFriendManager = nil;
         updateFriend.sinaNick = sinaNick;
         updateFriend.qqNick = qqNick;
         updateFriend.facebookNick = facebookNick;
-        updateFriend.onlineStatus = onlineStatus;
         updateFriend.lastModifiedDate = lastModifiedDate;
-        updateFriend.deleteFlag = deleteFlag;
         
         return  [[CoreDataManager dataManager] save];
     }
@@ -175,7 +166,6 @@ static FriendManager *_defaultFriendManager = nil;
     }
     return NO;
 }
-
 
 
 

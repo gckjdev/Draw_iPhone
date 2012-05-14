@@ -313,16 +313,35 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
 "kFans" = "粉丝";
+"kNoFollow" = "还没有关注呢";
+"kNoFans" = "还没有粉丝呢";
 "kEdit" = "编辑";
 "kAddFriend" = "添加好友";
 "kSearch" = "搜索";
 "kAddAsFriend" = "加为好友";
 "kAlreadyBeFriend" = "已经是好友";
 "kDidNottFindThisUser" = "没有找到此用户";
-
+"kUpdateFollowFailed" = "网络错误，更新关注失败!";
+"kUpdateFansFailed" = "网络错误，更新粉丝失败!";
+"kFollowFailed" = "网络错误，关注失败！";
+"kUnfollowFailed" = "网络错误，取消关注失败！";
+"kEnterWords" = "请输入内容";
+"kSearchUserPlaceholder" = "昵称/微博昵称/QQ号/邮箱";
+"kSearchFailed" = "网络错误，搜索失败！";
+"kMyself" = "我";
 
 "kLevelSettings" = "猜词难度";
 "kEasyLevel" = "业余";
 "kNormalLevel" = "专业";
 "kHardLevel" = "大师";
 "kLevelSelection" = "难度选择";
+"kPlayWithFriend" = "以画会友";
+
+"kCreateRoom" = "创建房间";
+"kSearchRoom" = "搜索房间";
+
+"kPlaying" = "游戏中";
+"kWaitting" = "等待中";
+"kFull" = "已满人";
+
+"kMusicSettings" = "背景音乐";

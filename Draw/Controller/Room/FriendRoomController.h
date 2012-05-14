@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "RoomService.h"
 
-@interface FriendRoomController : PPTableViewController
+@interface FriendRoomController : PPTableViewController<RoomServiceDelegate>
 {
-    
+    RoomService *roomService;
 }
+@property (retain, nonatomic) IBOutlet UIButton *editButton;
+@property (retain, nonatomic) IBOutlet UIButton *createButton;
+@property (retain, nonatomic) IBOutlet UIButton *searchButton;
+- (IBAction)clickEditButton:(id)sender;
+- (IBAction)clickCreateButton:(id)sender;
+- (IBAction)clickSearchButton:(id)sender;
+- (IBAction)clickMyFriendButton:(id)sender;
 
 @end
