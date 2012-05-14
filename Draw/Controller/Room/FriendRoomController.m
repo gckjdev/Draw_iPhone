@@ -14,6 +14,9 @@
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
+#import "DrawGameService.h"
+#import "ConfigManager.h"
+#import "StringUtil.h"
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -26,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _userManager = [UserManager defaultManager];
         roomService = [RoomService defaultService];
     }
     return self;
@@ -127,6 +131,26 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= [self.dataList count])
+        return;
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    if (room == nil)
+        return;
+    
+    if (_isTryJoinGame)
+        return;
+    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] connectServer:self];
+    _isTryJoinGame = YES;    
+    
+    _currentSelectRoom = room;    
+}
+
 - (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode
 {
     [self hideActivity];
@@ -143,7 +167,6 @@
     }
 
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -168,5 +191,41 @@
     [cell setInfo:room];
 	return cell;
 }
+
+#pragma mark - Draw Game Service Delegate
+
+- (void)didBroken
+{
+    _isTryJoinGame = NO;
+    PPDebug(@"<didBroken> Friend Room");
+    [self hideActivity];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+}
+
+- (void)didConnected
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+        
+    NSString* userId = [_userManager userId];    
+    if (userId == nil){
+        _isTryJoinGame = NO;
+        PPDebug(@"<didConnected> Friend Room, but user Id nil???");
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    if (_isTryJoinGame){
+        [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
+                                                  roomId:[_currentSelectRoom roomId]
+                                                nickName:[_userManager nickName]
+                                                  avatar:[_userManager avatarURL]
+                                                  gender:[_userManager isUserMale]
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+    }
+    
+    _isTryJoinGame = NO;    
+}
+
 
 @end

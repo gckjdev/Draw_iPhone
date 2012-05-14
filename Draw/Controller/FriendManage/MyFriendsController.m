@@ -218,6 +218,15 @@
     return cell;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!tableView.editing)
+        return UITableViewCellEditingStyleNone;
+    else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -301,6 +310,13 @@
         tipsLabel.hidden = YES;
         [dataTableView reloadData];
     }
+    
+    //if follow count is 0, hide the editButton
+    if ([_myFollowList count] == 0) {
+        editButton.hidden = YES;
+    }else {
+        editButton.hidden = NO;
+    }
 }
 
 
@@ -328,13 +344,13 @@
 #pragma -mark FriendServiceDelegate Method
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
-    if (resultCode != 0) {
-        if (type == FOLLOW) {
-            [self popupMessage:NSLS(@"kUpdateFollowFailed") title:nil];
-        }else if(type == FAN) {
-            [self popupMessage:NSLS(@"kUpdateFansFailed") title:nil];
-        }
-    }
+//    if (resultCode != 0) {
+//        if (type == FOLLOW) {
+//            [self popupMessage:NSLS(@"kUpdateFollowFailed") title:nil];
+//        }else if(type == FAN) {
+//            [self popupMessage:NSLS(@"kUpdateFansFailed") title:nil];
+//        }
+//    }
     
     if (type == FOLLOW) {
         self.myFollowList = friendList;

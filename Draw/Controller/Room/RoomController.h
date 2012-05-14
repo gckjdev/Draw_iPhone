@@ -19,7 +19,7 @@ enum{
 
 @class UserManager;
 
-@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate>
+@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate, ChatControllerDelegate>
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;

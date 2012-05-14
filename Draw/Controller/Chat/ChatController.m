@@ -16,25 +16,22 @@
 #import "PPDebug.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
-
 #define DISTANCE_BETWEEN_EXPRESSION 10
-
 #define TAG_EXPRESSION_BUTTON 210
 
 #define DISTANCE_BETWEEN_AVATAR 5
 
-//#define FRAME_CHAT_AVATAR (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 40 * 2, 40 * 2) : CGRectMake(0, 0, 40, 40))
-
-@interface ChatController ()
+@interface ChatController()
 {
     NSMutableArray *_avatarArray;
     NSString *_userId;
+    ChatType _type;
 }
-
 @end
 
 @implementation ChatController
 
+@synthesize chatControllerDelegate;
 @synthesize chatView;
 @synthesize avatarHolderView;
 @synthesize avatarView;
@@ -44,27 +41,25 @@
 @synthesize cityLabel;
 @synthesize expressionScrollView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithChatType:(ChatType)type
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        _type = type;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    self.dataList = [NSArray arrayWithObjects:@"a", @"b",  @"c",  @"d",  @"e",  @"f",  @"g",  @"h",  @"i",  @"j", nil];
     [super viewDidLoad];
-    
     // Do any additional setup after loading the view from its nib.
     self.chatView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:234.0/255.0 blue:155.0/255.0 alpha:1.0];
     
+    self.dataList = [[MessageManager defaultManager] messagesForChatType:_type];;
     [self configureExpressionScrollView];
     
     _avatarArray = [[[NSMutableArray alloc] init] retain];
-
 }
 
 - (void)viewDidUnload
@@ -85,7 +80,6 @@
 - (void)dealloc {
     [_avatarArray release];
     [_userId release];
-    
     [nameLabel release];
     [sexLabel release];
     [cityLabel release];
@@ -96,7 +90,6 @@
     [avatarView release];
     [super dealloc];
 }
-
 
 #pragma mark - Table view delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -160,10 +153,16 @@
 
 #pragma mark - MessageCell delegate.
 - (void)didSelectMessage:(NSString*)message
-{
-    PPDebug(@"message = %@", message);
-    
+{    
     [self.view removeFromSuperview];
+    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
+        if(chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(wantProlongStart)]){
+            [chatControllerDelegate wantProlongStart];
+        }
+            
+        return;
+    }
+    
 }
 
 - (void)configureExpressionScrollView
