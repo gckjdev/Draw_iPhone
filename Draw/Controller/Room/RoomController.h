@@ -46,9 +46,13 @@ enum{
 - (IBAction)clickMenu:(id)sender;
 
 // use this method when first enter room
-+ (void)firstEnterRoom:(UIViewController*)superController;
+// + (void)enterRoom:(UIViewController*)superController;
 
 // use this method for returning from draw/guess to room
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow;
+
+// use this method when enter room (don't know first enter or not)
++ (void)enterRoom:(UIViewController*)superController;
+
 
 @end

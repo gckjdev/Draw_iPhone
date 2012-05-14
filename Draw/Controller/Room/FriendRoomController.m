@@ -17,6 +17,8 @@
 #import "DrawGameService.h"
 #import "ConfigManager.h"
 #import "StringUtil.h"
+#import "GameMessage.pb.h"
+#import "RoomController.h"
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -64,6 +66,19 @@
 //    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[DrawGameService defaultService] registerObserver:self];
+    [super viewDidDisappear:animated];    
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    [super viewDidDisappear:animated];    
 }
 
 - (void)viewDidUnload
@@ -211,6 +226,7 @@
     }
     
     if (_isTryJoinGame){
+        [[DrawGameService defaultService] registerObserver:self];
         [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
                                                   roomId:[_currentSelectRoom roomId]
                                                 nickName:[_userManager nickName]
@@ -222,5 +238,22 @@
     _isTryJoinGame = NO;    
 }
 
+- (void)didJoinGame:(GameMessage *)message
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    
+    [self hideActivity];
+    if ([message resultCode] == 0){
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+    }
+    else{
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
+        [self popupUnhappyMessage:text title:@""];
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    [RoomController enterRoom:self];
+}
 
 @end

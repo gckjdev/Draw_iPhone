@@ -216,7 +216,7 @@
         return;
     }
 
-    [RoomController firstEnterRoom:self];
+    [RoomController enterRoom:self];
 }
 
 - (IBAction)clickFeedback:(id)sender
