@@ -19,6 +19,8 @@ message JoinGameRequest {
   optional bool isRobot = 9;                    // 是否是机器人用户
   optional int32 targetSessionId = 10;          // 指定加入的Session ID
   optional int32 guessDifficultLevel = 11;      // 猜词难度，默认为1
+  optional string roomId = 12;                  // 请求加入的好友房间ID
+    optional string roomName = 13;                       // 请求加入的好友房间名称
 }
 
 message JoinGameResponse {

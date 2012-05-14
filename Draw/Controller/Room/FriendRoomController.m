@@ -9,10 +9,14 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
+#import "SearchRoomController.h"
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
+#import "DrawGameService.h"
+#import "ConfigManager.h"
+#import "StringUtil.h"
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -25,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _userManager = [UserManager defaultManager];
         roomService = [RoomService defaultService];
     }
     return self;
@@ -56,8 +61,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataList = [[[NSMutableArray alloc] init]autorelease];
+//    self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidUnload
@@ -83,7 +89,7 @@
     [super dealloc];
 }
 - (IBAction)clickEditButton:(id)sender {
-    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+
 }
 
 - (IBAction)clickCreateButton:(id)sender {
@@ -95,7 +101,10 @@
 }
 
 - (IBAction)clickSearchButton:(id)sender {
-    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+//    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+    SearchRoomController *src = [[SearchRoomController alloc] init];
+    [self.navigationController pushViewController:src animated:YES];
+    [src release];
 }
 
 - (IBAction)clickMyFriendButton:(id)sender {
@@ -122,6 +131,26 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= [self.dataList count])
+        return;
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    if (room == nil)
+        return;
+    
+    if (_isTryJoinGame)
+        return;
+    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] connectServer:self];
+    _isTryJoinGame = YES;    
+    
+    _currentSelectRoom = room;    
+}
+
 - (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode
 {
     [self hideActivity];
@@ -133,19 +162,6 @@
     }
 
 }
-- (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode
-{    
-    [self hideActivity];
-    if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
-    }else{
-        self.dataList = roomList;
-        [self.dataTableView reloadData];
-    }
-}
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -170,5 +186,41 @@
     [cell setInfo:room];
 	return cell;
 }
+
+#pragma mark - Draw Game Service Delegate
+
+- (void)didBroken
+{
+    _isTryJoinGame = NO;
+    PPDebug(@"<didBroken> Friend Room");
+    [self hideActivity];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+}
+
+- (void)didConnected
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+        
+    NSString* userId = [_userManager userId];    
+    if (userId == nil){
+        _isTryJoinGame = NO;
+        PPDebug(@"<didConnected> Friend Room, but user Id nil???");
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    if (_isTryJoinGame){
+        [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
+                                                  roomId:[_currentSelectRoom roomId]
+                                                nickName:[_userManager nickName]
+                                                  avatar:[_userManager avatarURL]
+                                                  gender:[_userManager isUserMale]
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+    }
+    
+    _isTryJoinGame = NO;    
+}
+
 
 @end

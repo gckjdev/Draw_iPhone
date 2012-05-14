@@ -52,6 +52,8 @@
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL hasRoomId_:1;
+  BOOL hasRoomName_:1;
   BOOL gender_:1;
   BOOL isRobot_:1;
   int64_t sessionToBeChange;
@@ -62,6 +64,8 @@
   NSString* gameId;
   NSString* nickName;
   NSString* avatar;
+  NSString* roomId;
+  NSString* roomName;
   NSMutableArray* mutableExcludeSessionIdList;
 }
 - (BOOL) hasUserId;
@@ -74,6 +78,8 @@
 - (BOOL) hasIsRobot;
 - (BOOL) hasTargetSessionId;
 - (BOOL) hasGuessDifficultLevel;
+- (BOOL) hasRoomId;
+- (BOOL) hasRoomName;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -84,6 +90,8 @@
 - (BOOL) isRobot;
 @property (readonly) int32_t targetSessionId;
 @property (readonly) int32_t guessDifficultLevel;
+@property (readonly, retain) NSString* roomId;
+@property (readonly, retain) NSString* roomName;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 
@@ -177,6 +185,16 @@
 - (int32_t) guessDifficultLevel;
 - (JoinGameRequest_Builder*) setGuessDifficultLevel:(int32_t) value;
 - (JoinGameRequest_Builder*) clearGuessDifficultLevel;
+
+- (BOOL) hasRoomId;
+- (NSString*) roomId;
+- (JoinGameRequest_Builder*) setRoomId:(NSString*) value;
+- (JoinGameRequest_Builder*) clearRoomId;
+
+- (BOOL) hasRoomName;
+- (NSString*) roomName;
+- (JoinGameRequest_Builder*) setRoomName:(NSString*) value;
+- (JoinGameRequest_Builder*) clearRoomName;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

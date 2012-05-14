@@ -23,12 +23,20 @@
 
 @end
 
-
-
 typedef enum {
     Drawer = 1,
-    Guesser = 2
+    Guesser = 2,
 }AvatarType;
+
+
+@protocol AvatarViewDelegate <NSObject>
+
+@optional
+- (void)didClickOnAvatar:(NSString*)userId;
+
+@end
+
+
 @interface AvatarView : UIView
 {
     NSInteger _score;
@@ -36,14 +44,21 @@ typedef enum {
     AvatarType type;
     HJManagedImageV *imageView;
     NSString *_userId;
+    UIImageView *bgView;
 }
 
 - (void)setUrlString:(NSString *)urlString;
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
-- (void)setImage:(UIImage *)image;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
 
+- (void)setImage:(UIImage *)image;
+- (void)setAvatarFrame:(CGRect)frame;
+- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+- (void)setAvatarSelected:(BOOL)selected;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
+@property(nonatomic, assign) id<AvatarViewDelegate> delegate;
+
 //- (void)addTarget:(id)target action:(SEL)action;
 @end
 
