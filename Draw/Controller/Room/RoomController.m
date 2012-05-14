@@ -655,8 +655,9 @@
 
 - (IBAction)clickPrivateChat:(id)sender {
     if (_chatController == nil) {
-        _chatController = [[ChatController alloc] init];
+        _chatController = [[ChatController alloc] initWithChatType:PRIVATE];
     }
+    _chatController.chatControllerDelegate = self;
    
     [_chatController showInView:self.view];
 }
@@ -804,6 +805,9 @@
     }
 }
 
-
+- (void)wantProlongStart
+{
+    [self clickProlongStart:nil];
+}
 
 @end

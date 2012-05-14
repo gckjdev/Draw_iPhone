@@ -9,10 +9,19 @@
 #import "PPTableViewController.h"
 #import "MessageCell.h"
 #import "StableView.h"
+#import "MessageManager.h"
 
 @class AvatarView;
 
+@protocol ChatControllerDelegate <NSObject>
+@optional
+- (void)wantProlongStart;
+
+@end
+
 @interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate>
+
+@property (assign, nonatomic) id<ChatControllerDelegate> chatControllerDelegate;
 
 @property (retain, nonatomic) IBOutlet UIView *chatView;
 @property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
@@ -23,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *cityLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionScrollView;
 
+- (id)initWithChatType:(ChatType)type;
 - (void)showInView:(UIView*)superView;
 
 @end

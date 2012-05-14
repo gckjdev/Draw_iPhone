@@ -11,11 +11,12 @@
 
 #define PROLONG_GAME        @"PG"
 #define ASK_QUICK_GAME      @"AG"
+#define NORMAL_CHAT         @"NC$$_$$"
+#define EXPRESSION_CHAT     @"EC$$_$$"
 
 @interface GameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
     int _messageIdIndex;
-
 }
 
 + (GameNetworkClient*)defaultInstance;
@@ -54,6 +55,11 @@
 
 - (void)sendAskQuickGame:(NSString*)userId 
                sessionId:(long)sessionId;
+
+- (void)sendChatMessage:(NSString*)userId 
+              sessionId:(long)sessionId
+               userList:(NSArray*)userList
+                message:(NSString*)message;
 
 - (void)sendGuessWord:(NSString*)guessWord
           guessUserId:(NSString*)guessUserId
