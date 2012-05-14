@@ -44,6 +44,7 @@ typedef enum {
     AvatarType type;
     HJManagedImageV *imageView;
     NSString *_userId;
+    UIImageView *bgView;
 }
 
 - (void)setUrlString:(NSString *)urlString;
@@ -51,11 +52,13 @@ typedef enum {
 - (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
 
 - (void)setImage:(UIImage *)image;
-//- (void)setAvatarFrame:(CGRect)frame;
-
+- (void)setAvatarFrame:(CGRect)frame;
+- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+- (void)setAvatarSelected:(BOOL)selected;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
+
 //- (void)addTarget:(id)target action:(SEL)action;
 @end
 
