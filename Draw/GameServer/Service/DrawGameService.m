@@ -36,11 +36,13 @@ static DrawGameService* _defaultService;
 @synthesize guessDiffLevel = _guessDiffLevel;
 @synthesize showDelegate = _showDelegate;
 @synthesize onlineUserCount = _onlineUserCount;
+@synthesize roomId = _roomId;
 
 - (void)dealloc
 {
     [self clearKeepAliveTimer];
 
+    [_roomId release];
     [_serverAddress release];
     [_avatar release];
     [_historySessionSet release];
@@ -129,12 +131,14 @@ static DrawGameService* _defaultService;
     return [_networkClient isConnected];
 }
 
-- (void)connectServer
+- (void)connectServer:(id<DrawGameServiceDelegate>)connectionDelegate
 {
 
 //    [_networkClient start:@"192.167.1.103" port:8080];
 //    [_networkClient start:@"192.168.1.6" port:8080];    
-
+    
+    _connectionDelegate = connectionDelegate;
+    
     [self clearKeepAliveTimer];
     [self clearDisconnectTimer];
     [_networkClient start:_serverAddress port:_serverPort];    
@@ -525,21 +529,27 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
+    if (_connectionDelegate == nil)
+        return;
+    
     dispatch_sync(dispatch_get_main_queue(), ^{
-        if ([_homeDelegate respondsToSelector:@selector(didConnected)]){
-            [_homeDelegate didConnected];
+        if ([_connectionDelegate respondsToSelector:@selector(didConnected)]){
+            [_connectionDelegate didConnected];
         }
     });
 }
 
 - (void)didBroken
 {    
+    if (_connectionDelegate == nil)
+        return;
+
     dispatch_sync(dispatch_get_main_queue(), ^{                
         
         [self clearKeepAliveTimer];
         
-        if ([_homeDelegate respondsToSelector:@selector(didBroken)]){
-            [_homeDelegate didBroken];
+        if ([_connectionDelegate respondsToSelector:@selector(didBroken)]){
+            [_connectionDelegate didBroken];
         }
     });
 }
@@ -568,6 +578,7 @@ static DrawGameService* _defaultService;
                                  gender:_gender
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
+                                 roomId:nil
                       excludeSessionSet:_historySessionSet];  
     
     [self scheduleKeepAliveTimer];
@@ -592,6 +603,7 @@ static DrawGameService* _defaultService;
                                  gender:_gender
                          guessDiffLevel:_guessDiffLevel
                               sessionId:[_session sessionId]
+                                 roomId:nil
                       excludeSessionSet:_historySessionSet];
     
     [self scheduleKeepAliveTimer];
@@ -733,6 +745,9 @@ static DrawGameService* _defaultService;
 
 - (void)scheduleKeepAliveTimer
 {
+    // add by Benson, disable keep alive since it's useless in server side
+    return;
+    
     [self clearKeepAliveTimer];
     
     PPDebug(@"<scheduleKeepAliveTimer>");
@@ -756,6 +771,38 @@ static DrawGameService* _defaultService;
 - (NSInteger)language
 {
     return self.session.currentTurn.language;
+}
+
+#pragma mark - Friend Play
+
+- (void)joinFriendRoom:(NSString*)userId 
+                roomId:(NSString*)roomId
+              nickName:(NSString*)nickName 
+                avatar:(NSString*)avatar 
+                gender:(BOOL)gender
+        guessDiffLevel:(int)guessDiffLevel
+{
+    [_session setStatus:SESSION_WAITING];
+    [self clearHistoryUser];
+    
+    [self setUserId:userId];
+    [self setNickName:nickName];
+    [self setAvatar:avatar];
+    [self setGender:gender];
+    [self setGuessDiffLevel:guessDiffLevel];
+    [self setRoomId:roomId];
+    
+    [_networkClient sendJoinGameRequest:_userId 
+                               nickName:_nickName 
+                                 avatar:_avatar
+                                 gender:_gender
+                         guessDiffLevel:guessDiffLevel
+                              sessionId:-1
+                                 roomId:roomId
+                      excludeSessionSet:[NSSet set]];  
+    
+    [self scheduleKeepAliveTimer];
+    
 }
 
 @end

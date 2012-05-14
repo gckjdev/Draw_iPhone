@@ -84,6 +84,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
                      gender:(BOOL)gender
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
+                     roomId:(NSString*)roomId
           excludeSessionSet:(NSSet*)excludeSessionSet
 {
     
@@ -94,7 +95,15 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setAvatar:avatar];
     [requestBuilder setGender:gender];
     [requestBuilder setGuessDifficultLevel:guessDiffLevel];
-    [requestBuilder addAllExcludeSessionId:[excludeSessionSet allObjects]];
+    
+    if ([roomId length] > 0){
+        [requestBuilder setRoomId:roomId];
+    }
+
+    if ([excludeSessionSet count] > 0){
+        [requestBuilder addAllExcludeSessionId:[excludeSessionSet allObjects]];
+    }
+    
     if (currentSessionId > 0){
         [requestBuilder setSessionToBeChange:currentSessionId];
     }

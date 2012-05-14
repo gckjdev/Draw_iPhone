@@ -27,6 +27,7 @@
                      gender:(BOOL)gender
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
+                     roomId:(NSString*)roomId
           excludeSessionSet:(NSSet*)excludeSessionSet;
 
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;
