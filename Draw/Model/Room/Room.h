@@ -16,9 +16,10 @@ typedef enum {
 
 
 typedef enum {
-    UserJoined = 1,
-    UserInvited = 2,
-    UserCreator = 3
+    UserInvited = 1,
+    UserCreator = 2,
+    UserJoined = 3,
+    UserPlaying = 4
 }RoomUserStatus;
 
 @class RoomUser;
@@ -52,7 +53,7 @@ typedef enum {
 @property(nonatomic,retain)NSString *avatar;
 @property(nonatomic,assign)NSInteger playTimes;
 @property(nonatomic,retain)NSDate *lastPlayDate;
-@property(nonatomic, assign)RoomStatus status;
+@property(nonatomic, assign)RoomUserStatus status;
 
 
 - (BOOL)isFemale;
