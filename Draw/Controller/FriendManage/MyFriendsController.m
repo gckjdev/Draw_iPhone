@@ -427,5 +427,6 @@
 //        [self.navigationController popViewControllerAnimated:YES];
         [self updateRoomUsers:friendSet];
     }
+    [_selectedSet removeAllObjects];
 }
 @end
