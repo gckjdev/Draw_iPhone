@@ -316,6 +316,8 @@
 "kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
 "kMyself" = "Myself";
+"kMale" = "male";
+"kFemale" = "female";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
