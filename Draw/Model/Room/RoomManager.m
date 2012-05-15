@@ -71,7 +71,7 @@ RoomManager *staticRoomManager = nil;
     int i = 0;
     for (RoomUser *user in userList) {
         if (user.nickName) {
-            [nickList addObject:userList];
+            [nickList addObject:user.nickName];
             if (++ i == count) {
                 break;
             }
@@ -136,7 +136,8 @@ RoomManager *staticRoomManager = nil;
             for (NSDictionary *userDict in usersData) {
                 RoomUser *user = [self paserRoomUser:userDict];
                 if (user) {
-                    if ([user.userId isEqualToString:room.creator.userId]) {
+                    if ([user.userId isEqualToString:room.creator.userId] && 
+                        user.status == UserCreator) {
                         room.creator = user;
                         room.myStatus = UserCreator;
                     }else{
@@ -171,7 +172,6 @@ RoomManager *staticRoomManager = nil;
         return roomList;
     }
     return nil;
-//    return self.roomList;
 }
 
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room

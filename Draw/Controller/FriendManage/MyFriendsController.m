@@ -20,6 +20,7 @@
 #import "GameNetworkConstants.h"
 #import "Room.h"
 #import "RoomManager.h"
+#import "RoomService.h"
 
 
 @interface MyFriendsController ()
@@ -108,6 +109,8 @@
     if (_isInviteFriend) {
         searchUserButton.hidden = YES;
         editButton.hidden = YES;
+        [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+        [editButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
         _selectedSet = [[NSMutableSet alloc] init];
         CGPoint origin = dataTableView.frame.origin;
         CGSize size = dataTableView.frame.size;
@@ -234,14 +237,14 @@
 
 - (IBAction)clickMyFollow:(id)sender
 {
-    if (_isInviteFriend) {
-        editButton.hidden = YES;
-    }else{
-        editButton.hidden = NO;
-    }
+    editButton.hidden = NO;
     myFollowButton.selected = YES;
     myFanButton.selected = NO;
     [self setAndReloadData:_myFollowList];
+
+    if (_isInviteFriend) {
+        editButton.hidden = ([_selectedSet count] == 0);
+    }
 }
 
 
@@ -254,13 +257,24 @@
     editButton.selected = NO;
     [dataTableView setEditing:NO animated:YES];
     editButton.hidden = YES;
+    
+    if (_isInviteFriend) {
+        editButton.hidden = ([_selectedSet count] == 0);
+    }
+
 }
 
 
 - (IBAction)clickEdit:(id)sender
 {
-    editButton.selected = !editButton.selected;
-    [dataTableView setEditing:editButton.selected animated:YES];
+    if (_isInviteFriend) {
+        //invite users
+        [self showActivityWithText:NSLS(@"kInviting")];
+        [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];
+    }else{
+        editButton.selected = !editButton.selected;
+        [dataTableView setEditing:editButton.selected animated:YES];
+    }
 }
 
 
@@ -272,7 +286,8 @@
 }
 
 
-#pragma -mark Custom methods
+
+#pragma mark - Custom methods
 - (void)showNoDataTips
 {
     dataTableView.hidden = YES;
@@ -366,7 +381,7 @@
     }
 }
 
-#pragma mark - FriendDelegate Method
+#pragma mark -  FriendDelegate Method
 
 - (void)didInviteFriendAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -381,8 +396,36 @@
             [_selectedSet addObject:friend];
             [self.dataTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
                                       withRowAnimation:UITableViewRowAnimationFade];
+            editButton.hidden = NO;
         }
     }
 }
 
+#pragma mark -  Room Service Delegate Method
+- (void)updateRoomUsers:(NSSet *)friendSet
+{
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.room.userList];
+    for (Friend *friend in friendSet) {
+        RoomUser *user = [[RoomUser alloc] init];
+        user.userId = friend.friendUserId;
+        user.nickName = friend.nickName;
+        user.avatar = friend.avatar;
+        user.gender = friend.gender;
+        user.status = UserInvited;
+        [array addObject:user];
+    }
+    self.room.userList = array;
+    [self.dataTableView reloadData];
+}
+- (void)didInviteFriends:(NSSet *)friendSet resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupMessage:NSLS(@"kInviteFail") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kInviteSuccess") title:nil];
+//        [self.navigationController popViewControllerAnimated:YES];
+        [self updateRoomUsers:friendSet];
+    }
+}
 @end
