@@ -330,3 +330,10 @@
 "kPlaying" = "Playing";
 "kWaitting" = "Waitting";
 "kFull" = "Full";
+
+"kRoomPasswordHolder" = "Input Password";
+"kRoomNameHolder" = "Input Room Name";
+"kRoomNameLabel" = "Room Name";
+"kRoomPasswordLabel" = "Password";
+"kRoomPasswordIllegal" = "Password illegal";
+"kRoomNameIllegal" = "Room name illegal";
