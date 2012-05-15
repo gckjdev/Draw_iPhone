@@ -17,6 +17,9 @@
 #import "DrawGameService.h"
 #import "ConfigManager.h"
 #import "StringUtil.h"
+#import "GameMessage.pb.h"
+#import "RoomController.h"
+#import "PassWordDialog.h"
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -66,6 +69,19 @@
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[DrawGameService defaultService] registerObserver:self];
+    [super viewDidDisappear:animated];    
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    [super viewDidDisappear:animated];    
+}
+
 - (void)viewDidUnload
 {
     [self setEditButton:nil];
@@ -93,11 +109,17 @@
 }
 
 - (IBAction)clickCreateButton:(id)sender {
-    static NSInteger number = 1;
-    NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
-    [roomService createRoom:string password:@"sysu" delegate:self];
-    [self showActivity];
+    PassWordDialog *pDialog = [PassWordDialog dialogWith:@"kCreateRoom" delegate:self];
+//    pDialog.oldPasswordTextField.hidden = NO;
+//    pDialog.oldPasswordTextField.text = @"甘米的房间1";
+    pDialog.anotherPasswordTextField.hidden = NO;
+    pDialog.anotherPasswordTextField.placeholder = @"请输入口令";
+    [pDialog showInView:self.view];
+
+//    NSString *nick = [[UserManager defaultManager]nickName];
+//    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,1];
+//    [roomService createRoom:string password:@"sysu" delegate:self];
+//    [self showActivity];
 }
 
 - (IBAction)clickSearchButton:(id)sender {
@@ -216,6 +238,7 @@
     }
     
     if (_isTryJoinGame){
+        [[DrawGameService defaultService] registerObserver:self];
         [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
                                                   roomId:[_currentSelectRoom roomId]
                                                 nickName:[_userManager nickName]
@@ -227,5 +250,22 @@
     _isTryJoinGame = NO;    
 }
 
+- (void)didJoinGame:(GameMessage *)message
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    
+    [self hideActivity];
+    if ([message resultCode] == 0){
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+    }
+    else{
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
+        [self popupUnhappyMessage:text title:@""];
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    [RoomController enterRoom:self];
+}
 
 @end

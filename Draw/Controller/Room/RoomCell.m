@@ -86,6 +86,9 @@
     [avatarImage setAvatarUrl:avatar gender:gender];
     [avatarImage setAvatarSelected:YES];
     avatarImage.hidden = NO;
+    
+    [self.creatorLabel setText:user.nickName];
+    [self.creatorLabel setHidden:NO];
 }
 
 

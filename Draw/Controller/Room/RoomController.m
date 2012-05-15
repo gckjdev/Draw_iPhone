@@ -83,6 +83,8 @@
         [self resetStartTimer];
         popupButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [popupButton retain];
+        
+        [[DrawGameService defaultService] setRoomDelegate:self];        
     }
     return self;
 }
@@ -128,7 +130,6 @@
     [UIApplication sharedApplication].idleTimerDisabled=YES;
     
     [[DrawGameService defaultService] registerObserver:self];
-    [[DrawGameService defaultService] setRoomDelegate:self];
     
     [self updateOnlineUserLabel];
     [self updateGameUsers];
@@ -709,6 +710,25 @@
     [app.roomController setClickCount:0];
     [app.roomController updateGameUsers];
     [app.roomController updateRoomName];            
+}
+
++ (void)enterRoom:(UIViewController*)superController
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.roomController == nil){    
+        // first time enter room
+        [RoomController firstEnterRoom:superController];
+        return;
+    }
+    
+    if ([superController.navigationController.viewControllers containsObject:app.roomController]){
+        // room controller exists in root view controllers
+        [RoomController returnRoom:superController startNow:NO];
+    }
+    else{
+        // room controller doesn't exist in navigation contoller view layers        
+        [RoomController firstEnterRoom:superController];
+    }
 }
 
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow
