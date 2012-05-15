@@ -348,3 +348,14 @@
 "kFull" = "已满人";
 
 "kMusicSettings" = "背景音乐";
+
+"kRoomPasswordHolder" = "请输入房间口令";
+"kRoomNameHolder" = "请输入房间名字";
+"kRoomNameLabel" = "房间名字";
+"kRoomPasswordLabel" = "房间口令";
+"kRoomPasswordIllegal" = "口令不能为空";
+"kRoomNameIllegal" = "房间名不能为空";
+
+"kInvited" = "已邀请";
+"kJoined" = "已受邀";
+"kInvite" = "邀请";

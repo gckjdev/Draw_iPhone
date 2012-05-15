@@ -8,9 +8,9 @@
 
 #import "RoomManager.h"
 #import "GameNetworkConstants.h"
-#import "Room.h"
 #import "TimeUtils.h"
 #import "UserManager.h"
+#import "Friend.h"
 
 RoomManager *staticRoomManager = nil;
 @implementation RoomManager
@@ -172,6 +172,19 @@ RoomManager *staticRoomManager = nil;
     }
     return nil;
 //    return self.roomList;
+}
+
+- (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room
+{
+    if (aFriend == nil || room == nil) {
+        return NO;
+    }
+    for (RoomUser *user in room.userList) {
+        if ([user.userId isEqualToString:aFriend.friendUserId]) {
+            return user.status;
+        }
+    }
+    return UserUnInvited;
 }
 
 @end

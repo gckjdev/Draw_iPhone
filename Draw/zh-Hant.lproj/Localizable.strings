@@ -345,3 +345,14 @@
 "kPlaying" = "遊戲中";
 "kWaitting" = "等待中";
 "kFull" = "已滿人";
+
+"kRoomPasswordHolder" = "請輸入房間口令";
+"kRoomNameHolder" = "請輸入房間名字";
+"kRoomNameLabel" = "房間名字";
+"kRoomPasswordLabel" = "房間口令";
+"kRoomPasswordIllegal" = "口令不能為空";
+"kRoomNameIllegal" = "房間名不能為空";
+
+"kInvited" = "已邀請";
+"kJoined" = "已受邀";
+"kInvite" = "邀請";

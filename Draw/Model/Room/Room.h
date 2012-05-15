@@ -16,6 +16,7 @@ typedef enum {
 
 
 typedef enum {
+    UserUnInvited = -1,
     UserInvited = 1,
     UserCreator = 2,
     UserJoined = 3,

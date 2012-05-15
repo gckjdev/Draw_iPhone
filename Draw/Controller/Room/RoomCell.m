@@ -135,7 +135,9 @@
 }
 
 - (IBAction)clickInviteButton:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(didClickInvite:)]) {
+        [self.delegate didClickInvite:self.indexPath];
+    }
 }
 
 - (void)setInfo:(Room *)room

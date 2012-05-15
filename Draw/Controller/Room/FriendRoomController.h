@@ -10,7 +10,7 @@
 #import "PPTableViewController.h"
 #import "RoomService.h"
 #import "DrawGameService.h"
-#import "PassWordDialog.h"
+#import "RoomPasswordDialog.h"
 
 @class UserManager;
 

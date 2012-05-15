@@ -28,4 +28,5 @@
 @dynamic deleteFlag;
 @dynamic location;
 
+
 @end

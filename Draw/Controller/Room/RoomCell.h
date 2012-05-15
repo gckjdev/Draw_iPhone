@@ -10,6 +10,13 @@
 #import "PPTableViewCell.h"
 #import "Room.h"
 
+
+@protocol RoomCellDelegate <NSObject>
+
+@optional
+- (void)didClickInvite:(NSIndexPath *)indexPath;
+
+@end
 @class HJManagedImageV;
 @class AvatarView;
 
