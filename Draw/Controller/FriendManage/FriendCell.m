@@ -14,7 +14,7 @@
 #import "PPApplication.h"
 #import "DeviceDetection.h"
 #import "Friend.h"
-
+#import "Room.h"
 @implementation FriendCell
 @synthesize avatarView;
 @synthesize nickNameLabel;
@@ -25,6 +25,7 @@
 @synthesize followButton;
 @synthesize user = _user;
 @synthesize followDelegate;
+@synthesize inviteDelegate;
 
 - (void)dealloc {
     [avatarView release];
@@ -169,6 +170,19 @@
 }
 
 
+- (void)setCellWithFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath fromType:(FromType)type
+{
+    if (type == FromFriendList) {
+        [self setCellByFriend:aFriend indexPath:aIndexPath];
+    }else if(type == FromInviteList)
+    {
+        [self setCellByFriend:aFriend indexPath:aIndexPath];
+        [followButton setBackgroundImage:
+         [[ShareImageManager defaultManager] normalButtonImage] 
+                                forState:UIControlStateNormal];
+    }
+}
+
 - (void)setCellByFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
@@ -233,11 +247,16 @@
 }
 
 
+
 - (IBAction)clickFollowButton:(id)sender
 {
     if (followDelegate && [followDelegate respondsToSelector:@selector(didClickFollowButtonAtIndexPath:user:)]) {
         [followDelegate didClickFollowButtonAtIndexPath:self.indexPath 
                                                    user:self.user];
+    }
+    
+    if (inviteDelegate && [inviteDelegate respondsToSelector:@selector(didInviteFriendAtIndexPath:)]) {
+        [inviteDelegate didInviteFriendAtIndexPath:self.indexPath];
     }
 }
 

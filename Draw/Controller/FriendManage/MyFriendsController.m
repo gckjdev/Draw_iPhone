@@ -18,6 +18,9 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "GameNetworkConstants.h"
+#import "Room.h"
+#import "RoomManager.h"
+
 
 @interface MyFriendsController ()
 
@@ -38,6 +41,7 @@
 @synthesize myFollowList = _myFollowList;
 @synthesize myFanList = _myFanList;
 @synthesize tipsLabel;
+@synthesize room = _room;
 
 - (void)dealloc {
     [titleLabel release];
@@ -48,6 +52,8 @@
     [_myFollowList release];
     [_myFanList release];
     [tipsLabel release];
+    [_room release];
+    [_selectedSet release];
     [super dealloc];
 }
 
@@ -56,6 +62,25 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _isInviteFriend = NO;
+    }
+    return self;
+}
+
+- (id)initWithRoom:(Room *)room
+{
+    self = [super init];
+    if (self) {
+        self.room = room;
+        _isInviteFriend = YES;
     }
     return self;
 }
@@ -80,9 +105,17 @@
     [myFanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
     myFollowButton.selected = YES;
     
-    [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
-    [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    
+    if (_isInviteFriend) {
+        searchUserButton.hidden = YES;
+        editButton.hidden = YES;
+        _selectedSet = [[NSMutableSet alloc] init];
+        CGPoint origin = dataTableView.frame.origin;
+        CGSize size = dataTableView.frame.size;
+        dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
+    }else{
+        [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+        [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    }
     dataTableView.separatorColor = [UIColor clearColor];
     
     tipsLabel.hidden = YES;
@@ -128,6 +161,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath == nil) {
+        return nil;
+    }
     NSString *indentifier = [FriendCell getCellIdentifier];
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
@@ -135,7 +171,34 @@
     }
     
     Friend *friend = [dataList objectAtIndex:[indexPath row]];
-    [cell setCellByFriend:friend indexPath:indexPath];
+    if (_isInviteFriend) {
+        cell.inviteDelegate = self;
+        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromInviteList];        
+        RoomUserStatus stat = [[RoomManager defaultManager] aFriend:friend statusAtRoom:self.room];
+        cell.followButton.hidden = YES;
+        if ([_selectedSet containsObject:friend]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.statusLabel.hidden = YES;
+        }else{        
+            cell.statusLabel.hidden = NO;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            if (stat == UserInvited) {
+                [cell.statusLabel setText:NSLS(@"kInvited")];
+            }else if(stat == UserJoined || stat == UserPlaying)
+            {
+                [cell.statusLabel setText:NSLS(@"kJoined")];
+            }else{
+                cell.followButton.hidden = NO;
+                cell.statusLabel.hidden = YES;
+                [cell.followButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
+            }
+        }
+        
+    }else{
+        cell.inviteDelegate = nil;
+        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];        
+    }
+//    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -171,8 +234,11 @@
 
 - (IBAction)clickMyFollow:(id)sender
 {
-    editButton.hidden = NO;
-    
+    if (_isInviteFriend) {
+        editButton.hidden = YES;
+    }else{
+        editButton.hidden = NO;
+    }
     myFollowButton.selected = YES;
     myFanButton.selected = NO;
     [self setAndReloadData:_myFollowList];
@@ -234,7 +300,7 @@
     }
     
     //if follow count is 0, hide the editButton
-    if ([_myFollowList count] == 0) {
+    if ([_myFollowList count] == 0 || _isInviteFriend) {
         editButton.hidden = YES;
     }else {
         editButton.hidden = NO;
@@ -263,7 +329,7 @@
 }
 
 
-#pragma -mark FriendServiceDelegate Method
+#pragma mark - FriendServiceDelegate Method
 - (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
 {
     //    if (resultCode != 0) {
@@ -297,6 +363,25 @@
         [self setAndReloadData:_myFollowList];
     }else {
         [self popupMessage:NSLS(@"kUnfollowFailed") title:nil];
+    }
+}
+
+#pragma mark - FriendDelegate Method
+
+- (void)didInviteFriendAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath) {
+        Friend *friend = nil;
+        if (myFollowButton.selected) {
+            friend = [self.myFollowList objectAtIndex:indexPath.row];
+        }else{
+            friend = [self.myFanList objectAtIndex:indexPath.row];
+        }
+        if (friend) {
+            [_selectedSet addObject:friend];
+            [self.dataTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                                      withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 

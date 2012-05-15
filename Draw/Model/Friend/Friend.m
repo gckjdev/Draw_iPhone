@@ -27,4 +27,5 @@
 @dynamic lastModifiedDate;
 @dynamic deleteFlag;
 
+
 @end

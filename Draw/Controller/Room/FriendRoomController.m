@@ -139,8 +139,9 @@
 {
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     if (room) {
-        MyFriendsController *mfc = [[MyFriendsController alloc] init];
+        MyFriendsController *mfc = [[MyFriendsController alloc] initWithRoom:room];
         [self.navigationController pushViewController:mfc animated:YES];
+        [mfc release];
     }
 }
 

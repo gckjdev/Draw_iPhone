@@ -337,3 +337,8 @@
 "kRoomPasswordLabel" = "Password";
 "kRoomPasswordIllegal" = "Password illegal";
 "kRoomNameIllegal" = "Room name illegal";
+
+
+"kInvited" = "Invited";
+"kJoined" = "Joined";
+"kInvite" = "Invite";

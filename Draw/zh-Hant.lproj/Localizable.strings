@@ -350,3 +350,7 @@
 "kRoomPasswordLabel" = "房間口令";
 "kRoomPasswordIllegal" = "口令不能為空";
 "kRoomNameIllegal" = "房間名不能為空";
+
+"kInvited" = "已邀請";
+"kJoined" = "已受邀";
+"kInvite" = "邀請";

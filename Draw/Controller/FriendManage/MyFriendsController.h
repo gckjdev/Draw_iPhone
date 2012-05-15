@@ -8,9 +8,15 @@
 
 #import "PPTableViewController.h"
 #import "FriendService.h"
+#import "FriendCell.h"
 
-@interface MyFriendsController : PPTableViewController <FriendServiceDelegate>
-
+@class Room;
+@interface MyFriendsController : PPTableViewController <FriendServiceDelegate,FollowDelegate>
+{
+    Room *_room;
+    BOOL _isInviteFriend;
+    NSMutableSet *_selectedSet;
+}
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *myFollowButton;
@@ -20,7 +26,9 @@
 
 @property (retain, nonatomic) NSArray *myFollowList;
 @property (retain, nonatomic) NSArray *myFanList;
+@property (retain, nonatomic) Room *room;
 
+- (id)initWithRoom:(Room *)room;
 - (IBAction)clickBack:(id)sender;
 - (IBAction)clickMyFollow:(id)sender;
 - (IBAction)clickMyFan:(id)sender;
