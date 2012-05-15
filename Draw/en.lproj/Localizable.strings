@@ -329,3 +329,5 @@
 "kPlaying" = "Playing";
 "kWaitting" = "Waitting";
 "kFull" = "Full";
+
+"kMusicSettings" = "MusicSettings";

@@ -12,6 +12,8 @@
 #import "MusicDownloadService.h"
 #import "MusicItem.h"
 #import "LogUtil.h"
+#import "MusicItemManager.h"
+#import "ShareImageManager.h"
 
 #define MUSIC_URL @"http://m.easou.com/"
 
@@ -21,9 +23,16 @@
 @synthesize webView = _webView;
 @synthesize editButton;
 @synthesize musicList = _musicList;
+@synthesize canDelete;
 @synthesize request;
 @synthesize openURLForAction;
 @synthesize urlForAction;
+@synthesize musicLabel;
+@synthesize expandButton;
+@synthesize previousButton;
+@synthesize nextButton;
+@synthesize stopButton;
+@synthesize refreshButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,13 +64,27 @@
     [_webView loadRequest:request];
 }
 
+enum{
+    EXPAND = 1,
+    COLLAPSE
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];    
+    [editButton setBackgroundImage:[imageManager orangeImage] 
+                          forState:UIControlStateNormal];
+    
+    expandButton.tag = EXPAND;
+    [self setActionButtonsHidden:YES];
+
+    
     [self openURL:MUSIC_URL];
     
-    _musicList = [MusicDownloadService findAllItems];
+    _musicList = [[MusicItemManager defaultManager] findAllItems];
+//    _musicList = [[MusicDownloadService defaultService] findAllItems];
     
     //for test
 //    MusicItem *item = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test" filePath:@"" tempPath:@""];
@@ -69,15 +92,16 @@
 //    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:item, item2, nil];
 //    self.musicList = array ;
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressTimer) userInfo:nil repeats:YES];
+    [self createTimer];
     
 }
 
 - (void)updateProgressTimer
 {
-//    _musicList = [MusicDownloadService findAllItems];
+//    _musicList = [[MusicItemManager defaultManager] findAllItems];
+//    _musicList = [[MusicDownloadService defaultService] findAllItems];
 //    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
-//    [self.tableView reloadData];
+    [self.tableView reloadData];
 
 }
 
@@ -89,8 +113,6 @@
     self.request = nil;
     self.musicList = nil;
     
-    [timer invalidate];
-    timer = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -115,6 +137,26 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)createTimer
+{
+    if (timer != nil){
+        [timer invalidate];
+        timer = nil;
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                  target: self
+                                                selector: @selector(updateProgressTimer)
+                                                userInfo: nil
+                                                 repeats: YES];
+}
+
+- (void)killTimer
+{
+    [timer invalidate];
+    timer = nil; 
+}
+
 #pragma mark - Button Action
 - (IBAction)clickBack:(id)sender
 {
@@ -126,8 +168,73 @@
     if ([_musicList count] == 0) {
         return;
     }
-    [self.tableView setEditing:YES animated:YES];
+    
+    self.canDelete = !canDelete;
+    [self.tableView setEditing:canDelete animated:YES];
     [self.tableView reloadData];
+    
+    if (canDelete) {
+        [self killTimer];
+    }
+    else {
+        [self createTimer];
+    }
+}
+
+-(IBAction)clickExpand:(id)sender
+{
+    if (self.expandButton.tag == EXPAND) {
+        [self.tableView setHidden:YES];
+        [self.editButton setHidden:YES];
+        
+        CGRect labelframe = self.musicLabel.frame;
+        labelframe.origin.y=50;
+        
+        CGRect expandframe = self.expandButton.frame;
+        expandframe.origin.y=50;
+        
+        CGRect webframe=self.webView.frame;
+        webframe.origin.y=50+30;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 50;
+                
+        [UIView animateWithDuration:0.5 animations:^{ 
+            self.webView.frame=webframe;
+            self.expandButton.frame = expandframe;
+            self.musicLabel.frame = labelframe;
+            [self.expandButton setTitle:NSLS(@"收缩") forState:UIControlStateNormal];
+            self.expandButton.tag = COLLAPSE;
+            [self setActionButtonsHidden:NO];
+
+            
+        }];
+    }
+    else {
+        [self.tableView setHidden:NO];
+        [self.editButton setHidden:NO];
+
+        CGRect labelframe = self.musicLabel.frame;
+        labelframe.origin.y=210;
+        
+        CGRect expandframe = self.expandButton.frame;
+        expandframe.origin.y=210;
+        
+        CGRect webframe=self.webView.frame;
+        webframe.origin.y=210+30;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 30 - 50;
+        
+        [UIView animateWithDuration:0.5 animations:^{ 
+            
+            self.webView.frame=webframe;
+            self.expandButton.frame = expandframe;
+            self.musicLabel.frame = labelframe;
+            [self.expandButton setTitle:NSLS(@"展开") forState:UIControlStateNormal];
+            self.expandButton.tag = EXPAND;
+            [self setActionButtonsHidden:YES];
+
+
+        }];
+
+    }
 }
 
 #pragma mark - tableView delegate method
@@ -181,27 +288,57 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_musicList objectAtIndex:indexPath.row];
+    MusicItem *item = [_musicList objectAtIndex:indexPath.row];
     NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:_musicList];
     [mutableDataList removeObjectAtIndex:indexPath.row];
     _musicList = mutableDataList;
     
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [[MusicItemManager defaultManager] deleteItem:item];
+    
+    [self createTimer];
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
+    if (canDelete) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else {
+        return UITableViewCellEditingStyleNone;
+    }
 }
 
 #pragma mark - webView delegate method
-
-- (IBAction) clickBackButton
+- (void) setActionButtonsHidden:(BOOL)isHidden
+{
+    [self.previousButton setHidden:isHidden];
+    [self.nextButton setHidden:isHidden];
+    [self.stopButton setHidden:isHidden];
+    [self.refreshButton setHidden:isHidden];
+}
+- (IBAction)clickPrevious:(id)sender
 {
     if (self.webView.canGoBack) {
         [self.webView stopLoading];
         [self.webView goBack];
+    } 
+}
+- (IBAction)clicknext:(id)sender
+{
+    if ([self.webView canGoForward]) {
+        [self.webView stopLoading];
+        [self.webView goForward];
     }
+}
+- (IBAction)clickStop:(id)sender
+{
+    [self.webView stopLoading];
+}
+- (IBAction)clickRefresh:(id)sender
+{
+    [self.webView reload];
 }
 
 - (BOOL)canDownload:(NSString*)urlString
