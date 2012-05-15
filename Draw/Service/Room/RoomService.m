@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "Room.h"
 #import "RoomManager.h"
+#import "Friend.h"
 
 RoomService *staticRoomService = nil;
 
@@ -106,17 +107,42 @@ RoomService *staticRoomService = nil;
 
 }
 
-- (void)inviteUsers:(NSString *)roomId 
-           password:(NSString *)roomPassword
-           userList:(NSArray *)userList
+- (void)inviteUsers:(NSSet *)friendSet 
+             toRoom:(Room *)room 
+           delegate: (id<RoomServiceDelegate>) delegate
 {
+//    dispatch_async(workingQueue, ^{
     
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [userManager userId]; 
+        NSString *roomId = [room roomId];
+        NSString *roomPassword = [room password];
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (Friend *friend in friendSet) {
+            if([friend.friendUserId length] != 0){
+                NSString *nick = ([friend.nickName length] == 0) ? @"" :friend.nickName;
+                NSString *temp = [NSString stringWithFormat:@"%@,%@",friend.friendUserId,nick];
+                [array addObject:temp];
+            }
+        }
+        NSString *usersString = [array componentsJoinedByString:@":"];
+        [array release];
+        CommonNetworkOutput* output = [GameNetworkRequest inviteUsersToRoom:TRAFFIC_SERVER_URL roomId:roomId password:roomPassword userId:userId userList:usersString];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didInviteFriends:resultCode:)]) {
+                [delegate didInviteFriends:friendSet resultCode:output.resultCode];
+            }
+        });
+        
+    });    
+
 }
 
 - (void)updateRoom:(NSString *)roomId 
           password:(NSString *)roomPassword 
           roomName:(NSString *)roomName
 {
-    
+
 }
 @end

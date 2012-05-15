@@ -9,13 +9,17 @@
 #import "PPTableViewController.h"
 #import "FriendService.h"
 #import "FriendCell.h"
+#import "RoomService.h"
 
 @class Room;
-@interface MyFriendsController : PPTableViewController <FriendServiceDelegate,FollowDelegate>
+@interface MyFriendsController : PPTableViewController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate>
 {
     Room *_room;
     BOOL _isInviteFriend;
     NSMutableSet *_selectedSet;
+    NSArray *_myFollowList;
+    NSArray *_myFanList;
+
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
