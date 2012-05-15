@@ -329,6 +329,8 @@
 "kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索失敗！";
 "kMyself" = "我";
+"kMale" = "男";
+"kFemale" = "女";
 
 "kLevelSettings" = "猜詞難度";
 "kEasyLevel" = "業餘";

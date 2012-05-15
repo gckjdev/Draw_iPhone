@@ -330,6 +330,8 @@
 "kSearchFailedTitle" = "网络错误";
 "kSearchFailed" = "网络错误，搜索失败！";
 "kMyself" = "我";
+"kMale" = "男";
+"kFemale" = "女";
 
 "kLevelSettings" = "猜词难度";
 "kEasyLevel" = "业余";

@@ -10,8 +10,8 @@
 #import "Friend.h"
 #import "CoreDataUtil.h"
 #import "LogUtil.h"
-
-
+#import "GameNetworkConstants.h"
+#import "TimeUtils.h"
 
 @interface FriendManager()
 
@@ -34,6 +34,80 @@ static FriendManager *_defaultFriendManager = nil;
     return _defaultFriendManager;
 }
 
+
+- (BOOL)createFriendByDictionary:(NSDictionary *)userDic
+{
+    NSString* friendUserId = [userDic objectForKey:PARA_USERID];
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
+    NSString* gender = [userDic objectForKey:PARA_GENDER];
+    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
+    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
+    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
+    NSString* typeStr =[userDic objectForKey:PARA_FRIENDSTYPE];
+    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
+    NSString* location = [userDic objectForKey:PARA_LOCATION];
+    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
+    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+    
+    return [self createFriendWithUserId:friendUserId 
+                                   type:type 
+                               nickName:nickName 
+                                 avatar:avatar 
+                                 gender:gender 
+                                 sinaId:sinaId 
+                                   qqId:qqId 
+                             facebookId:facebookId 
+                               sinaNick:sinaNick 
+                                 qqNick:qqNick 
+                           facebookNick:facebookNick 
+                             createDate:[NSDate date]
+                       lastModifiedDate:lastModifiedDate 
+                               location:location];
+}
+
+
+- (BOOL)updateFriendByDictionary:(NSDictionary *)userDic
+{
+    NSString* friendUserId = [userDic objectForKey:PARA_USERID];
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
+    NSString* gender = [userDic objectForKey:PARA_GENDER];
+    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
+    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
+    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
+    NSString* typeStr =[userDic objectForKey:PARA_FRIENDSTYPE];
+    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
+    NSString* location = [userDic objectForKey:PARA_LOCATION];
+    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
+    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+    
+    return [[FriendManager defaultManager] updateFriendWithUserId:friendUserId 
+                                                             type:type 
+                                                         nickName:nickName 
+                                                           avatar:avatar 
+                                                           gender:gender 
+                                                           sinaId:sinaId 
+                                                             qqId:qqId 
+                                                       facebookId:facebookId 
+                                                         sinaNick:sinaNick 
+                                                           qqNick:qqNick 
+                                                     facebookNick:facebookNick 
+                                                 lastModifiedDate:lastModifiedDate
+                                                         location:location];
+}
+
+
 - (BOOL)createFriendWithUserId:(NSString *)friendUserId 
                           type:(NSNumber *)type
                       nickName:(NSString *)nickName 
@@ -47,6 +121,7 @@ static FriendManager *_defaultFriendManager = nil;
                   facebookNick:(NSString *)facebookNick 
                     createDate:(NSDate *)createDate 
               lastModifiedDate:(NSDate *)lastModifiedDate 
+                      location:(NSString *)location
 {
     if ([self hasRecord:friendUserId type:type]) {
         return [self updateFriendWithUserId:friendUserId 
@@ -60,7 +135,8 @@ static FriendManager *_defaultFriendManager = nil;
                                    sinaNick:sinaNick 
                                      qqNick:qqNick 
                                facebookNick:facebookNick  
-                           lastModifiedDate:lastModifiedDate ];
+                           lastModifiedDate:lastModifiedDate 
+                                   location:location];
     }else {
         PPDebug(@"<createFriendWithUserId>");
         
@@ -80,6 +156,7 @@ static FriendManager *_defaultFriendManager = nil;
         [newFriend setCreateDate:createDate];
         [newFriend setLastModifiedDate:lastModifiedDate];
         [newFriend setDeleteFlag:[NSNumber numberWithInt:NOT_DELETED]];
+        [newFriend setLocation:location];
         
         return [dataManager save];
     }
@@ -98,6 +175,7 @@ static FriendManager *_defaultFriendManager = nil;
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
               lastModifiedDate:(NSDate *)lastModifiedDate 
+                      location:(NSString *)location
 {
     Friend *updateFriend = nil;
     if (type.intValue == FOLLOW) {
@@ -119,6 +197,7 @@ static FriendManager *_defaultFriendManager = nil;
         updateFriend.qqNick = qqNick;
         updateFriend.facebookNick = facebookNick;
         updateFriend.lastModifiedDate = lastModifiedDate;
+        updateFriend.location = location;
         
         return  [[CoreDataManager dataManager] save];
     }
@@ -179,17 +258,30 @@ static FriendManager *_defaultFriendManager = nil;
 
 - (BOOL)deleteAllFriends
 {
-    NSArray *allFollows = [self findAllFollowFriends];
-    for (Friend *followFriend in allFollows) {
-       [followFriend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]];
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* followArray = [dataManager execute:@"findAllFollowFriends" sortBy:@"createDate" ascending:NO];
+    for (Friend *friend in followArray) {
+        [friend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]]; 
     }
+    [dataManager save];
     
-    NSArray *allFans = [self findAllFanFriends];
-    for (Friend *fanFriend in allFans) {
-        [fanFriend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]];
+    NSArray* fanArray = [dataManager execute:@"findAllFanFriends" sortBy:@"createDate" ascending:NO];
+    for (Friend *friend in fanArray) {
+        [friend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]]; 
     }
+    [dataManager save];
+    return YES;
     
-    return [[CoreDataManager defaultManager] save];
+//    NSArray *allFollows = [self findAllFollowFriends];
+//    for (Friend *followFriend in allFollows) {
+//        [self deleteFollowFriend:followFriend.friendUserId];
+//    }
+//    
+//    NSArray *allFans = [self findAllFanFriends];
+//    for (Friend *fanFriend in allFans) {
+//        [self deleteFanFriend:fanFriend.friendUserId];
+//    }
+//    return YES;
 }
 
 

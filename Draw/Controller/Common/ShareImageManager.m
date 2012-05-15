@@ -266,4 +266,19 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"normal_button.png"];
 }
 
+- (UIImage *)sinaWeiboImage
+{
+    return [UIImage imageNamed:@"sina.png"]; 
+}
+
+- (UIImage *)qqWeiboImage
+{
+    return [UIImage imageNamed:@"qq.png"]; 
+}
+
+- (UIImage *)facebookImage
+{
+    return [UIImage imageNamed:@"facebook.png"]; 
+}
+
 @end

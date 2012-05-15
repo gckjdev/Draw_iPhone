@@ -81,5 +81,8 @@
 - (UIImage *)foucsMeImage;
 - (UIImage *)foucsMeSelectedImage;
 - (UIImage *)normalButtonImage;
+- (UIImage *)sinaWeiboImage;
+- (UIImage *)qqWeiboImage;
+- (UIImage *)facebookImage;
 
 @end

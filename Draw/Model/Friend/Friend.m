@@ -26,6 +26,7 @@
 @dynamic createDate;
 @dynamic lastModifiedDate;
 @dynamic deleteFlag;
+@dynamic location;
 
 
 @end
