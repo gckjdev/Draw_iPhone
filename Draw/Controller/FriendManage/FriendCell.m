@@ -96,6 +96,7 @@
     NSString* sinaNick = [aUser objectForKey:PARA_SINA_NICKNAME];
     NSString* qqNick = [aUser objectForKey:PARA_QQ_NICKNAME];
     NSString* facebookNick = [aUser objectForKey:PARA_FACEBOOK_NICKNAME];
+    NSString* location = [aUser objectForKey:PARA_LOCATION];
     
     //set avatar
     if ([gender isEqualToString:MALE])
@@ -125,27 +126,27 @@
     //set gender
     if ([gender isEqualToString:MALE]) {
         genderLabel.hidden = NO;
-        genderLabel.text = NSLS(@"男");
-    }else if ([gender isEqualToString:FEMALE]) {
-        genderLabel.hidden = NO;
-        genderLabel.text = NSLS(@"女");
+        genderLabel.text = NSLS(@"kMale");
     }else {
-        genderLabel.hidden = YES;
+        genderLabel.hidden = NO;
+        genderLabel.text = NSLS(@"kFemale");
     }
     
     //set area label
+    areaLabel.text = location;
     
     
     //set 
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (sinaNick) {
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"sina.png"]];
+        [authImageView setImage:[imageManager sinaWeiboImage]];
     }else if (qqNick){
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"qq.png"]];
+        [authImageView setImage:[imageManager qqWeiboImage]];
     }else if (facebookNick){
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"facebook.png"]];
+        [authImageView setImage:[imageManager facebookImage]];
     }else {
         authImageView.hidden = YES;
     }
@@ -215,27 +216,27 @@
     //set gender
     if ([aFriend.gender isEqualToString:MALE]) {
         genderLabel.hidden = NO;
-        genderLabel.text = NSLS(@"男");
-    }else if ([aFriend.gender isEqualToString:FEMALE]) {
-        genderLabel.hidden = NO;
-        genderLabel.text = NSLS(@"女");
+        genderLabel.text = NSLS(@"kMale");
     }else {
-        genderLabel.hidden = YES;
+        genderLabel.hidden = NO;
+        genderLabel.text = NSLS(@"kFemale");
     }
     
     //set area label
+    areaLabel.text = aFriend.location;
     
     
     //set 
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (aFriend.sinaNick) {
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"sina.png"]];
+        [authImageView setImage:[imageManager sinaWeiboImage]];
     }else if (aFriend.qqNick){
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"qq.png"]];
+        [authImageView setImage:[imageManager qqWeiboImage]];
     }else if (aFriend.facebookNick){
         authImageView.hidden = NO;
-        [authImageView setImage:[UIImage imageNamed:@"facebook.png"]];
+        [authImageView setImage:[imageManager facebookImage]];
     }else {
         authImageView.hidden = YES;
     }
