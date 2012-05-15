@@ -11,7 +11,6 @@
 #import "SelectWordController.h"
 #import "ShowDrawController.h"
 #import "GameSession.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "DrawAppDelegate.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
@@ -28,6 +27,7 @@
 #import "AudioManager.h"
 #import "DrawConstants.h"
 #import "ConfigManager.h"
+#import "StableView.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -198,8 +198,8 @@
         }
         
         // set images
-        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
-        [imageView clear];
+        AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
+        [imageView.imageView clear];
         imageView.hidden = NO;
         
         NSString* avatar = nil;
@@ -220,7 +220,7 @@
 
         if ([avatar length] > 0){     
             // set URL for download avatar
-            [imageView setUrl:[NSURL URLWithString:avatar]];
+            [imageView setUrlString:avatar];
 
         }else{
             if (isMe){
@@ -228,7 +228,7 @@
             }
         }
         
-        [GlobalGetImageCache() manage:imageView];
+        [GlobalGetImageCache() manage:imageView.imageView];
         
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
@@ -274,8 +274,8 @@
     
     // clean other image display
     for (int i=imageStartTag; i<=imageEndTag; i++){
-        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
-        [imageView clear];
+        AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
+        [imageView.imageView clear];
         imageView.hidden = YES;
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
@@ -330,7 +330,7 @@
 }
 
 
-- (HJManagedImageV *)userAvatarForUserId:(NSString *)userId
+- (AvatarView *)userAvatarForUserId:(NSString *)userId
 {
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
@@ -338,7 +338,7 @@
     int imageStartTag = 31;
     
     for (GameSessionUser* user in userList){
-        HJManagedImageV *imageView = (HJManagedImageV *)[self.view 
+        AvatarView *imageView = (AvatarView *)[self.view 
                                                          viewWithTag:imageStartTag ++];
         if([user.userId isEqualToString:userId]){
             return imageView;
@@ -351,7 +351,7 @@
 - (void)userId:(NSString *)userId popupMessage:(NSString *)message
 {
     
-    HJManagedImageV *player = [self userAvatarForUserId:userId];
+    AvatarView *player = [self userAvatarForUserId:userId];
     if (player == nil) {
         return;
     }
