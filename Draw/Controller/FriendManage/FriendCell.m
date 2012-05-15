@@ -12,6 +12,8 @@
 #import "ShareImageManager.h"
 #import "FriendManager.h"
 #import "PPApplication.h"
+#import "DeviceDetection.h"
+#import "Friend.h"
 
 @implementation FriendCell
 @synthesize avatarView;
@@ -21,6 +23,21 @@
 @synthesize authImageView;
 @synthesize statusLabel;
 @synthesize followButton;
+@synthesize user = _user;
+@synthesize followDelegate;
+
+- (void)dealloc {
+    [avatarView release];
+    [nickNameLabel release];
+    [genderLabel release];
+    [areaLabel release];
+    [authImageView release];
+    [statusLabel release];
+    [followButton release];
+    [_user release];
+    [super dealloc];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,6 +47,7 @@
     }
     return self;
 }
+
 
 + (id)createCell:(id)delegate
 {
@@ -46,25 +64,37 @@
     return [topLevelObjects objectAtIndex:0];
 }
 
+
 + (NSString*)getCellIdentifier
 {
     return @"FriendCell";
 }
 
+
+#define CELL_HEIGHT_IPHONE  60
+#define CELL_HEIGHT_IPAD    120
 + (CGFloat)getCellHeight
 {
-    return 60;
+    if ([DeviceDetection isIPAD]) {
+        return CELL_HEIGHT_IPAD;
+    }else {
+        return CELL_HEIGHT_IPHONE;
+    }
 }
 
-- (void)setCellByDictionar:(NSDictionary *)friend
+
+- (void)setCellByDictionary:(NSDictionary *)aUser indexPath:(NSIndexPath *)aIndexPath
 {
-    NSString* userId = [friend objectForKey:PARA_USERID];
-    NSString* avatar = [friend objectForKey:PARA_AVATAR];
-    NSString* gender = [friend objectForKey:PARA_GENDER];
-    NSString* nickName = [friend objectForKey:PARA_NICKNAME];
-    NSString* sinaNick = [friend objectForKey:PARA_SINA_NICKNAME];
-    NSString* qqNick = [friend objectForKey:PARA_QQ_NICKNAME];
-    NSString* facebookNick = [friend objectForKey:PARA_FACEBOOK_NICKNAME];
+    self.user = aUser;
+    self.indexPath = aIndexPath;
+    
+    NSString* userId = [aUser objectForKey:PARA_USERID];
+    NSString* avatar = [aUser objectForKey:PARA_AVATAR];
+    NSString* gender = [aUser objectForKey:PARA_GENDER];
+    NSString* nickName = [aUser objectForKey:PARA_NICKNAME];
+    NSString* sinaNick = [aUser objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [aUser objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookNick = [aUser objectForKey:PARA_FACEBOOK_NICKNAME];
     
     //set avatar
     if ([gender isEqualToString:MALE])
@@ -121,6 +151,7 @@
     
     
      //set followbutton or statusLabel
+    [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
     [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
     if ([[[UserManager defaultManager] userId] isEqualToString:userId]){
         statusLabel.hidden = NO;
@@ -135,18 +166,79 @@
         statusLabel.hidden = YES;
         followButton.hidden = NO; 
     }
-    
-    //return cell;
 }
 
-- (void)dealloc {
-    [avatarView release];
-    [nickNameLabel release];
-    [genderLabel release];
-    [areaLabel release];
-    [authImageView release];
-    [statusLabel release];
-    [followButton release];
-    [super dealloc];
+
+- (void)setCellByFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath
+{
+    self.indexPath = aIndexPath;
+    
+    //set avatar
+    if ([aFriend.gender isEqualToString:MALE])
+    {
+        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    }else {
+        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    }
+    [avatarView setUrl:[NSURL URLWithString:aFriend.avatar]];
+    [GlobalGetImageCache() manage:avatarView];
+    
+    
+    //set nick
+    if (aFriend.nickName && [aFriend.nickName length] != 0) {
+        nickNameLabel.text = aFriend.nickName;
+    }
+    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
+        nickNameLabel.text = aFriend.sinaNick;
+    }
+    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
+        nickNameLabel.text = aFriend.qqNick;
+    }
+    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
+        nickNameLabel.text = aFriend.facebookNick;
+    }
+    
+    //set gender
+    if ([aFriend.gender isEqualToString:MALE]) {
+        genderLabel.hidden = NO;
+        genderLabel.text = NSLS(@"男");
+    }else if ([aFriend.gender isEqualToString:FEMALE]) {
+        genderLabel.hidden = NO;
+        genderLabel.text = NSLS(@"女");
+    }else {
+        genderLabel.hidden = YES;
+    }
+    
+    //set area label
+    
+    
+    //set 
+    if (aFriend.sinaNick) {
+        authImageView.hidden = NO;
+        [authImageView setImage:[UIImage imageNamed:@"sina.png"]];
+    }else if (aFriend.qqNick){
+        authImageView.hidden = NO;
+        [authImageView setImage:[UIImage imageNamed:@"qq.png"]];
+    }else if (aFriend.facebookNick){
+        authImageView.hidden = NO;
+        [authImageView setImage:[UIImage imageNamed:@"facebook.png"]];
+    }else {
+        authImageView.hidden = YES;
+    }
+    
+    
+    //hide followbutton and statusLabel
+    statusLabel.hidden = YES;
+    followButton.hidden = YES;
 }
+
+
+- (IBAction)clickFollowButton:(id)sender
+{
+    if (followDelegate && [followDelegate respondsToSelector:@selector(didClickFollowButtonAtIndexPath:user:)]) {
+        [followDelegate didClickFollowButtonAtIndexPath:self.indexPath 
+                                                   user:self.user];
+    }
+}
+
 @end
