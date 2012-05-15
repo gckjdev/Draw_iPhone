@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Room;
+#import "Room.h"
+@class Friend;
+
 @interface RoomManager : NSObject
 {
     NSMutableArray *_roomList;
@@ -26,4 +28,5 @@
 - (NSString *)nickStringFromUsers:(NSArray *)userList 
                             split:(NSString *)split 
                             count:(NSInteger)count;
+- (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room;
 @end

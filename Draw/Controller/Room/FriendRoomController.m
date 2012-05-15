@@ -19,6 +19,8 @@
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
+#import "MyFriendsController.h"
+
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -108,15 +110,42 @@
 }
 
 - (IBAction)clickCreateButton:(id)sender {
-    static NSInteger number = 1;
+    RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
+    NSInteger index = rand() % 97;
     NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
-    [roomService createRoom:string password:@"sysu" delegate:self];
-    [self showActivity];
+    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,index];
+    
+    rDialog.targetTextField.text = string;
+    [rDialog showInView:self.view];
+}
+
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    NSString *roomName = targetText;
+    NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
+    [roomService createRoom:roomName password:password delegate:self];    
+}
+
+- (void)passwordIsIllegal:(NSString *)password
+{
+    [self popupMessage:@"kRoomPasswordIllegal" title:nil];
+}
+- (void)roomNameIsIllegal:(NSString *)password
+{
+    [self popupMessage:@"kRoomNameIllegal" title:nil];
+}
+
+- (void)didClickInvite:(NSIndexPath *)indexPath
+{
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    if (room) {
+        MyFriendsController *mfc = [[MyFriendsController alloc] initWithRoom:room];
+        [self.navigationController pushViewController:mfc animated:YES];
+        [mfc release];
+    }
 }
 
 - (IBAction)clickSearchButton:(id)sender {
-//    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
     SearchRoomController *src = [[SearchRoomController alloc] init];
     [self.navigationController pushViewController:src animated:YES];
     [src release];
@@ -204,6 +233,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
+    cell.indexPath = indexPath;
 	return cell;
 }
 

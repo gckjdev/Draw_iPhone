@@ -28,6 +28,7 @@
 #import "TKAlertCenter.h"
 #import "ConfigManager.h"
 #import "AudioManager.h"
+#import "FriendManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -38,7 +39,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.6:8000/api/i?";    
 
-    return @"http://192.168.1.11:8000/api/i?";  
+    return @"http://192.168.1.8:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -148,6 +149,8 @@ NSString* GlobalGetTrafficServerURL()
 
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
+    
+    //[[FriendManager defaultManager] removeAllDeletedFriends];
     
     return YES;
 }

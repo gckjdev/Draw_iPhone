@@ -86,6 +86,9 @@
     [avatarImage setAvatarUrl:avatar gender:gender];
     [avatarImage setAvatarSelected:YES];
     avatarImage.hidden = NO;
+    
+    [self.creatorLabel setText:user.nickName];
+    [self.creatorLabel setHidden:NO];
 }
 
 
@@ -132,7 +135,9 @@
 }
 
 - (IBAction)clickInviteButton:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(didClickInvite:)]) {
+        [self.delegate didClickInvite:self.indexPath];
+    }
 }
 
 - (void)setInfo:(Room *)room
