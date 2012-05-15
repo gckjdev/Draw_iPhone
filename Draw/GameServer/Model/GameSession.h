@@ -52,5 +52,6 @@ typedef enum {
 //- (void)finishPlay;
 
 - (NSString *)getNickNameByUserId:(NSString *)userId;
+- (GameSessionUser *)getUserByUserId:(NSString *)userId;
 - (NSString *)drawingUserId;
 @end

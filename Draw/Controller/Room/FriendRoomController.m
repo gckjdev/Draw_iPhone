@@ -9,10 +9,18 @@
 #import "FriendRoomController.h"
 #import "ShareImageManager.h"
 #import "MyFriendsController.h"
+#import "SearchRoomController.h"
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
+#import "DrawGameService.h"
+#import "ConfigManager.h"
+#import "StringUtil.h"
+#import "GameMessage.pb.h"
+#import "RoomController.h"
+#import "MyFriendsController.h"
+
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -25,6 +33,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _userManager = [UserManager defaultManager];
         roomService = [RoomService defaultService];
     }
     return self;
@@ -58,6 +67,20 @@
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[DrawGameService defaultService] registerObserver:self];
+    [super viewDidDisappear:animated];    
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    [super viewDidDisappear:animated];    
 }
 
 - (void)viewDidUnload
@@ -83,19 +106,49 @@
     [super dealloc];
 }
 - (IBAction)clickEditButton:(id)sender {
-    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+
 }
 
 - (IBAction)clickCreateButton:(id)sender {
-    static NSInteger number = 1;
+    RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
+    NSInteger index = rand() % 97;
     NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
-    [roomService createRoom:string password:@"sysu" delegate:self];
-    [self showActivity];
+    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,index];
+    
+    rDialog.targetTextField.text = string;
+    [rDialog showInView:self.view];
+}
+
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    NSString *roomName = targetText;
+    NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
+    [roomService createRoom:roomName password:password delegate:self];    
+}
+
+- (void)passwordIsIllegal:(NSString *)password
+{
+    [self popupMessage:@"kRoomPasswordIllegal" title:nil];
+}
+- (void)roomNameIsIllegal:(NSString *)password
+{
+    [self popupMessage:@"kRoomNameIllegal" title:nil];
+}
+
+- (void)didClickInvite:(NSIndexPath *)indexPath
+{
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    if (room) {
+        MyFriendsController *mfc = [[MyFriendsController alloc] initWithRoom:room];
+        [self.navigationController pushViewController:mfc animated:YES];
+        [mfc release];
+    }
 }
 
 - (IBAction)clickSearchButton:(id)sender {
-    [roomService searchRoomsWithKeyWords:@"MIMI的房间5" offset:0 limit:20 delegate:self];
+    SearchRoomController *src = [[SearchRoomController alloc] init];
+    [self.navigationController pushViewController:src animated:YES];
+    [src release];
 }
 
 - (IBAction)clickMyFriendButton:(id)sender {
@@ -122,30 +175,42 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= [self.dataList count])
+        return;
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    if (room == nil)
+        return;
+    
+    if (_isTryJoinGame)
+        return;
+    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] connectServer:self];
+    _isTryJoinGame = YES;    
+    
+    _currentSelectRoom = room;    
+}
+
 - (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode
 {
     [self hideActivity];
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
-        self.dataList = roomList;
+        if (roomList == nil) {
+            [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
+        }else
+        {
+            self.dataList = roomList;            
+        }
         [self.dataTableView reloadData];
     }
 
 }
-- (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode
-{    
-    [self hideActivity];
-    if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
-    }else{
-        self.dataList = roomList;
-        [self.dataTableView reloadData];
-    }
-}
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -165,10 +230,65 @@
 	if (cell == nil) {
         cell = [RoomCell createCell:self];
 	}
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
+    cell.indexPath = indexPath;
 	return cell;
+}
+
+#pragma mark - Draw Game Service Delegate
+
+- (void)didBroken
+{
+    _isTryJoinGame = NO;
+    PPDebug(@"<didBroken> Friend Room");
+    [self hideActivity];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+}
+
+- (void)didConnected
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+        
+    NSString* userId = [_userManager userId];    
+    if (userId == nil){
+        _isTryJoinGame = NO;
+        PPDebug(@"<didConnected> Friend Room, but user Id nil???");
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    if (_isTryJoinGame){
+        [[DrawGameService defaultService] registerObserver:self];
+        [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
+                                                  roomId:[_currentSelectRoom roomId]
+                                                nickName:[_userManager nickName]
+                                                  avatar:[_userManager avatarURL]
+                                                  gender:[_userManager isUserMale]
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+    }
+    
+    _isTryJoinGame = NO;    
+}
+
+- (void)didJoinGame:(GameMessage *)message
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    
+    [self hideActivity];
+    if ([message resultCode] == 0){
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+    }
+    else{
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
+        [self popupUnhappyMessage:text title:@""];
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    [RoomController enterRoom:self];
 }
 
 @end

@@ -8,8 +8,9 @@
 
 #import "PPTableViewController.h"
 #import "FriendService.h"
+#import "FriendCell.h"
 
-@interface SearchUserController :PPTableViewController <FriendServiceDelegate>
+@interface SearchUserController :PPTableViewController <FriendServiceDelegate, FollowDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *resultLabel;

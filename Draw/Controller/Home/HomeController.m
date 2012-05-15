@@ -216,7 +216,7 @@
         return;
     }
 
-    [RoomController firstEnterRoom:self];
+    [RoomController enterRoom:self];
 }
 
 - (IBAction)clickFeedback:(id)sender
@@ -228,25 +228,20 @@
 
 - (IBAction)clickCheckIn:(id)sender
 {
-    ChatController *controller = [[ChatController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-
-//    
-//    int coins = [[AccountService defaultService] checkIn];
-//    NSString* message = nil;
-//    if (coins > 0){        
-//        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-//    }
-//    else{
-//        message = NSLS(@"kCheckInAlreadyToday");
-//    }
-//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-//                                                       message:message
-//                                                         style:CommonDialogStyleSingleButton 
-//                                                     deelegate:self];    
-//    
-//    [dialog showInView:self.view];
+    int coins = [[AccountService defaultService] checkIn];
+    NSString* message = nil;
+    if (coins > 0){        
+        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+    }
+    else{
+        message = NSLS(@"kCheckInAlreadyToday");
+    }
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+                                                       message:message
+                                                         style:CommonDialogStyleSingleButton 
+                                                     deelegate:self];    
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickSettings:(id)sender
@@ -340,7 +335,7 @@
     [[DrawGameService defaultService] setServerPort:port];    
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
-    [[DrawGameService defaultService] connectServer];
+    [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;
 }
 

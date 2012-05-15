@@ -10,6 +10,7 @@
 #import "PPViewController.h"
 #import "DrawGameService.h"
 #import "CommonDialog.h"
+#import "ChatController.h"
 
 enum{
     ROOM_DIALOG_QUIT_ROOM = 9001,
@@ -18,7 +19,7 @@ enum{
 
 @class UserManager;
 
-@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate>
+@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate, ChatControllerDelegate>
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;
@@ -37,6 +38,7 @@ enum{
 @property (retain, nonatomic) NSTimer *startTimer;
 @property (assign, nonatomic) int clickCount;
 @property (retain, nonatomic) IBOutlet UILabel *onlinePlayerCountLabel;
+@property (retain, nonatomic) ChatController *chatController;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;
@@ -44,9 +46,13 @@ enum{
 - (IBAction)clickMenu:(id)sender;
 
 // use this method when first enter room
-+ (void)firstEnterRoom:(UIViewController*)superController;
+// + (void)enterRoom:(UIViewController*)superController;
 
 // use this method for returning from draw/guess to room
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow;
+
+// use this method when enter room (don't know first enter or not)
++ (void)enterRoom:(UIViewController*)superController;
+
 
 @end

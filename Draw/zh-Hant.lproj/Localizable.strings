@@ -326,8 +326,11 @@
 "kUnfollowFailed" = "網絡錯誤，取消關注失敗！";
 "kEnterWords" = "請輸入內容";
 "kSearchUserPlaceholder" = "暱稱/微博暱稱/QQ號/郵箱";
+"kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索失敗！";
 "kMyself" = "我";
+"kMale" = "男";
+"kFemale" = "女";
 
 "kLevelSettings" = "猜詞難度";
 "kEasyLevel" = "業餘";
@@ -342,3 +345,14 @@
 "kPlaying" = "遊戲中";
 "kWaitting" = "等待中";
 "kFull" = "已滿人";
+
+"kRoomPasswordHolder" = "請輸入房間口令";
+"kRoomNameHolder" = "請輸入房間名字";
+"kRoomNameLabel" = "房間名字";
+"kRoomPasswordLabel" = "房間口令";
+"kRoomPasswordIllegal" = "口令不能為空";
+"kRoomNameIllegal" = "房間名不能為空";
+
+"kInvited" = "已邀請";
+"kJoined" = "已受邀";
+"kInvite" = "邀請";

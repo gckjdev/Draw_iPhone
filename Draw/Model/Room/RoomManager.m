@@ -8,8 +8,9 @@
 
 #import "RoomManager.h"
 #import "GameNetworkConstants.h"
-#import "Room.h"
 #import "TimeUtils.h"
+#import "UserManager.h"
+#import "Friend.h"
 
 RoomManager *staticRoomManager = nil;
 @implementation RoomManager
@@ -59,15 +60,40 @@ RoomManager *staticRoomManager = nil;
     return self.roomList;
 }
 
+- (NSString *)nickStringFromUsers:(NSArray *)userList 
+                            split:(NSString *)split 
+                            count:(NSInteger)count
+{
+    if ([userList count] == 0) {
+        return nil;
+    }
+    NSMutableArray *nickList = [[NSMutableArray alloc]init];
+    int i = 0;
+    for (RoomUser *user in userList) {
+        if (user.nickName) {
+            [nickList addObject:user.nickName];
+            if (++ i == count) {
+                break;
+            }
+        }
+    }
+    NSString *retString = [nickList componentsJoinedByString:split];
+    [nickList release];
+    return retString;
+}
 
 - (RoomUser *)paserRoomUser:(NSDictionary *)dict
 {
     if (dict && [[dict allKeys] count] != 0) {
+        UserManager *userManager = [UserManager defaultManager];
         RoomUser *user = [[[RoomUser alloc] init] autorelease];
         user.userId = [dict objectForKey:PARA_USERID];
         user.nickName = [dict objectForKey:PARA_NICKNAME];
         user.gender = [dict objectForKey:PARA_GENDER];
         user.avatar = [dict objectForKey:PARA_AVATAR];
+        if ([userManager isMe:user.userId] && [user.avatar length] == 0) {
+            user.avatar = [userManager avatarURL];
+        }
         user.status = ((NSNumber *)[dict objectForKey:PARA_STATUS]).intValue;
         user.playTimes = ((NSNumber *)[dict objectForKey:PARA_PLAY_TIMES]).integerValue;
         NSString *lastPlayDateString = [dict objectForKey:PARA_LAST_PLAY_DATE];
@@ -89,6 +115,9 @@ RoomManager *staticRoomManager = nil;
         room.gameServerAddress = [dict objectForKey:PARA_SERVER_ADDRESS];
         room.gameServerPort = [dict objectForKey:PARA_SERVER_PORT];
         room.status = ((NSNumber *)[dict objectForKey:PARA_STATUS]).integerValue;
+        room.creator = [[[RoomUser alloc] init] autorelease];
+        room.creator.userId = [dict objectForKey:PARA_CREATOR_USERID];
+        room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
         
         NSString *createrDateString = [dict objectForKey:PARA_CREATE_DATE];
         if ([createrDateString length] != 0) {
@@ -98,7 +127,7 @@ RoomManager *staticRoomManager = nil;
         if ([expireDateString length] != 0) {
             room.createDate = dateFromStringByFormat(expireDateString, DEFAULT_DATE_FORMAT);    
         }
-
+        
         
         //set the creator and the room user list
         NSArray *usersData = [dict objectForKey:PAPA_ROOM_USERS];
@@ -106,24 +135,23 @@ RoomManager *staticRoomManager = nil;
             NSMutableArray *userList = [[NSMutableArray alloc] init];
             for (NSDictionary *userDict in usersData) {
                 RoomUser *user = [self paserRoomUser:userDict];
-                if (user == nil) {
-                    continue;
-                }
-                if (user.status == UserCreator) {
-                    room.creator = user;
-                }else{
-                    [userList addObject:user];
+                if (user) {
+                    if ([user.userId isEqualToString:room.creator.userId] && 
+                        user.status == UserCreator) {
+                        room.creator = user;
+                        room.myStatus = UserCreator;
+                    }else{
+                        [userList addObject:user];
+                        if ([[UserManager defaultManager] isMe:user.userId]) {
+                            room.myStatus = user.status;
+                        }
+                    }
                 }
             }
             if ([userList count] != 0) {
                 room.userList = userList;    
             }
             [userList release];
-        }
-        if (room.creator == nil || [room.creator.userId length] == 0) {
-            room.creator = [[[RoomUser alloc] init] autorelease];
-            room.creator.userId = [dict objectForKey:PARA_USERID];
-            room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
         }
         return room;
     }
@@ -144,7 +172,19 @@ RoomManager *staticRoomManager = nil;
         return roomList;
     }
     return nil;
-//    return self.roomList;
+}
+
+- (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room
+{
+    if (aFriend == nil || room == nil) {
+        return NO;
+    }
+    for (RoomUser *user in room.userList) {
+        if ([user.userId isEqualToString:aFriend.friendUserId]) {
+            return user.status;
+        }
+    }
+    return UserUnInvited;
 }
 
 @end

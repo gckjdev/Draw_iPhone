@@ -215,14 +215,28 @@
 
 - (NSString *)getNickNameByUserId:(NSString *)userId
 {
+//    for (GameSessionUser *user in self.userList) {
+//        if([user.userId isEqualToString:userId])
+//        {
+//            return user.nickName;
+//        }
+//    }
+//    
+//    return [[_deletedUserList objectForKey:userId] nickName];
+    
+    return [[self getUserByUserId:userId] nickName];
+}
+
+- (GameSessionUser *)getUserByUserId:(NSString *)userId
+{
     for (GameSessionUser *user in self.userList) {
         if([user.userId isEqualToString:userId])
         {
-            return user.nickName;
+            return user;
         }
-    }
+    }    
     
-    return [[_deletedUserList objectForKey:userId] nickName];
+    return [_deletedUserList objectForKey:userId];
 }
 
 - (NSString *)drawingUserId

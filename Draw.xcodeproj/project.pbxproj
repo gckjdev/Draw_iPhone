@@ -24,6 +24,9 @@
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
 		A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */; };
+		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
+		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
+		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
 		A3FAE0DE15536EF0008B5827 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */; };
@@ -51,7 +54,8 @@
 		A454CBC0155A17F500896761 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CBBE155A17F500896761 /* message@2x.png */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
-		A454CBCC155A19D700896761 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBCB155A19D700896761 /* ExpressionManager.m */; };
+		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
+		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		C23163A315577B8E00AC132B /* clickWord.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A015577B8E00AC132B /* clickWord.wav */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
@@ -429,6 +433,9 @@
 		CA28C0DC1531301D00E531AE /* main_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0D91531301D00E531AE /* main_top@2x.png */; };
 		CA28C0DF1531327300E531AE /* normalpallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0DE1531327300E531AE /* normalpallets@2x.png */; };
 		CA28C0E115313B9400E531AE /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0E015313B9400E531AE /* submit@2x.png */; };
+		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
+		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
+		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
@@ -669,6 +676,10 @@
 		A32933371559304500621789 /* myfoucs_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs_selected@2x.png"; sourceTree = "<group>"; };
 		A32933381559304500621789 /* myfoucs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs@2x.png"; sourceTree = "<group>"; };
 		A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_button@2x.png"; sourceTree = "<group>"; };
+		A3D11BF11562306A00248B4C /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
+		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
+		A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendCell~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDialog~ipad.xib"; sourceTree = "<group>"; };
@@ -698,8 +709,10 @@
 		A454CBC1155A181500896761 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		A454CBC2155A181500896761 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		A454CBC3155A181500896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
-		A454CBCA155A19D700896761 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
-		A454CBCB155A19D700896761 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
+		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
+		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
+		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		C23163A015577B8E00AC132B /* clickWord.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickWord.wav; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
@@ -1319,6 +1332,10 @@
 		CA28C0D91531301D00E531AE /* main_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_top@2x.png"; sourceTree = "<group>"; };
 		CA28C0DE1531327300E531AE /* normalpallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalpallets@2x.png"; sourceTree = "<group>"; };
 		CA28C0E015313B9400E531AE /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
+		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
+		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
+		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
+		CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -1651,13 +1668,31 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		A454CBC9155A19D700896761 /* Expression */ = {
+		A4D3B1561560E4B50013C882 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A454CBCA155A19D700896761 /* ExpressionManager.h */,
-				A454CBCB155A19D700896761 /* ExpressionManager.m */,
+				A4D3B1571560E4B50013C882 /* Expression */,
+				A4D3B15A1560E4B50013C882 /* Message */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		A4D3B1571560E4B50013C882 /* Expression */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3B1581560E4B50013C882 /* ExpressionManager.h */,
+				A4D3B1591560E4B50013C882 /* ExpressionManager.m */,
 			);
 			path = Expression;
+			sourceTree = "<group>";
+		};
+		A4D3B15A1560E4B50013C882 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3B15C1560E4F80013C882 /* MessageManager.h */,
+				A4D3B15D1560E4F80013C882 /* MessageManager.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -2928,6 +2963,10 @@
 				CAA47814152FF70D005EDB24 /* PassWordDialog.xib */,
 				A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */,
 				C2B3E9931555175B00CCF52C /* DrawConstants.h */,
+				CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */,
+				CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */,
+				CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */,
+				CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3764,6 +3803,10 @@
 		CA9DB92B154E75190031DBBD /* FriendManage */ = {
 			isa = PBXGroup;
 			children = (
+				A3D11BF11562306A00248B4C /* FriendCell.h */,
+				A3D11BF21562306A00248B4C /* FriendCell.m */,
+				A3D11BF31562306A00248B4C /* FriendCell.xib */,
+				A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */,
 				A329332615591D4D00621789 /* MyFriendsController.h */,
 				A329332715591D4D00621789 /* MyFriendsController.m */,
 				A329332815591D4D00621789 /* MyFriendsController.xib */,
@@ -3875,8 +3918,8 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4D3B1561560E4B50013C882 /* Chat */,
 				CA0CB76B155CB78A009C8EE6 /* Room */,
-				A454CBC9155A19D700896761 /* Expression */,
 				CA9DB929154E75070031DBBD /* Friend */,
 				CAC13243154C28B9000A8C8F /* Config */,
 				CA51BD701525DEBF00C77E50 /* Reward */,
@@ -4271,6 +4314,10 @@
 				EAF5AFDF155E2F30008CD8EE /* MusicSettingCell.xib in Resources */,
 				EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */,
 				EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */,
+				CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */,
+				CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */,
+				A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */,
+				A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4612,7 +4659,6 @@
 				A329333115591D4D00621789 /* SearchUserController.m in Sources */,
 				A329333315591D4D00621789 /* ShowUserController.m in Sources */,
 				A454CBC4155A181500896761 /* MessageCell.m in Sources */,
-				A454CBCC155A19D700896761 /* ExpressionManager.m in Sources */,
 				CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */,
 				CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */,
 				CA0CB759155CB064009C8EE6 /* RoomCell.m in Sources */,
@@ -4624,6 +4670,10 @@
 				EAF5AFDE155E2F30008CD8EE /* MusicSettingCell.m in Sources */,
 				EAF5AFE2155E3251008CD8EE /* MusicItem.m in Sources */,
 				EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */,
+				A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */,
+				A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */,
+				CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */,
+				A3D11BF51562306A00248B4C /* FriendCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

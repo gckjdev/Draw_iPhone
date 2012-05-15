@@ -8,6 +8,7 @@
 
 
 #define SERVER_URL                  (GlobalGetServerURL())
+#define TRAFFIC_SERVER_URL                  (GlobalGetTrafficServerURL())
 #define APP_ID                      @"Game"
 
 #define STRING_SEPERATOR @"$"
@@ -146,6 +147,7 @@
 
 #define PARA_USERS @"users"
 #define PARA_USERID @"uid"
+#define PARA_CREATOR_USERID @"cuid"
 #define PARA_LOGINID @"lid"
 #define PARA_LOGINIDTYPE @"lty"
 #define PARA_USERTYPE @"uty"
@@ -385,3 +387,4 @@
 
 
 extern NSString* GlobalGetServerURL();
+extern NSString* GlobalGetTrafficServerURL();

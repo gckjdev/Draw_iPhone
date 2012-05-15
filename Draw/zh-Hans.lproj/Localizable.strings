@@ -327,8 +327,11 @@
 "kUnfollowFailed" = "网络错误，取消关注失败！";
 "kEnterWords" = "请输入内容";
 "kSearchUserPlaceholder" = "昵称/微博昵称/QQ号/邮箱";
+"kSearchFailedTitle" = "网络错误";
 "kSearchFailed" = "网络错误，搜索失败！";
 "kMyself" = "我";
+"kMale" = "男";
+"kFemale" = "女";
 
 "kLevelSettings" = "猜词难度";
 "kEasyLevel" = "业余";
@@ -345,3 +348,14 @@
 "kFull" = "已满人";
 
 "kMusicSettings" = "背景音乐";
+
+"kRoomPasswordHolder" = "请输入房间口令";
+"kRoomNameHolder" = "请输入房间名字";
+"kRoomNameLabel" = "房间名字";
+"kRoomPasswordLabel" = "房间口令";
+"kRoomPasswordIllegal" = "口令不能为空";
+"kRoomNameIllegal" = "房间名不能为空";
+
+"kInvited" = "已邀请";
+"kJoined" = "已受邀";
+"kInvite" = "邀请";

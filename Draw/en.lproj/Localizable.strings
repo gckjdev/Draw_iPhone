@@ -293,8 +293,8 @@
 "kContactNull" = "Contact could not be empty.";
 "kFailStartGame" = "Room is playing. Please try another room.";
 "kSound" = "Sound";
-"kON" = "ON ";
-"kOFF" = " OFF";
+"kON" = "ON  ";
+"kOFF" = "  OFF";
 
 "kMyFriends" = "My Friends";
 "kFollow" = "Follow";
@@ -313,8 +313,11 @@
 "kUnfollowFailed" = "Network error, unfollow failed!";
 "kEnterWords" = "Please enter the content";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
+"kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
 "kMyself" = "Myself";
+"kMale" = "male";
+"kFemale" = "female";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
@@ -330,4 +333,14 @@
 "kWaitting" = "Waitting";
 "kFull" = "Full";
 
-"kMusicSettings" = "MusicSettings";
+"kRoomPasswordHolder" = "Input Password";
+"kRoomNameHolder" = "Input Room Name";
+"kRoomNameLabel" = "Room Name";
+"kRoomPasswordLabel" = "Password";
+"kRoomPasswordIllegal" = "Password illegal";
+"kRoomNameIllegal" = "Room name illegal";
+
+
+"kInvited" = "Invited";
+"kJoined" = "Joined";
+"kInvite" = "Invite";

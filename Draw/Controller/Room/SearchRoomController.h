@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
+#import "RoomService.h"
 
-@interface SearchRoomController : UIViewController
+@class ShareImageManager;
 
+@interface SearchRoomController : PPTableViewController<RoomServiceDelegate,UITextFieldDelegate>
+{
+    ShareImageManager *imageManager;
+    RoomService *roomService;
+}
+
+- (IBAction)clickSearhButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *searchButton;
+@property (retain, nonatomic) IBOutlet UITextField *searchField;
 @end

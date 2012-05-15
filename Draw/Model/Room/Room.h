@@ -16,9 +16,11 @@ typedef enum {
 
 
 typedef enum {
-    UserJoined = 1,
-    UserInvited = 2,
-    UserCreator = 3
+    UserUnInvited = -1,
+    UserInvited = 1,
+    UserCreator = 2,
+    UserJoined = 3,
+    UserPlaying = 4
 }RoomUserStatus;
 
 @class RoomUser;
@@ -34,11 +36,15 @@ typedef enum {
 @property(nonatomic, retain)NSString *gameServerPort;
 @property(nonatomic, retain)NSString *password;
 @property(nonatomic, assign)RoomStatus status;
+@property(nonatomic, assign)RoomUserStatus myStatus;
 @property(nonatomic, retain)NSDate *createDate;
 @property(nonatomic, retain)NSDate *expireDate;
 @property(nonatomic, retain)RoomUser *creator;
 @property(nonatomic, retain)NSArray *userList;
 
+- (NSArray *)invitedUserList;
+- (NSArray *)playingUserList;
+- (NSArray *)joinedUserList;
 
 @end
 
@@ -52,7 +58,7 @@ typedef enum {
 @property(nonatomic,retain)NSString *avatar;
 @property(nonatomic,assign)NSInteger playTimes;
 @property(nonatomic,retain)NSDate *lastPlayDate;
-@property(nonatomic, assign)RoomStatus status;
+@property(nonatomic, assign)RoomUserStatus status;
 
 
 - (BOOL)isFemale;

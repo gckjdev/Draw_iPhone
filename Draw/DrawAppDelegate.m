@@ -28,18 +28,24 @@
 #import "TKAlertCenter.h"
 #import "ConfigManager.h"
 #import "AudioManager.h"
+#import "FriendManager.h"
 #import "MusicItemManager.h"
 
 NSString* GlobalGetServerURL()
 {    
-    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.6:8000/api/i?";    
-//    return @"http://127.0.0.1:8000/api/i?";  
-//    return @"http://192.168.1.101:8000/api/i?";  
+
+    return @"http://192.168.1.8:8000/api/i?";  
+}
+
+NSString* GlobalGetTrafficServerURL()
+{
+    return @"http://192.168.1.7:8100/api/i?";      
 }
 
 @implementation DrawAppDelegate
@@ -145,6 +151,8 @@ NSString* GlobalGetServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
+    //[[FriendManager defaultManager] removeAllDeletedFriends];
+    
     return YES;
 }
 
@@ -190,9 +198,10 @@ NSString* GlobalGetServerURL()
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sleep(60);
-    });    
+    });     
     
     [[MusicItemManager defaultManager] saveMusicItems];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
