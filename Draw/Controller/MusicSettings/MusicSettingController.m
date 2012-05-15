@@ -100,8 +100,8 @@ enum{
 {
 //    _musicList = [[MusicItemManager defaultManager] findAllItems];
 //    _musicList = [[MusicDownloadService defaultService] findAllItems];
-//    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView reloadData];
+    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
+//    [self.tableView reloadData];
 
 }
 
@@ -297,7 +297,6 @@ enum{
     
     [[MusicItemManager defaultManager] deleteItem:item];
     
-    [self createTimer];
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
