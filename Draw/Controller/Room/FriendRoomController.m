@@ -19,6 +19,7 @@
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
+#import "PassWordDialog.h"
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -108,11 +109,17 @@
 }
 
 - (IBAction)clickCreateButton:(id)sender {
-    static NSInteger number = 1;
-    NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,number ++];
-    [roomService createRoom:string password:@"sysu" delegate:self];
-    [self showActivity];
+    PassWordDialog *pDialog = [PassWordDialog dialogWith:@"kCreateRoom" delegate:self];
+//    pDialog.oldPasswordTextField.hidden = NO;
+//    pDialog.oldPasswordTextField.text = @"甘米的房间1";
+    pDialog.anotherPasswordTextField.hidden = NO;
+    pDialog.anotherPasswordTextField.placeholder = @"请输入口令";
+    [pDialog showInView:self.view];
+
+//    NSString *nick = [[UserManager defaultManager]nickName];
+//    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,1];
+//    [roomService createRoom:string password:@"sysu" delegate:self];
+//    [self showActivity];
 }
 
 - (IBAction)clickSearchButton:(id)sender {
