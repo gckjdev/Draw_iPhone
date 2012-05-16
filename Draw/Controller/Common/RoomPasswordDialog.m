@@ -153,6 +153,7 @@
         }else{
             [textField resignFirstResponder];
         }
+        [self clickOkButton:self.okButton];
     }
     return YES;
 }

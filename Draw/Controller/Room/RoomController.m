@@ -237,7 +237,7 @@
         if (imageView == nil) {
             [self prepareAvatars];
         }
-        [imageView setUrlString:avatar];
+        [imageView setAvatarUrl:avatar gender:[user gender]];
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly

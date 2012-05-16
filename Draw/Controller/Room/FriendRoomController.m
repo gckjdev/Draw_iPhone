@@ -113,7 +113,7 @@
     RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
     NSInteger index = rand() % 97;
     NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"kRoomNameNumber",nick,index];
+    NSString *string = [NSString stringWithFormat:NSLS(@"kRoomNameNumber"),nick,index];
     
     rDialog.targetTextField.text = string;
     [rDialog showInView:self.view];
@@ -123,17 +123,17 @@
 {
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
-    [self showActivityWithText:@"kRoomCreating"];
+    [self showActivityWithText:NSLS(@"kRoomCreating")];
     [roomService createRoom:roomName password:password delegate:self];    
 }
 
 - (void)passwordIsIllegal:(NSString *)password
 {
-    [self popupMessage:@"kRoomPasswordIllegal" title:nil];
+    [self popupMessage:NSLS(@"kRoomPasswordIllegal") title:nil];
 }
 - (void)roomNameIsIllegal:(NSString *)password
 {
-    [self popupMessage:@"kRoomNameIllegal" title:nil];
+    [self popupMessage:NSLS(@"kRoomNameIllegal") title:nil];
 }
 
 - (void)didClickInvite:(NSIndexPath *)indexPath
@@ -219,7 +219,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [dataList count];			// default implementation
+    NSInteger count = [dataList count];
+    if (count == 0) {
+        tableView.hidden = YES;
+    }else{
+        tableView.hidden = NO;
+    }
+    return count;
+    
 }
 
 
