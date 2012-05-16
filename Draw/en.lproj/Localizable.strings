@@ -336,7 +336,7 @@
 "kMale" = "Male";
 "kFemale" = "Female";
 
-"kSayToYou" = "Say to you: ";
+"kSayToYou" = "Say to you: %@";
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
 "kRoomNameLabel" = "Room Name";
