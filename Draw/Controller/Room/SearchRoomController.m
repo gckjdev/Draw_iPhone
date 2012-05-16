@@ -69,7 +69,7 @@
     [self.searchField resignFirstResponder];
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
-        [self showActivity];
+        [self showActivityWithText:@"kRoomSearching"];
         [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
     }else{
         [self popupMessage:NSLS(@"kTextNull") title:nil];
