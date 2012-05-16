@@ -349,6 +349,11 @@
 
 "kMusicSettings" = "背景音乐";
 
+"kMale" = "男";
+"kFemale" = "女";
+
+"kSayToYou" = "对你说: ";
+
 "kRoomPasswordHolder" = "请输入房间口令";
 "kRoomNameHolder" = "请输入房间名字";
 "kRoomNameLabel" = "房间名字";

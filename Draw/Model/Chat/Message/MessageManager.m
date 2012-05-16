@@ -47,9 +47,9 @@ static MessageManager *_instance = nil;
     [super dealloc];
 }
 
-- (NSArray *)messagesForChatType:(ChatType)type
+- (NSArray *)messagesForChatType:(GameChatType)chatType
 {
-    if (type == PRIVATE) {
+    if (chatType == GameChatTypeChatPrivate) {
         return _privateMessages;
     }else {
         return _groupMessages;

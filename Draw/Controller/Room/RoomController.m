@@ -27,6 +27,7 @@
 #import "AudioManager.h"
 #import "DrawConstants.h"
 #import "ConfigManager.h"
+#import "ExpressionManager.h"
 #import "StableView.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
@@ -101,6 +102,7 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidLoad
 {
 //    [self setBackgroundImageName:ROOM_BACKGROUND];    
@@ -113,9 +115,9 @@
     CGFloat fontSize = 18;    
     if ([DeviceDetection isIPAD]) {
         fontSize = 18 * 2;
-        [popupButton setTitleEdgeInsets:UIEdgeInsetsMake(8 * 2, 0, 0, 0)];
+        [popupButton setContentEdgeInsets:UIEdgeInsetsMake(10 * 2, 0, 0, 0)];
     }else {
-        [popupButton setTitleEdgeInsets:UIEdgeInsetsMake(8, 0, 0, 0)];
+        [popupButton setContentEdgeInsets:UIEdgeInsetsMake(10, 0, 0, 0)];
     }
     [popupButton.titleLabel setFont:[UIFont systemFontOfSize:fontSize]];
 
@@ -152,6 +154,7 @@
     [self clearUnPopupMessages];
     [super viewDidDisappear:animated];
     [[DrawGameService defaultService] unregisterObserver:self]; 
+    [_chatController dismiss];
     PPDebug(@"<unregisterObserver> room controller");
 }
 
@@ -182,11 +185,12 @@
     float seperatorY = ([DeviceDetection isIPAD]) ? 216 : 99;
     CGPoint orgPoint = ORG_POINT;
     for (int i = imageStartTag; i <= imageEndTag; i++) {
-        AvatarView* avatarView = [[[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO] autorelease];
-        avatarView.hidden = NO;
-        NSLog(@"x=%.1f, y=%.1f, w=%.1f, h=%.1f", avatarView.frame.origin.x, avatarView.frame.origin.y, avatarView.frame.size.width, avatarView.frame.size.height);
-        [self.view addSubview:avatarView];
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
         avatarView.tag = i;
+        [avatarView setImage:nil];
+        avatarView.hidden = NO;
+        [self.view addSubview:avatarView];
+        [avatarView release];
     }
 }
 
@@ -202,7 +206,6 @@
     int startTag = 21;
     int endTag = 26;
     int imageStartTag = 31;
-    int backTag = 41;
     int imageEndTag = 36;
     
     for (GameSessionUser* user in userList){
@@ -220,9 +223,7 @@
         }
         
         // set images
-        UIView* viewForFrame = (UIView*)[self.view viewWithTag:backTag++];
-        
-        
+
         NSString* avatar = nil;
         BOOL isMe = [session isMe:[user userId]];
         if (isMe){
@@ -312,6 +313,24 @@
     [self updateStartButton];
 }
 
+- (void)updatePopupButtonInset:(BOOL)isImage
+{
+    if (isImage) {
+        if ([DeviceDetection isIPAD]) {
+            [popupButton setContentEdgeInsets:UIEdgeInsetsMake(13 * 2, 0, 0, 0)];
+        }else {
+            [popupButton setContentEdgeInsets:UIEdgeInsetsMake(13, 0, 0, 0)];
+        }
+        
+    }else{
+        if ([DeviceDetection isIPAD]) {
+            [popupButton setContentEdgeInsets:UIEdgeInsetsMake(8 * 2, 0, 0, 0)];
+        }else {
+            [popupButton setContentEdgeInsets:UIEdgeInsetsMake(8, 0, 0, 0)];
+        }
+    }
+}
+
 - (void)updateRoomInfo
 {
     // update room name
@@ -391,14 +410,13 @@
 
 - (void)userId:(NSString *)userId popupMessage:(NSString *)message
 {
-    
     AvatarView *player = [self userAvatarForUserId:userId];
     if (player == nil) {
         return;
     }
     CGFloat x = player.frame.origin.x;
     CGFloat y = player.frame.origin.y + player.frame.size.height;
-
+    
     CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
     if ([DeviceDetection isIPAD]) {
         [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];        
@@ -406,10 +424,38 @@
         [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
     }
     [popupButton setTitle:message forState:UIControlStateNormal];
+    [popupButton setImage:nil forState:UIControlStateNormal];
+    [self updatePopupButtonInset:NO];
     [popupButton setHidden:NO];
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
 }
+
+- (void)userId:(NSString *)userId popupImage:(UIImage *)image
+{    
+//    HJManagedImageV *player = [self userAvatarForUserId:userId];
+    AvatarView *player = [self userAvatarForUserId:userId];
+
+    if (player == nil) {
+        return;
+    }
+    CGFloat x = player.frame.origin.x;
+    CGFloat y = player.frame.origin.y + player.frame.size.height;
+    
+    CGSize size = [image size];
+    if ([DeviceDetection isIPAD]) {
+        [popupButton setFrame:CGRectMake(x, y, size.width + 30 * 2, size.height + 25 * 2)];        
+    }else{
+        [popupButton setFrame:CGRectMake(x, y, size.width + 30, size.height + 25)];
+    }
+    [popupButton setImage:image forState:UIControlStateNormal];
+    [popupButton setTitle:nil forState:UIControlStateNormal];
+    [self updatePopupButtonInset:YES];
+    [popupButton setHidden:NO];
+    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+}
+
 
 #pragma mark - Draw Game Service Delegate
 
@@ -527,6 +573,34 @@
         [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
         [[AudioManager defaultManager] playSoundById:QUICK_QUICK];
     }
+
+}
+
+- (void)didGameReceiveChat:(GameMessage *)message
+{
+    NSString* content = [[message notification] chatContent];
+    GameChatType chatType = [[message notification] chatType];
+    
+    if (chatType == GameChatTypeChatGroup) {
+        if ([content hasPrefix:EXPRESSION_CHAT]) {
+            NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
+            [self userId:[message userId] popupImage:image];
+        }else if ([content hasPrefix:NORMAL_CHAT]) {
+            NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+            [self userId:[message userId] popupMessage:msg];
+        }
+    }else {
+        if ([content hasPrefix:EXPRESSION_CHAT]) {
+            NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
+            [self userId:[message userId] popupImage:image];
+        }else if ([content hasPrefix:NORMAL_CHAT]) {
+            NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+            [self userId:[message userId] popupMessage:[msg stringByAppendingFormat:NSLS(@"kSayToYou")]];
+        }
+    }
+
 
 }
 
@@ -663,31 +737,31 @@
 
 - (IBAction)clickProlongStart:(id)sender
 {
-    time_t currentTime = time(0);
+//    time_t currentTime = time(0);
     if ([self isMyTurn]){
-        if (currentTime - quickDuration > QUICK_DURATION) {
+//        if (currentTime - quickDuration > QUICK_DURATION) {
             if (_clickCount <= MAX_CLICK_COUNT){
                 [self prolongStartTimer];
-                quickDuration = currentTime;
+//                quickDuration = currentTime;
                 _clickCount ++;
                 [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kWaitMessage"))];
             }
             else{
                 [self popupMessage:NSLS(@"kExceedMaxProlongTimes") title:nil];
             }
-        }else{
-            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
-        }
+//        }else{
+//            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
+//        }
     }
     else{
         // TODO send an urge request
-        if (currentTime - quickDuration > QUICK_DURATION) {
+//        if (currentTime - quickDuration > QUICK_DURATION) {
             [[DrawGameService defaultService] askQuickGame];            
-            quickDuration = currentTime;
+//            quickDuration = currentTime;
             [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kQuickMessage"))];
-        }else{
-            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
-        }
+//        }else{
+//            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
+//        }
     }
 }
 
@@ -697,7 +771,7 @@
 
 - (IBAction)clickPrivateChat:(id)sender {
     if (_chatController == nil) {
-        _chatController = [[ChatController alloc] initWithChatType:PRIVATE];
+        _chatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
     }
     _chatController.chatControllerDelegate = self;
    
@@ -871,9 +945,18 @@
     }
 }
 
-- (void)wantProlongStart
+- (void)didSelectMessage:(NSString *)message
 {
-    [self clickProlongStart:nil];
+    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
+        [self clickProlongStart:nil];
+    }else {
+        [self userId:[[DrawGameService defaultService] userId] popupMessage:message];
+    }
+}
+
+- (void)didSelectExpression:(UIImage *)expression
+{
+    [self userId:[[DrawGameService defaultService] userId] popupImage:expression];
 }
 
 @end

@@ -100,3 +100,12 @@ BOOL GameCompleteReasonIsValidValue(GameCompleteReason value) {
       return NO;
   }
 }
+BOOL GameChatTypeIsValidValue(GameChatType value) {
+  switch (value) {
+    case GameChatTypeChatGroup:
+    case GameChatTypeChatPrivate:
+      return YES;
+    default:
+      return NO;
+  }
+}
