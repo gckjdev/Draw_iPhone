@@ -25,6 +25,8 @@
 
 @interface MyFriendsController ()
 
+@property (assign, nonatomic) int selectedIndex;
+
 - (void)updateFriendsCount;
 - (void)setAndReloadData:(NSArray *)newDataList;
 - (void)showNoDataTips;
@@ -43,6 +45,7 @@
 @synthesize myFanList = _myFanList;
 @synthesize tipsLabel;
 @synthesize room = _room;
+@synthesize selectedIndex;
 
 - (void)dealloc {
     [titleLabel release];
@@ -116,7 +119,7 @@
         CGSize size = dataTableView.frame.size;
         dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
     }else{
-        [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+        [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
         [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     }
     dataTableView.separatorColor = [UIColor clearColor];
@@ -228,7 +231,8 @@
         }
         
     }else{
-        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];        
+        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
+        //cell.followDelegate = self;
     }
     return cell;
 }
@@ -236,10 +240,10 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!tableView.editing)
-        return UITableViewCellEditingStyleNone;
-    else {
+    if (myFollowButton.selected)
         return UITableViewCellEditingStyleDelete;
+    else {
+        return UITableViewCellEditingStyleNone;
     }
 }
 
@@ -259,6 +263,7 @@
     return nil;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *friend = [self friendForIndexPath:indexPath];
@@ -272,6 +277,12 @@
                          withRowAnimation:UITableViewRowAnimationFade];
         editButton.hidden = ([_selectedSet count] == 0);
     }
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 
@@ -420,12 +431,26 @@
 - (void)didUnFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kUnfollowSuccessfully") title:nil];
         self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
         [self setAndReloadData:_myFollowList];
     }else {
         [self popupMessage:NSLS(@"kUnfollowFailed") title:nil];
     }
 }
+
+
+#pragma -mark FollowDelegate Method
+//- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath user:(NSDictionary *)user
+//{
+//    NSString* userId = [user objectForKey:PARA_USERID];
+//    
+//    selectedIndex = [indexPath row];
+//    
+//    [[FriendService defaultService] followUser:userId viewController:self
+//     ];
+//}
+
 
 #pragma mark -  FriendDelegate Method
 
