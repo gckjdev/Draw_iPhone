@@ -590,7 +590,7 @@
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
 //            [self userId:[message userId] popupMessage:msg];
-            [self userId:[message userId] popupMessage:NSLS([@"kSayToYou" stringByAppendingFormat:msg])];
+            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
         }
     }else {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
@@ -599,7 +599,7 @@
             [self userId:[message userId] popupImage:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:NSLS([@"kSayToYou" stringByAppendingFormat:msg])];
+            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
         }
     }
 }

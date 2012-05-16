@@ -13,8 +13,8 @@ static MessageManager *_instance = nil;
 
 @interface MessageManager ()
 {
-    NSArray *_privateMessages;
-    NSArray *_groupMessages;
+    NSMutableArray *_privateMessages;
+    NSMutableArray *_groupMessages;
 }
 @end
 

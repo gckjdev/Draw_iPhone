@@ -349,7 +349,7 @@
 "kMale" = "男";
 "kFemale" = "女";
 
-"kSayToYou" = "對你說: ";
+"kSayToYou" = "對你說: %@";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";
