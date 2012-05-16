@@ -22,6 +22,8 @@
 #import "MyFriendsController.h"
 
 
+#define INVITE_LIMIT 12
+
 @implementation FriendRoomController
 @synthesize editButton;
 @synthesize createButton;
@@ -67,11 +69,13 @@
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [self showActivityWithText:NSLS(@"kLoading")];
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self.dataTableView reloadData];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
 }
@@ -243,6 +247,13 @@
     [cell setInfo:room];
     cell.indexPath = indexPath;
 	return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"commitEditingStyle");
+    
 }
 
 #pragma mark - Draw Game Service Delegate

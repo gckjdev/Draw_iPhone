@@ -136,14 +136,11 @@ RoomManager *staticRoomManager = nil;
             for (NSDictionary *userDict in usersData) {
                 RoomUser *user = [self paserRoomUser:userDict];
                 if (user) {
-                    if ([user.userId isEqualToString:room.creator.userId] && 
-                        user.status == UserCreator) {
+                    if ([user.userId isEqualToString:room.creator.userId]) {
                         room.creator = user;
-                        room.myStatus = UserCreator;
                     }else{
                         [userList addObject:user];
                         if ([[UserManager defaultManager] isMe:user.userId]) {
-                            room.myStatus = user.status;
                         }
                     }
                 }

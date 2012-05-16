@@ -354,3 +354,7 @@
 "kInviting" = "Inviting";
 
 "kRoomNameNumber" = "%@'s Room %d";
+
+"kIsPlaying" = "is playing";
+"kIsJoined" = "accepted";
+"kIsInvited" = "invited";

@@ -14,6 +14,7 @@
 #import "Room.h"
 #import "RoomManager.h"
 #import "Friend.h"
+#import "FriendManager.h"
 
 RoomService *staticRoomService = nil;
 
@@ -118,7 +119,7 @@ RoomService *staticRoomService = nil;
         NSMutableArray *array = [[NSMutableArray alloc] init];
         for (Friend *friend in friendSet) {
             if([friend.friendUserId length] != 0){
-                NSString *nick = ([friend.nickName length] == 0) ? @"" :friend.nickName;
+                NSString *nick = [[FriendManager defaultManager] getFriendNick:friend];
                 NSString *temp = [NSString stringWithFormat:@"%@,%@",friend.friendUserId,nick];
                 [array addObject:temp];
             }

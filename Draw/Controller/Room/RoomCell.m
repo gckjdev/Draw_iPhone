@@ -96,11 +96,11 @@
 {
     self.inviteButton.hidden = YES;
     self.inviteInfoButton.hidden = YES;
-    if (room.myStatus == UserCreator) {
+    if ([room isMeCreator]) {
         self.inviteButton.hidden = NO;
     }else if(room.myStatus == UserInvited)
     {
-        self.inviteInfoButton = NO;
+        self.inviteInfoButton.hidden = NO;
     }
 }
 
@@ -119,16 +119,30 @@
         array = [room invitedUserList];
         stat = UserInvited;
     }
-
-    if ([array count] == 0) {
-        self.userListLabel.hidden = YES;
-    }else{
-        self.userListLabel.hidden = NO;
+    self.userListLabel.hidden = YES;
+    if ([array count] != 0) {
         //join the string.
         NSString *listString = [[RoomManager defaultManager] 
                                 nickStringFromUsers:array 
-                                split:@"、" 
+                                split:@"," 
                                 count:USER_LIST_COUNT];
+        if ([listString length] == 0) {
+            return;
+        }
+        self.userListLabel.hidden = NO;
+        switch (stat) {
+            case UserPlaying:
+                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsPlaying")];
+                break;
+            case UserJoined:
+                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsJoined")];
+                break;
+                
+            case UserInvited:
+            default:
+                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsInvited")];
+                break;
+        }
         [self.userListLabel setText:listString];
     }
     

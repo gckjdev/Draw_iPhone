@@ -367,3 +367,6 @@
 "kInviting" = "邀請好友中...";
 "kRoomNameNumber" = "%@的房間%d";
 
+"kIsPlaying" = "正在遊戲中";
+"kIsJoined" = "已加入遊戲";
+"kIsInvited" = "已被邀請";
