@@ -97,6 +97,7 @@
 @synthesize score = _score;
 @synthesize userId = _userId;
 @synthesize delegate = _delegate;
+@synthesize hasPen = _hasPen;
 
 - (void)addTapGuesture
 {
@@ -247,5 +248,9 @@
     }else{
         [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     }
+}
+- (void)setHasPen:(BOOL)hasPen
+{
+    markButton.hidden = !hasPen;
 }
 @end

@@ -348,3 +348,9 @@
 "kInvited" = "Invited";
 "kJoined" = "Joined";
 "kInvite" = "Invite";
+
+"kRoomCreating" = "Creating...";
+"kRoomSearching" = "Searching...";
+"kInviting" = "Inviting";
+
+"kRoomNameNumber" = "%@'s Room %d";

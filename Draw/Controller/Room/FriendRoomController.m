@@ -113,7 +113,7 @@
     RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
     NSInteger index = rand() % 97;
     NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,index];
+    NSString *string = [NSString stringWithFormat:@"kRoomNameNumber",nick,index];
     
     rDialog.targetTextField.text = string;
     [rDialog showInView:self.view];
@@ -123,6 +123,7 @@
 {
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
+    [self showActivityWithText:@"kRoomCreating"];
     [roomService createRoom:roomName password:password delegate:self];    
 }
 
