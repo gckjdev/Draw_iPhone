@@ -29,6 +29,7 @@
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
                      roomId:(NSString*)roomId
+                   roomName:(NSString*)roomName
           excludeSessionSet:(NSSet*)excludeSessionSet;
 
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;

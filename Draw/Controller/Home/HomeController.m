@@ -216,7 +216,7 @@
         return;
     }
 
-    [RoomController enterRoom:self];
+    [RoomController enterRoom:self isFriendRoom:NO];
 }
 
 - (IBAction)clickFeedback:(id)sender

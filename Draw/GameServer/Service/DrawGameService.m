@@ -779,6 +779,7 @@ static DrawGameService* _defaultService;
 
 - (void)joinFriendRoom:(NSString*)userId 
                 roomId:(NSString*)roomId
+              roomName:(NSString*)roomName
               nickName:(NSString*)nickName 
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
@@ -801,6 +802,7 @@ static DrawGameService* _defaultService;
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
                                  roomId:roomId
+                               roomName:roomName
                       excludeSessionSet:[NSSet set]];  
     
     [self scheduleKeepAliveTimer];

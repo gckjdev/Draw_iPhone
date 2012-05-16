@@ -288,7 +288,7 @@
         return;
     }
     
-    [RoomController enterRoom:self];
+    [RoomController enterRoom:self isFriendRoom:YES];
 }
 
 @end
