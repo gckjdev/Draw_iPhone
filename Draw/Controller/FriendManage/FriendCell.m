@@ -72,8 +72,8 @@
 }
 
 
-#define CELL_HEIGHT_IPHONE  60
-#define CELL_HEIGHT_IPAD    120
+#define CELL_HEIGHT_IPHONE  66
+#define CELL_HEIGHT_IPAD    132
 + (CGFloat)getCellHeight
 {
     if ([DeviceDetection isIPAD]) {
@@ -155,7 +155,7 @@
     
      //set followbutton or statusLabel
     [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
-    [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+    [followButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
     if ([[[UserManager defaultManager] userId] isEqualToString:userId]){
         statusLabel.hidden = NO;
         followButton.hidden = YES;
@@ -246,6 +246,15 @@
     //hide followbutton and statusLabel
     statusLabel.hidden = YES;
     followButton.hidden = YES;
+    if ([[FriendManager defaultManager] isFanFriend:aFriend.friendUserId]) {
+        
+        [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+        [followButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
+        
+        if (![[FriendManager defaultManager] isFollowFriend:aFriend.friendUserId]) {
+            followButton.hidden = NO;
+        }
+    }
 }
 
 

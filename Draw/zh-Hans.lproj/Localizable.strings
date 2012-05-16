@@ -316,22 +316,26 @@
 "kNoFollow" = "还没有关注呢";
 "kNoFans" = "还没有粉丝呢";
 "kEdit" = "编辑";
-"kAddFriend" = "添加好友";
+"kSearchUser" = "搜索用户";
 "kSearch" = "搜索";
-"kAddAsFriend" = "加为好友";
-"kAlreadyBeFriend" = "已经是好友";
+"kAddAsFriend" = "关注";
+"kAlreadyBeFriend" = "已关注";
 "kDidNottFindThisUser" = "没有找到此用户";
-"kUpdateFollowFailed" = "网络错误，更新关注失败!";
-"kUpdateFansFailed" = "网络错误，更新粉丝失败!";
+"kUpdateFollowFailed" = "网络错误，更新关注失败！";
+"kUpdateFansFailed" = "网络错误，更新粉丝失败！";
+"kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注失败！";
+"kUnfollowSuccessfully" = "成功取消关注！";
 "kUnfollowFailed" = "网络错误，取消关注失败！";
 "kEnterWords" = "请输入内容";
 "kSearchUserPlaceholder" = "昵称/微博昵称/QQ号/邮箱";
 "kSearchFailedTitle" = "网络错误";
 "kSearchFailed" = "网络错误，搜索失败！";
+"kSearching" = "正在搜索...";
 "kMyself" = "我";
 "kMale" = "男";
 "kFemale" = "女";
+
 
 "kLevelSettings" = "猜词难度";
 "kEasyLevel" = "业余";
