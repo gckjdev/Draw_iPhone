@@ -10,12 +10,26 @@
 #import "PPTableViewCell.h"
 #import "Room.h"
 
+
+@protocol RoomCellDelegate <NSObject>
+
+@optional
+- (void)didClickInvite:(NSIndexPath *)indexPath;
+
+@end
 @class HJManagedImageV;
+@class AvatarView;
+
 @interface RoomCell : PPTableViewCell
 
-@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarImage;
+@property (retain, nonatomic) AvatarView *avatarImage;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *roomStatusLabel;
+@property (retain, nonatomic) IBOutlet UILabel *creatorLabel;
+@property (retain, nonatomic) IBOutlet UILabel *userListLabel;
+@property (retain, nonatomic) IBOutlet UIButton *inviteInfoButton;
+@property (retain, nonatomic) IBOutlet UIButton *inviteButton;
+- (IBAction)clickInviteButton:(id)sender;
 
 - (void)setInfo:(Room *)room;
 @end

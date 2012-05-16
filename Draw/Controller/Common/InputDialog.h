@@ -18,6 +18,7 @@
 //used for password dialog
 - (void)passwordIsWrong:(NSString *)password;
 - (void)passwordIsIllegal:(NSString *)password;
+- (void)roomNameIsIllegal:(NSString *)password;
 - (void)twoInputDifferent;
 @end
 

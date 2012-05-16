@@ -313,8 +313,11 @@
 "kUnfollowFailed" = "Network error, unfollow failed!";
 "kEnterWords" = "Please enter the content";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
+"kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
 "kMyself" = "Myself";
+"kMale" = "male";
+"kFemale" = "female";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
@@ -334,3 +337,14 @@
 "kFemale" = "Female";
 
 "kSayToYou" = "Say to you: ";
+"kRoomPasswordHolder" = "Input Password";
+"kRoomNameHolder" = "Input Room Name";
+"kRoomNameLabel" = "Room Name";
+"kRoomPasswordLabel" = "Password";
+"kRoomPasswordIllegal" = "Password illegal";
+"kRoomNameIllegal" = "Room name illegal";
+
+
+"kInvited" = "Invited";
+"kJoined" = "Joined";
+"kInvite" = "Invite";

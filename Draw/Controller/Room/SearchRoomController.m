@@ -125,7 +125,7 @@
 	if (cell == nil) {
         cell = [RoomCell createCell:self];
 	}
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
 	return cell;

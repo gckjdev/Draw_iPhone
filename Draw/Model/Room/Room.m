@@ -21,7 +21,7 @@
 @synthesize expireDate = _expireDate;
 @synthesize creator = _creator;
 @synthesize userList = _userList;
-
+@synthesize myStatus = _myStatus;
 - (void)dealloc
 {
     [_roomId release];
@@ -47,6 +47,32 @@
 		v = @"";
 	return [string stringByAppendingFormat:@",%@=%@", p, v];
 
+}
+
+- (NSArray *)userListForStatus:(RoomUserStatus)stat
+{
+    NSMutableArray *array = [[[NSMutableArray alloc] init]autorelease];
+    for (RoomUser *user in self.userList) {
+        if (user.status == stat) {
+            [array addObject:user];
+        }
+    }
+    return array;
+}
+
+- (NSArray *)invitedUserList
+{
+    return [self userListForStatus:UserInvited];
+}
+
+- (NSArray *)playingUserList
+{
+    return [self userListForStatus:UserPlaying];
+}
+
+- (NSArray *)joinedUserList
+{
+    return [self userListForStatus:UserJoined];    
 }
 
 - (NSString *)description

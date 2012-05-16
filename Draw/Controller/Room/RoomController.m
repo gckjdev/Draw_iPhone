@@ -11,7 +11,6 @@
 #import "SelectWordController.h"
 #import "ShowDrawController.h"
 #import "GameSession.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "DrawAppDelegate.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
@@ -29,13 +28,14 @@
 #import "DrawConstants.h"
 #import "ConfigManager.h"
 #import "ExpressionManager.h"
+#import "StableView.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
 @interface RoomController ()
 
 - (void)updateGameUsers;
-- (void)updateRoomName;
+- (void)updateRoomInfo;
 - (void)updateStartButton;
 - (void)updateOnlineUserLabel;
 
@@ -58,12 +58,14 @@
 @synthesize clickCount = _clickCount;
 @synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
 @synthesize chatController = _chatController;
-
+@synthesize isFriendRoom = _isFriendRoom;
+@synthesize changeRoomButton;
 
 #define QUICK_DURATION  2
 #define MAX_CLICK_COUNT 5   
 
 - (void)dealloc {
+    [changeRoomButton release];
     [_startTimer release];
     [startGameButton release];
     [roomNameLabel release];
@@ -84,6 +86,8 @@
         [self resetStartTimer];
         popupButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [popupButton retain];
+        
+        [[DrawGameService defaultService] setRoomDelegate:self];        
     }
     return self;
 }
@@ -130,11 +134,10 @@
     [UIApplication sharedApplication].idleTimerDisabled=YES;
     
     [[DrawGameService defaultService] registerObserver:self];
-    [[DrawGameService defaultService] setRoomDelegate:self];
     
     [self updateOnlineUserLabel];
     [self updateGameUsers];
-    [self updateRoomName];
+    [self updateRoomInfo];
     [self updateStartButton];
         
     [self.prolongButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
@@ -171,6 +174,26 @@
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 #define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
+#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(142, 282) : CGPointMake(54, 141)
+#define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 128 : 64
+#define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 124 : 62
+- (void)prepareAvatars
+{
+    int imageStartTag = 31;
+    int imageEndTag = 36;
+    float seperatorX = ([DeviceDetection isIPAD]) ? 178 : 80;
+    float seperatorY = ([DeviceDetection isIPAD]) ? 216 : 99;
+    CGPoint orgPoint = ORG_POINT;
+    for (int i = imageStartTag; i <= imageEndTag; i++) {
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
+        avatarView.tag = i;
+        [avatarView setImage:nil];
+        avatarView.hidden = NO;
+        [self.view addSubview:avatarView];
+        [avatarView release];
+    }
+}
+
 - (void)updateOnlineUserLabel
 {
     [self.onlinePlayerCountLabel setText:[NSString stringWithFormat:NSLS(@"kOnlineUserCount"), [DrawGameService defaultService].onlineUserCount]];
@@ -200,10 +223,7 @@
         }
         
         // set images
-        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
-        [imageView clear];
-        imageView.hidden = NO;
-        
+
         NSString* avatar = nil;
         BOOL isMe = [session isMe:[user userId]];
         if (isMe){
@@ -211,60 +231,67 @@
         }
         else{
             avatar = [user userAvatar];
-        }   
+        } 
+        
+        AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
+        if (imageView == nil) {
+            [self prepareAvatars];
+        }
+        [imageView setUrlString:avatar];
+        //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
         PPDebug(@"user gender=%d", [user gender]);
-        if ([user gender])
-            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-        else
-            [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+//        if ([user gender])
+//            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+//        else
+//            [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
 
-        if ([avatar length] > 0){     
-            // set URL for download avatar
-            [imageView setUrl:[NSURL URLWithString:avatar]];
+//        if (isMe){
+//            [imageView setImage:[[UserManager defaultManager] avatarImage]];
+//        }
 
-        }else{
-            if (isMe){
-                [imageView setImage:[[UserManager defaultManager] avatarImage]];
-            }
-        }
-        
-        [GlobalGetImageCache() manage:imageView];
         
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
-                
-        UIImage* frameImage = nil;
+        
+//        UIImage* frameImage = nil;
+//        
+//        if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
+//            UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
+//            UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
+//            [drawingImageView setFrame:DRAWING_MARK_FRAME];
+//            drawingImageView.tag = DRAWING_MARK_TAG;
+//            [imageView addSubview:drawingImageView];
+//            [drawingImageView release];
+//            
+//            frameImage = [[ShareImageManager defaultManager] avatarSelectImage];
+//        }
+//        else{
+//            
+//            frameImage = [[ShareImageManager defaultManager] avatarUnSelectImage];            
+//        }
         
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
-            UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
-            UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
-            [drawingImageView setFrame:DRAWING_MARK_FRAME];
-            drawingImageView.tag = DRAWING_MARK_TAG;
-            [imageView addSubview:drawingImageView];
-            [drawingImageView release];
-            
-            frameImage = [[ShareImageManager defaultManager] avatarSelectImage];
+            [imageView setAvatarSelected:YES];
         }
         else{
-            
-            frameImage = [[ShareImageManager defaultManager] avatarUnSelectImage];            
+            [imageView setAvatarSelected:NO];
         }
         
         // create image view
-        CGRect frame = imageView.bounds;
-        frame.origin.x = -3;
-        frame.origin.y = -3;
-        frame.size.width += 6;
-        frame.size.height += 10;
-        UIImageView *frameView = [[UIImageView alloc] initWithImage:frameImage];
-        frameView.frame = frame;
-        frameView.tag = AVATAR_FRAME_TAG;
-        [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
-        [imageView addSubview:frameView];     
-        [imageView sendSubviewToBack:frameView];
-        [frameView release];
+//        CGRect frame = imageView.bounds;
+//        frame.origin.x = -3;
+//        frame.origin.y = -3;
+//        frame.size.width += 6;
+//        frame.size.height += 10;
+//        UIImageView *frameView = [[UIImageView alloc] initWithImage:frameImage];
+//        frameView.frame = frame;
+//        frameView.tag = AVATAR_FRAME_TAG;
+//        [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
+//        [imageView addSubview:frameView];     
+//        [imageView sendSubviewToBack:frameView];
+//        [frameView release];
 
     }
     
@@ -276,9 +303,7 @@
     
     // clean other image display
     for (int i=imageStartTag; i<=imageEndTag; i++){
-        HJManagedImageV* imageView = (HJManagedImageV*)[self.view viewWithTag:imageStartTag++];
-        [imageView clear];
-        imageView.hidden = YES;
+        AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
         
@@ -306,11 +331,26 @@
     }
 }
 
-- (void)updateRoomName
+- (void)updateRoomInfo
 {
-    NSString* name = [NSString stringWithFormat:NSLS(@"kRoomName"),  
+    // update room name
+    NSString* name = nil;
+    if (_isFriendRoom == NO){
+        name = [NSString stringWithFormat:NSLS(@"kRoomName"),  
                       [[[DrawGameService defaultService] session] roomName]];
+    }
+    else{
+        name = [[[DrawGameService defaultService] session] roomName];
+    }
     self.roomNameLabel.text = name;
+    
+    // update room left/right button
+    if (_isFriendRoom){
+        self.changeRoomButton.hidden = YES;
+    }
+    else{
+        self.changeRoomButton.hidden = NO;
+    }
 }
 
 - (void)updateStartButton
@@ -350,7 +390,7 @@
 }
 
 
-- (HJManagedImageV *)userAvatarForUserId:(NSString *)userId
+- (AvatarView *)userAvatarForUserId:(NSString *)userId
 {
     GameSession* session = [[DrawGameService defaultService] session];
     NSArray* userList = [session userList];
@@ -358,7 +398,7 @@
     int imageStartTag = 31;
     
     for (GameSessionUser* user in userList){
-        HJManagedImageV *imageView = (HJManagedImageV *)[self.view 
+        AvatarView *imageView = (AvatarView *)[self.view 
                                                          viewWithTag:imageStartTag ++];
         if([user.userId isEqualToString:userId]){
             return imageView;
@@ -370,7 +410,7 @@
 
 - (void)userId:(NSString *)userId popupMessage:(NSString *)message
 {
-    HJManagedImageV *player = [self userAvatarForUserId:userId];
+    AvatarView *player = [self userAvatarForUserId:userId];
     if (player == nil) {
         return;
     }
@@ -393,7 +433,9 @@
 
 - (void)userId:(NSString *)userId popupImage:(UIImage *)image
 {    
-    HJManagedImageV *player = [self userAvatarForUserId:userId];
+//    HJManagedImageV *player = [self userAvatarForUserId:userId];
+    AvatarView *player = [self userAvatarForUserId:userId];
+
     if (player == nil) {
         return;
     }
@@ -429,7 +471,7 @@
 
     // update 
     [self updateGameUsers];
-    [self updateRoomName];    
+    [self updateRoomInfo];    
     [self updateOnlineUserLabel];
     if ([self userCount] > 1) {
         [self scheduleStartTimer];        
@@ -782,7 +824,31 @@
     
     [app.roomController setClickCount:0];
     [app.roomController updateGameUsers];
-    [app.roomController updateRoomName];            
+    [app.roomController updateRoomInfo];            
+}
+
++ (void)enterRoom:(UIViewController*)superController isFriendRoom:(BOOL)isFriendRoom
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.roomController == nil){    
+        // first time enter room
+        app.roomController = [[[RoomController alloc] init] autorelease];
+        [app.roomController setIsFriendRoom:isFriendRoom];        
+        [RoomController firstEnterRoom:superController];
+        return;
+    }
+    
+    // set friend room flag
+    [app.roomController setIsFriendRoom:isFriendRoom];        
+    
+    if ([superController.navigationController.viewControllers containsObject:app.roomController]){
+        // room controller exists in root view controllers
+        [RoomController returnRoom:superController startNow:NO];
+    }
+    else{
+        // room controller doesn't exist in navigation contoller view layers        
+        [RoomController firstEnterRoom:superController];
+    }
 }
 
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow

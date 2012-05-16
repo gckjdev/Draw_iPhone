@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "RoomService.h"
+#import "DrawGameService.h"
+#import "RoomPasswordDialog.h"
 
-@interface FriendRoomController : PPTableViewController<RoomServiceDelegate>
+@class UserManager;
+
+@interface FriendRoomController : PPTableViewController<RoomServiceDelegate, DrawGameServiceDelegate,InputDialogDelegate>
 {
+    UserManager *_userManager;
+    BOOL _isTryJoinGame;    
+    Room *_currentSelectRoom;
+
     RoomService *roomService;
+
 }
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *createButton;

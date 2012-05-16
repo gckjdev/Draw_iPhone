@@ -33,6 +33,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property BOOL isRobot;
 @property int32_t targetSessionId;
 @property int32_t guessDifficultLevel;
+@property (retain) NSString* roomId;
+@property (retain) NSString* roomName;
 @end
 
 @implementation JoinGameRequest
@@ -118,12 +120,28 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasGuessDifficultLevel_ = !!value;
 }
 @synthesize guessDifficultLevel;
+- (BOOL) hasRoomId {
+  return !!hasRoomId_;
+}
+- (void) setHasRoomId:(BOOL) value {
+  hasRoomId_ = !!value;
+}
+@synthesize roomId;
+- (BOOL) hasRoomName {
+  return !!hasRoomName_;
+}
+- (void) setHasRoomName:(BOOL) value {
+  hasRoomName_ = !!value;
+}
+@synthesize roomName;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
   self.nickName = nil;
   self.avatar = nil;
   self.mutableExcludeSessionIdList = nil;
+  self.roomId = nil;
+  self.roomName = nil;
   [super dealloc];
 }
 - (id) init {
@@ -138,6 +156,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.isRobot = NO;
     self.targetSessionId = 0;
     self.guessDifficultLevel = 0;
+    self.roomId = @"";
+    self.roomName = @"";
   }
   return self;
 }
@@ -206,6 +226,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasGuessDifficultLevel) {
     [output writeInt32:11 value:self.guessDifficultLevel];
   }
+  if (self.hasRoomId) {
+    [output writeString:12 value:self.roomId];
+  }
+  if (self.hasRoomName) {
+    [output writeString:13 value:self.roomName];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -252,6 +278,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasGuessDifficultLevel) {
     size += computeInt32Size(11, self.guessDifficultLevel);
+  }
+  if (self.hasRoomId) {
+    size += computeStringSize(12, self.roomId);
+  }
+  if (self.hasRoomName) {
+    size += computeStringSize(13, self.roomName);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -364,6 +396,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasGuessDifficultLevel) {
     [self setGuessDifficultLevel:other.guessDifficultLevel];
   }
+  if (other.hasRoomId) {
+    [self setRoomId:other.roomId];
+  }
+  if (other.hasRoomName) {
+    [self setRoomName:other.roomName];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -427,6 +465,14 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 88: {
         [self setGuessDifficultLevel:[input readInt32]];
+        break;
+      }
+      case 98: {
+        [self setRoomId:[input readString]];
+        break;
+      }
+      case 106: {
+        [self setRoomName:[input readString]];
         break;
       }
     }
@@ -621,6 +667,38 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearGuessDifficultLevel {
   result.hasGuessDifficultLevel = NO;
   result.guessDifficultLevel = 0;
+  return self;
+}
+- (BOOL) hasRoomId {
+  return result.hasRoomId;
+}
+- (NSString*) roomId {
+  return result.roomId;
+}
+- (JoinGameRequest_Builder*) setRoomId:(NSString*) value {
+  result.hasRoomId = YES;
+  result.roomId = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearRoomId {
+  result.hasRoomId = NO;
+  result.roomId = @"";
+  return self;
+}
+- (BOOL) hasRoomName {
+  return result.hasRoomName;
+}
+- (NSString*) roomName {
+  return result.roomName;
+}
+- (JoinGameRequest_Builder*) setRoomName:(NSString*) value {
+  result.hasRoomName = YES;
+  result.roomName = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearRoomName {
+  result.hasRoomName = NO;
+  result.roomName = @"";
   return self;
 }
 @end

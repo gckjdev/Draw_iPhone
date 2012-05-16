@@ -47,9 +47,15 @@ FriendService* globalGetFriendService()
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
+            
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> findFriends success!");
+                
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+                if ([userList count] != 0) {
+                    //[[FriendManager defaultManager] deleteAllFriends];
+                }
+                
                 for (NSDictionary* user in userList){
                     NSString* friendUserId = [user objectForKey:PARA_USERID];
                     NSString* nickName = [user objectForKey:PARA_NICKNAME];
@@ -61,15 +67,17 @@ FriendService* globalGetFriendService()
                     NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
                     NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
                     NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
-                    NSString* typeStr =[user objectForKey:PARA_FRIENDSTYPE];
+                    NSString* fTypeStr =[user objectForKey:PARA_FRIENDSTYPE];
                     NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
-                    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
+                    NSString* location = [user objectForKey:PARA_LOCATION];
+                    NSNumber* fType = [NSNumber numberWithInt:[fTypeStr intValue]];
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
                     [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
                     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
                     
+                    
                     [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
-                                                                      type:type 
+                                                                      type:fType 
                                                                   nickName:nickName 
                                                                     avatar:avatar 
                                                                     gender:gender 
@@ -80,7 +88,8 @@ FriendService* globalGetFriendService()
                                                                     qqNick:qqNick 
                                                               facebookNick:facebookNick 
                                                                 createDate:[NSDate date]
-                                                          lastModifiedDate:lastModifiedDate];
+                                                          lastModifiedDate:lastModifiedDate 
+                                                                  location:location];
                 }
             }else {
                 PPDebug(@"<FriendService> findFriends Failed!");
@@ -143,7 +152,7 @@ FriendService* globalGetFriendService()
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                PPDebug(@"<FriendService> unFollowUser success!");
+                PPDebug(@"<FriendService> followUser success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 for (NSDictionary* user in userList){
                     NSString* friendUserId = [user objectForKey:PARA_USERID];
@@ -158,6 +167,7 @@ FriendService* globalGetFriendService()
                     NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
                     NSString* typeStr =[user objectForKey:PARA_FRIENDSTYPE];
                     NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
+                    NSString* location = [user objectForKey:PARA_LOCATION];
                     NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
                     [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
@@ -174,10 +184,11 @@ FriendService* globalGetFriendService()
                                                                   sinaNick:sinaNick 
                                                                     qqNick:qqNick 
                                                               facebookNick:facebookNick 
-                                                          lastModifiedDate:lastModifiedDate];
+                                                          lastModifiedDate:lastModifiedDate
+                                                                  location:location];
                 }
             }else {
-                PPDebug(@"<FriendService> unFollowUser Failed!");
+                PPDebug(@"<FriendService> followUser Failed!");
             }
             
             if ([viewController respondsToSelector:@selector(didFollowUser:)]){

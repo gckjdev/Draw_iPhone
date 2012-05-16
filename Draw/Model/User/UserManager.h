@@ -39,6 +39,8 @@ typedef enum {
 - (NSString*)deviceToken;
 - (NSString*)gender;
 
+
+- (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
 - (BOOL)isPasswordCorrect:(NSString *)userInput;
 - (void)saveAvatarLocally:(UIImage*)image;
