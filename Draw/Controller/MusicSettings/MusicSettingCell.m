@@ -8,6 +8,7 @@
 
 #import "MusicSettingCell.h"
 #import "MusicItemManager.h"
+#import "LocaleUtils.h"
 
 @implementation MusicSettingCell
 
@@ -38,6 +39,9 @@
     self.musicNameLabel.text = item.fileName;
     self.downloadProgress.progress = [item.downloadProgress floatValue];
     self.selectedCurrentButton.selected = [[MusicItemManager defaultManager] currentMusicItem] == item;
+    if ([item.fileName isEqualToString:NSLS(@"kdefaultMusic")]) {
+        self.downloadProgress.hidden = YES;
+    }
 }
 
 - (IBAction)selectCurrent:(id)sender

@@ -7,6 +7,8 @@
 //
 
 #import "MusicItemManager.h"
+#import "LocaleUtils.h"
+
 #define KEY_MUSICLIST @"musicList"
 #define DELIMITER @"$$"
 
@@ -30,10 +32,13 @@ static MusicItemManager *_defaultManager;
 {
     self = [super init];
     if (self) {
+        
+        self.itemList = [[NSMutableArray alloc] init];
         [self loadMusicItems];
         
         NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"background" ofType:nil];
-        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:@"background" filePath:soundFilePath tempPath:nil];
+        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kdefaultMusic") filePath:soundFilePath tempPath:nil];
+        [itemList addObject:currentMusicItem];
     }
     return self;
 }
@@ -60,7 +65,6 @@ static MusicItemManager *_defaultManager;
 
 - (void)loadMusicItems
 {
-    self.itemList = [[NSMutableArray alloc] init];
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
     if (data != nil) {
