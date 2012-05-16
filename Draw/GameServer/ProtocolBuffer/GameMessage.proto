@@ -44,6 +44,7 @@ message StartGameResponse {                    // 开始游戏响应
 message GameChatRequest{
   repeated string toUserId = 1;                 // 对谁说，默认对所有
   optional string content = 2;                  // 说的内容  
+  optional int32  chatType = 3 [default=0];     // 聊天类型：0：群聊；1：私聊
 }
 
 message GameChatResponse{
@@ -105,6 +106,7 @@ message GeneralNotification{
   // chat
   repeated string chatToUserId = 51;                 // 对谁说，默认对所有
   optional string chatContent = 52;                  // 说的内容
+  optional int32  chatType = 53;                     // 说的类型
   
   // game turn result points
   optional int32 turnGainCoins = 61;

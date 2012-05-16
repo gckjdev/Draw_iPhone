@@ -329,3 +329,8 @@
 "kPlaying" = "Playing";
 "kWaitting" = "Waitting";
 "kFull" = "Full";
+
+"kMale" = "Male";
+"kFemale" = "Female";
+
+"kSayToYou" = "Say to you: ";

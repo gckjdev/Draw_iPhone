@@ -77,6 +77,13 @@ typedef enum {
 
 BOOL GameCompleteReasonIsValidValue(GameCompleteReason value);
 
+typedef enum {
+  GameChatTypeChatGroup = 0,
+  GameChatTypeChatPrivate = 1,
+} GameChatType;
+
+BOOL GameChatTypeIsValidValue(GameChatType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }

@@ -15,7 +15,8 @@
 
 @protocol ChatControllerDelegate <NSObject>
 @optional
-- (void)wantProlongStart;
+- (void)didSelectMessage:(NSString*)message;
+- (void)didSelectExpression:(UIImage*)expression;
 
 @end
 
@@ -32,7 +33,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *cityLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionScrollView;
 
-- (id)initWithChatType:(ChatType)type;
+- (id)initWithChatType:(GameChatType)type;
 - (void)showInView:(UIView*)superView;
+- (void)dismiss;
 
 @end

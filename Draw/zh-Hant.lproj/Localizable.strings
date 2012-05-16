@@ -342,3 +342,9 @@
 "kPlaying" = "遊戲中";
 "kWaitting" = "等待中";
 "kFull" = "已滿人";
+
+"kMale" = "男";
+"kFemale" = "女";
+
+"kSayToYou" = "對你說: ";
+

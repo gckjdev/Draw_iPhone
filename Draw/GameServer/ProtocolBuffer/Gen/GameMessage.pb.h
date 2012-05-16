@@ -327,12 +327,16 @@
 
 @interface GameChatRequest : PBGeneratedMessage {
 @private
+  BOOL hasChatType_:1;
   BOOL hasContent_:1;
+  int32_t chatType;
   NSString* content;
   NSMutableArray* mutableToUserIdList;
 }
 - (BOOL) hasContent;
+- (BOOL) hasChatType;
 @property (readonly, retain) NSString* content;
+@property (readonly) int32_t chatType;
 - (NSArray*) toUserIdList;
 - (NSString*) toUserIdAtIndex:(int32_t) index;
 
@@ -381,6 +385,11 @@
 - (NSString*) content;
 - (GameChatRequest_Builder*) setContent:(NSString*) value;
 - (GameChatRequest_Builder*) clearContent;
+
+- (BOOL) hasChatType;
+- (int32_t) chatType;
+- (GameChatRequest_Builder*) setChatType:(int32_t) value;
+- (GameChatRequest_Builder*) clearChatType;
 @end
 
 @interface GameChatResponse : PBGeneratedMessage {
@@ -589,43 +598,45 @@
   BOOL hasUserGender_:1;
   BOOL hasWidth_:1;
   BOOL hasTurnGainCoins_:1;
+  BOOL hasSessionStatus_:1;
+  BOOL hasChatType_:1;
   BOOL hasGuessGainCoins_:1;
   BOOL hasLanguage_:1;
+  BOOL hasColor_:1;
   BOOL hasRound_:1;
   BOOL hasLevel_:1;
-  BOOL hasColor_:1;
-  BOOL hasSessionStatus_:1;
+  BOOL hasChatContent_:1;
+  BOOL hasGuessUserId_:1;
+  BOOL hasGuessWord_:1;
+  BOOL hasWord_:1;
   BOOL hasUserAvatar_:1;
   BOOL hasNickName_:1;
-  BOOL hasWord_:1;
   BOOL hasQuitUserId_:1;
   BOOL hasNewUserId_:1;
   BOOL hasNextPlayUserId_:1;
-  BOOL hasGuessWord_:1;
-  BOOL hasGuessUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
-  BOOL hasChatContent_:1;
   BOOL hasSessionHost_:1;
   BOOL guessCorrect_:1;
   BOOL userGender_:1;
   Float32 width;
   int32_t turnGainCoins;
+  int32_t sessionStatus;
+  int32_t chatType;
   int32_t guessGainCoins;
   int32_t language;
+  int32_t color;
   int32_t round;
   int32_t level;
-  int32_t color;
-  int32_t sessionStatus;
+  NSString* chatContent;
+  NSString* guessUserId;
+  NSString* guessWord;
+  NSString* word;
   NSString* userAvatar;
   NSString* nickName;
-  NSString* word;
   NSString* quitUserId;
   NSString* newUserId;
   NSString* nextPlayUserId;
-  NSString* guessWord;
-  NSString* guessUserId;
   NSString* currentPlayUserId;
-  NSString* chatContent;
   NSString* sessionHost;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
@@ -651,6 +662,7 @@
 - (BOOL) hasGuessCorrect;
 - (BOOL) hasGuessGainCoins;
 - (BOOL) hasChatContent;
+- (BOOL) hasChatType;
 - (BOOL) hasTurnGainCoins;
 @property (readonly, retain) NSString* sessionHost;
 @property (readonly) int32_t sessionStatus;
@@ -672,6 +684,7 @@
 - (BOOL) guessCorrect;
 @property (readonly) int32_t guessGainCoins;
 @property (readonly, retain) NSString* chatContent;
+@property (readonly) int32_t chatType;
 @property (readonly) int32_t turnGainCoins;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
@@ -825,6 +838,11 @@
 - (NSString*) chatContent;
 - (GeneralNotification_Builder*) setChatContent:(NSString*) value;
 - (GeneralNotification_Builder*) clearChatContent;
+
+- (BOOL) hasChatType;
+- (int32_t) chatType;
+- (GeneralNotification_Builder*) setChatType:(int32_t) value;
+- (GeneralNotification_Builder*) clearChatType;
 
 - (BOOL) hasTurnGainCoins;
 - (int32_t) turnGainCoins;

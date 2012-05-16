@@ -316,6 +316,10 @@ static DrawGameService* _defaultService;
                              withObject1:[NSNumber numberWithInt:rank]
                              withObject2:[message userId]];
             }
+            else if ([content hasPrefix:NORMAL_CHAT] ||
+                     [content hasPrefix:EXPRESSION_CHAT]){
+                [self notifyGameObserver:@selector(didGameReceiveChat:) message:message];
+            }
         }
     });    
 }
@@ -663,6 +667,41 @@ static DrawGameService* _defaultService;
     [self scheduleKeepAliveTimer];
 }
 
+- (void)groupChatMessage:(NSArray*)userList message:(NSString*)message
+{
+    [_networkClient sendChatMessage:_userId 
+                          sessionId:[_session sessionId] 
+                           userList:userList 
+                            message:message
+                           chatType:GameChatTypeChatGroup];    
+}
+
+- (void)privateChatMessage:(NSArray*)userList message:(NSString*)message
+{
+    [_networkClient sendChatMessage:_userId 
+                          sessionId:[_session sessionId] 
+                           userList:userList 
+                            message:message
+                           chatType:GameChatTypeChatPrivate];
+}
+
+- (void)groupChatExpression:(NSArray*)userList key:(NSString*)key 
+{
+    [_networkClient sendChatExpression:_userId 
+                             sessionId:[_session sessionId] 
+                              userList:userList 
+                                   key:key
+                              chatType:GameChatTypeChatGroup];
+}
+
+- (void)privateChatExpression:(NSArray*)userList key:(NSString*)key 
+{
+    [_networkClient sendChatExpression:_userId 
+                             sessionId:[_session sessionId] 
+                              userList:userList 
+                                   key:key
+                              chatType:GameChatTypeChatPrivate];
+}
 
 - (void)guess:(NSString*)word guessUserId:(NSString*)guessUserId
 {
