@@ -31,6 +31,7 @@
 #import "MyFriendsController.h"
 #import "ChatController.h"
 #import "FriendRoomController.h"
+#import "CommonMessageCenter.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -365,9 +366,10 @@
 
 - (IBAction)clickFriend:(id)sender
 {
-    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
-    [self.navigationController pushViewController:myFriends animated:YES];
-    [myFriends release];
+//    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
+//    [self.navigationController pushViewController:myFriends animated:YES];
+//    [myFriends release];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
 }
 
 @end
