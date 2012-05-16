@@ -110,9 +110,7 @@ RoomService *staticRoomService = nil;
 - (void)inviteUsers:(NSSet *)friendSet 
              toRoom:(Room *)room 
            delegate: (id<RoomServiceDelegate>) delegate
-{
-//    dispatch_async(workingQueue, ^{
-    
+{    
     dispatch_async(workingQueue, ^{
         NSString *userId = [userManager userId]; 
         NSString *roomId = [room roomId];
@@ -135,6 +133,22 @@ RoomService *staticRoomService = nil;
             }
         });
         
+    });    
+}
+
+- (void)removeRoom:(Room *)room 
+          delegate: (id<RoomServiceDelegate>) delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [userManager userId]; 
+        NSString *roomId = [room roomId];
+        NSString *roomPassword = [room password];
+        CommonNetworkOutput* output = [GameNetworkRequest removeRoom:TRAFFIC_SERVER_URL roomId:roomId password:roomPassword userId:userId];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didRemoveRoom:resultCode:)]) {
+                [delegate didRemoveRoom:room resultCode:output.resultCode];
+            }
+        });
     });    
 
 }

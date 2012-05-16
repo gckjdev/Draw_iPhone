@@ -204,6 +204,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
               sessionId:(long)sessionId
              toUserList:(NSArray*)toUserList
                 content:(NSString*)content
+               chatType:(GameChatType)chatType
                   round:(int)round
 {
     GameChatRequest_Builder *requestBuilder = [[[GameChatRequest_Builder alloc] init] autorelease];
@@ -214,13 +215,15 @@ static GameNetworkClient* _defaultGameNetworkClient;
         [requestBuilder addAllToUserId:toUserList];
     }
     
+    [requestBuilder setChatType:chatType];
+    
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeChatRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
     [messageBuilder setChatRequest:[requestBuilder build]];
-    [messageBuilder setRound:round];
+    [messageBuilder setRound:round];    
     
     GameMessage* gameMessage = [messageBuilder build];
     [self sendData:[gameMessage data]];                
@@ -230,32 +233,60 @@ static GameNetworkClient* _defaultGameNetworkClient;
               sessionId:(long)sessionId
              toUserList:(NSArray*)toUserList
                 content:(NSString*)content
+               chatType:(GameChatType)chatType
 {
     [self sendChatMessage:userId
                 sessionId:sessionId
                toUserList:toUserList
                   content:content
+                 chatType:chatType
                     round:0];
 }
 
 - (void)sendProlongGame:(NSString*)userId 
               sessionId:(long)sessionId
 {
-    [self sendChatMessage:userId sessionId:sessionId toUserList:nil content:PROLONG_GAME];
+    [self sendChatMessage:userId 
+                sessionId:sessionId 
+               toUserList:nil 
+                  content:PROLONG_GAME
+                 chatType:GameChatTypeChatGroup];
 }
 
 - (void)sendAskQuickGame:(NSString*)userId 
                sessionId:(long)sessionId
 {
-    [self sendChatMessage:userId sessionId:sessionId toUserList:nil content:ASK_QUICK_GAME];
+    [self sendChatMessage:userId 
+                sessionId:sessionId 
+               toUserList:nil 
+                  content:ASK_QUICK_GAME
+                 chatType:GameChatTypeChatGroup];
 }
 
 - (void)sendChatMessage:(NSString*)userId 
               sessionId:(long)sessionId
                userList:(NSArray*)userList
                 message:(NSString*)message
+               chatType:(GameChatType)chatType
 {
-    [self sendChatMessage:userId sessionId:sessionId toUserList:userList content:[NORMAL_CHAT stringByAppendingString:message]];
+    [self sendChatMessage:userId 
+                sessionId:sessionId 
+               toUserList:userList 
+                  content:[NORMAL_CHAT stringByAppendingString:message]
+                 chatType:chatType];
+}
+
+- (void)sendChatExpression:(NSString*)userId 
+                 sessionId:(long)sessionId
+                  userList:(NSArray*)userList
+                   key:(NSString*)key
+                  chatType:(GameChatType)chatType
+{
+    [self sendChatMessage:userId 
+                sessionId:sessionId 
+               toUserList:userList 
+                  content:[EXPRESSION_CHAT stringByAppendingString:key]
+                 chatType:chatType];
 }
 
 - (void)sendQuitGame:(NSString*)userId 
@@ -284,6 +315,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
                 sessionId:sessionId 
                toUserList:nil 
                   content:[self rankToString:rank]
+                 chatType:GameChatTypeChatGroup
                     round:round];
 }
 

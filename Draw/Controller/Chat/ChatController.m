@@ -23,9 +23,8 @@
 
 @interface ChatController()
 {
-    NSMutableArray *_avatarArray;
     NSString *_userId;
-    ChatType _type;
+    GameChatType _chatType;
 }
 @end
 
@@ -41,11 +40,11 @@
 @synthesize cityLabel;
 @synthesize expressionScrollView;
 
-- (id)initWithChatType:(ChatType)type
+- (id)initWithChatType:(GameChatType)chatType 
 {
     self = [super init];
     if (self) {
-        _type = type;
+        _chatType = chatType;
     }
     return self;
 }
@@ -56,10 +55,13 @@
     // Do any additional setup after loading the view from its nib.
     self.chatView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:234.0/255.0 blue:155.0/255.0 alpha:1.0];
     
-    self.dataList = [[MessageManager defaultManager] messagesForChatType:_type];;
+    self.dataList = [[MessageManager defaultManager] messagesForChatType:_chatType];;
     [self configureExpressionScrollView];
     
-    _avatarArray = [[[NSMutableArray alloc] init] retain];
+    // Selected a user as defalut selected.
+    GameSession *session = [[DrawGameService defaultService] session];
+    GameSessionUser *user = [session.userList objectAtIndex:0];
+    _userId = user.userId;
 }
 
 - (void)viewDidUnload
@@ -78,7 +80,6 @@
 }
 
 - (void)dealloc {
-    [_avatarArray release];
     [_userId release];
     [nameLabel release];
     [sexLabel release];
@@ -146,23 +147,40 @@
 
 - (void)clickExpression:(id)sender
 {
-    NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
-    PPDebug(@"key = %@", key);
     [self.view removeFromSuperview];
+
+    NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
+//    PPDebug(@"key = %@", key);
+    UIImage *expression = [[ExpressionManager defaultManager] expressionForKey:key];
+    
+    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
+        [chatControllerDelegate didSelectExpression:expression];
+    }
+    
+    if (_chatType == GameChatTypeChatPrivate) {
+        [[DrawGameService defaultService] privateChatExpression:[NSArray arrayWithObjects:_userId, nil] key:key]; 
+    }else {
+        [[DrawGameService defaultService] groupChatExpression:[NSArray arrayWithObjects:_userId, nil] key:key]; 
+    }
 }
 
 #pragma mark - MessageCell delegate.
 - (void)didSelectMessage:(NSString*)message
 {    
     [self.view removeFromSuperview];
-    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
-        if(chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(wantProlongStart)]){
-            [chatControllerDelegate wantProlongStart];
-        }
-            
-        return;
+
+    
+    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
+        [chatControllerDelegate didSelectMessage:message];
+    }
+        
+    if (_chatType == GameChatTypeChatPrivate) {
+        [[DrawGameService defaultService] privateChatMessage:[NSArray arrayWithObjects:_userId, nil] message:message];            
+    }else {
+        [[DrawGameService defaultService] groupChatMessage:[NSArray arrayWithObjects:_userId, nil] message:message];            
     }
     
+    return;
 }
 
 - (void)configureExpressionScrollView
@@ -188,16 +206,14 @@
 - (void)cleanAvatars
 {
     //remove all the old avatars
-    for (AvatarView *view in _avatarArray) {
+    for (AvatarView *view in avatarHolderView.subviews) {
         [view removeFromSuperview];
     }
-    [_avatarArray removeAllObjects];
 }
 
 - (void)updatePlayerAvatars
 {
     [self cleanAvatars];
-    GameSession *session = [[DrawGameService defaultService] session];
     
     // Get avatar frame.
     float width = (self.avatarHolderView.frame.size.width-DISTANCE_BETWEEN_AVATAR)/6-DISTANCE_BETWEEN_AVATAR;
@@ -205,9 +221,9 @@
     CGRect frame = CGRectMake(0, 0, width, height);
     
     int i = 0;
+    GameSession *session = [[DrawGameService defaultService] session];
     for (GameSessionUser *user in session.userList) {
         AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender];
-        
         aView.delegate = self;
         [aView setUserId:user.userId];
 
@@ -218,7 +234,6 @@
         }
         
         [self.avatarHolderView addSubview:aView];
-        [_avatarArray addObject:aView];
         [aView release];
         ++ i;                                  
     }
@@ -227,12 +242,22 @@
 - (void)didClickOnAvatar:(NSString *)userId
 {
     PPDebug(@"click user: %@", userId);
+    for (UIView *view in avatarHolderView.subviews) {
+        AvatarView *avatar = (AvatarView*)view;
+        if ([avatar.userId isEqualToString:userId]) {
+            [avatar setAvatarSelected:YES];
+        }else {
+            [avatar setAvatarSelected:NO];
+        }
+    }
+    
     _userId = [userId retain];
     DrawGameService* drawService = [DrawGameService defaultService];
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     nameLabel.text = user.nickName;
-    sexLabel.text = (user.gender==YES) ? NSLS(@"Male") : NSLS(@"Female");
-    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.frame gender:user.gender];
+    sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
+    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender];
+    [aView setAvatarSelected:YES];
     [avatarView addSubview:aView];
 }
 
@@ -244,10 +269,27 @@
     // Update player avatars.
     [self updatePlayerAvatars];
     
-    // Selected a user as defalut selected.
     GameSession *session = [[DrawGameService defaultService] session];
-    GameSessionUser *user = [session.userList objectAtIndex:0];
-    [self didClickOnAvatar:user.userId];
+    
+    NSUInteger index = [session.userList indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        GameSessionUser *user = (GameSessionUser*)obj;
+        if ([_userId isEqualToString:user.userId]) {
+            *stop = YES;
+            return YES;
+        }
+        return NO;
+    }];
+    
+    if (index == NSNotFound) {
+        _userId = [[session.userList objectAtIndex:0] userId];
+    }
+    
+    [self didClickOnAvatar:_userId];
+}
+
+- (void)dismiss
+{
+    [self.view removeFromSuperview];
 }
 
 @end
