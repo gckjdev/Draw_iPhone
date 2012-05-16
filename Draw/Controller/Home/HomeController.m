@@ -187,8 +187,6 @@
     [frc release];
 }
 
-
-
 - (IBAction)clickShop:(id)sender {
 //    ShopMainController *sc = [[ShopMainController alloc] init];
 //    [self.navigationController pushViewController:sc animated:YES];
@@ -198,8 +196,6 @@
     [self.navigationController pushViewController:ic animated:YES];
 
 }
-
-
 
 - (void)didJoinGame:(GameMessage *)message
 {
