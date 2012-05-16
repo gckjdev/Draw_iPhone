@@ -110,7 +110,7 @@
         searchUserButton.hidden = YES;
         editButton.hidden = YES;
         [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-        [editButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+        [editButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
         _selectedSet = [[NSMutableSet alloc] init];
         CGPoint origin = dataTableView.frame.origin;
         CGSize size = dataTableView.frame.size;
@@ -156,6 +156,39 @@
     }
 }
 
+
+- (Friend *)friendForIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = indexPath.row;
+    if ([dataList count] > row) {
+        return [self.dataList objectAtIndex:row];
+    }
+    return nil;
+}
+
+- (BOOL)isFriendSelected:(Friend *)friend
+{
+    for (Friend *aFriend in _selectedSet) {
+        if ([friend.friendUserId isEqualToString:aFriend.friendUserId]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)unSelectFriend:(Friend *)friend
+{
+    Friend *temp = nil;
+    for (Friend *aFriend in _selectedSet) {
+        if ([friend.friendUserId isEqualToString:aFriend.friendUserId]) {
+            temp = aFriend;
+            break;
+        }
+    }
+    [_selectedSet removeObject:temp];
+}
+
+#pragma mark - table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [FriendCell getCellHeight];
@@ -175,11 +208,10 @@
     
     Friend *friend = [dataList objectAtIndex:[indexPath row]];
     if (_isInviteFriend) {
-        cell.inviteDelegate = self;
         [cell setCellWithFriend:friend indexPath:indexPath fromType:FromInviteList];        
         RoomUserStatus stat = [[RoomManager defaultManager] aFriend:friend statusAtRoom:self.room];
         cell.followButton.hidden = YES;
-        if ([_selectedSet containsObject:friend]) {
+        if ([self isFriendSelected:friend]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.statusLabel.hidden = YES;
         }else{        
@@ -191,17 +223,13 @@
             {
                 [cell.statusLabel setText:NSLS(@"kJoined")];
             }else{
-                cell.followButton.hidden = NO;
                 cell.statusLabel.hidden = YES;
-                [cell.followButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
             }
         }
         
     }else{
-        cell.inviteDelegate = nil;
         [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];        
     }
-//    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -225,7 +253,25 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_isInviteFriend) {
+        return indexPath;
+    }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Friend *friend = [self friendForIndexPath:indexPath];
+    if (friend) {
+        if ([self isFriendSelected:friend]) {
+            [self unSelectFriend:friend];
+        }else{
+            [_selectedSet addObject:friend];
+        }
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                         withRowAnimation:UITableViewRowAnimationFade];
+        editButton.hidden = ([_selectedSet count] == 0);
+    }
 }
 
 
@@ -267,7 +313,7 @@
 
 - (IBAction)clickEdit:(id)sender
 {
-    if (_isInviteFriend) {
+    if (_isInviteFriend && [_selectedSet count] != 0) {
         //invite users
         [self showActivityWithText:NSLS(@"kInviting")];
         [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];
@@ -408,7 +454,7 @@
     for (Friend *friend in friendSet) {
         RoomUser *user = [[RoomUser alloc] init];
         user.userId = friend.friendUserId;
-        user.nickName = friend.nickName;
+        user.nickName = [[FriendManager defaultManager] getFriendNick:friend];
         user.avatar = friend.avatar;
         user.gender = friend.gender;
         user.status = UserInvited;
@@ -417,15 +463,18 @@
     self.room.userList = array;
     [self.dataTableView reloadData];
 }
+
+
 - (void)didInviteFriends:(NSSet *)friendSet resultCode:(int)resultCode
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kInviteFail") title:nil];
+        [self popupMessage:NSLS(@"kInviteFriendFail") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kInviteSuccess") title:nil];
-//        [self.navigationController popViewControllerAnimated:YES];
+        [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
         [self updateRoomUsers:friendSet];
     }
+    [_selectedSet removeAllObjects];
+    editButton.hidden = YES;
 }
 @end

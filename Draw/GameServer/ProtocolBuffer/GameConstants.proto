@@ -121,3 +121,8 @@ enum GameCompleteReason {
   
 }
 
+enum GameChatType {
+  CHAT_GROUP = 0;
+  CHAT_PRIVATE = 1;
+}
+

@@ -25,7 +25,7 @@
 @synthesize followButton;
 @synthesize user = _user;
 @synthesize followDelegate;
-@synthesize inviteDelegate;
+//@synthesize inviteDelegate;
 
 - (void)dealloc {
     [avatarView release];
@@ -110,6 +110,7 @@
     
     
     //set nick
+
     if (nickName && [nickName length] != 0) {
         nickNameLabel.text = nickName;
     }
@@ -178,9 +179,9 @@
     }else if(type == FromInviteList)
     {
         [self setCellByFriend:aFriend indexPath:aIndexPath];
-        [followButton setBackgroundImage:
-         [[ShareImageManager defaultManager] normalButtonImage] 
-                                forState:UIControlStateNormal];
+//        [followButton setBackgroundImage:
+//         [[ShareImageManager defaultManager] normalButtonImage] 
+//                                forState:UIControlStateNormal];
     }
 }
 
@@ -256,9 +257,9 @@
                                                    user:self.user];
     }
     
-    if (inviteDelegate && [inviteDelegate respondsToSelector:@selector(didInviteFriendAtIndexPath:)]) {
-        [inviteDelegate didInviteFriendAtIndexPath:self.indexPath];
-    }
+//    if (inviteDelegate && [inviteDelegate respondsToSelector:@selector(didInviteFriendAtIndexPath:)]) {
+//        [inviteDelegate didInviteFriendAtIndexPath:self.indexPath];
+//    }
 }
 
 @end

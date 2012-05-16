@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum {
-    PRIVATE = 1,
-    GROUP = 2,
-}ChatType;
-
+#import "GameConstants.pb.h"
 
 @interface MessageManager : NSObject
 
 + (MessageManager *)defaultManager;
-- (NSArray *)messagesForChatType:(ChatType)type;
+- (NSArray *)messagesForChatType:(GameChatType)type;
 
 @end

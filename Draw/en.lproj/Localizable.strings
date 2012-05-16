@@ -333,6 +333,10 @@
 "kWaitting" = "Waitting";
 "kFull" = "Full";
 
+"kMale" = "Male";
+"kFemale" = "Female";
+
+"kSayToYou" = "Say to you: %@";
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
 "kRoomNameLabel" = "Room Name";
@@ -344,3 +348,26 @@
 "kInvited" = "Invited";
 "kJoined" = "Joined";
 "kInvite" = "Invite";
+
+"kRoomCreating" = "Creating...";
+"kRoomSearching" = "Searching...";
+"kInviting" = "Inviting";
+
+"kRoomNameNumber" = "%@'s Room %d";
+
+"kIsPlaying" = "is playing";
+"kIsJoined" = "accepted";
+"kIsInvited" = "invited";
+
+"kFindRoomListFail" = "Fail to get room list.";
+"kCreateRoomFail" = "Fail to create room.";
+"kRemoveRoomFail" = "Fail to remove room.";
+"kSearchRoomFail" = "Fail to search room.";
+"kInviteFriendFail" = "Fail to invite friends.";
+
+"kFindRoomListSucc" = "Fetch rooms successfully";
+"kCreateRoomSucc" = "Create room successfully.";
+"kRemoveRoomSucc" = "Remove room successfully.";
+"kInviteFriendFail" = "Invite friends successfully.";
+
+"kRoomSearhTips" = "Nickname / Room name";

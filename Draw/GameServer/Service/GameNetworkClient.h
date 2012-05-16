@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonNetworkClient.h"
+#import "GameConstants.pb.h"
 
 #define PROLONG_GAME        @"PG"
 #define ASK_QUICK_GAME      @"AG"
@@ -29,6 +30,7 @@
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
                      roomId:(NSString*)roomId
+                   roomName:(NSString*)roomName
           excludeSessionSet:(NSSet*)excludeSessionSet;
 
 - (void)sendStartGameRequest:(NSString*)userId sessionId:(long)sessionId;
@@ -60,7 +62,14 @@
 - (void)sendChatMessage:(NSString*)userId 
               sessionId:(long)sessionId
                userList:(NSArray*)userList
-                message:(NSString*)message;
+                message:(NSString*)message
+               chatType:(GameChatType)chatType;
+
+- (void)sendChatExpression:(NSString*)userId 
+                 sessionId:(long)sessionId
+                  userList:(NSArray*)userList
+                       key:(NSString*)key
+                  chatType:(GameChatType)chatType;
 
 - (void)sendGuessWord:(NSString*)guessWord
           guessUserId:(NSString*)guessUserId

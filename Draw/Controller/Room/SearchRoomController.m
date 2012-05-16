@@ -15,6 +15,7 @@
 
 @implementation SearchRoomController
 @synthesize searchButton;
+@synthesize searchFieldBg;
 @synthesize searchField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,8 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self.searchField becomeFirstResponder];
-    [searchField setBackground:[imageManager normalButtonImage]];
+    [searchFieldBg setImage:[imageManager inputImage]];
+    [searchField setPlaceholder:NSLS(@"kRoomSearhTips")];
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
 }
 
@@ -49,6 +50,7 @@
 {
     [self setSearchField:nil];
     [self setSearchButton:nil];
+    [self setSearchFieldBg:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -63,13 +65,14 @@
 - (void)dealloc {
     [searchField release];
     [searchButton release];
+    [searchFieldBg release];
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {
     [self.searchField resignFirstResponder];
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
-        [self showActivity];
+        [self showActivityWithText:@"kRoomSearching"];
         [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
     }else{
         [self popupMessage:NSLS(@"kTextNull") title:nil];
@@ -128,6 +131,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
+    cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
 	return cell;
 }
 

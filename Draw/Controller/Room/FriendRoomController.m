@@ -22,6 +22,8 @@
 #import "MyFriendsController.h"
 
 
+#define INVITE_LIMIT 12
+
 @implementation FriendRoomController
 @synthesize editButton;
 @synthesize createButton;
@@ -67,11 +69,13 @@
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [self showActivityWithText:NSLS(@"kLoading")];
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self.dataTableView reloadData];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
 }
@@ -113,7 +117,7 @@
     RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
     NSInteger index = rand() % 97;
     NSString *nick = [[UserManager defaultManager]nickName];
-    NSString *string = [NSString stringWithFormat:@"%@的房间%d",nick,index];
+    NSString *string = [NSString stringWithFormat:NSLS(@"kRoomNameNumber"),nick,index];
     
     rDialog.targetTextField.text = string;
     [rDialog showInView:self.view];
@@ -123,16 +127,17 @@
 {
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
+    [self showActivityWithText:NSLS(@"kRoomCreating")];
     [roomService createRoom:roomName password:password delegate:self];    
 }
 
 - (void)passwordIsIllegal:(NSString *)password
 {
-    [self popupMessage:@"kRoomPasswordIllegal" title:nil];
+    [self popupMessage:NSLS(@"kRoomPasswordIllegal") title:nil];
 }
 - (void)roomNameIsIllegal:(NSString *)password
 {
-    [self popupMessage:@"kRoomNameIllegal" title:nil];
+    [self popupMessage:NSLS(@"kRoomNameIllegal") title:nil];
 }
 
 - (void)didClickInvite:(NSIndexPath *)indexPath
@@ -161,8 +166,9 @@
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kCreateFail") title:nil];
+        [self popupMessage:NSLS(@"kCreateRoomFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kCreateRoomSucc") title:nil];
         PPDebug(@"room = %@", [room description]);
         if (room) {
             NSMutableArray *list = (NSMutableArray *)self.dataList;
@@ -175,6 +181,23 @@
     }
 }
 
+
+- (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kRemoveRoomSucc") title:nil];
+        NSInteger row = [self.dataList indexOfObject:room];
+        if (row >= 0 && row < [self.dataList count]) {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+            [(NSMutableArray *)self.dataList removeObject:room];
+            [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+    }else{
+        [self popupMessage:NSLS(@"kRemoveRoomFail") title:nil];        
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row >= [self.dataList count])
@@ -201,6 +224,7 @@
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kFindRoomListSucc") title:nil];
         if (roomList == nil) {
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
@@ -218,7 +242,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [dataList count];			// default implementation
+    NSInteger count = [dataList count];
+    if (count == 0) {
+        tableView.hidden = YES;
+    }else{
+        tableView.hidden = NO;
+    }
+    return count;
+    
 }
 
 
@@ -235,6 +266,14 @@
     [cell setInfo:room];
     cell.indexPath = indexPath;
 	return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [roomService removeRoom:room delegate:self];
+    
 }
 
 #pragma mark - Draw Game Service Delegate
@@ -264,6 +303,7 @@
         [[DrawGameService defaultService] registerObserver:self];
         [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
                                                   roomId:[_currentSelectRoom roomId]
+                                                roomName:[_currentSelectRoom roomName]
                                                 nickName:[_userManager nickName]
                                                   avatar:[_userManager avatarURL]
                                                   gender:[_userManager isUserMale]
@@ -288,7 +328,7 @@
         return;
     }
     
-    [RoomController enterRoom:self];
+    [RoomController enterRoom:self isFriendRoom:YES];
 }
 
 @end

@@ -37,7 +37,9 @@ enum{
 @property (retain, nonatomic) IBOutlet UIButton *startGameButton;
 @property (retain, nonatomic) NSTimer *startTimer;
 @property (assign, nonatomic) int clickCount;
+@property (assign, nonatomic) BOOL isFriendRoom;
 @property (retain, nonatomic) IBOutlet UILabel *onlinePlayerCountLabel;
+@property (retain, nonatomic) IBOutlet UIButton *changeRoomButton;
 @property (retain, nonatomic) ChatController *chatController;
 
 - (IBAction)clickStart:(id)sender;
@@ -52,7 +54,7 @@ enum{
 + (void)returnRoom:(UIViewController*)superController startNow:(BOOL)startNow;
 
 // use this method when enter room (don't know first enter or not)
-+ (void)enterRoom:(UIViewController*)superController;
++ (void)enterRoom:(UIViewController*)superController isFriendRoom:(BOOL)isFriendRoom;
 
 
 @end

@@ -167,5 +167,10 @@
                                    userId:(NSString *)userId                              
                                  userList:(NSString *)userList;
 
++ (CommonNetworkOutput*)removeRoom:(NSString*)baseURL 
+                                   roomId:(NSString *)roomId                   
+                                 password:(NSString *)password                   
+                                   userId:(NSString *)userId;                              
+
 
 @end

@@ -21,6 +21,7 @@
 
 #define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,17 * 2) : CGRectMake(16,18,16,17))
 
+
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
 #define TOOL_NUMBER_SIZE (([DeviceDetection isIPAD]) ? 16 * 2 : 16)
 
@@ -97,6 +98,7 @@
 @synthesize score = _score;
 @synthesize userId = _userId;
 @synthesize delegate = _delegate;
+@synthesize hasPen = _hasPen;
 
 - (void)addTapGuesture
 {
@@ -247,5 +249,18 @@
     }else{
         [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     }
+}
+- (void)setHasPen:(BOOL)hasPen
+{
+    if (markButton == nil) {
+        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [markButton retain];
+        markButton.frame = CGRectMake(self.frame.size.width*0.6, self.frame.size.height*0.6, self.frame.size.width*0.4, self.frame.size.height*0.4);
+        [self addSubview:markButton];
+        markButton.userInteractionEnabled = NO;
+        ShareImageManager *manager = [ShareImageManager defaultManager];
+        [markButton setBackgroundImage:[manager drawingMarkLargeImage] forState:UIControlStateNormal];
+    }
+    markButton.hidden = !hasPen;
 }
 @end

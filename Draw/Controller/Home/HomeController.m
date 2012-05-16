@@ -31,6 +31,7 @@
 #import "MyFriendsController.h"
 #import "ChatController.h"
 #import "FriendRoomController.h"
+#import "CommonMessageCenter.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -187,8 +188,6 @@
     [frc release];
 }
 
-
-
 - (IBAction)clickShop:(id)sender {
 //    ShopMainController *sc = [[ShopMainController alloc] init];
 //    [self.navigationController pushViewController:sc animated:YES];
@@ -198,8 +197,6 @@
     [self.navigationController pushViewController:ic animated:YES];
 
 }
-
-
 
 - (void)didJoinGame:(GameMessage *)message
 {
@@ -216,7 +213,7 @@
         return;
     }
 
-    [RoomController enterRoom:self];
+    [RoomController enterRoom:self isFriendRoom:NO];
 }
 
 - (IBAction)clickFeedback:(id)sender
@@ -331,10 +328,10 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
+    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;
 }
@@ -372,6 +369,7 @@
     MyFriendsController *myFriends = [[MyFriendsController alloc] init];
     [self.navigationController pushViewController:myFriends animated:YES];
     [myFriends release];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
 }
 
 @end

@@ -96,7 +96,7 @@
 #define METHOD_UPDATE_ROOM @"udr"
 #define METHOD_CREATE_ROOM @"cr"
 #define METHOD_JOIN_ROOM @"jr"
-
+#define METHOD_REOMOVE_ROOM @"rr"
 
 
 // for traffic server

@@ -30,6 +30,7 @@
 - (void)didUserQuitGame:(GameMessage *)message;
 - (void)didGameProlong:(GameMessage *)message;
 - (void)didGameAskQuick:(GameMessage *)message;
+- (void)didGameReceiveChat:(GameMessage *)message;
 
 // game turn result
 - (void)didGameTurnGuessStart:(GameMessage *)message;
@@ -114,6 +115,10 @@
 - (void)changeRoom;
 - (void)prolongGame;
 - (void)askQuickGame;
+- (void)groupChatMessage:(NSArray*)userList message:(NSString*)message;
+- (void)privateChatMessage:(NSArray*)userList message:(NSString*)message;
+- (void)groupChatExpression:(NSArray*)userList key:(NSString*)key;
+- (void)privateChatExpression:(NSArray*)userList key:(NSString*)key;
 
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer;
@@ -123,6 +128,7 @@
 
 - (void)joinFriendRoom:(NSString*)userId 
                 roomId:(NSString*)roomId
+              roomName:(NSString*)roomName
               nickName:(NSString*)nickName 
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
