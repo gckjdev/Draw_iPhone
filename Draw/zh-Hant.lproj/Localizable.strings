@@ -361,3 +361,9 @@
 "kInvited" = "已邀請";
 "kJoined" = "已受邀";
 "kInvite" = "邀請";
+
+"kRoomCreating" = "創建房間中...";
+"kRoomSearching" = "搜索房間中...";
+"kInviting" = "邀請好友中...";
+"kRoomNameNumber" = "%@的房間%d";
+
