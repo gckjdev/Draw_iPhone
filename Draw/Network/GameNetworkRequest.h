@@ -161,4 +161,11 @@
                                   offset:(NSInteger)offset
                                    limit:(NSInteger)limit;
 
++ (CommonNetworkOutput*)inviteUsersToRoom:(NSString*)baseURL 
+                                   roomId:(NSString *)roomId                   
+                                 password:(NSString *)password                   
+                                   userId:(NSString *)userId                              
+                                 userList:(NSString *)userList;
+
+
 @end

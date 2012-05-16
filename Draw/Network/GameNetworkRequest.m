@@ -867,5 +867,39 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)inviteUsersToRoom:(NSString*)baseURL 
+                                   roomId:(NSString *)roomId                   
+                                 password:(NSString *)password                   
+                                   userId:(NSString *)userId                              
+                                 userList:(NSString *)userList                                
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_INVITE_USER];
+        str = [str stringByAddQueryParameter:PARA_ROOM_ID value:roomId];
+        str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_USERID_LIST value:userList];
+
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 @end
