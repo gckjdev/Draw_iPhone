@@ -133,7 +133,6 @@
     
     [[DrawGameService defaultService] registerObserver:self];
     
-    [self prepareAvatars];
     [self updateOnlineUserLabel];
     [self updateGameUsers];
     [self updateRoomInfo];
@@ -172,9 +171,24 @@
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 #define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
+#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(142, 282) : CGPointMake(54, 141)
+#define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 128 : 64
+#define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 124 : 62
 - (void)prepareAvatars
 {
-    
+    int imageStartTag = 31;
+    int imageEndTag = 36;
+    float seperatorX = ([DeviceDetection isIPAD]) ? 178 : 80;
+    float seperatorY = ([DeviceDetection isIPAD]) ? 216 : 99;
+    CGPoint orgPoint = ORG_POINT;
+    for (int i = imageStartTag; i <= imageEndTag; i++) {
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
+        avatarView.tag = i;
+        [avatarView setImage:nil];
+        avatarView.hidden = NO;
+        [self.view addSubview:avatarView];
+        [avatarView release];
+    }
 }
 
 - (void)updateOnlineUserLabel
@@ -189,7 +203,6 @@
     int startTag = 21;
     int endTag = 26;
     int imageStartTag = 31;
-    int backTag = 41;
     int imageEndTag = 36;
     
     for (GameSessionUser* user in userList){
@@ -207,9 +220,7 @@
         }
         
         // set images
-        UIView* viewForFrame = (UIView*)[self.view viewWithTag:backTag++];
-        
-        
+
         NSString* avatar = nil;
         BOOL isMe = [session isMe:[user userId]];
         if (isMe){
@@ -219,10 +230,12 @@
             avatar = [user userAvatar];
         } 
         
-        AvatarView* imageView = [[[AvatarView alloc]  initWithUrlString:nil frame:viewForFrame.frame gender:[user gender]] autorelease];
+        AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
+        if (imageView == nil) {
+            [self prepareAvatars];
+        }
         [imageView setUrlString:avatar];
-        [self.view addSubview:imageView];
-        [imageView setTag:imageStartTag++];
+        //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
         PPDebug(@"user gender=%d", [user gender]);
@@ -288,7 +301,6 @@
     // clean other image display
     for (int i=imageStartTag; i<=imageEndTag; i++){
         AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
-        imageView.hidden = YES;
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
         

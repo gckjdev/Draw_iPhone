@@ -564,6 +564,7 @@ static DrawGameService* _defaultService;
   guessDiffLevel:(int)guessDiffLevel
 {
     [_session setStatus:SESSION_WAITING];
+    
     [self clearHistoryUser];
     
     [self setUserId:userId];
@@ -578,7 +579,8 @@ static DrawGameService* _defaultService;
                                  gender:_gender
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
-                                 roomId:nil
+                                 roomId:nil 
+                               roomName:nil
                       excludeSessionSet:_historySessionSet];  
     
     [self scheduleKeepAliveTimer];
