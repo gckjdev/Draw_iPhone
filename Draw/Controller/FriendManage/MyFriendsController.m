@@ -469,9 +469,9 @@
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kInviteFail") title:nil];
+        [self popupMessage:NSLS(@"kInviteFriendFail") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kInviteSuccess") title:nil];
+        [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
         [self updateRoomUsers:friendSet];
     }
     [_selectedSet removeAllObjects];

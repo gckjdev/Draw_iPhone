@@ -166,8 +166,9 @@
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kCreateFail") title:nil];
+        [self popupMessage:NSLS(@"kCreateRoomFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kCreateRoomSucc") title:nil];
         PPDebug(@"room = %@", [room description]);
         if (room) {
             NSMutableArray *list = (NSMutableArray *)self.dataList;
@@ -180,6 +181,23 @@
     }
 }
 
+
+- (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kRemoveRoomSucc") title:nil];
+        NSInteger row = [self.dataList indexOfObject:room];
+        if (row >= 0 && row < [self.dataList count]) {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+            [(NSMutableArray *)self.dataList removeObject:room];
+            [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+    }else{
+        [self popupMessage:NSLS(@"kRemoveRoomFail") title:nil];        
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row >= [self.dataList count])
@@ -206,6 +224,7 @@
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kFindRoomListSucc") title:nil];
         if (roomList == nil) {
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
@@ -252,7 +271,8 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"commitEditingStyle");
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [roomService removeRoom:room delegate:self];
     
 }
 
