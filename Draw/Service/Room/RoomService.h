@@ -13,13 +13,12 @@
 @protocol RoomServiceDelegate <NSObject>
 
 @optional
-- (void)didFetchData:(int)resultCode;
 - (void)didCreateRoom:(Room*)room resultCode:(int)resultCode; 
 - (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode;
 - (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode;
 - (void)didInviteFriends:(NSSet *)friendSet resultCode:(int)resultCode;
+- (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode;
 
-//- (void)didFetchData:(int)resultCode;
 
 @end
 @class UserManager;
@@ -44,6 +43,10 @@
 - (void)inviteUsers:(NSSet *)friendSet 
              toRoom:(Room *)room 
            delegate: (id<RoomServiceDelegate>) delegate;
+
+- (void)removeRoom:(Room *)room 
+          delegate: (id<RoomServiceDelegate>) delegate;
+
 
 
 - (void)updateRoom:(NSString *)roomId 

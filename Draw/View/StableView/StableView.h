@@ -58,6 +58,7 @@ typedef enum {
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
+@property(nonatomic, assign) BOOL hasPen;
 
 //- (void)addTarget:(id)target action:(SEL)action;
 @end

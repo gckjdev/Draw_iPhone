@@ -13,8 +13,8 @@ static MessageManager *_instance = nil;
 
 @interface MessageManager ()
 {
-    NSArray *_privateMessages;
-    NSArray *_groupMessages;
+    NSMutableArray *_privateMessages;
+    NSMutableArray *_groupMessages;
 }
 @end
 
@@ -47,9 +47,9 @@ static MessageManager *_instance = nil;
     [super dealloc];
 }
 
-- (NSArray *)messagesForChatType:(ChatType)type
+- (NSArray *)messagesForChatType:(GameChatType)chatType
 {
-    if (type == PRIVATE) {
+    if (chatType == GameChatTypeChatPrivate) {
         return _privateMessages;
     }else {
         return _groupMessages;

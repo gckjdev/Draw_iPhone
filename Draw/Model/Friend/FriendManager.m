@@ -12,6 +12,7 @@
 #import "LogUtil.h"
 #import "GameNetworkConstants.h"
 #import "TimeUtils.h"
+#import "Friend.h"
 
 @interface FriendManager()
 
@@ -336,5 +337,23 @@ static FriendManager *_defaultFriendManager = nil;
     return [dataManager execute:@"findAllDeletedFriends"];
 }
 
+- (NSString *)getFriendNick:(Friend *)aFriend
+{
+    
+    if ([aFriend.nickName length] != 0) {
+        return [aFriend nickName];
+    }
+    if ([aFriend.sinaNick length] != 0) {
+        return [aFriend sinaNick];
+    }
 
+    if ([aFriend.qqNick length] != 0) {
+        return [aFriend qqNick];
+    }
+
+    if ([aFriend.facebookNick length] != 0) {
+        return [aFriend facebookNick];
+    }
+    return @"";
+}
 @end

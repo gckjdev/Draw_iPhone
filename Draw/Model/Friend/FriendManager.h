@@ -72,4 +72,6 @@ enum deleteFlag {
 
 - (BOOL)removeAllDeletedFriends;
 
+- (NSString *)getFriendNick:(Friend *)aFriend;
+
 @end

@@ -17,7 +17,7 @@ typedef enum{
 @optional
 - (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath 
                                user:(NSDictionary *)user;
-- (void)didInviteFriendAtIndexPath:(NSIndexPath *)indexPath;
+//- (void)didInviteFriendAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -35,7 +35,7 @@ typedef enum{
 
 @property (retain, nonatomic) NSDictionary *user;
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;
-@property (assign, nonatomic) id<FollowDelegate> inviteDelegate;
+//@property (assign, nonatomic) id<FollowDelegate> inviteDelegate;
 
 
 - (void)setCellByDictionary:(NSDictionary *)aUser indexPath:(NSIndexPath *)aIndexPath;
