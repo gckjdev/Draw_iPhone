@@ -220,9 +220,7 @@
         }
         
         // set images
-        UIView* viewForFrame = (UIView*)[self.view viewWithTag:backTag++];
-        
-        
+
         NSString* avatar = nil;
         BOOL isMe = [session isMe:[user userId]];
         if (isMe){
