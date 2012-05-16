@@ -187,8 +187,6 @@
     [frc release];
 }
 
-
-
 - (IBAction)clickShop:(id)sender {
 //    ShopMainController *sc = [[ShopMainController alloc] init];
 //    [self.navigationController pushViewController:sc animated:YES];
@@ -198,8 +196,6 @@
     [self.navigationController pushViewController:ic animated:YES];
 
 }
-
-
 
 - (void)didJoinGame:(GameMessage *)message
 {
@@ -331,10 +327,10 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
+    [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;
 }

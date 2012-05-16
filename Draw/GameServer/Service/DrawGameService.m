@@ -610,6 +610,7 @@ static DrawGameService* _defaultService;
                          guessDiffLevel:_guessDiffLevel
                               sessionId:[_session sessionId]
                                  roomId:nil
+                               roomName:nil
                       excludeSessionSet:_historySessionSet];
     
     [self scheduleKeepAliveTimer];
