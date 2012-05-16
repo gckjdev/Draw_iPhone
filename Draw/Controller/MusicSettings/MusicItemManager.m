@@ -72,6 +72,7 @@ static MusicItemManager *_defaultManager;
 
 - (void)saveMusicItems
 {    
+    NSLog(@"***************%d",[itemList count]);
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
@@ -104,11 +105,18 @@ static MusicItemManager *_defaultManager;
 {
     if (itemList != nil && [itemList indexOfObject:item] != -1) {
         [itemList removeObject:item];
+        [self removeFile:item];
     }
 }
 
+- (void)removeFile:(MusicItem*)item
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:item.localPath error:nil];
+}
+
 - (NSArray*) findAllItems
-{    
+{   
     return itemList;
 }
 

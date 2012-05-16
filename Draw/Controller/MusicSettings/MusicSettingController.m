@@ -23,7 +23,7 @@
 @synthesize webView = _webView;
 @synthesize editButton;
 @synthesize musicList = _musicList;
-@synthesize canDelete;
+@synthesize canDelete = _canDelete;
 @synthesize request;
 @synthesize openURLForAction;
 @synthesize urlForAction;
@@ -78,19 +78,12 @@ enum{
                           forState:UIControlStateNormal];
     
     expandButton.tag = EXPAND;
+    
     [self setActionButtonsHidden:YES];
 
-    
     [self openURL:MUSIC_URL];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
-//    _musicList = [[MusicDownloadService defaultService] findAllItems];
-    
-    //for test
-//    MusicItem *item = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test" filePath:@"" tempPath:@""];
-//    MusicItem *item2 = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test2" filePath:@"" tempPath:@""];
-//    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:item, item2, nil];
-//    self.musicList = array ;
 
     [self createTimer];
     
@@ -98,12 +91,9 @@ enum{
 
 - (void)updateProgressTimer
 {
-//    _musicList = [[MusicItemManager defaultManager] findAllItems];
-//    _musicList = [[MusicDownloadService defaultService] findAllItems];
-//    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadData];
-
 }
+    
 
 - (void)viewDidUnload
 {
@@ -142,6 +132,7 @@ enum{
     if (timer != nil){
         [timer invalidate];
         timer = nil;
+        [self.timer release];
     }
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
@@ -155,6 +146,7 @@ enum{
 {
     [timer invalidate];
     timer = nil; 
+    [self.timer release];
 }
 
 #pragma mark - Button Action
@@ -165,18 +157,14 @@ enum{
 
 - (IBAction)clickEdit:(id)sender;
 {
-    if ([_musicList count] == 0) {
-        return;
-    }
+    _canDelete = !_canDelete;
+    [self.tableView setEditing:_canDelete animated:YES];
     
-    self.canDelete = !canDelete;
-    [self.tableView setEditing:canDelete animated:YES];
-    [self.tableView reloadData];
-    
-    if (canDelete) {
+    if (_canDelete == YES) {
         [self killTimer];
     }
     else {
+        _musicList = [[MusicItemManager defaultManager] findAllItems];
         [self createTimer];
     }
 }
@@ -288,20 +276,23 @@ enum{
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MusicItem *item = [_musicList objectAtIndex:indexPath.row];
-    NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:_musicList];
-    [mutableDataList removeObjectAtIndex:indexPath.row];
-    _musicList = mutableDataList;
-    
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-    [[MusicItemManager defaultManager] deleteItem:item];
-    
+    if (editingStyle == UITableViewCellEditingStyleDelete) { 
+        MusicItem *item = [_musicList objectAtIndex:indexPath.row];
+        NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:_musicList];
+        [mutableDataList removeObjectAtIndex:indexPath.row];
+        _musicList = mutableDataList;
+        
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [[MusicItemManager defaultManager] deleteItem:item];
+
+    }
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (canDelete) {
+    if (_canDelete == YES) {
         return UITableViewCellEditingStyleDelete;
     }
     else {
@@ -378,7 +369,6 @@ enum{
         case CLICK_DOWNLOAD:
         {
             [[MusicDownloadService defaultService] downloadFile:urlForAction];
-            
         }
             break;
             
