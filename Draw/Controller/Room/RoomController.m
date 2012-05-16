@@ -34,7 +34,7 @@
 @interface RoomController ()
 
 - (void)updateGameUsers;
-- (void)updateRoomName;
+- (void)updateRoomInfo;
 - (void)updateStartButton;
 - (void)updateOnlineUserLabel;
 
@@ -57,12 +57,14 @@
 @synthesize clickCount = _clickCount;
 @synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
 @synthesize chatController = _chatController;
-
+@synthesize isFriendRoom = _isFriendRoom;
+@synthesize changeRoomButton;
 
 #define QUICK_DURATION  2
 #define MAX_CLICK_COUNT 5   
 
 - (void)dealloc {
+    [changeRoomButton release];
     [_startTimer release];
     [startGameButton release];
     [roomNameLabel release];
@@ -133,7 +135,7 @@
     
     [self updateOnlineUserLabel];
     [self updateGameUsers];
-    [self updateRoomName];
+    [self updateRoomInfo];
     [self updateStartButton];
         
     [self.prolongButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
@@ -286,11 +288,26 @@
     [self updateStartButton];
 }
 
-- (void)updateRoomName
+- (void)updateRoomInfo
 {
-    NSString* name = [NSString stringWithFormat:NSLS(@"kRoomName"),  
+    // update room name
+    NSString* name = nil;
+    if (_isFriendRoom == NO){
+        name = [NSString stringWithFormat:NSLS(@"kRoomName"),  
                       [[[DrawGameService defaultService] session] roomName]];
+    }
+    else{
+        name = [[[DrawGameService defaultService] session] roomName];
+    }
     self.roomNameLabel.text = name;
+    
+    // update room left/right button
+    if (_isFriendRoom){
+        self.changeRoomButton.hidden = YES;
+    }
+    else{
+        self.changeRoomButton.hidden = NO;
+    }
 }
 
 - (void)updateStartButton
@@ -384,7 +401,7 @@
 
     // update 
     [self updateGameUsers];
-    [self updateRoomName];    
+    [self updateRoomInfo];    
     [self updateOnlineUserLabel];
     if ([self userCount] > 1) {
         [self scheduleStartTimer];        
@@ -709,17 +726,22 @@
     
     [app.roomController setClickCount:0];
     [app.roomController updateGameUsers];
-    [app.roomController updateRoomName];            
+    [app.roomController updateRoomInfo];            
 }
 
-+ (void)enterRoom:(UIViewController*)superController
++ (void)enterRoom:(UIViewController*)superController isFriendRoom:(BOOL)isFriendRoom
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.roomController == nil){    
         // first time enter room
+        app.roomController = [[[RoomController alloc] init] autorelease];
+        [app.roomController setIsFriendRoom:isFriendRoom];        
         [RoomController firstEnterRoom:superController];
         return;
     }
+    
+    // set friend room flag
+    [app.roomController setIsFriendRoom:isFriendRoom];        
     
     if ([superController.navigationController.viewControllers containsObject:app.roomController]){
         // room controller exists in root view controllers

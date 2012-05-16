@@ -123,6 +123,7 @@
 
 - (void)joinFriendRoom:(NSString*)userId 
                 roomId:(NSString*)roomId
+              roomName:(NSString*)roomName
               nickName:(NSString*)nickName 
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
