@@ -366,10 +366,10 @@
 
 - (IBAction)clickFriend:(id)sender
 {
-//    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
-//    [self.navigationController pushViewController:myFriends animated:YES];
-//    [myFriends release];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
+    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
+    [self.navigationController pushViewController:myFriends animated:YES];
+    [myFriends release];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
 }
 
 @end
