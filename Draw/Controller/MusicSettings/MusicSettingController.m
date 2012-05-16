@@ -14,6 +14,7 @@
 #import "LogUtil.h"
 #import "MusicItemManager.h"
 #import "ShareImageManager.h"
+#import "AudioManager.h"
 
 #define MUSIC_URL @"http://m.easou.com/"
 
@@ -33,6 +34,7 @@
 @synthesize nextButton;
 @synthesize stopButton;
 @synthesize refreshButton;
+@synthesize audiomanager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +57,7 @@
 
 - (void)openURL:(NSString *)URLString
 {
-//    [self showActivityWithText:NSLS(@"kLoadingURL")];
+    [self showActivityWithText:NSLS(@"kLoadingURL")];
     
     NSLog(@"url = %@",URLString);
     
@@ -87,6 +89,9 @@ enum{
 
     [self createTimer];
     
+    audiomanager = [AudioManager defaultManager];
+    
+        
 }
 
 - (void)updateProgressTimer
@@ -109,8 +114,20 @@ enum{
 {
     [self.tableView reloadData];
     [super viewDidAppear:animated];
+    
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    
+    [audiomanager setBackGroundMusicWithURL:url];
+    [audiomanager backgroundMusicStart];
+
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [audiomanager backgroundMusicStop];
+
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -425,6 +442,14 @@ enum{
     
     return YES;
 
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    [self hideActivity];
+    
+    // forbid popup call out window
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
 }
 
 @end

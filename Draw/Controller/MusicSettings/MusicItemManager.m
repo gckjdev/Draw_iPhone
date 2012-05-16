@@ -31,6 +31,9 @@ static MusicItemManager *_defaultManager;
     self = [super init];
     if (self) {
         [self loadMusicItems];
+        
+        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"background" ofType:nil];
+        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:@"background" filePath:soundFilePath tempPath:nil];
     }
     return self;
 }
@@ -71,9 +74,7 @@ static MusicItemManager *_defaultManager;
 }
 
 - (void)saveMusicItems
-{    
-    NSLog(@"***************%d",[itemList count]);
-    
+{        
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     NSMutableArray *list = [[NSMutableArray alloc] init];
