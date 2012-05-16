@@ -182,11 +182,12 @@
     float seperatorY = ([DeviceDetection isIPAD]) ? 216 : 99;
     CGPoint orgPoint = ORG_POINT;
     for (int i = imageStartTag; i <= imageEndTag; i++) {
-        AvatarView* avatarView = [[[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO] autorelease];
-        avatarView.hidden = NO;
-        NSLog(@"x=%.1f, y=%.1f, w=%.1f, h=%.1f", avatarView.frame.origin.x, avatarView.frame.origin.y, avatarView.frame.size.width, avatarView.frame.size.height);
-        [self.view addSubview:avatarView];
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
         avatarView.tag = i;
+        [avatarView setImage:nil];
+        avatarView.hidden = NO;
+        [self.view addSubview:avatarView];
+        [avatarView release];
     }
 }
 
@@ -202,7 +203,6 @@
     int startTag = 21;
     int endTag = 26;
     int imageStartTag = 31;
-    int backTag = 41;
     int imageEndTag = 36;
     
     for (GameSessionUser* user in userList){
