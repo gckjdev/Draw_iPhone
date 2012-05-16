@@ -264,8 +264,6 @@
 //            drawingImageView.tag = DRAWING_MARK_TAG;
 //            [imageView addSubview:drawingImageView];
 //            [drawingImageView release];
-//            
-//            frameImage = [[ShareImageManager defaultManager] avatarSelectImage];
 //        }
 //        else{
 //            
@@ -274,9 +272,11 @@
         
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
             [imageView setAvatarSelected:YES];
+            [imageView setHasPen:YES];
         }
         else{
             [imageView setAvatarSelected:NO];
+            [imageView setHasPen:NO];
         }
         
         // create image view
@@ -295,7 +295,7 @@
 
     }
     
-    // clean other label display
+    // clean other label display and avatar
     for (int i=startTag; i<=endTag; i++){
         UILabel* label = (UILabel*)[self.view viewWithTag:startTag++];
         [label setText:@""];
@@ -304,6 +304,7 @@
     // clean other image display
     for (int i=imageStartTag; i<=imageEndTag; i++){
         AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
+        [imageView setImage:nil];
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
         
