@@ -264,6 +264,7 @@
         [[DrawGameService defaultService] registerObserver:self];
         [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
                                                   roomId:[_currentSelectRoom roomId]
+                                                roomName:[_currentSelectRoom roomName]
                                                 nickName:[_userManager nickName]
                                                   avatar:[_userManager avatarURL]
                                                   gender:[_userManager isUserMale]
