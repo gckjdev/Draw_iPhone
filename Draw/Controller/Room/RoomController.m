@@ -237,7 +237,7 @@
         if (imageView == nil) {
             [self prepareAvatars];
         }
-        [imageView setUrlString:avatar];
+        [imageView setAvatarUrl:avatar gender:[user gender]];
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
@@ -589,7 +589,8 @@
             [self userId:[message userId] popupImage:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:msg];
+//            [self userId:[message userId] popupMessage:msg];
+            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
         }
     }else {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
@@ -598,7 +599,7 @@
             [self userId:[message userId] popupImage:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:[NSLS(@"kSayToYou") stringByAppendingFormat:msg]];
+            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
         }
     }
 }
