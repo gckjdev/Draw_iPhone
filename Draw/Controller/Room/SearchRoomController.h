@@ -20,5 +20,6 @@
 
 - (IBAction)clickSearhButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
+@property (retain, nonatomic) IBOutlet UIImageView *searchFieldBg;
 @property (retain, nonatomic) IBOutlet UITextField *searchField;
 @end

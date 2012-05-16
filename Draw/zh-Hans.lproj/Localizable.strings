@@ -373,3 +373,16 @@
 "kIsPlaying" = "正在游戏中";
 "kIsJoined" = "已加入游戏";
 "kIsInvited" = "已被邀请";
+
+"kFindRoomListFail" = "获取房间列表失败。";
+"kCreateRoomFail" = "创建房间失败。";
+"kRemoveRoomFail" = "删除房间失败。";
+"kSearchRoomFail" = "搜索房间失败。";
+"kInviteFriendFail" = "邀请好友失败。";
+
+"kFindRoomListSucc" = "获取房间列表成功";
+"kCreateRoomSucc" = "创建房间成功。";
+"kRemoveRoomSucc" = "删除房间成功。";
+"kInviteFriendSucc" = "邀请好友成功。";
+
+"kRoomSearhTips" = "昵称 / 房间名";
