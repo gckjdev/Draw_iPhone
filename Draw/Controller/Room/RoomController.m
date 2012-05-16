@@ -598,7 +598,7 @@
             [self userId:[message userId] popupImage:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:NSLS(@"kSayToYou" stringByAppendingFormat:msg)];
+            [self userId:[message userId] popupMessage:[NSLS(@"kSayToYou") stringByAppendingFormat:msg]];
         }
     }
 }
