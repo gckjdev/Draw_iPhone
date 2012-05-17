@@ -33,6 +33,7 @@
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
+#import "AudioManager.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -70,6 +71,9 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
+    //init background music
+    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
+    [[AudioManager defaultManager] backgroundMusicStart];
 
     
     // setup button images
