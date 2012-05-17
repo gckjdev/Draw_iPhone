@@ -15,6 +15,8 @@
 #import "DeviceDetection.h"
 #import "Friend.h"
 #import "Room.h"
+#import "LogUtil.h"
+
 @implementation FriendCell
 @synthesize avatarView;
 @synthesize nickNameLabel;
@@ -56,7 +58,7 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        PPDebug(@"create %@ but cannot find cell object from Nib", cellId);
         return nil;
     }
     
@@ -262,6 +264,7 @@
 - (IBAction)clickFollowButton:(id)sender
 {
     if (followDelegate && [followDelegate respondsToSelector:@selector(didClickFollowButtonAtIndexPath:user:)]) {
+        PPDebug(@"%d",[self.indexPath row]);
         [followDelegate didClickFollowButtonAtIndexPath:self.indexPath 
                                                    user:self.user];
     }
