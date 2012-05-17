@@ -130,6 +130,25 @@ static MyPaintManager* _defaultManager;
     
     dispatch_async(queue, ^{
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
+//        UIImage* image2 = [UIImage imageNamed:@"share.png"];
+//        UIGraphicsBeginImageContext(image2.size);  
+//        
+//          
+//        
+//        // Draw image2  
+//        [image2 drawInRect:CGRectMake(0, 0, image2.size.width, image2.size.height)];
+//        // Draw image1  
+//        [image drawInRect:CGRectMake(32, 136, 256, 245)];
+//        
+//        UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext(); 
+//        NSData* imageData = UIImagePNGRepresentation(resultingImage);
+//        NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), @"temp"];
+//        BOOL result=[imageData writeToFile:path atomically:YES];
+//        NSDictionary * attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
+//        float size = ((NSNumber*)[attributes objectForKey:NSFileSize]).floatValue/1024.0/1024.0;
+//        NSLog(@"siiiiiiiiiize = %.2f", size);
+        
+        UIGraphicsEndImageContext();  
         UIImageWriteToSavedPhotosAlbum(image, 
                                        self, 
                                        @selector(image:didFinishSavingWithError:contextInfo:), 

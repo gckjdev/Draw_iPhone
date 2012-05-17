@@ -7,10 +7,11 @@
 //
 
 #import "MusicItem.h"
+#import "LogUtil.h"
 
 @implementation MusicItem
 
-@synthesize musicName;
+@synthesize fileName;
 @synthesize downloadProgress;
 @synthesize downloadSize;
 @synthesize fileSize;
@@ -30,7 +31,8 @@
     self = [super init];
     
     self.downloadSize = [NSNumber numberWithInt:0];
-    self.musicName = fileName;
+    self.downloadProgress = [NSNumber numberWithFloat:0.0f];
+    self.fileName = fileName;
     self.url = url;
     self.localPath = filePath;
     self.tempPath = tempPath;
@@ -48,6 +50,24 @@
     return [dict objectForKey:DOWNLOAD_KEY];
 }
 
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [aCoder encodeObject:self.url forKey:KEY_ITEM_URL];
+//    [aCoder encodeObject:self.downloadProgress forKey:KEY_ITEM_DOWNLOAD_PROGRESS];
+//    [aCoder encodeObject:self.fileName forKey:KEY_ITEM_FILENAME];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    if (self = [super init]) {
+//        self.url = [aDecoder decodeObjectForKey:KEY_ITEM_URL];
+//        self.downloadProgress = [aDecoder decodeObjectForKey:KEY_ITEM_DOWNLOAD_PROGRESS];
+//        self.fileName = [aDecoder decodeObjectForKey:KEY_ITEM_FILENAME];
+//    }
+//    
+//    return self;
+//}
+
 #pragma Progress Delegate
 - (void)setProgress:(float)newProgress
 {
@@ -55,6 +75,7 @@
     if (self.fileSize != nil) {
         self.downloadSize = [NSNumber numberWithLongLong:[self.fileSize longLongValue]*newProgress];
     }
+//    PPDebug(@"item (%@) download progress = %f", [self fileName], newProgress);
 }
 
 - (void)request:(ASIHTTPRequest *)request incrementDownloadSizeBy:(long long)newLength

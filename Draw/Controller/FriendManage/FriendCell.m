@@ -15,6 +15,8 @@
 #import "DeviceDetection.h"
 #import "Friend.h"
 #import "Room.h"
+#import "LogUtil.h"
+
 @implementation FriendCell
 @synthesize avatarView;
 @synthesize nickNameLabel;
@@ -25,7 +27,7 @@
 @synthesize followButton;
 @synthesize user = _user;
 @synthesize followDelegate;
-@synthesize inviteDelegate;
+//@synthesize inviteDelegate;
 
 - (void)dealloc {
     [avatarView release];
@@ -56,7 +58,7 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        PPDebug(@"create %@ but cannot find cell object from Nib", cellId);
         return nil;
     }
     
@@ -72,8 +74,8 @@
 }
 
 
-#define CELL_HEIGHT_IPHONE  60
-#define CELL_HEIGHT_IPAD    120
+#define CELL_HEIGHT_IPHONE  66
+#define CELL_HEIGHT_IPAD    132
 + (CGFloat)getCellHeight
 {
     if ([DeviceDetection isIPAD]) {
@@ -110,6 +112,7 @@
     
     
     //set nick
+
     if (nickName && [nickName length] != 0) {
         nickNameLabel.text = nickName;
     }
@@ -154,7 +157,7 @@
     
      //set followbutton or statusLabel
     [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
-    [followButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+    [followButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
     if ([[[UserManager defaultManager] userId] isEqualToString:userId]){
         statusLabel.hidden = NO;
         followButton.hidden = YES;
@@ -178,9 +181,9 @@
     }else if(type == FromInviteList)
     {
         [self setCellByFriend:aFriend indexPath:aIndexPath];
-        [followButton setBackgroundImage:
-         [[ShareImageManager defaultManager] normalButtonImage] 
-                                forState:UIControlStateNormal];
+//        [followButton setBackgroundImage:
+//         [[ShareImageManager defaultManager] normalButtonImage] 
+//                                forState:UIControlStateNormal];
     }
 }
 
@@ -245,6 +248,15 @@
     //hide followbutton and statusLabel
     statusLabel.hidden = YES;
     followButton.hidden = YES;
+    if ([[FriendManager defaultManager] isFanFriend:aFriend.friendUserId]) {
+        
+        [followButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+        [followButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
+        
+        if (![[FriendManager defaultManager] isFollowFriend:aFriend.friendUserId]) {
+            followButton.hidden = NO;
+        }
+    }
 }
 
 
@@ -252,13 +264,14 @@
 - (IBAction)clickFollowButton:(id)sender
 {
     if (followDelegate && [followDelegate respondsToSelector:@selector(didClickFollowButtonAtIndexPath:user:)]) {
+        PPDebug(@"%d",[self.indexPath row]);
         [followDelegate didClickFollowButtonAtIndexPath:self.indexPath 
                                                    user:self.user];
     }
     
-    if (inviteDelegate && [inviteDelegate respondsToSelector:@selector(didInviteFriendAtIndexPath:)]) {
-        [inviteDelegate didInviteFriendAtIndexPath:self.indexPath];
-    }
+//    if (inviteDelegate && [inviteDelegate respondsToSelector:@selector(didInviteFriendAtIndexPath:)]) {
+//        [inviteDelegate didInviteFriendAtIndexPath:self.indexPath];
+//    }
 }
 
 @end

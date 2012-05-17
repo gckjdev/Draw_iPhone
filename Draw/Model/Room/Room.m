@@ -92,6 +92,32 @@
     return [NSString stringWithFormat:@"%@%@%@",prefix,text,suffux];
 }
 
+- (BOOL)isMeCreator
+{
+    if ([[UserManager defaultManager] isMe:self.creator.userId]) {
+        return YES;
+    }
+    return NO;
+}
+
+//- (RoomUser *)meInUserList
+//{
+//    for (RoomUser *user in self.userList) {
+//        if ([[UserManager defaultManager] isMe:user.userId]) {
+//            return user;
+//        }
+//    }
+//    return nil;
+//}
+//
+//- (RoomUserStatus)myStatus
+//{
+//    RoomUser *user = [self meInUserList];
+//    if (user) {
+//        return user.status;
+//    }
+//    return UserUnInvited;
+//}
 @end
 
 

@@ -14,13 +14,14 @@
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
-#import "DrawGameService.h"
 #import "ConfigManager.h"
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
 #import "MyFriendsController.h"
+#import "RoomManager.h"
 
+#define INVITE_LIMIT 12
 
 @implementation FriendRoomController
 @synthesize editButton;
@@ -67,11 +68,13 @@
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    [self showActivityWithText:NSLS(@"kLoading")];
     [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self.dataTableView reloadData];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
 }
@@ -162,8 +165,9 @@
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kCreateFail") title:nil];
+        [self popupMessage:NSLS(@"kCreateRoomFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kCreateRoomSucc") title:nil];
         PPDebug(@"room = %@", [room description]);
         if (room) {
             NSMutableArray *list = (NSMutableArray *)self.dataList;
@@ -176,6 +180,23 @@
     }
 }
 
+
+- (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kRemoveRoomSucc") title:nil];
+        NSInteger row = [self.dataList indexOfObject:room];
+        if (row >= 0 && row < [self.dataList count]) {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+            [(NSMutableArray *)self.dataList removeObject:room];
+            [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+    }else{
+        [self popupMessage:NSLS(@"kRemoveRoomFail") title:nil];        
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row >= [self.dataList count])
@@ -202,11 +223,12 @@
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
+        [self popupMessage:NSLS(@"kFindRoomListSucc") title:nil];
         if (roomList == nil) {
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
         {
-            self.dataList = roomList;            
+            self.dataList = [[RoomManager defaultManager] sortRoomList:roomList];            
         }
         [self.dataTableView reloadData];
     }
@@ -243,6 +265,14 @@
     [cell setInfo:room];
     cell.indexPath = indexPath;
 	return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [roomService removeRoom:room delegate:self];
+    
 }
 
 #pragma mark - Draw Game Service Delegate

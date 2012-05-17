@@ -35,6 +35,8 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 
+#import "FriendRoomController.h"
+
 DrawViewController *staticDrawViewController = nil;
 DrawViewController *GlobalGetDrawViewController()
 {
@@ -338,6 +340,12 @@ enum{
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
+//        for (UIViewController *controller in self.navigationController.childViewControllers) {
+//            if ([controller isKindOfClass:[FriendRoomController class]]) {
+//                [self.navigationController popToViewController:controller animated:YES];
+//                break;
+//            }
+//        }
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
     }

@@ -43,6 +43,7 @@ message PBDraw {
   required int32 language = 4;                 // 1 Chinese, 2 English
   optional int32 createDate = 5;
   optional string nickName = 6;
+  optional string avatar = 7;
 
   repeated PBDrawAction drawData = 10;  
 }

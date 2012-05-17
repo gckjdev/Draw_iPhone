@@ -10,11 +10,15 @@
 #import "ASIProgressDelegate.h"
 #import "ASIHTTPRequestDelegate.h"
 
+#define KEY_ITEM_URL @"KEY_ITEM_URL"
+#define KEY_ITEM_DOWNLOAD_PROGRESS @"KEY_ITEM_DOWNLOAD_PROGRESS"
+#define KEY_ITEM_FILENAME @"KEY_ITEM_FILENAME"
+
 @interface MusicItem : NSObject<ASIProgressDelegate, ASIHTTPRequestDelegate>
 
 @property (nonatomic, retain) NSNumber * downloadSize;
 @property (nonatomic, retain) NSNumber * fileSize;
-@property (nonatomic, copy) NSString * musicName;
+@property (nonatomic, copy) NSString * fileName;
 @property (nonatomic, copy) NSString * localPath;
 @property (nonatomic, copy) NSString * tempPath;
 @property (nonatomic, copy) NSString* url;

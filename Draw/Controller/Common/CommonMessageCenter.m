@@ -1,0 +1,334 @@
+//
+//  CommonMessageCenter.m
+//  Draw
+//
+//  Created by Orange on 12-5-16.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#import "CommonMessageCenter.h"
+
+#pragma mark -
+@interface CommonMessageView : UIView {
+	CGRect _messageRect;
+	NSString *_text;
+	UIImage *_image;
+}
+
+- (id) init;
+- (void) setMessageText:(NSString*)str;
+- (void) setImage:(UIImage*)image;
+- (BOOL) isIPAD;
++ (CommonMessageView*)createMessageView;
+@end
+
+
+#pragma mark -
+@implementation CommonMessageView
+
+- (BOOL) isIPAD
+{
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+}
+
+- (id) init{
+	if(!(self = [super initWithFrame:CGRectMake(0, 0, 0, 0)])) return nil;
+	_messageRect = CGRectInset(self.bounds, 10, 10);
+	self.backgroundColor = [UIColor clearColor];
+	return self;
+	
+}
+- (void) dealloc{
+	[_text release];
+	[_image release];
+	[super dealloc];
+}
+
++ (CommonMessageView*)createMessageView
+{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonMessageView" owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create <CommonMessageView> but cannot find cell object from Nib");
+        return nil;
+    }
+    CommonMessageView* view =  (CommonMessageView*)[topLevelObjects objectAtIndex:0];
+    return view;
+}
+
+//- (void) drawRect:(CGRect)rect{
+//	[[UIColor colorWithWhite:0 alpha:0.8] set];
+//	[UIView drawRoundRectangleInRect:rect withRadius:10];
+//	[[UIColor whiteColor] set];
+//	[_text drawInRect:_messageRect withFont:FONT_OF_MESSAGE lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+//	
+//	CGRect r = CGRectZero;
+//	r.origin.y = 15;
+//	r.origin.x = (rect.size.width-_image.size.width)/2;
+//	r.size = _image.size;
+//	
+//	[_image drawInRect:r];
+//}
+
+#pragma mark Setter Methods
+- (void) adjust{
+    
+//	CGSize constrainedSize = [self isIPAD] ? CGSizeMake(160*2,200*2) : CGSizeMake(160,200);
+//	CGSize s = [_text sizeWithFont:FONT_OF_MESSAGE constrainedToSize:constrainedSize lineBreakMode:UILineBreakModeWordWrap];
+//	
+//	float imageAdjustment = 0;
+//	if (_image) {
+//		imageAdjustment = 7+_image.size.height;
+//	}
+//	
+//	self.bounds = CGRectMake(0, 0, s.width+40, s.height+15+15+imageAdjustment);
+//	
+//	_messageRect.size = s;
+//	_messageRect.size.height += 5;
+//	_messageRect.origin.x = 20;
+//	_messageRect.origin.y = 15+imageAdjustment;
+	
+	[self setNeedsLayout];
+	[self setNeedsDisplay];
+	
+}
+- (void) setMessageText:(NSString*)str{
+	[_text release];
+	_text = [str retain];
+	[self adjust];
+}
+- (void) setImage:(UIImage*)img{
+	[_image release];
+	_image = [img retain];
+	[self adjust];
+}
+
+@end
+
+
+@implementation CommonMessageCenter
+@synthesize messages = _messages;
+
+#pragma mark Init & Friends
++ (CommonMessageCenter*) defaultCenter {
+	static CommonMessageCenter *defaultCenter = nil;
+	if (!defaultCenter) {
+		defaultCenter = [[CommonMessageCenter alloc] init];
+	}
+	return defaultCenter;
+}
+- (id) init{
+	if(!(self=[super init])) return nil;
+	
+	_messages = [[NSMutableArray alloc] init];
+	_messageView = [[CommonMessageView createMessageView] retain];
+	_active = NO;
+	
+	
+	_messageFrame = [UIApplication sharedApplication].keyWindow.bounds;
+    
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardDidHideNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationWillChange:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
+    
+	return self;
+}
+- (void) dealloc{
+	[_messages release];
+	[_messageView release];
+	[super dealloc];
+}
+
+
+#pragma mark Show Alert Message
+
+- (void) clearMessages
+{
+    if ([_messages count] > 1) {
+        NSObject *firstAlert = [_messages objectAtIndex:0];
+        [firstAlert retain];
+        [_messages removeAllObjects]; 
+        [_messages addObject:firstAlert];        
+        [firstAlert release];
+    }
+}
+#define INDEX_OF_WORDS 0
+#define INDEX_OF_DELAY_TIME 1
+#define INDEX_OF_IMAGE 2
+- (void) showAlerts{
+	
+	if([_messages count] < 1) {
+		_active = NO;
+		return;
+	}
+	
+	_active = YES;
+	
+	_messageView.transform = CGAffineTransformIdentity;
+	_messageView.alpha = 0;
+	[[UIApplication sharedApplication].keyWindow addSubview:_messageView];
+    
+	NSArray *ar = [_messages objectAtIndex:0];
+	
+	UIImage *img = nil;
+	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
+	
+	[_messageView setImage:img];
+    
+	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
+	
+	
+	
+	_messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_messageFrame.size.height/2);
+    
+	
+	CGRect rr = _messageView.frame;
+	rr.origin.x = (int)rr.origin.x;
+	rr.origin.y = (int)rr.origin.y;
+	_messageView.frame = rr;
+	
+	UIInterfaceOrientation o = [UIApplication sharedApplication].statusBarOrientation;
+	CGFloat degrees = 0;
+	if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;
+	else if(o == UIInterfaceOrientationLandscapeRight ) degrees = 90;
+	else if(o == UIInterfaceOrientationPortraitUpsideDown) degrees = 180;
+	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+	_messageView.transform = CGAffineTransformScale(_messageView.transform, 2, 2);
+	
+	
+	
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.15];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(animationStep2)];
+	
+	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+	_messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, _messageView.frame.size.width, _messageView.frame.size.height);
+	_messageView.alpha = 1;
+	
+	[UIView commitAnimations];
+	
+	
+}
+- (void) animationStep2{
+	[UIView beginAnimations:nil context:nil];
+    
+	// depending on how many words are in the text
+	// change the animation duration accordingly
+	// avg person reads 200 words per minute
+	//NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+	//double duration = MAX(((double)[words count]*60.0/200.0),1);
+    double duration = delayTime.floatValue;
+	
+	[UIView setAnimationDelay:duration];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(animationStep3)];
+	
+	UIInterfaceOrientation o = [UIApplication sharedApplication].statusBarOrientation;
+	CGFloat degrees = 0;
+	if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;
+	else if(o == UIInterfaceOrientationLandscapeRight ) degrees = 90;
+	else if(o == UIInterfaceOrientationPortraitUpsideDown) degrees = 180;
+	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+	_messageView.transform = CGAffineTransformScale(_messageView.transform, 0.5, 0.5);
+	
+	_messageView.alpha = 0;
+	[UIView commitAnimations];
+}
+- (void) animationStep3{
+	
+	[_messageView removeFromSuperview];
+    if ([_messages count] != 0) {
+        [_messages removeObjectAtIndex:0];        
+    }
+	[self showAlerts];
+	
+}
+- (void)postMessageWithText:(NSString *)text 
+                      image:(UIImage *)image 
+                  delayTime:(float)delayTime{
+	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
+	if(!_active) [self showAlerts];
+}
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime{
+	[self postMessageWithText:text image:nil delayTime:delayTime];
+}
+
+
+#pragma mark System Observation Changes
+CGRect subtractMessageRect(CGRect wf,CGRect kf);
+CGRect subtractMessageRect(CGRect wf,CGRect kf){
+	
+	
+	
+	if(!CGPointEqualToPoint(CGPointZero,kf.origin)){
+		
+		if(kf.origin.x>0) kf.size.width = kf.origin.x;
+		if(kf.origin.y>0) kf.size.height = kf.origin.y;
+		kf.origin = CGPointZero;
+		
+	}else{
+		
+		
+		kf.origin.x = abs(kf.size.width - wf.size.width);
+		kf.origin.y = abs(kf.size.height -  wf.size.height);
+		
+		
+		if(kf.origin.x > 0){
+			CGFloat temp = kf.origin.x;
+			kf.origin.x = kf.size.width;
+			kf.size.width = temp;
+		}else if(kf.origin.y > 0){
+			CGFloat temp = kf.origin.y;
+			kf.origin.y = kf.size.height;
+			kf.size.height = temp;
+		}
+		
+	}
+	return CGRectIntersection(wf, kf);
+	
+	
+	
+}
+- (void) keyboardWillAppear:(NSNotification *)notification {
+	
+	NSDictionary *userInfo = [notification userInfo];
+	NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+	CGRect kf = [aValue CGRectValue];
+	CGRect wf = [UIApplication sharedApplication].keyWindow.bounds;
+	
+	[UIView beginAnimations:nil context:nil];
+	_messageFrame = subtractMessageRect(wf,kf);
+	_messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_messageFrame.size.height/2);
+    
+	[UIView commitAnimations];
+    
+}
+- (void) keyboardWillDisappear:(NSNotification *) notification {
+	_messageFrame = [UIApplication sharedApplication].keyWindow.bounds;
+    
+}
+- (void) orientationWillChange:(NSNotification *) notification {
+	
+	NSDictionary *userInfo = [notification userInfo];
+	NSNumber *v = [userInfo objectForKey:UIApplicationStatusBarOrientationUserInfoKey];
+	UIInterfaceOrientation o = [v intValue];
+	
+	
+	
+	
+	CGFloat degrees = 0;
+	if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;
+	else if(o == UIInterfaceOrientationLandscapeRight ) degrees = 90;
+	else if(o == UIInterfaceOrientationPortraitUpsideDown) degrees = 180;
+	
+	[UIView beginAnimations:nil context:nil];
+	_messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+	_messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, (int)_messageView.frame.size.width, (int)_messageView.frame.size.height);
+	[UIView commitAnimations];
+	
+}
+
+@end

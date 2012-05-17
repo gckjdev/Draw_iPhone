@@ -12,6 +12,9 @@
 #import "MusicDownloadService.h"
 #import "MusicItem.h"
 #import "LogUtil.h"
+#import "MusicItemManager.h"
+#import "ShareImageManager.h"
+#import "AudioManager.h"
 
 #define MUSIC_URL @"http://m.easou.com/"
 
@@ -21,9 +24,17 @@
 @synthesize webView = _webView;
 @synthesize editButton;
 @synthesize musicList = _musicList;
+@synthesize canDelete = _canDelete;
 @synthesize request;
 @synthesize openURLForAction;
 @synthesize urlForAction;
+@synthesize musicLabel;
+@synthesize expandButton;
+@synthesize previousButton;
+@synthesize nextButton;
+@synthesize stopButton;
+@synthesize refreshButton;
+@synthesize audiomanager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +57,7 @@
 
 - (void)openURL:(NSString *)URLString
 {
-//    [self showActivityWithText:NSLS(@"kLoadingURL")];
+    [self showActivityWithText:NSLS(@"kLoadingURL")];
     
     NSLog(@"url = %@",URLString);
     
@@ -55,31 +66,39 @@
     [_webView loadRequest:request];
 }
 
+enum{
+    EXPAND = 1,
+    COLLAPSE
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];    
+    [editButton setBackgroundImage:[imageManager orangeImage] 
+                          forState:UIControlStateNormal];
+    
+    expandButton.tag = EXPAND;
+    
+    [self setActionButtonsHidden:YES];
+
     [self openURL:MUSIC_URL];
     
-    _musicList = [MusicDownloadService findAllItems];
-    
-    //for test
-//    MusicItem *item = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test" filePath:@"" tempPath:@""];
-//    MusicItem *item2 = [[MusicItem alloc] initWithUrl:@"test" fileName:@"test2" filePath:@"" tempPath:@""];
-//    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:item, item2, nil];
-//    self.musicList = array ;
+    _musicList = [[MusicItemManager defaultManager] findAllItems];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressTimer) userInfo:nil repeats:YES];
+    [self createTimer];
     
+    audiomanager = [AudioManager defaultManager];
+    
+        
 }
 
 - (void)updateProgressTimer
 {
-//    _musicList = [MusicDownloadService findAllItems];
-//    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
-//    [self.tableView reloadData];
-
+    [self.tableView reloadData];
 }
+    
 
 - (void)viewDidUnload
 {
@@ -89,16 +108,26 @@
     self.request = nil;
     self.musicList = nil;
     
-    [timer invalidate];
-    timer = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.tableView reloadData];
     [super viewDidAppear:animated];
+    
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    
+    [audiomanager setBackGroundMusicWithURL:url];
+    [audiomanager backgroundMusicStart];
+
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [audiomanager backgroundMusicStop];
+
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -115,6 +144,28 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)createTimer
+{
+    if (timer != nil){
+        [timer invalidate];
+        timer = nil;
+        [self.timer release];
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                  target: self
+                                                selector: @selector(updateProgressTimer)
+                                                userInfo: nil
+                                                 repeats: YES];
+}
+
+- (void)killTimer
+{
+    [timer invalidate];
+    timer = nil; 
+    [self.timer release];
+}
+
 #pragma mark - Button Action
 - (IBAction)clickBack:(id)sender
 {
@@ -123,11 +174,72 @@
 
 - (IBAction)clickEdit:(id)sender;
 {
-    if ([_musicList count] == 0) {
-        return;
+    _canDelete = !_canDelete;
+    [self.tableView setEditing:_canDelete animated:YES];
+    
+    if (_canDelete == YES) {
+        [self killTimer];
     }
-    [self.tableView setEditing:YES animated:YES];
-    [self.tableView reloadData];
+    else {
+        _musicList = [[MusicItemManager defaultManager] findAllItems];
+        [self createTimer];
+    }
+}
+
+-(IBAction)clickExpand:(id)sender
+{
+    if (self.expandButton.tag == EXPAND) {
+        [self.tableView setHidden:YES];
+        [self.editButton setHidden:YES];
+        
+        CGRect labelframe = self.musicLabel.frame;
+        labelframe.origin.y=50;
+        
+        CGRect expandframe = self.expandButton.frame;
+        expandframe.origin.y=50;
+        
+        CGRect webframe=self.webView.frame;
+        webframe.origin.y=50+30;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 50;
+                
+        [UIView animateWithDuration:0.5 animations:^{ 
+            self.webView.frame=webframe;
+            self.expandButton.frame = expandframe;
+            self.musicLabel.frame = labelframe;
+            [self.expandButton setTitle:NSLS(@"收缩") forState:UIControlStateNormal];
+            self.expandButton.tag = COLLAPSE;
+            [self setActionButtonsHidden:NO];
+
+            
+        }];
+    }
+    else {
+        [self.tableView setHidden:NO];
+        [self.editButton setHidden:NO];
+
+        CGRect labelframe = self.musicLabel.frame;
+        labelframe.origin.y=210;
+        
+        CGRect expandframe = self.expandButton.frame;
+        expandframe.origin.y=210;
+        
+        CGRect webframe=self.webView.frame;
+        webframe.origin.y=210+30;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 30 - 50;
+        
+        [UIView animateWithDuration:0.5 animations:^{ 
+            
+            self.webView.frame=webframe;
+            self.expandButton.frame = expandframe;
+            self.musicLabel.frame = labelframe;
+            [self.expandButton setTitle:NSLS(@"展开") forState:UIControlStateNormal];
+            self.expandButton.tag = EXPAND;
+            [self setActionButtonsHidden:YES];
+
+
+        }];
+
+    }
 }
 
 #pragma mark - tableView delegate method
@@ -181,27 +293,59 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_musicList objectAtIndex:indexPath.row];
-    NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:_musicList];
-    [mutableDataList removeObjectAtIndex:indexPath.row];
-    _musicList = mutableDataList;
-    
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (editingStyle == UITableViewCellEditingStyleDelete) { 
+        MusicItem *item = [_musicList objectAtIndex:indexPath.row];
+        NSMutableArray *mutableDataList = [NSMutableArray arrayWithArray:_musicList];
+        [mutableDataList removeObjectAtIndex:indexPath.row];
+        _musicList = mutableDataList;
+        
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [[MusicItemManager defaultManager] deleteItem:item];
+
+    }
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
+    if (_canDelete == YES) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else {
+        return UITableViewCellEditingStyleNone;
+    }
 }
 
 #pragma mark - webView delegate method
-
-- (IBAction) clickBackButton
+- (void) setActionButtonsHidden:(BOOL)isHidden
+{
+    [self.previousButton setHidden:isHidden];
+    [self.nextButton setHidden:isHidden];
+    [self.stopButton setHidden:isHidden];
+    [self.refreshButton setHidden:isHidden];
+}
+- (IBAction)clickPrevious:(id)sender
 {
     if (self.webView.canGoBack) {
         [self.webView stopLoading];
         [self.webView goBack];
+    } 
+}
+- (IBAction)clicknext:(id)sender
+{
+    if ([self.webView canGoForward]) {
+        [self.webView stopLoading];
+        [self.webView goForward];
     }
+}
+- (IBAction)clickStop:(id)sender
+{
+    [self.webView stopLoading];
+}
+- (IBAction)clickRefresh:(id)sender
+{
+    [self.webView reload];
 }
 
 - (BOOL)canDownload:(NSString*)urlString
@@ -242,7 +386,6 @@
         case CLICK_DOWNLOAD:
         {
             [[MusicDownloadService defaultService] downloadFile:urlForAction];
-            
         }
             break;
             
@@ -299,6 +442,14 @@
     
     return YES;
 
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    [self hideActivity];
+    
+    // forbid popup call out window
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
 }
 
 @end

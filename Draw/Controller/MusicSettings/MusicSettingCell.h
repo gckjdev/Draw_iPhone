@@ -11,12 +11,17 @@
 #import "MusicItem.h"
 
 @interface MusicSettingCell : PPTableViewCell
-
+{
+    MusicItem* _musicItem;
+}
 
 @property (retain, nonatomic) IBOutlet UILabel *musicNameLabel;
 @property (retain, nonatomic) IBOutlet UIProgressView *downloadProgress;
+@property (retain, nonatomic) IBOutlet UIButton *selectedCurrentButton;
+@property (retain, nonatomic) MusicItem *musicItem;
 
 + (MusicSettingCell*) createCell:(id)delegate;
 - (void)setCellInfoWithItem:(MusicItem*)item indexPath:(NSIndexPath*)indexPath;
+- (IBAction)selectCurrent:(id)sender;
 
 @end

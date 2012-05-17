@@ -58,7 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [titleLabel setText:NSLS(@"kAddFriend")];
+    [titleLabel setText:NSLS(@"kSearchUser")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
@@ -228,6 +228,7 @@
 - (void)didFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
         NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:selectedIndex];
         [userDic setValue:[NSNumber numberWithInt:FOLLOW] forKey:PARA_FRIENDSTYPE];
         [[FriendManager defaultManager] createFriendByDictionary:userDic];

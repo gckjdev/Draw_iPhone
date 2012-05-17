@@ -11,7 +11,14 @@
 
 @interface MusicItemManager : NSObject
 
-+ (void)saveItem:(MusicItem*)item;
-+ (NSArray*) findAllItems;
+@property (nonatomic, retain) NSMutableArray *itemList;
+@property (nonatomic, retain) MusicItem *currentMusicItem;
 
+
++ (MusicItemManager*)defaultManager;
+
+- (void)saveItem:(MusicItem*)item;
+- (NSArray*) findAllItems;
+- (void)saveMusicItems;
+- (void)deleteItem:(MusicItem*)item;
 @end

@@ -9,16 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "RoomService.h"
+#import "InputDialog.h"
+#import "DrawGameService.h"
 
 @class ShareImageManager;
-
-@interface SearchRoomController : PPTableViewController<RoomServiceDelegate,UITextFieldDelegate>
+@class Room;
+@interface SearchRoomController : PPTableViewController<RoomServiceDelegate,UITextFieldDelegate, InputDialogDelegate,DrawGameServiceDelegate>
 {
     ShareImageManager *imageManager;
     RoomService *roomService;
+    Room *_currentSelectRoom;
+    UserManager *_userManager;
+    BOOL _isTryJoinGame;    
+
 }
 
 - (IBAction)clickSearhButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
+@property (retain, nonatomic) IBOutlet UIImageView *searchFieldBg;
 @property (retain, nonatomic) IBOutlet UITextField *searchField;
+//@property (retain, nonatomic) Room *selectedRoom;
 @end
