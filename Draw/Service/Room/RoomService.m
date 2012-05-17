@@ -62,6 +62,25 @@ RoomService *staticRoomService = nil;
 
 }
 
+
+- (void)joinNewRoom:(Room *)room delegate:(id<RoomServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [userManager userId]; 
+        NSString *nickName = [userManager nickName];
+        NSString *gender = [userManager gender];
+        NSString *avatar = [userManager avatarURL];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest uninvitedJoinRoom:TRAFFIC_SERVER_URL roomId:room.roomId password:room.password userId:userId nick:nickName avatar:avatar gender:gender];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didJoinNewRoom:)]) {
+                [delegate didJoinNewRoom:output.resultCode];
+            }
+        });
+        
+    });   
+}
 - (void)findMyRoomsWithOffset:(NSInteger)offset 
                         limit:(NSInteger)limit 
                      delegate: (id<RoomServiceDelegate>) delegate
