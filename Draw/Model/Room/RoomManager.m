@@ -214,5 +214,23 @@ RoomManager *staticRoomManager = nil;
     return [NSMutableArray arrayWithArray:array];
 }
 
+- (BOOL)room:(Room *)room containsUser:(NSString *)userId
+{
+    if (room && userId) {        
+        for (RoomUser *user in room.userList) {
+            if ([user.userId isEqualToString:userId]) {
+                return YES;
+            }
+        }
+        if ([userId isEqualToString:room.creator.userId]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
+- (NSInteger)roomCapacity
+{
+    return 2;
+}
 @end

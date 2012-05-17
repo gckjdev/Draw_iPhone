@@ -78,7 +78,8 @@ NSString* GlobalGetTrafficServerURL()
                                                @"clickWord.wav", 
                                                @"enterRoom.wav", 
                                                @"correct.mp3", 
-                                               @"wrong.wav", nil]];
+                                               @"wrong.wav", 
+                                               @"congratulations!.wav", nil]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 

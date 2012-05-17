@@ -253,7 +253,12 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_isInviteFriend) {
-        return indexPath;
+        Friend *friend = [self.dataList objectAtIndex:indexPath.row];
+        if (![[RoomManager defaultManager] room:self.room 
+                                   containsUser:friend.friendUserId])
+        {
+            return indexPath;            
+        }
     }
     return nil;
 }
@@ -262,10 +267,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *friend = [self friendForIndexPath:indexPath];
-    if (friend) {
+    if (friend) {        
         if ([self isFriendSelected:friend]) {
             [self unSelectFriend:friend];
         }else{
+            NSInteger userCount = [self.room.userList count] + [_selectedSet count];
+            NSInteger capacity = [[RoomManager defaultManager]roomCapacity];
+            if (userCount >= capacity) {
+                NSString *string = [NSString stringWithFormat:NSLS(@"kInviteFull"),capacity,userCount];
+                [self popupMessage:string title:nil];
+                return;
+            }
             [_selectedSet addObject:friend];
         }
         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
@@ -320,6 +332,7 @@
 - (IBAction)clickEdit:(id)sender
 {
     if (_isInviteFriend && [_selectedSet count] != 0) {
+                
         //invite users
         [self showActivityWithText:NSLS(@"kInviting")];
         [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];

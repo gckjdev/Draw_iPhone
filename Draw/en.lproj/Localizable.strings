@@ -388,3 +388,5 @@
 "kRoomSearhTips" = "Nickname / Room name";
 
 "kInputRoomPassword" = "Input room password";
+
+"kInviteFull" = "The room can only invite up to %d frieds, you have invited %d.";

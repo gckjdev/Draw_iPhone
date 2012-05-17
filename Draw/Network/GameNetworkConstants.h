@@ -97,6 +97,7 @@
 #define METHOD_CREATE_ROOM @"cr"
 #define METHOD_JOIN_ROOM @"jr"
 #define METHOD_REOMOVE_ROOM @"rr"
+#define METHOD_NEW_JOIN_ROOM @"njr"
 
 //find draw
 #define METHOD_FINDDRAW @"fd"

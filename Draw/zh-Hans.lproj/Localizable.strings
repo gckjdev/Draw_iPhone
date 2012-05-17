@@ -403,3 +403,4 @@
 
 "kRoomSearhTips" = "昵称 / 房间名";
 "kInputRoomPassword" = "请输入房间口令";
+"kInviteFull" = "房间最多只能邀请%d个好友，你已经邀请了%d个。";

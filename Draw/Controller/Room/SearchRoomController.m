@@ -96,7 +96,7 @@
     [self.searchField resignFirstResponder];
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
-        [self showActivityWithText:@"kRoomSearching"];
+        [self showActivityWithText:NSLS(@"kRoomSearching")];
         [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
     }else{
         [self popupMessage:NSLS(@"kTextNull") title:nil];
@@ -109,7 +109,8 @@
 {
     if (_isTryJoinGame)
         return;
-    
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
+
     [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];
@@ -186,7 +187,6 @@
         dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
         [dialog showInView:self.view];
     }else{
-        [self popupMessage:@"invited" title:nil];
         [self startGame];
     }
     
@@ -195,10 +195,13 @@
 - (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     if ([targetText isEqualToString:_currentSelectRoom.password]) {
-        [self popupMessage:@"password right" title:nil];
-        [self startGame];
+        if (_currentSelectRoom) {
+            [roomService joinNewRoom:_currentSelectRoom delegate:self];           
+            [self showActivityWithText:NSLS(@"kConnectingServer")];
+        }
+
     }else{
-        [self popupMessage:@"password wrong" title:nil];
+        [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
     }
 }
 - (void)clickCancel:(InputDialog *)dialog
@@ -206,7 +209,15 @@
     
 }
 
-
+- (void)didJoinNewRoom:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self startGame];
+    }else{
+        [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
+    }
+}
 
 
 #pragma mark - Draw Game Service Delegate
