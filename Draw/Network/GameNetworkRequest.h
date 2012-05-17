@@ -172,5 +172,6 @@
                                  password:(NSString *)password                   
                                    userId:(NSString *)userId;                              
 
++ (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
 @end

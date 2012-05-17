@@ -12,12 +12,14 @@
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
-- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList;
+- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
 
 @end
 
 
 @interface DrawDataService : CommonService
+
++ (DrawDataService *)defaultService;
 
 - (void)findRecentDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 

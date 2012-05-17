@@ -8,7 +8,7 @@
 
 #import "DrawAction.h"
 #import "Paint.h"
-
+#import "GameBasic.pb.h"
 @implementation DrawAction
 
 @synthesize type = _type;
@@ -20,6 +20,8 @@
     [super dealloc];
 }
 
+
+
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
 {
     self = [super init];
@@ -29,7 +31,23 @@
     }
     return self;
 }
-
+- (id)initWithPBDrawAction:(PBDrawAction *)action
+{
+    self = [ super init];
+    if (self) {
+        self.type = action.type;
+        
+        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+            NSInteger intColor = [action color];
+            CGFloat lineWidth = [action width];        
+            NSArray *pointList = [action pointsList];
+            Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
+            self.paint = paint;
+            [paint release];
+        }
+    }
+    return self;
+}
 
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
 {

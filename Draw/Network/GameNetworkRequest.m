@@ -8,6 +8,7 @@
 
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
+#import "PPNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "StringUtil.h"
 #import "JSON.h"
@@ -934,5 +935,32 @@
 
 }
 
+
++ (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDDRAW];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+}
 
 @end
