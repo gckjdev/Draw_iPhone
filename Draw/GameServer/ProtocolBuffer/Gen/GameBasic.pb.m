@@ -1217,6 +1217,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property int32_t language;
 @property int32_t createDate;
 @property (retain) NSString* nickName;
+@property (retain) NSString* avatar;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @end
 
@@ -1264,11 +1265,19 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasNickName_ = !!value;
 }
 @synthesize nickName;
+- (BOOL) hasAvatar {
+  return !!hasAvatar_;
+}
+- (void) setHasAvatar:(BOOL) value {
+  hasAvatar_ = !!value;
+}
+@synthesize avatar;
 @synthesize mutableDrawDataList;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
   self.nickName = nil;
+  self.avatar = nil;
   self.mutableDrawDataList = nil;
   [super dealloc];
 }
@@ -1280,6 +1289,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.language = 0;
     self.createDate = 0;
     self.nickName = @"";
+    self.avatar = @"";
   }
   return self;
 }
@@ -1341,6 +1351,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasNickName) {
     [output writeString:6 value:self.nickName];
   }
+  if (self.hasAvatar) {
+    [output writeString:7 value:self.avatar];
+  }
   for (PBDrawAction* element in self.drawDataList) {
     [output writeMessage:10 value:element];
   }
@@ -1370,6 +1383,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasNickName) {
     size += computeStringSize(6, self.nickName);
+  }
+  if (self.hasAvatar) {
+    size += computeStringSize(7, self.avatar);
   }
   for (PBDrawAction* element in self.drawDataList) {
     size += computeMessageSize(10, element);
@@ -1467,6 +1483,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
+  if (other.hasAvatar) {
+    [self setAvatar:other.avatar];
+  }
   if (other.mutableDrawDataList.count > 0) {
     if (result.mutableDrawDataList == nil) {
       result.mutableDrawDataList = [NSMutableArray array];
@@ -1516,6 +1535,10 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 50: {
         [self setNickName:[input readString]];
+        break;
+      }
+      case 58: {
+        [self setAvatar:[input readString]];
         break;
       }
       case 82: {
@@ -1621,6 +1644,22 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearNickName {
   result.hasNickName = NO;
   result.nickName = @"";
+  return self;
+}
+- (BOOL) hasAvatar {
+  return result.hasAvatar;
+}
+- (NSString*) avatar {
+  return result.avatar;
+}
+- (PBDraw_Builder*) setAvatar:(NSString*) value {
+  result.hasAvatar = YES;
+  result.avatar = value;
+  return self;
+}
+- (PBDraw_Builder*) clearAvatar {
+  result.hasAvatar = NO;
+  result.avatar = @"";
   return self;
 }
 - (NSArray*) drawDataList {

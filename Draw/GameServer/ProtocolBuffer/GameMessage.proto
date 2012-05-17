@@ -141,3 +141,8 @@ message GameMessage {
   optional GeneralNotification notification = 51;
   
 }
+
+message DataQueryResponse {
+  required int32 resultCode = 1;
+  repeated PBDraw drawData = 21;
+}
