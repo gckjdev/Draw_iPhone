@@ -62,7 +62,6 @@
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
-		C23163A315577B8E00AC132B /* clickWord.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A015577B8E00AC132B /* clickWord.wav */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
 		C23163A715577D2200AC132B /* enterRoom.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A615577D2200AC132B /* enterRoom.wav */; };
@@ -81,6 +80,10 @@
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
+		C29B8A4D1565001000B9707D /* cannon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A491565001000B9707D /* cannon.mp3 */; };
+		C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4A1565001000B9707D /* clickWord.mp3 */; };
+		C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4B1565001000B9707D /* congratulations!.wav */; };
+		C29B8A501565001000B9707D /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4C1565001000B9707D /* ding.wav */; };
 		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
@@ -731,7 +734,6 @@
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
-		C23163A015577B8E00AC132B /* clickWord.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickWord.wav; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
 		C23163A615577D2200AC132B /* enterRoom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enterRoom.wav; sourceTree = "<group>"; };
@@ -753,6 +755,10 @@
 		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
+		C29B8A491565001000B9707D /* cannon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cannon.mp3; sourceTree = "<group>"; };
+		C29B8A4A1565001000B9707D /* clickWord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickWord.mp3; sourceTree = "<group>"; };
+		C29B8A4B1565001000B9707D /* congratulations!.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "congratulations!.wav"; sourceTree = "<group>"; };
+		C29B8A4C1565001000B9707D /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
@@ -1729,9 +1735,12 @@
 		C231639F15577B8E00AC132B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C29B8A491565001000B9707D /* cannon.mp3 */,
+				C29B8A4A1565001000B9707D /* clickWord.mp3 */,
+				C29B8A4B1565001000B9707D /* congratulations!.wav */,
+				C29B8A4C1565001000B9707D /* ding.wav */,
 				EADCDDD81563D5D600E5A181 /* background */,
 				C23163A615577D2200AC132B /* enterRoom.wav */,
-				C23163A015577B8E00AC132B /* clickWord.wav */,
 				C23163A115577B8E00AC132B /* correct.mp3 */,
 				C23163A215577B8E00AC132B /* wrong.wav */,
 			);
@@ -4316,7 +4325,6 @@
 				A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */,
 				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
-				C23163A315577B8E00AC132B /* clickWord.wav in Resources */,
 				C23163A415577B8E00AC132B /* correct.mp3 in Resources */,
 				C23163A515577B8E00AC132B /* wrong.wav in Resources */,
 				C23163A715577D2200AC132B /* enterRoom.wav in Resources */,
@@ -4366,6 +4374,10 @@
 				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
 				EADCDDD91563D5D600E5A181 /* background in Resources */,
 				A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */,
+				C29B8A4D1565001000B9707D /* cannon.mp3 in Resources */,
+				C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */,
+				C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */,
+				C29B8A501565001000B9707D /* ding.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
