@@ -16,11 +16,11 @@ typedef enum {
 
 
 typedef enum {
-    UserUnInvited = -1,
     UserInvited = 1,
-//    UserCreator = 2,
+    UserCreator = 2,
     UserJoined = 3,
-    UserPlaying = 4
+    UserPlaying = 4,
+    UserUnInvited = 100
 }RoomUserStatus;
 
 @class RoomUser;
@@ -40,6 +40,8 @@ typedef enum {
 @property(nonatomic, retain)NSDate *expireDate;
 @property(nonatomic, retain)RoomUser *creator;
 @property(nonatomic, retain)NSArray *userList;
+
+@property(nonatomic, assign)RoomUserStatus myStatus;
 
 - (NSArray *)invitedUserList;
 - (NSArray *)playingUserList;

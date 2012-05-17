@@ -10,6 +10,7 @@
 #import "MessageCell.h"
 #import "StableView.h"
 #import "MessageManager.h"
+#import "FriendService.h"
 
 @class AvatarView;
 
@@ -20,21 +21,25 @@
 
 @end
 
-@interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate>
+@interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate, FriendServiceDelegate>
 
 @property (assign, nonatomic) id<ChatControllerDelegate> chatControllerDelegate;
-
-@property (retain, nonatomic) IBOutlet UIView *chatView;
+@property (retain, nonatomic) IBOutlet UIImageView *viewBgImageView;
+@property (retain, nonatomic) IBOutlet UIView *userView;
+@property (retain, nonatomic) IBOutlet UIView *chatInfoView;
+@property (retain, nonatomic) IBOutlet UIImageView *chatInfoViewBgImageView;
 @property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *microBlogImageView;
 @property (retain, nonatomic) IBOutlet UILabel *sexLabel;
 @property (retain, nonatomic) IBOutlet UILabel *cityLabel;
+@property (retain, nonatomic) IBOutlet UIButton *payAttentionButton;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionScrollView;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 - (id)initWithChatType:(GameChatType)type;
-- (void)showInView:(UIView*)superView;
+- (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId;
 - (void)dismiss;
 
 @end

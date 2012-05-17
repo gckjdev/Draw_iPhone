@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="293196574">
 								<reference key="NSNextResponder" ref="472566600"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{43, 11}, {92, 21}}</string>
+								<string key="NSFrame">{{29, 11}, {110, 21}}</string>
 								<reference key="NSSuperview" ref="472566600"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="961879149"/>
@@ -74,11 +74,12 @@
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIProgressView" id="961879149">
 								<reference key="NSNextResponder" ref="472566600"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{141, 17}, {117, 9}}</string>
+								<string key="NSFrame">{{143, 17}, {117, 9}}</string>
 								<reference key="NSSuperview" ref="472566600"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -89,7 +90,7 @@
 							<object class="IBUIButton" id="813004569">
 								<reference key="NSNextResponder" ref="472566600"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 5}, {26, 35}}</string>
+								<string key="NSFrame">{{4, 5}, {26, 35}}</string>
 								<reference key="NSSuperview" ref="472566600"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="293196574"/>

@@ -12,11 +12,17 @@
 #import "RoomService.h"
 #import "ShareImageManager.h"
 #import "RoomCell.h"
+#import "ConfigManager.h"
+#import "StringUtil.h"
+#import "GameMessage.pb.h"
+#import "RoomController.h"
+#import "PPDebug.h"
 
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
 @synthesize searchField;
+//@synthesize selectedRoom = _selectedRoom;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +30,10 @@
     if (self) {
         roomService = [RoomService defaultService];
         imageManager = [ShareImageManager defaultManager];
+
+        _userManager = [UserManager defaultManager];
+        roomService = [RoomService defaultService];
+
     }
     return self;
 }
@@ -56,6 +66,19 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.dataTableView reloadData];
+    [[DrawGameService defaultService] registerObserver:self];
+    [super viewDidDisappear:animated];    
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -66,19 +89,34 @@
     [searchField release];
     [searchButton release];
     [searchFieldBg release];
+//    [_selectedRoom release];
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {
     [self.searchField resignFirstResponder];
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
-        [self showActivityWithText:@"kRoomSearching"];
+        [self showActivityWithText:NSLS(@"kRoomSearching")];
         [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
     }else{
         [self popupMessage:NSLS(@"kTextNull") title:nil];
     }
 }
 
+
+
+- (void)startGame
+{
+    if (_isTryJoinGame)
+        return;
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
+
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] connectServer:self];
+    _isTryJoinGame = YES;    
+    
+}
 
 #pragma mark - delegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -133,6 +171,108 @@
     [cell setInfo:room];
     cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= [self.dataList count])
+        return;
+    
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    _currentSelectRoom = room;
+    if (room == nil)
+        return;
+    if (room.myStatus == UserUnInvited) {
+        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
+        dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
+        [dialog showInView:self.view];
+    }else{
+        [self startGame];
+    }
+    
+}
+
+- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    if ([targetText isEqualToString:_currentSelectRoom.password]) {
+        if (_currentSelectRoom) {
+            [roomService joinNewRoom:_currentSelectRoom delegate:self];           
+            [self showActivityWithText:NSLS(@"kConnectingServer")];
+        }
+
+    }else{
+        [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
+    }
+}
+- (void)clickCancel:(InputDialog *)dialog
+{
+    
+}
+
+- (void)didJoinNewRoom:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self startGame];
+    }else{
+        [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
+    }
+}
+
+
+#pragma mark - Draw Game Service Delegate
+
+- (void)didBroken
+{
+    _isTryJoinGame = NO;
+    PPDebug(@"<didBroken> Friend Room");
+    [self hideActivity];
+    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+}
+
+- (void)didConnected
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+    
+    NSString* userId = [_userManager userId];    
+    if (userId == nil){
+        _isTryJoinGame = NO;
+        PPDebug(@"<didConnected> Friend Room, but user Id nil???");
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    if (_isTryJoinGame){
+        [[DrawGameService defaultService] registerObserver:self];
+        [[DrawGameService defaultService] joinFriendRoom:[_userManager userId] 
+                                                  roomId:[_currentSelectRoom roomId]
+                                                roomName:[_currentSelectRoom roomName]
+                                                nickName:[_userManager nickName]
+                                                  avatar:[_userManager avatarURL]
+                                                  gender:[_userManager isUserMale]
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+    }
+    
+    _isTryJoinGame = NO;    
+}
+
+- (void)didJoinGame:(GameMessage *)message
+{
+    [[DrawGameService defaultService] unregisterObserver:self];
+    
+    [self hideActivity];
+    if ([message resultCode] == 0){
+        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+    }
+    else{
+        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
+        [self popupUnhappyMessage:text title:@""];
+        [[DrawGameService defaultService] disconnectServer];
+        return;
+    }
+    
+    [RoomController enterRoom:self isFriendRoom:YES];
 }
 
 

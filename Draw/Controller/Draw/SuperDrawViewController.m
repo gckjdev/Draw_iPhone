@@ -14,11 +14,14 @@
 #import "DeviceDetection.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
+#import "DrawGameService.h"
 
 @implementation SuperDrawViewController
 @synthesize turnNumberButton;
 @synthesize popupButton;
 @synthesize clockButton;
+@synthesize privateChatController = _privateChatController;
+@synthesize groupChatController = _groupChatController;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,6 +39,8 @@
     [popupButton release];
     [turnNumberButton release];
     [avatarArray release];
+    [_privateChatController release];
+    [_groupChatController release];
     [super dealloc];
 }
 
@@ -143,6 +148,7 @@
 
         AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
         [aView setUserId:user.userId];
+        aView.delegate = self;
         
         //set center
         if ([DeviceDetection isIPAD]) {
@@ -272,4 +278,33 @@
         [self addScore:gainCoins toUser:guessUserId];
     }
 }
+
+//- (void)didSelectMessage:(NSString *)message
+//{
+//    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
+//        [self clickProlongStart:nil];
+//    }else {
+//        [self userId:[[DrawGameService defaultService] userId] popupMessage:message];
+//    }
+//}
+//
+//- (void)didSelectExpression:(UIImage *)expression
+//{
+//    [self userId:[[DrawGameService defaultService] userId] popupImage:expression title:nil];
+//}
+
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    if (userId == nil || [[UserManager defaultManager] isMe:userId]) {
+        return;
+    }
+    
+    if (_privateChatController == nil) {
+        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+    }
+    _privateChatController.chatControllerDelegate = self;
+    
+    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId];
+}
+
 @end

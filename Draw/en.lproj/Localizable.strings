@@ -338,15 +338,27 @@
 
 "kMale" = "Male";
 "kFemale" = "Female";
-
 "kSayToYou" = "Say to you: %@";
+"kNobodyInRoom" = "you can chat private nobody in room";
+
+"kPayAttentionToMe" = "Pay attention to me";
+"kDrawTillDawn" = "Draw till Dawn";
+"kHelloEveryone" = "Hello, every one";
+"kDontLeave" = "Don't leave";
+"kFunny" = "It's funny";
+"kDrawedWhat" = "What are you drawed";
+"kHardToGuess" = "It's hard to guess";
+"kGeiliable" = "Wonderful";
+"kDontWriteAnswer" = "Don't give answer" ;
+"kGiveAPrompt" = "Give me a prompt";
+"kWellDone" = "Well done";
+
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
 "kRoomNameLabel" = "Room Name";
 "kRoomPasswordLabel" = "Password";
 "kRoomPasswordIllegal" = "Password illegal";
 "kRoomNameIllegal" = "Room name illegal";
-
 
 "kInvited" = "Invited";
 "kJoined" = "Joined";
@@ -374,3 +386,15 @@
 "kInviteFriendFail" = "Invite friends successfully.";
 
 "kRoomSearhTips" = "Nickname / Room name";
+
+"kInputRoomPassword" = "Input room password";
+
+"kInviteFull" = "The room can only invite up to %d frieds, you have invited %d.";
+
+"kDownloadURL" = "Download file from %@ ?";
+"kYesDownload" = "Yes, download the file";
+"kNoOpenURL" = "No, open the URL";
+
+"kExpand" = "Expand";
+"kCollapse" = "Collapse";
+"kMusicSettings" = "MusicSettings";

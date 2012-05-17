@@ -14,13 +14,12 @@
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
-#import "DrawGameService.h"
 #import "ConfigManager.h"
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
 #import "MyFriendsController.h"
-
+#import "RoomManager.h"
 
 #define INVITE_LIMIT 12
 
@@ -115,10 +114,9 @@
 
 - (IBAction)clickCreateButton:(id)sender {
     RoomPasswordDialog *rDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
-    NSInteger index = rand() % 97;
+    NSInteger index = [[UserManager defaultManager] roomCount] + 1;
     NSString *nick = [[UserManager defaultManager]nickName];
     NSString *string = [NSString stringWithFormat:NSLS(@"kRoomNameNumber"),nick,index];
-    
     rDialog.targetTextField.text = string;
     [rDialog showInView:self.view];
 }
@@ -178,6 +176,7 @@
             [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
             [dataTableView endUpdates];
         }
+        [[UserManager defaultManager] increaseRoomCount];
     }
 }
 
@@ -210,6 +209,8 @@
     if (_isTryJoinGame)
         return;
     
+    
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
     [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];
@@ -229,7 +230,7 @@
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
         {
-            self.dataList = roomList;            
+            self.dataList = [[RoomManager defaultManager] sortRoomList:roomList];            
         }
         [self.dataTableView reloadData];
     }

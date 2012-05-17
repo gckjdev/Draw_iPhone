@@ -32,6 +32,9 @@
 #import "ChatController.h"
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
+#import "SearchRoomController.h"
+#import "AudioManager.h"
+#import "MusicItemManager.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -69,8 +72,9 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
+    //init background music    
+    [self playBackgroundMusic];
 
-    
     // setup button images
     UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
     [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
@@ -153,6 +157,19 @@
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+- (void)playBackgroundMusic
+{
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    AudioManager *audioManager = [AudioManager defaultManager];
+    
+    //stop old music
+    [audioManager backgroundMusicStop];
+    //start new music
+    [audioManager setBackGroundMusicWithURL:url];
+    [audioManager backgroundMusicStart];
+
+}
 - (IBAction)clickStart:(id)sender
 {        
     [self showActivityWithText:NSLS(@"kJoiningGame")];
@@ -348,6 +365,22 @@
 
 + (void)returnRoom:(UIViewController*)superController
 {
+    
+    UIViewController *viewController = nil;
+    for(UIViewController *vc in superController.navigationController.childViewControllers)
+    {
+        if ([vc isKindOfClass:[SearchRoomController class]]) {
+            viewController = vc;
+            break;
+        }
+        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
+            viewController = vc;
+        }
+    }
+    if (viewController != nil) {
+        [superController.navigationController popToViewController:viewController animated:YES];        
+        return;
+    }
     [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
 }
 
@@ -369,7 +402,7 @@
     MyFriendsController *myFriends = [[MyFriendsController alloc] init];
     [self.navigationController pushViewController:myFriends animated:YES];
     [myFriends release];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:rand()%4];
 }
 
 @end

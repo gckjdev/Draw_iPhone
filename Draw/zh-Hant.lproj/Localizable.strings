@@ -351,8 +351,20 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-
 "kSayToYou" = "對你說: %@";
+"kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
+
+"kPayAttentionToMe" = "關註我吧";
+"kDrawTillDawn" = "決戰到天亮";
+"kHelloEveryone" = "hi,大家好";
+"kDontLeave" = "别走啊";
+"kFunny" = "真有趣";
+"kDrawedWhat" = "畫什麽啊";
+"kHardToGuess" = "真難猜";
+"kGeiliable" = "給力";
+"kDontWriteAnswer" = "別給答案啊" ;
+"kGiveAPrompt" = "給點提示吧";
+"kWellDone" = "畫的真好";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";
@@ -387,3 +399,13 @@
 "kInviteFriendSucc" = "邀請好友成功。";
 
 "kRoomSearhTips" = "暱稱 / 房間名";
+"kInputRoomPassword" = "請輸入房間口令";
+"kInviteFull" = "房間最多只能邀請%d個好友，你已經邀請了%d個。";
+
+"kDownloadURL" = "是否下載來自%@ 的鏈接文件?";
+"kYesDownload" = "是的，我要下載";
+"kNoOpenURL" = "不是，繼續打開鏈接";
+
+"kExpand" = "展开";
+"kCollapse" = "收缩";
+"kMusicSettings" = "背景音乐";

@@ -114,18 +114,10 @@ enum{
 {
     [self.tableView reloadData];
     [super viewDidAppear:animated];
-    
-    MusicItemManager* musicManager = [MusicItemManager defaultManager];
-    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
-    
-    [audiomanager setBackGroundMusicWithURL:url];
-    [audiomanager backgroundMusicStart];
-
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [audiomanager backgroundMusicStop];
 
 }
 - (void)dealloc
@@ -206,7 +198,7 @@ enum{
             self.webView.frame=webframe;
             self.expandButton.frame = expandframe;
             self.musicLabel.frame = labelframe;
-            [self.expandButton setTitle:NSLS(@"收缩") forState:UIControlStateNormal];
+            [self.expandButton setTitle:NSLS(@"kCollapse") forState:UIControlStateNormal];
             self.expandButton.tag = COLLAPSE;
             [self setActionButtonsHidden:NO];
 
@@ -232,7 +224,7 @@ enum{
             self.webView.frame=webframe;
             self.expandButton.frame = expandframe;
             self.musicLabel.frame = labelframe;
-            [self.expandButton setTitle:NSLS(@"展开") forState:UIControlStateNormal];
+            [self.expandButton setTitle:NSLS(@"kExpand") forState:UIControlStateNormal];
             self.expandButton.tag = EXPAND;
             [self setActionButtonsHidden:YES];
 

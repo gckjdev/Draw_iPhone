@@ -19,7 +19,7 @@ enum{
 
 @class UserManager;
 
-@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate, ChatControllerDelegate>
+@interface RoomController : PPViewController<DrawGameServiceDelegate, CommonDialogDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
     int _currentTimeCounter;
     BOOL _hasClickStartGame;
@@ -40,7 +40,9 @@ enum{
 @property (assign, nonatomic) BOOL isFriendRoom;
 @property (retain, nonatomic) IBOutlet UILabel *onlinePlayerCountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *changeRoomButton;
-@property (retain, nonatomic) ChatController *chatController;
+@property (retain, nonatomic) ChatController *privateChatController;
+@property (retain, nonatomic) ChatController *groupChatController;
+
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickChangeRoom:(id)sender;

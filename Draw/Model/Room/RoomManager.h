@@ -29,4 +29,8 @@
                             split:(NSString *)split 
                             count:(NSInteger)count;
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room;
+- (NSMutableArray *)sortRoomList:(NSArray *)roomList;
+- (BOOL)room:(Room *)room containsUser:(NSString *)userId;
+- (NSInteger)roomCapacity;
+
 @end
