@@ -22,6 +22,8 @@
 #import "Account.h"
 #import "DrawAction.h"
 #import "WordManager.h"
+#import "AudioManager.h"
+#import "DrawConstants.h"
 
 #define CONTINUE_TIME 10
 
@@ -118,6 +120,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.score > 0) {
+        [[AudioManager defaultManager] playSoundById:GAME_WIN];
+    }
         
     [self.drawImage setImage:_image];
     NSString *answer = nil;

@@ -14,7 +14,7 @@ typedef enum {
     ENTER_ROOM,
     BINGO,
     WRONG,
-    GAME_OVER,
+    GAME_WIN,
     RUN_AWAY,
     QUICK_QUICK,
     WAIT_WAIT,
