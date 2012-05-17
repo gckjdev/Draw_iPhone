@@ -308,7 +308,7 @@ enum {
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     
     if ([self.imageFilePath hasSuffix:@"gif"]){                              
-        GifView* view = [[GifView alloc] initWithFrame:INFUSE_VEIW_FRAME
+        GifView* view = [[GifView alloc] initWithFrame:self.myImageView.frame
                                                 filePath:self.imageFilePath
                                         playTimeInterval:0.3]; 
         [self.paperBackground setHidden:NO];
