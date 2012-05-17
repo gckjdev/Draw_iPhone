@@ -38,6 +38,8 @@
 
 #define KEY_FACEBOOK_LOGINID            @"USER_KEY_FACEBOOK_LOGINID"
 
+#define KEY_ROOM_COUNT            @"KEY_ROOM_COUNT"
+
 #define AVATAR_LOCAL_FILENAME   @"user_avatar.png"
     
 @implementation UserManager
@@ -540,5 +542,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return NO;
 }
 
+- (NSInteger)roomCount
+{
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:KEY_ROOM_COUNT];
+    if (count < 0) {
+        return 0;
+    }
+    return count;
 
+}
+- (void)increaseRoomCount
+{
+    NSInteger count = [self roomCount];
+    [[NSUserDefaults standardUserDefaults] setInteger:++count forKey:KEY_ROOM_COUNT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end
