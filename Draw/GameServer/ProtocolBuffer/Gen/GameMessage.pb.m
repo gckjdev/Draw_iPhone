@@ -4513,3 +4513,245 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @end
 
+@interface DataQueryResponse ()
+@property int32_t resultCode;
+@property (retain) NSMutableArray* mutableDrawDataList;
+@end
+
+@implementation DataQueryResponse
+
+- (BOOL) hasResultCode {
+  return !!hasResultCode_;
+}
+- (void) setHasResultCode:(BOOL) value {
+  hasResultCode_ = !!value;
+}
+@synthesize resultCode;
+@synthesize mutableDrawDataList;
+- (void) dealloc {
+  self.mutableDrawDataList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.resultCode = 0;
+  }
+  return self;
+}
+static DataQueryResponse* defaultDataQueryResponseInstance = nil;
++ (void) initialize {
+  if (self == [DataQueryResponse class]) {
+    defaultDataQueryResponseInstance = [[DataQueryResponse alloc] init];
+  }
+}
++ (DataQueryResponse*) defaultInstance {
+  return defaultDataQueryResponseInstance;
+}
+- (DataQueryResponse*) defaultInstance {
+  return defaultDataQueryResponseInstance;
+}
+- (NSArray*) drawDataList {
+  return mutableDrawDataList;
+}
+- (PBDraw*) drawDataAtIndex:(int32_t) index {
+  id value = [mutableDrawDataList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasResultCode) {
+    return NO;
+  }
+  for (PBDraw* element in self.drawDataList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasResultCode) {
+    [output writeInt32:1 value:self.resultCode];
+  }
+  for (PBDraw* element in self.drawDataList) {
+    [output writeMessage:21 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasResultCode) {
+    size += computeInt32Size(1, self.resultCode);
+  }
+  for (PBDraw* element in self.drawDataList) {
+    size += computeMessageSize(21, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (DataQueryResponse*) parseFromData:(NSData*) data {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromData:data] build];
+}
++ (DataQueryResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (DataQueryResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromInputStream:input] build];
+}
++ (DataQueryResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (DataQueryResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (DataQueryResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (DataQueryResponse*)[[[DataQueryResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (DataQueryResponse_Builder*) builder {
+  return [[[DataQueryResponse_Builder alloc] init] autorelease];
+}
++ (DataQueryResponse_Builder*) builderWithPrototype:(DataQueryResponse*) prototype {
+  return [[DataQueryResponse builder] mergeFrom:prototype];
+}
+- (DataQueryResponse_Builder*) builder {
+  return [DataQueryResponse builder];
+}
+@end
+
+@interface DataQueryResponse_Builder()
+@property (retain) DataQueryResponse* result;
+@end
+
+@implementation DataQueryResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[DataQueryResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (DataQueryResponse_Builder*) clear {
+  self.result = [[[DataQueryResponse alloc] init] autorelease];
+  return self;
+}
+- (DataQueryResponse_Builder*) clone {
+  return [DataQueryResponse builderWithPrototype:result];
+}
+- (DataQueryResponse*) defaultInstance {
+  return [DataQueryResponse defaultInstance];
+}
+- (DataQueryResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (DataQueryResponse*) buildPartial {
+  DataQueryResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (DataQueryResponse_Builder*) mergeFrom:(DataQueryResponse*) other {
+  if (other == [DataQueryResponse defaultInstance]) {
+    return self;
+  }
+  if (other.hasResultCode) {
+    [self setResultCode:other.resultCode];
+  }
+  if (other.mutableDrawDataList.count > 0) {
+    if (result.mutableDrawDataList == nil) {
+      result.mutableDrawDataList = [NSMutableArray array];
+    }
+    [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setResultCode:[input readInt32]];
+        break;
+      }
+      case 170: {
+        PBDraw_Builder* subBuilder = [PBDraw builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasResultCode {
+  return result.hasResultCode;
+}
+- (int32_t) resultCode {
+  return result.resultCode;
+}
+- (DataQueryResponse_Builder*) setResultCode:(int32_t) value {
+  result.hasResultCode = YES;
+  result.resultCode = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearResultCode {
+  result.hasResultCode = NO;
+  result.resultCode = 0;
+  return self;
+}
+- (NSArray*) drawDataList {
+  if (result.mutableDrawDataList == nil) { return [NSArray array]; }
+  return result.mutableDrawDataList;
+}
+- (PBDraw*) drawDataAtIndex:(int32_t) index {
+  return [result drawDataAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDraw*) value {
+  [result.mutableDrawDataList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllDrawData:(NSArray*) values {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearDrawDataList {
+  result.mutableDrawDataList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addDrawData:(PBDraw*) value {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObject:value];
+  return self;
+}
+@end
+
