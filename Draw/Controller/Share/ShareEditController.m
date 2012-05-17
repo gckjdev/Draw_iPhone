@@ -207,8 +207,14 @@ enum {
         }
         
     } else {
-        UIImage* image = [self.infuseImageView createImage];
-        NSData* imageData = UIImagePNGRepresentation(image);
+        UIImage* background = [UIImage imageNamed:@"share_background.png"];
+        UIGraphicsBeginImageContext(background.size);  
+         
+        [background drawInRect:CGRectMake(0, 0, background.size.width, background.size.height)];
+        [self.myImage drawInRect:CGRectMake(32, 136, 256, 245)];        
+        UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext(); 
+
+        NSData* imageData = UIImagePNGRepresentation(resultingImage);
         path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
         BOOL result=[imageData writeToFile:path atomically:YES];
         if (!result) {

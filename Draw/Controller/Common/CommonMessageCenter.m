@@ -152,7 +152,9 @@
         [firstAlert release];
     }
 }
-
+#define INDEX_OF_WORDS 0
+#define INDEX_OF_DELAY_TIME 1
+#define INDEX_OF_IMAGE 2
 - (void) showAlerts{
 	
 	if([_messages count] < 1) {
@@ -169,11 +171,11 @@
 	NSArray *ar = [_messages objectAtIndex:0];
 	
 	UIImage *img = nil;
-	if([ar count] > 1) img = [[_messages objectAtIndex:0] objectAtIndex:1];
+	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
 	
 	[_messageView setImage:img];
     
-	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:0]];
+	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
 	
 	
 	
@@ -214,8 +216,10 @@
 	// depending on how many words are in the text
 	// change the animation duration accordingly
 	// avg person reads 200 words per minute
-	NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	double duration = MAX(((double)[words count]*60.0/200.0),1);
+	//NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
+	//double duration = MAX(((double)[words count]*60.0/200.0),1);
+    double duration = delayTime.floatValue;
 	
 	[UIView setAnimationDelay:duration];
 	[UIView setAnimationDelegate:self];
@@ -244,7 +248,7 @@
 - (void)postMessageWithText:(NSString *)text 
                       image:(UIImage *)image 
                   delayTime:(float)delayTime{
-	[_messages addObject:[NSArray arrayWithObjects:text, image, [NSNumber numberWithFloat:delayTime], nil]];
+	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
 	if(!_active) [self showAlerts];
 }
 - (void)postMessageWithText:(NSString *)text 
