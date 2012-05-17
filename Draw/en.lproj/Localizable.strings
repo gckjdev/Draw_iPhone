@@ -374,3 +374,5 @@
 "kInviteFriendFail" = "Invite friends successfully.";
 
 "kRoomSearhTips" = "Nickname / Room name";
+
+"kInputRoomPassword" = "Input room password";

@@ -5,6 +5,8 @@
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
 
+@class DataQueryResponse;
+@class DataQueryResponse_Builder;
 @class GameChatRequest;
 @class GameChatRequest_Builder;
 @class GameChatResponse;
@@ -1085,5 +1087,63 @@
 - (GameMessage_Builder*) setNotificationBuilder:(GeneralNotification_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeNotification:(GeneralNotification*) value;
 - (GameMessage_Builder*) clearNotification;
+@end
+
+@interface DataQueryResponse : PBGeneratedMessage {
+@private
+  BOOL hasResultCode_:1;
+  int32_t resultCode;
+  NSMutableArray* mutableDrawDataList;
+}
+- (BOOL) hasResultCode;
+@property (readonly) int32_t resultCode;
+- (NSArray*) drawDataList;
+- (PBDraw*) drawDataAtIndex:(int32_t) index;
+
++ (DataQueryResponse*) defaultInstance;
+- (DataQueryResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (DataQueryResponse_Builder*) builder;
++ (DataQueryResponse_Builder*) builder;
++ (DataQueryResponse_Builder*) builderWithPrototype:(DataQueryResponse*) prototype;
+
++ (DataQueryResponse*) parseFromData:(NSData*) data;
++ (DataQueryResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (DataQueryResponse*) parseFromInputStream:(NSInputStream*) input;
++ (DataQueryResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (DataQueryResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (DataQueryResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface DataQueryResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  DataQueryResponse* result;
+}
+
+- (DataQueryResponse*) defaultInstance;
+
+- (DataQueryResponse_Builder*) clear;
+- (DataQueryResponse_Builder*) clone;
+
+- (DataQueryResponse*) build;
+- (DataQueryResponse*) buildPartial;
+
+- (DataQueryResponse_Builder*) mergeFrom:(DataQueryResponse*) other;
+- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasResultCode;
+- (int32_t) resultCode;
+- (DataQueryResponse_Builder*) setResultCode:(int32_t) value;
+- (DataQueryResponse_Builder*) clearResultCode;
+
+- (NSArray*) drawDataList;
+- (PBDraw*) drawDataAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDraw*) value;
+- (DataQueryResponse_Builder*) addDrawData:(PBDraw*) value;
+- (DataQueryResponse_Builder*) addAllDrawData:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearDrawDataList;
 @end
 

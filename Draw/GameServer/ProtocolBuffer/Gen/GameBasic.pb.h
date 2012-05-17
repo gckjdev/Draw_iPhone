@@ -307,12 +307,14 @@
   BOOL hasUserId_:1;
   BOOL hasWord_:1;
   BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
   int32_t level;
   int32_t language;
   int32_t createDate;
   NSString* userId;
   NSString* word;
   NSString* nickName;
+  NSString* avatar;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasUserId;
@@ -321,12 +323,14 @@
 - (BOOL) hasLanguage;
 - (BOOL) hasCreateDate;
 - (BOOL) hasNickName;
+- (BOOL) hasAvatar;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) int32_t language;
 @property (readonly) int32_t createDate;
 @property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* avatar;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -393,6 +397,11 @@
 - (NSString*) nickName;
 - (PBDraw_Builder*) setNickName:(NSString*) value;
 - (PBDraw_Builder*) clearNickName;
+
+- (BOOL) hasAvatar;
+- (NSString*) avatar;
+- (PBDraw_Builder*) setAvatar:(NSString*) value;
+- (PBDraw_Builder*) clearAvatar;
 
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;

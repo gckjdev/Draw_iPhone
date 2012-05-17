@@ -32,6 +32,7 @@
 - (void)showNoDataTips;
 - (void)loadMyFollow;
 - (void)loadMyFans;
+- (void)updateFriendsListFromLocal;
 
 @end
 
@@ -149,14 +150,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     PPDebug(@"<MyFriendsController> viewWillAppear");
-    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
-    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
     
-    if (myFollowButton.selected) {
-        [self setAndReloadData:_myFollowList];
-    }else if (myFanButton.selected){
-        [self setAndReloadData:_myFanList];
-    }
+    [self updateFriendsListFromLocal];
 }
 
 
@@ -232,7 +227,7 @@
         
     }else{
         [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
-        //cell.followDelegate = self;
+        cell.followDelegate = self;
     }
     return cell;
 }
@@ -345,6 +340,19 @@
 
 
 #pragma mark - Custom methods
+- (void)updateFriendsListFromLocal
+{
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+    
+    if (myFollowButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else if (myFanButton.selected){
+        [self setAndReloadData:_myFanList];
+    } 
+}
+
+
 - (void)showNoDataTips
 {
     dataTableView.hidden = YES;
@@ -439,17 +447,41 @@
     }
 }
 
+- (void)didFollowUser:(int)resultCode
+{
+    if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
+        Friend *friend = [_myFanList objectAtIndex:selectedIndex];
+        [[FriendManager defaultManager] createFriendWithUserId:friend.friendUserId 
+                                                          type:[NSNumber numberWithInt:FOLLOW]
+                                                      nickName:friend.nickName 
+                                                        avatar:friend.avatar 
+                                                        gender:friend.gender 
+                                                        sinaId:friend.sinaId 
+                                                          qqId:friend.qqId 
+                                                    facebookId:friend.facebookId 
+                                                      sinaNick:friend.sinaNick 
+                                                        qqNick:friend.qqNick 
+                                                  facebookNick:friend.facebookNick 
+                                                    createDate:[NSDate date] 
+                                              lastModifiedDate:friend.lastModifiedDate
+                                                      location:friend.location];
+        [self updateFriendsListFromLocal];
+    } else {
+        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+    }
+}
+
+
 
 #pragma -mark FollowDelegate Method
-//- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath user:(NSDictionary *)user
-//{
-//    NSString* userId = [user objectForKey:PARA_USERID];
-//    
-//    selectedIndex = [indexPath row];
-//    
-//    [[FriendService defaultService] followUser:userId viewController:self
-//     ];
-//}
+- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath user:(NSDictionary *)user
+{
+    selectedIndex = [indexPath row];
+    Friend *friend = [_myFanList objectAtIndex:selectedIndex];
+    [[FriendService defaultService] followUser:friend.friendUserId viewController:self
+     ];
+}
 
 
 #pragma mark -  FriendDelegate Method

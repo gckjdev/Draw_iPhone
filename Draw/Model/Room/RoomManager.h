@@ -29,4 +29,5 @@
                             split:(NSString *)split 
                             count:(NSInteger)count;
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room;
+- (NSMutableArray *)sortRoomList:(NSArray *)roomList;
 @end
