@@ -244,7 +244,7 @@
 - (void)postMessageWithText:(NSString *)text 
                       image:(UIImage *)image 
                   delayTime:(float)delayTime{
-	[_messages addObject:[NSArray arrayWithObjects:text,image,nil]];
+	[_messages addObject:[NSArray arrayWithObjects:text, image, [NSNumber numberWithFloat:delayTime], nil]];
 	if(!_active) [self showAlerts];
 }
 - (void)postMessageWithText:(NSString *)text 
