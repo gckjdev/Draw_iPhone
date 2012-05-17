@@ -170,7 +170,15 @@
 + (CommonNetworkOutput*)removeRoom:(NSString*)baseURL 
                                    roomId:(NSString *)roomId                   
                                  password:(NSString *)password                   
-                                   userId:(NSString *)userId;                              
+                                   userId:(NSString *)userId;
+
++ (CommonNetworkOutput*)uninvitedJoinRoom:(NSString*)baseURL 
+                                   roomId:(NSString *)roomId  
+                                 password:(NSString *)password 
+                                   userId:(NSString *)userId 
+                                     nick:(NSString *)nick 
+                                   avatar:(NSString *)avatar 
+                                   gender:(NSString *)gender;
 
 
 @end

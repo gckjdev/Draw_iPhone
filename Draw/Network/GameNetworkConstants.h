@@ -97,7 +97,7 @@
 #define METHOD_CREATE_ROOM @"cr"
 #define METHOD_JOIN_ROOM @"jr"
 #define METHOD_REOMOVE_ROOM @"rr"
-
+#define METHOD_NEW_JOIN_ROOM @"njr"
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"

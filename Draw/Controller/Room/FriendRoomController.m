@@ -209,6 +209,8 @@
     if (_isTryJoinGame)
         return;
     
+    
+    [self showActivityWithText:NSLS(@"kConnectingServer")];
     [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];

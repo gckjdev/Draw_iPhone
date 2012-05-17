@@ -388,3 +388,4 @@
 
 "kRoomSearhTips" = "暱稱 / 房間名";
 "kInputRoomPassword" = "請輸入房間口令";
+"kInviteFull" = "房間最多只能邀請%d個好友，你已經邀請了%d個。";

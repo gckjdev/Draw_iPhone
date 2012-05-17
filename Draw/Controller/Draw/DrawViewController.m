@@ -168,16 +168,17 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 enum{
-  BLACK_COLOR = 0,
-  RED_COLOR,
-  BLUE_COLOR,
-  GREEN_COLOR,
-  ORANGE_COLOR,
-  COLOR_COUNT
+    BLACK_COLOR = 0,
+    RED_COLOR = 1,  
+    GREEN_COLOR,
+    BLUE_COLOR,
+    ORANGE_COLOR,
+    COLOR_COUNT
 };
 
 - (DrawColor *)randColor
 {
+    srand(time(0)+ self.hash);
     NSInteger rand = random() % COLOR_COUNT;
     switch (rand) {
         case RED_COLOR:
