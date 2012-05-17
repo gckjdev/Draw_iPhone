@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "AudioManager.h"
 
 @interface MusicSettingController : PPViewController<UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate, UIActionSheetDelegate>
 {
@@ -21,9 +22,26 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIButton *editButton;
+@property (nonatomic, retain) IBOutlet UIButton *expandButton;
+@property (nonatomic, retain) IBOutlet UILabel *musicLabel;
+
+@property (nonatomic, retain) IBOutlet UIButton *previousButton;
+@property (nonatomic, retain) IBOutlet UIButton *nextButton;
+@property (nonatomic, retain) IBOutlet UIButton *stopButton;
+@property (nonatomic, retain) IBOutlet UIButton *refreshButton;
+
 @property (nonatomic, assign) BOOL openURLForAction;
 @property (nonatomic, copy) NSString *urlForAction;
 
+@property (assign, nonatomic) BOOL canDelete;
+@property (nonatomic, retain)AudioManager* audiomanager;
 - (IBAction)clickBack:(id)sender;
 - (IBAction)clickEdit:(id)sender;
+- (IBAction)clickExpand:(id)sender;
+
+- (IBAction)clickPrevious:(id)sender;
+- (IBAction)clicknext:(id)sender;
+- (IBAction)clickStop:(id)sender;
+- (IBAction)clickRefresh:(id)sender;
+
 @end

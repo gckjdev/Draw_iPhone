@@ -29,6 +29,7 @@
 #import "ConfigManager.h"
 #import "AudioManager.h"
 #import "FriendManager.h"
+#import "MusicItemManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -195,7 +196,10 @@ NSString* GlobalGetTrafficServerURL()
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sleep(60);
-    });                       
+    });     
+    
+    [[MusicItemManager defaultManager] saveMusicItems];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 #import "ASIHTTPRequestDelegate.h"
+#import "MusicItem.h"
 
 #define DOWNLOAD_DIR                @"/download/incoming/"
 #define DOWNLOAD_TEMP_DIR           @"/download/temp/"
@@ -19,7 +20,9 @@
 @property (nonatomic, retain) NSString* downloadDir;
 @property (nonatomic, retain) NSString* downloadTempDir;
 
-+ (NSArray*) findAllItems;
+- (NSArray*) findAllItems;
+- (void)saveItem:(MusicItem*)item;
+
 + (MusicDownloadService*)defaultService;
 
 - (BOOL)downloadFile:(NSString*)urlString;

@@ -35,7 +35,7 @@ FriendService* globalGetFriendService()
 - (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
     NSString *userId = [[UserManager defaultManager] userId];
-    [viewController showActivity];
+    //[viewController showActivity];
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
@@ -46,7 +46,7 @@ FriendService* globalGetFriendService()
                                                              endIndex:5000];             
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController hideActivity];
+            //[viewController hideActivity];
             
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> findFriends success!");
@@ -111,7 +111,7 @@ FriendService* globalGetFriendService()
 
 - (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
-    [viewController showActivity];
+    [viewController showActivityWithText:NSLS(@"kSearching")];
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
                                                                 appId:APP_ID
