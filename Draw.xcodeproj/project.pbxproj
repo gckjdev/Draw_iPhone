@@ -605,7 +605,6 @@
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
-		EADCDDD91563D5D600E5A181 /* background in Resources */ = {isa = PBXBuildFile; fileRef = EADCDDD81563D5D600E5A181 /* background */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
@@ -1629,7 +1628,6 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
-		EADCDDD81563D5D600E5A181 /* background */ = {isa = PBXFileReference; lastKnownFileType = file; path = background; sourceTree = "<group>"; };
 		EAE0D143155FB72400827DF9 /* no_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D144155FB72400827DF9 /* yes_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
@@ -1746,7 +1744,6 @@
 				C29B8A4A1565001000B9707D /* clickWord.mp3 */,
 				C29B8A4B1565001000B9707D /* congratulations!.wav */,
 				C29B8A4C1565001000B9707D /* ding.wav */,
-				EADCDDD81563D5D600E5A181 /* background */,
 				C23163A615577D2200AC132B /* enterRoom.wav */,
 				C23163A115577B8E00AC132B /* correct.mp3 */,
 				C23163A215577B8E00AC132B /* wrong.wav */,
@@ -4383,7 +4380,6 @@
 				A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */,
 				A3C129E21563A6ED00C021A7 /* RemoteDrawView~ipad.xib in Resources */,
 				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
-				EADCDDD91563D5D600E5A181 /* background in Resources */,
 				A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */,
 				C29B8A4D1565001000B9707D /* cannon.mp3 in Resources */,
 				C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */,

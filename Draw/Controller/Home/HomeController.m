@@ -34,6 +34,7 @@
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
 #import "AudioManager.h"
+#import "MusicItemManager.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -72,9 +73,8 @@
 
     [super viewDidLoad];
     //init background music
-    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
-    [[AudioManager defaultManager] backgroundMusicStart];
-
+//    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
+//    [[AudioManager defaultManager] backgroundMusicStart];
     
     // setup button images
     UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
@@ -127,6 +127,8 @@
 //    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
+    
+    [self playBackgroundMusic];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -158,6 +160,19 @@
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+- (void)playBackgroundMusic
+{
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    AudioManager *audioManager = [AudioManager defaultManager];
+    
+    //stop old music
+    [audioManager backgroundMusicStop];
+    //start new music
+    [audioManager setBackGroundMusicWithURL:url];
+    [audioManager backgroundMusicStart];
+
+}
 - (IBAction)clickStart:(id)sender
 {        
     [self showActivityWithText:NSLS(@"kJoiningGame")];

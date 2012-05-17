@@ -21,4 +21,5 @@
 - (NSArray*) findAllItems;
 - (void)saveMusicItems;
 - (void)deleteItem:(MusicItem*)item;
+- (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize;
 @end

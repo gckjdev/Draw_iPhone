@@ -36,8 +36,8 @@ static MusicItemManager *_defaultManager;
         self.itemList = [[NSMutableArray alloc] init];
         [self loadMusicItems];
         
-        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"background" ofType:nil];
-        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kdefaultMusic") filePath:soundFilePath tempPath:nil];
+        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
         [itemList addObject:currentMusicItem];
     }
     return self;
@@ -83,6 +83,9 @@ static MusicItemManager *_defaultManager;
 
     NSMutableArray *list = [[NSMutableArray alloc] init];
     for (MusicItem *item in self.itemList) {
+        if ([item.fileName isEqualToString:@"cannon.mp3"]) {
+            return;
+        }
         NSMutableString *itemString = [[NSMutableString alloc]init];
         [itemString appendFormat:@"%@%@%@%@%@%@%@", 
                         item.fileName, DELIMITER, 
@@ -113,6 +116,15 @@ static MusicItemManager *_defaultManager;
         [self removeFile:item];
     }
 }
+
+- (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize
+{
+    [itemList removeObject:item];
+    item.fileName = fileName;
+    item.fileSize = [NSNumber numberWithLong:fileSize];
+    [itemList addObject:item];
+}
+
 
 - (void)removeFile:(MusicItem*)item
 {

@@ -192,9 +192,24 @@ NSMutableArray *list;
     long fileSize = [[responseHeaders valueForKey:@"Content-Length"] intValue];
     
     // set right file name here
-//    [manager setFileInfo:item newFileName:fileName fileSize:fileSize];
+    MusicItemManager *manager = [MusicItemManager defaultManager];
+    [manager setFileInfo:item newFileName:fileName fileSize:fileSize];
     
 }
+
+- (void)moveFile:(MusicItem*)item
+{
+    NSString* finalFilePath = [self getFilePath:item.fileName];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] moveItemAtPath:item.localPath toPath:finalFilePath error:&error];
+    if (error != nil){
+        PPDebug(@"fail to rename file from %@ to %@", item.localPath, finalFilePath);
+    }
+    else{
+        [item setLocalPath:finalFilePath];
+    }
+}
+
 
 - (void)requestStarted:(ASIHTTPRequest *)request
 {
@@ -202,14 +217,13 @@ NSMutableArray *list;
     NSLog(@"item requestStarted, url = %@", [item.url description]);  
 
     [[MusicItemManager defaultManager] saveItem:item];
-//    [[MusicDownloadService defaultService] saveItem:item];
 }
 
 - (void)requestDone:(ASIHTTPRequest *)request
 {
     NSString *reponse = [request responseString];
     MusicItem *item = [MusicItem fromDictionary:request.userInfo];
-
+    [self moveFile:item];
 }
 
 - (void)requestWentWrong:(ASIHTTPRequest *)request
