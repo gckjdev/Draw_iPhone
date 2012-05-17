@@ -328,7 +328,8 @@ enum {
         if (self.patternsArray) {
             [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
         }
-        [self.view addSubview:self.infuseImageView];
+        //[self.view addSubview:self.infuseImageView];
+        [self.myImageView setImage:self.myImage];
         [self.infuseImageView setNeedsDisplay];
         
     }        
