@@ -118,7 +118,7 @@ RoomManager *staticRoomManager = nil;
         room.creator = [[[RoomUser alloc] init] autorelease];
         room.creator.userId = [dict objectForKey:PARA_CREATOR_USERID];
         room.creator.nickName = [dict objectForKey:PARA_NICKNAME];
-        
+        room.myStatus = UserUnInvited;
         NSString *createrDateString = [dict objectForKey:PARA_CREATE_DATE];
         if ([createrDateString length] != 0) {
             room.createDate = dateFromStringByFormat(createrDateString, DEFAULT_DATE_FORMAT);    
@@ -141,6 +141,12 @@ RoomManager *staticRoomManager = nil;
                     }else{
                         [userList addObject:user];
                         if ([[UserManager defaultManager] isMe:user.userId]) {
+                        }
+                    }
+                    if ([[UserManager defaultManager] isMe:user.userId]) {
+                        room.myStatus = user.status;
+                        if ([user.userId isEqualToString:room.creator.userId]) {
+                            room.myStatus = UserCreator;
                         }
                     }
                 }
@@ -183,5 +189,30 @@ RoomManager *staticRoomManager = nil;
     }
     return UserUnInvited;
 }
+
+- (NSMutableArray *)sortRoomList:(NSArray *)roomList
+{
+    NSArray *array = [roomList sortedArrayUsingComparator:^(id obj1,id obj2){
+        Room *room1 = (Room *)obj1;
+        Room *room2 = (Room *)obj2;
+        NSInteger value = room1.myStatus - room2.myStatus;
+        if (value > 0) {
+            return NSOrderedDescending;
+        }else if(value < 0){
+            return NSOrderedAscending;
+        }else{
+            time_t time1 = [room1.createDate timeIntervalSince1970];
+            time_t time2 = [room1.createDate timeIntervalSince1970];
+            long v = time1 - time2;
+            if (v > 0) {
+                return NSOrderedAscending;
+            }else{
+                return NSOrderedDescending;
+            }
+        }
+    } ];
+    return [NSMutableArray arrayWithArray:array];
+}
+
 
 @end

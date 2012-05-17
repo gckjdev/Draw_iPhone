@@ -14,13 +14,12 @@
 #import "PPDebug.h"
 #import "Room.h"
 #import "RoomCell.h"
-#import "DrawGameService.h"
 #import "ConfigManager.h"
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
 #import "MyFriendsController.h"
-
+#import "RoomManager.h"
 
 #define INVITE_LIMIT 12
 
@@ -229,7 +228,7 @@
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
         {
-            self.dataList = roomList;            
+            self.dataList = [[RoomManager defaultManager] sortRoomList:roomList];            
         }
         [self.dataTableView reloadData];
     }

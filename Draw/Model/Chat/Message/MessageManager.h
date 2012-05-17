@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "GameConstants.pb.h"
 
+typedef enum{
+    RoomMessages = 1,
+    GameMessages = 2
+} MessagesType;
+
 @interface MessageManager : NSObject
 
 + (MessageManager *)defaultManager;
-- (NSArray *)messagesForChatType:(GameChatType)type;
+- (NSArray *)messagesForType:(MessagesType)type;
 
 @end

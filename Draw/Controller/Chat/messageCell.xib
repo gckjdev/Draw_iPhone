@@ -123,7 +123,7 @@
 								<reference key="IBUIFont" ref="179501699"/>
 							</object>
 						</array>
-						<string key="NSFrameSize">{270, 39}</string>
+						<string key="NSFrameSize">{269, 39}</string>
 						<reference key="NSSuperview" ref="659152481"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="837436588"/>
@@ -139,7 +139,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{270, 40}</string>
+				<string key="NSFrameSize">{269, 40}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="550358933"/>

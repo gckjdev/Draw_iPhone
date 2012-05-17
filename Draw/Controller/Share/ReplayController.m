@@ -198,7 +198,7 @@
 {
     UIImage *image = [showView createImage];
     if ([DeviceDetection isIPAD]) {
-        image = [image imageByScalingAndCroppingForSize:CGSizeMake(280, 295)];
+        image = [image imageByScalingAndCroppingForSize:CGSizeMake(image.size.width/2, image.size.height/2)];
     }
     [_gifImages addObject:image];
     
