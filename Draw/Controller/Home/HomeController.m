@@ -32,6 +32,7 @@
 #import "ChatController.h"
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
+#import "SearchRoomController.h"
 #import "AudioManager.h"
 
 @implementation HomeController
@@ -352,6 +353,22 @@
 
 + (void)returnRoom:(UIViewController*)superController
 {
+    
+    UIViewController *viewController = nil;
+    for(UIViewController *vc in superController.navigationController.childViewControllers)
+    {
+        if ([vc isKindOfClass:[SearchRoomController class]]) {
+            viewController = vc;
+            break;
+        }
+        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
+            viewController = vc;
+        }
+    }
+    if (viewController != nil) {
+        [superController.navigationController popToViewController:viewController animated:YES];        
+        return;
+    }
     [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
 }
 

@@ -105,4 +105,8 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)hasBindSinaWeibo;
 - (BOOL)hasBindQQWeibo;
 - (BOOL)hasBindFacebook;
+
+- (NSInteger)roomCount;
+- (void)increaseRoomCount;
+
 @end
