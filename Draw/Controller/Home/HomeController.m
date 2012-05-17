@@ -369,7 +369,7 @@
     MyFriendsController *myFriends = [[MyFriendsController alloc] init];
     [self.navigationController pushViewController:myFriends animated:YES];
     [myFriends release];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:1];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:rand()%4];
 }
 
 @end

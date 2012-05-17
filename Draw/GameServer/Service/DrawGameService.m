@@ -682,11 +682,11 @@ static DrawGameService* _defaultService;
     [self scheduleKeepAliveTimer];
 }
 
-- (void)groupChatMessage:(NSArray*)userList message:(NSString*)message
+- (void)groupChatMessage:(NSString*)message
 {
     [_networkClient sendChatMessage:_userId 
                           sessionId:[_session sessionId] 
-                           userList:userList 
+                           userList:nil 
                             message:message
                            chatType:GameChatTypeChatGroup];    
 }
@@ -700,11 +700,11 @@ static DrawGameService* _defaultService;
                            chatType:GameChatTypeChatPrivate];
 }
 
-- (void)groupChatExpression:(NSArray*)userList key:(NSString*)key 
+- (void)groupChatExpression:(NSString*)key 
 {
     [_networkClient sendChatExpression:_userId 
                              sessionId:[_session sessionId] 
-                              userList:userList 
+                              userList:nil 
                                    key:key
                               chatType:GameChatTypeChatGroup];
 }

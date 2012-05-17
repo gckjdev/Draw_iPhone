@@ -57,7 +57,8 @@
 @synthesize startTimer = _startTimer;
 @synthesize clickCount = _clickCount;
 @synthesize onlinePlayerCountLabel = _onlinePlayerCountLabel;
-@synthesize chatController = _chatController;
+@synthesize privateChatController = _privateChatController;
+@synthesize groupChatController = _groupChatController;
 @synthesize isFriendRoom = _isFriendRoom;
 @synthesize changeRoomButton;
 
@@ -72,7 +73,8 @@
     [_prolongButton release];
     [popupButton release];
     [_onlinePlayerCountLabel release];
-    [_chatController release];
+    [_privateChatController release];
+    [_groupChatController release];
     [super dealloc];
 }
 
@@ -154,7 +156,8 @@
     [self clearUnPopupMessages];
     [super viewDidDisappear:animated];
     [[DrawGameService defaultService] unregisterObserver:self]; 
-    [_chatController dismiss];
+    [_privateChatController dismiss];
+    [_groupChatController dismiss];
     PPDebug(@"<unregisterObserver> room controller");
 }
 
@@ -174,7 +177,7 @@
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 #define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
-#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(142, 282) : CGPointMake(54, 141)
+#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(142, 282) : CGPointMake(46, 150)
 #define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 128 : 64
 #define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 124 : 62
 - (void)prepareAvatars
@@ -189,6 +192,7 @@
         avatarView.tag = i;
         [avatarView setImage:nil];
         avatarView.hidden = NO;
+        avatarView.delegate = self;
         [self.view addSubview:avatarView];
         [avatarView release];
     }
@@ -238,6 +242,7 @@
             [self prepareAvatars];
         }
         [imageView setAvatarUrl:avatar gender:[user gender]];
+        [imageView setUserId:user.userId];
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
@@ -432,9 +437,8 @@
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
 }
 
-- (void)userId:(NSString *)userId popupImage:(UIImage *)image
+- (void)userId:(NSString *)userId popupImage:(UIImage *)image title:(NSString*)title
 {    
-//    HJManagedImageV *player = [self userAvatarForUserId:userId];
     AvatarView *player = [self userAvatarForUserId:userId];
 
     if (player == nil) {
@@ -450,11 +454,12 @@
         [popupButton setFrame:CGRectMake(x, y, size.width + 30, size.height + 25)];
     }
     [popupButton setImage:image forState:UIControlStateNormal];
-    [popupButton setTitle:nil forState:UIControlStateNormal];
+    [popupButton setTitle:title forState:UIControlStateNormal];
     [self updatePopupButtonInset:YES];
     [popupButton setHidden:NO];
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+    [self.view bringSubviewToFront:popupButton];
 }
 
 
@@ -586,7 +591,7 @@
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
             UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
-            [self userId:[message userId] popupImage:image];
+            [self userId:[message userId] popupImage:image title:nil];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
             [self userId:[message userId] popupMessage:msg];
@@ -595,7 +600,7 @@
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
             UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
-            [self userId:[message userId] popupImage:image];
+            [self userId:[message userId] popupImage:image title:NSLS(@"kSayToYou")];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
             [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
@@ -765,16 +770,21 @@
 }
 
 - (IBAction)clickGroupChat:(id)sender {
+    if (_groupChatController == nil) {
+        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+    }
+    _groupChatController.chatControllerDelegate = self;
     
+    [_groupChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil];
 }
 
 - (IBAction)clickPrivateChat:(id)sender {
-    if (_chatController == nil) {
-        _chatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+    if (_privateChatController == nil) {
+        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
     }
-    _chatController.chatControllerDelegate = self;
+    _privateChatController.chatControllerDelegate = self;
    
-    [_chatController showInView:self.view];
+    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil];
 }
 
 - (IBAction)clickMenu:(id)sender
@@ -955,7 +965,22 @@
 
 - (void)didSelectExpression:(UIImage *)expression
 {
-    [self userId:[[DrawGameService defaultService] userId] popupImage:expression];
+    [self userId:[[DrawGameService defaultService] userId] popupImage:expression title:nil];
 }
+
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    if (userId == nil || [[UserManager defaultManager] isMe:userId]) {
+        return;
+    }
+    
+    if (_privateChatController == nil) {
+        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+    }
+    _privateChatController.chatControllerDelegate = self;
+    
+    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId];
+}
+
 
 @end

@@ -338,15 +338,27 @@
 
 "kMale" = "Male";
 "kFemale" = "Female";
-
 "kSayToYou" = "Say to you: %@";
+"kNobodyInRoom" = "you can chat private nobody in room";
+
+"kPayAttentionToMe" = "Pay attention to me";
+"kDrawTillDawn" = "Draw till Dawn";
+"kHelloEveryone" = "Hello, every one";
+"kDontLeave" = "Don't leave";
+"kFunny" = "It's funny";
+"kDrawedWhat" = "What are you drawed";
+"kHardToGuess" = "It's hard to guess";
+"kGeiliable" = "Wonderful";
+"kDontWriteAnswer" = "Don't give answer" ;
+"kGiveAPrompt" = "Give me a prompt";
+"kWellDone" = "Well done";
+
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
 "kRoomNameLabel" = "Room Name";
 "kRoomPasswordLabel" = "Password";
 "kRoomPasswordIllegal" = "Password illegal";
 "kRoomNameIllegal" = "Room name illegal";
-
 
 "kInvited" = "Invited";
 "kJoined" = "Joined";

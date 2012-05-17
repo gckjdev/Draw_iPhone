@@ -355,8 +355,20 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-
 "kSayToYou" = "对你说: %@";
+"kNobodyInRoom" = "房间里没有其他人时，不能私聊";
+
+"kPayAttentionToMe" = "关注我吧";
+"kDrawTillDawn" = "决战到天亮";
+"kHelloEveryone" = "hi,大家好";
+"kDontLeave" = "别走啊";
+"kFunny" = "真有趣";
+"kDrawedWhat" = "画什么啊";
+"kHardToGuess" = "真难猜";
+"kGeiliable" = "给力";
+"kDontWriteAnswer" = "别给答案啊" ;
+"kGiveAPrompt" = "给点提示吧";
+"kWellDone" = "画的真好";
 
 "kRoomPasswordHolder" = "请输入房间口令";
 "kRoomNameHolder" = "请输入房间名字";
@@ -391,5 +403,4 @@
 
 "kRoomSearhTips" = "昵称 / 房间名";
 "kInputRoomPassword" = "请输入房间口令";
-
 "kInviteFull" = "房间最多只能邀请%d个好友，你已经邀请了%d个。";

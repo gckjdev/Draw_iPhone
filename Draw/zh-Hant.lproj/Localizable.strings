@@ -351,8 +351,20 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-
 "kSayToYou" = "對你說: %@";
+"kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
+
+"kPayAttentionToMe" = "關註我吧";
+"kDrawTillDawn" = "決戰到天亮";
+"kHelloEveryone" = "hi,大家好";
+"kDontLeave" = "别走啊";
+"kFunny" = "真有趣";
+"kDrawedWhat" = "畫什麽啊";
+"kHardToGuess" = "真難猜";
+"kGeiliable" = "給力";
+"kDontWriteAnswer" = "別給答案啊" ;
+"kGiveAPrompt" = "給點提示吧";
+"kWellDone" = "畫的真好";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";

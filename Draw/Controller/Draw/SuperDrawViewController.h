@@ -10,10 +10,11 @@
 #import "PPViewController.h"
 #import "DrawGameService.h"
 #import "ShareImageManager.h"
+#import "ChatController.h"
 
 #define GAME_TIME 60
 @class AvatarView;
-@interface SuperDrawViewController : PPViewController<DrawGameServiceDelegate>
+@interface SuperDrawViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
     ShareImageManager *shareImageManager;
     NSTimer *gameTimer;
@@ -27,6 +28,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
+@property (retain, nonatomic) ChatController *privateChatController;
+@property (retain, nonatomic) ChatController *groupChatController;
 
 - (void)resetTimer;
 - (void)updateClockButton;
