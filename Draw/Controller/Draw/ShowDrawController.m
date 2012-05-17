@@ -606,7 +606,13 @@
     NSInteger gainCoin = [[message notification] turnGainCoins];
     [showView setShowPenHidden:YES];
     UIImage *image = [showView createImage];
+    
+    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
+    
     ResultController *rc = [[ResultController alloc] initWithImage:image
+                                                        drawUserId:drawUserId
+                                                  drawUserNickName:drawUserNickName
                                                           wordText:self.word.text 
                                                              score:gainCoin
                                                            correct:_guessCorrect 

@@ -286,9 +286,16 @@ enum{
 
     UIImage *image = [drawView createImage];
     NSInteger gainCoin = [[message notification] turnGainCoins];
+
+    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
+    
     ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                          wordText:self.word.text 
-                                                             score:gainCoin                                                         correct:NO
+                                                        drawUserId:drawUserId
+                                                  drawUserNickName:drawUserNickName
+                                                          wordText:self.word.text                             
+                                                             score:gainCoin                                                         
+                                                           correct:NO
                                                          isMyPaint:YES
                                                     drawActionList:drawView.drawActionList];
     [self.navigationController pushViewController:rc animated:YES];

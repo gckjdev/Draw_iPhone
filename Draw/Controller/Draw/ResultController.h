@@ -27,6 +27,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
 @property (retain, nonatomic) IBOutlet UIButton *exitButton;
 @property (retain, nonatomic) NSString *wordText;
+@property (retain, nonatomic) NSString *drawUserId;
+@property (retain, nonatomic) NSString *drawUserNickName;
 @property (assign, nonatomic) NSInteger score;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -43,7 +45,14 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint drawActionList:(NSArray *)drawActionList;
+- (id)initWithImage:(UIImage *)image 
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText 
+              score:(NSInteger)aScore 
+            correct:(BOOL)correct 
+          isMyPaint:(BOOL)isMyPaint 
+     drawActionList:(NSArray *)drawActionList;
 
 - (void)saveActionList:(NSArray *)actionList;
 

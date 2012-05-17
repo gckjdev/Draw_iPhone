@@ -22,8 +22,8 @@
 
 //@property (nonatomic, retain) 
 
-@property (nonatomic, copy) NSString *lastWord;
-@property (nonatomic, copy) NSString* word;
+@property (nonatomic, retain) NSString *lastWord;
+@property (nonatomic, retain) NSString* word;
 @property (nonatomic, assign) int level;
 @property (nonatomic, assign) int language;
 - (void)updateLastWord;
