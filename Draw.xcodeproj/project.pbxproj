@@ -12,6 +12,9 @@
 		A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */; };
 		A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A316C43A15513B1E00AD44E9 /* Default-Portrait.png */; };
 		A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
+		A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = A318FCFC15650F680075860F /* ShowRemoteDrawController.m */; };
+		A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A318FCFD15650F680075860F /* ShowRemoteDrawController.xib */; };
+		A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A318FCFE15650F680075860F /* ShowRemoteDrawController~ipad.xib */; };
 		A329332215591D3300621789 /* light_yellow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A329332115591D3300621789 /* light_yellow_bg@2x.png */; };
 		A329332F15591D4D00621789 /* MyFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332715591D4D00621789 /* MyFriendsController.m */; };
 		A329333015591D4D00621789 /* MyFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332815591D4D00621789 /* MyFriendsController.xib */; };
@@ -673,6 +676,10 @@
 		A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowUserController~ipad.xib"; sourceTree = "<group>"; };
 		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
+		A318FCFB15650F680075860F /* ShowRemoteDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowRemoteDrawController.h; sourceTree = "<group>"; };
+		A318FCFC15650F680075860F /* ShowRemoteDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowRemoteDrawController.m; sourceTree = "<group>"; };
+		A318FCFD15650F680075860F /* ShowRemoteDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowRemoteDrawController.xib; sourceTree = "<group>"; };
+		A318FCFE15650F680075860F /* ShowRemoteDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowRemoteDrawController~ipad.xib"; sourceTree = "<group>"; };
 		A329332115591D3300621789 /* light_yellow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_yellow_bg@2x.png"; sourceTree = "<group>"; };
 		A329332615591D4D00621789 /* MyFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendsController.h; sourceTree = "<group>"; };
 		A329332715591D4D00621789 /* MyFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendsController.m; sourceTree = "<group>"; };
@@ -3140,6 +3147,10 @@
 		CA1041E11509B6E700F60C03 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				A318FCFB15650F680075860F /* ShowRemoteDrawController.h */,
+				A318FCFC15650F680075860F /* ShowRemoteDrawController.m */,
+				A318FCFD15650F680075860F /* ShowRemoteDrawController.xib */,
+				A318FCFE15650F680075860F /* ShowRemoteDrawController~ipad.xib */,
 				A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */,
 				A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */,
 				A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */,
@@ -4378,6 +4389,8 @@
 				C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */,
 				C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */,
 				C29B8A501565001000B9707D /* ding.wav in Resources */,
+				A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */,
+				A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4738,6 +4751,7 @@
 				A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */,
 				A3C129E51563A70E00C021A7 /* RemoteDrawData.m in Sources */,
 				C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */,
+				A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
