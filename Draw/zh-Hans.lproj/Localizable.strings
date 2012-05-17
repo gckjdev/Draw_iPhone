@@ -351,8 +351,6 @@
 "kWaitting" = "等待中";
 "kFull" = "已满人";
 
-"kMusicSettings" = "背景音乐";
-
 "kMale" = "男";
 "kFemale" = "女";
 "kSayToYou" = "对你说: %@";
@@ -411,3 +409,4 @@
 
 "kExpand" = "展开";
 "kCollapse" = "收缩";
+"kMusicSettings" = "背景音乐";

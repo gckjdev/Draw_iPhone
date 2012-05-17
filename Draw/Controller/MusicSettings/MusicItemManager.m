@@ -10,6 +10,7 @@
 #import "LocaleUtils.h"
 
 #define KEY_MUSICLIST @"musicList"
+#define KEY_CURRENT_MUSIC @"currentMusic"
 #define DELIMITER @"$$"
 
 
@@ -35,10 +36,12 @@ static MusicItemManager *_defaultManager;
         
         self.itemList = [[NSMutableArray alloc] init];
         [self loadMusicItems];
-        
-        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
-        currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
-        [itemList addObject:currentMusicItem];
+        [self loadCurrentMusic];
+        if (currentMusicItem == nil) {
+            NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+            currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
+            [itemList addObject:currentMusicItem];
+        }
     }
     return self;
 }
@@ -58,7 +61,7 @@ static MusicItemManager *_defaultManager;
     NSString *url = [array objectAtIndex:1];
     NSString *localPath = [array objectAtIndex:2];
     NSString *downloadProgress = [array objectAtIndex:3];
-    MusicItem *item = [[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:nil];
+    MusicItem *item = [[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:@""];
     item.downloadProgress = [NSNumber numberWithLongLong:[downloadProgress longLongValue]];
     return item;
 }
@@ -84,7 +87,7 @@ static MusicItemManager *_defaultManager;
     NSMutableArray *list = [[NSMutableArray alloc] init];
     for (MusicItem *item in self.itemList) {
         if ([item.fileName isEqualToString:@"cannon.mp3"]) {
-            return;
+            continue;
         }
         NSMutableString *itemString = [[NSMutableString alloc]init];
         [itemString appendFormat:@"%@%@%@%@%@%@%@", 
@@ -102,6 +105,34 @@ static MusicItemManager *_defaultManager;
     [list release];
     
 }
+
+- (void)loadCurrentMusic
+{
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *data = [userDefault objectForKey:KEY_CURRENT_MUSIC];
+    if (data != nil) {
+        MusicItem *item = [self parseMusicItemFromString:data];
+        self.currentMusicItem = item;
+        }
+}
+
+- (void)saveCurrentMusic
+{        
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    
+    NSMutableString *itemString = [[NSMutableString alloc]init];
+    [itemString appendFormat:@"%@%@%@%@%@%@%@", 
+         currentMusicItem.fileName, DELIMITER, 
+         currentMusicItem.url, DELIMITER, 
+         currentMusicItem.localPath, DELIMITER, 
+         [currentMusicItem.downloadProgress stringValue]];
+        
+    [userDefaults setObject: itemString forKey:KEY_CURRENT_MUSIC];
+    [itemString release];
+
+}
+
 
 
 - (void)saveItem:(MusicItem*)item

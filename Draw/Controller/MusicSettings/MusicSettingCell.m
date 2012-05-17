@@ -9,6 +9,7 @@
 #import "MusicSettingCell.h"
 #import "MusicItemManager.h"
 #import "LocaleUtils.h"
+#import "AudioManager.h"
 
 @implementation MusicSettingCell
 
@@ -56,11 +57,25 @@
     if ([item.fileName isEqualToString:NSLS(@"cannon.mp3")]) {
         self.downloadProgress.hidden = YES;
     }
+    if (indexPath.row > 0 && (self.downloadProgress.progress < 1.0)) {
+        self.selectedCurrentButton.hidden = YES;
+    }
 }
 
 - (IBAction)selectCurrent:(id)sender
 {
     [[MusicItemManager defaultManager] setCurrentMusicItem:_musicItem];
+    [[MusicItemManager defaultManager] saveCurrentMusic];
+    
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    AudioManager *audioManager = [AudioManager defaultManager];
+    
+    //stop old music
+    [audioManager backgroundMusicStop];
+    //start new music
+    [audioManager setBackGroundMusicWithURL:url];
+    [audioManager backgroundMusicStart];
 }
 
 @end

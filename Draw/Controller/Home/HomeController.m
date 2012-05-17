@@ -72,10 +72,9 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
-    //init background music
-//    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
-//    [[AudioManager defaultManager] backgroundMusicStart];
-    
+    //init background music    
+    [self playBackgroundMusic];
+
     // setup button images
     UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
     [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
@@ -127,8 +126,6 @@
 //    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
-    
-    [self playBackgroundMusic];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
