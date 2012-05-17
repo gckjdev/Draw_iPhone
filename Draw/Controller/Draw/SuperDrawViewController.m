@@ -15,6 +15,9 @@
 #import "AnimationManager.h"
 #import "WordManager.h"
 #import "DrawGameService.h"
+#import "ChatMessageView.h"
+#import "ExpressionManager.h"
+#import "GameMessage.pb.h"
 
 @implementation SuperDrawViewController
 @synthesize turnNumberButton;
@@ -71,6 +74,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [_privateChatController dismiss];
+    [_groupChatController dismiss];
     [super viewDidDisappear:animated];
 }
 
@@ -279,19 +284,36 @@
     }
 }
 
-//- (void)didSelectMessage:(NSString *)message
-//{
-//    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
-//        [self clickProlongStart:nil];
-//    }else {
-//        [self userId:[[DrawGameService defaultService] userId] popupMessage:message];
-//    }
-//}
-//
-//- (void)didSelectExpression:(UIImage *)expression
-//{
-//    [self userId:[[DrawGameService defaultService] userId] popupImage:expression title:nil];
-//}
+- (void)didGameReceiveChat:(GameMessage *)message
+{
+    NSString* content = [[message notification] chatContent];
+    GameChatType chatType = [[message notification] chatType];
+    
+    if (chatType == GameChatTypeChatGroup) {
+        if ([content hasPrefix:EXPRESSION_CHAT]) {
+            NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];  
+            [self showChatMessageViewOnUser:[message userId] title:nil expression:image];
+            //            [self userId:[message userId] popupImage:image title:nil];
+        }else if ([content hasPrefix:NORMAL_CHAT]) {
+            NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+            [self showChatMessageViewOnUser:[message userId] message:msg];
+            //            [self userId:[message userId] popupMessage:msg];
+        }
+    }else {
+        if ([content hasPrefix:EXPRESSION_CHAT]) {
+            NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key]; 
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou:") expression:image];
+            //            [self userId:[message userId] popupImage:image title:NSLS(@"kSayToYou")];
+        }else if ([content hasPrefix:NORMAL_CHAT]) {
+            NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
+            [self showChatMessageViewOnUser:[message userId] message:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
+            //            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
+        }
+    }
+}
+
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
@@ -304,7 +326,31 @@
     }
     _privateChatController.chatControllerDelegate = self;
     
-    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId];
+    [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId];
+}
+
+- (void)didSelectMessage:(NSString*)message
+{
+    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:message];
+}
+
+- (void)didSelectExpression:(UIImage*)expression
+{
+    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:nil expression:expression];
+}
+
+- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message
+{
+    AvatarView *player = [self avatarViewForUserId:userId];
+    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    [ChatMessageView showMessage:message origin:origin superView:self.view];
+}
+
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression
+{
+    AvatarView *player = [self avatarViewForUserId:userId];
+    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
 }
 
 @end

@@ -356,6 +356,7 @@
 "kMale" = "男";
 "kFemale" = "女";
 "kSayToYou" = "对你说: %@";
+"kSayToYou:" = "对你说:";
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
 
 "kPayAttentionToMe" = "关注我吧";

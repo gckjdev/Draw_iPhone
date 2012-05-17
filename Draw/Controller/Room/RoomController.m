@@ -29,6 +29,7 @@
 #import "ConfigManager.h"
 #import "ExpressionManager.h"
 #import "StableView.h"
+#import "ChatMessageView.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -310,6 +311,7 @@
     for (int i=imageStartTag; i<=imageEndTag; i++){
         AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
         [imageView setImage:nil];
+        [imageView setUserId:nil];
         UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
         [view removeFromSuperview];
         
@@ -396,71 +398,96 @@
 }
 
 
-- (AvatarView *)userAvatarForUserId:(NSString *)userId
-{
-    GameSession* session = [[DrawGameService defaultService] session];
-    NSArray* userList = [session userList];
+//- (AvatarView *)userAvatarForUserId:(NSString *)userId
+//{
+//    GameSession* session = [[DrawGameService defaultService] session];
+//    NSArray* userList = [session userList];
+//
+//    int imageStartTag = 31;
+//    
+//    for (GameSessionUser* user in userList){
+//        AvatarView *imageView = (AvatarView *)[self.view 
+//                                                         viewWithTag:imageStartTag ++];
+//        if([user.userId isEqualToString:userId]){
+//            return imageView;
+//        }
+//    }
+//    return nil;
+//
+//}
 
+- (NSArray*)getAvatarList
+{
     int imageStartTag = 31;
+    int imageEndTag = 36;
     
-    for (GameSessionUser* user in userList){
-        AvatarView *imageView = (AvatarView *)[self.view 
-                                                         viewWithTag:imageStartTag ++];
-        if([user.userId isEqualToString:userId]){
-            return imageView;
-        }
+    NSMutableArray *avatarList = [[[NSMutableArray alloc] init] autorelease];
+    
+    for (int i = imageStartTag; i <= imageEndTag; i++) {
+        [avatarList addObject:[self.view viewWithTag:i]];
     }
-    return nil;
-
+    
+    return avatarList;
 }
 
-- (void)userId:(NSString *)userId popupMessage:(NSString *)message
+- (AvatarView *)userAvatarForUserId:(NSString *)userId avatarList:(NSArray*)avatarList
 {
-    AvatarView *player = [self userAvatarForUserId:userId];
-    if (player == nil) {
-        return;
+    for (AvatarView *avatar in avatarList) {
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        } 
     }
-    CGFloat x = player.frame.origin.x;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
     
-    CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
-    if ([DeviceDetection isIPAD]) {
-        [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];        
-    }else{
-        [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
-    }
-    [popupButton setTitle:message forState:UIControlStateNormal];
-    [popupButton setImage:nil forState:UIControlStateNormal];
-    [self updatePopupButtonInset:NO];
-    [popupButton setHidden:NO];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+    return nil;
 }
 
-- (void)userId:(NSString *)userId popupImage:(UIImage *)image title:(NSString*)title
-{    
-    AvatarView *player = [self userAvatarForUserId:userId];
+//- (void)userId:(NSString *)userId popupMessage:(NSString *)message
+//{
+//    AvatarView *player = [self userAvatarForUserId:userId];
+//    if (player == nil) {
+//        return;
+//    }
+//    CGFloat x = player.frame.origin.x;
+//    CGFloat y = player.frame.origin.y + player.frame.size.height;
+//    
+//    CGSize size = [message sizeWithFont:popupButton.titleLabel.font];
+//    if ([DeviceDetection isIPAD]) {
+//        [popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];        
+//    }else{
+//        [popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+//    }
+//    [popupButton setTitle:message forState:UIControlStateNormal];
+//    [popupButton setImage:nil forState:UIControlStateNormal];
+//    [self updatePopupButtonInset:NO];
+//    [popupButton setHidden:NO];
+//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+//    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+//}
 
-    if (player == nil) {
-        return;
-    }
-    CGFloat x = player.frame.origin.x;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    
-    CGSize size = [image size];
-    if ([DeviceDetection isIPAD]) {
-        [popupButton setFrame:CGRectMake(x, y, size.width + 30 * 2, size.height + 25 * 2)];        
-    }else{
-        [popupButton setFrame:CGRectMake(x, y, size.width + 30, size.height + 25)];
-    }
-    [popupButton setImage:image forState:UIControlStateNormal];
-    [popupButton setTitle:title forState:UIControlStateNormal];
-    [self updatePopupButtonInset:YES];
-    [popupButton setHidden:NO];
-    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
-    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
-    [self.view bringSubviewToFront:popupButton];
-}
+//- (void)userId:(NSString *)userId popupImage:(UIImage *)image title:(NSString*)title
+//{    
+//    AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
+//
+//    if (player == nil) {
+//        return;
+//    }
+//    CGFloat x = player.frame.origin.x;
+//    CGFloat y = player.frame.origin.y + player.frame.size.height;
+//    
+//    CGSize size = [image size];
+//    if ([DeviceDetection isIPAD]) {
+//        [popupButton setFrame:CGRectMake(x, y, size.width + 30 * 2, size.height + 25 * 2)];        
+//    }else{
+//        [popupButton setFrame:CGRectMake(x, y, size.width + 30, size.height + 25)];
+//    }
+//    [popupButton setImage:image forState:UIControlStateNormal];
+//    [popupButton setTitle:title forState:UIControlStateNormal];
+//    [self updatePopupButtonInset:YES];
+//    [popupButton setHidden:NO];
+//    CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
+//    [popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+//    [self.view bringSubviewToFront:popupButton];
+//}
 
 
 #pragma mark - Draw Game Service Delegate
@@ -575,8 +602,8 @@
     [self updateOnlineUserLabel];
     
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
-//        [self userId:[message userId] says:(NSLS(@"kQuickMessage"))];         
-        [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
+        [self showChatMessageViewOnUser:[message userId] message:NSLS(@"kQuickMessage")];
+//        [self userId:[message userId] popupMessage:(NSLS(@"kQuickMessage"))];         
         [[AudioManager defaultManager] playSoundById:QUICK_QUICK];
     }
 
@@ -590,20 +617,24 @@
     if (chatType == GameChatTypeChatGroup) {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
-            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
-            [self userId:[message userId] popupImage:image title:nil];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];  
+            [self showChatMessageViewOnUser:[message userId] title:nil expression:image];
+//            [self userId:[message userId] popupImage:image title:nil];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:msg];
+            [self showChatMessageViewOnUser:[message userId] message:msg];
+//            [self userId:[message userId] popupMessage:msg];
         }
     }else {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
-            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];   
-            [self userId:[message userId] popupImage:image title:NSLS(@"kSayToYou")];
+            UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key]; 
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou:") expression:image];
+//            [self userId:[message userId] popupImage:image title:NSLS(@"kSayToYou")];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
+            [self showChatMessageViewOnUser:[message userId] message:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
+//            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
         }
     }
 }
@@ -615,7 +646,8 @@
     if (![[[DrawGameService defaultService] userId] isEqualToString:[message userId]]) {
 //        [self userId:[message userId] says:(NSLS(@"kWaitMessage"))];   
         [self prolongStartTimer];
-        [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))]; 
+        [self showChatMessageViewOnUser:[message userId] message:NSLS(@"kWaitMessage")];
+//        [self userId:[message userId] popupMessage:(NSLS(@"kWaitMessage"))]; 
         [[AudioManager defaultManager] playSoundById:WAIT_WAIT];
     }
 
@@ -748,7 +780,8 @@
                 [self prolongStartTimer];
 //                quickDuration = currentTime;
                 _clickCount ++;
-                [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kWaitMessage"))];
+                [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:NSLS(@"kWaitMessage")];
+//                [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kWaitMessage"))];
             }
             else{
                 [self popupMessage:NSLS(@"kExceedMaxProlongTimes") title:nil];
@@ -762,7 +795,8 @@
 //        if (currentTime - quickDuration > QUICK_DURATION) {
             [[DrawGameService defaultService] askQuickGame];            
 //            quickDuration = currentTime;
-            [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kQuickMessage"))];
+        [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:NSLS(@"kQuickMessage")];
+//        [self userId:[[DrawGameService defaultService] userId] popupMessage:(NSLS(@"kQuickMessage"))];
 //        }else{
 //            [self popupMessage:NSLS(@"kClickTooFast") title:nil];
 //        }
@@ -871,7 +905,6 @@
     [[roomController.view viewWithTag:ROOM_DIALOG_CHANGE_ROOM] removeFromSuperview];
     
     if (startNow) {
-//        [roomController performSelector:@selector(showDrawViewController) withObject:nil afterDelay:0.0f];
         [roomController showDrawViewController:NO];
         return;
     }
@@ -959,13 +992,13 @@
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
         [self clickProlongStart:nil];
     }else {
-        [self userId:[[DrawGameService defaultService] userId] popupMessage:message];
+        [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:message];
     }
 }
 
 - (void)didSelectExpression:(UIImage *)expression
 {
-    [self userId:[[DrawGameService defaultService] userId] popupImage:expression title:nil];
+    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:nil expression:expression];
 }
 
 - (void)didClickOnAvatar:(NSString*)userId
@@ -982,5 +1015,19 @@
     [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId];
 }
 
+- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message
+{
+    AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
+    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    [ChatMessageView showMessage:message origin:origin superView:self.view];
+}
+
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression
+{
+    AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
+    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    
+    [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
+}
 
 @end

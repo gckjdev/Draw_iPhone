@@ -49,6 +49,7 @@
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44C91FB1564DFD300018D0D /* messagebg@2x.png */; };
+		A44C92001564E28200018D0D /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44C91FF1564E28200018D0D /* ChatMessageView.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CB881559099F00896761 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CB831559099F00896761 /* face_anger@2x.png */; };
@@ -714,6 +715,8 @@
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		A44C91FB1564DFD300018D0D /* messagebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messagebg@2x.png"; sourceTree = "<group>"; };
+		A44C91FE1564E28200018D0D /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
+		A44C91FF1564E28200018D0D /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A454CB6C1558F5CE00896761 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		A454CB6D1558F5CE00896761 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		A454CB6E1558F5CE00896761 /* ChatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatController.xib; sourceTree = "<group>"; };
@@ -1684,6 +1687,15 @@
 				A3C129D71563A6B600C021A7 /* DrawDataService.m */,
 			);
 			path = DrawData;
+			sourceTree = "<group>";
+		};
+		A44C91FD1564E28100018D0D /* ChatMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				A44C91FE1564E28200018D0D /* ChatMessageView.h */,
+				A44C91FF1564E28200018D0D /* ChatMessageView.m */,
+			);
+			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
 		A454CB6B1558F57E00896761 /* Chat */ = {
@@ -3812,6 +3824,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A44C91FD1564E28100018D0D /* ChatMessageView */,
 				CA051DAE1546802D00D0A00A /* DrawView */,
 				CA051DB31546802D00D0A00A /* PickPenView */,
 				CA051DB61546802D00D0A00A /* ShopView */,
@@ -4726,6 +4739,7 @@
 				A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */,
 				A3C129E51563A70E00C021A7 /* RemoteDrawData.m in Sources */,
 				C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */,
+				A44C92001564E28200018D0D /* ChatMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

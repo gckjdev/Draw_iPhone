@@ -339,6 +339,7 @@
 "kMale" = "Male";
 "kFemale" = "Female";
 "kSayToYou" = "Say to you: %@";
+"kSayToYou:" = "Say to you:";
 "kNobodyInRoom" = "you can chat private nobody in room";
 
 "kPayAttentionToMe" = "Pay attention to me";

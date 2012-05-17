@@ -60,6 +60,5 @@ typedef enum {
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 @property(nonatomic, assign) BOOL hasPen;
 
-//- (void)addTarget:(id)target action:(SEL)action;
 @end
 
