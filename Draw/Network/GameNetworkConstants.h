@@ -99,6 +99,10 @@
 #define METHOD_REOMOVE_ROOM @"rr"
 #define METHOD_NEW_JOIN_ROOM @"njr"
 
+//find draw
+#define METHOD_FINDDRAW @"fd"
+
+
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
 #define PARA_SERVER_PORT @"sp"
@@ -341,6 +345,10 @@
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1
 
+//find draw 
+#define PARA_FORMAT @"format"
+
+#define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

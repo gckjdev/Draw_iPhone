@@ -7,14 +7,20 @@
 //
 
 #import "RemoteDrawView.h"
-#import "RemoteDrawData.h"
 #import "ShareImageManager.h"
 #import "PPApplication.h"
+#import "GameBasic.pb.h"
+#import "LogUtil.h"
+#import "ShowDrawView.h"
+#import "DrawAction.h"
+#import "UIImageExt.h"
+#import "DrawUtils.h"
 
 @implementation RemoteDrawView
 @synthesize avatarImage;
 @synthesize nickNameLabel;
 @synthesize paintButton;
+@synthesize showDrawView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,37 +35,48 @@
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"RemoteDrawView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <RemoteDrawView> but cannot find cell object from Nib");
+        PPDebug(@"create <RemoteDrawView> but cannot find cell object from Nib");
         return nil;
     }
     RemoteDrawView* button =  (RemoteDrawView*)[topLevelObjects objectAtIndex:0];
     return button;
 }
 
-- (void)setViewByRemoteDrawData:(RemoteDrawData *)remoteDrawData
+- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData
 {
+    PPDebug(@"avatar:%@",remoteDrawData.avatar);
+    PPDebug(@"nickName:%@",remoteDrawData.nickName);
+    PPDebug(@"word:%@",remoteDrawData.word);
+    
+    //set avatar
     [avatarImage setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     [avatarImage setUrl:[NSURL URLWithString:remoteDrawData.avatar]];
     [GlobalGetImageCache() manage:avatarImage];
     
-    
+    //set nickName
     [nickNameLabel setText:remoteDrawData.nickName];
     
+    //set drawView
+    NSMutableArray *drawActionList = [[NSMutableArray alloc] init];
+    for (PBDrawAction *pbDrawAction in remoteDrawData.drawDataList) {
+        DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
+        [drawActionList addObject:drawAction];
+        [drawAction release];
+    }
+    showDrawView.frame = DRAW_VEIW_FRAME;
+    showDrawView.center = paintButton.center;
+    [showDrawView setDrawActionList:drawActionList];
+    [drawActionList release];
+    showDrawView.transform = CGAffineTransformMakeScale(0.2, 0.2);
+    
+    
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void)dealloc {
     [avatarImage release];
     [nickNameLabel release];
     [paintButton release];
+    [showDrawView release];
     [super dealloc];
 }
 

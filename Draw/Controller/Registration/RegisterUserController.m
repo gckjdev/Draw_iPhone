@@ -23,6 +23,7 @@
 #import "UserManager.h"
 #import "RemoteDrawView.h"
 #import "RemoteDrawData.h"
+#import "GameBasic.pb.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -84,6 +85,8 @@
     }
     
     [self addRemoteDraw];
+    
+    [[DrawDataService defaultService] findRecentDraw:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -290,31 +293,18 @@
     
 }
 
+
+#define DRAW_VIEW_COUNT 6
+
+
 - (void)addRemoteDraw
 {
-    //test data
-    /******************************/
-    NSMutableArray *mArray = [[NSMutableArray alloc] init];
-    for (int i=0 ; i<6 ;i++) {
-        RemoteDrawData *rdd = [[RemoteDrawData alloc] initWithUserId:@"test" 
-                                                            nickName:@"test" 
-                                                          drawAction:nil 
-                                                                word:@"test" 
-                                                                date:[NSDate date]
-                                                              avatar: @"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
-        [mArray addObject:rdd];
-        [rdd release];
-    }
-    self.remoteDrawArray = mArray;
-    [mArray release];
-    /******************************/
-    
-    
     CGFloat yStart = 210;
     
-    for (int i= 0 ; i<6 ; i++) {
+    for (int i= 0 ; i < [self.remoteDrawArray count] && i<DRAW_VIEW_COUNT ; i++) {
         RemoteDrawView *remoteDrawView  = [RemoteDrawView creatRemoteDrawView];
-        [remoteDrawView setViewByRemoteDrawData:[self.remoteDrawArray objectAtIndex:i]];
+        PBDraw *draw = [self.remoteDrawArray objectAtIndex:i];
+        [remoteDrawView setViewByRemoteDrawData:draw];
         
         CGFloat xSpace, ySpace , x, y;
         xSpace = (self.view.frame.size.width - 3 * remoteDrawView.frame.size.width)/4;
@@ -324,7 +314,17 @@
         
         remoteDrawView.frame = (CGRect){CGPointMake(x, y), remoteDrawView.frame.size};
         [self.view addSubview:remoteDrawView];
+        
+        [remoteDrawView.showDrawView play];
     }
+}
+
+#pragma mark - DrawDataServiceDelegate method
+- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode
+{
+    self.remoteDrawArray = remoteDrawDataList;
+    
+    [self addRemoteDraw];
 }
 
 @end

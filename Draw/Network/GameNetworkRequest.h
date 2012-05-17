@@ -180,5 +180,6 @@
                                    avatar:(NSString *)avatar 
                                    gender:(NSString *)gender;
 
++ (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
 @end

@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "HJManagedImageV.h"
+#import "ShowDrawView.h"
 
-@class RemoteDrawData;
+@class PBDraw;
 
 @interface RemoteDrawView : UIView
 @property (retain, nonatomic) IBOutlet HJManagedImageV *avatarImage;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *paintButton;
+@property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
 
 + (RemoteDrawView*)creatRemoteDrawView;
 
-- (void)setViewByRemoteDrawData:(RemoteDrawData *)remoteDrawData;
+- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData;
 
 
 @end
