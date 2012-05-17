@@ -10,7 +10,7 @@
 #import "DeviceDetection.h"
 #import "PPDebug.h"
 
-#define HEIGHT_CELL_IPHONE 40
+#define HEIGHT_CELL_IPHONE 32.33
 #define HEIGHT_CELL_IPAD ((HEIGHT_CELL_IPHONE)*2.0)
 #define HEIGHT_CELL ([DeviceDetection isIPAD] ? (HEIGHT_CELL_IPAD) : (HEIGHT_CELL_IPHONE))
 

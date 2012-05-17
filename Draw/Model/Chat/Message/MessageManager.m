@@ -7,18 +7,26 @@
 //
 
 #import "MessageManager.h"
+#import "LocaleUtils.h"
 #import "PPDebug.h"
 
 static MessageManager *_instance = nil;
 
 @interface MessageManager ()
 {
-    NSMutableArray *_privateMessages;
-    NSMutableArray *_groupMessages;
+    NSMutableArray *messagesInRoom;
+    NSMutableArray *messagesInGame;
 }
+
+@property (retain, nonatomic) NSMutableArray *messagesInRoom;
+@property (retain, nonatomic) NSMutableArray *messagesInGame;
+
 @end
 
 @implementation MessageManager
+
+@synthesize messagesInRoom = _messagesInRoom;
+@synthesize messagesInGame = _messagesInGame;
 
 + (MessageManager *)defaultManager
 {
@@ -33,8 +41,9 @@ static MessageManager *_instance = nil;
 {
     self = [super init];
     if (self) {
-        _privateMessages = [[NSArray arrayWithObjects:@"延时", @"b",  @"c",  @"d",  @"e",  @"f",  @"g",  @"h",  @"i",  @"j", nil] retain];
-        _groupMessages = [[NSArray arrayWithObjects:@"a", @"b",  @"c",  @"d",  @"e",  @"f",  @"g",  @"h",  @"i",  @"j", nil] retain];
+        self.messagesInRoom = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), NSLS(@"kDrawTillDawn"), NSLS(@"kHelloEveryone"), NSLS(@"kDontLeave"), NSLS(@"kFunny"), NSLS(@"kDrawedWhat"), NSLS(@"kHardToGuess"), NSLS(@"kGeiliable"), nil];
+        
+        self.messagesInGame = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), NSLS(@"kDrawTillDawn"), NSLS(@"kWellDone"),NSLS(@"kDontLive"), NSLS(@"kDontWriteAnswer"), NSLS(@"kDrawedWhat"), NSLS(@"kHardToGuess"), NSLS(@"kGiveAPrompt"), nil];
     }
     
     return self;
@@ -42,17 +51,17 @@ static MessageManager *_instance = nil;
 
 - (void)dealloc
 {
-    [_privateMessages release]; 
-    [_groupMessages release];
+    [_messagesInRoom release]; 
+    [_messagesInGame release];
     [super dealloc];
 }
 
-- (NSArray *)messagesForChatType:(GameChatType)chatType
+- (NSArray *)messagesForType:(MessagesType)type
 {
-    if (chatType == GameChatTypeChatPrivate) {
-        return _privateMessages;
+    if (type == RoomMessages) {
+        return _messagesInRoom;
     }else {
-        return _groupMessages;
+        return _messagesInGame;
     }
 }
 

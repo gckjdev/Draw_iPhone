@@ -115,9 +115,9 @@
 - (void)changeRoom;
 - (void)prolongGame;
 - (void)askQuickGame;
-- (void)groupChatMessage:(NSArray*)userList message:(NSString*)message;
+- (void)groupChatMessage:(NSString*)message;
 - (void)privateChatMessage:(NSArray*)userList message:(NSString*)message;
-- (void)groupChatExpression:(NSArray*)userList key:(NSString*)key;
+- (void)groupChatExpression:(NSString*)key;
 - (void)privateChatExpression:(NSArray*)userList key:(NSString*)key;
 
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer;
