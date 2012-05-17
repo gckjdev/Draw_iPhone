@@ -34,5 +34,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *facebookButton;
 @property (retain, nonatomic) IBOutlet UIButton *sinaButton;
 @property (retain, nonatomic) IBOutlet UIButton *qqButton;
+@property (retain, nonatomic) NSArray *remoteDrawArray;
+
+- (void)addRemoteDraw;
 
 @end

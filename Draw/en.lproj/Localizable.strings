@@ -302,19 +302,22 @@
 "kNoFollow" = "No follow";
 "kNoFans" = "No fans";
 "kEdit" = "Edit";
-"kAddFriend" = "Add Friend";
+"kSearchUser" = "Search User";
 "kSearch" = "Search";
-"kAddAsFriend" = "Add as friend";
-"kAlreadyBeFriend" = "Friend";
+"kAddAsFriend" = "Follow";
+"kAlreadyBeFriend" = "Has Follow";
 "kDidNottFindThisUser" = "No matching users";
 "kUpdateFollowFailed" = "Network error, update follows failed!";
 "kUpdateFansFailed" = "Network error, update fans failed!";
+"kFollowSuccessfully" = "Follow successfully!";
 "kFollowFailed" = "Network error, follow failed!";
+"kUnfollowSuccessfully" = "Unfollow successfully!";
 "kUnfollowFailed" = "Network error, unfollow failed!";
 "kEnterWords" = "Please enter the content";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
 "kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
+"kSearching" = "Searching...";
 "kMyself" = "Myself";
 "kMale" = "male";
 "kFemale" = "female";
@@ -358,3 +361,16 @@
 "kIsPlaying" = "is playing";
 "kIsJoined" = "accepted";
 "kIsInvited" = "invited";
+
+"kFindRoomListFail" = "Fail to get room list.";
+"kCreateRoomFail" = "Fail to create room.";
+"kRemoveRoomFail" = "Fail to remove room.";
+"kSearchRoomFail" = "Fail to search room.";
+"kInviteFriendFail" = "Fail to invite friends.";
+
+"kFindRoomListSucc" = "Fetch rooms successfully";
+"kCreateRoomSucc" = "Create room successfully.";
+"kRemoveRoomSucc" = "Remove room successfully.";
+"kInviteFriendFail" = "Invite friends successfully.";
+
+"kRoomSearhTips" = "Nickname / Room name";

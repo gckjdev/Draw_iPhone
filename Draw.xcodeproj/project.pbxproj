@@ -23,6 +23,11 @@
 		A329333A1559304500621789 /* foucsme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933361559304500621789 /* foucsme@2x.png */; };
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
+		A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129D71563A6B600C021A7 /* DrawDataService.m */; };
+		A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */; };
+		A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */; };
+		A3C129E21563A6ED00C021A7 /* RemoteDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DF1563A6ED00C021A7 /* RemoteDrawView~ipad.xib */; };
+		A3C129E51563A70E00C021A7 /* RemoteDrawData.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129E41563A70E00C021A7 /* RemoteDrawData.m */; };
 		A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */; };
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
@@ -73,6 +78,8 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
+		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
@@ -591,6 +598,7 @@
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		EADCDDD91563D5D600E5A181 /* background in Resources */ = {isa = PBXBuildFile; fileRef = EADCDDD81563D5D600E5A181 /* background */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
@@ -675,6 +683,14 @@
 		A32933361559304500621789 /* foucsme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foucsme@2x.png"; sourceTree = "<group>"; };
 		A32933371559304500621789 /* myfoucs_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs_selected@2x.png"; sourceTree = "<group>"; };
 		A32933381559304500621789 /* myfoucs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs@2x.png"; sourceTree = "<group>"; };
+		A3C129D61563A6B600C021A7 /* DrawDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawDataService.h; sourceTree = "<group>"; };
+		A3C129D71563A6B600C021A7 /* DrawDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawDataService.m; sourceTree = "<group>"; };
+		A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteDrawView.h; sourceTree = "<group>"; };
+		A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteDrawView.m; sourceTree = "<group>"; };
+		A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoteDrawView.xib; sourceTree = "<group>"; };
+		A3C129DF1563A6ED00C021A7 /* RemoteDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RemoteDrawView~ipad.xib"; sourceTree = "<group>"; };
+		A3C129E31563A70E00C021A7 /* RemoteDrawData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteDrawData.h; sourceTree = "<group>"; };
+		A3C129E41563A70E00C021A7 /* RemoteDrawData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteDrawData.m; sourceTree = "<group>"; };
 		A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_button@2x.png"; sourceTree = "<group>"; };
 		A3D11BF11562306A00248B4C /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
@@ -732,6 +748,9 @@
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
+		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
+		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
 		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
@@ -1595,6 +1614,7 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		EADCDDD81563D5D600E5A181 /* background */ = {isa = PBXFileReference; lastKnownFileType = file; path = background; sourceTree = "<group>"; };
 		EAE0D143155FB72400827DF9 /* no_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D144155FB72400827DF9 /* yes_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
@@ -1655,6 +1675,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3C129D51563A6B600C021A7 /* DrawData */ = {
+			isa = PBXGroup;
+			children = (
+				A3C129D61563A6B600C021A7 /* DrawDataService.h */,
+				A3C129D71563A6B600C021A7 /* DrawDataService.m */,
+			);
+			path = DrawData;
+			sourceTree = "<group>";
+		};
 		A454CB6B1558F57E00896761 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1727,7 @@
 		C231639F15577B8E00AC132B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				EADCDDD81563D5D600E5A181 /* background */,
 				C23163A615577D2200AC132B /* enterRoom.wav */,
 				C23163A015577B8E00AC132B /* clickWord.wav */,
 				C23163A115577B8E00AC132B /* correct.mp3 */,
@@ -1994,6 +2024,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A3C129D51563A6B600C021A7 /* DrawData */,
 				CA0CB767155CB75F009C8EE6 /* Room */,
 				CA9DB92D154E75410031DBBD /* Friend */,
 				CA137718152425BD00B5790B /* Router */,
@@ -2948,6 +2979,9 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */,
+				C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */,
+				C29B8A201563B02000B9707D /* CommonMessageView.xib */,
 				CA322191151F64F90039A384 /* CommonDialog.h */,
 				CA322192151F64F90039A384 /* CommonDialog.m */,
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
@@ -3095,6 +3129,10 @@
 		CA1041E11509B6E700F60C03 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */,
+				A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */,
+				A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */,
+				A3C129DF1563A6ED00C021A7 /* RemoteDrawView~ipad.xib */,
 				CA1041FA1509BF4700F60C03 /* RegisterUserController.h */,
 				CA1041FB1509BF4700F60C03 /* RegisterUserController.m */,
 				CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */,
@@ -3125,6 +3163,8 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A3C129E31563A70E00C021A7 /* RemoteDrawData.h */,
+				A3C129E41563A70E00C021A7 /* RemoteDrawData.m */,
 				CA1041E91509B99A00F60C03 /* Paint.h */,
 				CA1041EA1509B99A00F60C03 /* Paint.m */,
 			);
@@ -4318,6 +4358,10 @@
 				CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */,
 				A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */,
 				A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */,
+				A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */,
+				A3C129E21563A6ED00C021A7 /* RemoteDrawView~ipad.xib in Resources */,
+				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
+				EADCDDD91563D5D600E5A181 /* background in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4674,6 +4718,10 @@
 				A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */,
 				CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */,
 				A3D11BF51562306A00248B4C /* FriendCell.m in Sources */,
+				A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */,
+				A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */,
+				A3C129E51563A70E00C021A7 /* RemoteDrawData.m in Sources */,
+				C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

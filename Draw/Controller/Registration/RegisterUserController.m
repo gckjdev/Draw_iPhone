@@ -21,6 +21,8 @@
 #import "ShareImageManager.h"
 #import "FacebookSNSService.h"
 #import "UserManager.h"
+#import "RemoteDrawView.h"
+#import "RemoteDrawData.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -30,6 +32,7 @@
 @synthesize facebookButton;
 @synthesize sinaButton;
 @synthesize qqButton;
+@synthesize remoteDrawArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,6 +82,8 @@
         qqButton.hidden = YES;
         facebookButton.hidden = NO;        
     }
+    
+    [self addRemoteDraw];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -217,6 +222,7 @@
     [facebookButton release];
     [sinaButton release];
     [qqButton release];
+    [remoteDrawArray release];
     [super dealloc];
 }
 
@@ -282,6 +288,43 @@
 - (void)clickCancel:(InputDialog *)dialog
 {
     
+}
+
+- (void)addRemoteDraw
+{
+    //test data
+    /******************************/
+    NSMutableArray *mArray = [[NSMutableArray alloc] init];
+    for (int i=0 ; i<6 ;i++) {
+        RemoteDrawData *rdd = [[RemoteDrawData alloc] initWithUserId:@"test" 
+                                                            nickName:@"test" 
+                                                          drawAction:nil 
+                                                                word:@"test" 
+                                                                date:[NSDate date]
+                                                              avatar: @"http://img03.taobaocdn.com/sns_logo/i3/T1ZC81Xc8yXXb1upjX_100x100.jpg"];
+        [mArray addObject:rdd];
+        [rdd release];
+    }
+    self.remoteDrawArray = mArray;
+    [mArray release];
+    /******************************/
+    
+    
+    CGFloat yStart = 210;
+    
+    for (int i= 0 ; i<6 ; i++) {
+        RemoteDrawView *remoteDrawView  = [RemoteDrawView creatRemoteDrawView];
+        [remoteDrawView setViewByRemoteDrawData:[self.remoteDrawArray objectAtIndex:i]];
+        
+        CGFloat xSpace, ySpace , x, y;
+        xSpace = (self.view.frame.size.width - 3 * remoteDrawView.frame.size.width)/4;
+        ySpace = xSpace;
+        x = ((i % 3) + 1) * xSpace + (i % 3) * (remoteDrawView.frame.size.width);
+        y = yStart + (i / 3) * (remoteDrawView.frame.size.height);
+        
+        remoteDrawView.frame = (CGRect){CGPointMake(x, y), remoteDrawView.frame.size};
+        [self.view addSubview:remoteDrawView];
+    }
 }
 
 @end

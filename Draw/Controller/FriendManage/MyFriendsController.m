@@ -25,11 +25,14 @@
 
 @interface MyFriendsController ()
 
+@property (assign, nonatomic) int selectedIndex;
+
 - (void)updateFriendsCount;
 - (void)setAndReloadData:(NSArray *)newDataList;
 - (void)showNoDataTips;
 - (void)loadMyFollow;
 - (void)loadMyFans;
+- (void)updateFriendsListFromLocal;
 
 @end
 
@@ -43,6 +46,7 @@
 @synthesize myFanList = _myFanList;
 @synthesize tipsLabel;
 @synthesize room = _room;
+@synthesize selectedIndex;
 
 - (void)dealloc {
     [titleLabel release];
@@ -116,7 +120,7 @@
         CGSize size = dataTableView.frame.size;
         dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
     }else{
-        [searchUserButton setTitle:NSLS(@"kAddFriend") forState:UIControlStateNormal];
+        [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
         [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     }
     dataTableView.separatorColor = [UIColor clearColor];
@@ -146,14 +150,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     PPDebug(@"<MyFriendsController> viewWillAppear");
-    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
-    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
     
-    if (myFollowButton.selected) {
-        [self setAndReloadData:_myFollowList];
-    }else if (myFanButton.selected){
-        [self setAndReloadData:_myFanList];
-    }
+    [self updateFriendsListFromLocal];
 }
 
 
@@ -228,7 +226,8 @@
         }
         
     }else{
-        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];        
+        [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
+        cell.followDelegate = self;
     }
     return cell;
 }
@@ -236,10 +235,10 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!tableView.editing)
-        return UITableViewCellEditingStyleNone;
-    else {
+    if (myFollowButton.selected)
         return UITableViewCellEditingStyleDelete;
+    else {
+        return UITableViewCellEditingStyleNone;
     }
 }
 
@@ -259,6 +258,7 @@
     return nil;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Friend *friend = [self friendForIndexPath:indexPath];
@@ -272,6 +272,12 @@
                          withRowAnimation:UITableViewRowAnimationFade];
         editButton.hidden = ([_selectedSet count] == 0);
     }
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 
@@ -334,6 +340,19 @@
 
 
 #pragma mark - Custom methods
+- (void)updateFriendsListFromLocal
+{
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+    
+    if (myFollowButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else if (myFanButton.selected){
+        [self setAndReloadData:_myFanList];
+    } 
+}
+
+
 - (void)showNoDataTips
 {
     dataTableView.hidden = YES;
@@ -420,12 +439,50 @@
 - (void)didUnFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kUnfollowSuccessfully") title:nil];
         self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
         [self setAndReloadData:_myFollowList];
     }else {
         [self popupMessage:NSLS(@"kUnfollowFailed") title:nil];
     }
 }
+
+- (void)didFollowUser:(int)resultCode
+{
+    if (resultCode == 0) {
+        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
+        Friend *friend = [_myFanList objectAtIndex:selectedIndex];
+        [[FriendManager defaultManager] createFriendWithUserId:friend.friendUserId 
+                                                          type:[NSNumber numberWithInt:FOLLOW]
+                                                      nickName:friend.nickName 
+                                                        avatar:friend.avatar 
+                                                        gender:friend.gender 
+                                                        sinaId:friend.sinaId 
+                                                          qqId:friend.qqId 
+                                                    facebookId:friend.facebookId 
+                                                      sinaNick:friend.sinaNick 
+                                                        qqNick:friend.qqNick 
+                                                  facebookNick:friend.facebookNick 
+                                                    createDate:[NSDate date] 
+                                              lastModifiedDate:friend.lastModifiedDate
+                                                      location:friend.location];
+        [self updateFriendsListFromLocal];
+    } else {
+        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+    }
+}
+
+
+
+#pragma -mark FollowDelegate Method
+- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath user:(NSDictionary *)user
+{
+    selectedIndex = [indexPath row];
+    Friend *friend = [_myFanList objectAtIndex:selectedIndex];
+    [[FriendService defaultService] followUser:friend.friendUserId viewController:self
+     ];
+}
+
 
 #pragma mark -  FriendDelegate Method
 
@@ -469,9 +526,9 @@
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kInviteFail") title:nil];
+        [self popupMessage:NSLS(@"kInviteFriendFail") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kInviteSuccess") title:nil];
+        [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
         [self updateRoomUsers:friendSet];
     }
     [_selectedSet removeAllObjects];

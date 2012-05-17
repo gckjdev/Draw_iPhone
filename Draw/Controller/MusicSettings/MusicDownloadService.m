@@ -12,6 +12,7 @@
 #import "MusicItem.h"
 #import "ASIHTTPRequest.h"
 #import "LogUtil.h"
+#import "MusicItemManager.h"
 
 MusicDownloadService* globalDownloadService;
 NSMutableArray *list;
@@ -57,17 +58,12 @@ NSMutableArray *list;
     return self;
 }
 
-+ (void)saveItem:(MusicItem*)item
+- (void)saveItem:(MusicItem*)item
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSArray *list = [[NSMutableArray alloc] init];
-    NSMutableString *itemString = [[NSMutableString alloc]init];
-    
-    [userDefaults setObject:item forKey:item.musicName];
-    [userDefaults arrayForKey:@"musicList"];
+    [list addObject:item];
 }
-+ (NSArray*) findAllItems
+
+- (NSArray*) findAllItems
 {
     return list;
 }
@@ -203,9 +199,10 @@ NSMutableArray *list;
 - (void)requestStarted:(ASIHTTPRequest *)request
 {
     MusicItem *item = [MusicItem fromDictionary:request.userInfo]; 
-    NSLog(@"item requestStarted, url = %@", [item.url description]);     
-    [list addObject:item];
+    NSLog(@"item requestStarted, url = %@", [item.url description]);  
 
+    [[MusicItemManager defaultManager] saveItem:item];
+//    [[MusicDownloadService defaultService] saveItem:item];
 }
 
 - (void)requestDone:(ASIHTTPRequest *)request

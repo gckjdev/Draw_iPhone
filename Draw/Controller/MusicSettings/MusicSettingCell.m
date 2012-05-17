@@ -7,11 +7,15 @@
 //
 
 #import "MusicSettingCell.h"
+#import "MusicItemManager.h"
+#import "LocaleUtils.h"
 
 @implementation MusicSettingCell
 
 @synthesize musicNameLabel;
 @synthesize downloadProgress;
+@synthesize selectedCurrentButton;
+@synthesize musicItem = _musicItem;
 
 + (MusicSettingCell*) createCell:(id)delegate
 {
@@ -31,9 +35,18 @@
 
 - (void)setCellInfoWithItem:(MusicItem*)item indexPath:(NSIndexPath*)indexPath
 {
-    self.musicNameLabel.text = item.musicName;
+    _musicItem = item;
+    self.musicNameLabel.text = item.fileName;
     self.downloadProgress.progress = [item.downloadProgress floatValue];
+    self.selectedCurrentButton.selected = [[MusicItemManager defaultManager] currentMusicItem] == item;
+    if ([item.fileName isEqualToString:NSLS(@"kdefaultMusic")]) {
+        self.downloadProgress.hidden = YES;
+    }
 }
 
+- (IBAction)selectCurrent:(id)sender
+{
+    [[MusicItemManager defaultManager] setCurrentMusicItem:_musicItem];
+}
 
 @end
