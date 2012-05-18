@@ -101,6 +101,7 @@
     [self configureExpressionScrollView];
     
     UIImage *bgImage = [UIImage strectchableImageName:@"messagebg.png"];
+    
     if (_chatType == GameChatTypeChatGroup) {
         viewBgImageView.hidden = YES;
         userView.hidden = YES;
