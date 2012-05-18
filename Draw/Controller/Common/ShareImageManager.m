@@ -137,7 +137,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)toolNumberImage
 {
-    return [UIImage imageNamed:@"number.png"];
+    return [UIImage strectchableImageName:@"number.png"];
 }
 
 - (UIImage*)maleDefaultAvatarImage

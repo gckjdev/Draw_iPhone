@@ -192,7 +192,7 @@
     
 }
 
-- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     if ([targetText isEqualToString:_currentSelectRoom.password]) {
         if (_currentSelectRoom) {
@@ -204,7 +204,7 @@
         [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
     }
 }
-- (void)clickCancel:(InputDialog *)dialog
+- (void)didClickCancel:(InputDialog *)dialog
 {
     
 }

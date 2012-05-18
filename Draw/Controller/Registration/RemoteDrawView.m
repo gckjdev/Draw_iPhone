@@ -16,11 +16,29 @@
 #import "UIImageExt.h"
 #import "DrawUtils.h"
 
+@interface RemoteDrawView () 
+
+@property (assign, nonatomic) int index;
+
+@end
+
 @implementation RemoteDrawView
 @synthesize avatarImage;
 @synthesize nickNameLabel;
-@synthesize paintButton;
 @synthesize showDrawView;
+@synthesize playbackButton;
+@synthesize index;
+@synthesize delegate;
+
+
+- (void)dealloc {
+    [avatarImage release];
+    [nickNameLabel release];
+    [showDrawView release];
+    [playbackButton release];
+    [super dealloc];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,6 +48,7 @@
     }
     return self;
 }
+
 
 + (RemoteDrawView*)creatRemoteDrawView
 {
@@ -42,11 +61,14 @@
     return button;
 }
 
-- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData
+
+- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData index:(int)aIndex
 {
     PPDebug(@"avatar:%@",remoteDrawData.avatar);
     PPDebug(@"nickName:%@",remoteDrawData.nickName);
     PPDebug(@"word:%@",remoteDrawData.word);
+    
+    self.index = aIndex;
     
     //set avatar
     [avatarImage setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
@@ -63,21 +85,27 @@
         [drawActionList addObject:drawAction];
         [drawAction release];
     }
-    showDrawView.frame = DRAW_VEIW_FRAME;
-    showDrawView.center = paintButton.center;
     [showDrawView setDrawActionList:drawActionList];
     [drawActionList release];
-    showDrawView.transform = CGAffineTransformMakeScale(0.2, 0.2);
-    
-    
+    if ([DeviceDetection isIPAD]) {
+        showDrawView.frame = DRAW_VEIW_FRAME_IPAD;
+    }else {
+        showDrawView.frame = DRAW_VEIW_FRAME;
+    }
+    showDrawView.center = playbackButton.center;
+    CGFloat multiple = self.playbackButton.frame.size.height / showDrawView.frame.size.height;
+    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
+    showDrawView.playSpeed = 2/40.0;
 }
 
-- (void)dealloc {
-    [avatarImage release];
-    [nickNameLabel release];
-    [paintButton release];
-    [showDrawView release];
-    [super dealloc];
+
+- (IBAction)clickPlaybackButton:(id)sender
+{
+    if (delegate && [delegate respondsToSelector:@selector(didClickPlaybackButton:)]) {
+        [delegate didClickPlaybackButton:self.index];
+    }
 }
+
+
 
 @end

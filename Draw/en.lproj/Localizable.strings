@@ -90,6 +90,7 @@
 "kCheckInMessage" = "Oh, you got %d coins today!";
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
+"kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
 "kRegisterPromptLabel" = "Existing Account";
 "kRegisterTitleLabel" = "Registration";
 "kEnterEmail" = "Enter Your Email Address";
@@ -332,10 +333,6 @@
 "kSearchRoom" = "Search Room";
 
 
-"kPlaying" = "Playing";
-"kWaitting" = "Waitting";
-"kFull" = "Full";
-
 "kMale" = "Male";
 "kFemale" = "Female";
 "kSayToYou" = "Say to you: %@";
@@ -375,9 +372,11 @@
 
 "kRoomNameNumber" = "%@'s Room %d";
 
-"kIsPlaying" = "is playing";
-"kIsJoined" = "accepted";
-"kIsInvited" = "invited";
+"kUnFull" = "Unfull";
+"kFree" = "Free";
+"kFull" = "Full";
+"kFriendsPlaying" = "playing";
+"kFriendsInvited" = "invited";
 
 "kFindRoomListFail" = "Fail to get room list.";
 "kCreateRoomFail" = "Fail to create room.";
@@ -403,3 +402,4 @@
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
 "kMusicSettings" = "MusicSettings";
+"kNoneInvited" = "None invited";
