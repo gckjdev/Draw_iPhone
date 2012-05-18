@@ -420,7 +420,7 @@ static UserService* _defaultUserService;
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
-    [homeController showActivityWithText:NSLS(@"kLoginUser")];    
+    [homeController showActivityWithText:NSLS(@"kConnectingServer")];    
     dispatch_async(workingQueue, ^{            
         
         CommonNetworkOutput* output = 
