@@ -19,6 +19,7 @@
 #import "PPDebug.h"
 #import "AccountService.h"
 #import "DeviceDetection.h"
+#import "CommonMessageCenter.h"
 
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
@@ -184,7 +185,8 @@ enum {
                                             imageFilePath:self.imageFilePath  
                                                  delegate:self];        
         
-        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -241,7 +243,8 @@ enum {
                                             imageFilePath:path 
                                                  delegate:self];        
         
-        [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];        
+        //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -256,12 +259,14 @@ enum {
             [self popupMessage:msg title:nil]; 
         }
         else{
-            [self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
+            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         }
         [self.navigationController popViewControllerAnimated:YES];
     }
     else{
-        [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
+        //[self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
     }
     
 }

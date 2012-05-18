@@ -20,7 +20,9 @@ message JoinGameRequest {
   optional int32 targetSessionId = 10;          // 指定加入的Session ID
   optional int32 guessDifficultLevel = 11;      // 猜词难度，默认为1
   optional string roomId = 12;                  // 请求加入的好友房间ID
-    optional string roomName = 13;                       // 请求加入的好友房间名称
+  optional string roomName = 13;                // 请求加入的好友房间名称
+     repeated PBSNSUser snsUsers = 14;                     // 用户社交网络信息  
+     optional      string location = 15;
 }
 
 message JoinGameResponse {
@@ -87,6 +89,9 @@ message GeneralNotification{
   optional string nickName = 9;
   optional string userAvatar = 10;
   optional bool   userGender = 11;
+  repeated PBSNSUser snsUsers = 12;                    // 用户社交网络信息    
+  optional string location = 13;
+  
   
   // draw data
   repeated int32 points = 21 [packed=true];

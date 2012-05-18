@@ -34,6 +34,7 @@
 #import "GameTurn.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
+#import "CommonMessageCenter.h"
 
 #import "FriendRoomController.h"
 
@@ -310,7 +311,8 @@ enum{
     [self popUpRunAwayMessage:userId];
         [self adjustPlayerAvatars:userId];
     if ([self userCount] <= 1) {
-        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];        
+        //[self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil]; 
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAllUserQuit") delayTime:1 isHappy:NO]; 
     }
 }
 

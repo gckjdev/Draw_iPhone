@@ -14,6 +14,8 @@
 	NSString *_text;
 	UIImage *_image;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *faceImageView;
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 
 - (id) init;
 - (void) setMessageText:(NSString*)str;
@@ -25,6 +27,8 @@
 
 #pragma mark -
 @implementation CommonMessageView
+@synthesize faceImageView = _faceImageView;
+@synthesize messageLabel = _messageLabel;
 
 - (BOOL) isIPAD
 {
@@ -41,6 +45,8 @@
 - (void) dealloc{
 	[_text release];
 	[_image release];
+    [_faceImageView release];
+    [_messageLabel release];
 	[super dealloc];
 }
 
@@ -52,6 +58,19 @@
         return nil;
     }
     CommonMessageView* view =  (CommonMessageView*)[topLevelObjects objectAtIndex:0];
+    return view;
+}
+
++ (CommonMessageView*)createMessageViewWithText:(NSString*)text 
+                                        isHappy:(BOOL)isHappy
+{
+    CommonMessageView* view = [CommonMessageView createMessageView];
+    [view.messageLabel setText:text];
+    if (isHappy) {
+        [view.faceImageView setImage:[UIImage imageNamed:@"face_smile.png"]];
+    } else {
+        [view.faceImageView setImage:[UIImage imageNamed:@"face_wry.png"]];
+    }
     return view;
 }
 
@@ -92,14 +111,10 @@
 	
 }
 - (void) setMessageText:(NSString*)str{
-	[_text release];
-	_text = [str retain];
-	[self adjust];
+	[self.messageLabel setText:str];
 }
 - (void) setImage:(UIImage*)img{
-	[_image release];
-	_image = [img retain];
-	[self adjust];
+	[self.faceImageView setImage:img];
 }
 
 @end
@@ -254,6 +269,18 @@
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime{
 	[self postMessageWithText:text image:nil delayTime:delayTime];
+}
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime 
+                    isHappy:(BOOL)isHappy
+{
+    UIImage* face;
+    if (isHappy) {
+        face = [UIImage imageNamed:@"face_smile.png"];
+    } else {
+        face = [UIImage imageNamed:@"face_wry.png"];
+    }
+	[self postMessageWithText:text image:face delayTime:delayTime];
 }
 
 

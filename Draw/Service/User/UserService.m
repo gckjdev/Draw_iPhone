@@ -185,6 +185,9 @@ static UserService* _defaultUserService;
                                                    avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]];                    
                 }   
                 
+                // set location
+                [[UserManager defaultManager] setLocation:[userInfo objectForKey:SNS_LOCATION]];                
+                
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
             }
@@ -371,13 +374,17 @@ static UserService* _defaultUserService;
                 NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
                 NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
                 NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
-                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];                
+                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];  
+                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];  
+                
                 // save data                
                 [[UserManager defaultManager] saveUserId:userId 
                                                    email:email 
                                                 password:password 
                                                 nickName:nickName 
                                                avatarURL:avatar];
+                
+                [[UserManager defaultManager] setLocation:location];
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalanceFromServer:balance];
@@ -420,7 +427,7 @@ static UserService* _defaultUserService;
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
-    [homeController showActivityWithText:NSLS(@"kLoginUser")];    
+    [homeController showActivityWithText:NSLS(@"kConnectingServer")];    
     dispatch_async(workingQueue, ^{            
         
         CommonNetworkOutput* output = 
@@ -445,6 +452,8 @@ static UserService* _defaultUserService;
                 NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
                 NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
                 NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
+                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];  
+                
                 if (nickName == nil || [nickName length] == 0) {
                     nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
                     if (nickName == nil || [nickName length] == 0) {
@@ -468,7 +477,8 @@ static UserService* _defaultUserService;
                                                  balance:balance 
                                                    items:itemTypeBalanceArray];
             
-                
+                [[UserManager defaultManager] setLocation:location];
+
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];

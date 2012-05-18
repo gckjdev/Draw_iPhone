@@ -308,7 +308,9 @@
                                                 nickName:[_userManager nickName]
                                                   avatar:[_userManager avatarURL]
                                                   gender:[_userManager isUserMale]
-                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+                                                location:[_userManager location]         
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                             snsUserData:[_userManager snsUserData]];
     }
     
     _isTryJoinGame = NO;    

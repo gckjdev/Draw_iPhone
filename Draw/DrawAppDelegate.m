@@ -38,12 +38,12 @@ NSString* GlobalGetServerURL()
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-    return @"http://192.168.1.198:8000/api/i?";    
+    return @"http://192.168.1.12:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return @"http://192.168.1.10:8100/api/i?";      
+    return @"http://192.168.1.12:8100/api/i?";      
 }
 
 @implementation DrawAppDelegate
@@ -199,6 +199,7 @@ NSString* GlobalGetTrafficServerURL()
         sleep(60);
     });     
     
+    [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
 
 }
@@ -208,7 +209,7 @@ NSString* GlobalGetTrafficServerURL()
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-
+    [[AudioManager defaultManager] backgroundMusicStart];
     
 }
 

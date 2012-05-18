@@ -8,6 +8,7 @@
 
 #import "GameSessionUser.h"
 #import "GameBasic.pb.h"
+#import "SNSConstants.h"
 
 @implementation GameSessionUser
 
@@ -15,9 +16,13 @@
 @synthesize nickName = _nickName;
 @synthesize userAvatar = _userAvatar;
 @synthesize gender = _gender;
+@synthesize snsUserData = _snsUserData;
+@synthesize location = _location;
 
 - (void)dealloc
 {
+    [_location release];
+    [_snsUserData release];
     [_userId release];
     [_nickName release];
     [_userAvatar release];
@@ -31,6 +36,7 @@
     user.nickName = [pbUser nickName];
     user.userAvatar = [pbUser avatar]; 
     user.gender = [pbUser gender];
+    user.snsUserData = [pbUser snsUsersList];
     
     return user;
 }
@@ -39,6 +45,32 @@
 {
     return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d]",
             _userId, _nickName, _userAvatar, _gender];            
+}
+
+- (BOOL)isBindSNSByType:(int)type
+{
+    for (PBSNSUser* snsUser in _snsUserData){
+        if ([snsUser type] == type){
+            return YES;
+        }
+    }
+    
+    return NO;    
+}
+
+- (BOOL)isBindSina
+{
+    return [self isBindSNSByType:TYPE_SINA];
+}
+
+- (BOOL)isBindQQ
+{
+    return [self isBindSNSByType:TYPE_QQ];    
+}
+
+- (BOOL)isBindFacebook
+{
+    return [self isBindSNSByType:TYPE_FACEBOOK];        
 }
 
 @end

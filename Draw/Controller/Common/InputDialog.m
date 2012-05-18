@@ -53,15 +53,15 @@
 
 - (IBAction)clickCancelButton:(id)sender {
     [self startRunOutAnimation];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(clickCancel:)]) {
-        [self.delegate clickCancel:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickCancel:)]) {
+        [self.delegate didClickCancel:self];
     }
 }
 
 - (IBAction)clickOkButton:(id)sender {
     [self startRunOutAnimation];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(clickOk:targetText:)]) {
-        [self.delegate clickOk:self targetText:self.targetTextField.text];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOk:targetText:)]) {
+        [self.delegate didClickOk:self targetText:self.targetTextField.text];
     }
 }
 
