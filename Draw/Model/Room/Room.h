@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    RoomWaitting = 1,
-    RoomPlaying = 2,
+    RoomUnknow = 0,
+    RoomFree = 1,
+    RoomUnFull = 2,
     RoomFull = 3
 }RoomStatus;
 
@@ -43,9 +44,8 @@ typedef enum {
 
 @property(nonatomic, assign)RoomUserStatus myStatus;
 
-- (NSArray *)invitedUserList;
+
 - (NSArray *)playingUserList;
-- (NSArray *)joinedUserList;
 - (BOOL)isMeCreator;
 - (RoomUserStatus)myStatus;
 @end

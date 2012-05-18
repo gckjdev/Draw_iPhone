@@ -31,6 +31,6 @@
 - (RoomUserStatus)aFriend:(Friend *)aFriend statusAtRoom:(Room *)room;
 - (NSMutableArray *)sortRoomList:(NSArray *)roomList;
 - (BOOL)room:(Room *)room containsUser:(NSString *)userId;
+- (NSInteger)roomFriendCapacity;
 - (NSInteger)roomCapacity;
-
 @end

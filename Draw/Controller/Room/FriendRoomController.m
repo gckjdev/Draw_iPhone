@@ -121,7 +121,7 @@
     [rDialog showInView:self.view];
 }
 
-- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
@@ -316,6 +316,8 @@
 
 - (void)didJoinGame:(GameMessage *)message
 {
+    _currentSelectRoom.myStatus = UserJoined;
+    
     [[DrawGameService defaultService] unregisterObserver:self];
     
     [self hideActivity];

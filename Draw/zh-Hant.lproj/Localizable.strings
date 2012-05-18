@@ -345,10 +345,6 @@
 "kCreateRoom" = "創建房間";
 "kSearchRoom" = "搜索房間";
 
-"kPlaying" = "遊戲中";
-"kWaitting" = "等待中";
-"kFull" = "已滿人";
-
 "kMale" = "男";
 "kFemale" = "女";
 "kSayToYou" = "對你說: %@";
@@ -386,9 +382,11 @@
 "kInviting" = "邀請好友中...";
 "kRoomNameNumber" = "%@的房間%d";
 
-"kIsPlaying" = "正在遊戲中";
-"kIsJoined" = "已加入遊戲";
-"kIsInvited" = "已被邀請";
+"kUnFull" = "未滿";
+"kFree" = "空閒";
+"kFull" = "已滿";
+"kFriendsPlaying" = "人遊戲中";
+"kFriendsInvited" = "人已被邀請";
 
 
 "kFindRoomListFail" = "獲取房間列表失敗。";
@@ -413,3 +411,5 @@
 "kExpand" = "展开";
 "kCollapse" = "收缩";
 "kMusicSettings" = "背景音乐";
+
+"kNoneInvited" = "尚未邀請朋友";
