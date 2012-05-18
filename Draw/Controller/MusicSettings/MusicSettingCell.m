@@ -53,7 +53,9 @@
         self.musicNameLabel.text = item.fileName;
     }
     self.downloadProgress.progress = [item.downloadProgress floatValue];
-    self.selectedCurrentButton.selected = [[MusicItemManager defaultManager] currentMusicItem] == item;
+    
+    self.selectedCurrentButton.selected = [[MusicItemManager defaultManager] isCurrentMusic:item];
+    
     if ([item.fileName isEqualToString:NSLS(@"cannon.mp3")]) {
         self.downloadProgress.hidden = YES;
     }

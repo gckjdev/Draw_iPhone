@@ -37,11 +37,6 @@ static MusicItemManager *_defaultManager;
         self.itemList = [[[NSMutableArray alloc] init] autorelease];
         [self loadMusicItems];
         [self loadCurrentMusic];
-        if (currentMusicItem == nil) {
-            NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
-            currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
-            [itemList addObject:currentMusicItem];
-        }
     }
     return self;
 }
@@ -49,6 +44,7 @@ static MusicItemManager *_defaultManager;
 - (void)dealloc
 {
     [itemList release];
+    [currentMusicItem release];
     [super dealloc];
 }
 
@@ -86,9 +82,6 @@ static MusicItemManager *_defaultManager;
 
     NSMutableArray *list = [[NSMutableArray alloc] init];
     for (MusicItem *item in self.itemList) {
-        if ([item.fileName isEqualToString:@"cannon.mp3"]) {
-            continue;
-        }
         NSMutableString *itemString = [[NSMutableString alloc]init];
         [itemString appendFormat:@"%@%@%@%@%@%@%@", 
                         item.fileName, DELIMITER, 
@@ -114,6 +107,12 @@ static MusicItemManager *_defaultManager;
         MusicItem *item = [self parseMusicItemFromString:data];
         self.currentMusicItem = item;
         }
+    
+    if (self.currentMusicItem == nil) {
+        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+        self.currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
+        [itemList addObject:currentMusicItem];
+    }
 }
 
 - (void)saveCurrentMusic
@@ -133,6 +132,10 @@ static MusicItemManager *_defaultManager;
 
 }
 
+- (BOOL)isCurrentMusic:(MusicItem*)item
+{
+    return [currentMusicItem.fileName isEqualToString:item.fileName];
+}
 
 
 - (void)saveItem:(MusicItem*)item
