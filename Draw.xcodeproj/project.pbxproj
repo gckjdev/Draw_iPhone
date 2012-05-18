@@ -3254,10 +3254,10 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
+				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
