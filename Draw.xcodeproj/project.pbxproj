@@ -1721,14 +1721,14 @@
 		A454CB6B1558F57E00896761 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A461C93F15662BC30076FD9C /* ChatController~ipad.xib */,
-				A461C94015662BC30076FD9C /* MessageCell~ipad.xib */,
 				A454CBC1155A181500896761 /* MessageCell.h */,
 				A454CBC2155A181500896761 /* MessageCell.m */,
 				A454CBC3155A181500896761 /* MessageCell.xib */,
+				A461C94015662BC30076FD9C /* MessageCell~ipad.xib */,
 				A454CB6C1558F5CE00896761 /* ChatController.h */,
 				A454CB6D1558F5CE00896761 /* ChatController.m */,
 				A454CB6E1558F5CE00896761 /* ChatController.xib */,
+				A461C93F15662BC30076FD9C /* ChatController~ipad.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
