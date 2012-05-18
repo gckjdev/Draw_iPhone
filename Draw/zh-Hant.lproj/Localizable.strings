@@ -362,13 +362,14 @@
 "kFunny" = "真有趣";
 "kDrawedWhat" = "畫什麽啊";
 "kHardToGuess" = "真難猜";
-"kSelfDefine" = "自定義";
+"kSelfDefine" = "+";
 "kDontWriteAnswer" = "別給答案啊" ;
 "kGiveAPrompt" = "給點提示吧";
 "kWellDone" = "畫的真好";
 
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
+"kInputWhatYouWantToSay" = "輸入你想對TA說的話";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";

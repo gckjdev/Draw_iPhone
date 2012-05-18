@@ -349,13 +349,14 @@
 "kFunny" = "It's funny";
 "kDrawedWhat" = "What are you drawed";
 "kHardToGuess" = "It's hard to guess";
-"kSelfDefine" = "Self define";
+"kSelfDefine" = "+";
 "kDontWriteAnswer" = "Don't give answer" ;
 "kGiveAPrompt" = "Give me a prompt";
 "kWellDone" = "Well done";
 
 "kChatDialogTitle" = "Say to 【%@】";
 "kAllUser" = "All";
+"kInputWhatYouWantToSay" = "Input what you want to say";
 
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";

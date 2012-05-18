@@ -33,6 +33,8 @@
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *microBlogImageView;
+@property (retain, nonatomic) IBOutlet UILabel *alreadPayAttentionLabel;
+
 @property (retain, nonatomic) IBOutlet UILabel *sexLabel;
 @property (retain, nonatomic) IBOutlet UILabel *cityLabel;
 @property (retain, nonatomic) IBOutlet UIButton *payAttentionButton;
