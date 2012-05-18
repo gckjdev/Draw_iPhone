@@ -19,11 +19,277 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+@interface PBSNSUser ()
+@property int32_t type;
+@property (retain) NSString* userId;
+@property (retain) NSString* nickName;
+@end
+
+@implementation PBSNSUser
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasNickName {
+  return !!hasNickName_;
+}
+- (void) setHasNickName:(BOOL) value {
+  hasNickName_ = !!value;
+}
+@synthesize nickName;
+- (void) dealloc {
+  self.userId = nil;
+  self.nickName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.userId = @"";
+    self.nickName = @"";
+  }
+  return self;
+}
+static PBSNSUser* defaultPBSNSUserInstance = nil;
++ (void) initialize {
+  if (self == [PBSNSUser class]) {
+    defaultPBSNSUserInstance = [[PBSNSUser alloc] init];
+  }
+}
++ (PBSNSUser*) defaultInstance {
+  return defaultPBSNSUserInstance;
+}
+- (PBSNSUser*) defaultInstance {
+  return defaultPBSNSUserInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasNickName) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasUserId) {
+    [output writeString:2 value:self.userId];
+  }
+  if (self.hasNickName) {
+    [output writeString:3 value:self.nickName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasUserId) {
+    size += computeStringSize(2, self.userId);
+  }
+  if (self.hasNickName) {
+    size += computeStringSize(3, self.nickName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSNSUser*) parseFromData:(NSData*) data {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromData:data] build];
+}
++ (PBSNSUser*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUser*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromInputStream:input] build];
+}
++ (PBSNSUser*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUser*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSNSUser*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUser*)[[[PBSNSUser builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUser_Builder*) builder {
+  return [[[PBSNSUser_Builder alloc] init] autorelease];
+}
++ (PBSNSUser_Builder*) builderWithPrototype:(PBSNSUser*) prototype {
+  return [[PBSNSUser builder] mergeFrom:prototype];
+}
+- (PBSNSUser_Builder*) builder {
+  return [PBSNSUser builder];
+}
+@end
+
+@interface PBSNSUser_Builder()
+@property (retain) PBSNSUser* result;
+@end
+
+@implementation PBSNSUser_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSNSUser alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSNSUser_Builder*) clear {
+  self.result = [[[PBSNSUser alloc] init] autorelease];
+  return self;
+}
+- (PBSNSUser_Builder*) clone {
+  return [PBSNSUser builderWithPrototype:result];
+}
+- (PBSNSUser*) defaultInstance {
+  return [PBSNSUser defaultInstance];
+}
+- (PBSNSUser*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSNSUser*) buildPartial {
+  PBSNSUser* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSNSUser_Builder*) mergeFrom:(PBSNSUser*) other {
+  if (other == [PBSNSUser defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasNickName) {
+    [self setNickName:other.nickName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSNSUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSNSUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setNickName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBSNSUser_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBSNSUser_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasNickName {
+  return result.hasNickName;
+}
+- (NSString*) nickName {
+  return result.nickName;
+}
+- (PBSNSUser_Builder*) setNickName:(NSString*) value {
+  result.hasNickName = YES;
+  result.nickName = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearNickName {
+  result.hasNickName = NO;
+  result.nickName = @"";
+  return self;
+}
+@end
+
 @interface PBGameUser ()
 @property (retain) NSString* userId;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
+@property (retain) NSMutableArray* mutableSnsUsersList;
+@property (retain) NSString* location;
 @end
 
 @implementation PBGameUser
@@ -61,10 +327,20 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (void) setGender:(BOOL) value {
   gender_ = !!value;
 }
+@synthesize mutableSnsUsersList;
+- (BOOL) hasLocation {
+  return !!hasLocation_;
+}
+- (void) setHasLocation:(BOOL) value {
+  hasLocation_ = !!value;
+}
+@synthesize location;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
   self.avatar = nil;
+  self.mutableSnsUsersList = nil;
+  self.location = nil;
   [super dealloc];
 }
 - (id) init {
@@ -73,6 +349,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
+    self.location = @"";
   }
   return self;
 }
@@ -88,12 +365,24 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser*) defaultInstance {
   return defaultPBGameUserInstance;
 }
+- (NSArray*) snsUsersList {
+  return mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  id value = [mutableSnsUsersList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
     return NO;
   }
   if (!self.hasNickName) {
     return NO;
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
@@ -109,6 +398,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasGender) {
     [output writeBool:4 value:self.gender];
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    [output writeMessage:5 value:element];
+  }
+  if (self.hasLocation) {
+    [output writeString:6 value:self.location];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -130,6 +425,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasGender) {
     size += computeBoolSize(4, self.gender);
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    size += computeMessageSize(5, element);
+  }
+  if (self.hasLocation) {
+    size += computeStringSize(6, self.location);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -218,6 +519,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasGender) {
     [self setGender:other.gender];
   }
+  if (other.mutableSnsUsersList.count > 0) {
+    if (result.mutableSnsUsersList == nil) {
+      result.mutableSnsUsersList = [NSMutableArray array];
+    }
+    [result.mutableSnsUsersList addObjectsFromArray:other.mutableSnsUsersList];
+  }
+  if (other.hasLocation) {
+    [self setLocation:other.location];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -253,6 +563,16 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 32: {
         [self setGender:[input readBool]];
+        break;
+      }
+      case 42: {
+        PBSNSUser_Builder* subBuilder = [PBSNSUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSnsUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 50: {
+        [self setLocation:[input readString]];
         break;
       }
     }
@@ -320,6 +640,51 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearGender {
   result.hasGender = NO;
   result.gender = NO;
+  return self;
+}
+- (NSArray*) snsUsersList {
+  if (result.mutableSnsUsersList == nil) { return [NSArray array]; }
+  return result.mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  return [result snsUsersAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value {
+  [result.mutableSnsUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllSnsUsers:(NSArray*) values {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearSnsUsersList {
+  result.mutableSnsUsersList = nil;
+  return self;
+}
+- (PBGameUser_Builder*) addSnsUsers:(PBSNSUser*) value {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObject:value];
+  return self;
+}
+- (BOOL) hasLocation {
+  return result.hasLocation;
+}
+- (NSString*) location {
+  return result.location;
+}
+- (PBGameUser_Builder*) setLocation:(NSString*) value {
+  result.hasLocation = YES;
+  result.location = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearLocation {
+  result.hasLocation = NO;
+  result.location = @"";
   return self;
 }
 @end

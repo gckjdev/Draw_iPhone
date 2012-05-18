@@ -19,7 +19,16 @@
 #import "ExpressionManager.h"
 #import "GameMessage.pb.h"
 
+@interface SuperDrawViewController ()
+
+- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message;
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
+
+
+@end
+
 @implementation SuperDrawViewController
+
 @synthesize turnNumberButton;
 @synthesize popupButton;
 @synthesize clockButton;

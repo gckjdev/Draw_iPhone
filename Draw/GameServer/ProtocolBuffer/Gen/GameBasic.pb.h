@@ -10,11 +10,79 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBSNSUser;
+@class PBSNSUser_Builder;
 
 @interface GameBasicRoot : NSObject {
 }
 + (PBExtensionRegistry*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
+@end
+
+@interface PBSNSUser : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasUserId_:1;
+  BOOL hasNickName_:1;
+  int32_t type;
+  NSString* userId;
+  NSString* nickName;
+}
+- (BOOL) hasType;
+- (BOOL) hasUserId;
+- (BOOL) hasNickName;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) NSString* nickName;
+
++ (PBSNSUser*) defaultInstance;
+- (PBSNSUser*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSNSUser_Builder*) builder;
++ (PBSNSUser_Builder*) builder;
++ (PBSNSUser_Builder*) builderWithPrototype:(PBSNSUser*) prototype;
+
++ (PBSNSUser*) parseFromData:(NSData*) data;
++ (PBSNSUser*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSNSUser*) parseFromInputStream:(NSInputStream*) input;
++ (PBSNSUser*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSNSUser*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSNSUser*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSNSUser_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSNSUser* result;
+}
+
+- (PBSNSUser*) defaultInstance;
+
+- (PBSNSUser_Builder*) clear;
+- (PBSNSUser_Builder*) clone;
+
+- (PBSNSUser*) build;
+- (PBSNSUser*) buildPartial;
+
+- (PBSNSUser_Builder*) mergeFrom:(PBSNSUser*) other;
+- (PBSNSUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSNSUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBSNSUser_Builder*) setType:(int32_t) value;
+- (PBSNSUser_Builder*) clearType;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBSNSUser_Builder*) setUserId:(NSString*) value;
+- (PBSNSUser_Builder*) clearUserId;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (PBSNSUser_Builder*) setNickName:(NSString*) value;
+- (PBSNSUser_Builder*) clearNickName;
 @end
 
 @interface PBGameUser : PBGeneratedMessage {
@@ -23,19 +91,26 @@
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL hasLocation_:1;
   BOOL gender_:1;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
+  NSString* location;
+  NSMutableArray* mutableSnsUsersList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
+- (BOOL) hasLocation;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
+@property (readonly, retain) NSString* location;
+- (NSArray*) snsUsersList;
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -90,6 +165,18 @@
 - (BOOL) gender;
 - (PBGameUser_Builder*) setGender:(BOOL) value;
 - (PBGameUser_Builder*) clearGender;
+
+- (NSArray*) snsUsersList;
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value;
+- (PBGameUser_Builder*) addSnsUsers:(PBSNSUser*) value;
+- (PBGameUser_Builder*) addAllSnsUsers:(NSArray*) values;
+- (PBGameUser_Builder*) clearSnsUsersList;
+
+- (BOOL) hasLocation;
+- (NSString*) location;
+- (PBGameUser_Builder*) setLocation:(NSString*) value;
+- (PBGameUser_Builder*) clearLocation;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {

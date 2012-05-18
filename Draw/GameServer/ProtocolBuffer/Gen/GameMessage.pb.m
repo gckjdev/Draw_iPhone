@@ -35,6 +35,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t guessDifficultLevel;
 @property (retain) NSString* roomId;
 @property (retain) NSString* roomName;
+@property (retain) NSMutableArray* mutableSnsUsersList;
+@property (retain) NSString* location;
 @end
 
 @implementation JoinGameRequest
@@ -134,6 +136,14 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasRoomName_ = !!value;
 }
 @synthesize roomName;
+@synthesize mutableSnsUsersList;
+- (BOOL) hasLocation {
+  return !!hasLocation_;
+}
+- (void) setHasLocation:(BOOL) value {
+  hasLocation_ = !!value;
+}
+@synthesize location;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -142,6 +152,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.mutableExcludeSessionIdList = nil;
   self.roomId = nil;
   self.roomName = nil;
+  self.mutableSnsUsersList = nil;
+  self.location = nil;
   [super dealloc];
 }
 - (id) init {
@@ -158,6 +170,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.guessDifficultLevel = 0;
     self.roomId = @"";
     self.roomName = @"";
+    self.location = @"";
   }
   return self;
 }
@@ -180,6 +193,13 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   id value = [mutableExcludeSessionIdList objectAtIndex:index];
   return [value longLongValue];
 }
+- (NSArray*) snsUsersList {
+  return mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  id value = [mutableSnsUsersList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
     return NO;
@@ -189,6 +209,11 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (!self.hasNickName) {
     return NO;
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
@@ -231,6 +256,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasRoomName) {
     [output writeString:13 value:self.roomName];
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    [output writeMessage:14 value:element];
+  }
+  if (self.hasLocation) {
+    [output writeString:15 value:self.location];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -284,6 +315,12 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasRoomName) {
     size += computeStringSize(13, self.roomName);
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    size += computeMessageSize(14, element);
+  }
+  if (self.hasLocation) {
+    size += computeStringSize(15, self.location);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -402,6 +439,15 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasRoomName) {
     [self setRoomName:other.roomName];
   }
+  if (other.mutableSnsUsersList.count > 0) {
+    if (result.mutableSnsUsersList == nil) {
+      result.mutableSnsUsersList = [NSMutableArray array];
+    }
+    [result.mutableSnsUsersList addObjectsFromArray:other.mutableSnsUsersList];
+  }
+  if (other.hasLocation) {
+    [self setLocation:other.location];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -473,6 +519,16 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 106: {
         [self setRoomName:[input readString]];
+        break;
+      }
+      case 114: {
+        PBSNSUser_Builder* subBuilder = [PBSNSUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSnsUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 122: {
+        [self setLocation:[input readString]];
         break;
       }
     }
@@ -699,6 +755,51 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearRoomName {
   result.hasRoomName = NO;
   result.roomName = @"";
+  return self;
+}
+- (NSArray*) snsUsersList {
+  if (result.mutableSnsUsersList == nil) { return [NSArray array]; }
+  return result.mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  return [result snsUsersAtIndex:index];
+}
+- (JoinGameRequest_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value {
+  [result.mutableSnsUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (JoinGameRequest_Builder*) addAllSnsUsers:(NSArray*) values {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObjectsFromArray:values];
+  return self;
+}
+- (JoinGameRequest_Builder*) clearSnsUsersList {
+  result.mutableSnsUsersList = nil;
+  return self;
+}
+- (JoinGameRequest_Builder*) addSnsUsers:(PBSNSUser*) value {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObject:value];
+  return self;
+}
+- (BOOL) hasLocation {
+  return result.hasLocation;
+}
+- (NSString*) location {
+  return result.location;
+}
+- (JoinGameRequest_Builder*) setLocation:(NSString*) value {
+  result.hasLocation = YES;
+  result.location = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearLocation {
+  result.hasLocation = NO;
+  result.location = @"";
   return self;
 }
 @end
@@ -2354,6 +2455,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSString* nickName;
 @property (retain) NSString* userAvatar;
 @property BOOL userGender;
+@property (retain) NSMutableArray* mutableSnsUsersList;
+@property (retain) NSString* location;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -2441,6 +2544,14 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 - (void) setUserGender:(BOOL) value {
   userGender_ = !!value;
 }
+@synthesize mutableSnsUsersList;
+- (BOOL) hasLocation {
+  return !!hasLocation_;
+}
+- (void) setHasLocation:(BOOL) value {
+  hasLocation_ = !!value;
+}
+@synthesize location;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -2547,6 +2658,8 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.quitUserId = nil;
   self.nickName = nil;
   self.userAvatar = nil;
+  self.mutableSnsUsersList = nil;
+  self.location = nil;
   self.mutablePointsList = nil;
   self.word = nil;
   self.guessWord = nil;
@@ -2566,6 +2679,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.nickName = @"";
     self.userAvatar = @"";
     self.userGender = NO;
+    self.location = @"";
     self.width = 0;
     self.color = 0;
     self.word = @"";
@@ -2594,6 +2708,13 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification*) defaultInstance {
   return defaultGeneralNotificationInstance;
 }
+- (NSArray*) snsUsersList {
+  return mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  id value = [mutableSnsUsersList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) pointsList {
   return mutablePointsList;
 }
@@ -2609,6 +2730,11 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
+  for (PBSNSUser* element in self.snsUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -2638,6 +2764,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasUserGender) {
     [output writeBool:11 value:self.userGender];
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    [output writeMessage:12 value:element];
+  }
+  if (self.hasLocation) {
+    [output writeString:13 value:self.location];
   }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
@@ -2723,6 +2855,12 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasUserGender) {
     size += computeBoolSize(11, self.userGender);
+  }
+  for (PBSNSUser* element in self.snsUsersList) {
+    size += computeMessageSize(12, element);
+  }
+  if (self.hasLocation) {
+    size += computeStringSize(13, self.location);
   }
   {
     int32_t dataSize = 0;
@@ -2885,6 +3023,15 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasUserGender) {
     [self setUserGender:other.userGender];
   }
+  if (other.mutableSnsUsersList.count > 0) {
+    if (result.mutableSnsUsersList == nil) {
+      result.mutableSnsUsersList = [NSMutableArray array];
+    }
+    [result.mutableSnsUsersList addObjectsFromArray:other.mutableSnsUsersList];
+  }
+  if (other.hasLocation) {
+    [self setLocation:other.location];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -2991,6 +3138,16 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 88: {
         [self setUserGender:[input readBool]];
+        break;
+      }
+      case 98: {
+        PBSNSUser_Builder* subBuilder = [PBSNSUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSnsUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 106: {
+        [self setLocation:[input readString]];
         break;
       }
       case 170: {
@@ -3203,6 +3360,51 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearUserGender {
   result.hasUserGender = NO;
   result.userGender = NO;
+  return self;
+}
+- (NSArray*) snsUsersList {
+  if (result.mutableSnsUsersList == nil) { return [NSArray array]; }
+  return result.mutableSnsUsersList;
+}
+- (PBSNSUser*) snsUsersAtIndex:(int32_t) index {
+  return [result snsUsersAtIndex:index];
+}
+- (GeneralNotification_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value {
+  [result.mutableSnsUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (GeneralNotification_Builder*) addAllSnsUsers:(NSArray*) values {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObjectsFromArray:values];
+  return self;
+}
+- (GeneralNotification_Builder*) clearSnsUsersList {
+  result.mutableSnsUsersList = nil;
+  return self;
+}
+- (GeneralNotification_Builder*) addSnsUsers:(PBSNSUser*) value {
+  if (result.mutableSnsUsersList == nil) {
+    result.mutableSnsUsersList = [NSMutableArray array];
+  }
+  [result.mutableSnsUsersList addObject:value];
+  return self;
+}
+- (BOOL) hasLocation {
+  return result.hasLocation;
+}
+- (NSString*) location {
+  return result.location;
+}
+- (GeneralNotification_Builder*) setLocation:(NSString*) value {
+  result.hasLocation = YES;
+  result.location = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearLocation {
+  result.hasLocation = NO;
+  result.location = @"";
   return self;
 }
 - (NSArray*) pointsList {
@@ -3689,6 +3891,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasJoinGameResponse) {
     if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasNotification) {
+    if (!self.notification.isInitialized) {
       return NO;
     }
   }

@@ -34,6 +34,11 @@
 
 @property (retain, nonatomic) NSString *selectedUserId;
 
+- (void)configureExpressionScrollView;
+- (NSArray*)messages:(MessagesType)type;
+- (void)updateCurrentSelectedUser:(NSArray*)userList;
+- (NSArray*)getOtherUsers;
+
 @end
 
 @implementation ChatController

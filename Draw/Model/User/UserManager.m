@@ -27,6 +27,8 @@
 #define KEY_PASSWORD        @"USER_KEY_PASSWORD"
 #define KEY_LANGUAGE        @"USER_KEY_LANGUAGE"
 #define KEY_GENDER          @"USER_KEY_GENDER"
+#define KEY_SNS_USER_DATA   @"USER_KEY_SNS_USER_DATA"
+#define KEY_LOCATION        @"USER_KEY_LOCATION"
 
 #define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
 #define KEY_SINA_ACCESS_TOKEN           @"USER_KEY_SINA_ACCESS_TOKEN"
@@ -101,6 +103,20 @@ static UserManager* _defaultManager;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_PASSWORD];
     return value;    
+}
+
+- (NSString*)location
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* value = [userDefaults objectForKey:KEY_LOCATION];
+    return value;        
+}
+
+- (NSArray*)snsUserData
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray* value = [userDefaults objectForKey:KEY_SNS_USER_DATA];
+    return value;            
 }
 
 - (BOOL)isMe:(NSString *)userId

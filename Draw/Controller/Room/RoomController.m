@@ -48,6 +48,9 @@
 - (NSInteger)userCount;
 - (void)quitRoom;
 
+- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message;
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
+
 @end
 
 @implementation RoomController
@@ -667,7 +670,9 @@
                                       nickName:[_userManager nickName] 
                                         avatar:[_userManager avatarURL] 
                                         gender:[_userManager isUserMale] 
-                                guessDiffLevel:[ConfigManager guessDifficultLevel]];
+                                      location:[_userManager location]                                    
+                                guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                   snsUserData:[_userManager snsUserData]];
     
 }
 
