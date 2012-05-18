@@ -50,6 +50,15 @@
     [super dealloc];
 }
 
+- (CGSize)getStringSize:(NSString*)string font:(UIFont*)font
+{
+    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
+    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return size;
+}
+
+
 - (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage
 {
     CGSize messageSize = [self getStringSize:chatMessage font:FONT_CHAT_MESSAGE_TEXT];    
@@ -158,12 +167,5 @@
     [self release];
 }
             
-- (CGSize)getStringSize:(NSString*)string font:(UIFont*)font
-{
-    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
-    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-    
-    return size;
-}
 
 @end
