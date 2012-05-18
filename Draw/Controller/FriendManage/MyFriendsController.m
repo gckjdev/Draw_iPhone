@@ -272,7 +272,7 @@
             [self unSelectFriend:friend];
         }else{
             NSInteger userCount = [self.room.userList count] + [_selectedSet count];
-            NSInteger capacity = [[RoomManager defaultManager]roomCapacity];
+            NSInteger capacity = [[RoomManager defaultManager]roomFriendCapacity];
             if (userCount >= capacity) {
                 NSString *string = [NSString stringWithFormat:NSLS(@"kInviteFull"),capacity,userCount];
                 [self popupMessage:string title:nil];

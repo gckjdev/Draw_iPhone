@@ -36,7 +36,14 @@
 #import "AudioManager.h"
 #import "MusicItemManager.h"
 
+@interface HomeController()
+
+- (void)playBackgroundMusic;
+
+@end
+
 @implementation HomeController
+
 @synthesize startButton = _startButton;
 @synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
@@ -190,7 +197,9 @@
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
                                             gender:[_userManager isUserMale]
-                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
+                                          location:[_userManager location]                                    
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                       snsUserData:[_userManager snsUserData]];    
     }
     else{
         
@@ -311,7 +320,9 @@
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
                                             gender:[_userManager isUserMale]
-                                    guessDiffLevel:[ConfigManager guessDifficultLevel]];    
+                                          location:[_userManager location]                                    
+                                    guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                       snsUserData:[_userManager snsUserData]];    
     }
     
     _isTryJoinGame = NO;

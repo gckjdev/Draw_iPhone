@@ -37,11 +37,15 @@ static DrawGameService* _defaultService;
 @synthesize showDelegate = _showDelegate;
 @synthesize onlineUserCount = _onlineUserCount;
 @synthesize roomId = _roomId;
+@synthesize snsUserData = _snsUserData;
+@synthesize location = _location;
 
 - (void)dealloc
 {
     [self clearKeepAliveTimer];
 
+    [_location release];
+    [_snsUserData release];
     [_roomId release];
     [_serverAddress release];
     [_avatar release];
@@ -565,7 +569,9 @@ static DrawGameService* _defaultService;
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(BOOL)gender
+        location:(NSString*)location
   guessDiffLevel:(int)guessDiffLevel
+     snsUserData:(NSArray*)snsUserData;
 {
     [_session setStatus:SESSION_WAITING];
     
@@ -581,6 +587,8 @@ static DrawGameService* _defaultService;
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
+                               location:location 
+                            snsUserList:snsUserData
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
                                  roomId:nil 
@@ -607,6 +615,8 @@ static DrawGameService* _defaultService;
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
+                               location:_location 
+                            snsUserList:_snsUserData
                          guessDiffLevel:_guessDiffLevel
                               sessionId:[_session sessionId]
                                  roomId:nil
@@ -825,7 +835,10 @@ static DrawGameService* _defaultService;
               nickName:(NSString*)nickName 
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
+              location:(NSString*)location
         guessDiffLevel:(int)guessDiffLevel
+           snsUserData:(NSArray*)snsUserData;
+
 {
     [_session setStatus:SESSION_WAITING];
     [self clearHistoryUser];
@@ -841,6 +854,8 @@ static DrawGameService* _defaultService;
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
+                               location:location 
+                            snsUserList:snsUserData     
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
                                  roomId:roomId

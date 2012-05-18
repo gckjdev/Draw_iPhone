@@ -91,6 +91,7 @@
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
 
+"kRegisterToEnter" = "马上注册\“猜猜画画\"进入游戏吧";
 "kRegisterPromptLabel" = "微博登录";
 "kRegisterTitleLabel" = "用户注册";
 "kEnterEmail" = "请输入Email地址注册";
@@ -347,9 +348,6 @@
 "kCreateRoom" = "创建房间";
 "kSearchRoom" = "搜索房间";
 
-"kPlaying" = "游戏中";
-"kWaitting" = "等待中";
-"kFull" = "已满人";
 
 "kMale" = "男";
 "kFemale" = "女";
@@ -371,6 +369,7 @@
 
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
+"kInputWhatYouWantToSay" = "输入你想对TA说的话";
 
 "kRoomPasswordHolder" = "请输入房间口令";
 "kRoomNameHolder" = "请输入房间名字";
@@ -388,9 +387,13 @@
 "kInviting" = "邀请好友中...";
 
 "kRoomNameNumber" = "%@的房间%d";
-"kIsPlaying" = "正在游戏中";
-"kIsJoined" = "已加入游戏";
-"kIsInvited" = "已被邀请";
+
+"kUnFull" = "未满";
+"kFree" = "空闲";
+"kFull" = "已满";
+"kFriendsPlaying" = "人游戏中";
+"kFriendsInvited" = "人已被邀请";
+
 
 "kFindRoomListFail" = "获取房间列表失败。";
 "kCreateRoomFail" = "创建房间失败。";
@@ -414,4 +417,8 @@
 "kExpand" = "展开";
 "kCollapse" = "收缩";
 "kMusicSettings" = "背景音乐";
+
 "kUserLogin" = "用户登录";
+
+"kNoneInvited" = "尚未邀请朋友";
+

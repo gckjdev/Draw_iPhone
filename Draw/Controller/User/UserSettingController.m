@@ -423,7 +423,7 @@ enum{
 }
 
 
-- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     if (dialog.tag == DIALOG_TAG_NICKNAME) {
         [self updateNickname:targetText];
@@ -437,7 +437,7 @@ enum{
     [self.dataTableView reloadData];
 
 }
-- (void)clickCancel:(InputDialog *)dialog
+- (void)didClickCancel:(InputDialog *)dialog
 {
     [self.dataTableView reloadData];
 }

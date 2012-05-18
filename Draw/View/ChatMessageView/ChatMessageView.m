@@ -43,6 +43,13 @@
 
 #define RATE (20.0/60.0)
 
+@interface ChatMessageView ()
+
+- (CGSize)getStringSize:(NSString*)string font:(UIFont*)font;
+- (void)showInSuperView:(UIView*)superView origin:(CGPoint)origin;
+
+@end
+
 @implementation ChatMessageView
 
 - (void)dealloc

@@ -137,7 +137,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)toolNumberImage
 {
-    return [UIImage imageNamed:@"number.png"];
+    return [UIImage strectchableImageName:@"number.png"];
 }
 
 - (UIImage*)maleDefaultAvatarImage
@@ -274,11 +274,6 @@ static UIImage* _whitePaperImage;
 - (UIImage *)qqWeiboImage
 {
     return [UIImage imageNamed:@"qq.png"]; 
-}
-
-- (UIImage *)facebookImage
-{
-    return [UIImage imageNamed:@"facebook.png"]; 
 }
 
 @end

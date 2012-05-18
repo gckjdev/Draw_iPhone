@@ -23,7 +23,7 @@
 @synthesize inviteButton;
 
 
-#define AVATAR_FRAME CGRectMake(6, 6, 57, 57)
+#define AVATAR_FRAME CGRectMake(15, 12, 57, 55)
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -39,8 +39,9 @@
     cell.delegate = delegate;
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [cell.inviteButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
+    [cell.inviteInfoButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
     [cell.inviteButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+//    [cell.inviteButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateSelected];
     
     cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
     [cell addSubview:cell.avatarImage];
@@ -56,31 +57,14 @@
 
 + (CGFloat)getCellHeight
 {
-    return 70.0f;
+    return 75.0f;
 }
 
-
-- (void)setStatus:(RoomStatus)status
+- (void)setViewsColor:(UIColor *)color
 {
-    NSString *text;
-    UIColor *color;
-    switch (status) {
-        case RoomFull:
-            text = NSLS(@"kFull");
-            color = [UIColor redColor];
-            break;
-        case RoomPlaying:
-            text = NSLS(@"kPlaying");
-            color = [UIColor orangeColor];
-            break;
-        case RoomWaitting:
-        default:
-            text = NSLS(@"kWaitting");
-            color = [UIColor greenColor];
-            break;
-    }
-    [self.roomStatusLabel setText:[NSString stringWithFormat:@"[%@]",text]];
-    [self.roomStatusLabel setTextColor:color];
+    self.creatorLabel.textColor = color;
+    self.userListLabel.textColor = color;
+    self.roomNameLabel.textColor = color;
 }
 
 - (void)setAvatar:(RoomUser *)user
@@ -88,10 +72,13 @@
     NSString *avatar = user.avatar;
     BOOL gender = ![user isFemale];
     [avatarImage setAvatarUrl:avatar gender:gender];
-    [avatarImage setAvatarSelected:YES];
+    [avatarImage setAvatarSelected:NO];
     avatarImage.hidden = NO;
-    
-    [self.creatorLabel setText:user.nickName];
+    if ([[UserManager defaultManager] isMe:user.userId]) {
+        [self.creatorLabel setText:NSLS(@"Me")];        
+    }else{
+        [self.creatorLabel setText:user.nickName];
+    }
     [self.creatorLabel setHidden:NO];
 }
 
@@ -101,7 +88,7 @@
     self.inviteButton.hidden = YES;
     self.inviteInfoButton.hidden = YES;
     if ([room isMeCreator]) {
-        self.inviteButton.hidden = NO;
+        self.inviteButton.hidden = NO;            
     }else if(room.myStatus == UserInvited)
     {
         self.inviteInfoButton.hidden = NO;
@@ -109,45 +96,60 @@
 }
 
 
-#define USER_LIST_COUNT 3
+#define USER_LIST_COUNT 2
+
 
 - (void)setUserListInfo:(Room *)room
 {
     NSArray *array = [room playingUserList];
-    RoomUserStatus stat = UserPlaying;
-    if ([array count] == 0) {
-        array = [room joinedUserList];
-        stat = UserJoined;
+    RoomStatus stat = RoomUnknow;
+    NSInteger count = [array count];
+    if (count != 0) {
+        if (count >= [[RoomManager defaultManager] roomCapacity]){
+            count = [[RoomManager defaultManager] roomCapacity];
+            stat = RoomFull;
+        }else{
+            stat = RoomUnFull;            
+        }
+    }else{
+        array = room.userList;
+        count = [array count];
+        if (count != 0) {
+            stat = RoomFree;    
+        }
     }
-    if ([array count] == 0) {
-        array = [room invitedUserList];
-        stat = UserInvited;
-    }
-    self.userListLabel.hidden = YES;
-    if ([array count] != 0) {
+
+//    self.userListLabel.hidden = YES;
+    if (count!= 0) {
         //join the string.
         NSString *listString = [[RoomManager defaultManager] 
                                 nickStringFromUsers:array 
-                                split:@"," 
+                                split:@", " 
                                 count:USER_LIST_COUNT];
         if ([listString length] == 0) {
             return;
         }
         self.userListLabel.hidden = NO;
+        NSInteger userCount = MIN(USER_LIST_COUNT, count);
+        NSString *dot =  @"...";
+        if (userCount == count) {
+            dot = @"";
+        }
         switch (stat) {
-            case UserPlaying:
-                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsPlaying")];
+            case RoomFull:
+                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kFull"),count,NSLS(@"kFriendsPlaying"),listString,dot];
                 break;
-            case UserJoined:
-                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsJoined")];
+            case RoomUnFull:
+                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kUnFull"),count,NSLS(@"kFriendsPlaying"),listString,dot];
                 break;
-                
-            case UserInvited:
+            case RoomFree:
             default:
-                listString = [NSString stringWithFormat:@"%@ %@",listString, NSLS(@"kIsInvited")];
+                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kFree"),count,NSLS(@"kFriendsInvited"),listString,dot];
                 break;
         }
         [self.userListLabel setText:listString];
+    }else{
+        [self.userListLabel setText:NSLS(@"kNoneInvited")];
     }
     
 }
@@ -164,12 +166,15 @@
     [self.roomNameLabel setText:room.roomName];
     //set avatar image
     [self setAvatar:room.creator];
-    //set status
-    [self setStatus:room.status];
-    //setInviteInfo
     [self setInviteInfo:room];
     //set user list
     [self setUserListInfo:room];
+    
+    if ([room isMeCreator]) {
+        [self setViewsColor:[UIColor grayColor]];
+    }else{
+        [self setViewsColor:[UIColor brownColor]];
+    }
     
 }
 - (void)dealloc {

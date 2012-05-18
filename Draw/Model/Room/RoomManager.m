@@ -229,8 +229,12 @@ RoomManager *staticRoomManager = nil;
     return NO;
 }
 
+- (NSInteger)roomFriendCapacity
+{
+    return 20;
+}
 - (NSInteger)roomCapacity
 {
-    return 2;
+    return 6;
 }
 @end

@@ -49,7 +49,7 @@
 
 }
 
-- (NSArray *)userListForStatus:(RoomUserStatus)stat
+- (NSMutableArray *)userListForStatus:(RoomUserStatus)stat
 {
     NSMutableArray *array = [[[NSMutableArray alloc] init]autorelease];
     for (RoomUser *user in self.userList) {
@@ -57,23 +57,18 @@
             [array addObject:user];
         }
     }
+    if (self.creator.status == stat) {
+        [array addObject:self.creator];
+    }
     return array;
 }
 
-- (NSArray *)invitedUserList
-{
-    return [self userListForStatus:UserInvited];
-}
 
 - (NSArray *)playingUserList
 {
     return [self userListForStatus:UserPlaying];
 }
 
-- (NSArray *)joinedUserList
-{
-    return [self userListForStatus:UserJoined];    
-}
 
 - (NSString *)description
 {
@@ -164,6 +159,7 @@
     text = [self string:text appendKey:@"nickname" value:self.nickName];
     text = [self string:text appendKey:@"gender" value:self.gender];
     text = [self string:text appendKey:@"avatar" value:self.avatar];
+    text = [self string:text appendKey:@"status" value:[NSString stringWithFormat:@"%d",self.status]];
     
     return [NSString stringWithFormat:@"%@%@%@",prefix,text,suffux];
 }

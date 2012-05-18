@@ -121,7 +121,7 @@
     [rDialog showInView:self.view];
 }
 
-- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
@@ -308,7 +308,9 @@
                                                 nickName:[_userManager nickName]
                                                   avatar:[_userManager avatarURL]
                                                   gender:[_userManager isUserMale]
-                                          guessDiffLevel:[ConfigManager guessDifficultLevel]];
+                                                location:[_userManager location]         
+                                          guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                             snsUserData:[_userManager snsUserData]];
     }
     
     _isTryJoinGame = NO;    
@@ -316,6 +318,8 @@
 
 - (void)didJoinGame:(GameMessage *)message
 {
+    _currentSelectRoom.myStatus = UserJoined;
+    
     [[DrawGameService defaultService] unregisterObserver:self];
     
     [self hideActivity];
