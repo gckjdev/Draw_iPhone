@@ -262,8 +262,8 @@
     }
     
     self.inputDialog = [InputDialog dialogWith:title delegate:self];
-    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    _inputDialog.titleLabel.titleLabel.minimumFontSize = 16;
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     _inputDialog.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     _inputDialog.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [_inputDialog showInView:self.view];
@@ -370,6 +370,7 @@
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     nameLabel.text = user.nickName;
     sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
+    
     AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender];
     [aView setAvatarSelected:YES];
     [avatarView addSubview:aView];
