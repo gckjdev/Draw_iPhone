@@ -23,4 +23,5 @@
 - (void)deleteItem:(MusicItem*)item;
 - (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize;
 - (void)saveCurrentMusic;
+- (BOOL)isCurrentMusic:(MusicItem*)item;
 @end
