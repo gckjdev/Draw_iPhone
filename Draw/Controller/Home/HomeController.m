@@ -72,7 +72,7 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
-    //init background music    
+    //init background music  
     [self playBackgroundMusic];
 
     // setup button images
