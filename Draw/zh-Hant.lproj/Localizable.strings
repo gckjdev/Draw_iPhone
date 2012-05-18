@@ -413,6 +413,7 @@
 "kExpand" = "展开";
 "kCollapse" = "收缩";
 "kMusicSettings" = "背景音乐";
+"kLoadingURL" = "加载网页中...";
 
 "kUserLogin" = "玩家登入";
 

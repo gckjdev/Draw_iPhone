@@ -116,8 +116,19 @@ static UserManager* _defaultManager;
 - (NSArray*)snsUserData
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* value = [userDefaults objectForKey:KEY_SNS_USER_DATA];
-    return value;            
+    NSArray* dataArray = [userDefaults objectForKey:KEY_SNS_USER_DATA];
+    if (dataArray == nil)
+        return nil;
+    
+    NSMutableArray* snsUserArray = [NSMutableArray arrayWithCapacity:[dataArray count]];
+    for (NSData* data in dataArray){
+        PBSNSUser* user = [PBSNSUser parseFromData:data];
+        if (user != nil){
+            [snsUserArray addObject:user];
+        }
+    }
+    
+    return snsUserArray;            
 }
 
 - (BOOL)isMe:(NSString *)userId
@@ -345,17 +356,19 @@ static UserManager* _defaultManager;
     [builder setUserId:snsId];
     [builder setNickName:nickName];     
     PBSNSUser* user = [builder build];
-    [builder release];
-
+    NSData* data = [user data];
+    
     if (found){
-        [newData replaceObjectAtIndex:index withObject:user];
+        [newData replaceObjectAtIndex:index withObject:data];
     }
     else{
-        [newData addObject:user];
+        [newData addObject:data];
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [builder release];
     [newData release];
 }
 

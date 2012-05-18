@@ -402,6 +402,7 @@
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
 "kMusicSettings" = "MusicSettings";
+"kLoadingURL" = "Loading web pages...";
 
 "kUserLogin" = "User Login";
 

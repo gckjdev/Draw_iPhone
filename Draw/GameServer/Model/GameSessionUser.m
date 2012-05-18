@@ -37,14 +37,15 @@
     user.userAvatar = [pbUser avatar]; 
     user.gender = [pbUser gender];
     user.snsUserData = [pbUser snsUsersList];
+    user.location = [pbUser location];
     
     return user;
 }
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d]",
-            _userId, _nickName, _userAvatar, _gender];            
+    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d, location=%@, snsUser=%@]",
+            _userId, _nickName, _userAvatar, _gender, _location, [_snsUserData description]];            
 }
 
 - (BOOL)isBindSNSByType:(int)type
