@@ -178,9 +178,9 @@
     }else{
         [self removeFromSuperview];
         [self textFieldsResignFirstResponder];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(clickOk:targetText:)])
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOk:targetText:)])
         {
-            [self.delegate clickOk:self targetText:self.targetTextField.text];
+            [self.delegate didClickOk:self targetText:self.targetTextField.text];
         }
     }
 }

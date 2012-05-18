@@ -30,9 +30,11 @@
 {
     NSString *_selectedUserId;
     GameChatType _chatType;
+    InputDialog *_inputDialog;
 }
 
 @property (retain, nonatomic) NSString *selectedUserId;
+@property (retain, nonatomic) InputDialog *inputDialog;
 
 @end
 
@@ -44,6 +46,7 @@
 @synthesize chatInfoView;
 @synthesize chatInfoViewBgImageView;
 @synthesize selectedUserId = _selectedUserId;
+@synthesize inputDialog = _inputDialog;
 
 @synthesize avatarHolderView;
 @synthesize avatarView;
@@ -116,6 +119,7 @@
 
 - (void)dealloc {
     [_selectedUserId release];
+    [_inputDialog release];
     [nameLabel release];
     [sexLabel release];
     [cityLabel release];
@@ -194,7 +198,7 @@
     NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
     UIImage *expression = [[ExpressionManager defaultManager] expressionForKey:key];
     
-    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
+    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectExpression:)]) {
         [chatControllerDelegate didSelectExpression:expression];
     }
     
@@ -220,19 +224,56 @@
 #pragma mark - MessageCell delegate.
 - (void)didSelectMessage:(NSString*)message
 {    
-    [self.view removeFromSuperview];
+    if ([message isEqualToString:NSLS(@"kSelfDefine")]) {
+        [self showChatInputDialog];
+    }else {
+        [self handleChatMessage:message];
+    }
+    
+    return;
+}
 
+- (void)showChatInputDialog
+{
+    NSString *title = nil;
+    if (_chatType == GameChatTypeChatPrivate) {
+        title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), [[[DrawGameService defaultService] session] getNickNameByUserId:_selectedUserId]];
+    }else {
+        title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), NSLS(@"kAllUser")];
+    }
+    
+    self.inputDialog = [InputDialog dialogWith:title delegate:self];
+    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    _inputDialog.titleLabel.titleLabel.minimumFontSize = 16;
+    _inputDialog.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    _inputDialog.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    [_inputDialog showInView:self.view];
+}
+
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    [_inputDialog removeFromSuperview];
+    [self handleChatMessage:targetText];
+}
+
+- (void)didClickCancel:(InputDialog *)dialog
+{
+    [_inputDialog removeFromSuperview];
+}
+
+- (void)handleChatMessage:(NSString*)message
+{
+    [self.view removeFromSuperview];
+    
     if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
         [chatControllerDelegate didSelectMessage:message];
     }
-        
+    
     if (_chatType == GameChatTypeChatPrivate) {
         [[DrawGameService defaultService] privateChatMessage:[NSArray arrayWithObjects:_selectedUserId, nil] message:message];            
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            
     }
-    
-    return;
 }
 
 - (void)configureExpressionScrollView

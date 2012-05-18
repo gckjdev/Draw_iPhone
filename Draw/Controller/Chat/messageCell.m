@@ -69,6 +69,7 @@
 - (IBAction)clickMessage:(id)sender {
     UIButton *button = (UIButton *)sender;
     NSString *message = [button titleForState:UIControlStateNormal];
+    
     if (messageCellDelegate && [messageCellDelegate respondsToSelector:@selector(didSelectMessage:)]) {
         [messageCellDelegate didSelectMessage:message];
     }

@@ -364,10 +364,13 @@
 "kFunny" = "真有趣";
 "kDrawedWhat" = "画什么啊";
 "kHardToGuess" = "真难猜";
-"kGeiliable" = "给力";
+"kSelfDefine" = "+";
 "kDontWriteAnswer" = "别给答案啊" ;
 "kGiveAPrompt" = "给点提示吧";
 "kWellDone" = "画的真好";
+
+"kChatDialogTitle" = "和【%@】聊天中";
+"kAllUser" = "所有人";
 
 "kRoomPasswordHolder" = "请输入房间口令";
 "kRoomNameHolder" = "请输入房间名字";

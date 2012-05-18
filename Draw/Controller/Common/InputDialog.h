@@ -12,8 +12,8 @@
 @protocol InputDialogDelegate <NSObject>
 
 @optional
-- (void)clickOk:(InputDialog *)dialog targetText:(NSString *)targetText;
-- (void)clickCancel:(InputDialog *)dialog;
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText;
+- (void)didClickCancel:(InputDialog *)dialog;
 
 //used for password dialog
 - (void)passwordIsWrong:(NSString *)password;
