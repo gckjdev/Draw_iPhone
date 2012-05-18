@@ -60,6 +60,8 @@
     BOOL _gender;
     int  _guessDiffLevel;
     NSString *_roomId;
+    NSString *_location;
+    NSArray  *_snsUserData;
 
 //    int _sessionId;
     BOOL start;
@@ -74,10 +76,12 @@
     id<DrawGameServiceDelegate> _connectionDelegate;
 }
 
-@property (nonatomic, copy) NSString* userId;
-@property (nonatomic, copy) NSString* nickName;
-@property (nonatomic, copy) NSString* avatar;
-@property (nonatomic, copy) NSString* roomId;
+@property (nonatomic, retain) NSString* userId;
+@property (nonatomic, retain) NSString* nickName;
+@property (nonatomic, retain) NSString* avatar;
+@property (nonatomic, retain) NSString* roomId;
+@property (nonatomic, retain) NSString* location;
+@property (nonatomic, retain) NSArray* snsUserData;
 @property (nonatomic, assign) BOOL gender;
 @property (nonatomic, assign) int guessDiffLevel;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
@@ -106,7 +110,9 @@
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(BOOL)gender
-  guessDiffLevel:(int)guessDiffLevel;
+        location:(NSString*)location
+  guessDiffLevel:(int)guessDiffLevel
+     snsUserData:(NSArray*)snsUserData;
 
 - (void)quitGame;
 
@@ -132,7 +138,9 @@
               nickName:(NSString*)nickName 
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
-        guessDiffLevel:(int)guessDiffLevel;
+              location:(NSString*)location
+        guessDiffLevel:(int)guessDiffLevel
+           snsUserData:(NSArray*)snsUserData;
 
 - (BOOL)isConnected;
 - (void)connectServer:(id<DrawGameServiceDelegate>)delegate;

@@ -27,6 +27,8 @@
                    nickName:(NSString*)nickName 
                      avatar:(NSString*)avatar
                      gender:(BOOL)gender
+                   location:(NSString*)location
+                snsUserList:(NSArray*)snsUserData
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
                      roomId:(NSString*)roomId

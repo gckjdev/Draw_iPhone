@@ -82,6 +82,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
                    nickName:(NSString*)nickName 
                      avatar:(NSString*)avatar
                      gender:(BOOL)gender
+                   location:(NSString*)location
+                snsUserList:(NSArray*)snsUserData
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId
                      roomId:(NSString*)roomId
@@ -97,6 +99,14 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setGender:gender];
     [requestBuilder setGuessDifficultLevel:guessDiffLevel];
     [requestBuilder setRoomName:roomName];
+
+    if ([snsUserData count] > 0){
+        [requestBuilder addAllSnsUsers:snsUserData];
+    }
+    
+    if ([location length] > 0){
+        [requestBuilder setLocation:location];
+    }
     
     if ([roomId length] > 0){
         [requestBuilder setRoomId:roomId];

@@ -90,6 +90,7 @@
 "kCheckInMessage" = "Oh, you got %d coins today!";
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
+"kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
 "kRegisterPromptLabel" = "Existing Account";
 "kRegisterTitleLabel" = "Registration";
 "kEnterEmail" = "Enter Your Email Address";

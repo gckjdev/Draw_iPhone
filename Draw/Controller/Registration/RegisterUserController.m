@@ -24,6 +24,8 @@
 #import "RemoteDrawView.h"
 #import "RemoteDrawData.h"
 #import "GameBasic.pb.h"
+#import "ShowRemoteDrawController.h"
+#import "DeviceDetection.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -33,6 +35,7 @@
 @synthesize facebookButton;
 @synthesize sinaButton;
 @synthesize qqButton;
+@synthesize inviteLabel;
 @synthesize remoteDrawArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -62,7 +65,8 @@
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-            
+    
+    self.inviteLabel.text = NSLS(@"kRegisterToEnter");
     self.promptLabel.text = NSLS(@"kRegisterPromptLabel");
     self.titleLabel.text = NSLS(@"kRegisterTitleLabel");
     self.userIdTextField.placeholder = NSLS(@"kEnterEmail");
@@ -105,6 +109,8 @@
     [self setFacebookButton:nil];
     [self setSinaButton:nil];
     [self setQqButton:nil];
+    [self setInviteLabel:nil];
+    [self setRemoteDrawArray:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -217,6 +223,11 @@
     [self clickSubmit:sender];
 }
 
+- (IBAction)backgroundTap:(id)sender
+{
+    [userIdTextField resignFirstResponder];
+}
+
 - (void)dealloc {
     [userIdTextField release];
     [submitButton release];
@@ -226,6 +237,7 @@
     [sinaButton release];
     [qqButton release];
     [remoteDrawArray release];
+    [inviteLabel release];
     [super dealloc];
 }
 
@@ -295,16 +307,23 @@
 
 
 #define DRAW_VIEW_COUNT 6
-
+#define DRAW_VIEW_START_Y_IPHONE 210
+#define DRAW_VIEW_START_Y_IPAD 440
 
 - (void)addRemoteDraw
 {
-    CGFloat yStart = 210;
+    CGFloat yStart;
+    if ([DeviceDetection isIPAD]) {
+        yStart = DRAW_VIEW_START_Y_IPAD;
+    }else {
+        yStart = DRAW_VIEW_START_Y_IPHONE;
+    }
     
     for (int i= 0 ; i < [self.remoteDrawArray count] && i<DRAW_VIEW_COUNT ; i++) {
         RemoteDrawView *remoteDrawView  = [RemoteDrawView creatRemoteDrawView];
         PBDraw *draw = [self.remoteDrawArray objectAtIndex:i];
-        [remoteDrawView setViewByRemoteDrawData:draw];
+        [remoteDrawView setViewByRemoteDrawData:draw index:i];
+        remoteDrawView.delegate = self;
         
         CGFloat xSpace, ySpace , x, y;
         xSpace = (self.view.frame.size.width - 3 * remoteDrawView.frame.size.width)/4;
@@ -326,5 +345,16 @@
     
     [self addRemoteDraw];
 }
+
+#pragma mark - RemoteDrawViewDelegate method
+- (void)didClickPlaybackButton:(int)index
+{
+    PPDebug(@"<didClickPlaybackButton> index:%d",index);
+    PBDraw *draw = [self.remoteDrawArray objectAtIndex:index];
+    ShowRemoteDrawController *controller = [[ShowRemoteDrawController alloc] initWithPBDraw:draw];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 
 @end

@@ -17,13 +17,27 @@
 #import "PPDebug.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
-#define DISTANCE_BETWEEN_EXPRESSION 10
+
+#define WIDTH_EXPRESSION_IPHONE 30
+#define WIDTH_EXPRESSION_IPAD WIDTH_EXPRESSION_IPHONE*2
+#define WIDTH_EXPRESSION (([DeviceDetection isIPAD])?(WIDTH_EXPRESSION_IPAD):(WIDTH_EXPRESSION_IPHONE))
+
+#define HEIGHT_EXPRESSION WIDTH_EXPRESSION
+
+
 #define TAG_EXPRESSION_BUTTON 210
 
 // For avatar
 #define MAX_NUM_AVATAR 6
-#define DISTANCE_BETWEEN_AVATAR 8
-#define WIDTH_AVATAR 36
+
+#define DISTANCE_BETWEEN_AVATAR_IPHONE 8
+#define DISTANCE_BETWEEN_AVATAR_IPAD 26
+#define  DISTANCE_BETWEEN_AVATAR (([DeviceDetection isIPAD])?(DISTANCE_BETWEEN_AVATAR_IPAD):(DISTANCE_BETWEEN_AVATAR_IPHONE))
+
+#define WIDTH_AVATAR_IPHONE 36
+#define WIDTH_AVATAR_IPAD 80
+#define WIDTH_AVATAR (([DeviceDetection isIPAD])?(WIDTH_AVATAR_IPAD):(WIDTH_AVATAR_IPHONE))
+
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
 @interface ChatController()
@@ -35,6 +49,11 @@
 
 @property (retain, nonatomic) NSString *selectedUserId;
 @property (retain, nonatomic) InputDialog *inputDialog;
+
+- (void)configureExpressionScrollView;
+- (NSArray*)messages:(MessagesType)type;
+- (void)updateCurrentSelectedUser:(NSArray*)userList;
+- (NSArray*)getOtherUsers;
 
 @end
 
@@ -243,8 +262,8 @@
     }
     
     self.inputDialog = [InputDialog dialogWith:title delegate:self];
-    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    _inputDialog.titleLabel.titleLabel.minimumFontSize = 16;
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     _inputDialog.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     _inputDialog.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [_inputDialog showInView:self.view];
@@ -278,18 +297,23 @@
 
 - (void)configureExpressionScrollView
 {
-    float width = (self.expressionScrollView.frame.size.width-DISTANCE_BETWEEN_EXPRESSION)/NUM_EXPRESSION_IN_ONE_PAGE-DISTANCE_BETWEEN_EXPRESSION;
-    float heigth = width;
+    float edge = (expressionScrollView.frame.size.width - NUM_EXPRESSION_IN_ONE_PAGE*WIDTH_EXPRESSION)/6;
     
     NSArray *expressions = [[ExpressionManager defaultManager] allKeys];
-    [expressionScrollView setContentSize:CGSizeMake(DISTANCE_BETWEEN_EXPRESSION+(width+DISTANCE_BETWEEN_EXPRESSION)*[expressions count]+1, expressionScrollView.frame.size.height)];
+    [expressionScrollView setContentSize:CGSizeMake(expressionScrollView.frame.size.width+1, 0)];
+    expressionScrollView.showsVerticalScrollIndicator = NO;
+    expressionScrollView.showsHorizontalScrollIndicator = NO;
+    
     int i = 0;
     for (NSString *key in expressions) {
         UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(DISTANCE_BETWEEN_EXPRESSION+(width+DISTANCE_BETWEEN_EXPRESSION)*i, /*expressionScrollView.frame.size.height*/0, width, heigth)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
         button.tag = TAG_EXPRESSION_BUTTON+i++;
-        [button setImage:image forState:UIControlStateNormal];
+//        [button setImage:image forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+
         [button setTitle:key forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
         [expressionScrollView addSubview:button];
         [button release];
@@ -346,6 +370,7 @@
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     nameLabel.text = user.nickName;
     sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
+    
     AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender];
     [aView setAvatarSelected:YES];
     [avatarView addSubview:aView];
