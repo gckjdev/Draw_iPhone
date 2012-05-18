@@ -64,6 +64,8 @@
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
+		A461C9341565FE2C0076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C9321565FE2C0076FD9C /* ChatController~ipad.xib */; };
+		A461C9351565FE2C0076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C9331565FE2C0076FD9C /* MessageCell~ipad.xib */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
@@ -745,6 +747,8 @@
 		A454CBC3155A181500896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		A461C9261565E3700076FD9C /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
+		A461C9321565FE2C0076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
+		A461C9331565FE2C0076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -1718,9 +1722,11 @@
 				A454CBC1155A181500896761 /* MessageCell.h */,
 				A454CBC2155A181500896761 /* MessageCell.m */,
 				A454CBC3155A181500896761 /* MessageCell.xib */,
+				A461C9331565FE2C0076FD9C /* MessageCell~ipad.xib */,
 				A454CB6C1558F5CE00896761 /* ChatController.h */,
 				A454CB6D1558F5CE00896761 /* ChatController.m */,
 				A454CB6E1558F5CE00896761 /* ChatController.xib */,
+				A461C9321565FE2C0076FD9C /* ChatController~ipad.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -4424,6 +4430,8 @@
 				C29B8A7A1565EACD00B9707D /* receive_message@2x.png in Resources */,
 				C29B8A7B1565EACD00B9707D /* register_bg@2x.png in Resources */,
 				C29B8A7C1565EACD00B9707D /* sent_message@2x.png in Resources */,
+				A461C9341565FE2C0076FD9C /* ChatController~ipad.xib in Resources */,
+				A461C9351565FE2C0076FD9C /* MessageCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
