@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="725126294">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{84, 110}</string>
+						<string key="NSFrameSize">{86, 110}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1041763597"/>
@@ -55,7 +55,7 @@
 					<object class="IBUIView" id="376002046">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 98}, {22, 22}}</string>
+						<string key="NSFrame">{{4, 98}, {22, 22}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="928845033"/>
@@ -73,7 +73,7 @@
 					<object class="IBUILabel" id="928845033">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{26, 98}, {52, 22}}</string>
+						<string key="NSFrame">{{31, 98}, {52, 22}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -107,7 +107,7 @@
 					<object class="IBUIView" id="1041763597">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 20}, {84, 75}}</string>
+						<string key="NSFrame">{{0, 20}, {86, 75}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="276753856"/>
@@ -122,7 +122,7 @@
 					<object class="IBUIButton" id="276753856">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 20}, {84, 75}}</string>
+						<string key="NSFrame">{{0, 20}, {86, 75}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="376002046"/>
@@ -154,7 +154,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{84, 120}</string>
+				<string key="NSFrameSize">{86, 120}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="725126294"/>
@@ -183,19 +183,28 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">paintButton</string>
-						<reference key="source" ref="663035640"/>
-						<reference key="destination" ref="276753856"/>
-					</object>
-					<int key="connectionID">12</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">showDrawView</string>
 						<reference key="source" ref="663035640"/>
 						<reference key="destination" ref="1041763597"/>
 					</object>
 					<int key="connectionID">14</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playbackButton</string>
+						<reference key="source" ref="663035640"/>
+						<reference key="destination" ref="276753856"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickPlaybackButton:</string>
+						<reference key="source" ref="276753856"/>
+						<reference key="destination" ref="663035640"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">16</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -274,7 +283,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -289,10 +298,21 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">RemoteDrawView</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickPlaybackButton:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickPlaybackButton:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickPlaybackButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarImage">HJManagedImageV</string>
 						<string key="nickNameLabel">UILabel</string>
-						<string key="paintButton">UIButton</string>
+						<string key="playbackButton">UIButton</string>
 						<string key="showDrawView">ShowDrawView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -304,8 +324,8 @@
 							<string key="name">nickNameLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="paintButton">
-							<string key="name">paintButton</string>
+						<object class="IBToOneOutletInfo" key="playbackButton">
+							<string key="name">playbackButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="showDrawView">

@@ -13,8 +13,9 @@
 #import "SNSConstants.h"
 #import "PassWordDialog.h"
 #import "DrawDataService.h"
+#import "RemoteDrawView.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate, InputDialogDelegate, DrawDataServiceDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, SNSServiceDelegate, UITextFieldDelegate, InputDialogDelegate, DrawDataServiceDelegate, RemoteDrawViewDelegate>
 {
     int _currentLoginType;
 }
@@ -35,8 +36,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *facebookButton;
 @property (retain, nonatomic) IBOutlet UIButton *sinaButton;
 @property (retain, nonatomic) IBOutlet UIButton *qqButton;
+@property (retain, nonatomic) IBOutlet UILabel *inviteLabel;
 @property (retain, nonatomic) NSArray *remoteDrawArray;
 
 - (void)addRemoteDraw;
+- (IBAction)backgroundTap:(id)sender;
 
 @end

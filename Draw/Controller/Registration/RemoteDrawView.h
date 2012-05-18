@@ -10,17 +10,25 @@
 #import "HJManagedImageV.h"
 #import "ShowDrawView.h"
 
+@protocol RemoteDrawViewDelegate <NSObject>
+@optional
+- (void)didClickPlaybackButton:(int)index;
+
+@end
+
+
 @class PBDraw;
 
 @interface RemoteDrawView : UIView
 @property (retain, nonatomic) IBOutlet HJManagedImageV *avatarImage;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
-@property (retain, nonatomic) IBOutlet UIButton *paintButton;
 @property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
+@property (retain, nonatomic) IBOutlet UIButton *playbackButton;
+@property (assign, nonatomic) id<RemoteDrawViewDelegate> delegate;
 
 + (RemoteDrawView*)creatRemoteDrawView;
 
-- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData;
-
+- (void)setViewByRemoteDrawData:(PBDraw *)remoteDrawData index:(int)aIndex;
+- (IBAction)clickPlaybackButton:(id)sender;
 
 @end

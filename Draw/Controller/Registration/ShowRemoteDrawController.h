@@ -18,7 +18,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
 
-
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
+
+- (IBAction)clickBackButton:(id)sender;
 
 @end
