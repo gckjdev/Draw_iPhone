@@ -31,12 +31,12 @@
 #define MAX_NUM_AVATAR 6
 
 #define DISTANCE_BETWEEN_AVATAR_IPHONE 8
-#define DISTANCE_BETWEEN_AVATAR_IPAD DISTANCE_BETWEEN_AVATAR_IPHONE*2
+#define DISTANCE_BETWEEN_AVATAR_IPAD 26
 #define  DISTANCE_BETWEEN_AVATAR (([DeviceDetection isIPAD])?(DISTANCE_BETWEEN_AVATAR_IPAD):(DISTANCE_BETWEEN_AVATAR_IPHONE))
 
 #define WIDTH_AVATAR_IPHONE 36
-#define WIDTH_AVATAR_IPAD WIDTH_AVATAR_IPHONE*2
-#define  WIDTH_AVATAR (([DeviceDetection isIPAD])?(WIDTH_AVATAR_IPAD):(WIDTH_AVATAR_IPHONE))
+#define WIDTH_AVATAR_IPAD 80
+#define WIDTH_AVATAR (([DeviceDetection isIPAD])?(WIDTH_AVATAR_IPAD):(WIDTH_AVATAR_IPHONE))
 
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
@@ -308,7 +308,7 @@
         [button setBackgroundImage:image forState:UIControlStateNormal];
 
         [button setTitle:key forState:UIControlStateNormal];
-        button.titleLabel.hidden = YES;
+        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
         [expressionScrollView addSubview:button];
         [button release];
