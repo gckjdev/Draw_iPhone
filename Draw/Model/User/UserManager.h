@@ -50,6 +50,8 @@ typedef enum {
 - (void)setGender:(NSString*)gender;
 - (void)setPassword:(NSString*)password;
 - (void)setDeviceToken:(NSString*)deviceToken;
+- (void)setLocation:(NSString*)location;
+
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;

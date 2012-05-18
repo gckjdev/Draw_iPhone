@@ -17,7 +17,8 @@
 #import "AccountManager.h"
 #import "ItemManager.h"
 #import "GameNetworkConstants.h"
-
+#import "SNSConstants.h"
+#import "GameBasic.pb.h"
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -216,6 +217,16 @@ static UserManager* _defaultManager;
     self.avatarImage = image;
 }
 
+- (void)setLocation:(NSString*)location
+{
+    if (location == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:location forKey:KEY_LOCATION];    
+    [userDefaults synchronize];        
+}
+
 - (void)setGender:(NSString*)gender
 {
     if (gender == nil)
@@ -310,6 +321,44 @@ static UserManager* _defaultManager;
     return _avatarImage;
 }
 
+- (void)setSNSUserData:(int)type snsId:(NSString*)snsId nickName:(NSString*)nickName
+{
+    NSArray* currentData = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+    NSMutableArray* newData = [[NSMutableArray alloc] init];
+    if (currentData != nil){
+        [newData addObjectsFromArray:currentData];
+    }
+
+    BOOL found = NO;
+    int index = 0;
+    for (PBSNSUser* user in newData){
+        if ([user type] == type){
+            found = YES;            
+            break;
+        }        
+        index ++;
+    }
+
+    // create an new user
+    PBSNSUser_Builder* builder = [[PBSNSUser_Builder alloc] init];
+    [builder setType:type];
+    [builder setUserId:snsId];
+    [builder setNickName:nickName];     
+    PBSNSUser* user = [builder build];
+    [builder release];
+
+    if (found){
+        [newData replaceObjectAtIndex:index withObject:user];
+    }
+    else{
+        [newData addObject:user];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [newData release];
+}
+
 - (void)saveUserId:(NSString*)userId
             sinaId:(NSString*)loginId
           password:(NSString*)password 
@@ -349,6 +398,8 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
         [self avatarImage];
     }
+    
+    [self setSNSUserData:TYPE_SINA snsId:loginId nickName:nickName];
     
     [userDefaults synchronize];    
 }
@@ -393,6 +444,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }
     
+    [self setSNSUserData:TYPE_QQ snsId:loginId nickName:nickName];
+    
     [userDefaults synchronize];     
 }
 
@@ -426,6 +479,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
         [self avatarImage];
     }
+    
+    [self setSNSUserData:TYPE_FACEBOOK snsId:loginId nickName:nickName];
     
     [userDefaults synchronize];     
 }
@@ -506,6 +561,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
             PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
         }
     }
+    
+    if (sinaId != nil){
+        [self setSNSUserData:TYPE_SINA snsId:sinaId nickName:nil];        
+    }
+
+    if (qqId != nil){
+        [self setSNSUserData:TYPE_QQ snsId:qqId nickName:nil];                
+    }
+    
+    if (facebookId != nil){
+        [self setSNSUserData:TYPE_FACEBOOK snsId:facebookId nickName:nil];                        
+    }
+    
     [userDefaults synchronize];
 }
 
