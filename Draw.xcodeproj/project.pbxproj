@@ -88,6 +88,12 @@
 		C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4A1565001000B9707D /* clickWord.mp3 */; };
 		C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4B1565001000B9707D /* congratulations!.wav */; };
 		C29B8A501565001000B9707D /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4C1565001000B9707D /* ding.wav */; };
+		C29B8A771565EACD00B9707D /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A711565EACD00B9707D /* dialogue@2x.png */; };
+		C29B8A781565EACD00B9707D /* pen_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A721565EACD00B9707D /* pen_popup_bg@2x.png */; };
+		C29B8A791565EACD00B9707D /* pen_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A731565EACD00B9707D /* pen_popup@2x.png */; };
+		C29B8A7A1565EACD00B9707D /* receive_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A741565EACD00B9707D /* receive_message@2x.png */; };
+		C29B8A7B1565EACD00B9707D /* register_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A751565EACD00B9707D /* register_bg@2x.png */; };
+		C29B8A7C1565EACD00B9707D /* sent_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A761565EACD00B9707D /* sent_message@2x.png */; };
 		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
@@ -768,6 +774,12 @@
 		C29B8A4A1565001000B9707D /* clickWord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickWord.mp3; sourceTree = "<group>"; };
 		C29B8A4B1565001000B9707D /* congratulations!.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "congratulations!.wav"; sourceTree = "<group>"; };
 		C29B8A4C1565001000B9707D /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
+		C29B8A711565EACD00B9707D /* dialogue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialogue@2x.png"; sourceTree = "<group>"; };
+		C29B8A721565EACD00B9707D /* pen_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen_popup_bg@2x.png"; sourceTree = "<group>"; };
+		C29B8A731565EACD00B9707D /* pen_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen_popup@2x.png"; sourceTree = "<group>"; };
+		C29B8A741565EACD00B9707D /* receive_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_message@2x.png"; sourceTree = "<group>"; };
+		C29B8A751565EACD00B9707D /* register_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_bg@2x.png"; sourceTree = "<group>"; };
+		C29B8A761565EACD00B9707D /* sent_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent_message@2x.png"; sourceTree = "<group>"; };
 		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
@@ -3318,6 +3330,12 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C29B8A711565EACD00B9707D /* dialogue@2x.png */,
+				C29B8A721565EACD00B9707D /* pen_popup_bg@2x.png */,
+				C29B8A731565EACD00B9707D /* pen_popup@2x.png */,
+				C29B8A741565EACD00B9707D /* receive_message@2x.png */,
+				C29B8A751565EACD00B9707D /* register_bg@2x.png */,
+				C29B8A761565EACD00B9707D /* sent_message@2x.png */,
 				A44C91FB1564DFD300018D0D /* messagebg@2x.png */,
 				EAE0D143155FB72400827DF9 /* no_s@2x.png */,
 				EAE0D144155FB72400827DF9 /* yes_s@2x.png */,
@@ -4400,6 +4418,12 @@
 				C29B8A501565001000B9707D /* ding.wav in Resources */,
 				A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */,
 				A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */,
+				C29B8A771565EACD00B9707D /* dialogue@2x.png in Resources */,
+				C29B8A781565EACD00B9707D /* pen_popup_bg@2x.png in Resources */,
+				C29B8A791565EACD00B9707D /* pen_popup@2x.png in Resources */,
+				C29B8A7A1565EACD00B9707D /* receive_message@2x.png in Resources */,
+				C29B8A7B1565EACD00B9707D /* register_bg@2x.png in Resources */,
+				C29B8A7C1565EACD00B9707D /* sent_message@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
