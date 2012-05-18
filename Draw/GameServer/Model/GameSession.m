@@ -15,7 +15,13 @@
 
 @interface GameSession ()
 
-- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender;
+- (void)addNewUser:(NSString*)userId 
+          nickName:(NSString*)nickName 
+            avatar:(NSString*)avatar 
+            gender:(BOOL)gender
+          location:(NSString*)location
+       snsUserData:(NSArray*)snsUserData;
+
 - (void)removeUser:(NSString*)userId;
 
 @end
@@ -110,7 +116,9 @@
         [self addNewUser:[notification newUserId]
                 nickName:[notification nickName]
                   avatar:[notification userAvatar]
-                  gender:[notification userGender]];
+                  gender:[notification userGender]
+                location:[notification location]
+             snsUserData:[notification snsUsersList]];
     }
     
     if ([[notification quitUserId] length] > 0){
@@ -168,7 +176,12 @@
 
 
 #pragma User Management
-- (void)addNewUser:(NSString*)userId nickName:(NSString*)nickName avatar:(NSString*)avatar gender:(BOOL)gender
+- (void)addNewUser:(NSString*)userId 
+          nickName:(NSString*)nickName 
+            avatar:(NSString*)avatar 
+            gender:(BOOL)gender
+          location:(NSString*)location
+       snsUserData:(NSArray*)snsUserData
 {
     for (GameSessionUser* user in _userList){
         if ([[user userId] isEqualToString:userId]){
@@ -182,6 +195,8 @@
     [user setNickName:nickName];
     [user setUserAvatar:avatar];
     [user setGender:gender];
+    [user setLocation:location];
+    [user setSnsUserData:snsUserData];
     [_userList addObject:user];
     [user release];
     
