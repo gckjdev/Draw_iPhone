@@ -339,16 +339,16 @@
 "kSayToYou:" = "Say to you:";
 "kNobodyInRoom" = "you can chat private nobody in room";
 
-"kPayAttentionToMe" = "Pay attention to me";
-"kDrawTillDawn" = "Draw till Dawn";
-"kHelloEveryone" = "Hello, every one";
+"kPayAttentionToMe" = "Fellow me";
+"kDrawTillDawn" = "Well draw";
+"kHelloEveryone" = "Hello";
 "kDontLeave" = "Don't leave";
-"kFunny" = "It's funny";
-"kDrawedWhat" = "What are you drawed";
-"kHardToGuess" = "It's hard to guess";
+"kFunny" = "Funny";
+"kDrawedWhat" = "What";
+"kHardToGuess" = "Unbelivable";
 "kSelfDefine" = "+";
-"kDontWriteAnswer" = "Don't give answer" ;
-"kGiveAPrompt" = "Give me a prompt";
+"kDontWriteAnswer" = "OH, NO" ;
+"kGiveAPrompt" = "Give prompt";
 "kWellDone" = "Well done";
 
 "kChatDialogTitle" = "Say to 【%@】";
