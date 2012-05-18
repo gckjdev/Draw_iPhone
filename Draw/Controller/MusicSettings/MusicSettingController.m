@@ -123,11 +123,11 @@ enum{
 - (void)dealloc
 {
     [super dealloc];
-    [self.webView release];
-    [self.request release];
-    [self.tableView release];
-    [self.musicList release];
-    [self.timer release];
+    [_webView release];
+    [request release];
+    [_tableView release];
+    [_musicList release];
+    [timer release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -141,7 +141,7 @@ enum{
     if (timer != nil){
         [timer invalidate];
         timer = nil;
-        [self.timer release];
+        [timer release];
     }
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
@@ -155,7 +155,7 @@ enum{
 {
     [timer invalidate];
     timer = nil; 
-    [self.timer release];
+    [timer release];
 }
 
 #pragma mark - Button Action

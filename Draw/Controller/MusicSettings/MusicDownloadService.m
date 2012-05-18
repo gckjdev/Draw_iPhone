@@ -115,7 +115,7 @@ NSMutableArray *list;
     NSString* filePath = [self getFilePath:fileName];
     NSString* tempFilePath = [self getTempFilePath:fileName];
     
-    MusicItem *item = [[MusicItem alloc] initWithUrl:urlString fileName:fileName filePath:filePath tempPath:tempFilePath];
+    MusicItem *item = [[[MusicItem alloc] initWithUrl:urlString fileName:fileName filePath:filePath tempPath:tempFilePath] autorelease];
     
     [self startDownload:item];    
     return YES;

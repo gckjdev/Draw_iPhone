@@ -112,7 +112,7 @@
         default:
             break;
     }
-    self.lastReport = [self.contentText.text copy];
+    self.lastReport = [[self.contentText.text copy] autorelease];
 }
 
 - (IBAction)hideKeyboard:(id)sender

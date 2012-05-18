@@ -154,12 +154,14 @@
 {
     ChatMessageView *view = [[ChatMessageView alloc] initWithChatMessage:chatMessage];
     [view showInSuperView:superView origin:origin];
+    [view release];
 }
 
 + (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView
 {
     ChatMessageView *view = [[ChatMessageView alloc] initWithChatTitle:title expression:expression];
     [view showInSuperView:superView origin:origin];
+    [view release];
 }
 
 - (void)showInSuperView:(UIView*)superView origin:(CGPoint)origin
@@ -170,8 +172,6 @@
     CAAnimation *animation = [AnimationManager missingAnimationWithDuration:5];
     [self.layer addAnimation:animation forKey:@"DismissAnimation"];
     [superView bringSubviewToFront:self];
-    
-    [self release];
 }
             
 

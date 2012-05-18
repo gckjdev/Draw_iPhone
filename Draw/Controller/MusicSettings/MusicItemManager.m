@@ -34,7 +34,7 @@ static MusicItemManager *_defaultManager;
     self = [super init];
     if (self) {
         
-        self.itemList = [[NSMutableArray alloc] init];
+        self.itemList = [[[NSMutableArray alloc] init] autorelease];
         [self loadMusicItems];
         [self loadCurrentMusic];
         if (currentMusicItem == nil) {
@@ -48,20 +48,20 @@ static MusicItemManager *_defaultManager;
 
 - (void)dealloc
 {
-    [self.itemList release];
+    [itemList release];
     [super dealloc];
 }
 
 - (MusicItem*) parseMusicItemFromString:(NSString*)str
 {
-    NSMutableString *string = [[NSMutableString alloc] initWithString:str];
+    NSMutableString *string = [[[NSMutableString alloc] initWithString:str] autorelease];
     NSArray *array = [string componentsSeparatedByString:DELIMITER];
     
     NSString *fileName = [array objectAtIndex:0];
     NSString *url = [array objectAtIndex:1];
     NSString *localPath = [array objectAtIndex:2];
     NSString *downloadProgress = [array objectAtIndex:3];
-    MusicItem *item = [[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:@""];
+    MusicItem *item = [[[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:@""] autorelease];
     item.downloadProgress = [NSNumber numberWithLongLong:[downloadProgress longLongValue]];
     return item;
 }
