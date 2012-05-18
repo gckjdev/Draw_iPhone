@@ -69,8 +69,6 @@
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
-		C23163A515577B8E00AC132B /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A215577B8E00AC132B /* wrong.wav */; };
-		C23163A715577D2200AC132B /* enterRoom.wav in Resources */ = {isa = PBXBuildFile; fileRef = C23163A615577D2200AC132B /* enterRoom.wav */; };
 		C246AF2715367F4800983C44 /* pic_template_small3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */; };
 		C246AF2815367F4800983C44 /* pic_template_small4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2015367F4800983C44 /* pic_template_small4@2x.png */; };
 		C246AF2915367F4800983C44 /* pic_template_small5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF2115367F4800983C44 /* pic_template_small5@2x.png */; };
@@ -87,7 +85,6 @@
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4A1565001000B9707D /* clickWord.mp3 */; };
-		C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4B1565001000B9707D /* congratulations!.wav */; };
 		C29B8A501565001000B9707D /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4C1565001000B9707D /* ding.wav */; };
 		C29B8A771565EACD00B9707D /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A711565EACD00B9707D /* dialogue@2x.png */; };
 		C29B8A781565EACD00B9707D /* pen_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A721565EACD00B9707D /* pen_popup_bg@2x.png */; };
@@ -96,6 +93,10 @@
 		C29B8A7B1565EACD00B9707D /* register_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A751565EACD00B9707D /* register_bg@2x.png */; };
 		C29B8A7C1565EACD00B9707D /* sent_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A761565EACD00B9707D /* sent_message@2x.png */; };
 		C29B8A8E156639B200B9707D /* cannon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A8D156639B200B9707D /* cannon.mp3 */; };
+		C29B8A93156653CD00B9707D /* congratulations.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A8F156653CB00B9707D /* congratulations.mp3 */; };
+		C29B8A94156653CD00B9707D /* dingding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A90156653CB00B9707D /* dingding.mp3 */; };
+		C29B8A95156653CD00B9707D /* oowrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A91156653CB00B9707D /* oowrong.mp3 */; };
+		C29B8A96156653CD00B9707D /* pushMessage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A92156653CC00B9707D /* pushMessage.mp3 */; };
 		C29C12D91529CF7D009B9E5F /* guess_pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
@@ -755,8 +756,6 @@
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
-		C23163A215577B8E00AC132B /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
-		C23163A615577D2200AC132B /* enterRoom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enterRoom.wav; sourceTree = "<group>"; };
 		C246AF1F15367F4800983C44 /* pic_template_small3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small3@2x.png"; sourceTree = "<group>"; };
 		C246AF2015367F4800983C44 /* pic_template_small4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small4@2x.png"; sourceTree = "<group>"; };
 		C246AF2115367F4800983C44 /* pic_template_small5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small5@2x.png"; sourceTree = "<group>"; };
@@ -776,7 +775,6 @@
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
 		C29B8A4A1565001000B9707D /* clickWord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickWord.mp3; sourceTree = "<group>"; };
-		C29B8A4B1565001000B9707D /* congratulations!.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "congratulations!.wav"; sourceTree = "<group>"; };
 		C29B8A4C1565001000B9707D /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		C29B8A711565EACD00B9707D /* dialogue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialogue@2x.png"; sourceTree = "<group>"; };
 		C29B8A721565EACD00B9707D /* pen_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen_popup_bg@2x.png"; sourceTree = "<group>"; };
@@ -785,6 +783,10 @@
 		C29B8A751565EACD00B9707D /* register_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_bg@2x.png"; sourceTree = "<group>"; };
 		C29B8A761565EACD00B9707D /* sent_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent_message@2x.png"; sourceTree = "<group>"; };
 		C29B8A8D156639B200B9707D /* cannon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cannon.mp3; sourceTree = "<group>"; };
+		C29B8A8F156653CB00B9707D /* congratulations.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulations.mp3; sourceTree = "<group>"; };
+		C29B8A90156653CB00B9707D /* dingding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dingding.mp3; sourceTree = "<group>"; };
+		C29B8A91156653CB00B9707D /* oowrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oowrong.mp3; sourceTree = "<group>"; };
+		C29B8A92156653CC00B9707D /* pushMessage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pushMessage.mp3; sourceTree = "<group>"; };
 		C29C12D81529CF7D009B9E5F /* guess_pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_pattern@2x.png"; sourceTree = "<group>"; };
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
@@ -1772,13 +1774,14 @@
 		C231639F15577B8E00AC132B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C29B8A8F156653CB00B9707D /* congratulations.mp3 */,
+				C29B8A90156653CB00B9707D /* dingding.mp3 */,
+				C29B8A91156653CB00B9707D /* oowrong.mp3 */,
+				C29B8A92156653CC00B9707D /* pushMessage.mp3 */,
 				C29B8A8D156639B200B9707D /* cannon.mp3 */,
 				C29B8A4A1565001000B9707D /* clickWord.mp3 */,
-				C29B8A4B1565001000B9707D /* congratulations!.wav */,
 				C29B8A4C1565001000B9707D /* ding.wav */,
-				C23163A615577D2200AC132B /* enterRoom.wav */,
 				C23163A115577B8E00AC132B /* correct.mp3 */,
-				C23163A215577B8E00AC132B /* wrong.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -3254,10 +3257,10 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
+				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4374,8 +4377,6 @@
 				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				C23163A415577B8E00AC132B /* correct.mp3 in Resources */,
-				C23163A515577B8E00AC132B /* wrong.wav in Resources */,
-				C23163A715577D2200AC132B /* enterRoom.wav in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
 				A454CB881559099F00896761 /* face_anger@2x.png in Resources */,
 				A454CB891559099F00896761 /* face_embarrass@2x.png in Resources */,
@@ -4422,7 +4423,6 @@
 				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
 				A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */,
 				C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */,
-				C29B8A4F1565001000B9707D /* congratulations!.wav in Resources */,
 				C29B8A501565001000B9707D /* ding.wav in Resources */,
 				A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */,
 				A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */,
@@ -4436,6 +4436,10 @@
 				A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */,
 				A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */,
 				C29B8A8E156639B200B9707D /* cannon.mp3 in Resources */,
+				C29B8A93156653CD00B9707D /* congratulations.mp3 in Resources */,
+				C29B8A94156653CD00B9707D /* dingding.mp3 in Resources */,
+				C29B8A95156653CD00B9707D /* oowrong.mp3 in Resources */,
+				C29B8A96156653CD00B9707D /* pushMessage.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -369,6 +369,7 @@
 
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
+"kInputWhatYouWantToSay" = "输入你想对TA说的话";
 
 "kRoomPasswordHolder" = "请输入房间口令";
 "kRoomNameHolder" = "请输入房间名字";
@@ -416,4 +417,8 @@
 "kExpand" = "展开";
 "kCollapse" = "收缩";
 "kMusicSettings" = "背景音乐";
+
+"kUserLogin" = "用户登录";
+
 "kNoneInvited" = "尚未邀请朋友";
+

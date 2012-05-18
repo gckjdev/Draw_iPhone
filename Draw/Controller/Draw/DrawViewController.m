@@ -64,7 +64,8 @@ DrawViewController *GlobalGetDrawViewController()
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:YES];           
+    [fromController.navigationController pushViewController:vc animated:YES];   
+    [vc release];
     
     PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
 }

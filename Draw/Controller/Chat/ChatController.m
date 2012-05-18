@@ -14,6 +14,8 @@
 #import "UserManager.h"
 #import "DeviceDetection.h"
 #import "UIImageUtil.h"
+#import "ShareImageManager.h"
+#import "FriendManager.h"
 #import "PPDebug.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
@@ -71,6 +73,7 @@
 @synthesize avatarView;
 @synthesize nameLabel;
 @synthesize microBlogImageView;
+@synthesize alreadPayAttentionLabel;
 @synthesize sexLabel;
 @synthesize cityLabel;
 @synthesize payAttentionButton;
@@ -98,6 +101,7 @@
     [self configureExpressionScrollView];
     
     UIImage *bgImage = [UIImage strectchableImageName:@"messagebg.png"];
+    
     if (_chatType == GameChatTypeChatGroup) {
         viewBgImageView.hidden = YES;
         userView.hidden = YES;
@@ -131,6 +135,7 @@
     [self setChatInfoViewBgImageView:nil];
     [self setViewBgImageView:nil];
     [self setCloseButton:nil];
+    [self setAlreadPayAttentionLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -152,6 +157,7 @@
     [chatInfoViewBgImageView release];
     [viewBgImageView release];
     [closeButton release];
+    [alreadPayAttentionLabel release];
     [super dealloc];
 }
 
@@ -203,6 +209,7 @@
 
 #pragma mark - Button actions.
 - (IBAction)clickPayAttentionButton:(id)sender {
+    
     [[FriendService defaultService] followUser:_selectedUserId viewController:self];
 }
 
@@ -233,8 +240,9 @@
 - (void)didFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
-        [payAttentionButton setTitle:NSLS(@"kMyFollow") forState:UIControlStateNormal];
-        payAttentionButton.userInteractionEnabled = NO;
+        [payAttentionButton setTitle:NSLS(@"kFollowSuccessfully") forState:UIControlStateNormal];
+        payAttentionButton.hidden = YES;
+        alreadPayAttentionLabel.hidden = NO;
     } else {
         [self popupMessage:NSLS(@"kFollowFailed") title:nil];
     }
@@ -266,6 +274,7 @@
     _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     _inputDialog.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     _inputDialog.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    _inputDialog.targetTextField.placeholder = NSLS(@"kInputWhatYouWantToSay");
     [_inputDialog showInView:self.view];
 }
 
@@ -368,12 +377,24 @@
     self.selectedUserId = userId;
     DrawGameService* drawService = [DrawGameService defaultService];
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
-    nameLabel.text = user.nickName;
-    sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
     
     AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender];
     [aView setAvatarSelected:YES];
     [avatarView addSubview:aView];
+    [aView release];
+    
+    nameLabel.text = user.nickName;
+    sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
+    cityLabel.text = user.location;
+    [microBlogImageView setImage:[self getMicroImage:user]];
+    
+    if ([[FriendManager defaultManager] isFollowFriend:_selectedUserId]) {
+        payAttentionButton.hidden = YES;
+        alreadPayAttentionLabel.hidden = NO;
+    }else {
+        payAttentionButton.hidden = NO;
+        alreadPayAttentionLabel.hidden = YES;
+    }
 }
 
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId
@@ -463,6 +484,19 @@
 - (void)dismiss
 {
     [self.view removeFromSuperview];
+}
+
+- (UIImage*)getMicroImage:(GameSessionUser*)user
+{
+    if ([user isBindSina]) {
+        return [[ShareImageManager defaultManager] sinaWeiboImage];
+    }else if ([user isBindQQ]) {
+        return [[ShareImageManager defaultManager] qqWeiboImage];
+    }else if ([user isBindFacebook]) {
+        return [[ShareImageManager defaultManager] facebookImage];
+    }else {
+        return nil;
+    }
 }
 
 @end

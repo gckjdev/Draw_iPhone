@@ -529,6 +529,7 @@
         user.gender = friend.gender;
         user.status = UserInvited;
         [array addObject:user];
+        [user release];
     }
     self.room.userList = array;
     [self.dataTableView reloadData];

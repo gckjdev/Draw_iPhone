@@ -328,6 +328,7 @@ enum{
     }else if (row == rowOfMusicSettings) {
         MusicSettingController *controller = [[MusicSettingController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 
