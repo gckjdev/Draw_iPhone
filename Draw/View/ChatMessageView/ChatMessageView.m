@@ -15,16 +15,31 @@
 #import "PPDebug.h"
 
 
-#define MAX_WIDTH_CHAT_MESSAGE_VIEW 200
-#define MIN_WIDTH_CHAT_MESSAGE_VIEW 80
+#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 200
+#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
+#define MAX_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
 
-#define WIDTH_EXPRESSION_VIEW 30
+#define MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 80
+#define MIN_WIDTH_CHAT_MESSAGE_VIEW_IPAD MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
+#define MIN_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MIN_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
+
+#define WIDTH_EXPRESSION_VIEW_IPHONE 30
+#define WIDTH_EXPRESSION_VIEW_IPAD WIDTH_EXPRESSION_VIEW_IPHONE*2
+#define WIDTH_EXPRESSION_VIEW ([DeviceDetection isIPAD] ? (WIDTH_EXPRESSION_VIEW_IPAD):(WIDTH_EXPRESSION_VIEW_IPHONE))
+
 #define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
 
-#define FONT_CHAT_MESSAGE_TEXT [UIFont systemFontOfSize:15]
-#define MAX_MESSAGE_LINES 5
-#define WIDTH_EDGE 5
-#define HEIGHT_EDGE 5
+#define FONT_CHAT_MESSAGE_TEXT_IPHONE [UIFont systemFontOfSize:15]
+#define FONT_CHAT_MESSAGE_TEXT_IPAD [UIFont systemFontOfSize:15*2]
+#define FONT_CHAT_MESSAGE_TEXT ([DeviceDetection isIPAD] ? (FONT_CHAT_MESSAGE_TEXT_IPAD):(FONT_CHAT_MESSAGE_TEXT_IPHONE))
+
+#define WIDTH_EDGE_IPHONE 5
+#define WIDTH_EDGE_IPAD WIDTH_EDGE_IPHONE*2
+#define WIDTH_EDGE ([DeviceDetection isIPAD] ? (WIDTH_EDGE_IPAD):(WIDTH_EDGE_IPHONE))
+
+#define HEIGHT_EDGE_IPHONE 5
+#define HEIGHT_EDGE_IPAD HEIGHT_EDGE_IPHONE*2
+#define HEIGHT_EDGE ([DeviceDetection isIPAD] ? (HEIGHT_EDGE_IPAD):(HEIGHT_EDGE_IPHONE))
 
 #define RATE (20.0/60.0)
 
@@ -41,6 +56,15 @@
 {
     [super dealloc];
 }
+
+- (CGSize)getStringSize:(NSString*)string font:(UIFont*)font
+{
+    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
+    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return size;
+}
+
 
 - (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage
 {
@@ -150,12 +174,5 @@
     [self release];
 }
             
-- (CGSize)getStringSize:(NSString*)string font:(UIFont*)font
-{
-    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
-    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-    
-    return size;
-}
 
 @end

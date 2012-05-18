@@ -23,7 +23,7 @@
 @synthesize inviteButton;
 
 
-#define AVATAR_FRAME CGRectMake(18, 3, 36, 37)
+#define AVATAR_FRAME CGRectMake(6, 6, 57, 57)
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -37,10 +37,14 @@
     
     RoomCell *cell = ((RoomCell*)[topLevelObjects objectAtIndex:0]);
     cell.delegate = delegate;
-
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [cell.inviteButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
+    [cell.inviteButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     
     cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
     [cell addSubview:cell.avatarImage];
+    [cell sendSubviewToBack:cell.avatarImage];
     
     return cell;
 }
@@ -52,7 +56,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 65.0f;
+    return 70.0f;
 }
 
 

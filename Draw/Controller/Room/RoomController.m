@@ -181,15 +181,15 @@
 #define DRAWING_MARK_TAG    2012040401
 #define AVATAR_FRAME_TAG    20120406
 #define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
-#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(142, 282) : CGPointMake(46, 150)
+#define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(124, 341) : CGPointMake(46, 150)
 #define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 128 : 64
 #define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 124 : 62
 - (void)prepareAvatars
 {
     int imageStartTag = 31;
     int imageEndTag = 36;
-    float seperatorX = ([DeviceDetection isIPAD]) ? 178 : 80;
-    float seperatorY = ([DeviceDetection isIPAD]) ? 216 : 99;
+    float seperatorX = ([DeviceDetection isIPAD]) ? 196 : 80;
+    float seperatorY = ([DeviceDetection isIPAD]) ? 220 : 99;
     CGPoint orgPoint = ORG_POINT;
     for (int i = imageStartTag; i <= imageEndTag; i++) {
         AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
