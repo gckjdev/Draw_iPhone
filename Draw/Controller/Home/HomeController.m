@@ -35,6 +35,7 @@
 #import "SearchRoomController.h"
 #import "AudioManager.h"
 #import "MusicItemManager.h"
+#import "DrawAppDelegate.h"
 
 @interface HomeController()
 
@@ -53,6 +54,7 @@
 @synthesize settingsLabel = _settingsLabel;
 @synthesize feedbackLabel = _feedbackLabel;
 @synthesize playWithFriendButton = _playWithFriendButton;
+@synthesize hasRemoveNotification = _hasRemoveNotification;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -124,7 +126,11 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
-//    [[DrawGameService defaultService] connectServer];
+
+    if ([self hasRemoveNotification]) {
+        [self clickPlayWithFriend:self.playWithFriendButton];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -37,6 +37,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *feedbackLabel;
 @property (retain, nonatomic) IBOutlet UIButton *playWithFriendButton;
 
+@property (nonatomic, assign) BOOL hasRemoveNotification; 
+
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
 @end

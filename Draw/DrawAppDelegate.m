@@ -54,7 +54,6 @@ NSString* GlobalGetTrafficServerURL()
 @synthesize homeController = _homeController;
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
-
 - (void)dealloc
 {
     [_reviewRequest release];
@@ -70,6 +69,9 @@ NSString* GlobalGetTrafficServerURL()
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
+    
+
+    
     [self initImageCacheManager];
     
     //init sounds
@@ -115,7 +117,12 @@ NSString* GlobalGetTrafficServerURL()
     }
 
     // Init Home Controller As Root View Controller
-    self.homeController = [[[HomeController alloc] init] autorelease];            
+    self.homeController = [[[HomeController alloc] init] autorelease];     
+    
+    NSNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    self.homeController.hasRemoveNotification = (notification != nil);
+    
     UINavigationController* navigationController = [[[UINavigationController alloc] 
                                                      initWithRootViewController:self.homeController] 
                                                     autorelease];
@@ -151,6 +158,9 @@ NSString* GlobalGetTrafficServerURL()
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     //[[FriendManager defaultManager] removeAllDeletedFriends];
+    
+
+//    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     return YES;
 }
