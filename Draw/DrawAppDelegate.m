@@ -199,6 +199,7 @@ NSString* GlobalGetTrafficServerURL()
         sleep(60);
     });     
     
+    [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
 
 }
@@ -208,7 +209,7 @@ NSString* GlobalGetTrafficServerURL()
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-
+    [[AudioManager defaultManager] backgroundMusicStart];
     
 }
 

@@ -32,6 +32,7 @@
 #import "DrawConstants.h"
 #import "AudioManager.h"
 #import "ConfigManager.h"
+#import "CommonMessageCenter.h"
 
 
 #define PAPER_VIEW_TAG 20120403
@@ -659,13 +660,15 @@
 {
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
-        [self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
+        //[self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
 //        [self setAnswerButtonsEnabled];
     }else{
-        [self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
+        //[self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
     }
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
