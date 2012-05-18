@@ -45,6 +45,7 @@ typedef enum{
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) NSInteger status;
 
+- (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)play;
 - (UIImage *)createImage;
 - (UIImage *)createImageWithScale:(CGFloat)scale;

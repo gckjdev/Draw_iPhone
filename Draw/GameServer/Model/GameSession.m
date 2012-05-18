@@ -48,10 +48,11 @@
 - (id)init
 {
     self = [super init];
-    self.userList = [NSMutableArray array];
-    self.turnList = [NSMutableArray array];
-    self.currentTurn = [[[GameTurn alloc] init] autorelease];
-    self.deletedUserList = [NSMutableDictionary dictionary];
+    _userList = [[NSMutableArray alloc] init];
+    _turnList = [[NSMutableArray alloc] init];
+    _currentTurn = [[GameTurn alloc] init];
+    _deletedUserList = [[NSMutableDictionary alloc] init];
+
     self.status = SESSION_WAITING;
     self.roundNumber = 0;
     return self;

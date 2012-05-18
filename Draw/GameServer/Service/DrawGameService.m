@@ -369,7 +369,7 @@ static DrawGameService* _defaultService;
 //        }
         
         [_session setStatus:SESSION_WAITING];
-        
+        [[_session currentTurn] updateLastWord];
         [self updateOnlineUserCount:message];
         
         // update session data

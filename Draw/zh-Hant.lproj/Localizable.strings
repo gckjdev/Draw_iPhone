@@ -401,3 +401,12 @@
 
 "kRoomSearhTips" = "暱稱 / 房間名";
 "kInputRoomPassword" = "請輸入房間口令";
+"kInviteFull" = "房間最多只能邀請%d個好友，你已經邀請了%d個。";
+
+"kDownloadURL" = "是否下載來自%@ 的鏈接文件?";
+"kYesDownload" = "是的，我要下載";
+"kNoOpenURL" = "不是，繼續打開鏈接";
+
+"kExpand" = "展开";
+"kCollapse" = "收缩";
+"kMusicSettings" = "背景音乐";

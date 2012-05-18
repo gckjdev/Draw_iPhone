@@ -351,8 +351,6 @@
 "kWaitting" = "等待中";
 "kFull" = "已满人";
 
-"kMusicSettings" = "背景音乐";
-
 "kMale" = "男";
 "kFemale" = "女";
 "kSayToYou" = "对你说: %@";
@@ -404,3 +402,12 @@
 
 "kRoomSearhTips" = "昵称 / 房间名";
 "kInputRoomPassword" = "请输入房间口令";
+"kInviteFull" = "房间最多只能邀请%d个好友，你已经邀请了%d个。";
+
+"kDownloadURL" = "是否下载来自 %@ 的链接文件?";
+"kYesDownload" = "是的，我要下载";
+"kNoOpenURL" = "不是，继续打开链接";
+
+"kExpand" = "展开";
+"kCollapse" = "收缩";
+"kMusicSettings" = "背景音乐";

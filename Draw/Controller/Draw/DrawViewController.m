@@ -168,16 +168,17 @@ DrawViewController *GlobalGetDrawViewController()
 }
 
 enum{
-  BLACK_COLOR = 0,
-  RED_COLOR,
-  BLUE_COLOR,
-  GREEN_COLOR,
-  ORANGE_COLOR,
-  COLOR_COUNT
+    BLACK_COLOR = 0,
+    RED_COLOR = 1,  
+    GREEN_COLOR,
+    BLUE_COLOR,
+    ORANGE_COLOR,
+    COLOR_COUNT
 };
 
 - (DrawColor *)randColor
 {
+    srand(time(0)+ self.hash);
     NSInteger rand = random() % COLOR_COUNT;
     switch (rand) {
         case RED_COLOR:
@@ -286,9 +287,16 @@ enum{
 
     UIImage *image = [drawView createImage];
     NSInteger gainCoin = [[message notification] turnGainCoins];
+
+    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
+    
     ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                          wordText:self.word.text 
-                                                             score:gainCoin                                                         correct:NO
+                                                        drawUserId:drawUserId
+                                                  drawUserNickName:drawUserNickName
+                                                          wordText:self.word.text                             
+                                                             score:gainCoin                                                         
+                                                           correct:NO
                                                          isMyPaint:YES
                                                     drawActionList:drawView.drawActionList];
     [self.navigationController pushViewController:rc animated:YES];

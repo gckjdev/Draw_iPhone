@@ -32,6 +32,9 @@
 #import "ChatController.h"
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
+#import "SearchRoomController.h"
+#import "AudioManager.h"
+#import "MusicItemManager.h"
 
 @implementation HomeController
 @synthesize startButton = _startButton;
@@ -69,8 +72,9 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
+    //init background music    
+    [self playBackgroundMusic];
 
-    
     // setup button images
     UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
     [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
@@ -153,6 +157,19 @@
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+- (void)playBackgroundMusic
+{
+    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+    NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
+    AudioManager *audioManager = [AudioManager defaultManager];
+    
+    //stop old music
+    [audioManager backgroundMusicStop];
+    //start new music
+    [audioManager setBackGroundMusicWithURL:url];
+    [audioManager backgroundMusicStart];
+
+}
 - (IBAction)clickStart:(id)sender
 {        
     [self showActivityWithText:NSLS(@"kJoiningGame")];
@@ -328,10 +345,15 @@
         port = [server.port intValue];            
     }
 
-//    [[DrawGameService defaultService] setServerAddress:address];
-//    [[DrawGameService defaultService] setServerPort:port];    
-    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
-    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] setServerAddress:address];
+    [[DrawGameService defaultService] setServerPort:port];    
+    
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DrawGameService defaultService] setServerPort:8080];    
+    
+//    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
+//    [[DrawGameService defaultService] setServerPort:8080];    
+
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;
 }
@@ -348,6 +370,22 @@
 
 + (void)returnRoom:(UIViewController*)superController
 {
+    
+    UIViewController *viewController = nil;
+    for(UIViewController *vc in superController.navigationController.childViewControllers)
+    {
+        if ([vc isKindOfClass:[SearchRoomController class]]) {
+            viewController = vc;
+            break;
+        }
+        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
+            viewController = vc;
+        }
+    }
+    if (viewController != nil) {
+        [superController.navigationController popToViewController:viewController animated:YES];        
+        return;
+    }
     [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
 }
 

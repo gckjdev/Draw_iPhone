@@ -22,6 +22,8 @@
 #import "Account.h"
 #import "DrawAction.h"
 #import "WordManager.h"
+#import "AudioManager.h"
+#import "DrawConstants.h"
 
 #define CONTINUE_TIME 10
 
@@ -39,6 +41,8 @@
 @synthesize whitePaper;
 @synthesize titleLabel;
 @synthesize drawActionList = _drawActionList;
+@synthesize drawUserId = _drawUserId;
+@synthesize drawUserNickName = _drawUserNickName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,7 +62,14 @@
 }
 
 
-- (id)initWithImage:(UIImage *)image wordText:(NSString *)aWordText score:(NSInteger)aScore correct:(BOOL)correct isMyPaint:(BOOL)isMyPaint drawActionList:(NSArray *)drawActionList;
+- (id)initWithImage:(UIImage *)image 
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText 
+              score:(NSInteger)aScore 
+            correct:(BOOL)correct 
+          isMyPaint:(BOOL)isMyPaint 
+     drawActionList:(NSArray *)drawActionList;
 
 {
     self = [super init];
@@ -70,6 +81,9 @@
         _correct = correct;
         _isMyPaint = isMyPaint;
         self.drawActionList = [NSArray arrayWithArray:drawActionList];
+        
+        self.drawUserNickName = drawUserNickName;
+        self.drawUserId = drawUserId;        
         
         drawGameService = [DrawGameService defaultService];
     }
@@ -118,6 +132,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.score > 0) {
+        [[AudioManager defaultManager] playSoundById:GAME_WIN];
+    }
         
     [self.drawImage setImage:_image];
     NSString *answer = nil;
@@ -203,6 +220,8 @@
 }
 
 - (void)dealloc {
+    [_drawUserId release];
+    [_drawUserNickName release];
     [upButton release];
     [downButton release];
     [continueButton release];
@@ -266,7 +285,7 @@
         if (queue == NULL){
             return;
         }
-        
+                
         dispatch_async(queue, ^{
             //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
@@ -281,21 +300,14 @@
             PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (result) {
-                    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
-                    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
-                    NSString* drawWord = [[[drawGameService session] currentTurn] word];
-                    if (drawWord == nil){
-                        drawWord = [[[drawGameService session] currentTurn] lastWord];
-                    }
-                    
+                if (result) {                    
                     NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
                     [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
                                                                         data:drawActionListData 
-                                                                  drawUserId:drawUserId 
-                                                            drawUserNickName:drawUserNickName 
+                                                                  drawUserId:_drawUserId 
+                                                            drawUserNickName:_drawUserNickName 
                                                                     drawByMe:_isMyPaint 
-                                                                    drawWord:drawWord];
+                                                                    drawWord:self.wordText];
                     
                     [self popupMessage:NSLS(@"kSaveImageOK") title:nil];
                 }

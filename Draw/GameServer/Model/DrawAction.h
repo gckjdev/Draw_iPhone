@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Paint;
-
+@class PBDrawAction;
 typedef enum {
     
     DRAW_ACTION_TYPE_DRAW,
@@ -23,6 +23,7 @@ typedef enum {
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
 - (NSInteger)pointCount;
+- (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 + (BOOL)isDrawActionListBlank:(NSArray *)actionList;

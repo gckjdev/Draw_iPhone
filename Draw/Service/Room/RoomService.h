@@ -18,7 +18,7 @@
 - (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode;
 - (void)didInviteFriends:(NSSet *)friendSet resultCode:(int)resultCode;
 - (void)didRemoveRoom:(Room *)room resultCode:(int)resultCode;
-
+- (void)didJoinNewRoom:(int)resultCode;
 
 @end
 @class UserManager;
@@ -53,4 +53,6 @@
           password:(NSString *)roomPassword 
           roomName:(NSString *)roomName;
 
+
+- (void)joinNewRoom:(Room *)room delegate:(id<RoomServiceDelegate>)delegate;
 @end

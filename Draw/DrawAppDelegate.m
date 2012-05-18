@@ -38,8 +38,7 @@ NSString* GlobalGetServerURL()
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-
-    return @"http://192.168.1.10:8000/api/i?";    
+    return @"http://192.168.1.198:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -78,7 +77,8 @@ NSString* GlobalGetTrafficServerURL()
                                                @"clickWord.wav", 
                                                @"enterRoom.wav", 
                                                @"correct.mp3", 
-                                               @"wrong.wav", nil]];
+                                               @"wrong.wav", 
+                                               @"congratulations!.wav", nil]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 
