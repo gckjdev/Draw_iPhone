@@ -49,14 +49,12 @@
     return self;
 }
 
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.titleLabel.text = NSLS(@"kReplayTitle");
     self.wordLabel.text = draw.word;
+    
     
     NSMutableArray *drawActionList = [[NSMutableArray alloc] init];
     for (PBDrawAction *pbDrawAction in draw.drawDataList) {
@@ -64,15 +62,16 @@
         [drawActionList addObject:drawAction];
         [drawAction release];
     }
-    
-    ShowDrawView *showDrawView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];
-    CGFloat multiple = holderView.frame.size.width / DRAW_VEIW_FRAME.size.width;
-    showDrawView.center = holderView.center;
-    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
+    ShowDrawView *showDrawView = [[ShowDrawView alloc] init];
     [showDrawView setDrawActionList:drawActionList];
     [drawActionList release];
-    
+    showDrawView.frame = DRAW_VEIW_FRAME;
+    CGFloat multiple = self.holderView.frame.size.width / showDrawView.frame.size.width;
+    showDrawView.center = self.holderView.center;
+    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
+    [self.view addSubview:showDrawView];
     [showDrawView play];
+    [showDrawView release];
 }
 
 
@@ -87,5 +86,10 @@
     self.draw = nil;
 }
 
+
+- (IBAction)clickBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end
