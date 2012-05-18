@@ -11,6 +11,7 @@
 #import "StableView.h"
 #import "MessageManager.h"
 #import "FriendService.h"
+#import "InputDialog.h"
 
 @class AvatarView;
 
@@ -21,7 +22,7 @@
 
 @end
 
-@interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate, FriendServiceDelegate>
+@interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate, FriendServiceDelegate, InputDialogDelegate>
 
 @property (assign, nonatomic) id<ChatControllerDelegate> chatControllerDelegate;
 @property (retain, nonatomic) IBOutlet UIImageView *viewBgImageView;
