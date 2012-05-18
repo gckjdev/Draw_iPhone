@@ -85,7 +85,7 @@ static UserService* _defaultUserService;
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
                 [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
-                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kPassword") delegate:viewController];
+                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
                 [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
             }
