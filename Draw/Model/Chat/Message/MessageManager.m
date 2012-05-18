@@ -43,7 +43,7 @@ static MessageManager *_instance = nil;
     if (self) {
         self.messagesInRoom = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), NSLS(@"kDrawTillDawn"), NSLS(@"kHelloEveryone"), NSLS(@"kDontLeave"), NSLS(@"kFunny"), NSLS(@"kDrawedWhat"), NSLS(@"kHardToGuess"), NSLS(@"kGeiliable"), nil];
         
-        self.messagesInGame = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), NSLS(@"kDrawTillDawn"), NSLS(@"kWellDone"),NSLS(@"kDontLive"), NSLS(@"kDontWriteAnswer"), NSLS(@"kDrawedWhat"), NSLS(@"kHardToGuess"), NSLS(@"kGiveAPrompt"), nil];
+        self.messagesInGame = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), NSLS(@"kDrawTillDawn"), NSLS(@"kWellDone"),NSLS(@"kDontLeave"), NSLS(@"kDontWriteAnswer"), NSLS(@"kDrawedWhat"), NSLS(@"kHardToGuess"), NSLS(@"kGiveAPrompt"), nil];
     }
     
     return self;

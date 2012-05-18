@@ -57,4 +57,6 @@
 - (void)popUpRunAwayMessage:(NSString *)userId;
 - (void)addScore:(NSInteger)score toUser:(NSString *)userId;
 
+- (void)showGroupChatView;
+
 @end

@@ -800,4 +800,8 @@
     return [button titleForState:UIControlStateSelected];
 }
 
+- (IBAction)clickGroupChatButton:(id)sender {
+    [super showGroupChatView];
+}
+
 @end

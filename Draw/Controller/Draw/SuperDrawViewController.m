@@ -329,6 +329,16 @@
     [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId];
 }
 
+- (void)showGroupChatView
+{
+    if (_groupChatController == nil) {
+        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+    }
+    _groupChatController.chatControllerDelegate = self;
+    
+    [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil];
+}
+
 - (void)didSelectMessage:(NSString*)message
 {
     [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:message];

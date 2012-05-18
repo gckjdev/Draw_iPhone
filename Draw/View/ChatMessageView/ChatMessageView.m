@@ -70,10 +70,13 @@
     CGSize titleSize = [self getStringSize:title font:FONT_CHAT_MESSAGE_TEXT];
     
     titleSize.width = (titleSize.width < WIDTH_EXPRESSION_VIEW) ? WIDTH_EXPRESSION_VIEW : titleSize.width;
-    
-    titleSize.height = (titleSize.height < 15) ? 15 : titleSize.height;
-    
-    self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (titleSize.height+HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
+
+    if (title != nil) {
+        titleSize.height = (titleSize.height < 15) ? 15 : titleSize.height;
+        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (titleSize.height+HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
+    }else {
+        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
+    }
     
     PPDebug(@"view.width = %f", self.frame.size.width);
     PPDebug(@"view.height = %f", self.frame.size.height);

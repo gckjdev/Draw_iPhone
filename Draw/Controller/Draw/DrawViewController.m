@@ -432,4 +432,7 @@ enum{
         [drawView setLineWidth:penWidth];
 }
 
+- (IBAction)clickGroupChatButton:(id)sender {
+    [super showGroupChatView];
+}
 @end
