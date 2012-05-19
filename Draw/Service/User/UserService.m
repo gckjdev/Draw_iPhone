@@ -350,7 +350,7 @@ static UserService* _defaultUserService;
 
 - (void)loginUserByEmail:(NSString*)email 
                 password:(NSString*)password 
-          viewController:(PPViewController<UserServiceDelegate>*)viewController
+          viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
 {
     NSString* appId = APP_ID;
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
@@ -403,6 +403,9 @@ static UserService* _defaultUserService;
             else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
                 // @"密码错误 "
                 [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
+                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
+                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                [dialog showInView:viewController.view];
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
