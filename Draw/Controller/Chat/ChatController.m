@@ -16,6 +16,7 @@
 #import "UIImageUtil.h"
 #import "ShareImageManager.h"
 #import "FriendManager.h"
+#import "CommonMessageCenter.h"
 #import "PPDebug.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
@@ -233,6 +234,9 @@
     }else {
         [[DrawGameService defaultService] groupChatExpression:key]; 
     }
+    
+    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
 }
 
 
@@ -257,18 +261,28 @@
         [self handleChatMessage:message];
     }
     
+    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
+    
     return;
+}
+
+- (NSString*)getUserNickName:(int)type userId:(NSString*)userId
+{
+    NSString *title = nil;
+
+    if (_chatType == GameChatTypeChatPrivate) {
+        title = [[[DrawGameService defaultService] session] getNickNameByUserId:_selectedUserId];
+    }else {
+        title = NSLS(@"kAllUser");
+    }
+
+    return title;
 }
 
 - (void)showChatInputDialog
 {
-    NSString *title = nil;
-    if (_chatType == GameChatTypeChatPrivate) {
-        title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), [[[DrawGameService defaultService] session] getNickNameByUserId:_selectedUserId]];
-    }else {
-        title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), NSLS(@"kAllUser")];
-    }
-    
+    NSString *title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), [self getUserNickName:_chatType userId:_selectedUserId]];
     self.inputDialog = [InputDialog dialogWith:title delegate:self];
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
@@ -295,6 +309,10 @@
     
     if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
         [chatControllerDelegate didSelectMessage:message];
+    }
+    
+    if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
+        return;
     }
     
     if (_chatType == GameChatTypeChatPrivate) {
@@ -384,9 +402,11 @@
     [aView release];
     
     nameLabel.text = user.nickName;
+    PPDebug(@"gender: %d", user.gender);
     sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
     cityLabel.text = user.location;
     [microBlogImageView setImage:[self getMicroImage:user]];
+    [payAttentionButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
     
     if ([[FriendManager defaultManager] isFollowFriend:_selectedUserId]) {
         payAttentionButton.hidden = YES;

@@ -7,7 +7,6 @@
 //
 
 #import "CommonMessageCenter.h"
-#import "DeviceDetection.h"
 
 #pragma mark -
 @interface CommonMessageView : UIView {
@@ -59,13 +58,6 @@
         return nil;
     }
     CommonMessageView* view =  (CommonMessageView*)[topLevelObjects objectAtIndex:0];
-    if (![DeviceDetection isIPAD]) {
-        [view setFrame:CGRectMake(view.frame.origin.x, 
-                                 view.frame.origin.y, 
-                                 view.frame.size.width/2, 
-                                 view.frame.size.height/2)];
-        [view.messageLabel setFont:[UIFont systemFontOfSize:10]];
-    }
     return view;
 }
 

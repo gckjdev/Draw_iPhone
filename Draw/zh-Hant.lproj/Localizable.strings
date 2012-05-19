@@ -333,8 +333,6 @@
 "kSearchFailed" = "網絡錯誤，搜索失敗！";
 "kSearching" = "正在搜索...";
 "kMyself" = "我";
-"kMale" = "男";
-"kFemale" = "女";
 
 "kLevelSettings" = "猜詞難度";
 "kEasyLevel" = "業餘";
@@ -367,6 +365,7 @@
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
+"kSendToUserSuccess" = "消息已經成功發送給%@";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";
