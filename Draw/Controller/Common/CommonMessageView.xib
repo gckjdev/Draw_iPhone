@@ -42,7 +42,7 @@
 						<string key="NSFrameSize">{375, 171}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1020764332"/>
+						<reference key="NSNextKeyView" ref="887364720"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -51,13 +51,13 @@
 							<string key="NSResourceName">dialogue@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="1020764332">
+					<object class="IBUIImageView" id="887364720">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{57, 65}, {61, 61}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="225908294"/>
+						<reference key="NSNextKeyView" ref="1012661553"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -66,9 +66,9 @@
 							<string key="NSResourceName">face_wry@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="225908294">
+					<object class="IBUILabel" id="1012661553">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{163, 65}, {143, 61}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -92,6 +92,7 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUINumberOfLines">2</int>
+						<int key="IBUILineBreakMode">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">20</double>
@@ -120,7 +121,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">faceImageView</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="1020764332"/>
+						<reference key="destination" ref="887364720"/>
 					</object>
 					<int key="connectionID">6</int>
 				</object>
@@ -128,7 +129,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">messageLabel</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="225908294"/>
+						<reference key="destination" ref="1012661553"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -146,8 +147,8 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="368008694"/>
-							<reference ref="225908294"/>
-							<reference ref="1020764332"/>
+							<reference ref="1012661553"/>
+							<reference ref="887364720"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -169,12 +170,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="1020764332"/>
+						<reference key="object" ref="887364720"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="225908294"/>
+						<reference key="object" ref="1012661553"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
