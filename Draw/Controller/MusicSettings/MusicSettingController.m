@@ -15,8 +15,7 @@
 #import "MusicItemManager.h"
 #import "ShareImageManager.h"
 #import "AudioManager.h"
-
-#define MUSIC_URL @"http://m.easou.com/"
+#import "ConfigManager.h"
 
 @implementation MusicSettingController
 
@@ -79,6 +78,8 @@ enum{
     self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
     [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     self.musicLabel.text = NSLS(@"kCustomMusicDownload");
+    [musicLabel setTextColor:[UIColor brownColor]];
+
     [self.expandButton setTitle:NSLS(@"kExpand") forState:UIControlStateNormal];
     [self.previousButton setTitle:NSLS(@"kPrevious") forState:UIControlStateNormal];
     [self.nextButton setTitle:NSLS(@"kNext") forState:UIControlStateNormal];
@@ -97,7 +98,7 @@ enum{
     
     self.expandButton.tag = EXPAND;
     [self setActionButtonsHidden:YES];
-    [self openURL:MUSIC_URL];
+    [self openURL:[ConfigManager getMusicDownloadHomeURL]];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
 
@@ -105,6 +106,7 @@ enum{
     
     audiomanager = [AudioManager defaultManager];
     
+    //for webView GestureRecongize
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.delegate = self;
@@ -218,7 +220,9 @@ enum{
         expandframe.origin.y=50;
         
         CGRect webframe=self.webView.frame;
-        webframe.origin.y=50+30;
+        webframe.origin.y=50+30+2;
+        webframe.origin.x=0;
+        webframe.size.width = 320;
         webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 60;
                 
         [UIView animateWithDuration:0.5 animations:^{ 
@@ -244,6 +248,8 @@ enum{
         
         CGRect webframe=self.webView.frame;
         webframe.origin.y=210+30;
+        webframe.origin.x=9;
+        webframe.size.width = 302;
         webframe.size.height = [UIScreen mainScreen].bounds.size.height - 30 - 50;
         
         [UIView animateWithDuration:0.5 animations:^{ 
