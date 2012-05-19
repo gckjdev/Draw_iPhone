@@ -12,6 +12,11 @@
 
 @implementation ConfigManager
 
++ (NSString*)getMusicDownloadHomeURL
+{
+    return [MobClickUtils getStringValueByKey:@"MUSIC_HOME" defaultValue:@"http://m.easou.com/col.e?id=112"];
+}
+
 + (int)getGuessRewardNormal
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];
