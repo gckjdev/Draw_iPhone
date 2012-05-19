@@ -30,6 +30,7 @@
 #import "AudioManager.h"
 #import "FriendManager.h"
 #import "MusicItemManager.h"
+#import "CommonMessageCenter.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -174,7 +175,7 @@ NSString* GlobalGetTrafficServerURL()
     if ([news length] <= 1)
         return;
     
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:news];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:news delayTime:1.5 isHappy:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
