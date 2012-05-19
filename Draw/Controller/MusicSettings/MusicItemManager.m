@@ -71,7 +71,7 @@ static MusicItemManager *_defaultManager;
 - (void)loadMusicItems
 {
     //no music item
-    noneMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kNoMusic") filePath:nil tempPath:nil];
+    noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
     [itemList addObject:noneMusicItem];
     
     //default music item
@@ -200,22 +200,16 @@ static MusicItemManager *_defaultManager;
         [self saveCurrentMusic];
 
     }
-    
     AudioManager *audioManager = [AudioManager defaultManager];
-
-    //if select 'No', stop the audio
     if (currentMusicItem == noneMusicItem) {
-        [audioManager backgroundMusicStop];
+        [audioManager setIsMusicOn:NO];
     }
     else {
+        [audioManager setIsMusicOn:YES];
         NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
-        //stop old music
-        [audioManager backgroundMusicStop];
-        //start new music
         [audioManager setBackGroundMusicWithURL:url];
         [audioManager backgroundMusicStart];
     }
-    
 }
 
 @end

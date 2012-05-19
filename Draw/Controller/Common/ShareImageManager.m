@@ -276,4 +276,14 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"qq.png"]; 
 }
 
+- (UIImage *)facebookImage
+{
+    return [UIImage imageNamed:@"facebook.png"];
+}
+
+- (UIImage *)messageImage
+{
+    return [UIImage strectchableImageName:@"messagebg.png"];
+}
+
 @end

@@ -401,6 +401,7 @@
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
 "kCustomMusicDownload" = "Custom Music Download";
+"kBackgroundMusic" = "Music Settings";
 "kMusicSettings" = "Music Settings";
 "kLoadingURL" = "Loading web pages...";
 "kDefaultMusic" = "Default";

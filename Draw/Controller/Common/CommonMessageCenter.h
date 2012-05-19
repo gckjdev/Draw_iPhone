@@ -27,6 +27,9 @@
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                     isHappy:(BOOL)isHappy;
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime
+               isSuccessful:(BOOL)isSuccessful;
 
 @end
 

@@ -63,6 +63,8 @@
         UIButton *button = (UIButton*)[self viewWithTag:tag++];
         button.hidden = NO;
         [button setTitle:message forState:UIControlStateNormal];
+        [button setTitle:message forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     }
 }
 
