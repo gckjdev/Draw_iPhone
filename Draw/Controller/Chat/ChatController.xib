@@ -227,7 +227,7 @@
 										<reference key="IBUIFontDescription" ref="338801675"/>
 										<reference key="IBUIFont" ref="886707040"/>
 									</object>
-									<object class="IBUILabel" id="769460598">
+									<object class="IBUILabel" id="996479208">
 										<reference key="NSNextResponder" ref="876821904"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{213, 18}, {49, 33}}</string>
@@ -310,7 +310,7 @@
 									<object class="IBUILabel" id="637224567">
 										<reference key="NSNextResponder" ref="876821904"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{119, 41}, {79, 18}}</string>
+										<string key="NSFrame">{{118, 41}, {80, 18}}</string>
 										<reference key="NSSuperview" ref="876821904"/>
 										<reference key="NSNextKeyView" ref="777707669"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -492,7 +492,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">alreadPayAttentionLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="769460598"/>
+						<reference key="destination" ref="996479208"/>
 					</object>
 					<int key="connectionID">114</int>
 				</object>
@@ -584,7 +584,7 @@
 							<reference ref="777707669"/>
 							<reference ref="878386842"/>
 							<reference ref="923374262"/>
-							<reference ref="769460598"/>
+							<reference ref="996479208"/>
 						</array>
 						<reference key="parent" ref="422428427"/>
 					</object>
@@ -662,7 +662,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">112</int>
-						<reference key="object" ref="769460598"/>
+						<reference key="object" ref="996479208"/>
 						<reference key="parent" ref="876821904"/>
 					</object>
 				</array>
