@@ -412,6 +412,7 @@
 "kExpand" = "展開";
 "kCollapse" = "收起";
 "kCustomMusicDownload" = "個性化音樂下載";
+"kBackgroundMusic" = "背景音樂";
 "kMusicSettings" = "背景音樂設置";
 "kLoadingURL" = "加載網頁中...";
 "kDefaultMusic" = "默認背景音樂";

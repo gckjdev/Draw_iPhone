@@ -275,7 +275,7 @@ enum{
             [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
         }
     }else if (row == rowOfMusicSettings) {
-        [cell.textLabel setText:NSLS(@"kMusicSettings")];
+        [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
     }
     return cell;
 }

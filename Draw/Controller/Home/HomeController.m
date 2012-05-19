@@ -81,8 +81,12 @@
 //    [self setBackgroundImageName:@"home.png"];
 
     [super viewDidLoad];
-    //init background music  
+    
     [self playBackgroundMusic];
+    
+//    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
+//    [[AudioManager defaultManager] backgroundMusicStart];
+
 
     // setup button images
     UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
@@ -176,9 +180,6 @@
     NSURL *url = [NSURL fileURLWithPath:musicManager.currentMusicItem.localPath];
     AudioManager *audioManager = [AudioManager defaultManager];
     
-    //stop old music
-    [audioManager backgroundMusicStop];
-    //start new music
     [audioManager setBackGroundMusicWithURL:url];
     [audioManager backgroundMusicStart];
 

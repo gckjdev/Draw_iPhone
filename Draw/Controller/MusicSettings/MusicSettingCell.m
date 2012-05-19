@@ -55,6 +55,8 @@
             self.musicNameLabel.text = item.fileName;
         }
     }
+    
+    [musicNameLabel setTextColor:[UIColor brownColor]];
     self.downloadProgress.progress = [item.downloadProgress floatValue];
     
     if ([[MusicItemManager defaultManager] isNoneOrDefaultMusic:item]) {
