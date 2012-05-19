@@ -43,6 +43,26 @@
 
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
+#define MAX_WIDTH_NAME_LABEL_IPHONE 105
+#define MAX_WIDTH_NAME_LABEL_IPAD MAX_WIDTH_NAME_LABEL_IPHONE
+#define MAX_WIDTH_NAME_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_NAME_LABEL_IPAD):(MAX_WIDTH_NAME_LABEL_IPHONE))
+
+#define MAX_WIDTH_SEX_LABEL_IPHONE 44
+#define MAX_WIDTH_SEX_LABEL_IPAD MAX_WIDTH_SEX_LABEL_IPHONE
+#define MAX_WIDTH_SEX_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_SEX_LABEL_IPAD):(MAX_WIDTH_SEX_LABEL_IPHONE))
+
+#define MAX_WIDTH_CITY_LABEL_IPHONE 80
+#define MAX_WIDTH_CITY_LABEL_IPAD MAX_WIDTH_CITY_LABEL_IPHONE
+#define MAX_WIDTH_CITY_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_CITY_LABEL_IPAD):(MAX_WIDTH_CITY_LABEL_IPHONE))
+
+#define MAX_SIZE_NAME_LABEL CGSizeMake(MAX_WIDTH_NAME_LABEL, CGFLOAT_MAX)
+#define MAX_SIZE_SEX_LABEL CGSizeMake(MAX_WIDTH_SEX_LABEL, CGFLOAT_MAX)
+#define MAX_SIZE_CITY_LABEL CGSizeMake(MAX_WIDTH_CITY_LABEL, CGFLOAT_MAX)
+
+#define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE 8
+#define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPAD EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE*2
+#define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW (([DeviceDetection isIPAD])?(EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPAD):(EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE))
+
 @interface ChatController()
 {
     NSString *_selectedUserId;
@@ -402,10 +422,19 @@
     [aView release];
     
     nameLabel.text = user.nickName;
-    PPDebug(@"gender: %d", user.gender);
-    sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
-    cityLabel.text = user.location;
+    CGSize nameStringSize = [self getStringSize:nameLabel.font string:user.nickName withinSize:MAX_SIZE_NAME_LABEL];
+    nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, nameStringSize.width*1.2, nameLabel.frame.size.height);
+    
     [microBlogImageView setImage:[self getMicroImage:user]];
+    microBlogImageView.center = CGPointMake(nameLabel.frame.origin.x+nameLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW, nameLabel.center.y);
+        
+    sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
+    CGSize sexStringSize = [self getStringSize:nameLabel.font string:user.nickName withinSize:MAX_SIZE_SEX_LABEL];
+    sexLabel.frame = CGRectMake(sexLabel.frame.origin.x, sexLabel.frame.origin.y, sexStringSize.width*1.2, sexLabel.frame.size.height);
+    
+    cityLabel.text = user.location;
+    cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW, cityLabel.center.y);
+    
     [payAttentionButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
     
     if ([[FriendManager defaultManager] isFollowFriend:_selectedUserId]) {
@@ -416,6 +445,14 @@
         alreadPayAttentionLabel.hidden = YES;
     }
 }
+
+- (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize
+{
+    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return size;
+}
+
 
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId
 {
