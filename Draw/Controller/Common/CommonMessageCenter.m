@@ -7,6 +7,7 @@
 //
 
 #import "CommonMessageCenter.h"
+#import "DeviceDetection.h"
 
 #pragma mark -
 @interface CommonMessageView : UIView {
@@ -58,6 +59,13 @@
         return nil;
     }
     CommonMessageView* view =  (CommonMessageView*)[topLevelObjects objectAtIndex:0];
+    if (![DeviceDetection isIPAD]) {
+        [view setFrame:CGRectMake(view.frame.origin.x, 
+                                 view.frame.origin.y, 
+                                 view.frame.size.width/2, 
+                                 view.frame.size.height/2)];
+        [view.messageLabel setFont:[UIFont systemFontOfSize:10]];
+    }
     return view;
 }
 
@@ -187,9 +195,12 @@
 	
 	UIImage *img = nil;
 	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
-	
-	[_messageView setImage:img];
-    
+    [_messageView setImage:img];
+	if (!img) {
+        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y)];
+        [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
+    }
+	    
 	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
 	
 	

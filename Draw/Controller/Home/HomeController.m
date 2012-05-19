@@ -367,7 +367,7 @@
     
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
-        
+
     [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
     [[DrawGameService defaultService] setServerPort:8080];    
 
