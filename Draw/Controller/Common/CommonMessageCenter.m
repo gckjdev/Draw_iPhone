@@ -285,6 +285,18 @@
     }
 	[self postMessageWithText:text image:face delayTime:delayTime];
 }
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime
+               isSuccessful:(BOOL)isSuccessful
+{
+    UIImage* face;
+    if (isSuccessful) {
+        face = [UIImage imageNamed:@"right.png"];
+    } else {
+        face = [UIImage imageNamed:@"wrong.png"];
+    }
+	[self postMessageWithText:text image:face delayTime:delayTime];
+}
 
 
 #pragma mark System Observation Changes
