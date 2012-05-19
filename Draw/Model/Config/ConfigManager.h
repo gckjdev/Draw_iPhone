@@ -33,4 +33,6 @@ typedef enum{
 
 + (BOOL)enableReview;
 
++ (NSString*)getMusicDownloadHomeURL;
+
 @end

@@ -10,7 +10,7 @@
 #import "PPTableViewController.h"
 #import "AudioManager.h"
 
-@interface MusicSettingController : PPViewController<UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate, UIActionSheetDelegate>
+@interface MusicSettingController : PPViewController<UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate, UIActionSheetDelegate,UIGestureRecognizerDelegate>
 {
     UITableView *_tableView;
     NSArray *_musicList;
