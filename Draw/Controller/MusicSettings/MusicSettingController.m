@@ -15,8 +15,7 @@
 #import "MusicItemManager.h"
 #import "ShareImageManager.h"
 #import "AudioManager.h"
-
-#define MUSIC_URL @"http://m.easou.com/"
+#import "ConfigManager.h"
 
 @implementation MusicSettingController
 
@@ -97,7 +96,7 @@ enum{
     
     self.expandButton.tag = EXPAND;
     [self setActionButtonsHidden:YES];
-    [self openURL:MUSIC_URL];
+    [self openURL:[ConfigManager getMusicDownloadHomeURL]];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
 
@@ -105,6 +104,7 @@ enum{
     
     audiomanager = [AudioManager defaultManager];
     
+    //for webView GestureRecongize
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.delegate = self;
