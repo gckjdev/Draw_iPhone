@@ -31,6 +31,7 @@
 #import "FriendManager.h"
 #import "MusicItemManager.h"
 #import "CommonMessageCenter.h"
+#import "MusicDownloadService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -232,6 +233,9 @@ NSString* GlobalGetTrafficServerURL()
     
     [[DrawGameService defaultService] clearDisconnectTimer];
     [self.networkDetector start];
+    
+    [[MusicDownloadService defaultService] resumeAllDownloadItem];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -241,6 +245,9 @@ NSString* GlobalGetTrafficServerURL()
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    [[MusicItemManager defaultManager] saveMusicItems];
+
 }
 
 #pragma mark - Device Notification Delegate

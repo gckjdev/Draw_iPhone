@@ -62,9 +62,13 @@ static MusicItemManager *_defaultManager;
     NSString *fileName = [array objectAtIndex:0];
     NSString *url = [array objectAtIndex:1];
     NSString *localPath = [array objectAtIndex:2];
-    NSString *downloadProgress = [array objectAtIndex:3];
-    MusicItem *item = [[[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:@""] autorelease];
+    NSString *tempPath = [array objectAtIndex:3];
+    NSString *statusString = [array objectAtIndex:4];
+    NSString *downloadProgress = [array objectAtIndex:5];
+    MusicItem *item = [[[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:tempPath] autorelease];
     item.downloadProgress = [NSNumber numberWithLongLong:[downloadProgress longLongValue]];
+    item.status = [NSNumber numberWithInt:[statusString intValue]];
+
     return item;
 }
 
@@ -72,11 +76,13 @@ static MusicItemManager *_defaultManager;
 {
     //no music item
     noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
+    noneMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
     [itemList addObject:noneMusicItem];
     
     //default music item
     NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
     defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
+    defaultMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
     [itemList addObject:defaultMusicItem];
 
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
@@ -103,10 +109,12 @@ static MusicItemManager *_defaultManager;
         }
         
         NSMutableString *itemString = [[NSMutableString alloc]init];
-        [itemString appendFormat:@"%@%@%@%@%@%@%@", 
+        [itemString appendFormat:@"%@%@%@%@%@%@%@%@%@%@%@", 
                         item.fileName, DELIMITER, 
                         item.url, DELIMITER, 
                         item.localPath, DELIMITER, 
+                        item.tempPath, DELIMITER, 
+                        [item.status stringValue], DELIMITER, 
                         [item.downloadProgress stringValue]];
         
         [list addObject:itemString];
@@ -139,10 +147,12 @@ static MusicItemManager *_defaultManager;
     
     
     NSMutableString *itemString = [[NSMutableString alloc]init];
-    [itemString appendFormat:@"%@%@%@%@%@%@%@", 
+    [itemString appendFormat:@"%@%@%@%@%@%@%@%@%@%@%@", 
          currentMusicItem.fileName, DELIMITER, 
          currentMusicItem.url, DELIMITER, 
          currentMusicItem.localPath, DELIMITER, 
+        currentMusicItem.tempPath, DELIMITER, 
+         [currentMusicItem.status stringValue],DELIMITER,
          [currentMusicItem.downloadProgress stringValue]];
         
     [userDefaults setObject: itemString forKey:KEY_CURRENT_MUSIC];
@@ -162,6 +172,9 @@ static MusicItemManager *_defaultManager;
 
 - (void)saveItem:(MusicItem*)item
 {
+    if (itemList != nil && [itemList indexOfObject:item] != -1) {
+        [itemList removeObject:item];
+    }
     [itemList addObject:item];
 }
 
@@ -184,6 +197,20 @@ static MusicItemManager *_defaultManager;
     return itemList;
 }
 
+- (NSArray*)findAllItemsByStatus:(int)status
+{
+    NSMutableArray *retList = [[[NSMutableArray alloc] init] autorelease];
+    NSLog(@"********itemList:%d",itemList.count);
+
+    for (MusicItem *item in itemList) {
+        if (item.status.intValue == status) {
+            [retList addObject:item];
+            NSLog(@"**************%@",item.fileName);
+        }
+    }
+    return retList;
+}
+
 - (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize
 {
     [itemList removeObject:item];
@@ -195,6 +222,9 @@ static MusicItemManager *_defaultManager;
 //select current background Music to play
 - (void)selectCurrentMusicItem:(MusicItem*)item
 {
+    if (item.status.intValue != DOWNLOAD_STATUS_FINISH) {
+        return;
+    }
     if (self.currentMusicItem != item) {
         self.currentMusicItem = item;
         [self saveCurrentMusic];
@@ -210,6 +240,28 @@ static MusicItemManager *_defaultManager;
         [audioManager setBackGroundMusicWithURL:url];
         [audioManager backgroundMusicStart];
     }
+}
+
+#pragma STATUS CONTROL
+- (void)downloadFinish:(MusicItem*)item
+{
+    [item setRequest:nil];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH]];
+    [item setDownloadProgress:[NSNumber numberWithFloat:1.0]];
+    [self saveItem:item];
+}
+
+- (void)downloadFailure:(MusicItem*)item
+{
+    [item setRequest:nil];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FAIL]];
+    [self saveItem:item];
+}
+
+- (void)downloadStart:(MusicItem*)item request:(ASIHTTPRequest*)request
+{
+    [item setRequest:request];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_STARTED]];
 }
 
 @end

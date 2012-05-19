@@ -20,6 +20,7 @@
 @synthesize url;
 @synthesize tempPath;
 @synthesize localPath;
+@synthesize status;
 
 #define DOWNLOAD_KEY @"DOWNLOAD_KEY"
 
@@ -31,6 +32,7 @@
     self = [super init];
     
     self.downloadSize = [NSNumber numberWithInt:0];
+    self.status = [NSNumber numberWithInt:0];
     self.downloadProgress = [NSNumber numberWithFloat:0.0f];
     self.fileName = fileName;
     self.url = url;

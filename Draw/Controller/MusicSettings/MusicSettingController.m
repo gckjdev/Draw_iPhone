@@ -16,6 +16,7 @@
 #import "ShareImageManager.h"
 #import "AudioManager.h"
 #import "ConfigManager.h"
+#import "DeviceDetection.h"
 
 @implementation MusicSettingController
 
@@ -71,9 +72,8 @@ enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2.png"]]];
     self.tableView.backgroundColor = [UIColor clearColor];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2@2x.png"]]];
     
     self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
     [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
@@ -101,6 +101,7 @@ enum{
     [self openURL:[ConfigManager getMusicDownloadHomeURL]];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
+    
 
     [self createTimer];
     
@@ -112,7 +113,7 @@ enum{
     tapGesture.delegate = self;
     [self.webView addGestureRecognizer:tapGesture];
     [tapGesture release];
-        
+            
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
@@ -149,6 +150,7 @@ enum{
 {
 
 }
+
 - (void)dealloc
 {
     [super dealloc];
@@ -213,17 +215,33 @@ enum{
         [self.tableView setHidden:YES];
         [self.editButton setHidden:YES];
         
+        int labelMarginY;
+        int buttonMarginY;
+        int frameMarginY;
+        int footerHeight;
+        if ([DeviceDetection isIPAD]){
+            labelMarginY = 100;
+            buttonMarginY = 105;
+            frameMarginY = 150;
+            footerHeight = 70;
+        }else {
+            labelMarginY = 50;
+            buttonMarginY = 50;
+            frameMarginY = 82;
+            footerHeight = 60;
+        }
+        
         CGRect labelframe = self.musicLabel.frame;
-        labelframe.origin.y=50;
+        labelframe.origin.y=labelMarginY;
         
         CGRect expandframe = self.expandButton.frame;
-        expandframe.origin.y=50;
+        expandframe.origin.y=buttonMarginY;
         
         CGRect webframe=self.webView.frame;
-        webframe.origin.y=50+30+2;
+        webframe.origin.y=frameMarginY;
         webframe.origin.x=0;
-        webframe.size.width = 320;
-        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 60;
+        webframe.size.width = [UIScreen mainScreen].bounds.size.width;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - frameMarginY - footerHeight;
                 
         [UIView animateWithDuration:0.5 animations:^{ 
             self.webView.frame=webframe;
@@ -240,17 +258,37 @@ enum{
         [self.tableView setHidden:NO];
         [self.editButton setHidden:NO];
 
+        int labelMarginY;
+        int buttonMarginY;
+        int frameMarginY;
+        int frameMarginX;
+        int footerHeight;
+        
+        if ([DeviceDetection isIPAD]){
+            labelMarginY = 425;
+            buttonMarginY = 432;
+            frameMarginY = 475;
+            frameMarginX = 40;
+            footerHeight = 70;
+        }else {
+            labelMarginY = 210;
+            buttonMarginY = 208;
+            frameMarginY = 240;
+            frameMarginX = 9;
+            footerHeight = 60;
+        }
+
         CGRect labelframe = self.musicLabel.frame;
-        labelframe.origin.y=210;
+        labelframe.origin.y=labelMarginY;
         
         CGRect expandframe = self.expandButton.frame;
-        expandframe.origin.y=210;
+        expandframe.origin.y=buttonMarginY;
         
         CGRect webframe=self.webView.frame;
-        webframe.origin.y=210+30;
-        webframe.origin.x=9;
-        webframe.size.width = 302;
-        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 30 - 50;
+        webframe.origin.y=frameMarginY;
+        webframe.origin.x=frameMarginX;
+        webframe.size.width = [UIScreen mainScreen].bounds.size.width - 2*frameMarginX;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - self.musicLabel.frame.size.height - self.musicSettingTitleLabel.frame.size.height;
         
         [UIView animateWithDuration:0.5 animations:^{ 
             
@@ -273,15 +311,15 @@ enum{
     return 1;		
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 10;
+//}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  40.0f;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return  40.0f;
+//}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
