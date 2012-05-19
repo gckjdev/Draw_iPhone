@@ -43,8 +43,9 @@
 							<object class="IBUILabel" id="293196574">
 								<reference key="NSNextResponder" ref="472566600"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 11}, {110, 21}}</string>
+								<string key="NSFrame">{{9, 11}, {122, 21}}</string>
 								<reference key="NSSuperview" ref="472566600"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="961879149"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -77,8 +78,9 @@
 							<object class="IBUIProgressView" id="961879149">
 								<reference key="NSNextResponder" ref="472566600"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{127, 17}, {117, 9}}</string>
+								<string key="NSFrame">{{139, 17}, {117, 9}}</string>
 								<reference key="NSSuperview" ref="472566600"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -87,6 +89,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 46}</string>
 						<reference key="NSSuperview" ref="948676777"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -102,6 +105,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 47}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="472566600"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -184,7 +188,40 @@
 			<nil key="sourceID"/>
 			<int key="maxID">16</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">MusicSettingCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="downloadProgress">UIProgressView</string>
+						<string key="musicNameLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="downloadProgress">
+							<string key="name">downloadProgress</string>
+							<string key="candidateClassName">UIProgressView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="musicNameLabel">
+							<string key="name">musicNameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MusicSettingCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
