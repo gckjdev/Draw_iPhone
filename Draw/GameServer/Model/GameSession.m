@@ -200,7 +200,7 @@
     [_userList addObject:user];
     [user release];
     
-    PPDebug(@"<addNewUser> userId = %@", userId);
+    PPDebug(@"<addNewUser> user = %@", [user description]);
 }
 
 - (void)removeUser:(NSString*)userId
