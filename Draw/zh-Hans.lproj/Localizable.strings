@@ -415,16 +415,16 @@
 "kNoOpenURL" = "不是，继续打开链接";
 
 "kExpand" = "展开";
-"kCollapse" = "收缩";
+"kCollapse" = "收起";
 "kCustomMusicDownload" = "个性化音乐下载";
-"kMusicSettings" = "背景音乐";
+"kMusicSettings" = "背景音乐设置";
 "kLoadingURL" = "加载网页中...";
 "kDefaultMusic" = "默认背景音乐";
 "kNoMusic" = "无";
 "kPrevious" = "前一页";
 "kNext" = "后一页";
 "kRefresh" = "刷新";
-"kStop" = "刷新";
+"kStop" = "停止";
 
 "kUserLogin" = "用户登录";
 

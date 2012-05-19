@@ -57,11 +57,8 @@
 #pragma mark - View lifecycle
 
 - (void)openURL:(NSString *)URLString
-{
-    [self showActivityWithText:NSLS(@"kLoadingURL")];
-    
+{    
     NSLog(@"url = %@",URLString);
-    
     NSURL *url = [NSURL URLWithString:URLString];
     request = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:request];
@@ -76,6 +73,9 @@ enum{
 {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2.png"]]];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
     self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
     [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     self.musicLabel.text = NSLS(@"kCustomMusicDownload");
@@ -89,11 +89,14 @@ enum{
     ShareImageManager *imageManager = [ShareImageManager defaultManager];    
     [editButton setBackgroundImage:[imageManager orangeImage] 
                           forState:UIControlStateNormal];
+    [expandButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [previousButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [nextButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [refreshButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [stopButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
-    expandButton.tag = EXPAND;
-    
+    self.expandButton.tag = EXPAND;
     [self setActionButtonsHidden:YES];
-
     [self openURL:MUSIC_URL];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
@@ -102,7 +105,20 @@ enum{
     
     audiomanager = [AudioManager defaultManager];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.delegate = self;
+    [self.webView addGestureRecognizer:tapGesture];
+    [tapGesture release];
         
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        if (self.expandButton.tag == EXPAND) {
+            [self clickExpand:self];
+        }
+    }
 }
 
 - (void)updateProgressTimer
@@ -203,7 +219,7 @@ enum{
         
         CGRect webframe=self.webView.frame;
         webframe.origin.y=50+30;
-        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 50;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 60;
                 
         [UIView animateWithDuration:0.5 animations:^{ 
             self.webView.frame=webframe;
@@ -253,7 +269,7 @@ enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -425,6 +441,11 @@ enum{
         return NO;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)requestURL navigationType:(UIWebViewNavigationType)navigationType
 {
     
@@ -459,9 +480,6 @@ enum{
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    
-    [self hideActivity];
-    
     // forbid popup call out window
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
 }
