@@ -77,6 +77,7 @@
 - (NSArray*)messages:(MessagesType)type;
 - (void)updateCurrentSelectedUser:(NSArray*)userList;
 - (NSArray*)getOtherUsers;
+- (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize;
 
 @end
 
@@ -484,7 +485,8 @@
         [superView addSubview:self.view];
     }
     
-    [closeButton setBackgroundImage:[UIImage strectchableImageName:@"red_button.png"] forState:UIControlStateNormal];
+    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage]
+                           forState:UIControlStateNormal];
 }
 
 - (NSArray*)messages:(MessagesType)type
@@ -516,6 +518,7 @@
     for (GameSessionUser *user in session.userList) {
         if (![[UserManager defaultManager] isMe:user.userId]) {
             [otherUsers addObject:user];
+            PPDebug(@"<debug> chat user=%@", [user description]);
         }
     }
     
