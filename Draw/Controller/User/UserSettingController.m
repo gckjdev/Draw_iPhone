@@ -155,10 +155,10 @@ enum{
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 110;
+        return 90;
     }
     else {
-        return 55;
+        return 45;
     }
 }
 
@@ -192,10 +192,10 @@ enum{
         }
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
-        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(184, 7, 70, 37)];
+        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(194, 3.5, 70, 37)];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
         if ([DeviceDetection isIPAD]) {
-            btn.frame = CGRectMake(184*2, 7*2, 70*2, 37*2);
+            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
             [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
         }
         [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
