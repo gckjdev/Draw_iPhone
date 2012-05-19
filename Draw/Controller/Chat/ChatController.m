@@ -362,7 +362,6 @@
         UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
         button.tag = TAG_EXPRESSION_BUTTON+i++;
-//        [button setImage:image forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 
         [button setTitle:key forState:UIControlStateNormal];
@@ -440,7 +439,6 @@
     
     cityLabel.text = user.location;
     cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL+cityLabel.frame.size.width/2, sexLabel.center.y);
-    PPDebug(@"cityLabel center:(%f, %f)", sexLabel.center.x, sexLabel.center.y);
     
     [payAttentionButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
     
