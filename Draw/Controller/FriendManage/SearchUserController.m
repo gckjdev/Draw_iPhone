@@ -238,4 +238,13 @@
     }
 }
 
+
+#pragma mark - text field delegate.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self clickSearch:searchButton];
+    return YES;
+}
+
+
 @end

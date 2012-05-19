@@ -431,4 +431,10 @@
 "kNoneInvited" = "尚未邀请朋友";
 "kFirstGame" = "这是您首次游戏，请先注册";
 
+"kMyFriend" = "我的好友";
 
+"kFriendPlayTitle" = "以画会友";
+"kInviteFriends" = "邀请好友";
+
+"kNoRoomTips" = "无房间，创建房间或搜索房间加入。";
+"kSearchNoResult" = "未搜索到符合条件的房间。";

@@ -122,8 +122,6 @@
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
 {
     
-    PPDebug(@"<alloc Avatar View>: url = %@, gender = %d", urlString, gender);
-
     self = [super initWithFrame:AVATAR_VIEW_FRAME];
 
     if (self) {

@@ -21,6 +21,8 @@
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
+@synthesize titleLabel;
+@synthesize tipsLabel;
 @synthesize searchField;
 //@synthesize selectedRoom = _selectedRoom;
 
@@ -53,7 +55,11 @@
     [super viewDidLoad];
     [searchFieldBg setImage:[imageManager inputImage]];
     [searchField setPlaceholder:NSLS(@"kRoomSearhTips")];
+    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [titleLabel setText:NSLS(@"kSearchRoom")];
+    [self.tipsLabel setText:NSLS(@"kSearchNoResult")];
+    [self.tipsLabel setHidden:YES];
 }
 
 - (void)viewDidUnload
@@ -61,6 +67,8 @@
     [self setSearchField:nil];
     [self setSearchButton:nil];
     [self setSearchFieldBg:nil];
+    [self setTitleLabel:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -90,6 +98,8 @@
     [searchButton release];
     [searchFieldBg release];
 //    [_selectedRoom release];
+    [titleLabel release];
+    [tipsLabel release];
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {
@@ -138,6 +148,12 @@
     }else{
         self.dataList = roomList;
         [self.dataTableView reloadData];
+        if ([roomList count] == 0) {
+            self.tipsLabel.hidden = NO;
+//            [self popupMessage:NSLS(@"kSearchNoResult") title:nil];            
+        }else{
+            self.tipsLabel.hidden = YES;
+        }
     }
 }
 

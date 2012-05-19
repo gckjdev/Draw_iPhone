@@ -24,6 +24,9 @@
 #define INVITE_LIMIT 12
 
 @implementation FriendRoomController
+@synthesize titleLabel;
+@synthesize myFriendButton;
+@synthesize noRoomTips;
 @synthesize editButton;
 @synthesize createButton;
 @synthesize searchButton;
@@ -55,12 +58,18 @@
     //bg image
     ShareImageManager *manager = [ShareImageManager defaultManager];
     [self.editButton setBackgroundImage:[manager redImage] forState:UIControlStateNormal];
+    [self.editButton setBackgroundImage:[manager orangeImage] forState:UIControlStateSelected];
+    
     [self.createButton setBackgroundImage:[manager greenImage] forState:UIControlStateNormal];
     [self.searchButton setBackgroundImage:[manager orangeImage] forState:UIControlStateNormal];
     //text
+    [self.myFriendButton setTitle:NSLS(@"kMyFriend") forState:UIControlStateNormal];
     [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
+    [self.editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     [self.createButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
     [self.searchButton setTitle:NSLS(@"kSearchRoom") forState:UIControlStateNormal];
+    [self.titleLabel setText:NSLS(@"kFriendPlayTitle")];
+    [self.noRoomTips setText:NSLS(@"kNoRoomTips")];
 }
 
 - (void)viewDidLoad
@@ -69,7 +78,7 @@
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
     [self showActivityWithText:NSLS(@"kLoading")];
-    [roomService findMyRoomsWithOffset:0 limit:20 delegate:self];
+    [roomService findMyRoomsWithOffset:0 limit:50 delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,6 +100,9 @@
     [self setEditButton:nil];
     [self setCreateButton:nil];
     [self setSearchButton:nil];
+    [self setMyFriendButton:nil];
+    [self setTitleLabel:nil];
+    [self setNoRoomTips:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -106,10 +118,14 @@
     [editButton release];
     [createButton release];
     [searchButton release];
+    [myFriendButton release];
+    [titleLabel release];
+    [noRoomTips release];
     [super dealloc];
 }
 - (IBAction)clickEditButton:(id)sender {
-
+    editButton.selected = !editButton.selected;
+    [dataTableView setEditing:editButton.selected animated:YES];
 }
 
 - (IBAction)clickCreateButton:(id)sender {
@@ -225,7 +241,6 @@
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kFindRoomListSucc") title:nil];
         if (roomList == nil) {
             [((NSMutableArray *)self.dataList) removeAllObjects];  ;            
         }else
@@ -246,8 +261,12 @@
     NSInteger count = [dataList count];
     if (count == 0) {
         tableView.hidden = YES;
+        self.editButton.hidden = YES;
+        self.noRoomTips.hidden = NO;
     }else{
         tableView.hidden = NO;
+        self.editButton.hidden = NO;
+        self.noRoomTips.hidden = YES;
     }
     return count;
     

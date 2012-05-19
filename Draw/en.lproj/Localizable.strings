@@ -386,7 +386,7 @@
 "kFindRoomListSucc" = "Fetch rooms successfully";
 "kCreateRoomSucc" = "Create room successfully.";
 "kRemoveRoomSucc" = "Remove room successfully.";
-"kInviteFriendFail" = "Invite friends successfully.";
+"kInviteFriendSucc" = "Invite friends successfully.";
 
 "kRoomSearhTips" = "Nickname / Room name";
 
@@ -415,4 +415,12 @@
 
 "kNoneInvited" = "None invited";
 "kFirstGame" = "It's your first time to play, please register first.";
+
+"kMyFriend" = "Friends";
+
+"kFriendPlayTitle" = "Rooms";
+"kInviteFriends" = "Invite";
+
+"kNoRoomTips" = "No Room. Create or search room.";
+"kSearchNoResult" = "No matching rooms.";
 
