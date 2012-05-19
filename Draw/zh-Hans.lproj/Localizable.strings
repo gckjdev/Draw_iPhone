@@ -429,4 +429,6 @@
 "kUserLogin" = "用户登录";
 
 "kNoneInvited" = "尚未邀请朋友";
+"kFirstGame" = "这是您首次游戏，请先注册";
+
 

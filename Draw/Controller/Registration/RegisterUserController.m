@@ -26,6 +26,7 @@
 #import "GameBasic.pb.h"
 #import "ShowRemoteDrawController.h"
 #import "DeviceDetection.h"
+#import "CommonMessageCenter.h"
 
 @implementation RegisterUserController
 @synthesize userIdTextField;
@@ -64,6 +65,7 @@
 //    self.userIdTextField.text = [NSString stringWithFormat:@"mark_%d@21cn.com", i];
 
     [super viewDidLoad];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFirstGame") delayTime:1.5 isHappy:NO];
     // Do any additional setup after loading the view from its nib.
     
     self.inviteLabel.text = NSLS(@"kRegisterToEnter");

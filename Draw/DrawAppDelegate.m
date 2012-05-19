@@ -30,15 +30,16 @@
 #import "AudioManager.h"
 #import "FriendManager.h"
 #import "MusicItemManager.h"
+#import "CommonMessageCenter.h"
 
 NSString* GlobalGetServerURL()
 {    
-//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-    return @"http://192.168.1.198:8000/api/i?";    
+//    return @"http://192.168.1.9:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -174,7 +175,7 @@ NSString* GlobalGetTrafficServerURL()
     if ([news length] <= 1)
         return;
     
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:news];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:news delayTime:1.5 isHappy:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
