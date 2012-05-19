@@ -320,8 +320,6 @@
 "kSearchFailed" = "Network error, search failed!";
 "kSearching" = "Searching...";
 "kMyself" = "Myself";
-"kMale" = "male";
-"kFemale" = "female";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
@@ -339,7 +337,7 @@
 "kSayToYou:" = "Say to you:";
 "kNobodyInRoom" = "you can chat private nobody in room";
 
-"kPayAttentionToMe" = "Fellow me";
+"kPayAttentionToMe" = "Follow me";
 "kDrawTillDawn" = "Well draw";
 "kHelloEveryone" = "Hello";
 "kDontLeave" = "Don't leave";
@@ -354,6 +352,7 @@
 "kChatDialogTitle" = "Say to 【%@】";
 "kAllUser" = "All";
 "kInputWhatYouWantToSay" = "Input what you want to say";
+"kSendToUserSuccess" = "Message is send to %@ successfully";
 
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
@@ -401,8 +400,15 @@
 
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
-"kMusicSettings" = "MusicSettings";
+"kCustomMusicDownload" = "Custom Music Download";
+"kMusicSettings" = "Music Settings";
 "kLoadingURL" = "Loading web pages...";
+"kDefaultMusic" = "Default";
+"kNoMusic" = "No";
+"kPrevious" = "Previous";
+"kNext" = "Next";
+"kRefresh" = "Refresh";
+"kStop" = "Stop";
 
 "kUserLogin" = "User Login";
 

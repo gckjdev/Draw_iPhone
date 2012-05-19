@@ -333,8 +333,6 @@
 "kSearchFailed" = "網絡錯誤，搜索失敗！";
 "kSearching" = "正在搜索...";
 "kMyself" = "我";
-"kMale" = "男";
-"kFemale" = "女";
 
 "kLevelSettings" = "猜詞難度";
 "kEasyLevel" = "業餘";
@@ -367,6 +365,7 @@
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
+"kSendToUserSuccess" = "消息已經成功發送給%@";
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";
@@ -410,10 +409,17 @@
 "kYesDownload" = "是的，我要下載";
 "kNoOpenURL" = "不是，繼續打開鏈接";
 
-"kExpand" = "展开";
-"kCollapse" = "收缩";
-"kMusicSettings" = "背景音乐";
-"kLoadingURL" = "加载网页中...";
+"kExpand" = "展開";
+"kCollapse" = "收縮";
+"kCustomMusicDownload" = "個性化音樂下載";
+"kMusicSettings" = "背景音樂";
+"kLoadingURL" = "加載網頁中...";
+"kDefaultMusic" = "默認背景音樂";
+"kNoMusic" = "無";
+"kPrevious" = "前一頁";
+"kNext" = "後一頁";
+"kRefresh" = "刷新";
+"kStop" = "停止";
 
 "kUserLogin" = "玩家登入";
 

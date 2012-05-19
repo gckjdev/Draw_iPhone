@@ -13,15 +13,20 @@
 
 @property (nonatomic, retain) NSMutableArray *itemList;
 @property (nonatomic, retain) MusicItem *currentMusicItem;
-
+@property (nonatomic, retain) MusicItem *defaultMusicItem;
+@property (nonatomic, retain) MusicItem *noneMusicItem;
 
 + (MusicItemManager*)defaultManager;
 
-- (void)saveItem:(MusicItem*)item;
 - (NSArray*) findAllItems;
 - (void)saveMusicItems;
+
+- (void)saveItem:(MusicItem*)item;
 - (void)deleteItem:(MusicItem*)item;
 - (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize;
+- (void)selectCurrentMusicItem:(MusicItem*)item;
+
 - (void)saveCurrentMusic;
 - (BOOL)isCurrentMusic:(MusicItem*)item;
+- (BOOL)isNoneOrDefaultMusic:(MusicItem*)item;
 @end
