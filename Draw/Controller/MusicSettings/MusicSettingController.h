@@ -24,7 +24,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *editButton;
 @property (nonatomic, retain) IBOutlet UIButton *expandButton;
 @property (nonatomic, retain) IBOutlet UILabel *musicLabel;
-
+@property (nonatomic, retain) IBOutlet UILabel *musicSettingTitleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *previousButton;
 @property (nonatomic, retain) IBOutlet UIButton *nextButton;
 @property (nonatomic, retain) IBOutlet UIButton *stopButton;

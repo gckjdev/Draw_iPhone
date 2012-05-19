@@ -35,6 +35,7 @@
 @synthesize stopButton;
 @synthesize refreshButton;
 @synthesize audiomanager;
+@synthesize musicSettingTitleLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +75,16 @@ enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
+    [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
+    self.musicLabel.text = NSLS(@"kCustomMusicDownload");
+    [self.expandButton setTitle:NSLS(@"kExpand") forState:UIControlStateNormal];
+    [self.previousButton setTitle:NSLS(@"kPrevious") forState:UIControlStateNormal];
+    [self.nextButton setTitle:NSLS(@"kNext") forState:UIControlStateNormal];
+    [self.refreshButton setTitle:NSLS(@"kRefresh") forState:UIControlStateNormal];
+    [self.stopButton setTitle:NSLS(@"kStop") forState:UIControlStateNormal];
+
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];    
     [editButton setBackgroundImage:[imageManager orangeImage] 
@@ -278,8 +289,13 @@ enum{
 	}
 	
     MusicItem* downloadItem = [self.musicList objectAtIndex:row];
-    [cell setCellInfoWithItem:downloadItem indexPath:indexPath];    
+    [cell setCellInfoWithItem:downloadItem indexPath:indexPath];
+    if ([[MusicItemManager defaultManager] isCurrentMusic:downloadItem]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
@@ -307,6 +323,12 @@ enum{
     else {
         return UITableViewCellEditingStyleNone;
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MusicSettingCell *cell = (MusicSettingCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [[MusicItemManager defaultManager] selectCurrentMusicItem:cell.musicItem];
 }
 
 #pragma mark - webView delegate method

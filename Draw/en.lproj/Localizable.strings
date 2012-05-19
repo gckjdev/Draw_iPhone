@@ -401,8 +401,15 @@
 
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
-"kMusicSettings" = "MusicSettings";
+"kCustomMusicDownload" = "Custom Music Download";
+"kMusicSettings" = "Music Settings";
 "kLoadingURL" = "Loading web pages...";
+"kDefaultMusic" = "Default";
+"kNoMusic" = "No";
+"kPrevious" = "Previous";
+"kNext" = "Next";
+"kRefresh" = "Refresh";
+"kStop" = "Stop";
 
 "kUserLogin" = "User Login";
 

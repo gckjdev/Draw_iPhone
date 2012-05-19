@@ -8,6 +8,7 @@
 
 #import "MusicItemManager.h"
 #import "LocaleUtils.h"
+#import "AudioManager.h"
 
 #define KEY_MUSICLIST @"musicList"
 #define KEY_CURRENT_MUSIC @"currentMusic"
@@ -17,6 +18,8 @@
 @implementation MusicItemManager
 @synthesize itemList;
 @synthesize currentMusicItem;
+@synthesize defaultMusicItem;
+@synthesize noneMusicItem;
 
 static MusicItemManager *_defaultManager;
 
@@ -45,6 +48,9 @@ static MusicItemManager *_defaultManager;
 {
     [itemList release];
     [currentMusicItem release];
+    [defaultMusicItem release];
+    [noneMusicItem release];
+    
     [super dealloc];
 }
 
@@ -64,6 +70,15 @@ static MusicItemManager *_defaultManager;
 
 - (void)loadMusicItems
 {
+    //no music item
+    noneMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kNoMusic") filePath:nil tempPath:nil];
+    [itemList addObject:noneMusicItem];
+    
+    //default music item
+    NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+    defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
+    [itemList addObject:defaultMusicItem];
+
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
     if (data != nil) {
@@ -73,7 +88,7 @@ static MusicItemManager *_defaultManager;
                 [self.itemList addObject:item];
             }
         }
-    }
+    }   
 }
 
 - (void)saveMusicItems
@@ -82,6 +97,11 @@ static MusicItemManager *_defaultManager;
 
     NSMutableArray *list = [[NSMutableArray alloc] init];
     for (MusicItem *item in self.itemList) {
+        //do not save default and no into UserDefaults
+        if (item == defaultMusicItem || item == noneMusicItem) {
+            continue;
+        }
+        
         NSMutableString *itemString = [[NSMutableString alloc]init];
         [itemString appendFormat:@"%@%@%@%@%@%@%@", 
                         item.fileName, DELIMITER, 
@@ -109,9 +129,7 @@ static MusicItemManager *_defaultManager;
         }
     
     if (self.currentMusicItem == nil) {
-        NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
-        self.currentMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"cannon.mp3") filePath:soundFilePath tempPath:nil];
-        [itemList addObject:currentMusicItem];
+        self.currentMusicItem = defaultMusicItem;
     }
 }
 
@@ -134,9 +152,13 @@ static MusicItemManager *_defaultManager;
 
 - (BOOL)isCurrentMusic:(MusicItem*)item
 {
-    return [currentMusicItem.fileName isEqualToString:item.fileName];
+    return [item.fileName isEqualToString:currentMusicItem.fileName];
 }
 
+- (BOOL)isNoneOrDefaultMusic:(MusicItem*)item
+{
+    return item == noneMusicItem || item == defaultMusicItem;
+}
 
 - (void)saveItem:(MusicItem*)item
 {
@@ -151,15 +173,6 @@ static MusicItemManager *_defaultManager;
     }
 }
 
-- (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize
-{
-    [itemList removeObject:item];
-    item.fileName = fileName;
-    item.fileSize = [NSNumber numberWithLong:fileSize];
-    [itemList addObject:item];
-}
-
-
 - (void)removeFile:(MusicItem*)item
 {
     NSFileManager *manager = [NSFileManager defaultManager];
@@ -169,6 +182,40 @@ static MusicItemManager *_defaultManager;
 - (NSArray*) findAllItems
 {   
     return itemList;
+}
+
+- (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize
+{
+    [itemList removeObject:item];
+    item.fileName = fileName;
+    item.fileSize = [NSNumber numberWithLong:fileSize];
+    [itemList addObject:item];
+}
+
+//select current background Music to play
+- (void)selectCurrentMusicItem:(MusicItem*)item
+{
+    if (self.currentMusicItem != item) {
+        self.currentMusicItem = item;
+        [self saveCurrentMusic];
+
+    }
+    
+    AudioManager *audioManager = [AudioManager defaultManager];
+
+    //if select 'No', stop the audio
+    if (currentMusicItem == noneMusicItem) {
+        [audioManager backgroundMusicStop];
+    }
+    else {
+        NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
+        //stop old music
+        [audioManager backgroundMusicStop];
+        //start new music
+        [audioManager setBackGroundMusicWithURL:url];
+        [audioManager backgroundMusicStart];
+    }
+    
 }
 
 @end
