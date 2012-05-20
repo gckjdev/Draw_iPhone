@@ -316,35 +316,35 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
 "kFans" = "粉丝";
-"kNoFollow" = "还没有关注呢";
-"kNoFans" = "还没有粉丝呢";
+"kNoFollow" = "还没有关注任何好友，点击下面的搜索用户按钮查找和关注你的好友吧。";
+"kNoFans" = "暂未有粉丝";
 "kEdit" = "编辑";
 "kSearchUser" = "搜索用户";
 "kSearch" = "搜索";
 "kAddAsFriend" = "关注";
 "kAlreadyBeFriend" = "已关注";
-"kDidNottFindThisUser" = "没有找到此用户";
-"kUpdateFollowFailed" = "网络错误，更新关注失败！";
-"kUpdateFansFailed" = "网络错误，更新粉丝失败！";
-"kFollowing" = "正在关注...";
+"kDidNottFindThisUser" = "未找到用户";
+"kUpdateFollowFailed" = "网络错误，更新我的关注失败，请检查网络是否可用或稍候再试";
+"kUpdateFansFailed" = "网络错误，更新我的粉丝失败，请检查网络是否可用或稍候再试";
+"kFollowing" = "发送关注请求中...";
 "kFollowSuccessfully" = "关注成功！";
-"kFollowFailed" = "网络错误，关注失败！";
-"kUnfollowing" = "正在取消关注...";
-"kUnfollowSuccessfully" = "成功取消关注！";
-"kUnfollowFailed" = "网络错误，取消关注失败！";
+"kFollowFailed" = "网络错误，关注用户失败，请检查网络是否可用或稍候再试";
+"kUnfollowing" = "发送取消关注请求中...";
+"kUnfollowSuccessfully" = "成功取消关注";
+"kUnfollowFailed" = "取消关注失败";
 "kEnterWords" = "请输入内容";
-"kSearchUserPlaceholder" = "昵称/微博昵称/QQ号/邮箱";
+"kSearchUserPlaceholder" = "用户昵称/微博昵称/邮件地址";
 "kSearchFailedTitle" = "网络错误";
-"kSearchFailed" = "网络错误，搜索失败！";
-"kSearching" = "正在搜索...";
+"kSearchFailed" = "网络错误，搜索用户失败，请检查网络是否可用或稍候再试";
+"kSearching" = "搜索用户中...";
 "kMyself" = "我";
 
 "kLevelSettings" = "猜词难度";
-"kEasyLevel" = "业余";
-"kNormalLevel" = "专业";
+"kEasyLevel" = "新手";
+"kNormalLevel" = "熟手";
 "kHardLevel" = "大师";
 "kLevelSelection" = "难度选择";
-"kPlayWithFriend" = "以画会友";
+"kPlayWithFriend" = "好友同乐";
 
 "kCreateRoom" = "创建房间";
 "kSearchRoom" = "搜索房间";
@@ -357,8 +357,8 @@
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
 
 "kPayAttentionToMe" = "关注我吧";
-"kDrawTillDawn" = "决战到天亮";
-"kHelloEveryone" = "hi,大家好";
+"kDrawTillDawn" = "决战到天明";
+"kHelloEveryone" = "Hi,大家好";
 "kDontLeave" = "别走啊";
 "kFunny" = "真有趣";
 "kDrawedWhat" = "画什么啊";
@@ -371,7 +371,7 @@
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "输入你想对TA说的话";
-"kSendToUserSuccess" = "消息已经成功发送给%@";
+"kSendToUserSuccess" = "消息已成功发送至%@";
 
 
 "kRoomPasswordHolder" = "请输入房间口令";
@@ -398,16 +398,16 @@
 "kFriendsInvited" = "人已被邀请";
 
 
-"kFindRoomListFail" = "获取房间列表失败。";
-"kCreateRoomFail" = "创建房间失败。";
-"kRemoveRoomFail" = "删除房间失败。";
-"kSearchRoomFail" = "搜索房间失败。";
-"kInviteFriendFail" = "邀请好友失败。";
+"kFindRoomListFail" = "获取房间列表失败，请检查网络是否可用或稍候再试";
+"kCreateRoomFail" = "创建房间失败，请检查网络是否可用或稍候再试";
+"kRemoveRoomFail" = "删除房间失败，请检查网络是否可用或稍候再试";
+"kSearchRoomFail" = "搜索房间失败，请检查网络是否可用或稍候再试";
+"kInviteFriendFail" = "邀请好友失败，请检查网络是否可用或稍候再试";
 
-"kFindRoomListSucc" = "获取房间列表成功";
-"kCreateRoomSucc" = "创建房间成功。";
-"kRemoveRoomSucc" = "删除房间成功。";
-"kInviteFriendSucc" = "邀请好友成功。";
+"kFindRoomListSucc" = "成功获取房间列表";
+"kCreateRoomSucc" = "创建房间成功";
+"kRemoveRoomSucc" = "删除房间成功";
+"kInviteFriendSucc" = "邀请好友成功";
 
 "kRoomSearhTips" = "昵称 / 房间名";
 "kInputRoomPassword" = "请输入房间口令";
@@ -433,12 +433,12 @@
 "kUserLogin" = "用户登录";
 
 "kNoneInvited" = "尚未邀请朋友";
-"kFirstGame" = "这是您首次游戏，请先注册";
+"kFirstGame" = "这是您第一次使用本游戏，请先注册";
 
 "kMyFriend" = "我的好友";
 
-"kFriendPlayTitle" = "以画会友";
+"kFriendPlayTitle" = "好友同乐";
 "kInviteFriends" = "邀请好友";
 "kInviteFriendsTitle" = "邀请好友";
-"kNoRoomTips" = "无房间，创建房间或搜索房间加入。";
-"kSearchNoResult" = "未搜索到符合条件的房间。";
+"kNoRoomTips" = "暂无房间，请点击下面的［创建房间］建立自己的房间，或者［搜索房间］加入其它好友的房间";
+"kSearchNoResult" = "未搜索到符合条件的房间";
