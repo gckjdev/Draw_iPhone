@@ -120,6 +120,7 @@
         CGPoint origin = dataTableView.frame.origin;
         CGSize size = dataTableView.frame.size;
         dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
+        [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
     }else{
         [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
         [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];

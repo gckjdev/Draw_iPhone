@@ -11,9 +11,9 @@
 			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIButton</string>
-			<string>IBUITableViewCell</string>
 			<string>IBUIImageView</string>
+			<string>IBUITableViewCell</string>
+			<string>IBUIButton</string>
 			<string>IBUIView</string>
 			<string>IBUILabel</string>
 			<string>IBProxyObject</string>
@@ -42,10 +42,10 @@
 						<reference key="NSNextResponder" ref="493124699"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="11282190">
+							<object class="IBUIImageView" id="1048842766">
 								<reference key="NSNextResponder" ref="711090443"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{7, 16}, {121, 128}}</string>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, 16}, {122, 128}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="444907155"/>
@@ -59,7 +59,7 @@
 							<object class="IBUIView" id="444907155">
 								<reference key="NSNextResponder" ref="711090443"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{12, 20}, {110, 110}}</string>
+								<string key="NSFrame">{{5, 20}, {110, 110}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="396499421"/>
@@ -112,7 +112,7 @@
 								<string key="NSFrame">{{137, 12}, {280, 42}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="670964320"/>
+								<reference key="NSNextKeyView" ref="119026705"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -139,7 +139,7 @@
 								<string key="NSFrame">{{526, 49}, {140, 52}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="119026705"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -180,7 +180,7 @@
 								<string key="NSFrame">{{137, 94}, {430, 50}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="670964320"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -243,7 +243,7 @@
 						<string key="NSFrameSize">{683, 149}</string>
 						<reference key="NSSuperview" ref="493124699"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="11282190"/>
+						<reference key="NSNextKeyView" ref="1048842766"/>
 						<reference key="IBUIBackgroundColor" ref="119975266"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -345,18 +345,13 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="862507186"/>
 							<reference ref="119026705"/>
-							<reference ref="11282190"/>
 							<reference ref="444907155"/>
 							<reference ref="194193288"/>
 							<reference ref="396499421"/>
 							<reference ref="670964320"/>
+							<reference ref="1048842766"/>
 						</array>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="11282190"/>
-						<reference key="parent" ref="493124699"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -388,6 +383,11 @@
 						<reference key="object" ref="396499421"/>
 						<reference key="parent" ref="493124699"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="1048842766"/>
+						<reference key="parent" ref="493124699"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -395,9 +395,9 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">RoomCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.CustomClassName">HJManagedImageV</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -409,7 +409,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">18</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

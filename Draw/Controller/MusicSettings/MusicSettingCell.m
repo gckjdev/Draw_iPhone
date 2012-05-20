@@ -62,6 +62,13 @@
     if ([[MusicItemManager defaultManager] isNoneOrDefaultMusic:item]) {
         self.downloadProgress.hidden = YES;
     }
+    if (item.downloadProgress.floatValue == 1.0) {
+        self.downloadProgress.hidden = YES;
+        //rejust the musicNameLabel width
+        CGRect frame = self.musicNameLabel.frame;
+        frame.size.width = 250;
+        self.musicNameLabel.frame = frame;
+    }
 }
 
 @end
