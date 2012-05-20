@@ -92,10 +92,12 @@
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
 
 "kRegisterToEnter" = "马上注册\“猜猜画画\"进入游戏吧";
-"kRegisterPromptLabel" = "微博登录";
-"kRegisterTitleLabel" = "用户注册";
-"kEnterEmail" = "请输入Email地址注册";
-"kSubmit" = "提交";
+"kRegisterPromptLabel" = "使用微博账号玩";
+"kRegisterTitleLabel" = "猜猜画画";
+"kEnterEmail" = "请输入Email地址";
+"kStartGame" = "开始游戏";
+"kLookOverDraw" = "查看作品";
+"kPainted" = "画的";
 
 "kRegisteringUser" = "发送注册请求中...";
 "kSystemFailure" = "网络错误，请检查手机是否正确连接到互联网。";
@@ -324,8 +326,10 @@
 "kDidNottFindThisUser" = "没有找到此用户";
 "kUpdateFollowFailed" = "网络错误，更新关注失败！";
 "kUpdateFansFailed" = "网络错误，更新粉丝失败！";
+"kFollowing" = "正在关注...";
 "kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注失败！";
+"kUnfollowing" = "正在取消关注...";
 "kUnfollowSuccessfully" = "成功取消关注！";
 "kUnfollowFailed" = "网络错误，取消关注失败！";
 "kEnterWords" = "请输入内容";

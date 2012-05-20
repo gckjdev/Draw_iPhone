@@ -396,7 +396,7 @@
     }
     
     //if follow count is 0, hide the editButton
-    if ([_myFollowList count] == 0 || _isInviteFriend) {
+    if ([_myFollowList count] == 0 || _isInviteFriend || myFanButton.selected) {
         editButton.hidden = YES;
     }else {
         editButton.hidden = NO;

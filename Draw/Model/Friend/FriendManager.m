@@ -257,32 +257,23 @@ static FriendManager *_defaultFriendManager = nil;
 }
 
 
-- (BOOL)deleteAllFriends
+- (BOOL)deleteAllFriends:(int)type
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* followArray = [dataManager execute:@"findAllFollowFriends" sortBy:@"createDate" ascending:NO];
-    for (Friend *friend in followArray) {
-        [friend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]]; 
+    if (type == FOLLOW) {
+        NSArray *allFollows = [self findAllFollowFriends];
+        for (Friend *followFriend in allFollows) {
+            [self deleteFollowFriend:followFriend.friendUserId];
+        }
+        return [dataManager save];
+    }else if (type == FAN) {
+        NSArray *allFans = [self findAllFanFriends];
+        for (Friend *fanFriend in allFans) {
+            [self deleteFanFriend:fanFriend.friendUserId];
+        }
+        return [dataManager save];
     }
-    [dataManager save];
-    
-    NSArray* fanArray = [dataManager execute:@"findAllFanFriends" sortBy:@"createDate" ascending:NO];
-    for (Friend *friend in fanArray) {
-        [friend setDeleteFlag:[NSNumber numberWithInt:IS_DELETED]]; 
-    }
-    [dataManager save];
     return YES;
-    
-//    NSArray *allFollows = [self findAllFollowFriends];
-//    for (Friend *followFriend in allFollows) {
-//        [self deleteFollowFriend:followFriend.friendUserId];
-//    }
-//    
-//    NSArray *allFans = [self findAllFanFriends];
-//    for (Friend *fanFriend in allFans) {
-//        [self deleteFanFriend:fanFriend.friendUserId];
-//    }
-//    return YES;
 }
 
 
