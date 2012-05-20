@@ -387,6 +387,12 @@ enum{
         if (indexPath.row == 0 || indexPath.row == 1) {
             return UITableViewCellEditingStyleNone;
         }
+        //disable If the ToDelete item is currentPlaying Item
+        MusicSettingCell *cell = (MusicSettingCell*)[tableView cellForRowAtIndexPath:indexPath];
+        if ([[MusicItemManager defaultManager] isCurrentMusic:cell.musicItem]) {
+            return UITableViewCellEditingStyleNone;
+        }
+        
         return UITableViewCellEditingStyleDelete;
     }
     else {

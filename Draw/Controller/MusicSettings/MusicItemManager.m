@@ -191,7 +191,10 @@ static MusicItemManager *_defaultManager;
 {
     if (itemList != nil && [itemList indexOfObject:item] != -1) {
         [itemList removeObject:item];
+        //delete file 
         [self removeFile:item];
+        //update UserDefaults
+//        [self saveMusicItems];
     }
 }
 
