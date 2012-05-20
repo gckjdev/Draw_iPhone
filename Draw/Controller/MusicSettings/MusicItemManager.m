@@ -32,6 +32,47 @@ static MusicItemManager *_defaultManager;
     return _defaultManager;
 }
 
+- (void)loadMusicItems
+{
+    //no music item
+    noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
+    noneMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    noneMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
+    [itemList addObject:noneMusicItem];
+    
+    //default music item
+    NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+    defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
+    defaultMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    defaultMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
+    [itemList addObject:defaultMusicItem];
+    
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
+    if (data != nil) {
+        for (NSString* str in data) {
+            MusicItem *item = [self parseMusicItemFromString:str];
+            if ([self.itemList indexOfObject:item] != -1) {
+                [self.itemList addObject:item];
+            }
+        }
+    }   
+}
+
+- (void)loadCurrentMusic
+{
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *data = [userDefault objectForKey:KEY_CURRENT_MUSIC];
+    if (data != nil) {
+        MusicItem *item = [self parseMusicItemFromString:data];
+        self.currentMusicItem = item;
+    }
+    
+    if (self.currentMusicItem == nil) {
+        self.currentMusicItem = defaultMusicItem;
+    }
+}
+
 - (id)init
 {
     self = [super init];
@@ -77,32 +118,6 @@ static MusicItemManager *_defaultManager;
     return item;
 }
 
-- (void)loadMusicItems
-{
-    //no music item
-    noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
-    noneMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
-    noneMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
-    [itemList addObject:noneMusicItem];
-    
-    //default music item
-    NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
-    defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
-    defaultMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
-    defaultMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
-    [itemList addObject:defaultMusicItem];
-
-    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
-    if (data != nil) {
-        for (NSString* str in data) {
-            MusicItem *item = [self parseMusicItemFromString:str];
-            if ([self.itemList indexOfObject:item] != -1) {
-                [self.itemList addObject:item];
-            }
-        }
-    }   
-}
 
 - (void)saveMusicItems
 {        
@@ -133,20 +148,6 @@ static MusicItemManager *_defaultManager;
     [list release];
     [userDefaults synchronize];
     
-}
-
-- (void)loadCurrentMusic
-{
-    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *data = [userDefault objectForKey:KEY_CURRENT_MUSIC];
-    if (data != nil) {
-        MusicItem *item = [self parseMusicItemFromString:data];
-        self.currentMusicItem = item;
-        }
-    
-    if (self.currentMusicItem == nil) {
-        self.currentMusicItem = defaultMusicItem;
-    }
 }
 
 - (void)saveCurrentMusic
@@ -187,21 +188,19 @@ static MusicItemManager *_defaultManager;
     [itemList addObject:item];
 }
 
+- (void)removeFile:(MusicItem*)item
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:item.localPath error:nil];
+}
+
 - (void)deleteItem:(MusicItem*)item
 {
     if (itemList != nil && [itemList indexOfObject:item] != -1) {
         [itemList removeObject:item];
         //delete file 
         [self removeFile:item];
-        //update UserDefaults
-//        [self saveMusicItems];
     }
-}
-
-- (void)removeFile:(MusicItem*)item
-{
-    NSFileManager *manager = [NSFileManager defaultManager];
-    [manager removeItemAtPath:item.localPath error:nil];
 }
 
 - (NSArray*) findAllItems
