@@ -7,6 +7,7 @@
 //
 
 #import "ConfigManager.h"
+#import "LocaleUtils.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 
@@ -14,7 +15,12 @@
 
 + (NSString*)getMusicDownloadHomeURL
 {
-    return [MobClickUtils getStringValueByKey:@"MUSIC_HOME" defaultValue:@"http://m.easou.com/col.e?id=112"];
+    if ([LocaleUtils isChina]){
+        return [MobClickUtils getStringValueByKey:@"MUSIC_HOME_CN" defaultValue:@"http://m.easou.com/col.e?id=112"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"MUSIC_HOME_EN" defaultValue:@"http://mp3skull.com/"];
+    }
 }
 
 + (int)getGuessRewardNormal

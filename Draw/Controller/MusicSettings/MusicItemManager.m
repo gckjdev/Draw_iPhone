@@ -56,8 +56,13 @@ static MusicItemManager *_defaultManager;
 
 - (MusicItem*) parseMusicItemFromString:(NSString*)str
 {
+    if (str == nil)
+        return nil;
+    
     NSMutableString *string = [[[NSMutableString alloc] initWithString:str] autorelease];
     NSArray *array = [string componentsSeparatedByString:DELIMITER];
+    if ([array count] < 6)
+        return nil;
     
     NSString *fileName = [array objectAtIndex:0];
     NSString *url = [array objectAtIndex:1];
