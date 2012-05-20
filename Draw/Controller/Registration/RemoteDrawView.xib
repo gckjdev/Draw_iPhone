@@ -55,7 +55,7 @@
 					<object class="IBUILabel" id="928845033">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{26, 99}, {58, 20}}</string>
+						<string key="NSFrame">{{28, 99}, {58, 20}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -109,7 +109,7 @@
 						<string key="NSFrame">{{3, 28}, {80, 60}}</string>
 						<reference key="NSSuperview" ref="663035640"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="897790598"/>
+						<reference key="NSNextKeyView" ref="291444954"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -153,7 +153,7 @@
 						<int key="IBUITag">51</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUILabel" id="897790598">
+					<object class="IBUILabel" id="291444954">
 						<reference key="NSNextResponder" ref="663035640"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{13, 7}, {60, 15}}</string>
@@ -229,7 +229,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">wordLabel</string>
 						<reference key="source" ref="663035640"/>
-						<reference key="destination" ref="897790598"/>
+						<reference key="destination" ref="291444954"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
@@ -271,7 +271,7 @@
 							<reference ref="276753856"/>
 							<reference ref="376002046"/>
 							<reference ref="1041763597"/>
-							<reference ref="897790598"/>
+							<reference ref="291444954"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -302,7 +302,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="897790598"/>
+						<reference key="object" ref="291444954"/>
 						<reference key="parent" ref="663035640"/>
 					</object>
 				</array>
