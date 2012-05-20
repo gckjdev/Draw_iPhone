@@ -383,6 +383,10 @@ enum{
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_canDelete == YES) {
+        //disable delete for 'No" and "Default‘ Item
+        if (indexPath.row == 0 || indexPath.row == 1) {
+            return UITableViewCellEditingStyleNone;
+        }
         return UITableViewCellEditingStyleDelete;
     }
     else {
