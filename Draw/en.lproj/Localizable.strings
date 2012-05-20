@@ -91,9 +91,9 @@
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
 "kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
-"kRegisterPromptLabel" = "Existing Account";
+"kRegisterPromptLabel" = "Login By Facebook";
 "kRegisterTitleLabel" = "Registration";
-"kEnterEmail" = "Enter Your Email Address";
+"kEnterEmail" = "Enter Email";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
@@ -298,10 +298,10 @@
 "kOFF" = "  OFF";
 
 "kMyFriends" = "My Friends";
-"kFollow" = "Follow";
+"kFollow" = "Followers";
 "kFans" = "Fans";
-"kNoFollow" = "No follow";
-"kNoFans" = "No fans";
+"kNoFollow" = "No follower";
+"kNoFans" = "No fan";
 "kEdit" = "Edit";
 "kSearchUser" = "Search User";
 "kSearch" = "Search";
@@ -326,7 +326,7 @@
 "kNormalLevel" = "Normal";
 "kHardLevel" = "Hard";
 "kLevelSelection" = "Level Selection";
-"kPlayWithFriend" = "Friend Play";
+"kPlayWithFriend" = "Friend";
 "kCreateRoom" = "Create Room";
 "kSearchRoom" = "Search Room";
 
@@ -413,7 +413,7 @@
 
 "kUserLogin" = "User Login";
 
-"kNoneInvited" = "None invited";
+"kNoneInvited" = "0 friend invited";
 "kFirstGame" = "It's your first time to play, please register first.";
 
 "kMyFriend" = "Friends";
