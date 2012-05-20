@@ -435,6 +435,6 @@
 
 "kFriendPlayTitle" = "以画会友";
 "kInviteFriends" = "邀请好友";
-
+"kInviteFriendsTitle" = "邀请好友";
 "kNoRoomTips" = "无房间，创建房间或搜索房间加入。";
 "kSearchNoResult" = "未搜索到符合条件的房间。";

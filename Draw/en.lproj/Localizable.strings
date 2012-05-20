@@ -420,7 +420,6 @@
 
 "kFriendPlayTitle" = "Rooms";
 "kInviteFriends" = "Invite";
-
+"kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No matching rooms.";
-

@@ -431,6 +431,6 @@
 "kMyFriend" = "我的好友";
 "kFriendPlayTitle" = "以畫會友";
 "kInviteFriends" = "邀請好友";
-
+"kInviteFriendsTitle" = "邀請好友";
 "kNoRoomTips" = "無房間，創建房間或搜索房間加入。";
 "kSearchNoResult" = "未搜索到符合條件的房間。";
