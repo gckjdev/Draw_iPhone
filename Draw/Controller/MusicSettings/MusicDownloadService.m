@@ -227,6 +227,8 @@ NSMutableArray *list;
     MusicItem *item = [MusicItem fromDictionary:request.userInfo];
     [[MusicItemManager defaultManager] downloadFinish:item];
     [self moveFile:item];
+    PPDebug(@"item (%@) download done", [item url]);
+
 }
 
 - (void)requestWentWrong:(ASIHTTPRequest *)request
@@ -253,7 +255,7 @@ NSMutableArray *list;
 
 - (void)resumeAllDownloadItem
 {
-    [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_FAIL];
+//    [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_FAIL];
     [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_NOT_STARTED];
     [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_STARTED];
 

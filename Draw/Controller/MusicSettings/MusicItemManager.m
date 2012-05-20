@@ -77,12 +77,14 @@ static MusicItemManager *_defaultManager;
     //no music item
     noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
     noneMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    noneMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
     [itemList addObject:noneMusicItem];
     
     //default music item
     NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
     defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
     defaultMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    defaultMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
     [itemList addObject:defaultMusicItem];
 
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
@@ -221,7 +223,7 @@ static MusicItemManager *_defaultManager;
 //select current background Music to play
 - (void)selectCurrentMusicItem:(MusicItem*)item
 {
-    if (item.status.intValue != DOWNLOAD_STATUS_FINISH) {
+    if (item.downloadProgress.floatValue < 1.0) {
         return;
     }
     if (self.currentMusicItem != item) {
@@ -248,6 +250,7 @@ static MusicItemManager *_defaultManager;
     [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH]];
     [item setDownloadProgress:[NSNumber numberWithFloat:1.0]];
     [self saveItem:item];
+
 }
 
 - (void)downloadFailure:(MusicItem*)item
@@ -255,6 +258,7 @@ static MusicItemManager *_defaultManager;
     [item setRequest:nil];
     [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FAIL]];
     [self saveItem:item];
+
 }
 
 - (void)downloadStart:(MusicItem*)item request:(ASIHTTPRequest*)request
