@@ -314,8 +314,10 @@
 "kDidNottFindThisUser" = "No matching users";
 "kUpdateFollowFailed" = "Network error, update follows failed!";
 "kUpdateFansFailed" = "Network error, update fans failed!";
+"kFollowing" = "Following...";
 "kFollowSuccessfully" = "Follow successfully!";
 "kFollowFailed" = "Network error, follow failed!";
+"kUnfollowing" = "Unfollowin...";
 "kUnfollowSuccessfully" = "Unfollow successfully!";
 "kUnfollowFailed" = "Network error, unfollow failed!";
 "kEnterWords" = "Please enter the content";

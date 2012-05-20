@@ -139,7 +139,7 @@ FriendService* globalGetFriendService()
 
 - (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
-    [viewController showActivity];
+    [viewController showActivityWithText:NSLS(@"kFollowing")];
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
     
@@ -201,7 +201,7 @@ FriendService* globalGetFriendService()
 
 - (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 {
-    [viewController showActivity];
+    [viewController showActivityWithText:NSLS(@"kUnfollowing")];
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];
     
