@@ -262,7 +262,7 @@
     }
     
     NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:1 isSuccessful:YES];
 }
 
 
@@ -345,7 +345,7 @@
     }
     
     NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:1.0 isSuccessful:YES];
 }
 
 - (void)configureExpressionScrollView
