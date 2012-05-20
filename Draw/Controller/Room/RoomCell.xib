@@ -42,10 +42,10 @@
 						<reference key="NSNextResponder" ref="297589441"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="753160396">
+							<object class="IBUIImageView" id="904219116">
 								<reference key="NSNextResponder" ref="380575889"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{3, 7}, {60, 62}}</string>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, 8}, {61, 63}}</string>
 								<reference key="NSSuperview" ref="380575889"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="427313591"/>
@@ -59,7 +59,7 @@
 							<object class="IBUIView" id="427313591">
 								<reference key="NSNextResponder" ref="380575889"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 7}, {55, 57}}</string>
+								<string key="NSFrame">{{3, 6}, {55, 57}}</string>
 								<reference key="NSSuperview" ref="380575889"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="318460792"/>
@@ -240,7 +240,7 @@
 						<string key="NSFrameSize">{300, 74}</string>
 						<reference key="NSSuperview" ref="297589441"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="753160396"/>
+						<reference key="NSNextKeyView" ref="904219116"/>
 						<reference key="IBUIBackgroundColor" ref="785173849"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -347,7 +347,7 @@
 							<reference ref="318460792"/>
 							<reference ref="665233394"/>
 							<reference ref="427313591"/>
-							<reference ref="753160396"/>
+							<reference ref="904219116"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -383,8 +383,8 @@
 						<reference key="parent" ref="297589441"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">27</int>
-						<reference key="object" ref="753160396"/>
+						<int key="objectID">29</int>
+						<reference key="object" ref="904219116"/>
 						<reference key="parent" ref="297589441"/>
 					</object>
 				</array>
@@ -400,7 +400,7 @@
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.CustomClassName">HJManagedImageV</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">RoomCell</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -409,7 +409,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

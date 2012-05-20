@@ -95,8 +95,8 @@
 "kRegisterPromptLabel" = "Login By";
 "kRegisterTitleLabel" = "Draw Lively";
 "kEnterEmail" = "Enter Email";
-"kStartGame" = "Start Game";
-"kLookOverDraw" = "View Works";
+"kStartGame" = "Start";
+"kLookOverDraw" = "View Drawing";
 "kPainted" = "painted";
 
 "kRegisteringUser" = "Sending Request...";
@@ -310,8 +310,8 @@
 "kSearchUser" = "Search User";
 "kSearch" = "Search";
 "kAddAsFriend" = "Follow";
-"kAlreadyBeFriend" = "Has Follow";
-"kDidNottFindThisUser" = "No matching users";
+"kAlreadyBeFriend" = "Followed";
+"kDidNottFindThisUser" = "No user matched";
 "kUpdateFollowFailed" = "Network error, update follows failed!";
 "kUpdateFansFailed" = "Network error, update fans failed!";
 "kFollowing" = "Following...";
@@ -325,7 +325,7 @@
 "kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
 "kSearching" = "Searching...";
-"kMyself" = "Myself";
+"kMyself" = "Me";
 
 "kLevelSettings" = "Guess Level";
 "kEasyLevel" = "Easy";
@@ -344,28 +344,28 @@
 "kNobodyInRoom" = "you can chat private nobody in room";
 
 "kPayAttentionToMe" = "Follow me";
-"kDrawTillDawn" = "Well draw";
+"kDrawTillDawn" = "Awesome";
 "kHelloEveryone" = "Hello";
-"kDontLeave" = "Don't leave";
+"kDontLeave" = "Hi All";
 "kFunny" = "Funny";
-"kDrawedWhat" = "What";
+"kDrawedWhat" = "What ?!";
 "kHardToGuess" = "Unbelivable";
 "kSelfDefine" = "+";
 "kDontWriteAnswer" = "OH, NO" ;
-"kGiveAPrompt" = "Give prompt";
+"kGiveAPrompt" = "Prompt me";
 "kWellDone" = "Well done";
 
 "kChatDialogTitle" = "Say to 【%@】";
 "kAllUser" = "All";
 "kInputWhatYouWantToSay" = "Input what you want to say";
-"kSendToUserSuccess" = "Message is send to %@ successfully";
+"kSendToUserSuccess" = "Message is sent to %@ successfully";
 
 "kRoomPasswordHolder" = "Input Password";
 "kRoomNameHolder" = "Input Room Name";
 "kRoomNameLabel" = "Room Name";
 "kRoomPasswordLabel" = "Password";
-"kRoomPasswordIllegal" = "Password illegal";
-"kRoomNameIllegal" = "Room name illegal";
+"kRoomPasswordIllegal" = "Password cannot be empty";
+"kRoomNameIllegal" = "Room name cannot be empty";
 
 "kInvited" = "Invited";
 "kJoined" = "Joined";
@@ -375,10 +375,10 @@
 "kRoomSearching" = "Searching...";
 "kInviting" = "Inviting";
 
-"kRoomNameNumber" = "%@'s Room %d";
+"kRoomNameNumber" = "%@ Room %d";
 
-"kUnFull" = "Unfull";
-"kFree" = "Free";
+"kUnFull" = "Playing";
+"kFree" = "Idle";
 "kFull" = "Full";
 "kFriendsPlaying" = "playing";
 "kFriendsInvited" = "invited";
@@ -389,16 +389,16 @@
 "kSearchRoomFail" = "Fail to search room.";
 "kInviteFriendFail" = "Fail to invite friends.";
 
-"kFindRoomListSucc" = "Fetch rooms successfully";
-"kCreateRoomSucc" = "Create room successfully.";
-"kRemoveRoomSucc" = "Remove room successfully.";
-"kInviteFriendSucc" = "Invite friends successfully.";
+"kFindRoomListSucc" = "Fetch all rooms successfully";
+"kCreateRoomSucc" = "Create room successfully";
+"kRemoveRoomSucc" = "Remove room successfully";
+"kInviteFriendSucc" = "Invite friends successfully";
 
 "kRoomSearhTips" = "Nickname / Room name";
 
-"kInputRoomPassword" = "Input room password";
+"kInputRoomPassword" = "Enter room password";
 
-"kInviteFull" = "The room can only invite up to %d frieds, you have invited %d.";
+"kInviteFull" = "The room can only invite up to %d frieds. Maybe you should come earlier next time :-)";
 
 "kDownloadURL" = "Download file from %@ ?";
 "kYesDownload" = "Yes, download the file";
@@ -407,7 +407,7 @@
 "kExpand" = "Expand";
 "kCollapse" = "Collapse";
 "kCustomMusicDownload" = "Custom Music Download";
-"kBackgroundMusic" = "Music Settings";
+"kBackgroundMusic" = "Background Music";
 "kMusicSettings" = "Music Settings";
 "kLoadingURL" = "Loading web pages...";
 "kDefaultMusic" = "Default";
@@ -426,7 +426,6 @@
 
 "kFriendPlayTitle" = "Rooms";
 "kInviteFriends" = "Invite";
-
+"kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
-"kSearchNoResult" = "No matching rooms.";
-
+"kSearchNoResult" = "No rooms matched";

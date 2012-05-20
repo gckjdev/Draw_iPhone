@@ -22,7 +22,7 @@
 #import "RoomManager.h"
 
 #define INVITE_LIMIT 12
-
+#define FIND_ROOM_LIMIT 50
 @implementation FriendRoomController
 @synthesize titleLabel;
 @synthesize myFriendButton;
@@ -78,7 +78,7 @@
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
     [self showActivityWithText:NSLS(@"kLoading")];
-    [roomService findMyRoomsWithOffset:0 limit:50 delegate:self];
+    [roomService findMyRoomsWithOffset:0 limit:FIND_ROOM_LIMIT delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -188,9 +188,11 @@
             NSMutableArray *list = (NSMutableArray *)self.dataList;
             [list insertObject:room atIndex:0];
             [dataTableView beginUpdates];
-            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+            NSArray *paths = [NSArray arrayWithObject: path];
             [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
             [dataTableView endUpdates];
+            [self didClickInvite:path];
         }
         [[UserManager defaultManager] increaseRoomCount];
     }
@@ -208,7 +210,6 @@
             [(NSMutableArray *)self.dataList removeObject:room];
             [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
         }
-        
     }else{
         [self popupMessage:NSLS(@"kRemoveRoomFail") title:nil];        
     }
