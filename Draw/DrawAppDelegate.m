@@ -35,17 +35,17 @@
 
 NSString* GlobalGetServerURL()
 {    
-    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.9:8000/api/i?";    
+    return @"http://192.168.137.137:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return @"http://192.168.1.12:8100/api/i?";      
+    return @"http://192.168.137.137:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate

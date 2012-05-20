@@ -84,5 +84,7 @@
 - (UIImage *)sinaWeiboImage;
 - (UIImage *)qqWeiboImage;
 - (UIImage *)facebookImage;
+- (UIImage *)messageImage;
+
 
 @end

@@ -97,6 +97,7 @@
     [titleLabel setText:NSLS(@"kMyFriends")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [editButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateSelected];
     [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     
@@ -331,11 +332,12 @@
 
 - (IBAction)clickEdit:(id)sender
 {
-    if (_isInviteFriend && [_selectedSet count] != 0) {
-                
-        //invite users
-        [self showActivityWithText:NSLS(@"kInviting")];
-        [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];
+    if (_isInviteFriend ) {
+        if ([_selectedSet count] != 0) {
+            //invite users
+            [self showActivityWithText:NSLS(@"kInviting")];
+            [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];            
+        }
     }else{
         editButton.selected = !editButton.selected;
         [dataTableView setEditing:editButton.selected animated:YES];

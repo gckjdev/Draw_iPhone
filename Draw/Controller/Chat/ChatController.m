@@ -43,25 +43,29 @@
 
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
-#define MAX_WIDTH_NAME_LABEL_IPHONE 105
-#define MAX_WIDTH_NAME_LABEL_IPAD MAX_WIDTH_NAME_LABEL_IPHONE
+#define MAX_WIDTH_NAME_LABEL_IPHONE 110
+#define MAX_WIDTH_NAME_LABEL_IPAD 283
 #define MAX_WIDTH_NAME_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_NAME_LABEL_IPAD):(MAX_WIDTH_NAME_LABEL_IPHONE))
 
-#define MAX_WIDTH_SEX_LABEL_IPHONE 44
-#define MAX_WIDTH_SEX_LABEL_IPAD MAX_WIDTH_SEX_LABEL_IPHONE
+#define MAX_WIDTH_SEX_LABEL_IPHONE 50
+#define MAX_WIDTH_SEX_LABEL_IPAD 100
 #define MAX_WIDTH_SEX_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_SEX_LABEL_IPAD):(MAX_WIDTH_SEX_LABEL_IPHONE))
 
-#define MAX_WIDTH_CITY_LABEL_IPHONE 80
-#define MAX_WIDTH_CITY_LABEL_IPAD MAX_WIDTH_CITY_LABEL_IPHONE
-#define MAX_WIDTH_CITY_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_CITY_LABEL_IPAD):(MAX_WIDTH_CITY_LABEL_IPHONE))
+//#define MAX_WIDTH_CITY_LABEL_IPHONE 
+//#define MAX_WIDTH_CITY_LABEL_IPAD 226
+//#define MAX_WIDTH_CITY_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_CITY_LABEL_IPAD):(MAX_WIDTH_CITY_LABEL_IPHONE))
 
 #define MAX_SIZE_NAME_LABEL CGSizeMake(MAX_WIDTH_NAME_LABEL, CGFLOAT_MAX)
 #define MAX_SIZE_SEX_LABEL CGSizeMake(MAX_WIDTH_SEX_LABEL, CGFLOAT_MAX)
-#define MAX_SIZE_CITY_LABEL CGSizeMake(MAX_WIDTH_CITY_LABEL, CGFLOAT_MAX)
+//#define MAX_SIZE_CITY_LABEL CGSizeMake(MAX_WIDTH_CITY_LABEL, CGFLOAT_MAX)
 
-#define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE 8
+#define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE 4
 #define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPAD EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE*2
 #define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW (([DeviceDetection isIPAD])?(EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPAD):(EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE))
+
+#define EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL_IPHONE 2
+#define EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL_IPAD EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL_IPHONE*2
+#define EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL (([DeviceDetection isIPAD])?(EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL_IPAD):(EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL_IPHONE))
 
 @interface ChatController()
 {
@@ -77,6 +81,8 @@
 - (NSArray*)messages:(MessagesType)type;
 - (void)updateCurrentSelectedUser:(NSArray*)userList;
 - (NSArray*)getOtherUsers;
+- (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize;
+
 
 @end
 
@@ -117,17 +123,17 @@
     chatInfoViewBgImageView.backgroundColor = [UIColor clearColor];
     avatarHolderView.backgroundColor = [UIColor clearColor];
     
-    [payAttentionButton setBackgroundImage:[UIImage strectchableImageName:@"normal_button.png"] forState:UIControlStateNormal];
+    [payAttentionButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+    
+    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
     
     [self configureExpressionScrollView];
     
-    UIImage *bgImage = [UIImage strectchableImageName:@"messagebg.png"];
+    UIImage *bgImage = [[ShareImageManager defaultManager] messageImage];
     
     if (_chatType == GameChatTypeChatGroup) {
         viewBgImageView.hidden = YES;
         userView.hidden = YES;
-        
-        UIImage *bgImage = [UIImage strectchableImageName:@"messagebg.png"];
         [chatInfoViewBgImageView setImage:bgImage];
     }
      
@@ -280,10 +286,7 @@
     }else {
         [self handleChatMessage:message];
     }
-    
-    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
-    
+        
     return;
 }
 
@@ -340,6 +343,9 @@
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            
     }
+    
+    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isHappy:YES];
 }
 
 - (void)configureExpressionScrollView
@@ -356,7 +362,6 @@
         UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
         button.tag = TAG_EXPRESSION_BUTTON+i++;
-//        [button setImage:image forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 
         [button setTitle:key forState:UIControlStateNormal];
@@ -422,18 +427,18 @@
     [aView release];
     
     nameLabel.text = user.nickName;
-    CGSize nameStringSize = [self getStringSize:nameLabel.font string:user.nickName withinSize:MAX_SIZE_NAME_LABEL];
+    CGSize nameStringSize = [self getStringSize:nameLabel.font string:nameLabel.text withinSize:MAX_SIZE_NAME_LABEL];
     nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, nameStringSize.width*1.2, nameLabel.frame.size.height);
     
     [microBlogImageView setImage:[self getMicroImage:user]];
-    microBlogImageView.center = CGPointMake(nameLabel.frame.origin.x+nameLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW, nameLabel.center.y);
+    microBlogImageView.center = CGPointMake(nameLabel.frame.origin.x+nameLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW+microBlogImageView.frame.size.width/2, nameLabel.center.y);
         
     sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
-    CGSize sexStringSize = [self getStringSize:nameLabel.font string:user.nickName withinSize:MAX_SIZE_SEX_LABEL];
+    CGSize sexStringSize = [self getStringSize:sexLabel.font string:sexLabel.text withinSize:MAX_SIZE_SEX_LABEL];
     sexLabel.frame = CGRectMake(sexLabel.frame.origin.x, sexLabel.frame.origin.y, sexStringSize.width*1.2, sexLabel.frame.size.height);
     
     cityLabel.text = user.location;
-    cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW, cityLabel.center.y);
+    cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL+cityLabel.frame.size.width/2, sexLabel.center.y);
     
     [payAttentionButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
     
@@ -446,12 +451,6 @@
     }
 }
 
-- (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize
-{
-    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-    
-    return size;
-}
 
 
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId
@@ -483,8 +482,6 @@
         // Add to superview.        
         [superView addSubview:self.view];
     }
-    
-    [closeButton setBackgroundImage:[UIImage strectchableImageName:@"red_button.png"] forState:UIControlStateNormal];
 }
 
 - (NSArray*)messages:(MessagesType)type
@@ -554,6 +551,13 @@
     }else {
         return nil;
     }
+}
+
+- (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize
+{
+    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return size;
 }
 
 @end

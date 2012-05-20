@@ -63,7 +63,7 @@ typedef enum {
 @property(nonatomic, assign)RoomUserStatus status;
 
 
-- (BOOL)isFemale;
+- (BOOL)isMale;
 - (BOOL)isMe;
 
 @end

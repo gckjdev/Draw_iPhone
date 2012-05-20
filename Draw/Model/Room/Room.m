@@ -164,9 +164,9 @@
     return [NSString stringWithFormat:@"%@%@%@",prefix,text,suffux];
 }
 
-- (BOOL)isFemale
+- (BOOL)isMale
 {
-    if ([self.gender isEqualToString:@"f"] || [self.gender isEqualToString:@"F"]) {
+    if ([self.gender isEqualToString:@"m"] || [self.gender isEqualToString:@"M"]) {
         return YES;
     }
     return NO;

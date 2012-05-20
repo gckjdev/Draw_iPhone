@@ -14,7 +14,8 @@
 #import "RoomManager.h"
 
 @implementation RoomCell
-@synthesize avatarImage;
+@synthesize avatarView;
+//@synthesize avatarImage;
 @synthesize roomNameLabel;
 @synthesize roomStatusLabel;
 @synthesize creatorLabel;
@@ -23,7 +24,7 @@
 @synthesize inviteButton;
 
 
-#define AVATAR_FRAME CGRectMake(15, 12, 57, 55)
+//#define AVATAR_FRAME CGRectMake(7, 12, 57, 55)
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -43,9 +44,10 @@
     [cell.inviteButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
 //    [cell.inviteButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateSelected];
     
-    cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
-    [cell addSubview:cell.avatarImage];
-    [cell sendSubviewToBack:cell.avatarImage];
+//    cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
+//    [cell addSubview:cell.avatarImage];
+//    [cell sendSubviewToBack:cell.avatarImage];
+    [cell.inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
     
     return cell;
 }
@@ -70,10 +72,20 @@
 - (void)setAvatar:(RoomUser *)user
 {
     NSString *avatar = user.avatar;
-    BOOL gender = ![user isFemale];
-    [avatarImage setAvatarUrl:avatar gender:gender];
-    [avatarImage setAvatarSelected:NO];
-    avatarImage.hidden = NO;
+    BOOL gender = [user isMale];
+    
+    if (gender)
+    {
+        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    }else {
+        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    }
+    [avatarView setUrl:[NSURL URLWithString:avatar]];
+    [GlobalGetImageCache() manage:avatarView];
+
+//    [avatarImage setAvatarUrl:avatar gender:gender];
+//    [avatarImage setAvatarSelected:NO];
+//    avatarImage.hidden = NO;
     if ([[UserManager defaultManager] isMe:user.userId]) {
         [self.creatorLabel setText:NSLS(@"Me")];        
     }else{
@@ -178,13 +190,14 @@
     
 }
 - (void)dealloc {
-    [avatarImage release];
+//    [avatarImage release];
     [roomNameLabel release];
     [roomStatusLabel release];
     [creatorLabel release];
     [userListLabel release];
     [inviteInfoButton release];
     [inviteButton release];
+    [avatarView release];
     [super dealloc];
 }
 @end
