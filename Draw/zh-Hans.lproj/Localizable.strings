@@ -361,8 +361,8 @@
 "kHelloEveryone" = "Hi,大家好";
 "kDontLeave" = "别走啊";
 "kFunny" = "真有趣";
-"kDrawedWhat" = "画什么啊";
-"kHardToGuess" = "真难猜";
+"kDrawedWhat" = "画神马啊";
+"kHardToGuess" = "好难猜";
 "kSelfDefine" = "+";
 "kDontWriteAnswer" = "别给答案啊" ;
 "kGiveAPrompt" = "给点提示吧";
@@ -425,8 +425,8 @@
 "kLoadingURL" = "加载网页中...";
 "kDefaultMusic" = "默认背景音乐";
 "kNoMusic" = "无";
-"kPrevious" = "前一页";
-"kNext" = "后一页";
+"kPrevious" = "前进";
+"kNext" = "后退";
 "kRefresh" = "刷新";
 "kStop" = "停止";
 
