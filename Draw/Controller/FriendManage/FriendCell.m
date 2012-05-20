@@ -203,6 +203,7 @@
     
     
     //set nick
+    nickNameLabel.text = @"";
     if (aFriend.nickName && [aFriend.nickName length] != 0) {
         nickNameLabel.text = aFriend.nickName;
     }
@@ -229,7 +230,7 @@
     areaLabel.text = aFriend.location;
     
     
-    //set 
+    //set auth
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (aFriend.sinaNick) {
         authImageView.hidden = NO;
