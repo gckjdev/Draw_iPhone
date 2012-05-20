@@ -72,7 +72,10 @@ enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor clearColor];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2@2x.png"]]];
     
     self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
@@ -148,7 +151,7 @@ enum{
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-
+    [[MusicItemManager defaultManager] saveMusicItems];
 }
 
 - (void)dealloc
@@ -220,7 +223,7 @@ enum{
         int frameMarginY;
         int footerHeight;
         if ([DeviceDetection isIPAD]){
-            labelMarginY = 100;
+            labelMarginY = 105;
             buttonMarginY = 105;
             frameMarginY = 150;
             footerHeight = 70;
@@ -233,6 +236,7 @@ enum{
         
         CGRect labelframe = self.musicLabel.frame;
         labelframe.origin.y=labelMarginY;
+        labelframe.origin.x=9;
         
         CGRect expandframe = self.expandButton.frame;
         expandframe.origin.y=buttonMarginY;
@@ -266,20 +270,21 @@ enum{
         
         if ([DeviceDetection isIPAD]){
             labelMarginY = 425;
-            buttonMarginY = 432;
-            frameMarginY = 475;
+            buttonMarginY = 422;
+            frameMarginY = 465;
             frameMarginX = 40;
             footerHeight = 70;
         }else {
-            labelMarginY = 210;
-            buttonMarginY = 208;
-            frameMarginY = 240;
+            labelMarginY = 215;
+            buttonMarginY = 215;
+            frameMarginY = 247;
             frameMarginX = 9;
             footerHeight = 60;
         }
 
         CGRect labelframe = self.musicLabel.frame;
         labelframe.origin.y=labelMarginY;
+        labelframe.origin.x = frameMarginX;
         
         CGRect expandframe = self.expandButton.frame;
         expandframe.origin.y=buttonMarginY;

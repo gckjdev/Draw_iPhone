@@ -124,6 +124,7 @@ static MusicItemManager *_defaultManager;
     
     [userDefaults setObject: list forKey:KEY_MUSICLIST];
     [list release];
+    [userDefaults synchronize];
     
 }
 
@@ -156,6 +157,7 @@ static MusicItemManager *_defaultManager;
          [currentMusicItem.downloadProgress stringValue]];
         
     [userDefaults setObject: itemString forKey:KEY_CURRENT_MUSIC];
+    [userDefaults synchronize];
     [itemString release];
 
 }
@@ -200,12 +202,9 @@ static MusicItemManager *_defaultManager;
 - (NSArray*)findAllItemsByStatus:(int)status
 {
     NSMutableArray *retList = [[[NSMutableArray alloc] init] autorelease];
-    NSLog(@"********itemList:%d",itemList.count);
-
     for (MusicItem *item in itemList) {
         if (item.status.intValue == status) {
             [retList addObject:item];
-            NSLog(@"**************%@",item.fileName);
         }
     }
     return retList;
