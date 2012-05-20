@@ -37,6 +37,7 @@
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
+#define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 18.0 : 36.0)
 
 
 
@@ -354,6 +355,7 @@
     [moveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[UIImage imageNamed:@"wood_button.png"] forState:UIControlStateNormal];
     moveButton.hidden = YES;
+    [moveButton.titleLabel setFont:[UIFont systemFontOfSize:MOVE_BUTTON_FONT_SIZE]];
     moveButton.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
     moveButton.layer.transform = CATransform3DMakeScale(ZOOM_SCALE, ZOOM_SCALE, 1);
     [self.view addSubview:moveButton];
