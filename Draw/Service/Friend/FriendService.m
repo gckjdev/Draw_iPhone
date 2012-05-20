@@ -53,7 +53,7 @@ FriendService* globalGetFriendService()
                 
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 if ([userList count] != 0) {
-                    //[[FriendManager defaultManager] deleteAllFriends];
+                    [[FriendManager defaultManager] deleteAllFriends:type];
                 }
                 
                 for (NSDictionary* user in userList){

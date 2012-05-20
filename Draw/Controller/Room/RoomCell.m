@@ -12,19 +12,18 @@
 #import "ShareImageManager.h"
 #import "StableView.h"
 #import "RoomManager.h"
+#import "DeviceDetection.h"
 
 @implementation RoomCell
 @synthesize avatarView;
-//@synthesize avatarImage;
 @synthesize roomNameLabel;
-@synthesize roomStatusLabel;
 @synthesize creatorLabel;
 @synthesize userListLabel;
 @synthesize inviteInfoButton;
 @synthesize inviteButton;
 
+#define ROOM_CELL_HEIGHT     [DeviceDetection isIPAD] ? 150.0f : 75.0f
 
-//#define AVATAR_FRAME CGRectMake(7, 12, 57, 55)
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
@@ -42,11 +41,6 @@
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [cell.inviteInfoButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
     [cell.inviteButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-//    [cell.inviteButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateSelected];
-    
-//    cell.avatarImage = [[[AvatarView alloc] initWithUrlString:nil frame:AVATAR_FRAME gender:YES] autorelease];
-//    [cell addSubview:cell.avatarImage];
-//    [cell sendSubviewToBack:cell.avatarImage];
     [cell.inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
     
     return cell;
@@ -59,7 +53,8 @@
 
 + (CGFloat)getCellHeight
 {
-    return 75.0f;
+
+    return ROOM_CELL_HEIGHT;
 }
 
 - (void)setViewsColor:(UIColor *)color
@@ -83,9 +78,6 @@
     [avatarView setUrl:[NSURL URLWithString:avatar]];
     [GlobalGetImageCache() manage:avatarView];
 
-//    [avatarImage setAvatarUrl:avatar gender:gender];
-//    [avatarImage setAvatarSelected:NO];
-//    avatarImage.hidden = NO;
     if ([[UserManager defaultManager] isMe:user.userId]) {
         [self.creatorLabel setText:NSLS(@"Me")];        
     }else{
@@ -190,9 +182,8 @@
     
 }
 - (void)dealloc {
-//    [avatarImage release];
+
     [roomNameLabel release];
-    [roomStatusLabel release];
     [creatorLabel release];
     [userListLabel release];
     [inviteInfoButton release];

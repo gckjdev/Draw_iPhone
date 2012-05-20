@@ -55,7 +55,7 @@
 					<object class="IBUIImageView" id="1032172887">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 20}, {320, 204}}</string>
+						<string key="NSFrame">{{0, 14}, {320, 204}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="17977318"/>
@@ -124,7 +124,7 @@
 					<object class="IBUITextField" id="871247620">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 87}, {167, 31}}</string>
+						<string key="NSFrame">{{31, 73}, {164, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="572773332"/>
@@ -158,10 +158,9 @@
 					<object class="IBUIButton" id="1029323636">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{233, 128}, {44, 44}}</string>
+						<string key="NSFrame">{{248, 120}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -192,7 +191,7 @@
 					<object class="IBUIButton" id="142234038">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{176, 128}, {44, 44}}</string>
+						<string key="NSFrame">{{194, 120}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1017557142"/>
@@ -216,7 +215,7 @@
 					<object class="IBUIButton" id="1017557142">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{176, 128}, {44, 44}}</string>
+						<string key="NSFrame">{{194, 120}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1029323636"/>
@@ -240,7 +239,7 @@
 					<object class="IBUIButton" id="572773332">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{213, 87}, {68, 31}}</string>
+						<string key="NSFrame">{{207, 73}, {82, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="612866125"/>
@@ -249,7 +248,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
-						<string key="IBUINormalTitle">提交</string>
+						<string key="IBUINormalTitle">开始游戏</string>
 						<reference key="IBUIHighlightedTitleColor" ref="260984535"/>
 						<reference key="IBUINormalTitleColor" ref="260984535"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
@@ -270,7 +269,7 @@
 					<object class="IBUILabel" id="612866125">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{38, 139}, {124, 21}}</string>
+						<string key="NSFrame">{{42, 126}, {142, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="142234038"/>
@@ -279,7 +278,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">使用已有帐号</string>
+						<string key="IBUIText">使用微博账号玩</string>
 						<object class="NSColor" key="IBUITextColor" id="844867775">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -477,9 +476,9 @@
 							<reference ref="623552791"/>
 							<reference ref="17977318"/>
 							<reference ref="871247620"/>
-							<reference ref="572773332"/>
 							<reference ref="16469470"/>
 							<reference ref="1032172887"/>
+							<reference ref="572773332"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -625,6 +624,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="facebookButton">UIButton</string>
+						<string key="inviteLabel">UILabel</string>
 						<string key="promptLabel">UILabel</string>
 						<string key="qqButton">UIButton</string>
 						<string key="sinaButton">UIButton</string>
@@ -636,6 +636,10 @@
 						<object class="IBToOneOutletInfo" key="facebookButton">
 							<string key="name">facebookButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="inviteLabel">
+							<string key="name">inviteLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="promptLabel">
 							<string key="name">promptLabel</string>

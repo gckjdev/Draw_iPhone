@@ -91,9 +91,13 @@
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
 "kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
-"kRegisterPromptLabel" = "Login By Facebook";
-"kRegisterTitleLabel" = "Registration";
+
+"kRegisterPromptLabel" = "Login By";
+"kRegisterTitleLabel" = "Draw Lively";
 "kEnterEmail" = "Enter Email";
+"kStartGame" = "Start Game";
+"kLookOverDraw" = "View Works";
+"kPainted" = "painted";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";

@@ -68,6 +68,7 @@
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFirstGame") delayTime:1.5 isHappy:NO];
     // Do any additional setup after loading the view from its nib.
     
+    self.inviteLabel.hidden =YES;
     self.inviteLabel.text = NSLS(@"kRegisterToEnter");
     self.promptLabel.text = NSLS(@"kRegisterPromptLabel");
     self.titleLabel.text = NSLS(@"kRegisterTitleLabel");
@@ -75,7 +76,7 @@
     [self.userIdTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
     userIdTextField.delegate = self;
     
-    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
+    [self.submitButton setTitle:NSLS(@"kStartGame") forState:UIControlStateNormal];
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
                                  forState:UIControlStateNormal];
     
