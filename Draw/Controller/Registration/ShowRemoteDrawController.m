@@ -49,11 +49,26 @@
     return self;
 }
 
+
+//#define IPAD_WIDTH_SCALE 2.4
+//#define IPAD_HEIGHT_SCALE 2.18
+//#define DRAW_VEIW_FRAME_IPAD CGRectMake(18, 106, 304 * IPAD_WIDTH_SCALE, 320 * IPAD_HEIGHT_SCALE)
+//#define DRAW_VEIW_FRAME_IPHONE CGRectMake(8, 46, 304, 320)
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.text = NSLS(@"kReplayTitle");
-    self.wordLabel.text = draw.word;
+    self.titleLabel.text = NSLS(@"kLookOverDraw");
+    NSString *drewString = NSLS(@"kPainted");
+    self.wordLabel.text = [NSString stringWithFormat:@"%@%@[%@]", draw.nickName, drewString, draw.word];
+    
+    
+    ShowDrawView *showDrawView = [[ShowDrawView alloc] init];
+    showDrawView.frame = DRAW_VEIW_FRAME;
+    CGFloat multiple = self.holderView.frame.size.width / showDrawView.frame.size.width;
+    showDrawView.center = self.holderView.center;
+    //frame的缩放
+    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
     
     
     NSMutableArray *drawActionList = [[NSMutableArray alloc] init];
@@ -62,14 +77,21 @@
         [drawActionList addObject:drawAction];
         [drawAction release];
     }
-    ShowDrawView *showDrawView = [[ShowDrawView alloc] init];
-    [showDrawView setDrawActionList:drawActionList];
+    //画笔的缩放
+    NSMutableArray *scaleActionList = nil;
+    if ([DeviceDetection isIPAD]) {
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:IPAD_WIDTH_SCALE 
+                                               yScale:IPAD_HEIGHT_SCALE];
+    } else {
+        scaleActionList = drawActionList;
+    }
+    [showDrawView setDrawActionList:scaleActionList];
     [drawActionList release];
-    showDrawView.frame = DRAW_VEIW_FRAME;
-    CGFloat multiple = self.holderView.frame.size.width / showDrawView.frame.size.width;
-    showDrawView.center = self.holderView.center;
-    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
+    
+    
     [self.view addSubview:showDrawView];
+    showDrawView.playSpeed = 2/40.0;
     [showDrawView play];
     [showDrawView release];
 }

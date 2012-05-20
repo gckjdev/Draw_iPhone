@@ -28,7 +28,6 @@
 #import "StringUtil.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
-#import "MyFriendsController.h"
 #import "ChatController.h"
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
@@ -418,14 +417,6 @@
     [_feedbackLabel release];
     [_playWithFriendButton release];
     [super dealloc];
-}
-
-- (IBAction)clickFriend:(id)sender
-{
-    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
-    [self.navigationController pushViewController:myFriends animated:YES];
-    [myFriends release];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:rand()%4];
 }
 
 @end

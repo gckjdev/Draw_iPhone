@@ -92,10 +92,12 @@
 "kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來哦!";
 
 "kRegisterToEnter" = "馬上註冊\“猜猜畫畫\"進入遊戲吧";
-"kRegisterPromptLabel" = "微博登錄";
-"kRegisterTitleLabel" = "用戶註冊";
-"kEnterEmail" = "請輸入Email地址註冊";
-"kSubmit" = "提交";
+"kRegisterPromptLabel" = "使用微博賬號玩";
+"kRegisterTitleLabel" = "猜猜畫畫";
+"kEnterEmail" = "請輸入Email地址";
+"kStartGame" = "開始遊戲";
+"kLookOverDraw" = "查看作品";
+"kPainted" = "畫的";
 
 "kRegisteringUser" = "發送註冊請求中...";
 "kSystemFailure" = "網絡錯誤，請檢查手機是否正確連接到互聯網。";

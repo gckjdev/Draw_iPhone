@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
 @property (retain, nonatomic) IBOutlet UIButton *playbackButton;
 @property (assign, nonatomic) id<RemoteDrawViewDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 
 + (RemoteDrawView*)creatRemoteDrawView;
 

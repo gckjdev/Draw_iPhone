@@ -92,8 +92,11 @@
 
 "kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
 "kRegisterPromptLabel" = "Existing Account";
-"kRegisterTitleLabel" = "Registration";
+"kRegisterTitleLabel" = "Draw Lively";
 "kEnterEmail" = "Enter Your Email Address";
+"kStartGame" = "Start Game";
+"kLookOverDraw" = "View Works";
+"kPainted" = "painted";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
