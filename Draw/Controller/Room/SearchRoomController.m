@@ -18,6 +18,9 @@
 #import "RoomController.h"
 #import "PPDebug.h"
 
+
+#define SEARCH_ROOM_LIMIT 50
+
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
@@ -107,9 +110,9 @@
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
         [self showActivityWithText:NSLS(@"kRoomSearching")];
-        [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
+        [roomService searchRoomsWithKeyWords:key offset:0 limit:SEARCH_ROOM_LIMIT delegate:self];        
     }else{
-        [self popupMessage:NSLS(@"kTextNull") title:nil];
+        [self popupMessage:NSLS(@"kContentNull") title:nil];
     }
 }
 
@@ -150,7 +153,6 @@
         [self.dataTableView reloadData];
         if ([roomList count] == 0) {
             self.tipsLabel.hidden = NO;
-//            [self popupMessage:NSLS(@"kSearchNoResult") title:nil];            
         }else{
             self.tipsLabel.hidden = YES;
         }
