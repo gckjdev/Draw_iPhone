@@ -69,6 +69,36 @@ enum{
     COLLAPSE
 };
 
+- (void) setActionButtonsHidden:(BOOL)isHidden
+{
+    [self.previousButton setHidden:isHidden];
+    [self.nextButton setHidden:isHidden];
+    [self.stopButton setHidden:isHidden];
+    [self.refreshButton setHidden:isHidden];
+}
+
+- (void)createTimer
+{
+    if (timer != nil){
+        [timer invalidate];
+        timer = nil;
+        [timer release];
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                  target: self
+                                                selector: @selector(updateProgressTimer)
+                                                userInfo: nil
+                                                 repeats: YES];
+}
+
+- (void)killTimer
+{
+    [timer invalidate];
+    timer = nil; 
+    [timer release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -168,28 +198,6 @@ enum{
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)createTimer
-{
-    if (timer != nil){
-        [timer invalidate];
-        timer = nil;
-        [timer release];
-    }
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
-                                                  target: self
-                                                selector: @selector(updateProgressTimer)
-                                                userInfo: nil
-                                                 repeats: YES];
-}
-
-- (void)killTimer
-{
-    [timer invalidate];
-    timer = nil; 
-    [timer release];
 }
 
 #pragma mark - Button Action
@@ -407,13 +415,7 @@ enum{
 }
 
 #pragma mark - webView delegate method
-- (void) setActionButtonsHidden:(BOOL)isHidden
-{
-    [self.previousButton setHidden:isHidden];
-    [self.nextButton setHidden:isHidden];
-    [self.stopButton setHidden:isHidden];
-    [self.refreshButton setHidden:isHidden];
-}
+
 - (IBAction)clickPrevious:(id)sender
 {
     if (self.webView.canGoBack) {

@@ -78,6 +78,24 @@ NSMutableArray *list;
     return [self.downloadTempDir stringByAppendingString:fileName];
 }
 
+- (void)requestDone:(ASIHTTPRequest *)request
+{
+    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
+    [[MusicItemManager defaultManager] downloadFinish:item];
+    [self moveFile:item];
+    PPDebug(@"item (%@) download done", [item url]);
+    
+}
+
+- (void)requestWentWrong:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
+    [[MusicItemManager defaultManager] downloadFailure:item];
+    PPDebug(@"item (%@) download failure, response done = %@", [item url], [error description]);
+    
+}
+
 - (BOOL)startDownload:(MusicItem*)item
 {
     NSURL* url = [NSURL URLWithString:[item url]];
@@ -220,24 +238,6 @@ NSMutableArray *list;
     NSLog(@"item requestStarted, url = %@", [item.url description]);  
 
     [[MusicItemManager defaultManager] saveItem:item];
-}
-
-- (void)requestDone:(ASIHTTPRequest *)request
-{
-    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
-    [[MusicItemManager defaultManager] downloadFinish:item];
-    [self moveFile:item];
-    PPDebug(@"item (%@) download done", [item url]);
-
-}
-
-- (void)requestWentWrong:(ASIHTTPRequest *)request
-{
-    NSError *error = [request error];
-    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
-    [[MusicItemManager defaultManager] downloadFailure:item];
-    PPDebug(@"item (%@) download failure, response done = %@", [item url], [error description]);
-
 }
 
 - (void)resumeDownloadItem:(MusicItem*)item
