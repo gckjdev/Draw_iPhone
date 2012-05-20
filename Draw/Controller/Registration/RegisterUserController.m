@@ -98,8 +98,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
     self.navigationController.navigationBarHidden = YES;
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -193,6 +199,7 @@
 
 - (IBAction)clickSinaLogin:(id)sender
 {
+    [self.view endEditing:YES];
     _currentLoginType = REGISTER_TYPE_SINA;
     
 //    self.navigationController.navigationBarHidden = NO;
@@ -202,6 +209,7 @@
 
 - (IBAction)clickQQLogin:(id)sender
 {
+    [self.view endEditing:YES];
     _currentLoginType = REGISTER_TYPE_QQ;
     
     self.navigationController.navigationBarHidden = NO;
@@ -211,6 +219,7 @@
 
 - (IBAction)clickFacebookLogin:(id)sender
 {
+    [self.view endEditing:YES];
     _currentLoginType = REGISTER_TYPE_FACEBOOK;
     [[FacebookSNSService defaultService] startLogin:self];
 }
