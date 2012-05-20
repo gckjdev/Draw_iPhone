@@ -326,8 +326,10 @@
 "kDidNottFindThisUser" = "没有找到此用户";
 "kUpdateFollowFailed" = "网络错误，更新关注失败！";
 "kUpdateFansFailed" = "网络错误，更新粉丝失败！";
+"kFollowing" = "正在关注...";
 "kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注失败！";
+"kUnfollowing" = "正在取消关注...";
 "kUnfollowSuccessfully" = "成功取消关注！";
 "kUnfollowFailed" = "网络错误，取消关注失败！";
 "kEnterWords" = "请输入内容";
