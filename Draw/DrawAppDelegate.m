@@ -73,7 +73,7 @@ NSString* GlobalGetTrafficServerURL()
 {
     srand(time(0));
     
-
+    application.applicationIconBadgeNumber = 0;
     
     [self initImageCacheManager];
     
