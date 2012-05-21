@@ -165,16 +165,14 @@ FriendService* globalGetFriendService()
                     NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
                     NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
                     NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
-                    NSString* typeStr =[user objectForKey:PARA_FRIENDSTYPE];
                     NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
                     NSString* location = [user objectForKey:PARA_LOCATION];
-                    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
                     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
                     [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
                     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
                     
-                    [[FriendManager defaultManager] updateFriendWithUserId:friendUserId 
-                                                                      type:type 
+                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
+                                                                      type:[NSNumber numberWithInt:FOLLOW]
                                                                   nickName:nickName 
                                                                     avatar:avatar 
                                                                     gender:gender 
@@ -184,7 +182,8 @@ FriendService* globalGetFriendService()
                                                                   sinaNick:sinaNick 
                                                                     qqNick:qqNick 
                                                               facebookNick:facebookNick 
-                                                          lastModifiedDate:lastModifiedDate
+                                                                createDate:[NSDate date] 
+                                                          lastModifiedDate:lastModifiedDate 
                                                                   location:location];
                 }
             }else {
