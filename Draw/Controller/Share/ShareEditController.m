@@ -227,6 +227,7 @@ enum {
         BOOL result=[imageData writeToFile:path atomically:YES];
         if (!result) {
             PPDebug(@"creat temp image failed");
+            [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
             return;
         }
     }
