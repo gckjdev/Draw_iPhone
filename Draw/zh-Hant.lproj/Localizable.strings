@@ -436,7 +436,7 @@
 "kNoneInvited" = "尚未邀請朋友";
 "kFirstGame" = "這是您首次遊戲，請先註冊";
 
-"kMyFriend" = "我的好友";
+"kFriendControl" = "好友管理";
 "kFriendPlayTitle" = "以畫會友";
 "kInviteFriends" = "邀請好友";
 "kInviteFriendsTitle" = "邀請好友";
