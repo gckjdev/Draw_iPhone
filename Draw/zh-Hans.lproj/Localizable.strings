@@ -271,7 +271,7 @@
 "kMore_apps" = "更多应用";
 "kNextStep" = "下一步";
 "kWordLengthTip" = "温馨小提示：当前猜词的字数为［%d］";
-"kContentNull" = "内容不能为空哦。";
+"kContentNull" = "搜索条件不能为空";
 
 "kNoDrawings" = "你还没有任何作品呢";
 "kAll" = "  所有";
