@@ -45,6 +45,7 @@
 @synthesize text = _text;
 @synthesize myImageBackground = _myImageBackground;
 @synthesize shareTitleLabel;
+@synthesize isDrawByMe = _isDrawByMe;
 
 - (void)dealloc
 {
@@ -212,7 +213,12 @@ enum {
         UIImage* background = [UIImage imageNamed:@"share_bg.png"];
         UIImage* title = [UIImage imageNamed:@"name.png"];
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
-        [label setText:NSLS(@"kGuessWhatIDraw")];
+        if (self.isDrawByMe) {
+            [label setText:NSLS(@"kGuessWhatIDraw")];
+        } else {
+            [label setText:NSLS(@"kGuessWhatTheyDraw")];
+        }
+        
         [label setTextAlignment:UITextAlignmentCenter];
         UIGraphicsBeginImageContext(background.size);  
 
@@ -284,7 +290,8 @@ enum {
 }
 
 - (id)initWithImageFile:(NSString*)imageFile
-                         text:(NSString*)text
+                   text:(NSString*)text 
+             isDrawByMe:(BOOL)isDrawByMe
 {
     self = [super init];
     if (self) {
@@ -292,6 +299,7 @@ enum {
         self.text = text;
         NSData* data = [NSData dataWithContentsOfFile:imageFile];
         self.myImage = [UIImage imageWithData:data];
+        self.isDrawByMe = isDrawByMe;
     }
     return self;
 }

@@ -445,3 +445,4 @@
 
 "kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
 "kGuessWhatIDraw" = "猜猜我畫了什麼?";
+"kGuessWhatTheyDraw" = "猜猜Ta畫了什麼?";
