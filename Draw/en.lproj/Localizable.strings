@@ -97,7 +97,7 @@
 "kEnterEmail" = "Enter Email";
 "kStartGame" = "Start";
 "kLookOverDraw" = "View Drawing";
-"kPainted" = "painted";
+"kPainted" = " drawed ";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
@@ -262,7 +262,7 @@
 "kMore_apps" = "More apps";
 "kNextStep" = "Next";
 "kWordLengthTip" = "Tips: Word length is %d.";
-"kContentNull" = "Content can not be empty.";
+"kContentNull" = "Search keyword can not be empty.";
 
 "kNoDrawings" = "No Drawing";
 "kAll" = "  All";
@@ -315,7 +315,7 @@
 "kUpdateFollowFailed" = "Network error, update followers failed!";
 "kUpdateFansFailed" = "Network error, update fans failed!";
 "kFollowing" = "Sending request...";
-"kFollowSuccessfully" = "Follow successfully!";
+"kFollowSuccessfully" = "Follow user successfully!";
 "kFollowFailed" = "Network error, follow user failed!";
 "kUnfollowing" = "Sending request...";
 "kUnfollowSuccessfully" = "Unfollow user successfully!";
@@ -323,7 +323,7 @@
 "kEnterWords" = "Search keyword can not be empty.";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
 "kSearchFailedTitle" = "Network error";
-"kSearchFailed" = "Network error, search failed!";
+"kSearchFailed" = "Network error, search user failed!";
 "kSearching" = "Searching...";
 "kMyself" = "Me";
 
@@ -431,4 +431,6 @@
 "kInviteFriends" = "Invite";
 "kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
-"kSearchNoResult" = "No rooms matched";
+"kSearchNoResult" = "No room matched";
+
+"kPushMessage" = "@%@ created a new room, \"%@\". Hurry to Join and play with your friends.";
