@@ -187,7 +187,11 @@ FriendService* globalGetFriendService()
                                                                   location:location];
                 }
             }else {
-                PPDebug(@"<FriendService> followUser Failed!");
+                if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {
+                    PPDebug(@"<FriendService> followUser Failed: user not found");
+                }else {
+                    PPDebug(@"<FriendService> followUser Failed!");
+                }
             }
             
             if ([viewController respondsToSelector:@selector(didFollowUser:)]){
