@@ -428,8 +428,8 @@
 "kLoadingURL" = "加载网页中...";
 "kDefaultMusic" = "默认背景音乐";
 "kNoMusic" = "无";
-"kPrevious" = "前进";
-"kNext" = "后退";
+"kPrevious" = "后退";
+"kNext" = "前进";
 "kRefresh" = "刷新";
 "kStop" = "停止";
 
