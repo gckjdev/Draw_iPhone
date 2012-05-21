@@ -96,7 +96,7 @@
     
     [titleLabel setText:NSLS(@"kMyFriends")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [editButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateSelected];
     [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
@@ -350,6 +350,9 @@
 
 - (IBAction)clickSearchUser:(id)sender
 {
+    editButton.selected = NO;
+    [dataTableView setEditing:editButton.selected animated:NO];
+    
     SearchUserController *searchUser  = [[SearchUserController alloc] init];
     [self.navigationController pushViewController:searchUser animated:YES];
     [searchUser release];

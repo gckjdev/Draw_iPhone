@@ -209,10 +209,16 @@ enum {
         }
         
     } else {
-        UIImage* background = [UIImage imageNamed:@"share_background.png"];
+        UIImage* background = [UIImage imageNamed:@"share_bg.png"];
+        UIImage* title = [UIImage imageNamed:@"name.png"];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 80, 224, 25)] autorelease];
+        [label setText:NSLS(@"kGuessWhatIDraw")];
+        [label setTextAlignment:UITextAlignmentCenter];
         UIGraphicsBeginImageContext(background.size);  
-         
+
         [background drawInRect:CGRectMake(0, 0, background.size.width, background.size.height)];
+        [title drawInRect:CGRectMake(48, 8, 224, 95)];
+        [label drawTextInRect:CGRectMake(48, 80, 224, 25)];
         [self.myImage drawInRect:CGRectMake(32, 136, 256, 245)];        
         UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext(); 
 
@@ -221,6 +227,7 @@ enum {
         BOOL result=[imageData writeToFile:path atomically:YES];
         if (!result) {
             PPDebug(@"creat temp image failed");
+            [self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
             return;
         }
     }
