@@ -120,12 +120,12 @@
 
 - (void)startGame
 {
-    if (_isTryJoinGame)
+    if (_isTryJoinGame || _currentSelectRoom == nil)
         return;
     [self showActivityWithText:NSLS(@"kConnectingServer")];
 
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.124"];
-    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] setServerAddress:_currentSelectRoom.gameServerAddress];
+    [[DrawGameService defaultService] setServerPort:_currentSelectRoom.gameServerPort];    
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;    
     

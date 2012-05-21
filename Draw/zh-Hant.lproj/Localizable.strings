@@ -331,7 +331,7 @@
 "kUnfollowing" = "正在取消關注...";
 "kUnfollowSuccessfully" = "成功取消關注！";
 "kUnfollowFailed" = "網絡錯誤，取消關注失敗！";
-"kEnterWords" = "請輸入內容";
+"kEnterWords" = "搜索條件不能為空";
 "kSearchUserPlaceholder" = "暱稱/微博暱稱/QQ號/郵箱";
 "kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索失敗！";

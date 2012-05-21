@@ -137,9 +137,9 @@
     [inputTextField resignFirstResponder];
     
     if ([inputTextField.text length] == 0) {
-        resultLabel.hidden = NO;
+        resultLabel.hidden = YES;
         dataTableView.hidden = YES;
-        [resultLabel setText:NSLS(@"kEnterWords")];
+        [self popupMessage:NSLS(@"kEnterWords") title:nil];
     }else {
         resultLabel.hidden = YES;
         [[FriendService defaultService] searchUsersByString:inputTextField.text viewController:self];

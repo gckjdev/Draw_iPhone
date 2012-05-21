@@ -27,7 +27,6 @@
     [_roomId release];
     [_roomName release];
     [_gameServerAddress release];
-    [_gameServerPort release];
     [_password release];
     [_createDate release];
     [_expireDate release];
@@ -80,7 +79,9 @@
     text = [self string:text appendKey:@"RoomName" value:self.roomName];
     text = [self string:text appendKey:@"password" value:self.password];
     text = [self string:text appendKey:@"address" value:self.gameServerAddress];
-    text = [self string:text appendKey:@"port" value:self.gameServerPort];
+
+    text = [self string:text appendKey:@"port" value:[NSString stringWithFormat:@"%d",self.gameServerPort]];
+    
     text = [self string:text appendKey:@"Creator" value:[self.creator description]];
     text = [self string:text appendKey:@"userList" value:[self.userList description]];
     
