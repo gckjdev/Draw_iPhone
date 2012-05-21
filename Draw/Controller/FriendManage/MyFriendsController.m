@@ -549,8 +549,8 @@
     }else{
         [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
         [self updateRoomUsers:friendSet];
+        [_selectedSet removeAllObjects];
     }
-    [_selectedSet removeAllObjects];
     editButton.hidden = YES;
 }
 @end
