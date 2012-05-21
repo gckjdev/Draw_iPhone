@@ -18,9 +18,14 @@
 #import "RoomController.h"
 #import "PPDebug.h"
 
+
+#define SEARCH_ROOM_LIMIT 50
+
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
+@synthesize titleLabel;
+@synthesize tipsLabel;
 @synthesize searchField;
 //@synthesize selectedRoom = _selectedRoom;
 
@@ -53,7 +58,11 @@
     [super viewDidLoad];
     [searchFieldBg setImage:[imageManager inputImage]];
     [searchField setPlaceholder:NSLS(@"kRoomSearhTips")];
+    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [titleLabel setText:NSLS(@"kSearchRoom")];
+    [self.tipsLabel setText:NSLS(@"kSearchNoResult")];
+    [self.tipsLabel setHidden:YES];
 }
 
 - (void)viewDidUnload
@@ -61,6 +70,8 @@
     [self setSearchField:nil];
     [self setSearchButton:nil];
     [self setSearchFieldBg:nil];
+    [self setTitleLabel:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -90,6 +101,8 @@
     [searchButton release];
     [searchFieldBg release];
 //    [_selectedRoom release];
+    [titleLabel release];
+    [tipsLabel release];
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {
@@ -97,9 +110,9 @@
     NSString *key = [self.searchField text];
     if ([key length] != 0) {
         [self showActivityWithText:NSLS(@"kRoomSearching")];
-        [roomService searchRoomsWithKeyWords:key offset:0 limit:20 delegate:self];        
+        [roomService searchRoomsWithKeyWords:key offset:0 limit:SEARCH_ROOM_LIMIT delegate:self];        
     }else{
-        [self popupMessage:NSLS(@"kTextNull") title:nil];
+        [self popupMessage:NSLS(@"kContentNull") title:nil];
     }
 }
 
@@ -111,7 +124,7 @@
         return;
     [self showActivityWithText:NSLS(@"kConnectingServer")];
 
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.124"];
     [[DrawGameService defaultService] setServerPort:8080];    
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;    
@@ -138,6 +151,11 @@
     }else{
         self.dataList = roomList;
         [self.dataTableView reloadData];
+        if ([roomList count] == 0) {
+            self.tipsLabel.hidden = NO;
+        }else{
+            self.tipsLabel.hidden = YES;
+        }
     }
 }
 

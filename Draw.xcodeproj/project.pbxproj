@@ -183,7 +183,6 @@
 		CA0CB755155CB04D009C8EE6 /* SearchRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB753155CB04D009C8EE6 /* SearchRoomController.xib */; };
 		CA0CB759155CB064009C8EE6 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB757155CB064009C8EE6 /* RoomCell.m */; };
 		CA0CB75A155CB064009C8EE6 /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB758155CB064009C8EE6 /* RoomCell.xib */; };
-		CA0CB75C155CB08A009C8EE6 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75B155CB08A009C8EE6 /* FriendRoomController~ipad.xib */; };
 		CA0CB75E155CB0BC009C8EE6 /* SearchRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */; };
 		CA0CB760155CB0D4009C8EE6 /* RoomCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */; };
 		CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB761155CB556009C8EE6 /* myfriends@2x.png */; };
@@ -597,6 +596,7 @@
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
 		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
+		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
 		CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13241154C23E5000A8C8F /* MobClickUtils.m */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
@@ -622,6 +622,7 @@
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
+		EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */; };
 		EAF5AFD4155E2DD3008CD8EE /* MusicSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */; };
 		EAF5AFD5155E2DD3008CD8EE /* MusicSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */; };
 		EAF5AFD8155E2DFD008CD8EE /* MusicDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFD7155E2DFD008CD8EE /* MusicDownloadService.m */; };
@@ -929,7 +930,6 @@
 		CA0CB756155CB064009C8EE6 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCell.h; sourceTree = "<group>"; };
 		CA0CB757155CB064009C8EE6 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCell.m; sourceTree = "<group>"; };
 		CA0CB758155CB064009C8EE6 /* RoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomCell.xib; sourceTree = "<group>"; };
-		CA0CB75B155CB08A009C8EE6 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0CB761155CB556009C8EE6 /* myfriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfriends@2x.png"; sourceTree = "<group>"; };
@@ -1617,6 +1617,7 @@
 		CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawController.h; sourceTree = "<group>"; };
 		CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawController.m; sourceTree = "<group>"; };
 		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
+		CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CAC13240154C23E5000A8C8F /* MobClickUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickUtils.h; sourceTree = "<group>"; };
 		CAC13241154C23E5000A8C8F /* MobClickUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickUtils.m; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
@@ -1661,6 +1662,7 @@
 		EAE0D144155FB72400827DF9 /* yes_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
 		EAE0D148155FBC4800827DF9 /* MusicItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItemManager.m; sourceTree = "<group>"; };
+		EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MusicSettingCell~ipad.xib"; sourceTree = "<group>"; };
 		EAF5AFD1155E2DD3008CD8EE /* MusicSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingController.h; sourceTree = "<group>"; };
 		EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingController.m; sourceTree = "<group>"; };
 		EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSettingController.xib; sourceTree = "<group>"; };
@@ -3170,7 +3172,7 @@
 				CA0CB74C155CB037009C8EE6 /* FriendRoomController.h */,
 				CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */,
 				CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */,
-				CA0CB75B155CB08A009C8EE6 /* FriendRoomController~ipad.xib */,
+				CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */,
 				CA0CB751155CB04D009C8EE6 /* SearchRoomController.h */,
 				CA0CB752155CB04D009C8EE6 /* SearchRoomController.m */,
 				CA0CB753155CB04D009C8EE6 /* SearchRoomController.xib */,
@@ -4059,6 +4061,7 @@
 				EAF5AFDB155E2F2F008CD8EE /* MusicSettingCell.h */,
 				EAF5AFDC155E2F2F008CD8EE /* MusicSettingCell.m */,
 				EAF5AFDD155E2F30008CD8EE /* MusicSettingCell.xib */,
+				EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */,
 				EAF5AFE0155E3251008CD8EE /* MusicItem.h */,
 				EAF5AFE1155E3251008CD8EE /* MusicItem.m */,
 				EAE0D147155FBC4700827DF9 /* MusicItemManager.h */,
@@ -4412,7 +4415,6 @@
 				CA0CB750155CB037009C8EE6 /* FriendRoomController.xib in Resources */,
 				CA0CB755155CB04D009C8EE6 /* SearchRoomController.xib in Resources */,
 				CA0CB75A155CB064009C8EE6 /* RoomCell.xib in Resources */,
-				CA0CB75C155CB08A009C8EE6 /* FriendRoomController~ipad.xib in Resources */,
 				CA0CB75E155CB0BC009C8EE6 /* SearchRoomController~ipad.xib in Resources */,
 				CA0CB760155CB0D4009C8EE6 /* RoomCell~ipad.xib in Resources */,
 				CA0CB762155CB556009C8EE6 /* myfriends@2x.png in Resources */,
@@ -4452,6 +4454,8 @@
 				C29B8AA8156760FF00B9707D /* CommonMessageView~ipad.xib in Resources */,
 				C29B8AAB156788F900B9707D /* right@2x.png in Resources */,
 				C29B8AAC156788F900B9707D /* wrong@2x.png in Resources */,
+				EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */,
+				CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

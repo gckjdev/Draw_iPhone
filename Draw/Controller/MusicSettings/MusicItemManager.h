@@ -19,14 +19,20 @@
 + (MusicItemManager*)defaultManager;
 
 - (NSArray*) findAllItems;
+- (NSArray*)findAllItemsByStatus:(int)status;
 - (void)saveMusicItems;
 
 - (void)saveItem:(MusicItem*)item;
 - (void)deleteItem:(MusicItem*)item;
 - (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize;
 - (void)selectCurrentMusicItem:(MusicItem*)item;
-
+- (void)loadMusicItems;
 - (void)saveCurrentMusic;
 - (BOOL)isCurrentMusic:(MusicItem*)item;
 - (BOOL)isNoneOrDefaultMusic:(MusicItem*)item;
+
+- (void)downloadFinish:(MusicItem*)item;
+- (void)downloadFailure:(MusicItem*)item;
+- (void)downloadStart:(MusicItem*)item request:(ASIHTTPRequest*)request;
+
 @end

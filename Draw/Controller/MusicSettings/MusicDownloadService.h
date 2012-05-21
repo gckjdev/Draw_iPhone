@@ -26,4 +26,5 @@
 + (MusicDownloadService*)defaultService;
 
 - (BOOL)downloadFile:(NSString*)urlString;
+- (void)resumeAllDownloadItem;
 @end

@@ -32,6 +32,47 @@ static MusicItemManager *_defaultManager;
     return _defaultManager;
 }
 
+- (void)loadMusicItems
+{
+    //no music item
+    noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
+    noneMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    noneMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
+    [itemList addObject:noneMusicItem];
+    
+    //default music item
+    NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
+    defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
+    defaultMusicItem.status = [NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH];
+    defaultMusicItem.downloadProgress = [NSNumber numberWithFloat:1.0f];
+    [itemList addObject:defaultMusicItem];
+    
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
+    if (data != nil) {
+        for (NSString* str in data) {
+            MusicItem *item = [self parseMusicItemFromString:str];
+            if ([self.itemList indexOfObject:item] != -1) {
+                [self.itemList addObject:item];
+            }
+        }
+    }   
+}
+
+- (void)loadCurrentMusic
+{
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *data = [userDefault objectForKey:KEY_CURRENT_MUSIC];
+    if (data != nil) {
+        MusicItem *item = [self parseMusicItemFromString:data];
+        self.currentMusicItem = item;
+    }
+    
+    if (self.currentMusicItem == nil) {
+        self.currentMusicItem = defaultMusicItem;
+    }
+}
+
 - (id)init
 {
     self = [super init];
@@ -56,40 +97,27 @@ static MusicItemManager *_defaultManager;
 
 - (MusicItem*) parseMusicItemFromString:(NSString*)str
 {
+    if (str == nil)
+        return nil;
+    
     NSMutableString *string = [[[NSMutableString alloc] initWithString:str] autorelease];
     NSArray *array = [string componentsSeparatedByString:DELIMITER];
+    if ([array count] < 6)
+        return nil;
     
     NSString *fileName = [array objectAtIndex:0];
     NSString *url = [array objectAtIndex:1];
     NSString *localPath = [array objectAtIndex:2];
-    NSString *downloadProgress = [array objectAtIndex:3];
-    MusicItem *item = [[[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:@""] autorelease];
+    NSString *tempPath = [array objectAtIndex:3];
+    NSString *statusString = [array objectAtIndex:4];
+    NSString *downloadProgress = [array objectAtIndex:5];
+    MusicItem *item = [[[MusicItem alloc] initWithUrl:url fileName:fileName filePath:localPath tempPath:tempPath] autorelease];
     item.downloadProgress = [NSNumber numberWithLongLong:[downloadProgress longLongValue]];
+    item.status = [NSNumber numberWithInt:[statusString intValue]];
+
     return item;
 }
 
-- (void)loadMusicItems
-{
-    //no music item
-    noneMusicItem = [[MusicItem alloc] initWithUrl:@"" fileName:NSLS(@"kNoMusic") filePath:@"" tempPath:@""];
-    [itemList addObject:noneMusicItem];
-    
-    //default music item
-    NSString* soundFilePath = [[NSBundle mainBundle] pathForResource:@"cannon" ofType:@"mp3"];
-    defaultMusicItem = [[MusicItem alloc] initWithUrl:nil fileName:NSLS(@"kDefaultMusic") filePath:soundFilePath tempPath:nil];
-    [itemList addObject:defaultMusicItem];
-
-    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    NSArray *data = [userDefault arrayForKey:KEY_MUSICLIST];
-    if (data != nil) {
-        for (NSString* str in data) {
-            MusicItem *item = [self parseMusicItemFromString:str];
-            if ([self.itemList indexOfObject:item] != -1) {
-                [self.itemList addObject:item];
-            }
-        }
-    }   
-}
 
 - (void)saveMusicItems
 {        
@@ -103,10 +131,12 @@ static MusicItemManager *_defaultManager;
         }
         
         NSMutableString *itemString = [[NSMutableString alloc]init];
-        [itemString appendFormat:@"%@%@%@%@%@%@%@", 
+        [itemString appendFormat:@"%@%@%@%@%@%@%@%@%@%@%@", 
                         item.fileName, DELIMITER, 
                         item.url, DELIMITER, 
                         item.localPath, DELIMITER, 
+                        item.tempPath, DELIMITER, 
+                        [item.status stringValue], DELIMITER, 
                         [item.downloadProgress stringValue]];
         
         [list addObject:itemString];
@@ -116,21 +146,8 @@ static MusicItemManager *_defaultManager;
     
     [userDefaults setObject: list forKey:KEY_MUSICLIST];
     [list release];
+    [userDefaults synchronize];
     
-}
-
-- (void)loadCurrentMusic
-{
-    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *data = [userDefault objectForKey:KEY_CURRENT_MUSIC];
-    if (data != nil) {
-        MusicItem *item = [self parseMusicItemFromString:data];
-        self.currentMusicItem = item;
-        }
-    
-    if (self.currentMusicItem == nil) {
-        self.currentMusicItem = defaultMusicItem;
-    }
 }
 
 - (void)saveCurrentMusic
@@ -139,13 +156,16 @@ static MusicItemManager *_defaultManager;
     
     
     NSMutableString *itemString = [[NSMutableString alloc]init];
-    [itemString appendFormat:@"%@%@%@%@%@%@%@", 
+    [itemString appendFormat:@"%@%@%@%@%@%@%@%@%@%@%@", 
          currentMusicItem.fileName, DELIMITER, 
          currentMusicItem.url, DELIMITER, 
          currentMusicItem.localPath, DELIMITER, 
+        currentMusicItem.tempPath, DELIMITER, 
+         [currentMusicItem.status stringValue],DELIMITER,
          [currentMusicItem.downloadProgress stringValue]];
         
     [userDefaults setObject: itemString forKey:KEY_CURRENT_MUSIC];
+    [userDefaults synchronize];
     [itemString release];
 
 }
@@ -162,15 +182,10 @@ static MusicItemManager *_defaultManager;
 
 - (void)saveItem:(MusicItem*)item
 {
-    [itemList addObject:item];
-}
-
-- (void)deleteItem:(MusicItem*)item
-{
     if (itemList != nil && [itemList indexOfObject:item] != -1) {
         [itemList removeObject:item];
-        [self removeFile:item];
     }
+    [itemList addObject:item];
 }
 
 - (void)removeFile:(MusicItem*)item
@@ -179,9 +194,29 @@ static MusicItemManager *_defaultManager;
     [manager removeItemAtPath:item.localPath error:nil];
 }
 
+- (void)deleteItem:(MusicItem*)item
+{
+    if (itemList != nil && [itemList indexOfObject:item] != -1) {
+        [itemList removeObject:item];
+        //delete file 
+        [self removeFile:item];
+    }
+}
+
 - (NSArray*) findAllItems
 {   
     return itemList;
+}
+
+- (NSArray*)findAllItemsByStatus:(int)status
+{
+    NSMutableArray *retList = [[[NSMutableArray alloc] init] autorelease];
+    for (MusicItem *item in itemList) {
+        if (item.status.intValue == status) {
+            [retList addObject:item];
+        }
+    }
+    return retList;
 }
 
 - (void)setFileInfo:(MusicItem*)item newFileName:(NSString*)fileName fileSize:(long)fileSize
@@ -195,6 +230,9 @@ static MusicItemManager *_defaultManager;
 //select current background Music to play
 - (void)selectCurrentMusicItem:(MusicItem*)item
 {
+    if (item.downloadProgress.floatValue < 1.0) {
+        return;
+    }
     if (self.currentMusicItem != item) {
         self.currentMusicItem = item;
         [self saveCurrentMusic];
@@ -210,6 +248,30 @@ static MusicItemManager *_defaultManager;
         [audioManager setBackGroundMusicWithURL:url];
         [audioManager backgroundMusicStart];
     }
+}
+
+#pragma STATUS CONTROL
+- (void)downloadFinish:(MusicItem*)item
+{
+    [item setRequest:nil];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FINISH]];
+    [item setDownloadProgress:[NSNumber numberWithFloat:1.0]];
+    [self saveItem:item];
+
+}
+
+- (void)downloadFailure:(MusicItem*)item
+{
+    [item setRequest:nil];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_FAIL]];
+    [self saveItem:item];
+
+}
+
+- (void)downloadStart:(MusicItem*)item request:(ASIHTTPRequest*)request
+{
+    [item setRequest:request];
+    [item setStatus:[NSNumber numberWithInt:DOWNLOAD_STATUS_STARTED]];
 }
 
 @end

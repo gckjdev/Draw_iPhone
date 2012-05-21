@@ -22,9 +22,10 @@
 
 @interface RoomCell : PPTableViewCell
 
-@property (retain, nonatomic) AvatarView *avatarImage;
+@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
+//@property (retain, nonatomic) AvatarView *avatarImage;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *roomStatusLabel;
+
 @property (retain, nonatomic) IBOutlet UILabel *creatorLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userListLabel;
 @property (retain, nonatomic) IBOutlet UIButton *inviteInfoButton;

@@ -992,6 +992,8 @@
     }
 }
 
+#pragma mark - Chat Handling
+
 - (void)didSelectMessage:(NSString *)message
 {
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
@@ -1013,7 +1015,8 @@
     }
     
     if (_privateChatController == nil) {
-        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        self.privateChatController = 
+        [[[ChatController alloc] initWithChatType:GameChatTypeChatPrivate] autorelease];
     }
     _privateChatController.chatControllerDelegate = self;
     

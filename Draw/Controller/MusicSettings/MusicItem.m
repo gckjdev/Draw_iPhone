@@ -20,22 +20,24 @@
 @synthesize url;
 @synthesize tempPath;
 @synthesize localPath;
+@synthesize status;
 
 #define DOWNLOAD_KEY @"DOWNLOAD_KEY"
 
--(id)initWithUrl:(NSString*)url 
-        fileName:(NSString*)fileName
-        filePath:(NSString*)filePath
-        tempPath:(NSString*)tempPath
+-(id)initWithUrl:(NSString*)weburl
+        fileName:(NSString*)filename
+        filePath:(NSString*)filepath
+        tempPath:(NSString*)temPath
 {
     self = [super init];
     
     self.downloadSize = [NSNumber numberWithInt:0];
+    self.status = [NSNumber numberWithInt:0];
     self.downloadProgress = [NSNumber numberWithFloat:0.0f];
-    self.fileName = fileName;
-    self.url = url;
-    self.localPath = filePath;
-    self.tempPath = tempPath;
+    self.fileName = filename;
+    self.url = weburl;
+    self.localPath = filepath;
+    self.tempPath = temPath;
     
     return self;
 }

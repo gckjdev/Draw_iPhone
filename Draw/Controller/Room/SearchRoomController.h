@@ -27,6 +27,8 @@
 - (IBAction)clickSearhButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
 @property (retain, nonatomic) IBOutlet UIImageView *searchFieldBg;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (retain, nonatomic) IBOutlet UITextField *searchField;
 //@property (retain, nonatomic) Room *selectedRoom;
 @end

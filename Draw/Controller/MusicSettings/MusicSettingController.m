@@ -16,6 +16,7 @@
 #import "ShareImageManager.h"
 #import "AudioManager.h"
 #import "ConfigManager.h"
+#import "DeviceDetection.h"
 
 @implementation MusicSettingController
 
@@ -68,12 +69,44 @@ enum{
     COLLAPSE
 };
 
+- (void) setActionButtonsHidden:(BOOL)isHidden
+{
+    [self.previousButton setHidden:isHidden];
+    [self.nextButton setHidden:isHidden];
+    [self.stopButton setHidden:isHidden];
+    [self.refreshButton setHidden:isHidden];
+}
+
+- (void)createTimer
+{
+    if (timer != nil){
+        [timer invalidate];
+        timer = nil;
+        [timer release];
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                  target: self
+                                                selector: @selector(updateProgressTimer)
+                                                userInfo: nil
+                                                 repeats: YES];
+}
+
+- (void)killTimer
+{
+    [timer invalidate];
+    timer = nil; 
+    [timer release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2.png"]]];
+    self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg2@2x.png"]]];
     
     self.musicSettingTitleLabel.text = NSLS(@"kMusicSettings");
     [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
@@ -101,6 +134,7 @@ enum{
     [self openURL:[ConfigManager getMusicDownloadHomeURL]];
     
     _musicList = [[MusicItemManager defaultManager] findAllItems];
+    
 
     [self createTimer];
     
@@ -112,7 +146,7 @@ enum{
     tapGesture.delegate = self;
     [self.webView addGestureRecognizer:tapGesture];
     [tapGesture release];
-        
+            
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
@@ -147,8 +181,9 @@ enum{
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-
+    [[MusicItemManager defaultManager] saveMusicItems];
 }
+
 - (void)dealloc
 {
     [super dealloc];
@@ -163,28 +198,6 @@ enum{
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)createTimer
-{
-    if (timer != nil){
-        [timer invalidate];
-        timer = nil;
-        [timer release];
-    }
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
-                                                  target: self
-                                                selector: @selector(updateProgressTimer)
-                                                userInfo: nil
-                                                 repeats: YES];
-}
-
-- (void)killTimer
-{
-    [timer invalidate];
-    timer = nil; 
-    [timer release];
 }
 
 #pragma mark - Button Action
@@ -213,17 +226,34 @@ enum{
         [self.tableView setHidden:YES];
         [self.editButton setHidden:YES];
         
+        int labelMarginY;
+        int buttonMarginY;
+        int frameMarginY;
+        int footerHeight;
+        if ([DeviceDetection isIPAD]){
+            labelMarginY = 105;
+            buttonMarginY = 105;
+            frameMarginY = 150;
+            footerHeight = 70;
+        }else {
+            labelMarginY = 50;
+            buttonMarginY = 50;
+            frameMarginY = 82;
+            footerHeight = 60;
+        }
+        
         CGRect labelframe = self.musicLabel.frame;
-        labelframe.origin.y=50;
+        labelframe.origin.y=labelMarginY;
+        labelframe.origin.x=9;
         
         CGRect expandframe = self.expandButton.frame;
-        expandframe.origin.y=50;
+        expandframe.origin.y=buttonMarginY;
         
         CGRect webframe=self.webView.frame;
-        webframe.origin.y=50+30+2;
+        webframe.origin.y=frameMarginY;
         webframe.origin.x=0;
-        webframe.size.width = 320;
-        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 50 - 30 - 60;
+        webframe.size.width = [UIScreen mainScreen].bounds.size.width;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - frameMarginY - footerHeight;
                 
         [UIView animateWithDuration:0.5 animations:^{ 
             self.webView.frame=webframe;
@@ -240,17 +270,38 @@ enum{
         [self.tableView setHidden:NO];
         [self.editButton setHidden:NO];
 
+        int labelMarginY;
+        int buttonMarginY;
+        int frameMarginY;
+        int frameMarginX;
+        int footerHeight;
+        
+        if ([DeviceDetection isIPAD]){
+            labelMarginY = 425;
+            buttonMarginY = 422;
+            frameMarginY = 465;
+            frameMarginX = 40;
+            footerHeight = 70;
+        }else {
+            labelMarginY = 215;
+            buttonMarginY = 215;
+            frameMarginY = 247;
+            frameMarginX = 9;
+            footerHeight = 60;
+        }
+
         CGRect labelframe = self.musicLabel.frame;
-        labelframe.origin.y=210;
+        labelframe.origin.y=labelMarginY;
+        labelframe.origin.x = frameMarginX;
         
         CGRect expandframe = self.expandButton.frame;
-        expandframe.origin.y=210;
+        expandframe.origin.y=buttonMarginY;
         
         CGRect webframe=self.webView.frame;
-        webframe.origin.y=210+30;
-        webframe.origin.x=9;
-        webframe.size.width = 302;
-        webframe.size.height = [UIScreen mainScreen].bounds.size.height - 30 - 50;
+        webframe.origin.y=frameMarginY;
+        webframe.origin.x=frameMarginX;
+        webframe.size.width = [UIScreen mainScreen].bounds.size.width - 2*frameMarginX;
+        webframe.size.height = [UIScreen mainScreen].bounds.size.height - self.musicLabel.frame.size.height - self.musicSettingTitleLabel.frame.size.height;
         
         [UIView animateWithDuration:0.5 animations:^{ 
             
@@ -273,15 +324,15 @@ enum{
     return 1;		
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 10;
+//}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  40.0f;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return  40.0f;
+//}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -340,6 +391,16 @@ enum{
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_canDelete == YES) {
+        //disable delete for 'No" and "Default‘ Item
+        if (indexPath.row == 0 || indexPath.row == 1) {
+            return UITableViewCellEditingStyleNone;
+        }
+        //disable If the ToDelete item is currentPlaying Item
+        MusicSettingCell *cell = (MusicSettingCell*)[tableView cellForRowAtIndexPath:indexPath];
+        if ([[MusicItemManager defaultManager] isCurrentMusic:cell.musicItem]) {
+            return UITableViewCellEditingStyleNone;
+        }
+        
         return UITableViewCellEditingStyleDelete;
     }
     else {
@@ -354,13 +415,7 @@ enum{
 }
 
 #pragma mark - webView delegate method
-- (void) setActionButtonsHidden:(BOOL)isHidden
-{
-    [self.previousButton setHidden:isHidden];
-    [self.nextButton setHidden:isHidden];
-    [self.stopButton setHidden:isHidden];
-    [self.refreshButton setHidden:isHidden];
-}
+
 - (IBAction)clickPrevious:(id)sender
 {
     if (self.webView.canGoBack) {

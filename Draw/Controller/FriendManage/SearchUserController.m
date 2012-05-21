@@ -64,6 +64,8 @@
     
     [inputImageView setImage:[imageManager inputImage]];
     [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
+    inputTextField.delegate = self;
+    inputTextField.returnKeyType = UIReturnKeyDone;
     
     [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
@@ -185,8 +187,7 @@
             resultLabel.hidden = YES;
         }
     }else {
-        CommonDialog *searchFailedDialog = [CommonDialog createDialogWithTitle:NSLS(@"kSearchFailedTitle") message:NSLS(@"kSearchFailed") style:CommonDialogStyleSingleButton deelegate:nil];
-        [searchFailedDialog showInView:self.view];
+        [self popupMessage:NSLS(@"kSearchFailed") title:nil];
     }
     
     
@@ -237,5 +238,15 @@
         [self popupMessage:NSLS(@"kFollowFailed") title:nil];
     }
 }
+
+
+#pragma mark - text field delegate.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self clickSearch:searchButton];
+    return YES;
+}
+
+
 
 @end

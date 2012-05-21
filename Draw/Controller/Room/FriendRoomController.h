@@ -30,5 +30,8 @@
 - (IBAction)clickCreateButton:(id)sender;
 - (IBAction)clickSearchButton:(id)sender;
 - (IBAction)clickMyFriendButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *myFriendButton;
+@property (retain, nonatomic) IBOutlet UILabel *noRoomTips;
 
 @end

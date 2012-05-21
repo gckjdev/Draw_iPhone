@@ -97,6 +97,7 @@
     [titleLabel setText:NSLS(@"kMyFriends")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [editButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateSelected];
     [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     
@@ -119,6 +120,7 @@
         CGPoint origin = dataTableView.frame.origin;
         CGSize size = dataTableView.frame.size;
         dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
+        [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
     }else{
         [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
         [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
@@ -331,11 +333,12 @@
 
 - (IBAction)clickEdit:(id)sender
 {
-    if (_isInviteFriend && [_selectedSet count] != 0) {
-                
-        //invite users
-        [self showActivityWithText:NSLS(@"kInviting")];
-        [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];
+    if (_isInviteFriend ) {
+        if ([_selectedSet count] != 0) {
+            //invite users
+            [self showActivityWithText:NSLS(@"kInviting")];
+            [[RoomService defaultService] inviteUsers:_selectedSet toRoom:self.room delegate:self];            
+        }
     }else{
         editButton.selected = !editButton.selected;
         [dataTableView setEditing:editButton.selected animated:YES];
@@ -393,7 +396,7 @@
     }
     
     //if follow count is 0, hide the editButton
-    if ([_myFollowList count] == 0 || _isInviteFriend) {
+    if ([_myFollowList count] == 0 || _isInviteFriend || myFanButton.selected) {
         editButton.hidden = YES;
     }else {
         editButton.hidden = NO;

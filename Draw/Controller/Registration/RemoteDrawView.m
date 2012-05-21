@@ -29,6 +29,7 @@
 @synthesize playbackButton;
 @synthesize index;
 @synthesize delegate;
+@synthesize wordLabel;
 
 
 - (void)dealloc {
@@ -36,6 +37,7 @@
     [nickNameLabel release];
     [showDrawView release];
     [playbackButton release];
+    [wordLabel release];
     [super dealloc];
 }
 
@@ -70,8 +72,12 @@
     
     self.index = aIndex;
     
+    //set word
+    wordLabel.text = remoteDrawData.word;
+    wordLabel.hidden = YES;
+    
     //set avatar
-    [avatarImage setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
+    [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     [avatarImage setUrl:[NSURL URLWithString:remoteDrawData.avatar]];
     [GlobalGetImageCache() manage:avatarImage];
     
@@ -79,22 +85,30 @@
     [nickNameLabel setText:remoteDrawData.nickName];
     
     //set drawView
+    showDrawView.frame = DRAW_VEIW_FRAME;
+    showDrawView.center = playbackButton.center;
+    CGFloat multiple = self.playbackButton.frame.size.height / showDrawView.frame.size.height;
+    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
     NSMutableArray *drawActionList = [[NSMutableArray alloc] init];
     for (PBDrawAction *pbDrawAction in remoteDrawData.drawDataList) {
         DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
         [drawActionList addObject:drawAction];
         [drawAction release];
     }
-    [showDrawView setDrawActionList:drawActionList];
-    [drawActionList release];
+    
+    //画笔的缩放
+    NSMutableArray *scaleActionList = nil;
     if ([DeviceDetection isIPAD]) {
-        showDrawView.frame = DRAW_VEIW_FRAME_IPAD;
-    }else {
-        showDrawView.frame = DRAW_VEIW_FRAME;
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:IPAD_WIDTH_SCALE 
+                                               yScale:IPAD_HEIGHT_SCALE];
+    } else {
+        scaleActionList = drawActionList;
     }
-    showDrawView.center = playbackButton.center;
-    CGFloat multiple = self.playbackButton.frame.size.height / showDrawView.frame.size.height;
-    showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
+    [showDrawView setDrawActionList:scaleActionList];
+    [drawActionList release];
+    
+    
     showDrawView.playSpeed = 2/40.0;
 }
 

@@ -49,7 +49,7 @@ NSMutableArray *list;
     
     // create queue
     [self setQueue:[[[NSOperationQueue alloc] init] autorelease]];
-    [self.queue setMaxConcurrentOperationCount:20];
+    [self.queue setMaxConcurrentOperationCount:10];
     
     // create directory if not exist
     [FileUtil createDir:self.downloadTempDir];
@@ -78,6 +78,24 @@ NSMutableArray *list;
     return [self.downloadTempDir stringByAppendingString:fileName];
 }
 
+- (void)requestDone:(ASIHTTPRequest *)request
+{
+    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
+    [[MusicItemManager defaultManager] downloadFinish:item];
+    [self moveFile:item];
+    PPDebug(@"item (%@) download done", [item url]);
+    
+}
+
+- (void)requestWentWrong:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
+    [[MusicItemManager defaultManager] downloadFailure:item];
+    PPDebug(@"item (%@) download failure, response done = %@", [item url], [error description]);
+    
+}
+
 - (BOOL)startDownload:(MusicItem*)item
 {
     NSURL* url = [NSURL URLWithString:[item url]];
@@ -85,6 +103,8 @@ NSMutableArray *list;
     // start to download
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
+    [[MusicItemManager defaultManager] downloadStart:item request:request];
+
     [request setDownloadDestinationPath:[item localPath]];    
     [request setAllowResumeForFileDownloads:YES];
     [request setTemporaryFileDownloadPath:[item tempPath]];    
@@ -95,6 +115,7 @@ NSMutableArray *list;
     [request setDidFailSelector:@selector(requestWentWrong:)];
     [request setResponseEncoding:NSUTF8StringEncoding];
     [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [request setTimeOutSeconds:30.0];
     
     PPDebug(@"download file, URL=%@, save to %@, temp path %@", [item url], [item localPath], [item tempPath]);
     
@@ -219,16 +240,25 @@ NSMutableArray *list;
     [[MusicItemManager defaultManager] saveItem:item];
 }
 
-- (void)requestDone:(ASIHTTPRequest *)request
+- (void)resumeDownloadItem:(MusicItem*)item
 {
-    NSString *reponse = [request responseString];
-    MusicItem *item = [MusicItem fromDictionary:request.userInfo];
-    [self moveFile:item];
+    [self startDownload:item];
 }
 
-- (void)requestWentWrong:(ASIHTTPRequest *)request
+- (void)resumeAllDownloadItemByStatus:(int)status
 {
-        
+    NSArray* list = [[MusicItemManager defaultManager] findAllItemsByStatus:status];
+    for (MusicItem* item in list){
+        [self resumeDownloadItem:item];
+    }
+}
+
+- (void)resumeAllDownloadItem
+{
+//    [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_FAIL];
+    [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_NOT_STARTED];
+    [self resumeAllDownloadItemByStatus:DOWNLOAD_STATUS_STARTED];
+
 }
 
 @end

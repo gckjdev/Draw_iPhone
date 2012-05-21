@@ -225,7 +225,6 @@
         x = baseX + width / 2 + (width + space) * r;
         y = baseY + height / 2 + (height + space) * l ;
         colorView.center = CGPointMake(x, y);
-        NSLog(@"(x,y) = (%f,%f)",x,y);
         r = (r+1) % BUTTON_COUNT_PER_ROW;
         if (r == 0) {
             l ++;

@@ -31,20 +31,22 @@
 #import "FriendManager.h"
 #import "MusicItemManager.h"
 #import "CommonMessageCenter.h"
+#import "MusicDownloadService.h"
 
 NSString* GlobalGetServerURL()
 {    
-    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.9:8000/api/i?";    
+//    return @"http://192.168.137.137:8000/api/i?";    
+    return @"http://192.168.1.101:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return @"http://192.168.1.12:8100/api/i?";      
+    return @"http://192.168.1.101:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -77,7 +79,7 @@ NSString* GlobalGetTrafficServerURL()
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-                                               @"clickWord.mp3", 
+//                                               @"clickWord.mp3", 
                                                @"dingding.mp3", 
                                                @"correct.mp3", 
                                                @"oowrong.mp3", 
@@ -232,6 +234,9 @@ NSString* GlobalGetTrafficServerURL()
     
     [[DrawGameService defaultService] clearDisconnectTimer];
     [self.networkDetector start];
+    
+    [[MusicDownloadService defaultService] resumeAllDownloadItem];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -241,6 +246,9 @@ NSString* GlobalGetTrafficServerURL()
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    [[MusicItemManager defaultManager] saveMusicItems];
+
 }
 
 #pragma mark - Device Notification Delegate

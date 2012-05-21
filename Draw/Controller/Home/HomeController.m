@@ -28,7 +28,6 @@
 #import "StringUtil.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
-#import "MyFriendsController.h"
 #import "ChatController.h"
 #import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
@@ -363,11 +362,11 @@
         port = [server.port intValue];            
     }
 
-//    [[DrawGameService defaultService] setServerAddress:address];
-//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:address];
+    [[DrawGameService defaultService] setServerPort:port];    
     
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
-    [[DrawGameService defaultService] setServerPort:8080];   
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
+//    [[DrawGameService defaultService] setServerPort:8080];   
 
 //    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
 //    [[DrawGameService defaultService] setServerPort:8080];    
@@ -418,14 +417,6 @@
     [_feedbackLabel release];
     [_playWithFriendButton release];
     [super dealloc];
-}
-
-- (IBAction)clickFriend:(id)sender
-{
-    MyFriendsController *myFriends = [[MyFriendsController alloc] init];
-    [self.navigationController pushViewController:myFriends animated:YES];
-    [myFriends release];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:@"" delayTime:rand()%4];
 }
 
 @end
