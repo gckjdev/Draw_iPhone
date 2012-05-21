@@ -30,10 +30,26 @@
 {
     [super viewDidLoad];
     [self.aboutTitle setText:NSLS(@"kAbout_us_title")];
-    
+    NSString *infoString =  @"Program By\n\
+-------------------------------\n\
+PIPI Peng\n\
+Gamy Huang\n\
+Kira Ou\n\
+Xiaotao\n\
+Haodong\n\
+\n\
+\n\
+Designed By\n\
+-------------------------------\n\
+Roy He\n\
+\n\
+\n\
+";
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
     NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
-    contentTextView.text = [contentTextView.text stringByAppendingFormat:@"App Version : %@" ,currentVersion];
+    infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,currentVersion];
+    
+    contentTextView.text = infoString;
 }
 
 - (void)viewDidUnload

@@ -332,7 +332,7 @@
 "kUnfollowing" = "发送取消关注请求中...";
 "kUnfollowSuccessfully" = "成功取消关注";
 "kUnfollowFailed" = "取消关注失败";
-"kEnterWords" = "请输入内容";
+"kEnterWords" = "搜索条件不能为空";
 "kSearchUserPlaceholder" = "用户昵称/微博昵称/邮件地址";
 "kSearchFailedTitle" = "网络错误";
 "kSearchFailed" = "网络错误，搜索用户失败，请检查网络是否可用或稍候再试";
@@ -367,6 +367,9 @@
 "kDontWriteAnswer" = "别给答案啊" ;
 "kGiveAPrompt" = "给点提示吧";
 "kWellDone" = "画的真好";
+
+"kFollowMe" = "关注";
+"kFollowed" = "已关注";
 
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";

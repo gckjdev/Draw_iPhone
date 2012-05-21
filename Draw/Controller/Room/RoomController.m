@@ -160,8 +160,8 @@
     [self clearUnPopupMessages];
     [super viewDidDisappear:animated];
     [[DrawGameService defaultService] unregisterObserver:self]; 
-    [_privateChatController dismiss];
-    [_groupChatController dismiss];
+    [_privateChatController dismiss:NO];
+    [_groupChatController dismiss:NO];
     PPDebug(@"<unregisterObserver> room controller");
 }
 
@@ -814,7 +814,7 @@
     }
     _groupChatController.chatControllerDelegate = self;
     
-    [_groupChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil];
+    [_groupChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil needAnimation:YES];
 }
 
 - (IBAction)clickPrivateChat:(id)sender {
@@ -823,7 +823,7 @@
     }
     _privateChatController.chatControllerDelegate = self;
    
-    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil];
+    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:nil needAnimation:YES];
 }
 
 - (IBAction)clickMenu:(id)sender
@@ -1020,7 +1020,7 @@
     }
     _privateChatController.chatControllerDelegate = self;
     
-    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId];
+    [_privateChatController showInView:self.view messagesType:RoomMessages selectedUserId:userId needAnimation:YES];
 }
 
 - (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message

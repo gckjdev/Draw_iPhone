@@ -17,6 +17,7 @@
 #import "ShareImageManager.h"
 #import "FriendManager.h"
 #import "CommonMessageCenter.h"
+#import "AnimationManager.h"
 #import "PPDebug.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
@@ -43,7 +44,7 @@
 
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
-#define MAX_WIDTH_NAME_LABEL_IPHONE 110
+#define MAX_WIDTH_NAME_LABEL_IPHONE 126
 #define MAX_WIDTH_NAME_LABEL_IPAD 283
 #define MAX_WIDTH_NAME_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_NAME_LABEL_IPAD):(MAX_WIDTH_NAME_LABEL_IPHONE))
 
@@ -127,6 +128,8 @@
     avatarHolderView.backgroundColor = [UIColor clearColor];
     
     [payAttentionButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+    [payAttentionButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
+    [alreadPayAttentionLabel setText:NSLS(@"kFollowed")];
     
     [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
     
@@ -244,7 +247,7 @@
 }
 
 - (IBAction)clickClose:(id)sender {
-    [self.view removeFromSuperview];
+    [self dismiss:YES];
 }
 
 - (void)clickExpression:(id)sender
@@ -265,7 +268,7 @@
     }
     
     NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:1 isSuccessful:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isSuccessful:YES];
 }
 
 
@@ -273,7 +276,8 @@
 - (void)didFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
-        [payAttentionButton setTitle:NSLS(@"kFollowSuccessfully") forState:UIControlStateNormal];
+        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
+
         payAttentionButton.hidden = YES;
         alreadPayAttentionLabel.hidden = NO;
     } else {
@@ -348,7 +352,7 @@
     }
     
     NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:1.0 isSuccessful:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isSuccessful:YES];
 }
 
 - (void)configureExpressionScrollView
@@ -443,8 +447,6 @@
     cityLabel.text = user.location;
     cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL+cityLabel.frame.size.width/2, sexLabel.center.y);
     
-    [payAttentionButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
-    
     if ([[FriendManager defaultManager] isFollowFriend:_selectedUserId]) {
         payAttentionButton.hidden = YES;
         alreadPayAttentionLabel.hidden = NO;
@@ -454,9 +456,7 @@
     }
 }
 
-
-
-- (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId
+- (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId needAnimation:(BOOL)needAnimation
 {
     self.dataList = [self messages:type];
     [dataTableView reloadData];
@@ -468,8 +468,13 @@
             [self popupMessage:NSLS(@"kNobodyInRoom") title:nil];
             return;
         }
+
         [superView addSubview:self.view];
-        
+        if (needAnimation) {
+            CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:0.3 delegate:self removeCompeleted:NO];
+            [self.view.layer addAnimation:runIn forKey:@"runIn"];
+        }
+
         // Update player avatars.
         [self updatePlayerAvatars:otherUsers];
         
@@ -484,8 +489,15 @@
     }else {
         // Add to superview.        
         [superView addSubview:self.view];
+        
+        if (needAnimation) {
+            CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:0.3 delegate:self removeCompeleted:NO];
+            [self.view.layer addAnimation:runIn forKey:@"runIn"];
+        }
     }
 }
+
+
 
 - (NSArray*)messages:(MessagesType)type
 {
@@ -538,10 +550,23 @@
     }
 }
 
-- (void)dismiss
+- (void)dismiss:(BOOL)needAnimation
 {
-    [self.view removeFromSuperview];
+    if (needAnimation) {
+        CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:0.3 delegate:self removeCompeleted:NO];
+        [self.view.layer addAnimation:runOut forKey:@"runOut"];
+    }else {
+        [self.view removeFromSuperview];
+    }
 }
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([self.view.layer animationForKey:@"runOut"] == anim) {
+        [self.view removeFromSuperview];
+    }
+}
+
 
 - (UIImage*)getMicroImage:(GameSessionUser*)user
 {

@@ -23,10 +23,8 @@
     RoomService *roomService;
 
 }
-@property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *createButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchButton;
-- (IBAction)clickEditButton:(id)sender;
 - (IBAction)clickCreateButton:(id)sender;
 - (IBAction)clickSearchButton:(id)sender;
 - (IBAction)clickMyFriendButton:(id)sender;
