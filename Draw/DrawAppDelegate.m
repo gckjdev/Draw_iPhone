@@ -79,7 +79,7 @@ NSString* GlobalGetTrafficServerURL()
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-//                                               @"clickWord.mp3", 
+                                               @"ding.wav", 
                                                @"dingding.mp3", 
                                                @"correct.mp3", 
                                                @"oowrong.mp3", 

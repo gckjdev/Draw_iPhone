@@ -315,8 +315,7 @@
         AvatarView* imageView = (AvatarView*)[self.view viewWithTag:imageStartTag++];
         [imageView setImage:nil];
         [imageView setUserId:nil];
-        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
-        [view removeFromSuperview];
+        [imageView setHasPen:NO];
         
         [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
