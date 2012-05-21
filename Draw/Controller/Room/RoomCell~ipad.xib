@@ -75,7 +75,7 @@
 							<object class="IBUILabel" id="119026705">
 								<reference key="NSNextResponder" ref="711090443"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{137, 50}, {280, 50}}</string>
+								<string key="NSFrame">{{137, 50}, {380, 50}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="194193288"/>
@@ -109,7 +109,7 @@
 							<object class="IBUILabel" id="862507186">
 								<reference key="NSNextResponder" ref="711090443"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{137, 12}, {280, 42}}</string>
+								<string key="NSFrame">{{137, 12}, {380, 42}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="119026705"/>
@@ -177,7 +177,7 @@
 							<object class="IBUILabel" id="194193288">
 								<reference key="NSNextResponder" ref="711090443"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{137, 94}, {430, 50}}</string>
+								<string key="NSFrame">{{137, 100}, {530, 40}}</string>
 								<reference key="NSSuperview" ref="711090443"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="670964320"/>
@@ -193,6 +193,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">7</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>

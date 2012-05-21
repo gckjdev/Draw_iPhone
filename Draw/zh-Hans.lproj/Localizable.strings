@@ -329,6 +329,7 @@
 "kFollowing" = "发送关注请求中...";
 "kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注用户失败，请检查网络是否可用或稍候再试";
+"kUnfollow" = "取消关注";
 "kUnfollowing" = "发送取消关注请求中...";
 "kUnfollowSuccessfully" = "成功取消关注";
 "kUnfollowFailed" = "取消关注失败";
@@ -445,3 +446,6 @@
 "kInviteFriendsTitle" = "邀请好友";
 "kNoRoomTips" = "暂无房间，请点击下面的［创建房间］建立自己的房间，或者［搜索房间］加入其它好友的房间";
 "kSearchNoResult" = "未搜索到符合条件的房间";
+
+"kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友猜猜画画吧!";
+

@@ -148,7 +148,7 @@
                 break;
             case RoomFree:
             default:
-                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kFree"),count,NSLS(@"kFriendsInvited"),listString,dot];
+                listString = [NSString stringWithFormat:@"[%@] %d %@ (%@%@)",NSLS(@"kFree"),count,NSLS(@"kFriendsInvited"),listString,dot];
                 break;
         }
         [self.userListLabel setText:listString];

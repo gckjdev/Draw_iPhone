@@ -217,11 +217,8 @@
         }else{        
             cell.statusLabel.hidden = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            if (stat == UserInvited) {
+            if (stat != UserUnInvited) {
                 [cell.statusLabel setText:NSLS(@"kInvited")];
-            }else if(stat == UserJoined || stat == UserPlaying)
-            {
-                [cell.statusLabel setText:NSLS(@"kJoined")];
             }else{
                 cell.statusLabel.hidden = YES;
             }
@@ -292,6 +289,11 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kUnfollow");
 }
 
 
@@ -547,8 +549,8 @@
     }else{
         [self popupMessage:NSLS(@"kInviteFriendSucc") title:nil];
         [self updateRoomUsers:friendSet];
+        [_selectedSet removeAllObjects];
     }
-    [_selectedSet removeAllObjects];
     editButton.hidden = YES;
 }
 @end

@@ -317,6 +317,7 @@
 "kFollowing" = "Sending request...";
 "kFollowSuccessfully" = "Follow user successfully!";
 "kFollowFailed" = "Network error, follow user failed!";
+"kUnfollow" = "Unfollow";
 "kUnfollowing" = "Sending request...";
 "kUnfollowSuccessfully" = "Unfollow user successfully!";
 "kUnfollowFailed" = "Network error, fail to unfollow user!";
@@ -432,3 +433,5 @@
 "kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No room matched";
+
+"kPushMessage" = "%@ created a new room, \"%@\". Hurry to Join and play with your friends.";

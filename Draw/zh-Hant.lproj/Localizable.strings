@@ -328,6 +328,7 @@
 "kFollowing" = "正在關注...";
 "kFollowSuccessfully" = "關注成功！";
 "kFollowFailed" = "網絡錯誤，關注失敗！";
+"kUnfollow" = "取消關注";
 "kUnfollowing" = "正在取消關注...";
 "kUnfollowSuccessfully" = "成功取消關注！";
 "kUnfollowFailed" = "網絡錯誤，取消關注失敗！";
@@ -441,3 +442,5 @@
 "kInviteFriendsTitle" = "邀請好友";
 "kNoRoomTips" = "無房間，創建房間或搜索房間加入。";
 "kSearchNoResult" = "未搜索到符合條件的房間。";
+
+"kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
