@@ -293,6 +293,10 @@
     PPDebug(@"<didBroken> Friend Room");
     [self hideActivity];
     [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+    
+    if (self.navigationController.topViewController != self){
+        [self.navigationController popToViewController:self animated:YES];
+    }
 }
 
 - (void)didConnected

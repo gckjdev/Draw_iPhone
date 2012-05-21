@@ -97,7 +97,7 @@
 "kEnterEmail" = "Enter Email";
 "kStartGame" = "Start";
 "kLookOverDraw" = "View Drawing";
-"kPainted" = "painted";
+"kPainted" = " drawed ";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
