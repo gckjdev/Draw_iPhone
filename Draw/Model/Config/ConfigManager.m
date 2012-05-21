@@ -13,6 +13,16 @@
 
 @implementation ConfigManager
 
++ (NSString*)getTrafficAPIServerURL
+{
+    if ([LocaleUtils isChina]){
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_CN" defaultValue:@"http://58.215.189.146:8100/api/i?"];    
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_EN" defaultValue:@"http://58.215.189.146:8100/api/i?"];    
+    }
+}
+
 + (NSString*)getMusicDownloadHomeURL
 {
     if ([LocaleUtils isChina]){
@@ -71,6 +81,11 @@
 + (BOOL)enableReview
 {
     return ([MobClickUtils getIntValueByKey:@"ENABLE_REVIEW" defaultValue:0] == 1);
+}
+
++ (BOOL)isInReview
+{
+    return ([MobClickUtils getIntValueByKey:@"IN_REVIEW" defaultValue:0] == 1);    
 }
 
 @end

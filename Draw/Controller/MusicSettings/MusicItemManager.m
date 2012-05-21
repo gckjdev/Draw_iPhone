@@ -9,6 +9,8 @@
 #import "MusicItemManager.h"
 #import "LocaleUtils.h"
 #import "AudioManager.h"
+#import "LocaleUtils.h"
+#import "ConfigManager.h"
 
 #define KEY_MUSICLIST @"musicList"
 #define KEY_CURRENT_MUSIC @"currentMusic"
@@ -69,7 +71,12 @@ static MusicItemManager *_defaultManager;
     }
     
     if (self.currentMusicItem == nil) {
-        self.currentMusicItem = defaultMusicItem;
+        if ([ConfigManager isInReview]){
+            self.currentMusicItem = noneMusicItem;
+        }
+        else{
+            self.currentMusicItem = defaultMusicItem;
+        }
     }
 }
 

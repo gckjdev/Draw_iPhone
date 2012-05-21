@@ -1,9 +1,9 @@
-/* 
+/*
  Localizable.strings
  GhostGame
  
  Created by haodong qiu on 12年3月1日.
- Copyright (c) 2012年 orange. All rights reserved.
+ Copyright (c) 2012年orange. All rights reserved.
  
  【】
  
@@ -69,7 +69,7 @@
 
 
 "kContinue" = "繼續 [%d]";
-"kExit" = "退出";
+"kExit" = "退出遊戲";
 "kSave" = "保存";
 "kTurnResult" = "本輪結果";
 "kBuyColor" = "購買顏色";
@@ -211,7 +211,7 @@
 "kDrawWord" = "你正在畫: %@";
 "kAnswer" = "答案: [%@]";
 
-"kNoWord" = "畫家逃跑了！";
+"kNoWord" = "畫家逃跑了!";
 "kCleanDrawTitle" = "清屏";
 "kCleanDrawMessage" = "清屏之後之前所畫的東西都會消失，確定嗎？";
 "kSavePercent" = "節省%02d%%";
@@ -239,7 +239,8 @@
 
 "kEmail_subject" = "分享［猜猜畫畫］移動版遊戲";
 
-"kCreating_gif" = "正在生成GIF動畫文件...";
+"kCreating_gif" = "正在生成GIF動畫文件中... 文件可能比較大，請耐心等待";
+
 
 "kShareOtherText" = "我在玩@猜猜畫畫手機版，對手真油菜花！TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
 "kShareMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://caicaihuahua.me";
@@ -270,19 +271,19 @@
 "kMore_apps" = "更多應用";
 "kNextStep" = "下一步";
 "kWordLengthTip" = "溫馨小提示：當前猜詞的字數為［%d］";
-"kContentNull" = "內容不能為空哦。";
+"kContentNull" = "搜索條件不能為空";
 
 "kNoDrawings" = "你還沒有任何作品呢";
 "kAll" = " 所有";
 "kMine" = "我的 ";
 "kNone" = "無";
-"kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片";
+"kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
 
-"kContentRepeat" = "您已經反饋過了";
+"kContentRepeat" = "謝謝，您已經反饋過了";
 
 
-"kContentRepeat" = "您已經匯報過這個問題了!";
+"kContentRepeat" = "謝謝，您已經匯報過這個問題了!";
 
 /*the new words below without Japanese*/
 
@@ -315,65 +316,67 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "關注";
 "kFans" = "粉絲";
-"kNoFollow" = "還沒有關注呢";
-"kNoFans" = "還沒有粉絲呢";
+"kNoFollow" = "還沒有關注任何好友，點擊下面的搜索用戶按鈕查找和關注你的好友吧。";
+"kNoFans" = "暫未有粉絲";
 "kEdit" = "編輯";
 "kSearchUser" = "搜索用戶";
 "kSearch" = "搜索";
 "kAddAsFriend" = "關注";
 "kAlreadyBeFriend" = "已關注";
-"kDidNottFindThisUser" = "沒有找到此用戶";
-"kUpdateFollowFailed" = "網絡錯誤，更新關注失敗！";
-"kUpdateFansFailed" = "網絡錯誤，更新粉絲失敗！";
-"kFollowing" = "正在關注...";
+"kDidNottFindThisUser" = "未找到用戶";
+"kUpdateFollowFailed" = "網絡錯誤，更新我的關注失敗，請檢查網絡是否可用或稍候再試";
+"kUpdateFansFailed" = "網絡錯誤，更新我的粉絲失敗，請檢查網絡是否可用或稍候再試";
+"kFollowing" = "發送關注請求中...";
 "kFollowSuccessfully" = "關注成功！";
-"kFollowFailed" = "網絡錯誤，關注失敗！";
+"kFollowFailed" = "網絡錯誤，關注用戶失敗，請檢查網絡是否可用或稍候再試";
 "kUnfollow" = "取消關注";
-"kUnfollowing" = "正在取消關注...";
-"kUnfollowSuccessfully" = "成功取消關注！";
-"kUnfollowFailed" = "網絡錯誤，取消關注失敗！";
+"kUnfollowing" = "發送取消關注請求中...";
+"kUnfollowSuccessfully" = "成功取消關注";
+"kUnfollowFailed" = "取消關注失敗";
 "kEnterWords" = "搜索條件不能為空";
-"kSearchUserPlaceholder" = "暱稱/微博暱稱/QQ號/郵箱";
+"kSearchUserPlaceholder" = "用戶暱稱/微博暱稱/郵件地址";
 "kSearchFailedTitle" = "網絡錯誤";
-"kSearchFailed" = "網絡錯誤，搜索失敗！";
-"kSearching" = "正在搜索...";
+"kSearchFailed" = "網絡錯誤，搜索用戶失敗，請檢查網絡是否可用或稍候再試";
+"kSearching" = "搜索用戶中...";
 "kMyself" = "我";
 
 "kLevelSettings" = "猜詞難度";
-"kEasyLevel" = "業餘";
-"kNormalLevel" = "專業";
+"kEasyLevel" = "新手";
+"kNormalLevel" = "熟手";
 "kHardLevel" = "大師";
 "kLevelSelection" = "難度選擇";
-"kPlayWithFriend" = "以畫會友";
+"kPlayWithFriend" = "好友同樂";
 
 "kCreateRoom" = "創建房間";
 "kSearchRoom" = "搜索房間";
+
 
 "kMale" = "男";
 "kFemale" = "女";
 "kSayToYou" = "對你說: %@";
 "kSayToYou:" = "對你說:";
-"kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
+"kNobodyInRoom" = "房間裡沒有其他人時，不能私聊";
 
-"kPayAttentionToMe" = "關註我吧";
-"kDrawTillDawn" = "決戰到天亮";
-"kHelloEveryone" = "hi,大家好";
-"kDontLeave" = "别走啊";
+"kPayAttentionToMe" = "關注我吧";
+"kDrawTillDawn" = "決戰到天明";
+"kHelloEveryone" = "Hi,大家好";
+"kDontLeave" = "別走啊";
 "kFunny" = "真有趣";
-"kDrawedWhat" = "畫什麽啊";
-"kHardToGuess" = "真難猜";
+"kDrawedWhat" = "畫神馬啊";
+"kHardToGuess" = "好難猜";
 "kSelfDefine" = "+";
 "kDontWriteAnswer" = "別給答案啊" ;
 "kGiveAPrompt" = "給點提示吧";
 "kWellDone" = "畫的真好";
 
-"kFollowMe" = "關註";
-"kFollowed" = "已關註";
+"kFollowMe" = "關注";
+"kFollowed" = "已關注";
 
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
-"kSendToUserSuccess" = "消息已經成功發送給%@";
+"kSendToUserSuccess" = "消息已成功發送至%@";
+
 
 "kRoomPasswordHolder" = "請輸入房間口令";
 "kRoomNameHolder" = "請輸入房間名字";
@@ -389,6 +392,7 @@
 "kRoomCreating" = "創建房間中...";
 "kRoomSearching" = "搜索房間中...";
 "kInviting" = "邀請好友中...";
+
 "kRoomNameNumber" = "%@的房間%d";
 
 "kUnFull" = "未滿";
@@ -398,16 +402,16 @@
 "kFriendsInvited" = "人已被邀請";
 
 
-"kFindRoomListFail" = "獲取房間列表失敗。";
-"kCreateRoomFail" = "創建房間失敗。";
-"kRemoveRoomFail" = "刪除房間失敗。";
-"kSearchRoomFail" = "搜索房間失敗。";
-"kInviteFriendFail" = "邀請好友失敗。";
+"kFindRoomListFail" = "獲取房間列表失敗，請檢查網絡是否可用或稍候再試";
+"kCreateRoomFail" = "創建房間失敗，請檢查網絡是否可用或稍候再試";
+"kRemoveRoomFail" = "刪除房間失敗，請檢查網絡是否可用或稍候再試";
+"kSearchRoomFail" = "搜索房間失敗，請檢查網絡是否可用或稍候再試";
+"kInviteFriendFail" = "邀請好友失敗，請檢查網絡是否可用或稍候再試";
 
-"kFindRoomListSucc" = "獲取房間列表成功";
-"kCreateRoomSucc" = "創建房間成功。";
-"kRemoveRoomSucc" = "刪除房間成功。";
-"kInviteFriendSucc" = "邀請好友成功。";
+"kFindRoomListSucc" = "成功獲取房間列表";
+"kCreateRoomSucc" = "創建房間成功";
+"kRemoveRoomSucc" = "刪除房間成功";
+"kInviteFriendSucc" = "邀請好友成功";
 
 "kRoomSearhTips" = "暱稱 / 房間名";
 "kInputRoomPassword" = "請輸入房間口令";
@@ -425,24 +429,23 @@
 "kLoadingURL" = "加載網頁中...";
 "kDefaultMusic" = "默認背景音樂";
 "kNoMusic" = "無";
-"kPrevious" = "前一頁";
-"kNext" = "後一頁";
+"kPrevious" = "後退";
+"kNext" = "前進";
 "kRefresh" = "刷新";
 "kStop" = "停止";
 
-"kUserLogin" = "玩家登入";
-
+"kUserLogin" = "用戶登錄";
 
 "kNoneInvited" = "尚未邀請朋友";
-"kFirstGame" = "這是您首次遊戲，請先註冊";
+"kFirstGame" = "這是您第一次使用本遊戲，請先註冊";
 
 "kFriendControl" = "好友管理";
-"kFriendPlayTitle" = "以畫會友";
+"kFriendPlayTitle" = "好友同樂";
 "kInviteFriends" = "邀請好友";
 "kInviteFriendsTitle" = "邀請好友";
-"kNoRoomTips" = "無房間，創建房間或搜索房間加入。";
-"kSearchNoResult" = "未搜索到符合條件的房間。";
+"kNoRoomTips" = "暫無房間，請點擊下面的［創建房間］建立自己的房間，或者［搜索房間］加入其它好友的房間";
+"kSearchNoResult" = "未搜索到符合條件的房間";
 
 "kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
-"kGuessWhatIDraw" = "猜猜我畫了什麼?";
-"kGuessWhatTheyDraw" = "猜猜Ta畫了什麼?";
+"kGuessWhatIDraw" = "猜猜我畫了什麼？";
+"kGuessWhatTheyDraw" = "猜猜TA畫了什麼？";

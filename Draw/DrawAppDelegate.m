@@ -33,21 +33,23 @@
 #import "CommonMessageCenter.h"
 #import "MusicDownloadService.h"
 #import "FriendService.h"
+#import "UIUtils.h"
 
 NSString* GlobalGetServerURL()
 {    
-//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
     
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.137.137:8000/api/i?";    
-    return @"http://192.168.1.101:8000/api/i?";    
+//    return @"http://192.168.1.101:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return @"http://192.168.1.101:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.101:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -253,7 +255,12 @@ NSString* GlobalGetTrafficServerURL()
 
 #pragma mark - Device Notification Delegate
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {   
+    if ([[url absoluteString] hasPrefix:@"wx"]){
+        [UIUtils alert:@"本版本还不支持微信分享，请下载最新版本 :-)"];
+        return YES;
+    }
+    
     return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
 
