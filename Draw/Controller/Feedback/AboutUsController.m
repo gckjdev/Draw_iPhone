@@ -15,6 +15,7 @@
 
 @implementation AboutUsController
 @synthesize aboutTitle;
+@synthesize contentTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,12 +30,16 @@
 {
     [super viewDidLoad];
     [self.aboutTitle setText:NSLS(@"kAbout_us_title")];
-    // Do any additional setup after loading the view from its nib.
+    
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
+    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
+    contentTextView.text = [contentTextView.text stringByAppendingFormat:@"App Version : %@" ,currentVersion];
 }
 
 - (void)viewDidUnload
 {
     [self setAboutTitle:nil];
+    [self setContentTextView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,6 +53,7 @@
 
 - (void)dealloc {
     [aboutTitle release];
+    [contentTextView release];
     [super dealloc];
 }
 @end
