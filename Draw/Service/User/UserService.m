@@ -244,6 +244,7 @@ static UserService* _defaultUserService;
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
                                                             nickName:nickName 
+                                                              gender:gender
                                                             password:password 
                                                               avatar:[avatarImage data]];
                 

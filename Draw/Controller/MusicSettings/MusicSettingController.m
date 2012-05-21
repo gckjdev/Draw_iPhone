@@ -146,6 +146,8 @@ enum{
     tapGesture.delegate = self;
     [self.webView addGestureRecognizer:tapGesture];
     [tapGesture release];
+    
+    [[MusicDownloadService defaultService] resumeAllDownloadItem];
             
 }
 
