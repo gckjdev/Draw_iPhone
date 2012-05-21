@@ -432,3 +432,5 @@
 "kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No room matched";
+
+"kPushMessage" = "@%@ created a new room, \"%@\". Hurry to Join and play with your friends.
