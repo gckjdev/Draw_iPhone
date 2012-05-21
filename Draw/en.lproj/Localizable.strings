@@ -436,3 +436,4 @@
 
 "kPushMessage" = "%@ created a new room, \"%@\". Hurry to Join and play with your friends.";
 "kGuessWhatIDraw" = "Guess what i drew?";
+"kGuessWhatTheyDraw" = "Guess what's this?";

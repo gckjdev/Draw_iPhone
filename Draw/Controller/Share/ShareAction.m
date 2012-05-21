@@ -135,7 +135,7 @@
         }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:text];
+                                                                                text:text isDrawByMe:_isDrawByMe];
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    
 }
