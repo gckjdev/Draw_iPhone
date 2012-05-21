@@ -426,7 +426,7 @@
 "kNoneInvited" = "0 friend invited";
 "kFirstGame" = "It's your first time to play, please register first.";
 
-"kMyFriend" = "Friends";
+"kFriendControl" = "Friends";
 
 "kFriendPlayTitle" = "Rooms";
 "kInviteFriends" = "Invite";

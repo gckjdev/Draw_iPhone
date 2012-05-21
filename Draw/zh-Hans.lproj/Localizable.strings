@@ -439,8 +439,7 @@
 "kNoneInvited" = "尚未邀请朋友";
 "kFirstGame" = "这是您第一次使用本游戏，请先注册";
 
-"kMyFriend" = "我的好友";
-
+"kFriendControl" = "好友管理";
 "kFriendPlayTitle" = "好友同乐";
 "kInviteFriends" = "邀请好友";
 "kInviteFriendsTitle" = "邀请好友";
