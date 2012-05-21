@@ -82,7 +82,10 @@
 - (void)updateCurrentSelectedUser:(NSArray*)userList;
 - (NSArray*)getOtherUsers;
 - (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize;
-
+- (NSString*)getUserNickName:(int)type userId:(NSString*)userId;
+- (void)showChatInputDialog;
+- (void)handleChatMessage:(NSString*)message;
+- (UIImage*)getMicroImage:(GameSessionUser*)user;
 
 @end
 
