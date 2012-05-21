@@ -350,6 +350,9 @@
 
 - (IBAction)clickSearchUser:(id)sender
 {
+    editButton.selected = NO;
+    [dataTableView setEditing:editButton.selected animated:NO];
+    
     SearchUserController *searchUser  = [[SearchUserController alloc] init];
     [self.navigationController pushViewController:searchUser animated:YES];
     [searchUser release];
