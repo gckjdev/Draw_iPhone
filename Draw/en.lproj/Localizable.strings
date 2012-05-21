@@ -320,7 +320,7 @@
 "kUnfollowing" = "Sending request...";
 "kUnfollowSuccessfully" = "Unfollow user successfully!";
 "kUnfollowFailed" = "Network error, fail to unfollow user!";
-"kEnterWords" = "Please enter the content";
+"kEnterWords" = "Search keyword can not be empty.";
 "kSearchUserPlaceholder" = "Nickname/Facebook/Email";
 "kSearchFailedTitle" = "Network error";
 "kSearchFailed" = "Network error, search failed!";
