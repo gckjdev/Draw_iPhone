@@ -34,7 +34,7 @@ typedef enum {
 @property(nonatomic, retain)NSString *roomId;
 @property(nonatomic, retain)NSString *roomName;
 @property(nonatomic, retain)NSString *gameServerAddress;
-@property(nonatomic, retain)NSString *gameServerPort;
+@property(nonatomic, assign)NSInteger gameServerPort;
 @property(nonatomic, retain)NSString *password;
 @property(nonatomic, assign)RoomStatus status;
 @property(nonatomic, retain)NSDate *createDate;
