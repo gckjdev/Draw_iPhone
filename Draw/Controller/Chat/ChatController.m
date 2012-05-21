@@ -44,12 +44,14 @@
 
 #define HEIGHT_AVATAR WIDTH_AVATAR
 
-#define MAX_WIDTH_NAME_LABEL_IPHONE 126
-#define MAX_WIDTH_NAME_LABEL_IPAD 283
+#define RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH 1.2
+
+#define MAX_WIDTH_NAME_LABEL_IPHONE 122.0/RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH
+#define MAX_WIDTH_NAME_LABEL_IPAD 283/RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH
 #define MAX_WIDTH_NAME_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_NAME_LABEL_IPAD):(MAX_WIDTH_NAME_LABEL_IPHONE))
 
-#define MAX_WIDTH_SEX_LABEL_IPHONE 50
-#define MAX_WIDTH_SEX_LABEL_IPAD 100
+#define MAX_WIDTH_SEX_LABEL_IPHONE 50/RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH
+#define MAX_WIDTH_SEX_LABEL_IPAD 100/RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH
 #define MAX_WIDTH_SEX_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_SEX_LABEL_IPAD):(MAX_WIDTH_SEX_LABEL_IPHONE))
 
 //#define MAX_WIDTH_CITY_LABEL_IPHONE 
@@ -435,14 +437,14 @@
     
     nameLabel.text = user.nickName;
     CGSize nameStringSize = [self getStringSize:nameLabel.font string:nameLabel.text withinSize:MAX_SIZE_NAME_LABEL];
-    nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, nameStringSize.width*1.2, nameLabel.frame.size.height);
+    nameLabel.frame = CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.origin.y, nameStringSize.width*RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH, nameLabel.frame.size.height);
     
     [microBlogImageView setImage:[self getMicroImage:user]];
     microBlogImageView.center = CGPointMake(nameLabel.frame.origin.x+nameLabel.frame.size.width+EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW+microBlogImageView.frame.size.width/2, nameLabel.center.y);
         
     sexLabel.text = (user.gender==YES) ? NSLS(@"kMale") : NSLS(@"kFemale");
     CGSize sexStringSize = [self getStringSize:sexLabel.font string:sexLabel.text withinSize:MAX_SIZE_SEX_LABEL];
-    sexLabel.frame = CGRectMake(sexLabel.frame.origin.x, sexLabel.frame.origin.y, sexStringSize.width*1.2, sexLabel.frame.size.height);
+    sexLabel.frame = CGRectMake(sexLabel.frame.origin.x, sexLabel.frame.origin.y, sexStringSize.width*RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH, sexLabel.frame.size.height);
     
     cityLabel.text = user.location;
     cityLabel.center = CGPointMake(sexLabel.frame.origin.x+sexLabel.frame.size.width+EDGE_BETWEEN_SEX_LABEL_AND_CITY_LABEL+cityLabel.frame.size.width/2, sexLabel.center.y);
