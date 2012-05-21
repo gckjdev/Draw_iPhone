@@ -171,7 +171,7 @@
 						<string key="NSFrame">{{610, 13}, {150, 74}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="379487772"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -205,7 +205,7 @@
 					<object class="IBUITableView" id="274539582">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{42, 222}, {683, 637}}</string>
+						<string key="NSFrame">{{42, 146}, {683, 713}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="362580815"/>
@@ -296,7 +296,6 @@
 						<string key="NSFrame">{{455, 908}, {278, 74}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -312,39 +311,6 @@
 						</object>
 						<reference key="IBUIFontDescription" ref="17154632"/>
 						<reference key="IBUIFont" ref="1042106387"/>
-					</object>
-					<object class="IBUIButton" id="379487772">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{582, 143}, {104, 56}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="274539582"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
-						<string key="IBUINormalTitle">edit</string>
-						<reference key="IBUIHighlightedTitleColor" ref="633376420"/>
-						<reference key="IBUINormalTitleColor" ref="633376420"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">red_button@2x.png</string>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">2</int>
-							<double key="pointSize">32</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">32</double>
-							<int key="NSfFlags">16</int>
-						</object>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
@@ -379,14 +345,6 @@
 						<reference key="destination" ref="829468780"/>
 					</object>
 					<int key="connectionID">33</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">editButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="379487772"/>
-					</object>
-					<int key="connectionID">36</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -480,15 +438,6 @@
 					</object>
 					<int key="connectionID">43</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickEditButton:</string>
-						<reference key="source" ref="379487772"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">35</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -511,7 +460,6 @@
 							<reference ref="835417352"/>
 							<reference ref="362580815"/>
 							<reference ref="168252116"/>
-							<reference ref="379487772"/>
 							<reference ref="698337582"/>
 							<reference ref="241909135"/>
 						</array>
@@ -583,11 +531,6 @@
 						<reference key="object" ref="241909135"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="379487772"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -607,7 +550,6 @@
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -660,17 +602,12 @@
 					<string key="superclassName">PPTableViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickCreateButton:">id</string>
-						<string key="clickEditButton:">id</string>
 						<string key="clickMyFriendButton:">id</string>
 						<string key="clickSearchButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clickCreateButton:">
 							<string key="name">clickCreateButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickEditButton:">
-							<string key="name">clickEditButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickMyFriendButton:">
@@ -684,7 +621,6 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="createButton">UIButton</string>
-						<string key="editButton">UIButton</string>
 						<string key="myFriendButton">UIButton</string>
 						<string key="noRoomTips">UILabel</string>
 						<string key="searchButton">UIButton</string>
@@ -693,10 +629,6 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="createButton">
 							<string key="name">createButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="editButton">
-							<string key="name">editButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="myFriendButton">
@@ -989,7 +921,6 @@
 			<string key="orange_button@2x.png">{71, 84}</string>
 			<string key="paper@2x.png">{640, 960}</string>
 			<string key="paperclip@2x.png">{388, 79}</string>
-			<string key="red_button@2x.png">{71, 84}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="wood_bg2@2x.png">{640, 960}</string>
 		</dictionary>
