@@ -217,11 +217,8 @@
         }else{        
             cell.statusLabel.hidden = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            if (stat == UserInvited) {
+            if (stat != UserUnInvited) {
                 [cell.statusLabel setText:NSLS(@"kInvited")];
-            }else if(stat == UserJoined || stat == UserPlaying)
-            {
-                [cell.statusLabel setText:NSLS(@"kJoined")];
             }else{
                 cell.statusLabel.hidden = YES;
             }
