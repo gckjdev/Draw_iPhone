@@ -357,9 +357,11 @@
     // update room left/right button
     if (_isFriendRoom){
         self.changeRoomButton.hidden = YES;
+        self.onlinePlayerCountLabel.hidden = YES;
     }
     else{
         self.changeRoomButton.hidden = NO;
+        self.onlinePlayerCountLabel.hidden = NO;
     }
 }
 
