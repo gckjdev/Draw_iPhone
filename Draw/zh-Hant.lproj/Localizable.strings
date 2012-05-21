@@ -328,6 +328,7 @@
 "kFollowing" = "正在關注...";
 "kFollowSuccessfully" = "關注成功！";
 "kFollowFailed" = "網絡錯誤，關注失敗！";
+"kUnfollow" = "取消關注";
 "kUnfollowing" = "正在取消關注...";
 "kUnfollowSuccessfully" = "成功取消關注！";
 "kUnfollowFailed" = "網絡錯誤，取消關注失敗！";

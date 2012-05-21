@@ -294,6 +294,11 @@
     return YES;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kUnfollow");
+}
+
 
 #pragma -mark Button Action
 - (IBAction)clickBack:(id)sender {
