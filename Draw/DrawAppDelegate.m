@@ -32,6 +32,7 @@
 #import "MusicItemManager.h"
 #import "CommonMessageCenter.h"
 #import "MusicDownloadService.h"
+#import "FriendService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -160,8 +161,9 @@ NSString* GlobalGetTrafficServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-    //[[FriendManager defaultManager] removeAllDeletedFriends];
-    
+    [[FriendManager defaultManager] removeAllDeletedFriends];
+    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
+    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
