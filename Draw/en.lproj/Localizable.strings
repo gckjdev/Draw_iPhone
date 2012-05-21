@@ -355,6 +355,9 @@
 "kGiveAPrompt" = "Prompt me";
 "kWellDone" = "Well done";
 
+"kFollowMe" = "Follow";
+"kFollowed" = "Followed";
+
 "kChatDialogTitle" = "Say to 【%@】";
 "kAllUser" = "All";
 "kInputWhatYouWantToSay" = "Input what you want to say";

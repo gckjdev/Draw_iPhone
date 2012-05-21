@@ -83,8 +83,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [_privateChatController dismiss];
-    [_groupChatController dismiss];
+    [_privateChatController dismiss:NO];
+    [_groupChatController dismiss:NO];
     [super viewDidDisappear:animated];
 }
 
@@ -335,7 +335,7 @@
     }
     _privateChatController.chatControllerDelegate = self;
     
-    [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId];
+    [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId needAnimation:YES];
 }
 
 - (void)showGroupChatView
@@ -345,7 +345,7 @@
     }
     _groupChatController.chatControllerDelegate = self;
     
-    [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil];
+    [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil needAnimation:YES];
 }
 
 - (void)didSelectMessage:(NSString*)message

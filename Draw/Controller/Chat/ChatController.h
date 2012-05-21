@@ -42,7 +42,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 - (id)initWithChatType:(GameChatType)type;
-- (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId;
-- (void)dismiss;
+- (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId needAnimation:(BOOL)needAnimation;
+- (void)dismiss:(BOOL)needAnimation;
 
 @end

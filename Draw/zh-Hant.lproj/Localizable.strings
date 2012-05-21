@@ -366,6 +366,9 @@
 "kGiveAPrompt" = "給點提示吧";
 "kWellDone" = "畫的真好";
 
+"kFollowMe" = "關註";
+"kFollowed" = "已關註";
+
 "kChatDialogTitle" = "和【%@】聊天中";
 "kAllUser" = "所有人";
 "kInputWhatYouWantToSay" = "輸入你想對TA說的話";
