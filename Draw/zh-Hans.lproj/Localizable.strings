@@ -329,6 +329,7 @@
 "kFollowing" = "发送关注请求中...";
 "kFollowSuccessfully" = "关注成功！";
 "kFollowFailed" = "网络错误，关注用户失败，请检查网络是否可用或稍候再试";
+"kUnfollow" = "取消关注";
 "kUnfollowing" = "发送取消关注请求中...";
 "kUnfollowSuccessfully" = "成功取消关注";
 "kUnfollowFailed" = "取消关注失败";
