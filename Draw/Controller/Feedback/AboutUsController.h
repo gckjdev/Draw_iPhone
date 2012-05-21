@@ -11,5 +11,6 @@
 
 @interface AboutUsController : PPViewController
 @property (retain, nonatomic) IBOutlet UILabel *aboutTitle;
+@property (retain, nonatomic) IBOutlet UITextView *contentTextView;
 
 @end
