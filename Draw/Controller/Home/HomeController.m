@@ -389,7 +389,10 @@
 {
     
     UIViewController *viewController = nil;
-    for(UIViewController *vc in superController.navigationController.childViewControllers)
+    
+    UINavigationController* navigationController = [[HomeController defaultInstance] navigationController];
+    
+    for(UIViewController *vc in navigationController.viewControllers)
     {
         if ([vc isKindOfClass:[SearchRoomController class]]) {
             viewController = vc;
@@ -399,11 +402,14 @@
             viewController = vc;
         }
     }
+    
     if (viewController != nil) {
-        [superController.navigationController popToViewController:viewController animated:YES];        
+        [navigationController popToViewController:viewController animated:YES];        
         return;
     }
-    [superController.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
+    
+    [navigationController popToViewController:[HomeController defaultInstance] 
+                                                     animated:YES];
 }
 
 - (void)dealloc {
