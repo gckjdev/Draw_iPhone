@@ -27,7 +27,6 @@
 @synthesize titleLabel;
 @synthesize myFriendButton;
 @synthesize noRoomTips;
-@synthesize editButton;
 @synthesize createButton;
 @synthesize searchButton;
 
@@ -57,15 +56,11 @@
 {
     //bg image
     ShareImageManager *manager = [ShareImageManager defaultManager];
-    [self.editButton setBackgroundImage:[manager redImage] forState:UIControlStateNormal];
-    [self.editButton setBackgroundImage:[manager orangeImage] forState:UIControlStateSelected];
     
     [self.createButton setBackgroundImage:[manager greenImage] forState:UIControlStateNormal];
     [self.searchButton setBackgroundImage:[manager orangeImage] forState:UIControlStateNormal];
     //text
     [self.myFriendButton setTitle:NSLS(@"kMyFriend") forState:UIControlStateNormal];
-    [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
-    [self.editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     [self.createButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
     [self.searchButton setTitle:NSLS(@"kSearchRoom") forState:UIControlStateNormal];
     [self.titleLabel setText:NSLS(@"kFriendPlayTitle")];
@@ -97,7 +92,6 @@
 
 - (void)viewDidUnload
 {
-    [self setEditButton:nil];
     [self setCreateButton:nil];
     [self setSearchButton:nil];
     [self setMyFriendButton:nil];
@@ -115,17 +109,12 @@
 }
 
 - (void)dealloc {
-    [editButton release];
     [createButton release];
     [searchButton release];
     [myFriendButton release];
     [titleLabel release];
     [noRoomTips release];
     [super dealloc];
-}
-- (IBAction)clickEditButton:(id)sender {
-    editButton.selected = !editButton.selected;
-    [dataTableView setEditing:editButton.selected animated:YES];
 }
 
 - (IBAction)clickCreateButton:(id)sender {
@@ -262,11 +251,9 @@
     NSInteger count = [dataList count];
     if (count == 0) {
         tableView.hidden = YES;
-        self.editButton.hidden = YES;
         self.noRoomTips.hidden = NO;
     }else{
         tableView.hidden = NO;
-        self.editButton.hidden = NO;
         self.noRoomTips.hidden = YES;
     }
     return count;
