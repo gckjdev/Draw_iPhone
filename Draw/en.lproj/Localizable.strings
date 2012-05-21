@@ -97,7 +97,7 @@
 "kEnterEmail" = "Enter Email";
 "kStartGame" = "Start";
 "kLookOverDraw" = "View Drawing";
-"kPainted" = "painted";
+"kPainted" = " drawed ";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
@@ -432,3 +432,5 @@
 "kInviteFriendsTitle" = "Invite Friends";
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No room matched";
+
+"kPushMessage" = "@%@ created a new room, \"%@\". Hurry to Join and play with your friends.
