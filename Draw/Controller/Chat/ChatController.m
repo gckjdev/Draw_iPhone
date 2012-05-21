@@ -497,8 +497,6 @@
     }
 }
 
-
-
 - (NSArray*)messages:(MessagesType)type
 {
     NSArray *array = [[MessageManager defaultManager] messagesForType:type];
