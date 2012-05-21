@@ -73,12 +73,13 @@
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
     [self showActivityWithText:NSLS(@"kLoading")];
-    [roomService findMyRoomsWithOffset:0 limit:FIND_ROOM_LIMIT delegate:self];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.dataTableView reloadData];
+    [roomService findMyRoomsWithOffset:0 limit:FIND_ROOM_LIMIT delegate:self];
+//    [self.dataTableView reloadData];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
 }

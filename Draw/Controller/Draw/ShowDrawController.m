@@ -37,7 +37,7 @@
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
-#define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 18.0 : 36.0)
+#define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
 
 
