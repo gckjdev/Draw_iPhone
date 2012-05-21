@@ -104,7 +104,7 @@
 
     if (title != nil) {
         titleSize.height = (titleSize.height < 15) ? 15 : titleSize.height;
-        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (titleSize.height+HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
+        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (titleSize.height*1.2+HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
     }else {
         self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
     }
