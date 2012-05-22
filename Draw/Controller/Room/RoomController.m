@@ -261,8 +261,8 @@
 //        }
 
         
-        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
-        [view removeFromSuperview];
+//        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
+//        [view removeFromSuperview];
         
 //        UIImage* frameImage = nil;
 //        
@@ -316,6 +316,7 @@
         [imageView setImage:nil];
         [imageView setUserId:nil];
         [imageView setHasPen:NO];
+        [imageView setAvatarSelected:NO];
         
         [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
