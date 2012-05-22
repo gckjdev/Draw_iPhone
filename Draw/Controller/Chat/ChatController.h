@@ -17,8 +17,8 @@
 
 @protocol ChatControllerDelegate <NSObject>
 @optional
-- (void)didSelectMessage:(NSString*)message;
-- (void)didSelectExpression:(UIImage*)expression;
+- (void)didSelectMessage:(NSString*)message toUser:(NSString*)userNickName;
+- (void)didSelectExpression:(UIImage*)expression toUser:(NSString*)userNickName;
 
 @end
 

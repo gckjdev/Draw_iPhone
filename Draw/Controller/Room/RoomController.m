@@ -996,18 +996,20 @@
 
 #pragma mark - Chat Handling
 
-- (void)didSelectMessage:(NSString *)message
+- (void)didSelectMessage:(NSString *)message toUser:(NSString *)userNickName
 {
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
         [self clickProlongStart:nil];
     }else {
-        [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:message];
+        NSString *string = [[NSString stringWithFormat:NSLS(@"kSayToXXX"), userNickName] stringByAppendingFormat:message];
+        [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:string];
     }
 }
 
-- (void)didSelectExpression:(UIImage *)expression
+- (void)didSelectExpression:(UIImage *)expression toUser:(NSString *)userNickName
 {
-    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:nil expression:expression];
+    NSString *title = [NSString stringWithFormat:NSLS(@"kSayToXXX"), userNickName];
+    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:title expression:expression];
 }
 
 - (void)didClickOnAvatar:(NSString*)userId
