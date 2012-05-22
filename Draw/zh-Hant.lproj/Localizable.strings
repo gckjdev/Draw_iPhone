@@ -355,7 +355,8 @@
 "kFemale" = "女";
 "kSayToYou" = "對你說: %@";
 "kSayToYou:" = "對你說:";
-"kNobodyInRoom" = "房間裡沒有其他人時，不能私聊";
+"kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
+"kSayToXXX" = "對【%@】说: ";
 
 "kPayAttentionToMe" = "關注我吧";
 "kDrawTillDawn" = "決戰到天明";
@@ -433,6 +434,7 @@
 "kNext" = "前進";
 "kRefresh" = "刷新";
 "kStop" = "停止";
+"kMusicWrong" = "您下載的文件可能不是正確的音樂，無法正常播放";
 
 "kUserLogin" = "用戶登錄";
 

@@ -11,6 +11,8 @@
 #import "AudioManager.h"
 #import "LocaleUtils.h"
 #import "ConfigManager.h"
+#import "ASIHTTPRequest.h"
+#import "UIUtils.h"
 
 #define KEY_MUSICLIST @"musicList"
 #define KEY_CURRENT_MUSIC @"currentMusic"
@@ -198,7 +200,15 @@ static MusicItemManager *_defaultManager;
 - (void)removeFile:(MusicItem*)item
 {
     NSFileManager *manager = [NSFileManager defaultManager];
-    [manager removeItemAtPath:item.localPath error:nil];
+    if([manager fileExistsAtPath:item.tempPath]){
+        [manager removeItemAtPath:item.tempPath error:nil];
+    }
+    if ([manager fileExistsAtPath:item.localPath]) {
+        [manager removeItemAtPath:item.localPath error:nil];
+    }
+    
+    [[item request] clearDelegatesAndCancel];
+    
 }
 
 - (void)deleteItem:(MusicItem*)item
@@ -206,7 +216,8 @@ static MusicItemManager *_defaultManager;
     if (itemList != nil && [itemList indexOfObject:item] != -1) {
         [itemList removeObject:item];
         //delete file 
-        [self removeFile:item];
+        [self removeFile:item];        
+        [self saveMusicItems];
     }
 }
 
@@ -252,8 +263,12 @@ static MusicItemManager *_defaultManager;
     else {
         [audioManager setIsMusicOn:YES];
         NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
-        [audioManager setBackGroundMusicWithURL:url];
-        [audioManager backgroundMusicStart];
+        if([audioManager setBackGroundMusicWithURL:url]){
+            [audioManager backgroundMusicStart];
+        }
+        else {
+            [UIUtils alert:NSLS(@"kMusicWrong")];
+        }
     }
 }
 

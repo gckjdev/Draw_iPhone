@@ -356,6 +356,7 @@
 "kSayToYou" = "对你说: %@";
 "kSayToYou:" = "对你说:";
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
+"kSayToXXX" = "对【%@】说: ";
 
 "kPayAttentionToMe" = "关注我吧";
 "kDrawTillDawn" = "决战到天明";
@@ -433,7 +434,7 @@
 "kNext" = "前进";
 "kRefresh" = "刷新";
 "kStop" = "停止";
-
+"kMusicWrong" = "您下载的文件可能不是正确的音乐文件，无法正常播放";
 "kUserLogin" = "用户登录";
 
 "kNoneInvited" = "尚未邀请朋友";
