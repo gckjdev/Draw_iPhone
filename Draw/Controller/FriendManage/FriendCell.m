@@ -101,14 +101,17 @@
     NSString* location = [aUser objectForKey:PARA_LOCATION];
     
     //set avatar
+    [avatarView clear];
     if ([gender isEqualToString:MALE])
     {
         [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
     }else {
         [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
-    [avatarView setUrl:[NSURL URLWithString:avatar]];
-    [GlobalGetImageCache() manage:avatarView];
+    if ([avatar length] > 0){
+        [avatarView setUrl:[NSURL URLWithString:avatar]];
+        [GlobalGetImageCache() manage:avatarView];
+    }
     
     
     //set nick
