@@ -12,6 +12,7 @@
 #import "LocaleUtils.h"
 #import "ConfigManager.h"
 #import "ASIHTTPRequest.h"
+#import "UIUtils.h"
 
 #define KEY_MUSICLIST @"musicList"
 #define KEY_CURRENT_MUSIC @"currentMusic"
@@ -264,6 +265,9 @@ static MusicItemManager *_defaultManager;
         NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
         if([audioManager setBackGroundMusicWithURL:url]){
             [audioManager backgroundMusicStart];
+        }
+        else {
+            [UIUtils alert:NSLS(@"kMusicWrong")];
         }
     }
 }
