@@ -343,6 +343,7 @@
 "kSayToYou" = "Say to you: %@";
 "kSayToYou:" = "Say to you:";
 "kNobodyInRoom" = "you can chat private nobody in room";
+"kSayToXXX" = "Say to【%@】: ";
 
 "kPayAttentionToMe" = "Follow me";
 "kDrawTillDawn" = "Awesome";

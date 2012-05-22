@@ -354,6 +354,7 @@
 "kSayToYou" = "對你說: %@";
 "kSayToYou:" = "對你說:";
 "kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
+"kSayToXXX" = "對【%@】说: ";
 
 "kPayAttentionToMe" = "關註我吧";
 "kDrawTillDawn" = "決戰到天亮";

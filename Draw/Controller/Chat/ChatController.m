@@ -259,8 +259,9 @@
     NSString *key = [(UIButton*)sender titleForState:UIControlStateNormal];
     UIImage *expression = [[ExpressionManager defaultManager] expressionForKey:key];
     
-    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectExpression:)]) {
-        [chatControllerDelegate didSelectExpression:expression];
+    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectExpression:toUser:)]) {
+        NSString *nickName = [self getUserNickName:_chatType userId:_selectedUserId];
+        [chatControllerDelegate didSelectExpression:expression toUser:nickName];
     }
     
     if (_chatType == GameChatTypeChatPrivate) {
@@ -269,8 +270,8 @@
         [[DrawGameService defaultService] groupChatExpression:key]; 
     }
     
-    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isSuccessful:YES];
+//    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.3 isSuccessful:YES];
 }
 
 
@@ -339,8 +340,9 @@
 {
     [self.view removeFromSuperview];
     
-    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:)]) {
-        [chatControllerDelegate didSelectMessage:message];
+    if (chatControllerDelegate && [chatControllerDelegate respondsToSelector:@selector(didSelectMessage:toUser:)]) {
+        NSString *nickName = [self getUserNickName:_chatType userId:_selectedUserId]; 
+        [chatControllerDelegate didSelectMessage:message toUser:nickName];
     }
     
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
@@ -353,8 +355,8 @@
         [[DrawGameService defaultService] groupChatMessage:message];            
     }
     
-    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.5 isSuccessful:YES];
+//    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.3 isSuccessful:YES];
 }
 
 - (void)configureExpressionScrollView
