@@ -107,8 +107,10 @@
     }else {
         [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
-    [avatarView setUrl:[NSURL URLWithString:avatar]];
-    [GlobalGetImageCache() manage:avatarView];
+    if ([avatar length] > 0) {
+        [avatarView setUrl:[NSURL URLWithString:avatar]];
+        [GlobalGetImageCache() manage:avatarView];
+    }
     
     
     //set nick
@@ -198,8 +200,10 @@
     }else {
         [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
-    [avatarView setUrl:[NSURL URLWithString:aFriend.avatar]];
-    [GlobalGetImageCache() manage:avatarView];
+    if ([aFriend.avatar length] > 0) {
+        [avatarView setUrl:[NSURL URLWithString:aFriend.avatar]];
+        [GlobalGetImageCache() manage:avatarView];
+    }
     
     
     //set nick
