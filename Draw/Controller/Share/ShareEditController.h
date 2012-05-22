@@ -30,7 +30,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
 @property (retain, nonatomic) IBOutlet UITextView *shareTextField;
 @property (retain, nonatomic) IBOutlet UILabel *shareTitleLabel;
+@property (assign, nonatomic) BOOL isDrawByMe;
 
 - (id)initWithImageFile:(NSString*)imageFile
-                   text:(NSString*)text;
+                   text:(NSString*)text 
+             isDrawByMe:(BOOL)isDrawByMe;
 @end

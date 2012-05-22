@@ -60,7 +60,7 @@
     [self.createButton setBackgroundImage:[manager greenImage] forState:UIControlStateNormal];
     [self.searchButton setBackgroundImage:[manager orangeImage] forState:UIControlStateNormal];
     //text
-    [self.myFriendButton setTitle:NSLS(@"kMyFriend") forState:UIControlStateNormal];
+    [self.myFriendButton setTitle:NSLS(@"kFriendControl") forState:UIControlStateNormal];
     [self.createButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
     [self.searchButton setTitle:NSLS(@"kSearchRoom") forState:UIControlStateNormal];
     [self.titleLabel setText:NSLS(@"kFriendPlayTitle")];
@@ -69,16 +69,19 @@
 
 - (void)viewDidLoad
 {
+    [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
-    [self showActivityWithText:NSLS(@"kLoading")];
+//    [self.refreshHeaderView setFrame:CGRectMake(0, 0 - self.dataTableView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
 
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [roomService findMyRoomsWithOffset:0 limit:FIND_ROOM_LIMIT delegate:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
+
 //    [self.dataTableView reloadData];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
@@ -240,6 +243,8 @@
         }
         [self.dataTableView reloadData];
     }
+    [refreshHeaderView setCurrentDate];  	
+	[self dataSourceDidFinishLoadingNewData];
 
 }
 
@@ -347,5 +352,16 @@
     
     [RoomController enterRoom:self isFriendRoom:YES];
 }
+
+- (void)reloadTableViewDataSource
+{
+    [roomService findMyRoomsWithOffset:0 limit:FIND_ROOM_LIMIT delegate:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
+
+}
+//- (void)dataSourceDidFinishLoadingNewData
+//{
+//    [super dataSourceDidFinishLoadingNewData];
+//}
 
 @end

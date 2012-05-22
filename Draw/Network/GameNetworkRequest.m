@@ -261,6 +261,7 @@
                           deviceId:(NSString*)deviceId
                        deviceToken:(NSString*)deviceToken
                           nickName:(NSString*)nickName
+                            gender:(NSString*)gender
                           password:(NSString*)newPassword
                             avatar:(NSData*)avatar
 //                       newPassword:(NSString*)newPassword
@@ -297,6 +298,10 @@
             str = [str stringByAddQueryParameter:PARA_AVATAR value:HAS_AVATAR];
         }
         
+        if (gender != nil && [gender length] > 0){
+            str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        }
+
         return str;
     };
     

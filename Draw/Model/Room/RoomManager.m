@@ -144,6 +144,9 @@ RoomManager *staticRoomManager = nil;
                         }
                     }
                     if ([[UserManager defaultManager] isMe:user.userId]) {
+                        if (user.status == UserPlaying) {
+                            user.status = UserJoined;
+                        }
                         room.myStatus = user.status;
                         if ([user.userId isEqualToString:room.creator.userId]) {
                             room.myStatus = UserCreator;

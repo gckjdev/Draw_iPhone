@@ -427,7 +427,7 @@
 "kNoneInvited" = "0 friend invited";
 "kFirstGame" = "It's your first time to play, please register first.";
 
-"kMyFriend" = "Friends";
+"kFriendControl" = "Friends";
 
 "kFriendPlayTitle" = "Rooms";
 "kInviteFriends" = "Invite";
@@ -435,5 +435,6 @@
 "kNoRoomTips" = "No Room. Create or search room.";
 "kSearchNoResult" = "No room matched";
 
-"kPushMessage" = "%@ created a new room, \"%@\". Hurry to Join and play with your friends.";
-"kGuessWhatIDraw" = "Guess what i drew?";
+"kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
+"kGuessWhatIDraw" = "Guess what's this?";
+"kGuessWhatTheyDraw" = "Guess what's this?";

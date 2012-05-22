@@ -19,6 +19,8 @@
 #import "InputDialog.h"
 #import "RegisterUserController.h"
 #import "AccountService.h"
+#import "FriendService.h"
+#import "FriendManager.h"
 
 
 @implementation UserService
@@ -244,6 +246,7 @@ static UserService* _defaultUserService;
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
                                                             nickName:nickName 
+                                                              gender:gender
                                                             password:password 
                                                               avatar:[avatarImage data]];
                 
@@ -481,6 +484,9 @@ static UserService* _defaultUserService;
                                                    items:itemTypeBalanceArray];
             
                 [[UserManager defaultManager] setLocation:location];
+                
+                [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
+                [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {

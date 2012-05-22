@@ -99,6 +99,8 @@ NSMutableArray *list;
 - (BOOL)startDownload:(MusicItem*)item
 {
     NSURL* url = [NSURL URLWithString:[item url]];
+    if (url == nil)
+        return NO;
     
     // start to download
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
