@@ -58,6 +58,7 @@
 "kBuying" = "发送购买请求中...";
 "kSendingRequest" = "发送消息中...";
 "kLoading" = "加载数据中...";
+"kLoadMore" = "加载中...";
 
 "kOK" = "确定";
 "kSubmit" = "提交";

@@ -234,7 +234,6 @@
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            [cell.textLabel setText:NSLS(@"kMore")];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
             UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
             if ([DeviceDetection isIPAD]) {
@@ -249,9 +248,11 @@
         }
         UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[cell.contentView viewWithTag:MORE_CELL_ACTIVITY];
         if (_moreCellLoadding) {
+            [cell.textLabel setText:NSLS(@"kLoadMore")];
             [activity startAnimating];
         }else
         {
+            [cell.textLabel setText:NSLS(@"kMore")];
             [activity stopAnimating];
         }
         return cell;

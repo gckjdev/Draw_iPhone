@@ -55,7 +55,7 @@
 "kBuying" = "Sending request...";
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
-
+"kLoadMore" = "Loading...";
 "kConfirm" = "OK";
 "kOK" = "OK";
 "kSubmit" = "Submit";
