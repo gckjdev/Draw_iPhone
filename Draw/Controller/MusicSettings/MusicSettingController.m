@@ -215,10 +215,12 @@ enum{
     
     if (_canDelete == YES) {
         [self killTimer];
+        [self.editButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
     }
     else {
         _musicList = [[MusicItemManager defaultManager] findAllItems];
         [self createTimer];
+        [self.editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     }
 }
 
