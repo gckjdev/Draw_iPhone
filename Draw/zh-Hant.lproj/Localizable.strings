@@ -434,6 +434,7 @@
 "kNext" = "前進";
 "kRefresh" = "刷新";
 "kStop" = "停止";
+"kMusicWrong" = "您下載的文件可能不是正確的音樂，無法正常播放";
 
 "kUserLogin" = "用戶登錄";
 

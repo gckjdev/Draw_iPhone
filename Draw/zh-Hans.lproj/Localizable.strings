@@ -434,7 +434,7 @@
 "kNext" = "前进";
 "kRefresh" = "刷新";
 "kStop" = "停止";
-
+"kMusicWrong" = "您下载的文件可能不是正确的音乐文件，无法正常播放";
 "kUserLogin" = "用户登录";
 
 "kNoneInvited" = "尚未邀请朋友";

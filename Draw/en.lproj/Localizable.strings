@@ -421,6 +421,7 @@
 "kNext" = "Next";
 "kRefresh" = "Refresh";
 "kStop" = "Stop";
+"kMusicWrong" = "the downloaded file may not be a audio file, can't play it";
 
 "kUserLogin" = "User Login";
 
