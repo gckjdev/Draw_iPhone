@@ -19,8 +19,11 @@
     UserManager *_userManager;
     BOOL _isTryJoinGame;    
     Room *_currentSelectRoom;
-
     RoomService *roomService;
+    
+    BOOL _hasMoreRow;
+    NSInteger _currentStartIndex;
+    BOOL _moreCellLoadding;
 
 }
 @property (retain, nonatomic) IBOutlet UIButton *createButton;

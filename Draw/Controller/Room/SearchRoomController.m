@@ -17,9 +17,16 @@
 #import "GameMessage.pb.h"
 #import "RoomController.h"
 #import "PPDebug.h"
+#import "DeviceDetection.h"
+@interface SearchRoomController ()
+
+- (void)enableMoreRow:(BOOL)enabled;
+- (BOOL)isMoreRow:(NSInteger)row;
+@end
 
 
 #define SEARCH_ROOM_LIMIT 50
+#define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
 
 @implementation SearchRoomController
 @synthesize searchButton;
@@ -27,7 +34,6 @@
 @synthesize titleLabel;
 @synthesize tipsLabel;
 @synthesize searchField;
-//@synthesize selectedRoom = _selectedRoom;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +58,13 @@
 }
 
 #pragma mark - View lifecycle
+
+- (void)updateRoomList
+{
+    [roomService searchRoomsWithKeyWords:_keyword offset:_currentStartIndex limit:SEARCH_ROOM_LIMIT delegate:self];
+    [self showActivityWithText:NSLS(@"kRoomSearching")];
+}
+
 
 - (void)viewDidLoad
 {
@@ -100,17 +113,17 @@
     [searchField release];
     [searchButton release];
     [searchFieldBg release];
-//    [_selectedRoom release];
     [titleLabel release];
     [tipsLabel release];
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {
     [self.searchField resignFirstResponder];
-    NSString *key = [self.searchField text];
-    if ([key length] != 0) {
-        [self showActivityWithText:NSLS(@"kRoomSearching")];
-        [roomService searchRoomsWithKeyWords:key offset:0 limit:SEARCH_ROOM_LIMIT delegate:self];        
+    _keyword = [self.searchField text];
+    if ([_keyword length] != 0) {
+        [self enableMoreRow:YES];
+        _currentStartIndex = 0;
+        [self updateRoomList];
     }else{
         [self popupMessage:NSLS(@"kContentNull") title:nil];
     }
@@ -146,66 +159,140 @@
 - (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode
 {    
     [self hideActivity];
+    _moreCellLoadding = NO;
+
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
     }else{
-        self.dataList = roomList;
-        [self.dataTableView reloadData];
-        if ([roomList count] == 0) {
-            self.tipsLabel.hidden = NO;
+        
+        if (_currentStartIndex == 0) {
+                self.dataList = roomList;
         }else{
-            self.tipsLabel.hidden = YES;
+            NSMutableArray *array = [NSMutableArray array];
+            if ([self.dataList count] != 0) {
+                [array addObjectsFromArray:self.dataList];
+            }
+            if ([roomList count] != 0) {
+                [array addObjectsFromArray:roomList];
+            }
+            self.dataList = array;
         }
+        _currentStartIndex += [roomList count];
+        _moreCellLoadding = NO;
+        [self enableMoreRow:([roomList count] != 0)];
+        self.tipsLabel.hidden = ([self.dataList count] != 0);
+        [self.dataTableView reloadData];
     }
 }
+
+
+- (void)enableMoreRow:(BOOL)enabled
+{
+    _hasMoreRow = enabled;
+}
+
+- (BOOL)isMoreRow:(NSInteger)row
+{
+    if (_hasMoreRow == YES) {
+        return [self.dataList count] == row;        
+    }
+    return NO;
+}
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self isMoreRow:indexPath.row]) {
+        return MORE_CELL_HEIGHT;
+    }
 	return [RoomCell getCellHeight];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger number = [dataList count];
-    if (number == 0) {
+    NSInteger count = [dataList count];
+    if (count == 0) {
         tableView.hidden = YES;
     }else{
         tableView.hidden = NO;
     }
-	return [dataList count];			// default implementation
+    if (_hasMoreRow) {
+        count ++;
+    }
+    return count;
+
 }
 
+#define MORE_CELL_ACTIVITY 20120522
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *CellIdentifier = [RoomCell getCellIdentifier];
-	RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) {
-        cell = [RoomCell createCell:self];
-	}
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    Room *room = [self.dataList objectAtIndex:indexPath.row];
-    [cell setInfo:room];
-    cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
-	return cell;
+    if ([self isMoreRow:indexPath.row]) {
+        static NSString *CellIdentifier = @"MoreRow";
+        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            [cell.textLabel setText:NSLS(@"kMore")];
+            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
+            if ([DeviceDetection isIPAD]) {
+                activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
+            }else{
+                activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
+            }            
+            activity.tag = MORE_CELL_ACTIVITY;
+            activity.hidesWhenStopped = YES;
+            [cell.contentView addSubview:activity];            
+            [activity release];
+        }
+        UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[cell.contentView viewWithTag:MORE_CELL_ACTIVITY];
+        if (_moreCellLoadding) {
+            [activity startAnimating];
+        }else
+        {
+            [activity stopAnimating];
+        }
+        return cell;
+    }else{    
+        NSString *CellIdentifier = [RoomCell getCellIdentifier];
+        RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [RoomCell createCell:self];
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        Room *room = [self.dataList objectAtIndex:indexPath.row];
+        [cell setInfo:room];
+        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [self.dataList count])
+    if (indexPath.row > [self.dataList count])
         return;
     
-    Room *room = [self.dataList objectAtIndex:indexPath.row];
-    _currentSelectRoom = room;
-    if (room == nil)
-        return;
-    if (room.myStatus == UserUnInvited) {
-        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
-        dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
-        [dialog showInView:self.view];
+    if ([self isMoreRow:indexPath.row]) {
+        _moreCellLoadding = YES;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.dataList count] inSection:0];
+        [self.dataTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self updateRoomList];
     }else{
-        [self startGame];
+        Room *room = [self.dataList objectAtIndex:indexPath.row];
+        _currentSelectRoom = room;
+        if (room == nil)
+            return;
+        if (room.myStatus == UserUnInvited) {
+            InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
+            dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
+            [dialog showInView:self.view];
+        }else{
+            [self startGame];
+        }
     }
     
 }
