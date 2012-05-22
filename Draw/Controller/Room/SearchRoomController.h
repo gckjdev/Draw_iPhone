@@ -22,6 +22,12 @@
     UserManager *_userManager;
     BOOL _isTryJoinGame;    
 
+    
+    BOOL _hasMoreRow;
+    NSInteger _currentStartIndex;
+    BOOL _moreCellLoadding;
+    NSString *_keyword;
+
 }
 
 - (IBAction)clickSearhButton:(id)sender;

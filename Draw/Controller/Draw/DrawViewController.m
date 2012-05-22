@@ -153,7 +153,7 @@ DrawViewController *GlobalGetDrawViewController()
     if (retainCount <= 0) {
         [self resetTimer];
         retainCount = 0;
-        [self setToolButtonEnabled:NO];
+//        [self setToolButtonEnabled:NO];
     }
     [self updateClockButton];
 }

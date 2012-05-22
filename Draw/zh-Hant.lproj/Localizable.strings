@@ -58,6 +58,7 @@
 "kBuying" = "發送購買請求中...";
 "kSendingRequest" = "發送消息中...";
 "kLoading" = "加載數據中...";
+"kLoadMore" = "加載中...";
 
 "kOK" = "確定";
 "kSubmit" = "提交";
@@ -451,3 +452,5 @@
 "kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
 "kGuessWhatIDraw" = "猜猜我畫了什麼？";
 "kGuessWhatTheyDraw" = "猜猜TA畫了什麼？";
+
+"kMore" = "更多...";

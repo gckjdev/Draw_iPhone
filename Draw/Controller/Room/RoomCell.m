@@ -75,8 +75,10 @@
     }else {
         [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
     }
-    [avatarView setUrl:[NSURL URLWithString:avatar]];
-    [GlobalGetImageCache() manage:avatarView];
+    if ([avatar length] > 0){
+        [avatarView setUrl:[NSURL URLWithString:avatar]];
+        [GlobalGetImageCache() manage:avatarView];
+    }
 
     if ([[UserManager defaultManager] isMe:user.userId]) {
         [self.creatorLabel setText:NSLS(@"Me")];        

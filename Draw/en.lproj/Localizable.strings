@@ -55,7 +55,7 @@
 "kBuying" = "Sending request...";
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
-
+"kLoadMore" = "Loading...";
 "kConfirm" = "OK";
 "kOK" = "OK";
 "kSubmit" = "Submit";
@@ -439,3 +439,5 @@
 "kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
 "kGuessWhatIDraw" = "Guess what's this?";
 "kGuessWhatTheyDraw" = "Guess what's this?";
+
+"kMore" = "More...";
