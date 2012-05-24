@@ -26,6 +26,8 @@
 
 - (void)enableMoreRow:(BOOL)enabled;
 - (BOOL)isMoreRow:(NSInteger)row;
+- (void)updateNoRoomTip;
+
 @end
 
 #define INVITE_LIMIT 12
@@ -90,6 +92,10 @@
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
+    
+    self.noRoomTips.hidden = YES;
+    self.dataTableView.hidden = YES;
+    
     [self updateRoomList];
 }
 
@@ -201,6 +207,7 @@
         }
         [[UserManager defaultManager] increaseRoomCount];
     }
+    [self updateNoRoomTip];
 }
 
 
@@ -218,6 +225,7 @@
     }else{
         [self popupMessage:NSLS(@"kRemoveRoomFail") title:nil];        
     }
+    [self updateNoRoomTip];
 }
 
 
@@ -252,6 +260,7 @@
     }
     [refreshHeaderView setCurrentDate];  	
 	[self dataSourceDidFinishLoadingNewData];
+    [self updateNoRoomTip];
 }
 
 
@@ -279,13 +288,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [dataList count];
-    if (count == 0) {
-        tableView.hidden = YES;
-        self.noRoomTips.hidden = NO;
-    }else{
-        tableView.hidden = NO;
-        self.noRoomTips.hidden = YES;
-    }
     if (_hasMoreRow) {
         count ++;
     }
@@ -448,5 +450,17 @@
     [self updateRoomList];
 
 }
+
+- (void)updateNoRoomTip
+{
+    if ([dataList count] == 0) {
+        self.dataTableView.hidden = YES;
+        self.noRoomTips.hidden = NO;
+    }else{
+        self.dataTableView.hidden = NO;
+        self.noRoomTips.hidden = YES;
+    }
+}
+
 
 @end
