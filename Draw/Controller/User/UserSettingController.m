@@ -26,6 +26,11 @@ enum{
     SECTION_COUNT
 };
 
+enum {
+    INDEX_OF_MALE = 0,
+    INDEX_OF_FEMALE = 1
+};
+
 #define DIALOG_TAG_NICKNAME 201204071
 #define DIALOG_TAG_PASSWORD 201204072
 
@@ -41,19 +46,20 @@ enum{
 - (void)updateRowIndexs
 {
     rowOfPassword = 0;
-    rowOfNickName = 1;
-    rowOfLanguage = 2;
+    rowOfGender = 1;
+    rowOfNickName = 2;
+    rowOfLanguage = 3;
     
     if (languageType == ChineseType) {
-        rowOfLevel = 3;
-        rowOfSoundSwitcher = 4;
-        rowOfMusicSettings = 5;
-        rowNumber = 6;        
+        rowOfLevel = 4;
+        rowOfSoundSwitcher = 5;
+        rowOfMusicSettings = 6;
+        rowNumber = 7;        
     }else{
         rowOfLevel = -1;
-        rowOfSoundSwitcher = 3;
-        rowOfMusicSettings = 4;
-        rowNumber = 5;
+        rowOfSoundSwitcher = 4;
+        rowOfMusicSettings = 5;
+        rowNumber = 6;
     }
     
     
@@ -96,6 +102,7 @@ enum{
     hasEdited = NO;
     avatarChanged = NO;
     languageType = [userManager getLanguageType];
+    gender = [userManager gender];
     guessLevel = [ConfigManager guessDifficultLevel];
 }
 
@@ -155,10 +162,10 @@ enum{
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 90;
+        return 98;
     }
     else {
-        return 45;
+        return 49;
     }
 }
 
@@ -171,7 +178,6 @@ enum{
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
-    hasEdited = YES;
     [[AudioManager defaultManager] setIsSoundOn:!btn.selected];
 }
 
@@ -225,6 +231,13 @@ enum{
             [cell.detailTextLabel setText:NSLS(@"kUnset")];
         }else{
             [cell.detailTextLabel setText:nil];            
+        }
+    }else if (row == rowOfGender){
+        [cell.textLabel setText:NSLS(@"kGender")];
+        if ([gender isEqualToString:MALE]) {
+            [cell.detailTextLabel setText:NSLS(@"kMale")];
+        }else{
+            [cell.detailTextLabel setText:NSLS(@"kFemale")];
         }
     }else if(row == rowOfNickName)
     {
@@ -289,6 +302,7 @@ enum{
 
 #define LANGUAGE_TAG 123
 #define LEVEL_TAG 124
+#define GENDER_TAG 125
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -307,8 +321,14 @@ enum{
         [actionSheet showInView:self.view];
         actionSheet.tag = LEVEL_TAG;
         [actionSheet release];        
-    }
-    else if(row == rowOfNickName)
+    } else if (row == rowOfGender) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
+        int index = ([gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
+        [actionSheet setDestructiveButtonIndex:index];
+        [actionSheet showInView:self.view];
+        actionSheet.tag = GENDER_TAG;
+        [actionSheet release];
+    }else if(row == rowOfNickName)
     {
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
         dialog.tag = DIALOG_TAG_NICKNAME;
@@ -330,6 +350,7 @@ enum{
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -342,6 +363,11 @@ enum{
             languageType = buttonIndex + 1;
         }else if(actionSheet.tag == LEVEL_TAG){
             guessLevel = buttonIndex + 1;
+        } else  if (actionSheet.tag == GENDER_TAG) {
+            if (buttonIndex != actionSheet.destructiveButtonIndex) {
+                hasEdited = YES;
+            }
+            gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
         }
     }
     [self updateRowIndexs];
@@ -351,7 +377,7 @@ enum{
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel]);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ![gender isEqualToString:[userManager gender]]);
     return localChanged;
 }
 
@@ -362,6 +388,7 @@ enum{
     if (localChanged) {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
+        [userManager setGender:gender];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
@@ -369,7 +396,7 @@ enum{
     }
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
-        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
+        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:gender password:self.updatePassword viewController:self];        
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }

@@ -17,6 +17,9 @@ typedef enum {
     EnglishType = 2
 }LanguageType;
 
+#define MALE @"m"
+#define FEMALE @"f"
+
 #define PASSWORD_KEY        @"PASSWORD_KEY_DRAW_DSAQC"
 
 @protocol AvatarImageDelegate <NSObject>
@@ -104,6 +107,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
+
 
 - (BOOL)hasBindSinaWeibo;
 - (BOOL)hasBindQQWeibo;
