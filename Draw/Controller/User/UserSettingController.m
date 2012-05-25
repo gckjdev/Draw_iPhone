@@ -212,7 +212,8 @@ enum {
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
         [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setSelected:![AudioManager defaultManager].isSoundOn];
+        isSoundOn = [AudioManager defaultManager].isSoundOn;
+        [btn setSelected:!isSoundOn];
         [cell addSubview:btn];
         [btn setTag:SWITCHER_TAG];
         [btn setHidden:YES];

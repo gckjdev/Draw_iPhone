@@ -334,10 +334,6 @@
 #define PARA_FEEDBACK @"fb"
 #define PARA_CONTACT @"ca"
 
-#define PARA_NATION @"ntn"
-#define PARA_DEVICE_INFO    @"di"
-#define PARA_DEVICE_TYPE    @"dt"
-
 //friends operation
 #define PARA_TARGETUSERID   @"tid"
 #define PARA_FRIENDSTYPE    @"ft"
