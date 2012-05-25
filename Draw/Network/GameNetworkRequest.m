@@ -15,6 +15,9 @@
 #import "LocaleUtils.h"
 #import "UIDevice+IdentifierAddition.h"
 
+#define DEVICE_INFO_SEPERATOR   @"$"
+#define DEVICE_TYPE_IOS         1
+
 
 @implementation GameNetworkRequest
 
@@ -29,7 +32,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];       
+        NSString* str = [NSString stringWithString:baseURL];  
+        NSString* deviceInfo = [UIDevice currentDevice].model;
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemName];
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemVersion];
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -37,6 +47,11 @@
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_REGISTER_TYPE intValue:REGISTER_TYPE_EMAIL];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
+        str = [str stringByAddQueryParameter:PARA_NATION value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_INFO value:deviceInfo];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_TYPE intValue:DEVICE_TYPE_IOS];
+        
         
         return str;
     };
@@ -66,7 +81,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];       
+        NSString* str = [NSString stringWithString:baseURL]; 
+        NSString* deviceInfo = [UIDevice currentDevice].model;
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemName];
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemVersion];
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -75,6 +97,10 @@
         str = [str stringByAddQueryParameter:PARA_REGISTER_TYPE intValue:REGISTER_TYPE_EMAIL];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        str = [str stringByAddQueryParameter:PARA_NATION value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_INFO value:deviceInfo];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_TYPE intValue:DEVICE_TYPE_IOS];
         return str;
     };
     
@@ -167,7 +193,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];       
+        NSString* str = [NSString stringWithString:baseURL]; 
+        NSString* deviceInfo = [UIDevice currentDevice].model;
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemName];
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemVersion];
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -184,6 +217,10 @@
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_BIRTHDAY value:birthday];
         str = [str stringByAddQueryParameter:PARA_DOMAIN value:domain];
+        str = [str stringByAddQueryParameter:PARA_NATION value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_INFO value:deviceInfo];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_TYPE intValue:DEVICE_TYPE_IOS];
         
         return str;
     };
@@ -222,7 +259,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];       
+        NSString* str = [NSString stringWithString:baseURL];  
+        NSString* deviceInfo = [UIDevice currentDevice].model;
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemName];
+        deviceInfo = [deviceInfo stringByAppendingFormat:@"%@%@", 
+                      DEVICE_INFO_SEPERATOR, 
+                      [UIDevice currentDevice].systemVersion];
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -240,6 +284,10 @@
         str = [str stringByAddQueryParameter:PARA_BIRTHDAY value:birthday];
         str = [str stringByAddQueryParameter:PARA_DOMAIN value:domain];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        str = [str stringByAddQueryParameter:PARA_NATION value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_INFO value:deviceInfo];
+        str = [str stringByAddQueryParameter:PARA_DEVICE_TYPE intValue:DEVICE_TYPE_IOS];
         return str;
     };
     
