@@ -38,6 +38,7 @@
     
     BOOL hasEdited;
     BOOL avatarChanged;
+    BOOL isSoundOn;
 //    BOOL languageChanged;
     LanguageType languageType;
     GuessLevel guessLevel;

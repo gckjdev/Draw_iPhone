@@ -178,7 +178,7 @@ enum {
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
-    [[AudioManager defaultManager] setIsSoundOn:!btn.selected];
+    isSoundOn = !btn.selected;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -377,7 +377,7 @@ enum {
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ![gender isEqualToString:[userManager gender]]);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ![gender isEqualToString:[userManager gender]] || [AudioManager defaultManager].isSoundOn != isSoundOn);
     return localChanged;
 }
 
@@ -389,6 +389,7 @@ enum {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:gender];
+        [[AudioManager defaultManager] setIsMusicOn:isSoundOn];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
