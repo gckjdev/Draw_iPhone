@@ -22,6 +22,7 @@
     UserManager *userManager;
     
     NSInteger rowOfPassword;
+    NSInteger rowOfGender;
     NSInteger rowOfNickName;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
@@ -37,9 +38,11 @@
     
     BOOL hasEdited;
     BOOL avatarChanged;
+    BOOL isSoundOn;
 //    BOOL languageChanged;
     LanguageType languageType;
     GuessLevel guessLevel;
+    NSString* gender;
 //    LevelType
     
 }
