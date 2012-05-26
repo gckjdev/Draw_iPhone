@@ -15,7 +15,7 @@
 #import "PPDebug.h"
 
 
-#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 200
+#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 100
 #define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
 #define MAX_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
 
@@ -66,7 +66,8 @@
 }
 
 
-- (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage
+- (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage 
+                                  title:(NSString*)title
 {
     CGSize messageSize = [self getStringSize:chatMessage font:FONT_CHAT_MESSAGE_TEXT];    
     self = [super initWithFrame:CGRectMake(0, 0, messageSize.width+WIDTH_EDGE*2, messageSize.height*2)];
@@ -79,7 +80,6 @@
         [self addSubview:bgImageView];
         [bgImageView release];
         
-//        CGRect rect =  CGRectMake(WIDTH_EDGE, self.frame.size.height-messageSize.height-messageSize.height/3, self.frame.size.width, messageSize.height);
         CGRect rect =  CGRectMake(WIDTH_EDGE, self.frame.size.height*RATE, self.frame.size.width, messageSize.height);
         UILabel *messageLable = [[UILabel alloc] initWithFrame:rect];
         messageLable.text = chatMessage;
@@ -96,7 +96,8 @@
     return self;
 }
 
-- (ChatMessageView*)initWithChatTitle:(NSString*)title expression:(UIImage*)expression
+- (ChatMessageView*)initWithChatExpression:(UIImage*)expression
+                                     title:(NSString*)title
 {    
     CGSize titleSize = [self getStringSize:title font:FONT_CHAT_MESSAGE_TEXT];
     
@@ -150,16 +151,37 @@
     return self;
 }
 
+- (UILabel *)genLabelWithText:(NSString*)text 
+                         font:(UIFont*)font 
+                   withinSize:(CGSize)withinSize 
+                lineBreakMode:(UILineBreakMode)lineBreakMode
+{
+    if (text == nil) {
+        return nil;
+    }
+    
+    CGSize size = [text sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect rect = CGRectMake(0, 0, size.width/0.8, size.height);
+    
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.font = font;
+    label.lineBreakMode = lineBreakMode;
+    
+    return label;
+}
+
+
 + (void)showMessage:(NSString*)chatMessage origin:(CGPoint)origin superView:(UIView*)superView
 {
-    ChatMessageView *view = [[ChatMessageView alloc] initWithChatMessage:chatMessage];
+    ChatMessageView *view = [[ChatMessageView alloc] initWithChatMessage:chatMessage title:nil];
     [view showInSuperView:superView origin:origin];
     [view release];
 }
 
 + (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView
 {
-    ChatMessageView *view = [[ChatMessageView alloc] initWithChatTitle:title expression:expression];
+    ChatMessageView *view = [[ChatMessageView alloc] initWithChatExpression:expression title:title];
     [view showInSuperView:superView origin:origin];
     [view release];
 }
