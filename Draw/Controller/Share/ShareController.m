@@ -18,6 +18,8 @@
 #import "ReplayController.h"
 #import "GifView.h"
 #import "PPDebug.h"
+#import "ShareImageManager.h"
+#import "CommonDialog.h"
 
 
 #define BUTTON_INDEX_OFFSET 20120229
@@ -34,6 +36,8 @@
 @end
 
 @implementation ShareController
+@synthesize selectMineButton;
+@synthesize selectAllButton;
 @synthesize paintsFilter;
 @synthesize gallery;
 @synthesize paints = _paints;
@@ -49,12 +53,14 @@
     [_paints release];
     [titleLabel release];
     [_gifImages release];
+    [selectAllButton release];
+    [selectMineButton release];
     [super dealloc];
 }
 
 - (void)refleshGallery
 {
-    [self loadPaintsOnlyMine:self.paintsFilter.isSelected];
+    [self loadPaintsOnlyMine:self.selectMineButton.isSelected];
     [self.gallery reloadData];
 }
 
@@ -149,7 +155,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
                                                            message:NSLS(@"kAre_you_sure") 
                                                              style:CommonDialogStyleDoubleButton 
-                                                         deelegate:self];  
+                                                         delegate:self];  
         
         dialog.tag = DELETE;
         
@@ -159,7 +165,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
                                                            message:NSLS(@"kAre_you_sure") 
                                                              style:CommonDialogStyleDoubleButton 
-                                                         deelegate:self];            
+                                                         delegate:self];            
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];        
     }
@@ -254,15 +260,39 @@
     [loopPool release];
     return cell;
 }
+//
+//- (IBAction)changeGalleryFielter:(id)sender
+//{
+//    if ([self.selectMineButton isSelected]) {
+//        [self.selectMineButton setSelected:NO]; 
+//    } else {
+//        [self.selectMineButton setSelected:YES];  
+//    }
+//    [self.selectAllButton setSelected:!self.selectMineButton.isSelected];
+//    [self refleshGallery];
+//}
 
-- (IBAction)changeGalleryFielter:(id)sender
+- (IBAction)selectAll:(id)sender
 {
-    if ([self.paintsFilter isSelected]) {
-        [self.paintsFilter setSelected:NO];       
-    } else {
-        [self.paintsFilter setSelected:YES];  
-    }
-    [self refleshGallery];
+    [self.selectAllButton setSelected:YES];
+    [self.selectMineButton setSelected:NO];
+    [self loadPaintsOnlyMine:NO];
+    [self.gallery reloadData];
+}
+
+- (IBAction)selectMine:(id)sender
+{
+    [self.selectAllButton setSelected:NO];
+    [self.selectMineButton setSelected:YES];
+    [self loadPaintsOnlyMine:YES];
+    [self.gallery reloadData];
+}
+
+- (IBAction)deleteAll:(id)sender
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"") message:NSLS(@"") style:CommonDialogStyleDoubleButton delegate:self];
+    [dialog showInView:self.view];
+    
 }
 
 -(IBAction)clickBackButton:(id)sender
@@ -301,7 +331,19 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];  
+    [super viewDidLoad]; 
+    
+    NSString *allTitle = NSLS(@"kAll");
+    NSString *mineTitle = NSLS(@"kMine") ;
+    ShareImageManager* imageManager = [ShareImageManager defaultManager];
+    [self.selectAllButton setTitle:allTitle forState:UIControlStateNormal];
+    [self.selectMineButton setTitle:mineTitle forState:UIControlStateNormal];
+    [self.selectAllButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
+    [self.selectAllButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+    [self.selectMineButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [self.selectMineButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    self.selectAllButton.selected = YES;
+    
     [self refleshGallery];
     
     PPDebug(@"get all paints, paints count is %d", _paints.count);
@@ -319,6 +361,8 @@
     [self setGallery:nil];
     [self setPaints:nil];
     [self setTitleLabel:nil];
+    [self setSelectAllButton:nil];
+    [self setSelectMineButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

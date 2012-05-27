@@ -85,7 +85,7 @@
     [view addSubview:self];
 }
 
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle deelegate:(id<CommonDialogDelegate>)aDelegate
++ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle delegate:(id<CommonDialogDelegate>)aDelegate
 {
     CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
     view.delegate = aDelegate;

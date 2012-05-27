@@ -759,7 +759,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 
                                                              style:CommonDialogStyleDoubleButton 
-                                                         deelegate:self];
+                                                         delegate:self];
         
         dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
@@ -770,7 +770,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
                                     message:NSLS(@"kChangeRoomConfirm") 
                                       style:CommonDialogStyleDoubleButton 
-                                  deelegate:self];
+                                  delegate:self];
         dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
     }
@@ -833,7 +833,7 @@
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
                                 message:NSLS(@"kQuitGameConfirm") 
                                   style:CommonDialogStyleDoubleButton
-                              deelegate:self];
+                              delegate:self];
     dialog.tag = ROOM_DIALOG_QUIT_ROOM;
     [dialog showInView:self.view];
     

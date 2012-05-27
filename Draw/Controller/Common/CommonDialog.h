@@ -29,7 +29,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) CommonDialogStyle style;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle deelegate:(id<CommonDialogDelegate>)aDelegate;
++ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle delegate:(id<CommonDialogDelegate>)aDelegate;
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
 - (void)showInView:(UIView*)view;

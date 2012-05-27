@@ -25,13 +25,13 @@
     int DELETE_ALL;
     int CANCEL;    
 }
+@property (retain, nonatomic) IBOutlet UIButton *selectMineButton;
+@property (retain, nonatomic) IBOutlet UIButton *selectAllButton;
 @property (retain, nonatomic) IBOutlet UIButton *paintsFilter;
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
 @property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *noDrawingLabel;
 @property (retain, nonatomic) ShareAction *shareAction;
-
-- (IBAction)changeGalleryFielter:(id)sender;
 
 @end

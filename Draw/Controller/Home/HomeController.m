@@ -268,7 +268,7 @@
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
                                                        message:message
                                                          style:CommonDialogStyleSingleButton 
-                                                     deelegate:self];    
+                                                     delegate:self];    
     
     [dialog showInView:self.view];
 }
@@ -354,7 +354,7 @@
     
     if (server != nil){
 //        [self hideActivity];
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton deelegate:nil];
+//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton delegate:nil];
 //        [dialog showInView:self.view];
 //        return;
         

@@ -415,7 +415,7 @@ enum {
 - (IBAction)clickBackButton:(id)sender {
     BOOL localChanged = [self isLocalChanged];
     if (localChanged || hasEdited) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton delegate:self];
         [dialog showInView:self.view];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
