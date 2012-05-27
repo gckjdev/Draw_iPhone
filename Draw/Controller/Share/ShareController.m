@@ -38,7 +38,7 @@
 @implementation ShareController
 @synthesize selectMineButton;
 @synthesize selectAllButton;
-@synthesize paintsFilter;
+@synthesize clearButton;
 @synthesize gallery;
 @synthesize paints = _paints;
 @synthesize titleLabel;
@@ -48,7 +48,7 @@
 - (void)dealloc {
     [noDrawingLabel release];
     [_shareAction release];
-    [paintsFilter release];
+    [clearButton release];
     [gallery release];
     [_paints release];
     [titleLabel release];
@@ -75,10 +75,12 @@
     if ([self.paints count] > 0){
         self.noDrawingLabel.text = NSLS(@"");
         self.noDrawingLabel.hidden = YES;
+        [self.clearButton setHidden:NO];
     }
     else{
         self.noDrawingLabel.text = NSLS(@"kNoDrawings");
-        self.noDrawingLabel.hidden = NO;        
+        self.noDrawingLabel.hidden = NO;   
+        [self.clearButton setHidden:YES];
     }
 }
 
@@ -182,7 +184,11 @@
         [self refleshGallery];
     }
     else if (dialog.tag == DELETE_ALL){
-        [[MyPaintManager defaultManager] deleteAllPaints];
+        [[MyPaintManager defaultManager] deleteAllPaints:NO];
+        [self refleshGallery];
+        return;
+    } else if (dialog.tag == DELETE_ALL_MINE) {
+        [[MyPaintManager defaultManager] deleteAllPaints:YES];
         [self refleshGallery];
         return;
     }
@@ -290,7 +296,15 @@
 
 - (IBAction)deleteAll:(id)sender
 {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"") message:NSLS(@"") style:CommonDialogStyleDoubleButton delegate:self];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention") 
+                                                       message:NSLS(@"kDeleteAllWarning") 
+                                                         style:CommonDialogStyleDoubleButton 
+                                                      delegate:self];
+    if ([self.selectMineButton isSelected]) {
+        dialog.tag = DELETE_ALL_MINE;
+    } else {
+        dialog.tag = DELETE_ALL;
+    }
     [dialog showInView:self.view];
     
 }
@@ -314,6 +328,7 @@
             REPLAY = index++;
             DELETE = index++;
             DELETE_ALL = index++;
+            DELETE_ALL_MINE = index++;
             CANCEL = index++;
         }
         else{
@@ -322,6 +337,7 @@
             REPLAY = index++;
             DELETE = index++;
             DELETE_ALL = index++;
+            DELETE_ALL_MINE = index++;
             CANCEL = index++;            
         }
         
@@ -342,6 +358,8 @@
     [self.selectAllButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
     [self.selectMineButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
     [self.selectMineButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
     self.selectAllButton.selected = YES;
     
     [self refleshGallery];
@@ -350,14 +368,12 @@
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
-    [self.paintsFilter setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.paintsFilter setTitle:NSLS(@"kMine") forState:UIControlStateSelected];
 
 }
 
 - (void)viewDidUnload
 {
-    [self setPaintsFilter:nil];
+    [self setClearButton:nil];
     [self setGallery:nil];
     [self setPaints:nil];
     [self setTitleLabel:nil];
