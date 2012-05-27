@@ -181,6 +181,11 @@ enum {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
+    if (isSoundOn) {
+        NSLog(@"switcher on");
+            } else {
+                NSLog(@"switcher off");
+                    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -392,7 +397,7 @@ enum {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:self.gender];
-        [[AudioManager defaultManager] setIsMusicOn:isSoundOn];
+        [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
