@@ -73,8 +73,9 @@ typedef enum {
             password:(NSString*)password 
             nickName:(NSString*)nickName
            avatarURL:(NSString*)avatarURL
-     sinaAccessToken:(NSString*)accessToken
-    sinaAccessTokenSecret:(NSString*)accessTokenSecret;
+     sinaAccessToken:(NSString*)accessToken 
+sinaAccessTokenSecret:(NSString*)accessTokenSecret 
+            gender:(NSString*)gender;
 
 - (void)saveUserId:(NSString*)userId
             qqId:(NSString*)loginId
@@ -82,13 +83,15 @@ typedef enum {
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
    qqAccessToken:(NSString*)accessToken
-qqAccessTokenSecret:(NSString*)accessTokenSecret;
+qqAccessTokenSecret:(NSString*)accessTokenSecret 
+            gender:(NSString*)gender;
 
 - (void)saveUserId:(NSString*)userId
         facebookId:(NSString*)loginId
           password:(NSString*)password 
           nickName:(NSString*)nickName
-         avatarURL:(NSString*)avatarURL;
+         avatarURL:(NSString*)avatarURL 
+            gender:(NSString*)gender;
 
 - (void)saveUserId:(NSString*)userId 
              email:(NSString*)email
@@ -103,7 +106,8 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
         facebookId:(NSString*)loginId
          avatarURL:(NSString*)avatarURL 
            balance:(NSNumber*)balance 
-             items:(NSArray*)items;
+             items:(NSArray*)items 
+            gender:(NSString*)gender;
 
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;

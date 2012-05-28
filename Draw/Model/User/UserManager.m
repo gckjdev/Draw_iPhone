@@ -378,7 +378,8 @@ static UserManager* _defaultManager;
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
    sinaAccessToken:(NSString*)accessToken
-sinaAccessTokenSecret:(NSString*)accessTokenSecret
+sinaAccessTokenSecret:(NSString*)accessTokenSecret 
+            gender:(NSString*)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -412,6 +413,10 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }
     
+    if (gender != nil && gender.length > 0) {
+        [userDefaults setObject:gender forKey:KEY_GENDER];
+    }
+    
     [self setSNSUserData:TYPE_SINA snsId:loginId nickName:nickName];
     
     [userDefaults synchronize];    
@@ -423,7 +428,8 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
      qqAccessToken:(NSString*)accessToken
-qqAccessTokenSecret:(NSString*)accessTokenSecret
+qqAccessTokenSecret:(NSString*)accessTokenSecret 
+            gender:(NSString *)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -457,6 +463,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }
     
+    if (gender != nil && gender.length > 0) {
+        [userDefaults setObject:gender forKey:KEY_GENDER];
+    }
+    
     [self setSNSUserData:TYPE_QQ snsId:loginId nickName:nickName];
     
     [userDefaults synchronize];     
@@ -467,7 +477,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         facebookId:(NSString*)loginId
           password:(NSString*)password 
           nickName:(NSString*)nickName
-         avatarURL:(NSString*)avatarURL
+         avatarURL:(NSString*)avatarURL 
+            gender:(NSString *)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -493,6 +504,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }
     
+    if (gender != nil && gender.length > 0) {
+        [userDefaults setObject:gender forKey:KEY_GENDER];
+    }
+    
     [self setSNSUserData:TYPE_FACEBOOK snsId:loginId nickName:nickName];
     
     [userDefaults synchronize];     
@@ -511,7 +526,8 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         facebookId:(NSString*)facebookId
          avatarURL:(NSString*)avatarURL 
            balance:(NSNumber*)balance 
-             items:(NSArray *)items
+             items:(NSArray *)items 
+            gender:(NSString *)gender
 {
     PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -585,6 +601,10 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     
     if (facebookId != nil){
         [self setSNSUserData:TYPE_FACEBOOK snsId:facebookId nickName:nil];                        
+    }
+    
+    if (gender != nil && gender.length > 0) {
+        [userDefaults setObject:gender forKey:KEY_GENDER];
     }
     
     [userDefaults synchronize];
