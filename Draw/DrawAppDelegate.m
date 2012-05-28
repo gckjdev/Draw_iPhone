@@ -3,7 +3,7 @@
 //  Draw
 //
 //  Created by gamy on 12-3-4.
-//  Copyright 2012å¹´ __MyCompanyName__. All rights reserved.
+//  Copyright 2012å¹?__MyCompanyName__. All rights reserved.
 //
 
 #import "DrawAppDelegate.h"
@@ -43,7 +43,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.137.137:8000/api/i?";    
-//    return @"http://192.168.1.101:8000/api/i?";    
+//    return @"http://192.168.1.5:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -181,7 +181,7 @@ NSString* GlobalGetTrafficServerURL()
     if ([news length] <= 1)
         return;
     
-    [[CommonMessageCenter defaultCenter] postMessageWithText:news delayTime:1.5 isHappy:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:news delayTime:2.5 isHappy:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -257,7 +257,7 @@ NSString* GlobalGetTrafficServerURL()
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {   
     if ([[url absoluteString] hasPrefix:@"wx"]){
-        [UIUtils alert:@"æœ¬ç‰ˆæœ¬è¿˜ä¸æ”¯æŒå¾®ä¿¡åˆ†äº«ï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæœ¬ :-)"];
+        [UIUtils alert:@"??????ä¸????¾®ä¿¡å?äº??è¯·ä?è½½æ??°ç???:-)"];
         return YES;
     }
     
@@ -273,7 +273,7 @@ NSString* GlobalGetTrafficServerURL()
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
     //	if ([application enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone){
-    //        [UIUtils alert:@"ç”±äºŽæ‚¨æœªåŒæ„æŽ¥å—æŽ¨é€é€šçŸ¥åŠŸèƒ½ï¼Œå›¢è´­è´­ç‰©æŽ¨é€é€šçŸ¥åŠŸèƒ½æ— æ³•æ­£å¸¸ä½¿ç”¨"];
+    //        [UIUtils alert:@"?±ä??¨æ?????¥å??¨é???????ï¼??è´?´­?©æ?????¥å??½æ?æ³??å¸¸ä½¿??];
     //		return;
     //	}
 	

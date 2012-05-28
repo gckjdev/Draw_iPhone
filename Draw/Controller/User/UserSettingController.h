@@ -31,6 +31,7 @@
     NSInteger rowOfLevel;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
+    NSInteger rowOfVolumeSetting;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
