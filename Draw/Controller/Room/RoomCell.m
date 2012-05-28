@@ -150,11 +150,6 @@
             stat = RoomFree;    
         }
     }
-    
-    if ([room.creator.nickName isEqualToString:@"78117503"]) {
-        int ttt = 1000;
-        ttt ++;
-    }
     self.userListLabel.hidden = NO;
     if (count!= 0) {
         //join the string.

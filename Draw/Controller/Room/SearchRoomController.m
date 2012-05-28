@@ -27,7 +27,6 @@
 
 #define SEARCH_ROOM_LIMIT 50
 #define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
-
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
@@ -272,6 +271,24 @@
         [cell setInfo:room];
 //        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
         return cell;
+    }
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+
+    if (!_hasMoreRow || _moreCellLoadding) {
+        return;
+    }
+    
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    if(y > h + MORE_CELL_HEIGHT) {
+        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
     }
 }
 

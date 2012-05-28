@@ -304,12 +304,16 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+            cell.textLabel.textColor = [UIColor grayColor];
             UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
             if ([DeviceDetection isIPAD]) {
                 activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
+                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
             }else{
                 activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
-            }            
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+                
+            }                     
             activity.tag = MORE_CELL_ACTIVITY;
             activity.hidesWhenStopped = YES;
             [cell.contentView addSubview:activity];            
@@ -380,6 +384,30 @@
     
     _currentSelectRoom = room;    
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    PPDebug(@"<ScollView> contentOffset : (%f,%f)" , scrollView.contentOffset.x,scrollView.contentOffset.y);    
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+    
+    if (!_hasMoreRow || _moreCellLoadding) {
+        return;
+    }
+    
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    if(y > h + MORE_CELL_HEIGHT) {
+        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
+    }
+}
+
 
 #pragma mark - Draw Game Service Delegate
 
