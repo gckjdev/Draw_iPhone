@@ -357,7 +357,7 @@
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
 "kSayToXXX" = "对【%@】说:";
 "kSayToAll" = "对【所有人】说:";
-"kSayToYou" = "对【你】:";
+"kSayToYou" = "对【你】说:";
 
 
 
