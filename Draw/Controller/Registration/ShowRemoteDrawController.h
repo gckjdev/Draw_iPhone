@@ -9,6 +9,7 @@
 #import "PPViewController.h"
 
 @class PBDraw;
+@class HJManagedImageV;
 
 @interface ShowRemoteDrawController : PPViewController
 
@@ -17,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
+@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarImage;
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
 
