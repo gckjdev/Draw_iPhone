@@ -30,7 +30,7 @@
 
 @end
 
-#define INVITE_LIMIT 12
+#define INVITE_LIMIT 20
 #define FIND_ROOM_LIMIT 50
 #define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
 
@@ -246,7 +246,7 @@
             [array addObjectsFromArray:[[RoomManager defaultManager] sortRoomList:roomList]];
             self.dataList = array;
             _currentStartIndex += [roomList count];
-            [self enableMoreRow:YES];
+            [self enableMoreRow:[roomList count] > FIND_ROOM_LIMIT * 0.9];
             [self.dataTableView reloadData];
         }else{
             [self enableMoreRow:NO];
@@ -330,6 +330,7 @@
         RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [RoomCell createCell:self];
+            cell.roomCellType = RoomCellTypeMyRoom;
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
         Room *room = [self.dataList objectAtIndex:indexPath.row];

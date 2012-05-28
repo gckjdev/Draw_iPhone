@@ -179,7 +179,7 @@
         }
         _currentStartIndex += [roomList count];
         _moreCellLoadding = NO;
-        [self enableMoreRow:([roomList count] != 0)];
+        [self enableMoreRow:([roomList count] > SEARCH_ROOM_LIMIT * 0.9)];
         self.tipsLabel.hidden = ([self.dataList count] != 0);
         [self.dataTableView reloadData];
     }
@@ -235,11 +235,15 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
+            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            cell.textLabel.textColor = [UIColor grayColor];
             if ([DeviceDetection isIPAD]) {
                 activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
+                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
             }else{
                 activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+
             }            
             activity.tag = MORE_CELL_ACTIVITY;
             activity.hidesWhenStopped = YES;
@@ -261,11 +265,12 @@
         RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [RoomCell createCell:self];
+            cell.roomCellType = RoomCellTypeSearchRoom;
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
         Room *room = [self.dataList objectAtIndex:indexPath.row];
         [cell setInfo:room];
-        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
+//        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
         return cell;
     }
 }
