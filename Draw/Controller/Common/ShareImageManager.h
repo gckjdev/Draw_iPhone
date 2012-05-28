@@ -37,6 +37,7 @@
 - (UIImage *)coinImage;
 - (UIImage *)toolImage;
 - (UIImage *)popupImage;
+- (UIImage *)popupChatImage;
 - (UIImage *)whitePaperImage;
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;

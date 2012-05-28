@@ -55,12 +55,14 @@ enum {
         rowOfLevel = 4;
         rowOfSoundSwitcher = 5;
         rowOfMusicSettings = 6;
-        rowNumber = 7;        
+        rowOfVolumeSetting = 7;
+        rowNumber = 8;        
     }else{
         rowOfLevel = -1;
         rowOfSoundSwitcher = 4;
         rowOfMusicSettings = 5;
-        rowNumber = 6;
+        rowOfVolumeSetting = 6;
+        rowNumber = 7;
     }
     
     
@@ -176,16 +178,12 @@ enum {
     return rowNumber;
 }
 #define SWITCHER_TAG 20120505
+#define SLIDER_TAG 20120528
 - (void)clickSoundSwitcher:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
-    if (isSoundOn) {
-        NSLog(@"switcher on");
-            } else {
-                NSLog(@"switcher off");
-                    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -206,25 +204,17 @@ enum {
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
         UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(194, 3.5, 70, 37)];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        if ([DeviceDetection isIPAD]) {
-            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-        }
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
-        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
-        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
-        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-        isSoundOn = [AudioManager defaultManager].isSoundOn;
-        [btn setSelected:!isSoundOn];
         [cell addSubview:btn];
         [btn setTag:SWITCHER_TAG];
         [btn setHidden:YES];
         [btn release];
+        
+        UISlider* slider = [[UISlider alloc] initWithFrame:CGRectMake(64, 5, 180, 37)];
+        [slider setValue:[[AudioManager defaultManager] volume]];
+        [cell addSubview:slider];
+        [slider setTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [slider release];
         
     }
     NSInteger row = indexPath.row;
@@ -240,6 +230,9 @@ enum {
         }else{
             [cell.detailTextLabel setText:nil];            
         }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }else if (row == rowOfGender){
         [cell.textLabel setText:NSLS(@"kGender")];
         if ([self.gender isEqualToString:MALE]) {
@@ -247,6 +240,9 @@ enum {
         }else{
             [cell.detailTextLabel setText:NSLS(@"kFemale")];
         }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }else if(row == rowOfNickName)
     {
         [cell.textLabel setText:NSLS(@"kNickname")];           
@@ -280,10 +276,25 @@ enum {
     }else if(row == rowOfSoundSwitcher) 
     {
         [cell.textLabel setText:NSLS(@"kSound")];
-        UIView* btn = [cell viewWithTag:SWITCHER_TAG];
+        UIButton* btn = (UIButton*)[cell viewWithTag:SWITCHER_TAG];
         if (btn) {
             [btn setHidden:NO];   
         }
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        if ([DeviceDetection isIPAD]) {
+            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+        }
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
+        isSoundOn = [AudioManager defaultManager].isSoundOn;
+        [btn setSelected:!isSoundOn];
         cell.accessoryType = UITableViewCellAccessoryNone;
         [cell.detailTextLabel setText:nil];
     }else if(row == rowOfLevel){
@@ -295,10 +306,34 @@ enum {
         }else{
             [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
         }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }else if (row == rowOfMusicSettings) {
         [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:YES];
+    } else if (row == rowOfVolumeSetting) {
+        [cell.textLabel setText:NSLS(@"kVolume")];
+        [cell.detailTextLabel setHidden:YES];
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider addTarget:self action:@selector(changeVolume:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [slider setHidden:NO];
+        if ([DeviceDetection isIPAD]) {
+            [slider setFrame:CGRectMake(64*2, 5*2, 180*2, 37*2)];
+        }
+        
     }
     return cell;
+}
+
+- (void)changeVolume:(id)sender
+{
+    UISlider* slider = (UISlider*)sender;
+    float volume = slider.value;
+    [[AudioManager defaultManager] setBGMVolume:volume];
 }
 
 
