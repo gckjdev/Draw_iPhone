@@ -340,10 +340,10 @@
 
 "kMale" = "Male";
 "kFemale" = "Female";
-"kSayToYou" = "Say to you: %@";
-"kSayToYou:" = "Say to you:";
 "kNobodyInRoom" = "you can chat private nobody in room";
 "kSayToXXX" = "Say to【%@】: ";
+"kSayToAll" = "Say to【all】:";
+"kSayToYou" = "Say to【you】:";
 
 "kPayAttentionToMe" = "Follow me";
 "kDrawTillDawn" = "Awesome";
