@@ -374,6 +374,7 @@ enum {
     [self setMyImageBackground:nil];
     [self setPatternBar:nil];
     [self setPaperBackground:nil];
+    [self setMyImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

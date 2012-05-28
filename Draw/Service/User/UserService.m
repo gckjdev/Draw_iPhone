@@ -160,6 +160,7 @@ static UserService* _defaultUserService;
             if (output.resultCode == ERROR_SUCCESS){
                 // save user data locally
                 NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
+                NSString* gender = [userInfo objectForKey:SNS_GENDER];
                 
                 if (loginIdType == REGISTER_TYPE_SINA){
                     [[UserManager defaultManager] saveUserId:userId
@@ -168,7 +169,8 @@ static UserService* _defaultUserService;
                                                     nickName:[userInfo objectForKey:SNS_NICK_NAME] 
                                                    avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                              sinaAccessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
-                                       sinaAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]];
+                                       sinaAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET] 
+                                                      gender:gender];
                 }
                 else if (loginIdType == REGISTER_TYPE_QQ) {  
                     [[UserManager defaultManager] saveUserId:userId
@@ -177,14 +179,16 @@ static UserService* _defaultUserService;
                                                     nickName:[userInfo objectForKey:SNS_NICK_NAME] 
                                                    avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]
                                              qqAccessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
-                                       qqAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]];                    
+                                         qqAccessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET] 
+                                                      gender:gender];                    
                 }   
                 else if (loginIdType == REGISTER_TYPE_FACEBOOK) {  
                     [[UserManager defaultManager] saveUserId:userId
                                                   facebookId:loginId
                                                     password:nil 
                                                     nickName:[userInfo objectForKey:SNS_NICK_NAME] 
-                                                   avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL]];                    
+                                                   avatarURL:[userInfo objectForKey:SNS_USER_IMAGE_URL] 
+                                                      gender:gender];                    
                 }   
                 
                 // set location
@@ -458,7 +462,8 @@ static UserService* _defaultUserService;
                 NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
                 NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
                 NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
-                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];  
+                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];
+                NSString* gender = [output.jsonDataDict objectForKey:PARA_GENDER];
                 
                 if (nickName == nil || [nickName length] == 0) {
                     nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
@@ -481,7 +486,8 @@ static UserService* _defaultUserService;
                                               facebookId:facebookId 
                                                avatarURL:avatar 
                                                  balance:balance 
-                                                   items:itemTypeBalanceArray];
+                                                   items:itemTypeBalanceArray 
+                                                  gender:gender];
             
                 [[UserManager defaultManager] setLocation:location];
                 
