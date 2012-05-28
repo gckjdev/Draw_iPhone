@@ -268,7 +268,7 @@
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
                                                        message:message
                                                          style:CommonDialogStyleSingleButton 
-                                                     deelegate:self];    
+                                                     delegate:self];    
     
     [dialog showInView:self.view];
 }
@@ -354,7 +354,7 @@
     
     if (server != nil){
 //        [self hideActivity];
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton deelegate:nil];
+//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton delegate:nil];
 //        [dialog showInView:self.view];
 //        return;
         
@@ -364,9 +364,13 @@
 
 //    [[DrawGameService defaultService] setServerAddress:address];
 //    [[DrawGameService defaultService] setServerPort:port];    
-    
+
     [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
     [[DrawGameService defaultService] setServerPort:8080];   
+
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DrawGameService defaultService] setServerPort:8080];   
+
 
 //    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
 //    [[DrawGameService defaultService] setServerPort:8080];    

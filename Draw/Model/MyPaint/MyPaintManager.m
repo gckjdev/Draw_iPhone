@@ -79,12 +79,17 @@ static MyPaintManager* _defaultManager;
     return [dataManager save];
 }
 
-- (void)deleteAllPaints
+- (void)deleteAllPaints:(BOOL)onlyDrawnByMe
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
+    NSArray* array;
+    if (onlyDrawnByMe) {
+         array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
+    } else {
+        array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
+    }
     for (NSManagedObject* paint in array){
-        [dataManager del:paint];
+        [dataManager del:paint];       
     }
     
     [dataManager save];    

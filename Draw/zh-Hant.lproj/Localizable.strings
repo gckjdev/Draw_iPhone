@@ -58,6 +58,7 @@
 "kBuying" = "發送購買請求中...";
 "kSendingRequest" = "發送消息中...";
 "kLoading" = "加載數據中...";
+"kLoadMore" = "加載中...";
 
 "kOK" = "確定";
 "kSubmit" = "提交";
@@ -434,6 +435,7 @@
 "kNext" = "前進";
 "kRefresh" = "刷新";
 "kStop" = "停止";
+"kMusicWrong" = "您下載的文件可能不是正確的音樂，無法正常播放";
 
 "kUserLogin" = "用戶登錄";
 
@@ -450,3 +452,11 @@
 "kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
 "kGuessWhatIDraw" = "猜猜我畫了什麼？";
 "kGuessWhatTheyDraw" = "猜猜TA畫了什麼？";
+
+"kMore" = "更多...";
+"kGender" = "性別";
+"kClear" = "清空";
+"kDeleteAllWarning" = "刪除當前的所有作品嗎？";
+"kAttention" = "注意";
+"kVolume" = "音量";
+

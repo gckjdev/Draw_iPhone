@@ -22,6 +22,7 @@
     UserManager *userManager;
     
     NSInteger rowOfPassword;
+    NSInteger rowOfGender;
     NSInteger rowOfNickName;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
@@ -30,6 +31,7 @@
     NSInteger rowOfLevel;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
+    NSInteger rowOfVolumeSetting;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
@@ -37,9 +39,11 @@
     
     BOOL hasEdited;
     BOOL avatarChanged;
+    BOOL isSoundOn;
 //    BOOL languageChanged;
     LanguageType languageType;
     GuessLevel guessLevel;
+    NSString* _gender;
 //    LevelType
     
 }
@@ -52,5 +56,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (retain, nonatomic) NSString *updatePassword;
+@property (retain, nonatomic) NSString* gender;
 - (void)updateRowIndexs;
 @end

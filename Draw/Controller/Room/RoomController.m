@@ -172,6 +172,10 @@
     [self setRoomNameLabel:nil];
     [self setProlongButton:nil];
     [self setOnlinePlayerCountLabel:nil];
+    [self setStartTimer:nil];
+    [self setChangeRoomButton:nil];
+    [self setPrivateChatController:nil];
+    [self setGroupChatController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -261,8 +265,8 @@
 //        }
 
         
-        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
-        [view removeFromSuperview];
+//        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
+//        [view removeFromSuperview];
         
 //        UIImage* frameImage = nil;
 //        
@@ -316,6 +320,7 @@
         [imageView setImage:nil];
         [imageView setUserId:nil];
         [imageView setHasPen:NO];
+        [imageView setAvatarSelected:NO];
         
         [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
@@ -542,7 +547,11 @@
 - (void)showDrawViewController:(BOOL)animated
 {
     if (![self isMyTurn]) {
-//        [ShowDrawController startGuessFromController:self];
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[ShowDrawController class]]) {
+                return;
+            }
+        }
         ShowDrawController *controller = [[ShowDrawController alloc] init];
         [self.navigationController pushViewController:controller animated:animated];
         [controller release];
@@ -750,7 +759,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
                                                            message:NSLS(@"kChangeRoomMaxTimes") 
                                                              style:CommonDialogStyleDoubleButton 
-                                                         deelegate:self];
+                                                         delegate:self];
         
         dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
@@ -761,7 +770,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeRoomTitle") 
                                     message:NSLS(@"kChangeRoomConfirm") 
                                       style:CommonDialogStyleDoubleButton 
-                                  deelegate:self];
+                                  delegate:self];
         dialog.tag = ROOM_DIALOG_CHANGE_ROOM;
         [dialog showInView:self.view];
     }
@@ -789,7 +798,7 @@
 
 - (IBAction)clickGroupChat:(id)sender {
     if (_groupChatController == nil) {
-        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
     }
     _groupChatController.chatControllerDelegate = self;
     
@@ -798,7 +807,7 @@
 
 - (IBAction)clickPrivateChat:(id)sender {
     if (_privateChatController == nil) {
-        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
     }
     _privateChatController.chatControllerDelegate = self;
    
@@ -810,7 +819,7 @@
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
                                 message:NSLS(@"kQuitGameConfirm") 
                                   style:CommonDialogStyleDoubleButton
-                              deelegate:self];
+                              delegate:self];
     dialog.tag = ROOM_DIALOG_QUIT_ROOM;
     [dialog showInView:self.view];
     

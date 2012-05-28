@@ -88,7 +88,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">樱桃小丸子</string>
+								<string key="IBUIText"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40MTE3NjQ3MDU5IDAuMTk2MDc4NDMxNCAwLjA0NzA1ODgyMzUzAA</bytes>
@@ -123,7 +123,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">女</string>
+								<string key="IBUIText"/>
 								<object class="NSColor" key="IBUITextColor" id="543974528">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -154,7 +154,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">乌鲁木齐</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="543974528"/>
 								<reference key="IBUIHighlightedColor" ref="181491177"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -215,7 +215,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">已经是好友</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="543974528"/>
 								<reference key="IBUIHighlightedColor" ref="181491177"/>
 								<int key="IBUIBaselineAdjustment">0</int>

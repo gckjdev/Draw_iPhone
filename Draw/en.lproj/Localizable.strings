@@ -55,7 +55,7 @@
 "kBuying" = "Sending request...";
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
-
+"kLoadMore" = "Loading...";
 "kConfirm" = "OK";
 "kOK" = "OK";
 "kSubmit" = "Submit";
@@ -421,6 +421,7 @@
 "kNext" = "Next";
 "kRefresh" = "Refresh";
 "kStop" = "Stop";
+"kMusicWrong" = "The file is an incorrect audio file. Cannot play it.";
 
 "kUserLogin" = "User Login";
 
@@ -438,3 +439,12 @@
 "kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
 "kGuessWhatIDraw" = "Guess what's this?";
 "kGuessWhatTheyDraw" = "Guess what's this?";
+
+"kMore" = "More...";
+"kGender" = "Gender";
+"kClear" = "Clear";
+"kDeleteAllWarning" = "You are going to delete all paints!";
+"kAttention" = "Attentions";
+
+"kVolume" = "Volume";
+

@@ -166,13 +166,13 @@ ItemShopController *staticItemController = nil;
     if ([[AccountService defaultService] hasEnoughCoins:[[model price] intValue]] == NO){
         PPDebug(@"<ItemShopController> click buy item but coins not enough");        
         if (callFromShowViewController) {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton deelegate:self];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton delegate:self];
             dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
             [dialog showInView:self.view];
             
         }else{        
             _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton deelegate:self];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self];
             dialog.tag = DIALOG_ACTION_ASK_BUY_COIN;
             [dialog showInView:self.view];
         }
@@ -233,9 +233,9 @@ ItemShopController *staticItemController = nil;
 }
 
 - (void)dealloc {
-    [titleLabel release];
-    [coinsAmountLabel release];
-    [itemAmountLabel release];
+    PPRelease(titleLabel);
+    PPRelease(coinsAmountLabel);
+    PPRelease(itemAmountLabel);
     [super dealloc];
 }
 @end

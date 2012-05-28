@@ -201,8 +201,8 @@ CoinShopController *staticCoinController;
 }
 
 - (void)dealloc {
-    [coinNumberLabel release];
-    [titleLabel release];
+    PPRelease(coinNumberLabel);
+    PPRelease(titleLabel);
     [super dealloc];
 }
 

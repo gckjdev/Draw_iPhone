@@ -26,6 +26,11 @@ enum{
     SECTION_COUNT
 };
 
+enum {
+    INDEX_OF_MALE = 0,
+    INDEX_OF_FEMALE = 1
+};
+
 #define DIALOG_TAG_NICKNAME 201204071
 #define DIALOG_TAG_PASSWORD 201204072
 
@@ -36,24 +41,39 @@ enum{
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
 @synthesize updatePassword = _updatePassword;
+@synthesize gender = _gender;
 
+- (void)dealloc {
+    PPRelease(titleLabel);
+    PPRelease(tableViewBG);
+    PPRelease(avatarButton);
+    PPRelease(saveButton);
+    PPRelease(imageView);
+    PPRelease(changeAvatar);
+    PPRelease(nicknameLabel);
+    PPRelease(_gender);
+    [super dealloc];
+}
 
 - (void)updateRowIndexs
 {
     rowOfPassword = 0;
-    rowOfNickName = 1;
-    rowOfLanguage = 2;
+    rowOfGender = 1;
+    rowOfNickName = 2;
+    rowOfLanguage = 3;
     
     if (languageType == ChineseType) {
-        rowOfLevel = 3;
-        rowOfSoundSwitcher = 4;
-        rowOfMusicSettings = 5;
-        rowNumber = 6;        
+        rowOfLevel = 4;
+        rowOfSoundSwitcher = 5;
+        rowOfMusicSettings = 6;
+        rowOfVolumeSetting = 7;
+        rowNumber = 8;        
     }else{
         rowOfLevel = -1;
-        rowOfSoundSwitcher = 3;
-        rowOfMusicSettings = 4;
-        rowNumber = 5;
+        rowOfSoundSwitcher = 4;
+        rowOfMusicSettings = 5;
+        rowOfVolumeSetting = 6;
+        rowNumber = 7;
     }
     
     
@@ -83,6 +103,7 @@ enum{
 
 - (void)updateInfoFromUserManager
 {
+    userManager = [UserManager defaultManager];
     [imageView clear];
     if ([userManager.avatarURL length] > 0){
         [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
@@ -96,6 +117,7 @@ enum{
     hasEdited = NO;
     avatarChanged = NO;
     languageType = [userManager getLanguageType];
+    self.gender = [userManager gender];
     guessLevel = [ConfigManager guessDifficultLevel];
 }
 
@@ -155,10 +177,10 @@ enum{
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 90;
+        return 98;
     }
     else {
-        return 45;
+        return 49;
     }
 }
 
@@ -167,12 +189,12 @@ enum{
     return rowNumber;
 }
 #define SWITCHER_TAG 20120505
+#define SLIDER_TAG 20120528
 - (void)clickSoundSwitcher:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
-    hasEdited = YES;
-    [[AudioManager defaultManager] setIsSoundOn:!btn.selected];
+    isSoundOn = !btn.selected;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -193,24 +215,17 @@ enum{
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
         UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(194, 3.5, 70, 37)];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        if ([DeviceDetection isIPAD]) {
-            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-        }
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
-        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
-        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
-        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setSelected:![AudioManager defaultManager].isSoundOn];
         [cell addSubview:btn];
         [btn setTag:SWITCHER_TAG];
         [btn setHidden:YES];
         [btn release];
+        
+        UISlider* slider = [[UISlider alloc] initWithFrame:CGRectMake(64, 5, 180, 37)];
+        [slider setValue:[[AudioManager defaultManager] volume]];
+        [cell addSubview:slider];
+        [slider setTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [slider release];
         
     }
     NSInteger row = indexPath.row;
@@ -226,6 +241,19 @@ enum{
         }else{
             [cell.detailTextLabel setText:nil];            
         }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
+    }else if (row == rowOfGender){
+        [cell.textLabel setText:NSLS(@"kGender")];
+        if ([self.gender isEqualToString:MALE]) {
+            [cell.detailTextLabel setText:NSLS(@"kMale")];
+        }else{
+            [cell.detailTextLabel setText:NSLS(@"kFemale")];
+        }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }else if(row == rowOfNickName)
     {
         [cell.textLabel setText:NSLS(@"kNickname")];           
@@ -259,10 +287,25 @@ enum{
     }else if(row == rowOfSoundSwitcher) 
     {
         [cell.textLabel setText:NSLS(@"kSound")];
-        UIView* btn = [cell viewWithTag:SWITCHER_TAG];
+        UIButton* btn = (UIButton*)[cell viewWithTag:SWITCHER_TAG];
         if (btn) {
             [btn setHidden:NO];   
         }
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        if ([DeviceDetection isIPAD]) {
+            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+        }
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
+        isSoundOn = [AudioManager defaultManager].isSoundOn;
+        [btn setSelected:!isSoundOn];
         cell.accessoryType = UITableViewCellAccessoryNone;
         [cell.detailTextLabel setText:nil];
     }else if(row == rowOfLevel){
@@ -274,10 +317,34 @@ enum{
         }else{
             [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
         }
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }else if (row == rowOfMusicSettings) {
         [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:YES];
+    } else if (row == rowOfVolumeSetting) {
+        [cell.textLabel setText:NSLS(@"kVolume")];
+        [cell.detailTextLabel setHidden:YES];
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider addTarget:self action:@selector(changeVolume:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [slider setHidden:NO];
+        if ([DeviceDetection isIPAD]) {
+            [slider setFrame:CGRectMake(64*2, 5*2, 180*2, 37*2)];
+        }
+        
     }
     return cell;
+}
+
+- (void)changeVolume:(id)sender
+{
+    UISlider* slider = (UISlider*)sender;
+    float volume = slider.value;
+    [[AudioManager defaultManager] setBGMVolume:volume];
 }
 
 
@@ -289,6 +356,7 @@ enum{
 
 #define LANGUAGE_TAG 123
 #define LEVEL_TAG 124
+#define GENDER_TAG 125
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -307,8 +375,14 @@ enum{
         [actionSheet showInView:self.view];
         actionSheet.tag = LEVEL_TAG;
         [actionSheet release];        
-    }
-    else if(row == rowOfNickName)
+    } else if (row == rowOfGender) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
+        int index = ([self.gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
+        [actionSheet setDestructiveButtonIndex:index];
+        [actionSheet showInView:self.view];
+        actionSheet.tag = GENDER_TAG;
+        [actionSheet release];
+    }else if(row == rowOfNickName)
     {
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
         dialog.tag = DIALOG_TAG_NICKNAME;
@@ -330,6 +404,7 @@ enum{
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -342,6 +417,11 @@ enum{
             languageType = buttonIndex + 1;
         }else if(actionSheet.tag == LEVEL_TAG){
             guessLevel = buttonIndex + 1;
+        } else  if (actionSheet.tag == GENDER_TAG) {
+            if (buttonIndex != actionSheet.destructiveButtonIndex) {
+                hasEdited = YES;
+            }
+            self.gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
         }
     }
     [self updateRowIndexs];
@@ -351,7 +431,7 @@ enum{
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel]);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ![self.gender isEqualToString:[userManager gender]] || [AudioManager defaultManager].isSoundOn != isSoundOn);
     return localChanged;
 }
 
@@ -362,6 +442,8 @@ enum{
     if (localChanged) {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
+        [userManager setGender:self.gender];
+        [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
@@ -369,7 +451,7 @@ enum{
     }
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
-        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:nil password:self.updatePassword viewController:self];        
+        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:self.gender password:self.updatePassword viewController:self];        
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
@@ -386,7 +468,7 @@ enum{
 - (IBAction)clickBackButton:(id)sender {
     BOOL localChanged = [self isLocalChanged];
     if (localChanged || hasEdited) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton delegate:self];
         [dialog showInView:self.view];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
@@ -411,16 +493,6 @@ enum{
     [self updateAvatar:image];
     avatarChanged = YES;
     hasEdited = YES;
-}
-- (void)dealloc {
-    [titleLabel release];
-    [tableViewBG release];
-    [avatarButton release];
-    [saveButton release];
-    [imageView release];
-    [changeAvatar release];
-    [nicknameLabel release];
-    [super dealloc];
 }
 
 

@@ -58,6 +58,7 @@
 "kBuying" = "发送购买请求中...";
 "kSendingRequest" = "发送消息中...";
 "kLoading" = "加载数据中...";
+"kLoadMore" = "加载中...";
 
 "kOK" = "确定";
 "kSubmit" = "提交";
@@ -437,7 +438,7 @@
 "kNext" = "前进";
 "kRefresh" = "刷新";
 "kStop" = "停止";
-
+"kMusicWrong" = "您下载的文件可能不是正确的音乐文件，无法正常播放";
 "kUserLogin" = "用户登录";
 
 "kNoneInvited" = "尚未邀请朋友";
@@ -453,3 +454,11 @@
 "kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友猜猜画画吧!";
 "kGuessWhatIDraw" = "猜猜我画了什么？";
 "kGuessWhatTheyDraw" = "猜猜TA画了什么？";
+
+"kMore" = "更多...";
+"kGender" = "性别";
+"kClear" = "清空";
+"kDeleteAllWarning" = "删除当前的所有作品吗？";
+"kAttention" = "注意";
+
+"kVolume" = "音量";

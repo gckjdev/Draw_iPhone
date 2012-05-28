@@ -204,7 +204,7 @@ enum {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") 
                                                                message:gifNotice
                                                                  style:CommonDialogStyleDoubleButton 
-                                                             deelegate:self];
+                                                             delegate:self];
             [dialog showInView:self.view];
             return;
         }

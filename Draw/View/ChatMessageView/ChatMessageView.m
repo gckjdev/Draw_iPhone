@@ -81,7 +81,7 @@
     
     if (self) {        
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [bgImageView setImage:[[ShareImageManager defaultManager] popupImage]];
+        [bgImageView setImage:[[ShareImageManager defaultManager] popupChatImage]];
         [self addSubview:bgImageView];
         [bgImageView release];
         
@@ -166,7 +166,7 @@
     
     if (self) {        
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [bgImageView setImage:[[ShareImageManager defaultManager] popupImage]];
+        [bgImageView setImage:[[ShareImageManager defaultManager] popupChatImage]];
         [self addSubview:bgImageView];
         [bgImageView release];
         
