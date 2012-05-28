@@ -53,7 +53,6 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
-@synthesize word = _word;
 
 #define PAPER_VIEW_TAG 20120403
 
@@ -72,8 +71,6 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)dealloc
 {
-
-    PPRelease(_word);
     PPRelease(eraserButton);
     PPRelease(wordButton);
     PPRelease(cleanButton);
@@ -292,7 +289,8 @@ enum{
 
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
-    
+    [self cleanData];
+
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
@@ -303,7 +301,6 @@ enum{
                                                     drawActionList:drawView.drawActionList];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
-    [self cleanData];
 }
 
 - (void)didUserQuitGame:(GameMessage *)message

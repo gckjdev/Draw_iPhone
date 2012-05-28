@@ -48,12 +48,10 @@
 @synthesize pageControl;
 @synthesize leftPageButton;
 @synthesize rightPageButton;
-@synthesize word = _word;
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
 - (void)dealloc
 {
-    PPRelease(_word);
     PPRelease(_candidateString);
     PPRelease(toolView);
     PPRelease(showView);
@@ -611,7 +609,8 @@
     
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
-    
+    [self cleanData];
+
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
@@ -628,7 +627,6 @@
     }
     [rc release]; 
     
-    [self cleanData];
 }
 
 

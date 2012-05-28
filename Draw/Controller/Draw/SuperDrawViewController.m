@@ -34,7 +34,7 @@
 @synthesize clockButton;
 @synthesize privateChatController = _privateChatController;
 @synthesize groupChatController = _groupChatController;
-
+@synthesize word = _word;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +47,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_word);
     PPRelease(clockButton);
     PPRelease(popupButton);
     PPRelease(turnNumberButton);
