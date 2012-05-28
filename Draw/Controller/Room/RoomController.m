@@ -172,6 +172,10 @@
     [self setRoomNameLabel:nil];
     [self setProlongButton:nil];
     [self setOnlinePlayerCountLabel:nil];
+    [self setStartTimer:nil];
+    [self setChangeRoomButton:nil];
+    [self setPrivateChatController:nil];
+    [self setGroupChatController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

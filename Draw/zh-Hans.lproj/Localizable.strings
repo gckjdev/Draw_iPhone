@@ -455,7 +455,7 @@
 "kMore" = "更多...";
 "kGender" = "性别";
 "kClear" = "清空";
-"kDeleteAllWarning" = "你即将删除所有作品!";
+"kDeleteAllWarning" = "删除当前的所有作品吗？";
 "kAttention" = "注意";
 
 "kVolume" = "音量";
