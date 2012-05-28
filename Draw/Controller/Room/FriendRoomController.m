@@ -302,7 +302,7 @@
         static NSString *CellIdentifier = @"MoreRow";
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
             cell.textLabel.textColor = [UIColor grayColor];
             UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;

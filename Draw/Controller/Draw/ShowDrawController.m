@@ -53,18 +53,17 @@
 @synthesize drawBackground;
 - (void)dealloc
 {
-    [_word release];
-    [_candidateString release];
-    [toolView release];
-    [showView release];
-    [scrollView release];
-    [pageControl release];
-    [leftPageButton release];
-    [rightPageButton release];
-    [drawBackground release];
+    PPRelease(_word);
+    PPRelease(_candidateString);
+    PPRelease(toolView);
+    PPRelease(showView);
+    PPRelease(scrollView);
+    PPRelease(pageControl);
+    PPRelease(leftPageButton);
+    PPRelease(rightPageButton);
+    PPRelease(drawBackground);
     [super dealloc];
 }
-#pragma mark - Static Method
 
 
 #pragma mark - Constroction

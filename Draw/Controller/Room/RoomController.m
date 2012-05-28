@@ -543,7 +543,11 @@
 - (void)showDrawViewController:(BOOL)animated
 {
     if (![self isMyTurn]) {
-//        [ShowDrawController startGuessFromController:self];
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[ShowDrawController class]]) {
+                return;
+            }
+        }
         ShowDrawController *controller = [[ShowDrawController alloc] init];
         [self.navigationController pushViewController:controller animated:animated];
         [controller release];
@@ -812,7 +816,7 @@
 
 - (IBAction)clickGroupChat:(id)sender {
     if (_groupChatController == nil) {
-        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
     }
     _groupChatController.chatControllerDelegate = self;
     
@@ -821,7 +825,7 @@
 
 - (IBAction)clickPrivateChat:(id)sender {
     if (_privateChatController == nil) {
-        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
     }
     _privateChatController.chatControllerDelegate = self;
    
