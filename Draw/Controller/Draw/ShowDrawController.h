@@ -20,7 +20,6 @@
 @class ItemShopController;
 @interface ShowDrawController : SuperDrawViewController<CommonDialogDelegate,UIScrollViewDelegate>
 {
-    Word *_word;
     ShowDrawView *showView;
     NSString *_candidateString;
     ItemShopController *_shopController;
@@ -32,7 +31,6 @@
     NSInteger numberPerPage;
     NSInteger pageCount;
 }
-@property(nonatomic, retain)Word *word;
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;
 

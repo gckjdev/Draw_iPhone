@@ -14,6 +14,7 @@
 
 #define GAME_TIME 60
 @class AvatarView;
+@class Word;
 @interface SuperDrawViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
     ShareImageManager *shareImageManager;
@@ -22,7 +23,7 @@
     LanguageType languageType;
     DrawGameService *drawGameService;
     NSMutableArray *avatarArray;
-
+    Word *_word;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
@@ -30,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
 @property (retain, nonatomic) ChatController *privateChatController;
 @property (retain, nonatomic) ChatController *groupChatController;
+@property (retain, nonatomic) Word *word;
 
 - (void)resetTimer;
 - (void)updateClockButton;

@@ -48,23 +48,20 @@
 @synthesize pageControl;
 @synthesize leftPageButton;
 @synthesize rightPageButton;
-@synthesize word = _word;
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
 - (void)dealloc
 {
-    [_word release];
-    [_candidateString release];
-    [toolView release];
-    [showView release];
-    [scrollView release];
-    [pageControl release];
-    [leftPageButton release];
-    [rightPageButton release];
-    [drawBackground release];
+    PPRelease(_candidateString);
+    PPRelease(toolView);
+    PPRelease(showView);
+    PPRelease(scrollView);
+    PPRelease(pageControl);
+    PPRelease(leftPageButton);
+    PPRelease(rightPageButton);
+    PPRelease(drawBackground);
     [super dealloc];
 }
-#pragma mark - Static Method
 
 
 #pragma mark - Constroction
@@ -612,7 +609,8 @@
     
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
-    
+    [self cleanData];
+
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
@@ -629,7 +627,6 @@
     }
     [rc release]; 
     
-    [self cleanData];
 }
 
 

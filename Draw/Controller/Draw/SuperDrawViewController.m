@@ -34,7 +34,7 @@
 @synthesize clockButton;
 @synthesize privateChatController = _privateChatController;
 @synthesize groupChatController = _groupChatController;
-
+@synthesize word = _word;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,12 +47,13 @@
 
 - (void)dealloc
 {
-    [clockButton release];
-    [popupButton release];
-    [turnNumberButton release];
-    [avatarArray release];
-    [_privateChatController release];
-    [_groupChatController release];
+    PPRelease(_word);
+    PPRelease(clockButton);
+    PPRelease(popupButton);
+    PPRelease(turnNumberButton);
+    PPRelease(avatarArray);
+    PPRelease(_privateChatController);
+    PPRelease(_groupChatController);
     [super dealloc];
 }
 
@@ -331,20 +332,18 @@
     }
     
     if (_privateChatController == nil) {
-        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController.chatControllerDelegate = self;
     }
-    _privateChatController.chatControllerDelegate = self;
-    
     [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId needAnimation:YES];
 }
 
 - (void)showGroupChatView
 {
     if (_groupChatController == nil) {
-        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController.chatControllerDelegate = self;
     }
-    _groupChatController.chatControllerDelegate = self;
-    
     [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil needAnimation:YES];
 }
 
