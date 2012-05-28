@@ -53,7 +53,6 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
-@synthesize word = _word;
 
 #define PAPER_VIEW_TAG 20120403
 
@@ -72,14 +71,12 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)dealloc
 {
-
-    [_word release];
-    [eraserButton release];
-    [wordButton release];
-    [cleanButton release];
-    [penButton release];
-    [pickPenView release];
-    [drawView release];
+    PPRelease(eraserButton);
+    PPRelease(wordButton);
+    PPRelease(cleanButton);
+    PPRelease(penButton);
+    PPRelease(pickPenView);
+    PPRelease(drawView);
     [super dealloc];
 }
 
@@ -292,7 +289,8 @@ enum{
 
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
-    
+    [self cleanData];
+
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
@@ -303,7 +301,6 @@ enum{
                                                     drawActionList:drawView.drawActionList];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
-    [self cleanData];
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -351,12 +348,6 @@ enum{
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-//        for (UIViewController *controller in self.navigationController.childViewControllers) {
-//            if ([controller isKindOfClass:[FriendRoomController class]]) {
-//                [self.navigationController popToViewController:controller animated:YES];
-//                break;
-//            }
-//        }
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
     }

@@ -43,6 +43,17 @@ enum {
 @synthesize updatePassword = _updatePassword;
 @synthesize gender = _gender;
 
+- (void)dealloc {
+    PPRelease(titleLabel);
+    PPRelease(tableViewBG);
+    PPRelease(avatarButton);
+    PPRelease(saveButton);
+    PPRelease(imageView);
+    PPRelease(changeAvatar);
+    PPRelease(nicknameLabel);
+    PPRelease(_gender);
+    [super dealloc];
+}
 
 - (void)updateRowIndexs
 {
@@ -482,17 +493,6 @@ enum {
     [self updateAvatar:image];
     avatarChanged = YES;
     hasEdited = YES;
-}
-- (void)dealloc {
-    [titleLabel release];
-    [tableViewBG release];
-    [avatarButton release];
-    [saveButton release];
-    [imageView release];
-    [changeAvatar release];
-    [nicknameLabel release];
-    [_gender release];
-    [super dealloc];
 }
 
 

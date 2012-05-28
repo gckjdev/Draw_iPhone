@@ -21,7 +21,7 @@
 
 @interface SuperDrawViewController ()
 
-- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message;
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message;
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
 
 
@@ -34,7 +34,7 @@
 @synthesize clockButton;
 @synthesize privateChatController = _privateChatController;
 @synthesize groupChatController = _groupChatController;
-
+@synthesize word = _word;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,12 +47,13 @@
 
 - (void)dealloc
 {
-    [clockButton release];
-    [popupButton release];
-    [turnNumberButton release];
-    [avatarArray release];
-    [_privateChatController release];
-    [_groupChatController release];
+    PPRelease(_word);
+    PPRelease(clockButton);
+    PPRelease(popupButton);
+    PPRelease(turnNumberButton);
+    PPRelease(avatarArray);
+    PPRelease(_privateChatController);
+    PPRelease(_groupChatController);
     [super dealloc];
 }
 
@@ -302,23 +303,19 @@
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
             UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key];  
-            [self showChatMessageViewOnUser:[message userId] title:nil expression:image];
-            //            [self userId:[message userId] popupImage:image title:nil];
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToAll") expression:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self showChatMessageViewOnUser:[message userId] message:msg];
-            //            [self userId:[message userId] popupMessage:msg];
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToAll") message:msg];
         }
     }else {
         if ([content hasPrefix:EXPRESSION_CHAT]) {
             NSString *key = [content stringByReplacingOccurrencesOfString:EXPRESSION_CHAT withString:NSLS(@"")];
             UIImage *image = [[ExpressionManager defaultManager] expressionForKey:key]; 
-            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou:") expression:image];
-            //            [self userId:[message userId] popupImage:image title:NSLS(@"kSayToYou")];
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou") expression:image];
         }else if ([content hasPrefix:NORMAL_CHAT]) {
             NSString *msg = [content stringByReplacingOccurrencesOfString:NORMAL_CHAT withString:NSLS(@"")];
-            [self showChatMessageViewOnUser:[message userId] message:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
-            //            [self userId:[message userId] popupMessage:[NSString stringWithFormat:NSLS(@"kSayToYou"), msg]];
+            [self showChatMessageViewOnUser:[message userId] title:NSLS(@"kSayToYou") message:msg];
         }
     }
 }
@@ -331,27 +328,25 @@
     }
     
     if (_privateChatController == nil) {
-        self.privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatPrivate];
+        _privateChatController.chatControllerDelegate = self;
     }
-    _privateChatController.chatControllerDelegate = self;
-    
     [_privateChatController showInView:self.view messagesType:GameMessages selectedUserId:userId needAnimation:YES];
 }
 
 - (void)showGroupChatView
 {
     if (_groupChatController == nil) {
-        self.groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController = [[ChatController alloc] initWithChatType:GameChatTypeChatGroup];
+        _groupChatController.chatControllerDelegate = self;
     }
-    _groupChatController.chatControllerDelegate = self;
-    
     [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil needAnimation:YES];
 }
 
 - (void)didSelectMessage:(NSString*)message toUser:(NSString *)userNickName
 {
-    NSString *string = [[NSString stringWithFormat:NSLS(@"kSayToXXX"), userNickName] stringByAppendingFormat:message];
-    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] message:string];
+    NSString *title = [NSString stringWithFormat:NSLS(@"kSayToXXX"), userNickName];
+    [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:title message:message];
 }
 
 - (void)didSelectExpression:(UIImage*)expression toUser:(NSString *)userNickName
@@ -360,17 +355,17 @@
     [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:title expression:expression];
 }
 
-- (void)showChatMessageViewOnUser:(NSString*)userId message:(NSString*)message
+- (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message
 {
     AvatarView *player = [self avatarViewForUserId:userId];
     CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
-    [ChatMessageView showMessage:message origin:origin superView:self.view];
+    [ChatMessageView showMessage:message title:title origin:origin superView:self.view];
 }
 
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression
 {
     AvatarView *player = [self avatarViewForUserId:userId];
-    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    CGPoint origin = CGPointMake(player.frame.origin.x-15, player.frame.origin.y+player.frame.size.height);
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
 }
 

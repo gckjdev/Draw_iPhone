@@ -24,7 +24,7 @@
     DrawView *drawView;
     PickPenView *pickPenView;
 
-    Word *_word;
+//    Word *_word;
     NSInteger penWidth;
     NSInteger eraserWidth;
                 
@@ -39,7 +39,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
-@property (retain, nonatomic) Word *word;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 - (void)setToolButtonEnabled:(BOOL)enabled;

@@ -109,7 +109,11 @@
 }
 
 - (void)dealloc {
-    [searchField release];
+//    PPRelease(searchField);
+//    PPRelease(searchButton);
+//    PPRelease(searchFieldBg);
+        
+    [searchField release]; 
     [searchButton release];
     [searchFieldBg release];
     [titleLabel release];
@@ -232,7 +236,8 @@
         static NSString *CellIdentifier = @"MoreRow";
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                           reuseIdentifier:CellIdentifier]autorelease];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
             UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             cell.textLabel.textColor = [UIColor grayColor];

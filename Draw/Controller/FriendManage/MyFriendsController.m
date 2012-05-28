@@ -49,16 +49,16 @@
 @synthesize selectedIndex;
 
 - (void)dealloc {
-    [titleLabel release];
-    [editButton release];
-    [myFollowButton release];
-    [myFanButton release];
-    [searchUserButton release];
-    [_myFollowList release];
-    [_myFanList release];
-    [tipsLabel release];
-    [_room release];
-    [_selectedSet release];
+    PPRelease(titleLabel);
+    PPRelease(editButton);
+    PPRelease(myFollowButton);
+    PPRelease(myFanButton);
+    PPRelease(searchUserButton);
+    PPRelease(_myFollowList);
+    PPRelease(_myFanList);
+    PPRelease(tipsLabel);
+    PPRelease(_room);
+    PPRelease(_selectedSet);
     [super dealloc];
 }
 
