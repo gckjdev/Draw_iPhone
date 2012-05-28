@@ -121,13 +121,13 @@
     }
     AccountService *service = [AccountService defaultService];
     if (![service hasEnoughCoins:group.price]) {
-        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton deelegate:self];
+        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton delegate:self];
         noMoneyDialog.tag = NO_COIN_TAG;
         [noMoneyDialog showInView:self];
     }else{
         willBuyGroup = group;
         NSString *message = [NSString stringWithFormat:NSLS(@"kBuyColorDialogMessage"),group.price];
-        CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyColorDialogTitle") message:message style:CommonDialogStyleDoubleButton deelegate:self];
+        CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyColorDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
         buyConfirmDialog.tag = BUY_CONFIRM_TAG;
         [buyConfirmDialog showInView:self];
     }

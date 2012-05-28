@@ -42,7 +42,7 @@
 //    BOOL languageChanged;
     LanguageType languageType;
     GuessLevel guessLevel;
-    NSString* gender;
+    NSString* _gender;
 //    LevelType
     
 }
@@ -55,5 +55,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (retain, nonatomic) NSString *updatePassword;
+@property (retain, nonatomic) NSString* gender;
 - (void)updateRowIndexs;
 @end

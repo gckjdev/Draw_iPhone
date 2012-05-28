@@ -420,13 +420,13 @@ enum{
         message = NSLS(@"kNoCoinQuitGameAlertMessage");
     }
 
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style deelegate:self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style delegate:self];
     dialog.tag = DIALOG_TAG_ESCAPE;
     [dialog showInView:self.view];
 }
 - (IBAction)clickRedraw:(id)sender {
     [pickPenView setHidden:YES animated:YES];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton deelegate:self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton delegate:self];
     dialog.tag = DIALOG_TAG_CLEAN_DRAW;
     [dialog showInView:self.view];
 }

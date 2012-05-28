@@ -442,4 +442,7 @@
 
 "kMore" = "More...";
 "kGender" = "Gender";
+"kClear" = "Clear";
+"kDeleteAllWarning" = "You are going to delete all paints!";
+"kAttention" = "Attentions";
 

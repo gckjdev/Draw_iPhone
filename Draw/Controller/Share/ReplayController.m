@@ -122,7 +122,7 @@
                                                       xScale:xScale 
                                                       yScale:yScale];
     [replayView setDrawActionList:actionList];
-    replayView.backgroundColor = [UIColor clearColor];
+    replayView.backgroundColor = [UIColor whiteColor];
     replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
         replayView.delegate = self;

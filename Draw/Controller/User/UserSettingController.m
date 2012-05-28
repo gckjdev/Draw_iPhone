@@ -41,6 +41,7 @@ enum {
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
 @synthesize updatePassword = _updatePassword;
+@synthesize gender = _gender;
 
 
 - (void)updateRowIndexs
@@ -89,6 +90,7 @@ enum {
 
 - (void)updateInfoFromUserManager
 {
+    userManager = [UserManager defaultManager];
     [imageView clear];
     if ([userManager.avatarURL length] > 0){
         [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
@@ -102,7 +104,7 @@ enum {
     hasEdited = NO;
     avatarChanged = NO;
     languageType = [userManager getLanguageType];
-    gender = [userManager gender];
+    self.gender = [userManager gender];
     guessLevel = [ConfigManager guessDifficultLevel];
 }
 
@@ -179,6 +181,11 @@ enum {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
+    if (isSoundOn) {
+        NSLog(@"switcher on");
+            } else {
+                NSLog(@"switcher off");
+                    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,7 +242,7 @@ enum {
         }
     }else if (row == rowOfGender){
         [cell.textLabel setText:NSLS(@"kGender")];
-        if ([gender isEqualToString:MALE]) {
+        if ([self.gender isEqualToString:MALE]) {
             [cell.detailTextLabel setText:NSLS(@"kMale")];
         }else{
             [cell.detailTextLabel setText:NSLS(@"kFemale")];
@@ -324,7 +331,7 @@ enum {
         [actionSheet release];        
     } else if (row == rowOfGender) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
-        int index = ([gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
+        int index = ([self.gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
         [actionSheet setDestructiveButtonIndex:index];
         [actionSheet showInView:self.view];
         actionSheet.tag = GENDER_TAG;
@@ -368,7 +375,7 @@ enum {
             if (buttonIndex != actionSheet.destructiveButtonIndex) {
                 hasEdited = YES;
             }
-            gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
+            self.gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
         }
     }
     [self updateRowIndexs];
@@ -378,7 +385,7 @@ enum {
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ![gender isEqualToString:[userManager gender]] || [AudioManager defaultManager].isSoundOn != isSoundOn);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ![self.gender isEqualToString:[userManager gender]] || [AudioManager defaultManager].isSoundOn != isSoundOn);
     return localChanged;
 }
 
@@ -389,8 +396,8 @@ enum {
     if (localChanged) {
         [userManager setLanguageType:languageType];
         [ConfigManager setGuessDifficultLevel:guessLevel];
-        [userManager setGender:gender];
-        [[AudioManager defaultManager] setIsMusicOn:isSoundOn];
+        [userManager setGender:self.gender];
+        [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
@@ -398,7 +405,7 @@ enum {
     }
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
-        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:gender password:self.updatePassword viewController:self];        
+        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:self.gender password:self.updatePassword viewController:self];        
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
@@ -415,7 +422,7 @@ enum {
 - (IBAction)clickBackButton:(id)sender {
     BOOL localChanged = [self isLocalChanged];
     if (localChanged || hasEdited) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton deelegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton delegate:self];
         [dialog showInView:self.view];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
@@ -449,6 +456,7 @@ enum {
     [imageView release];
     [changeAvatar release];
     [nicknameLabel release];
+    [_gender release];
     [super dealloc];
 }
 
