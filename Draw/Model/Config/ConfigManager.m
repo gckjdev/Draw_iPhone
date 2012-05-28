@@ -23,6 +23,15 @@
     }
 }
 
++ (NSString*)getAPIServerURL
+{
+    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://58.215.189.146:8001/api/i?"];    
+    
+//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
+//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+}
+
+
 + (NSString*)getMusicDownloadHomeURL
 {
     if ([LocaleUtils isChina]){
