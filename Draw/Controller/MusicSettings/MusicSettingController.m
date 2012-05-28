@@ -37,6 +37,26 @@
 @synthesize audiomanager;
 @synthesize musicSettingTitleLabel;
 
+
+- (void)dealloc
+{
+    PPRelease(_musicList);
+    PPRelease(request);
+    PPRelease(_tableView);
+    PPRelease(_webView);
+    PPRelease(editButton);
+    PPRelease(expandButton);
+    PPRelease(musicLabel);
+    PPRelease(musicSettingTitleLabel);
+    PPRelease(previousButton);
+    PPRelease(nextButton);
+    PPRelease(stopButton);
+    PPRelease(refreshButton);
+    PPRelease(urlForAction);
+    PPRelease(audiomanager);
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -165,16 +185,6 @@ enum{
 }
     
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.webView = nil;
-    self.tableView = nil;
-    self.request = nil;
-    self.musicList = nil;
-    
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.tableView reloadData];
@@ -186,16 +196,20 @@ enum{
     [[MusicItemManager defaultManager] saveMusicItems];
 }
 
-- (void)dealloc
+- (void)viewDidUnload
 {
-    [super dealloc];
-    [_webView release];
-    [request release];
-    [_tableView release];
-    [_musicList release];
-    [timer release];
+    self.tableView = nil;
+    self.webView = nil;
+    self.editButton = nil;
+    self.expandButton = nil;
+    self.musicLabel = nil;
+    self.musicSettingTitleLabel = nil;
+    self.previousButton = nil;
+    self.nextButton = nil;
+    self.stopButton = nil;
+    self.refreshButton = nil;
+    [super viewDidUnload];
 }
-
 
 #pragma mark - Button Action
 - (IBAction)clickBack:(id)sender
