@@ -353,10 +353,10 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-"kSayToYou" = "對你說: %@";
-"kSayToYou:" = "對你說:";
 "kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
-"kSayToXXX" = "對【%@】说: ";
+"kSayToXXX" = "對【%@】说:";
+"kSayToAll" = "對【所有人】说:";
+"kSayToYou" = "對【你】說:";
 
 "kPayAttentionToMe" = "關注我吧";
 "kDrawTillDawn" = "決戰到天明";
