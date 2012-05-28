@@ -18,8 +18,14 @@
 #define KEY_CURRENT_MUSIC @"currentMusic"
 #define DELIMITER @"$$"
 
+@interface MusicItemManager()
+
+- (MusicItem*) parseMusicItemFromString:(NSString*)str;
+
+@end
 
 @implementation MusicItemManager
+
 @synthesize itemList;
 @synthesize currentMusicItem;
 @synthesize defaultMusicItem;
@@ -73,12 +79,12 @@ static MusicItemManager *_defaultManager;
     }
     
     if (self.currentMusicItem == nil) {
-        if ([ConfigManager isInReview]){
-            self.currentMusicItem = noneMusicItem;
-        }
-        else{
+//        if ([ConfigManager isInReview]){
+//            self.currentMusicItem = noneMusicItem;
+//        }
+//        else{
             self.currentMusicItem = defaultMusicItem;
-        }
+//        }
     }
 }
 

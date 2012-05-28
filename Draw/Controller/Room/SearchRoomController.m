@@ -27,7 +27,6 @@
 
 #define SEARCH_ROOM_LIMIT 50
 #define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
-
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
@@ -179,7 +178,7 @@
         }
         _currentStartIndex += [roomList count];
         _moreCellLoadding = NO;
-        [self enableMoreRow:([roomList count] != 0)];
+        [self enableMoreRow:([roomList count] > SEARCH_ROOM_LIMIT * 0.9)];
         self.tipsLabel.hidden = ([self.dataList count] != 0);
         [self.dataTableView reloadData];
     }
@@ -235,11 +234,15 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
+            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            cell.textLabel.textColor = [UIColor grayColor];
             if ([DeviceDetection isIPAD]) {
                 activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
+                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
             }else{
                 activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+
             }            
             activity.tag = MORE_CELL_ACTIVITY;
             activity.hidesWhenStopped = YES;
@@ -261,12 +264,31 @@
         RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [RoomCell createCell:self];
+            cell.roomCellType = RoomCellTypeSearchRoom;
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
         Room *room = [self.dataList objectAtIndex:indexPath.row];
         [cell setInfo:room];
-        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
+//        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
         return cell;
+    }
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+
+    if (!_hasMoreRow || _moreCellLoadding) {
+        return;
+    }
+    
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    if(y > h + MORE_CELL_HEIGHT) {
+        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
     }
 }
 

@@ -30,7 +30,7 @@
 
 @end
 
-#define INVITE_LIMIT 12
+#define INVITE_LIMIT 20
 #define FIND_ROOM_LIMIT 50
 #define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
 
@@ -246,7 +246,7 @@
             [array addObjectsFromArray:[[RoomManager defaultManager] sortRoomList:roomList]];
             self.dataList = array;
             _currentStartIndex += [roomList count];
-            [self enableMoreRow:YES];
+            [self enableMoreRow:[roomList count] > FIND_ROOM_LIMIT * 0.9];
             [self.dataTableView reloadData];
         }else{
             [self enableMoreRow:NO];
@@ -304,12 +304,16 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+            cell.textLabel.textColor = [UIColor grayColor];
             UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
             if ([DeviceDetection isIPAD]) {
                 activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
+                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
             }else{
                 activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
-            }            
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+                
+            }                     
             activity.tag = MORE_CELL_ACTIVITY;
             activity.hidesWhenStopped = YES;
             [cell.contentView addSubview:activity];            
@@ -330,6 +334,7 @@
         RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [RoomCell createCell:self];
+            cell.roomCellType = RoomCellTypeMyRoom;
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
         Room *room = [self.dataList objectAtIndex:indexPath.row];
@@ -379,6 +384,30 @@
     
     _currentSelectRoom = room;    
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    PPDebug(@"<ScollView> contentOffset : (%f,%f)" , scrollView.contentOffset.x,scrollView.contentOffset.y);    
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+    
+    if (!_hasMoreRow || _moreCellLoadding) {
+        return;
+    }
+    
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    if(y > h + MORE_CELL_HEIGHT) {
+        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
+    }
+}
+
 
 #pragma mark - Draw Game Service Delegate
 

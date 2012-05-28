@@ -205,6 +205,11 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
 }
 
+- (UIImage *)popupChatImage
+{
+    return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
+}
+
 - (UIImage *)selectedPointImage
 {
     return [UIImage imageNamed:@"point_selected.png"];    

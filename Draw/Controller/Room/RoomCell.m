@@ -21,6 +21,7 @@
 @synthesize userListLabel;
 @synthesize inviteInfoButton;
 @synthesize inviteButton;
+@synthesize roomCellType = _roomCellType;
 
 #define ROOM_CELL_HEIGHT     [DeviceDetection isIPAD] ? 150.0f : 75.0f
 
@@ -104,6 +105,31 @@
 
 #define USER_LIST_COUNT 2
 
+- (NSString *)roomStatusString:(RoomStatus)stat
+{
+    switch (stat) {
+        case RoomFull:
+            return NSLS(@"kFull");
+        case RoomUnFull:
+            return NSLS(@"kUnFull");
+        case RoomFree:
+        default:
+            return NSLS(@"kFree");
+    }
+}
+
+- (NSString *)playingStringForStat:(RoomStatus)stat
+{
+    switch (stat) {
+        case RoomFull:
+        case RoomUnFull:
+            return NSLS(@"kFriendsPlaying");
+        case RoomFree:
+        default:
+            return NSLS(@"kFriendsInvited");
+    }
+}
+
 
 - (void)setUserListInfo:(Room *)room
 {
@@ -124,8 +150,7 @@
             stat = RoomFree;    
         }
     }
-
-//    self.userListLabel.hidden = YES;
+    self.userListLabel.hidden = NO;
     if (count!= 0) {
         //join the string.
         NSString *listString = [[RoomManager defaultManager] 
@@ -133,27 +158,19 @@
                                 split:@", " 
                                 count:USER_LIST_COUNT];
         if ([listString length] == 0) {
-            return;
-        }
-        self.userListLabel.hidden = NO;
-        NSInteger userCount = MIN(USER_LIST_COUNT, count);
-        NSString *dot =  @"...";
-        if (userCount == count) {
-            dot = @"";
-        }
-        switch (stat) {
-            case RoomFull:
-                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kFull"),count,NSLS(@"kFriendsPlaying"),listString,dot];
-                break;
-            case RoomUnFull:
-                listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",NSLS(@"kUnFull"),count,NSLS(@"kFriendsPlaying"),listString,dot];
-                break;
-            case RoomFree:
-            default:
-                listString = [NSString stringWithFormat:@"[%@] %d %@ (%@%@)",NSLS(@"kFree"),count,NSLS(@"kFriendsInvited"),listString,dot];
-                break;
+            listString = [NSString stringWithFormat:@"[%@] %d %@",[self roomStatusString:stat],count,[self playingStringForStat:stat]];
+        }else{
+        
+            NSInteger userCount = MIN(USER_LIST_COUNT, count);
+            NSString *dot =  @"...";
+            if (userCount == count) {
+                dot = @"";
+            }
+            listString = [NSString stringWithFormat:@"[%@] %d %@(%@%@)",[self roomStatusString:stat],count,[self playingStringForStat:stat],listString,dot];
+
         }
         [self.userListLabel setText:listString];
+
     }else{
         [self.userListLabel setText:NSLS(@"kNoneInvited")];
     }
@@ -166,13 +183,30 @@
     }
 }
 
+- (void)view:(UIView *)view setWidth:(CGFloat)width
+{
+    CGPoint origin = view.frame.origin;
+    CGSize size = view.frame.size;
+    view.frame = CGRectMake(origin.x, origin.y, width, size.height);
+}
+
+- (void)setRoomCellType:(RoomCellType)roomCellType
+{
+    if (roomCellType == RoomCellTypeSearchRoom) {
+        self.inviteInfoButton.hidden = self.inviteButton.hidden = YES;
+        [self view:self.roomNameLabel setWidth:self.roomNameLabel.frame.size.width * 1.35];
+        [self view:self.creatorLabel setWidth:self.creatorLabel.frame.size.width * 1.35];
+    }
+}
+
 - (void)setInfo:(Room *)room
 {
+    
     //set room name
     [self.roomNameLabel setText:room.roomName];
     //set avatar image
     [self setAvatar:room.creator];
-    [self setInviteInfo:room];
+
     //set user list
     [self setUserListInfo:room];
     
@@ -180,6 +214,9 @@
         [self setViewsColor:[UIColor grayColor]];
     }else{
         [self setViewsColor:[UIColor brownColor]];
+    }
+    if (self.roomCellType == RoomCellTypeMyRoom) {
+        [self setInviteInfo:room];  
     }
     
 }
