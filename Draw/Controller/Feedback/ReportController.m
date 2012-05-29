@@ -121,7 +121,7 @@
             
         } break;
         case ADD_WORD: {
-            
+            [[UserService defaultService] commitWords:self.contentText.text viewController:self];
         } break;
         default:
             break;

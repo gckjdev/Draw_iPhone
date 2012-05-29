@@ -458,3 +458,5 @@
 "kVolume" = "音量";
 "kAddWords" = "提交新詞";
 "kAddWordsTips" = "詞之間用空格或者換行分開，如\“添加 新詞\”";
+"kAddWordsSucc" = "提交成功，感謝貢獻";
+"kAddWordsFail" = "提交失敗，請稍後再試";

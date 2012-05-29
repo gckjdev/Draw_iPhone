@@ -461,3 +461,5 @@
 "kVolume" = "音量";
 "kAddWords" = "提交新词";
 "kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
+"kAddWordsSucc" = "提交成功，感谢贡献";
+"kAddWordsFail" = "提交失败，请稍后再试";

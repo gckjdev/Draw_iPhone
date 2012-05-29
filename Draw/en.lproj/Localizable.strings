@@ -449,3 +449,5 @@
 "kVolume" = "Volume";
 "kAddWords" = "Submit some words";
 "kAddWordsTips" = "Using blank to seperator words...";
+"kAddWordsSucc" = "Sumit successfully,thanks ";
+"kAddWordsFail" = "Sumit failed, tray again later";
