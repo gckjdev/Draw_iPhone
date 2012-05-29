@@ -27,6 +27,9 @@
 //    Word *_word;
     NSInteger penWidth;
     NSInteger eraserWidth;
+
+    NSAutoreleasePool *autoReleasePool;
+
                 
 }
 

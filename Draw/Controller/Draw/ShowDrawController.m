@@ -52,6 +52,10 @@
 @synthesize drawBackground;
 - (void)dealloc
 {
+    moveButton = nil;
+    _shopController = nil;
+    lastScaleTarget = nil;
+    
     PPRelease(_candidateString);
     PPRelease(toolView);
     PPRelease(showView);
@@ -659,14 +663,11 @@
 {
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
-        //[self popupHappyMessage:NSLS(@"kGuessCorrect") title:nil];
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
-//        [self setAnswerButtonsEnabled];
     }else{
-        //[self popupUnhappyMessage:NSLS(@"kGuessWrong") title:nil];
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
     }

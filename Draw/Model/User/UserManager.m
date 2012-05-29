@@ -622,7 +622,8 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageType type = [userDefaults integerForKey:KEY_LANGUAGE];
     if (type == 0) {
-        if ([LocaleUtils isChina]){
+        if ([LocaleUtils isChina] || [LocaleUtils isOtherChina] ||
+            [LocaleUtils isChinese] || [LocaleUtils isTraditionalChinese]){
             type = ChineseType;
         }else{
             type = EnglishType;

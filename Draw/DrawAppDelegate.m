@@ -3,7 +3,7 @@
 //  Draw
 //
 //  Created by gamy on 12-3-4.
-//  Copyright 2012Âπ?__MyCompanyName__. All rights reserved.
+//  Copyright 2012√ÇœÄ?__MyCompanyName__. All rights reserved.
 //
 
 #import "DrawAppDelegate.h"
@@ -77,6 +77,8 @@ NSString* GlobalGetTrafficServerURL()
     application.applicationIconBadgeNumber = 0;
     
     [self initImageCacheManager];
+    
+    [WXApi registerApp:@"wx427a2f57bc4456d1"];
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
@@ -253,17 +255,21 @@ NSString* GlobalGetTrafficServerURL()
 
 #pragma mark - Device Notification Delegate
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {   
+- (BOOL)handleURL:(NSURL*)url
+{
     if ([[url absoluteString] hasPrefix:@"wx"]){
-        [UIUtils alert:@"??????‰∏????æÆ‰ø°Â?‰∫??ËØ∑‰?ËΩΩÊ??∞Á???:-)"];
-        return YES;
+        return [WXApi handleOpenURL:url delegate:self];;
     }
-    
     return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
 }
 
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
+    return [self handleURL:url];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[[FacebookSNSService defaultService] facebook] handleOpenURL:url];
+    return [self handleURL:url];
 }
 
 #pragma mark - Device Notification Delegate
@@ -271,7 +277,7 @@ NSString* GlobalGetTrafficServerURL()
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
     //	if ([application enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone){
-    //        [UIUtils alert:@"?±‰??®Ê?????•Â??®È???????Ôº??Ë¥?¥≠?©Ê?????•Â??ΩÊ?Ê≥??Â∏∏‰Ωø??];
+    //        [UIUtils alert:@"?¬±‚Ä∞??¬Æ√ä?????‚Ä¢√Ç??¬Æ√à???????√î¬∫??√ã¬•?¬•‚â†?¬©√ä?????‚Ä¢√Ç??Œ©√ä?√ä‚â•??√Ç‚àè‚àè‚Ä∞Œ©√∏??];
     //		return;
     //	}
 	
@@ -319,6 +325,21 @@ NSString* GlobalGetTrafficServerURL()
     }
 }
 
+-(void) onReq:(BaseReq*)req
+{
+    
+}
 
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        if (resp.errCode == WXSuccess){
+            PPDebug(@"sucdess");
+        }else {
+            PPDebug(@"faile");
+        }
+    }
+}
 
 @end
