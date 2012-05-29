@@ -154,6 +154,7 @@
     [_changeWordButton release];
     [_titleLabel release];
     [toolView release];
+    [_wordArray release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {

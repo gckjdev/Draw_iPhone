@@ -69,6 +69,10 @@
     PPRelease(penButton);
     PPRelease(pickPenView);
     PPRelease(drawView);
+    
+    [autoReleasePool drain];
+    autoReleasePool = nil;
+
     [super dealloc];
 }
 
@@ -89,6 +93,7 @@
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
+        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
     }
