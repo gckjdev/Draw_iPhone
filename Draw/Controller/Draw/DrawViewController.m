@@ -38,14 +38,6 @@
 
 #import "FriendRoomController.h"
 
-DrawViewController *staticDrawViewController = nil;
-DrawViewController *GlobalGetDrawViewController()
-{
-    if (staticDrawViewController == nil) {
-        staticDrawViewController = [[DrawViewController alloc] init];
-    }
-    return staticDrawViewController;
-}
 
 @implementation DrawViewController
 
@@ -226,6 +218,7 @@ enum{
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
 }
 
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -290,7 +283,6 @@ enum{
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
     [self cleanData];
-
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName

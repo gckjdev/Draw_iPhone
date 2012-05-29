@@ -50,5 +50,3 @@
 
 @end
 
-
-extern DrawViewController *GlobalGetDrawViewController();
