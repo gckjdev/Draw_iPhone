@@ -464,3 +464,6 @@
 "kAddWordsTips" = "詞之間用空格或者換行分開，如\“添加 新詞\”";
 "kAddWordsSucc" = "提交成功，感謝貢獻";
 "kAddWordsFail" = "提交失敗，請稍後再試";
+"kContentFormatError" = "格式錯誤，仔細檢查一下哦";
+"kWordTooLong" = "\"%@\"太长了";
+"kIllegalCharacter" = "\"%@\"有非法字符哦";
