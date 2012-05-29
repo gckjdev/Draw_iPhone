@@ -10,7 +10,8 @@
 #import "SNSServiceDelegate.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
-
+#import "StringUtil.h"
+#import "CommonMessageCenter.h"
 
 @interface ReportController ()
 
@@ -96,6 +97,27 @@
     }
 }
 
+- (BOOL)contentCheckForWords
+{
+    NSArray* array = [self.contentText.text componentsSeparatedByCharactersInSet:
+                      [NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+    for (NSString* str in array) {
+        if (str.length <= 0) {
+            continue;
+        }
+        if (str.length > 7) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),str] delayTime:2 isHappy:NO];
+            return NO;
+        }
+        if (!NSStringIsValidChinese(str)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),str] delayTime:2 isHappy:NO];
+            return NO;
+        }
+
+    }
+    return YES;
+}
+
 - (IBAction)submit:(id)sender
 {
     if ([self.contentText.text length] == 0) {
@@ -121,7 +143,9 @@
             
         } break;
         case ADD_WORD: {
-            [[UserService defaultService] commitWords:self.contentText.text viewController:self];
+            if ([self contentCheckForWords]) {
+                [[UserService defaultService] commitWords:self.contentText.text viewController:self];
+            }   
         } break;
         default:
             break;
