@@ -53,6 +53,11 @@
 
 - (CGSize)getStringSize:(NSString*)string font:(UIFont*)font;
 - (void)showInSuperView:(UIView*)superView origin:(CGPoint)origin;
+- (UILabel *)genLabelWithText:(NSString*)text 
+                         font:(UIFont*)font 
+                   withinSize:(CGSize)withinSize 
+                lineBreakMode:(UILineBreakMode)lineBreakMode
+                numberOfLines:(NSInteger)numberOfLines;
 
 @end
 
@@ -71,50 +76,18 @@
     return size;
 }
 
-
-- (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage 
-{
-    CGSize messageSize = [self getStringSize:chatMessage font:FONT_CHAT_MESSAGE_TEXT];    
-    self = [super initWithFrame:CGRectMake(0, 0, messageSize.width+WIDTH_EDGE*2, messageSize.height*2)];
-    
-    PPDebug(@"view.width = %f", self.frame.size.width);
-    
-    if (self) {        
-        UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [bgImageView setImage:[[ShareImageManager defaultManager] popupChatImage]];
-        [self addSubview:bgImageView];
-        [bgImageView release];
-        
-        CGRect rect =  CGRectMake(WIDTH_EDGE, self.frame.size.height*RATE, self.frame.size.width, messageSize.height);
-        UILabel *messageLable = [[UILabel alloc] initWithFrame:rect];
-        messageLable.text = chatMessage;
-        messageLable.font = FONT_CHAT_MESSAGE_TEXT;
-        messageLable.backgroundColor = [UIColor clearColor];
-        messageLable.numberOfLines = 5;
-        [self addSubview:messageLable];
-        
-        [messageLable release];
-        
-        self.hidden = YES;
-    }
-    
-    return self;
-}
-
 - (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage 
                                   title:(NSString*)title
 {
-    UILabel *titleLabel = nil;
-    if (title != nil) {
-        CGRect rect = CGRectMake(0, 0, MAX_WIDTH_CHAT_MESSAGE_VIEW, 15);
-        titleLabel = [[[UILabel alloc] initWithFrame:rect] autorelease];
-        titleLabel.text = title;
-        titleLabel.font = FONT_MESSAGE_TITLE;
-        titleLabel.backgroundColor = [UIColor clearColor];
-    }
-    
     CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
-    UILabel *messageLable = [self genLabelWithText:chatMessage font:FONT_CHAT_MESSAGE_TEXT withinSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    UILabel *titleLabel = [self genLabelWithText:title font:FONT_MESSAGE_TITLE withinSize:withinSize lineBreakMode:UILineBreakModeTailTruncation numberOfLines:1];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    
+    UILabel *messageLable = [self genLabelWithText:chatMessage 
+                                              font:FONT_CHAT_MESSAGE_TEXT 
+                                        withinSize:withinSize 
+                                     lineBreakMode:UILineBreakModeWordWrap 
+                                     numberOfLines:0];
     messageLable.backgroundColor = [UIColor clearColor];
     
     float width = MAX(titleLabel.frame.size.width, messageLable.frame.size.width) + WIDTH_EDGE*2;
@@ -123,7 +96,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, width, height/2*3)];
     if (self) {
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [bgImageView setImage:[[ShareImageManager defaultManager] popupImage]];
+        [bgImageView setImage:[[ShareImageManager defaultManager] popupChatImage]];
         [self addSubview:bgImageView];
         [bgImageView release];
         
@@ -150,51 +123,36 @@
 - (ChatMessageView*)initWithChatExpression:(UIImage*)expression
                                      title:(NSString*)title
 {    
-    CGSize titleSize = [self getStringSize:title font:FONT_CHAT_MESSAGE_TEXT];
+    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
+    UILabel *titleLabel = [self genLabelWithText:title font:FONT_MESSAGE_TITLE withinSize:withinSize lineBreakMode:UILineBreakModeTailTruncation numberOfLines:1];
+    titleLabel.backgroundColor = [UIColor clearColor];
     
-    titleSize.width = (titleSize.width < WIDTH_EXPRESSION_VIEW) ? WIDTH_EXPRESSION_VIEW : titleSize.width;
-
-    if (title != nil) {
-        titleSize.height = (titleSize.height < 15) ? 15 : titleSize.height;
-        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (titleSize.height*1.2+HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
-    }else {
-        self = [super initWithFrame:CGRectMake(0, 0, titleSize.width+WIDTH_EDGE*2, (HEIGHT_EXPRESSION_VIEW+HEIGHT_EDGE*3)/2*3)];
-    }
+    CGRect expressionViewRect = CGRectMake(0, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
+    UIImageView *expressionView = [[[UIImageView alloc] initWithFrame:expressionViewRect] autorelease];
+    [expressionView setImage:expression];
     
-    PPDebug(@"view.width = %f", self.frame.size.width);
-    PPDebug(@"view.height = %f", self.frame.size.height);
+    float width = MAX(titleLabel.frame.size.width, expressionView.frame.size.width) + WIDTH_EDGE*2;
+    float height = (titleLabel == nil) ? (expressionView.frame.size.height+HEIGHT_EDGE*2) : (titleLabel.frame.size.height+expressionView.frame.size.height+HEIGHT_EDGE*3);
     
+    self = [super initWithFrame:CGRectMake(0, 0, width, height/2*3)];
     if (self) {        
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [bgImageView setImage:[[ShareImageManager defaultManager] popupChatImage]];
         [self addSubview:bgImageView];
         [bgImageView release];
         
-        if (title != nil) {
-            CGRect titleRect =  CGRectMake(WIDTH_EDGE, self.frame.size.height*RATE, self.frame.size.width, titleSize.height);
-            UILabel *titleLable = [[UILabel alloc] initWithFrame:titleRect];
-            titleLable.text = title;
-            titleLable.font = FONT_CHAT_MESSAGE_TEXT;
-            titleLable.backgroundColor = [UIColor clearColor];
-            titleLable.numberOfLines = 5;
-            [self addSubview:titleLable];
-            [titleLable release];
-            
-            CGRect expressionViewRect = CGRectMake(WIDTH_EDGE, titleLable.frame.origin.y+titleLable.frame.size.height+HEIGHT_EDGE, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
-
-            UIImageView *expressionView = [[UIImageView alloc] initWithFrame:expressionViewRect];
-            [expressionView setImage:expression];
-            [self addSubview:expressionView];
-            [self bringSubviewToFront:expressionView];
-            [expressionView release];
-        }
-        else {
-            CGRect expressionViewRect = CGRectMake(WIDTH_EDGE, self.frame.size.height*RATE, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
-            UIImageView *expressionView = [[UIImageView alloc] initWithFrame:expressionViewRect];
-            [expressionView setImage:expression];
-            [self addSubview:expressionView];
-            [expressionView release];
-        }
+        titleLabel.frame = CGRectMake(WIDTH_EDGE, 
+                                      self.frame.size.height*RATE, 
+                                      titleLabel.frame.size.width,
+                                      titleLabel.frame.size.height);
+        [self addSubview:titleLabel];
+        
+        float originY = (titleLabel == nil) ? (self.frame.size.height*RATE) : (titleLabel.frame.origin.y + titleLabel.frame.size.height + HEIGHT_EDGE);
+        expressionView.frame = CGRectMake(WIDTH_EDGE,
+                                        originY,
+                                        expressionView.frame.size.width, 
+                                        expressionView.frame.size.height);
+        [self addSubview:expressionView];
         
         self.hidden = YES;
     }
@@ -206,6 +164,7 @@
                          font:(UIFont*)font 
                    withinSize:(CGSize)withinSize 
                 lineBreakMode:(UILineBreakMode)lineBreakMode
+                numberOfLines:(NSInteger)numberOfLines
 {
     if (text == nil) {
         return nil;
@@ -219,8 +178,8 @@
     UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
     label.text = text;
     label.font = font;
-    label.lineBreakMode = lineBreakMode;
-    label.numberOfLines = 0;
+    label.numberOfLines = lineBreakMode;
+    label.numberOfLines = numberOfLines;
     
     return label;
 }
