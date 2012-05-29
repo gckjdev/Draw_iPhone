@@ -358,7 +358,7 @@
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message
 {
     AvatarView *player = [self avatarViewForUserId:userId];
-    CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
+    CGPoint origin = CGPointMake(player.frame.origin.x-15, player.frame.origin.y+player.frame.size.height);
     [ChatMessageView showMessage:message title:title origin:origin superView:self.view];
 }
 
