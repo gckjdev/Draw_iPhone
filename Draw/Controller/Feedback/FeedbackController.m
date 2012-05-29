@@ -28,11 +28,12 @@
 #pragma mark - Table dataSource ,table view delegate
 enum {
     SHARE = 0,
+    ADD_WORDS,
     REPORT_BUG,
     FEEDBACK,
-    ABOUT,
     MORE_APP,
     GIVE_REVIEW,
+    ABOUT,
     FEEDBACK_COUNT
 };
 
@@ -62,6 +63,10 @@ enum {
             break;
         case GIVE_REVIEW: {
             [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
+        }
+            break;
+        case ADD_WORDS: {
+            [aCell.textLabel setText:NSLS(@"kAddWords")];
         }
             break;
         default:
@@ -172,6 +177,12 @@ enum {
             break;
         case GIVE_REVIEW: {
             [UIUtils gotoReview:APP_ID];
+        }
+            break;
+        case ADD_WORDS: {
+            ReportController* rc = [[ReportController alloc] initWithType:ADD_WORD];
+            [self.navigationController pushViewController:rc animated:YES];
+            [rc release];
         }
             break;
         default:

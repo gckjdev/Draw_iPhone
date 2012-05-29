@@ -11,11 +11,7 @@
 
 @interface ChatMessageView : UIView
 
-//- (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage fromUser:(NSString*)fromUserId toUser:(NSString*)toUserId;
-//- (void)initWithChatExpression:(NSString*)chatExpression  fromUser:(NSString*)fromUserId toUser:(NSString*)toUserId;
-
-+ (void)showMessage:(NSString*)chatMessage origin:(CGPoint)origin superView:(UIView*)superView;
-
++ (void)showMessage:(NSString*)chatMessage title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView;
 + (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView;
 
 @end

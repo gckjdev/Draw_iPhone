@@ -21,7 +21,7 @@
 #import "Room.h"
 #import "RoomManager.h"
 #import "RoomService.h"
-
+#import "WXApi.h"
 
 @interface MyFriendsController ()
 
@@ -33,6 +33,8 @@
 - (void)loadMyFollow;
 - (void)loadMyFans;
 - (void)updateFriendsListFromLocal;
+- (void)sendSMS;
+- (void)sendWeixin;
 
 @end
 
@@ -45,20 +47,22 @@
 @synthesize myFollowList = _myFollowList;
 @synthesize myFanList = _myFanList;
 @synthesize tipsLabel;
+@synthesize inviteButton;
 @synthesize room = _room;
 @synthesize selectedIndex;
 
 - (void)dealloc {
-    [titleLabel release];
-    [editButton release];
-    [myFollowButton release];
-    [myFanButton release];
-    [searchUserButton release];
-    [_myFollowList release];
-    [_myFanList release];
-    [tipsLabel release];
-    [_room release];
-    [_selectedSet release];
+    PPRelease(titleLabel);
+    PPRelease(editButton);
+    PPRelease(myFollowButton);
+    PPRelease(myFanButton);
+    PPRelease(searchUserButton);
+    PPRelease(_myFollowList);
+    PPRelease(_myFanList);
+    PPRelease(tipsLabel);
+    PPRelease(_room);
+    PPRelease(_selectedSet);
+    [inviteButton release];
     [super dealloc];
 }
 
@@ -112,18 +116,25 @@
     myFollowButton.selected = YES;
     
     if (_isInviteFriend) {
-        searchUserButton.hidden = YES;
+        [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
+        //searchUserButton.hidden = YES;
         editButton.hidden = YES;
         [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
         [editButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
         _selectedSet = [[NSMutableSet alloc] init];
-        CGPoint origin = dataTableView.frame.origin;
-        CGSize size = dataTableView.frame.size;
-        dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
-        [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
+//        CGPoint origin = dataTableView.frame.origin;
+//        CGSize size = dataTableView.frame.size;
+//        dataTableView.frame = CGRectMake(origin.x, origin.y, size.width, size.height + 40);
+        
+        [searchUserButton setTitle:NSLS(@"kSMSInvite") forState:UIControlStateNormal];
+        [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [inviteButton setTitle:NSLS(@"kWeixinInvite") forState:UIControlStateNormal];
+        [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     }else{
         [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
         [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
+        [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     }
     dataTableView.separatorColor = [UIColor clearColor];
     
@@ -143,6 +154,7 @@
     [self setMyFanButton:nil];
     [self setSearchUserButton:nil];
     [self setTipsLabel:nil];
+    [self setInviteButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -350,15 +362,31 @@
 
 - (IBAction)clickSearchUser:(id)sender
 {
-    editButton.selected = NO;
-    [dataTableView setEditing:editButton.selected animated:NO];
-    
-    SearchUserController *searchUser  = [[SearchUserController alloc] init];
-    [self.navigationController pushViewController:searchUser animated:YES];
-    [searchUser release];
+    if (_isInviteFriend) {
+        [self sendSMS];
+    }else {
+        editButton.selected = NO;
+        [dataTableView setEditing:editButton.selected animated:NO];
+        SearchUserController *searchUser  = [[SearchUserController alloc] init];
+        [self.navigationController pushViewController:searchUser animated:YES];
+        [searchUser release];
+    }
 }
 
-
+- (IBAction)clickInviteButton:(id)sender
+{
+    if (_isInviteFriend) {
+        [self sendWeixin];
+    }else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kSelectInvitation") 
+                                                                 delegate:self 
+                                                        cancelButtonTitle:NSLS(@"kCancel") 
+                                                   destructiveButtonTitle:NSLS(@"kSMSInvite") 
+                                                        otherButtonTitles:NSLS(@"kWeixinInvite"), nil];
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+    }
+}
 
 #pragma mark - Custom methods
 - (void)updateFriendsListFromLocal
@@ -556,4 +584,40 @@
     }
     editButton.hidden = YES;
 }
+
+
+#pragma mark - invite with SMS and Weixin
+
+enum {
+    INVITE_SMS = 0,
+    INVITE_WEIXIN = 1
+};
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    PPDebug(@"%d",buttonIndex);
+    if (buttonIndex == INVITE_SMS) {
+        [self sendSMS];
+    }else if (buttonIndex == INVITE_WEIXIN){
+        [self sendWeixin];
+    }else {
+        return;
+    }
+}
+
+
+- (void)sendSMS{
+    [self sendSms:nil body:NSLS(@"kInvitationInfo")];
+}
+
+
+- (void)sendWeixin
+{
+    SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
+    req.bText = YES;
+    req.text = NSLS(@"kInvitationInfo");
+    
+    [WXApi sendReq:req];
+}
+
 @end

@@ -26,6 +26,7 @@
 		A329333A1559304500621789 /* foucsme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933361559304500621789 /* foucsme@2x.png */; };
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
+		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
 		A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129D71563A6B600C021A7 /* DrawDataService.m */; };
 		A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */; };
 		A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */; };
@@ -709,6 +710,9 @@
 		A32933361559304500621789 /* foucsme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foucsme@2x.png"; sourceTree = "<group>"; };
 		A32933371559304500621789 /* myfoucs_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs_selected@2x.png"; sourceTree = "<group>"; };
 		A32933381559304500621789 /* myfoucs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs@2x.png"; sourceTree = "<group>"; };
+		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		A3C129D61563A6B600C021A7 /* DrawDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawDataService.h; sourceTree = "<group>"; };
 		A3C129D71563A6B600C021A7 /* DrawDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawDataService.m; sourceTree = "<group>"; };
 		A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteDrawView.h; sourceTree = "<group>"; };
@@ -1706,6 +1710,7 @@
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
 				C2F947CC1533D8BF0034C895 /* libMobClickLibrary.a in Frameworks */,
 				C2F947CE1533D8BF0034C895 /* libUMUFP.a in Frameworks */,
+				A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,6 +1727,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A357930C1574BD670007B2C0 /* WeixinSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A357930D1574BD670007B2C0 /* libWeChatSDK.a */,
+				A357930E1574BD670007B2C0 /* WXApi.h */,
+				A357930F1574BD670007B2C0 /* WXApiObject.h */,
+			);
+			name = WeixinSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/WeixinSDK";
+			sourceTree = "<group>";
+		};
 		A3C129D51563A6B600C021A7 /* DrawData */ = {
 			isa = PBXGroup;
 			children = (
@@ -3733,6 +3749,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A357930C1574BD670007B2C0 /* WeixinSDK */,
 				C2F947BE1533D8BF0034C895 /* MobClick */,
 				C2F947C31533D8BF0034C895 /* UMUFP_iPhone_SDK */,
 				C2A096FB152E979C006535F7 /* Component-Gif */,
@@ -5026,6 +5043,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
@@ -5047,6 +5065,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";

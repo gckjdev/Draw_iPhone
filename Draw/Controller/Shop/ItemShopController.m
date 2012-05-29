@@ -233,9 +233,9 @@ ItemShopController *staticItemController = nil;
 }
 
 - (void)dealloc {
-    [titleLabel release];
-    [coinsAmountLabel release];
-    [itemAmountLabel release];
+    PPRelease(titleLabel);
+    PPRelease(coinsAmountLabel);
+    PPRelease(itemAmountLabel);
     [super dealloc];
 }
 @end

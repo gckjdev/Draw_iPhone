@@ -36,11 +36,11 @@
 @synthesize selectedIndex;
 
 - (void)dealloc {
-    [searchButton release];
-    [titleLabel release];
-    [resultLabel release];
-    [inputTextField release];
-    [inputImageView release];
+    PPRelease(searchButton);
+    PPRelease(titleLabel);
+    PPRelease(resultLabel);
+    PPRelease(inputTextField);
+    PPRelease(inputImageView);
     [super dealloc];
 }
 

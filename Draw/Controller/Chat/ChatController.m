@@ -269,9 +269,6 @@
     }else {
         [[DrawGameService defaultService] groupChatExpression:key]; 
     }
-    
-//    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.3 isSuccessful:YES];
 }
 
 
@@ -354,9 +351,6 @@
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            
     }
-    
-//    NSString * popMessage = [NSString stringWithFormat:NSLS(@"kSendToUserSuccess"), [self getUserNickName:_chatType userId:_selectedUserId]];
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:popMessage delayTime:0.3 isSuccessful:YES];
 }
 
 - (void)configureExpressionScrollView

@@ -38,14 +38,6 @@
 
 #import "FriendRoomController.h"
 
-DrawViewController *staticDrawViewController = nil;
-DrawViewController *GlobalGetDrawViewController()
-{
-    if (staticDrawViewController == nil) {
-        staticDrawViewController = [[DrawViewController alloc] init];
-    }
-    return staticDrawViewController;
-}
 
 @implementation DrawViewController
 
@@ -53,7 +45,6 @@ DrawViewController *GlobalGetDrawViewController()
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
-@synthesize word = _word;
 
 #define PAPER_VIEW_TAG 20120403
 
@@ -72,14 +63,16 @@ DrawViewController *GlobalGetDrawViewController()
 
 - (void)dealloc
 {
+    PPRelease(eraserButton);
+    PPRelease(wordButton);
+    PPRelease(cleanButton);
+    PPRelease(penButton);
+    PPRelease(pickPenView);
+    PPRelease(drawView);
+    
+    [autoReleasePool drain];
+    autoReleasePool = nil;
 
-    [_word release];
-    [eraserButton release];
-    [wordButton release];
-    [cleanButton release];
-    [penButton release];
-    [pickPenView release];
-    [drawView release];
     [super dealloc];
 }
 
@@ -100,6 +93,7 @@ DrawViewController *GlobalGetDrawViewController()
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
+        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
     }
@@ -229,6 +223,7 @@ enum{
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
 }
 
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -292,7 +287,7 @@ enum{
 
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
-    
+    [self cleanData];
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
@@ -303,7 +298,6 @@ enum{
                                                     drawActionList:drawView.drawActionList];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
-    [self cleanData];
 }
 
 - (void)didUserQuitGame:(GameMessage *)message
@@ -351,12 +345,6 @@ enum{
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-//        for (UIViewController *controller in self.navigationController.childViewControllers) {
-//            if ([controller isKindOfClass:[FriendRoomController class]]) {
-//                [self.navigationController popToViewController:controller animated:YES];
-//                break;
-//            }
-//        }
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
     }

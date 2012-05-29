@@ -220,21 +220,21 @@
 }
 
 - (void)dealloc {
-    [_drawUserId release];
-    [_drawUserNickName release];
-    [upButton release];
-    [downButton release];
-    [continueButton release];
-    [saveButton release];
-    [exitButton release];
-    [drawImage release];
-    [_image release];
-    [wordText release];
-    [wordLabel release];
-    [scoreLabel release];
-    [whitePaper release];
-    [titleLabel release];
-    [_drawActionList release];
+    PPRelease(_drawUserId);
+    PPRelease(_drawUserNickName);
+    PPRelease(upButton);
+    PPRelease(downButton);
+    PPRelease(continueButton);
+    PPRelease(saveButton);
+    PPRelease(exitButton);
+    PPRelease(drawImage);
+    PPRelease(_image);
+    PPRelease(wordText);
+    PPRelease(wordLabel);
+    PPRelease(scoreLabel);
+    PPRelease(whitePaper);
+    PPRelease(titleLabel);
+    PPRelease(_drawActionList);
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {

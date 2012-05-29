@@ -281,10 +281,7 @@
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
 
-"kContentRepeat" = "謝謝，您已經反饋過了";
-
-
-"kContentRepeat" = "謝謝，您已經匯報過這個問題了!";
+"kContentRepeat" = "不要重復提交哦!";
 
 /*the new words below without Japanese*/
 
@@ -321,6 +318,10 @@
 "kNoFans" = "暫未有粉絲";
 "kEdit" = "編輯";
 "kSearchUser" = "搜索用戶";
+"kSMSInvite" = "短信邀請";
+"kWeixinInvite" = "微信邀請";
+"kSelectInvitation" = "請選擇邀請方式";
+"kInvitationInfo" = "我在玩猜猜畫畫，你也一起來玩吧";
 "kSearch" = "搜索";
 "kAddAsFriend" = "關注";
 "kAlreadyBeFriend" = "已關注";
@@ -354,10 +355,10 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-"kSayToYou" = "對你說: %@";
-"kSayToYou:" = "對你說:";
 "kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
-"kSayToXXX" = "對【%@】说: ";
+"kSayToXXX" = "對【%@】说:";
+"kSayToAll" = "對【所有人】说:";
+"kSayToYou" = "對【你】說:";
 
 "kPayAttentionToMe" = "關注我吧";
 "kDrawTillDawn" = "決戰到天明";
@@ -459,4 +460,7 @@
 "kDeleteAllWarning" = "刪除當前的所有作品嗎？";
 "kAttention" = "注意";
 "kVolume" = "音量";
-
+"kAddWords" = "提交新詞";
+"kAddWordsTips" = "詞之間用空格或者換行分開，如\“添加 新詞\”";
+"kAddWordsSucc" = "提交成功，感謝貢獻";
+"kAddWordsFail" = "提交失敗，請稍後再試";

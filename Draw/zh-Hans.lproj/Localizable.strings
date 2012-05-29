@@ -281,10 +281,7 @@
 "kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片。";
 "kGifTips" = "温馨提示";
 
-"kContentRepeat" = "谢谢，您已经反馈过了";
-
-
-"kContentRepeat" = "谢谢，您已经汇报过这个问题了!";
+"kContentRepeat" = "不要重复提交哦!";
 
 /*the new words below without Japanese*/
 
@@ -321,6 +318,10 @@
 "kNoFans" = "暂未有粉丝";
 "kEdit" = "编辑";
 "kSearchUser" = "搜索用户";
+"kSMSInvite" = "短信邀请";
+"kWeixinInvite" = "微信邀请";
+"kSelectInvitation" = "请选择邀请方式";
+"kInvitationInfo" = "我在玩猜猜画画，你也一起来玩吧";
 "kSearch" = "搜索";
 "kAddAsFriend" = "关注";
 "kAlreadyBeFriend" = "已关注";
@@ -354,10 +355,13 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-"kSayToYou" = "对你说: %@";
-"kSayToYou:" = "对你说:";
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
-"kSayToXXX" = "对【%@】说: ";
+"kSayToXXX" = "对【%@】说:";
+"kSayToAll" = "对【所有人】说:";
+"kSayToYou" = "对【你】:";
+
+
+
 
 "kPayAttentionToMe" = "关注我吧";
 "kDrawTillDawn" = "决战到天明";
@@ -459,3 +463,7 @@
 "kAttention" = "注意";
 
 "kVolume" = "音量";
+"kAddWords" = "提交新词";
+"kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
+"kAddWordsSucc" = "提交成功，感谢贡献";
+"kAddWordsFail" = "提交失败，请稍后再试";
