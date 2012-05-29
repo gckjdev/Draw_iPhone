@@ -11,7 +11,8 @@
 #import "UserService.h"
 typedef enum {
     SUBMIT_BUG = 0,
-    SUBMIT_FEEDBACK
+    SUBMIT_FEEDBACK,
+    ADD_WORD
 }ReportType;
 
 

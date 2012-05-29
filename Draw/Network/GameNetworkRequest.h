@@ -181,6 +181,11 @@
                                    avatar:(NSString *)avatar 
                                    gender:(NSString *)gender;
 
++ (CommonNetworkOutput*)commitWords:(NSString*)baseURL 
+                              appId:(NSString*)appId 
+                             userId:(NSString*)userId 
+                              words:(NSString*)words;
+
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
 @end

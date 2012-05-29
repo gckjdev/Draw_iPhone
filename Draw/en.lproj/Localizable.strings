@@ -270,7 +270,7 @@
 "kNone" = "None";
 "kGifNotice" = "The size of GIF is %.2fMB,it may cost some time for publishing";
 "kGifTips" = "Tips";
-"kContentRepeat" = "You have reported it just now!";
+"kContentRepeat" = "You have submited it just now!";
 
 
 
@@ -451,4 +451,7 @@
 "kAttention" = "Attentions";
 
 "kVolume" = "Volume";
-
+"kAddWords" = "Submit some words";
+"kAddWordsTips" = "Using blank to seperator words...";
+"kAddWordsSucc" = "Sumit successfully,thanks ";
+"kAddWordsFail" = "Sumit failed, tray again later";
