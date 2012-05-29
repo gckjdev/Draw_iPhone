@@ -41,12 +41,18 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
 
 - (void)dealloc
 {
+    
+    shareImageManager = nil;
+    drawGameService = nil;
+    gameTimer = nil;
+    
     PPRelease(_word);
     PPRelease(clockButton);
     PPRelease(popupButton);

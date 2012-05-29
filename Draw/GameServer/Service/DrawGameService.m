@@ -865,5 +865,4 @@ static DrawGameService* _defaultService;
     [self scheduleKeepAliveTimer];
     
 }
-
 @end

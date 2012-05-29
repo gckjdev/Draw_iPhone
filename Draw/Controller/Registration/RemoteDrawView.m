@@ -78,8 +78,11 @@
     
     //set avatar
     [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-    [avatarImage setUrl:[NSURL URLWithString:remoteDrawData.avatar]];
-    [GlobalGetImageCache() manage:avatarImage];
+    if ([remoteDrawData.avatar length] > 0) {
+        [avatarImage setUrl:[NSURL URLWithString:remoteDrawData.avatar]];
+        [GlobalGetImageCache() manage:avatarImage];
+    }
+    
     
     //set nickName
     [nickNameLabel setText:remoteDrawData.nickName];

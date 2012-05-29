@@ -27,6 +27,9 @@
 //    Word *_word;
     NSInteger penWidth;
     NSInteger eraserWidth;
+
+    NSAutoreleasePool *autoReleasePool;
+
                 
 }
 
@@ -50,5 +53,3 @@
 
 @end
 
-
-extern DrawViewController *GlobalGetDrawViewController();

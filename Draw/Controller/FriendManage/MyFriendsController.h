@@ -12,7 +12,7 @@
 #import "RoomService.h"
 
 @class Room;
-@interface MyFriendsController : PPTableViewController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate>
+@interface MyFriendsController : PPTableViewController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate, UIActionSheetDelegate>
 {
     Room *_room;
     BOOL _isInviteFriend;
@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *myFanButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
+@property (retain, nonatomic) IBOutlet UIButton *inviteButton;
 
 @property (retain, nonatomic) NSArray *myFollowList;
 @property (retain, nonatomic) NSArray *myFanList;

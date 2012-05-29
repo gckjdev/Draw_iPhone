@@ -53,6 +53,8 @@
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
 - (void)loginByDeviceWithViewController:(PPViewController*)viewController;
+- (void)commitWords:(NSString*)words 
+     viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
 
 

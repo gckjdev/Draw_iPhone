@@ -197,6 +197,7 @@
         [self view:self.roomNameLabel setWidth:self.roomNameLabel.frame.size.width * 1.35];
         [self view:self.creatorLabel setWidth:self.creatorLabel.frame.size.width * 1.35];
     }
+    _roomCellType = roomCellType;
 }
 
 - (void)setInfo:(Room *)room
@@ -217,6 +218,8 @@
     }
     if (self.roomCellType == RoomCellTypeMyRoom) {
         [self setInviteInfo:room];  
+    }else{
+        self.inviteButton.hidden = self.inviteInfoButton.hidden = YES;
     }
     
 }

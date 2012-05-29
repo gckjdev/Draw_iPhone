@@ -10,7 +10,8 @@
 #import "SNSServiceDelegate.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
-
+#import "StringUtil.h"
+#import "CommonMessageCenter.h"
 
 @interface ReportController ()
 
@@ -37,8 +38,14 @@
     if (![DeviceDetection isIPAD]) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.8];
-        [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
-        [self.contentBackground setFrame:self.contentText.frame];
+        if (_reportType == ADD_WORD) {
+            [self.contentText setFrame:CGRectMake(40, 103, 240, 99)];
+            [self.contentBackground setFrame:self.contentText.frame];
+        } else {
+            [self.contentText setFrame:CGRectMake(40, 63, 240, 109)];
+            [self.contentBackground setFrame:self.contentText.frame];
+        }
+        
         [self.contactText setFrame:CGRectMake(50, 175, 230, 31)];
         [self.contactBackground setFrame:CGRectMake(40, 175, 240, 31)];
         [UIView commitAnimations];
@@ -51,8 +58,13 @@
     if (![DeviceDetection isIPAD]) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.8];
-        [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
-        [self.contentBackground setFrame:self.contentText.frame];
+        if (_reportType == ADD_WORD) {
+            [self.contentText setFrame:CGRectMake(40, 103, 240, 149)];
+            [self.contentBackground setFrame:self.contentText.frame];
+        } else {
+            [self.contentText setFrame:CGRectMake(40, 93, 240, 159)];
+            [self.contentBackground setFrame:self.contentText.frame];
+        } 
         [self.contactText setFrame:CGRectMake(50, 260, 230, 31)];
         [self.contactBackground setFrame:CGRectMake(40, 260, 240, 31)];
         [UIView commitAnimations];
@@ -85,6 +97,27 @@
     }
 }
 
+- (BOOL)contentCheckForWords
+{
+    NSArray* array = [self.contentText.text componentsSeparatedByCharactersInSet:
+                      [NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+    for (NSString* str in array) {
+        if (str.length <= 0) {
+            continue;
+        }
+        if (str.length > 7) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),str] delayTime:2 isHappy:NO];
+            return NO;
+        }
+        if (!NSStringIsValidChinese(str)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),str] delayTime:2 isHappy:NO];
+            return NO;
+        }
+
+    }
+    return YES;
+}
+
 - (IBAction)submit:(id)sender
 {
     if ([self.contentText.text length] == 0) {
@@ -92,7 +125,7 @@
         [self.contentText becomeFirstResponder];
         return;
     }
-    if ([self.contactText.text length] == 0) {
+    if ([self.contactText.text length] == 0 && _reportType != ADD_WORD) {
         [self popupMessage:NSLS(@"kContactNull") title:nil];
         [self.contactText becomeFirstResponder];
         return;
@@ -109,6 +142,11 @@
             [[UserService defaultService] feedback:self.contentText.text WithContact:self.contactText.text viewController:self];
             
         } break;
+        case ADD_WORD: {
+            if ([self contentCheckForWords]) {
+                [[UserService defaultService] commitWords:self.contentText.text viewController:self];
+            }   
+        } break;
         default:
             break;
     }
@@ -118,6 +156,11 @@
 - (IBAction)hideKeyboard:(id)sender
 {
     UIButton *button = (UIButton *)sender;
+    if (_reportType == ADD_WORD) {
+        [self submit:nil];
+        [self.contentText resignFirstResponder];
+        return;
+    }
     if(button.tag == BUTTON_TAG_NEXT){
         [self.contactText becomeFirstResponder];
     }else if(button.tag == BUTTON_TAG_DONE)
@@ -163,7 +206,7 @@
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];    
     [self.contactBackground setImage:[[ShareImageManager defaultManager] inputImage]];
-    [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] woodImage] forState:UIControlStateNormal];
+    [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     
@@ -179,6 +222,39 @@
         case SUBMIT_FEEDBACK: {
             [self.reporterTitle setText:NSLS(@"kAdvices")];
             [self.contentText setText:NSLS(@"kSay something...")];
+        } break;
+        case ADD_WORD: {
+            [self.reporterTitle setText:NSLS(@"kAddWords")];
+            [self.contactBackground setHidden:YES];
+            [self.contactText setHidden:YES];
+            [self.contentText becomeFirstResponder];
+            
+            UILabel* tips = [[UILabel alloc] init ];
+            [tips setBackgroundColor:[UIColor clearColor]];
+            [tips setText:NSLS(@"kAddWordsTips")];
+            [tips setTextAlignment:UITextAlignmentCenter];
+            UIImageView* tipsBackground = [[UIImageView alloc] initWithImage:[[ShareImageManager defaultManager] popupChatImage]];
+            [self.view addSubview:tipsBackground];
+            [self.view addSubview:tips];
+            [tipsBackground release];
+            [tips release];
+            
+            if (![DeviceDetection isIPAD]) {
+                [self.contentText setFrame:CGRectMake(40, 103, 240, 99)];
+                [self.contentBackground setFrame:self.contentText.frame];
+                [tips setFrame:CGRectMake(40, 60, 240, 40)];
+                [tips setFont:[UIFont systemFontOfSize:12]];
+                [tipsBackground setFrame:CGRectMake(40, 55, 240, 40)];
+            } else {
+                [self.contentText setFrame:CGRectMake(96, 270, 576, 347)];
+                [self.contentBackground setFrame:self.contentText.frame];
+                [tips setFrame:CGRectMake(96, 170, 576, 100)];
+                [tips setFont:[UIFont systemFontOfSize:24]];
+                [tipsBackground setFrame:CGRectMake(96, 160, 576, 100)];
+            }
+            
+            
+            
         } break;
         default:
             break;
