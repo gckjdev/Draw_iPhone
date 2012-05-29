@@ -308,6 +308,10 @@
 "kNoFans" = "No fan";
 "kEdit" = "Edit";
 "kSearchUser" = "Search User";
+"kSMSInvite" = "SMS Invite";
+"kWeixinInvite" = "Weixin Invite";
+"kSelectInvitation" = "Select the invitation";
+"kInvitationInfo" = "I play drawlively, you can also work together to play";
 "kSearch" = "Search";
 "kAddAsFriend" = "Follow";
 "kAlreadyBeFriend" = "Followed";

@@ -10,6 +10,7 @@
 #import "CommonNetworkClient.h"
 #import "PPApplication.h"
 #import "ReviewRequest.h"
+#import "WXApi.h"
 
 #define APP_ID      @"513819630"
 
@@ -18,7 +19,7 @@
 @class HomeController;
 @class NetworkDetector;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
 }
