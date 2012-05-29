@@ -11,6 +11,9 @@
 #import "DrawAction.h"
 #import "ShowDrawView.h"
 #import "DrawUtils.h"
+#import "HJManagedImageV.h"
+#import "ShareImageManager.h"
+#import "PPApplication.h"
 
 @interface ShowRemoteDrawController ()
 
@@ -21,6 +24,8 @@
 @synthesize titleLabel;
 @synthesize wordLabel;
 @synthesize holderView;
+@synthesize avatarImage;
+
 
 - (void)dealloc
 {
@@ -28,6 +33,7 @@
     [titleLabel release];
     [wordLabel release];
     [holderView release];
+    [avatarImage release];
     [super dealloc];
 }
 
@@ -66,7 +72,8 @@
     ShowDrawView *showDrawView = [[ShowDrawView alloc] init];
     showDrawView.frame = DRAW_VEIW_FRAME;
     CGFloat multiple = self.holderView.frame.size.width / showDrawView.frame.size.width;
-    showDrawView.center = self.holderView.center;
+    showDrawView.center = CGPointMake(self.holderView.frame.size.width/2, self.holderView.frame.size.height/2);
+    //self.holderView.center;
     //frame的缩放
     showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);
     
@@ -90,10 +97,19 @@
     [drawActionList release];
     
     
-    [self.view addSubview:showDrawView];
+    [self.holderView addSubview:showDrawView];
     showDrawView.playSpeed = 2/40.0;
     [showDrawView play];
     [showDrawView release];
+    
+    
+    //set avatar
+    [avatarImage becomeFirstResponder];
+    [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    if ([draw.avatar length] > 0) {
+        [avatarImage setUrl:[NSURL URLWithString:draw.avatar]];
+        [GlobalGetImageCache() manage:avatarImage];
+    }
 }
 
 
@@ -102,6 +118,7 @@
     [self setTitleLabel:nil];
     [self setWordLabel:nil];
     [self setHolderView:nil];
+    [self setAvatarImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

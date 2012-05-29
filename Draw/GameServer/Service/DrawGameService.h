@@ -74,6 +74,7 @@
     int _onlineUserCount;
     
     id<DrawGameServiceDelegate> _connectionDelegate;
+    NSMutableArray *_gameObserverList;
 }
 
 @property (nonatomic, retain) NSString* userId;
@@ -160,7 +161,6 @@
 - (NSArray *)drawActionList;
 - (Word *)word;
 - (NSInteger)language;
-
 
 
 @end
