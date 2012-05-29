@@ -355,6 +355,30 @@ static UserService* _defaultUserService;
     });
 }
 
+- (void)commitWords:(NSString*)words 
+     viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest commitWords:SERVER_URL 
+                                                                appId:APP_ID 
+                                                               userId:userId
+                                                                words:words];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                [viewController popupHappyMessage:NSLS(@"kAddWordsSucc") title:@""];
+            }
+            else{
+                [viewController popupUnhappyMessage:NSLS(@"kAddWordsFail") title:@""];
+            }
+        });
+    });
+}
+
 - (void)loginUserByEmail:(NSString*)email 
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController

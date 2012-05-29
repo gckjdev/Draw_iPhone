@@ -118,6 +118,7 @@
 #define METHOD_UPDATE_ACCOUNT_BALANCE @"uab"
 #define METHOD_SYNC_USER_ACCOUNT_ITEM @"sai"
 #define METHOD_FEEDBACK @"fb"
+#define METHOD_COMMIT_WORDS @"cw"
 
 //game parameters
 
@@ -345,6 +346,8 @@
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1
 
+//new words
+#define PARA_NEW_WORDS  @"nw"
 //find draw 
 #define PARA_FORMAT @"format"
 
