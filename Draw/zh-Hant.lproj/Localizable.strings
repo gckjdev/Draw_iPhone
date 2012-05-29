@@ -321,7 +321,8 @@
 "kSMSInvite" = "短信邀請";
 "kWeixinInvite" = "微信邀請";
 "kSelectInvitation" = "請選擇邀請方式";
-"kInvitationInfo" = "我在玩猜猜畫畫，你也一起來玩吧";
+"kInvitationInfo" = "我在玩猜猜畫畫，你也一起來玩吧，下載地址是%@";
+"kInvitationInfoInRoom" = "我正在玩猜猜畫畫，房間名是:%@，密碼是:%@，你也一起來玩吧，下載地址是%@";
 "kSearch" = "搜索";
 "kAddAsFriend" = "關注";
 "kAlreadyBeFriend" = "已關注";

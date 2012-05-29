@@ -311,7 +311,8 @@
 "kSMSInvite" = "SMS Invite";
 "kWeixinInvite" = "Weixin Invite";
 "kSelectInvitation" = "Select the invitation";
-"kInvitationInfo" = "I play drawlively, you can also work together to play";
+"kInvitationInfo" = "I am playing drawlively, you can also play together, download address is %@";
+"kInvitationInfoInRoom" = "I am playying drawlively, room:%@, password:%@, you can also play together, download address is %@";
 "kSearch" = "Search";
 "kAddAsFriend" = "Follow";
 "kAlreadyBeFriend" = "Followed";
