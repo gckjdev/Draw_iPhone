@@ -35,6 +35,7 @@
 #import "AudioManager.h"
 #import "MusicItemManager.h"
 #import "DrawAppDelegate.h"
+#import "AnimationManager.h"
 
 @interface HomeController()
 
@@ -134,6 +135,8 @@
         [self clickPlayWithFriend:self.playWithFriendButton];
     }
     
+//    [AnimationManager snowAnimationAtView:self.view image:[[ShareImageManager defaultManager] snowImage]];
+//    [AnimationManager fireworksAnimationAtView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated

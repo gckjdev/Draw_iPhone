@@ -28,7 +28,7 @@
     NSInteger penWidth;
     NSInteger eraserWidth;
 
-    NSAutoreleasePool *autoReleasePool;
+//    NSAutoreleasePool *autoReleasePool;
 
                 
 }
