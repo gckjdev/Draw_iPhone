@@ -359,7 +359,7 @@
 "kNobodyInRoom" = "房间里没有其他人时，不能私聊";
 "kSayToXXX" = "对【%@】说:";
 "kSayToAll" = "对【所有人】说:";
-"kSayToYou" = "对【你】:";
+"kSayToYou" = "对【你】说:";
 
 
 
@@ -468,3 +468,6 @@
 "kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
 "kAddWordsSucc" = "提交成功，感谢贡献";
 "kAddWordsFail" = "提交失败，请稍后再试";
+"kContentFormatError" = "格式错误，仔细检查一下哦";
+"kWordTooLong" = "\"%@\"太长了";
+"kIllegalCharacter" = "\"%@\"有非法字符哦";

@@ -456,3 +456,6 @@
 "kAddWordsTips" = "Using blank to seperator words...";
 "kAddWordsSucc" = "Sumit successfully,thanks ";
 "kAddWordsFail" = "Sumit failed, tray again later";
+"kContentFormatError" = "Words format error";
+"kWordTooLong" = "\"%@\" is too long";
+"kIllegalCharacter" = "\"%@\" contains illegal character";
