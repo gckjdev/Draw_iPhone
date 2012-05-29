@@ -281,10 +281,7 @@
 "kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片。";
 "kGifTips" = "温馨提示";
 
-"kContentRepeat" = "谢谢，您已经反馈过了";
-
-
-"kContentRepeat" = "谢谢，您已经汇报过这个问题了!";
+"kContentRepeat" = "不要重复提交哦!";
 
 /*the new words below without Japanese*/
 
@@ -462,3 +459,5 @@
 "kAttention" = "注意";
 
 "kVolume" = "音量";
+"kAddWords" = "提交新词";
+"kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
