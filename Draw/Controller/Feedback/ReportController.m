@@ -13,6 +13,8 @@
 #import "StringUtil.h"
 #import "CommonMessageCenter.h"
 
+#define WORDS_SEPERATOR @"$"
+
 @interface ReportController ()
 
 - (IBAction)endEditingContact:(id)sender;
@@ -101,6 +103,7 @@
 {
     NSArray* array = [self.contentText.text componentsSeparatedByCharactersInSet:
                       [NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+    _formatWords = @"";
     for (NSString* str in array) {
         if (str.length <= 0) {
             continue;
@@ -113,6 +116,7 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),str] delayTime:2 isHappy:NO];
             return NO;
         }
+        _formatWords = [_formatWords stringByAppendingFormat:@"%@%@", WORDS_SEPERATOR, str];
 
     }
     return YES;
@@ -144,7 +148,7 @@
         } break;
         case ADD_WORD: {
             if ([self contentCheckForWords]) {
-                [[UserService defaultService] commitWords:self.contentText.text viewController:self];
+                [[UserService defaultService] commitWords:_formatWords viewController:self];
             }   
         } break;
         default:
