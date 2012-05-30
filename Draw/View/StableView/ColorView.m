@@ -9,6 +9,7 @@
 #import "ColorView.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
+#import "PPDebug.h"
 
 #define SCALE 1.3
 #define SCALE_SMALL_FRAME_IPHONE CGRectMake(0,0,32,34)
@@ -107,7 +108,8 @@
 - (void)dealloc
 {
     CGImageRelease(maskImage);
-    [_drawColor release];
+//    [_drawColor release];
+    PPRelease(_drawColor);
     [super dealloc];
 }
 
