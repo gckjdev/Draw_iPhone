@@ -21,6 +21,7 @@
 #import "MyFriendsController.h"
 #import "RoomManager.h"
 #import "DeviceDetection.h"
+#import "WordManager.h"
 
 @interface FriendRoomController ()
 
@@ -61,6 +62,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[WordManager defaultManager] clearWordBaseDictionary];
+    
 }
 
 #pragma mark - View lifecycle

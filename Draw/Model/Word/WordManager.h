@@ -41,6 +41,7 @@
 + (NSString *)bombCandidateString:(NSString *)candidateString word:(Word *)word;
 + (NSString *)changeToTraditionalChinese:(NSString *)text; 
 + (NSString *)removeSpaceFromString:(NSString *)string;
+- (void)clearWordBaseDictionary;
 @end
 
 extern WordManager *GlobalGetWordManager();
