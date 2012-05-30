@@ -35,8 +35,7 @@
 - (void)setColorViews:(NSArray *)colorViews;
 - (NSArray *)colorViews;
 - (NSInteger)currentWidth;
-//- (void)showInView:(UIView *)view;
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
 - (NSInteger)indexOfColorView:(ColorView *)colorView;
-- (void)updatePickPenView:(ColorView *)lastUsedColorView;
+- (void)updatePickColorView:(ColorView *)lastUsedColorView;
 @end

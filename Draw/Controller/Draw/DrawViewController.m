@@ -309,7 +309,7 @@ enum{
     [drawView setLineWidth:penWidth];
     [colorButton setDrawColor:colorView.drawColor];
     //    [penButton setPenColor:colorView.drawColor];
-    [pickColorView updatePickPenView:colorView];
+    [pickColorView updatePickColorView:colorView];
     [colorView release];
 }
 - (void)didPickedLineWidth:(NSInteger)width

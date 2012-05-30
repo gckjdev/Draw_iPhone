@@ -1,5 +1,5 @@
 //
-//  PickPenView.m
+//  PickColorView.m
 //  Draw
 //
 //  Created by  on 12-4-1.
@@ -203,7 +203,7 @@
 
 #define PEN_STATR_X ([DeviceDetection isIPAD] ? 78 * 2: 70)
 #define PEN_STATR_Y ([DeviceDetection isIPAD] ? 10 * 5 : 15)
-- (void)updatePickPenView
+- (void)updatePickColorView
 {
     
     for (ColorView *colorView in colorViewArray) {
@@ -241,7 +241,7 @@
         [colorViewArray release];
         colorViewArray = [NSMutableArray arrayWithArray:colorViews];
         [colorViewArray retain];
-        [self updatePickPenView];
+        [self updatePickColorView];
     } 
 }
 - (NSArray *)colorViews
@@ -264,7 +264,7 @@
 
 #define INSERT_INDEX 5
 #define COLOR_SIZE 9
-- (void)updatePickPenView:(ColorView *)lastUsedColorView
+- (void)updatePickColorView:(ColorView *)lastUsedColorView
 {
     if (lastUsedColorView == nil) {
         return;
@@ -283,32 +283,6 @@
             [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
         }
     }
-    [self updatePickPenView];
-    
-    
-//    if (lastUsedColorView && [colorViewArray count] >= INSERT_INDEX) {
-//        [lastUsedColorView setScale:ColorViewScaleSmall];
-//        NSInteger index = [self indexOfColorView:lastUsedColorView];
-//        if (index == -1) {
-//            //the color view not in the list
-//            [colorViewArray removeLastObject];
-//            
-//            ColorView *newColorView = [ColorView colorViewWithDrawColor:lastUsedColorView.drawColor 
-//                                                                  scale:ColorViewScaleSmall];
-//            
-//            [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
-//            [self updatePickPenView];
-//        }else if(index > INSERT_INDEX){
-//            //if the color the last list, move it to the first position
-//            [colorViewArray removeObject:lastUsedColorView];
-//            [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
-//            [self updatePickPenView];
-//        }else{
-//            //if the color is the const color, don't move
-//        }
-//    }else{
-//        [colorViewArray addObject:lastUsedColorView];
-//        [self updatePickPenView];
-//    }
+    [self updatePickColorView];    
 }
 @end
