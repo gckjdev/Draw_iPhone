@@ -296,4 +296,9 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"messagebg.png"];
 }
 
+//- (UIImage *)snowImage
+//{
+//    return [UIImage imageNamed:@"snow.png"];
+//}
+
 @end

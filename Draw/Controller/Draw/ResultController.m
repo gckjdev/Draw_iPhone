@@ -24,6 +24,7 @@
 #import "WordManager.h"
 #import "AudioManager.h"
 #import "DrawConstants.h"
+#import "AnimationManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -132,9 +133,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.score > 0) {
-        [[AudioManager defaultManager] playSoundById:GAME_WIN];
-    }
         
     [self.drawImage setImage:_image];
     NSString *answer = nil;
@@ -179,6 +177,11 @@
     if (self.score > 0) {
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
         [[AccountService defaultService] chargeAccount:self.score source:type];    
+        
+        [[AudioManager defaultManager] playSoundById:GAME_WIN];
+        [AnimationManager fireworksAnimationAtView:self.view];
+    }else{
+        [AnimationManager snowAnimationAtView:self.view];
     }
     
 }
