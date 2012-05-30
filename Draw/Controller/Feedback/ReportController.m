@@ -237,7 +237,7 @@
             [tips setBackgroundColor:[UIColor clearColor]];
             [tips setText:NSLS(@"kAddWordsTips")];
             [tips setTextAlignment:UITextAlignmentCenter];
-            UIImageView* tipsBackground = [[UIImageView alloc] initWithImage:[[ShareImageManager defaultManager] popupChatImage]];
+            UIImageView* tipsBackground = [[UIImageView alloc] initWithImage:[[ShareImageManager defaultManager] popupImage]];
             [self.view addSubview:tipsBackground];
             [self.view addSubview:tips];
             [tipsBackground release];
