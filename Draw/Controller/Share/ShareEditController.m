@@ -284,7 +284,7 @@ enum {
     
 }
 
-- (IBAction)clickBack:(id)sender
+- (IBAction)clickBackButon:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
