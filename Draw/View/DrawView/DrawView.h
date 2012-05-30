@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DrawUtils.h"
 #import "Paint.h"
-
+#import "PenView.h"
 
 @protocol DrawViewDelegate <NSObject>
 
@@ -21,6 +21,8 @@
 
 @class DrawColor;
 @class DrawAction;
+
+
 @interface DrawView : UIView<UIGestureRecognizerDelegate>
 {
     NSMutableArray *_drawActionList;
@@ -28,7 +30,7 @@
     NSInteger startDrawActionIndex;
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
-    
+    PenType _penType;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -36,6 +38,7 @@
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
+@property(nonatomic, assign) PenType penType;
 
 - (void)clearAllActions; //remove all the actions
 - (void)addCleanAction;

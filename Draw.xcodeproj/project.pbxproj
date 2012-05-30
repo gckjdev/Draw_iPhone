@@ -171,7 +171,7 @@
 		CA037882155378A600CF41E3 /* right_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA037880155378A600CF41E3 /* right_button@2x.png */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
-		CA051DC51546802D00D0A00A /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB51546802D00D0A00A /* PickPenView.m */; };
+		CA051DC51546802D00D0A00A /* PickColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB51546802D00D0A00A /* PickColorView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
 		CA051DC71546802D00D0A00A /* PenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DBB1546802D00D0A00A /* PenView.m */; };
 		CA051DC81546802D00D0A00A /* StableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DBD1546802D00D0A00A /* StableView.m */; };
@@ -920,8 +920,8 @@
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
 		CA051DB21546802D00D0A00A /* ShowDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawView.m; sourceTree = "<group>"; };
-		CA051DB41546802D00D0A00A /* PickPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickPenView.h; sourceTree = "<group>"; };
-		CA051DB51546802D00D0A00A /* PickPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickPenView.m; sourceTree = "<group>"; };
+		CA051DB41546802D00D0A00A /* PickColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PickColorView.h; sourceTree = "<group>"; };
+		CA051DB51546802D00D0A00A /* PickColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColorView.m; sourceTree = "<group>"; };
 		CA051DB81546802D00D0A00A /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		CA051DB91546802D00D0A00A /* ColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorView.m; sourceTree = "<group>"; };
 		CA051DBA1546802D00D0A00A /* PenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenView.h; sourceTree = "<group>"; };
@@ -2042,8 +2042,8 @@
 		CA051DB31546802D00D0A00A /* PickPenView */ = {
 			isa = PBXGroup;
 			children = (
-				CA051DB41546802D00D0A00A /* PickPenView.h */,
-				CA051DB51546802D00D0A00A /* PickPenView.m */,
+				CA051DB41546802D00D0A00A /* PickColorView.h */,
+				CA051DB51546802D00D0A00A /* PickColorView.m */,
 			);
 			path = PickPenView;
 			sourceTree = "<group>";
@@ -4844,7 +4844,7 @@
 				CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */,
 				CA051DC31546802D00D0A00A /* DrawView.m in Sources */,
 				CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */,
-				CA051DC51546802D00D0A00A /* PickPenView.m in Sources */,
+				CA051DC51546802D00D0A00A /* PickColorView.m in Sources */,
 				CA051DC61546802D00D0A00A /* ColorView.m in Sources */,
 				CA051DC71546802D00D0A00A /* PenView.m in Sources */,
 				CA051DC81546802D00D0A00A /* StableView.m in Sources */,

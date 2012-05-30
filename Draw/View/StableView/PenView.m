@@ -23,103 +23,149 @@
 
 
 @implementation PenView
-@synthesize penColor = _penColor;
+@synthesize penType = _penType;
 
-
-- (void)initMaskImage
-{
-    if (!maskImage) {
-        maskImage = [[ShareImageManager defaultManager] penMaskImage].CGImage;
-        CGImageRetain(maskImage);
-        self.backgroundColor = [UIColor clearColor];                        
-    }
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initMaskImage];
-    }
-    return self;
-}
-
-- (id)initWithPenColor:(DrawColor *)penColor
-{
-    if ([DeviceDetection isIPAD]) {
-        self = [self initWithFrame:VIEW_FRAME_IPAD];        
-    }else{
-        self = [self initWithFrame:VIEW_FRAME];
-    }
-    if (self) {
-        self.penColor = penColor;
-    }
-    return self;
-}
-
-+ (PenView *)viewWithColor:(DrawColor *)color
-{
-    return [[[PenView alloc] initWithPenColor:color] autorelease];
-}
 - (void)dealloc
 {
-    CGImageRelease(maskImage);
-    [_penColor release];
     [super dealloc];
 }
 
-- (void)drawRect:(CGRect)rect
+- (id)initWithPenType:(PenType)type
 {
-    
-    [self initMaskImage];
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, self.penColor.CGColor);
-    CGFloat X = 1.5;
-    CGFloat Y = 30;
-    const NSInteger size = 5;
-    
-    CGFloat *xList = NULL;
-    CGFloat *yList = NULL;
-    
     if ([DeviceDetection isIPAD]) {
-        X = 1.5 * 2;
-        Y = 30 * 2;
-        CGFloat ixArray[] = {X + BODY_WIDTH_IPAD, X + BODY_WIDTH_IPAD, 
-            X + BODY_WIDTH_IPAD / 2.0, X, X};
-        CGFloat iyArray[] = {Y,Y - BODY_HEIGHT_IPAD, 
-            Y - TOTAL_HEIGHT_IPAD, Y - BODY_HEIGHT_IPAD, Y};
-        xList = ixArray;
-        yList = iyArray;
-    }else
-    {
-        CGFloat xArray[] = {X + BODY_WIDTH, X + BODY_WIDTH, X + BODY_WIDTH / 2.0, X, X};
-        CGFloat yArray[] = {Y,Y - BODY_HEIGHT, Y - TOTAL_HEIGHT, Y-BODY_HEIGHT, Y};
-        xList = xArray;
-        yList = yArray;
+        self = [super initWithFrame:VIEW_FRAME_IPAD];        
+    }else{
+        self = [super initWithFrame:VIEW_FRAME];
     }
-    
-    CGContextMoveToPoint(context, X, Y);
-    for (int i = 0; i < size;  ++ i) {
-        CGContextAddLineToPoint(context, xList[i], yList[i]);
+    if (self) {
+        self.penType = type;
     }
-    CGContextClosePath(context);
-    CGContextFillPath(context);    
-
-    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
-	CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextDrawImage(context, self.bounds, maskImage);
-    CGContextSaveGState(context);
+    return self;
 }
 
-- (void)setPenColor:(DrawColor *)penColor
+- (UIImage *)penImageForType:(PenType)type
 {
-    if (self.penColor != penColor) {
-        [_penColor release];
-        _penColor = penColor;
-        [_penColor retain];
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    switch (type) {
+        case Pen:
+            return [imageManager penImage];            
+        case Quill:
+            return [imageManager quillImage];            
+        case WaterPen:
+            return [imageManager waterPenImage];            
+        case IcePen:
+            return [imageManager iceImage];            
+        case Pencil:
+            return [imageManager pencilImage];            
     }
-    [self setNeedsDisplay];
 }
+
+
+
+- (void) setPenType:(PenType)penType
+{
+    _penType = penType;
+    UIImage *image = [self penImageForType:penType];
+    [self setImage:image forState:UIControlStateNormal];
+}
+
+//@synthesize penColor = _penColor;
+//
+//
+//- (void)initMaskImage
+//{
+//    if (!maskImage) {
+//        maskImage = [[ShareImageManager defaultManager] penMaskImage].CGImage;
+//        CGImageRetain(maskImage);
+//        self.backgroundColor = [UIColor clearColor];                        
+//    }
+//}
+//
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self initMaskImage];
+//    }
+//    return self;
+//}
+//
+//- (id)initWithPenColor:(DrawColor *)penColor
+//{
+//    if ([DeviceDetection isIPAD]) {
+//        self = [self initWithFrame:VIEW_FRAME_IPAD];        
+//    }else{
+//        self = [self initWithFrame:VIEW_FRAME];
+//    }
+//    if (self) {
+//        self.penColor = penColor;
+//    }
+//    return self;
+//}
+//
+//+ (PenView *)viewWithColor:(DrawColor *)color
+//{
+//    return [[[PenView alloc] initWithPenColor:color] autorelease];
+//}
+//- (void)dealloc
+//{
+//    CGImageRelease(maskImage);
+//    [_penColor release];
+//    [super dealloc];
+//}
+//
+//- (void)drawRect:(CGRect)rect
+//{
+//    
+//    [self initMaskImage];
+//    
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, self.penColor.CGColor);
+//    CGFloat X = 1.5;
+//    CGFloat Y = 30;
+//    const NSInteger size = 5;
+//    
+//    CGFloat *xList = NULL;
+//    CGFloat *yList = NULL;
+//    
+//    if ([DeviceDetection isIPAD]) {
+//        X = 1.5 * 2;
+//        Y = 30 * 2;
+//        CGFloat ixArray[] = {X + BODY_WIDTH_IPAD, X + BODY_WIDTH_IPAD, 
+//            X + BODY_WIDTH_IPAD / 2.0, X, X};
+//        CGFloat iyArray[] = {Y,Y - BODY_HEIGHT_IPAD, 
+//            Y - TOTAL_HEIGHT_IPAD, Y - BODY_HEIGHT_IPAD, Y};
+//        xList = ixArray;
+//        yList = iyArray;
+//    }else
+//    {
+//        CGFloat xArray[] = {X + BODY_WIDTH, X + BODY_WIDTH, X + BODY_WIDTH / 2.0, X, X};
+//        CGFloat yArray[] = {Y,Y - BODY_HEIGHT, Y - TOTAL_HEIGHT, Y-BODY_HEIGHT, Y};
+//        xList = xArray;
+//        yList = yArray;
+//    }
+//    
+//    CGContextMoveToPoint(context, X, Y);
+//    for (int i = 0; i < size;  ++ i) {
+//        CGContextAddLineToPoint(context, xList[i], yList[i]);
+//    }
+//    CGContextClosePath(context);
+//    CGContextFillPath(context);    
+//
+//    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+//	CGContextScaleCTM(context, 1.0, -1.0);
+//    CGContextDrawImage(context, self.bounds, maskImage);
+//    CGContextSaveGState(context);
+//}
+//
+//- (void)setPenColor:(DrawColor *)penColor
+//{
+//    if (self.penColor != penColor) {
+//        [_penColor release];
+//        _penColor = penColor;
+//        [_penColor retain];
+//    }
+//    [self setNeedsDisplay];
+//}
 
 @end

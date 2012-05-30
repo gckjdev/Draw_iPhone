@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PickPenView.h"
+#import "PickColorView.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
 #import "AnimationManager.h"
@@ -14,7 +14,7 @@
 #import "WidthView.h"
 #import "DeviceDetection.h"
 
-@implementation PickPenView
+@implementation PickColorView
 @synthesize delegate = _delegate;
 @synthesize backgroudView = _backgroundView;
 

@@ -26,6 +26,8 @@
 @synthesize delegate = _delegate;
 @synthesize simplingDistance = _simplingDistance;
 @synthesize drawActionList = _drawActionList;
+@synthesize penType = _penType;
+
 #pragma mark Action Funtion
 
 
@@ -115,7 +117,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
         if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
-        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
+        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor penType:_penType];
         _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
         [self.drawActionList addObject:_currentDrawAction];
         [self addPoint:point toDrawAction:_currentDrawAction];

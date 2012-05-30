@@ -14,6 +14,7 @@
 @synthesize width = _width;
 @synthesize color = _color;
 @synthesize pointList = _pointList;
+@synthesize penType = _penType;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -64,6 +65,20 @@
     return self;
 }
 
+- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
+{
+    [self initWithWidth:width color:color];
+    self.penType = type;
+    return self;
+}
+- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(PenType)type
+{
+    [self initWithWidth:width intColor:color numberPointList:numberPointList];
+    self.penType = type;
+    return self;
+}
+
+
 - (id)initWithGameMessage:(GameMessage *)gameMessage
 {
     self = [super init];
@@ -89,6 +104,12 @@
 {
     return [[[Paint alloc] initWithWidth:width color:color]autorelease];
 }
+
++ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
+{
+    return [[[Paint alloc] initWithWidth:width color:color penType:type] autorelease];
+}
+
 - (void)addPoint:(CGPoint)point
 {
     NSValue *pointValue = [NSValue valueWithCGPoint:point];

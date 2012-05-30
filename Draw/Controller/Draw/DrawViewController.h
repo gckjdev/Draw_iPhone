@@ -10,7 +10,7 @@
 
 #import "DrawView.h"
 #import "DrawGameService.h"
-#import "PickPenView.h"
+#import "PickColorView.h"
 #import "CommonDialog.h"
 #import "SuperDrawViewController.h"
 #import "ColorShopView.h"
@@ -20,9 +20,9 @@
 @class ColorShopController;
 @class PenView;
 
-@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickColorDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
-    PickPenView *pickPenView;
+    PickColorView *pickColorView;
 
 //    Word *_word;
     NSInteger penWidth;
@@ -42,6 +42,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
+@property (retain, nonatomic) IBOutlet ColorView *colorButton;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 - (void)setToolButtonEnabled:(BOOL)enabled;

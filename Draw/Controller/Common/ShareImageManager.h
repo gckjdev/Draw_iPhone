@@ -90,4 +90,9 @@
 - (UIImage *)messageImage;
 //- (UIImage *)snowImage;
 
+- (UIImage *)penImage;
+- (UIImage *)pencilImage;
+- (UIImage *)waterPenImage;
+- (UIImage *)iceImage;
+- (UIImage *)quillImage;
 @end
