@@ -134,15 +134,29 @@
     return [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-#define LINT_TIMES 100000.0
+#define LINE_TIMES 100000.0
+#define PEN_TYPE 100
 + (NSInteger)compressLineWidth:(CGFloat)width
 {
-    return width * LINT_TIMES;
+    return width * LINE_TIMES;
+}
+
++ (NSInteger)compressLineWidth:(CGFloat)width penType:(int)type
+{
+    NSInteger value = width * LINE_TIMES;
+    value -= (value % PEN_TYPE);
+    return value + type;
 }
 
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth
 {
-    return intLineWidth / LINT_TIMES;
+    return intLineWidth / LINE_TIMES;
 }
+
++ (CGFloat )decompressPenTypeWidth:(NSInteger)intLineWidth
+{
+    return intLineWidth % PEN_TYPE;
+}
+
 
 @end

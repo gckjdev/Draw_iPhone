@@ -51,6 +51,8 @@
 
 
 + (NSInteger)compressLineWidth:(CGFloat)width;
++ (NSInteger)compressLineWidth:(CGFloat)width penType:(int)type;
++ (CGFloat )decompressPenTypeWidth:(NSInteger)intLineWidth;
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth;
 
 
