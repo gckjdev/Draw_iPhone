@@ -16,6 +16,9 @@
 
 #define WIDTH_SCREEN ([DeviceDetection isIPAD] ? (768):(320))
 
+#define TEXT_COLOR [UIColor colorWithRed:61.0/255.0 green:61.0/255.0 blue:61.0/255.0 alpha:1];
+
+
 #define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 90
 #define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
 #define MAX_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
@@ -77,12 +80,14 @@
     titleLabel.numberOfLines = 1;
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, 19);
+    titleLabel.textColor = TEXT_COLOR;
     
     UILabel *messageLable = [self genLabelWithText:chatMessage 
                                               font:FONT_CHAT_MESSAGE_TEXT 
                                         withinSize:withinSize 
                                      lineBreakMode:UILineBreakModeWordWrap];
     messageLable.backgroundColor = [UIColor clearColor];    
+    messageLable.textColor = TEXT_COLOR;
     
     float width = MAX(titleLabel.frame.size.width, messageLable.frame.size.width) + WIDTH_EDGE*2;
     float height = (titleLabel == nil) ? (messageLable.frame.size.height+HEIGHT_EDGE*2) : (titleLabel.frame.size.height+messageLable.frame.size.height+HEIGHT_EDGE*3);
@@ -124,7 +129,8 @@
     titleLabel.numberOfLines = 1;
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, 19);
-    
+    titleLabel.textColor = TEXT_COLOR;
+
     CGRect expressionViewRect = CGRectMake(0, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
     UIImageView *expressionView = [[[UIImageView alloc] initWithFrame:expressionViewRect] autorelease];
     [expressionView setImage:expression];
