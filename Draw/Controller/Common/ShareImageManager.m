@@ -205,9 +205,14 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
 }
 
-- (UIImage *)popupChatImage
+- (UIImage *)popupChatImageLeft
 {
-    return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
+    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:10];
+}
+
+- (UIImage *)popupChatImageRight
+{
+    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:20];
 }
 
 - (UIImage *)selectedPointImage
