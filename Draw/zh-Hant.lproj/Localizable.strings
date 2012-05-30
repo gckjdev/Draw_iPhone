@@ -194,7 +194,8 @@
 "kShare_via_tencent_weibo" = "通過騰訊微博分享";
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
-
+"kShare_via_Weixin" = "分享到微信";
+"kWeixinNotInstall" = "你沒有安裝微信或微信版本較低，暫時不能發送!";
 
 "Message" = "消息";
 

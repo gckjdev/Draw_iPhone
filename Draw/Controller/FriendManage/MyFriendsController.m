@@ -617,10 +617,15 @@ enum {
 
 - (void)sendWeixin:(NSString *)message
 {
-    SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
-    req.bText = YES;
-    req.text = message;
-    [WXApi sendReq:req];
+    if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
+    {
+        [UIUtils alert:NSLS(@"kWeixinNotInstall")];
+    }else{
+        SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
+        req.bText = YES;
+        req.text = message;
+        [WXApi sendReq:req];
+    }
 }
 
 @end
