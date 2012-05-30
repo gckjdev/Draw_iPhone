@@ -62,6 +62,7 @@ message SendDrawDataRequest {
   repeated int32 points = 1 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
+  optional int32 penType = 24;
   
   optional string guessWord = 41;
   optional string guessUserId = 42;
@@ -97,6 +98,7 @@ message GeneralNotification{
   repeated int32 points = 21 [packed=true];
   optional float width = 22;
   optional int32 color = 23;
+  optional int32 penType = 24;
   
   // word data
   optional string word = 31;

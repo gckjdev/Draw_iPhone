@@ -1787,6 +1787,7 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
+@property int32_t penType;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
@@ -1830,6 +1831,13 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
   hasColor_ = !!value;
 }
 @synthesize color;
+- (BOOL) hasPenType {
+  return !!hasPenType_;
+}
+- (void) setHasPenType:(BOOL) value {
+  hasPenType_ = !!value;
+}
+@synthesize penType;
 - (BOOL) hasGuessWord {
   return !!hasGuessWord_;
 }
@@ -1870,6 +1878,7 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
     self.language = 0;
     self.width = 0;
     self.color = 0;
+    self.penType = 0;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
@@ -1921,6 +1930,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (self.hasColor) {
     [output writeInt32:23 value:self.color];
   }
+  if (self.hasPenType) {
+    [output writeInt32:24 value:self.penType];
+  }
   if (self.hasGuessWord) {
     [output writeString:41 value:self.guessWord];
   }
@@ -1965,6 +1977,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   }
   if (self.hasColor) {
     size += computeInt32Size(23, self.color);
+  }
+  if (self.hasPenType) {
+    size += computeInt32Size(24, self.penType);
   }
   if (self.hasGuessWord) {
     size += computeStringSize(41, self.guessWord);
@@ -2071,6 +2086,9 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (other.hasColor) {
     [self setColor:other.color];
   }
+  if (other.hasPenType) {
+    [self setPenType:other.penType];
+  }
   if (other.hasGuessWord) {
     [self setGuessWord:other.guessWord];
   }
@@ -2128,6 +2146,10 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       }
       case 184: {
         [self setColor:[input readInt32]];
+        break;
+      }
+      case 192: {
+        [self setPenType:[input readInt32]];
         break;
       }
       case 330: {
@@ -2254,6 +2276,22 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
 - (SendDrawDataRequest_Builder*) clearColor {
   result.hasColor = NO;
   result.color = 0;
+  return self;
+}
+- (BOOL) hasPenType {
+  return result.hasPenType;
+}
+- (int32_t) penType {
+  return result.penType;
+}
+- (SendDrawDataRequest_Builder*) setPenType:(int32_t) value {
+  result.hasPenType = YES;
+  result.penType = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearPenType {
+  result.hasPenType = NO;
+  result.penType = 0;
   return self;
 }
 - (BOOL) hasGuessWord {
@@ -2460,6 +2498,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
+@property int32_t penType;
 @property (retain) NSString* word;
 @property int32_t level;
 @property int32_t round;
@@ -2567,6 +2606,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasColor_ = !!value;
 }
 @synthesize color;
+- (BOOL) hasPenType {
+  return !!hasPenType_;
+}
+- (void) setHasPenType:(BOOL) value {
+  hasPenType_ = !!value;
+}
+@synthesize penType;
 - (BOOL) hasWord {
   return !!hasWord_;
 }
@@ -2682,6 +2728,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.location = @"";
     self.width = 0;
     self.color = 0;
+    self.penType = 0;
     self.word = @"";
     self.level = 0;
     self.round = 0;
@@ -2784,6 +2831,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasColor) {
     [output writeInt32:23 value:self.color];
   }
+  if (self.hasPenType) {
+    [output writeInt32:24 value:self.penType];
+  }
   if (self.hasWord) {
     [output writeString:31 value:self.word];
   }
@@ -2879,6 +2929,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasColor) {
     size += computeInt32Size(23, self.color);
+  }
+  if (self.hasPenType) {
+    size += computeInt32Size(24, self.penType);
   }
   if (self.hasWord) {
     size += computeStringSize(31, self.word);
@@ -3044,6 +3097,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasColor) {
     [self setColor:other.color];
   }
+  if (other.hasPenType) {
+    [self setPenType:other.penType];
+  }
   if (other.hasWord) {
     [self setWord:other.word];
   }
@@ -3165,6 +3221,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 184: {
         [self setColor:[input readInt32]];
+        break;
+      }
+      case 192: {
+        [self setPenType:[input readInt32]];
         break;
       }
       case 250: {
@@ -3468,6 +3528,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearColor {
   result.hasColor = NO;
   result.color = 0;
+  return self;
+}
+- (BOOL) hasPenType {
+  return result.hasPenType;
+}
+- (int32_t) penType {
+  return result.penType;
+}
+- (GeneralNotification_Builder*) setPenType:(int32_t) value {
+  result.hasPenType = YES;
+  result.penType = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearPenType {
+  result.hasPenType = NO;
+  result.penType = 0;
   return self;
 }
 - (BOOL) hasWord {

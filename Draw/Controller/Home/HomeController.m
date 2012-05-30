@@ -36,6 +36,7 @@
 #import "MusicItemManager.h"
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
+#import "WordManager.h"
 
 @interface HomeController()
 
@@ -72,6 +73,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[WordManager defaultManager] clearWordBaseDictionary];
+    
 }
 
 #pragma mark - View lifecycle

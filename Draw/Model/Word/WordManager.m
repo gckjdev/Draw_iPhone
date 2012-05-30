@@ -55,6 +55,11 @@ WordManager *GlobalGetWordManager()
     return wordBaseDictionary;
 }
 
+- (void)clearWordBaseDictionary
+{
+    PPRelease(wordBaseDictionary);
+}
+
 - (NSArray *)wordArrayOfLevel:(WordLevel)level
 {
     switch (level) {
