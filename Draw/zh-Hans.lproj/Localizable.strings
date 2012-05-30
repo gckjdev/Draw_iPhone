@@ -126,8 +126,8 @@
 "kChangeRoom" = "更换房间中...";
 "kNoTipsItemTitle" = "消息";
 "kNoTipsItemMessage" = "你的道具不够了，是不是现在购买一些？";
-"kQuickMessage" = "快点，快点啦！";
-"kWaitMessage" = "等等，等等吧！";
+"kQuickMessage" = "快点,快点啦!";
+"kWaitMessage" = "等等,等等吧!";
 "kClickTooFast" = "你的点击频率太快了，不妨休息一下。";
 
 "kEnglish" = "英语";
