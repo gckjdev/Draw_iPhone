@@ -431,7 +431,7 @@ enum {
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ![self.gender isEqualToString:[userManager gender]] || [AudioManager defaultManager].isSoundOn != isSoundOn);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn);
     return localChanged;
 }
 
