@@ -12,7 +12,7 @@
 #import "ReviewRequest.h"
 #import "WXApi.h"
 
-#define APP_ID      @"513819630"
+#define DRAW_APP_ID      @"513819630"
 
 @class DrawViewController;
 @class RoomController;
