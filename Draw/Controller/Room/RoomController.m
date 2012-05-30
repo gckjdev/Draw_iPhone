@@ -30,6 +30,7 @@
 #import "ExpressionManager.h"
 #import "StableView.h"
 #import "ChatMessageView.h"
+#import "WordManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 
@@ -104,6 +105,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[WordManager defaultManager] clearWordBaseDictionary];
+    
 }
 
 #pragma mark - View lifecycle

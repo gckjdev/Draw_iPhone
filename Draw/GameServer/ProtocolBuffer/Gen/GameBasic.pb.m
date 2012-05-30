@@ -1249,6 +1249,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
+@property int32_t penType;
 @end
 
 @implementation PBDrawAction
@@ -1275,6 +1276,13 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   hasColor_ = !!value;
 }
 @synthesize color;
+- (BOOL) hasPenType {
+  return !!hasPenType_;
+}
+- (void) setHasPenType:(BOOL) value {
+  hasPenType_ = !!value;
+}
+@synthesize penType;
 - (void) dealloc {
   self.mutablePointsList = nil;
   [super dealloc];
@@ -1284,6 +1292,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
     self.type = 0;
     self.width = 0;
     self.color = 0;
+    self.penType = 0;
   }
   return self;
 }
@@ -1329,6 +1338,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasColor) {
     [output writeInt32:4 value:self.color];
   }
+  if (self.hasPenType) {
+    [output writeInt32:5 value:self.penType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1358,6 +1370,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasColor) {
     size += computeInt32Size(4, self.color);
+  }
+  if (self.hasPenType) {
+    size += computeInt32Size(5, self.penType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1449,6 +1464,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasColor) {
     [self setColor:other.color];
   }
+  if (other.hasPenType) {
+    [self setPenType:other.penType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1489,6 +1507,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 32: {
         [self setColor:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setPenType:[input readInt32]];
         break;
       }
     }
@@ -1571,6 +1593,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearColor {
   result.hasColor = NO;
   result.color = 0;
+  return self;
+}
+- (BOOL) hasPenType {
+  return result.hasPenType;
+}
+- (int32_t) penType {
+  return result.penType;
+}
+- (PBDrawAction_Builder*) setPenType:(int32_t) value {
+  result.hasPenType = YES;
+  result.penType = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearPenType {
+  result.hasPenType = NO;
+  result.penType = 0;
   return self;
 }
 @end
