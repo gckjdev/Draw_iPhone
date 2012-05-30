@@ -8,6 +8,7 @@
 
 #import "ColorGroup.h"
 #import "ColorView.h"
+#import "PPDebug.h"
 
 #define COLOR_VALUE_COUNT 15
 #define RGB_COUNT 3
@@ -47,7 +48,8 @@
 }
 - (void)dealloc
 {
-    [_colorViewList release];
+//    [_colorViewList release];
+    PPRelease(_colorViewList);
     [super dealloc];
 }
 

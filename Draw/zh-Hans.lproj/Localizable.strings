@@ -466,9 +466,9 @@
 
 "kVolume" = "音量";
 "kAddWords" = "提交新词";
-"kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
+"kAddWordsTips" = "词之间用空格或者换行分开，如\“大地 中国\”";
 "kAddWordsSucc" = "提交成功，感谢贡献";
 "kAddWordsFail" = "提交失败，请稍后再试";
-"kContentFormatError" = "格式错误，仔细检查一下哦";
-"kWordTooLong" = "\"%@\"太长了";
-"kIllegalCharacter" = "\"%@\"有非法字符哦";
+"kContentFormatError" = "格式错误，词之间的分隔符号只能是空格或者换行，仔细检查一下哦";
+"kWordTooLong" = "\"%@\"太长了，一次词最多只能有7个字";
+"kIllegalCharacter" = "\"%@\"有非法字符哦，字只能是中文，不能包括字母、数字和标点符号";

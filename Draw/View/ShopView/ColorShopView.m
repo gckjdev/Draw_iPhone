@@ -221,10 +221,10 @@
 
 
 - (void)dealloc {
-    [titleLabel release];
-    [coinCountLabel release];
-    [dataTableView release];
-    [colorGroups release];
+    PPRelease(titleLabel);
+    PPRelease(coinCountLabel);
+    PPRelease(dataTableView);
+    PPRelease(colorGroups);
     [super dealloc];
 }
 @end

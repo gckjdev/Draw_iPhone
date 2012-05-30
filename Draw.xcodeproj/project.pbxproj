@@ -600,6 +600,11 @@
 		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
 		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
 		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
+		CAC108A61575E3AE00703613 /* pen1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A11575E3AE00703613 /* pen1@2x.png */; };
+		CAC108A71575E3AE00703613 /* pen2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A21575E3AE00703613 /* pen2@2x.png */; };
+		CAC108A81575E3AE00703613 /* pen3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A31575E3AE00703613 /* pen3@2x.png */; };
+		CAC108A91575E3AE00703613 /* pen4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A41575E3AE00703613 /* pen4@2x.png */; };
+		CAC108AA1575E3AE00703613 /* pen5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A51575E3AE00703613 /* pen5@2x.png */; };
 		CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13241154C23E5000A8C8F /* MobClickUtils.m */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
 		CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
@@ -1629,6 +1634,11 @@
 		CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawController.m; sourceTree = "<group>"; };
 		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
 		CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
+		CAC108A11575E3AE00703613 /* pen1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen1@2x.png"; sourceTree = "<group>"; };
+		CAC108A21575E3AE00703613 /* pen2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen2@2x.png"; sourceTree = "<group>"; };
+		CAC108A31575E3AE00703613 /* pen3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen3@2x.png"; sourceTree = "<group>"; };
+		CAC108A41575E3AE00703613 /* pen4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen4@2x.png"; sourceTree = "<group>"; };
+		CAC108A51575E3AE00703613 /* pen5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen5@2x.png"; sourceTree = "<group>"; };
 		CAC13240154C23E5000A8C8F /* MobClickUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickUtils.h; sourceTree = "<group>"; };
 		CAC13241154C23E5000A8C8F /* MobClickUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickUtils.m; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
@@ -3380,6 +3390,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAC108A01575E3AE00703613 /* pen */,
 				A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */,
 				C274D46F156A2B84003B6B47 /* share_bg@2x.png */,
 				C29B8AA9156788F900B9707D /* right@2x.png */,
@@ -3997,6 +4008,18 @@
 			path = Word;
 			sourceTree = "<group>";
 		};
+		CAC108A01575E3AE00703613 /* pen */ = {
+			isa = PBXGroup;
+			children = (
+				CAC108A11575E3AE00703613 /* pen1@2x.png */,
+				CAC108A21575E3AE00703613 /* pen2@2x.png */,
+				CAC108A31575E3AE00703613 /* pen3@2x.png */,
+				CAC108A41575E3AE00703613 /* pen4@2x.png */,
+				CAC108A51575E3AE00703613 /* pen5@2x.png */,
+			);
+			path = pen;
+			sourceTree = "<group>";
+		};
 		CAC13243154C28B9000A8C8F /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -4494,6 +4517,11 @@
 				CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */,
 				CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */,
 				A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */,
+				CAC108A61575E3AE00703613 /* pen1@2x.png in Resources */,
+				CAC108A71575E3AE00703613 /* pen2@2x.png in Resources */,
+				CAC108A81575E3AE00703613 /* pen3@2x.png in Resources */,
+				CAC108A91575E3AE00703613 /* pen4@2x.png in Resources */,
+				CAC108AA1575E3AE00703613 /* pen5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
