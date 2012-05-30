@@ -194,6 +194,9 @@
 "kShare_via_tencent_weibo" = "Share via tencent weibo";
 "kShare_via_Facebook" = "Share via Facebook";
 "kShare_via_Twitter" = "Share via Twitter";
+"kShare_via_Weixin" = "Share via WeChat";
+"kWeixinNotInstall" = "You do not have to install WeChat, unable to send!";
+
 "Message" = "Message";
 
 "kEmailEmpty" = "Email address cannot be empty.";
