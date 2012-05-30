@@ -344,7 +344,7 @@ enum {
 {
     UISlider* slider = (UISlider*)sender;
     float volume = slider.value;
-    [[AudioManager defaultManager] setBGMVolume:volume];
+    [[AudioManager defaultManager] setVolume:volume];
 }
 
 
