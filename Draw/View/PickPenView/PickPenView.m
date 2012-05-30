@@ -263,29 +263,52 @@
 }
 
 #define INSERT_INDEX 5
+#define COLOR_SIZE 9
 - (void)updatePickPenView:(ColorView *)lastUsedColorView
 {
-    if (lastUsedColorView && [colorViewArray count] >= INSERT_INDEX) {
-        [lastUsedColorView setScale:ColorViewScaleSmall];
-        NSInteger index = [self indexOfColorView:lastUsedColorView];
-        if (index == -1) {
-            //the color view not in the list
+    if (lastUsedColorView == nil) {
+        return;
+    }
+    NSInteger index = [self indexOfColorView:lastUsedColorView];
+    if (index == -1) {
+        if ([colorViewArray count] >= COLOR_SIZE) {
             [colorViewArray removeLastObject];
-            
-            ColorView *newColorView = [ColorView colorViewWithDrawColor:lastUsedColorView.drawColor 
-                                                                  scale:ColorViewScaleSmall];
-            
-            [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
-            [self updatePickPenView];
-        }else if(index > INSERT_INDEX){
-            //if the color the last list, move it to the first position
+        }
+        ColorView *newColorView = [ColorView colorViewWithDrawColor:lastUsedColorView.drawColor 
+                                                              scale:ColorViewScaleSmall];
+        [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
+    }else{
+        if (index > INSERT_INDEX) {
             [colorViewArray removeObject:lastUsedColorView];
             [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
-            [self updatePickPenView];
-        }else{
-            //if the color is the const color, don't move
         }
-        
     }
+    [self updatePickPenView];
+    
+    
+//    if (lastUsedColorView && [colorViewArray count] >= INSERT_INDEX) {
+//        [lastUsedColorView setScale:ColorViewScaleSmall];
+//        NSInteger index = [self indexOfColorView:lastUsedColorView];
+//        if (index == -1) {
+//            //the color view not in the list
+//            [colorViewArray removeLastObject];
+//            
+//            ColorView *newColorView = [ColorView colorViewWithDrawColor:lastUsedColorView.drawColor 
+//                                                                  scale:ColorViewScaleSmall];
+//            
+//            [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
+//            [self updatePickPenView];
+//        }else if(index > INSERT_INDEX){
+//            //if the color the last list, move it to the first position
+//            [colorViewArray removeObject:lastUsedColorView];
+//            [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
+//            [self updatePickPenView];
+//        }else{
+//            //if the color is the const color, don't move
+//        }
+//    }else{
+//        [colorViewArray addObject:lastUsedColorView];
+//        [self updatePickPenView];
+//    }
 }
 @end
