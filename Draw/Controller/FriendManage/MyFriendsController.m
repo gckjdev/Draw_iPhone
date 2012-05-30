@@ -22,6 +22,7 @@
 #import "RoomManager.h"
 #import "RoomService.h"
 #import "WXApi.h"
+#import "DrawAppDelegate.h"
 
 @interface MyFriendsController ()
 
@@ -33,8 +34,8 @@
 - (void)loadMyFollow;
 - (void)loadMyFans;
 - (void)updateFriendsListFromLocal;
-- (void)sendSMS;
-- (void)sendWeixin;
+- (void)sendSMS:(NSString *)message;
+- (void)sendWeixin:(NSString *)message;
 
 @end
 
@@ -117,7 +118,9 @@
     
     if (_isInviteFriend) {
         [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
-        //searchUserButton.hidden = YES;
+        if ([DeviceDetection isIPAD]) {
+            searchUserButton.hidden = YES;
+        }
         editButton.hidden = YES;
         [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
         [editButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
@@ -363,7 +366,7 @@
 - (IBAction)clickSearchUser:(id)sender
 {
     if (_isInviteFriend) {
-        [self sendSMS];
+        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:APP_ID]]];
     }else {
         editButton.selected = NO;
         [dataTableView setEditing:editButton.selected animated:NO];
@@ -376,7 +379,7 @@
 - (IBAction)clickInviteButton:(id)sender
 {
     if (_isInviteFriend) {
-        [self sendWeixin];
+        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:APP_ID]]];
     }else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kSelectInvitation") 
                                                                  delegate:self 
@@ -587,7 +590,6 @@
 
 
 #pragma mark - invite with SMS and Weixin
-
 enum {
     INVITE_SMS = 0,
     INVITE_WEIXIN = 1
@@ -597,26 +599,27 @@ enum {
 {
     PPDebug(@"%d",buttonIndex);
     if (buttonIndex == INVITE_SMS) {
-        [self sendSMS];
+        
+        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:APP_ID]]];
     }else if (buttonIndex == INVITE_WEIXIN){
-        [self sendWeixin];
+        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:APP_ID]]];
     }else {
         return;
     }
 }
 
 
-- (void)sendSMS{
-    [self sendSms:nil body:NSLS(@"kInvitationInfo")];
+- (void)sendSMS:(NSString *)message
+{
+    [self sendSms:nil body:message];
 }
 
 
-- (void)sendWeixin
+- (void)sendWeixin:(NSString *)message
 {
     SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
     req.bText = YES;
-    req.text = NSLS(@"kInvitationInfo");
-    
+    req.text = message;
     [WXApi sendReq:req];
 }
 
