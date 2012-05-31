@@ -326,8 +326,12 @@ static AccountService* _defaultAccountService;
                 }
 
             }
-            else{
+            else{                
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP, refund money");
+                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];                     
+                }
             }
             
             if (source == PurchaseType){

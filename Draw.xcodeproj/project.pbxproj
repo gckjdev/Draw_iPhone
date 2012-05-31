@@ -293,7 +293,7 @@
 		CA103EFC1509A56200F60C03 /* UIViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103DBF1509A56100F60C03 /* UIViewUtils.m */; };
 		CA103EFD1509A56200F60C03 /* UIWebViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103DC21509A56100F60C03 /* UIWebViewUtil.m */; };
 		CA103F261509A6B600F60C03 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F251509A6B600F60C03 /* CFNetwork.framework */; };
-		CA103F281509A6C100F60C03 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F271509A6C100F60C03 /* QuartzCore.framework */; };
+		CA103F281509A6C100F60C03 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F271509A6C100F60C03 /* QuartzCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CA103F2A1509A6CA00F60C03 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F291509A6CA00F60C03 /* CoreLocation.framework */; };
 		CA103F2C1509A6D400F60C03 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F2B1509A6D400F60C03 /* SystemConfiguration.framework */; };
 		CA103F2E1509A6DE00F60C03 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F2D1509A6DE00F60C03 /* CoreData.framework */; };
