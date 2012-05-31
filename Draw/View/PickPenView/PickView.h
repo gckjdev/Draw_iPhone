@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PickView : UIView
-
+@interface PickView : UIImageView
+{
+    
+}
 @end
