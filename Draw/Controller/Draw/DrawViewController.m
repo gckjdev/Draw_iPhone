@@ -45,6 +45,7 @@
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
+@synthesize colorButton;
 
 #define PAPER_VIEW_TAG 20120403
 
@@ -67,12 +68,13 @@
     PPRelease(wordButton);
     PPRelease(cleanButton);
     PPRelease(penButton);
-    PPRelease(pickPenView);
+    PPRelease(pickColorView);
     PPRelease(drawView);
     
-//    [autoReleasePool drain];
-//    autoReleasePool = nil;
-
+    //    [autoReleasePool drain];
+    //    autoReleasePool = nil;
+    
+    [colorButton release];
     [super dealloc];
 }
 
@@ -82,7 +84,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-    [[WordManager defaultManager] clearWordBaseDictionary];
 }
 
 
@@ -94,7 +95,7 @@
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
-//        autoReleasePool = [[NSAutoreleasePool alloc] init];
+        //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
     }
@@ -104,10 +105,10 @@
 
 - (void)initPickPenView
 {
-    pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
-    [pickPenView setImage:[shareImageManager toolPopupImage]];
-    pickPenView.delegate = self;
-    [self.view addSubview:pickPenView];
+    pickColorView = [[PickColorView alloc] initWithFrame:PICK_PEN_VIEW];
+    [pickColorView setImage:[shareImageManager toolPopupImage]];
+    pickColorView.delegate = self;
+    [self.view addSubview:pickColorView];
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     if ([DeviceDetection isIPAD]) {
@@ -122,22 +123,15 @@
         [widthArray addObject:[NSNumber numberWithInt:2]];        
     }
     
-    [pickPenView setLineWidths:widthArray];
+    [pickColorView setLineWidths:widthArray];
     [widthArray release];
-
+    
     [colorViewArray addObject:[ColorView blackColorView]];
     [colorViewArray addObject:[ColorView redColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
     [colorViewArray addObject:[ColorView whiteColorView]];
-
-//    [colorViewArray addObject:[ColorView orangeColorView]];
-//    [colorViewArray addObject:[ColorView greenColorView]];
-//    [colorViewArray addObject:[ColorView pinkColorView]];
-//    [colorViewArray addObject:[ColorView brownColorView]];
-//    [colorViewArray addObject:[ColorView skyColorView]];
-        
-    [pickPenView setColorViews:colorViewArray];
+    [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
 }
 
@@ -149,21 +143,12 @@
     if (retainCount <= 0) {
         [self resetTimer];
         retainCount = 0;
-//        [self setToolButtonEnabled:NO];
     }
     [self updateClockButton];
 }
 
 
 #pragma mark - Update Data
-- (void)setToolButtonEnabled:(BOOL)enabled
-{
-    [eraserButton setEnabled:enabled];
-    [cleanButton setEnabled:enabled];
-
-    [penButton setEnabled:enabled];
-    [pickPenView setHidden:YES];
-}
 
 enum{
     BLACK_COLOR = 0,
@@ -204,14 +189,16 @@ enum{
     [self initPickPenView];
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
-    [penButton setPenColor:randColor];
-    [drawView setLineWidth:pickPenView.currentWidth];
-    penWidth = pickPenView.currentWidth;
+    [colorButton setDrawColor:randColor];
+    //    [penButton setPenColor:randColor];
+    [penButton setPenType:2];
+    [drawView setLineWidth:pickColorView.currentWidth];
+    penWidth = pickColorView.currentWidth;
 }
 
 - (void)initDrawView
 {
-
+    
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
     [drawView setDrawEnabled:YES];
@@ -255,7 +242,7 @@ enum{
 
 - (void)viewDidUnload
 {
-
+    
     [self setWord:nil];
     [self setEraserButton:nil];
     [self setWordButton:nil];
@@ -264,6 +251,7 @@ enum{
     [self setPenButton:nil];
     [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
+    [self setColorButton:nil];
     [super viewDidUnload];
 }
 
@@ -283,10 +271,10 @@ enum{
 - (void)didGameTurnComplete:(GameMessage *)message
 {
     PPDebug(@"DrawViewController:<didGameTurnComplete>");
-
+    
     UIImage *image = [drawView createImage];
     NSInteger gainCoin = [[message notification] turnGainCoins];
-
+    
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
     [self cleanData];
@@ -306,7 +294,7 @@ enum{
 {
     NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
-        [self adjustPlayerAvatars:userId];
+    [self adjustPlayerAvatars:userId];
     if ([self userCount] <= 1) {
         //[self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil]; 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAllUserQuit") delayTime:1 isHappy:NO]; 
@@ -316,10 +304,13 @@ enum{
 #pragma mark - Pick view delegate
 - (void)didPickedColorView:(ColorView *)colorView
 {
+    [colorView retain];
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
-    [penButton setPenColor:colorView.drawColor];
-    [pickPenView updatePickPenView:colorView];
+    [colorButton setDrawColor:colorView.drawColor];
+    //    [penButton setPenColor:colorView.drawColor];
+    [pickColorView updatePickColorView:colorView];
+    [colorView release];
 }
 - (void)didPickedLineWidth:(NSInteger)width
 {
@@ -331,7 +322,7 @@ enum{
     ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
     colorShop.delegate = self;
     [colorShop showInView:self.view animated:YES];
-
+    
 }
 
 #pragma mark - Common Dialog Delegate
@@ -343,14 +334,14 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
         [drawView addCleanAction];
-        [pickPenView setHidden:YES];        
+        [pickColorView setHidden:YES];        
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
     }
-
+    
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -390,7 +381,7 @@ enum{
 
 - (void)didStartedTouch:(Paint *)paint
 {
-    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
 }
 
 
@@ -398,7 +389,7 @@ enum{
 
 - (IBAction)clickChangeRoomButton:(id)sender {
     
-    [pickPenView setHidden:YES animated:YES];
+    [pickColorView setHidden:YES animated:YES];
     
     CommonDialogStyle style;
     NSString *message = nil;
@@ -409,13 +400,13 @@ enum{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");
     }
-
+    
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style delegate:self];
     dialog.tag = DIALOG_TAG_ESCAPE;
     [dialog showInView:self.view];
 }
 - (IBAction)clickRedraw:(id)sender {
-    [pickPenView setHidden:YES animated:YES];
+    [pickColorView setHidden:YES animated:YES];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton delegate:self];
     dialog.tag = DIALOG_TAG_CLEAN_DRAW;
     [dialog showInView:self.view];
@@ -427,10 +418,10 @@ enum{
 }
 
 - (IBAction)clickPenButton:(id)sender {
-    [pickPenView setHidden:!pickPenView.hidden animated:YES];
-        PenView *penView = (PenView *)sender;
-        [drawView setLineColor:penView.penColor];
-        [drawView setLineWidth:penWidth];
+    [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    //        PenView *penView = (PenView *)sender;
+    //        [drawView setLineColor:penView.penColor];
+    [drawView setLineWidth:penWidth];
 }
 
 - (IBAction)clickGroupChatButton:(id)sender {

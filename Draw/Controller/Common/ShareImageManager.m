@@ -301,4 +301,26 @@ static UIImage* _whitePaperImage;
 //    return [UIImage imageNamed:@"snow.png"];
 //}
 
+- (UIImage *)pencilImage
+{
+    return [UIImage imageNamed:@"pen1.png"];    
+}
+- (UIImage *)waterPenImage
+{
+    return [UIImage imageNamed:@"pen2.png"];        
+}
+- (UIImage *)penImage
+{
+    return [UIImage imageNamed:@"pen3.png"];
+}
+- (UIImage *)iceImage
+{
+    return [UIImage imageNamed:@"pen4.png"];    
+}
+- (UIImage *)quillImage
+{
+    return [UIImage imageNamed:@"pen5.png"];    
+}
+
+
 @end

@@ -11,7 +11,7 @@
 @class DrawColor;
 @class ColorView;
 
-@protocol PickPenDelegate <NSObject>
+@protocol PickColorDelegate <NSObject>
 
 @optional
 - (void)didPickedColorView:(ColorView *)colorView;
@@ -19,24 +19,23 @@
 - (void)didPickedMoreColor;
 @end
 
-@interface PickPenView : UIImageView
+@interface PickColorView : UIImageView
 {
-    id<PickPenDelegate> _delegate;
+    id<PickColorDelegate> _delegate;
     NSMutableArray *colorViewArray;
     NSMutableArray *widthButtonArray;
     NSInteger _currentWidth;
     
 }
 @property(nonatomic, retain)UIImageView *backgroudView;
-@property(nonatomic, assign)id<PickPenDelegate>delegate;
+@property(nonatomic, assign)id<PickColorDelegate>delegate;
 
 - (void)resetWidth;
 - (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
 - (void)setColorViews:(NSArray *)colorViews;
 - (NSArray *)colorViews;
 - (NSInteger)currentWidth;
-//- (void)showInView:(UIView *)view;
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
 - (NSInteger)indexOfColorView:(ColorView *)colorView;
-- (void)updatePickPenView:(ColorView *)lastUsedColorView;
+- (void)updatePickColorView:(ColorView *)lastUsedColorView;
 @end

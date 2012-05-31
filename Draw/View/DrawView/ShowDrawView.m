@@ -101,8 +101,8 @@
             if (pen.hidden) {
                 pen.hidden = NO;                
             }
-            if (playingPointIndex == 0 && ![pen.penColor isEqual:currentAction.paint.color]) {
-                [pen setPenColor:currentAction.paint.color];                
+            if (playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
+                [pen setPenType:currentAction.paint.penType];
             }
             CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
@@ -151,7 +151,8 @@
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];      
-        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+//        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+        pen = [[PenView alloc] initWithPenType:Pencil];
         [self setShowPenHidden:NO];
         pen.hidden = YES;
         pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
