@@ -27,6 +27,9 @@
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
+		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
+		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
+		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
 		A3C129D81563A6B600C021A7 /* DrawDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129D71563A6B600C021A7 /* DrawDataService.m */; };
 		A3C129E01563A6ED00C021A7 /* RemoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129DD1563A6ED00C021A7 /* RemoteDrawView.m */; };
 		A3C129E11563A6ED00C021A7 /* RemoteDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C129DE1563A6ED00C021A7 /* RemoteDrawView.xib */; };
@@ -726,6 +729,10 @@
 		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
+		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
+		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
+		A38894AD15778B3200764158 /* SpeechService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechService.m; sourceTree = "<group>"; };
 		A3C129D61563A6B600C021A7 /* DrawDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawDataService.h; sourceTree = "<group>"; };
 		A3C129D71563A6B600C021A7 /* DrawDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawDataService.m; sourceTree = "<group>"; };
 		A3C129DC1563A6ED00C021A7 /* RemoteDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteDrawView.h; sourceTree = "<group>"; };
@@ -1741,6 +1748,8 @@
 				C2F947CC1533D8BF0034C895 /* libMobClickLibrary.a in Frameworks */,
 				C2F947CE1533D8BF0034C895 /* libUMUFP.a in Frameworks */,
 				A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */,
+				A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */,
+				A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1766,6 +1775,25 @@
 			);
 			name = WeixinSDK;
 			path = "../../Common_iPhone_20/3PP-SDK/WeixinSDK";
+			sourceTree = "<group>";
+		};
+		A388949115778B1200764158 /* iFly */ = {
+			isa = PBXGroup;
+			children = (
+				A388949215778B1200764158 /* iFlyISR.framework */,
+				A388949315778B1200764158 /* iFlyTTS.framework */,
+			);
+			name = iFly;
+			path = "../../Common_iPhone_20/3PP-SDK/iFly";
+			sourceTree = "<group>";
+		};
+		A38894AB15778B3200764158 /* TTS */ = {
+			isa = PBXGroup;
+			children = (
+				A38894AC15778B3200764158 /* SpeechService.h */,
+				A38894AD15778B3200764158 /* SpeechService.m */,
+			);
+			path = TTS;
 			sourceTree = "<group>";
 		};
 		A3C129D51563A6B600C021A7 /* DrawData */ = {
@@ -2137,6 +2165,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A38894AB15778B3200764158 /* TTS */,
 				A3C129D51563A6B600C021A7 /* DrawData */,
 				CA0CB767155CB75F009C8EE6 /* Room */,
 				CA9DB92D154E75410031DBBD /* Friend */,
@@ -3792,6 +3821,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A388949115778B1200764158 /* iFly */,
 				A357930C1574BD670007B2C0 /* WeixinSDK */,
 				C2F947BE1533D8BF0034C895 /* MobClick */,
 				C2F947C31533D8BF0034C895 /* UMUFP_iPhone_SDK */,
@@ -4908,6 +4938,7 @@
 				CA38D21915774F3C00DD2ECA /* PickPenView.m in Sources */,
 				CA38D21C15774FB900DD2ECA /* PickEraserView.m in Sources */,
 				C246F3581577633B003C284F /* LevelService.m in Sources */,
+				A38894AE15778B3200764158 /* SpeechService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5103,6 +5134,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -5126,6 +5161,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
