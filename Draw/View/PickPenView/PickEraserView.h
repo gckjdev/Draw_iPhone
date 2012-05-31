@@ -9,5 +9,12 @@
 #import "PickView.h"
 
 @interface PickEraserView : PickView
+{
+    NSMutableArray *widthButtonArray;
+    NSInteger _currentWidth;
+}
 
+- (void)resetWidth;
+- (NSInteger)currentWidth;
+- (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
 @end

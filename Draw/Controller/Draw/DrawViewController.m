@@ -70,7 +70,7 @@
     PPRelease(penButton);
     PPRelease(pickColorView);
     PPRelease(drawView);
-    
+    PPRelease(pickEraserView);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
@@ -103,14 +103,13 @@
 }
 
 
-- (void)initPickPenView
+#define PICK_ERASER_VIEW_TAG 2012053101
+#define PICK_PEN_VIEW_TAG 2012053102
+#define PICK_COLOR_VIEW_TAG 2012053103
+- (void)initPickView
 {
-    pickColorView = [[PickColorView alloc] initWithFrame:PICK_PEN_VIEW];
-    [pickColorView setImage:[shareImageManager toolPopupImage]];
-    pickColorView.delegate = self;
-    [self.view addSubview:pickColorView];
+
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
-    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     if ([DeviceDetection isIPAD]) {
         [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
         [widthArray addObject:[NSNumber numberWithInt:15 * 2]];
@@ -123,8 +122,24 @@
         [widthArray addObject:[NSNumber numberWithInt:2]];        
     }
     
+
+//init pick eraser view    
+    pickEraserView = [[PickEraserView alloc] initWithFrame:PICK_ERASER_VIEW];
+    [pickEraserView setImage:[shareImageManager eraserPopupImage]];
+    [pickEraserView setDelegate:self];
+    pickEraserView.tag = PICK_ERASER_VIEW_TAG;
+    [self.view addSubview:pickEraserView];
+    [pickEraserView setLineWidths:widthArray];
+    
+//init pick color view
+    pickColorView = [[PickColorView alloc] initWithFrame:PICK_COLOR_VIEW];
+    [pickColorView setImage:[shareImageManager toolPopupImage]];
+    pickColorView.delegate = self;
+    pickColorView.tag = PICK_COLOR_VIEW_TAG;
     [pickColorView setLineWidths:widthArray];
-    [widthArray release];
+    [self.view addSubview:pickColorView];
+
+    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     
     [colorViewArray addObject:[ColorView blackColorView]];
     [colorViewArray addObject:[ColorView redColorView]];
@@ -133,6 +148,7 @@
     [colorViewArray addObject:[ColorView whiteColorView]];
     [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
+    [widthArray release];
 }
 
 #pragma mark - Timer
@@ -186,7 +202,7 @@ enum{
 }
 - (void)initPens
 {
-    [self initPickPenView];
+    [self initPickView];
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
@@ -304,18 +320,21 @@ enum{
 #pragma mark - Pick view delegate
 - (void)didPickedColorView:(ColorView *)colorView
 {
-    [colorView retain];
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
     [colorButton setDrawColor:colorView.drawColor];
-    //    [penButton setPenColor:colorView.drawColor];
     [pickColorView updatePickColorView:colorView];
-    [colorView release];
 }
-- (void)didPickedLineWidth:(NSInteger)width
+- (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width
 {
-    [drawView setLineWidth:width];
-    penWidth = width;
+    if (pickView.tag == PICK_COLOR_VIEW_TAG) {
+        [drawView setLineWidth:width];
+        penWidth = width;        
+    }else if(pickView.tag == PICK_ERASER_VIEW_TAG)
+    {
+        [drawView setLineWidth:width];
+        eraserWidth = width;
+    }
 }
 - (void)didPickedMoreColor
 {
@@ -413,14 +432,14 @@ enum{
 }
 
 - (IBAction)clickEraserButton:(id)sender {
+    [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
 }
 
 - (IBAction)clickPenButton:(id)sender {
     [pickColorView setHidden:!pickColorView.hidden animated:YES];
-    //        PenView *penView = (PenView *)sender;
-    //        [drawView setLineColor:penView.penColor];
+    [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
 }
 
