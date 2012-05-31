@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickView.h"
 
 @class DrawColor;
 @class ColorView;
@@ -19,7 +20,7 @@
 - (void)didPickedMoreColor;
 @end
 
-@interface PickColorView : UIImageView
+@interface PickColorView : PickView
 {
     id<PickColorDelegate> _delegate;
     NSMutableArray *colorViewArray;

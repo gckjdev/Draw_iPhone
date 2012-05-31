@@ -490,6 +490,9 @@
 		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
 		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
+		CA38D21615774F0D00DD2ECA /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38D21515774F0D00DD2ECA /* PickView.m */; };
+		CA38D21915774F3C00DD2ECA /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38D21815774F3C00DD2ECA /* PickPenView.m */; };
+		CA38D21C15774FB900DD2ECA /* PickEraserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38D21B15774FB900DD2ECA /* PickEraserView.m */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -1460,6 +1463,12 @@
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA355F01152C296900A14823 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
+		CA38D21415774F0D00DD2ECA /* PickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickView.h; sourceTree = "<group>"; };
+		CA38D21515774F0D00DD2ECA /* PickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickView.m; sourceTree = "<group>"; };
+		CA38D21715774F3C00DD2ECA /* PickPenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickPenView.h; sourceTree = "<group>"; };
+		CA38D21815774F3C00DD2ECA /* PickPenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickPenView.m; sourceTree = "<group>"; };
+		CA38D21A15774FB900DD2ECA /* PickEraserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickEraserView.h; sourceTree = "<group>"; };
+		CA38D21B15774FB900DD2ECA /* PickEraserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickEraserView.m; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -2042,8 +2051,14 @@
 		CA051DB31546802D00D0A00A /* PickPenView */ = {
 			isa = PBXGroup;
 			children = (
+				CA38D21415774F0D00DD2ECA /* PickView.h */,
+				CA38D21515774F0D00DD2ECA /* PickView.m */,
 				CA051DB41546802D00D0A00A /* PickColorView.h */,
 				CA051DB51546802D00D0A00A /* PickColorView.m */,
+				CA38D21715774F3C00DD2ECA /* PickPenView.h */,
+				CA38D21815774F3C00DD2ECA /* PickPenView.m */,
+				CA38D21A15774FB900DD2ECA /* PickEraserView.h */,
+				CA38D21B15774FB900DD2ECA /* PickEraserView.m */,
 			);
 			path = PickPenView;
 			sourceTree = "<group>";
@@ -4884,6 +4899,9 @@
 				C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */,
 				A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */,
 				A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */,
+				CA38D21615774F0D00DD2ECA /* PickView.m in Sources */,
+				CA38D21915774F3C00DD2ECA /* PickPenView.m in Sources */,
+				CA38D21C15774FB900DD2ECA /* PickEraserView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
