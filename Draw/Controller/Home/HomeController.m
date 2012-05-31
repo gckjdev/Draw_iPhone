@@ -296,7 +296,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...

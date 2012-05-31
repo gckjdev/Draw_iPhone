@@ -462,3 +462,6 @@
 "kContentFormatError" = "Words format error";
 "kWordTooLong" = "\"%@\" is too long";
 "kIllegalCharacter" = "\"%@\" contains illegal character";
+
+"kFakeIAPPurchase" = "Fail to verify the transaction receipt. Please check if you try the right way to make purchase.";
+"kNetworkBroken" = "Network broken or you haven't take actions for too long time.";

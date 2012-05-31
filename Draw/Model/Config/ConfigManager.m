@@ -13,6 +13,11 @@
 
 @implementation ConfigManager
 
++ (int)getBalanceDeviation
+{
+    return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
+}
+
 + (NSString*)getTrafficAPIServerURL
 {
     if ([LocaleUtils isChina]){

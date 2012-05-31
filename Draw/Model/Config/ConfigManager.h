@@ -20,6 +20,8 @@ typedef enum{
 
 @interface ConfigManager : NSObject
 
++ (int)getBalanceDeviation;
+
 + (int)getGuessRewardNormal;
 + (NSString*)getChannelId;
 
