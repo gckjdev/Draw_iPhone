@@ -229,6 +229,11 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"tool_popup.png"];    
 }
 
+- (UIImage *)eraserPopupImage
+{
+    return [UIImage imageNamed:@"eraser_popup.png"];    
+}
+
 - (UIImage *)drawingMarkSmallImage
 {
     return [UIImage imageNamed:@"print_tip.png"];        

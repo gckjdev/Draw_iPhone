@@ -75,7 +75,7 @@
 						<string key="NSFrame">{{62, 30}, {196, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="640944265"/>
+						<reference key="NSNextKeyView" ref="247379278"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -422,6 +422,20 @@
 						<reference key="IBUIFontDescription" ref="300407582"/>
 						<reference key="IBUIFont" ref="9581147"/>
 					</object>
+					<object class="IBUIImageView" id="247379278">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{7, 253}, {55, 124}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="640944265"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">eraser_popup@2x.png</string>
+						</object>
+					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
@@ -612,6 +626,7 @@
 							<reference ref="65007175"/>
 							<reference ref="326040723"/>
 							<reference ref="934589813"/>
+							<reference ref="247379278"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -695,6 +710,11 @@
 						<reference key="object" ref="934589813"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">125</int>
+						<reference key="object" ref="247379278"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -712,6 +732,7 @@
 					<string>115.IBPluginDependency</string>
 					<string>122.CustomClassName</string>
 					<string>122.IBPluginDependency</string>
+					<string>125.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>41.CustomClassName</string>
@@ -740,6 +761,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>PenView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -764,7 +786,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">124</int>
+			<int key="maxID">125</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -967,6 +989,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>clean@2x.png</string>
 				<string>eraser@2x.png</string>
+				<string>eraser_popup@2x.png</string>
 				<string>group_message@2x.png</string>
 				<string>guess_popup@2x.png</string>
 				<string>normalpallets@2x.png</string>
@@ -982,6 +1005,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{55, 66}</string>
 				<string>{42, 67}</string>
+				<string>{109, 248}</string>
 				<string>{74, 74}</string>
 				<string>{57, 67}</string>
 				<string>{640, 81}</string>

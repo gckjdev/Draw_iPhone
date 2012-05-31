@@ -62,6 +62,7 @@
 - (UIImage *)selectedPointImage;
 - (UIImage *)unSelectedPointImage;
 - (UIImage *)toolPopupImage;
+- (UIImage *)eraserPopupImage;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;

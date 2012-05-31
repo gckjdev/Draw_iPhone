@@ -11,6 +11,8 @@
 #import "DrawView.h"
 #import "DrawGameService.h"
 #import "PickColorView.h"
+#import "PickEraserView.h"
+#import "PickPenView.h"
 #import "CommonDialog.h"
 #import "SuperDrawViewController.h"
 #import "ColorShopView.h"
@@ -20,17 +22,12 @@
 @class ColorShopController;
 @class PenView;
 
-@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickColorDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
-
-//    Word *_word;
+    PickEraserView *pickEraserView;
     NSInteger penWidth;
     NSInteger eraserWidth;
-
-//    NSAutoreleasePool *autoReleasePool;
-
-                
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
@@ -45,7 +42,6 @@
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
-- (void)setToolButtonEnabled:(BOOL)enabled;
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang;
 - (void)initEraser;

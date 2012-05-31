@@ -81,6 +81,7 @@
 		C246AF33153682D200983C44 /* pic_template_small1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF30153682CF00983C44 /* pic_template_small1@2x.png */; };
 		C246AF34153682D200983C44 /* pic_template_small2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF31153682CF00983C44 /* pic_template_small2@2x.png */; };
 		C246AF35153682D200983C44 /* pic_template1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C246AF32153682D100983C44 /* pic_template1@2x.png */; };
+		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
 		C274D470156A2B84003B6B47 /* share_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C274D46F156A2B84003B6B47 /* share_bg@2x.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
@@ -788,6 +789,8 @@
 		C246AF30153682CF00983C44 /* pic_template_small1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small1@2x.png"; sourceTree = "<group>"; };
 		C246AF31153682CF00983C44 /* pic_template_small2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template_small2@2x.png"; sourceTree = "<group>"; };
 		C246AF32153682D100983C44 /* pic_template1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_template1@2x.png"; sourceTree = "<group>"; };
+		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
+		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
 		C274D46F156A2B84003B6B47 /* share_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_bg@2x.png"; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
@@ -3314,6 +3317,8 @@
 				CA41C94F1520608D00013DC8 /* PriceService.m */,
 				CA4215FF152196B900FAA008 /* AccountService.h */,
 				CA421600152196B900FAA008 /* AccountService.m */,
+				C246F3561577633B003C284F /* LevelService.h */,
+				C246F3571577633B003C284F /* LevelService.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -4902,6 +4907,7 @@
 				CA38D21615774F0D00DD2ECA /* PickView.m in Sources */,
 				CA38D21915774F3C00DD2ECA /* PickPenView.m in Sources */,
 				CA38D21C15774FB900DD2ECA /* PickEraserView.m in Sources */,
+				C246F3581577633B003C284F /* LevelService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
