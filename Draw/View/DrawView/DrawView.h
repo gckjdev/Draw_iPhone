@@ -21,7 +21,7 @@
 
 @class DrawColor;
 @class DrawAction;
-
+@class PenView;
 
 @interface DrawView : UIView<UIGestureRecognizerDelegate>
 {
@@ -31,6 +31,7 @@
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
     PenType _penType;
+    PenView *pen;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
