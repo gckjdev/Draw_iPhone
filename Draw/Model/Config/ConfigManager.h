@@ -17,6 +17,12 @@ typedef enum{
     
 }GuessLevel;
 
+typedef enum{
+    EnableAlways = 1,
+    EnableWifi = 2,
+    EnableNot = 3
+}ChatVoiceEnable;
+
 
 @interface ConfigManager : NSObject
 
@@ -32,6 +38,9 @@ typedef enum{
 
 + (GuessLevel)guessDifficultLevel;
 + (void)setGuessDifficultLevel:(GuessLevel)level;
+
++ (ChatVoiceEnable)getChatVoiceEnable;
++ (void)setChatVoiceEnable:(ChatVoiceEnable)enable;
 
 + (BOOL)enableReview;
 

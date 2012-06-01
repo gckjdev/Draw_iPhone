@@ -162,11 +162,12 @@ ItemShopController *staticItemController = nil;
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(PriceModel *)model
 {
-    
-    if ([[AccountService defaultService] hasEnoughCoins:[[model price] intValue]] == NO){
+    NSInteger price = [[model price] intValue];
+    if ([[AccountService defaultService] hasEnoughCoins:price] == NO){
         PPDebug(@"<ItemShopController> click buy item but coins not enough");        
         if (callFromShowViewController) {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton delegate:self];
+            NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), price];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
             dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
             [dialog showInView:self.view];
             

@@ -11,21 +11,31 @@
 
 
 typedef enum {
-    Pencil = 0,
-    WaterPen = 1,
-    Pen = 2,
-    IcePen = 3,
-    Quill = 4
+    Pencil = 1000,
+    WaterPen,
+    Pen,
+    IcePen,
+    Quill,
+    PenCount
 }PenType;
+
+#define PenStartType Pencil
 
 @interface PenView : UIButton
 {
 //    CGImageRef maskImage;
     PenType _penType;
+    NSInteger _price;
 }
 
 - (id)initWithPenType:(PenType)type;
++ (PenView *)penViewWithType:(PenType)type;
++ (CGFloat)height;
++ (CGFloat)width;
+- (BOOL)isLeftDownRotate;
+- (BOOL)isDefaultPen;
 @property(nonatomic, assign)PenType penType;
+@property(nonatomic, assign)NSInteger price;
 
 //@property(nonatomic, retain)DrawColor *penColor;
 //

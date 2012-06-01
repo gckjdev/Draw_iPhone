@@ -9,22 +9,26 @@
 #import "PenView.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
+#import <QuartzCore/QuartzCore.h>
+#define VIEW_HEIGHT [DeviceDetection isIPAD] ? 70 : 35
+#define VIEW_WDITH [DeviceDetection isIPAD] ? 40 : 20
+//#define VIEW_FRAME_IPAD CGRectMake(0,0,40,70)
+//#define TOTAL_HEIGHT_IPAD 30.0 * 2
+//#define BODY_HEIGHT_IPAD 20.0 * 2
+//#define BODY_WIDTH_IPAD 17.5 * 2
 
-#define VIEW_FRAME_IPAD CGRectMake(0,0,42,66)
-#define TOTAL_HEIGHT_IPAD 30.0 * 2
-#define BODY_HEIGHT_IPAD 20.0 * 2
-#define BODY_WIDTH_IPAD 17.5 * 2
+//#define VIEW_FRAME_IPHONE CGRectMake(0,0,20,35)
+//#define TOTAL_HEIGHT 30.0
+//#define BODY_HEIGHT 20.0
+//#define BODY_WIDTH 17.5
 
-#define VIEW_FRAME CGRectMake(0,0,21,33)
-#define TOTAL_HEIGHT 30.0
-#define BODY_HEIGHT 20.0
-#define BODY_WIDTH 17.5
+#define VIEW_FRAME CGRectMake(0,0,VIEW_WDITH,VIEW_HEIGHT)
 
 
 
 @implementation PenView
 @synthesize penType = _penType;
-
+@synthesize price = _price;
 - (void)dealloc
 {
     [super dealloc];
@@ -32,17 +36,38 @@
 
 - (id)initWithPenType:(PenType)type
 {
-    if ([DeviceDetection isIPAD]) {
-        self = [super initWithFrame:VIEW_FRAME_IPAD];        
-    }else{
-        self = [super initWithFrame:VIEW_FRAME];
-    }
+    self = [super initWithFrame:VIEW_FRAME];
     if (self) {
         self.penType = type;
     }
     return self;
 }
 
++ (PenView *)penViewWithType:(PenType)type
+{
+    return [[[PenView alloc] initWithPenType:type]autorelease];
+}
+
++ (CGFloat)height
+{
+    return VIEW_HEIGHT;
+}
++ (CGFloat)width
+{
+    return VIEW_WDITH;
+}
+
+- (BOOL)isLeftDownRotate
+{
+    if (self.penType == Pen || self.penType == Pencil || self.penType == WaterPen) {
+        return YES;
+    }
+    return NO;
+}
+- (BOOL)isDefaultPen
+{
+    return self.penType == Pencil;
+}
 - (UIImage *)penImageForType:(PenType)type
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -56,17 +81,23 @@
         case IcePen:
             return [imageManager iceImage];            
         case Pencil:
+            default:
             return [imageManager pencilImage];            
     }
+    
 }
 
 
 
 - (void) setPenType:(PenType)penType
 {
-    _penType = penType;
+    if (penType < PenStartType || penType >= PenCount) {
+        _penType = Pencil;
+    }else{
+        _penType = penType;
+    }
     UIImage *image = [self penImageForType:penType];
-    [self setImage:image forState:UIControlStateNormal];
+    [self setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 //@synthesize penColor = _penColor;

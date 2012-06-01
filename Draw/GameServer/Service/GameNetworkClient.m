@@ -143,12 +143,14 @@ static GameNetworkClient* _defaultGameNetworkClient;
                   sessionId:(long)sessionId 
                   pointList:(NSArray*)pointList 
                       color:(int)color
-                      width:(float)width
+                      width:(float)width 
+                    penType:(int)penType
 {
     SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
     [requestBuilder setColor:color];
     [requestBuilder addAllPoints:pointList];
     [requestBuilder setWidth:width];
+    [requestBuilder setPenType:penType];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];

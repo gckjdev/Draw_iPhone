@@ -10,6 +10,7 @@
 #import "LocaleUtils.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
+#define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
 
 @implementation ConfigManager
 
@@ -100,6 +101,22 @@
 + (BOOL)isInReview
 {
     return ([MobClickUtils getIntValueByKey:@"IN_REVIEW" defaultValue:0] == 1);    
+}
+
++ (ChatVoiceEnable)getChatVoiceEnable
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSNumber *number = [userDefault objectForKey:KEY_CHAT_VOICE_ENABLE];
+    if (number == nil) {
+        return EnableWifi;
+    }
+    return [number intValue];
+}
+
++ (void)setChatVoiceEnable:(ChatVoiceEnable)enable
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:enable] forKey:KEY_CHAT_VOICE_ENABLE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
