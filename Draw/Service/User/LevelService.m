@@ -178,6 +178,66 @@ static LevelService* _defaultLevelService;
     });
 }
 
+- (void)syncExpAndLevel
+{
+    
+    //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
+                                               appId:APP_ID 
+                                              userId:[UserManager defaultManager].userId 
+                                               level:[self level] 
+                                                 exp:[self experience]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           // [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS) {
+                // save return User ID locally
+                //                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
+                //                NSString* nickName = [UserManager nickNameByEmail:email];
+                //                
+                //                // save data                
+                //                [[UserManager defaultManager] saveUserId:userId 
+                //                                                   email:email 
+                //                                                password:password 
+                //                                                nickName:nickName 
+                //                                               avatarURL:nil];
+                //                
+                //                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                //                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                //                
+                //                if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                //                    [viewController didUserRegistered:output.resultCode];                    
+                //                }
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                //[viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
+                // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
+                //[viewController popupUnhappyMessage:NSLS(@"kUnknownRegisterFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_EMAIL_EXIST) {
+                // @"对不起，该电子邮件已经被注册"
+                //                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                //                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
+                //                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                //                [dialog showInView:viewController.view];
+            }
+            else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
+                // @"对不起，该电子邮件格式不正确，请重新输入"
+                //[viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+            }
+            else {
+                // @"对不起，注册失败，请稍候再试"
+                //[viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
+            }
+        });
+        
+    });
+}
 
 
 @end

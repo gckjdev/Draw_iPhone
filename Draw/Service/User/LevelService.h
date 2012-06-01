@@ -31,5 +31,6 @@
 - (void)minusExp:(long)exp;
 - (long)expRequiredForNextLevel;
 - (void)syncExpAndLevel:(PPViewController*)viewController;
+- (void)syncExpAndLevel;
 
 @end
