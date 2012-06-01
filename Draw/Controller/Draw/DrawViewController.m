@@ -167,6 +167,11 @@
     [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
     [widthArray release];
+    
+    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
+    [pickEraserView setHidden:YES];
+    
 }
 
 #pragma mark - Timer
@@ -225,7 +230,7 @@ enum{
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
     //    [penButton setPenColor:randColor];
-    [penButton setPenType:2];
+    [penButton setPenType:Pencil];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
 }
@@ -470,6 +475,8 @@ enum{
 - (IBAction)clickPenButton:(id)sender {
     [pickPenView setHidden:!pickPenView.hidden animated:YES];
     [drawView setPenType:penButton.penType];
+    [drawView setLineColor:colorButton.drawColor];
+    [drawView setLineWidth:penWidth];
     [pickEraserView setHidden:YES];
     [pickColorView setHidden:YES];
 }

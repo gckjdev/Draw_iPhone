@@ -93,7 +93,7 @@
         _penType = penType;
     }
     UIImage *image = [self penImageForType:penType];
-    [self setImage:image forState:UIControlStateNormal];
+    [self setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 //@synthesize penColor = _penColor;
