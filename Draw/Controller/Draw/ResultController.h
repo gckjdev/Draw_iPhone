@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
 #import "PPViewController.h"
+#import "LevelService.h"
 
-@interface ResultController : PPViewController<DrawGameServiceDelegate>
+@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate>
 {
     UIImage * _image;
     NSArray * _paintList;
