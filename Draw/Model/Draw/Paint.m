@@ -23,7 +23,7 @@
         self.width = [aDecoder decodeFloatForKey:@"width"];
         self.color = [aDecoder decodeObjectForKey:@"color"];
         self.pointList = [aDecoder decodeObjectForKey:@"pointList"];
-        
+        self.penType = [aDecoder decodeFloatForKey:@"penType"];
     }
     return self;
 }
@@ -33,6 +33,7 @@
     [aCoder encodeObject:self.color forKey:@"color"];
     [aCoder encodeObject:self.pointList forKey:@"pointList"];
     [aCoder encodeFloat:self.width forKey:@"width"];
+    [aCoder encodeFloat:self.penType forKey:@"penType"];
 }
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
@@ -87,6 +88,7 @@
         CGFloat lineWidth = [[gameMessage notification] width];        
         NSArray *pointList = [[gameMessage notification] pointsList];
         self.width = lineWidth;
+        self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in pointList) {

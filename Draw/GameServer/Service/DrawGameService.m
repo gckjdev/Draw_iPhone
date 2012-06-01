@@ -452,8 +452,9 @@ static DrawGameService* _defaultService;
             }
             NSArray* array = [[message notification] pointsList];
             int color = [[message notification] color];
+            int penType = [[message notification] penType];
             float width = [[message notification] width];
-            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array];
+            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
             [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
             [paint release];
         }
@@ -631,14 +632,16 @@ static DrawGameService* _defaultService;
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
                                    color:(int)color
-                                   width:(float)width
+                                   width:(float)width                     
+                                 penType:(int)penType
 {
     [_networkClient sendDrawDataRequest:_userId
                               sessionId:[_session sessionId]
                               pointList:pointList
                                   color:color
-                                  width:width];
-    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList];
+                                  width:width 
+                                penType:penType];
+    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList penType:penType];
     [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
     [paint release];
     

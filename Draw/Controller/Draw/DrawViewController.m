@@ -74,6 +74,7 @@
     PPRelease(pickColorView);
     PPRelease(drawView);
     PPRelease(pickEraserView);
+    PPRelease(pickPenView);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
@@ -113,7 +114,17 @@
 {
 
     //init pick pen view
-//    pickPenView = [[PickPenView alloc] initWithFrame:<#(CGRect)#>];
+    pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
+    [pickPenView setImage:[shareImageManager penPopupImage]];
+    [pickPenView setDelegate:self];
+    NSMutableArray *penArray = [[NSMutableArray alloc] init];
+    for (int i = PenStartType; i < PenCount; ++ i) {
+        PenView *pen = [PenView penViewWithType:i];
+        [penArray addObject:pen];
+    }
+    [pickPenView setPens:penArray];
+    [penArray release];
+    [self.view addSubview:pickPenView];
     
     
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
@@ -156,6 +167,11 @@
     [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
     [widthArray release];
+    
+    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
+    [pickEraserView setHidden:YES];
+    
 }
 
 #pragma mark - Timer
@@ -214,7 +230,7 @@ enum{
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
     //    [penButton setPenColor:randColor];
-    [penButton setPenType:2];
+    [penButton setPenType:Pencil];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
 }
@@ -351,6 +367,14 @@ enum{
     
 }
 
+- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
+{
+    if (penView) {
+        [self.penButton setPenType:penView.penType];
+        [drawView setPenType:penView.penType];
+    }
+}
+
 #pragma mark - Common Dialog Delegate
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
@@ -402,13 +426,14 @@ enum{
     if ([DeviceDetection isIPAD]) {
         width /= 2;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
+    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];
 }
 
 - (void)didStartedTouch:(Paint *)paint
 {
     [pickColorView setHidden:YES];
     [pickEraserView setHidden:YES];
+    [pickPenView setHidden:YES];
 }
 
 
@@ -443,12 +468,25 @@ enum{
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
+    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
 }
 
 - (IBAction)clickPenButton:(id)sender {
+    [pickPenView setHidden:!pickPenView.hidden animated:YES];
+    [drawView setPenType:penButton.penType];
+    [drawView setLineColor:colorButton.drawColor];
+    [drawView setLineWidth:penWidth];
+    [pickEraserView setHidden:YES];
+    [pickColorView setHidden:YES];
+}
+
+- (IBAction)clickColorButton:(id)sender {
     [pickColorView setHidden:!pickColorView.hidden animated:YES];
     [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
+    [pickPenView setHidden:YES];
+    [pickEraserView setHidden:YES];
 }
 
 - (IBAction)clickGroupChatButton:(id)sender {

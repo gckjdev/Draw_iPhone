@@ -12,7 +12,6 @@
 {
     NSMutableArray *_penArray;
 }
-
 - (void)setPens:(NSArray *)pens;
 
 @end
