@@ -102,6 +102,9 @@
 //find draw
 #define METHOD_FINDDRAW @"fd"
 
+//for levelService
+#define METHOD_SYND_LEVEL_EXP   @"sle"
+
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -350,6 +353,10 @@
 #define PARA_NEW_WORDS  @"nw"
 //find draw 
 #define PARA_FORMAT @"format"
+
+//for level exp
+#define PARA_EXP    @"exp"
+#define PARA_LEVEL  @"lvl"
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 

@@ -7,22 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonService.h"
+@class PPViewController;
 
 @protocol LevelServiceDelegate <NSObject>
 @optional
 - (void)levelUp:(int)level;
+- (void)levelDown:(int)level;
 
 @end
 
-@interface LevelService : NSObject
+@interface LevelService : CommonService
+@property (assign, nonatomic) id<LevelServiceDelegate> delegate;
+
++ (LevelService*)defaultService;
 
 - (void)setLevel:(NSInteger)level;
 //- (void)setExperience:(float)experience;
-- (NSNumber*)level;
-- (NSNumber*)experience;
+- (int)level;
+- (long)experience;
 
-- (void)addExp:(float)exp;
-- (void)minusExp:(float)exp;
-- (float)expRequiredForNextLevel;
+- (void)addExp:(long)exp;
+- (void)minusExp:(long)exp;
+- (long)expRequiredForNextLevel;
+- (void)syncExpAndLevel:(PPViewController*)viewController;
 
 @end
