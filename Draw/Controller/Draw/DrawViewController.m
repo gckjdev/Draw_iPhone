@@ -527,6 +527,7 @@ enum{
     [pickColorView setHidden:!pickColorView.hidden animated:YES];
     [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
+    [drawView setPenType:penButton.penType];
     [pickPenView setHidden:YES];
     [pickEraserView setHidden:YES];
 }
