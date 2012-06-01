@@ -35,6 +35,9 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
+#import "PickColorView.h"
+#import "PickEraserView.h"
+#import "PickPenView.h"
 
 #import "FriendRoomController.h"
 
@@ -109,6 +112,10 @@
 - (void)initPickView
 {
 
+    //init pick pen view
+//    pickPenView = [[PickPenView alloc] initWithFrame:<#(CGRect)#>];
+    
+    
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
     if ([DeviceDetection isIPAD]) {
         [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
@@ -401,6 +408,7 @@ enum{
 - (void)didStartedTouch:(Paint *)paint
 {
     [pickColorView setHidden:YES];
+    [pickEraserView setHidden:YES];
 }
 
 

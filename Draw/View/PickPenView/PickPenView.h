@@ -9,5 +9,10 @@
 #import "PickView.h"
 
 @interface PickPenView : PickView
+{
+    NSMutableArray *_penArray;
+}
+
+- (void)setPens:(NSArray *)pens;
 
 @end

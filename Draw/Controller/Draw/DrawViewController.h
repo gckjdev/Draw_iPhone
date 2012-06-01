@@ -10,9 +10,7 @@
 
 #import "DrawView.h"
 #import "DrawGameService.h"
-#import "PickColorView.h"
-#import "PickEraserView.h"
-#import "PickPenView.h"
+#import "PickView.h"
 #import "CommonDialog.h"
 #import "SuperDrawViewController.h"
 #import "ColorShopView.h"
@@ -21,11 +19,15 @@
 @class ShareImageManager;
 @class ColorShopController;
 @class PenView;
+@class PickPenView;
+@class PickEraserView;
+@class PickColorView;
 
 @interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;
+    PickPenView *pickPenView;
     NSInteger penWidth;
     NSInteger eraserWidth;
 }

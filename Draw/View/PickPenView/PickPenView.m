@@ -10,4 +10,23 @@
 
 @implementation PickPenView
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _penArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_penArray release];
+    [super dealloc];
+}
+
+- (void)setPens:(NSArray *)pens
+{
+    
+}
 @end
