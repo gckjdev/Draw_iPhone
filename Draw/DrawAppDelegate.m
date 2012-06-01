@@ -164,8 +164,6 @@ NSString* GlobalGetTrafficServerURL()
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
-    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
