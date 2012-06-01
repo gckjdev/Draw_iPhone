@@ -25,6 +25,7 @@ typedef enum {
 {
 //    CGImageRef maskImage;
     PenType _penType;
+    NSInteger _price;
 }
 
 - (id)initWithPenType:(PenType)type;
@@ -32,8 +33,9 @@ typedef enum {
 + (CGFloat)height;
 + (CGFloat)width;
 - (BOOL)isLeftDownRotate;
+- (BOOL)isDefaultPen;
 @property(nonatomic, assign)PenType penType;
-
+@property(nonatomic, assign)NSInteger price;
 
 //@property(nonatomic, retain)DrawColor *penColor;
 //

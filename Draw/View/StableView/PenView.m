@@ -28,7 +28,7 @@
 
 @implementation PenView
 @synthesize penType = _penType;
-
+@synthesize price = _price;
 - (void)dealloc
 {
     [super dealloc];
@@ -63,6 +63,10 @@
         return YES;
     }
     return NO;
+}
+- (BOOL)isDefaultPen
+{
+    return self.penType == Pencil;
 }
 - (UIImage *)penImageForType:(PenType)type
 {

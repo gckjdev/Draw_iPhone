@@ -86,7 +86,7 @@
 
 "kCoinsNotEnoughTitle" = "消息";
 "kCoinsNotEnough" = "不好意思，你的金幣不夠了，是不是現在購買一些金幣？";
-"kCoinsNotEnoughTips" = "不好意思，你的金幣不夠了，請在遊戲結束之後購買。";
+"kCoinsNotEnoughTips" = "不好意思，你的金幣不夠%d了，請在遊戲結束之後購買些金幣。";
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
@@ -301,8 +301,9 @@
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "購買顏色";
+"kBuyPenDialogTitle" = "購買筆";
 "kBuyColorDialogMessage" = "購買顏色將花費%d金幣，確定嗎？";
-
+"kBuyPenDialogMessage" = "購買筆將花費%d金幣，確定嗎？";
 "kPublishWeiboSuccAndEarnCoins" = "微博已發送，你獲得了%d金幣！";
 "guest" = "路人甲";
 "kOnlineUserCount" = "在線用戶共%d人";
