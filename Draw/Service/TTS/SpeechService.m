@@ -75,7 +75,7 @@ static SpeechService *_defaultSpeechService = nil;
         }
         
         //speed 0至10
-        [_iFlySynthesizerControl setSpeed:7];
+        [_iFlySynthesizerControl setSpeed:5];
         [_iFlySynthesizerControl start];
     }
 }

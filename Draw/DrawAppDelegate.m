@@ -119,6 +119,7 @@ NSString* GlobalGetTrafficServerURL()
     if ([ConfigManager enableReview]){
         if ([DeviceDetection isOS5]){
             self.reviewRequest = [ReviewRequest startReviewRequest:DRAW_APP_ID appName:GlobalGetAppName() isTest:YES];
+            self.reviewRequest.delegate = self;
         }
     }
 
@@ -168,6 +169,11 @@ NSString* GlobalGetTrafficServerURL()
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     return YES;
+}
+
+- (void)reviewDone
+{
+    [self setReviewRequest:nil];
 }
 
 - (void)showNews
