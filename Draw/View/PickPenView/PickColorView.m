@@ -11,10 +11,9 @@
 #import "ColorView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WidthView.h"
-//#import "DeviceDetection.h"
 
 @implementation PickColorView
-//@synthesize delegate = _delegate;
+
 
 
 #define ADD_BUTTON_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 0, 32 * 2, 34 * 2) : CGRectMake(0, 0, 32, 34))
@@ -34,8 +33,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        widthButtonArray  = [[NSMutableArray alloc] init];
-//        self.userInteractionEnabled = YES;
         UIButton *addColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
         addColorButton.frame = ADD_BUTTON_FRAME;
         addColorButton.center = ADD_BUTTON_CENTER;

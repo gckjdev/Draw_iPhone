@@ -36,6 +36,7 @@
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
+- (IBAction)clickColorButton:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;

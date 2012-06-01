@@ -103,10 +103,19 @@
             }
             if (playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
                 [pen setPenType:currentAction.paint.penType];
+                if ([pen isLeftDownRotate]) {
+                    [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
+                }else{
+                    [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+                }
             }
             CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
-                pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);
+                if ([pen isLeftDownRotate]) {
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+                }else{
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
+                }
             }
         }
     }

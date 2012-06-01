@@ -103,7 +103,9 @@
 
 - (void)sendDrawDataRequestWithPointList:(NSArray*)pointList 
                                    color:(int)color
-                                   width:(float)width;
+                                   width:(float)width           
+                                 penType:(int)penType;
+
 
 - (void)cleanDraw;
 - (void)startGame;

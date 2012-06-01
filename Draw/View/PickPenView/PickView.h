@@ -13,13 +13,15 @@
 @class DrawColor;
 @class ColorView;
 @class PickView;
+@class PenView;
 @protocol PickViewDelegate <NSObject>
 
 @optional
 - (void)didPickedColorView:(ColorView *)colorView;
 - (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width;
 - (void)didPickedMoreColor;
-//- (void)didPickedMoreColor;
+- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView;
+
 @end
 
 
