@@ -170,16 +170,16 @@
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (_isMyPaint) {
         [self.titleLabel setText:NSLS(@"kTurnResult")];   
-        [[LevelService defaultService] addExp:DRAWER_EXP];
+        //[[LevelService defaultService] addExp:DRAWER_EXP];
     }else{
-        [[LevelService defaultService] addExp:NORMAL_EXP];
+        //[[LevelService defaultService] addExp:NORMAL_EXP];
         if (_correct) {
             [self.titleLabel setText:NSLS(@"kCongratulations")];        
         }else{
             [self.titleLabel setText:NSLS(@"kPity")];
         }
     }
-    [[LevelService defaultService] syncExpAndLevel:self];
+    //[[LevelService defaultService] syncExpAndLevel:self];
 
     //add score
     if (self.score > 0) {
