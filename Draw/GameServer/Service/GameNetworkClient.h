@@ -41,7 +41,9 @@
                   sessionId:(long)sessionId 
                   pointList:(NSArray*)pointList 
                       color:(int)color
-                      width:(float)width;
+                      width:(float)width               
+                    penType:(int)penType;
+
 
 - (void)sendCleanDraw:(NSString*)userId 
             sessionId:(long)sessionId;
