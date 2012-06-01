@@ -110,6 +110,7 @@
 - (void)setPenType:(PenType)penType
 {
     pen.penType = penType;
+    _penType = penType;
     if ([pen isRightDownRotate]) {
         [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
     }else{
