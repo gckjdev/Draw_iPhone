@@ -19,7 +19,7 @@
 @class HomeController;
 @class NetworkDetector;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
 }

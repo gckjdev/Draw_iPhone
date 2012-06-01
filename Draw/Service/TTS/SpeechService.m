@@ -65,7 +65,7 @@ static SpeechService *_defaultSpeechService = nil;
     }
     
     //speed 0至10
-    [_iFlySynthesizerControl setSpeed:9];
+    [_iFlySynthesizerControl setSpeed:5];
 	[_iFlySynthesizerControl start];
 }
 
@@ -78,19 +78,19 @@ static SpeechService *_defaultSpeechService = nil;
 - (void)onSynthesizerEnd:(IFlySynthesizerControl *)iFlySynthesizerControl theError:(SpeechError) error
 {
     if (error != 0) {
-        PPDebug(@"onSynthesizerEnd:%@",[_iFlySynthesizerControl getErrorDescription:error]);
+        PPDebug(@"<SpeechService> onSynthesizerEnd:%@",[_iFlySynthesizerControl getErrorDescription:error]);
     }
     //PPDebug(@"下载流量%d",[_iFlySynthesizerControl getDownflow]);
 }
 
 - (void)onSynthesizerBufferProgress:(float)bufferProgress
 {
-    PPDebug(@"onSynthesizerBufferProgress:%f",bufferProgress);
+    PPDebug(@"<SpeechService> onSynthesizerBufferProgress:%f",bufferProgress);
 }
 
 - (void)onSynthesizerPlayProgress:(float)playProgress
 {
-    PPDebug(@"onSynthesizerPlayProgress:%f",playProgress);
+    PPDebug(@"<SpeechService> onSynthesizerPlayProgress:%f",playProgress);
 }
 
 @end

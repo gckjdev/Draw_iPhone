@@ -119,6 +119,7 @@ NSString* GlobalGetTrafficServerURL()
     if ([ConfigManager enableReview]){
         if ([DeviceDetection isOS5]){
             self.reviewRequest = [ReviewRequest startReviewRequest:DRAW_APP_ID appName:GlobalGetAppName() isTest:YES];
+            [self.reviewRequest setDelegate:self];
         }
     }
 
@@ -164,12 +165,17 @@ NSString* GlobalGetTrafficServerURL()
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
-    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
+//    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
+//    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     return YES;
+}
+
+- (void)reviewDone
+{
+    self.reviewRequest = nil;
 }
 
 - (void)showNews

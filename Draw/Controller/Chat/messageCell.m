@@ -29,7 +29,7 @@
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    PPDebug(@"<MessageCell>cellId = %@", cellId);
+//    PPDebug(@"<MessageCell>cellId = %@", cellId);
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){

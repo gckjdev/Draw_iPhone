@@ -84,6 +84,12 @@
     [self initPopButton];
 }
 
+- (void)viewDidUnload
+{
+    [drawGameService unregisterObserver:self];
+    [super viewDidUnload];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -94,6 +100,7 @@
     [[SpeechService defaultService] cancel];
     [_privateChatController dismiss:NO];
     [_groupChatController dismiss:NO];
+    [drawGameService unregisterObserver:self];
     [super viewDidDisappear:animated];
 }
 
