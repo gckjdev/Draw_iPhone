@@ -244,7 +244,6 @@ enum{
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
-    //    [penButton setPenColor:randColor];
     [penButton setPenType:Pencil];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;

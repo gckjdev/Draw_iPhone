@@ -93,7 +93,7 @@
 
 - (void) setPenType:(PenType)penType
 {
-    if (penType < PenStartType || penType >= PenCount) {
+    if (penType < PenStartType || (penType >= PenCount && penType != Eraser)) {
         _penType = Pencil;
     }else{
         _penType = penType;
