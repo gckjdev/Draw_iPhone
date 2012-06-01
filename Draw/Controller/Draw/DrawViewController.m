@@ -507,6 +507,7 @@ enum{
 
 - (IBAction)clickEraserButton:(id)sender {
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
+    [drawView setPenType:Eraser];
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];

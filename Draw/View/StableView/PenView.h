@@ -16,7 +16,9 @@ typedef enum {
     Pen,
     IcePen,
     Quill,
-    PenCount
+    PenCount,
+    
+    Eraser = 1100
 }PenType;
 
 #define PenStartType Pencil
@@ -32,7 +34,7 @@ typedef enum {
 + (PenView *)penViewWithType:(PenType)type;
 + (CGFloat)height;
 + (CGFloat)width;
-- (BOOL)isLeftDownRotate;
+- (BOOL)isRightDownRotate;
 - (BOOL)isDefaultPen;
 @property(nonatomic, assign)PenType penType;
 @property(nonatomic, assign)NSInteger price;

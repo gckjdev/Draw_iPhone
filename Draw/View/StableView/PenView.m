@@ -57,9 +57,9 @@
     return VIEW_WDITH;
 }
 
-- (BOOL)isLeftDownRotate
+- (BOOL)isRightDownRotate
 {
-    if (self.penType == Pen || self.penType == Pencil || self.penType == WaterPen) {
+    if (self.penType == Pen || self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser) {
         return YES;
     }
     return NO;
@@ -80,6 +80,8 @@
             return [imageManager waterPenImage];            
         case IcePen:
             return [imageManager iceImage];            
+        case Eraser:
+            return [imageManager eraserImage];            
         case Pencil:
             default:
             return [imageManager pencilImage];            
