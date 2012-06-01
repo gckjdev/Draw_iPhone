@@ -475,3 +475,8 @@
 
 "kFakeIAPPurchase" = "验证您的购买收据失败，请确认您通过了正确的途径进行购买";
 "kNetworkBroken" = "您太久没有操作，自动退出房间，或者您的网络连接中断了";
+
+"kChatVoice" = "聊天语音";
+"kEnableAlways" = "开启";
+"kEnableWifi" = "仅WiFi下开启";
+"kEnableNot" = "关闭";

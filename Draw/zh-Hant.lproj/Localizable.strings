@@ -475,3 +475,8 @@
 
 "kFakeIAPPurchase" = "驗證您的IAP購買失敗，請確認您通過了正確的途徑進行購買";
 "kNetworkBroken" = "您太久沒有操作，自動退出房間，或者您的網絡連接中斷了";
+
+"kChatVoice" = "聊天語音";
+"kEnableAlways" = "開啟";
+"kEnableWifi" = "僅WiFi下開啟";
+"kEnableNot" = "關閉";
