@@ -17,6 +17,7 @@
     CGFloat _width;
     DrawColor *_color;
     NSMutableArray *_pointList;
+    PenType _penType;
 }
 @property(nonatomic,assign)CGFloat width;
 @property(nonatomic,assign)PenType penType;

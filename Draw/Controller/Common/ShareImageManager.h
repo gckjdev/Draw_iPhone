@@ -97,4 +97,5 @@
 - (UIImage *)waterPenImage;
 - (UIImage *)iceImage;
 - (UIImage *)quillImage;
+- (UIImage *)eraserImage;
 @end

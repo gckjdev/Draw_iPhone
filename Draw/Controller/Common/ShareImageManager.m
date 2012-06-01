@@ -333,6 +333,10 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"pen5.png"];    
 }
+- (UIImage *)eraserImage
+{
+    return [UIImage imageNamed:@"eraser.png"];    
+}
 
 
 @end

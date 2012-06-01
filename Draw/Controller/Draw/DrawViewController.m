@@ -244,7 +244,6 @@ enum{
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
-    //    [penButton setPenColor:randColor];
     [penButton setPenType:Pencil];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
@@ -507,6 +506,7 @@ enum{
 
 - (IBAction)clickEraserButton:(id)sender {
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
+    [drawView setPenType:Eraser];
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
@@ -526,6 +526,7 @@ enum{
     [pickColorView setHidden:!pickColorView.hidden animated:YES];
     [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
+    [drawView setPenType:penButton.penType];
     [pickPenView setHidden:YES];
     [pickEraserView setHidden:YES];
 }

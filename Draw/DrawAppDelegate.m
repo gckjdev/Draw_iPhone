@@ -34,6 +34,7 @@
 #import "MusicDownloadService.h"
 #import "FriendService.h"
 #import "UIUtils.h"
+#import "LevelService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -106,6 +107,7 @@ NSString* GlobalGetTrafficServerURL()
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
+    
     [[RouterService defaultService] fetchServerListAtBackground];    
     
     // Push Setup
@@ -167,6 +169,9 @@ NSString* GlobalGetTrafficServerURL()
     [[FriendManager defaultManager] removeAllDeletedFriends];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
+    
+    //sync level details
+   // [[LevelService defaultService] syncExpAndLevel];
     
     return YES;
 }
