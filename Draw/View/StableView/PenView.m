@@ -28,7 +28,7 @@
 
 @implementation PenView
 @synthesize penType = _penType;
-
+@synthesize price = _price;
 - (void)dealloc
 {
     [super dealloc];
@@ -64,6 +64,10 @@
     }
     return NO;
 }
+- (BOOL)isDefaultPen
+{
+    return self.penType == Pencil;
+}
 - (UIImage *)penImageForType:(PenType)type
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -93,7 +97,7 @@
         _penType = penType;
     }
     UIImage *image = [self penImageForType:penType];
-    [self setImage:image forState:UIControlStateNormal];
+    [self setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 //@synthesize penColor = _penColor;
