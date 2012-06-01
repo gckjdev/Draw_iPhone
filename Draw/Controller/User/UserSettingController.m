@@ -67,13 +67,15 @@ enum {
         rowOfSoundSwitcher = 5;
         rowOfMusicSettings = 6;
         rowOfVolumeSetting = 7;
-        rowNumber = 8;        
+        rowOfChatVoice = 8;
+        rowNumber = 9;        
     }else{
         rowOfLevel = -1;
         rowOfSoundSwitcher = 4;
         rowOfMusicSettings = 5;
         rowOfVolumeSetting = 6;
-        rowNumber = 7;
+        rowOfChatVoice = 7;
+        rowNumber = 8;
     }
     
     
@@ -119,6 +121,7 @@ enum {
     languageType = [userManager getLanguageType];
     self.gender = [userManager gender];
     guessLevel = [ConfigManager guessDifficultLevel];
+    chatVoice = [ConfigManager getChatVoiceEnable];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -335,7 +338,19 @@ enum {
         if ([DeviceDetection isIPAD]) {
             [slider setFrame:CGRectMake(64*2, 5*2, 180*2, 37*2)];
         }
+    } else if (row == rowOfChatVoice) {
+        [cell.textLabel setText:NSLS(@"kChatVoice")];
+        if (chatVoice == EnableAlways) {
+            [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
+        } else if (chatVoice == EnableWifi) {
+            [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
+        }else if (chatVoice == EnableNot){
+            [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
+        }
         
+        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+        [slider setHidden:YES];
+        [cell.detailTextLabel setHidden:NO];
     }
     return cell;
 }
@@ -357,6 +372,7 @@ enum {
 #define LANGUAGE_TAG 123
 #define LEVEL_TAG 124
 #define GENDER_TAG 125
+#define CHAT_VOICE_TAG 126
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -403,7 +419,18 @@ enum {
         MusicSettingController *controller = [[MusicSettingController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
+    }else if(row == rowOfChatVoice) {
+        UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
+                                                                          delegate:self 
+                                                                 cancelButtonTitle:NSLS(@"kCancel") 
+                                                            destructiveButtonTitle:NSLS(@"kEnableAlways") 
+                                                                 otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
+        selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
+        [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
+        [selectChatVoiceSheet showInView:self.view];
+        [selectChatVoiceSheet release];
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -422,6 +449,8 @@ enum {
                 hasEdited = YES;
             }
             self.gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
+        }else if (actionSheet.tag == CHAT_VOICE_TAG) {
+            chatVoice = buttonIndex + 1;
         }
     }
     [self updateRowIndexs];
@@ -431,7 +460,7 @@ enum {
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn || [ConfigManager getChatVoiceEnable] != chatVoice);
     return localChanged;
 }
 
@@ -444,6 +473,7 @@ enum {
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:self.gender];
         [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
+        [ConfigManager setChatVoiceEnable:chatVoice];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];

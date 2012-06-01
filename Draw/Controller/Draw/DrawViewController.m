@@ -38,7 +38,7 @@
 #import "PickColorView.h"
 #import "PickEraserView.h"
 #import "PickPenView.h"
-
+#import "ShoppingManager.h"
 #import "FriendRoomController.h"
 
 
@@ -118,10 +118,25 @@
     [pickPenView setImage:[shareImageManager penPopupImage]];
     [pickPenView setDelegate:self];
     NSMutableArray *penArray = [[NSMutableArray alloc] init];
+    NSInteger price = [[ShoppingManager defaultManager] getPenPrice];
     for (int i = PenStartType; i < PenCount; ++ i) {
         PenView *pen = [PenView penViewWithType:i];
+        pen.price = price;
         [penArray addObject:pen];
     }
+    
+    [penArray sortUsingComparator:^(id obj1,id obj2){
+        PenView *pen1 = (PenView *)obj1;
+        PenView *pen2 = (PenView *)obj2;
+        BOOL hasBought1 = [pen1 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen1.penType amount:1];
+        BOOL hasBought2 = [pen2 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen2.penType amount:1];
+        NSInteger ret = hasBought2 - hasBought1;
+        if (ret == 0) {
+            return NSOrderedAscending;
+        }
+        return ret;
+    }];
+    
     [pickPenView setPens:penArray];
     [penArray release];
     [self.view addSubview:pickPenView];
@@ -367,11 +382,33 @@ enum{
     
 }
 
+#define NO_COIN_TAG 201204271
+#define BUY_CONFIRM_TAG 201204272
+
 - (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
 {
     if (penView) {
-        [self.penButton setPenType:penView.penType];
-        [drawView setPenType:penView.penType];
+        _willBuyPen = nil;
+        if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
+            [self.penButton setPenType:penView.penType];
+            [drawView setPenType:penView.penType];            
+        }else{
+            AccountService *service = [AccountService defaultService];
+            if (![service hasEnoughCoins:penView.price]) {
+                NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), penView.price];
+                CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
+                noMoneyDialog.tag = NO_COIN_TAG;
+                [noMoneyDialog showInView:self.view];
+            }else{
+                NSString *message = [NSString stringWithFormat:NSLS(@"kBuyPenDialogMessage"),penView.price];
+                CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyPenDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
+                buyConfirmDialog.tag = BUY_CONFIRM_TAG;
+                [buyConfirmDialog showInView:self.view];
+                _willBuyPen = penView;
+            }
+
+        }
+        
     }
 }
 
@@ -390,6 +427,10 @@ enum{
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
+    }else if(dialog.tag == BUY_CONFIRM_TAG){
+        [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
+        [self.penButton setPenType:_willBuyPen.penType];
+        [drawView setPenType:_willBuyPen.penType];            
     }
     
 }

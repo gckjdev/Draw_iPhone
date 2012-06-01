@@ -8,7 +8,8 @@
 
 #import "SpeechService.h"
 #import "LogUtil.h"
-
+#import "ConfigManager.h"
+#import "Reachability.h"
 
 #define APPID @"4fc430af"   //应用ID
 #define ENGINE_URL @"http://dev.voicecloud.cn:1028/index.htm"
@@ -55,18 +56,28 @@ static SpeechService *_defaultSpeechService = nil;
 
 - (void)play:(NSString *)text gender:(BOOL)isMale
 {
-    [self cancel];
-    [_iFlySynthesizerControl setText:text theParams:nil];
-    
-    if (isMale) {
-        [_iFlySynthesizerControl setVoiceName:@"xiaoyu"];
-    }else {
-        [_iFlySynthesizerControl setVoiceName:@"xiaoyan"];
+    if ([ConfigManager getChatVoiceEnable] == EnableNot) {
+        return;
+    } 
+    else{
+        BOOL isWiFi = ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWiFi);
+        if ([ConfigManager getChatVoiceEnable] == EnableWifi && isWiFi == NO) {
+            return;
+        }
+        
+        [self cancel];
+        [_iFlySynthesizerControl setText:text theParams:nil];
+        
+        if (isMale) {
+            [_iFlySynthesizerControl setVoiceName:@"xiaoyu"];
+        }else {
+            [_iFlySynthesizerControl setVoiceName:@"xiaoyan"];
+        }
+        
+        //speed 0至10
+        [_iFlySynthesizerControl setSpeed:7];
+        [_iFlySynthesizerControl start];
     }
-    
-    //speed 0至10
-    [_iFlySynthesizerControl setSpeed:9];
-	[_iFlySynthesizerControl start];
 }
 
 - (void)cancel

@@ -30,6 +30,7 @@
 - (NSArray*)findCoinPriceList;
 - (NSArray*)findItemPriceList;
 - (NSInteger)getColorPrice;
+- (NSInteger)getPenPrice;
 - (SKProduct*)productWithId:(NSString*)product;
 
 @end
