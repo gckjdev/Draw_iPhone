@@ -30,6 +30,7 @@
     PickPenView *pickPenView;
     NSInteger penWidth;
     NSInteger eraserWidth;
+    PenView *_willBuyPen;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
