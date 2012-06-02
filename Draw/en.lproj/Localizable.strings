@@ -471,4 +471,8 @@
 "kChatVoice" = "Chat Voice";
 "kEnableAlways" = "Enable";
 "kEnableWifi" = "Enable only WiFi";
-"kEnableNot" = "Not enable";
+"kEnableNot" = "Disable";
+
+"kCurrentCoins" = "Coins ";
+"kCurrentItems" = "Items ";
+"kFreeGetCoins" = "Free Coins";

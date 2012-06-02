@@ -137,6 +137,10 @@
     if ([self hasRemoveNotification]) {
         [self clickPlayWithFriend:self.playWithFriendButton];
     }
+    
+    if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
+        [self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

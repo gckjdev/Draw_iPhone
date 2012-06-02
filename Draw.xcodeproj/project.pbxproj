@@ -332,16 +332,9 @@
 		CA10417D1509A9FF00F60C03 /* NSDictionary+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040701509A9FD00F60C03 /* NSDictionary+TKCategory.m */; };
 		CA10417E1509A9FF00F60C03 /* NSMutableURLRequest+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040721509A9FD00F60C03 /* NSMutableURLRequest+TKCategory.m */; };
 		CA10417F1509A9FF00F60C03 /* NSString+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040741509A9FD00F60C03 /* NSString+TKCategory.m */; };
-		CA1041801509A9FF00F60C03 /* TapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040761509A9FD00F60C03 /* TapDetectingView.m */; };
 		CA1041811509A9FF00F60C03 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040791509A9FD00F60C03 /* TKAlertCenter.m */; };
 		CA1041821509A9FF00F60C03 /* TKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10407B1509A9FD00F60C03 /* TKAppDelegate.m */; };
 		CA1041831509A9FF00F60C03 /* TKButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10407D1509A9FD00F60C03 /* TKButtonCell.m */; };
-		CA1041841509A9FF00F60C03 /* TKCalendarDayEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10407F1509A9FD00F60C03 /* TKCalendarDayEventView.m */; };
-		CA1041851509A9FF00F60C03 /* TKCalendarDayTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040811509A9FD00F60C03 /* TKCalendarDayTimelineView.m */; };
-		CA1041861509A9FF00F60C03 /* TKCalendarDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040831509A9FD00F60C03 /* TKCalendarDayViewController.m */; };
-		CA1041871509A9FF00F60C03 /* TKCalendarMonthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040851509A9FD00F60C03 /* TKCalendarMonthTableViewController.m */; };
-		CA1041881509A9FF00F60C03 /* TKCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040871509A9FD00F60C03 /* TKCalendarMonthView.m */; };
-		CA1041891509A9FF00F60C03 /* TKCalendarMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040891509A9FD00F60C03 /* TKCalendarMonthViewController.m */; };
 		CA10418A1509A9FF00F60C03 /* TKCoverflowCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10408B1509A9FD00F60C03 /* TKCoverflowCoverView.m */; };
 		CA10418B1509A9FF00F60C03 /* TKCoverflowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10408D1509A9FD00F60C03 /* TKCoverflowView.m */; };
 		CA10418C1509A9FF00F60C03 /* TKEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA10408F1509A9FD00F60C03 /* TKEmptyView.m */; };
@@ -602,6 +595,15 @@
 		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
+		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
+		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
+		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
+		CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */; };
+		CAAE4A881579131F0012F6B8 /* YoumiWallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */; };
+		CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */; };
+		CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */; };
+		CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
@@ -1229,8 +1231,6 @@
 		CA1040721509A9FD00F60C03 /* NSMutableURLRequest+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+TKCategory.m"; sourceTree = "<group>"; };
 		CA1040731509A9FD00F60C03 /* NSString+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TKCategory.h"; sourceTree = "<group>"; };
 		CA1040741509A9FD00F60C03 /* NSString+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TKCategory.m"; sourceTree = "<group>"; };
-		CA1040751509A9FD00F60C03 /* TapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingView.h; sourceTree = "<group>"; };
-		CA1040761509A9FD00F60C03 /* TapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingView.m; sourceTree = "<group>"; };
 		CA1040771509A9FD00F60C03 /* TapkuLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapkuLibrary.h; sourceTree = "<group>"; };
 		CA1040781509A9FD00F60C03 /* TKAlertCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAlertCenter.h; sourceTree = "<group>"; };
 		CA1040791509A9FD00F60C03 /* TKAlertCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAlertCenter.m; sourceTree = "<group>"; };
@@ -1238,18 +1238,6 @@
 		CA10407B1509A9FD00F60C03 /* TKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAppDelegate.m; sourceTree = "<group>"; };
 		CA10407C1509A9FD00F60C03 /* TKButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKButtonCell.h; sourceTree = "<group>"; };
 		CA10407D1509A9FD00F60C03 /* TKButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKButtonCell.m; sourceTree = "<group>"; };
-		CA10407E1509A9FD00F60C03 /* TKCalendarDayEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarDayEventView.h; sourceTree = "<group>"; };
-		CA10407F1509A9FD00F60C03 /* TKCalendarDayEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarDayEventView.m; sourceTree = "<group>"; };
-		CA1040801509A9FD00F60C03 /* TKCalendarDayTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarDayTimelineView.h; sourceTree = "<group>"; };
-		CA1040811509A9FD00F60C03 /* TKCalendarDayTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarDayTimelineView.m; sourceTree = "<group>"; };
-		CA1040821509A9FD00F60C03 /* TKCalendarDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarDayViewController.h; sourceTree = "<group>"; };
-		CA1040831509A9FD00F60C03 /* TKCalendarDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarDayViewController.m; sourceTree = "<group>"; };
-		CA1040841509A9FD00F60C03 /* TKCalendarMonthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthTableViewController.h; sourceTree = "<group>"; };
-		CA1040851509A9FD00F60C03 /* TKCalendarMonthTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarMonthTableViewController.m; sourceTree = "<group>"; };
-		CA1040861509A9FD00F60C03 /* TKCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthView.h; sourceTree = "<group>"; };
-		CA1040871509A9FD00F60C03 /* TKCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarMonthView.m; sourceTree = "<group>"; };
-		CA1040881509A9FD00F60C03 /* TKCalendarMonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthViewController.h; sourceTree = "<group>"; };
-		CA1040891509A9FD00F60C03 /* TKCalendarMonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCalendarMonthViewController.m; sourceTree = "<group>"; };
 		CA10408A1509A9FD00F60C03 /* TKCoverflowCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCoverflowCoverView.h; sourceTree = "<group>"; };
 		CA10408B1509A9FD00F60C03 /* TKCoverflowCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKCoverflowCoverView.m; sourceTree = "<group>"; };
 		CA10408C1509A9FD00F60C03 /* TKCoverflowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCoverflowView.h; sourceTree = "<group>"; };
@@ -1646,6 +1634,21 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
+		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
+		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
+		CAAE4A751578FD5C0012F6B8 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
+		CAAE4A7B157908EB0012F6B8 /* YoumiWallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallController.h; sourceTree = "<group>"; };
+		CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallController.m; sourceTree = "<group>"; };
+		CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoumiWallController.xib; sourceTree = "<group>"; };
+		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		CAAE4A841579131D0012F6B8 /* YoumiWallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallCell.h; sourceTree = "<group>"; };
+		CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallCell.m; sourceTree = "<group>"; };
+		CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoumiWallCell.xib; sourceTree = "<group>"; };
+		CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiWallService.h; sourceTree = "<group>"; };
+		CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiWallService.m; sourceTree = "<group>"; };
+		CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YoumiWallController~ipad.xib"; sourceTree = "<group>"; };
+		CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "YoumiWallCell~ipad.xib"; sourceTree = "<group>"; };
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
@@ -1725,6 +1728,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
 				A3FAE0E215536F8E008B5827 /* AudioToolbox.framework in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
@@ -1750,6 +1754,7 @@
 				A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */,
 				A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */,
 				A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */,
+				CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2165,6 +2170,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE4A891579B8180012F6B8 /* YoumiWall */,
 				A38894AB15778B3200764158 /* TTS */,
 				A3C129D51563A6B600C021A7 /* DrawData */,
 				CA0CB767155CB75F009C8EE6 /* Room */,
@@ -3026,8 +3032,6 @@
 				CA1040721509A9FD00F60C03 /* NSMutableURLRequest+TKCategory.m */,
 				CA1040731509A9FD00F60C03 /* NSString+TKCategory.h */,
 				CA1040741509A9FD00F60C03 /* NSString+TKCategory.m */,
-				CA1040751509A9FD00F60C03 /* TapDetectingView.h */,
-				CA1040761509A9FD00F60C03 /* TapDetectingView.m */,
 				CA1040771509A9FD00F60C03 /* TapkuLibrary.h */,
 				CA1040781509A9FD00F60C03 /* TKAlertCenter.h */,
 				CA1040791509A9FD00F60C03 /* TKAlertCenter.m */,
@@ -3035,18 +3039,6 @@
 				CA10407B1509A9FD00F60C03 /* TKAppDelegate.m */,
 				CA10407C1509A9FD00F60C03 /* TKButtonCell.h */,
 				CA10407D1509A9FD00F60C03 /* TKButtonCell.m */,
-				CA10407E1509A9FD00F60C03 /* TKCalendarDayEventView.h */,
-				CA10407F1509A9FD00F60C03 /* TKCalendarDayEventView.m */,
-				CA1040801509A9FD00F60C03 /* TKCalendarDayTimelineView.h */,
-				CA1040811509A9FD00F60C03 /* TKCalendarDayTimelineView.m */,
-				CA1040821509A9FD00F60C03 /* TKCalendarDayViewController.h */,
-				CA1040831509A9FD00F60C03 /* TKCalendarDayViewController.m */,
-				CA1040841509A9FD00F60C03 /* TKCalendarMonthTableViewController.h */,
-				CA1040851509A9FD00F60C03 /* TKCalendarMonthTableViewController.m */,
-				CA1040861509A9FD00F60C03 /* TKCalendarMonthView.h */,
-				CA1040871509A9FD00F60C03 /* TKCalendarMonthView.m */,
-				CA1040881509A9FD00F60C03 /* TKCalendarMonthViewController.h */,
-				CA1040891509A9FD00F60C03 /* TKCalendarMonthViewController.m */,
 				CA10408A1509A9FD00F60C03 /* TKCoverflowCoverView.h */,
 				CA10408B1509A9FD00F60C03 /* TKCoverflowCoverView.m */,
 				CA10408C1509A9FD00F60C03 /* TKCoverflowView.h */,
@@ -3191,6 +3183,14 @@
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
 				A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */,
+				CAAE4A7B157908EB0012F6B8 /* YoumiWallController.h */,
+				CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */,
+				CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */,
+				CAAE4A8D1579C6270012F6B8 /* YoumiWallController~ipad.xib */,
+				CAAE4A841579131D0012F6B8 /* YoumiWallCell.h */,
+				CAAE4A851579131E0012F6B8 /* YoumiWallCell.m */,
+				CAAE4A861579131E0012F6B8 /* YoumiWallCell.xib */,
+				CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -3775,6 +3775,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -3821,6 +3822,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE4A711578FD5C0012F6B8 /* YoumiSDK */,
 				A388949115778B1200764158 /* iFly */,
 				A357930C1574BD670007B2C0 /* WeixinSDK */,
 				C2F947BE1533D8BF0034C895 /* MobClick */,
@@ -4056,6 +4058,27 @@
 				CAA0E6A815147F6E00FD8C3E /* WordManager.m */,
 			);
 			path = Word;
+			sourceTree = "<group>";
+		};
+		CAAE4A711578FD5C0012F6B8 /* YoumiSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE4A721578FD5C0012F6B8 /* libYouMi.a */,
+				CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */,
+				CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */,
+				CAAE4A751578FD5C0012F6B8 /* YouMiWallDelegateProtocol.h */,
+			);
+			name = YoumiSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/YoumiSDK";
+			sourceTree = "<group>";
+		};
+		CAAE4A891579B8180012F6B8 /* YoumiWall */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */,
+				CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */,
+			);
+			path = YoumiWall;
 			sourceTree = "<group>";
 		};
 		CAC108A01575E3AE00703613 /* pen */ = {
@@ -4572,6 +4595,10 @@
 				CAC108A81575E3AE00703613 /* pen3@2x.png in Resources */,
 				CAC108A91575E3AE00703613 /* pen4@2x.png in Resources */,
 				CAC108AA1575E3AE00703613 /* pen5@2x.png in Resources */,
+				CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */,
+				CAAE4A881579131F0012F6B8 /* YoumiWallCell.xib in Resources */,
+				CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */,
+				CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4719,16 +4746,9 @@
 				CA10417D1509A9FF00F60C03 /* NSDictionary+TKCategory.m in Sources */,
 				CA10417E1509A9FF00F60C03 /* NSMutableURLRequest+TKCategory.m in Sources */,
 				CA10417F1509A9FF00F60C03 /* NSString+TKCategory.m in Sources */,
-				CA1041801509A9FF00F60C03 /* TapDetectingView.m in Sources */,
 				CA1041811509A9FF00F60C03 /* TKAlertCenter.m in Sources */,
 				CA1041821509A9FF00F60C03 /* TKAppDelegate.m in Sources */,
 				CA1041831509A9FF00F60C03 /* TKButtonCell.m in Sources */,
-				CA1041841509A9FF00F60C03 /* TKCalendarDayEventView.m in Sources */,
-				CA1041851509A9FF00F60C03 /* TKCalendarDayTimelineView.m in Sources */,
-				CA1041861509A9FF00F60C03 /* TKCalendarDayViewController.m in Sources */,
-				CA1041871509A9FF00F60C03 /* TKCalendarMonthTableViewController.m in Sources */,
-				CA1041881509A9FF00F60C03 /* TKCalendarMonthView.m in Sources */,
-				CA1041891509A9FF00F60C03 /* TKCalendarMonthViewController.m in Sources */,
 				CA10418A1509A9FF00F60C03 /* TKCoverflowCoverView.m in Sources */,
 				CA10418B1509A9FF00F60C03 /* TKCoverflowView.m in Sources */,
 				CA10418C1509A9FF00F60C03 /* TKEmptyView.m in Sources */,
@@ -4939,6 +4959,9 @@
 				CA38D21C15774FB900DD2ECA /* PickEraserView.m in Sources */,
 				C246F3581577633B003C284F /* LevelService.m in Sources */,
 				A38894AE15778B3200764158 /* SpeechService.m in Sources */,
+				CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */,
+				CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */,
+				CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5147,6 +5170,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E53830A7-A52F-4DBE-892A-ACD7401B7E84";
@@ -5173,6 +5197,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "567D364C-8715-407A-A12E-EB426A08C30F";

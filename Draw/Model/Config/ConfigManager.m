@@ -8,6 +8,7 @@
 
 #import "ConfigManager.h"
 #import "LocaleUtils.h"
+#import "PPApplication.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -101,6 +102,18 @@
 + (BOOL)isInReview
 {
     return ([MobClickUtils getIntValueByKey:@"IN_REVIEW" defaultValue:0] == 1);    
+}
+
++ (BOOL)isInReviewVersion
+{
+    NSString* currentVersion = [PPApplication getAppVersion];
+    NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
+    if ([inReviewVersion length] > 0){
+        return [currentVersion isEqualToString:inReviewVersion];
+    }
+    else{
+        return NO;
+    }    
 }
 
 + (ChatVoiceEnable)getChatVoiceEnable
