@@ -984,6 +984,7 @@
 
 - (void)didSelectMessage:(NSString *)message toUser:(NSString *)userNickName
 {
+    
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
         [self clickProlongStart:nil];
     }else {
