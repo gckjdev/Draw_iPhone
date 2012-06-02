@@ -79,12 +79,12 @@ static MusicItemManager *_defaultManager;
     }
     
     if (self.currentMusicItem == nil) {
-//        if ([ConfigManager isInReview]){
-//            self.currentMusicItem = noneMusicItem;
-//        }
-//        else{
+        if ([ConfigManager isInReviewVersion] == YES){
+            self.currentMusicItem = noneMusicItem;
+        }
+        else{
             self.currentMusicItem = defaultMusicItem;
-//        }
+        }
     }
 }
 

@@ -119,7 +119,7 @@ NSString* GlobalGetTrafficServerURL()
     }
     
     // Ask For Review
-    if ([ConfigManager enableReview]){
+    if ([ConfigManager isInReviewVersion] == NO){
         if ([DeviceDetection isOS5]){
             self.reviewRequest = [ReviewRequest startReviewRequest:DRAW_APP_ID appName:GlobalGetAppName() isTest:YES];
             self.reviewRequest.delegate = self;
