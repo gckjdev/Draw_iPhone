@@ -50,7 +50,7 @@
 @synthesize penButton;
 @synthesize colorButton;
 
-#define PAPER_VIEW_TAG 20120403
+#define PAPER_VIEW_TAG 20120403 
 
 
 #pragma mark - Static Method
@@ -97,7 +97,7 @@
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
@@ -295,6 +295,7 @@ enum{
 
 - (void)viewDidUnload
 {
+    drawView.delegate = nil;
     
     [self setWord:nil];
     [self setEraserButton:nil];
