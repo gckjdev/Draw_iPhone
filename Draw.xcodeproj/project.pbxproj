@@ -3775,7 +3775,6 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
-				CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -3795,6 +3794,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */,
 				A3FAE0E115536F8E008B5827 /* AudioToolbox.framework */,
 				C2A09761152ECDEA006535F7 /* ImageIO.framework */,
 				CA65C1E5152DD03B00462C96 /* QWeiboSDK4iOS.xcodeproj */,

@@ -481,3 +481,7 @@
 "kEnableAlways" = "開啟";
 "kEnableWifi" = "僅WiFi下開啟";
 "kEnableNot" = "關閉";
+
+"kCurrentCoins" = "現有金幣 ";
+"kCurrentItems" = "現有錦囊 ";
+"kFreeGetCoins" = "免費金幣";

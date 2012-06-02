@@ -16,5 +16,6 @@
 
 + (YoumiWallService *)defaultService;
 - (void)queryPoints;
+- (NSArray*)getOrderList;
 
 @end

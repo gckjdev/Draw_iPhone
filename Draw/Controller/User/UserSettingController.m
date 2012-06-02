@@ -200,6 +200,16 @@ enum {
     isSoundOn = !btn.selected;
 }
 
+- (int)guessLevelToButtonIndex:(GuessLevel)level
+{
+    return level - 2;
+}
+
+- (GuessLevel)buttonIndexToGuessLevel:(int)buttonIndex
+{
+    return buttonIndex + 2;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"SettingCell";
@@ -386,8 +396,18 @@ enum {
         actionSheet.tag = LANGUAGE_TAG;
         [actionSheet release];        
     }else if (row == rowOfLevel) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kEasyLevel") otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
-        [actionSheet setDestructiveButtonIndex:guessLevel - 1];
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
+//                                                                 delegate:self 
+//                                                        cancelButtonTitle:NSLS(@"kCancel") 
+//                                                   destructiveButtonTitle:NSLS(@"kEasyLevel") 
+//                                                        otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
+                                                                 delegate:self 
+                                                        cancelButtonTitle:NSLS(@"kCancel") 
+                                                   destructiveButtonTitle:NSLS(@"kNormalLevel") 
+                                                        otherButtonTitles:NSLS(@"kHardLevel"), nil];
+        
+        [actionSheet setDestructiveButtonIndex:[self guessLevelToButtonIndex:guessLevel]];
         [actionSheet showInView:self.view];
         actionSheet.tag = LEVEL_TAG;
         [actionSheet release];        
@@ -443,7 +463,7 @@ enum {
         if (actionSheet.tag == LANGUAGE_TAG) {
             languageType = buttonIndex + 1;
         }else if(actionSheet.tag == LEVEL_TAG){
-            guessLevel = buttonIndex + 1;
+            guessLevel = [self buttonIndexToGuessLevel:buttonIndex];
         } else  if (actionSheet.tag == GENDER_TAG) {
             if (buttonIndex != actionSheet.destructiveButtonIndex) {
                 hasEdited = YES;

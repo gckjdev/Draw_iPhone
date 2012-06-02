@@ -22,6 +22,9 @@
 }
 
 - (IBAction)clickHelp:(id)sender;
+- (IBAction)clickQueryPoints:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;
+@property (retain, nonatomic) IBOutlet UIButton *queryButton;
 
 @end

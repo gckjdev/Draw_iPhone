@@ -62,7 +62,8 @@ static YoumiWallService *_defaultService = nil;
         return NO;
     }
     
-    for (NSString* oid in orderList){
+    for (NSDictionary* obj in orderList){
+        NSString* oid = [obj objectForKey:kOneAccountRecordOrderIDOpenKey];
         if ([oid isEqualToString:orderId]){
             return YES;
         }
@@ -83,14 +84,23 @@ static YoumiWallService *_defaultService = nil;
     }
     
     // add new order
-    NSString* orderId = [order objectForKey:kOneAccountRecordOrderIDOpenKey];
-    [newOrderList addObject:orderId];    
+//    NSString* orderId = [order objectForKey:kOneAccountRecordOrderIDOpenKey];
+//    NSString* appName = [order objectForKey:kOneAccountRecordStoreIDOpenKey];
+    [newOrderList addObject:order];    
+    
+    PPDebug(@"<YoumiWallService> new order list = %@", [newOrderList description]);
 
     // save
     [userDefault setObject:newOrderList forKey:YOUMI_WALL_ORDER_LIST];
     [userDefault synchronize];                            
     
     [newOrderList release];
+}
+
+- (NSArray*)getOrderList
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault objectForKey:YOUMI_WALL_ORDER_LIST];
 }
 
 - (void)requestPointSuccess:(NSNotification *)note {
@@ -112,9 +122,9 @@ static YoumiWallService *_defaultService = nil;
             [[AccountService defaultService] chargeAccount:earnedPoint source:YoumiAppReward];
             
             // update point earning order
-            [self updateOrder:[note userInfo]];
+            [self updateOrder:oneRecord];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"已经成功新增%d金币",earnedPoint] message:[NSString stringWithFormat:@"来源于安装了应用[%@]", name] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"成功获取%d金币",earnedPoint] message:[NSString stringWithFormat:@"来源于安装了应用 [%@]", name] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
             
             [alert show];
             [alert release];

@@ -21,6 +21,7 @@
 
 @implementation YoumiWallController
 @synthesize helpButton;
+@synthesize queryButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +74,7 @@
     [openApps release];
     
     [helpButton release];
+    [queryButton release];
     [super dealloc];
 }
 
@@ -104,11 +106,14 @@
     
     [self.helpButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     
+    [self.queryButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
+
     [super viewDidLoad];    
 }
 
 - (void)viewDidUnload {
     [self setHelpButton:nil];
+    [self setQueryButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -282,4 +287,36 @@
     
     [dialog showInView:self.view];    
 }
+
+- (IBAction)clickQueryPoints:(id)sender{
+    
+    NSArray* orderList = [[YoumiWallService defaultService] getOrderList];
+    NSString* str = @"";
+    int count = [orderList count];
+    int index = 0;
+    for (int i=count-1; i>=0; i--){        
+        if (index == 3) // max 3 records
+            break;
+        
+        index ++;
+        
+        NSDictionary* order = [orderList objectAtIndex:i];
+        NSString* appName = [order objectForKey:kOneAccountRecordNameOpenKey];
+        NSNumber* earnPoints = [order objectForKey:kOneAccountRecordPoinstsOpenKey];
+        str = [str stringByAppendingFormat:@"下载[%@]获取了%d金币;", appName, [earnPoints intValue]];
+    }
+    
+    if ([str length] == 0){
+        str = @"暂时没有查询到成功获取金币记录，请确认已经成功安装应用，并且使用了应用。";
+    }
+            
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:@"查询结果（最近三次）" 
+                                                       message:str 
+                                                         style:CommonDialogStyleSingleButton delegate:nil];
+    
+    [dialog showInView:self.view];    
+
+}
+
+
 @end
