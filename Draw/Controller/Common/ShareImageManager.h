@@ -62,6 +62,8 @@
 - (UIImage *)selectedPointImage;
 - (UIImage *)unSelectedPointImage;
 - (UIImage *)toolPopupImage;
+- (UIImage *)penPopupImage;
+- (UIImage *)eraserPopupImage;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
@@ -90,4 +92,10 @@
 - (UIImage *)messageImage;
 //- (UIImage *)snowImage;
 
+- (UIImage *)penImage;
+- (UIImage *)pencilImage;
+- (UIImage *)waterPenImage;
+- (UIImage *)iceImage;
+- (UIImage *)quillImage;
+- (UIImage *)eraserImage;
 @end

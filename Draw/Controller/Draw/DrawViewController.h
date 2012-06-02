@@ -10,7 +10,7 @@
 
 #import "DrawView.h"
 #import "DrawGameService.h"
-#import "PickPenView.h"
+#import "PickView.h"
 #import "CommonDialog.h"
 #import "SuperDrawViewController.h"
 #import "ColorShopView.h"
@@ -19,32 +19,33 @@
 @class ShareImageManager;
 @class ColorShopController;
 @class PenView;
+@class PickPenView;
+@class PickEraserView;
+@class PickColorView;
 
-@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickPenDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
+    PickColorView *pickColorView;
+    PickEraserView *pickEraserView;
     PickPenView *pickPenView;
-
-//    Word *_word;
     NSInteger penWidth;
     NSInteger eraserWidth;
-
-//    NSAutoreleasePool *autoReleasePool;
-
-                
+    PenView *_willBuyPen;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
+- (IBAction)clickColorButton:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
+@property (retain, nonatomic) IBOutlet ColorView *colorButton;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
-- (void)setToolButtonEnabled:(BOOL)enabled;
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang;
 - (void)initEraser;

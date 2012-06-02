@@ -86,7 +86,7 @@
 
 "kCoinsNotEnoughTitle" = "消息";
 "kCoinsNotEnough" = "不好意思，你的金幣不夠了，是不是現在購買一些金幣？";
-"kCoinsNotEnoughTips" = "不好意思，你的金幣不夠了，請在遊戲結束之後購買。";
+"kCoinsNotEnoughTips" = "不好意思，你的金幣不夠%d了，請在遊戲結束之後購買些金幣。";
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
@@ -194,7 +194,8 @@
 "kShare_via_tencent_weibo" = "通過騰訊微博分享";
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
-
+"kShare_via_Weixin" = "分享到微信";
+"kWeixinNotInstall" = "對不起，您沒有安裝微信或微信版本較低，無法發送微信消息!";
 
 "Message" = "消息";
 
@@ -281,7 +282,7 @@
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
 
-"kContentRepeat" = "不要重復提交哦!";
+"kContentRepeat" = "不要重複提交哦!";
 
 /*the new words below without Japanese*/
 
@@ -300,8 +301,9 @@
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "購買顏色";
+"kBuyPenDialogTitle" = "購買筆";
 "kBuyColorDialogMessage" = "購買顏色將花費%d金幣，確定嗎？";
-
+"kBuyPenDialogMessage" = "購買筆將花費%d金幣，確定嗎？";
 "kPublishWeiboSuccAndEarnCoins" = "微博已發送，你獲得了%d金幣！";
 "guest" = "路人甲";
 "kOnlineUserCount" = "在線用戶共%d人";
@@ -356,10 +358,13 @@
 
 "kMale" = "男";
 "kFemale" = "女";
-"kNobodyInRoom" = "房間裏沒有其他人時，不能私聊";
-"kSayToXXX" = "對【%@】说:";
-"kSayToAll" = "對【所有人】说:";
+"kNobodyInRoom" = "房間裡沒有其他人時，不能私聊";
+"kSayToXXX" = "對【%@】說:";
+"kSayToAll" = "對【所有人】說:";
 "kSayToYou" = "對【你】說:";
+
+
+
 
 "kPayAttentionToMe" = "關注我吧";
 "kDrawTillDawn" = "決戰到天明";
@@ -437,8 +442,7 @@
 "kNext" = "前進";
 "kRefresh" = "刷新";
 "kStop" = "停止";
-"kMusicWrong" = "您下載的文件可能不是正確的音樂，無法正常播放";
-
+"kMusicWrong" = "您下載的文件可能不是正確的音樂文件，無法正常播放";
 "kUserLogin" = "用戶登錄";
 
 "kNoneInvited" = "尚未邀請朋友";
@@ -460,11 +464,20 @@
 "kClear" = "清空";
 "kDeleteAllWarning" = "刪除當前的所有作品嗎？";
 "kAttention" = "注意";
+
 "kVolume" = "音量";
 "kAddWords" = "提交新詞";
-"kAddWordsTips" = "詞之間用空格或者換行分開，如\“添加 新詞\”";
+"kAddWordsTips" = "詞之間用空格或者換行分開，如\“大地中國\”";
 "kAddWordsSucc" = "提交成功，感謝貢獻";
 "kAddWordsFail" = "提交失敗，請稍後再試";
-"kContentFormatError" = "格式錯誤，仔細檢查一下哦";
-"kWordTooLong" = "\"%@\"太长了";
-"kIllegalCharacter" = "\"%@\"有非法字符哦";
+"kContentFormatError" = "格式錯誤，詞之間的分隔符號只能是空格或者換行，仔細檢查一下哦";
+"kWordTooLong" = "\"%@\"太長了，一次詞最多只能有7個字";
+"kIllegalCharacter" = "\"%@\"有非法字符哦，字只能是中文，不能包括字母、數字和標點符號";
+
+"kFakeIAPPurchase" = "驗證您的IAP購買失敗，請確認您通過了正確的途徑進行購買";
+"kNetworkBroken" = "您太久沒有操作，自動退出房間，或者您的網絡連接中斷了";
+
+"kChatVoice" = "聊天語音";
+"kEnableAlways" = "開啟";
+"kEnableWifi" = "僅WiFi下開啟";
+"kEnableNot" = "關閉";

@@ -479,6 +479,7 @@
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasColor_:1;
+  BOOL hasPenType_:1;
   BOOL hasWord_:1;
   BOOL hasGuessWord_:1;
   BOOL hasGuessUserId_:1;
@@ -487,6 +488,7 @@
   int32_t level;
   int32_t language;
   int32_t color;
+  int32_t penType;
   NSString* word;
   NSString* guessWord;
   NSString* guessUserId;
@@ -498,6 +500,7 @@
 - (BOOL) hasLanguage;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+- (BOOL) hasPenType;
 - (BOOL) hasGuessWord;
 - (BOOL) hasGuessUserId;
 - (BOOL) hasGuessCorrect;
@@ -506,6 +509,7 @@
 @property (readonly) int32_t language;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
+@property (readonly) int32_t penType;
 @property (readonly, retain) NSString* guessWord;
 @property (readonly, retain) NSString* guessUserId;
 - (BOOL) guessCorrect;
@@ -578,6 +582,11 @@
 - (SendDrawDataRequest_Builder*) setColor:(int32_t) value;
 - (SendDrawDataRequest_Builder*) clearColor;
 
+- (BOOL) hasPenType;
+- (int32_t) penType;
+- (SendDrawDataRequest_Builder*) setPenType:(int32_t) value;
+- (SendDrawDataRequest_Builder*) clearPenType;
+
 - (BOOL) hasGuessWord;
 - (NSString*) guessWord;
 - (SendDrawDataRequest_Builder*) setGuessWord:(NSString*) value;
@@ -644,6 +653,7 @@
   BOOL hasLanguage_:1;
   BOOL hasRound_:1;
   BOOL hasLevel_:1;
+  BOOL hasPenType_:1;
   BOOL hasColor_:1;
   BOOL hasSessionStatus_:1;
   BOOL hasLocation_:1;
@@ -667,6 +677,7 @@
   int32_t language;
   int32_t round;
   int32_t level;
+  int32_t penType;
   int32_t color;
   int32_t sessionStatus;
   NSString* location;
@@ -698,6 +709,7 @@
 - (BOOL) hasLocation;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+- (BOOL) hasPenType;
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
 - (BOOL) hasRound;
@@ -721,6 +733,7 @@
 @property (readonly, retain) NSString* location;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
+@property (readonly) int32_t penType;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) int32_t round;
@@ -846,6 +859,11 @@
 - (int32_t) color;
 - (GeneralNotification_Builder*) setColor:(int32_t) value;
 - (GeneralNotification_Builder*) clearColor;
+
+- (BOOL) hasPenType;
+- (int32_t) penType;
+- (GeneralNotification_Builder*) setPenType:(int32_t) value;
+- (GeneralNotification_Builder*) clearPenType;
 
 - (BOOL) hasWord;
 - (NSString*) word;

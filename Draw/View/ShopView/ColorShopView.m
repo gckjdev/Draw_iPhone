@@ -121,7 +121,8 @@
     }
     AccountService *service = [AccountService defaultService];
     if (![service hasEnoughCoins:group.price]) {
-        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnoughTips") style:CommonDialogStyleSingleButton delegate:self];
+        NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), group.price];
+        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
         noMoneyDialog.tag = NO_COIN_TAG;
         [noMoneyDialog showInView:self];
     }else{
@@ -221,10 +222,10 @@
 
 
 - (void)dealloc {
-    [titleLabel release];
-    [coinCountLabel release];
-    [dataTableView release];
-    [colorGroups release];
+    PPRelease(titleLabel);
+    PPRelease(coinCountLabel);
+    PPRelease(dataTableView);
+    PPRelease(colorGroups);
     [super dealloc];
 }
 @end

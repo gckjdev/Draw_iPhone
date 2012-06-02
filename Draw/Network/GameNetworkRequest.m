@@ -14,6 +14,8 @@
 #import "JSON.h"
 #import "LocaleUtils.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "Reachability.h"
+#import "PPApplication.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
@@ -600,14 +602,27 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];       
+        NSString* str = [NSString stringWithString:baseURL];  
+        
+        UIDevice* myDevice = [UIDevice currentDevice];
+        NSString* currnetNetwork;
+        NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
+        if (currentStatus == ReachableViaWiFi) {
+            currnetNetwork = @"WIFI";
+        }
+        if (currentStatus == ReachableViaWWAN) {
+            currnetNetwork = @"WWAN";
+        }
+        NSString* basicInfo = [NSString stringWithFormat:@"\n设备:%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
+        
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FEEDBACK];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         
         if ([feedback length] > 0){
-            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:[feedback stringByURLEncode]];            
+            NSString* completeFeedback = [feedback stringByAppendingString:basicInfo];
+            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:[completeFeedback stringByURLEncode]];            
         }
         if ([contact length] > 0) {
             str = [str stringByAddQueryParameter:PARA_CONTACT value:[contact stringByURLEncode]];  
@@ -1068,6 +1083,44 @@
                          responseHandler:responseHandler 
                             outputFormat:FORMAT_PB 
                                   output:output];
+}
+
++ (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
+                                  appId:(NSString*)appId 
+                                 userId:(NSString*)userId 
+                                  level:(int)level 
+                                    exp:(long)exp
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SYND_LEVEL_EXP];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
+        str = [str stringByAddQueryParameter:PARA_EXP doubleValue:exp];
+        
+       
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
 }
 
 @end

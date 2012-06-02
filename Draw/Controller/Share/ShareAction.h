@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 
-enum{
-    
-    SHARE_VIA_ALBUM = 0,
-    SHARE_VIA_EMAIL,
-    SHARE_VIA_SNS    
-};
-
 @interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain) UIViewController* superViewController;

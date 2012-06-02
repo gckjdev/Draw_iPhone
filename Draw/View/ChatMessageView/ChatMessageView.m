@@ -50,6 +50,9 @@
 #define HEIGHT_EDGE_IPAD HEIGHT_EDGE_IPHONE*2
 #define HEIGHT_EDGE ([DeviceDetection isIPAD] ? (HEIGHT_EDGE_IPAD):(HEIGHT_EDGE_IPHONE))
 
+#define HEIGHT_ONE_LINE_TITLE ([DeviceDetection isIPAD] ? (19 * 2):(19))
+
+
 #define RATE (18.0/60.0)
 
 @interface ChatMessageView ()
@@ -79,7 +82,7 @@
     UILabel *titleLabel = [self genLabelWithText:title font:FONT_MESSAGE_TITLE withinSize:withinSize lineBreakMode:UILineBreakModeMiddleTruncation];
     titleLabel.numberOfLines = 1;
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, 19);
+    titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, HEIGHT_ONE_LINE_TITLE);
     titleLabel.textColor = TEXT_COLOR;
     
     UILabel *messageLable = [self genLabelWithText:chatMessage 

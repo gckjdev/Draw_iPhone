@@ -26,6 +26,8 @@
 @synthesize delegate = _delegate;
 @synthesize simplingDistance = _simplingDistance;
 @synthesize drawActionList = _drawActionList;
+@synthesize penType = _penType;
+
 #pragma mark Action Funtion
 
 
@@ -33,6 +35,7 @@
 {
     DrawAction *cleanAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     [self addAction:cleanAction];
+    pen.hidden = YES;
 }
 - (void)addAction:(DrawAction *)drawAction
 {
@@ -86,15 +89,34 @@
         }
         
         [drawAction.paint addPoint:point];   
+            
         if (![DrawUtils isIllegalPoint:lastPoint]) {
             CGRect rect = [DrawUtils constructWithPoint1:lastPoint point2:point edgeWidth:_lineWidth];        
             [self setNeedsDisplayInRect:rect];
         }else{
             [self setNeedsDisplay];
         }
+        
+        if (pen.hidden) {
+            pen.hidden = NO;
+        }
+        if ([pen isRightDownRotate]) {
+            pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+        }else{
+            pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
+        }
     }
 }
-
+- (void)setPenType:(PenType)penType
+{
+    pen.penType = penType;
+    _penType = penType;
+    if ([pen isRightDownRotate]) {
+        [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
+    }else{
+        [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+    }
+}
 
 - (BOOL)isEventLegal:(UIEvent *)event
 {
@@ -115,7 +137,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
         if ([self isEventLegal:event]) {
         CGPoint point = [self touchPoint:event];
-        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor];
+        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor penType:_penType];
         _currentDrawAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
         [self.drawActionList addObject:_currentDrawAction];
         [self addPoint:point toDrawAction:_currentDrawAction];
@@ -156,6 +178,11 @@
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];        
         startDrawActionIndex = 0;
+        
+        pen = [[PenView alloc] initWithPenType:Pencil];
+        pen.hidden = YES;
+        pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
+        [self addSubview:pen];
     }
     
     
@@ -164,8 +191,9 @@
 
 - (void)dealloc
 {
-    [_drawActionList release];
-    [_lineColor release];
+    PPRelease(_drawActionList);
+    PPRelease(_lineColor);
+    PPRelease(pen);
     [super dealloc];
 }
 

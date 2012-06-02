@@ -174,6 +174,7 @@ static ShoppingManager *staticShoppingManager = nil;
 }
 
 #define DEFAULT_COLOR_PRICE 100
+#define DEFAULT_PEN_PRICE 400
 - (NSInteger)getColorPrice
 {
     NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
@@ -183,6 +184,18 @@ static ShoppingManager *staticShoppingManager = nil;
     }
     NSInteger retPrice = [price integerValue];
     PPDebug(@"<getColorPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getPenPrice
+{
+    NSString* price = [MobClick getConfigParams:@"PEN_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getPenPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        return DEFAULT_PEN_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getPenPrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
 @end

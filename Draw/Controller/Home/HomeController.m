@@ -36,6 +36,7 @@
 #import "MusicItemManager.h"
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
+#import "WordManager.h"
 
 @interface HomeController()
 
@@ -72,6 +73,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[WordManager defaultManager] clearWordBaseDictionary];
+    
 }
 
 #pragma mark - View lifecycle
@@ -134,9 +137,6 @@
     if ([self hasRemoveNotification]) {
         [self clickPlayWithFriend:self.playWithFriendButton];
     }
-    
-//    [AnimationManager snowAnimationAtView:self.view image:[[ShareImageManager defaultManager] snowImage]];
-//    [AnimationManager fireworksAnimationAtView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -296,7 +296,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...
@@ -365,11 +365,11 @@
         port = [server.port intValue];            
     }
 
-//    [[DrawGameService defaultService] setServerAddress:address];
-//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:address];
+    [[DrawGameService defaultService] setServerPort:port];    
 
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
-    [[DrawGameService defaultService] setServerPort:8080];   
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
+//    [[DrawGameService defaultService] setServerPort:8080];   
 
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];   

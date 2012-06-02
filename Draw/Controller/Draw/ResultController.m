@@ -25,8 +25,11 @@
 #import "AudioManager.h"
 #import "DrawConstants.h"
 #import "AnimationManager.h"
+#import "CommonMessageCenter.h"
 
 #define CONTINUE_TIME 10
+#define NORMAL_EXP  10
+#define DRAWER_EXP  10
 
 @implementation ResultController
 @synthesize drawImage;
@@ -60,6 +63,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[WordManager defaultManager] clearWordBaseDictionary];
+    
 }
 
 
@@ -164,14 +169,17 @@
     [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (_isMyPaint) {
-            [self.titleLabel setText:NSLS(@"kTurnResult")];                
+        [self.titleLabel setText:NSLS(@"kTurnResult")];   
+        //[[LevelService defaultService] addExp:DRAWER_EXP];
     }else{
+        //[[LevelService defaultService] addExp:NORMAL_EXP];
         if (_correct) {
             [self.titleLabel setText:NSLS(@"kCongratulations")];        
         }else{
             [self.titleLabel setText:NSLS(@"kPity")];
         }
     }
+    //[[LevelService defaultService] syncExpAndLevel:self];
 
     //add score
     if (self.score > 0) {
@@ -327,6 +335,12 @@
     }else{
         NSLog(@"%@ give you a flower", userId);
     }
+}
+
+#pragma mark - LevelServiceDelegate
+- (void)levelDown:(int)level
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }
 
 

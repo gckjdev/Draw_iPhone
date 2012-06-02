@@ -10,14 +10,38 @@
 #import "DrawColor.h"
 
 
+typedef enum {
+    Pencil = 1000,
+    WaterPen,
+    Pen,
+    IcePen,
+    Quill,
+    PenCount,
+    
+    Eraser = 1100
+}PenType;
+
+#define PenStartType Pencil
+
 @interface PenView : UIButton
 {
-    CGImageRef maskImage;
+//    CGImageRef maskImage;
+    PenType _penType;
+    NSInteger _price;
 }
 
-@property(nonatomic, retain)DrawColor *penColor;
+- (id)initWithPenType:(PenType)type;
++ (PenView *)penViewWithType:(PenType)type;
++ (CGFloat)height;
++ (CGFloat)width;
+- (BOOL)isRightDownRotate;
+- (BOOL)isDefaultPen;
+@property(nonatomic, assign)PenType penType;
+@property(nonatomic, assign)NSInteger price;
 
-- (id)initWithPenColor:(DrawColor *)penColor;
-+ (PenView *)viewWithColor:(DrawColor *)color;
+//@property(nonatomic, retain)DrawColor *penColor;
+//
+//- (id)initWithPenColor:(DrawColor *)penColor;
+//+ (PenView *)viewWithColor:(DrawColor *)color;
 
 @end

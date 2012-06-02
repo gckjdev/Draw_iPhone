@@ -22,7 +22,9 @@
 #import "TransactionReceiptManager.h"
 #import "MobClick.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "ConfigManager.h"
 
+#define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
 @implementation AccountService
 
@@ -225,7 +227,7 @@ static AccountService* _defaultAccountService;
     for (TransactionReceipt* receipt in retryList){
         NSString* receiptString = [NSString stringWithFormat:@"%@",receipt.transactionReceipt];
         dispatch_async(queue, ^{
-            TransactionVerifyResult result = [StoreKitUtils verifyReceipt:receiptString];
+            TransactionVerifyResult result = [StoreKitUtils verifyReceipt:receiptString productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (result == VERIFY_UNKNOWN){
@@ -248,13 +250,22 @@ static AccountService* _defaultAccountService;
     }
 }
 
+
+
 - (void)verifyReceiptWithAmount:(int)amount
                   transactionId:(NSString*)transactionId
              transactionRecepit:(NSString*)transactionRecepit
 {
     dispatch_async(workingQueue, ^{
         
-        TransactionVerifyResult result = [StoreKitUtils verifyReceipt:transactionRecepit];
+        TransactionVerifyResult result = VERIFY_UNKNOWN;
+        if ([transactionId hasPrefix:@"com.urus.iap."]){
+            result = VERIFY_FAKE_IAP;
+        }
+        else{
+            result = [StoreKitUtils verifyReceipt:transactionRecepit
+                                  productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result == VERIFY_UNKNOWN){
@@ -275,10 +286,11 @@ static AccountService* _defaultAccountService;
 //                                                       transactionReceipt:transactionRecepit];
             }
             else{
-                PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                
-                
+                PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                      
                 // reset account balance
                 [self deductAccount:amount source:RefundForVerifyReceiptFailure];
+
+                [UIUtils alert:NSLS(@"kFakeIAPPurchase")];
             }
         });        
     });
@@ -314,8 +326,12 @@ static AccountService* _defaultAccountService;
                 }
 
             }
-            else{
+            else{                
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP, refund money");
+                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];                     
+                }
             }
             
             if (source == PurchaseType){
@@ -535,10 +551,12 @@ static AccountService* _defaultAccountService;
             if (output.resultCode == ERROR_SUCCESS) {                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    int deviation = [[output.jsonDataDict objectForKey:PARA_DEVIATION] intValue];
-                    if (deviation == 0){
-                        deviation = DEFAULT_DEVIATION;
-                    }
+//                    int deviation = [[output.jsonDataDict objectForKey:PARA_DEVIATION] intValue];
+//                    if (deviation == 0){
+//                        deviation = DEFAULT_DEVIATION;
+//                    }
+
+                    int deviation = [ConfigManager getBalanceDeviation];
                     
                     int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                     int localBalance = [_accountManager getBalance];

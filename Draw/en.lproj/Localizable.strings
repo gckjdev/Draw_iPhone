@@ -84,7 +84,7 @@
 
 "kCoinsNotEnoughTitle" = "Message";
 "kCoinsNotEnough" = "Sorry, you don't have enough coins. Do you want to purchase coins now?";
-"kCoinsNotEnoughTips" = "Sorry, you don't have enough coins. You can purchase coins after the game";
+"kCoinsNotEnoughTips" = "Sorry, you coins are less than %d. You can purchase coins after the game";
 
 "kCheckInTitle" = "Message";
 "kCheckInMessage" = "Oh, you got %d coins today!";
@@ -194,6 +194,9 @@
 "kShare_via_tencent_weibo" = "Share via tencent weibo";
 "kShare_via_Facebook" = "Share via Facebook";
 "kShare_via_Twitter" = "Share via Twitter";
+"kShare_via_Weixin" = "Share via WeChat";
+"kWeixinNotInstall" = "You do not have to install WeChat, unable to send!";
+
 "Message" = "Message";
 
 "kEmailEmpty" = "Email address cannot be empty.";
@@ -291,7 +294,9 @@
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "Buy Color";
+"kBuyPenDialogTitle" = "Buy Pen";
 "kBuyColorDialogMessage" = "It will cost you %d coins. Are you sure?";
+"kBuyPenDialogMessage" = "It will cost you %d coins. Are you sure?";
 "kPublishWeiboSuccAndEarnCoins" = "Message Sent. You got %d coins!";
 "guest" = "guest";
 "kOnlineUserCount" = "Online:%d";
@@ -452,10 +457,18 @@
 "kAttention" = "Attentions";
 
 "kVolume" = "Volume";
-"kAddWords" = "Submit some words";
+"kAddWords" = "Submit words";
 "kAddWordsTips" = "Using blank to seperator words...";
 "kAddWordsSucc" = "Sumit successfully,thanks ";
 "kAddWordsFail" = "Sumit failed, tray again later";
 "kContentFormatError" = "Words format error";
 "kWordTooLong" = "\"%@\" is too long";
 "kIllegalCharacter" = "\"%@\" contains illegal character";
+
+"kFakeIAPPurchase" = "Fail to verify the transaction receipt. Please check if you try the right way to make purchase.";
+"kNetworkBroken" = "Network broken or you haven't take actions for too long time.";
+
+"kChatVoice" = "Chat Voice";
+"kEnableAlways" = "Enable";
+"kEnableWifi" = "Enable only WiFi";
+"kEnableNot" = "Not enable";

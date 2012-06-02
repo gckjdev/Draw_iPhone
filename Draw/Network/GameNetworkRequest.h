@@ -186,6 +186,12 @@
                              userId:(NSString*)userId 
                               words:(NSString*)words;
 
++ (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
+                                  appId:(NSString*)appId 
+                                 userId:(NSString*)userId 
+                                  level:(int)level 
+                                    exp:(long)exp;
+
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
 @end

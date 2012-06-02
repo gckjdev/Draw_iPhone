@@ -14,6 +14,7 @@
 @synthesize width = _width;
 @synthesize color = _color;
 @synthesize pointList = _pointList;
+@synthesize penType = _penType;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -22,7 +23,7 @@
         self.width = [aDecoder decodeFloatForKey:@"width"];
         self.color = [aDecoder decodeObjectForKey:@"color"];
         self.pointList = [aDecoder decodeObjectForKey:@"pointList"];
-        
+        self.penType = [aDecoder decodeFloatForKey:@"penType"];
     }
     return self;
 }
@@ -32,6 +33,7 @@
     [aCoder encodeObject:self.color forKey:@"color"];
     [aCoder encodeObject:self.pointList forKey:@"pointList"];
     [aCoder encodeFloat:self.width forKey:@"width"];
+    [aCoder encodeFloat:self.penType forKey:@"penType"];
 }
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
@@ -64,6 +66,20 @@
     return self;
 }
 
+- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
+{
+    [self initWithWidth:width color:color];
+    self.penType = type;
+    return self;
+}
+- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(PenType)type
+{
+    [self initWithWidth:width intColor:color numberPointList:numberPointList];
+    self.penType = type;
+    return self;
+}
+
+
 - (id)initWithGameMessage:(GameMessage *)gameMessage
 {
     self = [super init];
@@ -72,6 +88,7 @@
         CGFloat lineWidth = [[gameMessage notification] width];        
         NSArray *pointList = [[gameMessage notification] pointsList];
         self.width = lineWidth;
+        self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in pointList) {
@@ -89,6 +106,12 @@
 {
     return [[[Paint alloc] initWithWidth:width color:color]autorelease];
 }
+
++ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
+{
+    return [[[Paint alloc] initWithWidth:width color:color penType:type] autorelease];
+}
+
 - (void)addPoint:(CGPoint)point
 {
     NSValue *pointValue = [NSValue valueWithCGPoint:point];

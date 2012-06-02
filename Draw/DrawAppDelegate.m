@@ -34,14 +34,15 @@
 #import "MusicDownloadService.h"
 #import "FriendService.h"
 #import "UIUtils.h"
+#import "LevelService.h"
 
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
-    
+  
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.137.137:8000/api/i?";    
+//    return @"http://192.168.1.101:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -106,6 +107,7 @@ NSString* GlobalGetTrafficServerURL()
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccountAndItem];
+    
     [[RouterService defaultService] fetchServerListAtBackground];    
     
     // Push Setup
@@ -118,7 +120,7 @@ NSString* GlobalGetTrafficServerURL()
     // Ask For Review
     if ([ConfigManager enableReview]){
         if ([DeviceDetection isOS5]){
-            self.reviewRequest = [ReviewRequest startReviewRequest:APP_ID appName:GlobalGetAppName() isTest:YES];
+            self.reviewRequest = [ReviewRequest startReviewRequest:DRAW_APP_ID appName:GlobalGetAppName() isTest:YES];
         }
     }
 
@@ -142,10 +144,10 @@ NSString* GlobalGetTrafficServerURL()
 
     // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
-        [self checkAppVersion:APP_ID];
+        [self checkAppVersion:DRAW_APP_ID];
     }
     else if (isAskBindDevice == NO){        
-        [self checkAppVersion:APP_ID];
+        [self checkAppVersion:DRAW_APP_ID];
     }
 
     // Show Root View
@@ -164,10 +166,11 @@ NSString* GlobalGetTrafficServerURL()
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
     [[FriendManager defaultManager] removeAllDeletedFriends];
-    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
-    [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
 
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
+    
+    //sync level details
+   // [[LevelService defaultService] syncExpAndLevel];
     
     return YES;
 }
@@ -320,7 +323,7 @@ NSString* GlobalGetTrafficServerURL()
 {
     if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
         if (buttonIndex == 1){
-            [self openAppForUpgrade:APP_ID];
+            [self openAppForUpgrade:DRAW_APP_ID];
         }
     }
 }

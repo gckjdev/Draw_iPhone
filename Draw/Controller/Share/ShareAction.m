@@ -12,6 +12,19 @@
 #import "PPDebug.h"
 #import "ShareEditController.h"
 #import "MyPaintManager.h"
+#import "WXApi.h"
+#import "UIImageExt.h"
+
+@interface ShareAction ()
+{
+    NSInteger buttonIndexAlbum;
+    NSInteger buttonIndexEmail;
+    NSInteger buttonIndexWeixin;
+    NSInteger buttonIndexSinaWeibo;
+    NSInteger buttonIndexQQWeibo;
+    NSInteger buttonIndexFacebook;
+}
+@end
 
 @implementation ShareAction
 
@@ -38,31 +51,50 @@
     self.imageFilePath = imageFilePath;
     self.isDrawByMe = isMe;
     self.isGIF = isGIF;
+    
     return self;    
 }
 
 - (void)displayWithViewController:(UIViewController*)superViewController;
 {
+    buttonIndexAlbum = -1;
+    buttonIndexEmail = -1;
+    buttonIndexWeixin = -1;
+    buttonIndexSinaWeibo = -1;
+    buttonIndexQQWeibo = -1;
+    buttonIndexFacebook = -1;
+    
     UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
                                                               delegate:self 
                                                      cancelButtonTitle:nil 
                                                 destructiveButtonTitle:NSLS(@"kSave_to_album") 
                                                      otherButtonTitles:NSLS(@"kShare_via_Email"), nil];
+    buttonIndexAlbum = 0;
+    buttonIndexEmail = 1;
 
-    int buttonIndex = 1;
+    int buttonIndex = buttonIndexEmail;
+    if (self.isGIF == NO) {
+        buttonIndex ++;
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Weixin")];
+        buttonIndexWeixin = buttonIndex;
+    }
+    
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
+        buttonIndexSinaWeibo = buttonIndex;
     }
     
     if ([[UserManager defaultManager] hasBindQQWeibo]){
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
+        buttonIndexQQWeibo = buttonIndex;
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){
         buttonIndex ++;
         [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
+        buttonIndexFacebook = buttonIndex;
     }                
     
     buttonIndex ++;
@@ -140,32 +172,55 @@
     [controller release];    
 }
 
+- (void)shareViaWeixin
+{
+    if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
+    {
+        [UIUtils alert:NSLS(@"kWeixinNotInstall")];
+    }else {
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = _drawWord;
+        UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
+        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(100, 100)];
+        [message setThumbImage:thumbImage];
+        WXImageObject *ext = [WXImageObject object];
+        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath] ;
+        
+        message.mediaObject = ext;
+        
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        
+        [WXApi sendReq:req];
+        [req release];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != actionSheet.cancelButtonIndex) {                
-        switch (buttonIndex) {
-                
-            case SHARE_VIA_ALBUM:
-            {
-                [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
-                break;
-            }
-                
-            case SHARE_VIA_EMAIL:
-            {
-                [self shareViaEmail];
-                break;
-            }
-                
-            default: 
-            {
-                [self shareViaSNS];
-                break;
-            } 
-        }
-    }    
-    else{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
         PPDebug(@"<ShareAction> Click Cancel");
+        return;
+    }
+    
+    else if (buttonIndex == buttonIndexAlbum){
+        [[MyPaintManager defaultManager] savePhoto:_imageFilePath];
+    }
+    
+    else if (buttonIndex == buttonIndexEmail) {
+         [self shareViaEmail];
+    }
+    
+    else if (buttonIndex == buttonIndexWeixin){
+        [self shareViaWeixin];
+    }
+    
+    else if (buttonIndex == buttonIndexSinaWeibo 
+             || buttonIndex == buttonIndexQQWeibo 
+             || buttonIndex == buttonIndexFacebook)
+    {
+        [self shareViaSNS];
     }
 }
 

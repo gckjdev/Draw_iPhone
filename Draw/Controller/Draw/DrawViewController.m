@@ -35,7 +35,10 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
-
+#import "PickColorView.h"
+#import "PickEraserView.h"
+#import "PickPenView.h"
+#import "ShoppingManager.h"
 #import "FriendRoomController.h"
 
 
@@ -45,6 +48,7 @@
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
+@synthesize colorButton;
 
 #define PAPER_VIEW_TAG 20120403
 
@@ -67,12 +71,14 @@
     PPRelease(wordButton);
     PPRelease(cleanButton);
     PPRelease(penButton);
-    PPRelease(pickPenView);
+    PPRelease(pickColorView);
     PPRelease(drawView);
+    PPRelease(pickEraserView);
+    PPRelease(pickPenView);
+    //    [autoReleasePool drain];
+    //    autoReleasePool = nil;
     
-//    [autoReleasePool drain];
-//    autoReleasePool = nil;
-
+    [colorButton release];
     [super dealloc];
 }
 
@@ -93,7 +99,7 @@
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
     self = [super init];
     if (self) {
-//        autoReleasePool = [[NSAutoreleasePool alloc] init];
+        //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
     }
@@ -101,14 +107,42 @@
 }
 
 
-- (void)initPickPenView
+#define PICK_ERASER_VIEW_TAG 2012053101
+#define PICK_PEN_VIEW_TAG 2012053102
+#define PICK_COLOR_VIEW_TAG 2012053103
+- (void)initPickView
 {
+
+    //init pick pen view
     pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
-    [pickPenView setImage:[shareImageManager toolPopupImage]];
-    pickPenView.delegate = self;
+    [pickPenView setImage:[shareImageManager penPopupImage]];
+    [pickPenView setDelegate:self];
+    NSMutableArray *penArray = [[NSMutableArray alloc] init];
+    NSInteger price = [[ShoppingManager defaultManager] getPenPrice];
+    for (int i = PenStartType; i < PenCount; ++ i) {
+        PenView *pen = [PenView penViewWithType:i];
+        pen.price = price;
+        [penArray addObject:pen];
+    }
+    
+    [penArray sortUsingComparator:^(id obj1,id obj2){
+        PenView *pen1 = (PenView *)obj1;
+        PenView *pen2 = (PenView *)obj2;
+        BOOL hasBought1 = [pen1 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen1.penType amount:1];
+        BOOL hasBought2 = [pen2 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen2.penType amount:1];
+        NSInteger ret = hasBought2 - hasBought1;
+        if (ret == 0) {
+            return NSOrderedAscending;
+        }
+        return ret;
+    }];
+    
+    [pickPenView setPens:penArray];
+    [penArray release];
     [self.view addSubview:pickPenView];
+    
+    
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
-    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     if ([DeviceDetection isIPAD]) {
         [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
         [widthArray addObject:[NSNumber numberWithInt:15 * 2]];
@@ -121,22 +155,38 @@
         [widthArray addObject:[NSNumber numberWithInt:2]];        
     }
     
-    [pickPenView setLineWidths:widthArray];
-    [widthArray release];
 
+//init pick eraser view    
+    pickEraserView = [[PickEraserView alloc] initWithFrame:PICK_ERASER_VIEW];
+    [pickEraserView setImage:[shareImageManager eraserPopupImage]];
+    [pickEraserView setDelegate:self];
+    pickEraserView.tag = PICK_ERASER_VIEW_TAG;
+    [self.view addSubview:pickEraserView];
+    [pickEraserView setLineWidths:widthArray];
+    
+//init pick color view
+    pickColorView = [[PickColorView alloc] initWithFrame:PICK_COLOR_VIEW];
+    [pickColorView setImage:[shareImageManager toolPopupImage]];
+    pickColorView.delegate = self;
+    pickColorView.tag = PICK_COLOR_VIEW_TAG;
+    [pickColorView setLineWidths:widthArray];
+    [self.view addSubview:pickColorView];
+
+    NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
+    
     [colorViewArray addObject:[ColorView blackColorView]];
     [colorViewArray addObject:[ColorView redColorView]];
-    [colorViewArray addObject:[ColorView greenColorView]];
-    [colorViewArray addObject:[ColorView blueColorView]];
     [colorViewArray addObject:[ColorView yellowColorView]];
-    [colorViewArray addObject:[ColorView orangeColorView]];
-    [colorViewArray addObject:[ColorView pinkColorView]];
-    [colorViewArray addObject:[ColorView brownColorView]];
-    [colorViewArray addObject:[ColorView skyColorView]];
-//    [colorViewArray addObject:[ColorView whiteColorView]];
-        
-    [pickPenView setColorViews:colorViewArray];
+    [colorViewArray addObject:[ColorView blueColorView]];
+    [colorViewArray addObject:[ColorView whiteColorView]];
+    [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
+    [widthArray release];
+    
+    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
+    [pickEraserView setHidden:YES];
+    
 }
 
 #pragma mark - Timer
@@ -147,21 +197,12 @@
     if (retainCount <= 0) {
         [self resetTimer];
         retainCount = 0;
-//        [self setToolButtonEnabled:NO];
     }
     [self updateClockButton];
 }
 
 
 #pragma mark - Update Data
-- (void)setToolButtonEnabled:(BOOL)enabled
-{
-    [eraserButton setEnabled:enabled];
-    [cleanButton setEnabled:enabled];
-
-    [penButton setEnabled:enabled];
-    [pickPenView setHidden:YES];
-}
 
 enum{
     BLACK_COLOR = 0,
@@ -199,17 +240,18 @@ enum{
 }
 - (void)initPens
 {
-    [self initPickPenView];
+    [self initPickView];
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
-    [penButton setPenColor:randColor];
-    [drawView setLineWidth:pickPenView.currentWidth];
-    penWidth = pickPenView.currentWidth;
+    [colorButton setDrawColor:randColor];
+    [penButton setPenType:Pencil];
+    [drawView setLineWidth:pickColorView.currentWidth];
+    penWidth = pickColorView.currentWidth;
 }
 
 - (void)initDrawView
 {
-
+    
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
     [drawView setDrawEnabled:YES];
@@ -253,7 +295,7 @@ enum{
 
 - (void)viewDidUnload
 {
-
+    
     [self setWord:nil];
     [self setEraserButton:nil];
     [self setWordButton:nil];
@@ -262,6 +304,7 @@ enum{
     [self setPenButton:nil];
     [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
+    [self setColorButton:nil];
     [super viewDidUnload];
 }
 
@@ -281,10 +324,10 @@ enum{
 - (void)didGameTurnComplete:(GameMessage *)message
 {
     PPDebug(@"DrawViewController:<didGameTurnComplete>");
-
+    
     UIImage *image = [drawView createImage];
     NSInteger gainCoin = [[message notification] turnGainCoins];
-
+    
     NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
     NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
     [self cleanData];
@@ -304,7 +347,7 @@ enum{
 {
     NSString *userId = [[message notification] quitUserId];
     [self popUpRunAwayMessage:userId];
-        [self adjustPlayerAvatars:userId];
+    [self adjustPlayerAvatars:userId];
     if ([self userCount] <= 1) {
         //[self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil]; 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAllUserQuit") delayTime:1 isHappy:NO]; 
@@ -316,20 +359,56 @@ enum{
 {
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
-    [penButton setPenColor:colorView.drawColor];
-    [pickPenView updatePickPenView:colorView];
+    [colorButton setDrawColor:colorView.drawColor];
+    [pickColorView updatePickColorView:colorView];
 }
-- (void)didPickedLineWidth:(NSInteger)width
+- (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width
 {
-    [drawView setLineWidth:width];
-    penWidth = width;
+    if (pickView.tag == PICK_COLOR_VIEW_TAG) {
+        [drawView setLineWidth:width];
+        penWidth = width;        
+    }else if(pickView.tag == PICK_ERASER_VIEW_TAG)
+    {
+        [drawView setLineWidth:width];
+        eraserWidth = width;
+    }
 }
 - (void)didPickedMoreColor
 {
     ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
     colorShop.delegate = self;
     [colorShop showInView:self.view animated:YES];
+    
+}
 
+#define NO_COIN_TAG 201204271
+#define BUY_CONFIRM_TAG 201204272
+
+- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
+{
+    if (penView) {
+        _willBuyPen = nil;
+        if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
+            [self.penButton setPenType:penView.penType];
+            [drawView setPenType:penView.penType];            
+        }else{
+            AccountService *service = [AccountService defaultService];
+            if (![service hasEnoughCoins:penView.price]) {
+                NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), penView.price];
+                CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
+                noMoneyDialog.tag = NO_COIN_TAG;
+                [noMoneyDialog showInView:self.view];
+            }else{
+                NSString *message = [NSString stringWithFormat:NSLS(@"kBuyPenDialogMessage"),penView.price];
+                CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyPenDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
+                buyConfirmDialog.tag = BUY_CONFIRM_TAG;
+                [buyConfirmDialog showInView:self.view];
+                _willBuyPen = penView;
+            }
+
+        }
+        
+    }
 }
 
 #pragma mark - Common Dialog Delegate
@@ -341,14 +420,18 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
         [drawView addCleanAction];
-        [pickPenView setHidden:YES];        
+        [pickColorView setHidden:YES];        
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
+    }else if(dialog.tag == BUY_CONFIRM_TAG){
+        [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
+        [self.penButton setPenType:_willBuyPen.penType];
+        [drawView setPenType:_willBuyPen.penType];            
     }
-
+    
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -383,11 +466,13 @@ enum{
     if ([DeviceDetection isIPAD]) {
         width /= 2;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width];
+    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];
 }
 
 - (void)didStartedTouch:(Paint *)paint
 {
+    [pickColorView setHidden:YES];
+    [pickEraserView setHidden:YES];
     [pickPenView setHidden:YES];
 }
 
@@ -396,7 +481,7 @@ enum{
 
 - (IBAction)clickChangeRoomButton:(id)sender {
     
-    [pickPenView setHidden:YES animated:YES];
+    [pickColorView setHidden:YES animated:YES];
     
     CommonDialogStyle style;
     NSString *message = nil;
@@ -407,28 +492,43 @@ enum{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");
     }
-
+    
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style delegate:self];
     dialog.tag = DIALOG_TAG_ESCAPE;
     [dialog showInView:self.view];
 }
 - (IBAction)clickRedraw:(id)sender {
-    [pickPenView setHidden:YES animated:YES];
+    [pickColorView setHidden:YES animated:YES];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton delegate:self];
     dialog.tag = DIALOG_TAG_CLEAN_DRAW;
     [dialog showInView:self.view];
 }
 
 - (IBAction)clickEraserButton:(id)sender {
+    [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
+    [drawView setPenType:Eraser];
     [drawView setLineColor:[DrawColor whiteColor]];
     [drawView setLineWidth:eraserWidth];
+    [pickPenView setHidden:YES];
+    [pickColorView setHidden:YES];
 }
 
 - (IBAction)clickPenButton:(id)sender {
     [pickPenView setHidden:!pickPenView.hidden animated:YES];
-        PenView *penView = (PenView *)sender;
-        [drawView setLineColor:penView.penColor];
-        [drawView setLineWidth:penWidth];
+    [drawView setPenType:penButton.penType];
+    [drawView setLineColor:colorButton.drawColor];
+    [drawView setLineWidth:penWidth];
+    [pickEraserView setHidden:YES];
+    [pickColorView setHidden:YES];
+}
+
+- (IBAction)clickColorButton:(id)sender {
+    [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    [drawView setLineColor:colorButton.drawColor];
+    [drawView setLineWidth:penWidth];
+    [drawView setPenType:penButton.penType];
+    [pickPenView setHidden:YES];
+    [pickEraserView setHidden:YES];
 }
 
 - (IBAction)clickGroupChatButton:(id)sender {

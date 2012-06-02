@@ -314,18 +314,22 @@
   BOOL hasWidth_:1;
   BOOL hasType_:1;
   BOOL hasColor_:1;
+  BOOL hasPenType_:1;
   Float32 width;
   int32_t type;
   int32_t color;
+  int32_t penType;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
 - (BOOL) hasType;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
+- (BOOL) hasPenType;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
+@property (readonly) int32_t penType;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -384,6 +388,11 @@
 - (int32_t) color;
 - (PBDrawAction_Builder*) setColor:(int32_t) value;
 - (PBDrawAction_Builder*) clearColor;
+
+- (BOOL) hasPenType;
+- (int32_t) penType;
+- (PBDrawAction_Builder*) setPenType:(int32_t) value;
+- (PBDrawAction_Builder*) clearPenType;
 @end
 
 @interface PBDraw : PBGeneratedMessage {

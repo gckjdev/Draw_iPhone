@@ -101,12 +101,21 @@
             if (pen.hidden) {
                 pen.hidden = NO;                
             }
-            if (playingPointIndex == 0 && ![pen.penColor isEqual:currentAction.paint.color]) {
-                [pen setPenColor:currentAction.paint.color];                
+            if (playingPointIndex == 0 && pen.penType != currentAction.paint.penType) {                
+                [pen setPenType:currentAction.paint.penType];
+                if ([pen isRightDownRotate]) {
+                    [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
+                }else{
+                    [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+                }
             }
             CGPoint point = [currentAction.paint pointAtIndex:playingPointIndex];
             if (![DrawUtils isIllegalPoint:point]) {
-                pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);
+                if ([pen isRightDownRotate]) {
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+                }else{
+                    pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
+                }
             }
         }
     }
@@ -151,7 +160,8 @@
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];      
-        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+//        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+        pen = [[PenView alloc] initWithPenType:Pencil];
         [self setShowPenHidden:NO];
         pen.hidden = YES;
         pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);

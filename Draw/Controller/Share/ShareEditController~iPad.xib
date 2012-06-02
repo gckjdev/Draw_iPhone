@@ -11,13 +11,12 @@
 			<string key="NS.object.0">1179</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBUIButton</string>
 			<string>IBUITextView</string>
-			<string>IBUIScrollView</string>
+			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUIView</string>
+			<string>IBUILabel</string>
+			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -142,7 +141,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{571, 15}, {180, 67}}</string>
 						<reference key="NSSuperview" ref="421574703"/>
-						<reference key="NSNextKeyView" ref="13410777"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -235,29 +234,6 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="678441152">
-						<reference key="NSNextResponder" ref="421574703"/>
-						<int key="NSvFlags">-2147483334</int>
-						<string key="NSFrame">{{0, 203}, {768, 87}}</string>
-						<reference key="NSSuperview" ref="421574703"/>
-						<reference key="NSNextKeyView" ref="289642412"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">normalpallets@2x.png</string>
-						</object>
-					</object>
-					<object class="IBUIScrollView" id="13410777">
-						<reference key="NSNextResponder" ref="421574703"/>
-						<int key="NSvFlags">-2147483329</int>
-						<string key="NSFrame">{{0, 100}, {768, 104}}</string>
-						<reference key="NSSuperview" ref="421574703"/>
-						<reference key="NSNextKeyView" ref="678441152"/>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
@@ -295,22 +271,6 @@
 						<reference key="destination" ref="268363428"/>
 					</object>
 					<int key="connectionID">24</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">patternBar</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="678441152"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">patternsGallery</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="13410777"/>
-					</object>
-					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -371,12 +331,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickBack:</string>
+						<string key="label">clickBackButon:</string>
 						<reference key="source" ref="350137839"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">31</int>
+					<int key="connectionID">51</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -404,8 +364,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="306897565"/>
 							<reference ref="289642412"/>
-							<reference ref="13410777"/>
-							<reference ref="678441152"/>
 							<reference ref="268363428"/>
 							<reference ref="1018434614"/>
 							<reference ref="6438040"/>
@@ -425,16 +383,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
 						<reference key="object" ref="289642412"/>
-						<reference key="parent" ref="421574703"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="13410777"/>
-						<reference key="parent" ref="421574703"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="678441152"/>
 						<reference key="parent" ref="421574703"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -485,8 +433,6 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -503,7 +449,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">51</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -517,7 +463,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back@2x.png">{74, 74}</string>
 			<string key="dark_wood_bg@2x.png">{640, 960}</string>
-			<string key="normalpallets@2x.png">{640, 81}</string>
 			<string key="paper@2x.png">{640, 960}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="wood_bg@2x.png">{640, 960}</string>

@@ -32,16 +32,16 @@
 
 @implementation ShareEditController
 @synthesize myImage = _myImage;
-@synthesize patternsGallery = _patternsGallery;
-@synthesize patternsArray = _patternsArray;
+//@synthesize patternsGallery = _patternsGallery;
+//@synthesize patternsArray = _patternsArray;
 @synthesize myImageView = _myImageView;
 @synthesize paperBackground = _paperBackground;
-@synthesize infuseImageView = _infuseImageView;
+//@synthesize infuseImageView = _infuseImageView;
 @synthesize inputBackground = _inputBackground;
 @synthesize shareButton = _shareButton;
 @synthesize shareTextField = _shareTextField;
 @synthesize imageFilePath = _imageFilePath;
-@synthesize patternBar = _patternBar;
+//@synthesize patternBar = _patternBar;
 @synthesize text = _text;
 @synthesize myImageBackground = _myImageBackground;
 @synthesize shareTitleLabel;
@@ -53,60 +53,60 @@
     [_imageFilePath release];
     [_text release];
     [_myImage release];
-    [_patternsGallery release];
-    [_patternsArray release];
-    [_infuseImageView release];
+//    [_patternsGallery release];
+//   [_patternsArray release];
+//    [_infuseImageView release];
     [_inputBackground release];
     [_myImageView release];
     [_shareButton release];
     [_shareTextField release];
     [_myImageBackground release];
-    [_patternBar release];
+//    [_patternBar release];
     [_paperBackground release];
     [super dealloc];
 }
 
-- (void)putUpInputDialog
-{
-    if ([DeviceDetection isIPAD]) {
-        [self.shareTextField setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
-        [self.inputBackground setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
-    } else {
-        [self.shareTextField setFrame:CGRectMake(7, 50, 306, 60)];
-        [self.inputBackground setFrame:CGRectMake(7, 50, 306, 60)];
-    }    
-    [self.view bringSubviewToFront:self.inputBackground];
-    [self.view bringSubviewToFront:self.shareTextField];
-    self.patternBar.hidden = YES;
-    self.patternsGallery.hidden = YES;
-}
+//- (void)putUpInputDialog
+//{
+//    if ([DeviceDetection isIPAD]) {
+//        [self.shareTextField setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
+//        [self.inputBackground setFrame:CGRectMake(7*2.4, 50*2.13, 306*2.4, 60*2.13)];
+//    } else {
+//        [self.shareTextField setFrame:CGRectMake(7, 50, 306, 60)];
+//        [self.inputBackground setFrame:CGRectMake(7, 50, 306, 60)];
+//    }    
+//    [self.view bringSubviewToFront:self.inputBackground];
+//    [self.view bringSubviewToFront:self.shareTextField];
+////    self.patternBar.hidden = YES;
+////    self.patternsGallery.hidden = YES;
+//}
+//
+//- (void)resetInputDialog
+//{
+//    if ([DeviceDetection isIPAD]) {
+//        [self.shareTextField setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
+//        [self.inputBackground setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
+//    } else {
+//        [self.shareTextField setFrame:CGRectMake(7, 389, 306, 61)];
+//        [self.inputBackground setFrame:CGRectMake(7, 389, 306, 61)];
+//    }
+//    
+//    
+//}
 
-- (void)resetInputDialog
-{
-    if ([DeviceDetection isIPAD]) {
-        [self.shareTextField setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
-        [self.inputBackground setFrame:CGRectMake(7*2.4, 389*2.13, 306*2.4, 61*2.13)];
-    } else {
-        [self.shareTextField setFrame:CGRectMake(7, 389, 306, 61)];
-        [self.inputBackground setFrame:CGRectMake(7, 389, 306, 61)];
-    }
-    
-    
-}
-
-- (void)initPatternsWithImagesName:(NSArray*)names
-{
-    for (NSString* name in names) {
-        UIImage* myPettern = [UIImage imageNamed:name];
-        [self.patternsArray addObject:myPettern];
-    }
-        
-}
-
-- (void)initPattenrsGallery
-{
-    float heigth = self.patternsGallery.frame.size.height;
-    
+//- (void)initPatternsWithImagesName:(NSArray*)names
+//{
+//    for (NSString* name in names) {
+//        UIImage* myPettern = [UIImage imageNamed:name];
+//        [self.patternsArray addObject:myPettern];
+//    }
+//        
+//}
+//
+//- (void)initPattenrsGallery
+//{
+//    float heigth = self.patternsGallery.frame.size.height;
+//    
 //    UIButton* noPatternButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, heigth, heigth)] autorelease];
 //    noPatternButton.tag = PATTERN_TAG_OFFSET;
 //    [self.patternsGallery addSubview:noPatternButton];
@@ -114,28 +114,28 @@
 //    [noPatternButton addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    for (int index = 0; index < self.patternsArray.count; index ++) {
-        UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(heigth*index, 0, heigth, heigth)] autorelease];
-        btn.tag = PATTERN_TAG_OFFSET+index;
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [btn setImage:[_patternsArray objectAtIndex:index] forState:UIControlStateNormal];
-        [self.patternsGallery addSubview:btn];
-        [btn addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
-    }
+//    for (int index = 0; index < self.patternsArray.count; index ++) {
+//        UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(heigth*index, 0, heigth, heigth)] autorelease];
+//        btn.tag = PATTERN_TAG_OFFSET+index;
+//        [btn setBackgroundColor:[UIColor whiteColor]];
+//        [btn setImage:[_patternsArray objectAtIndex:index] forState:UIControlStateNormal];
+//        [self.patternsGallery addSubview:btn];
+//        [btn addTarget:self action:@selector(selectPattern:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//
+//}
 
-}
-
-- (void)selectPattern:(id)sender
-{
-    [self resignFirstResponder];
-    UIButton* btn = (UIButton*)sender;
-    if (btn.tag-PATTERN_TAG_OFFSET < self.patternsArray.count){
-        UIImage* patternImage = [_patternsArray objectAtIndex:btn.tag-PATTERN_TAG_OFFSET];
-        [self.infuseImageView setPatternImage:patternImage];
-        
-    }
-  
-}
+//- (void)selectPattern:(id)sender
+//{
+//    [self resignFirstResponder];
+//    UIButton* btn = (UIButton*)sender;
+//    if (btn.tag-PATTERN_TAG_OFFSET < self.patternsArray.count){
+//        UIImage* patternImage = [_patternsArray objectAtIndex:btn.tag-PATTERN_TAG_OFFSET];
+//        [self.infuseImageView setPatternImage:patternImage];
+//        
+//    }
+//  
+//}
 
 #pragma mark Navigation Controller
 
@@ -146,7 +146,7 @@
 #pragma mark - UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self putUpInputDialog];
+//    [self putUpInputDialog];
     if (![DeviceDetection isIPAD]) {
         [self addBlankView:self.shareTextField];
     }    
@@ -206,6 +206,7 @@ enum {
                                                                  style:CommonDialogStyleDoubleButton 
                                                              delegate:self];
             [dialog showInView:self.view];
+            [self.shareTextField resignFirstResponder];
             return;
         }
         
@@ -284,7 +285,7 @@ enum {
     
 }
 
-- (IBAction)clickBack:(id)sender
+- (IBAction)clickBackButon:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -308,7 +309,7 @@ enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _patternsArray = [[NSMutableArray alloc] init];
+//        _patternsArray = [[NSMutableArray alloc] init];
         // Custom initialization
     }
     return self;
@@ -317,8 +318,8 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template3", @"pic_template2", @"pic_template1",  @"pic_template4", @"pic_template5", nil]];
-    [self initPattenrsGallery];
+//    [self initPatternsWithImagesName:[NSArray arrayWithObjects:@"pic_template3", @"pic_template2", @"pic_template1",  @"pic_template4", @"pic_template5", nil]];
+//    [self initPattenrsGallery];
     
     
     self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
@@ -335,22 +336,22 @@ enum {
         [self.view addSubview:view];
         [view release];
         //[self putUpInputDialog];
-        [self performSelector:@selector(putUpInputDialog) withObject:nil afterDelay:0.1];
+        //[self performSelector:@selector(putUpInputDialog) withObject:nil afterDelay:0.1];
         //[view setFrame:CGRectMake(10, 170, 300, 300)];
         //[self.myImageBackground setFrame:CGRectMake(10, 170, 300, 300)];
         
     }
     else{
-        _infuseImageView = [[SynthesisView alloc] init];
-        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];   
-        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
-        [self.infuseImageView setDrawImage:self.myImage];
-        if (self.patternsArray) {
-            [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
-        }
-        //[self.view addSubview:self.infuseImageView];
+//        _infuseImageView = [[SynthesisView alloc] init];
+//        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];   
+//        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
+//        [self.infuseImageView setDrawImage:self.myImage];
+//        if (self.patternsArray) {
+//            [self.infuseImageView setPatternImage:[self.patternsArray objectAtIndex:0]];
+//        }
+//        //[self.view addSubview:self.infuseImageView];
         [self.myImageView setImage:self.myImage];
-        [self.infuseImageView setNeedsDisplay];
+//        [self.infuseImageView setNeedsDisplay];
         
     }        
     
@@ -366,13 +367,13 @@ enum {
 
 - (void)viewDidUnload
 {
-    [self setPatternsGallery:nil];
+//    [self setPatternsGallery:nil];
     [self setInputBackground:nil];
     [self setMyImageView:nil];
     [self setShareButton:nil];
     [self setShareTextField:nil];
     [self setMyImageBackground:nil];
-    [self setPatternBar:nil];
+//    [self setPatternBar:nil];
     [self setPaperBackground:nil];
     [self setMyImage:nil];
     [super viewDidUnload];

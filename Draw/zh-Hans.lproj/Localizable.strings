@@ -86,7 +86,7 @@
 
 "kCoinsNotEnoughTitle" = "消息";
 "kCoinsNotEnough" = "不好意思，你的金币不够了，是不是现在购买一些金币？";
-"kCoinsNotEnoughTips" = "不好意思，你的金币不够了，请在游戏结束之后购买。";
+"kCoinsNotEnoughTips" = "不好意思，你的金币不够%d了，请在游戏结束之后购买些金币。";
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
@@ -194,7 +194,8 @@
 "kShare_via_tencent_weibo" = "通过腾讯微博分享";
 "kShare_via_Facebook" = "通过Facebook分享";
 "kShare_via_Twitter" = "通过Twitter分享";
-
+"kShare_via_Weixin" = "分享到微信";
+"kWeixinNotInstall" = "对不起，您没有安装微信或微信版本较低，无法发送微信消息!";
 
 "Message" = "消息";
 
@@ -300,8 +301,9 @@
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "购买颜色";
+"kBuyPenDialogTitle" = "购买笔";
 "kBuyColorDialogMessage" = "购买颜色将花费%d金币，确定吗？";
-
+"kBuyPenDialogMessage" = "购买笔将花费%d金币，确定吗？";
 "kPublishWeiboSuccAndEarnCoins" = "微博已发送，你获得了%d金币！";
 "guest" = "路人甲";
 "kOnlineUserCount" = "在线用户共%d人";
@@ -465,9 +467,17 @@
 
 "kVolume" = "音量";
 "kAddWords" = "提交新词";
-"kAddWordsTips" = "词之间用空格或者换行分开，如\“添加 新词\”";
+"kAddWordsTips" = "词之间用空格或者换行分开，如\“大地 中国\”";
 "kAddWordsSucc" = "提交成功，感谢贡献";
 "kAddWordsFail" = "提交失败，请稍后再试";
-"kContentFormatError" = "格式错误，仔细检查一下哦";
-"kWordTooLong" = "\"%@\"太长了";
-"kIllegalCharacter" = "\"%@\"有非法字符哦";
+"kContentFormatError" = "格式错误，词之间的分隔符号只能是空格或者换行，仔细检查一下哦";
+"kWordTooLong" = "\"%@\"太长了，一次词最多只能有7个字";
+"kIllegalCharacter" = "\"%@\"有非法字符哦，字只能是中文，不能包括字母、数字和标点符号";
+
+"kFakeIAPPurchase" = "验证您的购买收据失败，请确认您通过了正确的途径进行购买";
+"kNetworkBroken" = "您太久没有操作，自动退出房间，或者您的网络连接中断了";
+
+"kChatVoice" = "聊天语音";
+"kEnableAlways" = "开启";
+"kEnableWifi" = "仅WiFi下开启";
+"kEnableNot" = "关闭";

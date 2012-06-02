@@ -41,7 +41,8 @@
             NSInteger intColor = [action color];
             CGFloat lineWidth = [action width];        
             NSArray *pointList = [action pointsList];
-            Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList];
+            NSInteger penType = [action penType];
+            Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList penType:penType];
             self.paint = paint;
             [paint release];
         }
@@ -132,7 +133,7 @@
             NSValue *pValue = [NSValue valueWithCGPoint:point];
             [list addObject:pValue];
         }
-        Paint *newPaint = [Paint paintWithWidth:paint.width * yScale color:paint.color];
+        Paint *newPaint = [Paint paintWithWidth:paint.width * yScale color:paint.color penType:paint.penType];
         [newPaint setPointList:list];
         [list release];
         DrawAction *dAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:newPaint];

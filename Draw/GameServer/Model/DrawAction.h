@@ -17,7 +17,7 @@ typedef enum {
 } DRAW_ACTION_TYPE;
 
 @interface DrawAction : NSObject <NSCoding>{
-    
+    Paint *_paint;
 }
 
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;

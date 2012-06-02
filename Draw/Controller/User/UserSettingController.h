@@ -32,6 +32,7 @@
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
     NSInteger rowOfVolumeSetting;
+    NSInteger rowOfChatVoice;
     NSInteger rowNumber;
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
@@ -44,6 +45,7 @@
     LanguageType languageType;
     GuessLevel guessLevel;
     NSString* _gender;
+    ChatVoiceEnable chatVoice;
 //    LevelType
     
 }
