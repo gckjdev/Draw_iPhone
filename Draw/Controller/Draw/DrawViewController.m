@@ -59,7 +59,7 @@
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:YES];   
+    [fromController.navigationController pushViewController:vc animated:NO];   
     [vc release];
     
     PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
@@ -97,7 +97,8 @@
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
-    self = [super initWithNibName:nil bundle:nil];
+//    self = [super initWithNibName:nil bundle:nil];
+    self = [super init];
     if (self) {
         //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
@@ -105,7 +106,6 @@
     }
     return self;
 }
-
 
 #define PICK_ERASER_VIEW_TAG 2012053101
 #define PICK_PEN_VIEW_TAG 2012053102
@@ -340,7 +340,7 @@ enum{
                                                            correct:NO
                                                          isMyPaint:YES
                                                     drawActionList:drawView.drawActionList];
-    [self.navigationController pushViewController:rc animated:YES];
+    [self.navigationController pushViewController:rc animated:NO];
     [rc release];
 }
 
