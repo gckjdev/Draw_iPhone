@@ -11,7 +11,7 @@
 #import "ConfigManager.h"
 #import "Reachability.h"
 
-#define APPID @"4fc430af"   //应用ID
+#define KDXF_APPID @"4fc886ba"   //应用ID
 #define ENGINE_URL @"http://dev.voicecloud.cn:1028/index.htm"
 
 @interface SpeechService()
@@ -46,7 +46,7 @@ static SpeechService *_defaultSpeechService = nil;
     self = [super init];
     if (self) {
         NSString *initParam = [[NSString alloc] initWithFormat:
-                               @"server_url=%@,appid=%@",ENGINE_URL,APPID];
+                               @"server_url=%@,appid=%@",ENGINE_URL,KDXF_APPID];
         _iFlySynthesizerControl = [[IFlySynthesizerControl alloc] initWithOrigin:CGPointMake(1, 1) theInitParam:initParam];
         [_iFlySynthesizerControl setShowUI:NO];
         _iFlySynthesizerControl.delegate = self;
