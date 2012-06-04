@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CustomWord" representedClassName="CustomWord" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Friend" representedClassName="Friend" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -68,14 +76,6 @@
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="Word" syncable="YES">
-        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="lastUseDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <fetchRequest name="findAllDeletedFriends" entity="Friend" predicateString="deleteFlag == 1"/>
     <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
@@ -94,6 +94,6 @@
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Word" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>
