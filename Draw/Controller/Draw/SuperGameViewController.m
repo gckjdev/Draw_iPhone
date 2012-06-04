@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SuperDrawViewController.h"
+#import "SuperGameViewController.h"
 #import "PPDebug.h"
 #import "StableView.h"
 #import "GameSession.h"
@@ -20,7 +20,7 @@
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
 
-@interface SuperDrawViewController ()
+@interface SuperGameViewController ()
 
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message;
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation SuperDrawViewController
+@implementation SuperGameViewController
 
 @synthesize turnNumberButton;
 @synthesize popupButton;
