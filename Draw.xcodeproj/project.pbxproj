@@ -461,7 +461,7 @@
 		CA22DCFD157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */; };
 		CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */; };
-		CA22DD00157CB3E9009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF9157CB3E9009C95CB /* OfflineGuessDrawController~ipad.xib */; };
+		CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
 		CA28C0D215312FF300E531AE /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CC15312FF300E531AE /* bottom@2x.png */; };
 		CA28C0D315312FF300E531AE /* flower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CD15312FF300E531AE /* flower@2x.png */; };
 		CA28C0D415312FF300E531AE /* room_mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CE15312FF300E531AE /* room_mumber@2x.png */; };
@@ -1426,8 +1426,8 @@
 		CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineDrawViewController~ipad.xib"; sourceTree = "<group>"; };
 		CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineGuessDrawController.m; sourceTree = "<group>"; };
 		CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineGuessDrawController.xib; sourceTree = "<group>"; };
-		CA22DCF9157CB3E9009C95CB /* OfflineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineGuessDrawController.h; sourceTree = "<group>"; };
+		CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA28C0CC15312FF300E531AE /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
 		CA28C0CD15312FF300E531AE /* flower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower@2x.png"; sourceTree = "<group>"; };
 		CA28C0CE15312FF300E531AE /* room_mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_mumber@2x.png"; sourceTree = "<group>"; };
@@ -3427,6 +3427,7 @@
 		CA22DCD5157CB009009C95CB /* Offline */ = {
 			isa = PBXGroup;
 			children = (
+				CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */,
 				CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */,
 				CA22DCF3157CB3E9009C95CB /* OfflineDrawViewController.h */,
 				CA22DCF4157CB3E9009C95CB /* OfflineDrawViewController.m */,
@@ -3434,7 +3435,6 @@
 				CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */,
 				CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */,
 				CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */,
-				CA22DCF9157CB3E9009C95CB /* OfflineGuessDrawController~ipad.xib */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -4659,7 +4659,7 @@
 				CA22DCFC157CB3E9009C95CB /* OfflineDrawViewController.xib in Resources */,
 				CA22DCFD157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib in Resources */,
 				CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */,
-				CA22DD00157CB3E9009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */,
+				CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
