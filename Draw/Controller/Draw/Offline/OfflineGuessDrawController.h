@@ -18,7 +18,7 @@
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
-@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate>
+@interface OfflineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;

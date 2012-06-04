@@ -23,7 +23,7 @@
 @class PickEraserView;
 @class PickColorView;
 
-@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface OfflineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;

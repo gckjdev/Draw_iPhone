@@ -3427,14 +3427,14 @@
 		CA22DCD5157CB009009C95CB /* Offline */ = {
 			isa = PBXGroup;
 			children = (
-				CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */,
 				CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */,
+				CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */,
+				CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */,
+				CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */,
 				CA22DCF3157CB3E9009C95CB /* OfflineDrawViewController.h */,
 				CA22DCF4157CB3E9009C95CB /* OfflineDrawViewController.m */,
 				CA22DCF5157CB3E9009C95CB /* OfflineDrawViewController.xib */,
 				CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */,
-				CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */,
-				CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
