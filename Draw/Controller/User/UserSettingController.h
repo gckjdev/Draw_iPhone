@@ -52,6 +52,7 @@
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
