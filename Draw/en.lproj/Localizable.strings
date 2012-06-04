@@ -476,3 +476,9 @@
 "kCurrentCoins" = "Coins ";
 "kCurrentItems" = "Items ";
 "kFreeGetCoins" = "Free Coins";
+
+"kCustomWordManage" = "Custom Word";
+"kAddCustomWord" = "Add Word";
+"kInputWord" = "Input Words";
+"kInputWordPlaceholder" = "Please input a new word";
+

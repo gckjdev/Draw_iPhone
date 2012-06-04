@@ -485,3 +485,9 @@
 "kCurrentCoins" = "现有金币 ";
 "kCurrentItems" = "现有锦囊 ";
 "kFreeGetCoins" = "免费金币";
+
+"kCustomWordManage" = "自定义词语";
+"kAddCustomWord" = "添加词语";
+"kInputWord" = "输入词语";
+"kInputWordPlaceholder" = "请输入新词语";
+
