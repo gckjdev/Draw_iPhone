@@ -8,13 +8,13 @@
 
 #import "DrawAppDelegate.h"
 
-#import "DrawViewController.h"
+#import "OnlineDrawViewController.h"
 #import "GameNetworkClient.h"
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "HomeController.h"
 #import "RegisterUserController.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "RouterService.h"

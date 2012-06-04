@@ -6,7 +6,7 @@
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "DrawViewController.h"
+#import "OnlineDrawViewController.h"
 #import "DrawView.h"
 #import "DrawGameService.h"
 #import "DrawColor.h"
@@ -20,7 +20,7 @@
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
 #import "UIButtonExt.h"
@@ -42,7 +42,7 @@
 #import "FriendRoomController.h"
 
 
-@implementation DrawViewController
+@implementation OnlineDrawViewController
 
 @synthesize eraserButton;
 @synthesize wordButton;
@@ -58,7 +58,7 @@
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
-    DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
+    OnlineDrawViewController *vc = [[OnlineDrawViewController alloc] initWithWord:word lang:language];
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
     [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];

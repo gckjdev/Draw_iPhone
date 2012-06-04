@@ -9,7 +9,7 @@
 #import "RoomController.h"
 #import "DrawGameService.h"
 #import "SelectWordController.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "GameSession.h"
 #import "PPApplication.h"
 #import "DrawAppDelegate.h"
@@ -554,11 +554,11 @@
 {
     if (![self isMyTurn]) {
         for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[ShowDrawController class]]) {
+            if ([controller isKindOfClass:[OnlineGuessDrawController class]]) {
                 return;
             }
         }
-        ShowDrawController *controller = [[ShowDrawController alloc] init];
+        OnlineGuessDrawController *controller = [[OnlineGuessDrawController alloc] init];
         [self.navigationController pushViewController:controller animated:animated];
         [controller release];
     }

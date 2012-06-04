@@ -10,8 +10,7 @@
 #import "Word.h"
 #import "WordManager.h"
 #import "SelectWordCell.h"
-#import "DrawViewController.h"
-#import "ShowDrawController.h"
+#import "OnlineDrawViewController.h"
 #import "DrawGameService.h"
 #import "LocaleUtils.h"
 #import "UserManager.h"
@@ -80,7 +79,7 @@
 
     if (!hasPushController) {
         hasPushController = YES;        
-        [DrawViewController startDraw:word fromController:self];
+        [OnlineDrawViewController startDraw:word fromController:self];
 
     }
     [self resetTimer];

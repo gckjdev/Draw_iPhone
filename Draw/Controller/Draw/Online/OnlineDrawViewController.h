@@ -12,7 +12,7 @@
 #import "DrawGameService.h"
 #import "PickView.h"
 #import "CommonDialog.h"
-#import "SuperDrawViewController.h"
+#import "SuperGameViewController.h"
 #import "ColorShopView.h"
 
 @class Word;
@@ -23,7 +23,7 @@
 @class PickEraserView;
 @class PickColorView;
 
-@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;
