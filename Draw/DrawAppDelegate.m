@@ -172,7 +172,7 @@ NSString* GlobalGetTrafficServerURL()
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     //sync level details
-    [[LevelService defaultService] syncExpAndLevel];
+    [[LevelService defaultService] syncExpAndLevel:SYNC];
     
     return YES;
 }

@@ -358,6 +358,7 @@
 #define PARA_EXP    @"exp"
 #define PARA_LEVEL  @"lvl"
 #define PARA_LEVEL_INFO @"lif"
+#define PARA_SYNC_TYPE  @"st"
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 

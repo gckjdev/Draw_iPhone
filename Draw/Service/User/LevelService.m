@@ -40,7 +40,7 @@ static LevelService* _defaultLevelService;
     if (value) {
         return value.intValue;
     }
-    return 0;
+    return 1;
 }
 
 - (long)experience
@@ -117,7 +117,9 @@ static LevelService* _defaultLevelService;
     return 0;
 }
 
-- (void)syncExpAndLevel:(PPViewController*)viewController
+
+- (void)syncExpAndLevel:(PPViewController*)viewController 
+                   type:(int)type
 {
     
     //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
@@ -128,7 +130,8 @@ static LevelService* _defaultLevelService;
                                                appId:APP_ID 
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
-                                                 exp:[self experience]];
+                                                 exp:[self experience] 
+                                                type:type];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //[viewController hideActivity];
@@ -182,7 +185,8 @@ static LevelService* _defaultLevelService;
     });
 }
 
-- (void)syncExpAndLevel
+
+- (void)syncExpAndLevel:(int)type
 {
     
     //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
@@ -193,7 +197,8 @@ static LevelService* _defaultLevelService;
                                                appId:APP_ID 
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
-                                                 exp:[self experience]];
+                                                 exp:[self experience] 
+                                                type:type];
         
         dispatch_async(dispatch_get_main_queue(), ^{
            // [viewController hideActivity];
