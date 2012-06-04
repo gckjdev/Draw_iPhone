@@ -50,6 +50,20 @@
 @synthesize rightPageButton;
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
+@synthesize word = _word;
+
++ (void)startGuessWord:(Word *)word 
+                  lang:(LanguageType)lang 
+            actionList:(NSArray *)actions
+                  from:(UIViewController *)fromController
+{
+    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
+    offGuess.word = word;
+    
+    [fromController.navigationController pushViewController:offGuess animated:YES];
+    [offGuess release];
+}
+
 - (void)dealloc
 {
     moveButton = nil;
@@ -78,8 +92,29 @@
     return self;
 }
 
+
+- (id)initWithWord:(Word *)word 
+          language:(LanguageType)lang   
+        actionList:(NSArray *)actions
+{
+    self = [super init];
+    if (self) {
+        shareImageManager = [ShareImageManager defaultManager];
+        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
+        self.word = word;
+        languageType = lang;
+        showView.drawActionList = [NSMutableArray arrayWithArray:actions];
+    }
+    
+    return self;
+    
+}
 - (id)init{
     self = [super init];
+    if (self) {
+        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
+        shareImageManager = [ShareImageManager defaultManager];        
+    }
     return self;
 }
 
@@ -230,7 +265,7 @@
 - (void)clickWriteButton:(UIButton *)button
 {
     NSString *text = [self realValueForButton:button];
-    if (!_guessCorrect && [text length] != 0) {
+    if ([text length] != 0) {
         UIButton *pButton = [self candidateButtonForText:text];
         if (pButton) {
             [self setButton:button title:nil enabled:NO];
@@ -480,29 +515,12 @@
     [toolView setEnabled:enabled];
 }
 
-#pragma makr - Timer Handle
-
-- (void)handleTimer:(NSTimer *)theTimer
-{
-    --retainCount;
-    if (retainCount <= 0) {
-        [self resetTimer];
-        retainCount = 0;
-    }
-    [self updateClockButton];
-}
-
-
-
-
-
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [drawGameService setShowDelegate:self];
     
     [self initShowView];
     
@@ -510,11 +528,9 @@
     [self initBomb];
     [self initWordViews];
     [self initTargetViews];
-    [self initWithCachData];
 
-    _guessCorrect = NO;
     _shopController = nil;
-    
+    [showView play];
 }
 
 
@@ -534,9 +550,6 @@
 
 - (void)viewDidUnload
 {
-    [self setClockButton:nil];
-    [self setPopupButton:nil];
-    [self setTurnNumberButton:nil];
     [self setScrollView:nil];
     [self setPageControl:nil];
     [self setLeftPageButton:nil];
@@ -580,61 +593,8 @@
 - (void)didBroken
 {
     PPDebug(@"<ShowDrawController>:didBroken");
-    [self cleanData];
     [HomeController returnRoom:self];
 }
-
-
-
-
-#pragma mark - Observer Method/Game Process
-- (void)didGameTurnGuessStart:(GameMessage *)message
-{
-    PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
-    [self startTimer];
-}
-
-
-- (void)didUserQuitGame:(GameMessage *)message
-{
-    NSString *userId = [[message notification] quitUserId];
-    [self popUpRunAwayMessage:userId];
-    [self adjustPlayerAvatars:userId];
-    if ([self userCount] <= 1) {
-        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
-    }
-}
-- (void)didGameTurnComplete:(GameMessage *)message
-{
-    PPDebug(@"<ShowDrawController>didGameTurnComplete");
-
-    NSInteger gainCoin = [[message notification] turnGainCoins];
-    [showView setShowPenHidden:YES];
-    UIImage *image = [showView createImage];
-    
-    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
-    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];
-    [self cleanData];
-
-    ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                        drawUserId:drawUserId
-                                                  drawUserNickName:drawUserNickName
-                                                          wordText:self.word.text 
-                                                             score:gainCoin
-                                                           correct:_guessCorrect 
-                                                         isMyPaint:NO 
-                                                    drawActionList:showView.drawActionList];
-    if (_shopController) {
-        [_shopController.topNavigationController popToViewController:self animated:NO];
-        [self.navigationController pushViewController:rc animated:NO];
-    }else{
-        [self.navigationController pushViewController:rc animated:YES];
-    }
-    [rc release]; 
-    
-}
-
-
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
@@ -648,9 +608,7 @@
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else{
-        [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [self cleanData];
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -666,13 +624,12 @@
     if ([answer isEqualToString:self.word.text]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
-        _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
+        //TODO send http request
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
     }
-    [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
 
 - (void)scrollToPage:(NSInteger)pageIndex
@@ -770,28 +727,7 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
     [self.view insertSubview:showView aboveSubview:drawBackground];
-}
-
-
-
-
-- (void)initWithCachData
-{
-    if (drawGameService.sessionStatus == SESSION_PLAYING) {
-        
-        if (drawGameService.word.text) {
-            [self didReceiveDrawWord:drawGameService.word.text 
-                               level:drawGameService.word.level 
-                            language:drawGameService.language];
-        }        
-        NSArray *actionList = drawGameService.drawActionList;
-        for (DrawAction *action in actionList) {
-            [showView addDrawAction:action play:YES];
-        }
-        [self startTimer];
-    }
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
@@ -810,8 +746,5 @@
     return [button titleForState:UIControlStateSelected];
 }
 
-- (IBAction)clickGroupChatButton:(id)sender {
-    [super showGroupChatView];
-}
 
 @end

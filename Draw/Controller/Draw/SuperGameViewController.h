@@ -20,10 +20,10 @@
     ShareImageManager *shareImageManager;
     NSTimer *gameTimer;
     NSInteger retainCount;
+    Word *_word;
     LanguageType languageType;
     DrawGameService *drawGameService;
     NSMutableArray *avatarArray;
-    Word *_word;
     BOOL _gameCompleted;
     BOOL _gameCanCompleted;
 }
