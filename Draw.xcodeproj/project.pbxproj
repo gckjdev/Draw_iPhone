@@ -731,6 +731,7 @@
 		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -5286,13 +5287,14 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */,
 				CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */,
 				CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */,
 				CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */,
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */;
+			currentVersion = A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
