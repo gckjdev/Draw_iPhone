@@ -82,6 +82,7 @@
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
+    <fetchRequest name="findAllWords" entity="CustomWord"/>
     <fetchRequest name="findFanByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findFollowByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>

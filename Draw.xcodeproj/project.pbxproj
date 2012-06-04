@@ -29,6 +29,9 @@
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
 		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
 		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
+		A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
+		A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
+		A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
 		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
 		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
 		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
@@ -744,6 +747,10 @@
 		A3598488157C7B2700745BAB /* CustomWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWordManager.m; sourceTree = "<group>"; };
 		A359848A157C977100745BAB /* CustomWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWord.h; sourceTree = "<group>"; };
 		A359848B157C977100745BAB /* CustomWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWord.m; sourceTree = "<group>"; };
+		A35984AE157CCAB900745BAB /* MyWordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWordsController.h; sourceTree = "<group>"; };
+		A35984AF157CCAB900745BAB /* MyWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWordsController.m; sourceTree = "<group>"; };
+		A35984B0157CCAB900745BAB /* MyWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWordsController.xib; sourceTree = "<group>"; };
+		A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyWordsController~ipad.xib"; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -3473,6 +3480,10 @@
 				CA3221A7151F65AD0039A384 /* UserSettingController.m */,
 				CA3221A8151F65AE0039A384 /* UserSettingController.xib */,
 				A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */,
+				A35984AE157CCAB900745BAB /* MyWordsController.h */,
+				A35984AF157CCAB900745BAB /* MyWordsController.m */,
+				A35984B0157CCAB900745BAB /* MyWordsController.xib */,
+				A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -4660,6 +4671,8 @@
 				CA22DCFD157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib in Resources */,
 				CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */,
 				CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */,
+				A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */,
+				A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5027,6 +5040,7 @@
 				CA22DCF0157CB00A009C95CB /* OnlineGuessDrawController.m in Sources */,
 				CA22DCFB157CB3E9009C95CB /* OfflineDrawViewController.m in Sources */,
 				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
+				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
