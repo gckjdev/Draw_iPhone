@@ -133,6 +133,10 @@ static LevelService* _defaultLevelService;
         dispatch_async(dispatch_get_main_queue(), ^{
             //[viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
+                NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL]; 
+                NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
+                [self setExperience:exp.intValue];
+                [self setLevel:level.intValue];
                 // save return User ID locally
 //                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
 //                NSString* nickName = [UserManager nickNameByEmail:email];

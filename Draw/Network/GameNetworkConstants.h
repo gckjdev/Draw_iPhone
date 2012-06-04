@@ -357,6 +357,7 @@
 //for level exp
 #define PARA_EXP    @"exp"
 #define PARA_LEVEL  @"lvl"
+#define PARA_LEVEL_INFO @"lif"
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 
