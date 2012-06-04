@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "ShowDrawView.h"
 #import "Paint.h"
 #import "GameSessionUser.h"
@@ -42,7 +42,7 @@
 
 
 
-@implementation ShowDrawController
+@implementation OnlineGuessDrawController
 @synthesize showView;
 @synthesize scrollView;
 @synthesize pageControl;

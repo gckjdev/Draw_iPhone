@@ -185,10 +185,10 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 98;
+        return 96;
     }
     else {
-        return 49;
+        return 48;
     }
 }
 

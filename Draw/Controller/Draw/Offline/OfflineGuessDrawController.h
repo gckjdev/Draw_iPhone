@@ -10,26 +10,29 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
-#import "SuperDrawViewController.h"
-
+#import "PPViewController.h"
 
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
-@interface ShowDrawController : SuperDrawViewController<CommonDialogDelegate,UIScrollViewDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
     ItemShopController *_shopController;
     ToolView *toolView;
-    BOOL _guessCorrect;
     UIButton *moveButton;
     UIButton *lastScaleTarget;
     
     NSInteger numberPerPage;
     NSInteger pageCount;
+    ShareImageManager *shareImageManager;
+
+    Word *_word;
+    LanguageType languageType;
+
 }
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;
@@ -39,7 +42,7 @@
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
-
+@property (retain, nonatomic) Word *word;
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
@@ -54,11 +57,17 @@
 - (void)initTargetViews;
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
 - (void)updateTargetViews:(Word *)word;
-- (void)initWithCachData;
 
 - (void)scrollToPage:(NSInteger)pageIndex;
 
+- (id)initWithWord:(Word *)word 
+          language:(LanguageType)lang   
+        actionList:(NSArray *)actions;
 
++ (void)startGuessWord:(Word *)word 
+                  lang:(LanguageType)lang 
+            actionList:(NSArray *)actions
+                  from:(UIViewController *)fromController;
 @end
 
 

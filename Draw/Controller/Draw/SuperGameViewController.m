@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SuperDrawViewController.h"
+#import "SuperGameViewController.h"
 #import "PPDebug.h"
 #import "StableView.h"
 #import "GameSession.h"
@@ -20,7 +20,7 @@
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
 
-@interface SuperDrawViewController ()
+@interface SuperGameViewController ()
 
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message;
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation SuperDrawViewController
+@implementation SuperGameViewController
 
 @synthesize turnNumberButton;
 @synthesize popupButton;
@@ -71,14 +71,17 @@
         drawGameService = [DrawGameService defaultService];    
         avatarArray = [[NSMutableArray alloc] init];
         shareImageManager = [ShareImageManager defaultManager];
+        _gameCompleted = NO;
+        _gameCanCompleted = NO;
+        [drawGameService registerObserver:self];    
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    [drawGameService registerObserver:self];    
     [self initRoundNumber];
     [self initAvatars];
     [self initPopButton];
@@ -93,6 +96,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    _gameCanCompleted = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -290,7 +294,7 @@
     drawGameService.showDelegate = nil;
     drawGameService.drawDelegate = nil;
     [drawGameService unregisterObserver:self];
-
+    [[SpeechService defaultService] cancel];
 }
 
 - (void)didReceiveGuessWord:(NSString*)wordText 

@@ -10,8 +10,7 @@
 #import "Word.h"
 #import "WordManager.h"
 #import "SelectWordCell.h"
-#import "DrawViewController.h"
-#import "ShowDrawController.h"
+#import "OnlineDrawViewController.h"
 #import "DrawGameService.h"
 #import "LocaleUtils.h"
 #import "UserManager.h"
@@ -75,9 +74,13 @@
 
 - (void)startGameWithWord:(Word *)word
 {
+    [self clearUnPopupMessages];
+    [drawGameService unregisterObserver:self];
+
     if (!hasPushController) {
         hasPushController = YES;        
-        [DrawViewController startDraw:word fromController:self];
+        [OnlineDrawViewController startDraw:word fromController:self];
+
     }
     [self resetTimer];
 }
@@ -131,8 +134,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self clearUnPopupMessages];
-    [drawGameService unregisterObserver:self];
+//    [self clearUnPopupMessages];
+//    [drawGameService unregisterObserver:self];
     [super viewDidDisappear:animated];
 }
 
@@ -205,5 +208,7 @@
     [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
     [RoomController returnRoom:self startNow:NO];
 }
+
+
 
 @end

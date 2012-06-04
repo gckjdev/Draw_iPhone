@@ -18,7 +18,7 @@
 #import "CommonDialog.h"
 #import "CoinShopController.h"
 #import "PPDebug.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "ShoppingManager.h"
 #import "ColorShopView.h"
 #import "YoumiWallController.h"

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
+
+enum {
+    SYNC = 0,
+    UPDATE = 1
+};
+
 @class PPViewController;
 
 @protocol LevelServiceDelegate <NSObject>
@@ -23,14 +29,15 @@
 + (LevelService*)defaultService;
 
 - (void)setLevel:(NSInteger)level;
-//- (void)setExperience:(float)experience;
+- (void)setExperience:(long)experience;
 - (int)level;
 - (long)experience;
 
 - (void)addExp:(long)exp;
 - (void)minusExp:(long)exp;
 - (long)expRequiredForNextLevel;
-- (void)syncExpAndLevel:(PPViewController*)viewController;
-- (void)syncExpAndLevel;
+- (void)syncExpAndLevel:(PPViewController*)viewController 
+                   type:(int)type;
+- (void)syncExpAndLevel:(int)type;
 
 @end
