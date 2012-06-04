@@ -29,11 +29,16 @@
     NSInteger rowOfQQWeibo;
     NSInteger rowOfFacebook;
     NSInteger rowOfLevel;
+    NSInteger rowOfCustomWord;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
     NSInteger rowOfVolumeSetting;
     NSInteger rowOfChatVoice;
-    NSInteger rowNumber;
+    
+    NSInteger rowsInSectionUser;
+    NSInteger rowsInSectionGuessWord;
+    NSInteger rowsInSectionSound;
+    
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
     NSString *_updatePassword;
