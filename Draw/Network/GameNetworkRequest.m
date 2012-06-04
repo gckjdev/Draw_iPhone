@@ -1103,7 +1103,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
-        str = [str stringByAddQueryParameter:PARA_EXP doubleValue:exp];
+        str = [str stringByAddQueryParameter:PARA_EXP value:[NSString stringWithFormat:@"%d",exp]];
         
        
         return str;

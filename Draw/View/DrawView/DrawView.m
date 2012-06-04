@@ -181,6 +181,7 @@
         
         pen = [[PenView alloc] initWithPenType:Pencil];
         pen.hidden = YES;
+        pen.userInteractionEnabled = NO;
         pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
         [self addSubview:pen];
     }

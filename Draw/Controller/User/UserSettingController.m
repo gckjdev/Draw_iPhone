@@ -20,6 +20,7 @@
 #import "AudioManager.h"
 #import "DeviceDetection.h"
 #import "MusicSettingController.h"
+#import "LevelService.h"
 
 enum{
     SECTION_LANGUAGE = 0,
@@ -35,6 +36,7 @@ enum {
 #define DIALOG_TAG_PASSWORD 201204072
 
 @implementation UserSettingController
+@synthesize expAndLevelLabel;
 @synthesize saveButton;
 @synthesize titleLabel;
 @synthesize avatarButton;
@@ -52,6 +54,7 @@ enum {
     PPRelease(changeAvatar);
     PPRelease(nicknameLabel);
     PPRelease(_gender);
+    [expAndLevelLabel release];
     [super dealloc];
 }
 
@@ -163,6 +166,7 @@ enum {
     
     [self updateInfoFromUserManager];
     [self updateRowIndexs];
+    [self.expAndLevelLabel setText:[NSString stringWithFormat:@"level:%d,exp:%d", [LevelService defaultService].level, [LevelService defaultService].experience]];
 }
 
 - (void)viewDidUnload
@@ -172,6 +176,7 @@ enum {
     [self setAvatarButton:nil];
     [self setSaveButton:nil];
     [self setNicknameLabel:nil];
+    [self setExpAndLevelLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
