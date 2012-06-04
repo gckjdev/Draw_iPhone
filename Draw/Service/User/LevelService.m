@@ -62,21 +62,21 @@ static LevelService* _defaultLevelService;
     [userDefaults setObject:[NSNumber numberWithInt:level] forKey:KEY_LEVEL];    
     [userDefaults synchronize];
 }
-- (void)setExperience:(float)experience
+- (void)setExperience:(long)experience
 {
     if (experience <= 0)
         return;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSNumber numberWithFloat:experience] forKey:KEY_EXP];    
+    [userDefaults setObject:[NSNumber numberWithLong:experience] forKey:KEY_EXP];    
     [userDefaults synchronize];
 }
 
 - (void)addExp:(long)exp
 {
-    long currentExp = [self experience];
-    int newLevel = [self getLevelByExp:(currentExp+exp)];
-    [self setExperience:(currentExp+exp)];
+    long currentExp = [self experience] + exp ;
+    int newLevel = [self getLevelByExp:(currentExp)];
+    [self setExperience:(currentExp)];
     if ([self level] != newLevel) {
         [self setLevel:newLevel];
         if (_delegate && [_delegate respondsToSelector:@selector(levelUp:)]) {
@@ -104,13 +104,13 @@ static LevelService* _defaultLevelService;
     return levelExpMap[1];
 }
 
-- (int)getLevelByExp:(float)exp
+- (int)getLevelByExp:(long)exp
 {
-    if (exp >= (float)levelExpMap[MAX_LEVEL]) {
+    if (exp >= (long)levelExpMap[MAX_LEVEL]) {
         return MAX_LEVEL;
     }
     for (int i = 1; i < MAX_LEVEL; i ++) {
-        if (exp >= (float)levelExpMap[i-1] && exp < (float)levelExpMap[i]) {
+        if (exp >= (long)levelExpMap[i-1] && exp < (long)levelExpMap[i]) {
             return i;
         }
     }
@@ -120,7 +120,7 @@ static LevelService* _defaultLevelService;
 - (void)syncExpAndLevel:(PPViewController*)viewController
 {
     
-    [viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
+    //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = nil;        
@@ -131,8 +131,12 @@ static LevelService* _defaultLevelService;
                                                  exp:[self experience]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController hideActivity];
+            //[viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
+                NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL]; 
+                NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
+                [self setExperience:exp.intValue];
+                [self setLevel:level.intValue];
                 // save return User ID locally
 //                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
 //                NSString* nickName = [UserManager nickNameByEmail:email];
@@ -195,8 +199,10 @@ static LevelService* _defaultLevelService;
            // [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
                 // save return User ID locally
-                //                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID]; 
-                //                NSString* nickName = [UserManager nickNameByEmail:email];
+                NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL]; 
+                NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
+                [self setExperience:exp.intValue];
+                [self setLevel:level.intValue];
                 //                
                 //                // save data                
                 //                [[UserManager defaultManager] saveUserId:userId 

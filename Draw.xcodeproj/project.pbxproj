@@ -27,6 +27,8 @@
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
+		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
+		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
 		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
 		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
@@ -732,6 +734,10 @@
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
+		A3598487157C7B2700745BAB /* CustomWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWordManager.h; sourceTree = "<group>"; };
+		A3598488157C7B2700745BAB /* CustomWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWordManager.m; sourceTree = "<group>"; };
+		A359848A157C977100745BAB /* CustomWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWord.h; sourceTree = "<group>"; };
+		A359848B157C977100745BAB /* CustomWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWord.m; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -4057,6 +4063,10 @@
 				CAA0E6A515147DFF00FD8C3E /* Word.m */,
 				CAA0E6A715147F6E00FD8C3E /* WordManager.h */,
 				CAA0E6A815147F6E00FD8C3E /* WordManager.m */,
+				A359848A157C977100745BAB /* CustomWord.h */,
+				A359848B157C977100745BAB /* CustomWord.m */,
+				A3598487157C7B2700745BAB /* CustomWordManager.h */,
+				A3598488157C7B2700745BAB /* CustomWordManager.m */,
 			);
 			path = Word;
 			sourceTree = "<group>";
@@ -4963,6 +4973,8 @@
 				CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */,
 				CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */,
 				CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */,
+				A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */,
+				A359848C157C977100745BAB /* CustomWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@
 + (LevelService*)defaultService;
 
 - (void)setLevel:(NSInteger)level;
-//- (void)setExperience:(float)experience;
+- (void)setExperience:(long)experience;
 - (int)level;
 - (long)experience;
 
