@@ -24,6 +24,8 @@
     DrawGameService *drawGameService;
     NSMutableArray *avatarArray;
     Word *_word;
+    BOOL _gameCompleted;
+    BOOL _gameCanCompleted;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;

@@ -49,6 +49,7 @@
 @synthesize cleanButton;
 @synthesize penButton;
 @synthesize colorButton;
+@synthesize gameCompleteMessage = _gameCompleteMessage;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -59,7 +60,7 @@
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
     [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:NO];   
+    [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
     
     PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
@@ -71,14 +72,17 @@
     PPRelease(wordButton);
     PPRelease(cleanButton);
     PPRelease(penButton);
+    PPRelease(colorButton);
     PPRelease(pickColorView);
     PPRelease(drawView);
     PPRelease(pickEraserView);
     PPRelease(pickPenView);
+    PPRelease(_gameCompleteMessage);
+
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
-    [colorButton release];
+    
     [super dealloc];
 }
 
@@ -283,6 +287,10 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (self.gameCompleteMessage != nil) {
+        [self didGameTurnComplete:self.gameCompleteMessage];
+        self.gameCompleteMessage = nil;
+    }
 }
 
 
@@ -324,24 +332,30 @@ enum{
 #pragma mark - Observer Method/Game Process
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    PPDebug(@"DrawViewController:<didGameTurnComplete>");
-    
-    UIImage *image = [drawView createImage];
-    NSInteger gainCoin = [[message notification] turnGainCoins];
-    
-    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
-    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
-    [self cleanData];
-    ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                        drawUserId:drawUserId
-                                                  drawUserNickName:drawUserNickName
-                                                          wordText:self.word.text                             
-                                                             score:gainCoin                                                         
-                                                           correct:NO
-                                                         isMyPaint:YES
-                                                    drawActionList:drawView.drawActionList];
-    [self.navigationController pushViewController:rc animated:NO];
-    [rc release];
+    self.gameCompleteMessage = message;
+    if (_gameCompleted == NO && _gameCanCompleted) {
+        _gameCompleted = YES;
+        PPDebug(@"DrawViewController:<didGameTurnComplete>");
+        UIImage *image = [drawView createImage];
+        NSInteger gainCoin = [[message notification] turnGainCoins];
+        
+        NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
+        NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
+        [self cleanData];
+        ResultController *rc = [[ResultController alloc] initWithImage:image
+                                                            drawUserId:drawUserId
+                                                      drawUserNickName:drawUserNickName
+                                                              wordText:self.word.text                             
+                                                                 score:gainCoin                                                         
+                                                               correct:NO
+                                                             isMyPaint:YES
+                                                        drawActionList:drawView.drawActionList];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];        
+    }else{
+        PPDebug(@"DrawViewController unhandle <didGameTurnComplete>");
+    }
+
 }
 
 - (void)didUserQuitGame:(GameMessage *)message

@@ -44,6 +44,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
+@property (retain, nonatomic) GameMessage *gameCompleteMessage;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 
