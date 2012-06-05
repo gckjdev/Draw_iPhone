@@ -15,6 +15,9 @@
 		A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = A318FCFC15650F680075860F /* ShowRemoteDrawController.m */; };
 		A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A318FCFD15650F680075860F /* ShowRemoteDrawController.xib */; };
 		A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A318FCFE15650F680075860F /* ShowRemoteDrawController~ipad.xib */; };
+		A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
+		A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */; };
+		A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */; };
 		A329332215591D3300621789 /* light_yellow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A329332115591D3300621789 /* light_yellow_bg@2x.png */; };
 		A329332F15591D4D00621789 /* MyFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332715591D4D00621789 /* MyFriendsController.m */; };
 		A329333015591D4D00621789 /* MyFriendsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332815591D4D00621789 /* MyFriendsController.xib */; };
@@ -725,6 +728,10 @@
 		A318FCFC15650F680075860F /* ShowRemoteDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowRemoteDrawController.m; sourceTree = "<group>"; };
 		A318FCFD15650F680075860F /* ShowRemoteDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowRemoteDrawController.xib; sourceTree = "<group>"; };
 		A318FCFE15650F680075860F /* ShowRemoteDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowRemoteDrawController~ipad.xib"; sourceTree = "<group>"; };
+		A31B5EF1157E1BE8003DDBF1 /* SelectCustomWordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCustomWordView.h; sourceTree = "<group>"; };
+		A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordView.m; sourceTree = "<group>"; };
+		A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordView.xib; sourceTree = "<group>"; };
+		A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordView~ipad.xib"; sourceTree = "<group>"; };
 		A329332115591D3300621789 /* light_yellow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_yellow_bg@2x.png"; sourceTree = "<group>"; };
 		A329332615591D4D00621789 /* MyFriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendsController.h; sourceTree = "<group>"; };
 		A329332715591D4D00621789 /* MyFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendsController.m; sourceTree = "<group>"; };
@@ -3324,6 +3331,10 @@
 				CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */,
 				CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */,
 				CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */,
+				A31B5EF1157E1BE8003DDBF1 /* SelectCustomWordView.h */,
+				A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */,
+				A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */,
+				A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */,
 			);
 			path = SelectWord;
 			sourceTree = "<group>";
@@ -4673,6 +4684,8 @@
 				CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */,
 				A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */,
 				A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */,
+				A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */,
+				A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5041,6 +5054,7 @@
 				CA22DCFB157CB3E9009C95CB /* OfflineDrawViewController.m in Sources */,
 				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
 				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
+				A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
