@@ -28,8 +28,6 @@
 #import "CommonMessageCenter.h"
 
 #define CONTINUE_TIME 10
-#define NORMAL_EXP  12345678
-#define DRAWER_EXP 12345678
 
 @implementation ResultController
 @synthesize drawImage;
@@ -170,9 +168,9 @@
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (_isMyPaint) {
         [self.titleLabel setText:NSLS(@"kTurnResult")];   
-        [[LevelService defaultService] addExp:DRAWER_EXP];
+        [[LevelService defaultService] addExp:DRAWER_EXP delegate:self];
     }else{
-        [[LevelService defaultService] addExp:NORMAL_EXP];
+        [[LevelService defaultService] addExp:NORMAL_EXP delegate:self];
         if (_correct) {
             [self.titleLabel setText:NSLS(@"kCongratulations")];        
         }else{
@@ -338,7 +336,8 @@
 }
 
 #pragma mark - LevelServiceDelegate
-- (void)levelDown:(int)level
+
+- (void)levelUp:(int)level
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }

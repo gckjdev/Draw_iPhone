@@ -14,6 +14,7 @@
 #import "CommonDialog.h"
 #import "SuperGameViewController.h"
 #import "ColorShopView.h"
+#import "LevelService.h"
 
 @class Word;
 @class ShareImageManager;
@@ -23,7 +24,7 @@
 @class PickEraserView;
 @class PickColorView;
 
-@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,LevelServiceDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;
