@@ -15,15 +15,17 @@
 #define GAME_TIME 60
 @class AvatarView;
 @class Word;
-@interface SuperDrawViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
+@interface SuperGameViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
     ShareImageManager *shareImageManager;
     NSTimer *gameTimer;
     NSInteger retainCount;
+    Word *_word;
     LanguageType languageType;
     DrawGameService *drawGameService;
     NSMutableArray *avatarArray;
-    Word *_word;
+    BOOL _gameCompleted;
+    BOOL _gameCanCompleted;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;

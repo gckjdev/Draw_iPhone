@@ -57,39 +57,8 @@ FriendService* globalGetFriendService()
                 }
                 
                 for (NSDictionary* user in userList){
-                    NSString* friendUserId = [user objectForKey:PARA_USERID];
-                    NSString* nickName = [user objectForKey:PARA_NICKNAME];
-                    NSString* avatar = [user objectForKey:PARA_AVATAR];     
-                    NSString* gender = [user objectForKey:PARA_GENDER];
-                    NSString* sinaId = [user objectForKey:PARA_SINA_ID];
-                    NSString* qqId = [user objectForKey:PARA_QQ_ID];
-                    NSString* facebookId = [user objectForKey:PARA_FACEBOOKID];
-                    NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
-                    NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
-                    NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
-                    NSString* fTypeStr =[user objectForKey:PARA_FRIENDSTYPE];
-                    NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
-                    NSString* location = [user objectForKey:PARA_LOCATION];
-                    NSNumber* fType = [NSNumber numberWithInt:[fTypeStr intValue]];
-                    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-                    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
-                    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+                    [[FriendManager defaultManager] createFriendByDictionary:user];
                     
-                    
-                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
-                                                                      type:fType 
-                                                                  nickName:nickName 
-                                                                    avatar:avatar 
-                                                                    gender:gender 
-                                                                    sinaId:sinaId 
-                                                                      qqId:qqId 
-                                                                facebookId:facebookId 
-                                                                  sinaNick:sinaNick 
-                                                                    qqNick:qqNick 
-                                                              facebookNick:facebookNick 
-                                                                createDate:[NSDate date]
-                                                          lastModifiedDate:lastModifiedDate 
-                                                                  location:location];
                 }
             }else {
                 PPDebug(@"<FriendService> findFriends Failed!");
@@ -155,36 +124,8 @@ FriendService* globalGetFriendService()
                 PPDebug(@"<FriendService> followUser success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
                 for (NSDictionary* user in userList){
-                    NSString* friendUserId = [user objectForKey:PARA_USERID];
-                    NSString* nickName = [user objectForKey:PARA_NICKNAME];
-                    NSString* avatar = [user objectForKey:PARA_AVATAR];     
-                    NSString* gender = [user objectForKey:PARA_GENDER];
-                    NSString* sinaId = [user objectForKey:PARA_SINA_ID];
-                    NSString* qqId = [user objectForKey:PARA_QQ_ID];
-                    NSString* facebookId = [user objectForKey:PARA_FACEBOOKID];
-                    NSString* sinaNick = [user objectForKey:PARA_SINA_NICKNAME];
-                    NSString* qqNick = [user objectForKey:PARA_QQ_NICKNAME];
-                    NSString* facebookNick = [user objectForKey:PARA_FACEBOOK_NICKNAME];
-                    NSString* lastModifiedDateStr = [user objectForKey:PARA_LASTMODIFIEDDATE];
-                    NSString* location = [user objectForKey:PARA_LOCATION];
-                    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-                    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
-                    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+                    [[FriendManager defaultManager] createFriendByDictionary:user];
                     
-                    [[FriendManager defaultManager] createFriendWithUserId:friendUserId 
-                                                                      type:[NSNumber numberWithInt:FOLLOW]
-                                                                  nickName:nickName 
-                                                                    avatar:avatar 
-                                                                    gender:gender 
-                                                                    sinaId:sinaId 
-                                                                      qqId:qqId 
-                                                                facebookId:facebookId 
-                                                                  sinaNick:sinaNick 
-                                                                    qqNick:qqNick 
-                                                              facebookNick:facebookNick 
-                                                                createDate:[NSDate date] 
-                                                          lastModifiedDate:lastModifiedDate 
-                                                                  location:location];
                 }
             }else {
                 if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {

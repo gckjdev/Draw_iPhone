@@ -36,8 +36,14 @@
 @property (retain, nonatomic) IBOutlet UILabel *settingsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *feedbackLabel;
 @property (retain, nonatomic) IBOutlet UIButton *playWithFriendButton;
-
+@property (retain, nonatomic) IBOutlet UIButton *guessButton;
+@property (retain, nonatomic) IBOutlet UIButton *drawButton;
 @property (nonatomic, assign) BOOL hasRemoveNotification; 
+
+- (IBAction)clickDrawButton:(id)sender;
+- (IBAction)clickGuessButton:(id)sender;
+
+
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;

@@ -38,6 +38,10 @@
 #import "AnimationManager.h"
 #import "WordManager.h"
 
+#import "OfflineDrawViewController.h"
+#import "OfflineGuessDrawController.h"
+#import "SelectWordController.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -56,6 +60,8 @@
 @synthesize feedbackLabel = _feedbackLabel;
 @synthesize playWithFriendButton = _playWithFriendButton;
 @synthesize hasRemoveNotification = _hasRemoveNotification;
+@synthesize guessButton = _guessButton;
+@synthesize drawButton = _drawButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -169,6 +175,8 @@
     [self setSettingsLabel:nil];
     [self setFeedbackLabel:nil];
     [self setPlayWithFriendButton:nil];
+    [self setGuessButton:nil];
+    [self setDrawButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -386,6 +394,7 @@
     _isTryJoinGame = YES;
 }
 
+
 + (HomeController *)defaultInstance
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -433,7 +442,21 @@
     [_settingsLabel release];
     [_feedbackLabel release];
     [_playWithFriendButton release];
+    [_guessButton release];
+    [_drawButton release];
     [super dealloc];
 }
+
+- (IBAction)clickDrawButton:(id)sender {
+//    [OfflineDrawViewController startDraw:nil fromController:self];
+    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+}
+
+- (IBAction)clickGuessButton:(id)sender {
+//    [OfflineGuessDrawController startGuess:self];
+}
+
 
 @end

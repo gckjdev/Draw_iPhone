@@ -87,7 +87,11 @@
         NSInteger intColor = [[gameMessage notification] color];
         CGFloat lineWidth = [[gameMessage notification] width];        
         NSArray *pointList = [[gameMessage notification] pointsList];
-        self.width = lineWidth;
+        if ([DeviceDetection isIPAD]) {
+            self.width = lineWidth * 2;
+        }else{
+            self.width = lineWidth;
+        }
         self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _pointList = [[NSMutableArray alloc] init];

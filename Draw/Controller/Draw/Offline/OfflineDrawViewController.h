@@ -12,8 +12,9 @@
 #import "DrawGameService.h"
 #import "PickView.h"
 #import "CommonDialog.h"
-#import "SuperDrawViewController.h"
+#import "PPViewController.h" 
 #import "ColorShopView.h"
+#import "UserManager.h"
 
 @class Word;
 @class ShareImageManager;
@@ -23,7 +24,7 @@
 @class PickEraserView;
 @class PickColorView;
 
-@interface DrawViewController : SuperDrawViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;
@@ -31,9 +32,14 @@
     NSInteger penWidth;
     NSInteger eraserWidth;
     PenView *_willBuyPen;
+    
+    Word *_word;
+    LanguageType languageType;
+    
+    ShareImageManager *shareImageManager;
+    
 }
 
-- (IBAction)clickChangeRoomButton:(id)sender;
 - (IBAction)clickRedraw:(id)sender;
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
@@ -44,6 +50,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
+@property (retain, nonatomic) Word *word;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 

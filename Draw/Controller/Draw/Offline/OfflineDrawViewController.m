@@ -6,21 +6,15 @@
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "DrawViewController.h"
+#import "OfflineDrawViewController.h"
 #import "DrawView.h"
-#import "DrawGameService.h"
 #import "DrawColor.h"
-#import "GameMessage.pb.h"
 #import "Word.h"
-#import "GameSessionUser.h"
-#import "GameSession.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
-#import "ResultController.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
-#import "ShowDrawController.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
 #import "UIButtonExt.h"
@@ -31,24 +25,22 @@
 #import "AccountService.h"
 #import "PenView.h"
 #import "WordManager.h"
-#import "GameTurn.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
-#import "CommonMessageCenter.h"
 #import "PickColorView.h"
 #import "PickEraserView.h"
 #import "PickPenView.h"
 #import "ShoppingManager.h"
-#import "FriendRoomController.h"
 
-
-@implementation DrawViewController
+@implementation OfflineDrawViewController
 
 @synthesize eraserButton;
 @synthesize wordButton;
 @synthesize cleanButton;
 @synthesize penButton;
 @synthesize colorButton;
+@synthesize word = _word;
+@synthesize titleLabel;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -57,9 +49,8 @@
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
-    DrawViewController *vc = [[DrawViewController alloc] initWithWord:word lang:language];
-    [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
-    [fromController.navigationController pushViewController:vc animated:NO];   
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
+    [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
     
     PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
@@ -71,14 +62,17 @@
     PPRelease(wordButton);
     PPRelease(cleanButton);
     PPRelease(penButton);
+    PPRelease(colorButton);
     PPRelease(pickColorView);
     PPRelease(drawView);
     PPRelease(pickEraserView);
     PPRelease(pickPenView);
+    PPRelease(_word);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
-    [colorButton release];
+    
+    [titleLabel release];
     [super dealloc];
 }
 
@@ -103,6 +97,7 @@
         //        autoReleasePool = [[NSAutoreleasePool alloc] init];
         self.word = word;
         languageType = lang;
+        shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
 }
@@ -114,6 +109,7 @@
 {
 
     //init pick pen view
+
     pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
     [pickPenView setImage:[shareImageManager penPopupImage]];
     [pickPenView setDelegate:self];
@@ -189,17 +185,7 @@
     
 }
 
-#pragma mark - Timer
 
-- (void)handleTimer:(NSTimer *)theTimer
-{
-    --retainCount;
-    if (retainCount <= 0) {
-        [self resetTimer];
-        retainCount = 0;
-    }
-    [self updateClockButton];
-}
 
 
 #pragma mark - Update Data
@@ -265,33 +251,24 @@ enum{
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
 }
 
+- (void)initTitleLabel
+{
+    [self.titleLabel setText:NSLS(@"kDrawing")];    
+}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    drawGameService.drawDelegate = self;
+    [self initTitleLabel];
     [self initDrawView];
     [self initEraser];
     [self initPens];
     [self initWordLabel];
-    [self startTimer];
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-
-
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
 
 - (void)viewDidUnload
 {
@@ -300,60 +277,15 @@ enum{
     [self setWord:nil];
     [self setEraserButton:nil];
     [self setWordButton:nil];
-    [self setClockButton:nil];
     [self setCleanButton:nil];
     [self setPenButton:nil];
-    [self setPopupButton:nil];
-    [self setTurnNumberButton:nil];
     [self setColorButton:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
 
 
-#pragma mark - Draw Game Service Delegate
-
-- (void)didBroken
-{
-    PPDebug(@"<DrawViewController>:didBroken");
-    [self cleanData];
-    [HomeController returnRoom:self];
-}
-
-
-#pragma mark - Observer Method/Game Process
-- (void)didGameTurnComplete:(GameMessage *)message
-{
-    PPDebug(@"DrawViewController:<didGameTurnComplete>");
-    
-    UIImage *image = [drawView createImage];
-    NSInteger gainCoin = [[message notification] turnGainCoins];
-    
-    NSString* drawUserId = [[[drawGameService session] currentTurn] lastPlayUserId];
-    NSString* drawUserNickName = [[drawGameService session] getNickNameByUserId:drawUserId];    
-    [self cleanData];
-    ResultController *rc = [[ResultController alloc] initWithImage:image
-                                                        drawUserId:drawUserId
-                                                  drawUserNickName:drawUserNickName
-                                                          wordText:self.word.text                             
-                                                             score:gainCoin                                                         
-                                                           correct:NO
-                                                         isMyPaint:YES
-                                                    drawActionList:drawView.drawActionList];
-    [self.navigationController pushViewController:rc animated:NO];
-    [rc release];
-}
-
-- (void)didUserQuitGame:(GameMessage *)message
-{
-    NSString *userId = [[message notification] quitUserId];
-    [self popUpRunAwayMessage:userId];
-    [self adjustPlayerAvatars:userId];
-    if ([self userCount] <= 1) {
-        //[self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil]; 
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAllUserQuit") delayTime:1 isHappy:NO]; 
-    }
-}
 
 #pragma mark - Pick view delegate
 - (void)didPickedColorView:(ColorView *)colorView
@@ -419,14 +351,10 @@ enum{
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
-        [drawGameService cleanDraw];
         [drawView addCleanAction];
         [pickColorView setHidden:YES];        
-    }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
-        [drawGameService quitGame];
+    }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
-        [self cleanData];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
@@ -445,8 +373,6 @@ enum{
 
 - (void)didDrawedPaint:(Paint *)paint
 {
-    
-    NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
     CGPoint lastPoint = ILLEGAL_POINT;
     int i = 0;
@@ -467,7 +393,6 @@ enum{
     if ([DeviceDetection isIPAD]) {
         width /= 2;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];
 }
 
 - (void)didStartedTouch:(Paint *)paint
@@ -480,24 +405,6 @@ enum{
 
 #pragma mark - Actions
 
-- (IBAction)clickChangeRoomButton:(id)sender {
-    
-    [pickColorView setHidden:YES animated:YES];
-    
-    CommonDialogStyle style;
-    NSString *message = nil;
-    if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
-        style = CommonDialogStyleDoubleButton;
-        message = NSLS(@"kDedutCoinQuitGameAlertMessage");
-    }else{
-        style = CommonDialogStyleSingleButton;
-        message = NSLS(@"kNoCoinQuitGameAlertMessage");
-    }
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:message style:style delegate:self];
-    dialog.tag = DIALOG_TAG_ESCAPE;
-    [dialog showInView:self.view];
-}
 - (IBAction)clickRedraw:(id)sender {
     [pickColorView setHidden:YES animated:YES];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanDrawTitle") message:NSLS(@"kCleanDrawMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -531,8 +438,11 @@ enum{
     [pickPenView setHidden:YES];
     [pickEraserView setHidden:YES];
 }
-
-- (IBAction)clickGroupChatButton:(id)sender {
-    [super showGroupChatView];
+- (void)clickBackButton:(id)sender
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = DIALOG_TAG_ESCAPE;
+    [dialog showInView:self.view];
 }
+
 @end

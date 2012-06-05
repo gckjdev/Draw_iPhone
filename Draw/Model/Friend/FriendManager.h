@@ -28,7 +28,6 @@ enum deleteFlag {
 + (FriendManager *)defaultManager;
 
 - (BOOL)createFriendByDictionary:(NSDictionary *)userDic;
-- (BOOL)updateFriendByDictionary:(NSDictionary *)userDic;
 
 - (BOOL)createFriendWithUserId:(NSString *)friendUserId 
                           type:(NSNumber *)type
@@ -43,7 +42,8 @@ enum deleteFlag {
                   facebookNick:(NSString *)facebookNick
                     createDate:(NSDate *)createDate 
               lastModifiedDate:(NSDate *)lastModifiedDate 
-                      location:(NSString *)location;
+                      location:(NSString *)location 
+                         level:(NSNumber *)level;
 
 - (BOOL)updateFriendWithUserId:(NSString *)friendUserId 
                           type:(NSNumber *)type 
@@ -57,7 +57,8 @@ enum deleteFlag {
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
               lastModifiedDate:(NSDate *)lastModifiedDate
-                      location:(NSString *)location;
+                      location:(NSString *)location
+                         level:(NSNumber *)level;
 
 - (NSArray *)findAllFanFriends;
 - (NSArray *)findAllFollowFriends;

@@ -190,7 +190,8 @@
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
                                   level:(int)level 
-                                    exp:(long)exp;
+                                    exp:(long)exp 
+                                   type:(int)type;
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 

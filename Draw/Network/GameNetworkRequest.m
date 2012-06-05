@@ -1089,7 +1089,8 @@
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
                                   level:(int)level 
-                                    exp:(long)exp
+                                    exp:(long)exp 
+                                   type:(int)type
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1103,7 +1104,8 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
-        str = [str stringByAddQueryParameter:PARA_EXP doubleValue:exp];
+        str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
+        str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];
         
        
         return str;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "ShowDrawView.h"
 #import "Paint.h"
 #import "GameSessionUser.h"
@@ -42,7 +42,7 @@
 
 
 
-@implementation ShowDrawController
+@implementation OnlineGuessDrawController
 @synthesize showView;
 @synthesize scrollView;
 @synthesize pageControl;
@@ -651,6 +651,8 @@
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [self cleanData];
+        [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+        [[LevelService defaultService] syncExpAndLevel:UPDATE];
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -812,6 +814,12 @@
 
 - (IBAction)clickGroupChatButton:(id)sender {
     [super showGroupChatView];
+}
+
+#pragma mark - levelServiceDelegate
+- (void)levelDown:(int)level
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
 }
 
 @end

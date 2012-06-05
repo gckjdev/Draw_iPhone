@@ -8,13 +8,13 @@
 
 #import "DrawAppDelegate.h"
 
-#import "DrawViewController.h"
+#import "OnlineDrawViewController.h"
 #import "GameNetworkClient.h"
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "HomeController.h"
 #import "RegisterUserController.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "SinaSNSService.h"
 #import "QQWeiboService.h"
 #import "RouterService.h"
@@ -43,7 +43,7 @@ NSString* GlobalGetServerURL()
   
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
-//    return @"http://192.168.1.101:8000/api/i?";    
+//    return @"http://192.168.1.9:8000/api/i?";    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -172,7 +172,7 @@ NSString* GlobalGetTrafficServerURL()
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     //sync level details
-   // [[LevelService defaultService] syncExpAndLevel];
+    [[LevelService defaultService] syncExpAndLevel:SYNC];
     
     return YES;
 }

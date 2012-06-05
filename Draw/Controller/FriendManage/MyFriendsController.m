@@ -517,7 +517,8 @@
                                                   facebookNick:friend.facebookNick 
                                                     createDate:[NSDate date] 
                                               lastModifiedDate:friend.lastModifiedDate
-                                                      location:friend.location];
+                                                      location:friend.location 
+                                                         level:friend.level];
         [self updateFriendsListFromLocal];
     } else {
         [self popupMessage:NSLS(@"kFollowFailed") title:nil];

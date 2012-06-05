@@ -27,6 +27,11 @@
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
+		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
+		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
+		A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
+		A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
+		A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
 		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
 		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
 		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
@@ -47,7 +52,6 @@
 		A3FAE0E415536FE3008B5827 /* PassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */; };
 		A3FAE0E61553701B008B5827 /* RegisterUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */; };
 		A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */; };
-		A3FAE0EA1553706D008B5827 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E91553706D008B5827 /* ResultController~ipad.xib */; };
 		A3FAE0F11553712E008B5827 /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0EF1553712E008B5827 /* 50.png */; };
 		A3FAE0F21553712E008B5827 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0F01553712E008B5827 /* 72.png */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
@@ -167,8 +171,6 @@
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
-		CA03781F1553692200CF41E3 /* DrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA03781D1553692200CF41E3 /* DrawViewController~ipad.xib */; };
-		CA0378201553692200CF41E3 /* ShowDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA03781E1553692200CF41E3 /* ShowDrawController~ipad.xib */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
 		CA037881155378A600CF41E3 /* left_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03787F155378A600CF41E3 /* left_button@2x.png */; };
@@ -183,7 +185,7 @@
 		CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
 		CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
-		CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */; };
+		CA06BE4315522F3000B94FB1 /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
 		CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */; };
 		CA0CB750155CB037009C8EE6 /* FriendRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */; };
 		CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB752155CB04D009C8EE6 /* SearchRoomController.m */; };
@@ -371,8 +373,6 @@
 		CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040CD1509A9FD00F60C03 /* UIToolbar+TKCategory.m */; };
 		CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040CF1509A9FD00F60C03 /* UIView+TKCategory.m */; };
 		CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */; };
-		CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041D81509B6E700F60C03 /* DrawViewController.m */; };
-		CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041D91509B6E700F60C03 /* DrawViewController.xib */; };
 		CA1041EC1509B99A00F60C03 /* Paint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041EA1509B99A00F60C03 /* Paint.m */; };
 		CA1041F81509BC9700F60C03 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1041F61509BC9700F60C03 /* HomeController.m */; };
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
@@ -450,6 +450,21 @@
 		CA1FB7E9153086ED00237D3F /* top_menu_left_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7E7153086ED00237D3F /* top_menu_left_bg.png */; };
 		CA1FB82B153193D200237D3F /* mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB82A153193D200237D3F /* mumber@2x.png */; };
 		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
+		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
+		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
+		CA22DCD4157CAFFD009C95CB /* ResultController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */; };
+		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
+		CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */; };
+		CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE2157CB00A009C95CB /* OnlineDrawViewController~ipad.xib */; };
+		CA22DCF0157CB00A009C95CB /* OnlineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE4157CB00A009C95CB /* OnlineGuessDrawController.m */; };
+		CA22DCF1157CB00A009C95CB /* OnlineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE5157CB00A009C95CB /* OnlineGuessDrawController.xib */; };
+		CA22DCF2157CB00A009C95CB /* OnlineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE6157CB00A009C95CB /* OnlineGuessDrawController~ipad.xib */; };
+		CA22DCFB157CB3E9009C95CB /* OfflineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF4157CB3E9009C95CB /* OfflineDrawViewController.m */; };
+		CA22DCFC157CB3E9009C95CB /* OfflineDrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF5157CB3E9009C95CB /* OfflineDrawViewController.xib */; };
+		CA22DCFD157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */; };
+		CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
+		CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */; };
+		CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
 		CA28C0D215312FF300E531AE /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CC15312FF300E531AE /* bottom@2x.png */; };
 		CA28C0D315312FF300E531AE /* flower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CD15312FF300E531AE /* flower@2x.png */; };
 		CA28C0D415312FF300E531AE /* room_mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CE15312FF300E531AE /* room_mumber@2x.png */; };
@@ -484,8 +499,6 @@
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
-		CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32CD0C15197B6900BF86BA /* ResultController.m */; };
-		CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA32CD0D15197B6900BF86BA /* ResultController.xib */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA38D21615774F0D00DD2ECA /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38D21515774F0D00DD2ECA /* PickView.m */; };
 		CA38D21915774F3C00DD2ECA /* PickPenView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38D21815774F3C00DD2ECA /* PickPenView.m */; };
@@ -606,8 +619,6 @@
 		CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A8F1579C6430012F6B8 /* YoumiWallCell~ipad.xib */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
-		CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */; };
-		CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */; };
 		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
 		CAC108A61575E3AE00703613 /* pen1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A11575E3AE00703613 /* pen1@2x.png */; };
 		CAC108A71575E3AE00703613 /* pen2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC108A21575E3AE00703613 /* pen2@2x.png */; };
@@ -731,6 +742,15 @@
 		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
+		A3598487157C7B2700745BAB /* CustomWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWordManager.h; sourceTree = "<group>"; };
+		A3598488157C7B2700745BAB /* CustomWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWordManager.m; sourceTree = "<group>"; };
+		A359848A157C977100745BAB /* CustomWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWord.h; sourceTree = "<group>"; };
+		A359848B157C977100745BAB /* CustomWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWord.m; sourceTree = "<group>"; };
+		A35984AE157CCAB900745BAB /* MyWordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWordsController.h; sourceTree = "<group>"; };
+		A35984AF157CCAB900745BAB /* MyWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWordsController.m; sourceTree = "<group>"; };
+		A35984B0157CCAB900745BAB /* MyWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWordsController.xib; sourceTree = "<group>"; };
+		A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyWordsController~ipad.xib"; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -756,7 +776,6 @@
 		A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E51553701B008B5827 /* RegisterUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RegisterUserController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~ipad.xib"; sourceTree = "<group>"; };
-		A3FAE0E91553706D008B5827 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0EF1553712E008B5827 /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
 		A3FAE0F01553712E008B5827 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -925,8 +944,6 @@
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
-		CA03781D1553692200CF41E3 /* DrawViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawViewController~ipad.xib"; sourceTree = "<group>"; };
-		CA03781E1553692200CF41E3 /* ShowDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
 		CA03787F155378A600CF41E3 /* left_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_button@2x.png"; sourceTree = "<group>"; };
@@ -950,8 +967,8 @@
 		CA051DCB1546808500D0A00A /* ColorShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopView.h; sourceTree = "<group>"; };
 		CA051DCC1546808500D0A00A /* ColorShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopView.m; sourceTree = "<group>"; };
 		CA051DCD1546808500D0A00A /* ColorShopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopView.xib; sourceTree = "<group>"; };
-		CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawViewController.h; sourceTree = "<group>"; };
-		CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawViewController.m; sourceTree = "<group>"; };
+		CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperGameViewController.h; sourceTree = "<group>"; };
+		CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperGameViewController.m; sourceTree = "<group>"; };
 		CA0CB74C155CB037009C8EE6 /* FriendRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRoomController.h; sourceTree = "<group>"; };
 		CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRoomController.m; sourceTree = "<group>"; };
 		CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRoomController.xib; sourceTree = "<group>"; };
@@ -1309,9 +1326,6 @@
 		CA1040CE1509A9FD00F60C03 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
 		CA1040CF1509A9FD00F60C03 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		CA1040D01509A9FD00F60C03 /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapkuLibrary.bundle; sourceTree = "<group>"; };
-		CA1041D71509B6E700F60C03 /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
-		CA1041D81509B6E700F60C03 /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
-		CA1041D91509B6E700F60C03 /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		CA1041E91509B99A00F60C03 /* Paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paint.h; sourceTree = "<group>"; };
 		CA1041EA1509B99A00F60C03 /* Paint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paint.m; sourceTree = "<group>"; };
 		CA1041F51509BC9700F60C03 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -1401,6 +1415,26 @@
 		CA1FB7E7153086ED00237D3F /* top_menu_left_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_menu_left_bg.png; sourceTree = "<group>"; };
 		CA1FB82A153193D200237D3F /* mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mumber@2x.png"; sourceTree = "<group>"; };
 		CA202C9B1521C57200B78539 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
+		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
+		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
+		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
+		CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~iPad.xib"; sourceTree = "<group>"; };
+		CA22DCDF157CB00A009C95CB /* OnlineDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineDrawViewController.h; sourceTree = "<group>"; };
+		CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineDrawViewController.m; sourceTree = "<group>"; };
+		CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlineDrawViewController.xib; sourceTree = "<group>"; };
+		CA22DCE2157CB00A009C95CB /* OnlineDrawViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OnlineDrawViewController~ipad.xib"; sourceTree = "<group>"; };
+		CA22DCE3157CB00A009C95CB /* OnlineGuessDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineGuessDrawController.h; sourceTree = "<group>"; };
+		CA22DCE4157CB00A009C95CB /* OnlineGuessDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineGuessDrawController.m; sourceTree = "<group>"; };
+		CA22DCE5157CB00A009C95CB /* OnlineGuessDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlineGuessDrawController.xib; sourceTree = "<group>"; };
+		CA22DCE6157CB00A009C95CB /* OnlineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OnlineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
+		CA22DCF3157CB3E9009C95CB /* OfflineDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDrawViewController.h; sourceTree = "<group>"; };
+		CA22DCF4157CB3E9009C95CB /* OfflineDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDrawViewController.m; sourceTree = "<group>"; };
+		CA22DCF5157CB3E9009C95CB /* OfflineDrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineDrawViewController.xib; sourceTree = "<group>"; };
+		CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineDrawViewController~ipad.xib"; sourceTree = "<group>"; };
+		CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineGuessDrawController.m; sourceTree = "<group>"; };
+		CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineGuessDrawController.xib; sourceTree = "<group>"; };
+		CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineGuessDrawController.h; sourceTree = "<group>"; };
+		CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA28C0CC15312FF300E531AE /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
 		CA28C0CD15312FF300E531AE /* flower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower@2x.png"; sourceTree = "<group>"; };
 		CA28C0CE15312FF300E531AE /* room_mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_mumber@2x.png"; sourceTree = "<group>"; };
@@ -1455,9 +1489,6 @@
 		CA3221A6151F65AD0039A384 /* UserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingController.h; sourceTree = "<group>"; };
 		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
 		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
-		CA32CD0B15197B6900BF86BA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
-		CA32CD0C15197B6900BF86BA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
-		CA32CD0D15197B6900BF86BA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA355F01152C296900A14823 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
@@ -1652,9 +1683,6 @@
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
-		CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawController.h; sourceTree = "<group>"; };
-		CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDrawController.m; sourceTree = "<group>"; };
-		CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDrawController.xib; sourceTree = "<group>"; };
 		CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
 		CAC108A11575E3AE00703613 /* pen1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen1@2x.png"; sourceTree = "<group>"; };
 		CAC108A21575E3AE00703613 /* pen2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen2@2x.png"; sourceTree = "<group>"; };
@@ -3146,20 +3174,10 @@
 		CA1041D61509B6E700F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
-				CA06BE4115522F2F00B94FB1 /* SuperDrawViewController.h */,
-				CA06BE4215522F2F00B94FB1 /* SuperDrawViewController.m */,
-				CA1041D71509B6E700F60C03 /* DrawViewController.h */,
-				CA1041D81509B6E700F60C03 /* DrawViewController.m */,
-				CA1041D91509B6E700F60C03 /* DrawViewController.xib */,
-				CA03781D1553692200CF41E3 /* DrawViewController~ipad.xib */,
-				CAB3DBDF1516EFD600E7DBC4 /* ShowDrawController.h */,
-				CAB3DBE01516EFD600E7DBC4 /* ShowDrawController.m */,
-				CAB3DBE11516EFD600E7DBC4 /* ShowDrawController.xib */,
-				CA03781E1553692200CF41E3 /* ShowDrawController~ipad.xib */,
-				CA32CD0B15197B6900BF86BA /* ResultController.h */,
-				CA32CD0C15197B6900BF86BA /* ResultController.m */,
-				CA32CD0D15197B6900BF86BA /* ResultController.xib */,
-				A3FAE0E91553706D008B5827 /* ResultController~ipad.xib */,
+				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
+				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
+				CA22DCD5157CB009009C95CB /* Offline */,
+				CA22DCDE157CB00A009C95CB /* Online */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -3402,6 +3420,47 @@
 			path = MyPaint;
 			sourceTree = "<group>";
 		};
+		CA22DCCD157CAFFC009C95CB /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				CA22DCCE157CAFFD009C95CB /* ResultController.h */,
+				CA22DCCF157CAFFD009C95CB /* ResultController.m */,
+				CA22DCD0157CAFFD009C95CB /* ResultController.xib */,
+				CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		CA22DCD5157CB009009C95CB /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */,
+				CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */,
+				CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */,
+				CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */,
+				CA22DCF3157CB3E9009C95CB /* OfflineDrawViewController.h */,
+				CA22DCF4157CB3E9009C95CB /* OfflineDrawViewController.m */,
+				CA22DCF5157CB3E9009C95CB /* OfflineDrawViewController.xib */,
+				CA22DCF6157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
+		CA22DCDE157CB00A009C95CB /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				CA22DCDF157CB00A009C95CB /* OnlineDrawViewController.h */,
+				CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */,
+				CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */,
+				CA22DCE2157CB00A009C95CB /* OnlineDrawViewController~ipad.xib */,
+				CA22DCE3157CB00A009C95CB /* OnlineGuessDrawController.h */,
+				CA22DCE4157CB00A009C95CB /* OnlineGuessDrawController.m */,
+				CA22DCE5157CB00A009C95CB /* OnlineGuessDrawController.xib */,
+				CA22DCE6157CB00A009C95CB /* OnlineGuessDrawController~ipad.xib */,
+			);
+			path = Online;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -3421,6 +3480,10 @@
 				CA3221A7151F65AD0039A384 /* UserSettingController.m */,
 				CA3221A8151F65AE0039A384 /* UserSettingController.xib */,
 				A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */,
+				A35984AE157CCAB900745BAB /* MyWordsController.h */,
+				A35984AF157CCAB900745BAB /* MyWordsController.m */,
+				A35984B0157CCAB900745BAB /* MyWordsController.xib */,
+				A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -4056,6 +4119,10 @@
 				CAA0E6A515147DFF00FD8C3E /* Word.m */,
 				CAA0E6A715147F6E00FD8C3E /* WordManager.h */,
 				CAA0E6A815147F6E00FD8C3E /* WordManager.m */,
+				A359848A157C977100745BAB /* CustomWord.h */,
+				A359848B157C977100745BAB /* CustomWord.m */,
+				A3598487157C7B2700745BAB /* CustomWordManager.h */,
+				A3598488157C7B2700745BAB /* CustomWordManager.m */,
 			);
 			path = Word;
 			sourceTree = "<group>";
@@ -4140,6 +4207,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A454CB6B1558F57E00896761 /* Chat */,
 				CA9DB92B154E75190031DBBD /* FriendManage */,
@@ -4333,7 +4401,6 @@
 				CA10416F1509A9FF00F60C03 /* README.txt in Resources */,
 				CA10417A1509A9FF00F60C03 /* Source.zip in Resources */,
 				CA1041AD1509A9FF00F60C03 /* TapkuLibrary.bundle in Resources */,
-				CA1041E61509B6E700F60C03 /* DrawViewController.xib in Resources */,
 				CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */,
 				CA1041FE1509BF4700F60C03 /* RegisterUserController.xib in Resources */,
 				CA1042031509C06E00F60C03 /* RoomController.xib in Resources */,
@@ -4342,8 +4409,6 @@
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
-				CAB3DBE31516EFD600E7DBC4 /* ShowDrawController.xib in Resources */,
-				CA32CD0F15197B6900BF86BA /* ResultController.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
 				CA32216D151EF49A0039A384 /* SNSWebViewController.xib in Resources */,
 				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
@@ -4487,8 +4552,6 @@
 				A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */,
 				A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */,
 				CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */,
-				CA03781F1553692200CF41E3 /* DrawViewController~ipad.xib in Resources */,
-				CA0378201553692200CF41E3 /* ShowDrawController~ipad.xib in Resources */,
 				CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */,
 				CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */,
 				A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */,
@@ -4498,7 +4561,6 @@
 				A3FAE0E415536FE3008B5827 /* PassWordDialog~ipad.xib in Resources */,
 				A3FAE0E61553701B008B5827 /* RegisterUserController~ipad.xib in Resources */,
 				A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */,
-				A3FAE0EA1553706D008B5827 /* ResultController~ipad.xib in Resources */,
 				A3FAE0F11553712E008B5827 /* 50.png in Resources */,
 				A3FAE0F21553712E008B5827 /* 72.png in Resources */,
 				C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */,
@@ -4599,6 +4661,18 @@
 				CAAE4A881579131F0012F6B8 /* YoumiWallCell.xib in Resources */,
 				CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */,
 				CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */,
+				CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */,
+				CA22DCD4157CAFFD009C95CB /* ResultController~iPad.xib in Resources */,
+				CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */,
+				CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */,
+				CA22DCF1157CB00A009C95CB /* OnlineGuessDrawController.xib in Resources */,
+				CA22DCF2157CB00A009C95CB /* OnlineGuessDrawController~ipad.xib in Resources */,
+				CA22DCFC157CB3E9009C95CB /* OfflineDrawViewController.xib in Resources */,
+				CA22DCFD157CB3E9009C95CB /* OfflineDrawViewController~ipad.xib in Resources */,
+				CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */,
+				CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */,
+				A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */,
+				A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4784,7 +4858,6 @@
 				CA1041AA1509A9FF00F60C03 /* UIScrollview+TKCategory.m in Sources */,
 				CA1041AB1509A9FF00F60C03 /* UIToolbar+TKCategory.m in Sources */,
 				CA1041AC1509A9FF00F60C03 /* UIView+TKCategory.m in Sources */,
-				CA1041E51509B6E700F60C03 /* DrawViewController.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
 				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
 				CA1041FD1509BF4700F60C03 /* RegisterUserController.m in Sources */,
@@ -4809,8 +4882,6 @@
 				CA3B56E61514CB9400A93137 /* GameUserComment.m in Sources */,
 				CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */,
 				CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */,
-				CAB3DBE21516EFD600E7DBC4 /* ShowDrawController.m in Sources */,
-				CA32CD0E15197B6900BF86BA /* ResultController.m in Sources */,
 				CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */,
 				CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */,
 				CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */,
@@ -4923,7 +4994,7 @@
 				CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */,
 				CAC13242154C23E5000A8C8F /* MobClickUtils.m in Sources */,
 				CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */,
-				CA06BE4315522F3000B94FB1 /* SuperDrawViewController.m in Sources */,
+				CA06BE4315522F3000B94FB1 /* SuperGameViewController.m in Sources */,
 				C28207E31552D974006FBB0F /* AudioManager.m in Sources */,
 				CAA362421558C3090081D3EB /* Friend.m in Sources */,
 				CAA362451558C3400081D3EB /* FriendManager.m in Sources */,
@@ -4962,6 +5033,14 @@
 				CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */,
 				CAAE4A871579131F0012F6B8 /* YoumiWallCell.m in Sources */,
 				CAAE4A8C1579B82D0012F6B8 /* YoumiWallService.m in Sources */,
+				A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */,
+				A359848C157C977100745BAB /* CustomWord.m in Sources */,
+				CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */,
+				CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */,
+				CA22DCF0157CB00A009C95CB /* OnlineGuessDrawController.m in Sources */,
+				CA22DCFB157CB3E9009C95CB /* OfflineDrawViewController.m in Sources */,
+				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
+				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5286,13 +5365,14 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */,
 				CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */,
 				CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */,
 				CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */,
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */;
+			currentVersion = A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
