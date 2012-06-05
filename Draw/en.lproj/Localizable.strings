@@ -482,6 +482,8 @@
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
 
-
 "kDrawing" = "Drawing";
 "kGuessing" = "Guessing";
+
+"kUpdateWord" = "Update Word";
+"kInputWordEmpty" = "word can not be empty";

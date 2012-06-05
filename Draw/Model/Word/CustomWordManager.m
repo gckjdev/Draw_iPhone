@@ -64,4 +64,29 @@ static CustomWordManager *_customWordManager = nil;
     return NO;
 }
 
+- (BOOL)deleteWord:(NSString *)word
+{
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    NSArray *array = [self findAllWords];
+    for (CustomWord *customWord in array) {
+        if ([customWord.word isEqualToString:word]) {
+            [dataManager del:customWord];
+            break;
+        }
+    }
+    return [dataManager save];
+}
+
+- (BOOL)update:(NSString *)oldWord newWord:(NSString *)newWord
+{
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    NSArray *array = [self findAllWords];
+    for (CustomWord *customWord in array) {
+        if ([customWord.word isEqualToString:oldWord]) {
+            [customWord setWord:newWord];
+        }
+    }
+    return [dataManager save];
+}
+
 @end
