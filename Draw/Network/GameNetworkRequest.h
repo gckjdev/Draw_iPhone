@@ -195,4 +195,15 @@
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
++ (CommonNetworkOutput*)createOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                             nick:(NSString*)nick
+                            avatar:(NSString*)avatar
+                             gender:(NSString*)gender
+                              word:(NSString *)word
+                              level:(NSInteger)level
+                              lang:(NSInteger)lang
+                              data:(NSData*)data;
+
 @end

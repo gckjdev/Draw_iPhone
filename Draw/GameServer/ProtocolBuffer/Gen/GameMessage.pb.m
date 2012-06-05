@@ -37,6 +37,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* roomName;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
+@property (retain) NSString* userLevel;
 @end
 
 @implementation JoinGameRequest
@@ -144,6 +145,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasLocation_ = !!value;
 }
 @synthesize location;
+- (BOOL) hasUserLevel {
+  return !!hasUserLevel_;
+}
+- (void) setHasUserLevel:(BOOL) value {
+  hasUserLevel_ = !!value;
+}
+@synthesize userLevel;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -154,6 +162,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.roomName = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
+  self.userLevel = nil;
   [super dealloc];
 }
 - (id) init {
@@ -171,6 +180,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.roomId = @"";
     self.roomName = @"";
     self.location = @"";
+    self.userLevel = @"";
   }
   return self;
 }
@@ -263,6 +273,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasLocation) {
     [output writeString:15 value:self.location];
   }
+  if (self.hasUserLevel) {
+    [output writeString:16 value:self.userLevel];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -321,6 +334,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasLocation) {
     size += computeStringSize(15, self.location);
+  }
+  if (self.hasUserLevel) {
+    size += computeStringSize(16, self.userLevel);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -448,6 +464,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasLocation) {
     [self setLocation:other.location];
   }
+  if (other.hasUserLevel) {
+    [self setUserLevel:other.userLevel];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -529,6 +548,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 122: {
         [self setLocation:[input readString]];
+        break;
+      }
+      case 130: {
+        [self setUserLevel:[input readString]];
         break;
       }
     }
@@ -800,6 +823,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearLocation {
   result.hasLocation = NO;
   result.location = @"";
+  return self;
+}
+- (BOOL) hasUserLevel {
+  return result.hasUserLevel;
+}
+- (NSString*) userLevel {
+  return result.userLevel;
+}
+- (JoinGameRequest_Builder*) setUserLevel:(NSString*) value {
+  result.hasUserLevel = YES;
+  result.userLevel = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearUserLevel {
+  result.hasUserLevel = NO;
+  result.userLevel = @"";
   return self;
 }
 @end
@@ -2495,6 +2534,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property BOOL userGender;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
+@property (retain) NSString* userLevel;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -2591,6 +2631,13 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   hasLocation_ = !!value;
 }
 @synthesize location;
+- (BOOL) hasUserLevel {
+  return !!hasUserLevel_;
+}
+- (void) setHasUserLevel:(BOOL) value {
+  hasUserLevel_ = !!value;
+}
+@synthesize userLevel;
 @synthesize mutablePointsList;
 - (BOOL) hasWidth {
   return !!hasWidth_;
@@ -2706,6 +2753,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.userAvatar = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
+  self.userLevel = nil;
   self.mutablePointsList = nil;
   self.word = nil;
   self.guessWord = nil;
@@ -2726,6 +2774,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.userAvatar = @"";
     self.userGender = NO;
     self.location = @"";
+    self.userLevel = @"";
     self.width = 0;
     self.color = 0;
     self.penType = 0;
@@ -2817,6 +2866,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasLocation) {
     [output writeString:13 value:self.location];
+  }
+  if (self.hasUserLevel) {
+    [output writeString:14 value:self.userLevel];
   }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
@@ -2911,6 +2963,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasLocation) {
     size += computeStringSize(13, self.location);
+  }
+  if (self.hasUserLevel) {
+    size += computeStringSize(14, self.userLevel);
   }
   {
     int32_t dataSize = 0;
@@ -3085,6 +3140,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasLocation) {
     [self setLocation:other.location];
   }
+  if (other.hasUserLevel) {
+    [self setUserLevel:other.userLevel];
+  }
   if (other.mutablePointsList.count > 0) {
     if (result.mutablePointsList == nil) {
       result.mutablePointsList = [NSMutableArray array];
@@ -3204,6 +3262,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 106: {
         [self setLocation:[input readString]];
+        break;
+      }
+      case 114: {
+        [self setUserLevel:[input readString]];
         break;
       }
       case 170: {
@@ -3465,6 +3527,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotification_Builder*) clearLocation {
   result.hasLocation = NO;
   result.location = @"";
+  return self;
+}
+- (BOOL) hasUserLevel {
+  return result.hasUserLevel;
+}
+- (NSString*) userLevel {
+  return result.userLevel;
+}
+- (GeneralNotification_Builder*) setUserLevel:(NSString*) value {
+  result.hasUserLevel = YES;
+  result.userLevel = value;
+  return self;
+}
+- (GeneralNotification_Builder*) clearUserLevel {
+  result.hasUserLevel = NO;
+  result.userLevel = @"";
   return self;
 }
 - (NSArray*) pointsList {

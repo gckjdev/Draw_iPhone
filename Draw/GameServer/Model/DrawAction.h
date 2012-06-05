@@ -35,4 +35,10 @@ typedef enum {
 + (NSMutableArray *)scaleActionList:(NSArray *)list 
                        xScale:(CGFloat)xScale 
                       yScale:(CGFloat)yScale;
+
+- (NSArray *)intPointListWithXScale:(CGFloat)xScale 
+                             yScale:(CGFloat)yScale;
+
+
+
 @end

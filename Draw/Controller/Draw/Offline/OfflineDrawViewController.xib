@@ -301,7 +301,7 @@
 						<string key="NSFrame">{{7, 6}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="21860790"/>
+						<reference key="NSNextKeyView" ref="587339147"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -319,7 +319,7 @@
 						<reference key="IBUIFontDescription" ref="300407582"/>
 						<reference key="IBUIFont" ref="812508533"/>
 					</object>
-					<object class="IBUILabel" id="21860790">
+					<object class="IBUILabel" id="587339147">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{70, 0}, {180, 40}}</string>
@@ -420,9 +420,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="21860790"/>
+						<reference key="destination" ref="587339147"/>
 					</object>
 					<int key="connectionID">132</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">submitButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="362739228"/>
+					</object>
+					<int key="connectionID">134</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -450,6 +458,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">100</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickSubmitButton:</string>
+						<reference key="source" ref="362739228"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">135</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -510,7 +527,7 @@
 							<reference ref="65007175"/>
 							<reference ref="934589813"/>
 							<reference ref="76228336"/>
-							<reference ref="21860790"/>
+							<reference ref="587339147"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -581,7 +598,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">131</int>
-						<reference key="object" ref="21860790"/>
+						<reference key="object" ref="587339147"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</object>
@@ -649,7 +666,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">132</int>
+			<int key="maxID">135</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -832,9 +849,11 @@
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
 							<string>clickRedraw:</string>
+							<string>clickSubmitButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -849,6 +868,7 @@
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
 							<string>clickRedraw:</string>
+							<string>clickSubmitButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -868,6 +888,10 @@
 								<string key="name">clickRedraw:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickSubmitButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -878,6 +902,7 @@
 							<string>colorButton</string>
 							<string>eraserButton</string>
 							<string>penButton</string>
+							<string>submitButton</string>
 							<string>titleLabel</string>
 							<string>wordButton</string>
 						</object>
@@ -887,6 +912,7 @@
 							<string>ColorView</string>
 							<string>UIButton</string>
 							<string>PenView</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
 						</object>
@@ -899,6 +925,7 @@
 							<string>colorButton</string>
 							<string>eraserButton</string>
 							<string>penButton</string>
+							<string>submitButton</string>
 							<string>titleLabel</string>
 							<string>wordButton</string>
 						</object>
@@ -919,6 +946,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">penButton</string>
 								<string key="candidateClassName">PenView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">submitButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">titleLabel</string>

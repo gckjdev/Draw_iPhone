@@ -105,6 +105,10 @@
 //for levelService
 #define METHOD_SYND_LEVEL_EXP   @"sle"
 
+//for Draw Online
+#define METHOD_CREATE_OPUS @"cop"
+#define METHOD_MATCH_OPUS  @"mop"
+#define METHOD_GUESS_OPUS  @"gop"
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -263,6 +267,8 @@
 
 #define PARA_KEYWORD @"kw"
 #define PARA_EXPIRE_DATE @"e_date"
+
+#define PARA_WORD @"word"
 // response parameters
 
 #define RET_MESSAGE @"msg"
