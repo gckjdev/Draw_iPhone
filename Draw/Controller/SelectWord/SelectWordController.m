@@ -21,7 +21,7 @@
 #import "AccountService.h"
 #import "ItemType.h"
 #import "DeviceDetection.h"
-
+#import "OfflineDrawViewController.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -29,6 +29,8 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
+@synthesize gameType = _gameType;
+@synthesize timeBg = _timeBg;
 
 #define PICK_WORD_TIME 10
 
@@ -52,7 +54,23 @@
 }
 
 
+- (id)initWithType:(GameType)gameType
+{
+    self = [super init];
+    if (self) {
+        self.gameType = gameType;
+    }
+    return self;
+}
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.gameType = OnlineDraw;
+    }
+    return self;
+}
 
 
 - (void)resetTimer
@@ -76,11 +94,13 @@
 {
     [self clearUnPopupMessages];
     [drawGameService unregisterObserver:self];
-
     if (!hasPushController) {
         hasPushController = YES;        
-        [OnlineDrawViewController startDraw:word fromController:self];
-
+        if (self.gameType == OnlineDraw) {
+            [OnlineDrawViewController startDraw:word fromController:self];            
+        }else{
+            [OfflineDrawViewController startDraw:word fromController:self];
+        }
     }
     [self resetTimer];
 }
@@ -102,6 +122,11 @@
 }
 
 
+- (BOOL)hasClock
+{
+    return  (self.gameType == OnlineDraw);
+}
+
 #pragma mark - View lifecycle
 
 #define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(605, 780) : CGPointMake(248, 344))
@@ -115,14 +140,20 @@
     [self.view addSubview:toolView];
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
-    retainCount = PICK_WORD_TIME;
-    [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [self localeViewText];
     
-    [self startTimer];
+    if ([self hasClock]) {
+        retainCount = PICK_WORD_TIME;
+        [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];    
+        [self startTimer];        
+    }else{
+        self.timeBg.hidden = YES;
+        self.clockLabel.hidden = YES;
+    }
+    
 }
 
 
@@ -146,6 +177,7 @@
     [self setClockLabel:nil];
     [self setChangeWordButton:nil];
     [self setTitleLabel:nil];
+    [self setTimeBg:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -158,11 +190,14 @@
     [_titleLabel release];
     [toolView release];
     [_wordArray release];
+    [_timeBg release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
     if (toolView.number > 0 ) {
-        [self startTimer];
+        if ([self hasClock]) {
+            [self startTimer];
+        }
         self.wordArray = [[WordManager defaultManager]randDrawWordList];
         [self.wordTableView reloadData];
         [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];

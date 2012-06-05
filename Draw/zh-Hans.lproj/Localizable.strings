@@ -491,3 +491,5 @@
 "kInputWord" = "输入词语";
 "kInputWordPlaceholder" = "请输入新词语";
 
+"kDrawing" = "画画中";
+"kGuessing" = "猜画中";

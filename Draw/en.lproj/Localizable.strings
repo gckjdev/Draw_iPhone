@@ -482,3 +482,5 @@
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
 
+"kDrawing" = "Drawing";
+"kGuessing" = "Guessing";

@@ -8,19 +8,13 @@
 
 #import "OfflineDrawViewController.h"
 #import "DrawView.h"
-#import "DrawGameService.h"
 #import "DrawColor.h"
-#import "GameMessage.pb.h"
 #import "Word.h"
-#import "GameSessionUser.h"
-#import "GameSession.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
-#import "ResultController.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
-#import "OnlineGuessDrawController.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
 #import "UIButtonExt.h"
@@ -31,16 +25,12 @@
 #import "AccountService.h"
 #import "PenView.h"
 #import "WordManager.h"
-#import "GameTurn.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
-#import "CommonMessageCenter.h"
 #import "PickColorView.h"
 #import "PickEraserView.h"
 #import "PickPenView.h"
 #import "ShoppingManager.h"
-#import "FriendRoomController.h"
-#import "ShareImageManager.h"
 
 @implementation OfflineDrawViewController
 
@@ -50,6 +40,7 @@
 @synthesize penButton;
 @synthesize colorButton;
 @synthesize word = _word;
+@synthesize titleLabel;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -59,7 +50,6 @@
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
-    [[DrawGameService defaultService] startDraw:word.text level:word.level language:language];
     [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
     
@@ -82,6 +72,7 @@
     //    autoReleasePool = nil;
     
     
+    [titleLabel release];
     [super dealloc];
 }
 
@@ -260,12 +251,17 @@ enum{
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
 }
 
+- (void)initTitleLabel
+{
+    [self.titleLabel setText:NSLS(@"kDrawing")];    
+}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initTitleLabel];
     [self initDrawView];
     [self initEraser];
     [self initPens];
@@ -284,6 +280,7 @@ enum{
     [self setCleanButton:nil];
     [self setPenButton:nil];
     [self setColorButton:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
@@ -356,9 +353,8 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
         [pickColorView setHidden:YES];        
-    }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
+    }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
@@ -377,8 +373,6 @@ enum{
 
 - (void)didDrawedPaint:(Paint *)paint
 {
-    
-    NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
     CGPoint lastPoint = ILLEGAL_POINT;
     int i = 0;
@@ -399,7 +393,6 @@ enum{
     if ([DeviceDetection isIPAD]) {
         width /= 2;
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];
 }
 
 - (void)didStartedTouch:(Paint *)paint
@@ -447,7 +440,9 @@ enum{
 }
 - (void)clickBackButton:(id)sender
 {
-    [HomeController returnRoom:self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = DIALOG_TAG_ESCAPE;
+    [dialog showInView:self.view];
 }
 
 @end

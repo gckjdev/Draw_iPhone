@@ -268,6 +268,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timeBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="729666686"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="915378294"/>
 						<reference key="destination" ref="372490531"/>
@@ -387,7 +395,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -416,6 +424,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="changeWordButton">UIButton</string>
 						<string key="clockLabel">UILabel</string>
+						<string key="timeBg">UIImageView</string>
 						<string key="titleLabel">UILabel</string>
 						<string key="wordTableView">UITableView</string>
 					</dictionary>
@@ -427,6 +436,10 @@
 						<object class="IBToOneOutletInfo" key="clockLabel">
 							<string key="name">clockLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timeBg">
+							<string key="name">timeBg</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleLabel">
 							<string key="name">titleLabel</string>
