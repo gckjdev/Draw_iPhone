@@ -160,7 +160,8 @@ enum {
     
     [self updateInfoFromUserManager];
     [self updateRowIndexs];
-    [self.expAndLevelLabel setText:[NSString stringWithFormat:@"level:%d,exp:%d", [LevelService defaultService].level, [LevelService defaultService].experience]];
+    LevelService* svc = [LevelService defaultService];
+    [self.expAndLevelLabel setText:[NSString stringWithFormat:NSLS(@"kLevelInfo"), svc.level, svc.experience, svc.expRequiredForNextLevel]];
 }
 
 - (void)viewDidUnload

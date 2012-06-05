@@ -27,6 +27,6 @@
 @dynamic lastModifiedDate;
 @dynamic deleteFlag;
 @dynamic location;
-
+@dynamic level;
 
 @end

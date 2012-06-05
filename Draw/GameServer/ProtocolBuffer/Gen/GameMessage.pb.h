@@ -59,6 +59,7 @@
   BOOL hasRoomId_:1;
   BOOL hasRoomName_:1;
   BOOL hasLocation_:1;
+  BOOL hasUserLevel_:1;
   BOOL gender_:1;
   BOOL isRobot_:1;
   int64_t sessionToBeChange;
@@ -72,6 +73,7 @@
   NSString* roomId;
   NSString* roomName;
   NSString* location;
+  NSString* userLevel;
   NSMutableArray* mutableExcludeSessionIdList;
   NSMutableArray* mutableSnsUsersList;
 }
@@ -88,6 +90,7 @@
 - (BOOL) hasRoomId;
 - (BOOL) hasRoomName;
 - (BOOL) hasLocation;
+- (BOOL) hasUserLevel;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -101,6 +104,7 @@
 @property (readonly, retain) NSString* roomId;
 @property (readonly, retain) NSString* roomName;
 @property (readonly, retain) NSString* location;
+@property (readonly, retain) NSString* userLevel;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 - (NSArray*) snsUsersList;
@@ -218,6 +222,11 @@
 - (NSString*) location;
 - (JoinGameRequest_Builder*) setLocation:(NSString*) value;
 - (JoinGameRequest_Builder*) clearLocation;
+
+- (BOOL) hasUserLevel;
+- (NSString*) userLevel;
+- (JoinGameRequest_Builder*) setUserLevel:(NSString*) value;
+- (JoinGameRequest_Builder*) clearUserLevel;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {
@@ -656,18 +665,19 @@
   BOOL hasPenType_:1;
   BOOL hasColor_:1;
   BOOL hasSessionStatus_:1;
-  BOOL hasLocation_:1;
-  BOOL hasUserAvatar_:1;
-  BOOL hasWord_:1;
-  BOOL hasNickName_:1;
-  BOOL hasQuitUserId_:1;
-  BOOL hasNewUserId_:1;
-  BOOL hasGuessWord_:1;
-  BOOL hasGuessUserId_:1;
-  BOOL hasNextPlayUserId_:1;
-  BOOL hasCurrentPlayUserId_:1;
-  BOOL hasChatContent_:1;
   BOOL hasSessionHost_:1;
+  BOOL hasChatContent_:1;
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasNextPlayUserId_:1;
+  BOOL hasGuessUserId_:1;
+  BOOL hasGuessWord_:1;
+  BOOL hasNewUserId_:1;
+  BOOL hasQuitUserId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasWord_:1;
+  BOOL hasUserAvatar_:1;
+  BOOL hasLocation_:1;
+  BOOL hasUserLevel_:1;
   BOOL guessCorrect_:1;
   BOOL userGender_:1;
   Float32 width;
@@ -680,18 +690,19 @@
   int32_t penType;
   int32_t color;
   int32_t sessionStatus;
-  NSString* location;
-  NSString* userAvatar;
-  NSString* word;
-  NSString* nickName;
-  NSString* quitUserId;
-  NSString* newUserId;
-  NSString* guessWord;
-  NSString* guessUserId;
-  NSString* nextPlayUserId;
-  NSString* currentPlayUserId;
-  NSString* chatContent;
   NSString* sessionHost;
+  NSString* chatContent;
+  NSString* currentPlayUserId;
+  NSString* nextPlayUserId;
+  NSString* guessUserId;
+  NSString* guessWord;
+  NSString* newUserId;
+  NSString* quitUserId;
+  NSString* nickName;
+  NSString* word;
+  NSString* userAvatar;
+  NSString* location;
+  NSString* userLevel;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
   NSMutableArray* mutableChatToUserIdList;
@@ -707,6 +718,7 @@
 - (BOOL) hasUserAvatar;
 - (BOOL) hasUserGender;
 - (BOOL) hasLocation;
+- (BOOL) hasUserLevel;
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
@@ -731,6 +743,7 @@
 @property (readonly, retain) NSString* userAvatar;
 - (BOOL) userGender;
 @property (readonly, retain) NSString* location;
+@property (readonly, retain) NSString* userLevel;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
@@ -842,6 +855,11 @@
 - (NSString*) location;
 - (GeneralNotification_Builder*) setLocation:(NSString*) value;
 - (GeneralNotification_Builder*) clearLocation;
+
+- (BOOL) hasUserLevel;
+- (NSString*) userLevel;
+- (GeneralNotification_Builder*) setUserLevel:(NSString*) value;
+- (GeneralNotification_Builder*) clearUserLevel;
 
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;

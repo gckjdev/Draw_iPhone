@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "CommonDialog.h"
 #import "SuperGameViewController.h"
+#import "LevelService.h"
 
 
 @class Word;
@@ -18,7 +19,7 @@
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
-@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate>
+@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;

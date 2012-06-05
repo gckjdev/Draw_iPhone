@@ -494,5 +494,10 @@
 "kInputWordEmpty" = "詞語不能為空";
 
 
+"kUpgradeMsg" = "恭喜！您剛剛升到第 %d級";
+"kDegradeMsg" = "你逃得太多啦，都降到第%d級了";
+"kLevelInfo" = "等級:%d,經驗值:%d/%d";
+
 "kDrawing" = "畫畫中";
 "kGuessing" = "猜畫中";
+

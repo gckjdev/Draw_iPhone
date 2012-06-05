@@ -23,6 +23,7 @@ message JoinGameRequest {
   optional string roomName = 13;                // 请求加入的好友房间名称
      repeated PBSNSUser snsUsers = 14;                     // 用户社交网络信息  
      optional      string location = 15;
+     optional      string userLevel = 16;
 }
 
 message JoinGameResponse {
@@ -92,7 +93,7 @@ message GeneralNotification{
   optional bool   userGender = 11;
   repeated PBSNSUser snsUsers = 12;                    // 用户社交网络信息    
   optional string location = 13;
-  
+  optional string userLevel = 14;
   
   // draw data
   repeated int32 points = 21 [packed=true];

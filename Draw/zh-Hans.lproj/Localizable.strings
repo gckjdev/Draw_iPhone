@@ -493,5 +493,11 @@
 "kUpdateWord" = "更新词语";
 "kInputWordEmpty" = "词语不能为空";
 
+
+"kUpgradeMsg" = "恭喜！您刚刚升到第 %d级";
+"kDegradeMsg" = "你逃得太多啦，都降到第%d级了";
+"kLevelInfo" = "等级:%d,经验值:%d/%d";
+
 "kDrawing" = "画画中";
 "kGuessing" = "猜画中";
+

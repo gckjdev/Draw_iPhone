@@ -88,11 +88,13 @@
 @interface PBGameUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasUserLevel_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasLocation_:1;
   BOOL gender_:1;
+  int32_t userLevel;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -104,11 +106,13 @@
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
 - (BOOL) hasLocation;
+- (BOOL) hasUserLevel;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
 @property (readonly, retain) NSString* location;
+@property (readonly) int32_t userLevel;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 
@@ -177,6 +181,11 @@
 - (NSString*) location;
 - (PBGameUser_Builder*) setLocation:(NSString*) value;
 - (PBGameUser_Builder*) clearLocation;
+
+- (BOOL) hasUserLevel;
+- (int32_t) userLevel;
+- (PBGameUser_Builder*) setUserLevel:(int32_t) value;
+- (PBGameUser_Builder*) clearUserLevel;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
