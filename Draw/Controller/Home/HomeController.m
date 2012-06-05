@@ -40,6 +40,7 @@
 
 #import "OfflineDrawViewController.h"
 #import "OfflineGuessDrawController.h"
+#import "SelectWordController.h"
 
 @interface HomeController()
 
@@ -447,7 +448,10 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-    [OfflineDrawViewController startDraw:nil fromController:self];
+//    [OfflineDrawViewController startDraw:nil fromController:self];
+    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 - (IBAction)clickGuessButton:(id)sender {

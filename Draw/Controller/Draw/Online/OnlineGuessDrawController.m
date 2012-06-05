@@ -651,6 +651,8 @@
         [drawGameService quitGame];
         [HomeController returnRoom:self];
         [self cleanData];
+        [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+        [[LevelService defaultService] syncExpAndLevel:UPDATE];
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -812,6 +814,12 @@
 
 - (IBAction)clickGroupChatButton:(id)sender {
     [super showGroupChatView];
+}
+
+#pragma mark - levelServiceDelegate
+- (void)levelDown:(int)level
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
 }
 
 @end

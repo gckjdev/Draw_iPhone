@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
 #import "PPViewController.h"
+
+
+typedef enum{
+    OnlineDraw = 0,
+    OfflineDraw = 1,
+}GameType;
+
 @class ToolView;
 @interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate>
 {
@@ -22,10 +29,14 @@
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
 @property (retain, nonatomic) NSArray *wordArray;
-- (IBAction)clickChangeWordButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
 @property (retain, nonatomic) IBOutlet UIButton *changeWordButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *myWordsButton;
+@property (assign, nonatomic) GameType gameType;
+@property (retain, nonatomic) IBOutlet UIImageView *timeBg;
+- (IBAction)clickChangeWordButton:(id)sender;
+
+
+- (id)initWithType:(GameType)gameType;
 
 @end
