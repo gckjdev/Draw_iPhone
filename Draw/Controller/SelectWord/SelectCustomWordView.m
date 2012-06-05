@@ -10,6 +10,7 @@
 #import "AnimationManager.h"
 #import "CustomWordManager.h"
 #import "CustomWord.h"
+#import "ShareImageManager.h"
 
 @interface SelectCustomWordView ()
 @property (retain, nonatomic) NSArray *dataList;
@@ -30,7 +31,7 @@
     return self;
 }
 
-+ (SelectCustomWordView *)createView
++ (SelectCustomWordView *)createView:(id<SelectCustomWordViewDelegate>)aDelegate;
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SelectCustomWordView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -38,8 +39,13 @@
         return nil;
     }
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
+    view.delegate = aDelegate;
     
     view.dataList = [[CustomWordManager defaultManager] findAllWords];
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [view.closeButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [view.closeButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     
     return view;
 }
@@ -74,7 +80,7 @@
     [self startRunOutAnimation];
 }
 
-
+#pragma mark -  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [dataList count];
@@ -95,9 +101,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self startRunOutAnimation];
     CustomWord *customWord = [dataList objectAtIndex:indexPath.row];
     NSString *word = customWord.word;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord::)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
         [self.delegate didSelecCustomWord:word];
     }
 }

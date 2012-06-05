@@ -22,6 +22,7 @@
 #import "ItemType.h"
 #import "DeviceDetection.h"
 #import "OfflineDrawViewController.h"
+#import "CustomWordManager.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -31,6 +32,7 @@
 @synthesize wordArray = _wordArray;
 @synthesize gameType = _gameType;
 @synthesize timeBg = _timeBg;
+@synthesize myWordsButton = _myWordsButton;
 
 #define PICK_WORD_TIME 10
 
@@ -119,6 +121,7 @@
 {
     [self.titleLabel setText:NSLS(@"kPickWordTitle")];
     [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
+    [self.myWordsButton setTitle:NSLS(@"kMyWords") forState:UIControlStateNormal];
 }
 
 
@@ -129,7 +132,7 @@
 
 #pragma mark - View lifecycle
 
-#define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(605, 780) : CGPointMake(248, 344))
+#define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 780) : CGPointMake(272, 344))
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -143,6 +146,8 @@
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [self.myWordsButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    
     [self localeViewText];
     
     if ([self hasClock]) {
@@ -178,6 +183,7 @@
     [self setChangeWordButton:nil];
     [self setTitleLabel:nil];
     [self setTimeBg:nil];
+    [self setMyWordsButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -191,6 +197,7 @@
     [toolView release];
     [_wordArray release];
     [_timeBg release];
+    [_myWordsButton release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
@@ -207,6 +214,20 @@
     }    
 }
 
+- (IBAction)clickMyWordsButton:(id)sender {
+    if ([[[CustomWordManager defaultManager] findAllWords] count] == 0) {
+        [self popupUnhappyMessage:NSLS(@"kNoCustomWords") title:nil];
+    }else {
+        SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
+        [customWordView showInView:self.view];
+    }
+}
+
+- (void)didSelecCustomWord:(NSString *)aWord
+{
+    Word *word = [Word wordWithText:aWord level:WordLeveLMedium];
+    [self startGameWithWord:word];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -230,7 +251,6 @@
 {
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
     [self startGameWithWord:word];
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

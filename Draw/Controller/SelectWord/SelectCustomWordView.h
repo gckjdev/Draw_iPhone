@@ -19,7 +19,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 @property (assign, nonatomic) id<SelectCustomWordViewDelegate> delegate;
 
-+ (SelectCustomWordView *)createView;
++ (SelectCustomWordView *)createView:(id<SelectCustomWordViewDelegate>)aDelegate;
 
 - (void)showInView:(UIView *)superview;
 

@@ -492,7 +492,8 @@
 "kInputWordPlaceholder" = "请输入新词语";
 "kUpdateWord" = "更新词语";
 "kInputWordEmpty" = "词语不能为空";
-
+"kMyWords" = "我的词库";
+"kNoCustomWords" = "你还没有定义词语，可以在设置里面定义自己的词语";
 
 "kUpgradeMsg" = "恭喜！您刚刚升到第 %d级";
 "kDegradeMsg" = "你逃得太多啦，都降到第%d级了";

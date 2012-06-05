@@ -481,7 +481,8 @@
 "kAddCustomWord" = "Add Word";
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
-
+"kMyWords" = "My Words";
+"kNoCustomWords" = "You have Not defined the words, define your words in setting";
 
 "kUpgradeMsg" = "Congratulations!You upgraded to level %d";
 "kDegradeMsg" = "You ran away too much times, now degrade to level %d";

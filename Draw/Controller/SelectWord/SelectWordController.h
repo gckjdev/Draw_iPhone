@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
 #import "PPViewController.h"
-
+#import "SelectCustomWordView.h"
 
 typedef enum{
     OnlineDraw = 0,
@@ -17,7 +17,7 @@ typedef enum{
 }GameType;
 
 @class ToolView;
-@interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate>
+@interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate, SelectCustomWordViewDelegate>
 {
     NSArray *_wordArray;
     NSInteger  retainCount;
@@ -34,6 +34,9 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) GameType gameType;
 @property (retain, nonatomic) IBOutlet UIImageView *timeBg;
+@property (retain, nonatomic) IBOutlet UIButton *myWordsButton;
+
+
 - (IBAction)clickChangeWordButton:(id)sender;
 
 
