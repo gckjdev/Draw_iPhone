@@ -146,6 +146,7 @@ enum {
     [super viewDidLoad];
 
     userManager = [UserManager defaultManager];
+    isSoundOn = [AudioManager defaultManager].isSoundOn;
 
 
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -327,7 +328,7 @@ enum {
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
             [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-            isSoundOn = [AudioManager defaultManager].isSoundOn;
+            
             [btn setSelected:!isSoundOn];
             cell.accessoryType = UITableViewCellAccessoryNone;
             [cell.detailTextLabel setText:nil];
