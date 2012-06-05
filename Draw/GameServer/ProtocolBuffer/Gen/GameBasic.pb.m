@@ -290,6 +290,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property BOOL gender;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
+@property int32_t userLevel;
 @end
 
 @implementation PBGameUser
@@ -335,6 +336,13 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasLocation_ = !!value;
 }
 @synthesize location;
+- (BOOL) hasUserLevel {
+  return !!hasUserLevel_;
+}
+- (void) setHasUserLevel:(BOOL) value {
+  hasUserLevel_ = !!value;
+}
+@synthesize userLevel;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -350,6 +358,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.avatar = @"";
     self.gender = NO;
     self.location = @"";
+    self.userLevel = 0;
   }
   return self;
 }
@@ -405,6 +414,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasLocation) {
     [output writeString:6 value:self.location];
   }
+  if (self.hasUserLevel) {
+    [output writeInt32:7 value:self.userLevel];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -431,6 +443,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasLocation) {
     size += computeStringSize(6, self.location);
+  }
+  if (self.hasUserLevel) {
+    size += computeInt32Size(7, self.userLevel);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -528,6 +543,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasLocation) {
     [self setLocation:other.location];
   }
+  if (other.hasUserLevel) {
+    [self setUserLevel:other.userLevel];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -573,6 +591,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 50: {
         [self setLocation:[input readString]];
+        break;
+      }
+      case 56: {
+        [self setUserLevel:[input readInt32]];
         break;
       }
     }
@@ -685,6 +707,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearLocation {
   result.hasLocation = NO;
   result.location = @"";
+  return self;
+}
+- (BOOL) hasUserLevel {
+  return result.hasUserLevel;
+}
+- (int32_t) userLevel {
+  return result.userLevel;
+}
+- (PBGameUser_Builder*) setUserLevel:(int32_t) value {
+  result.hasUserLevel = YES;
+  result.userLevel = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearUserLevel {
+  result.hasUserLevel = NO;
+  result.userLevel = 0;
   return self;
 }
 @end
