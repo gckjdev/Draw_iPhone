@@ -17,6 +17,7 @@
         <attribute name="friendUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="onlineStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -89,12 +90,12 @@
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
     <elements>
-        <element name="Friend" positionX="160" positionY="192" width="128" height="285"/>
+        <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>
