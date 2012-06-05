@@ -490,4 +490,6 @@
 "kAddCustomWord" = "添加词语";
 "kInputWord" = "输入词语";
 "kInputWordPlaceholder" = "请输入新词语";
+"kUpdateWord" = "更新词语";
+"kInputWordEmpty" = "词语不能为空";
 

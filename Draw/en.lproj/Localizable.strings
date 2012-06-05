@@ -481,4 +481,5 @@
 "kAddCustomWord" = "Add Word";
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
-
+"kUpdateWord" = "Update Word";
+"kInputWordEmpty" = "word can not be empty";
