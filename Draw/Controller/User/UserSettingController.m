@@ -249,6 +249,7 @@ enum {
         [slider release];
         
     }
+    
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     UIView* btn = [cell viewWithTag:SWITCHER_TAG];
@@ -256,6 +257,9 @@ enum {
         [btn setHidden:YES];   
     }        
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+    [slider setHidden:YES];
+    
     
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
@@ -265,9 +269,6 @@ enum {
             }else{
                 [cell.detailTextLabel setText:nil];            
             }
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider setHidden:YES];
-            [cell.detailTextLabel setHidden:NO];
         }else if (row == rowOfGender){
             [cell.textLabel setText:NSLS(@"kGender")];
             if ([self.gender isEqualToString:MALE]) {
@@ -275,15 +276,12 @@ enum {
             }else{
                 [cell.detailTextLabel setText:NSLS(@"kFemale")];
             }
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider setHidden:YES];
             [cell.detailTextLabel setHidden:NO];
         }else if(row == rowOfNickName)
         {
             [cell.textLabel setText:NSLS(@"kNickname")];           
             [cell.detailTextLabel setText:nicknameLabel.text];            
         }
-        
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
         {
@@ -302,8 +300,6 @@ enum {
             }else{
                 [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
             }
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider setHidden:YES];
             [cell.detailTextLabel setHidden:NO];
         }else if(row == rowOfCustomWord){
             [cell.textLabel setText:NSLS(@"kCustomWordManage")]; 
@@ -335,8 +331,6 @@ enum {
             [cell.detailTextLabel setText:nil];
         }else if (row == rowOfMusicSettings) {
             [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider setHidden:YES];
             [cell.detailTextLabel setHidden:YES];
         } else if (row == rowOfVolumeSetting) {
             [cell.textLabel setText:NSLS(@"kVolume")];
@@ -357,9 +351,6 @@ enum {
             }else if (chatVoice == EnableNot){
                 [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
             }
-            
-            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-            [slider setHidden:YES];
             [cell.detailTextLabel setHidden:NO];
         }
     }

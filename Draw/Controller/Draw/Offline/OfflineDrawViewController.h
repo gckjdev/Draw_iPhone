@@ -51,6 +51,7 @@
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
 @property (retain, nonatomic) Word *word;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 

@@ -25,4 +25,8 @@ typedef enum
 
 - (NSArray *)findAllWords;
 
+- (BOOL)deleteWord:(NSString *)word;
+
+- (BOOL)update:(NSString *)oldWord newWord:(NSString *)newWord;
+
 @end

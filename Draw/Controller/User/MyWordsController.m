@@ -17,6 +17,9 @@
 #import "ShareImageManager.h"
 
 @interface MyWordsController ()
+{
+    NSInteger updateRow;
+}
 
 @end
 
@@ -67,8 +70,8 @@
     [super viewDidUnload];
 }
 
-#define MY_WORDS_CELL_HEIGHT_IPHONE 40.0
-#define MY_WORDS_CELL_HEIGHT_IPAD   80.0
+#define MY_WORDS_CELL_HEIGHT_IPHONE 44.0
+#define MY_WORDS_CELL_HEIGHT_IPAD   88.0
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
@@ -78,17 +81,49 @@
     }
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [dataList count];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"myWordsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomWord *customWord = [dataList objectAtIndex:indexPath.row];
+    [[CustomWordManager defaultManager] deleteWord:customWord.word];
+    
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:dataList];
+    [mutableArray removeObjectAtIndex:indexPath.row];
+    self.dataList = mutableArray;
+    
+    [dataTableView reloadData];
+}
+
+
+#define  INPUTDIALOG_UPDATE_TAG 120
+#define  INPUTDIALOG_ADD_TAG    121
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    updateRow = indexPath.row;
+    CustomWord *customWord = [dataList objectAtIndex:updateRow];
+    
+    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kUpdateWord") delegate:self];
+    inputDialog.tag = INPUTDIALOG_UPDATE_TAG;
+    inputDialog.targetTextField.text = customWord.word;
+    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    [inputDialog showInView:self.view];
 }
 
 
@@ -99,21 +134,43 @@
 
 - (IBAction)clickAddWordButton:(id)sender {    
     InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
+    inputDialog.tag = INPUTDIALOG_ADD_TAG;
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     [inputDialog showInView:self.view];
+}
+
+- (IBAction)clickEditButton:(id)sender {
+    editButton.selected = !editButton.selected;
+    if (editButton.selected) {
+        [dataTableView setEditing:YES animated:YES];
+    }else {
+        [dataTableView setEditing:NO animated:YES];
+    }
 }
 
 #pragma mark - InputDialogDelegate
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
-    if ([targetText length] > 0) {
-        if (!NSStringIsValidChinese(targetText)){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
-        }else {
-            [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:WordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
-            self.dataList = [[CustomWordManager defaultManager] findAllWords];
-            [dataTableView reloadData];
-        }
+    if ([targetText length] == 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
+    if (!NSStringIsValidChinese(targetText)){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
+    
+    if (dialog.tag == INPUTDIALOG_ADD_TAG) {
+        [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:WordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
+        self.dataList = [[CustomWordManager defaultManager] findAllWords];
+        [dataTableView reloadData];
+    }else if (dialog.tag == INPUTDIALOG_UPDATE_TAG){
+        CustomWord *customWord = [dataList objectAtIndex:updateRow];
+        [[CustomWordManager defaultManager] update:customWord.word newWord:targetText];
+        self.dataList = [[CustomWordManager defaultManager] findAllWords];
+        [dataTableView reloadData];
     }
 }
 
