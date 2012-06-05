@@ -21,12 +21,13 @@
 #import "AccountService.h"
 #import "ItemType.h"
 #import "DeviceDetection.h"
-
+#import "SelectCustomWordView.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
 @synthesize changeWordButton = _changeWordButton;
 @synthesize titleLabel = _titleLabel;
+@synthesize myWordsButton = _myWordsButton;
 @synthesize wordTableView = _wordTableView;
 @synthesize wordArray = _wordArray;
 
@@ -146,6 +147,7 @@
     [self setClockLabel:nil];
     [self setChangeWordButton:nil];
     [self setTitleLabel:nil];
+    [self setMyWordsButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -158,6 +160,7 @@
     [_titleLabel release];
     [toolView release];
     [_wordArray release];
+    [_myWordsButton release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {
@@ -172,6 +175,10 @@
     }    
 }
 
+- (IBAction)clickMyWordButton:(id)sender {
+    SelectCustomWordView *customWordView = [SelectCustomWordView createView];
+    [customWordView showInView:self.view];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
