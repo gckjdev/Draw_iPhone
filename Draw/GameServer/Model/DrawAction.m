@@ -9,6 +9,8 @@
 #import "DrawAction.h"
 #import "Paint.h"
 #import "GameBasic.pb.h"
+#import "DrawUtils.h"
+
 @implementation DrawAction
 
 @synthesize type = _type;
@@ -156,6 +158,25 @@
         return retList;
     }
     return nil;
+}
+- (NSArray *)intPointListWithXScale:(CGFloat)xScale 
+                             yScale:(CGFloat)yScale
+{
+    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
+    CGPoint lastPoint = ILLEGAL_POINT;
+    int i = 0;
+    for (NSValue *pointValue in _paint.pointList) {
+        CGPoint point = [pointValue CGPointValue];
+        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 2) 
+        {
+            CGPoint tempPoint = point;
+            tempPoint = CGPointMake(point.x / xScale, point.y / yScale);
+            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
+            [pointList addObject:pointNumber];
+        }
+        lastPoint = point;
+    }
+    return pointList;
 }
 
 

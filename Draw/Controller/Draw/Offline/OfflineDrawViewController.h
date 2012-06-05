@@ -15,6 +15,7 @@
 #import "PPViewController.h" 
 #import "ColorShopView.h"
 #import "UserManager.h"
+#import "DrawDataService.h"
 
 @class Word;
 @class ShareImageManager;
@@ -24,7 +25,7 @@
 @class PickEraserView;
 @class PickColorView;
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;
@@ -44,7 +45,9 @@
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
 - (IBAction)clickColorButton:(id)sender;
+- (IBAction)clickSubmitButton:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
 @property (retain, nonatomic) IBOutlet UIButton *cleanButton;

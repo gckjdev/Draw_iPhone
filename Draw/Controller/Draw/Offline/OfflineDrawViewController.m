@@ -31,9 +31,11 @@
 #import "PickEraserView.h"
 #import "PickPenView.h"
 #import "ShoppingManager.h"
+#import "DrawDataService.h"
 
 @implementation OfflineDrawViewController
 
+@synthesize submitButton;
 @synthesize eraserButton;
 @synthesize wordButton;
 @synthesize cleanButton;
@@ -73,6 +75,7 @@
     
     
     [titleLabel release];
+    [submitButton release];
     [super dealloc];
 }
 
@@ -281,6 +284,7 @@ enum{
     [self setPenButton:nil];
     [self setColorButton:nil];
     [self setTitleLabel:nil];
+    [self setSubmitButton:nil];
     [super viewDidUnload];
 }
 
@@ -402,6 +406,16 @@ enum{
     [pickPenView setHidden:YES];
 }
 
+- (void)didCreateDraw:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        
+    }else{
+        
+    }
+}
+
 
 #pragma mark - Actions
 
@@ -437,6 +451,11 @@ enum{
     [drawView setPenType:penButton.penType];
     [pickPenView setHidden:YES];
     [pickEraserView setHidden:YES];
+}
+
+- (IBAction)clickSubmitButton:(id)sender {
+    [self showActivityWithText:@"creating Draw"];
+    [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList drawWord:self.word language:languageType delegate:self];
 }
 - (void)clickBackButton:(id)sender
 {
