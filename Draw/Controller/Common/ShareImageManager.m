@@ -126,6 +126,21 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"user_picbg.png"];
 }
 
+- (UIImage *)goldenAvatarImage
+{
+    return [UIImage strectchableImageName:@"gold_user_picbg.png"];
+}
+
+- (UIImage *)greenAvatarImage
+{
+    return [UIImage strectchableImageName:@"green_user_picbg.png"];
+}
+
+- (UIImage *)purpleAvatarImage
+{
+    return [UIImage strectchableImageName:@"purple_user_picbg.png"];
+}
+
 - (UIImage *)coinImage
 {
     return [UIImage imageNamed:@"coin.png"];

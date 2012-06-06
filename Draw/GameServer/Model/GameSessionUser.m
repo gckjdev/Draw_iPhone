@@ -18,6 +18,7 @@
 @synthesize gender = _gender;
 @synthesize snsUserData = _snsUserData;
 @synthesize location = _location;
+@synthesize level = _level;
 
 - (void)dealloc
 {
@@ -38,7 +39,7 @@
     user.gender = [pbUser gender];
     user.snsUserData = [pbUser snsUsersList];
     user.location = [pbUser location];
-    
+    user.level = [pbUser userLevel];
     return user;
 }
 

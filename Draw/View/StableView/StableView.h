@@ -48,13 +48,14 @@ typedef enum {
 }
 
 - (void)setUrlString:(NSString *)urlString;
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
 
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setAvatarSelected:(BOOL)selected;
+- (void)setAvatarSelected:(BOOL)selected level:(int)level;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
