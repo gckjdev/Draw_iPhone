@@ -477,12 +477,15 @@
 "kCurrentItems" = "Items ";
 "kFreeGetCoins" = "Free Coins";
 
-"kCustomWordManage" = "Custom Word";
+"kCustomWordManage" = "Word Manage";
 "kAddCustomWord" = "Add Word";
 "kInputWord" = "Input Words";
 "kInputWordPlaceholder" = "Please input a new word";
 "kMyWords" = "My Words";
 "kNoCustomWords" = "You have Not defined the words, define your words in setting";
+"kClose" = "Close";
+"kExistWord" = "Already exists in this word";
+"kSureUseThisWord "="Sure to use [%@] ? ";
 
 "kUpgradeMsg" = "Congratulations!You upgraded to level %d";
 "kDegradeMsg" = "You ran away too much times, now degrade to level %d";

@@ -11,7 +11,7 @@
 #import "CustomWord.h"
 
 @interface CustomWordManager()
-- (BOOL)isExist:(NSString *)word;
+
 @end
 
 

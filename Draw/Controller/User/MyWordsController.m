@@ -96,6 +96,14 @@
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
+    
+    if ([DeviceDetection isIPAD]) {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:40]];
+    }else {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
+    }
+    
+    
     return cell;
 }
 
@@ -116,6 +124,8 @@
 #define  INPUTDIALOG_ADD_TAG    121
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    
     updateRow = indexPath.row;
     CustomWord *customWord = [dataList objectAtIndex:updateRow];
     
@@ -163,15 +173,26 @@
     
     
     if (dialog.tag == INPUTDIALOG_ADD_TAG) {
+        if ([[CustomWordManager defaultManager] isExist:targetText]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
+            return;
+        }
         [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:WordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
-        self.dataList = [[CustomWordManager defaultManager] findAllWords];
-        [dataTableView reloadData];
-    }else if (dialog.tag == INPUTDIALOG_UPDATE_TAG){
-        CustomWord *customWord = [dataList objectAtIndex:updateRow];
-        [[CustomWordManager defaultManager] update:customWord.word newWord:targetText];
-        self.dataList = [[CustomWordManager defaultManager] findAllWords];
-        [dataTableView reloadData];
+        
     }
+    else if (dialog.tag == INPUTDIALOG_UPDATE_TAG){
+        CustomWord *customWord = [dataList objectAtIndex:updateRow];
+        if ([targetText isEqualToString:customWord.word]) {
+            return ;
+        }else  if ([[CustomWordManager defaultManager] isExist:targetText]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
+            return;
+        }
+        [[CustomWordManager defaultManager] update:customWord.word newWord:targetText];
+    }
+    
+    self.dataList = [[CustomWordManager defaultManager] findAllWords];
+    [dataTableView reloadData];
 }
 
 

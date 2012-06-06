@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonDialog.h"
 
 @protocol SelectCustomWordViewDelegate <NSObject>
 - (void)didSelecCustomWord:(NSString *)word;
 @end
 
 
-@interface SelectCustomWordView : UIView<UITableViewDataSource,UITableViewDelegate>
+@interface SelectCustomWordView : UIView<UITableViewDataSource,UITableViewDelegate, CommonDialogDelegate>
 
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;

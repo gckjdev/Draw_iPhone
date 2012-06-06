@@ -159,6 +159,10 @@
         self.clockLabel.hidden = YES;
     }
     
+    
+    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+        self.myWordsButton.hidden = YES;
+    }
 }
 
 

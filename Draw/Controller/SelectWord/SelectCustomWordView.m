@@ -11,8 +11,13 @@
 #import "CustomWordManager.h"
 #import "CustomWord.h"
 #import "ShareImageManager.h"
+#import "DeviceDetection.h"
 
 @interface SelectCustomWordView ()
+{
+    NSInteger selectedRow;
+}
+
 @property (retain, nonatomic) NSArray *dataList;
 @end
 
@@ -45,7 +50,7 @@
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [view.closeButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-    [view.closeButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [view.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
     return view;
 }
@@ -95,19 +100,42 @@
     }
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
+    
     cell.textLabel.text = word.word;
+    if ([DeviceDetection isIPAD]) {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:40]];
+    }else {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    
+    selectedRow = indexPath.row;
+    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
+    NSString *word = customWord.word;
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kSureUseThisWord"),word] style:CommonDialogStyleDoubleButton delegate:self];
+    [dialog showInView:self];
+}
+
+- (void)clickOk:(CommonDialog *)dialog
+{
     [self startRunOutAnimation];
-    CustomWord *customWord = [dataList objectAtIndex:indexPath.row];
+    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
     NSString *word = customWord.word;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
         [self.delegate didSelecCustomWord:word];
     }
 }
+
+//- (void)clickBack:(CommonDialog *)dialog
+//{
+//    
+//}
 
 - (void)dealloc {
     [dataTableView release];

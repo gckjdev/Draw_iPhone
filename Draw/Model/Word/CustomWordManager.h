@@ -29,4 +29,6 @@ typedef enum
 
 - (BOOL)update:(NSString *)oldWord newWord:(NSString *)newWord;
 
+- (BOOL)isExist:(NSString *)word;
+
 @end
