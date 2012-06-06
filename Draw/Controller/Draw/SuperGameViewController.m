@@ -180,7 +180,7 @@
         }
         BOOL gender = user.gender;
 
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender level:user.level];
         [aView setUserId:user.userId];
         aView.delegate = self;
         

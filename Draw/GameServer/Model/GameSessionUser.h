@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL gender;
 @property (nonatomic, retain) NSArray *snsUserData;
 @property (nonatomic, retain) NSString *location;
+@property (assign, nonatomic) int level;
 
 
 + (GameSessionUser*)fromPBUser:(PBGameUser*)pbUser;

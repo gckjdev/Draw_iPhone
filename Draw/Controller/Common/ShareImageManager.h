@@ -98,4 +98,8 @@
 - (UIImage *)iceImage;
 - (UIImage *)quillImage;
 - (UIImage *)eraserImage;
+
+- (UIImage *)goldenAvatarImage;
+- (UIImage *)greenAvatarImage;
+- (UIImage *)purpleAvatarImage;
 @end
