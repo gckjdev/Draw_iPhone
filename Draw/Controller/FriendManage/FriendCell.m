@@ -101,6 +101,7 @@
     NSString* qqNick = [aUser objectForKey:PARA_QQ_NICKNAME];
     NSString* facebookNick = [aUser objectForKey:PARA_FACEBOOK_NICKNAME];
     NSString* location = [aUser objectForKey:PARA_LOCATION];
+    NSString* level = [aUser objectForKey:PARA_LEVEL];
     
     //set avatar
     [avatarView clear];
@@ -142,6 +143,13 @@
     
     //set area label
     areaLabel.text = location;
+    
+    //set level
+    if (level) {
+        [_levelLabel setText:[NSString stringWithFormat:@"LV:%@",level]];
+    } else {
+        [_levelLabel setText:@"LV:1"];
+    }
     
     
     //set 
@@ -195,7 +203,7 @@
 - (void)setCellByFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
-    [self.levelLabel setText:[NSString stringWithFormat:@"%d",aFriend.level.intValue]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV:%d",aFriend.level.intValue]];
     
     //set avatar
     if ([aFriend.gender isEqualToString:MALE])
