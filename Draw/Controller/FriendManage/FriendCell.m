@@ -27,6 +27,7 @@
 @synthesize followButton;
 @synthesize user = _user;
 @synthesize followDelegate;
+@synthesize levelLabel = _levelLabel;
 //@synthesize inviteDelegate;
 
 - (void)dealloc {
@@ -38,6 +39,7 @@
     [statusLabel release];
     [followButton release];
     [_user release];
+    [_levelLabel release];
     [super dealloc];
 }
 
@@ -193,6 +195,7 @@
 - (void)setCellByFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
+    [self.levelLabel setText:[NSString stringWithFormat:@"%d",aFriend.level.intValue]];
     
     //set avatar
     if ([aFriend.gender isEqualToString:MALE])

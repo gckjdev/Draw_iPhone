@@ -56,7 +56,13 @@ static FriendManager *_defaultFriendManager = nil;
     [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
     NSString* levelStr = [userDic objectForKey:PARA_LEVEL];
-    NSNumber* level = [NSNumber numberWithInt:[levelStr intValue]];
+    NSNumber* level;
+    if (levelStr) {
+        level = [NSNumber numberWithInt:[levelStr intValue]];
+    } else {
+        level = [NSNumber numberWithInt:1];
+    }
+    
     
     return [self createFriendWithUserId:friendUserId 
                                    type:type 
