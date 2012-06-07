@@ -24,6 +24,7 @@
 
 @interface ChatController : PPTableViewController <MessageCellDelegate, AvatarViewDelegate, FriendServiceDelegate, InputDialogDelegate>
 
+@property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (assign, nonatomic) id<ChatControllerDelegate> chatControllerDelegate;
 @property (retain, nonatomic) IBOutlet UIImageView *viewBgImageView;
 @property (retain, nonatomic) IBOutlet UIView *userView;
