@@ -33,7 +33,7 @@
 #import "AudioManager.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
-
+#import "Draw.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -52,18 +52,12 @@
 @synthesize drawBackground;
 @synthesize word = _word;
 
-+ (void)startGuessWord:(Word *)word 
-                  lang:(LanguageType)lang 
-            actionList:(NSArray *)actions
-                  from:(UIViewController *)fromController
++ (void)startOfflineGuess:(UIViewController *)fromController
 {
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
-    offGuess.word = word;
-    
     [fromController.navigationController pushViewController:offGuess animated:YES];
-    [offGuess release];
+    [offGuess release];    
 }
-
 - (void)dealloc
 {
     moveButton = nil;
@@ -93,26 +87,27 @@
 }
 
 
-- (id)initWithWord:(Word *)word 
-          language:(LanguageType)lang   
-        actionList:(NSArray *)actions
-{
-    self = [super init];
-    if (self) {
-        shareImageManager = [ShareImageManager defaultManager];
-        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
-        self.word = word;
-        languageType = lang;
-        showView.drawActionList = [NSMutableArray arrayWithArray:actions];
-    }
-    
-    return self;
-    
-}
+//- (id)initWithWord:(Word *)word 
+//          language:(LanguageType)lang   
+//        actionList:(NSArray *)actions
+//{
+//    self = [super init];
+//    if (self) {
+//        shareImageManager = [ShareImageManager defaultManager];
+//        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
+//        self.word = word;
+//        languageType = lang;
+//        showView.drawActionList = [NSMutableArray arrayWithArray:actions];
+//    }
+//    
+//    return self;
+//    
+//}
+
 - (id)init{
     self = [super init];
     if (self) {
-        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
+             
         shareImageManager = [ShareImageManager defaultManager];        
     }
     return self;
@@ -522,6 +517,8 @@
 {
     [super viewDidLoad];
     
+    
+   
     [self initShowView];
     
     //init the toolView for bomb the candidate words
@@ -530,7 +527,10 @@
     [self initTargetViews];
 
     _shopController = nil;
-    [showView play];
+//    [showView play];
+    [[DrawDataService defaultService] matchDraw:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    
 }
 
 
@@ -560,40 +560,20 @@
     [self setWord:nil];
 }
 
-
-#pragma mark - Draw Game Service Delegate
-
-- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
-{
-    if (wordText) {
-        PPDebug(@"<ShowDrawController> ReceiveWord:%@", wordText);
-        Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-        [self updateTargetViews:word];
-        [self updateCandidateViews:word lang:language];
+- (void)didMatchDraw:(Draw *)draw result:(int)resultCode{
+    [self hideActivity];
+    if (resultCode == 0 && draw) {
+        self.word = draw.word;
+        [self updateTargetViews:draw.word];
+        [self updateCandidateViews:draw.word lang:draw.languageType];
         toolView.enabled = YES;
+        if ([draw.drawActionList count] != 0) {
+            [self.showView setDrawActionList:[NSMutableArray arrayWithArray:draw.drawActionList]];            
+            [self.showView play];
+        }
     }else{
-        PPDebug(@"warn:<ShowDrawController> word is nil");
+        
     }
-}
-
-- (void)didReceiveDrawData:(GameMessage *)message
-{
-    Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
-    [showView addDrawAction:action play:YES];
-    [paint release];
-}
-
-- (void)didReceiveRedrawResponse:(GameMessage *)message
-{
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
-    [showView addDrawAction:action play:YES];
-    
-}
-- (void)didBroken
-{
-    PPDebug(@"<ShowDrawController>:didBroken");
-    [HomeController returnRoom:self];
 }
 
 #pragma mark - Common Dialog Delegate
@@ -727,6 +707,7 @@
 
 - (void)initShowView
 {
+     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
 

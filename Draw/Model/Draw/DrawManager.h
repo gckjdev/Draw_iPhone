@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Draw;
+@class PBDraw;
 @interface DrawManager : NSObject
 
+
++ (Draw *)parseFromPBdraw:(PBDraw *)pbDraw;
 @end

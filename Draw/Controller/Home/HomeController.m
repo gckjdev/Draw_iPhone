@@ -455,7 +455,10 @@
 }
 
 - (IBAction)clickGuessButton:(id)sender {
-//    [OfflineGuessDrawController startGuess:self];
+//    [OfflineGuessDrawController startOfflineGuess:self];
+    OfflineGuessDrawController *oc = [[OfflineGuessDrawController alloc] init];
+    [self.navigationController pushViewController:oc animated:YES];
+    [oc release];
 }
 
 

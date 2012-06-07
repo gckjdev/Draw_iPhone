@@ -12,12 +12,13 @@
 #import "Word.h"
 #import "UserManager.h"
 
+@class Draw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
-- (void)didMatchDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
+- (void)didMatchDraw:(Draw *)draw result:(int)resultCode;
 
 - (void)didCreateDraw:(int)resultCode;
 

@@ -7,18 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DrawAction.h"
+#import "UserManager.h"
 
-
+@class PBDrawAction;
+@class DrawAction;
 @class Word;
-@interface Draw : NSObject
+@class PBDraw;
+//@class LanguageType;
 
+@interface Draw : NSObject
+{
+    NSString *_userId;
+    NSString *_nickName;
+    NSArray *_drawActionList;
+    Word *_word;
+    NSDate *_date;
+    NSString *_avatar;
+    LanguageType _languageType;
+
+}
 @property (retain, nonatomic) NSString *userId;
 @property (retain, nonatomic) NSString *nickName;
 @property (retain, nonatomic) NSArray *drawActionList;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) NSDate *date;
 @property (retain, nonatomic) NSString *avatar;
+@property (assign, nonatomic) LanguageType languageType;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
@@ -26,5 +40,7 @@
                 word:(Word *)word 
                 date:(NSDate *)date 
               avatar:(NSString *)avatar;
+
+- (id)initWithPBDraw:(PBDraw *)pbDraw;
 
 @end

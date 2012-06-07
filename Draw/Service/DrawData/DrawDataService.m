@@ -16,6 +16,9 @@
 #import "GameNetworkConstants.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
+#import "Draw.h"
+#import "DrawManager.h"
+
 static DrawDataService* _defaultDrawDataService = nil;
 
 @implementation DrawDataService
@@ -58,15 +61,16 @@ static DrawDataService* _defaultDrawDataService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender type:0];;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray *list = nil;
-            
+            Draw *draw = nil;
             if (output.resultCode == ERROR_SUCCESS){
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                list = [response drawDataList];
-                [response resultCode];
+                NSArray *list = [response drawDataList];
+                PBDraw *pbDraw = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                draw = [[Draw alloc] initWithPBDraw:pbDraw];
             }
-            if ([viewController respondsToSelector:@selector(didFindRecentDraw:result:)]){
-                [viewController didFindRecentDraw:list result:output.resultCode];
+            
+            if ([viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
+                [viewController didMatchDraw:draw result:output.resultCode];
             }
         });
     });    

@@ -11,13 +11,14 @@
 #import "UserManager.h"
 #import "CommonDialog.h"
 #import "PPViewController.h"
+#import "DrawDataService.h"
 
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
@@ -60,14 +61,10 @@
 
 - (void)scrollToPage:(NSInteger)pageIndex;
 
-- (id)initWithWord:(Word *)word 
-          language:(LanguageType)lang   
-        actionList:(NSArray *)actions;
 
-+ (void)startGuessWord:(Word *)word 
-                  lang:(LanguageType)lang 
-            actionList:(NSArray *)actions
-                  from:(UIViewController *)fromController;
+
++ (void)startOfflineGuess:(UIViewController *)fromController;
+
 @end
 
 
