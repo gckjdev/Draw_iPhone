@@ -40,9 +40,9 @@
 {
     [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
-    if (_playTimer && [_playTimer isValid]) {
-        [_playTimer invalidate];
-    }
+//    if (_playTimer && [_playTimer isValid]) {
+//        [_playTimer invalidate];
+//    }
     _playTimer = nil;
     playingActionIndex = 0;
     playingPointIndex = 0;

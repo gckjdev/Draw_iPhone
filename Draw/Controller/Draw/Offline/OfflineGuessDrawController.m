@@ -54,7 +54,7 @@
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
 @synthesize word = _word;
-@synthesize changeButton;
+@synthesize quitButton;
 @synthesize titleLabel;
 
 + (void)startOfflineGuess:(UIViewController *)fromController
@@ -78,7 +78,7 @@
     PPRelease(rightPageButton);
     PPRelease(drawBackground);
     PPRelease(titleLabel);
-    PPRelease(changeButton);
+    [quitButton release];
     [super dealloc];
 }
 
@@ -525,8 +525,8 @@
     [super viewDidLoad];
     
     [self.titleLabel setText:NSLS(@"kGuessDraw")];
-    [self.changeButton setTitle:NSLS(@"kChangeOpusTitle") forState:UIControlStateNormal];
-    [self.changeButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
+    [self.quitButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
+    [self.quitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
     
     [self initShowView];
     
@@ -565,7 +565,7 @@
     [self setShowView:nil];
     [self setDrawBackground:nil];
     [self setTitleLabel:nil];
-    [self setChangeButton:nil];
+    [self setQuitButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
 }
@@ -588,8 +588,6 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
-#define COIN_DIALOG_TAG 2012060702
-#define CHANGE_DIALOG_TAG 2012060701
 #define ESCAPE_DEDUT_COIN 1
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -599,14 +597,6 @@
         ItemShopController *itemShop = [ItemShopController instance];
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
-    }else if(dialog.tag == CHANGE_DIALOG_TAG){
-        // TODO
-        [self.showView cleanAllActions];
-        [[DrawDataService defaultService] matchDraw:self];
-        
-    }else if(dialog.tag == COIN_DIALOG_TAG){
-        CoinShopController *coinShop = [CoinShopController instance];
-        [self.navigationController pushViewController:coinShop animated:YES];
     }else{
         [HomeController returnRoom:self];        
     }
@@ -653,20 +643,6 @@
         [self scrollToPage: ++pageControl.currentPage];
         [self enablePageButton:pageControl.currentPage];
     }
-}
-
-- (IBAction)clickChangeButton:(id)sender {
-    
-    NSString *message = NSLS(@"kDedutCoinChangeOpusAlertMessage");
-    NSString *title = NSLS(@"kChangeOpusTitle");
-    NSInteger tag = CHANGE_DIALOG_TAG;
-    if (![[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
-        tag = COIN_DIALOG_TAG;
-        message = NSLS(@"kNoCoinChangeOpusMessage");
-    }
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title message:message style:CommonDialogStyleDoubleButton delegate:self];
-    dialog.tag = tag;
-    [dialog showInView:self.view];
 }
 
 - (void)bomb:(id)sender

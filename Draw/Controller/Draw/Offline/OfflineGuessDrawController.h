@@ -44,14 +44,15 @@
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 @property (retain, nonatomic) Word *word;
-@property (retain, nonatomic) IBOutlet UIButton *changeButton;
+
+@property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
 - (IBAction)clickLeftPage:(id)sender;
 - (IBAction)clickRightPage:(id)sender;
-- (IBAction)clickChangeButton:(id)sender;
+
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
 - (NSString *)realValueForButton:(UIButton *)button;
