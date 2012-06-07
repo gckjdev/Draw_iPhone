@@ -241,42 +241,16 @@ static LevelService* _defaultLevelService;
            // [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
                 // save return User ID locally
-                NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL]; 
                 NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
                 [self setExperience:exp.intValue];
-                [self setLevel:level.intValue];
-                //                
-                //                // save data                
-                //                [[UserManager defaultManager] saveUserId:userId 
-                //                                                   email:email 
-                //                                                password:password 
-                //                                                nickName:nickName 
-                //                                               avatarURL:nil];
-                //                
-                //                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                //                [[AccountManager defaultManager] updateBalanceFromServer:balance];
-                //                
-                //                if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
-                //                    [viewController didUserRegistered:output.resultCode];                    
-                //                }
+                [self setLevel:[self getLevelByExp:exp.intValue]];
+                
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 //[viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
-                // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
-                //[viewController popupUnhappyMessage:NSLS(@"kUnknownRegisterFailure") title:nil];
-            }
-            else if (output.resultCode == ERROR_EMAIL_EXIST) {
-                // @"对不起，该电子邮件已经被注册"
-                //                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
-                //                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
-                //                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
-                //                [dialog showInView:viewController.view];
-            }
-            else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
-                // @"对不起，该电子邮件格式不正确，请重新输入"
-                //[viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+                
             }
             else {
                 // @"对不起，注册失败，请稍候再试"
