@@ -11,13 +11,15 @@
 #import "UserManager.h"
 #import "CommonDialog.h"
 #import "PPViewController.h"
+#import "DrawDataService.h"
 
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate>
+@class Draw;
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
@@ -43,11 +45,15 @@
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 @property (retain, nonatomic) Word *word;
+@property (retain, nonatomic) Draw *draw;
+@property (retain, nonatomic) IBOutlet UIButton *quitButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
 - (IBAction)clickLeftPage:(id)sender;
 - (IBAction)clickRightPage:(id)sender;
+
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
 - (NSString *)realValueForButton:(UIButton *)button;
@@ -60,14 +66,10 @@
 
 - (void)scrollToPage:(NSInteger)pageIndex;
 
-- (id)initWithWord:(Word *)word 
-          language:(LanguageType)lang   
-        actionList:(NSArray *)actions;
 
-+ (void)startGuessWord:(Word *)word 
-                  lang:(LanguageType)lang 
-            actionList:(NSArray *)actions
-                  from:(UIViewController *)fromController;
+
++ (void)startOfflineGuess:(UIViewController *)fromController;
+
 @end
 
 

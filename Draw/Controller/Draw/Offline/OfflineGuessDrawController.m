@@ -33,6 +33,9 @@
 #import "AudioManager.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
+#import "Draw.h"
+#import "AccountManager.h"
+#import "CoinShopController.h"
 
 
 #define PAPER_VIEW_TAG 20120403
@@ -51,19 +54,16 @@
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
 @synthesize word = _word;
+@synthesize quitButton;
+@synthesize titleLabel;
+@synthesize draw = _draw;;
 
-+ (void)startGuessWord:(Word *)word 
-                  lang:(LanguageType)lang 
-            actionList:(NSArray *)actions
-                  from:(UIViewController *)fromController
++ (void)startOfflineGuess:(UIViewController *)fromController
 {
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
-    offGuess.word = word;
-    
     [fromController.navigationController pushViewController:offGuess animated:YES];
-    [offGuess release];
+    [offGuess release];    
 }
-
 - (void)dealloc
 {
     moveButton = nil;
@@ -78,6 +78,8 @@
     PPRelease(leftPageButton);
     PPRelease(rightPageButton);
     PPRelease(drawBackground);
+    PPRelease(titleLabel);
+    [quitButton release];
     [super dealloc];
 }
 
@@ -93,26 +95,9 @@
 }
 
 
-- (id)initWithWord:(Word *)word 
-          language:(LanguageType)lang   
-        actionList:(NSArray *)actions
-{
-    self = [super init];
-    if (self) {
-        shareImageManager = [ShareImageManager defaultManager];
-        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
-        self.word = word;
-        languageType = lang;
-        showView.drawActionList = [NSMutableArray arrayWithArray:actions];
-    }
-    
-    return self;
-    
-}
 - (id)init{
     self = [super init];
     if (self) {
-        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
         shareImageManager = [ShareImageManager defaultManager];        
     }
     return self;
@@ -522,6 +507,10 @@
 {
     [super viewDidLoad];
     
+    [self.titleLabel setText:NSLS(@"kGuessDraw")];
+    [self.quitButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
+    [self.quitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
+    
     [self initShowView];
     
     //init the toolView for bomb the candidate words
@@ -530,7 +519,9 @@
     [self initTargetViews];
 
     _shopController = nil;
-    [showView play];
+    [[DrawDataService defaultService] matchDraw:self];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    
 }
 
 
@@ -556,49 +547,32 @@
     [self setRightPageButton:nil];
     [self setShowView:nil];
     [self setDrawBackground:nil];
+    [self setTitleLabel:nil];
+    [self setQuitButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
 }
 
-
-#pragma mark - Draw Game Service Delegate
-
-- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
-{
-    if (wordText) {
-        PPDebug(@"<ShowDrawController> ReceiveWord:%@", wordText);
-        Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
-        [self updateTargetViews:word];
-        [self updateCandidateViews:word lang:language];
+- (void)didMatchDraw:(Draw *)draw result:(int)resultCode{
+    [self hideActivity];
+    if (resultCode == 0 && draw) {
+        self.word = draw.word;
+        [self updateTargetViews:draw.word];
+        [self updateCandidateViews:draw.word lang:draw.languageType];
         toolView.enabled = YES;
+        if ([draw.drawActionList count] != 0) {
+            [self.showView setDrawActionList:[NSMutableArray arrayWithArray:draw.drawActionList]];            
+            [self.showView play];
+        }
+        self.draw = draw;
     }else{
-        PPDebug(@"warn:<ShowDrawController> word is nil");
+        
     }
-}
-
-- (void)didReceiveDrawData:(GameMessage *)message
-{
-    Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
-    [showView addDrawAction:action play:YES];
-    [paint release];
-}
-
-- (void)didReceiveRedrawResponse:(GameMessage *)message
-{
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
-    [showView addDrawAction:action play:YES];
-    
-}
-- (void)didBroken
-{
-    PPDebug(@"<ShowDrawController>:didBroken");
-    [HomeController returnRoom:self];
 }
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
-
+#define ESCAPE_DEDUT_COIN 1
 
 - (void)clickOk:(CommonDialog *)dialog
 {
@@ -608,7 +582,7 @@
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else{
-        [HomeController returnRoom:self];
+        [HomeController returnRoom:self];        
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
@@ -626,6 +600,12 @@
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
         //TODO send http request
+        NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
+        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
+        result.resultType = OfflineGuess;
+        [self.navigationController pushViewController:result animated:YES];
+        [result release];
+        
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
@@ -654,6 +634,7 @@
         [self enablePageButton:pageControl.currentPage];
     }
 }
+
 - (void)bomb:(id)sender
 {
     if ([self.candidateString length] == 0) {
@@ -727,6 +708,7 @@
 
 - (void)initShowView
 {
+     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
 

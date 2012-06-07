@@ -12,10 +12,14 @@
 #import "Word.h"
 #import "UserManager.h"
 
+@class Draw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
+- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
+- (void)didMatchDraw:(Draw *)draw result:(int)resultCode;
+
 - (void)didCreateDraw:(int)resultCode;
 
 @end
@@ -31,5 +35,7 @@
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
+
+- (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 @end

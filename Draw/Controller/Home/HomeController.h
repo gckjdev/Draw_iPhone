@@ -47,4 +47,8 @@
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
+
++ (void)startOfflineDrawFrom:(UIViewController *)viewController;
++ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController;
+
 @end

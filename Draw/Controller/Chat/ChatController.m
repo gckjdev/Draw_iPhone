@@ -94,6 +94,7 @@
 
 @implementation ChatController
 
+@synthesize levelLabel;
 @synthesize chatControllerDelegate;
 @synthesize viewBgImageView;
 @synthesize userView;
@@ -171,6 +172,7 @@
     [self setViewBgImageView:nil];
     [self setCloseButton:nil];
     [self setAlreadPayAttentionLabel:nil];
+    [self setLevelLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -193,6 +195,7 @@
     [viewBgImageView release];
     [closeButton release];
     [alreadPayAttentionLabel release];
+    [levelLabel release];
     [super dealloc];
 }
 
@@ -453,6 +456,10 @@
         payAttentionButton.hidden = NO;
         alreadPayAttentionLabel.hidden = YES;
     }
+    if (user.level != 0) {
+        [levelLabel setText:[NSString stringWithFormat:@"LV:%d",user.level]];
+    }
+    
 }
 
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId needAnimation:(BOOL)needAnimation

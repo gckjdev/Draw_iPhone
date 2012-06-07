@@ -16,6 +16,9 @@
 #import "GameNetworkConstants.h"
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
+#import "Draw.h"
+#import "DrawManager.h"
+
 static DrawDataService* _defaultDrawDataService = nil;
 
 @implementation DrawDataService
@@ -47,6 +50,32 @@ static DrawDataService* _defaultDrawDataService = nil;
     });
 }
 
+
+- (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSString *uid = [[UserManager defaultManager] userId];
+        NSString *gender = [[UserManager defaultManager] gender];
+        LanguageType lang = [[UserManager defaultManager] getLanguageType];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender lang:lang type:1];;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            Draw *draw = nil;
+            if (output.resultCode == ERROR_SUCCESS){
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *list = [response drawDataList];
+                PBDraw *pbDraw = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                draw = [[Draw alloc] initWithPBDraw:pbDraw];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
+                [viewController didMatchDraw:draw result:output.resultCode];
+            }
+        });
+    });    
+}
 
 
 - (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
@@ -90,7 +119,6 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setWord:[drawWord text]];
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
-    
     for (DrawAction* drawAction in drawActionList){
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];

@@ -11,6 +11,12 @@
 #import "PPViewController.h"
 #import "LevelService.h"
 
+
+typedef enum {
+    OnlineGuess = 0,
+    OnlineDraw = 1,
+    OfflineGuess =2
+} ResultType;
 @interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate>
 {
     UIImage * _image;
@@ -31,6 +37,7 @@
 @property (retain, nonatomic) NSString *drawUserId;
 @property (retain, nonatomic) NSString *drawUserNickName;
 @property (assign, nonatomic) NSInteger score;
+@property (assign, nonatomic) ResultType resultType;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *whitePaper;

@@ -486,7 +486,6 @@
 "kClose" = "Close";
 "kExistWord" = "Already exists in this word";
 "kSureUseThisWord "="Sure to use [%@] ? ";
-"kWordTooLong" = "Length can not more than 7";
 
 "kUpgradeMsg" = "Congratulations!You upgraded to level %d";
 "kDegradeMsg" = "You ran away too much times, now degrade to level %d";
@@ -497,7 +496,15 @@
 
 "kUpdateWord" = "Update Word";
 "kInputWordEmpty" = "word can not be empty";
+"kSubmitFailure" = "Sorry. Submit failure.";
 
-"kChatListTitle" = "Chat";
+"kSubmitSuccTitle" = "Submit Successfully";
+"kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
 
+//"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
+//"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
+//"kChangeOpusTitle" = "Change Opus";
+"kGuessDraw" = "Guessing";
 
+"kQuit" = "Quit";
+"kOneMore" = "One More";

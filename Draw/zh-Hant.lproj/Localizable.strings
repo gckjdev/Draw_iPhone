@@ -497,7 +497,6 @@
 "kClose" = "關閉";
 "kExistWord" = "已存在此詞語";
 "kSureUseThisWord" = "確定選擇[%@]嗎?";
-"kWordTooLong" = "詞語不能超過7個字";
 
 "kUpgradeMsg" = "恭喜！您剛剛升到第 %d級";
 "kDegradeMsg" = "你逃得太多啦，都降到第%d級了";
@@ -505,6 +504,13 @@
 
 "kDrawing" = "畫畫中";
 "kGuessing" = "猜畫中";
+"kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
+"kSubmitSuccMsg" = "恭喜！提交成功！再來一副？";
 
+//"kDedutCoinChangeOpusAlertMessage" = "如果更換一副作品，系統將會扣除1個金幣哦。";
+//"kNoCoinChangeOpusMessage" = "更換作品需要扣除1個金幣，你的賬戶餘額不足，是不是現在購買一些金幣？";
+//"kChangeOpusTitle" = "更換作品";
+"kQuit" = "放棄";
 
-"kChatListTitle" = "聊天";
+"kGuessDraw" = "猜畫中";
+"kOneMore" = "再來一副";

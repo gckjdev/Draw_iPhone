@@ -434,6 +434,17 @@
                                                      animated:YES];
 }
 
++ (void)startOfflineDrawFrom:(UIViewController *)viewController
+{
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+        [home.navigationController pushViewController:sc animated:NO];
+        [sc release];
+    }    
+}
+
 - (void)dealloc {
     [_startButton release];
     [_shopButton release];
@@ -450,14 +461,28 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-//    [OfflineDrawViewController startDraw:nil fromController:self];
     SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
 
 - (IBAction)clickGuessButton:(id)sender {
-//    [OfflineGuessDrawController startGuess:self];
+    OfflineGuessDrawController *oc = [[OfflineGuessDrawController alloc] init];
+    [self.navigationController pushViewController:oc animated:YES];
+    [oc release];
+}
+
++ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController
+{
+    
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        OfflineGuessDrawController *controller = [[OfflineGuessDrawController alloc] init];
+        [home.navigationController pushViewController:controller animated:NO];
+        [controller release];
+    }    
+
 }
 
 - (IBAction)clickChatButton:(id)sender {
