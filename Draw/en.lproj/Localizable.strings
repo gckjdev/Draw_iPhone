@@ -496,4 +496,4 @@
 
 "kUpdateWord" = "Update Word";
 "kInputWordEmpty" = "word can not be empty";
-
+"kSubmitFailure" = "Sorry. Submit failure.";

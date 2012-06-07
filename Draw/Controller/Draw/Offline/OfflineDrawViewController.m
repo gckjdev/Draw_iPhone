@@ -32,6 +32,7 @@
 #import "PickPenView.h"
 #import "ShoppingManager.h"
 #import "DrawDataService.h"
+#import "CommonMessageCenter.h"
 
 @implementation OfflineDrawViewController
 
@@ -352,6 +353,8 @@ enum{
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
 #define DIALOG_TAG_ESCAPE 201204082
+#define DIALOG_TAG_SUBMIT 201206071
+
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
@@ -363,13 +366,16 @@ enum{
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
         [drawView setPenType:_willBuyPen.penType];            
+    }else if(dialog.tag == DIALOG_TAG_SUBMIT){
+        [HomeController startOfflineDrawFrom:self];
     }
-    
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {
-    //    [dialog removeFromSuperview];
+    if(dialog.tag == DIALOG_TAG_SUBMIT){
+        [HomeController returnRoom:self];
+    }
 }
 
 
@@ -410,9 +416,11 @@ enum{
 {
     [self hideActivity];
     if (resultCode == 0) {
-        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = DIALOG_TAG_SUBMIT;
+        [dialog showInView:self.view];
     }else{
-        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
     }
 }
 

@@ -47,4 +47,7 @@
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
+
++ (void)startOfflineDrawFrom:(UIViewController *)viewController;
+
 @end

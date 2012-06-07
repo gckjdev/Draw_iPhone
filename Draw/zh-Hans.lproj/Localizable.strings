@@ -505,3 +505,4 @@
 "kDrawing" = "画画中";
 "kGuessing" = "猜画中";
 
+"kSubmitFailure" = "不好意思，提交失败，请重新提交。";
