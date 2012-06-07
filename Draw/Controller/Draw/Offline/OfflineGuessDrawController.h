@@ -18,6 +18,7 @@
 @class ShareImageManager;
 @class ToolView;
 @class ItemShopController;
+@class Draw;
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
 {
     ShowDrawView *showView;
@@ -44,7 +45,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 @property (retain, nonatomic) Word *word;
-
+@property (retain, nonatomic) Draw *draw;
 @property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickRunAway:(id)sender;

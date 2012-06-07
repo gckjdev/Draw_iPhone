@@ -45,6 +45,7 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize drawUserId = _drawUserId;
 @synthesize drawUserNickName = _drawUserNickName;
+@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -150,8 +151,14 @@
 
     [self.wordLabel setText:answer];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
+    if (self.resultType == OfflineGuess) {
+        [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
 
-    [self startTimer];
+    }else{
+        [self startTimer];        
+        [self updateContinueButton:retainCount];
+    }
+
     [self setUpAndDownButtonEnabled:YES];
     
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
@@ -163,7 +170,7 @@
     [self.exitButton  setBackgroundImage:[shareImageManager redImage] 
                                 forState:UIControlStateNormal];
 
-    [self updateContinueButton:retainCount];
+
     [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
     [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (_isMyPaint) {
@@ -257,11 +264,16 @@
 }
 
 - (IBAction)clickContinueButton:(id)sender {
-    [self resetTimer];
-    if ([drawGameService sessionStatus] == SESSION_WAITING) {
-        [RoomController returnRoom:self startNow:NO];        
+    if (self.resultType == OfflineGuess) {
+//        [HomeController startOfflineDrawFrom:self];
+        [HomeController startOfflineGuessDrawFrom:self];
     }else{
-        [RoomController returnRoom:self startNow:YES];
+        [self resetTimer];
+        if ([drawGameService sessionStatus] == SESSION_WAITING) {
+            [RoomController returnRoom:self startNow:NO];        
+        }else{
+            [RoomController returnRoom:self startNow:YES];
+        }
     }
 
 }

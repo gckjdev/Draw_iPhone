@@ -470,5 +470,18 @@
     [oc release];
 }
 
++ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController
+{
+    
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        OfflineGuessDrawController *controller = [[OfflineGuessDrawController alloc] init];
+        [home.navigationController pushViewController:controller animated:NO];
+        [controller release];
+    }    
+
+}
+
 
 @end

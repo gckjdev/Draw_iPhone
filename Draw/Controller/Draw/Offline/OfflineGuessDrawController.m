@@ -56,6 +56,7 @@
 @synthesize word = _word;
 @synthesize quitButton;
 @synthesize titleLabel;
+@synthesize draw = _draw;;
 
 + (void)startOfflineGuess:(UIViewController *)fromController
 {
@@ -94,27 +95,9 @@
 }
 
 
-//- (id)initWithWord:(Word *)word 
-//          language:(LanguageType)lang   
-//        actionList:(NSArray *)actions
-//{
-//    self = [super init];
-//    if (self) {
-//        shareImageManager = [ShareImageManager defaultManager];
-//        showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];       
-//        self.word = word;
-//        languageType = lang;
-//        showView.drawActionList = [NSMutableArray arrayWithArray:actions];
-//    }
-//    
-//    return self;
-//    
-//}
-
 - (id)init{
     self = [super init];
     if (self) {
-             
         shareImageManager = [ShareImageManager defaultManager];        
     }
     return self;
@@ -581,6 +564,7 @@
             [self.showView setDrawActionList:[NSMutableArray arrayWithArray:draw.drawActionList]];            
             [self.showView play];
         }
+        self.draw = draw;
     }else{
         
     }
@@ -616,6 +600,12 @@
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
         //TODO send http request
+        NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
+        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
+        result.resultType = OfflineGuess;
+        [self.navigationController pushViewController:result animated:YES];
+        [result release];
+        
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
         [[AudioManager defaultManager] playSoundById:WRONG];
