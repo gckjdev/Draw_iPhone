@@ -497,6 +497,7 @@
 "kClose" = "关闭";
 "kExistWord" = "已存在此词语";
 "kSureUseThisWord" = "确定选择[%@]吗?";
+"kWordTooLong" = "词语不能超过7个字";
 
 "kUpgradeMsg" = "恭喜！您刚刚升到第 %d级";
 "kDegradeMsg" = "你逃得太多啦，都降到第%d级了";
@@ -504,4 +505,7 @@
 
 "kDrawing" = "画画中";
 "kGuessing" = "猜画中";
+
+"kChatListTitle" = "聊天";
+
 

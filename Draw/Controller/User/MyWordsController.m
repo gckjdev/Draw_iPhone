@@ -166,6 +166,11 @@
         return;
     }
     
+    if ([targetText length] > 7) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),targetText] delayTime:2 isHappy:NO];
+        return;
+    }
+    
     if (!NSStringIsValidChinese(targetText)){
         [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
         return;

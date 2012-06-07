@@ -42,6 +42,8 @@
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
 
+#import "ChatListController.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -456,6 +458,12 @@
 
 - (IBAction)clickGuessButton:(id)sender {
 //    [OfflineGuessDrawController startGuess:self];
+}
+
+- (IBAction)clickChatButton:(id)sender {
+    ChatListController *controller = [[ChatListController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 
