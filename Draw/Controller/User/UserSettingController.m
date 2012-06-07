@@ -316,7 +316,7 @@ enum {
             }
             [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
             if ([DeviceDetection isIPAD]) {
-                btn.frame = CGRectMake(236*2, 3.5*2, 70*2, 37*2);
+                btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
                 [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
             }
             [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
@@ -342,7 +342,7 @@ enum {
             cell.accessoryType = UITableViewCellAccessoryNone;
             [slider setHidden:NO];
             if ([DeviceDetection isIPAD]) {
-                [slider setFrame:CGRectMake(116*2, 5*2, 184*2, 37*2)];
+                [slider setFrame:CGRectMake(148*2, 5*2, 184*2, 37*2)];
             }
         } else if (row == rowOfChatVoice) {
             [cell.textLabel setText:NSLS(@"kChatVoice")];
