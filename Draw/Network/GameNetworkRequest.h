@@ -195,6 +195,11 @@
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
++ (CommonNetworkOutput*)matchDrawWithProtocolBuffer:(NSString*)baseURL 
+                                             userId:(NSString *)userId 
+                                             gender:(NSString *)gender 
+                                               type:(NSInteger)type;
+
 + (CommonNetworkOutput*)createOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId

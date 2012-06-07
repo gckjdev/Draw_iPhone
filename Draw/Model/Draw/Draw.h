@@ -9,19 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "DrawAction.h"
 
-@interface RemoteDrawData : NSObject
+
+@class Word;
+@interface Draw : NSObject
 
 @property (retain, nonatomic) NSString *userId;
 @property (retain, nonatomic) NSString *nickName;
-@property (retain, nonatomic) DrawAction *drawAction;
-@property (retain, nonatomic) NSString *word;
+@property (retain, nonatomic) NSArray *drawActionList;
+@property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) NSDate *date;
 @property (retain, nonatomic) NSString *avatar;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
-          drawAction:(DrawAction *)drawAction 
-                word:(NSString *)word 
+      drawActionList:(DrawAction *)drawActionList 
+                word:(Word *)word 
                 date:(NSDate *)date 
               avatar:(NSString *)avatar;
 

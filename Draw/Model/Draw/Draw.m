@@ -6,12 +6,12 @@
 //  Copyright (c) 2012年 orange. All rights reserved.
 //
 
-#import "RemoteDrawData.h"
+#import "Draw.h"
 
-@implementation RemoteDrawData
+@implementation Draw
 @synthesize userId = _userId;
 @synthesize nickName = _nickName;;
-@synthesize drawAction = _drawAction;
+@synthesize drawActionList = _drawActionList;
 @synthesize word = _word;
 @synthesize date = _date;
 @synthesize avatar = _avatar;
@@ -19,7 +19,7 @@
 - (void)dealloc{
     [_userId release];
     [_nickName release];
-    [_drawAction release];
+    [_drawActionList release];
     [_word release];
     [_date release];
     [_avatar release];
@@ -29,8 +29,8 @@
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
-          drawAction:(DrawAction *)drawAction 
-                word:(NSString *)word 
+          drawActionList:(NSArray *)drawActionList 
+                word:(Word *)word 
                 date:(NSDate *)date 
               avatar:(NSString *)avatar
 {
@@ -38,7 +38,7 @@
     if (self) {
         self.userId = userId;
         self.nickName = nickName;
-        self.drawAction = drawAction;
+        self.drawActionList = drawActionList;
         self.word = word;
         self.date = date;
         self.avatar = avatar;
