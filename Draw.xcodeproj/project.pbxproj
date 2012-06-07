@@ -10,6 +10,15 @@
 		A3092467155ABEAF00235A55 /* MyFriendsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */; };
 		A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
 		A3092469155ABEAF00235A55 /* ShowUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */; };
+		A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
+		A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28471580C2AE006CA3CC /* ChatCell.xib */; };
+		A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */; };
+		A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
+		A30A28551580C2AE006CA3CC /* ChatDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A284B1580C2AE006CA3CC /* ChatDetailController.xib */; };
+		A30A28561580C2AE006CA3CC /* ChatDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A284C1580C2AE006CA3CC /* ChatDetailController~ipad.xib */; };
+		A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
+		A30A28581580C2AE006CA3CC /* ChatListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A284F1580C2AE006CA3CC /* ChatListController.xib */; };
+		A30A28591580C2AE006CA3CC /* ChatListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28501580C2AE006CA3CC /* ChatListController~ipad.xib */; };
 		A316C43C15513B1E00AD44E9 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A316C43A15513B1E00AD44E9 /* Default-Portrait.png */; };
 		A316C43E15513B2500AD44E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		A318FCFF15650F680075860F /* ShowRemoteDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = A318FCFC15650F680075860F /* ShowRemoteDrawController.m */; };
@@ -716,6 +725,18 @@
 		A3092464155ABEAF00235A55 /* MyFriendsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyFriendsController~ipad.xib"; sourceTree = "<group>"; };
 		A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchUserController~ipad.xib"; sourceTree = "<group>"; };
 		A3092466155ABEAF00235A55 /* ShowUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowUserController~ipad.xib"; sourceTree = "<group>"; };
+		A30A28451580C2AE006CA3CC /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		A30A28461580C2AE006CA3CC /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		A30A28471580C2AE006CA3CC /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatCell~ipad.xib"; sourceTree = "<group>"; };
+		A30A28491580C2AE006CA3CC /* ChatDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailController.h; sourceTree = "<group>"; };
+		A30A284A1580C2AE006CA3CC /* ChatDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailController.m; sourceTree = "<group>"; };
+		A30A284B1580C2AE006CA3CC /* ChatDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailController.xib; sourceTree = "<group>"; };
+		A30A284C1580C2AE006CA3CC /* ChatDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatDetailController~ipad.xib"; sourceTree = "<group>"; };
+		A30A284D1580C2AE006CA3CC /* ChatListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListController.h; sourceTree = "<group>"; };
+		A30A284E1580C2AE006CA3CC /* ChatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListController.m; sourceTree = "<group>"; };
+		A30A284F1580C2AE006CA3CC /* ChatListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListController.xib; sourceTree = "<group>"; };
+		A30A28501580C2AE006CA3CC /* ChatListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatListController~ipad.xib"; sourceTree = "<group>"; };
 		A316C43B15513B1E00AD44E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A316C43D15513B2500AD44E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
 		A318FCFB15650F680075860F /* ShowRemoteDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowRemoteDrawController.h; sourceTree = "<group>"; };
@@ -1795,6 +1816,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A30A28441580C2AE006CA3CC /* PrivateChat */ = {
+			isa = PBXGroup;
+			children = (
+				A30A28451580C2AE006CA3CC /* ChatCell.h */,
+				A30A28461580C2AE006CA3CC /* ChatCell.m */,
+				A30A28471580C2AE006CA3CC /* ChatCell.xib */,
+				A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */,
+				A30A28491580C2AE006CA3CC /* ChatDetailController.h */,
+				A30A284A1580C2AE006CA3CC /* ChatDetailController.m */,
+				A30A284B1580C2AE006CA3CC /* ChatDetailController.xib */,
+				A30A284C1580C2AE006CA3CC /* ChatDetailController~ipad.xib */,
+				A30A284D1580C2AE006CA3CC /* ChatListController.h */,
+				A30A284E1580C2AE006CA3CC /* ChatListController.m */,
+				A30A284F1580C2AE006CA3CC /* ChatListController.xib */,
+				A30A28501580C2AE006CA3CC /* ChatListController~ipad.xib */,
+			);
+			path = PrivateChat;
+			sourceTree = "<group>";
+		};
 		A357930C1574BD670007B2C0 /* WeixinSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -4204,6 +4244,7 @@
 			children = (
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
+				A30A28441580C2AE006CA3CC /* PrivateChat */,
 				A454CB6B1558F57E00896761 /* Chat */,
 				CA9DB92B154E75190031DBBD /* FriendManage */,
 				CA9DB92C154E751A0031DBBD /* FriendPlay */,
@@ -4663,6 +4704,12 @@
 				C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */,
 				C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */,
 				C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */,
+				A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */,
+				A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */,
+				A30A28551580C2AE006CA3CC /* ChatDetailController.xib in Resources */,
+				A30A28561580C2AE006CA3CC /* ChatDetailController~ipad.xib in Resources */,
+				A30A28581580C2AE006CA3CC /* ChatListController.xib in Resources */,
+				A30A28591580C2AE006CA3CC /* ChatListController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5033,6 +5080,9 @@
 				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 				A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */,
 				CAD6EACF15805D780004A483 /* DrawManager.m in Sources */,
+				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
+				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
+				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

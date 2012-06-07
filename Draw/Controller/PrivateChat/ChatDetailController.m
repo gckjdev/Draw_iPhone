@@ -65,9 +65,9 @@
         imageView.frame = CGRectMake(0, 0, BUBBLE_WIDTH_MAX, rect.size.height * Multiple);
     }
     
-	UIImage *bubble = [UIImage imageNamed:@"TEST.PNG"];
-	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:21 topCapHeight:14]];
-    bubbleImageView.backgroundColor =[UIColor clearColor];
+//	UIImage *bubble = [UIImage imageNamed:@"TEST.PNG"];
+//	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:21 topCapHeight:14]];
+//    bubbleImageView.backgroundColor =[UIColor clearColor];
     
     
     
