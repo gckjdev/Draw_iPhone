@@ -1085,6 +1085,40 @@
                                   output:output];
 }
 
+
++ (CommonNetworkOutput*)matchDrawWithProtocolBuffer:(NSString*)baseURL 
+                                             userId:(NSString *)userId 
+                                             gender:(NSString *)gender 
+                                               type:(NSInteger)type
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_MATCH_OPUS];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+}
+
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
