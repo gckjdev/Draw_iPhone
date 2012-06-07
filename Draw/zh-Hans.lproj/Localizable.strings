@@ -506,3 +506,5 @@
 "kGuessing" = "猜画中";
 
 "kSubmitFailure" = "不好意思，提交失败，请重新提交。";
+"kSubmitSuccTitle" = "提交成功";
+"kSubmitSuccMsg" = "恭喜！提交成功！再来一副？";

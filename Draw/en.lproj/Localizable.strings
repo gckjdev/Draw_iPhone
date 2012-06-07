@@ -497,3 +497,6 @@
 "kUpdateWord" = "Update Word";
 "kInputWordEmpty" = "word can not be empty";
 "kSubmitFailure" = "Sorry. Submit failure.";
+
+"kSubmitSuccTitle" = "Submit Successfully";
+"kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
