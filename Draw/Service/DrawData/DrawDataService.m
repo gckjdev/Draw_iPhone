@@ -57,8 +57,9 @@ static DrawDataService* _defaultDrawDataService = nil;
         
         NSString *uid = [[UserManager defaultManager] userId];
         NSString *gender = [[UserManager defaultManager] gender];
+        LanguageType lang = [[UserManager defaultManager] getLanguageType];
         
-        CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender type:0];;
+        CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender lang:lang type:1];;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             Draw *draw = nil;

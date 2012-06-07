@@ -527,7 +527,6 @@
     [self initTargetViews];
 
     _shopController = nil;
-//    [showView play];
     [[DrawDataService defaultService] matchDraw:self];
     [self showActivityWithText:NSLS(@"kLoading")];
     

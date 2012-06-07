@@ -1089,6 +1089,7 @@
 + (CommonNetworkOutput*)matchDrawWithProtocolBuffer:(NSString*)baseURL 
                                              userId:(NSString *)userId 
                                              gender:(NSString *)gender 
+                                               lang:(int)lang
                                                type:(NSInteger)type
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1101,6 +1102,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_MATCH_OPUS];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
