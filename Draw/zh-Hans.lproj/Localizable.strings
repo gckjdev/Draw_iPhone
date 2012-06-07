@@ -508,3 +508,9 @@
 "kSubmitFailure" = "不好意思，提交失败，请重新提交。";
 "kSubmitSuccTitle" = "提交成功";
 "kSubmitSuccMsg" = "恭喜！提交成功！再来一副？";
+
+"kDedutCoinChangeOpusAlertMessage" = "如果更换一副作品，系统将会扣除1个金币哦。";
+"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
+"kChangeOpusTitle" = "更换作品";
+
+"kGuessDraw" = "猜画中";
