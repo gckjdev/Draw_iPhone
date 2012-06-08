@@ -102,12 +102,14 @@
     <fetchRequest name="findAllDeletedFriends" entity="Friend" predicateString="deleteFlag == 1"/>
     <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
+    <fetchRequest name="findAllMessages" entity="Message"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
     <fetchRequest name="findAllWords" entity="CustomWord"/>
     <fetchRequest name="findFanByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findFollowByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 1 AND deleteFlag == 0"/>
+    <fetchRequest name="findMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
