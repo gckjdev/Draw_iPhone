@@ -122,6 +122,7 @@
 
 @implementation CommonMessageCenter
 @synthesize messages = _messages;
+@synthesize delegate = _delegate;
 
 #pragma mark Init & Friends
 + (CommonMessageCenter*) defaultCenter {
@@ -260,6 +261,10 @@
     if ([_messages count] != 0) {
         [_messages removeObjectAtIndex:0];        
     }
+    if ([self.delegate respondsToSelector:@selector(didShowedAlert)]) {
+        [self.delegate didShowedAlert];
+    }
+    
 	[self showAlerts];
 	
 }

@@ -12,6 +12,7 @@
 #import "CommonDialog.h"
 #import "PPViewController.h"
 #import "DrawDataService.h"
+#import "CommonMessageCenter.h"
 
 @class Word;
 @class ShowDrawView;
@@ -19,7 +20,7 @@
 @class ToolView;
 @class ItemShopController;
 @class Draw;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate,CommonMessageCenterDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
