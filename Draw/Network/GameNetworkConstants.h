@@ -366,6 +366,8 @@
 #define PARA_LEVEL_INFO @"lif"
 #define PARA_SYNC_TYPE  @"st"
 
+
+
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 
 #define REGISTER_TYPE_EMAIL     1
