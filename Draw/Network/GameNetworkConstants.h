@@ -41,6 +41,7 @@
 #define METHOD_GETMEPOST @"gmep"
 #define METHOD_UPDATEUSER @"uu"
 #define METHOD_USERFEEDBACK @"ufb"
+#define METHOD_USER_READ_MSG @"urm"
 
 #define METHOD_REGISTERUSER @"ru"
 #define METHOD_BINDUSER @"bu"
@@ -98,6 +99,8 @@
 #define METHOD_JOIN_ROOM @"jr"
 #define METHOD_REOMOVE_ROOM @"rr"
 #define METHOD_NEW_JOIN_ROOM @"njr"
+
+
 
 //find draw
 #define METHOD_FINDDRAW @"fd"
@@ -365,6 +368,8 @@
 #define PARA_LEVEL  @"lvl"
 #define PARA_LEVEL_INFO @"lif"
 #define PARA_SYNC_TYPE  @"st"
+
+
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 

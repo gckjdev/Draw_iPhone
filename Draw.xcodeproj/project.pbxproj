@@ -56,6 +56,10 @@
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
 		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
+		A3F66CA51581B999000BFF9A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA01581B999000BFF9A /* Message.m */; };
+		A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA21581B999000BFF9A /* MessageTotal.m */; };
+		A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */; };
+		A3F66CB31581C0F5000BFF9A /* PrivateMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
 		A3FAE0DE15536EF0008B5827 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */; };
@@ -790,6 +794,14 @@
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendCell~ipad.xib"; sourceTree = "<group>"; };
+		A3F66C9F1581B999000BFF9A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		A3F66CA01581B999000BFF9A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		A3F66CA11581B999000BFF9A /* MessageTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotal.h; sourceTree = "<group>"; };
+		A3F66CA21581B999000BFF9A /* MessageTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotal.m; sourceTree = "<group>"; };
+		A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotalManager.h; sourceTree = "<group>"; };
+		A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotalManager.m; sourceTree = "<group>"; };
+		A3F66CB11581C0F4000BFF9A /* PrivateMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageManager.h; sourceTree = "<group>"; };
+		A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageManager.m; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonDialog~ipad.xib"; sourceTree = "<group>"; };
@@ -1872,6 +1884,21 @@
 				A3C129D71563A6B600C021A7 /* DrawDataService.m */,
 			);
 			path = DrawData;
+			sourceTree = "<group>";
+		};
+		A3F66C9E1581B999000BFF9A /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				A3F66C9F1581B999000BFF9A /* Message.h */,
+				A3F66CA01581B999000BFF9A /* Message.m */,
+				A3F66CB11581C0F4000BFF9A /* PrivateMessageManager.h */,
+				A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */,
+				A3F66CA11581B999000BFF9A /* MessageTotal.h */,
+				A3F66CA21581B999000BFF9A /* MessageTotal.m */,
+				A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */,
+				A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		A454CB6B1558F57E00896761 /* Chat */ = {
@@ -4265,6 +4292,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3F66C9E1581B999000BFF9A /* Message */,
 				A4D3B1561560E4B50013C882 /* Chat */,
 				CA0CB76B155CB78A009C8EE6 /* Room */,
 				CA9DB929154E75070031DBBD /* Friend */,
@@ -5083,6 +5111,10 @@
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
+				A3F66CA51581B999000BFF9A /* Message.m in Sources */,
+				A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */,
+				A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */,
+				A3F66CB31581C0F5000BFF9A /* PrivateMessageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
