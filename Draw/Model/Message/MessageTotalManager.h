@@ -1,5 +1,5 @@
 //
-//  PrivateChatManager.h
+//  MessageTotalManager.h
 //  Draw
 //
 //  Created by haodong qiu on 12年6月8日.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PrivateChatManager : NSObject
+@interface MessageTotalManager : NSObject
 
 @end
