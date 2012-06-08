@@ -1209,12 +1209,12 @@
 
 }
 
-+ (CommonNetworkOutput*)getUserGraffitiMessage:(NSString*)baseURL
-                                         appId:(NSString*)appId
-                                        userId:(NSString*)userId
-                                  friendUserId:(NSString*)friendUserId
-                                   startOffset:(int)startOffset
-                                      maxCount:(int)maxCount
++ (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
+                                 appId:(NSString*)appId
+                                userId:(NSString*)userId
+                          friendUserId:(NSString*)friendUserId
+                           startOffset:(int)startOffset
+                              maxCount:(int)maxCount
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1248,12 +1248,12 @@
     
 }
 
-+ (CommonNetworkOutput*)sendGraffitiMessage:(NSString*)baseURL
-                                      appId:(NSString*)appId
-                                     userId:(NSString*)userId
-                                   targetUserId:(NSString*)targetUserId
-                                       text:(NSString*)text
-                                       data:(NSData*)data
++ (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                       targetUserId:(NSString*)targetUserId
+                               text:(NSString*)text
+                               data:(NSData*)data
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
