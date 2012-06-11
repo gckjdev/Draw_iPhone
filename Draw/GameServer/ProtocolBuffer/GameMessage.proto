@@ -152,5 +152,12 @@ message GameMessage {
 
 message DataQueryResponse {
   required int32 resultCode = 1;
+  optional int32 totalCount = 2;
+
+  // for draw data
   repeated PBDraw drawData = 21;
+
+  // for message
+  repeated PBMessage message = 32;
+  repeated PBMessageStat messageStat = 33;
 }

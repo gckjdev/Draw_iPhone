@@ -176,8 +176,13 @@ static LevelService* _defaultLevelService;
                 if (type == SYNC) {
                     NSString* level = [output.jsonDataDict objectForKey:PARA_LEVEL]; 
                     NSString* exp = [output.jsonDataDict objectForKey:PARA_EXP];
-                    [self setExperience:exp.intValue];
-                    [self setLevel:level.intValue];
+                    if (level) {
+                        [self setLevel:level.intValue];
+                    }
+                    if (exp) {
+                        [self setExperience:exp.intValue];
+                    }
+                    
                 }                  
             }
             else if (output.resultCode == ERROR_NETWORK) {

@@ -4876,7 +4876,10 @@ static GameMessage* defaultGameMessageInstance = nil;
 
 @interface DataQueryResponse ()
 @property int32_t resultCode;
+@property int32_t totalCount;
 @property (retain) NSMutableArray* mutableDrawDataList;
+@property (retain) NSMutableArray* mutableMessageList;
+@property (retain) NSMutableArray* mutableMessageStatList;
 @end
 
 @implementation DataQueryResponse
@@ -4888,14 +4891,26 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasResultCode_ = !!value;
 }
 @synthesize resultCode;
+- (BOOL) hasTotalCount {
+  return !!hasTotalCount_;
+}
+- (void) setHasTotalCount:(BOOL) value {
+  hasTotalCount_ = !!value;
+}
+@synthesize totalCount;
 @synthesize mutableDrawDataList;
+@synthesize mutableMessageList;
+@synthesize mutableMessageStatList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
+  self.mutableMessageList = nil;
+  self.mutableMessageStatList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.resultCode = 0;
+    self.totalCount = 0;
   }
   return self;
 }
@@ -4918,11 +4933,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableDrawDataList objectAtIndex:index];
   return value;
 }
+- (NSArray*) messageList {
+  return mutableMessageList;
+}
+- (PBMessage*) messageAtIndex:(int32_t) index {
+  id value = [mutableMessageList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) messageStatList {
+  return mutableMessageStatList;
+}
+- (PBMessageStat*) messageStatAtIndex:(int32_t) index {
+  id value = [mutableMessageStatList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
   }
   for (PBDraw* element in self.drawDataList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBMessage* element in self.messageList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBMessageStat* element in self.messageStatList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -4933,8 +4972,17 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasResultCode) {
     [output writeInt32:1 value:self.resultCode];
   }
+  if (self.hasTotalCount) {
+    [output writeInt32:2 value:self.totalCount];
+  }
   for (PBDraw* element in self.drawDataList) {
     [output writeMessage:21 value:element];
+  }
+  for (PBMessage* element in self.messageList) {
+    [output writeMessage:32 value:element];
+  }
+  for (PBMessageStat* element in self.messageStatList) {
+    [output writeMessage:33 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4948,8 +4996,17 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasResultCode) {
     size += computeInt32Size(1, self.resultCode);
   }
+  if (self.hasTotalCount) {
+    size += computeInt32Size(2, self.totalCount);
+  }
   for (PBDraw* element in self.drawDataList) {
     size += computeMessageSize(21, element);
+  }
+  for (PBMessage* element in self.messageList) {
+    size += computeMessageSize(32, element);
+  }
+  for (PBMessageStat* element in self.messageStatList) {
+    size += computeMessageSize(33, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5029,11 +5086,26 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasResultCode) {
     [self setResultCode:other.resultCode];
   }
+  if (other.hasTotalCount) {
+    [self setTotalCount:other.totalCount];
+  }
   if (other.mutableDrawDataList.count > 0) {
     if (result.mutableDrawDataList == nil) {
       result.mutableDrawDataList = [NSMutableArray array];
     }
     [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  if (other.mutableMessageList.count > 0) {
+    if (result.mutableMessageList == nil) {
+      result.mutableMessageList = [NSMutableArray array];
+    }
+    [result.mutableMessageList addObjectsFromArray:other.mutableMessageList];
+  }
+  if (other.mutableMessageStatList.count > 0) {
+    if (result.mutableMessageStatList == nil) {
+      result.mutableMessageStatList = [NSMutableArray array];
+    }
+    [result.mutableMessageStatList addObjectsFromArray:other.mutableMessageStatList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5060,10 +5132,26 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         [self setResultCode:[input readInt32]];
         break;
       }
+      case 16: {
+        [self setTotalCount:[input readInt32]];
+        break;
+      }
       case 170: {
         PBDraw_Builder* subBuilder = [PBDraw builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 258: {
+        PBMessage_Builder* subBuilder = [PBMessage builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addMessage:[subBuilder buildPartial]];
+        break;
+      }
+      case 266: {
+        PBMessageStat_Builder* subBuilder = [PBMessageStat builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addMessageStat:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5083,6 +5171,22 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearResultCode {
   result.hasResultCode = NO;
   result.resultCode = 0;
+  return self;
+}
+- (BOOL) hasTotalCount {
+  return result.hasTotalCount;
+}
+- (int32_t) totalCount {
+  return result.totalCount;
+}
+- (DataQueryResponse_Builder*) setTotalCount:(int32_t) value {
+  result.hasTotalCount = YES;
+  result.totalCount = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearTotalCount {
+  result.hasTotalCount = NO;
+  result.totalCount = 0;
   return self;
 }
 - (NSArray*) drawDataList {
@@ -5112,6 +5216,64 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableDrawDataList = [NSMutableArray array];
   }
   [result.mutableDrawDataList addObject:value];
+  return self;
+}
+- (NSArray*) messageList {
+  if (result.mutableMessageList == nil) { return [NSArray array]; }
+  return result.mutableMessageList;
+}
+- (PBMessage*) messageAtIndex:(int32_t) index {
+  return [result messageAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceMessageAtIndex:(int32_t) index with:(PBMessage*) value {
+  [result.mutableMessageList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllMessage:(NSArray*) values {
+  if (result.mutableMessageList == nil) {
+    result.mutableMessageList = [NSMutableArray array];
+  }
+  [result.mutableMessageList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearMessageList {
+  result.mutableMessageList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addMessage:(PBMessage*) value {
+  if (result.mutableMessageList == nil) {
+    result.mutableMessageList = [NSMutableArray array];
+  }
+  [result.mutableMessageList addObject:value];
+  return self;
+}
+- (NSArray*) messageStatList {
+  if (result.mutableMessageStatList == nil) { return [NSArray array]; }
+  return result.mutableMessageStatList;
+}
+- (PBMessageStat*) messageStatAtIndex:(int32_t) index {
+  return [result messageStatAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceMessageStatAtIndex:(int32_t) index with:(PBMessageStat*) value {
+  [result.mutableMessageStatList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllMessageStat:(NSArray*) values {
+  if (result.mutableMessageStatList == nil) {
+    result.mutableMessageStatList = [NSMutableArray array];
+  }
+  [result.mutableMessageStatList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearMessageStatList {
+  result.mutableMessageStatList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addMessageStat:(PBMessageStat*) value {
+  if (result.mutableMessageStatList == nil) {
+    result.mutableMessageStatList = [NSMutableArray array];
+  }
+  [result.mutableMessageStatList addObject:value];
   return self;
 }
 @end

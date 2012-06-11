@@ -16,6 +16,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "Reachability.h"
 #import "PPApplication.h"
+#import "DeviceDetection.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
@@ -605,6 +606,7 @@
         NSString* str = [NSString stringWithString:baseURL];  
         
         UIDevice* myDevice = [UIDevice currentDevice];
+        
         NSString* currnetNetwork;
         NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
         if (currentStatus == ReachableViaWiFi) {
@@ -613,7 +615,7 @@
         if (currentStatus == ReachableViaWWAN) {
             currnetNetwork = @"WWAN";
         }
-        NSString* basicInfo = [NSString stringWithFormat:@"\n设备:%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
+        NSString* basicInfo = [NSString stringWithFormat:@"\n设备(%@):%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, [DeviceDetection platform], myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FEEDBACK];
