@@ -31,7 +31,7 @@
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
     PenType _penType;
-    PenView *pen;
+//    PenView *pen;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
