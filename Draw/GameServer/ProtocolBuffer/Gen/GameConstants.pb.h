@@ -42,6 +42,15 @@ typedef enum {
   GameCommandTypeLocalJoinGame = 204,
   GameCommandTypeLocalGameTurnComplete = 205,
   GameCommandTypeLocalUserTimeOut = 206,
+  GameCommandTypeLocalNewUserJoin = 301,
+  GameCommandTypeLocalUserQuit = 302,
+  GameCommandTypeLocalDrawUserQuit = 303,
+  GameCommandTypeLocalAllOtherUserQuit = 304,
+  GameCommandTypeLocalOtherUserQuit = 305,
+  GameCommandTypeLocalTimeOut = 306,
+  GameCommandTypeLocalStartGame = 307,
+  GameCommandTypeLocalWordPicked = 308,
+  GameCommandTypeLocalAllUserGuess = 309,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);

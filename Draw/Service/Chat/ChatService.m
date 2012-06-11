@@ -7,6 +7,11 @@
 //
 
 #import "ChatService.h"
+#import "GameNetworkRequest.h"
+#import "GameNetworkConstants.h"
+#import "UserManager.h"
+#import "PPNetworkRequest.h"
+#import "LogUtil.h"
 
 static ChatService *_chatService = nil;
 
@@ -21,13 +26,30 @@ static ChatService *_chatService = nil;
 }
 
 
-- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate
+- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate 
+                  starOffset:(int)starOffset 
+                    maxCount:(int)maxCount
 {
+    NSString *userId = [[UserManager defaultManager] userId];
+    
     dispatch_async(workingQueue, ^{            
-        //send url
+        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:SERVER_URL 
+                                                                   appId:APP_ID 
+                                                                  userId:userId
+                                                            friendUserId:nil 
+                                                             startOffset:starOffset 
+                                                                maxCount:maxCount];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            //save data
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                //to do save data
+                
+                
+                PPDebug(@"<ChatService>findAllMessageTotals success");
+            }else {
+                PPDebug(@"<ChatService>findAllMessageTotals failed");
+            }
             
             if ([delegate respondsToSelector:@selector(didFindAllMessageTotals:)]){
                 [delegate didFindAllMessageTotals:nil];
@@ -37,13 +59,30 @@ static ChatService *_chatService = nil;
 }
 
 
-- (void)findAllMessagesByFriendUserId:(NSString *)friendUserId delegate:(id<ChatServiceDelegate>)delegate
+- (void)findAllMessages:(id<ChatServiceDelegate>)delegate 
+           friendUserId:(NSString *)friendUserId 
+             starOffset:(int)starOffset 
+               maxCount:(int)maxCount
 {
+    NSString *userId = [[UserManager defaultManager] userId];
+    
     dispatch_async(workingQueue, ^{            
-        //send url
+        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:SERVER_URL 
+                                                                   appId:APP_ID 
+                                                                  userId:userId
+                                                            friendUserId:friendUserId 
+                                                             startOffset:starOffset 
+                                                                maxCount:maxCount];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            //save data
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                //to do save data
+                
+                PPDebug(@"<ChatService>findAllMessages success");
+            }else {
+                PPDebug(@"<ChatService>findAllMessages failed");
+            }
             
             if ([delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
                 [delegate didFindAllMessagesByFriendUserId:nil];
@@ -53,35 +92,57 @@ static ChatService *_chatService = nil;
 }
 
 
-- (void)sendMessage:(NSString *)friendUserId 
+- (void)sendMessage:(id<ChatServiceDelegate>)delegate
+       friendUserId:(NSString *)friendUserId
                text:(NSString *)text 
                data:(NSData *)data 
-           delegate:(id<ChatServiceDelegate>)delegate;
 {
+    NSString *userId = [[UserManager defaultManager] userId];
+    
     dispatch_async(workingQueue, ^{            
-        //send url
+        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:SERVER_URL 
+                                                                appId:APP_ID 
+                                                               userId:userId 
+                                                         targetUserId:friendUserId 
+                                                                 text:text
+                                                                 data:data];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            //update status
+            
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<ChatService>sendMessage success");
+            }else {
+                PPDebug(@"<ChatService>sendMessage failed");
+            }
             
             if ([delegate respondsToSelector:@selector(didSendMessage:)]){
-                [delegate didSendMessage:0];
+                [delegate didSendMessage:output.resultCode];
             }
         }); 
     });
 }
 
 
-- (void)sendHasReadMessage:(NSArray*)messageIdArray delegate:(id<ChatServiceDelegate>)delegate
+- (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate messageIdArray:(NSArray*)messageIdArray 
 {
-    dispatch_async(workingQueue, ^{            
-        //send url
+    NSString *userId = [[UserManager defaultManager] userId];
+    
+    dispatch_async(workingQueue, ^{
+        //要改成可以发送一个messageId列表
+        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:SERVER_URL 
+                                                                       appId:APP_ID 
+                                                                      userId:userId 
+                                                                   messageId:[messageIdArray objectAtIndex:0]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            //update status
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<ChatService>sendHasReadMessage success");
+            }else {
+                PPDebug(@"<ChatService>sendHasReadMessage failed");
+            }
             
             if ([delegate respondsToSelector:@selector(didSendHasReadMessage:)]){
-                [delegate didSendHasReadMessage:0];
+                [delegate didSendHasReadMessage:output.resultCode];
             }
         }); 
     });

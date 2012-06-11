@@ -2134,3 +2134,1011 @@ static PBDraw* defaultPBDrawInstance = nil;
 }
 @end
 
+@interface PBMessage ()
+@property (retain) NSString* messageId;
+@property (retain) NSString* from;
+@property (retain) NSString* to;
+@property int32_t status;
+@property (retain) NSString* text;
+@property (retain) NSMutableArray* mutableDrawDataList;
+@end
+
+@implementation PBMessage
+
+- (BOOL) hasMessageId {
+  return !!hasMessageId_;
+}
+- (void) setHasMessageId:(BOOL) value {
+  hasMessageId_ = !!value;
+}
+@synthesize messageId;
+- (BOOL) hasFrom {
+  return !!hasFrom_;
+}
+- (void) setHasFrom:(BOOL) value {
+  hasFrom_ = !!value;
+}
+@synthesize from;
+- (BOOL) hasTo {
+  return !!hasTo_;
+}
+- (void) setHasTo:(BOOL) value {
+  hasTo_ = !!value;
+}
+@synthesize to;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasText {
+  return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+  hasText_ = !!value;
+}
+@synthesize text;
+@synthesize mutableDrawDataList;
+- (void) dealloc {
+  self.messageId = nil;
+  self.from = nil;
+  self.to = nil;
+  self.text = nil;
+  self.mutableDrawDataList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.messageId = @"";
+    self.from = @"";
+    self.to = @"";
+    self.status = 0;
+    self.text = @"";
+  }
+  return self;
+}
+static PBMessage* defaultPBMessageInstance = nil;
++ (void) initialize {
+  if (self == [PBMessage class]) {
+    defaultPBMessageInstance = [[PBMessage alloc] init];
+  }
+}
++ (PBMessage*) defaultInstance {
+  return defaultPBMessageInstance;
+}
+- (PBMessage*) defaultInstance {
+  return defaultPBMessageInstance;
+}
+- (NSArray*) drawDataList {
+  return mutableDrawDataList;
+}
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
+  id value = [mutableDrawDataList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasMessageId) {
+    return NO;
+  }
+  if (!self.hasFrom) {
+    return NO;
+  }
+  if (!self.hasTo) {
+    return NO;
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasMessageId) {
+    [output writeString:1 value:self.messageId];
+  }
+  if (self.hasFrom) {
+    [output writeString:2 value:self.from];
+  }
+  if (self.hasTo) {
+    [output writeString:3 value:self.to];
+  }
+  if (self.hasStatus) {
+    [output writeInt32:4 value:self.status];
+  }
+  if (self.hasText) {
+    [output writeString:20 value:self.text];
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    [output writeMessage:21 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasMessageId) {
+    size += computeStringSize(1, self.messageId);
+  }
+  if (self.hasFrom) {
+    size += computeStringSize(2, self.from);
+  }
+  if (self.hasTo) {
+    size += computeStringSize(3, self.to);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(4, self.status);
+  }
+  if (self.hasText) {
+    size += computeStringSize(20, self.text);
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    size += computeMessageSize(21, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBMessage*) parseFromData:(NSData*) data {
+  return (PBMessage*)[[[PBMessage builder] mergeFromData:data] build];
+}
++ (PBMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessage*)[[[PBMessage builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBMessage*) parseFromInputStream:(NSInputStream*) input {
+  return (PBMessage*)[[[PBMessage builder] mergeFromInputStream:input] build];
+}
++ (PBMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessage*)[[[PBMessage builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBMessage*)[[[PBMessage builder] mergeFromCodedInputStream:input] build];
+}
++ (PBMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessage*)[[[PBMessage builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBMessage_Builder*) builder {
+  return [[[PBMessage_Builder alloc] init] autorelease];
+}
++ (PBMessage_Builder*) builderWithPrototype:(PBMessage*) prototype {
+  return [[PBMessage builder] mergeFrom:prototype];
+}
+- (PBMessage_Builder*) builder {
+  return [PBMessage builder];
+}
+@end
+
+@interface PBMessage_Builder()
+@property (retain) PBMessage* result;
+@end
+
+@implementation PBMessage_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBMessage alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBMessage_Builder*) clear {
+  self.result = [[[PBMessage alloc] init] autorelease];
+  return self;
+}
+- (PBMessage_Builder*) clone {
+  return [PBMessage builderWithPrototype:result];
+}
+- (PBMessage*) defaultInstance {
+  return [PBMessage defaultInstance];
+}
+- (PBMessage*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBMessage*) buildPartial {
+  PBMessage* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBMessage_Builder*) mergeFrom:(PBMessage*) other {
+  if (other == [PBMessage defaultInstance]) {
+    return self;
+  }
+  if (other.hasMessageId) {
+    [self setMessageId:other.messageId];
+  }
+  if (other.hasFrom) {
+    [self setFrom:other.from];
+  }
+  if (other.hasTo) {
+    [self setTo:other.to];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasText) {
+    [self setText:other.text];
+  }
+  if (other.mutableDrawDataList.count > 0) {
+    if (result.mutableDrawDataList == nil) {
+      result.mutableDrawDataList = [NSMutableArray array];
+    }
+    [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setMessageId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setFrom:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setTo:[input readString]];
+        break;
+      }
+      case 32: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 162: {
+        [self setText:[input readString]];
+        break;
+      }
+      case 170: {
+        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasMessageId {
+  return result.hasMessageId;
+}
+- (NSString*) messageId {
+  return result.messageId;
+}
+- (PBMessage_Builder*) setMessageId:(NSString*) value {
+  result.hasMessageId = YES;
+  result.messageId = value;
+  return self;
+}
+- (PBMessage_Builder*) clearMessageId {
+  result.hasMessageId = NO;
+  result.messageId = @"";
+  return self;
+}
+- (BOOL) hasFrom {
+  return result.hasFrom;
+}
+- (NSString*) from {
+  return result.from;
+}
+- (PBMessage_Builder*) setFrom:(NSString*) value {
+  result.hasFrom = YES;
+  result.from = value;
+  return self;
+}
+- (PBMessage_Builder*) clearFrom {
+  result.hasFrom = NO;
+  result.from = @"";
+  return self;
+}
+- (BOOL) hasTo {
+  return result.hasTo;
+}
+- (NSString*) to {
+  return result.to;
+}
+- (PBMessage_Builder*) setTo:(NSString*) value {
+  result.hasTo = YES;
+  result.to = value;
+  return self;
+}
+- (PBMessage_Builder*) clearTo {
+  result.hasTo = NO;
+  result.to = @"";
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBMessage_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBMessage_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasText {
+  return result.hasText;
+}
+- (NSString*) text {
+  return result.text;
+}
+- (PBMessage_Builder*) setText:(NSString*) value {
+  result.hasText = YES;
+  result.text = value;
+  return self;
+}
+- (PBMessage_Builder*) clearText {
+  result.hasText = NO;
+  result.text = @"";
+  return self;
+}
+- (NSArray*) drawDataList {
+  if (result.mutableDrawDataList == nil) { return [NSArray array]; }
+  return result.mutableDrawDataList;
+}
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
+  return [result drawDataAtIndex:index];
+}
+- (PBMessage_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value {
+  [result.mutableDrawDataList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBMessage_Builder*) addAllDrawData:(NSArray*) values {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObjectsFromArray:values];
+  return self;
+}
+- (PBMessage_Builder*) clearDrawDataList {
+  result.mutableDrawDataList = nil;
+  return self;
+}
+- (PBMessage_Builder*) addDrawData:(PBDrawAction*) value {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObject:value];
+  return self;
+}
+@end
+
+@interface PBMessageStat ()
+@property (retain) NSString* userId;
+@property (retain) NSString* friendUserId;
+@property (retain) NSString* friendNickName;
+@property (retain) NSString* friendAvatar;
+@property BOOL friendGender;
+@property (retain) NSString* messageId;
+@property int32_t modifiedDate;
+@property int32_t totalMessageCount;
+@property int32_t newMessageCount;
+@property (retain) NSString* text;
+@property (retain) NSMutableArray* mutableDrawDataList;
+@end
+
+@implementation PBMessageStat
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasFriendUserId {
+  return !!hasFriendUserId_;
+}
+- (void) setHasFriendUserId:(BOOL) value {
+  hasFriendUserId_ = !!value;
+}
+@synthesize friendUserId;
+- (BOOL) hasFriendNickName {
+  return !!hasFriendNickName_;
+}
+- (void) setHasFriendNickName:(BOOL) value {
+  hasFriendNickName_ = !!value;
+}
+@synthesize friendNickName;
+- (BOOL) hasFriendAvatar {
+  return !!hasFriendAvatar_;
+}
+- (void) setHasFriendAvatar:(BOOL) value {
+  hasFriendAvatar_ = !!value;
+}
+@synthesize friendAvatar;
+- (BOOL) hasFriendGender {
+  return !!hasFriendGender_;
+}
+- (void) setHasFriendGender:(BOOL) value {
+  hasFriendGender_ = !!value;
+}
+- (BOOL) friendGender {
+  return !!friendGender_;
+}
+- (void) setFriendGender:(BOOL) value {
+  friendGender_ = !!value;
+}
+- (BOOL) hasMessageId {
+  return !!hasMessageId_;
+}
+- (void) setHasMessageId:(BOOL) value {
+  hasMessageId_ = !!value;
+}
+@synthesize messageId;
+- (BOOL) hasModifiedDate {
+  return !!hasModifiedDate_;
+}
+- (void) setHasModifiedDate:(BOOL) value {
+  hasModifiedDate_ = !!value;
+}
+@synthesize modifiedDate;
+- (BOOL) hasTotalMessageCount {
+  return !!hasTotalMessageCount_;
+}
+- (void) setHasTotalMessageCount:(BOOL) value {
+  hasTotalMessageCount_ = !!value;
+}
+@synthesize totalMessageCount;
+- (BOOL) hasNewMessageCount {
+  return !!hasNewMessageCount_;
+}
+- (void) setHasNewMessageCount:(BOOL) value {
+  hasNewMessageCount_ = !!value;
+}
+@synthesize newMessageCount;
+- (BOOL) hasText {
+  return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+  hasText_ = !!value;
+}
+@synthesize text;
+@synthesize mutableDrawDataList;
+- (void) dealloc {
+  self.userId = nil;
+  self.friendUserId = nil;
+  self.friendNickName = nil;
+  self.friendAvatar = nil;
+  self.messageId = nil;
+  self.text = nil;
+  self.mutableDrawDataList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = @"";
+    self.friendUserId = @"";
+    self.friendNickName = @"";
+    self.friendAvatar = @"";
+    self.friendGender = NO;
+    self.messageId = @"";
+    self.modifiedDate = 0;
+    self.totalMessageCount = 0;
+    self.newMessageCount = 0;
+    self.text = @"";
+  }
+  return self;
+}
+static PBMessageStat* defaultPBMessageStatInstance = nil;
++ (void) initialize {
+  if (self == [PBMessageStat class]) {
+    defaultPBMessageStatInstance = [[PBMessageStat alloc] init];
+  }
+}
++ (PBMessageStat*) defaultInstance {
+  return defaultPBMessageStatInstance;
+}
+- (PBMessageStat*) defaultInstance {
+  return defaultPBMessageStatInstance;
+}
+- (NSArray*) drawDataList {
+  return mutableDrawDataList;
+}
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
+  id value = [mutableDrawDataList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasFriendUserId) {
+    return NO;
+  }
+  if (!self.hasFriendNickName) {
+    return NO;
+  }
+  if (!self.hasMessageId) {
+    return NO;
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeString:1 value:self.userId];
+  }
+  if (self.hasFriendUserId) {
+    [output writeString:2 value:self.friendUserId];
+  }
+  if (self.hasFriendNickName) {
+    [output writeString:3 value:self.friendNickName];
+  }
+  if (self.hasFriendAvatar) {
+    [output writeString:4 value:self.friendAvatar];
+  }
+  if (self.hasFriendGender) {
+    [output writeBool:5 value:self.friendGender];
+  }
+  if (self.hasMessageId) {
+    [output writeString:10 value:self.messageId];
+  }
+  if (self.hasModifiedDate) {
+    [output writeInt32:11 value:self.modifiedDate];
+  }
+  if (self.hasTotalMessageCount) {
+    [output writeInt32:12 value:self.totalMessageCount];
+  }
+  if (self.hasNewMessageCount) {
+    [output writeInt32:13 value:self.newMessageCount];
+  }
+  if (self.hasText) {
+    [output writeString:20 value:self.text];
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    [output writeMessage:21 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeStringSize(1, self.userId);
+  }
+  if (self.hasFriendUserId) {
+    size += computeStringSize(2, self.friendUserId);
+  }
+  if (self.hasFriendNickName) {
+    size += computeStringSize(3, self.friendNickName);
+  }
+  if (self.hasFriendAvatar) {
+    size += computeStringSize(4, self.friendAvatar);
+  }
+  if (self.hasFriendGender) {
+    size += computeBoolSize(5, self.friendGender);
+  }
+  if (self.hasMessageId) {
+    size += computeStringSize(10, self.messageId);
+  }
+  if (self.hasModifiedDate) {
+    size += computeInt32Size(11, self.modifiedDate);
+  }
+  if (self.hasTotalMessageCount) {
+    size += computeInt32Size(12, self.totalMessageCount);
+  }
+  if (self.hasNewMessageCount) {
+    size += computeInt32Size(13, self.newMessageCount);
+  }
+  if (self.hasText) {
+    size += computeStringSize(20, self.text);
+  }
+  for (PBDrawAction* element in self.drawDataList) {
+    size += computeMessageSize(21, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBMessageStat*) parseFromData:(NSData*) data {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromData:data] build];
+}
++ (PBMessageStat*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBMessageStat*) parseFromInputStream:(NSInputStream*) input {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromInputStream:input] build];
+}
++ (PBMessageStat*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBMessageStat*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromCodedInputStream:input] build];
+}
++ (PBMessageStat*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBMessageStat*)[[[PBMessageStat builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBMessageStat_Builder*) builder {
+  return [[[PBMessageStat_Builder alloc] init] autorelease];
+}
++ (PBMessageStat_Builder*) builderWithPrototype:(PBMessageStat*) prototype {
+  return [[PBMessageStat builder] mergeFrom:prototype];
+}
+- (PBMessageStat_Builder*) builder {
+  return [PBMessageStat builder];
+}
+@end
+
+@interface PBMessageStat_Builder()
+@property (retain) PBMessageStat* result;
+@end
+
+@implementation PBMessageStat_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBMessageStat alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBMessageStat_Builder*) clear {
+  self.result = [[[PBMessageStat alloc] init] autorelease];
+  return self;
+}
+- (PBMessageStat_Builder*) clone {
+  return [PBMessageStat builderWithPrototype:result];
+}
+- (PBMessageStat*) defaultInstance {
+  return [PBMessageStat defaultInstance];
+}
+- (PBMessageStat*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBMessageStat*) buildPartial {
+  PBMessageStat* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBMessageStat_Builder*) mergeFrom:(PBMessageStat*) other {
+  if (other == [PBMessageStat defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasFriendUserId) {
+    [self setFriendUserId:other.friendUserId];
+  }
+  if (other.hasFriendNickName) {
+    [self setFriendNickName:other.friendNickName];
+  }
+  if (other.hasFriendAvatar) {
+    [self setFriendAvatar:other.friendAvatar];
+  }
+  if (other.hasFriendGender) {
+    [self setFriendGender:other.friendGender];
+  }
+  if (other.hasMessageId) {
+    [self setMessageId:other.messageId];
+  }
+  if (other.hasModifiedDate) {
+    [self setModifiedDate:other.modifiedDate];
+  }
+  if (other.hasTotalMessageCount) {
+    [self setTotalMessageCount:other.totalMessageCount];
+  }
+  if (other.hasNewMessageCount) {
+    [self setNewMessageCount:other.newMessageCount];
+  }
+  if (other.hasText) {
+    [self setText:other.text];
+  }
+  if (other.mutableDrawDataList.count > 0) {
+    if (result.mutableDrawDataList == nil) {
+      result.mutableDrawDataList = [NSMutableArray array];
+    }
+    [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBMessageStat_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBMessageStat_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setFriendUserId:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setFriendNickName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setFriendAvatar:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setFriendGender:[input readBool]];
+        break;
+      }
+      case 82: {
+        [self setMessageId:[input readString]];
+        break;
+      }
+      case 88: {
+        [self setModifiedDate:[input readInt32]];
+        break;
+      }
+      case 96: {
+        [self setTotalMessageCount:[input readInt32]];
+        break;
+      }
+      case 104: {
+        [self setNewMessageCount:[input readInt32]];
+        break;
+      }
+      case 162: {
+        [self setText:[input readString]];
+        break;
+      }
+      case 170: {
+        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBMessageStat_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasFriendUserId {
+  return result.hasFriendUserId;
+}
+- (NSString*) friendUserId {
+  return result.friendUserId;
+}
+- (PBMessageStat_Builder*) setFriendUserId:(NSString*) value {
+  result.hasFriendUserId = YES;
+  result.friendUserId = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearFriendUserId {
+  result.hasFriendUserId = NO;
+  result.friendUserId = @"";
+  return self;
+}
+- (BOOL) hasFriendNickName {
+  return result.hasFriendNickName;
+}
+- (NSString*) friendNickName {
+  return result.friendNickName;
+}
+- (PBMessageStat_Builder*) setFriendNickName:(NSString*) value {
+  result.hasFriendNickName = YES;
+  result.friendNickName = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearFriendNickName {
+  result.hasFriendNickName = NO;
+  result.friendNickName = @"";
+  return self;
+}
+- (BOOL) hasFriendAvatar {
+  return result.hasFriendAvatar;
+}
+- (NSString*) friendAvatar {
+  return result.friendAvatar;
+}
+- (PBMessageStat_Builder*) setFriendAvatar:(NSString*) value {
+  result.hasFriendAvatar = YES;
+  result.friendAvatar = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearFriendAvatar {
+  result.hasFriendAvatar = NO;
+  result.friendAvatar = @"";
+  return self;
+}
+- (BOOL) hasFriendGender {
+  return result.hasFriendGender;
+}
+- (BOOL) friendGender {
+  return result.friendGender;
+}
+- (PBMessageStat_Builder*) setFriendGender:(BOOL) value {
+  result.hasFriendGender = YES;
+  result.friendGender = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearFriendGender {
+  result.hasFriendGender = NO;
+  result.friendGender = NO;
+  return self;
+}
+- (BOOL) hasMessageId {
+  return result.hasMessageId;
+}
+- (NSString*) messageId {
+  return result.messageId;
+}
+- (PBMessageStat_Builder*) setMessageId:(NSString*) value {
+  result.hasMessageId = YES;
+  result.messageId = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearMessageId {
+  result.hasMessageId = NO;
+  result.messageId = @"";
+  return self;
+}
+- (BOOL) hasModifiedDate {
+  return result.hasModifiedDate;
+}
+- (int32_t) modifiedDate {
+  return result.modifiedDate;
+}
+- (PBMessageStat_Builder*) setModifiedDate:(int32_t) value {
+  result.hasModifiedDate = YES;
+  result.modifiedDate = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearModifiedDate {
+  result.hasModifiedDate = NO;
+  result.modifiedDate = 0;
+  return self;
+}
+- (BOOL) hasTotalMessageCount {
+  return result.hasTotalMessageCount;
+}
+- (int32_t) totalMessageCount {
+  return result.totalMessageCount;
+}
+- (PBMessageStat_Builder*) setTotalMessageCount:(int32_t) value {
+  result.hasTotalMessageCount = YES;
+  result.totalMessageCount = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearTotalMessageCount {
+  result.hasTotalMessageCount = NO;
+  result.totalMessageCount = 0;
+  return self;
+}
+- (BOOL) hasNewMessageCount {
+  return result.hasNewMessageCount;
+}
+- (int32_t) newMessageCount {
+  return result.newMessageCount;
+}
+- (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value {
+  result.hasNewMessageCount = YES;
+  result.newMessageCount = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearNewMessageCount {
+  result.hasNewMessageCount = NO;
+  result.newMessageCount = 0;
+  return self;
+}
+- (BOOL) hasText {
+  return result.hasText;
+}
+- (NSString*) text {
+  return result.text;
+}
+- (PBMessageStat_Builder*) setText:(NSString*) value {
+  result.hasText = YES;
+  result.text = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearText {
+  result.hasText = NO;
+  result.text = @"";
+  return self;
+}
+- (NSArray*) drawDataList {
+  if (result.mutableDrawDataList == nil) { return [NSArray array]; }
+  return result.mutableDrawDataList;
+}
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
+  return [result drawDataAtIndex:index];
+}
+- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value {
+  [result.mutableDrawDataList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObjectsFromArray:values];
+  return self;
+}
+- (PBMessageStat_Builder*) clearDrawDataList {
+  result.mutableDrawDataList = nil;
+  return self;
+}
+- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObject:value];
+  return self;
+}
+@end
+
