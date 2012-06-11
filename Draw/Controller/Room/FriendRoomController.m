@@ -261,7 +261,7 @@
             }
         }
     }
-    [refreshHeaderView setCurrentDate];  	
+//    [refreshHeaderView setCurrentDate];  	
 	[self dataSourceDidFinishLoadingNewData];
     [self updateNoRoomTip];
 }
