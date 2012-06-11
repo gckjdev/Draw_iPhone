@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSDate   * lastModifiedDate;
 @property (nonatomic, retain) NSNumber * deleteFlag;
 @property (nonatomic, retain) NSString * location;
+@property (nonatomic, retain) NSNumber * level;
 
 @end

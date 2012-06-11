@@ -14,7 +14,7 @@
 
 #define DRAW_APP_ID      @"513819630"
 
-@class DrawViewController;
+@class OnlineDrawViewController;
 @class RoomController;
 @class HomeController;
 @class NetworkDetector;
@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet DrawViewController *viewController;
+@property (nonatomic, retain) IBOutlet OnlineDrawViewController *viewController;
 @property (nonatomic, retain) ReviewRequest *reviewRequest; 
 
 @property (nonatomic, retain) RoomController *roomController;

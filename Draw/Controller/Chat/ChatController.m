@@ -94,6 +94,7 @@
 
 @implementation ChatController
 
+@synthesize levelLabel;
 @synthesize chatControllerDelegate;
 @synthesize viewBgImageView;
 @synthesize userView;
@@ -171,6 +172,7 @@
     [self setViewBgImageView:nil];
     [self setCloseButton:nil];
     [self setAlreadPayAttentionLabel:nil];
+    [self setLevelLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -193,6 +195,7 @@
     [viewBgImageView release];
     [closeButton release];
     [alreadPayAttentionLabel release];
+    [levelLabel release];
     [super dealloc];
 }
 
@@ -394,7 +397,7 @@
     int i = 0;
     float edge = (avatarHolderView.frame.size.width - MAX_NUM_AVATAR*WIDTH_AVATAR - (MAX_NUM_AVATAR-1)*DISTANCE_BETWEEN_AVATAR) / 2;
     for (GameSessionUser *user in userList) {
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender level:user.level];
         aView.delegate = self;
         [aView setUserId:user.userId];
 
@@ -405,6 +408,7 @@
         }
         
         [self.avatarHolderView addSubview:aView];
+        
         [aView release];
         ++ i;                                  
     }
@@ -426,8 +430,8 @@
     DrawGameService* drawService = [DrawGameService defaultService];
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     
-    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender];
-    [aView setAvatarSelected:YES];
+    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender level:user.level];
+    [aView setAvatarSelected:NO];
     [avatarView addSubview:aView];
     [aView release];
     
@@ -452,6 +456,10 @@
         payAttentionButton.hidden = NO;
         alreadPayAttentionLabel.hidden = YES;
     }
+    if (user.level != 0) {
+        [levelLabel setText:[NSString stringWithFormat:@"LV:%d",user.level]];
+    }
+    
 }
 
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId needAnimation:(BOOL)needAnimation

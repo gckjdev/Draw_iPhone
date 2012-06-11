@@ -23,5 +23,7 @@ typedef enum {
 }Draw_sound_index;
 
 
+#define YOUMI_APP_ID    @"c278f8dc80295b18"
+#define YOUMI_APP_KEY   @"30c93a1226f94496"
 
 #endif

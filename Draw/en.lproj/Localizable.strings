@@ -471,4 +471,40 @@
 "kChatVoice" = "Chat Voice";
 "kEnableAlways" = "Enable";
 "kEnableWifi" = "Enable only WiFi";
-"kEnableNot" = "Not enable";
+"kEnableNot" = "Disable";
+
+"kCurrentCoins" = "Coins ";
+"kCurrentItems" = "Items ";
+"kFreeGetCoins" = "Free Coins";
+
+"kCustomWordManage" = "Word Manage";
+"kAddCustomWord" = "Add Word";
+"kInputWord" = "Input Words";
+"kInputWordPlaceholder" = "Please input a new word";
+"kMyWords" = "My Words";
+"kNoCustomWords" = "You have Not defined the words, define your words in setting";
+"kClose" = "Close";
+"kExistWord" = "Already exists in this word";
+"kSureUseThisWord "="Sure to use [%@] ? ";
+
+"kUpgradeMsg" = "Congratulations!You upgraded to level %d";
+"kDegradeMsg" = "You ran away too much times, now degrade to level %d";
+"kLevelInfo" = "level:%d    exp:%d/%d";
+
+"kDrawing" = "Drawing";
+"kGuessing" = "Guessing";
+
+"kUpdateWord" = "Update Word";
+"kInputWordEmpty" = "word can not be empty";
+"kSubmitFailure" = "Sorry. Submit failure.";
+
+"kSubmitSuccTitle" = "Submit Successfully";
+"kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
+
+//"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
+//"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
+//"kChangeOpusTitle" = "Change Opus";
+"kGuessDraw" = "Guessing";
+
+"kQuit" = "Quit";
+"kOneMore" = "One More";

@@ -9,7 +9,7 @@
 #import "RoomController.h"
 #import "DrawGameService.h"
 #import "SelectWordController.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "GameSession.h"
 #import "PPApplication.h"
 #import "DrawAppDelegate.h"
@@ -202,7 +202,7 @@
     float seperatorY = ([DeviceDetection isIPAD]) ? 220 : 99;
     CGPoint orgPoint = ORG_POINT;
     for (int i = imageStartTag; i <= imageEndTag; i++) {
-        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO];
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO level:0];
         avatarView.tag = i;
         [avatarView setImage:nil];
         avatarView.hidden = NO;
@@ -257,6 +257,7 @@
         }
         [imageView setAvatarUrl:avatar gender:[user gender]];
         [imageView setUserId:user.userId];
+        
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
@@ -290,11 +291,11 @@
 //        }
         
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
-            [imageView setAvatarSelected:YES];
+            [imageView setAvatarSelected:YES level:user.level];
             [imageView setHasPen:YES];
         }
         else{
-            [imageView setAvatarSelected:NO];
+            [imageView setAvatarSelected:NO level:user.level];
             [imageView setHasPen:NO];
         }
         
@@ -326,7 +327,7 @@
         [imageView setImage:nil];
         [imageView setUserId:nil];
         [imageView setHasPen:NO];
-        [imageView setAvatarSelected:NO];
+        [imageView setAvatarSelected:NO level:0];
         
         [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
@@ -554,11 +555,11 @@
 {
     if (![self isMyTurn]) {
         for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[ShowDrawController class]]) {
+            if ([controller isKindOfClass:[OnlineGuessDrawController class]]) {
                 return;
             }
         }
-        ShowDrawController *controller = [[ShowDrawController alloc] init];
+        OnlineGuessDrawController *controller = [[OnlineGuessDrawController alloc] init];
         [self.navigationController pushViewController:controller animated:animated];
         [controller release];
     }

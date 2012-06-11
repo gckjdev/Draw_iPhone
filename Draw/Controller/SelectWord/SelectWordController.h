@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "DrawGameService.h"
 #import "PPViewController.h"
+#import "SelectCustomWordView.h"
+
+typedef enum{
+    OnlineDraw = 0,
+    OfflineDraw = 1,
+}GameType;
+
 @class ToolView;
-@interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate>
+@interface SelectWordController : PPViewController<UITableViewDataSource, UITableViewDelegate, DrawGameServiceDelegate, SelectCustomWordViewDelegate>
 {
     NSArray *_wordArray;
     NSInteger  retainCount;
@@ -22,9 +29,17 @@
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
 @property (retain, nonatomic) NSArray *wordArray;
-- (IBAction)clickChangeWordButton:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *clockLabel;
 @property (retain, nonatomic) IBOutlet UIButton *changeWordButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (assign, nonatomic) GameType gameType;
+@property (retain, nonatomic) IBOutlet UIImageView *timeBg;
+@property (retain, nonatomic) IBOutlet UIButton *myWordsButton;
+
+
+- (IBAction)clickChangeWordButton:(id)sender;
+
+
+- (id)initWithType:(GameType)gameType;
 
 @end

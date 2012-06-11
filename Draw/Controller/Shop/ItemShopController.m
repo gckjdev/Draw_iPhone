@@ -18,15 +18,18 @@
 #import "CommonDialog.h"
 #import "CoinShopController.h"
 #import "PPDebug.h"
-#import "ShowDrawController.h"
+#import "OnlineGuessDrawController.h"
 #import "ShoppingManager.h"
 #import "ColorShopView.h"
+#import "YoumiWallController.h"
+#import "ConfigManager.h"
 
 ItemShopController *staticItemController = nil;
 
 @implementation ItemShopController
 @synthesize coinsAmountLabel;
 @synthesize itemAmountLabel;
+@synthesize freeGetCoinsButton;
 @synthesize titleLabel;
 @synthesize callFromShowViewController;
 @synthesize gotoCoinShopButton;
@@ -63,8 +66,8 @@ ItemShopController *staticItemController = nil;
     int itemAmount = [[ItemManager defaultManager] tipsItemAmount]; 
     int coinsAmount = [[AccountManager defaultManager] getBalance];
     
-    self.coinsAmountLabel.text = [NSString stringWithFormat:@"%d", coinsAmount];
-    self.itemAmountLabel.text = [NSString stringWithFormat:@"%d", itemAmount];
+    self.coinsAmountLabel.text = [NSString stringWithFormat:@"%@%d", NSLS(@"kCurrentCoins"), coinsAmount];
+    self.itemAmountLabel.text = [NSString stringWithFormat:@"%@%d", NSLS(@"kCurrentItems"), itemAmount];
 }
 
 - (void)viewDidLoad
@@ -87,6 +90,18 @@ ItemShopController *staticItemController = nil;
     [tableBg release];
     
     [self.titleLabel setText:NSLS(@"kItemShopTitle")];    
+
+    if ([ConfigManager isInReviewVersion] == NO && 
+        ([LocaleUtils isChina] == YES || 
+        [LocaleUtils isOtherChina] == YES)){
+        [self.freeGetCoinsButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage]    
+                                           forState:UIControlStateNormal];
+        
+        self.freeGetCoinsButton.hidden = NO;
+    }
+    else{
+        self.freeGetCoinsButton.hidden = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -117,6 +132,7 @@ ItemShopController *staticItemController = nil;
     [self setTitleLabel:nil];
     [self setCoinsAmountLabel:nil];
     [self setItemAmountLabel:nil];
+    [self setFreeGetCoinsButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -233,10 +249,18 @@ ItemShopController *staticItemController = nil;
     return self.navigationController;
 }
 
+- (void)showYoumiWall
+{
+    YoumiWallController* controller = [[YoumiWallController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (void)dealloc {
     PPRelease(titleLabel);
     PPRelease(coinsAmountLabel);
     PPRelease(itemAmountLabel);
+    [freeGetCoinsButton release];
     [super dealloc];
 }
 @end

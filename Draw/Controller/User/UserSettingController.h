@@ -29,11 +29,16 @@
     NSInteger rowOfQQWeibo;
     NSInteger rowOfFacebook;
     NSInteger rowOfLevel;
+    NSInteger rowOfCustomWord;
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
     NSInteger rowOfVolumeSetting;
     NSInteger rowOfChatVoice;
-    NSInteger rowNumber;
+    
+    NSInteger rowsInSectionUser;
+    NSInteger rowsInSectionGuessWord;
+    NSInteger rowsInSectionSound;
+    
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
     NSString *_updatePassword;
@@ -52,6 +57,7 @@
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;

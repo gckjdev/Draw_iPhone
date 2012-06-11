@@ -55,6 +55,14 @@ static FriendManager *_defaultFriendManager = nil;
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
     NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
+    NSString* levelStr = [userDic objectForKey:PARA_LEVEL];
+    NSNumber* level;
+    if (levelStr) {
+        level = [NSNumber numberWithInt:[levelStr intValue]];
+    } else {
+        level = [NSNumber numberWithInt:1];
+    }
+    
     
     return [self createFriendWithUserId:friendUserId 
                                    type:type 
@@ -69,43 +77,8 @@ static FriendManager *_defaultFriendManager = nil;
                            facebookNick:facebookNick 
                              createDate:[NSDate date]
                        lastModifiedDate:lastModifiedDate 
-                               location:location];
-}
-
-
-- (BOOL)updateFriendByDictionary:(NSDictionary *)userDic
-{
-    NSString* friendUserId = [userDic objectForKey:PARA_USERID];
-    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
-    NSString* avatar = [userDic objectForKey:PARA_AVATAR];     
-    NSString* gender = [userDic objectForKey:PARA_GENDER];
-    NSString* sinaId = [userDic objectForKey:PARA_SINA_ID];
-    NSString* qqId = [userDic objectForKey:PARA_QQ_ID];
-    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
-    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
-    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
-    NSString* facebookNick = [userDic objectForKey:PARA_FACEBOOK_NICKNAME];
-    NSString* typeStr =[userDic objectForKey:PARA_FRIENDSTYPE];
-    NSString* lastModifiedDateStr = [userDic objectForKey:PARA_LASTMODIFIEDDATE];
-    NSString* location = [userDic objectForKey:PARA_LOCATION];
-    NSNumber* type = [NSNumber numberWithInt:[typeStr intValue]];
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateFormat:DEFAULT_DATE_FORMAT];
-    NSDate* lastModifiedDate = [dateFormatter dateFromString:lastModifiedDateStr];
-    
-    return [[FriendManager defaultManager] updateFriendWithUserId:friendUserId 
-                                                             type:type 
-                                                         nickName:nickName 
-                                                           avatar:avatar 
-                                                           gender:gender 
-                                                           sinaId:sinaId 
-                                                             qqId:qqId 
-                                                       facebookId:facebookId 
-                                                         sinaNick:sinaNick 
-                                                           qqNick:qqNick 
-                                                     facebookNick:facebookNick 
-                                                 lastModifiedDate:lastModifiedDate
-                                                         location:location];
+                               location:location 
+                                  level:level];
 }
 
 
@@ -122,7 +95,8 @@ static FriendManager *_defaultFriendManager = nil;
                   facebookNick:(NSString *)facebookNick 
                     createDate:(NSDate *)createDate 
               lastModifiedDate:(NSDate *)lastModifiedDate 
-                      location:(NSString *)location
+                      location:(NSString *)location 
+                         level:(NSNumber *)level
 {
     if ([self hasRecord:friendUserId type:type]) {
         return [self updateFriendWithUserId:friendUserId 
@@ -137,7 +111,8 @@ static FriendManager *_defaultFriendManager = nil;
                                      qqNick:qqNick 
                                facebookNick:facebookNick  
                            lastModifiedDate:lastModifiedDate 
-                                   location:location];
+                                   location:location 
+                                      level:level];
     }else {
         PPDebug(@"<createFriendWithUserId>");
         
@@ -158,6 +133,7 @@ static FriendManager *_defaultFriendManager = nil;
         [newFriend setLastModifiedDate:lastModifiedDate];
         [newFriend setDeleteFlag:[NSNumber numberWithInt:NOT_DELETED]];
         [newFriend setLocation:location];
+        [newFriend setLevel:level];
         
         return [dataManager save];
     }
@@ -176,7 +152,8 @@ static FriendManager *_defaultFriendManager = nil;
                         qqNick:(NSString *)qqNick
                   facebookNick:(NSString *)facebookNick
               lastModifiedDate:(NSDate *)lastModifiedDate 
-                      location:(NSString *)location
+                      location:(NSString *)location 
+                         level:(NSNumber *)level
 {
     Friend *updateFriend = nil;
     if (type.intValue == FOLLOW) {
@@ -199,6 +176,7 @@ static FriendManager *_defaultFriendManager = nil;
         updateFriend.facebookNick = facebookNick;
         updateFriend.lastModifiedDate = lastModifiedDate;
         updateFriend.location = location;
+        updateFriend.level = level;
         
         return  [[CoreDataManager dataManager] save];
     }

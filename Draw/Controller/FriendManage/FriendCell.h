@@ -32,6 +32,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIImageView *authImageView;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UIButton *followButton;
+@property (retain, nonatomic) IBOutlet UILabel* levelLabel;
 
 @property (retain, nonatomic) NSDictionary *user;
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;

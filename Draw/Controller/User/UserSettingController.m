@@ -20,10 +20,14 @@
 #import "AudioManager.h"
 #import "DeviceDetection.h"
 #import "MusicSettingController.h"
+#import "LevelService.h"
+#import "MyWordsController.h"
 
 enum{
-    SECTION_LANGUAGE = 0,
-    SECTION_COUNT
+    SECTION_USER = 0,
+    SECTION_GUESSWORD = 1,
+    SECTION_SOUND = 2,
+    SECTION_COUNT = 3
 };
 
 enum {
@@ -31,10 +35,12 @@ enum {
     INDEX_OF_FEMALE = 1
 };
 
+
 #define DIALOG_TAG_NICKNAME 201204071
 #define DIALOG_TAG_PASSWORD 201204072
 
 @implementation UserSettingController
+@synthesize expAndLevelLabel;
 @synthesize saveButton;
 @synthesize titleLabel;
 @synthesize avatarButton;
@@ -52,47 +58,38 @@ enum {
     PPRelease(changeAvatar);
     PPRelease(nicknameLabel);
     PPRelease(_gender);
+    [expAndLevelLabel release];
     [super dealloc];
 }
 
 - (void)updateRowIndexs
 {
+    //section user
     rowOfPassword = 0;
     rowOfGender = 1;
     rowOfNickName = 2;
-    rowOfLanguage = 3;
+    rowsInSectionUser = 3;
     
+    //section guessword
+    rowOfLanguage = 0;
     if (languageType == ChineseType) {
-        rowOfLevel = 4;
-        rowOfSoundSwitcher = 5;
-        rowOfMusicSettings = 6;
-        rowOfVolumeSetting = 7;
-        rowOfChatVoice = 8;
-        rowNumber = 9;        
-    }else{
+        rowOfLevel = 1;
+        rowOfCustomWord = 2;
+        rowsInSectionGuessWord = 3;
+    }else {
         rowOfLevel = -1;
-        rowOfSoundSwitcher = 4;
-        rowOfMusicSettings = 5;
-        rowOfVolumeSetting = 6;
-        rowOfChatVoice = 7;
-        rowNumber = 8;
+        rowOfCustomWord = -1;
+        rowsInSectionGuessWord = 1;
     }
     
-    
-    
-    /*
-    if ([LocaleUtils isChina]) {
-        rowOfSinaWeibo = 3;
-        rowOfQQWeibo = 4;
-        rowOfFacebook = -1;
-        rowNumber = 5;
-    }else{
-        rowOfSinaWeibo = rowOfQQWeibo = -1;        
-        rowOfFacebook = 3;
-        rowNumber = 4;
-    }
-     */
+    //section sound
+    rowOfSoundSwitcher = 0;
+    rowOfMusicSettings = 1;
+    rowOfVolumeSetting = 2;
+    rowOfChatVoice = 3;
+    rowsInSectionSound = 4;
 }
+
 - (void)updateAvatar:(UIImage *)image
 {
     [imageView setImage:image];
@@ -142,7 +139,6 @@ enum {
 }
 
 
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -150,6 +146,7 @@ enum {
     [super viewDidLoad];
 
     userManager = [UserManager defaultManager];
+    isSoundOn = [AudioManager defaultManager].isSoundOn;
 
 
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -163,6 +160,10 @@ enum {
     
     [self updateInfoFromUserManager];
     [self updateRowIndexs];
+    LevelService* svc = [LevelService defaultService];
+    [self.expAndLevelLabel setText:[NSString stringWithFormat:NSLS(@"kLevelInfo"), svc.level, svc.experience, svc.expRequiredForNextLevel]];
+    
+    [dataTableView setBackgroundView:nil];
 }
 
 - (void)viewDidUnload
@@ -172,6 +173,7 @@ enum {
     [self setAvatarButton:nil];
     [self setSaveButton:nil];
     [self setNicknameLabel:nil];
+    [self setExpAndLevelLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -180,16 +182,24 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 98;
+        return 96;
     }
     else {
-        return 49;
+        return 48;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return rowNumber;
+    if (section == SECTION_USER) {
+        return rowsInSectionUser;
+    } else if (section == SECTION_GUESSWORD) {
+        return rowsInSectionGuessWord;
+    } else if (section == SECTION_SOUND) {
+        return rowsInSectionSound;
+    } else {
+        return 0;
+    }
 }
 #define SWITCHER_TAG 20120505
 #define SLIDER_TAG 20120528
@@ -198,6 +208,16 @@ enum {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
     isSoundOn = !btn.selected;
+}
+
+- (int)guessLevelToButtonIndex:(GuessLevel)level
+{
+    return level - 2;
+}
+
+- (GuessLevel)buttonIndexToGuessLevel:(int)buttonIndex
+{
+    return buttonIndex + 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -217,13 +237,13 @@ enum {
         }
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
-        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(194, 3.5, 70, 37)];
+        UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
         [cell addSubview:btn];
         [btn setTag:SWITCHER_TAG];
         [btn setHidden:YES];
         [btn release];
         
-        UISlider* slider = [[UISlider alloc] initWithFrame:CGRectMake(64, 5, 180, 37)];
+        UISlider* slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 5, 184, 37)];
         [slider setValue:[[AudioManager defaultManager] volume]];
         [cell addSubview:slider];
         [slider setTag:SLIDER_TAG];
@@ -231,127 +251,112 @@ enum {
         [slider release];
         
     }
+    
+    NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     UIView* btn = [cell viewWithTag:SWITCHER_TAG];
     if (btn) {
         [btn setHidden:YES];   
-    }        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }        
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+    [slider setHidden:YES];
     
-    if (row == rowOfPassword) {
-        [cell.textLabel setText:NSLS(@"kPassword")];      
-        if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
-            [cell.detailTextLabel setText:NSLS(@"kUnset")];
-        }else{
-            [cell.detailTextLabel setText:nil];            
+    
+    if (section == SECTION_USER) {
+        if (row == rowOfPassword) {
+            [cell.textLabel setText:NSLS(@"kPassword")];      
+            if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
+                [cell.detailTextLabel setText:NSLS(@"kUnset")];
+            }else{
+                [cell.detailTextLabel setText:nil];            
+            }
+        }else if (row == rowOfGender){
+            [cell.textLabel setText:NSLS(@"kGender")];
+            if ([self.gender isEqualToString:MALE]) {
+                [cell.detailTextLabel setText:NSLS(@"kMale")];
+            }else{
+                [cell.detailTextLabel setText:NSLS(@"kFemale")];
+            }
+            [cell.detailTextLabel setHidden:NO];
+        }else if(row == rowOfNickName)
+        {
+            [cell.textLabel setText:NSLS(@"kNickname")];           
+            [cell.detailTextLabel setText:nicknameLabel.text];            
         }
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [cell.detailTextLabel setHidden:NO];
-    }else if (row == rowOfGender){
-        [cell.textLabel setText:NSLS(@"kGender")];
-        if ([self.gender isEqualToString:MALE]) {
-            [cell.detailTextLabel setText:NSLS(@"kMale")];
-        }else{
-            [cell.detailTextLabel setText:NSLS(@"kFemale")];
+    }else if (section == SECTION_GUESSWORD) {
+        if(row == rowOfLanguage)
+        {
+            [cell.textLabel setText:NSLS(@"kLanguageSettings")];     
+            if (languageType == ChineseType) {
+                [cell.detailTextLabel setText:NSLS(@"kChinese")];
+            }else{
+                [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+            }
+        }else if(row == rowOfLevel){
+            [cell.textLabel setText:NSLS(@"kLevelSettings")];     
+            if (guessLevel == EasyLevel) {
+                [cell.detailTextLabel setText:NSLS(@"kEasyLevel")];
+            }else if(guessLevel == NormalLevel){
+                [cell.detailTextLabel setText:NSLS(@"kNormalLevel")];
+            }else{
+                [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
+            }
+            [cell.detailTextLabel setHidden:NO];
+        }else if(row == rowOfCustomWord){
+            [cell.textLabel setText:NSLS(@"kCustomWordManage")]; 
         }
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [cell.detailTextLabel setHidden:NO];
-    }else if(row == rowOfNickName)
-    {
-        [cell.textLabel setText:NSLS(@"kNickname")];           
-        [cell.detailTextLabel setText:nicknameLabel.text];            
-    }else if(row == rowOfLanguage)
-    {
-        [cell.textLabel setText:NSLS(@"kLanguageSettings")];     
-        if (languageType == ChineseType) {
-            [cell.detailTextLabel setText:NSLS(@"kChinese")];
-        }else{
-            [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+    } else if (section == SECTION_SOUND) {
+        if(row == rowOfSoundSwitcher) 
+        {
+            [cell.textLabel setText:NSLS(@"kSound")];
+            UIButton* btn = (UIButton*)[cell viewWithTag:SWITCHER_TAG];
+            if (btn) {
+                [btn setHidden:NO];   
+            }
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+            if ([DeviceDetection isIPAD]) {
+                btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
+                [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
+            }
+            [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+            [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+            [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
+            [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
+            [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [btn setSelected:!isSoundOn];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [cell.detailTextLabel setText:nil];
+        }else if (row == rowOfMusicSettings) {
+            [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
+            [cell.detailTextLabel setHidden:YES];
+        } else if (row == rowOfVolumeSetting) {
+            [cell.textLabel setText:NSLS(@"kVolume")];
+            [cell.detailTextLabel setHidden:YES];
+            UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
+            [slider addTarget:self action:@selector(changeVolume:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [slider setHidden:NO];
+            if ([DeviceDetection isIPAD]) {
+                [slider setFrame:CGRectMake(148*2, 5*2, 184*2, 37*2)];
+            }
+        } else if (row == rowOfChatVoice) {
+            [cell.textLabel setText:NSLS(@"kChatVoice")];
+            if (chatVoice == EnableAlways) {
+                [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
+            } else if (chatVoice == EnableWifi) {
+                [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
+            }else if (chatVoice == EnableNot){
+                [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
+            }
+            [cell.detailTextLabel setHidden:NO];
         }
-    }else if(row == rowOfSinaWeibo)
-    {
-        [cell.textLabel setText:NSLS(@"kSinaWeibo")];              
-        if ([userManager hasBindSinaWeibo]) {
-            [cell.detailTextLabel setText:NSLS(@"kBind")];            
-        }
-    }else if(row == rowOfQQWeibo)
-    {
-        [cell.textLabel setText:NSLS(@"kQQWeibo")];    
-        if ([userManager hasBindQQWeibo]) {
-            [cell.detailTextLabel setText:NSLS(@"kBind")];            
-        }
-    }else if(row == rowOfFacebook)
-    {
-        [cell.textLabel setText:NSLS(@"kFacebook")];     
-        if ([userManager hasBindFacebook]) {
-            [cell.detailTextLabel setText:NSLS(@"kBind")];            
-        }
-    }else if(row == rowOfSoundSwitcher) 
-    {
-        [cell.textLabel setText:NSLS(@"kSound")];
-        UIButton* btn = (UIButton*)[cell viewWithTag:SWITCHER_TAG];
-        if (btn) {
-            [btn setHidden:NO];   
-        }
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        if ([DeviceDetection isIPAD]) {
-            btn.frame = CGRectMake(194*2, 3.5*2, 70*2, 37*2);
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-        }
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
-        [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
-        [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-        [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];        
-        [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-        isSoundOn = [AudioManager defaultManager].isSoundOn;
-        [btn setSelected:!isSoundOn];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [cell.detailTextLabel setText:nil];
-    }else if(row == rowOfLevel){
-        [cell.textLabel setText:NSLS(@"kLevelSettings")];     
-        if (guessLevel == EasyLevel) {
-            [cell.detailTextLabel setText:NSLS(@"kEasyLevel")];
-        }else if(guessLevel == NormalLevel){
-            [cell.detailTextLabel setText:NSLS(@"kNormalLevel")];
-        }else{
-            [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
-        }
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [cell.detailTextLabel setHidden:NO];
-    }else if (row == rowOfMusicSettings) {
-        [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [cell.detailTextLabel setHidden:YES];
-    } else if (row == rowOfVolumeSetting) {
-        [cell.textLabel setText:NSLS(@"kVolume")];
-        [cell.detailTextLabel setHidden:YES];
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider addTarget:self action:@selector(changeVolume:) forControlEvents:UIControlEventValueChanged];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [slider setHidden:NO];
-        if ([DeviceDetection isIPAD]) {
-            [slider setFrame:CGRectMake(64*2, 5*2, 180*2, 37*2)];
-        }
-    } else if (row == rowOfChatVoice) {
-        [cell.textLabel setText:NSLS(@"kChatVoice")];
-        if (chatVoice == EnableAlways) {
-            [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
-        } else if (chatVoice == EnableWifi) {
-            [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
-        }else if (chatVoice == EnableNot){
-            [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
-        }
-        
-        UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
-        [slider setHidden:YES];
-        [cell.detailTextLabel setHidden:NO];
     }
+    
     return cell;
 }
 
@@ -378,57 +383,79 @@ enum {
 {
     
     NSInteger row = indexPath.row;
-    if (row == rowOfLanguage) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
-//        LanguageType type = [userManager getLanguageType];
-        [actionSheet setDestructiveButtonIndex:languageType - 1];
-        [actionSheet showInView:self.view];
-        actionSheet.tag = LANGUAGE_TAG;
-        [actionSheet release];        
-    }else if (row == rowOfLevel) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kEasyLevel") otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
-        [actionSheet setDestructiveButtonIndex:guessLevel - 1];
-        [actionSheet showInView:self.view];
-        actionSheet.tag = LEVEL_TAG;
-        [actionSheet release];        
-    } else if (row == rowOfGender) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
-        int index = ([self.gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
-        [actionSheet setDestructiveButtonIndex:index];
-        [actionSheet showInView:self.view];
-        actionSheet.tag = GENDER_TAG;
-        [actionSheet release];
-    }else if(row == rowOfNickName)
-    {
-        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
-        dialog.tag = DIALOG_TAG_NICKNAME;
-        [dialog setTargetText:nicknameLabel.text];
-        [dialog showInView:self.view];
-    }else if(row == rowOfPassword)
-    {
-        PassWordDialog *dialog = [PassWordDialog dialogWith:NSLS(@"kPassword") delegate:self];
-        dialog.tag = DIALOG_TAG_PASSWORD;
-        [dialog showInView:self.view];
-    }else if(row == rowOfSinaWeibo){
-        //TODO bind Sina weibo
-    }else if(row == rowOfQQWeibo){
-        //TODO bind QQ Weibo
-    }else if(row == rowOfFacebook){
-        //TODO bind Facebook
-    }else if (row == rowOfMusicSettings) {
-        MusicSettingController *controller = [[MusicSettingController alloc] init];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
-    }else if(row == rowOfChatVoice) {
-        UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
-                                                                          delegate:self 
-                                                                 cancelButtonTitle:NSLS(@"kCancel") 
-                                                            destructiveButtonTitle:NSLS(@"kEnableAlways") 
-                                                                 otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
-        selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
-        [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
-        [selectChatVoiceSheet showInView:self.view];
-        [selectChatVoiceSheet release];
+    NSInteger section = indexPath.section;
+    
+    if (section == SECTION_USER) {
+        if (row == rowOfPassword) {
+            PassWordDialog *dialog = [PassWordDialog dialogWith:NSLS(@"kPassword") delegate:self];
+            dialog.tag = DIALOG_TAG_PASSWORD;
+            [dialog showInView:self.view];
+            
+        }else if (row == rowOfGender){
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
+            int index = ([self.gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
+            [actionSheet setDestructiveButtonIndex:index];
+            [actionSheet showInView:self.view];
+            actionSheet.tag = GENDER_TAG;
+            [actionSheet release];
+            
+        }else if(row == rowOfNickName){
+            InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
+            dialog.tag = DIALOG_TAG_NICKNAME;
+            [dialog setTargetText:nicknameLabel.text];
+            [dialog showInView:self.view];
+        }
+    
+    }else if (section == SECTION_GUESSWORD) {
+        if(row == rowOfLanguage){
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
+            //        LanguageType type = [userManager getLanguageType];
+            [actionSheet setDestructiveButtonIndex:languageType - 1];
+            [actionSheet showInView:self.view];
+            actionSheet.tag = LANGUAGE_TAG;
+            [actionSheet release]; 
+        }else if(row == rowOfLevel){
+//       UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
+//                                                                delegate:self 
+//                                                       cancelButtonTitle:NSLS(@"kCancel") 
+//                                                  destructiveButtonTitle:NSLS(@"kEasyLevel") 
+//                                                       otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
+            
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
+                                                                     delegate:self 
+                                                            cancelButtonTitle:NSLS(@"kCancel") 
+                                                       destructiveButtonTitle:NSLS(@"kNormalLevel") 
+                                                            otherButtonTitles:NSLS(@"kHardLevel"), nil];
+            
+            [actionSheet setDestructiveButtonIndex:[self guessLevelToButtonIndex:guessLevel]];
+            [actionSheet showInView:self.view];
+            actionSheet.tag = LEVEL_TAG;
+            [actionSheet release];    
+        }else if(row == rowOfCustomWord){
+            MyWordsController *controller = [[MyWordsController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+    }else if (section == SECTION_SOUND) {
+        if(row == rowOfSoundSwitcher) {
+            //no action
+        }else if (row == rowOfMusicSettings) {
+            MusicSettingController *controller = [[MusicSettingController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        } else if (row == rowOfVolumeSetting) {
+            //no action
+        } else if (row == rowOfChatVoice) {
+            UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
+                                                                              delegate:self 
+                                                                     cancelButtonTitle:NSLS(@"kCancel") 
+                                                                destructiveButtonTitle:NSLS(@"kEnableAlways") 
+                                                                     otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
+            selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
+            [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
+            [selectChatVoiceSheet showInView:self.view];
+            [selectChatVoiceSheet release];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -443,7 +470,7 @@ enum {
         if (actionSheet.tag == LANGUAGE_TAG) {
             languageType = buttonIndex + 1;
         }else if(actionSheet.tag == LEVEL_TAG){
-            guessLevel = buttonIndex + 1;
+            guessLevel = [self buttonIndexToGuessLevel:buttonIndex];
         } else  if (actionSheet.tag == GENDER_TAG) {
             if (buttonIndex != actionSheet.destructiveButtonIndex) {
                 hasEdited = YES;

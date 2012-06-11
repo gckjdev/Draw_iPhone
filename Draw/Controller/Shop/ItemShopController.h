@@ -24,6 +24,7 @@ enum{
     CoinShopController *_coinController;
 }
 
+@property (retain, nonatomic) IBOutlet UIButton *freeGetCoinsButton;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
@@ -36,5 +37,6 @@ enum{
 +(ItemShopController *)instance;
 - (UINavigationController *)topNavigationController;
 
+- (IBAction)showYoumiWall;
 
 @end

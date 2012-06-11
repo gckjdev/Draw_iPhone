@@ -49,5 +49,6 @@ typedef enum{
 + (NSString*)getMusicDownloadHomeURL;
 
 + (BOOL)isInReview;
++ (BOOL)isInReviewVersion;
 
 @end

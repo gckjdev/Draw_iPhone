@@ -8,11 +8,19 @@
 
 #import "CommonService.h"
 #import "PPViewController.h"
+#import "DrawAction.h"
+#import "Word.h"
+#import "UserManager.h"
 
+@class Draw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
+- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
+- (void)didMatchDraw:(Draw *)draw result:(int)resultCode;
+
+- (void)didCreateDraw:(int)resultCode;
 
 @end
 
@@ -22,5 +30,12 @@
 + (DrawDataService *)defaultService;
 
 - (void)findRecentDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
+
+- (void)createOfflineDraw:(NSArray*)drawActionList
+                 drawWord:(Word*)drawWord
+                 language:(LanguageType)language
+                 delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
+
+- (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 @end

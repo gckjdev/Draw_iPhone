@@ -119,7 +119,7 @@
     return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
 {
     
     self = [super initWithFrame:AVATAR_VIEW_FRAME];
@@ -150,13 +150,14 @@
             [markButton setTitleEdgeInsets:MARK_INSET];
             [self setScore:0];
         }
+        [self setAvatarSelected:NO level:level];
     }
     
     return self;
 }
 
 
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
 {
     self = [super initWithFrame:frame];    
     if (self) {
@@ -168,6 +169,7 @@
         [self addSubview:imageView];
         [self setAvatarUrl:urlString gender:gender];
         [self addTapGuesture];
+        [self setAvatarSelected:NO level:level];
     }
     
     return self;
@@ -260,5 +262,29 @@
         [markButton setBackgroundImage:[manager drawingMarkLargeImage] forState:UIControlStateNormal];
     }
     markButton.hidden = !hasPen;
+}
+
+- (UIImage*)backgroundForLevel:(int)level
+{
+    if (level >=40 && level <= 50) {
+        return [[ShareImageManager defaultManager] purpleAvatarImage];
+    }
+    if (level >= 25 && level < 40) {
+        return [[ShareImageManager defaultManager] goldenAvatarImage];
+    }
+    if (level >= 10 && level < 25) {
+        return [[ShareImageManager defaultManager] greenAvatarImage];
+    }
+    return [[ShareImageManager defaultManager] avatarUnSelectImage];
+    
+}
+
+- (void)setAvatarSelected:(BOOL)selected level:(int)level
+{
+    if (selected) {
+        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
+    }else{
+        [bgView setImage:[self backgroundForLevel:level]];
+    }
 }
 @end

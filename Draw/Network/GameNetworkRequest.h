@@ -190,8 +190,43 @@
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
                                   level:(int)level 
-                                    exp:(long)exp;
+                                    exp:(long)exp 
+                                   type:(int)type;
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
+
++ (CommonNetworkOutput*)matchDrawWithProtocolBuffer:(NSString*)baseURL 
+                                             userId:(NSString *)userId 
+                                             gender:(NSString *)gender 
+                                               lang:(int)lang
+                                               type:(NSInteger)type;
+
++ (CommonNetworkOutput*)createOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                             nick:(NSString*)nick
+                            avatar:(NSString*)avatar
+                             gender:(NSString*)gender
+                              word:(NSString *)word
+                              level:(NSInteger)level
+                              lang:(NSInteger)lang
+                              data:(NSData*)data;
+
++ (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
+                                 appId:(NSString*)appId
+                                userId:(NSString*)userId
+                          friendUserId:(NSString*)friendUserId
+                           startOffset:(int)startOffset
+                              maxCount:(int)maxCount;
++ (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                       targetUserId:(NSString*)targetUserId
+                               text:(NSString*)text
+                               data:(NSData*)data;
++ (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                 messageId:(NSString*)messageId;
 
 @end

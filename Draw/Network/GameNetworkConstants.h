@@ -41,6 +41,7 @@
 #define METHOD_GETMEPOST @"gmep"
 #define METHOD_UPDATEUSER @"uu"
 #define METHOD_USERFEEDBACK @"ufb"
+#define METHOD_USER_READ_MSG @"urm"
 
 #define METHOD_REGISTERUSER @"ru"
 #define METHOD_BINDUSER @"bu"
@@ -99,12 +100,18 @@
 #define METHOD_REOMOVE_ROOM @"rr"
 #define METHOD_NEW_JOIN_ROOM @"njr"
 
+
+
 //find draw
 #define METHOD_FINDDRAW @"fd"
 
 //for levelService
 #define METHOD_SYND_LEVEL_EXP   @"sle"
 
+//for Draw Online
+#define METHOD_CREATE_OPUS @"cop"
+#define METHOD_MATCH_OPUS  @"mop"
+#define METHOD_GUESS_OPUS  @"gop"
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -263,6 +270,8 @@
 
 #define PARA_KEYWORD @"kw"
 #define PARA_EXPIRE_DATE @"e_date"
+
+#define PARA_WORD @"word"
 // response parameters
 
 #define RET_MESSAGE @"msg"
@@ -357,6 +366,10 @@
 //for level exp
 #define PARA_EXP    @"exp"
 #define PARA_LEVEL  @"lvl"
+#define PARA_LEVEL_INFO @"lif"
+#define PARA_SYNC_TYPE  @"st"
+
+
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
 

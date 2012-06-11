@@ -10,6 +10,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBMessage;
+@class PBMessageStat;
+@class PBMessageStat_Builder;
+@class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 
@@ -88,11 +92,13 @@
 @interface PBGameUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasUserLevel_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasLocation_:1;
   BOOL gender_:1;
+  int32_t userLevel;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -104,11 +110,13 @@
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
 - (BOOL) hasLocation;
+- (BOOL) hasUserLevel;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
 @property (readonly, retain) NSString* location;
+@property (readonly) int32_t userLevel;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 
@@ -177,6 +185,11 @@
 - (NSString*) location;
 - (PBGameUser_Builder*) setLocation:(NSString*) value;
 - (PBGameUser_Builder*) clearLocation;
+
+- (BOOL) hasUserLevel;
+- (int32_t) userLevel;
+- (PBGameUser_Builder*) setUserLevel:(int32_t) value;
+- (PBGameUser_Builder*) clearUserLevel;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
@@ -505,5 +518,238 @@
 - (PBDraw_Builder*) addDrawData:(PBDrawAction*) value;
 - (PBDraw_Builder*) addAllDrawData:(NSArray*) values;
 - (PBDraw_Builder*) clearDrawDataList;
+@end
+
+@interface PBMessage : PBGeneratedMessage {
+@private
+  BOOL hasStatus_:1;
+  BOOL hasMessageId_:1;
+  BOOL hasFrom_:1;
+  BOOL hasTo_:1;
+  BOOL hasText_:1;
+  int32_t status;
+  NSString* messageId;
+  NSString* from;
+  NSString* to;
+  NSString* text;
+  NSMutableArray* mutableDrawDataList;
+}
+- (BOOL) hasMessageId;
+- (BOOL) hasFrom;
+- (BOOL) hasTo;
+- (BOOL) hasStatus;
+- (BOOL) hasText;
+@property (readonly, retain) NSString* messageId;
+@property (readonly, retain) NSString* from;
+@property (readonly, retain) NSString* to;
+@property (readonly) int32_t status;
+@property (readonly, retain) NSString* text;
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+
++ (PBMessage*) defaultInstance;
+- (PBMessage*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBMessage_Builder*) builder;
++ (PBMessage_Builder*) builder;
++ (PBMessage_Builder*) builderWithPrototype:(PBMessage*) prototype;
+
++ (PBMessage*) parseFromData:(NSData*) data;
++ (PBMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBMessage*) parseFromInputStream:(NSInputStream*) input;
++ (PBMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBMessage_Builder : PBGeneratedMessage_Builder {
+@private
+  PBMessage* result;
+}
+
+- (PBMessage*) defaultInstance;
+
+- (PBMessage_Builder*) clear;
+- (PBMessage_Builder*) clone;
+
+- (PBMessage*) build;
+- (PBMessage*) buildPartial;
+
+- (PBMessage_Builder*) mergeFrom:(PBMessage*) other;
+- (PBMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasMessageId;
+- (NSString*) messageId;
+- (PBMessage_Builder*) setMessageId:(NSString*) value;
+- (PBMessage_Builder*) clearMessageId;
+
+- (BOOL) hasFrom;
+- (NSString*) from;
+- (PBMessage_Builder*) setFrom:(NSString*) value;
+- (PBMessage_Builder*) clearFrom;
+
+- (BOOL) hasTo;
+- (NSString*) to;
+- (PBMessage_Builder*) setTo:(NSString*) value;
+- (PBMessage_Builder*) clearTo;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBMessage_Builder*) setStatus:(int32_t) value;
+- (PBMessage_Builder*) clearStatus;
+
+- (BOOL) hasText;
+- (NSString*) text;
+- (PBMessage_Builder*) setText:(NSString*) value;
+- (PBMessage_Builder*) clearText;
+
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+- (PBMessage_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBMessage_Builder*) addDrawData:(PBDrawAction*) value;
+- (PBMessage_Builder*) addAllDrawData:(NSArray*) values;
+- (PBMessage_Builder*) clearDrawDataList;
+@end
+
+@interface PBMessageStat : PBGeneratedMessage {
+@private
+  BOOL hasFriendGender_:1;
+  BOOL hasModifiedDate_:1;
+  BOOL hasTotalMessageCount_:1;
+  BOOL hasNewMessageCount_:1;
+  BOOL hasUserId_:1;
+  BOOL hasFriendUserId_:1;
+  BOOL hasFriendNickName_:1;
+  BOOL hasFriendAvatar_:1;
+  BOOL hasMessageId_:1;
+  BOOL hasText_:1;
+  BOOL friendGender_:1;
+  int32_t modifiedDate;
+  int32_t totalMessageCount;
+  int32_t newMessageCount;
+  NSString* userId;
+  NSString* friendUserId;
+  NSString* friendNickName;
+  NSString* friendAvatar;
+  NSString* messageId;
+  NSString* text;
+  NSMutableArray* mutableDrawDataList;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasFriendUserId;
+- (BOOL) hasFriendNickName;
+- (BOOL) hasFriendAvatar;
+- (BOOL) hasFriendGender;
+- (BOOL) hasMessageId;
+- (BOOL) hasModifiedDate;
+- (BOOL) hasTotalMessageCount;
+- (BOOL) hasNewMessageCount;
+- (BOOL) hasText;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) NSString* friendUserId;
+@property (readonly, retain) NSString* friendNickName;
+@property (readonly, retain) NSString* friendAvatar;
+- (BOOL) friendGender;
+@property (readonly, retain) NSString* messageId;
+@property (readonly) int32_t modifiedDate;
+@property (readonly) int32_t totalMessageCount;
+@property (readonly) int32_t newMessageCount;
+@property (readonly, retain) NSString* text;
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+
++ (PBMessageStat*) defaultInstance;
+- (PBMessageStat*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBMessageStat_Builder*) builder;
++ (PBMessageStat_Builder*) builder;
++ (PBMessageStat_Builder*) builderWithPrototype:(PBMessageStat*) prototype;
+
++ (PBMessageStat*) parseFromData:(NSData*) data;
++ (PBMessageStat*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBMessageStat*) parseFromInputStream:(NSInputStream*) input;
++ (PBMessageStat*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBMessageStat*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBMessageStat*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBMessageStat_Builder : PBGeneratedMessage_Builder {
+@private
+  PBMessageStat* result;
+}
+
+- (PBMessageStat*) defaultInstance;
+
+- (PBMessageStat_Builder*) clear;
+- (PBMessageStat_Builder*) clone;
+
+- (PBMessageStat*) build;
+- (PBMessageStat*) buildPartial;
+
+- (PBMessageStat_Builder*) mergeFrom:(PBMessageStat*) other;
+- (PBMessageStat_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBMessageStat_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBMessageStat_Builder*) setUserId:(NSString*) value;
+- (PBMessageStat_Builder*) clearUserId;
+
+- (BOOL) hasFriendUserId;
+- (NSString*) friendUserId;
+- (PBMessageStat_Builder*) setFriendUserId:(NSString*) value;
+- (PBMessageStat_Builder*) clearFriendUserId;
+
+- (BOOL) hasFriendNickName;
+- (NSString*) friendNickName;
+- (PBMessageStat_Builder*) setFriendNickName:(NSString*) value;
+- (PBMessageStat_Builder*) clearFriendNickName;
+
+- (BOOL) hasFriendAvatar;
+- (NSString*) friendAvatar;
+- (PBMessageStat_Builder*) setFriendAvatar:(NSString*) value;
+- (PBMessageStat_Builder*) clearFriendAvatar;
+
+- (BOOL) hasFriendGender;
+- (BOOL) friendGender;
+- (PBMessageStat_Builder*) setFriendGender:(BOOL) value;
+- (PBMessageStat_Builder*) clearFriendGender;
+
+- (BOOL) hasMessageId;
+- (NSString*) messageId;
+- (PBMessageStat_Builder*) setMessageId:(NSString*) value;
+- (PBMessageStat_Builder*) clearMessageId;
+
+- (BOOL) hasModifiedDate;
+- (int32_t) modifiedDate;
+- (PBMessageStat_Builder*) setModifiedDate:(int32_t) value;
+- (PBMessageStat_Builder*) clearModifiedDate;
+
+- (BOOL) hasTotalMessageCount;
+- (int32_t) totalMessageCount;
+- (PBMessageStat_Builder*) setTotalMessageCount:(int32_t) value;
+- (PBMessageStat_Builder*) clearTotalMessageCount;
+
+- (BOOL) hasNewMessageCount;
+- (int32_t) newMessageCount;
+- (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
+- (PBMessageStat_Builder*) clearNewMessageCount;
+
+- (BOOL) hasText;
+- (NSString*) text;
+- (PBMessageStat_Builder*) setText:(NSString*) value;
+- (PBMessageStat_Builder*) clearText;
+
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value;
+- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values;
+- (PBMessageStat_Builder*) clearDrawDataList;
 @end
 

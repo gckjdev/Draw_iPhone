@@ -38,6 +38,12 @@
 #import "AnimationManager.h"
 #import "WordManager.h"
 
+#import "OfflineDrawViewController.h"
+#import "OfflineGuessDrawController.h"
+#import "SelectWordController.h"
+
+#import "ChatListController.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -56,6 +62,8 @@
 @synthesize feedbackLabel = _feedbackLabel;
 @synthesize playWithFriendButton = _playWithFriendButton;
 @synthesize hasRemoveNotification = _hasRemoveNotification;
+@synthesize guessButton = _guessButton;
+@synthesize drawButton = _drawButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -137,6 +145,10 @@
     if ([self hasRemoveNotification]) {
         [self clickPlayWithFriend:self.playWithFriendButton];
     }
+    
+    if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
+        [self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -165,6 +177,8 @@
     [self setSettingsLabel:nil];
     [self setFeedbackLabel:nil];
     [self setPlayWithFriendButton:nil];
+    [self setGuessButton:nil];
+    [self setDrawButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -382,6 +396,7 @@
     _isTryJoinGame = YES;
 }
 
+
 + (HomeController *)defaultInstance
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -419,6 +434,17 @@
                                                      animated:YES];
 }
 
++ (void)startOfflineDrawFrom:(UIViewController *)viewController
+{
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+        [home.navigationController pushViewController:sc animated:NO];
+        [sc release];
+    }    
+}
+
 - (void)dealloc {
     [_startButton release];
     [_shopButton release];
@@ -429,7 +455,41 @@
     [_settingsLabel release];
     [_feedbackLabel release];
     [_playWithFriendButton release];
+    [_guessButton release];
+    [_drawButton release];
     [super dealloc];
 }
+
+- (IBAction)clickDrawButton:(id)sender {
+    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+}
+
+- (IBAction)clickGuessButton:(id)sender {
+    OfflineGuessDrawController *oc = [[OfflineGuessDrawController alloc] init];
+    [self.navigationController pushViewController:oc animated:YES];
+    [oc release];
+}
+
++ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController
+{
+    
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        OfflineGuessDrawController *controller = [[OfflineGuessDrawController alloc] init];
+        [home.navigationController pushViewController:controller animated:NO];
+        [controller release];
+    }    
+
+}
+
+- (IBAction)clickChatButton:(id)sender {
+    ChatListController *controller = [[ChatListController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 
 @end

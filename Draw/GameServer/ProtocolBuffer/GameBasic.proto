@@ -15,9 +15,10 @@ message PBGameUser {
   required string userId = 1;                  // 用户ID
   required string nickName = 2;                // 用户昵称
   optional string avatar = 3;                  // 用户头像
-  optional bool gender = 4;                    // 用户性别，TRUE：男；FALSE：女
+  optional bool gender = 4 [default=false];                    // 用户性别，TRUE：男；FALSE：女
   repeated PBSNSUser snsUsers = 5;             // 用户社交网络信息
      optional      string location = 6;
+     optional int32 userLevel = 7;                 // 用户等级
 }
 
 message PBGameSession {
@@ -57,3 +58,31 @@ message PBDraw {
 
   repeated PBDrawAction drawData = 10;  
 }
+
+message PBMessage {
+  required string messageId = 1;
+  required string from = 2;
+  required string to = 3;
+  optional int32  status = 4;
+  
+  optional string text = 20;
+  repeated PBDrawAction drawData = 21;  
+}
+
+message PBMessageStat {
+  required string userId = 1;
+  required string friendUserId = 2;
+  required string friendNickName = 3;
+  optional string friendAvatar = 4;
+  optional bool   friendGender = 5;
+  
+  required string messageId = 10;
+  optional int32  modifiedDate = 11;
+  optional int32  totalMessageCount = 12;
+  optional int32  newMessageCount = 13;
+
+  optional string text = 20;
+  repeated PBDrawAction drawData = 21;  
+  
+}
+

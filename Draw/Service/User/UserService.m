@@ -21,6 +21,7 @@
 #import "AccountService.h"
 #import "FriendService.h"
 #import "FriendManager.h"
+#import "LevelService.h"
 
 
 @implementation UserService
@@ -488,6 +489,9 @@ static UserService* _defaultUserService;
                 NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
                 NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];
                 NSString* gender = [output.jsonDataDict objectForKey:PARA_GENDER];
+                NSString* levelSring = [output.jsonDataDict objectForKey:PARA_LEVEL];
+                NSString* expSring = [output.jsonDataDict objectForKey:PARA_EXP];
+                
                 
                 if (nickName == nil || [nickName length] == 0) {
                     nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
@@ -517,6 +521,8 @@ static UserService* _defaultUserService;
                 
                 [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
                 [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
+                [[LevelService defaultService] setLevel:levelSring.intValue];
+                [[LevelService defaultService] setExperience:expSring.intValue];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {

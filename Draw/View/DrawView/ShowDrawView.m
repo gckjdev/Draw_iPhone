@@ -40,6 +40,10 @@
 {
     [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
+//    if (_playTimer && [_playTimer isValid]) {
+//        [_playTimer invalidate];
+//    }
+    _playTimer = nil;
     playingActionIndex = 0;
     playingPointIndex = 0;
     startPlayIndex = 0;
@@ -164,6 +168,7 @@
         pen = [[PenView alloc] initWithPenType:Pencil];
         [self setShowPenHidden:NO];
         pen.hidden = YES;
+        pen.userInteractionEnabled = NO;
         pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
         [self addSubview:pen];
     }

@@ -22,7 +22,6 @@
 #import "FacebookSNSService.h"
 #import "UserManager.h"
 #import "RemoteDrawView.h"
-#import "RemoteDrawData.h"
 #import "GameBasic.pb.h"
 #import "ShowRemoteDrawController.h"
 #import "DeviceDetection.h"
