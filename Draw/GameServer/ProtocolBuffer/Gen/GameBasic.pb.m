@@ -2141,6 +2141,7 @@ static PBDraw* defaultPBDrawInstance = nil;
 @property int32_t status;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
+@property int32_t createDate;
 @end
 
 @implementation PBMessage
@@ -2181,6 +2182,13 @@ static PBDraw* defaultPBDrawInstance = nil;
 }
 @synthesize text;
 @synthesize mutableDrawDataList;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
 - (void) dealloc {
   self.messageId = nil;
   self.from = nil;
@@ -2196,6 +2204,7 @@ static PBDraw* defaultPBDrawInstance = nil;
     self.to = @"";
     self.status = 0;
     self.text = @"";
+    self.createDate = 0;
   }
   return self;
 }
@@ -2254,6 +2263,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   for (PBDrawAction* element in self.drawDataList) {
     [output writeMessage:21 value:element];
   }
+  if (self.hasCreateDate) {
+    [output writeInt32:22 value:self.createDate];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2280,6 +2292,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   for (PBDrawAction* element in self.drawDataList) {
     size += computeMessageSize(21, element);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(22, self.createDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2377,6 +2392,9 @@ static PBMessage* defaultPBMessageInstance = nil;
     }
     [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
   }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2422,6 +2440,10 @@ static PBMessage* defaultPBMessageInstance = nil;
         PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 176: {
+        [self setCreateDate:[input readInt32]];
         break;
       }
     }
@@ -2536,6 +2558,22 @@ static PBMessage* defaultPBMessageInstance = nil;
   [result.mutableDrawDataList addObject:value];
   return self;
 }
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBMessage_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBMessage_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
+  return self;
+}
 @end
 
 @interface PBMessageStat ()
@@ -2545,11 +2583,14 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property (retain) NSString* friendAvatar;
 @property BOOL friendGender;
 @property (retain) NSString* messageId;
+@property (retain) NSString* from;
+@property (retain) NSString* to;
+@property (retain) NSString* text;
+@property (retain) NSMutableArray* mutableDrawDataList;
+@property int32_t createDate;
 @property int32_t modifiedDate;
 @property int32_t totalMessageCount;
 @property int32_t newMessageCount;
-@property (retain) NSString* text;
-@property (retain) NSMutableArray* mutableDrawDataList;
 @end
 
 @implementation PBMessageStat
@@ -2601,6 +2642,35 @@ static PBMessage* defaultPBMessageInstance = nil;
   hasMessageId_ = !!value;
 }
 @synthesize messageId;
+- (BOOL) hasFrom {
+  return !!hasFrom_;
+}
+- (void) setHasFrom:(BOOL) value {
+  hasFrom_ = !!value;
+}
+@synthesize from;
+- (BOOL) hasTo {
+  return !!hasTo_;
+}
+- (void) setHasTo:(BOOL) value {
+  hasTo_ = !!value;
+}
+@synthesize to;
+- (BOOL) hasText {
+  return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+  hasText_ = !!value;
+}
+@synthesize text;
+@synthesize mutableDrawDataList;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
 - (BOOL) hasModifiedDate {
   return !!hasModifiedDate_;
 }
@@ -2622,20 +2692,14 @@ static PBMessage* defaultPBMessageInstance = nil;
   hasNewMessageCount_ = !!value;
 }
 @synthesize newMessageCount;
-- (BOOL) hasText {
-  return !!hasText_;
-}
-- (void) setHasText:(BOOL) value {
-  hasText_ = !!value;
-}
-@synthesize text;
-@synthesize mutableDrawDataList;
 - (void) dealloc {
   self.userId = nil;
   self.friendUserId = nil;
   self.friendNickName = nil;
   self.friendAvatar = nil;
   self.messageId = nil;
+  self.from = nil;
+  self.to = nil;
   self.text = nil;
   self.mutableDrawDataList = nil;
   [super dealloc];
@@ -2648,10 +2712,13 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.friendAvatar = @"";
     self.friendGender = NO;
     self.messageId = @"";
+    self.from = @"";
+    self.to = @"";
+    self.text = @"";
+    self.createDate = 0;
     self.modifiedDate = 0;
     self.totalMessageCount = 0;
     self.newMessageCount = 0;
-    self.text = @"";
   }
   return self;
 }
@@ -2684,7 +2751,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (!self.hasFriendNickName) {
     return NO;
   }
-  if (!self.hasMessageId) {
+  if (!self.hasFrom) {
+    return NO;
+  }
+  if (!self.hasTo) {
     return NO;
   }
   for (PBDrawAction* element in self.drawDataList) {
@@ -2713,20 +2783,29 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasMessageId) {
     [output writeString:10 value:self.messageId];
   }
-  if (self.hasModifiedDate) {
-    [output writeInt32:11 value:self.modifiedDate];
+  if (self.hasFrom) {
+    [output writeString:11 value:self.from];
   }
-  if (self.hasTotalMessageCount) {
-    [output writeInt32:12 value:self.totalMessageCount];
-  }
-  if (self.hasNewMessageCount) {
-    [output writeInt32:13 value:self.newMessageCount];
+  if (self.hasTo) {
+    [output writeString:12 value:self.to];
   }
   if (self.hasText) {
-    [output writeString:20 value:self.text];
+    [output writeString:13 value:self.text];
   }
   for (PBDrawAction* element in self.drawDataList) {
-    [output writeMessage:21 value:element];
+    [output writeMessage:14 value:element];
+  }
+  if (self.hasCreateDate) {
+    [output writeInt32:15 value:self.createDate];
+  }
+  if (self.hasModifiedDate) {
+    [output writeInt32:31 value:self.modifiedDate];
+  }
+  if (self.hasTotalMessageCount) {
+    [output writeInt32:32 value:self.totalMessageCount];
+  }
+  if (self.hasNewMessageCount) {
+    [output writeInt32:33 value:self.newMessageCount];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2755,20 +2834,29 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasMessageId) {
     size += computeStringSize(10, self.messageId);
   }
-  if (self.hasModifiedDate) {
-    size += computeInt32Size(11, self.modifiedDate);
+  if (self.hasFrom) {
+    size += computeStringSize(11, self.from);
   }
-  if (self.hasTotalMessageCount) {
-    size += computeInt32Size(12, self.totalMessageCount);
-  }
-  if (self.hasNewMessageCount) {
-    size += computeInt32Size(13, self.newMessageCount);
+  if (self.hasTo) {
+    size += computeStringSize(12, self.to);
   }
   if (self.hasText) {
-    size += computeStringSize(20, self.text);
+    size += computeStringSize(13, self.text);
   }
   for (PBDrawAction* element in self.drawDataList) {
-    size += computeMessageSize(21, element);
+    size += computeMessageSize(14, element);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(15, self.createDate);
+  }
+  if (self.hasModifiedDate) {
+    size += computeInt32Size(31, self.modifiedDate);
+  }
+  if (self.hasTotalMessageCount) {
+    size += computeInt32Size(32, self.totalMessageCount);
+  }
+  if (self.hasNewMessageCount) {
+    size += computeInt32Size(33, self.newMessageCount);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2863,14 +2951,11 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasMessageId) {
     [self setMessageId:other.messageId];
   }
-  if (other.hasModifiedDate) {
-    [self setModifiedDate:other.modifiedDate];
+  if (other.hasFrom) {
+    [self setFrom:other.from];
   }
-  if (other.hasTotalMessageCount) {
-    [self setTotalMessageCount:other.totalMessageCount];
-  }
-  if (other.hasNewMessageCount) {
-    [self setNewMessageCount:other.newMessageCount];
+  if (other.hasTo) {
+    [self setTo:other.to];
   }
   if (other.hasText) {
     [self setText:other.text];
@@ -2880,6 +2965,18 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       result.mutableDrawDataList = [NSMutableArray array];
     }
     [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
+  if (other.hasModifiedDate) {
+    [self setModifiedDate:other.modifiedDate];
+  }
+  if (other.hasTotalMessageCount) {
+    [self setTotalMessageCount:other.totalMessageCount];
+  }
+  if (other.hasNewMessageCount) {
+    [self setNewMessageCount:other.newMessageCount];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2926,26 +3023,38 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
         [self setMessageId:[input readString]];
         break;
       }
-      case 88: {
-        [self setModifiedDate:[input readInt32]];
+      case 90: {
+        [self setFrom:[input readString]];
         break;
       }
-      case 96: {
-        [self setTotalMessageCount:[input readInt32]];
+      case 98: {
+        [self setTo:[input readString]];
         break;
       }
-      case 104: {
-        [self setNewMessageCount:[input readInt32]];
-        break;
-      }
-      case 162: {
+      case 106: {
         [self setText:[input readString]];
         break;
       }
-      case 170: {
+      case 114: {
         PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 120: {
+        [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 248: {
+        [self setModifiedDate:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setTotalMessageCount:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setNewMessageCount:[input readInt32]];
         break;
       }
     }
@@ -3047,6 +3156,99 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   result.messageId = @"";
   return self;
 }
+- (BOOL) hasFrom {
+  return result.hasFrom;
+}
+- (NSString*) from {
+  return result.from;
+}
+- (PBMessageStat_Builder*) setFrom:(NSString*) value {
+  result.hasFrom = YES;
+  result.from = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearFrom {
+  result.hasFrom = NO;
+  result.from = @"";
+  return self;
+}
+- (BOOL) hasTo {
+  return result.hasTo;
+}
+- (NSString*) to {
+  return result.to;
+}
+- (PBMessageStat_Builder*) setTo:(NSString*) value {
+  result.hasTo = YES;
+  result.to = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearTo {
+  result.hasTo = NO;
+  result.to = @"";
+  return self;
+}
+- (BOOL) hasText {
+  return result.hasText;
+}
+- (NSString*) text {
+  return result.text;
+}
+- (PBMessageStat_Builder*) setText:(NSString*) value {
+  result.hasText = YES;
+  result.text = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearText {
+  result.hasText = NO;
+  result.text = @"";
+  return self;
+}
+- (NSArray*) drawDataList {
+  if (result.mutableDrawDataList == nil) { return [NSArray array]; }
+  return result.mutableDrawDataList;
+}
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
+  return [result drawDataAtIndex:index];
+}
+- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value {
+  [result.mutableDrawDataList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObjectsFromArray:values];
+  return self;
+}
+- (PBMessageStat_Builder*) clearDrawDataList {
+  result.mutableDrawDataList = nil;
+  return self;
+}
+- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value {
+  if (result.mutableDrawDataList == nil) {
+    result.mutableDrawDataList = [NSMutableArray array];
+  }
+  [result.mutableDrawDataList addObject:value];
+  return self;
+}
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBMessageStat_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
+  return self;
+}
 - (BOOL) hasModifiedDate {
   return result.hasModifiedDate;
 }
@@ -3093,51 +3295,6 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearNewMessageCount {
   result.hasNewMessageCount = NO;
   result.newMessageCount = 0;
-  return self;
-}
-- (BOOL) hasText {
-  return result.hasText;
-}
-- (NSString*) text {
-  return result.text;
-}
-- (PBMessageStat_Builder*) setText:(NSString*) value {
-  result.hasText = YES;
-  result.text = value;
-  return self;
-}
-- (PBMessageStat_Builder*) clearText {
-  result.hasText = NO;
-  result.text = @"";
-  return self;
-}
-- (NSArray*) drawDataList {
-  if (result.mutableDrawDataList == nil) { return [NSArray array]; }
-  return result.mutableDrawDataList;
-}
-- (PBDrawAction*) drawDataAtIndex:(int32_t) index {
-  return [result drawDataAtIndex:index];
-}
-- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value {
-  [result.mutableDrawDataList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values {
-  if (result.mutableDrawDataList == nil) {
-    result.mutableDrawDataList = [NSMutableArray array];
-  }
-  [result.mutableDrawDataList addObjectsFromArray:values];
-  return self;
-}
-- (PBMessageStat_Builder*) clearDrawDataList {
-  result.mutableDrawDataList = nil;
-  return self;
-}
-- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value {
-  if (result.mutableDrawDataList == nil) {
-    result.mutableDrawDataList = [NSMutableArray array];
-  }
-  [result.mutableDrawDataList addObject:value];
   return self;
 }
 @end

@@ -523,11 +523,13 @@
 @interface PBMessage : PBGeneratedMessage {
 @private
   BOOL hasStatus_:1;
+  BOOL hasCreateDate_:1;
   BOOL hasMessageId_:1;
   BOOL hasFrom_:1;
   BOOL hasTo_:1;
   BOOL hasText_:1;
   int32_t status;
+  int32_t createDate;
   NSString* messageId;
   NSString* from;
   NSString* to;
@@ -539,11 +541,13 @@
 - (BOOL) hasTo;
 - (BOOL) hasStatus;
 - (BOOL) hasText;
+- (BOOL) hasCreateDate;
 @property (readonly, retain) NSString* messageId;
 @property (readonly, retain) NSString* from;
 @property (readonly, retain) NSString* to;
 @property (readonly) int32_t status;
 @property (readonly, retain) NSString* text;
+@property (readonly) int32_t createDate;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -612,11 +616,17 @@
 - (PBMessage_Builder*) addDrawData:(PBDrawAction*) value;
 - (PBMessage_Builder*) addAllDrawData:(NSArray*) values;
 - (PBMessage_Builder*) clearDrawDataList;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBMessage_Builder*) setCreateDate:(int32_t) value;
+- (PBMessage_Builder*) clearCreateDate;
 @end
 
 @interface PBMessageStat : PBGeneratedMessage {
 @private
   BOOL hasFriendGender_:1;
+  BOOL hasCreateDate_:1;
   BOOL hasModifiedDate_:1;
   BOOL hasTotalMessageCount_:1;
   BOOL hasNewMessageCount_:1;
@@ -625,8 +635,11 @@
   BOOL hasFriendNickName_:1;
   BOOL hasFriendAvatar_:1;
   BOOL hasMessageId_:1;
+  BOOL hasFrom_:1;
+  BOOL hasTo_:1;
   BOOL hasText_:1;
   BOOL friendGender_:1;
+  int32_t createDate;
   int32_t modifiedDate;
   int32_t totalMessageCount;
   int32_t newMessageCount;
@@ -635,6 +648,8 @@
   NSString* friendNickName;
   NSString* friendAvatar;
   NSString* messageId;
+  NSString* from;
+  NSString* to;
   NSString* text;
   NSMutableArray* mutableDrawDataList;
 }
@@ -644,20 +659,26 @@
 - (BOOL) hasFriendAvatar;
 - (BOOL) hasFriendGender;
 - (BOOL) hasMessageId;
+- (BOOL) hasFrom;
+- (BOOL) hasTo;
+- (BOOL) hasText;
+- (BOOL) hasCreateDate;
 - (BOOL) hasModifiedDate;
 - (BOOL) hasTotalMessageCount;
 - (BOOL) hasNewMessageCount;
-- (BOOL) hasText;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* friendUserId;
 @property (readonly, retain) NSString* friendNickName;
 @property (readonly, retain) NSString* friendAvatar;
 - (BOOL) friendGender;
 @property (readonly, retain) NSString* messageId;
+@property (readonly, retain) NSString* from;
+@property (readonly, retain) NSString* to;
+@property (readonly, retain) NSString* text;
+@property (readonly) int32_t createDate;
 @property (readonly) int32_t modifiedDate;
 @property (readonly) int32_t totalMessageCount;
 @property (readonly) int32_t newMessageCount;
-@property (readonly, retain) NSString* text;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -725,6 +746,33 @@
 - (PBMessageStat_Builder*) setMessageId:(NSString*) value;
 - (PBMessageStat_Builder*) clearMessageId;
 
+- (BOOL) hasFrom;
+- (NSString*) from;
+- (PBMessageStat_Builder*) setFrom:(NSString*) value;
+- (PBMessageStat_Builder*) clearFrom;
+
+- (BOOL) hasTo;
+- (NSString*) to;
+- (PBMessageStat_Builder*) setTo:(NSString*) value;
+- (PBMessageStat_Builder*) clearTo;
+
+- (BOOL) hasText;
+- (NSString*) text;
+- (PBMessageStat_Builder*) setText:(NSString*) value;
+- (PBMessageStat_Builder*) clearText;
+
+- (NSArray*) drawDataList;
+- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value;
+- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values;
+- (PBMessageStat_Builder*) clearDrawDataList;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBMessageStat_Builder*) setCreateDate:(int32_t) value;
+- (PBMessageStat_Builder*) clearCreateDate;
+
 - (BOOL) hasModifiedDate;
 - (int32_t) modifiedDate;
 - (PBMessageStat_Builder*) setModifiedDate:(int32_t) value;
@@ -739,17 +787,5 @@
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
-
-- (BOOL) hasText;
-- (NSString*) text;
-- (PBMessageStat_Builder*) setText:(NSString*) value;
-- (PBMessageStat_Builder*) clearText;
-
-- (NSArray*) drawDataList;
-- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
-- (PBMessageStat_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
-- (PBMessageStat_Builder*) addDrawData:(PBDrawAction*) value;
-- (PBMessageStat_Builder*) addAllDrawData:(NSArray*) values;
-- (PBMessageStat_Builder*) clearDrawDataList;
 @end
 

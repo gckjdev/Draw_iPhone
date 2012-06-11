@@ -88,6 +88,17 @@
 		A454CBC0155A17F500896761 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454CBBE155A17F500896761 /* message@2x.png */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
 		A454CBC5155A181500896761 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
+		A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A455F8B21585D21400CA5743 /* EGORefreshTableFooterView.m */; };
+		A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A455F8B41585D21400CA5743 /* EGORefreshTableHeaderView.m */; };
+		A455F8C51585D21400CA5743 /* EGORefreshTableHeaderView.strings in Resources */ = {isa = PBXBuildFile; fileRef = A455F8B61585D21400CA5743 /* EGORefreshTableHeaderView.strings */; };
+		A455F8C61585D21400CA5743 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8BB1585D21400CA5743 /* blackArrow.png */; };
+		A455F8C71585D21400CA5743 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8BC1585D21400CA5743 /* blackArrow@2x.png */; };
+		A455F8C81585D21400CA5743 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8BD1585D21400CA5743 /* blueArrow.png */; };
+		A455F8C91585D21400CA5743 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8BE1585D21400CA5743 /* blueArrow@2x.png */; };
+		A455F8CA1585D21400CA5743 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8BF1585D21400CA5743 /* grayArrow.png */; };
+		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
+		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
+		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
@@ -240,14 +251,6 @@
 		CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D091509A56100F60C03 /* UIBackgroundView.m */; };
 		CA103EBC1509A56200F60C03 /* UICustomeBackGroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D0B1509A56100F60C03 /* UICustomeBackGroundView.m */; };
 		CA103EBD1509A56200F60C03 /* UIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D0E1509A56100F60C03 /* UIBadgeView.m */; };
-		CA103EBE1509A56200F60C03 /* PullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D131509A56100F60C03 /* PullToRefreshTableViewController.m */; };
-		CA103EBF1509A56200F60C03 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D151509A56100F60C03 /* RootViewController.m */; };
-		CA103EC01509A56200F60C03 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D181509A56100F60C03 /* EGORefreshTableHeaderView.m */; };
-		CA103EC11509A56200F60C03 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103D1A1509A56100F60C03 /* blackArrow.png */; };
-		CA103EC21509A56200F60C03 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103D1B1509A56100F60C03 /* blueArrow.png */; };
-		CA103EC31509A56200F60C03 /* blueArrow_new.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103D1C1509A56100F60C03 /* blueArrow_new.png */; };
-		CA103EC41509A56200F60C03 /* EGORefresh.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA103D1E1509A56100F60C03 /* EGORefresh.strings */; };
-		CA103EC51509A56200F60C03 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103D201509A56100F60C03 /* whiteArrow.png */; };
 		CA103EC61509A56200F60C03 /* UIHideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D251509A56100F60C03 /* UIHideButton.m */; };
 		CA103EC71509A56200F60C03 /* UIBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D281509A56100F60C03 /* UIBlankView.m */; };
 		CA103EC81509A56200F60C03 /* UINumberAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */; };
@@ -834,6 +837,22 @@
 		A454CBC1155A181500896761 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		A454CBC2155A181500896761 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		A454CBC3155A181500896761 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A455F8B11585D21400CA5743 /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
+		A455F8B21585D21400CA5743 /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
+		A455F8B31585D21400CA5743 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		A455F8B41585D21400CA5743 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		A455F8B51585D21400CA5743 /* EGORefreshTableViewConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableViewConstant.h; sourceTree = "<group>"; };
+		A455F8B71585D21400CA5743 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EGORefreshTableHeaderView.strings; sourceTree = "<group>"; };
+		A455F8B81585D21400CA5743 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EGORefreshTableHeaderView.strings"; sourceTree = "<group>"; };
+		A455F8B91585D21400CA5743 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EGORefreshTableHeaderView.strings"; sourceTree = "<group>"; };
+		A455F8BB1585D21400CA5743 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		A455F8BC1585D21400CA5743 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		A455F8BD1585D21400CA5743 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		A455F8BE1585D21400CA5743 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		A455F8BF1585D21400CA5743 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		A461C9261565E3700076FD9C /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
@@ -1080,19 +1099,6 @@
 		CA103D0B1509A56100F60C03 /* UICustomeBackGroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomeBackGroundView.m; sourceTree = "<group>"; };
 		CA103D0D1509A56100F60C03 /* UIBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBadgeView.h; sourceTree = "<group>"; };
 		CA103D0E1509A56100F60C03 /* UIBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBadgeView.m; sourceTree = "<group>"; };
-		CA103D121509A56100F60C03 /* PullToRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshTableViewController.h; sourceTree = "<group>"; };
-		CA103D131509A56100F60C03 /* PullToRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshTableViewController.m; sourceTree = "<group>"; };
-		CA103D141509A56100F60C03 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		CA103D151509A56100F60C03 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		CA103D171509A56100F60C03 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		CA103D181509A56100F60C03 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		CA103D1A1509A56100F60C03 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
-		CA103D1B1509A56100F60C03 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		CA103D1D1509A56100F60C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/blueArrow_new.png; sourceTree = "<group>"; };
-		CA103D1F1509A56100F60C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EGORefresh.strings; sourceTree = "<group>"; };
-		CA103D201509A56100F60C03 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
-		CA103D211509A56100F60C03 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EGORefresh.strings"; sourceTree = "<group>"; };
-		CA103D221509A56100F60C03 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EGORefresh.strings"; sourceTree = "<group>"; };
 		CA103D241509A56100F60C03 /* UIHideButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHideButton.h; sourceTree = "<group>"; };
 		CA103D251509A56100F60C03 /* UIHideButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHideButton.m; sourceTree = "<group>"; };
 		CA103D271509A56100F60C03 /* UIBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBlankView.h; sourceTree = "<group>"; };
@@ -1928,6 +1934,51 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		A455F8AE1585D21400CA5743 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				A455F8AF1585D21400CA5743 /* Classes */,
+				A455F8BA1585D21400CA5743 /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		A455F8AF1585D21400CA5743 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A455F8B01585D21400CA5743 /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A455F8B01585D21400CA5743 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A455F8B11585D21400CA5743 /* EGORefreshTableFooterView.h */,
+				A455F8B21585D21400CA5743 /* EGORefreshTableFooterView.m */,
+				A455F8B31585D21400CA5743 /* EGORefreshTableHeaderView.h */,
+				A455F8B41585D21400CA5743 /* EGORefreshTableHeaderView.m */,
+				A455F8B51585D21400CA5743 /* EGORefreshTableViewConstant.h */,
+				A455F8B61585D21400CA5743 /* EGORefreshTableHeaderView.strings */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A455F8BA1585D21400CA5743 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A455F8BB1585D21400CA5743 /* blackArrow.png */,
+				A455F8BC1585D21400CA5743 /* blackArrow@2x.png */,
+				A455F8BD1585D21400CA5743 /* blueArrow.png */,
+				A455F8BE1585D21400CA5743 /* blueArrow@2x.png */,
+				A455F8BF1585D21400CA5743 /* grayArrow.png */,
+				A455F8C01585D21400CA5743 /* grayArrow@2x.png */,
+				A455F8C11585D21400CA5743 /* whiteArrow.png */,
+				A455F8C21585D21400CA5743 /* whiteArrow@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A461C9251565E3700076FD9C /* ChatMessageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2445,9 +2496,9 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A455F8AE1585D21400CA5743 /* EGOTableViewPullRefresh */,
 				CA103D071509A56100F60C03 /* BackgroundView */,
 				CA103D0C1509A56100F60C03 /* BadgeView */,
-				CA103D0F1509A56100F60C03 /* EGOTableViewPullRefresh */,
 				CA103D231509A56100F60C03 /* HiddenButton */,
 				CA103D261509A56100F60C03 /* KeyboardCoverView */,
 				CA103D291509A56100F60C03 /* NumberAccessoryView */,
@@ -2477,56 +2528,6 @@
 				CA103D0E1509A56100F60C03 /* UIBadgeView.m */,
 			);
 			path = BadgeView;
-			sourceTree = "<group>";
-		};
-		CA103D0F1509A56100F60C03 /* EGOTableViewPullRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D101509A56100F60C03 /* Classes */,
-				CA103D191509A56100F60C03 /* Resources */,
-			);
-			path = EGOTableViewPullRefresh;
-			sourceTree = "<group>";
-		};
-		CA103D101509A56100F60C03 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D111509A56100F60C03 /* Controller */,
-				CA103D161509A56100F60C03 /* View */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		CA103D111509A56100F60C03 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D121509A56100F60C03 /* PullToRefreshTableViewController.h */,
-				CA103D131509A56100F60C03 /* PullToRefreshTableViewController.m */,
-				CA103D141509A56100F60C03 /* RootViewController.h */,
-				CA103D151509A56100F60C03 /* RootViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		CA103D161509A56100F60C03 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D171509A56100F60C03 /* EGORefreshTableHeaderView.h */,
-				CA103D181509A56100F60C03 /* EGORefreshTableHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CA103D191509A56100F60C03 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D1A1509A56100F60C03 /* blackArrow.png */,
-				CA103D1B1509A56100F60C03 /* blueArrow.png */,
-				CA103D1C1509A56100F60C03 /* blueArrow_new.png */,
-				CA103D1E1509A56100F60C03 /* EGORefresh.strings */,
-				CA103D201509A56100F60C03 /* whiteArrow.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		CA103D231509A56100F60C03 /* HiddenButton */ = {
@@ -4468,11 +4469,6 @@
 				CA103EA91509A56200F60C03 /* doneup.png in Resources */,
 				CA103EAB1509A56200F60C03 /* TestPPViewController.xib in Resources */,
 				CA103EB81509A56200F60C03 /* ReviewRequest.strings in Resources */,
-				CA103EC11509A56200F60C03 /* blackArrow.png in Resources */,
-				CA103EC21509A56200F60C03 /* blueArrow.png in Resources */,
-				CA103EC31509A56200F60C03 /* blueArrow_new.png in Resources */,
-				CA103EC41509A56200F60C03 /* EGORefresh.strings in Resources */,
-				CA103EC51509A56200F60C03 /* whiteArrow.png in Resources */,
 				CA10410D1509A9FF00F60C03 /* Documentation.html in Resources */,
 				CA10416E1509A9FF00F60C03 /* LICENSE.txt in Resources */,
 				CA10416F1509A9FF00F60C03 /* README.txt in Resources */,
@@ -4751,6 +4747,15 @@
 				A30A28561580C2AE006CA3CC /* ChatDetailController~ipad.xib in Resources */,
 				A30A28581580C2AE006CA3CC /* ChatListController.xib in Resources */,
 				A30A28591580C2AE006CA3CC /* ChatListController~ipad.xib in Resources */,
+				A455F8C51585D21400CA5743 /* EGORefreshTableHeaderView.strings in Resources */,
+				A455F8C61585D21400CA5743 /* blackArrow.png in Resources */,
+				A455F8C71585D21400CA5743 /* blackArrow@2x.png in Resources */,
+				A455F8C81585D21400CA5743 /* blueArrow.png in Resources */,
+				A455F8C91585D21400CA5743 /* blueArrow@2x.png in Resources */,
+				A455F8CA1585D21400CA5743 /* grayArrow.png in Resources */,
+				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
+				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
+				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4814,9 +4819,6 @@
 				CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */,
 				CA103EBC1509A56200F60C03 /* UICustomeBackGroundView.m in Sources */,
 				CA103EBD1509A56200F60C03 /* UIBadgeView.m in Sources */,
-				CA103EBE1509A56200F60C03 /* PullToRefreshTableViewController.m in Sources */,
-				CA103EBF1509A56200F60C03 /* RootViewController.m in Sources */,
-				CA103EC01509A56200F60C03 /* EGORefreshTableHeaderView.m in Sources */,
 				CA103EC61509A56200F60C03 /* UIHideButton.m in Sources */,
 				CA103EC71509A56200F60C03 /* UIBlankView.m in Sources */,
 				CA103EC81509A56200F60C03 /* UINumberAccessoryView.m in Sources */,
@@ -5129,6 +5131,8 @@
 				A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */,
 				A3F66CB31581C0F5000BFF9A /* PrivateMessageManager.m in Sources */,
 				A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */,
+				A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */,
+				A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5170,6 +5174,16 @@
 			name = "Default-Portrait.png";
 			sourceTree = "<group>";
 		};
+		A455F8B61585D21400CA5743 /* EGORefreshTableHeaderView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A455F8B71585D21400CA5743 /* en */,
+				A455F8B81585D21400CA5743 /* zh-Hans */,
+				A455F8B91585D21400CA5743 /* zh-Hant */,
+			);
+			name = EGORefreshTableHeaderView.strings;
+			sourceTree = "<group>";
+		};
 		CA103CFD1509A56100F60C03 /* ReviewRequest.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5178,24 +5192,6 @@
 				CA103D021509A56100F60C03 /* zh_Hant */,
 			);
 			name = ReviewRequest.strings;
-			sourceTree = "<group>";
-		};
-		CA103D1C1509A56100F60C03 /* blueArrow_new.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA103D1D1509A56100F60C03 /* en */,
-			);
-			name = blueArrow_new.png;
-			sourceTree = "<group>";
-		};
-		CA103D1E1509A56100F60C03 /* EGORefresh.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA103D1F1509A56100F60C03 /* en */,
-				CA103D211509A56100F60C03 /* zh-Hans */,
-				CA103D221509A56100F60C03 /* zh-Hant */,
-			);
-			name = EGORefresh.strings;
 			sourceTree = "<group>";
 		};
 		CA1377F01525A7CB00B5790B /* Localizable.strings */ = {
