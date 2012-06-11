@@ -85,11 +85,11 @@ static MessageTotalManager *_messageTotalManager = nil;
                                  friendUserId:pbMessageStat.friendUserId
                                friendNickName:pbMessageStat.friendNickName
                                  friendAvatar:pbMessageStat.friendAvatar
-                                   latestFrom:nil //待PBMessageStat怎家此字段
-                                     latestTo:nil //待PBMessageStat怎家此字段
+                                   latestFrom:pbMessageStat.from 
+                                     latestTo:pbMessageStat.to 
                                latestDrawData:drawActionListData
                                    latestText:pbMessageStat.text
-                             latestCreateDate:nil //待PBMessageStat怎家此字段
+                             latestCreateDate:nil //待PBMessageSta增加此字段
                               totalNewMessage:[NSNumber numberWithInt:pbMessageStat.newMessageCount] 
                                  totalMessage:[NSNumber numberWithInt:pbMessageStat.totalMessageCount]];
 }
