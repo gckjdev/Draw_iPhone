@@ -566,8 +566,16 @@
         }
         self.draw = draw;
     }else{
-        
+        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
+        center.delegate = self;
+        [center postMessageWithText:@"kMathOpusFail" delayTime:1.0 isHappy:NO];
     }
+}
+
+- (void)didShowedAlert
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [CommonMessageCenter defaultCenter].delegate = nil;
 }
 
 #pragma mark - Common Dialog Delegate

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol CommonMessageCenterDelegate <NSObject>
+
+- (void)didShowedAlert;
+
+@end
+
 @class CommonMessageView;
 @interface CommonMessageCenter : NSObject
 {
@@ -17,6 +23,8 @@
 	CGRect _messageFrame;
 }
 @property(nonatomic, retain)NSMutableArray *messages;
+@property(nonatomic, assign)id<CommonMessageCenterDelegate>delegate;
+
 + (CommonMessageCenter*) defaultCenter;
 - (void)clearMessages;
 - (void)postMessageWithText:(NSString*)text 

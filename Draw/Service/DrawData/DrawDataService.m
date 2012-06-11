@@ -63,15 +63,18 @@ static DrawDataService* _defaultDrawDataService = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             Draw *draw = nil;
-            if (output.resultCode == ERROR_SUCCESS){
+//            if (output.resultCode == ERROR_SUCCESS){
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response drawDataList];
                 PBDraw *pbDraw = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+            if (pbDraw) {
                 draw = [[Draw alloc] initWithPBDraw:pbDraw];
             }
-            
+                
+//            }
+            NSInteger resultCode = [response resultCode];
             if ([viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
-                [viewController didMatchDraw:draw result:output.resultCode];
+                [viewController didMatchDraw:draw result:resultCode];
             }
         });
     });    

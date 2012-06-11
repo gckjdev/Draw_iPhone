@@ -16,6 +16,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "Reachability.h"
 #import "PPApplication.h"
+#import "DeviceDetection.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
@@ -605,6 +606,7 @@
         NSString* str = [NSString stringWithString:baseURL];  
         
         UIDevice* myDevice = [UIDevice currentDevice];
+        
         NSString* currnetNetwork;
         NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
         if (currentStatus == ReachableViaWiFi) {
@@ -613,7 +615,7 @@
         if (currentStatus == ReachableViaWWAN) {
             currnetNetwork = @"WWAN";
         }
-        NSString* basicInfo = [NSString stringWithFormat:@"\n设备:%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
+        NSString* basicInfo = [NSString stringWithFormat:@"\n设备(%@):%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, [DeviceDetection platform], myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FEEDBACK];
@@ -1207,6 +1209,121 @@
                                 outputFormat:FORMAT_JSON
                                       output:output];
 
+}
+
++ (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
+                                 appId:(NSString*)appId
+                                userId:(NSString*)userId
+                          friendUserId:(NSString*)friendUserId
+                           startOffset:(int)startOffset
+                              maxCount:(int)maxCount
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMYMESSAGE];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_TO_USERID value:friendUserId];
+        str = [str stringByAddQueryParameter:PARA_START_OFFSET intValue:startOffset];                
+        str = [str stringByAddQueryParameter:PARA_MAX_COUNT intValue:maxCount];
+        
+        // TOOD add other parameters
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                            constructURLHandler:constructURLHandler
+                                responseHandler:responseHandler
+                                         output:output];
+    
+}
+
++ (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                       targetUserId:(NSString*)targetUserId
+                               text:(NSString*)text
+                               data:(NSData*)data
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SENDMESSAGE];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_TO_USERID value:targetUserId];
+        str = [str stringByAddQueryParameter:PARA_MESSAGETEXT value:text];                
+        
+        // TOOD add other parameters
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendPostRequest:baseURL
+                                        data:data
+                         constructURLHandler:constructURLHandler
+                             responseHandler:responseHandler
+                                outputFormat:FORMAT_JSON
+                                      output:output];
+    
+}
+
++ (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                 messageId:(NSString*)messageId
+                                   
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_USER_READ_MSG];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_MESSAGE_ID value:messageId];
+        
+        // TOOD add other parameters
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
 }
 
 
