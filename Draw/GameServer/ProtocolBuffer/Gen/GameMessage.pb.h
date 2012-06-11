@@ -27,6 +27,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBMessage;
+@class PBMessageStat;
+@class PBMessageStat_Builder;
+@class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class SendDrawDataRequest;
@@ -1168,13 +1172,23 @@
 @interface DataQueryResponse : PBGeneratedMessage {
 @private
   BOOL hasResultCode_:1;
+  BOOL hasTotalCount_:1;
   int32_t resultCode;
+  int32_t totalCount;
   NSMutableArray* mutableDrawDataList;
+  NSMutableArray* mutableMessageList;
+  NSMutableArray* mutableMessageStatList;
 }
 - (BOOL) hasResultCode;
+- (BOOL) hasTotalCount;
 @property (readonly) int32_t resultCode;
+@property (readonly) int32_t totalCount;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
+- (NSArray*) messageList;
+- (PBMessage*) messageAtIndex:(int32_t) index;
+- (NSArray*) messageStatList;
+- (PBMessageStat*) messageStatAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -1215,11 +1229,30 @@
 - (DataQueryResponse_Builder*) setResultCode:(int32_t) value;
 - (DataQueryResponse_Builder*) clearResultCode;
 
+- (BOOL) hasTotalCount;
+- (int32_t) totalCount;
+- (DataQueryResponse_Builder*) setTotalCount:(int32_t) value;
+- (DataQueryResponse_Builder*) clearTotalCount;
+
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (DataQueryResponse_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDraw*) value;
 - (DataQueryResponse_Builder*) addDrawData:(PBDraw*) value;
 - (DataQueryResponse_Builder*) addAllDrawData:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearDrawDataList;
+
+- (NSArray*) messageList;
+- (PBMessage*) messageAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceMessageAtIndex:(int32_t) index with:(PBMessage*) value;
+- (DataQueryResponse_Builder*) addMessage:(PBMessage*) value;
+- (DataQueryResponse_Builder*) addAllMessage:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearMessageList;
+
+- (NSArray*) messageStatList;
+- (PBMessageStat*) messageStatAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceMessageStatAtIndex:(int32_t) index with:(PBMessageStat*) value;
+- (DataQueryResponse_Builder*) addMessageStat:(PBMessageStat*) value;
+- (DataQueryResponse_Builder*) addAllMessageStat:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearMessageStatList;
 @end
 

@@ -60,6 +60,15 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalJoinGame:
     case GameCommandTypeLocalGameTurnComplete:
     case GameCommandTypeLocalUserTimeOut:
+    case GameCommandTypeLocalNewUserJoin:
+    case GameCommandTypeLocalUserQuit:
+    case GameCommandTypeLocalDrawUserQuit:
+    case GameCommandTypeLocalAllOtherUserQuit:
+    case GameCommandTypeLocalOtherUserQuit:
+    case GameCommandTypeLocalTimeOut:
+    case GameCommandTypeLocalStartGame:
+    case GameCommandTypeLocalWordPicked:
+    case GameCommandTypeLocalAllUserGuess:
       return YES;
     default:
       return NO;
