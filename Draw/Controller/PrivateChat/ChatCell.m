@@ -9,6 +9,9 @@
 #import "ChatCell.h"
 #import "LogUtil.h"
 #import "DeviceDetection.h"
+#import "MessageTotal.h"
+#import "ShareImageManager.h"
+#import "PPApplication.h"
 
 @implementation ChatCell
 @synthesize avatarImage;
@@ -46,7 +49,6 @@
     return @"ChatCell";
 }
 
-
 #define CELL_HEIGHT_IPHONE  68
 #define CELL_HEIGHT_IPAD    164
 + (CGFloat)getCellHeight
@@ -57,6 +59,34 @@
         return CELL_HEIGHT_IPHONE;
     }
 }
+
+- (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
+{
+    //set avatar
+    [avatarImage clear];
+    [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    if ([messageTotal.friendAvatar length] > 0) {
+        [avatarImage setUrl:[NSURL URLWithString:messageTotal.friendAvatar]];
+        [GlobalGetImageCache() manage:avatarImage];
+    }
+    
+    //set nickname
+    self.nickNameLabel.text = messageTotal.friendNickName;
+    
+    //set graffiti
+    
+    
+    //set messageNumberLabel
+    NSString *newAndTotal = [NSString stringWithFormat:@"[%@/%@]", messageTotal.totalNewMessage, messageTotal.totalMessage];
+    self.messageNumberLabel.text = newAndTotal;
+    
+    //set timeLabel
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
+    self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
+    
+}
+
 
 - (void)dealloc {
     [avatarImage release];

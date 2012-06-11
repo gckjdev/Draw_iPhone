@@ -8,18 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//(NSString *)userId;
-//(NSString *)friendUserId;
-//(NSString *)friendNickName;
-//(NSString *)friendAvatar;
-//(NSString *)latestFrom;
-//(NSString *)latestTo;
-//(NSData *)latestDrawData;
-//(NSString *)latestText;
-//(NSDate *)latestCreateDate;
-//(NSNumber *)totalNewMessage;
-//(NSNumber *)totalMessage;
-
+@class PBMessageStat;
 @interface MessageTotalManager : NSObject
 
 + (MessageTotalManager *)defaultManager;
@@ -37,5 +26,7 @@
                         totalMessage:(NSNumber *)totalMessage;
 
 - (BOOL)deleteMessageTotal:(NSString *)friendUserId;
+
+- (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat;
 
 @end

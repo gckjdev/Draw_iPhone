@@ -12,6 +12,10 @@
 #import "UserManager.h"
 #import "PPNetworkRequest.h"
 #import "LogUtil.h"
+#import "GameMessage.pb.h"
+#import "GameBasic.pb.h"
+#import "PrivateMessageManager.h"
+#import "MessageTotalManager.h"
 
 static ChatService *_chatService = nil;
 
@@ -41,10 +45,17 @@ static ChatService *_chatService = nil;
                                                                 maxCount:maxCount];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            
             if (output.resultCode == ERROR_SUCCESS){
                 
                 //to do save data
-                
+                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *messageStatList = [travelResponse messageStatList];
+                for (PBMessageStat *pbMessageStat in messageStatList) {
+                    [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
+                }
                 
                 PPDebug(@"<ChatService>findAllMessageTotals success");
             }else {
@@ -78,6 +89,11 @@ static ChatService *_chatService = nil;
             if (output.resultCode == ERROR_SUCCESS){
                 
                 //to do save data
+                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *messageList = [travelResponse messageList];
+                for (PBMessage *pbMessage in messageList) {
+                    [[PrivateMessageManager defaultManager] createByPBMessage:pbMessage];
+                }
                 
                 PPDebug(@"<ChatService>findAllMessages success");
             }else {
