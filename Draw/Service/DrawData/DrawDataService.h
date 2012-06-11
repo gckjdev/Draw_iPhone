@@ -12,6 +12,8 @@
 #import "Word.h"
 #import "UserManager.h"
 
+
+
 @class Draw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
@@ -21,6 +23,7 @@
 - (void)didMatchDraw:(Draw *)draw result:(int)resultCode;
 
 - (void)didCreateDraw:(int)resultCode;
+- (void)didGuessOfflineDraw:(int)resultCode;
 
 @end
 
@@ -38,4 +41,9 @@
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
+- (void)guessDraw:(NSArray *)guessWords 
+           opusId:(NSString *)opusId
+        isCorrect:(BOOL)isCorrect 
+            score:(NSInteger)score
+         delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 @end

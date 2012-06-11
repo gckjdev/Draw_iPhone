@@ -111,7 +111,7 @@
 //for Draw Online
 #define METHOD_CREATE_OPUS @"cop"
 #define METHOD_MATCH_OPUS  @"mop"
-#define METHOD_GUESS_OPUS  @"gop"
+#define METHOD_ACTION_ON_OPUS  @"aoo"
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -221,6 +221,13 @@
 
 #define PARA_DOMAIN                     @"d"
 #define PARA_SNS_ID                     @"sid"
+
+
+#define PARA_OPUS_ID @"opid"
+#define PARA_CORRECT @"cre"
+#define PARA_ACTION_TYPE @"act"
+#define PARA_WORD_LIST @"wl"
+#define PARA_SCORE @"sco"
 
 
 #define PARA_RADIUS @"ra"

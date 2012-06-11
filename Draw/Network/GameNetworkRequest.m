@@ -1211,6 +1211,58 @@
 
 }
 
++ (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                              nick:(NSString*)nick
+                            avatar:(NSString*)avatar
+                            gender:(NSString*)gender
+                            opusId:(NSString*)opusId
+                           isCorrect:(BOOL)isCorrect
+                             score:(NSInteger)score
+                           words:(NSString*)words
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_ACTION_ON_OPUS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+            
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_SCORE intValue:score];
+        str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];
+        str = [str stringByAddQueryParameter:PARA_WORD_LIST value:words];
+        
+        //TODO use type at Action Class. due to no Action Class, hard code now!
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:2];
+        
+        //action type
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+
+    
+}
+
+
 + (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
