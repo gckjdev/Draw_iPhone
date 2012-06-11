@@ -22,12 +22,20 @@
 
 + (ChatService*)defaultService;
 
-- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate;
-- (void)findAllMessagesByFriendUserId:(NSString *)friendUserId delegate:(id<ChatServiceDelegate>)delegate;
-- (void)sendMessage:(NSString *)friendUserId 
+- (void)findAllMessageTotals:(id<ChatServiceDelegate>)delegate 
+                  starOffset:(int)starOffset 
+                    maxCount:(int)maxCount;
+
+- (void)findAllMessages:(id<ChatServiceDelegate>)delegate 
+           friendUserId:(NSString *)friendUserId 
+             starOffset:(int)starOffset 
+               maxCount:(int)maxCount;
+
+- (void)sendMessage:(id<ChatServiceDelegate>)delegate
+       friendUserId:(NSString *)friendUserId
                text:(NSString *)text 
-               data:(NSData *)data 
-           delegate:(id<ChatServiceDelegate>)delegate;
-- (void)sendHasReadMessage:(NSArray*)messageIdArray delegate:(id<ChatServiceDelegate>)delegate;
+               data:(NSData *)data;
+
+- (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate messageIdArray:(NSArray*)messageIdArray; 
 
 @end
