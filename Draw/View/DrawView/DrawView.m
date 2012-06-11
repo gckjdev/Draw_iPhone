@@ -35,7 +35,7 @@
 {
     DrawAction *cleanAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     [self addAction:cleanAction];
-    pen.hidden = YES;
+//    pen.hidden = YES;
 }
 - (void)addAction:(DrawAction *)drawAction
 {
@@ -97,25 +97,25 @@
             [self setNeedsDisplay];
         }
         
-        if (pen.hidden) {
-            pen.hidden = NO;
-        }
-        if ([pen isRightDownRotate]) {
-            pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
-        }else{
-            pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
-        }
+//        if (pen.hidden) {
+//            pen.hidden = NO;
+//        }
+//        if ([pen isRightDownRotate]) {
+//            pen.center = CGPointMake(point.x + pen.frame.size.width / 3.1, point.y + pen.frame.size.height / 3.3);                    
+//        }else{
+//            pen.center = CGPointMake(point.x + pen.frame.size.width / 2.5, point.y - pen.frame.size.height / 4.3);                                        
+//        }
     }
 }
 - (void)setPenType:(PenType)penType
 {
-    pen.penType = penType;
-    _penType = penType;
-    if ([pen isRightDownRotate]) {
-        [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
-    }else{
-        [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
-    }
+//    pen.penType = penType;
+//    _penType = penType;
+//    if ([pen isRightDownRotate]) {
+//        [pen.layer setTransform:CATransform3DMakeRotation(-0.8, 0, 0, 1)];        
+//    }else{
+//        [pen.layer setTransform:CATransform3DMakeRotation(0.8, 0, 0, 1)];        
+//    }
 }
 
 - (BOOL)isEventLegal:(UIEvent *)event
@@ -179,11 +179,11 @@
         self.backgroundColor = [UIColor whiteColor];        
         startDrawActionIndex = 0;
         
-        pen = [[PenView alloc] initWithPenType:Pencil];
-        pen.hidden = YES;
-        pen.userInteractionEnabled = NO;
-        pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
-        [self addSubview:pen];
+//        pen = [[PenView alloc] initWithPenType:Pencil];
+//        pen.hidden = YES;
+//        pen.userInteractionEnabled = NO;
+//        pen.layer.transform = CATransform3DMakeRotation(-0.8, 0, 0, 1);
+//        [self addSubview:pen];
     }
     
     
@@ -194,7 +194,7 @@
 {
     PPRelease(_drawActionList);
     PPRelease(_lineColor);
-    PPRelease(pen);
+//    PPRelease(pen);
     [super dealloc];
 }
 
