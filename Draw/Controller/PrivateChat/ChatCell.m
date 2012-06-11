@@ -9,6 +9,7 @@
 #import "ChatCell.h"
 #import "LogUtil.h"
 #import "DeviceDetection.h"
+#import "MessageTotal.h"
 
 @implementation ChatCell
 @synthesize avatarImage;
@@ -46,7 +47,6 @@
     return @"ChatCell";
 }
 
-
 #define CELL_HEIGHT_IPHONE  68
 #define CELL_HEIGHT_IPAD    164
 + (CGFloat)getCellHeight
@@ -57,6 +57,12 @@
         return CELL_HEIGHT_IPHONE;
     }
 }
+
+- (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
+{
+    //to do
+}
+
 
 - (void)dealloc {
     [avatarImage release];

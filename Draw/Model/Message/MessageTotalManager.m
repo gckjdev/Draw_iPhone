@@ -9,6 +9,7 @@
 #import "MessageTotalManager.h"
 #import "MessageTotal.h"
 #import "CoreDataUtil.h"
+#import "GameBasic.pb.h"
 
 @interface MessageTotal()
 - (NSArray *)findAllMessageTotals;
@@ -75,6 +76,22 @@ static MessageTotalManager *_messageTotalManager = nil;
         }
     }
     return [dataManager save];
+}
+
+- (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat
+{
+    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:pbMessageStat.drawDataList];
+    return [self createMessageTotalWithUserId:pbMessageStat.userId 
+                                 friendUserId:pbMessageStat.friendUserId
+                               friendNickName:pbMessageStat.friendNickName
+                                 friendAvatar:pbMessageStat.friendAvatar
+                                   latestFrom:nil //待PBMessageStat怎家此字段
+                                     latestTo:nil //待PBMessageStat怎家此字段
+                               latestDrawData:drawActionListData
+                                   latestText:pbMessageStat.text
+                             latestCreateDate:nil //待PBMessageStat怎家此字段
+                              totalNewMessage:[NSNumber numberWithInt:pbMessageStat.newMessageCount] 
+                                 totalMessage:[NSNumber numberWithInt:pbMessageStat.totalMessageCount]];
 }
 
 @end
