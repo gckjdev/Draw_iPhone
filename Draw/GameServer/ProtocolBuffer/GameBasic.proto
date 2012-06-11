@@ -67,22 +67,30 @@ message PBMessage {
   
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
+  optional int32  createDate = 22;
 }
 
 message PBMessageStat {
   required string userId = 1;
+  
+  // latest message user data
   required string friendUserId = 2;
   required string friendNickName = 3;
   optional string friendAvatar = 4;
   optional bool   friendGender = 5;
   
-  required string messageId = 10;
-  optional int32  modifiedDate = 11;
-  optional int32  totalMessageCount = 12;
-  optional int32  newMessageCount = 13;
-
-  optional string text = 20;
-  repeated PBDrawAction drawData = 21;  
+  // latest message info
+  optional string messageId = 10;
+  required string from = 11;
+  required string to = 12;  
+  optional string text = 13;
+  repeated PBDrawAction drawData = 14;  
+  optional int32  createDate = 15;
+  
+  // statistic
+  optional int32  modifiedDate = 31;
+  optional int32  totalMessageCount = 32;
+  optional int32  newMessageCount = 33;
   
 }
 
