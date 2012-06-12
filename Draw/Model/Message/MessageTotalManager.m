@@ -12,7 +12,7 @@
 #import "GameBasic.pb.h"
 
 @interface MessageTotal()
-- (NSArray *)findAllMessageTotals;
+
 @end
 
 

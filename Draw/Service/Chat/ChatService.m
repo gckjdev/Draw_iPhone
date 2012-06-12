@@ -63,7 +63,8 @@ static ChatService *_chatService = nil;
             }
             
             if ([delegate respondsToSelector:@selector(didFindAllMessageTotals:)]){
-                [delegate didFindAllMessageTotals:nil];
+                NSArray *array = [[MessageTotalManager defaultManager] findAllMessageTotals];
+                [delegate didFindAllMessageTotals:array];
             }
         }); 
     });
@@ -101,7 +102,8 @@ static ChatService *_chatService = nil;
             }
             
             if ([delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
-                [delegate didFindAllMessagesByFriendUserId:nil];
+                NSArray *array = [[PrivateMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
+                [delegate didFindAllMessagesByFriendUserId:array];
             }
         }); 
     });
