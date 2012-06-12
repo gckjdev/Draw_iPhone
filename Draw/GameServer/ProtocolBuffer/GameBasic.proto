@@ -55,8 +55,10 @@ message PBDraw {
   optional int32 createDate = 5;
   optional string nickName = 6;
   optional string avatar = 7;
+  optional bool   gender = 8;
 
   repeated PBDrawAction drawData = 10;  
+  optional string opusId = 11;
 }
 
 message PBMessage {

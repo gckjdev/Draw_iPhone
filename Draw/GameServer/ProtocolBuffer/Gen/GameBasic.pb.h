@@ -412,6 +412,7 @@
 
 @interface PBDraw : PBGeneratedMessage {
 @private
+  BOOL hasGender_:1;
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
@@ -419,6 +420,8 @@
   BOOL hasWord_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL hasOpusId_:1;
+  BOOL gender_:1;
   int32_t level;
   int32_t language;
   int32_t createDate;
@@ -426,6 +429,7 @@
   NSString* word;
   NSString* nickName;
   NSString* avatar;
+  NSString* opusId;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasUserId;
@@ -435,6 +439,8 @@
 - (BOOL) hasCreateDate;
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
+- (BOOL) hasGender;
+- (BOOL) hasOpusId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -442,6 +448,8 @@
 @property (readonly) int32_t createDate;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
+- (BOOL) gender;
+@property (readonly, retain) NSString* opusId;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -514,12 +522,22 @@
 - (PBDraw_Builder*) setAvatar:(NSString*) value;
 - (PBDraw_Builder*) clearAvatar;
 
+- (BOOL) hasGender;
+- (BOOL) gender;
+- (PBDraw_Builder*) setGender:(BOOL) value;
+- (PBDraw_Builder*) clearGender;
+
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 - (PBDraw_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
 - (PBDraw_Builder*) addDrawData:(PBDrawAction*) value;
 - (PBDraw_Builder*) addAllDrawData:(NSArray*) values;
 - (PBDraw_Builder*) clearDrawDataList;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBDraw_Builder*) setOpusId:(NSString*) value;
+- (PBDraw_Builder*) clearOpusId;
 @end
 
 @interface PBMessage : PBGeneratedMessage {
