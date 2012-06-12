@@ -18,7 +18,7 @@
 #import "DeviceDetection.h"
 #import "Draw.h"
 #import "DrawManager.h"
-
+#import "Feed.h"
 static DrawDataService* _defaultDrawDataService = nil;
 
 @implementation DrawDataService
@@ -53,8 +53,10 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController
 {
+    
     dispatch_async(workingQueue, ^{
-        
+            
+        [viewController retain];
         NSString *uid = [[UserManager defaultManager] userId];
         NSString *gender = [[UserManager defaultManager] gender];
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
@@ -62,20 +64,21 @@ static DrawDataService* _defaultDrawDataService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender lang:lang type:1];;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            Draw *draw = nil;
-//            if (output.resultCode == ERROR_SUCCESS){
+            Feed *feed = nil;
+            NSInteger resultCode = [output resultCode];            
+            if (output.resultCode == ERROR_SUCCESS) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *list = [response drawDataList];
-                PBDraw *pbDraw = ([list count] != 0) ? [list objectAtIndex:0] : nil;
-            if (pbDraw) {
-                draw = [[Draw alloc] initWithPBDraw:pbDraw];
+                NSArray *list = [response feedList];
+                PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                if (pbFeed) {
+                    feed = [[[Feed alloc] initWithPBFeed:pbFeed] autorelease];
+                }
+                resultCode = [response resultCode];
             }
-                
-//            }
-            NSInteger resultCode = [response resultCode];
-            if ([viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
-                [viewController didMatchDraw:draw result:resultCode];
-            }
+            if (viewController && [viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
+                [viewController didMatchDraw:feed result:resultCode];
+            }  
+            [viewController release];
         });
     });    
 }

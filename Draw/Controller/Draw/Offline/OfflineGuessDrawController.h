@@ -20,6 +20,7 @@
 @class ToolView;
 @class ItemShopController;
 @class Draw;
+@class Feed;
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate,CommonMessageCenterDelegate>
 {
     ShowDrawView *showView;
@@ -35,6 +36,8 @@
 
     Word *_word;
     LanguageType languageType;
+    Feed *_feed;
+    NSMutableArray *_guessWords;
 
 }
 @property (retain, nonatomic) NSString *candidateString;
@@ -46,7 +49,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
 @property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 @property (retain, nonatomic) Word *word;
-@property (retain, nonatomic) Draw *draw;
+@property (retain, nonatomic) Feed *feed;
 @property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickRunAway:(id)sender;
