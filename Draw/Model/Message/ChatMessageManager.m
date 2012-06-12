@@ -19,14 +19,14 @@
 
 @implementation ChatMessageManager
 
-static ChatMessageManager *_privateMessageManager = nil;
+static ChatMessageManager *_chatMessageManager = nil;
 
 + (ChatMessageManager *)defaultManager
 {
-    if (_privateMessageManager == nil) {
-        _privateMessageManager = [[ChatMessageManager alloc] init];
+    if (_chatMessageManager == nil) {
+        _chatMessageManager = [[ChatMessageManager alloc] init];
     }
-    return _privateMessageManager;
+    return _chatMessageManager;
 }
 
 
