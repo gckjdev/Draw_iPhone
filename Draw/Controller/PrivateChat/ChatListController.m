@@ -12,7 +12,7 @@
 #import "ChatDetailController.h"
 #import "MessageTotal.h"
 #import "MessageTotalManager.h"
-#import "PrivateMessageManager.h"
+#import "ChatMessageManager.h"
 
 @interface ChatListController ()
 
@@ -71,7 +71,7 @@
 //                                                       totalNewMessage:[NSNumber numberWithInt:1] 
 //                                                          totalMessage:[NSNumber numberWithInt:3]];
 //    
-    [[PrivateMessageManager defaultManager] createMessageWithMessageId:@"991" 
+    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"991" 
                                                                   from:@"123" 
                                                                     to:@"111" 
                                                               drawData:nil 

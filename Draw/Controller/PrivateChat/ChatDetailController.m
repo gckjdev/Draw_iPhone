@@ -8,8 +8,8 @@
 
 #import "ChatDetailController.h"
 #import "DeviceDetection.h"
-#import "Message.h"
-#import "PrivateMessageManager.h"
+#import "ChatMessage.h"
+#import "ChatMessageManager.h"
 #import "UserManager.h"
 
 @interface ChatDetailController ()
@@ -48,7 +48,7 @@
     
 
     
-    self.dataList = [[PrivateMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
+    self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     [self findAllMessages];
 }
 
@@ -76,7 +76,7 @@
 #define BUBBLE_WIDTH_MAX_IPAD   400.0
 #define BUBBLE_WIDTH_MAX    (([DeviceDetection isIPAD])?(BUBBLE_WIDTH_MAX_IPAD):(BUBBLE_WIDTH_MAX_IPHONE))
 
-- (UIView *)bubbleView:(Message *)message
+- (UIView *)bubbleView:(ChatMessage *)message
 {
     UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	returnView.backgroundColor = [UIColor clearColor];
@@ -100,7 +100,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Message *message = (Message *)[dataList objectAtIndex:indexPath.row];
+    ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
     UIView *view = [self bubbleView:message];
     return view.frame.size.height;
 }
@@ -113,7 +113,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     
-    Message *message = (Message *)[dataList objectAtIndex:indexPath.row];
+    ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
     UIView *view = [self bubbleView:message];
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];

@@ -1,30 +1,30 @@
 //
-//  PrivateMessageManager.m
+//  ChatMessageManager.m
 //  Draw
 //
 //  Created by haodong qiu on 12年6月8日.
 //  Copyright (c) 2012年 orange. All rights reserved.
 //
 
-#import "PrivateMessageManager.h"
-#import "Message.h"
+#import "ChatMessageManager.h"
+#import "ChatMessage.h"
 #import "CoreDataUtil.h"
 #import "GameBasic.pb.h"
 
-@interface PrivateMessageManager ()
+@interface ChatMessageManager ()
 - (BOOL)isExist:(NSString *)messageId;
 - (NSArray *)findAllMessages;
 @end
 
 
-@implementation PrivateMessageManager
+@implementation ChatMessageManager
 
-static PrivateMessageManager *_privateMessageManager = nil;
+static ChatMessageManager *_privateMessageManager = nil;
 
-+ (PrivateMessageManager *)defaultManager
++ (ChatMessageManager *)defaultManager
 {
     if (_privateMessageManager == nil) {
-        _privateMessageManager = [[PrivateMessageManager alloc] init];
+        _privateMessageManager = [[ChatMessageManager alloc] init];
     }
     return _privateMessageManager;
 }
@@ -43,15 +43,14 @@ static PrivateMessageManager *_privateMessageManager = nil;
     }
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    [dataManager insert:@"Message"];
-//    Message *newMessage = [dataManager insert:@"Message"];
-//    [newMessage setMessageId:messageId];;
-//    [newMessage setFrom:from];
-//    [newMessage setTo:to];
-//    [newMessage setDrawData:drawData];
-//    [newMessage setCreateDate:createDate];
-//    [newMessage setText:text];
-//    [newMessage setStatus:status];
+    ChatMessage *newMessage = [dataManager insert:@"Message"];
+    [newMessage setMessageId:messageId];;
+    [newMessage setFrom:from];
+    [newMessage setTo:to];
+    [newMessage setDrawData:drawData];
+    [newMessage setCreateDate:createDate];
+    [newMessage setText:text];
+    [newMessage setStatus:status];
     return [dataManager save];
 }
 
@@ -67,7 +66,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 {
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
     NSArray *array = [self findAllMessages];
-    for (Message *message in array) {
+    for (ChatMessage *message in array) {
         if ([message.from isEqualToString:friendUserId] || [message.to isEqualToString:friendUserId]) {
             [mutableArray addObject:message];
         }
@@ -80,7 +79,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 - (BOOL)isExist:(NSString *)messageId 
 {
     NSArray *array = [self findAllMessages];
-    for (Message *message in array) {
+    for (ChatMessage *message in array) {
         if ([messageId isEqualToString:message.messageId]) {
             return YES;
         }

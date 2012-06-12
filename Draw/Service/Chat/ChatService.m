@@ -14,7 +14,7 @@
 #import "LogUtil.h"
 #import "GameMessage.pb.h"
 #import "GameBasic.pb.h"
-#import "PrivateMessageManager.h"
+#import "ChatMessageManager.h"
 #import "MessageTotalManager.h"
 
 static ChatService *_chatService = nil;
@@ -93,7 +93,7 @@ static ChatService *_chatService = nil;
                 DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *messageList = [travelResponse messageList];
                 for (PBMessage *pbMessage in messageList) {
-                    [[PrivateMessageManager defaultManager] createByPBMessage:pbMessage];
+                    [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
                 }
                 
                 PPDebug(@"<ChatService>findAllMessages success");
@@ -102,7 +102,7 @@ static ChatService *_chatService = nil;
             }
             
             if ([delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
-                NSArray *array = [[PrivateMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
+                NSArray *array = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
                 [delegate didFindAllMessagesByFriendUserId:array];
             }
         }); 

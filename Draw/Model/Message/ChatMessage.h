@@ -1,5 +1,5 @@
 //
-//  Message.h
+//  ChatMessage.h
 //  Draw
 //
 //  Created by haodong qiu on 12年6月8日.
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Message : NSManagedObject
+@interface ChatMessage : NSManagedObject
 
 @property (nonatomic, retain) NSString * messageId;
 @property (nonatomic, retain) NSString * from;
