@@ -23,6 +23,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDraw_Builder;
+@class PBFeed;
+@class PBFeed_Builder;
 @class PBGameSession;
 @class PBGameSession_Builder;
 @class PBGameUser;
@@ -1178,6 +1180,7 @@
   NSMutableArray* mutableDrawDataList;
   NSMutableArray* mutableMessageList;
   NSMutableArray* mutableMessageStatList;
+  NSMutableArray* mutableFeedList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -1189,6 +1192,8 @@
 - (PBMessage*) messageAtIndex:(int32_t) index;
 - (NSArray*) messageStatList;
 - (PBMessageStat*) messageStatAtIndex:(int32_t) index;
+- (NSArray*) feedList;
+- (PBFeed*) feedAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -1254,5 +1259,12 @@
 - (DataQueryResponse_Builder*) addMessageStat:(PBMessageStat*) value;
 - (DataQueryResponse_Builder*) addAllMessageStat:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearMessageStatList;
+
+- (NSArray*) feedList;
+- (PBFeed*) feedAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceFeedAtIndex:(int32_t) index with:(PBFeed*) value;
+- (DataQueryResponse_Builder*) addFeed:(PBFeed*) value;
+- (DataQueryResponse_Builder*) addAllFeed:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearFeedList;
 @end
 

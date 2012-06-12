@@ -565,6 +565,19 @@
             [self.showView play];
         }
         self.draw = draw;
+        
+        AvatarView *avatar = [[AvatarView alloc] initWithUrlString:draw.avatar type:Guesser gender:YES level:1];
+        if ([DeviceDetection isIPAD]) {
+            avatar.center = CGPointMake(21 * 2, 22 * 2);
+        }else{
+            avatar.center = CGPointMake(21, 22);
+        }
+        [self.view addSubview:avatar];
+        
+        if ([[draw nickName] length] != 0) {
+            [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[draw nickName]]];
+        }
+        
     }else{
         CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
         center.delegate = self;
@@ -610,6 +623,7 @@
         //TODO send http request
         NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
         ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
+        
         result.resultType = OfflineGuess;
         [self.navigationController pushViewController:result animated:YES];
         [result release];
@@ -703,7 +717,6 @@
 }
 - (void)updateTargetViews:(Word *)word
 {
-
     NSInteger tag = TARGET_BASE_TAG;
     for (int i = 0; i < word.length; ++ i)
     {

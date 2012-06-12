@@ -4880,6 +4880,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSMutableArray* mutableMessageList;
 @property (retain) NSMutableArray* mutableMessageStatList;
+@property (retain) NSMutableArray* mutableFeedList;
 @end
 
 @implementation DataQueryResponse
@@ -4901,10 +4902,12 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableDrawDataList;
 @synthesize mutableMessageList;
 @synthesize mutableMessageStatList;
+@synthesize mutableFeedList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
   self.mutableMessageStatList = nil;
+  self.mutableFeedList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4947,6 +4950,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableMessageStatList objectAtIndex:index];
   return value;
 }
+- (NSArray*) feedList {
+  return mutableFeedList;
+}
+- (PBFeed*) feedAtIndex:(int32_t) index {
+  id value = [mutableFeedList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -4962,6 +4972,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
   }
   for (PBMessageStat* element in self.messageStatList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBFeed* element in self.feedList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -4983,6 +4998,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBMessageStat* element in self.messageStatList) {
     [output writeMessage:33 value:element];
+  }
+  for (PBFeed* element in self.feedList) {
+    [output writeMessage:41 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5007,6 +5025,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBMessageStat* element in self.messageStatList) {
     size += computeMessageSize(33, element);
+  }
+  for (PBFeed* element in self.feedList) {
+    size += computeMessageSize(41, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5107,6 +5128,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableMessageStatList addObjectsFromArray:other.mutableMessageStatList];
   }
+  if (other.mutableFeedList.count > 0) {
+    if (result.mutableFeedList == nil) {
+      result.mutableFeedList = [NSMutableArray array];
+    }
+    [result.mutableFeedList addObjectsFromArray:other.mutableFeedList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5152,6 +5179,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBMessageStat_Builder* subBuilder = [PBMessageStat builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addMessageStat:[subBuilder buildPartial]];
+        break;
+      }
+      case 330: {
+        PBFeed_Builder* subBuilder = [PBFeed builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addFeed:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5274,6 +5307,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableMessageStatList = [NSMutableArray array];
   }
   [result.mutableMessageStatList addObject:value];
+  return self;
+}
+- (NSArray*) feedList {
+  if (result.mutableFeedList == nil) { return [NSArray array]; }
+  return result.mutableFeedList;
+}
+- (PBFeed*) feedAtIndex:(int32_t) index {
+  return [result feedAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceFeedAtIndex:(int32_t) index with:(PBFeed*) value {
+  [result.mutableFeedList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllFeed:(NSArray*) values {
+  if (result.mutableFeedList == nil) {
+    result.mutableFeedList = [NSMutableArray array];
+  }
+  [result.mutableFeedList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearFeedList {
+  result.mutableFeedList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addFeed:(PBFeed*) value {
+  if (result.mutableFeedList == nil) {
+    result.mutableFeedList = [NSMutableArray array];
+  }
+  [result.mutableFeedList addObject:value];
   return self;
 }
 @end

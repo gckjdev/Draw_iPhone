@@ -508,3 +508,5 @@
 
 "kQuit" = "Quit";
 "kOneMore" = "One More";
+
+"kGuessUserDraw" = "Guessing %@'s draw";

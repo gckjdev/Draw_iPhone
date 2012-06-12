@@ -55,8 +55,10 @@ message PBDraw {
   optional int32 createDate = 5;
   optional string nickName = 6;
   optional string avatar = 7;
+  optional bool   gender = 8;
 
   repeated PBDrawAction drawData = 10;  
+  optional string opusId = 11;
 }
 
 message PBMessage {
@@ -92,5 +94,33 @@ message PBMessageStat {
   optional int32  totalMessageCount = 32;
   optional int32  newMessageCount = 33;
   
+}
+
+message PBFeed {
+  required string feedId = 1;
+  required string userId = 2;
+  required int32  actionType = 3;
+  required int32  createDate = 4;
+  
+  // for user info
+  optional string nickName = 21;
+  optional string avatar = 22;
+  optional bool   gender = 23;
+
+  // for user draw
+  optional PBDraw drawData = 31;
+  
+  // for user guess
+  optional string opusId = 41;          // 猜作品的ID
+  optional bool   isCorrect = 42;
+  optional int32  score = 43;
+  repeated string guessWords = 44;  
+  
+  // for user comment
+  optional string comment = 51;
+  
+  // common data
+  optional int32  matchTimes = 61;
+
 }
 

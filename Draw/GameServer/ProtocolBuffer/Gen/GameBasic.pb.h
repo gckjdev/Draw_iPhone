@@ -6,6 +6,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDraw_Builder;
+@class PBFeed;
+@class PBFeed_Builder;
 @class PBGameSession;
 @class PBGameSession_Builder;
 @class PBGameUser;
@@ -410,6 +412,7 @@
 
 @interface PBDraw : PBGeneratedMessage {
 @private
+  BOOL hasGender_:1;
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
@@ -417,6 +420,8 @@
   BOOL hasWord_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
+  BOOL hasOpusId_:1;
+  BOOL gender_:1;
   int32_t level;
   int32_t language;
   int32_t createDate;
@@ -424,6 +429,7 @@
   NSString* word;
   NSString* nickName;
   NSString* avatar;
+  NSString* opusId;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasUserId;
@@ -433,6 +439,8 @@
 - (BOOL) hasCreateDate;
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
+- (BOOL) hasGender;
+- (BOOL) hasOpusId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -440,6 +448,8 @@
 @property (readonly) int32_t createDate;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
+- (BOOL) gender;
+@property (readonly, retain) NSString* opusId;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -512,12 +522,22 @@
 - (PBDraw_Builder*) setAvatar:(NSString*) value;
 - (PBDraw_Builder*) clearAvatar;
 
+- (BOOL) hasGender;
+- (BOOL) gender;
+- (PBDraw_Builder*) setGender:(BOOL) value;
+- (PBDraw_Builder*) clearGender;
+
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 - (PBDraw_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
 - (PBDraw_Builder*) addDrawData:(PBDrawAction*) value;
 - (PBDraw_Builder*) addAllDrawData:(NSArray*) values;
 - (PBDraw_Builder*) clearDrawDataList;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBDraw_Builder*) setOpusId:(NSString*) value;
+- (PBDraw_Builder*) clearOpusId;
 @end
 
 @interface PBMessage : PBGeneratedMessage {
@@ -787,5 +807,173 @@
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
+@end
+
+@interface PBFeed : PBGeneratedMessage {
+@private
+  BOOL hasGender_:1;
+  BOOL hasIsCorrect_:1;
+  BOOL hasActionType_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasScore_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasFeedId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasComment_:1;
+  BOOL hasDrawData_:1;
+  BOOL gender_:1;
+  BOOL isCorrect_:1;
+  int32_t actionType;
+  int32_t createDate;
+  int32_t score;
+  int32_t matchTimes;
+  NSString* feedId;
+  NSString* userId;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* opusId;
+  NSString* comment;
+  PBDraw* drawData;
+  NSMutableArray* mutableGuessWordsList;
+}
+- (BOOL) hasFeedId;
+- (BOOL) hasUserId;
+- (BOOL) hasActionType;
+- (BOOL) hasCreateDate;
+- (BOOL) hasNickName;
+- (BOOL) hasAvatar;
+- (BOOL) hasGender;
+- (BOOL) hasDrawData;
+- (BOOL) hasOpusId;
+- (BOOL) hasIsCorrect;
+- (BOOL) hasScore;
+- (BOOL) hasComment;
+- (BOOL) hasMatchTimes;
+@property (readonly, retain) NSString* feedId;
+@property (readonly, retain) NSString* userId;
+@property (readonly) int32_t actionType;
+@property (readonly) int32_t createDate;
+@property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* avatar;
+- (BOOL) gender;
+@property (readonly, retain) PBDraw* drawData;
+@property (readonly, retain) NSString* opusId;
+- (BOOL) isCorrect;
+@property (readonly) int32_t score;
+@property (readonly, retain) NSString* comment;
+@property (readonly) int32_t matchTimes;
+- (NSArray*) guessWordsList;
+- (NSString*) guessWordsAtIndex:(int32_t) index;
+
++ (PBFeed*) defaultInstance;
+- (PBFeed*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBFeed_Builder*) builder;
++ (PBFeed_Builder*) builder;
++ (PBFeed_Builder*) builderWithPrototype:(PBFeed*) prototype;
+
++ (PBFeed*) parseFromData:(NSData*) data;
++ (PBFeed*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFeed*) parseFromInputStream:(NSInputStream*) input;
++ (PBFeed*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFeed*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBFeed*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBFeed_Builder : PBGeneratedMessage_Builder {
+@private
+  PBFeed* result;
+}
+
+- (PBFeed*) defaultInstance;
+
+- (PBFeed_Builder*) clear;
+- (PBFeed_Builder*) clone;
+
+- (PBFeed*) build;
+- (PBFeed*) buildPartial;
+
+- (PBFeed_Builder*) mergeFrom:(PBFeed*) other;
+- (PBFeed_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFeed_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasFeedId;
+- (NSString*) feedId;
+- (PBFeed_Builder*) setFeedId:(NSString*) value;
+- (PBFeed_Builder*) clearFeedId;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBFeed_Builder*) setUserId:(NSString*) value;
+- (PBFeed_Builder*) clearUserId;
+
+- (BOOL) hasActionType;
+- (int32_t) actionType;
+- (PBFeed_Builder*) setActionType:(int32_t) value;
+- (PBFeed_Builder*) clearActionType;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBFeed_Builder*) setCreateDate:(int32_t) value;
+- (PBFeed_Builder*) clearCreateDate;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (PBFeed_Builder*) setNickName:(NSString*) value;
+- (PBFeed_Builder*) clearNickName;
+
+- (BOOL) hasAvatar;
+- (NSString*) avatar;
+- (PBFeed_Builder*) setAvatar:(NSString*) value;
+- (PBFeed_Builder*) clearAvatar;
+
+- (BOOL) hasGender;
+- (BOOL) gender;
+- (PBFeed_Builder*) setGender:(BOOL) value;
+- (PBFeed_Builder*) clearGender;
+
+- (BOOL) hasDrawData;
+- (PBDraw*) drawData;
+- (PBFeed_Builder*) setDrawData:(PBDraw*) value;
+- (PBFeed_Builder*) setDrawDataBuilder:(PBDraw_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeDrawData:(PBDraw*) value;
+- (PBFeed_Builder*) clearDrawData;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBFeed_Builder*) setOpusId:(NSString*) value;
+- (PBFeed_Builder*) clearOpusId;
+
+- (BOOL) hasIsCorrect;
+- (BOOL) isCorrect;
+- (PBFeed_Builder*) setIsCorrect:(BOOL) value;
+- (PBFeed_Builder*) clearIsCorrect;
+
+- (BOOL) hasScore;
+- (int32_t) score;
+- (PBFeed_Builder*) setScore:(int32_t) value;
+- (PBFeed_Builder*) clearScore;
+
+- (NSArray*) guessWordsList;
+- (NSString*) guessWordsAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceGuessWordsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBFeed_Builder*) addGuessWords:(NSString*) value;
+- (PBFeed_Builder*) addAllGuessWords:(NSArray*) values;
+- (PBFeed_Builder*) clearGuessWordsList;
+
+- (BOOL) hasComment;
+- (NSString*) comment;
+- (PBFeed_Builder*) setComment:(NSString*) value;
+- (PBFeed_Builder*) clearComment;
+
+- (BOOL) hasMatchTimes;
+- (int32_t) matchTimes;
+- (PBFeed_Builder*) setMatchTimes:(int32_t) value;
+- (PBFeed_Builder*) clearMatchTimes;
 @end
 

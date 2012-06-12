@@ -112,13 +112,17 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 }
 
-- (PBDraw*)buildPBDraw:(NSString*)userId
+- (PBDraw*)buildPBDraw:(NSString*)userId 
+                  nick:(NSString *)nick 
+                avatar:(NSString *)avatar
         drawActionList:(NSArray*)drawActionList
               drawWord:(Word*)drawWord
               language:(LanguageType)language
 {
     PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
     [builder setUserId:userId];
+    [builder setNickName:nick];
+    [builder setAvatar:avatar];
     [builder setWord:[drawWord text]];
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
@@ -143,7 +147,9 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = APP_ID;
-    PBDraw* draw = [self buildPBDraw:userId
+    PBDraw* draw = [self buildPBDraw:userId 
+                                nick:nick 
+                              avatar:avatar
                       drawActionList:drawActionList
                             drawWord:drawWord 
                             language:language];
