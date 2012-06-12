@@ -1659,7 +1659,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property int32_t createDate;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
+@property BOOL gender;
 @property (retain) NSMutableArray* mutableDrawDataList;
+@property (retain) NSString* opusId;
 @end
 
 @implementation PBDraw
@@ -1713,13 +1715,33 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasAvatar_ = !!value;
 }
 @synthesize avatar;
+- (BOOL) hasGender {
+  return !!hasGender_;
+}
+- (void) setHasGender:(BOOL) value {
+  hasGender_ = !!value;
+}
+- (BOOL) gender {
+  return !!gender_;
+}
+- (void) setGender:(BOOL) value {
+  gender_ = !!value;
+}
 @synthesize mutableDrawDataList;
+- (BOOL) hasOpusId {
+  return !!hasOpusId_;
+}
+- (void) setHasOpusId:(BOOL) value {
+  hasOpusId_ = !!value;
+}
+@synthesize opusId;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
   self.nickName = nil;
   self.avatar = nil;
   self.mutableDrawDataList = nil;
+  self.opusId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1731,6 +1753,8 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.createDate = 0;
     self.nickName = @"";
     self.avatar = @"";
+    self.gender = NO;
+    self.opusId = @"";
   }
   return self;
 }
@@ -1795,8 +1819,14 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasAvatar) {
     [output writeString:7 value:self.avatar];
   }
+  if (self.hasGender) {
+    [output writeBool:8 value:self.gender];
+  }
   for (PBDrawAction* element in self.drawDataList) {
     [output writeMessage:10 value:element];
+  }
+  if (self.hasOpusId) {
+    [output writeString:11 value:self.opusId];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1828,8 +1858,14 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasAvatar) {
     size += computeStringSize(7, self.avatar);
   }
+  if (self.hasGender) {
+    size += computeBoolSize(8, self.gender);
+  }
   for (PBDrawAction* element in self.drawDataList) {
     size += computeMessageSize(10, element);
+  }
+  if (self.hasOpusId) {
+    size += computeStringSize(11, self.opusId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1927,11 +1963,17 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasAvatar) {
     [self setAvatar:other.avatar];
   }
+  if (other.hasGender) {
+    [self setGender:other.gender];
+  }
   if (other.mutableDrawDataList.count > 0) {
     if (result.mutableDrawDataList == nil) {
       result.mutableDrawDataList = [NSMutableArray array];
     }
     [result.mutableDrawDataList addObjectsFromArray:other.mutableDrawDataList];
+  }
+  if (other.hasOpusId) {
+    [self setOpusId:other.opusId];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1982,10 +2024,18 @@ static PBDraw* defaultPBDrawInstance = nil;
         [self setAvatar:[input readString]];
         break;
       }
+      case 64: {
+        [self setGender:[input readBool]];
+        break;
+      }
       case 82: {
         PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 90: {
+        [self setOpusId:[input readString]];
         break;
       }
     }
@@ -2103,6 +2153,22 @@ static PBDraw* defaultPBDrawInstance = nil;
   result.avatar = @"";
   return self;
 }
+- (BOOL) hasGender {
+  return result.hasGender;
+}
+- (BOOL) gender {
+  return result.gender;
+}
+- (PBDraw_Builder*) setGender:(BOOL) value {
+  result.hasGender = YES;
+  result.gender = value;
+  return self;
+}
+- (PBDraw_Builder*) clearGender {
+  result.hasGender = NO;
+  result.gender = NO;
+  return self;
+}
 - (NSArray*) drawDataList {
   if (result.mutableDrawDataList == nil) { return [NSArray array]; }
   return result.mutableDrawDataList;
@@ -2130,6 +2196,22 @@ static PBDraw* defaultPBDrawInstance = nil;
     result.mutableDrawDataList = [NSMutableArray array];
   }
   [result.mutableDrawDataList addObject:value];
+  return self;
+}
+- (BOOL) hasOpusId {
+  return result.hasOpusId;
+}
+- (NSString*) opusId {
+  return result.opusId;
+}
+- (PBDraw_Builder*) setOpusId:(NSString*) value {
+  result.hasOpusId = YES;
+  result.opusId = value;
+  return self;
+}
+- (PBDraw_Builder*) clearOpusId {
+  result.hasOpusId = NO;
+  result.opusId = @"";
   return self;
 }
 @end
