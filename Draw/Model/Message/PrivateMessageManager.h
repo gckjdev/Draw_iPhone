@@ -13,6 +13,7 @@ enum{
     MessageStatusNotRead = 2
 };
 
+@class PBMessage;
 @interface PrivateMessageManager : NSObject
 
 + (PrivateMessageManager *)defaultManager;
@@ -24,6 +25,8 @@ enum{
                         createDate:(NSDate *)createDate 
                               text:(NSString *)text 
                             status:(NSNumber *)status;
+
+- (BOOL)createByPBMessage:(PBMessage *)pbMessage;
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 

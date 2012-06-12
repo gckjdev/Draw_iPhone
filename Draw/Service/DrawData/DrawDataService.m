@@ -142,7 +142,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = @"";
+    NSString* appId = APP_ID;
     PBDraw* draw = [self buildPBDraw:userId
                       drawActionList:drawActionList
                             drawWord:drawWord 
@@ -166,8 +166,43 @@ static DrawDataService* _defaultDrawDataService = nil;
             }
         });
     });
-
-    
 }
+
+- (void)guessDraw:(NSArray *)guessWords 
+           opusId:(NSString *)opusId
+        isCorrect:(BOOL)isCorrect 
+            score:(NSInteger)score
+         delegate:(PPViewController<DrawDataServiceDelegate>*)viewController
+{
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* nick = [[UserManager defaultManager] nickName];
+    NSString* gender = [[UserManager defaultManager] gender];
+    NSString* avatar = [[UserManager defaultManager] avatarURL];
+    NSString* appId = APP_ID;
+    
+    NSString *words = [guessWords componentsJoinedByString:@":"];
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest guessOpus:TRAFFIC_SERVER_URL 
+                                                              appId:appId 
+                                                             userId:userId 
+                                                               nick:nick 
+                                                             avatar:avatar 
+                                                             gender:gender 
+                                                             opusId:opusId 
+                                                          isCorrect:isCorrect 
+                                                              score:score 
+                                                              words:words];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([viewController respondsToSelector:@selector(didGuessOfflineDraw:)]){
+                [viewController didGuessOfflineDraw:output.resultCode];
+            }
+        });
+    });
+
+}
+
 
 @end

@@ -212,6 +212,17 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data;
 
++ (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
+                            appId:(NSString*)appId
+                           userId:(NSString*)userId
+                             nick:(NSString*)nick
+                           avatar:(NSString*)avatar
+                           gender:(NSString*)gender
+                           opusId:(NSString*)opusId
+                        isCorrect:(BOOL)isCorrect
+                            score:(NSInteger)score
+                            words:(NSString*)words;
+
 + (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId

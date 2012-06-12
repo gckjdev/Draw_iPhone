@@ -9,6 +9,7 @@
 #import "PrivateMessageManager.h"
 #import "Message.h"
 #import "CoreDataUtil.h"
+#import "GameBasic.pb.h"
 
 @interface PrivateMessageManager ()
 - (BOOL)isExist:(NSString *)messageId;
@@ -86,6 +87,25 @@ static PrivateMessageManager *_privateMessageManager = nil;
     return NO;
 }
 
+
+- (BOOL)createByPBMessage:(PBMessage *)pbMessage
+{
+    //压缩
+    //NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawDataList];
+    
+    //解压
+    //NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    //NSArray* drawDataList = (NSArray*)temp;
+    
+    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:pbMessage.drawDataList];
+    return  [self createMessageWithMessageId:pbMessage.messageId 
+                                        from:pbMessage.from 
+                                          to:pbMessage.to 
+                                    drawData:drawActionListData
+                                  createDate:nil   //待PBMessage增加一个createDate
+                                        text:pbMessage.text
+                                      status:[NSNumber numberWithInt:pbMessage.status]];
+}
 
 
 @end
