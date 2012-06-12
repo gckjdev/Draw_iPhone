@@ -103,12 +103,45 @@
     }
     
     [inputTextField resignFirstResponder];
+    
+    
+    self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
+    PPDebug(@"%d",[dataList count]);
+    [dataTableView reloadData];
 }
 
-#define BUBBLE_WIDTH_MAX_IPHONE 200.0
-#define BUBBLE_WIDTH_MAX_IPAD   400.0
-#define BUBBLE_WIDTH_MAX    (([DeviceDetection isIPAD])?(BUBBLE_WIDTH_MAX_IPAD):(BUBBLE_WIDTH_MAX_IPHONE))
+- (NSInteger)linesWithString:(NSString *)str contentSize:(CGSize)size withFont:(UIFont *)font {
+    
+    CGSize singleLineSize = [str sizeWithFont:font forWidth:size.width lineBreakMode:UILineBreakModeWordWrap];
+    CGSize multLineSize = [str sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    
+    NSInteger lines = (NSInteger)ceil(multLineSize.height / singleLineSize.height);
+    
+    
+    return lines;
+}
 
+
+#define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(400.0):(200.0))
+#define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
+#define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(24):(15))
+#define SPACE_Y         (([DeviceDetection isIPAD])?(20):(10))
+#define SCREEN_WIDTH    (([DeviceDetection isIPAD])?(768):(320))
+#define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(16):(8))
+#define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(10))
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(10):(5))
+/*
+ TEXT_WIDTH_MAX 是消息的最大长度
+ TEXT_HEIGHT_MAX  是消息的最大高度
+ TEXT_FONT_SIZE  是字体
+ SPACE_Y  是上一个气泡图与下一个的距离
+ SCREEN_WIDTH    是屏幕宽度
+ TEXTVIEW_BORDER_X  是TextView的文字与左或右边界的宽度
+ TEXTVIEW_BORDER_Y  是TextView的文字与上或下边界的宽度
+ BUBBLE_TIP_WIDTH   是气泡图尖角的宽度
+ BUBBLE_NOT_TIP_WIDTH 是气泡图非尖角的宽度
+ */
 - (UIView *)bubbleView:(ChatMessage *)message
 {
     UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
@@ -121,32 +154,56 @@
     
     
     if ([message.text length] > 0) {
-        UIFont *font = [UIFont systemFontOfSize:12];
-        CGSize size = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(BUBBLE_WIDTH_MAX, 1000.0f) lineBreakMode:UILineBreakModeCharacterWrap];
+        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         
-        UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 10.0f, size.width+10, size.height+10)];
-        bubbleText.backgroundColor = [UIColor clearColor];
-        bubbleText.font = font;
-        bubbleText.numberOfLines = 0;
-        bubbleText.lineBreakMode = UILineBreakModeCharacterWrap;
-        bubbleText.text = message.text;
+        //string的大小
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
-        bubbleImageView.frame = CGRectMake(0.0f, 0.0f, 200.0f, size.height+40.0f);
+        //设置文本
+        CGRect contentTextViewFrame;
+        if (fromSelf){
+            contentTextViewFrame = CGRectMake(BUBBLE_NOT_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+ 2*TEXTVIEW_BORDER_Y);
+        }else {
+            contentTextViewFrame = CGRectMake(BUBBLE_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+ 2*TEXTVIEW_BORDER_Y);
+        }
+        UITextView *contentTextView = [[UITextView alloc] initWithFrame:contentTextViewFrame];
+        contentTextView.delegate = self;
+        contentTextView.backgroundColor = [UIColor clearColor];
+        contentTextView.font = font;
+        contentTextView.text = message.text;
+        
+        
+        //设置气泡的frame
+        bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
+        
+        [bubbleImageView addSubview:contentTextView];
+        [contentTextView release];
+        
+        
+        //设置returnView的frame
         if(fromSelf)
-            returnView.frame = CGRectMake(120.0f, 10.0f, 200.0f, size.height+50.0f);
+            returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
         else
-            returnView.frame = CGRectMake(0.0f, 10.0f, 200.0f, size.height+50.0f);
-        
-        [bubbleImageView addSubview:bubbleText];
-        [bubbleText release];
+            returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
     }else {
         //to do
     }
+    
     
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
     
     return returnView;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return NO;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [dataList count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -182,11 +239,19 @@
 }
 
 - (IBAction)clickSendButton:(id)sender {
-    
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
                                          text:inputTextField.text 
                                          data:nil];
+    
+    //test data
+//    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"999" 
+//                                                               from:[[UserManager defaultManager] userId]
+//                                                                 to:@"456" 
+//                                                           drawData:nil 
+//                                                         createDate:[NSDate date] 
+//                                                               text:inputTextField.text  
+//                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
 }
 
 

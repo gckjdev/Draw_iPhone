@@ -69,7 +69,7 @@
                                                             latestFrom:[[UserManager defaultManager] userId]
                                                               latestTo:@"456" 
                                                         latestDrawData:nil 
-                                                            latestText:@"然后呢" 
+                                                            latestText:@"问那么多问为什么干嘛" 
                                                       latestCreateDate:[NSDate date] 
                                                        totalNewMessage:[NSNumber numberWithInt:1] 
                                                           totalMessage:[NSNumber numberWithInt:3]];
@@ -83,12 +83,22 @@
                                                                 status:[NSNumber numberWithInt:MessageStatusNotRead]];
     
     [[ChatMessageManager defaultManager] createMessageWithMessageId:@"992" 
+                                                               from:@"456"
+                                                                 to:[[UserManager defaultManager] userId]
+                                                           drawData:nil 
+                                                         createDate:[NSDate date] 
+                                                               text:@"为什么"  
+                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
+    
+    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"993" 
                                                                from:[[UserManager defaultManager] userId]
                                                                  to:@"456" 
                                                            drawData:nil 
                                                          createDate:[NSDate date] 
-                                                               text:@"然后呢"  
+                                                               text:@"问那么多问什么干嘛"  
                                                              status:[NSNumber numberWithInt:MessageStatusNotRead]];
+    
+
     
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];

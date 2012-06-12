@@ -9,7 +9,7 @@
 #import "PPTableViewController.h"
 #import "ChatService.h"
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextFieldDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextFieldDelegate, UITextViewDelegate>
  
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *graffitiButton;

@@ -58,7 +58,7 @@ static ChatMessageManager *_chatMessageManager = nil;
 - (NSArray *)findAllMessages
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    return [dataManager execute:@"findAllMessages" sortBy:@"createDate" ascending:NO];
+    return [dataManager execute:@"findAllMessages" sortBy:@"createDate" ascending:YES];
 }
 
 
