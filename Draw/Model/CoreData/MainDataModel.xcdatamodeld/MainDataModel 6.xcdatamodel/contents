@@ -103,25 +103,25 @@
     <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllMessages" entity="Message"/>
+    <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
     <fetchRequest name="findAllWords" entity="CustomWord"/>
     <fetchRequest name="findFanByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findFollowByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 1 AND deleteFlag == 0"/>
-    <fetchRequest name="findMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
     <elements>
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="Message" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="MessageTotal" positionX="160" positionY="192" width="128" height="210"/>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
         <element name="UserItem" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Message" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="MessageTotal" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

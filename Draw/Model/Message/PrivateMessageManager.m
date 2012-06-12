@@ -43,14 +43,15 @@ static PrivateMessageManager *_privateMessageManager = nil;
     }
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    Message *newMessage = [dataManager insert:@"Message"];
-    [newMessage setMessageId:messageId];;
-    [newMessage setFrom:from];
-    [newMessage setTo:to];
-    [newMessage setDrawData:drawData];
-    [newMessage setCreateDate:createDate];
-    [newMessage setText:text];
-    [newMessage setStatus:status];
+    [dataManager insert:@"Message"];
+//    Message *newMessage = [dataManager insert:@"Message"];
+//    [newMessage setMessageId:messageId];;
+//    [newMessage setFrom:from];
+//    [newMessage setTo:to];
+//    [newMessage setDrawData:drawData];
+//    [newMessage setCreateDate:createDate];
+//    [newMessage setText:text];
+//    [newMessage setStatus:status];
     return [dataManager save];
 }
 

@@ -25,6 +25,8 @@
                      totalNewMessage:(NSNumber *)totalNewMessage 
                         totalMessage:(NSNumber *)totalMessage;
 
+- (NSArray *)findAllMessageTotals;
+
 - (BOOL)deleteMessageTotal:(NSString *)friendUserId;
 
 - (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat;

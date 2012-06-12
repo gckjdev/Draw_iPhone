@@ -17,6 +17,7 @@
 @synthesize avatarImage;
 @synthesize nickNameLabel;
 @synthesize graffiti;
+@synthesize textLabel;
 @synthesize messageNumberLabel;
 @synthesize timeLabel;
 
@@ -73,8 +74,16 @@
     //set nickname
     self.nickNameLabel.text = messageTotal.friendNickName;
     
-    //set graffiti
-    
+    //set text or graffiti 
+    if ([messageTotal.latestText length] > 0) {
+        self.textLabel.hidden = NO;
+        self.graffiti.hidden = YES;
+        self.textLabel.text = messageTotal.latestText;
+    }else {
+        self.textLabel.hidden = YES;
+        self.graffiti.hidden = NO;
+        // TO DO
+    }
     
     //set messageNumberLabel
     NSString *newAndTotal = [NSString stringWithFormat:@"[%@/%@]", messageTotal.totalNewMessage, messageTotal.totalMessage];
@@ -94,6 +103,7 @@
     [graffiti release];
     [messageNumberLabel release];
     [timeLabel release];
+    [textLabel release];
     [super dealloc];
 }
 @end

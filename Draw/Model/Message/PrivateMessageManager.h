@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 enum{
-    MessageStatusRead = 1,
-    MessageStatusNotRead = 2
+    MessageStatusNotRead = 0,
+    MessageStatusRead = 1
 };
 
 @class PBMessage;

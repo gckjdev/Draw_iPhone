@@ -11,8 +11,9 @@
 
 @protocol ChatServiceDelegate <NSObject>
 
+@optional
 - (void)didFindAllMessageTotals:(NSArray *)totalList;
-- (void)didFindAllMessagesByFriendUserId:(NSArray *)totalList;
+- (void)didFindAllMessagesByFriendUserId:(NSArray *)list;
 - (void)didSendMessage:(int)resultCode;
 - (void)didSendHasReadMessage:(int)resultCode;
 
