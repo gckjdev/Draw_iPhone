@@ -595,6 +595,15 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
+		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
+		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
+		CA7C7E15158723AE00406BFB /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E13158723AE00406BFB /* FeedController.m */; };
+		CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E14158723AE00406BFB /* FeedController.xib */; };
+		CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */; };
+		CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E1A1587242300406BFB /* FeedDetailController.m */; };
+		CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1B1587242300406BFB /* FeedDetailController.xib */; };
+		CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */; };
 		CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA8B3569153D348C00B15CBF /* TraditionalChineseWord.strings */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
@@ -1656,6 +1665,20 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
+		CA7C7E061587214300406BFB /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
+		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
+		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
+		CA7C7E12158723AE00406BFB /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
+		CA7C7E13158723AE00406BFB /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
+		CA7C7E14158723AE00406BFB /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
+		CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedController~ipad.xib"; sourceTree = "<group>"; };
+		CA7C7E191587242300406BFB /* FeedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailController.h; sourceTree = "<group>"; };
+		CA7C7E1A1587242300406BFB /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
+		CA7C7E1B1587242300406BFB /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
+		CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
 		CA8B356A153D348C00B15CBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TraditionalChineseWord.strings; sourceTree = "<group>"; };
 		CA8D602B1531C98400E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CA8D602E1531C99300E016ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default@2x.png"; sourceTree = "<group>"; };
@@ -2314,6 +2337,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E081587219600406BFB /* Feed */,
 				A3F66CBE15820B2D000BFF9A /* Chat */,
 				CAAE4A891579B8180012F6B8 /* YoumiWall */,
 				A38894AB15778B3200764158 /* TTS */,
@@ -4021,6 +4045,41 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA7C7E001587210500406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E021587213100406BFB /* Feed.h */,
+				CA7C7E031587213100406BFB /* Feed.m */,
+				CA7C7E051587214300406BFB /* FeedManager.h */,
+				CA7C7E061587214300406BFB /* FeedManager.m */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA7C7E081587219600406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E09158721B200406BFB /* FeedService.h */,
+				CA7C7E0A158721B200406BFB /* FeedService.m */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA7C7E111587237B00406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E12158723AE00406BFB /* FeedController.h */,
+				CA7C7E13158723AE00406BFB /* FeedController.m */,
+				CA7C7E14158723AE00406BFB /* FeedController.xib */,
+				CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */,
+				CA7C7E191587242300406BFB /* FeedDetailController.h */,
+				CA7C7E1A1587242300406BFB /* FeedDetailController.m */,
+				CA7C7E1B1587242300406BFB /* FeedDetailController.xib */,
+				CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -4283,6 +4342,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E111587237B00406BFB /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A30A28441580C2AE006CA3CC /* PrivateChat */,
@@ -4306,6 +4366,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E001587210500406BFB /* Feed */,
 				A3F66C9E1581B999000BFF9A /* Message */,
 				A4D3B1561560E4B50013C882 /* Chat */,
 				CA0CB76B155CB78A009C8EE6 /* Room */,
@@ -4756,6 +4817,10 @@
 				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
+				CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */,
+				CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */,
+				CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */,
+				CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5133,6 +5198,11 @@
 				A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */,
 				A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */,
 				A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */,
+				CA7C7E041587213100406BFB /* Feed.m in Sources */,
+				CA7C7E071587214300406BFB /* FeedManager.m in Sources */,
+				CA7C7E0B158721B200406BFB /* FeedService.m in Sources */,
+				CA7C7E15158723AE00406BFB /* FeedController.m in Sources */,
+				CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
