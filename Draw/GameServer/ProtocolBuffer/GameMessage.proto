@@ -160,4 +160,7 @@ message DataQueryResponse {
   // for message
   repeated PBMessage message = 32;
   repeated PBMessageStat messageStat = 33;
+  
+  // for user feed
+  repeated PBFeed feed = 41;
 }
