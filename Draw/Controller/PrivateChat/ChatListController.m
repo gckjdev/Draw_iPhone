@@ -47,30 +47,30 @@
     
     
     //test data
-//    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
-//                                                          friendUserId:@"123" 
-//                                                        friendNickName:@"张三" 
-//                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_8.jpg" 
-//                                                            latestFrom:@"123" 
-//                                                              latestTo:@"111"
-//                                                        latestDrawData:nil 
-//                                                            latestText:@"早上好啊" 
-//                                                      latestCreateDate:[NSDate date] 
-//                                                       totalNewMessage:[NSNumber numberWithInt:1] 
-//                                                          totalMessage:[NSNumber numberWithInt:10]];
+    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
+                                                          friendUserId:@"123" 
+                                                        friendNickName:@"张三" 
+                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_8.jpg" 
+                                                            latestFrom:@"123" 
+                                                              latestTo:@"111"
+                                                        latestDrawData:nil 
+                                                            latestText:@"早上好啊" 
+                                                      latestCreateDate:[NSDate date] 
+                                                       totalNewMessage:[NSNumber numberWithInt:1] 
+                                                          totalMessage:[NSNumber numberWithInt:10]];
     
-//    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
-//                                                          friendUserId:@"456" 
-//                                                        friendNickName:@"李四" 
-//                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_2.jpg" 
-//                                                            latestFrom:@"111" 
-//                                                              latestTo:@"456" 
-//                                                        latestDrawData:nil 
-//                                                            latestText:@"然后呢" 
-//                                                      latestCreateDate:[NSDate date] 
-//                                                       totalNewMessage:[NSNumber numberWithInt:1] 
-//                                                          totalMessage:[NSNumber numberWithInt:3]];
-//    
+    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
+                                                          friendUserId:@"456" 
+                                                        friendNickName:@"李四" 
+                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_2.jpg" 
+                                                            latestFrom:@"111" 
+                                                              latestTo:@"456" 
+                                                        latestDrawData:nil 
+                                                            latestText:@"然后呢" 
+                                                      latestCreateDate:[NSDate date] 
+                                                       totalNewMessage:[NSNumber numberWithInt:1] 
+                                                          totalMessage:[NSNumber numberWithInt:3]];
+    
     [[ChatMessageManager defaultManager] createMessageWithMessageId:@"991" 
                                                                   from:@"123" 
                                                                     to:@"111" 

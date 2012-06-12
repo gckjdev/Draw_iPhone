@@ -43,7 +43,7 @@ static ChatMessageManager *_privateMessageManager = nil;
     }
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    ChatMessage *newMessage = [dataManager insert:@"Message"];
+    ChatMessage *newMessage = [dataManager insert:@"ChatMessage"];
     [newMessage setMessageId:messageId];;
     [newMessage setFrom:from];
     [newMessage setTo:to];
