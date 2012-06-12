@@ -12,7 +12,10 @@
 #import "ChatDetailController.h"
 #import "MessageTotal.h"
 #import "MessageTotalManager.h"
-#import "PrivateMessageManager.h"
+#import "ChatMessageManager.h"
+
+
+#import "UserManager.h"
 
 @interface ChatListController ()
 
@@ -47,37 +50,45 @@
     
     
     //test data
-//    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
-//                                                          friendUserId:@"123" 
-//                                                        friendNickName:@"张三" 
-//                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_8.jpg" 
-//                                                            latestFrom:@"123" 
-//                                                              latestTo:@"111"
-//                                                        latestDrawData:nil 
-//                                                            latestText:@"早上好啊" 
-//                                                      latestCreateDate:[NSDate date] 
-//                                                       totalNewMessage:[NSNumber numberWithInt:1] 
-//                                                          totalMessage:[NSNumber numberWithInt:10]];
+    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:[[UserManager defaultManager] userId]
+                                                          friendUserId:@"123" 
+                                                        friendNickName:@"张三" 
+                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_8.jpg" 
+                                                            latestFrom:@"123"
+                                                              latestTo:[[UserManager defaultManager] userId]
+                                                        latestDrawData:nil 
+                                                            latestText:@"早上好啊" 
+                                                      latestCreateDate:[NSDate date] 
+                                                       totalNewMessage:[NSNumber numberWithInt:1] 
+                                                          totalMessage:[NSNumber numberWithInt:10]];
     
-//    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:@"111"
-//                                                          friendUserId:@"456" 
-//                                                        friendNickName:@"李四" 
-//                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_2.jpg" 
-//                                                            latestFrom:@"111" 
-//                                                              latestTo:@"456" 
-//                                                        latestDrawData:nil 
-//                                                            latestText:@"然后呢" 
-//                                                      latestCreateDate:[NSDate date] 
-//                                                       totalNewMessage:[NSNumber numberWithInt:1] 
-//                                                          totalMessage:[NSNumber numberWithInt:3]];
-//    
-    [[PrivateMessageManager defaultManager] createMessageWithMessageId:@"991" 
+    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:[[UserManager defaultManager] userId]
+                                                          friendUserId:@"456" 
+                                                        friendNickName:@"李四" 
+                                                          friendAvatar:@"http://www.xiaake.cn/uploads/120606/9_094247_2.jpg" 
+                                                            latestFrom:[[UserManager defaultManager] userId]
+                                                              latestTo:@"456" 
+                                                        latestDrawData:nil 
+                                                            latestText:@"然后呢" 
+                                                      latestCreateDate:[NSDate date] 
+                                                       totalNewMessage:[NSNumber numberWithInt:1] 
+                                                          totalMessage:[NSNumber numberWithInt:3]];
+    
+    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"991" 
                                                                   from:@"123" 
-                                                                    to:@"111" 
+                                                                    to:[[UserManager defaultManager] userId]
                                                               drawData:nil 
                                                             createDate:[NSDate date] 
                                                                   text:@"早上好啊"  
                                                                 status:[NSNumber numberWithInt:MessageStatusNotRead]];
+    
+    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"992" 
+                                                               from:[[UserManager defaultManager] userId]
+                                                                 to:@"456" 
+                                                           drawData:nil 
+                                                         createDate:[NSDate date] 
+                                                               text:@"然后呢"  
+                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
     
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
