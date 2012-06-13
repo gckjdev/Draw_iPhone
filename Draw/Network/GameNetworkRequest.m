@@ -1283,6 +1283,7 @@
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:friendUserId];
         str = [str stringByAddQueryParameter:PARA_START_OFFSET intValue:startOffset];                
         str = [str stringByAddQueryParameter:PARA_MAX_COUNT intValue:maxCount];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
         // TOOD add other parameters
         
@@ -1291,14 +1292,14 @@
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
         return;
     }; 
     
-    return [PPNetworkRequest sendRequest:baseURL
-                            constructURLHandler:constructURLHandler
-                                responseHandler:responseHandler
-                                         output:output];
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
     
 }
 
@@ -1344,8 +1345,8 @@
 
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId
-                                    userId:(NSString*)userId
-                                 messageId:(NSString*)messageId
+                                    userId:(NSString*)userId 
+                              friendUserId:(NSString *)friendUserId
                                    
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1358,7 +1359,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_USER_READ_MSG];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
-        str = [str stringByAddQueryParameter:PARA_MESSAGE_ID value:messageId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:friendUserId];
         
         // TOOD add other parameters
         
