@@ -46,6 +46,9 @@
 		A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
 		A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
+		A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = A387F094158853EF00DC7C5D /* SelectChatFriendController.m */; };
+		A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
+		A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
 		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
 		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
@@ -794,6 +797,10 @@
 		A35984AF157CCAB900745BAB /* MyWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWordsController.m; sourceTree = "<group>"; };
 		A35984B0157CCAB900745BAB /* MyWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWordsController.xib; sourceTree = "<group>"; };
 		A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyWordsController~ipad.xib"; sourceTree = "<group>"; };
+		A387F093158853EF00DC7C5D /* SelectChatFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectChatFriendController.h; sourceTree = "<group>"; };
+		A387F094158853EF00DC7C5D /* SelectChatFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectChatFriendController.m; sourceTree = "<group>"; };
+		A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChatFriendController.xib; sourceTree = "<group>"; };
+		A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectChatFriendController~ipad.xib"; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -1863,6 +1870,10 @@
 		A30A28441580C2AE006CA3CC /* PrivateChat */ = {
 			isa = PBXGroup;
 			children = (
+				A387F093158853EF00DC7C5D /* SelectChatFriendController.h */,
+				A387F094158853EF00DC7C5D /* SelectChatFriendController.m */,
+				A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */,
+				A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */,
 				A30A28451580C2AE006CA3CC /* ChatCell.h */,
 				A30A28461580C2AE006CA3CC /* ChatCell.m */,
 				A30A28471580C2AE006CA3CC /* ChatCell.xib */,
@@ -4821,6 +4832,8 @@
 				CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */,
 				CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */,
 				CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */,
+				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
+				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5203,6 +5216,7 @@
 				CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */,
 				A3431E801587279D002E0E81 /* ChatMessage.m in Sources */,
 				A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */,
+				A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
