@@ -16,6 +16,7 @@
 #import "GameBasic.pb.h"
 #import "ChatMessageManager.h"
 #import "MessageTotalManager.h"
+#import "DrawDataService.h"
 
 static ChatService *_chatService = nil;
 
@@ -113,9 +114,21 @@ static ChatService *_chatService = nil;
 - (void)sendMessage:(id<ChatServiceDelegate>)delegate
        friendUserId:(NSString *)friendUserId
                text:(NSString *)text 
-               data:(NSData *)data 
+     drawActionList:(NSArray*)drawActionList; 
 {
     NSString *userId = [[UserManager defaultManager] userId];
+    
+    PBDraw *draw = nil;
+    NSData *data = nil;
+    if (drawActionList != nil) {
+        draw = [[DrawDataService defaultService] buildPBDraw:nil 
+                                                        nick:nil 
+                                                      avatar:nil
+                                              drawActionList:drawActionList
+                                                    drawWord:nil 
+                                                    language:ChineseType];
+        data = [draw data];
+    }
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL 
@@ -128,13 +141,13 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
-                
                 NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
                 
                 [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
                                                                            from:userId 
                                                                              to:friendUserId 
-                                                                       drawData:data 
+                                                                       drawData:dataForSave
                                                                      createDate:[NSDate date] 
                                                                            text:text 
                                                                          status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
@@ -151,7 +164,7 @@ static ChatService *_chatService = nil;
 }
 
 
-- (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate messageIdArray:(NSArray*)messageIdArray 
+- (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId 
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
@@ -160,7 +173,7 @@ static ChatService *_chatService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:TRAFFIC_SERVER_URL 
                                                                        appId:APP_ID 
                                                                       userId:userId 
-                                                                   messageId:[messageIdArray objectAtIndex:0]];
+                                                                friendUserId:friendUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){

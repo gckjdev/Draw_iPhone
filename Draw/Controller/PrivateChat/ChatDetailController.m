@@ -15,6 +15,7 @@
 #import "DrawDataService.h"
 #import "DrawAction.h"
 #import "GameBasic.pb.h"
+#import "ShowDrawView.h"
 
 @interface ChatDetailController ()
 
@@ -76,7 +77,7 @@
     PPDebug(@"%@",_friendUserId);
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     PPDebug(@"%d",[dataList count]);
-    //[self findAllMessages];
+    [self findAllMessages];
 }
 
 - (void)viewDidUnload
@@ -118,15 +119,38 @@
     [dataTableView reloadData];
 }
 
-- (NSInteger)linesWithString:(NSString *)str contentSize:(CGSize)size withFont:(UIFont *)font {
+//- (NSInteger)linesWithString:(NSString *)str contentSize:(CGSize)size withFont:(UIFont *)font {
+//    
+//    CGSize singleLineSize = [str sizeWithFont:font forWidth:size.width lineBreakMode:UILineBreakModeWordWrap];
+//    CGSize multLineSize = [str sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+//    
+//    NSInteger lines = (NSInteger)ceil(multLineSize.height / singleLineSize.height);
+//    
+//    
+//    return lines;
+//}
+
+
+- (ShowDrawView *)createThumbImageBy:(NSArray *)drawActionList
+{
+    ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
+    //线条的缩放
+    NSMutableArray *scaleActionList = nil;
+    if ([DeviceDetection isIPAD]) {
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:IPAD_WIDTH_SCALE 
+                                               yScale:IPAD_HEIGHT_SCALE];
+    } else {
+        scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+    }
+    [showDrawView setDrawActionList:scaleActionList]; 
+    [showDrawView playFromDrawActionIndex:[drawActionList count]-1];
     
-    CGSize singleLineSize = [str sizeWithFont:font forWidth:size.width lineBreakMode:UILineBreakModeWordWrap];
-    CGSize multLineSize = [str sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-    
-    NSInteger lines = (NSInteger)ceil(multLineSize.height / singleLineSize.height);
-    
-    
-    return lines;
+    return showDrawView;
+//    UIImage *thumbImage = [showDrawView createImage];
+//    [showDrawView release];
+//    
+//    return thumbImage;
 }
 
 
@@ -139,6 +163,11 @@
 #define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
 #define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(10))
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(10):(5))
+
+#define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(400.0):(200.0))
+#define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(16):(8))
+#define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(20):(10))
+
 /*
  TEXT_WIDTH_MAX 是消息的最大长度
  TEXT_HEIGHT_MAX  是消息的最大高度
@@ -187,22 +216,47 @@
         [bubbleImageView addSubview:contentTextView];
         [contentTextView release];
         
-        
-        //设置returnView的frame
-        if(fromSelf)
-            returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
-        else
-            returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
     }else {
         //to do
+        NSArray* drawActionList = [[ChatMessageManager defaultManager] unarchiveDataToDrawActionList:message.drawData];
+        
+        //设置图片
+        //UIImage *thumbImage = [self createThumbImageBy:drawActionList];
+        ShowDrawView *thumbImageView = [self createThumbImageBy:drawActionList];
+        
+        //UIImageView *thumbImageView = [[UIImageView alloc] initWithImage:thumbImage];
+        CGRect thumbFrame = thumbImageView.frame;
+        
+        if (fromSelf){
+            thumbFrame = CGRectMake(BUBBLE_NOT_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, IMAGE_WIDTH_MAX );
+        }else {
+            thumbFrame = CGRectMake(BUBBLE_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, IMAGE_WIDTH_MAX);
+        }
+        thumbImageView.frame = thumbFrame;
+        
+        //设置气泡的frame
+        bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH + 2*IMAGE_BORDER_X, thumbImageView.frame.size.width + 2*IMAGE_BORDER_Y);
+        
+        [bubbleImageView addSubview:thumbImageView];
+        //[thumbImageView release];
     }
     
+    
+    //设置returnView的frame
+    if(fromSelf)
+        returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
+    else
+        returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
     
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
     
     return returnView;
 }
+
+
+
+
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
@@ -277,7 +331,7 @@
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
                                          text:inputTextField.text 
-                                         data:nil];
+                               drawActionList:nil];
     
     //test data
 //    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"999" 
@@ -322,69 +376,14 @@
     [self hideGraffitiView];
 }
 
-//- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
-//{
-//    PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
-//    
-//    [dataBuilder setType:[drawAction type]];
-//    
-//    NSArray *pointList = nil;
-//    if ([DeviceDetection isIPAD]) {
-//        pointList = [drawAction intPointListWithXScale:IPAD_WIDTH_SCALE yScale:IPAD_WIDTH_SCALE];
-//    }else{
-//        pointList = [drawAction intPointListWithXScale:1 yScale:1];
-//    }
-//    
-//    [dataBuilder addAllPoints:pointList];
-//    
-//    CGFloat width = [[drawAction paint] width];
-//    if ([DeviceDetection isIPAD]) {
-//        width /= 2;
-//    }
-//    [dataBuilder setWidth:width];
-//    NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];    
-//    [dataBuilder setColor:intColor];
-//    
-//    [dataBuilder setPenType:[[drawAction paint] penType]];
-//    
-//    PBDrawAction *action = [dataBuilder build];
-//    [dataBuilder release];    
-//    return action;
-//    
-//}
-
-
-//- (PBDraw*)buildPBDraw:(NSString*)userId 
-//                  nick:(NSString *)nick 
-//                avatar:(NSString *)avatar
-//        drawActionList:(NSArray*)drawActionList
-//              drawWord:(Word*)drawWord
-//              language:(LanguageType)language
-//{
-//    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
-//    [builder setUserId:userId];
-//    [builder setNickName:nick];
-//    [builder setAvatar:avatar];
-//    [builder setWord:[drawWord text]];
-//    [builder setLevel:[drawWord level]];
-//    [builder setLanguage:language];
-//    for (DrawAction* drawAction in drawActionList){
-//        PBDrawAction *action = [self buildPBDrawAction:drawAction];
-//        [builder addDrawData:action];
-//    }
-//    
-//    PBDraw* draw = [builder build];        
-//    [builder release];
-//    
-//    return draw;
-//}
-
 - (void)didClickSubmit:(NSArray *)drawActionList
 {
     [self hideGraffitiView];
-//    PBDraw* draw = [[DrawDataService defaultService] buildPBDraw:nil nick:nil avatar:nil drawActionList:drawActionList drawWord:nil language:nil];
-//    
-//    [[ChatService defaultService] sendMessage:self friendUserId:_friendUserId text:nil data:[draw data]];
+  
+    [[ChatService defaultService] sendMessage:self 
+                                 friendUserId:_friendUserId 
+                                         text:nil 
+                               drawActionList:drawActionList];
 }
 
 @end

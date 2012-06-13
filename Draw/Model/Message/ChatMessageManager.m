@@ -10,6 +10,7 @@
 #import "ChatMessage.h"
 #import "CoreDataUtil.h"
 #import "GameBasic.pb.h"
+#import "DrawAction.h"
 
 @interface ChatMessageManager ()
 - (BOOL)isExist:(NSString *)messageId;
@@ -44,7 +45,7 @@ static ChatMessageManager *_chatMessageManager = nil;
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     ChatMessage *newMessage = [dataManager insert:@"ChatMessage"];
-    [newMessage setMessageId:messageId];;
+    [newMessage setMessageId:messageId];
     [newMessage setFrom:from];
     [newMessage setTo:to];
     [newMessage setDrawData:drawData];
@@ -88,7 +89,7 @@ static ChatMessageManager *_chatMessageManager = nil;
 }
 
 
-- (BOOL)createByPBMessage:(PBMessage *)pbMessage
+- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList
 {
     //压缩
     //NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawDataList];
@@ -97,11 +98,33 @@ static ChatMessageManager *_chatMessageManager = nil;
     //NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     //NSArray* drawDataList = (NSArray*)temp;
     
-    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:pbMessage.drawDataList];
+    NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:aDrawActionList];
+    return reData;
+}
+
+- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aData
+{
+    NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:aData];
+    NSArray* drawDataList = (NSArray*)temp;
+    return drawDataList;
+}
+
+
+- (BOOL)createByPBMessage:(PBMessage *)pbMessage
+{
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    for (PBDrawAction *pbDrawAction in pbMessage.drawDataList) {
+        DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
+        [mutableArray addObject:drawAction];
+        [drawAction release];
+    }
+    NSData *data = [self archiveDataFromDrawActionList:mutableArray];
+    
+    
     return  [self createMessageWithMessageId:pbMessage.messageId 
                                         from:pbMessage.from 
                                           to:pbMessage.to 
-                                    drawData:drawActionListData
+                                    drawData:data
                                   createDate:nil   //待PBMessage增加一个createDate
                                         text:pbMessage.text
                                       status:[NSNumber numberWithInt:pbMessage.status]];

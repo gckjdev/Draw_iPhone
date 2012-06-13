@@ -32,5 +32,7 @@ enum{
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 
+- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList;
+- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aDat;
 
 @end
