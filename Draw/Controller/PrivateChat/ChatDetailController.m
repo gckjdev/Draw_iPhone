@@ -15,10 +15,9 @@
 @interface ChatDetailController ()
 
 @property (retain, nonatomic) NSString *friendUserId;
+@property (retain, nonatomic) NSString *friendNickname;
 
 - (IBAction)clickBack:(id)sender;
-- (void)registerKeyboardNotification;
-- (void)deregsiterKeyboardNotification;
 
 @end
 
@@ -30,22 +29,25 @@
 @synthesize inputTextField;
 @synthesize sendButton;
 @synthesize friendUserId = _friendUserId;
+@synthesize friendNickname = _friendNickname;
 
 - (void)dealloc {
-    [_friendUserId release];
-    [titleLabel release];
-    [graffitiButton release];
-    [sendButton release];
-    [inputTextField release];
-    [inputView release];
+    PPRelease(_friendNickname);
+    PPRelease(_friendUserId);
+    PPRelease(titleLabel);
+    PPRelease(graffitiButton);
+    PPRelease(sendButton);
+    PPRelease(inputTextField);
+    PPRelease(inputView);
     [super dealloc];
 }
 
-- (id)initWithFriendUserId:(NSString *)frindUserId
+- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname
 {
     self = [super init];
     if (self) {
         self.friendUserId = frindUserId;
+        self.friendNickname = friendNickname;
     }
     return self;
 }
@@ -54,7 +56,6 @@
 {
     [super viewDidLoad];
     
-    
     // Add a single tap Recognizer
     UITapGestureRecognizer* singleTapRecognizer;
     singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom:)];
@@ -62,6 +63,7 @@
     [self.dataTableView addGestureRecognizer:singleTapRecognizer];
     [singleTapRecognizer release];
     
+    self.titleLabel.text = self.friendNickname;
     
 
     PPDebug(@"%@",_friendUserId);
@@ -101,12 +103,11 @@
     } else {
         [self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
     }
-    
     [inputTextField resignFirstResponder];
     
+    PPDebug(@"%d",[dataList count]);
     
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-    PPDebug(@"%d",[dataList count]);
     [dataTableView reloadData];
 }
 
@@ -239,6 +240,7 @@
 }
 
 - (IBAction)clickSendButton:(id)sender {
+    
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
                                          text:inputTextField.text 
