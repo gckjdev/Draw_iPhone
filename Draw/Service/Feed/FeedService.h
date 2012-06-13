@@ -7,7 +7,24 @@
 //
 
 #import "CommonService.h"
+#import "Feed.h"
+
+@protocol FeedServiceDelegate <NSObject>
+
+@optional
+- (void)didGetFeedList:(NSArray *)feedList resultCode:(NSInteger)resultCode;
+
+@end
 
 @interface FeedService : CommonService
+{
+    
+}
 
++ (FeedService *)defaultService;
+
+- (void)getFeedList:(FeedListType)feedListType 
+             offset:(NSInteger)offset 
+              limit:(NSInteger)limit 
+           delegate:(id<FeedServiceDelegate>)delegate;
 @end

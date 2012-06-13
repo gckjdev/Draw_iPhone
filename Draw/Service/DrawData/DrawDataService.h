@@ -43,7 +43,8 @@
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)guessDraw:(NSArray *)guessWords 
-           opusId:(NSString *)opusId
+           opusId:(NSString *)opusId 
+   opusCreatorUid:(NSString *)opusCreatorUid
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;

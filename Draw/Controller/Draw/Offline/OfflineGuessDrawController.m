@@ -599,6 +599,7 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
+#define QUIT_DIALOG_TAG 20120613
 #define ESCAPE_DEDUT_COIN 1
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -608,7 +609,10 @@
         ItemShopController *itemShop = [ItemShopController instance];
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
-    }else{
+    }else if(dialog.tag == QUIT_DIALOG_TAG){
+        Draw *draw = [self.feed drawData];
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:NO score:0 delegate:nil];
+        
         [HomeController returnRoom:self];        
     }
 }
@@ -635,7 +639,7 @@
         ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_feed.userId drawUserNickName:_feed.nickName wordText:draw.word.text score:score correct:YES isMyPaint:NO drawActionList:draw.drawActionList];
     
         //TODO send http request
-        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId isCorrect:YES score:score delegate:self];
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:YES score:score delegate:nil];
         
         result.resultType = OfflineGuess;
         [self.navigationController pushViewController:result animated:YES];
@@ -702,6 +706,7 @@
 
 - (IBAction)clickRunAway:(id)sender {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = QUIT_DIALOG_TAG;
     [self.view addSubview:dialog];
 }
 

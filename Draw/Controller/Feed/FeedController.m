@@ -7,7 +7,7 @@
 //
 
 #import "FeedController.h"
-
+#import "Feed.h"
 @implementation FeedController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
 }
 
 - (void)viewDidUnload
@@ -42,10 +42,14 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
+#pragma mark - feed service delegate
+- (void)didGetFeedList:(NSArray *)feedList resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"feedList = %@", [feedList description]);
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

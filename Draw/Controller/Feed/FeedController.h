@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
+#import "FeedService.h"
 
-@interface FeedController : UIViewController
-
+@interface FeedController : PPTableViewController<FeedServiceDelegate>
+{
+    
+}
+- (IBAction)clickBackButton:(id)sender;
 @end

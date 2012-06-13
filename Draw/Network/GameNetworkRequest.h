@@ -218,7 +218,8 @@
                              nick:(NSString*)nick
                            avatar:(NSString*)avatar
                            gender:(NSString*)gender
-                           opusId:(NSString*)opusId
+                           opusId:(NSString*)opusId                        
+                   opusCreatorUId:(NSString*)opusCreatorUId  
                         isCorrect:(BOOL)isCorrect
                             score:(NSInteger)score
                             words:(NSString*)words;
@@ -239,5 +240,13 @@
                                      appId:(NSString*)appId
                                     userId:(NSString*)userId
                                  messageId:(NSString*)messageId;
+
++ (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
+                                               userId:(NSString *)userId 
+                                         feedListType:(NSInteger)feedListType
+                                               offset:(NSInteger)offset
+                                                limit:(int)limit;
+
+
 
 @end

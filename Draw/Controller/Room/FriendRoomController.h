@@ -21,9 +21,9 @@
     Room *_currentSelectRoom;
     RoomService *roomService;
     
-    BOOL _hasMoreRow;
+//    BOOL _hasMoreRow;
     NSInteger _currentStartIndex;
-    BOOL _moreCellLoadding;
+//    BOOL _moreCellLoadding;
 
 }
 @property (retain, nonatomic) IBOutlet UIButton *createButton;

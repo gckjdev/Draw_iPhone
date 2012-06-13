@@ -111,6 +111,7 @@
 //for Draw Online
 #define METHOD_CREATE_OPUS @"cop"
 #define METHOD_MATCH_OPUS  @"mop"
+#define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
 
 // for traffic server
@@ -228,7 +229,7 @@
 #define PARA_ACTION_TYPE @"act"
 #define PARA_WORD_LIST @"wl"
 #define PARA_SCORE @"sco"
-
+#define PARA_OPUS_CREATOR_UID @"opc"
 
 #define PARA_RADIUS @"ra"
 #define PARA_POSTTYPE @"pt"
