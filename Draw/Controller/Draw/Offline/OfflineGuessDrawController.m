@@ -33,6 +33,7 @@
 #import "AudioManager.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
+#import "Feed.h"
 #import "Draw.h"
 #import "AccountManager.h"
 #import "CoinShopController.h"
@@ -56,7 +57,7 @@
 @synthesize word = _word;
 @synthesize quitButton;
 @synthesize titleLabel;
-@synthesize draw = _draw;;
+@synthesize feed = _feed;
 
 + (void)startOfflineGuess:(UIViewController *)fromController
 {
@@ -79,7 +80,9 @@
     PPRelease(rightPageButton);
     PPRelease(drawBackground);
     PPRelease(titleLabel);
-    [quitButton release];
+    PPRelease(_feed);
+    PPRelease(quitButton);
+    PPRelease(_guessWords);
     [super dealloc];
 }
 
@@ -90,6 +93,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _guessWords = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -553,9 +557,11 @@
     [self setWord:nil];
 }
 
-- (void)didMatchDraw:(Draw *)draw result:(int)resultCode{
+- (void)didMatchDraw:(Feed *)aFeed result:(int)resultCode{
     [self hideActivity];
-    if (resultCode == 0 && draw) {
+    if (resultCode == 0 && aFeed) {
+        self.feed = aFeed;
+        Draw *draw = [aFeed drawData];
         self.word = draw.word;
         [self updateTargetViews:draw.word];
         [self updateCandidateViews:draw.word lang:draw.languageType];
@@ -564,7 +570,20 @@
             [self.showView setDrawActionList:[NSMutableArray arrayWithArray:draw.drawActionList]];            
             [self.showView play];
         }
-        self.draw = draw;
+
+        
+        AvatarView *avatar = [[AvatarView alloc] initWithUrlString:draw.avatar type:Guesser gender:YES level:1];
+        if ([DeviceDetection isIPAD]) {
+            avatar.center = CGPointMake(21 * 2, 22 * 2);
+        }else{
+            avatar.center = CGPointMake(21, 22);
+        }
+        [self.view addSubview:avatar];
+        
+        if ([[draw nickName] length] != 0) {
+            [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[draw nickName]]];
+        }
+        
     }else{
         CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
         center.delegate = self;
@@ -580,6 +599,7 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
+#define QUIT_DIALOG_TAG 20120613
 #define ESCAPE_DEDUT_COIN 1
 
 - (void)clickOk:(CommonDialog *)dialog
@@ -589,7 +609,10 @@
         ItemShopController *itemShop = [ItemShopController instance];
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
-    }else{
+    }else if(dialog.tag == QUIT_DIALOG_TAG){
+        Draw *draw = [self.feed drawData];
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:NO score:0 delegate:nil];
+        
         [HomeController returnRoom:self];        
     }
 }
@@ -602,14 +625,22 @@
 
 - (void)commitAnswer:(NSString *)answer
 {
+    [_guessWords addObject:answer];
+    
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
+    
+        Draw *draw = [self.feed drawData];
+        NSInteger score = [draw.word score] * [ConfigManager guessDifficultLevel];
+        
+        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_feed.userId drawUserNickName:_feed.nickName wordText:draw.word.text score:score correct:YES isMyPaint:NO drawActionList:draw.drawActionList];
+    
         //TODO send http request
-        NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
-        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:YES score:score delegate:nil];
+        
         result.resultType = OfflineGuess;
         [self.navigationController pushViewController:result animated:YES];
         [result release];
@@ -675,6 +706,7 @@
 
 - (IBAction)clickRunAway:(id)sender {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = QUIT_DIALOG_TAG;
     [self.view addSubview:dialog];
 }
 
@@ -703,7 +735,6 @@
 }
 - (void)updateTargetViews:(Word *)word
 {
-
     NSInteger tag = TARGET_BASE_TAG;
     for (int i = 0; i < word.length; ++ i)
     {

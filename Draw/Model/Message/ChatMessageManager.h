@@ -1,5 +1,5 @@
 //
-//  PrivateMessageManager.h
+//  ChatMessageManager.h
 //  Draw
 //
 //  Created by haodong qiu on 12年6月8日.
@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 
 enum{
+    MessageStatusNotRead = 0,
     MessageStatusRead = 1,
-    MessageStatusNotRead = 2
+    MessageStatusSendSuccess = 2,
+    MessageStatusSendFailed = 3
 };
 
 @class PBMessage;
-@interface PrivateMessageManager : NSObject
+@interface ChatMessageManager : NSObject
 
-+ (PrivateMessageManager *)defaultManager;
++ (ChatMessageManager *)defaultManager;
 
 - (BOOL)createMessageWithMessageId:(NSString *)messageId 
                               from:(NSString *)from 
@@ -30,5 +32,7 @@ enum{
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 
+- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList;
+- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aDat;
 
 @end

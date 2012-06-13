@@ -1211,13 +1211,16 @@
 
 }
 
+
+
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId
                               nick:(NSString*)nick
                             avatar:(NSString*)avatar
                             gender:(NSString*)gender
-                            opusId:(NSString*)opusId
+                            opusId:(NSString*)opusId                        
+                    opusCreatorUId:(NSString*)opusCreatorUId  
                            isCorrect:(BOOL)isCorrect
                              score:(NSInteger)score
                            words:(NSString*)words
@@ -1237,8 +1240,11 @@
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
             
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_SCORE intValue:score];
-        str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];
+        if (isCorrect) {
+            str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];            
+        }
         str = [str stringByAddQueryParameter:PARA_WORD_LIST value:words];
         
         //TODO use type at Action Class. due to no Action Class, hard code now!
@@ -1283,6 +1289,7 @@
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:friendUserId];
         str = [str stringByAddQueryParameter:PARA_START_OFFSET intValue:startOffset];                
         str = [str stringByAddQueryParameter:PARA_MAX_COUNT intValue:maxCount];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
         // TOOD add other parameters
         
@@ -1291,14 +1298,14 @@
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
         return;
     }; 
     
-    return [PPNetworkRequest sendRequest:baseURL
-                            constructURLHandler:constructURLHandler
-                                responseHandler:responseHandler
-                                         output:output];
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
     
 }
 
@@ -1344,8 +1351,8 @@
 
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId
-                                    userId:(NSString*)userId
-                                 messageId:(NSString*)messageId
+                                    userId:(NSString*)userId 
+                              friendUserId:(NSString *)friendUserId
                                    
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1358,7 +1365,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_USER_READ_MSG];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
-        str = [str stringByAddQueryParameter:PARA_MESSAGE_ID value:messageId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:friendUserId];
         
         // TOOD add other parameters
         
@@ -1378,5 +1385,40 @@
     
 }
 
++ (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
+                                               userId:(NSString *)userId 
+                                         feedListType:(NSInteger)feedListType
+                                               offset:(NSInteger)offset
+                                                limit:(int)limit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_FEED_LIST];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:feedListType];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+    
+}
 
 @end

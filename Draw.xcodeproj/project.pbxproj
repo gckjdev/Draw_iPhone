@@ -38,12 +38,17 @@
 		A329333A1559304500621789 /* foucsme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933361559304500621789 /* foucsme@2x.png */; };
 		A329333B1559304500621789 /* myfoucs_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933371559304500621789 /* myfoucs_selected@2x.png */; };
 		A329333C1559304500621789 /* myfoucs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A32933381559304500621789 /* myfoucs@2x.png */; };
+		A3431E801587279D002E0E81 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3431E7D1587279D002E0E81 /* ChatMessage.m */; };
+		A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3431E7F1587279D002E0E81 /* ChatMessageManager.m */; };
 		A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A357930D1574BD670007B2C0 /* libWeChatSDK.a */; };
 		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
 		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A35984B3157CCAB900745BAB /* MyWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B0157CCAB900745BAB /* MyWordsController.xib */; };
 		A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */; };
+		A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = A387F094158853EF00DC7C5D /* SelectChatFriendController.m */; };
+		A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
+		A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949215778B1200764158 /* iFlyISR.framework */; };
 		A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A388949315778B1200764158 /* iFlyTTS.framework */; };
 		A38894AE15778B3200764158 /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = A38894AD15778B3200764158 /* SpeechService.m */; };
@@ -56,10 +61,8 @@
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
 		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
-		A3F66CA51581B999000BFF9A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA01581B999000BFF9A /* Message.m */; };
 		A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA21581B999000BFF9A /* MessageTotal.m */; };
 		A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */; };
-		A3F66CB31581C0F5000BFF9A /* PrivateMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */; };
 		A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CC015820B2D000BFF9A /* ChatService.m */; };
 		A3FAE0DA15536E8D008B5827 /* RoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */; };
 		A3FAE0DC15536EBB008B5827 /* UserSettingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0DB15536EBB008B5827 /* UserSettingController~ipad.xib */; };
@@ -595,6 +598,15 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
+		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
+		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
+		CA7C7E15158723AE00406BFB /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E13158723AE00406BFB /* FeedController.m */; };
+		CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E14158723AE00406BFB /* FeedController.xib */; };
+		CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */; };
+		CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E1A1587242300406BFB /* FeedDetailController.m */; };
+		CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1B1587242300406BFB /* FeedDetailController.xib */; };
+		CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */; };
 		CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA8B3569153D348C00B15CBF /* TraditionalChineseWord.strings */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
@@ -645,6 +657,10 @@
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
+		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
+		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
+		CAD95C6215889666006EAC41 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C6015889665006EAC41 /* CommentCell.m */; };
+		CAD95C6315889666006EAC41 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C6115889665006EAC41 /* CommentCell.xib */; };
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
@@ -769,6 +785,10 @@
 		A32933361559304500621789 /* foucsme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foucsme@2x.png"; sourceTree = "<group>"; };
 		A32933371559304500621789 /* myfoucs_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs_selected@2x.png"; sourceTree = "<group>"; };
 		A32933381559304500621789 /* myfoucs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myfoucs@2x.png"; sourceTree = "<group>"; };
+		A3431E7C1587279D002E0E81 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		A3431E7D1587279D002E0E81 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		A3431E7E1587279D002E0E81 /* ChatMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageManager.h; sourceTree = "<group>"; };
+		A3431E7F1587279D002E0E81 /* ChatMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageManager.m; sourceTree = "<group>"; };
 		A357930D1574BD670007B2C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A357930E1574BD670007B2C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A357930F1574BD670007B2C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -781,6 +801,10 @@
 		A35984AF157CCAB900745BAB /* MyWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWordsController.m; sourceTree = "<group>"; };
 		A35984B0157CCAB900745BAB /* MyWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWordsController.xib; sourceTree = "<group>"; };
 		A35984B1157CCAB900745BAB /* MyWordsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyWordsController~ipad.xib"; sourceTree = "<group>"; };
+		A387F093158853EF00DC7C5D /* SelectChatFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectChatFriendController.h; sourceTree = "<group>"; };
+		A387F094158853EF00DC7C5D /* SelectChatFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectChatFriendController.m; sourceTree = "<group>"; };
+		A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChatFriendController.xib; sourceTree = "<group>"; };
+		A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectChatFriendController~ipad.xib"; sourceTree = "<group>"; };
 		A388949215778B1200764158 /* iFlyISR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyISR.framework; sourceTree = "<group>"; };
 		A388949315778B1200764158 /* iFlyTTS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iFlyTTS.framework; sourceTree = "<group>"; };
 		A38894AC15778B3200764158 /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
@@ -798,14 +822,10 @@
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendCell~ipad.xib"; sourceTree = "<group>"; };
-		A3F66C9F1581B999000BFF9A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		A3F66CA01581B999000BFF9A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A3F66CA11581B999000BFF9A /* MessageTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotal.h; sourceTree = "<group>"; };
 		A3F66CA21581B999000BFF9A /* MessageTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotal.m; sourceTree = "<group>"; };
 		A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotalManager.h; sourceTree = "<group>"; };
 		A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotalManager.m; sourceTree = "<group>"; };
-		A3F66CB11581C0F4000BFF9A /* PrivateMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageManager.h; sourceTree = "<group>"; };
-		A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageManager.m; sourceTree = "<group>"; };
 		A3F66CBF15820B2D000BFF9A /* ChatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatService.h; sourceTree = "<group>"; };
 		A3F66CC015820B2D000BFF9A /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		A3FAE0D915536E8D008B5827 /* RoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomController~ipad.xib"; sourceTree = "<group>"; };
@@ -1656,6 +1676,20 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
+		CA7C7E061587214300406BFB /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
+		CA7C7E09158721B200406BFB /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
+		CA7C7E0A158721B200406BFB /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
+		CA7C7E12158723AE00406BFB /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
+		CA7C7E13158723AE00406BFB /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
+		CA7C7E14158723AE00406BFB /* FeedController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
+		CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedController~ipad.xib"; sourceTree = "<group>"; };
+		CA7C7E191587242300406BFB /* FeedDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailController.h; sourceTree = "<group>"; };
+		CA7C7E1A1587242300406BFB /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
+		CA7C7E1B1587242300406BFB /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
+		CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
 		CA8B356A153D348C00B15CBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TraditionalChineseWord.strings; sourceTree = "<group>"; };
 		CA8D602B1531C98400E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CA8D602E1531C99300E016ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default@2x.png"; sourceTree = "<group>"; };
@@ -1740,6 +1774,12 @@
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
+		CAD95C5A15889611006EAC41 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		CAD95C5B15889611006EAC41 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		CAD95C5C15889611006EAC41 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
+		CAD95C5F15889664006EAC41 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		CAD95C6015889665006EAC41 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		CAD95C6115889665006EAC41 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
@@ -1840,6 +1880,10 @@
 		A30A28441580C2AE006CA3CC /* PrivateChat */ = {
 			isa = PBXGroup;
 			children = (
+				A387F093158853EF00DC7C5D /* SelectChatFriendController.h */,
+				A387F094158853EF00DC7C5D /* SelectChatFriendController.m */,
+				A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */,
+				A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */,
 				A30A28451580C2AE006CA3CC /* ChatCell.h */,
 				A30A28461580C2AE006CA3CC /* ChatCell.m */,
 				A30A28471580C2AE006CA3CC /* ChatCell.xib */,
@@ -1898,10 +1942,10 @@
 		A3F66C9E1581B999000BFF9A /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				A3F66C9F1581B999000BFF9A /* Message.h */,
-				A3F66CA01581B999000BFF9A /* Message.m */,
-				A3F66CB11581C0F4000BFF9A /* PrivateMessageManager.h */,
-				A3F66CB21581C0F4000BFF9A /* PrivateMessageManager.m */,
+				A3431E7C1587279D002E0E81 /* ChatMessage.h */,
+				A3431E7D1587279D002E0E81 /* ChatMessage.m */,
+				A3431E7E1587279D002E0E81 /* ChatMessageManager.h */,
+				A3431E7F1587279D002E0E81 /* ChatMessageManager.m */,
 				A3F66CA11581B999000BFF9A /* MessageTotal.h */,
 				A3F66CA21581B999000BFF9A /* MessageTotal.m */,
 				A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */,
@@ -2314,6 +2358,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E081587219600406BFB /* Feed */,
 				A3F66CBE15820B2D000BFF9A /* Chat */,
 				CAAE4A891579B8180012F6B8 /* YoumiWall */,
 				A38894AB15778B3200764158 /* TTS */,
@@ -4021,6 +4066,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA7C7E001587210500406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E021587213100406BFB /* Feed.h */,
+				CA7C7E031587213100406BFB /* Feed.m */,
+				CA7C7E051587214300406BFB /* FeedManager.h */,
+				CA7C7E061587214300406BFB /* FeedManager.m */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA7C7E081587219600406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E09158721B200406BFB /* FeedService.h */,
+				CA7C7E0A158721B200406BFB /* FeedService.m */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA7C7E111587237B00406BFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CA7C7E12158723AE00406BFB /* FeedController.h */,
+				CA7C7E13158723AE00406BFB /* FeedController.m */,
+				CA7C7E14158723AE00406BFB /* FeedController.xib */,
+				CA7C7E17158723DE00406BFB /* FeedController~ipad.xib */,
+				CA7C7E191587242300406BFB /* FeedDetailController.h */,
+				CA7C7E1A1587242300406BFB /* FeedDetailController.m */,
+				CA7C7E1B1587242300406BFB /* FeedDetailController.xib */,
+				CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */,
+				CAD95C5A15889611006EAC41 /* FeedCell.h */,
+				CAD95C5B15889611006EAC41 /* FeedCell.m */,
+				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
+				CAD95C5F15889664006EAC41 /* CommentCell.h */,
+				CAD95C6015889665006EAC41 /* CommentCell.m */,
+				CAD95C6115889665006EAC41 /* CommentCell.xib */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		CA96E264150DD55400292335 /* GameServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -4283,6 +4369,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E111587237B00406BFB /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
 				A30A28441580C2AE006CA3CC /* PrivateChat */,
@@ -4306,6 +4393,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C7E001587210500406BFB /* Feed */,
 				A3F66C9E1581B999000BFF9A /* Message */,
 				A4D3B1561560E4B50013C882 /* Chat */,
 				CA0CB76B155CB78A009C8EE6 /* Room */,
@@ -4756,6 +4844,14 @@
 				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
+				CA7C7E16158723AE00406BFB /* FeedController.xib in Resources */,
+				CA7C7E18158723DE00406BFB /* FeedController~ipad.xib in Resources */,
+				CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */,
+				CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */,
+				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
+				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
+				CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */,
+				CAD95C6315889666006EAC41 /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5126,13 +5222,21 @@
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
-				A3F66CA51581B999000BFF9A /* Message.m in Sources */,
 				A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */,
 				A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */,
-				A3F66CB31581C0F5000BFF9A /* PrivateMessageManager.m in Sources */,
 				A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */,
 				A455F8C31585D21400CA5743 /* EGORefreshTableFooterView.m in Sources */,
 				A455F8C41585D21400CA5743 /* EGORefreshTableHeaderView.m in Sources */,
+				CA7C7E041587213100406BFB /* Feed.m in Sources */,
+				CA7C7E071587214300406BFB /* FeedManager.m in Sources */,
+				CA7C7E0B158721B200406BFB /* FeedService.m in Sources */,
+				CA7C7E15158723AE00406BFB /* FeedController.m in Sources */,
+				CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */,
+				A3431E801587279D002E0E81 /* ChatMessage.m in Sources */,
+				A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */,
+				A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */,
+				CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */,
+				CAD95C6215889666006EAC41 /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

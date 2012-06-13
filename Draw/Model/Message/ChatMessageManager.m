@@ -1,32 +1,33 @@
 //
-//  PrivateMessageManager.m
+//  ChatMessageManager.m
 //  Draw
 //
 //  Created by haodong qiu on 12年6月8日.
 //  Copyright (c) 2012年 orange. All rights reserved.
 //
 
-#import "PrivateMessageManager.h"
-#import "Message.h"
+#import "ChatMessageManager.h"
+#import "ChatMessage.h"
 #import "CoreDataUtil.h"
 #import "GameBasic.pb.h"
+#import "DrawAction.h"
 
-@interface PrivateMessageManager ()
+@interface ChatMessageManager ()
 - (BOOL)isExist:(NSString *)messageId;
 - (NSArray *)findAllMessages;
 @end
 
 
-@implementation PrivateMessageManager
+@implementation ChatMessageManager
 
-static PrivateMessageManager *_privateMessageManager = nil;
+static ChatMessageManager *_chatMessageManager = nil;
 
-+ (PrivateMessageManager *)defaultManager
++ (ChatMessageManager *)defaultManager
 {
-    if (_privateMessageManager == nil) {
-        _privateMessageManager = [[PrivateMessageManager alloc] init];
+    if (_chatMessageManager == nil) {
+        _chatMessageManager = [[ChatMessageManager alloc] init];
     }
-    return _privateMessageManager;
+    return _chatMessageManager;
 }
 
 
@@ -43,8 +44,8 @@ static PrivateMessageManager *_privateMessageManager = nil;
     }
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    Message *newMessage = [dataManager insert:@"Message"];
-    [newMessage setMessageId:messageId];;
+    ChatMessage *newMessage = [dataManager insert:@"ChatMessage"];
+    [newMessage setMessageId:messageId];
     [newMessage setFrom:from];
     [newMessage setTo:to];
     [newMessage setDrawData:drawData];
@@ -58,7 +59,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 - (NSArray *)findAllMessages
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    return [dataManager execute:@"findAllMessages" sortBy:@"createDate" ascending:NO];
+    return [dataManager execute:@"findAllMessages" sortBy:@"createDate" ascending:YES];
 }
 
 
@@ -66,7 +67,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 {
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
     NSArray *array = [self findAllMessages];
-    for (Message *message in array) {
+    for (ChatMessage *message in array) {
         if ([message.from isEqualToString:friendUserId] || [message.to isEqualToString:friendUserId]) {
             [mutableArray addObject:message];
         }
@@ -79,7 +80,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 - (BOOL)isExist:(NSString *)messageId 
 {
     NSArray *array = [self findAllMessages];
-    for (Message *message in array) {
+    for (ChatMessage *message in array) {
         if ([messageId isEqualToString:message.messageId]) {
             return YES;
         }
@@ -88,7 +89,7 @@ static PrivateMessageManager *_privateMessageManager = nil;
 }
 
 
-- (BOOL)createByPBMessage:(PBMessage *)pbMessage
+- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList
 {
     //压缩
     //NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawDataList];
@@ -97,11 +98,33 @@ static PrivateMessageManager *_privateMessageManager = nil;
     //NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     //NSArray* drawDataList = (NSArray*)temp;
     
-    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:pbMessage.drawDataList];
+    NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:aDrawActionList];
+    return reData;
+}
+
+- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aData
+{
+    NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:aData];
+    NSArray* drawDataList = (NSArray*)temp;
+    return drawDataList;
+}
+
+
+- (BOOL)createByPBMessage:(PBMessage *)pbMessage
+{
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    for (PBDrawAction *pbDrawAction in pbMessage.drawDataList) {
+        DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
+        [mutableArray addObject:drawAction];
+        [drawAction release];
+    }
+    NSData *data = [self archiveDataFromDrawActionList:mutableArray];
+    
+    
     return  [self createMessageWithMessageId:pbMessage.messageId 
                                         from:pbMessage.from 
                                           to:pbMessage.to 
-                                    drawData:drawActionListData
+                                    drawData:data
                                   createDate:nil   //待PBMessage增加一个createDate
                                         text:pbMessage.text
                                       status:[NSNumber numberWithInt:pbMessage.status]];

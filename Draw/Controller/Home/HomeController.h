@@ -42,6 +42,7 @@
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;
+- (IBAction)clickFeedButton:(id)sender;
 
 
 

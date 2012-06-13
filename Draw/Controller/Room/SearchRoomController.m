@@ -22,13 +22,11 @@
 
 @interface SearchRoomController ()
 
-- (void)enableMoreRow:(BOOL)enabled;
-- (BOOL)isMoreRow:(NSInteger)row;
 @end
 
 
 #define SEARCH_ROOM_LIMIT 50
-#define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
+
 @implementation SearchRoomController
 @synthesize searchButton;
 @synthesize searchFieldBg;
@@ -69,6 +67,7 @@
 
 - (void)viewDidLoad
 {
+    [self setSupportRefreshFooter:YES];
     [super viewDidLoad];
     [searchFieldBg setImage:[imageManager inputImage]];
     [searchField setPlaceholder:NSLS(@"kRoomSearhTips")];
@@ -111,9 +110,6 @@
 }
 
 - (void)dealloc {
-//    PPRelease(searchField);
-//    PPRelease(searchButton);
-//    PPRelease(searchFieldBg);
         
     [searchField release]; 
     [searchButton release];
@@ -126,7 +122,6 @@
     [self.searchField resignFirstResponder];
     _keyword = [self.searchField text];
     if ([_keyword length] != 0) {
-        [self enableMoreRow:YES];
         _currentStartIndex = 0;
         [self updateRoomList];
     }else{
@@ -164,12 +159,11 @@
 - (void)didSearhRoomWithKey:(NSString *)key roomList:(NSArray*)roomList resultCode:(int)resultCode
 {    
     [self hideActivity];
-    _moreCellLoadding = NO;
-
+    [self dataSourceDidFinishLoadingMoreData];
+    
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
     }else{
-        
         if (_currentStartIndex == 0) {
                 self.dataList = roomList;
         }else{
@@ -183,34 +177,24 @@
             self.dataList = array;
         }
         _currentStartIndex += [roomList count];
-        _moreCellLoadding = NO;
-        [self enableMoreRow:([roomList count] > SEARCH_ROOM_LIMIT * 0.9)];
+        
+        if ([roomList count] == SEARCH_ROOM_LIMIT) {
+            self.noMoreData = NO;
+        }else{
+            self.noMoreData = YES;
+        }
+
         self.tipsLabel.hidden = ([self.dataList count] != 0);
         [self.dataTableView reloadData];
     }
+    
+    // I don't know why, but Xiaotao Wang tells me to deal with it likes this. He will check it later.
+    [self dataSourceDidFinishLoadingMoreData];
 }
-
-
-- (void)enableMoreRow:(BOOL)enabled
-{
-    _hasMoreRow = enabled;
-}
-
-- (BOOL)isMoreRow:(NSInteger)row
-{
-    if (_hasMoreRow == YES) {
-        return [self.dataList count] == row;        
-    }
-    return NO;
-}
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self isMoreRow:indexPath.row]) {
-        return MORE_CELL_HEIGHT;
-    }
 	return [RoomCell getCellHeight];
 
 }
@@ -222,110 +206,53 @@
     }else{
         tableView.hidden = NO;
     }
-    if (_hasMoreRow) {
-        count ++;
-    }
     return count;
 
 }
 
-#define MORE_CELL_ACTIVITY 20120522
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([self isMoreRow:indexPath.row]) {
-        static NSString *CellIdentifier = @"MoreRow";
-        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
-                                           reuseIdentifier:CellIdentifier]autorelease];
-            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            cell.textLabel.textColor = [UIColor grayColor];
-            if ([DeviceDetection isIPAD]) {
-                activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
-                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
-            }else{
-                activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
-                cell.textLabel.font = [UIFont systemFontOfSize:14];
-
-            }            
-            activity.tag = MORE_CELL_ACTIVITY;
-            activity.hidesWhenStopped = YES;
-            [cell.contentView addSubview:activity];            
-            [activity release];
-        }
-        UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[cell.contentView viewWithTag:MORE_CELL_ACTIVITY];
-        if (_moreCellLoadding) {
-            [cell.textLabel setText:NSLS(@"kLoadMore")];
-            [activity startAnimating];
-        }else
-        {
-            [cell.textLabel setText:NSLS(@"kMore")];
-            [activity stopAnimating];
-        }
-        return cell;
-    }else{    
-        NSString *CellIdentifier = [RoomCell getCellIdentifier];
-        RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [RoomCell createCell:self];
-            cell.roomCellType = RoomCellTypeSearchRoom;
-        }
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        Room *room = [self.dataList objectAtIndex:indexPath.row];
-        [cell setInfo:room];
-//        cell.inviteButton.hidden = cell.inviteInfoButton.hidden = YES;
-        return cell;
+    NSString *CellIdentifier = [RoomCell getCellIdentifier];
+    RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [RoomCell createCell:self];
+        cell.roomCellType = RoomCellTypeSearchRoom;
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [cell setInfo:room];
+    return cell;
+    
 }
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
-
-    if (!_hasMoreRow || _moreCellLoadding) {
-        return;
-    }
-    
-    CGPoint offset = aScrollView.contentOffset;
-    CGRect bounds = aScrollView.bounds;
-    CGSize size = aScrollView.contentSize;
-    UIEdgeInsets inset = aScrollView.contentInset;
-    float y = offset.y + bounds.size.height - inset.bottom;
-    float h = size.height;
-    if(y > h + MORE_CELL_HEIGHT) {
-        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
-    }
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row > [self.dataList count])
         return;
     
-    if ([self isMoreRow:indexPath.row]) {
-        _moreCellLoadding = YES;
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.dataList count] inSection:0];
-        [self.dataTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [self updateRoomList];
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    _currentSelectRoom = room;
+    if (room == nil)
+        return;
+    if (room.myStatus == UserUnInvited) {
+        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
+        dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
+        [dialog showInView:self.view];
     }else{
-        Room *room = [self.dataList objectAtIndex:indexPath.row];
-        _currentSelectRoom = room;
-        if (room == nil)
-            return;
-        if (room.myStatus == UserUnInvited) {
-            InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
-            dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
-            [dialog showInView:self.view];
-        }else{
-            [self startGame];
-        }
+        [self startGame];
     }
     
 }
+
+- (void)loadMoreTableViewDataSource
+{
+    [self updateRoomList];
+}
+
 
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
@@ -353,6 +280,7 @@
         [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
     }
 }
+
 
 
 #pragma mark - Draw Game Service Delegate

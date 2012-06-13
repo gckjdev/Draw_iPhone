@@ -16,6 +16,8 @@
 #import "ColorShopView.h"
 #import "UserManager.h"
 #import "DrawDataService.h"
+#import "DrawConstants.h"
+
 
 @class Word;
 @class ShareImageManager;
@@ -24,6 +26,15 @@
 @class PickPenView;
 @class PickEraserView;
 @class PickColorView;
+
+@protocol OfflineDrawDelegate <NSObject>
+
+@optional
+- (void)didClickBack;
+- (void)didClickSubmit:(NSArray*)drawActionList;
+
+@end
+
 
 @interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate> {
     DrawView *drawView;
@@ -39,6 +50,7 @@
     
     ShareImageManager *shareImageManager;
     
+    TargetType targetType;
 }
 
 - (IBAction)clickRedraw:(id)sender;
@@ -55,8 +67,11 @@
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
+
+- (id)initWithTargetType:(TargetType)aTargetType delegate:(id<OfflineDrawDelegate>)aDelegate;
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang;
 - (void)initEraser;

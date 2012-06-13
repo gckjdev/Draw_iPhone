@@ -15,12 +15,14 @@
 
 
 @class Draw;
+@class Feed;
+@class PBDraw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
-- (void)didMatchDraw:(Draw *)draw result:(int)resultCode;
+- (void)didMatchDraw:(Feed *)feed result:(int)resultCode;
 
 - (void)didCreateDraw:(int)resultCode;
 - (void)didGuessOfflineDraw:(int)resultCode;
@@ -42,8 +44,19 @@
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)guessDraw:(NSArray *)guessWords 
-           opusId:(NSString *)opusId
+           opusId:(NSString *)opusId 
+   opusCreatorUid:(NSString *)opusCreatorUid
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
+
+- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction;
+
+- (PBDraw*)buildPBDraw:(NSString*)userId 
+                  nick:(NSString *)nick 
+                avatar:(NSString *)avatar
+        drawActionList:(NSArray*)drawActionList
+              drawWord:(Word*)drawWord
+              language:(LanguageType)language;
+
 @end

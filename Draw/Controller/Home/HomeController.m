@@ -41,6 +41,7 @@
 #import "OfflineDrawViewController.h"
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
+#import "FeedController.h"
 
 #import "ChatListController.h"
 #import "LevelService.h"
@@ -473,6 +474,12 @@
     OfflineGuessDrawController *oc = [[OfflineGuessDrawController alloc] init];
     [self.navigationController pushViewController:oc animated:YES];
     [oc release];
+}
+
+- (IBAction)clickFeedButton:(id)sender {
+    FeedController *fc = [[FeedController alloc] init];
+    [self.navigationController pushViewController:fc animated:YES];
+    [fc release];
 }
 
 + (void)startOfflineGuessDrawFrom:(UIViewController *)viewController

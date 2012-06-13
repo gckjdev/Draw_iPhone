@@ -218,7 +218,8 @@
                              nick:(NSString*)nick
                            avatar:(NSString*)avatar
                            gender:(NSString*)gender
-                           opusId:(NSString*)opusId
+                           opusId:(NSString*)opusId                        
+                   opusCreatorUId:(NSString*)opusCreatorUId  
                         isCorrect:(BOOL)isCorrect
                             score:(NSInteger)score
                             words:(NSString*)words;
@@ -237,7 +238,15 @@
                                data:(NSData*)data;
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId
-                                    userId:(NSString*)userId
-                                 messageId:(NSString*)messageId;
+                                    userId:(NSString*)userId 
+                              friendUserId:(NSString*)friendUserId;
+
++ (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
+                                               userId:(NSString *)userId 
+                                         feedListType:(NSInteger)feedListType
+                                               offset:(NSInteger)offset
+                                                limit:(int)limit;
+
+
 
 @end
