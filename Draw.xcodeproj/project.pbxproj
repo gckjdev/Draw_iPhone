@@ -657,6 +657,10 @@
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
+		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
+		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
+		CAD95C6215889666006EAC41 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C6015889665006EAC41 /* CommentCell.m */; };
+		CAD95C6315889666006EAC41 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C6115889665006EAC41 /* CommentCell.xib */; };
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
@@ -1770,6 +1774,12 @@
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
+		CAD95C5A15889611006EAC41 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		CAD95C5B15889611006EAC41 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		CAD95C5C15889611006EAC41 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
+		CAD95C5F15889664006EAC41 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		CAD95C6015889665006EAC41 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		CAD95C6115889665006EAC41 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
@@ -4087,6 +4097,12 @@
 				CA7C7E1A1587242300406BFB /* FeedDetailController.m */,
 				CA7C7E1B1587242300406BFB /* FeedDetailController.xib */,
 				CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */,
+				CAD95C5A15889611006EAC41 /* FeedCell.h */,
+				CAD95C5B15889611006EAC41 /* FeedCell.m */,
+				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
+				CAD95C5F15889664006EAC41 /* CommentCell.h */,
+				CAD95C6015889665006EAC41 /* CommentCell.m */,
+				CAD95C6115889665006EAC41 /* CommentCell.xib */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -4834,6 +4850,8 @@
 				CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */,
 				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
+				CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */,
+				CAD95C6315889666006EAC41 /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5217,6 +5235,8 @@
 				A3431E801587279D002E0E81 /* ChatMessage.m in Sources */,
 				A3431E811587279D002E0E81 /* ChatMessageManager.m in Sources */,
 				A387F097158853EF00DC7C5D /* SelectChatFriendController.m in Sources */,
+				CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */,
+				CAD95C6215889666006EAC41 /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

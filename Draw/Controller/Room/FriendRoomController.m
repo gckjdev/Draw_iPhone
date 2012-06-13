@@ -30,7 +30,7 @@
 @end
 
 #define INVITE_LIMIT 20
-#define FIND_ROOM_LIMIT 1
+#define FIND_ROOM_LIMIT 50
 
 
 @implementation FriendRoomController
