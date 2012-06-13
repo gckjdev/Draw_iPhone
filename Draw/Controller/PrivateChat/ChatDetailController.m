@@ -11,11 +11,16 @@
 #import "ChatMessage.h"
 #import "ChatMessageManager.h"
 #import "UserManager.h"
+#import "DrawConstants.h"
+#import "DrawDataService.h"
+#import "DrawAction.h"
+#import "GameBasic.pb.h"
 
 @interface ChatDetailController ()
 
 @property (retain, nonatomic) NSString *friendUserId;
 @property (retain, nonatomic) NSString *friendNickname;
+@property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
 
 - (IBAction)clickBack:(id)sender;
 
@@ -30,8 +35,10 @@
 @synthesize sendButton;
 @synthesize friendUserId = _friendUserId;
 @synthesize friendNickname = _friendNickname;
+@synthesize offlineDrawViewController = _offlineDrawViewController;
 
 - (void)dealloc {
+    PPRelease(_offlineDrawViewController);
     PPRelease(_friendNickname);
     PPRelease(_friendUserId);
     PPRelease(titleLabel);
@@ -237,6 +244,32 @@
 }
 
 - (IBAction)clickGraffitiButton:(id)sender {
+
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
+    self.offlineDrawViewController = odc;
+    [odc release];
+    
+    PPDebug(@"offlineDrawViewController:%d",[_offlineDrawViewController retainCount]);
+    
+    [self.view addSubview:_offlineDrawViewController.view];
+    CGRect frame = _offlineDrawViewController.view.frame;
+    _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    _offlineDrawViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    [UIImageView commitAnimations]; 
+}
+
+- (void)hideGraffitiView
+{
+    if (_offlineDrawViewController) {
+        CGRect frame = _offlineDrawViewController.view.frame;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.4];
+        _offlineDrawViewController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+        [UIImageView commitAnimations];
+    }
 }
 
 - (IBAction)clickSendButton:(id)sender {
@@ -262,7 +295,7 @@
 }
 
 
-#pragma mark super Keyboard Methods
+#pragma mark  - super Keyboard Methods
 - (void)keyboardDidShowWithRect:(CGRect)keyboardRect
 {
     CGRect frame = CGRectMake(0, 460 - keyboardRect.size.height - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
@@ -282,5 +315,76 @@
     [UIImageView commitAnimations]; 
 }
 
+
+#pragma mark - OfflineDrawDelegate
+- (void)didClickBack
+{
+    [self hideGraffitiView];
+}
+
+//- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
+//{
+//    PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
+//    
+//    [dataBuilder setType:[drawAction type]];
+//    
+//    NSArray *pointList = nil;
+//    if ([DeviceDetection isIPAD]) {
+//        pointList = [drawAction intPointListWithXScale:IPAD_WIDTH_SCALE yScale:IPAD_WIDTH_SCALE];
+//    }else{
+//        pointList = [drawAction intPointListWithXScale:1 yScale:1];
+//    }
+//    
+//    [dataBuilder addAllPoints:pointList];
+//    
+//    CGFloat width = [[drawAction paint] width];
+//    if ([DeviceDetection isIPAD]) {
+//        width /= 2;
+//    }
+//    [dataBuilder setWidth:width];
+//    NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];    
+//    [dataBuilder setColor:intColor];
+//    
+//    [dataBuilder setPenType:[[drawAction paint] penType]];
+//    
+//    PBDrawAction *action = [dataBuilder build];
+//    [dataBuilder release];    
+//    return action;
+//    
+//}
+
+
+//- (PBDraw*)buildPBDraw:(NSString*)userId 
+//                  nick:(NSString *)nick 
+//                avatar:(NSString *)avatar
+//        drawActionList:(NSArray*)drawActionList
+//              drawWord:(Word*)drawWord
+//              language:(LanguageType)language
+//{
+//    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+//    [builder setUserId:userId];
+//    [builder setNickName:nick];
+//    [builder setAvatar:avatar];
+//    [builder setWord:[drawWord text]];
+//    [builder setLevel:[drawWord level]];
+//    [builder setLanguage:language];
+//    for (DrawAction* drawAction in drawActionList){
+//        PBDrawAction *action = [self buildPBDrawAction:drawAction];
+//        [builder addDrawData:action];
+//    }
+//    
+//    PBDraw* draw = [builder build];        
+//    [builder release];
+//    
+//    return draw;
+//}
+
+- (void)didClickSubmit:(NSArray *)drawActionList
+{
+    [self hideGraffitiView];
+//    PBDraw* draw = [[DrawDataService defaultService] buildPBDraw:nil nick:nil avatar:nil drawActionList:drawActionList drawWord:nil language:nil];
+//    
+//    [[ChatService defaultService] sendMessage:self friendUserId:_friendUserId text:nil data:[draw data]];
+}
 
 @end

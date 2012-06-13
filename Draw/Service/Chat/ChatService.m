@@ -130,6 +130,7 @@ static ChatService *_chatService = nil;
             if (output.resultCode == ERROR_SUCCESS){
                 
                 NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                
                 [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
                                                                            from:userId 
                                                                              to:friendUserId 

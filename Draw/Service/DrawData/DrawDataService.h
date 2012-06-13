@@ -16,6 +16,7 @@
 
 @class Draw;
 @class Feed;
+@class PBDraw;
 @protocol  DrawDataServiceDelegate<NSObject>
 
 @optional
@@ -47,4 +48,14 @@
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
+
+- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction;
+
+- (PBDraw*)buildPBDraw:(NSString*)userId 
+                  nick:(NSString *)nick 
+                avatar:(NSString *)avatar
+        drawActionList:(NSArray*)drawActionList
+              drawWord:(Word*)drawWord
+              language:(LanguageType)language;
+
 @end
