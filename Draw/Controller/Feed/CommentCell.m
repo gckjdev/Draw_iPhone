@@ -1,14 +1,14 @@
 //
-//  FeedController.m
+//  CommentCell.m
 //  Draw
 //
-//  Created by  on 12-6-12.
+//  Created by  on 12-6-13.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "FeedController.h"
-#import "Feed.h"
-@implementation FeedController
+#import "CommentCell.h"
+
+@implementation CommentCell
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -42,14 +42,10 @@
     // e.g. self.myOutlet = nil;
 }
 
-
-#pragma mark - feed service delegate
-- (void)didGetFeedList:(NSArray *)feedList resultCode:(NSInteger)resultCode
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    PPDebug(@"feedList = %@", [feedList description]);
-//    [self.navigationController popViewControllerAnimated:YES];
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-- (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
+
 @end

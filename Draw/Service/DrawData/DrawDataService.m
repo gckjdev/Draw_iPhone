@@ -61,7 +61,12 @@ static DrawDataService* _defaultDrawDataService = nil;
         NSString *gender = [[UserManager defaultManager] gender];
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         
-        CommonNetworkOutput* output = [GameNetworkRequest matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL userId:uid gender:gender lang:lang type:1];;
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL 
+                                       userId:uid 
+                                       gender:gender 
+                                       lang:lang 
+                                       type:1];;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             Feed *feed = nil;
@@ -178,7 +183,8 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 - (void)guessDraw:(NSArray *)guessWords 
-           opusId:(NSString *)opusId
+           opusId:(NSString *)opusId 
+   opusCreatorUid:(NSString *)opusCreatorUid
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController
@@ -200,6 +206,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                              avatar:avatar 
                                                              gender:gender 
                                                              opusId:opusId 
+                                                     opusCreatorUId:opusCreatorUid
                                                           isCorrect:isCorrect 
                                                               score:score 
                                                               words:words];

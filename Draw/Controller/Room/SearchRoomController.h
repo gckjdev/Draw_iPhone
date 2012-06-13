@@ -23,9 +23,9 @@
     BOOL _isTryJoinGame;    
 
     
-    BOOL _hasMoreRow;
+//    BOOL _hasMoreRow;
     NSInteger _currentStartIndex;
-    BOOL _moreCellLoadding;
+//    BOOL _moreCellLoadding;
     NSString *_keyword;
 
 }

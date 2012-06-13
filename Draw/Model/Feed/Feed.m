@@ -11,6 +11,7 @@
 #import "GameBasic.pb.h"
 #import "TimeUtils.h"
 #import "Draw.h"
+#import "PPDebug.h"
 
 @implementation Feed
 
@@ -39,6 +40,20 @@
 
 // common data
 @synthesize matchTimes = _matchTimes;
+
+- (void)dealloc
+{
+    PPRelease(_feedId);
+    PPRelease(_userId);
+    PPRelease(_createDate);
+    PPRelease(_avatar);
+    PPRelease(_nickName);
+    PPRelease(_drawData);
+    PPRelease(_opusId);
+    PPRelease(_guessWords);
+    PPRelease(_comment);
+    [super dealloc];
+}
 
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed

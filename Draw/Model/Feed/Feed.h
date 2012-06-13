@@ -20,6 +20,16 @@ typedef enum{
 }FeedType;
 
 
+typedef enum{
+    
+    FeedListTypeUnknow = 0,
+    FeedListTypeMy = 1,
+    FeedListTypeAll = 2,
+    FeedListTypeHot = 3,
+    
+}FeedListType;
+
+
 
 
 @class Draw;

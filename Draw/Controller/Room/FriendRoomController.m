@@ -25,15 +25,13 @@
 
 @interface FriendRoomController ()
 
-- (void)enableMoreRow:(BOOL)enabled;
-- (BOOL)isMoreRow:(NSInteger)row;
 - (void)updateNoRoomTip;
-
+- (void)updateRoomList;
 @end
 
 #define INVITE_LIMIT 20
 #define FIND_ROOM_LIMIT 50
-#define MORE_CELL_HEIGHT ([DeviceDetection isIPAD] ? 88 : 44)
+
 
 @implementation FriendRoomController
 @synthesize titleLabel;
@@ -51,7 +49,6 @@
         _userManager = [UserManager defaultManager];
         roomService = [RoomService defaultService];
         _currentStartIndex = 0;
-        [self enableMoreRow:YES];
     }
     return self;
 }
@@ -68,11 +65,14 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)updateRoomList
 {
     [roomService findMyRoomsWithOffset:_currentStartIndex limit:FIND_ROOM_LIMIT delegate:self];
     [self showActivityWithText:NSLS(@"kLoading")];
 }
+
+
 
 - (void)initButtons
 {
@@ -92,6 +92,7 @@
 - (void)viewDidLoad
 {
     [self setSupportRefreshHeader:YES];
+    [self setSupportRefreshFooter:YES];
     [super viewDidLoad];
     self.dataList = [[[NSMutableArray alloc] init]autorelease];
     [self initButtons];
@@ -235,116 +236,70 @@
 - (void)didFindRoomByUser:(NSString *)userId roomList:(NSArray*)roomList resultCode:(int)resultCode
 {
     [self hideActivity];
-    _moreCellLoadding = NO;
+    [self dataSourceDidFinishLoadingNewData];   
+    [self dataSourceDidFinishLoadingMoreData];
+    
     if (resultCode != 0) {
         [self popupMessage:NSLS(@"kFindRoomListFail") title:nil];
     }else{
-        if (roomList != nil && [roomList count] != 0) {
-            NSMutableArray *array = nil;
-            if (_currentStartIndex == 0) {
-                array = [NSMutableArray array];                
-            }else{
-                array = [NSMutableArray arrayWithArray:self.dataList];
-            }
-            [array addObjectsFromArray:[[RoomManager defaultManager] sortRoomList:roomList]];
-            self.dataList = array;
-            _currentStartIndex += [roomList count];
-            [self enableMoreRow:[roomList count] > FIND_ROOM_LIMIT * 0.9];
-            [self.dataTableView reloadData];
-        }else{
-            [self enableMoreRow:NO];
-            if ([self.dataList count] == 0) {
-                [self.dataTableView reloadData];
-            }else{
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.dataList count] inSection:0];
-                [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
+        NSMutableArray *array = nil;
+        if (_currentStartIndex == 0) {
+            //if load new data
+            array = [NSMutableArray array];                
+
+            
+        }else{            
+            array = [NSMutableArray arrayWithArray:self.dataList];
+            //if load more data
+   
         }
+        if ([roomList count] != 0) {
+            [array addObjectsFromArray:[[RoomManager defaultManager] sortRoomList:roomList]];            
+        }
+        self.dataList = array;
+        _currentStartIndex += [roomList count];
+        
+        if ([roomList count] == FIND_ROOM_LIMIT) {
+            self.noMoreData = NO;
+        }else{
+            self.noMoreData = YES;
+        }
+        
+        [self.dataTableView reloadData];
+        
     }
-//    [refreshHeaderView setCurrentDate];  	
-	[self dataSourceDidFinishLoadingNewData];
+    
     [self updateNoRoomTip];
 }
 
 
-- (void)enableMoreRow:(BOOL)enabled
-{
-    _hasMoreRow = enabled;
-}
-
-- (BOOL)isMoreRow:(NSInteger)row
-{
-    if (_hasMoreRow == YES) {
-        return [self.dataList count] == row;        
-    }
-    return NO;
-}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self isMoreRow:indexPath.row]) {
-        return MORE_CELL_HEIGHT;
-    }
 	return [RoomCell getCellHeight];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [dataList count];
-    if (_hasMoreRow) {
-        count ++;
-    }
     return count;
 }
 
-#define MORE_CELL_ACTIVITY 20120522
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([self isMoreRow:indexPath.row]) {
-        static NSString *CellIdentifier = @"MoreRow";
-        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];   
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
-            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-            cell.textLabel.textColor = [UIColor grayColor];
-            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];;
-            if ([DeviceDetection isIPAD]) {
-                activity.center = CGPointMake(cell.contentView.center.x * 3.5, cell.contentView.center.y * 2);
-                cell.textLabel.font = [UIFont systemFontOfSize:14 * 2];
-            }else{
-                activity.center = CGPointMake(cell.contentView.center.x * 1.6, cell.contentView.center.y);
-                cell.textLabel.font = [UIFont systemFontOfSize:14];
-                
-            }                     
-            activity.tag = MORE_CELL_ACTIVITY;
-            activity.hidesWhenStopped = YES;
-            [cell.contentView addSubview:activity];            
-            [activity release];
-        }
-        UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[cell.contentView viewWithTag:MORE_CELL_ACTIVITY];
-        if (_moreCellLoadding) {
-            [activity startAnimating];
-            [cell.textLabel setText:NSLS(@"kLoadMore")];
-        }else
-        {
-            [cell.textLabel setText:NSLS(@"kMore")];
-            [activity stopAnimating];
-        }
-        return cell;
-    }else{
-        NSString *CellIdentifier = [RoomCell getCellIdentifier];
-        RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [RoomCell createCell:self];
-            cell.roomCellType = RoomCellTypeMyRoom;
-        }
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        Room *room = [self.dataList objectAtIndex:indexPath.row];
-        [cell setInfo:room];
-        cell.indexPath = indexPath;
-        return cell;
+    NSString *CellIdentifier = [RoomCell getCellIdentifier];
+    RoomCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [RoomCell createCell:self];
+        cell.roomCellType = RoomCellTypeMyRoom;
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    [cell setInfo:room];
+    cell.indexPath = indexPath;
+    return cell;
+    
 }
 
 
@@ -360,16 +315,6 @@
     if (indexPath.row > [self.dataList count])
         return;
 
-    if ([self isMoreRow:indexPath.row]) {
-        _moreCellLoadding = YES;
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.dataList count] inSection:0];
-        [self.dataTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [self updateRoomList];
-    }
-    if (indexPath.row >= [self.dataList count])
-        return;
     
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     if (room == nil)
@@ -388,28 +333,7 @@
     _currentSelectRoom = room;    
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    PPDebug(@"<ScollView> contentOffset : (%f,%f)" , scrollView.contentOffset.x,scrollView.contentOffset.y);    
-}
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
-    
-    if (!_hasMoreRow || _moreCellLoadding) {
-        return;
-    }
-    
-    CGPoint offset = aScrollView.contentOffset;
-    CGRect bounds = aScrollView.bounds;
-    CGSize size = aScrollView.contentSize;
-    UIEdgeInsets inset = aScrollView.contentInset;
-    float y = offset.y + bounds.size.height - inset.bottom;
-    float h = size.height;
-    if(y > h + MORE_CELL_HEIGHT) {
-        [self tableView:dataTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[dataList count] inSection:0]];
-    }
-}
 
 
 #pragma mark - Draw Game Service Delegate
@@ -478,10 +402,14 @@
 - (void)reloadTableViewDataSource
 {
     _currentStartIndex = 0;
-    [self enableMoreRow:YES];
     [self updateRoomList];
-
 }
+
+- (void)loadMoreTableViewDataSource
+{
+    [self updateRoomList];
+}
+
 
 - (void)updateNoRoomTip
 {
