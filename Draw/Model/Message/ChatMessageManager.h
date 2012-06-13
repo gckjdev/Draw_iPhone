@@ -10,7 +10,9 @@
 
 enum{
     MessageStatusNotRead = 0,
-    MessageStatusRead = 1
+    MessageStatusRead = 1,
+    MessageStatusSendSuccess = 2,
+    MessageStatusSendFailed = 3
 };
 
 @class PBMessage;

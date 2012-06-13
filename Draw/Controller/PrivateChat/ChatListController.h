@@ -8,8 +8,9 @@
 
 #import "PPTableViewController.h"
 #import "ChatService.h"
+#import "SelectChatFriendController.h"
 
-@interface ChatListController : PPTableViewController<ChatServiceDelegate>
+@interface ChatListController : PPTableViewController<ChatServiceDelegate, SelectChatFriendDelagate>
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *addChatButton;

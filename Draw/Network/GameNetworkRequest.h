@@ -238,8 +238,8 @@
                                data:(NSData*)data;
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId
-                                    userId:(NSString*)userId
-                                 messageId:(NSString*)messageId;
+                                    userId:(NSString*)userId 
+                              friendUserId:(NSString*)friendUserId;
 
 + (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
                                                userId:(NSString *)userId 

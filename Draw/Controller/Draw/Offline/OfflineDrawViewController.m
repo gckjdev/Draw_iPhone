@@ -44,6 +44,7 @@
 @synthesize colorButton;
 @synthesize word = _word;
 @synthesize titleLabel;
+@synthesize delegate;
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -88,8 +89,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-
-
 #pragma mark - Construction
 #define ERASER_WIDTH ([DeviceDetection isIPAD] ? 15 * 2 : 15)
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
@@ -102,6 +101,16 @@
         self.word = word;
         languageType = lang;
         shareImageManager = [ShareImageManager defaultManager];
+    }
+    return self;
+}
+
+- (id)initWithTargetType:(TargetType)aTargetType delegate:(id<OfflineDrawDelegate>)aDelegate
+{
+    self = [super init];
+    if (self) {
+        targetType = aTargetType;
+        delegate = aDelegate;
     }
     return self;
 }
@@ -251,8 +260,13 @@ enum{
 
 - (void)initWordLabel
 {
-    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
-    [self.wordButton setTitle:wordText forState:UIControlStateNormal];
+    if (targetType == TypeGraffiti) {
+        self.wordButton.hidden = YES;
+    }else {
+        self.wordButton.hidden = NO;
+        NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+        [self.wordButton setTitle:wordText forState:UIControlStateNormal];
+    }
 }
 
 - (void)initTitleLabel
@@ -462,14 +476,26 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    [self showActivityWithText:@"creating Draw"];
-    [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList drawWord:self.word language:languageType delegate:self];
+    if (targetType == TypeGraffiti) {
+        if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
+            [delegate didClickSubmit:drawView.drawActionList];
+        }
+    }else {
+        [self showActivityWithText:@"creating Draw"];
+        [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList drawWord:self.word language:languageType delegate:self];
+    }
 }
 - (void)clickBackButton:(id)sender
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
-    dialog.tag = DIALOG_TAG_ESCAPE;
-    [dialog showInView:self.view];
+    if (targetType == TypeGraffiti) {
+        if (delegate && [delegate respondsToSelector:@selector(didClickBack)]) {
+            [delegate didClickBack];
+        }
+    }else {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = DIALOG_TAG_ESCAPE;
+        [dialog showInView:self.view];
+    }
 }
 
 @end

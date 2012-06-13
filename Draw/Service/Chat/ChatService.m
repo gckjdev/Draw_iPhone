@@ -37,7 +37,7 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
                                                                    appId:APP_ID 
                                                                   userId:userId
                                                             friendUserId:nil 
@@ -62,7 +62,7 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>findAllMessageTotals failed");
             }
             
-            if ([delegate respondsToSelector:@selector(didFindAllMessageTotals:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessageTotals:)]){
                 NSArray *array = [[MessageTotalManager defaultManager] findAllMessageTotals];
                 [delegate didFindAllMessageTotals:array];
             }
@@ -79,7 +79,7 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
                                                                    appId:APP_ID 
                                                                   userId:userId
                                                             friendUserId:friendUserId 
@@ -101,7 +101,7 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>findAllMessages failed");
             }
             
-            if ([delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
                 NSArray *array = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
                 [delegate didFindAllMessagesByFriendUserId:array];
             }
@@ -118,7 +118,7 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL 
                                                                 appId:APP_ID 
                                                                userId:userId 
                                                          targetUserId:friendUserId 
@@ -128,12 +128,22 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
+                
+                NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                
+                [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
+                                                                           from:userId 
+                                                                             to:friendUserId 
+                                                                       drawData:data 
+                                                                     createDate:[NSDate date] 
+                                                                           text:text 
+                                                                         status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
                 PPDebug(@"<ChatService>sendMessage success");
             }else {
                 PPDebug(@"<ChatService>sendMessage failed");
             }
             
-            if ([delegate respondsToSelector:@selector(didSendMessage:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:)]){
                 [delegate didSendMessage:output.resultCode];
             }
         }); 
@@ -147,7 +157,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{
         //要改成可以发送一个messageId列表
-        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:TRAFFIC_SERVER_URL 
                                                                        appId:APP_ID 
                                                                       userId:userId 
                                                                    messageId:[messageIdArray objectAtIndex:0]];
@@ -159,7 +169,7 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>sendHasReadMessage failed");
             }
             
-            if ([delegate respondsToSelector:@selector(didSendHasReadMessage:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didSendHasReadMessage:)]){
                 [delegate didSendHasReadMessage:output.resultCode];
             }
         }); 
