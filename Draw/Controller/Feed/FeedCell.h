@@ -9,6 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
 
-@interface FeedCell : PPTableViewCell
 
+@class Feed;
+@protocol FeedCellDelegate <NSObject>
+
+@optional
+- (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath;
+- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;
+- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+@interface FeedCell : PPTableViewCell
+{
+    
+}
+
+- (void)setCellInfo:(Feed *)feed;
 @end
