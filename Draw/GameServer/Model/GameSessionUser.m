@@ -45,8 +45,8 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d, location=%@, snsUser=%@]",
-            _userId, _nickName, _userAvatar, _gender, _location, [_snsUserData description]];            
+    return [NSString stringWithFormat:@"[userId=%@, nickName=%@, avatar=%@, gender=%d, location=%@, userLevel=%d, snsUser=%@]",
+            _userId, _nickName, _userAvatar, _gender, _location, _level, [_snsUserData description]];            
 }
 
 - (BOOL)isBindSNSByType:(int)type

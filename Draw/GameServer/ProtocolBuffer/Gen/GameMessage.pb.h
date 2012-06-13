@@ -58,6 +58,7 @@
   BOOL hasAutoNew_:1;
   BOOL hasTargetSessionId_:1;
   BOOL hasGuessDifficultLevel_:1;
+  BOOL hasUserLevel_:1;
   BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
@@ -65,13 +66,13 @@
   BOOL hasRoomId_:1;
   BOOL hasRoomName_:1;
   BOOL hasLocation_:1;
-  BOOL hasUserLevel_:1;
   BOOL gender_:1;
   BOOL isRobot_:1;
   int64_t sessionToBeChange;
   int32_t autoNew;
   int32_t targetSessionId;
   int32_t guessDifficultLevel;
+  int32_t userLevel;
   NSString* userId;
   NSString* gameId;
   NSString* nickName;
@@ -79,7 +80,6 @@
   NSString* roomId;
   NSString* roomName;
   NSString* location;
-  NSString* userLevel;
   NSMutableArray* mutableExcludeSessionIdList;
   NSMutableArray* mutableSnsUsersList;
 }
@@ -110,7 +110,7 @@
 @property (readonly, retain) NSString* roomId;
 @property (readonly, retain) NSString* roomName;
 @property (readonly, retain) NSString* location;
-@property (readonly, retain) NSString* userLevel;
+@property (readonly) int32_t userLevel;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 - (NSArray*) snsUsersList;
@@ -230,8 +230,8 @@
 - (JoinGameRequest_Builder*) clearLocation;
 
 - (BOOL) hasUserLevel;
-- (NSString*) userLevel;
-- (JoinGameRequest_Builder*) setUserLevel:(NSString*) value;
+- (int32_t) userLevel;
+- (JoinGameRequest_Builder*) setUserLevel:(int32_t) value;
 - (JoinGameRequest_Builder*) clearUserLevel;
 @end
 
@@ -670,6 +670,7 @@
   BOOL hasLevel_:1;
   BOOL hasPenType_:1;
   BOOL hasColor_:1;
+  BOOL hasUserLevel_:1;
   BOOL hasSessionStatus_:1;
   BOOL hasSessionHost_:1;
   BOOL hasChatContent_:1;
@@ -683,7 +684,6 @@
   BOOL hasWord_:1;
   BOOL hasUserAvatar_:1;
   BOOL hasLocation_:1;
-  BOOL hasUserLevel_:1;
   BOOL guessCorrect_:1;
   BOOL userGender_:1;
   Float32 width;
@@ -695,6 +695,7 @@
   int32_t level;
   int32_t penType;
   int32_t color;
+  int32_t userLevel;
   int32_t sessionStatus;
   NSString* sessionHost;
   NSString* chatContent;
@@ -708,7 +709,6 @@
   NSString* word;
   NSString* userAvatar;
   NSString* location;
-  NSString* userLevel;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
   NSMutableArray* mutableChatToUserIdList;
@@ -749,7 +749,7 @@
 @property (readonly, retain) NSString* userAvatar;
 - (BOOL) userGender;
 @property (readonly, retain) NSString* location;
-@property (readonly, retain) NSString* userLevel;
+@property (readonly) int32_t userLevel;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
@@ -863,8 +863,8 @@
 - (GeneralNotification_Builder*) clearLocation;
 
 - (BOOL) hasUserLevel;
-- (NSString*) userLevel;
-- (GeneralNotification_Builder*) setUserLevel:(NSString*) value;
+- (int32_t) userLevel;
+- (GeneralNotification_Builder*) setUserLevel:(int32_t) value;
 - (GeneralNotification_Builder*) clearUserLevel;
 
 - (NSArray*) pointsList;

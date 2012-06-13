@@ -16,6 +16,7 @@
 #import "Paint.h"
 #import "GameTurn.h"
 #import "Word.h"
+#import "UserManager.h"
 
 @implementation DrawGameService
 
@@ -571,6 +572,7 @@ static DrawGameService* _defaultService;
           avatar:(NSString*)avatar 
           gender:(BOOL)gender
         location:(NSString*)location
+       userLevel:(int)userLevel
   guessDiffLevel:(int)guessDiffLevel
      snsUserData:(NSArray*)snsUserData;
 {
@@ -583,12 +585,14 @@ static DrawGameService* _defaultService;
     [self setAvatar:avatar];
     [self setGender:gender];
     [self setGuessDiffLevel:guessDiffLevel];
+    _userLevel = userLevel;
     
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
-                               location:location 
+                               location:location      
+                              userLevel:_userLevel
                             snsUserList:snsUserData
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
@@ -617,6 +621,7 @@ static DrawGameService* _defaultService;
                                  avatar:_avatar
                                  gender:_gender
                                location:_location 
+                              userLevel:_userLevel
                             snsUserList:_snsUserData
                          guessDiffLevel:_guessDiffLevel
                               sessionId:[_session sessionId]
@@ -839,6 +844,7 @@ static DrawGameService* _defaultService;
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
               location:(NSString*)location
+             userLevel:(int)userLevel
         guessDiffLevel:(int)guessDiffLevel
            snsUserData:(NSArray*)snsUserData;
 
@@ -852,12 +858,14 @@ static DrawGameService* _defaultService;
     [self setGender:gender];
     [self setGuessDiffLevel:guessDiffLevel];
     [self setRoomId:roomId];
+    _userLevel = userLevel;
     
     [_networkClient sendJoinGameRequest:_userId 
                                nickName:_nickName 
                                  avatar:_avatar
                                  gender:_gender
                                location:location 
+                              userLevel:_userLevel
                             snsUserList:snsUserData     
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1

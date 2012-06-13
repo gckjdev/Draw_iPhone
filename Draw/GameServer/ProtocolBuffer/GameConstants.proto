@@ -88,6 +88,7 @@ enum GameCommandType {
   LOCAL_START_GAME = 307;
   LOCAL_WORD_PICKED = 308;
   LOCAL_ALL_USER_GUESS = 309;
+  LOCAL_DRAW_USER_CHAT = 310;
 }
 
 enum GameResultCode {

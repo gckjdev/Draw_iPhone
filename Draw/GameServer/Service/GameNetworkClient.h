@@ -28,6 +28,7 @@
                      avatar:(NSString*)avatar
                      gender:(BOOL)gender
                    location:(NSString*)location
+                  userLevel:(int)userLevel
                 snsUserList:(NSArray*)snsUserData
              guessDiffLevel:(int)guessDiffLevel
                   sessionId:(int)currentSessionId

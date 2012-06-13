@@ -22,6 +22,7 @@
 #import "RoomManager.h"
 #import "DeviceDetection.h"
 #import "WordManager.h"
+#import "LevelService.h"
 
 @interface FriendRoomController ()
 
@@ -447,7 +448,8 @@
                                                 nickName:[_userManager nickName]
                                                   avatar:[_userManager avatarURL]
                                                   gender:[_userManager isUserMale]
-                                                location:[_userManager location]         
+                                                location:[_userManager location]  
+                                               userLevel:[[LevelService defaultService] level]         
                                           guessDiffLevel:[ConfigManager guessDifficultLevel]
                                              snsUserData:[_userManager snsUserData]];
     }
