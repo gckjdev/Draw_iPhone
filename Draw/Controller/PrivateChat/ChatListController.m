@@ -13,24 +13,31 @@
 #import "MessageTotal.h"
 #import "MessageTotalManager.h"
 #import "ChatMessageManager.h"
-
+#import "SelectChatFriendController.h"
+#import "Friend.h"
+#import "FriendManager.h"
 
 #import "UserManager.h"
 
 @interface ChatListController ()
 
+@property (nonatomic, retain) SelectChatFriendController *selectChatFriendController;
 - (IBAction)clickBack:(id)sender;
 - (void)findAllMessageTotals;
+- (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname;
+- (void)hideSelectView:(BOOL)animated;
 
 @end
 
 @implementation ChatListController
 @synthesize titleLabel;
 @synthesize addChatButton;
+@synthesize selectChatFriendController = _selectChatFriendController;
 
 - (void)dealloc {
-    [titleLabel release];
-    [addChatButton release];
+    PPRelease(titleLabel);
+    PPRelease(addChatButton);
+    PPRelease(_selectChatFriendController);
     [super dealloc];
 }
 
@@ -69,7 +76,7 @@
                                                             latestFrom:[[UserManager defaultManager] userId]
                                                               latestTo:@"456" 
                                                         latestDrawData:nil 
-                                                            latestText:@"然后呢" 
+                                                            latestText:@"问那么多问为什么干嘛" 
                                                       latestCreateDate:[NSDate date] 
                                                        totalNewMessage:[NSNumber numberWithInt:1] 
                                                           totalMessage:[NSNumber numberWithInt:3]];
@@ -83,12 +90,22 @@
                                                                 status:[NSNumber numberWithInt:MessageStatusNotRead]];
     
     [[ChatMessageManager defaultManager] createMessageWithMessageId:@"992" 
+                                                               from:@"456"
+                                                                 to:[[UserManager defaultManager] userId]
+                                                           drawData:nil 
+                                                         createDate:[NSDate date] 
+                                                               text:@"为什么"  
+                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
+    
+    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"993" 
                                                                from:[[UserManager defaultManager] userId]
                                                                  to:@"456" 
                                                            drawData:nil 
                                                          createDate:[NSDate date] 
-                                                               text:@"然后呢"  
+                                                               text:@"问那么多问什么干嘛"  
                                                              status:[NSNumber numberWithInt:MessageStatusNotRead]];
+    
+
     
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
@@ -97,6 +114,11 @@
     //[self findAllMessageTotals];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self hideSelectView:NO];
+    [super viewDidAppear:animated];
+}
 
 - (void)viewDidUnload
 {
@@ -141,13 +163,66 @@
 {
     MessageTotal *messageTotal = (MessageTotal *)[dataList objectAtIndex:indexPath.row];
     NSString *selectFriendUserId = messageTotal.friendUserId;
-    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:selectFriendUserId];
+    NSString *selectFriendNickname = messageTotal.friendNickName;
+    [self openChatDetail:selectFriendUserId friendNickname:selectFriendNickname];
+}
+
+- (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname
+{
+    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:friendUserId friendNickname:friendNickname];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
 
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickSelectFriend:(id)sender {
+    if (_selectChatFriendController == nil) {
+        SelectChatFriendController *scfc = [[SelectChatFriendController alloc] init];
+        scfc.delegate = self;
+        self.selectChatFriendController = scfc;
+        [scfc release];
+        [self.view addSubview:_selectChatFriendController.view];
+        CGRect frame = _selectChatFriendController.view.frame;
+        _selectChatFriendController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+    }
+    
+    CGRect frame = _selectChatFriendController.view.frame;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    _selectChatFriendController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    [UIImageView commitAnimations]; 
+}
+
+- (void)hideSelectView:(BOOL)animated
+{
+    if (_selectChatFriendController) {
+        CGRect frame = _selectChatFriendController.view.frame;
+        if (animated) {
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:0.4];
+            _selectChatFriendController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+            [UIImageView commitAnimations];
+        }else {
+            _selectChatFriendController.view.frame = CGRectMake(0, self.view.frame.size.height, frame.size.width, frame.size.height);
+        }
+    }
+}
+
+
+#pragma mark - SelectChatFriendDelagate 
+- (void)didSelectFriend:(Friend *)aFriend;
+{
+    NSString *nickname = [[FriendManager defaultManager] getFriendNick:aFriend];
+    [self openChatDetail:aFriend.friendUserId friendNickname:nickname];
+    [self hideSelectView:NO];
+}
+
+- (void)didCancel
+{
+    [self hideSelectView:YES];
 }
 
 @end

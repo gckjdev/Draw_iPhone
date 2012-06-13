@@ -9,7 +9,7 @@
 #import "PPTableViewController.h"
 #import "ChatService.h"
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextFieldDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate>
  
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *graffitiButton;
@@ -18,6 +18,6 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 
-- (id)initWithFriendUserId:(NSString *)frindUserId;
+- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname;
 
 @end
