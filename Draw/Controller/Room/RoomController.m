@@ -257,7 +257,7 @@
         }
         [imageView setAvatarUrl:avatar gender:[user gender]];
         [imageView setUserId:user.userId];
-        
+        [imageView setAvatarSelected:NO level:user.level];
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
@@ -290,12 +290,10 @@
 //            frameImage = [[ShareImageManager defaultManager] avatarUnSelectImage];            
 //        }
         
-        if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
-            [imageView setAvatarSelected:YES level:user.level];
+        if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]){
             [imageView setHasPen:YES];
         }
         else{
-            [imageView setAvatarSelected:NO level:user.level];
             [imageView setHasPen:NO];
         }
         

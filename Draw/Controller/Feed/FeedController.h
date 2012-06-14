@@ -10,9 +10,18 @@
 #import "PPTableViewController.h"
 #import "FeedService.h"
 
+@class FeedManager;
+@class FeedListState;
+
 @interface FeedController : PPTableViewController<FeedServiceDelegate>
 {
-    
+    NSArray *_feedListStats;
 }
+@property (retain, nonatomic) IBOutlet UILabel *noFeedTipsLabel;
 - (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickFeedButton:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *myFeedButton;
+@property (retain, nonatomic) IBOutlet UIButton *allFeedButton;
+@property (retain, nonatomic) IBOutlet UIButton *hotFeedButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @end
