@@ -283,6 +283,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [dataList count];
     self.noFeedTipsLabel.hidden = (count != 0);
+    
+    if (count != 0) {
+        self.dataTableView.separatorColor = [UIColor lightGrayColor];
+    }else{
+        self.dataTableView.separatorColor = [UIColor clearColor];
+    }
+    
     return count;
 }
 

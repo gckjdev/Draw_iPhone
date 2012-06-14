@@ -523,8 +523,8 @@
 
 
 "kDrawDesc" = "%@ 畫了一幅畫";
-"kGuessRightDesc" = "%@ 猜對 %@ 的畫";
-"kTryGuessDesc" = "%@ 嘗試去猜 %@ 的畫";
+"kGuessRightDesc" = "%@猜對%@的畫";
+"kTryGuessDesc" = "%@嘗試去猜%@的畫";
 "kNoGuess" = "還沒人猜";
 "kGuessStat" = "猜%d中%d";
 
@@ -532,4 +532,4 @@
 "kNoFeedTips" = "沒有動態";
 
 "kIGuessAction" = "我來猜猜";
-"kOneMoreAction" = "再來一副";
+"kOneMoreAction" = "再來一幅";

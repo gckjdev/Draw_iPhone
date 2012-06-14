@@ -526,8 +526,8 @@
 
 
 "kDrawDesc" = "%@ 画了一幅画";
-"kGuessRightDesc" = "%@ 猜对 %@ 的画";
-"kTryGuessDesc" = "%@ 尝试去猜 %@ 的画";
+"kGuessRightDesc" = "%@猜对了%@的画";
+"kTryGuessDesc" = "%@尝试去猜%@的画";
 "kNoGuess" = "还没人猜";
 
 "kGuessStat" = "猜%d中%d";
@@ -536,4 +536,4 @@
 
 
 "kIGuessAction" = "我来猜猜";
-"kOneMoreAction" = "再来一副";
+"kOneMoreAction" = "再来一幅";

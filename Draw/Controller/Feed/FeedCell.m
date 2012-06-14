@@ -60,7 +60,7 @@ typedef enum{
     
 }
 
-#define AVATAR_VEW_FRAME CGRectMake(6, 5, 42, 43)
+#define AVATAR_VEW_FRAME CGRectMake(5, 5, 55, 57)
 
 - (void)updateTime:(Feed *)feed
 {
