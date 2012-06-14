@@ -14,6 +14,8 @@
 #import "ShareImageManager.h"
 #import "StableView.h"
 #import "ShowDrawView.h"
+#import "DrawAction.h"
+
 typedef enum{
     ActionTypeHidden = 0,
     ActionTypeOneMore = 1,
@@ -27,6 +29,11 @@ typedef enum{
 @synthesize timeLabel;
 @synthesize actionButton;
 @synthesize avatarView = _avatarView;
+@synthesize drawView = _drawView;
+
+#define AVATAR_VEW_FRAME CGRectMake(5, 5, 55, 57)
+#define SHOW_DRAW_VEW_FRAME CGRectMake(220, 28, 70, 72)
+
 
 + (id)createCell:(id)delegate
 {
@@ -43,6 +50,10 @@ typedef enum{
     if (cell) {
         ShareImageManager* imageManager = [ShareImageManager defaultManager];
         [cell.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VEW_FRAME]autorelease];
+        [cell addSubview:cell.drawView];
+        [cell.drawView setShowPenHidden:YES];
+        cell.drawView.backgroundColor = [UIColor whiteColor];
     }
     return cell;
 }
@@ -60,7 +71,6 @@ typedef enum{
     
 }
 
-#define AVATAR_VEW_FRAME CGRectMake(5, 5, 55, 57)
 
 - (void)updateTime:(Feed *)feed
 {
@@ -172,6 +182,20 @@ typedef enum{
     
 }
 
+
+- (void)updateDrawView:(Feed *)feed
+{
+
+    [self.drawView cleanAllActions];
+    CGRect normalFrame = DRAW_VEIW_FRAME;
+    CGRect currentFrame = SHOW_DRAW_VEW_FRAME;
+    CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
+    CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
+    
+    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+//    [self.drawView playFromDrawActionIndex:[self.drawView.drawActionList count]];
+    [self.drawView show];
+}
 - (void)setCellInfo:(Feed *)feed
 {
     [self updateDesc:feed];
@@ -179,6 +203,7 @@ typedef enum{
     [self updateUser:feed];
     [self updateGuessDesc:feed];
     [self updateActionButton:feed];
+    [self updateDrawView:feed];
 }
 
 - (void)dealloc {
@@ -187,6 +212,7 @@ typedef enum{
     [userNameLabel release];
     [guessStatLabel release];
     [actionButton release];
+    [_drawView release];
     [super dealloc];
 }
 @end
