@@ -10,8 +10,13 @@
 #import "MessageTotal.h"
 #import "CoreDataUtil.h"
 #import "GameBasic.pb.h"
+#import "LogUtil.h"
+#import "UserManager.h"
 
 @interface MessageTotal()
+
+- (BOOL)deleteMessageTotal:(NSString *)friendUserId;
+- (MessageTotal *)findMessageTotalByFriendUserId:(NSString *)friendUserId userId:(NSString *)userId;
 
 @end
 
@@ -40,9 +45,23 @@ static MessageTotalManager *_messageTotalManager = nil;
                      totalNewMessage:(NSNumber *)totalNewMessage 
                         totalMessage:(NSNumber *)totalMessage
 {
-    [self deleteMessageTotal:friendUserId];
-    
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    MessageTotal *messageTotal = [self findMessageTotalByFriendUserId:friendUserId userId:userId];
+    if (messageTotal) {
+        [messageTotal setUserId:userId];
+        [messageTotal setFriendUserId:friendUserId];
+        [messageTotal setFriendNickName:friendNickName];
+        [messageTotal setFriendAvatar:friendAvatar];
+        [messageTotal setLatestFrom:latestFrom];
+        [messageTotal setLatestTo:latestTo];
+        [messageTotal setLatestDrawData:latestDrawData];
+        [messageTotal setLatestText:latestText];
+        [messageTotal setLatestCreateDate:latestCreateDate];
+        [messageTotal setTotalNewMessage:totalNewMessage];
+        [messageTotal setTotalMessage:totalMessage];
+        return [dataManager save];
+    }
+    
     MessageTotal *newMessageTotal = [dataManager insert:@"MessageTotal"];
     [newMessageTotal setUserId:userId];
     [newMessageTotal setFriendUserId:friendUserId];
@@ -63,6 +82,30 @@ static MessageTotalManager *_messageTotalManager = nil;
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     return [dataManager execute:@"findAllMessageTotals" sortBy:@"latestCreateDate" ascending:NO];
+}
+
+
+- (MessageTotal *)findMessageTotalByFriendUserId:(NSString *)friendUserId userId:(NSString *)userId
+{
+    //TEST
+    NSArray *testArray = [self findAllMessageTotals];
+    for (MessageTotal *message in testArray) {
+        PPDebug(@"%@ %@",message.friendUserId, message.userId);
+    }
+    PPDebug(@"%@",[[UserManager defaultManager] userId]);
+    
+    
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    NSArray *keys = [NSArray arrayWithObjects:@"USER_ID", @"FRIEND_USER_ID", nil];
+    NSArray *values = [NSArray arrayWithObjects:userId, friendUserId, nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    
+    NSArray *array = [dataManager execute:@"findMessageTotalByFriendUserId" keyValues:dic sortBy:@"latestCreateDate" ascending:NO];
+    if ([array count] > 0) {
+        return (MessageTotal *)[array objectAtIndex:0];
+    }else {
+        return nil;
+    }
 }
 
 - (BOOL)deleteMessageTotal:(NSString *)friendUserId
@@ -89,9 +132,20 @@ static MessageTotalManager *_messageTotalManager = nil;
                                      latestTo:pbMessageStat.to 
                                latestDrawData:drawActionListData
                                    latestText:pbMessageStat.text
-                             latestCreateDate:nil //待PBMessageSta增加此字段
+                             latestCreateDate:[NSDate dateWithTimeIntervalSince1970:pbMessageStat.createDate]
                               totalNewMessage:[NSNumber numberWithInt:pbMessageStat.newMessageCount] 
                                  totalMessage:[NSNumber numberWithInt:pbMessageStat.totalMessageCount]];
+}
+
+- (BOOL)readNewMessageWithFriendUserId:(NSString *)friendUserId userId:(NSString *)userId
+{
+    MessageTotal *messageTotal = [self findMessageTotalByFriendUserId:friendUserId userId:userId];
+    if (messageTotal == nil) {
+        return NO;
+    }else {
+        [messageTotal setTotalNewMessage:[NSNumber numberWithInt:0]];
+        return [[CoreDataManager defaultManager] save];
+    }
 }
 
 @end

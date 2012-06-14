@@ -102,7 +102,6 @@
     <fetchRequest name="findAllDeletedFriends" entity="Friend" predicateString="deleteFlag == 1"/>
     <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
-    <fetchRequest name="findAllMessages" entity="ChatMessage"/>
     <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
@@ -110,13 +109,16 @@
     <fetchRequest name="findAllWords" entity="CustomWord"/>
     <fetchRequest name="findFanByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findFollowByFriendUserId" entity="Friend" predicateString="friendUserId == $FRIEND_USER_ID AND type == 1 AND deleteFlag == 0"/>
+    <fetchRequest name="findMessageByMessageId" entity="ChatMessage" predicateString="messageId == $MESSAGE_ID"/>
+    <fetchRequest name="findMessagesByFriend" entity="ChatMessage" predicateString="from == $FRIEND_USER_ID OR to == $FRIEND_USER_ID"/>
+    <fetchRequest name="findMessageTotalByFriendUserId" entity="MessageTotal" predicateString="userId == $USER_ID AND friendUserId == $FRIEND_USER_ID"/>
     <fetchRequest name="findOnlyMyPaints" entity="MyPaint" predicateString="drawByMe == 1"/>
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
     <elements>
+        <element name="ChatMessage" positionX="160" positionY="192" width="128" height="150"/>
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
-        <element name="ChatMessage" positionX="160" positionY="192" width="128" height="150"/>
         <element name="MessageTotal" positionX="160" positionY="192" width="128" height="210"/>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>

@@ -41,20 +41,10 @@
     [super dealloc];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [titleLabel setText:NSLS(@"kChatListTitle")];
-    
     
     //test data
 //    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:[[UserManager defaultManager] userId]
@@ -105,19 +95,22 @@
 //                                                               text:@"问那么多问什么干嘛"  
 //                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
     
-
-    
-    
+    PPDebug(@"ChatListController viewDidLoad");
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
-    PPDebug(@"%d",[dataList count]);
-    
-    [self findAllMessageTotals];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    PPDebug(@"ChatListController viewDidAppear");
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    PPDebug(@"ChatListController viewWillAppear");
+    [self findAllMessageTotals];
     [self hideSelectView:NO];
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -125,8 +118,6 @@
     [self setTitleLabel:nil];
     [self setAddChatButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)findAllMessageTotals
@@ -134,11 +125,11 @@
     [[ChatService defaultService] findAllMessageTotals:self starOffset:0 maxCount:100];
 }
 
-- (void)didFindAllMessageTotals:(NSArray *)totalList
+- (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
 {
     self.dataList = totalList;
+    [dataTableView reloadData];
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
