@@ -57,8 +57,8 @@ static FeedService *_staticFeedService = nil;
                     }
                 }
             }
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:resultCode:)]) {
-                [delegate didGetFeedList:list resultCode:resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:feedListType:resultCode:)]) {
+                [delegate didGetFeedList:list feedListType:feedListType resultCode:resultCode];
             }
             
         });

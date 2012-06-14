@@ -515,3 +515,14 @@
 "kAllFeed" = "All";
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
+
+"kDrawDesc" = "%@ drawed a drawing.";
+"kGuessRightDesc" = "%@ guessed %@'s drawing";
+"kTryGuessDesc" = "%@ tried to guess %@'s drawing";
+
+"kNoGuess" = "No guess";
+"kGuessStat" = "guess %d, correct %d";
+
+"kGetFeedListFail" = "Fetch feed list fail. Please try it again later.";
+
+"kNoFeedTips" = "No feeds";

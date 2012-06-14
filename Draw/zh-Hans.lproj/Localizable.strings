@@ -523,3 +523,13 @@
 "kAllFeed" = "全部";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
+
+
+"kDrawDesc" = "%@ 画了一幅画";
+"kGuessRightDesc" = "%@ 猜对 %@ 的画";
+"kTryGuessDesc" = "%@ 尝试去猜 %@ 的画";
+"kNoGuess" = "还没人猜";
+
+"kGuessStat" = "猜%d中%d";
+"kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
+"kNoFeedTips" = "没有动态";
