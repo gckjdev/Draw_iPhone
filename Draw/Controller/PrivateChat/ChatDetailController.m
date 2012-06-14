@@ -78,6 +78,10 @@
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     PPDebug(@"%d",[dataList count]);
     [self findAllMessages];
+    
+    
+    NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
+    [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 - (void)viewDidUnload
@@ -90,6 +94,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 - (void)findAllMessages
@@ -141,10 +150,16 @@
                                                xScale:IPAD_WIDTH_SCALE 
                                                yScale:IPAD_HEIGHT_SCALE];
     } else {
-        scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:0.6 
+                                               yScale:0.6];
+        //scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
     }
     [showDrawView setDrawActionList:scaleActionList]; 
-    [showDrawView playFromDrawActionIndex:[drawActionList count]-1];
+    [showDrawView setShowPenHidden:YES];
+    [showDrawView setPlaySpeed:0.1];
+    //[showDrawView playFromDrawActionIndex:[drawActionList count]-1];
+    [showDrawView play];
     
     return showDrawView;
 //    UIImage *thumbImage = [showDrawView createImage];
