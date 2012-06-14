@@ -431,7 +431,7 @@
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     
     AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender level:user.level];
-    [aView setAvatarSelected:NO];
+    [aView setAvatarSelected:NO level:user.level];
     [avatarView addSubview:aView];
     [aView release];
     

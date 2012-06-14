@@ -14,8 +14,8 @@ enum {
     UPDATE = 1
 };
 
-#define NORMAL_EXP  10
-#define DRAWER_EXP  15
+#define NORMAL_EXP  60
+#define DRAWER_EXP  60
 
 @class PPViewController;
 
