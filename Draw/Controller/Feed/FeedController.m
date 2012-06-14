@@ -221,10 +221,10 @@
         return myFeedButton.tag;
     }
     if (allFeedButton.selected == YES) {
-        return myFeedButton.tag;
+        return allFeedButton.tag;
     }
     if (hotFeedButton.selected == YES) {
-        return myFeedButton.tag;
+        return hotFeedButton.tag;
     }
     return FeedListTypeAll;
 }

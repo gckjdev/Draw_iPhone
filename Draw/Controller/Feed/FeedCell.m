@@ -12,7 +12,8 @@
 #import "Draw.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
-
+#import "StableView.h"
+#import "ShowDrawView.h"
 typedef enum{
     ActionTypeHidden = 0,
     ActionTypeOneMore = 1,
@@ -25,6 +26,7 @@ typedef enum{
 @synthesize userNameLabel;
 @synthesize timeLabel;
 @synthesize actionButton;
+@synthesize avatarView = _avatarView;
 
 + (id)createCell:(id)delegate
 {
@@ -42,7 +44,6 @@ typedef enum{
         ShareImageManager* imageManager = [ShareImageManager defaultManager];
         [cell.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     }
-    
     return cell;
 }
 
@@ -55,8 +56,11 @@ typedef enum{
 
 + (CGFloat)getCellHeight
 {
-    return 95.0f;
+    return 105.0f;
+    
 }
+
+#define AVATAR_VEW_FRAME CGRectMake(6, 5, 42, 43)
 
 - (void)updateTime:(Feed *)feed
 {
@@ -104,7 +108,9 @@ typedef enum{
 - (void)updateUser:(Feed *)feed
 {
     //avatar
-    
+    [self.avatarView removeFromSuperview];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VEW_FRAME gender:feed.gender level:0] autorelease];
+    [self addSubview:self.avatarView];
     
     //name
     [self.userNameLabel setText:[self userNameForFeed:feed]];

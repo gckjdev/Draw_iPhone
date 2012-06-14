@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
+//#import "StableView.h"
 
 
 @class Feed;
+@class ShowDrawView;
+@class AvatarView;
+
 @protocol FeedCellDelegate <NSObject>
 
 @optional
@@ -22,13 +26,16 @@
 
 @interface FeedCell : PPTableViewCell
 {
-    
+    AvatarView *_avatarView;
 }
 @property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *actionButton;
+
+@property (retain, nonatomic) AvatarView *avatarView;
+
 - (IBAction)clickActionButton:(id)sender;
 - (void)setCellInfo:(Feed *)feed;
 @end
