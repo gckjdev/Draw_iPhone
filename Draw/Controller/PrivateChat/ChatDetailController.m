@@ -17,6 +17,7 @@
 #import "GameBasic.pb.h"
 #import "ShowDrawView.h"
 #import "MessageTotalManager.h"
+#import "ChatMessageUtil.h"
 
 @interface ChatDetailController ()
 
@@ -88,8 +89,10 @@
 
 - (void)scrollToBottom
 {
-    NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
-    [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    if ([dataList count]>0) {
+        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
+        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
 }
 
 - (void)viewDidUnload
@@ -221,7 +224,7 @@
         
     }else {
         //设置涂鸦
-        NSArray* drawActionList = [[ChatMessageManager defaultManager] unarchiveDataToDrawActionList:message.drawData];
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
         CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
         ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
         CGFloat multiple = thumbImageView.frame.size.height/thumbImageView.frame.size.width;

@@ -12,6 +12,7 @@
 #import "GameBasic.pb.h"
 #import "LogUtil.h"
 #import "UserManager.h"
+#import "ChatMessageUtil.h"
 
 @interface MessageTotal()
 
@@ -123,7 +124,7 @@ static MessageTotalManager *_messageTotalManager = nil;
 
 - (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat
 {
-    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:pbMessageStat.drawDataList];
+    NSData* drawActionListData = [ChatMessageUtil archiveDataFromDrawActionList:pbMessageStat.drawDataList];
     return [self createMessageTotalWithUserId:pbMessageStat.userId 
                                  friendUserId:pbMessageStat.friendUserId
                                friendNickName:pbMessageStat.friendNickName

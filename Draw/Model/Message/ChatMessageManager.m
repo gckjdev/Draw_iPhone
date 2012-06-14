@@ -12,6 +12,7 @@
 #import "GameBasic.pb.h"
 #import "DrawAction.h"
 #import "UserManager.h"
+#import "ChatMessageUtil.h"
 
 @interface ChatMessageManager ()
 
@@ -80,22 +81,6 @@ static ChatMessageManager *_chatMessageManager = nil;
     return  (ChatMessage *)[dataManager execute:@"findMessageByMessageId" forKey:@"MESSAGE_ID" value:messageId];
 }
 
-//压缩
-- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList
-{    
-    NSData* reData = [NSKeyedArchiver archivedDataWithRootObject:aDrawActionList];
-    return reData;
-}
-
-//解压
-- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aData
-{
-    NSData* temp = [NSKeyedUnarchiver unarchiveObjectWithData:aData];
-    NSArray* drawDataList = (NSArray*)temp;
-    return drawDataList;
-}
-
-
 - (BOOL)createByPBMessage:(PBMessage *)pbMessage
 {
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
@@ -104,7 +89,7 @@ static ChatMessageManager *_chatMessageManager = nil;
         [mutableArray addObject:drawAction];
         [drawAction release];
     }
-    NSData *data = [self archiveDataFromDrawActionList:mutableArray];
+    NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
     [mutableArray release];
     
     return  [self createMessageWithMessageId:pbMessage.messageId 

@@ -12,6 +12,8 @@
 #import "MessageTotal.h"
 #import "ShareImageManager.h"
 #import "PPApplication.h"
+#import "ShowDrawView.h"
+#import "DrawAction.h"
 
 @implementation ChatCell
 @synthesize avatarImage;
@@ -82,7 +84,6 @@
     }else {
         self.textLabel.hidden = YES;
         self.graffiti.hidden = NO;
-        // TO DO
     }
     
     //set messageNumberLabel
@@ -93,7 +94,6 @@
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
     self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
-    
 }
 
 
