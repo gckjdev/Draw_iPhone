@@ -102,6 +102,7 @@ ItemShopController *staticItemController = nil;
     else{
         self.freeGetCoinsButton.hidden = YES;
     }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -116,6 +117,15 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
+
+    if ([LocaleUtils isChina] == YES || 
+        [LocaleUtils isOtherChina] == YES){
+        self.gotoCoinShopButton.hidden = YES;
+    }
+    else{
+        self.gotoCoinShopButton.hidden = NO;
+    }
+    
     _coinController = nil;
     
 }
@@ -205,10 +215,17 @@ ItemShopController *staticItemController = nil;
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_NOT_BUY_COIN_TAG) {
-//        [dialog removeFromSuperview];
     }else{
-        [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
-        _coinController = [CoinShopController instance];
+        if ([ConfigManager isInReviewVersion] == NO && 
+            ([LocaleUtils isChina] == YES || 
+             [LocaleUtils isOtherChina] == YES)){
+            [self showYoumiWall];            
+        }
+        else{
+            [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+            _coinController = [CoinShopController instance];
+        }
+        
     }
 }
 
