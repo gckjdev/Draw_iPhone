@@ -515,3 +515,10 @@
 "kGuessDraw" = "猜畫中";
 "kOneMore" = "再來一副";
 "kGuessUserDraw" = "猜％的畫中";
+
+"kFeedTitle" = "動態";
+"kAllFeed" = "全部";
+"kHotFeed" = "熱榜";
+"kMyFeed" = "我的";
+
+
