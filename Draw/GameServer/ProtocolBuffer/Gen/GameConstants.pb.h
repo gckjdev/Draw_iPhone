@@ -51,6 +51,7 @@ typedef enum {
   GameCommandTypeLocalStartGame = 307,
   GameCommandTypeLocalWordPicked = 308,
   GameCommandTypeLocalAllUserGuess = 309,
+  GameCommandTypeLocalDrawUserChat = 310,
 } GameCommandType;
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);

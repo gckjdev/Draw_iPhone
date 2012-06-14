@@ -37,7 +37,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* roomName;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
-@property (retain) NSString* userLevel;
+@property int32_t userLevel;
 @end
 
 @implementation JoinGameRequest
@@ -162,7 +162,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.roomName = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
-  self.userLevel = nil;
   [super dealloc];
 }
 - (id) init {
@@ -180,7 +179,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.roomId = @"";
     self.roomName = @"";
     self.location = @"";
-    self.userLevel = @"";
+    self.userLevel = 0;
   }
   return self;
 }
@@ -274,7 +273,7 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
     [output writeString:15 value:self.location];
   }
   if (self.hasUserLevel) {
-    [output writeString:16 value:self.userLevel];
+    [output writeInt32:16 value:self.userLevel];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -336,7 +335,7 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
     size += computeStringSize(15, self.location);
   }
   if (self.hasUserLevel) {
-    size += computeStringSize(16, self.userLevel);
+    size += computeInt32Size(16, self.userLevel);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -550,8 +549,8 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
         [self setLocation:[input readString]];
         break;
       }
-      case 130: {
-        [self setUserLevel:[input readString]];
+      case 128: {
+        [self setUserLevel:[input readInt32]];
         break;
       }
     }
@@ -828,17 +827,17 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (BOOL) hasUserLevel {
   return result.hasUserLevel;
 }
-- (NSString*) userLevel {
+- (int32_t) userLevel {
   return result.userLevel;
 }
-- (JoinGameRequest_Builder*) setUserLevel:(NSString*) value {
+- (JoinGameRequest_Builder*) setUserLevel:(int32_t) value {
   result.hasUserLevel = YES;
   result.userLevel = value;
   return self;
 }
 - (JoinGameRequest_Builder*) clearUserLevel {
   result.hasUserLevel = NO;
-  result.userLevel = @"";
+  result.userLevel = 0;
   return self;
 }
 @end
@@ -2534,7 +2533,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
 @property BOOL userGender;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
-@property (retain) NSString* userLevel;
+@property int32_t userLevel;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
@@ -2753,7 +2752,6 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
   self.userAvatar = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
-  self.userLevel = nil;
   self.mutablePointsList = nil;
   self.word = nil;
   self.guessWord = nil;
@@ -2774,7 +2772,7 @@ static SendDrawDataResponse* defaultSendDrawDataResponseInstance = nil;
     self.userAvatar = @"";
     self.userGender = NO;
     self.location = @"";
-    self.userLevel = @"";
+    self.userLevel = 0;
     self.width = 0;
     self.color = 0;
     self.penType = 0;
@@ -2868,7 +2866,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     [output writeString:13 value:self.location];
   }
   if (self.hasUserLevel) {
-    [output writeString:14 value:self.userLevel];
+    [output writeInt32:14 value:self.userLevel];
   }
   if (self.mutablePointsList.count > 0) {
     [output writeRawVarint32:170];
@@ -2965,7 +2963,7 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     size += computeStringSize(13, self.location);
   }
   if (self.hasUserLevel) {
-    size += computeStringSize(14, self.userLevel);
+    size += computeInt32Size(14, self.userLevel);
   }
   {
     int32_t dataSize = 0;
@@ -3264,8 +3262,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
         [self setLocation:[input readString]];
         break;
       }
-      case 114: {
-        [self setUserLevel:[input readString]];
+      case 112: {
+        [self setUserLevel:[input readInt32]];
         break;
       }
       case 170: {
@@ -3532,17 +3530,17 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (BOOL) hasUserLevel {
   return result.hasUserLevel;
 }
-- (NSString*) userLevel {
+- (int32_t) userLevel {
   return result.userLevel;
 }
-- (GeneralNotification_Builder*) setUserLevel:(NSString*) value {
+- (GeneralNotification_Builder*) setUserLevel:(int32_t) value {
   result.hasUserLevel = YES;
   result.userLevel = value;
   return self;
 }
 - (GeneralNotification_Builder*) clearUserLevel {
   result.hasUserLevel = NO;
-  result.userLevel = @"";
+  result.userLevel = 0;
   return self;
 }
 - (NSArray*) pointsList {

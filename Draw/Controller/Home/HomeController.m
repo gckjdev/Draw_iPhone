@@ -44,6 +44,7 @@
 #import "FeedController.h"
 
 #import "ChatListController.h"
+#import "LevelService.h"
 
 @interface HomeController()
 
@@ -221,7 +222,8 @@
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
                                             gender:[_userManager isUserMale]
-                                          location:[_userManager location]                                    
+                                          location:[_userManager location]  
+                                         userLevel:[[LevelService defaultService] level]
                                     guessDiffLevel:[ConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
     }
@@ -344,7 +346,8 @@
                                           nickName:nickName
                                             avatar:[_userManager avatarURL]
                                             gender:[_userManager isUserMale]
-                                          location:[_userManager location]                                    
+                                          location:[_userManager location] 
+                                         userLevel:[[LevelService defaultService] level]
                                     guessDiffLevel:[ConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
     }
@@ -380,14 +383,14 @@
         port = [server.port intValue];            
     }
 
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];    
 
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];   
+    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DrawGameService defaultService] setServerPort:8080];   
 
 
 //    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];

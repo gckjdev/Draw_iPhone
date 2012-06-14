@@ -61,6 +61,7 @@
     int  _guessDiffLevel;
     NSString *_roomId;
     NSString *_location;
+    int      _userLevel;
     NSArray  *_snsUserData;
 
 //    int _sessionId;
@@ -114,6 +115,7 @@
           avatar:(NSString*)avatar 
           gender:(BOOL)gender
         location:(NSString*)location
+       userLevel:(int)userLevel
   guessDiffLevel:(int)guessDiffLevel
      snsUserData:(NSArray*)snsUserData;
 
@@ -142,6 +144,7 @@
                 avatar:(NSString*)avatar 
                 gender:(BOOL)gender
               location:(NSString*)location
+             userLevel:(int)userLevel
         guessDiffLevel:(int)guessDiffLevel
            snsUserData:(NSArray*)snsUserData;
 

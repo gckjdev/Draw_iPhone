@@ -69,6 +69,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalStartGame:
     case GameCommandTypeLocalWordPicked:
     case GameCommandTypeLocalAllUserGuess:
+    case GameCommandTypeLocalDrawUserChat:
       return YES;
     default:
       return NO;

@@ -20,6 +20,7 @@
             avatar:(NSString*)avatar 
             gender:(BOOL)gender
           location:(NSString*)location
+         userLevel:(int)userLevel
        snsUserData:(NSArray*)snsUserData;
 
 - (void)removeUser:(NSString*)userId;
@@ -104,6 +105,7 @@
 - (void)updateByGameNotification:(GeneralNotification*)notification
 {
     if ([[notification currentPlayUserId] length] > 0){
+        PPDebug(@"set current play user to %@", [notification currentPlayUserId]);
         [self.currentTurn setLastPlayUserId:self.currentTurn.currentPlayUserId];
         [self.currentTurn setCurrentPlayUserId:[notification currentPlayUserId]];
     }
@@ -118,6 +120,7 @@
                   avatar:[notification userAvatar]
                   gender:[notification userGender]
                 location:[notification location]
+               userLevel:[notification userLevel]
              snsUserData:[notification snsUsersList]];
     }
     
@@ -181,6 +184,7 @@
             avatar:(NSString*)avatar 
             gender:(BOOL)gender
           location:(NSString*)location
+         userLevel:(int)userLevel
        snsUserData:(NSArray*)snsUserData
 {
     for (GameSessionUser* user in _userList){
@@ -197,6 +201,7 @@
     [user setGender:gender];
     [user setLocation:location];
     [user setSnsUserData:snsUserData];
+    [user setLevel:userLevel];
     [_userList addObject:user];
     [user release];
     
