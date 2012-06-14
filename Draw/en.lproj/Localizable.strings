@@ -510,3 +510,8 @@
 "kOneMore" = "One More";
 
 "kGuessUserDraw" = "Guessing %@'s draw";
+
+"kFeedTitle" = "Feed";
+"kAllFeed" = "All";
+"kHotFeed" = "Hot";
+"kMyFeed" = "My";

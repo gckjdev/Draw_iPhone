@@ -518,3 +518,8 @@
 "kOneMore" = "再来一副";
 
 "kGuessUserDraw" = "猜%@的画中";
+
+"kFeedTitle" = "动态";
+"kAllFeed" = "全部";
+"kHotFeed" = "热榜";
+"kMyFeed" = "我的";

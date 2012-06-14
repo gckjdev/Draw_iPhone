@@ -85,6 +85,10 @@
 - (UIImage *)myFoucsSelectedImage;
 - (UIImage *)foucsMeImage;
 - (UIImage *)foucsMeSelectedImage;
+- (UIImage *)middleTabImage;
+- (UIImage *)middleTabSelectedImage;
+
+
 - (UIImage *)normalButtonImage;
 - (UIImage *)sinaWeiboImage;
 - (UIImage *)qqWeiboImage;
