@@ -533,3 +533,7 @@
 "kGuessStat" = "猜%d中%d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "没有动态";
+
+
+"kIGuessAction" = "我来猜猜";
+"kOneMoreAction" = "再来一副";

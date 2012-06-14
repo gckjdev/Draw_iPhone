@@ -530,3 +530,6 @@
 
 "kGetFeedListFail" = "獲取動態清單失敗，請稍後再試。";
 "kNoFeedTips" = "沒有動態";
+
+"kIGuessAction" = "我來猜猜";
+"kOneMoreAction" = "再來一副";

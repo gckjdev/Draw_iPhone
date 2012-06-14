@@ -526,3 +526,6 @@
 "kGetFeedListFail" = "Fetch feed list fail. Please try it again later.";
 
 "kNoFeedTips" = "No feeds";
+
+"kIGuessAction" = "Guess";
+"kOneMoreAction" = "One More";

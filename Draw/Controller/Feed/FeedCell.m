@@ -11,12 +11,42 @@
 #import "Feed.h"
 #import "Draw.h"
 #import "UserManager.h"
+#import "ShareImageManager.h"
+
+typedef enum{
+    ActionTypeHidden = 0,
+    ActionTypeOneMore = 1,
+    ActionTypeGuess = 2,
+}ActionType;
 
 @implementation FeedCell
 @synthesize guessStatLabel;
 @synthesize descLabel;
 @synthesize userNameLabel;
 @synthesize timeLabel;
+@synthesize actionButton;
+
++ (id)createCell:(id)delegate
+{
+    NSString* cellId = [self getCellIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
+        return nil;
+    }
+    FeedCell *cell = ((FeedCell*)[topLevelObjects objectAtIndex:0]);
+    
+    cell.delegate = delegate;
+    
+    if (cell) {
+        ShareImageManager* imageManager = [ShareImageManager defaultManager];
+        [cell.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    }
+    
+    return cell;
+}
+
+
 
 + (NSString*)getCellIdentifier
 {
@@ -93,11 +123,56 @@
 }
 
 
+- (IBAction)clickActionButton:(id)sender {
+    //
+    
+    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
+        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
+    }
+}
+
+
+- (ActionType)actionTypeForFeed:(Feed *)feed
+{
+    UserManager *userManager = [UserManager defaultManager];
+    if ([userManager isMe:feed.userId]) {
+        return ActionTypeHidden;
+    }
+    if (feed.feedType == FeedTypeDraw) {
+        return ActionTypeGuess;
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        if ([userManager isMe:feed.drawData.userId]) {
+            return ActionTypeOneMore;
+        }else{
+            return ActionTypeGuess;
+        }
+    }
+    return ActionTypeHidden;
+}
+
+- (void)updateActionButton:(Feed *)feed
+{
+    self.actionButton.hidden = NO;
+    ActionType type = [self actionTypeForFeed:feed];
+    if (type == ActionTypeGuess) {
+        [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
+    }else if(type == ActionTypeOneMore)
+    {
+        [self.actionButton setTitle:NSLS(@"kOneMoreAction") forState:UIControlStateNormal];        
+    }else{
+        self.actionButton.hidden = YES;
+    }
+    
+}
+
 - (void)setCellInfo:(Feed *)feed
 {
     [self updateDesc:feed];
     [self updateTime:feed];
     [self updateUser:feed];
+    [self updateGuessDesc:feed];
+    [self updateActionButton:feed];
 }
 
 - (void)dealloc {
@@ -105,6 +180,7 @@
     [descLabel release];
     [userNameLabel release];
     [guessStatLabel release];
+    [actionButton release];
     [super dealloc];
 }
 @end

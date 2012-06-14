@@ -28,5 +28,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UIButton *actionButton;
+- (IBAction)clickActionButton:(id)sender;
 - (void)setCellInfo:(Feed *)feed;
 @end
