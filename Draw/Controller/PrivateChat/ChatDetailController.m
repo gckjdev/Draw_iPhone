@@ -16,6 +16,7 @@
 #import "DrawAction.h"
 #import "GameBasic.pb.h"
 #import "ShowDrawView.h"
+#import "MessageTotalManager.h"
 
 @interface ChatDetailController ()
 
@@ -24,6 +25,10 @@
 @property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
 
 - (IBAction)clickBack:(id)sender;
+- (void)scrollToBottom;
+- (void)findAllMessages;
+- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
+- (UIView *)createBubbleView:(ChatMessage *)message;
 
 @end
 
@@ -73,13 +78,16 @@
     
     self.titleLabel.text = self.friendNickname;
     
-
-    PPDebug(@"%@",_friendUserId);
+    [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
+                                                                  userId:[[UserManager defaultManager] userId]];
+    
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-    PPDebug(@"%d",[dataList count]);
     [self findAllMessages];
-    
-    
+    [self scrollToBottom];
+}
+
+- (void)scrollToBottom
+{
     NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
     [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
@@ -98,7 +106,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
+    PPDebug(@"ChatDetailController viewDidAppear");
 }
 
 - (void)findAllMessages
@@ -106,66 +114,49 @@
     [[ChatService defaultService] findAllMessages:self friendUserId:_friendUserId starOffset:0 maxCount:100];
 }
 
-- (void)didFindAllMessagesByFriendUserId:(NSArray *)totalList
+- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode
 {
-    self.dataList = totalList;
+    if (resultCode == 0) {
+        [[ChatService defaultService] sendHasReadMessage:nil friendUserId:_friendUserId];
+    }
+    self.dataList = list;
     [dataTableView reloadData];
 }
 
 - (void)didSendMessage:(int)resultCode
 {
+    [inputTextField resignFirstResponder];
+    
     if (resultCode == 0) {
         [inputTextField setText:@""];
-        //to do
+        self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
+        [dataTableView reloadData];
     } else {
         [self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
     }
-    [inputTextField resignFirstResponder];
-    
-    PPDebug(@"%d",[dataList count]);
-    
-    self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-    [dataTableView reloadData];
 }
 
-//- (NSInteger)linesWithString:(NSString *)str contentSize:(CGSize)size withFont:(UIFont *)font {
-//    
-//    CGSize singleLineSize = [str sizeWithFont:font forWidth:size.width lineBreakMode:UILineBreakModeWordWrap];
-//    CGSize multLineSize = [str sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-//    
-//    NSInteger lines = (NSInteger)ceil(multLineSize.height / singleLineSize.height);
-//    
-//    
-//    return lines;
-//}
 
-
-- (ShowDrawView *)createThumbImageBy:(NSArray *)drawActionList
+- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
 {
     ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    //线条的缩放
+    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VEIW_FRAME.size.width, scale * DRAW_VEIW_FRAME.size.height);
     NSMutableArray *scaleActionList = nil;
     if ([DeviceDetection isIPAD]) {
         scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:IPAD_WIDTH_SCALE 
-                                               yScale:IPAD_HEIGHT_SCALE];
+                                               xScale:IPAD_WIDTH_SCALE*scale 
+                                               yScale:IPAD_HEIGHT_SCALE*scale];
     } else {
         scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:0.6 
-                                               yScale:0.6];
-        //scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+                                               xScale:scale 
+                                               yScale:scale];
     }
     [showDrawView setDrawActionList:scaleActionList]; 
     [showDrawView setShowPenHidden:YES];
-    [showDrawView setPlaySpeed:0.1];
-    //[showDrawView playFromDrawActionIndex:[drawActionList count]-1];
+    [showDrawView setPlaySpeed:0.02];
     [showDrawView play];
     
     return showDrawView;
-//    UIImage *thumbImage = [showDrawView createImage];
-//    [showDrawView release];
-//    
-//    return thumbImage;
 }
 
 
@@ -178,23 +169,24 @@
 #define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
 #define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(10))
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(10):(5))
-
-#define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(400.0):(200.0))
-#define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(16):(8))
-#define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(20):(10))
-
+#define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
+#define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
+#define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
 /*
  TEXT_WIDTH_MAX 是消息的最大长度
  TEXT_HEIGHT_MAX  是消息的最大高度
  TEXT_FONT_SIZE  是字体
  SPACE_Y  是上一个气泡图与下一个的距离
  SCREEN_WIDTH    是屏幕宽度
- TEXTVIEW_BORDER_X  是TextView的文字与左或右边界的宽度
- TEXTVIEW_BORDER_Y  是TextView的文字与上或下边界的宽度
+ TEXTVIEW_BORDER_X  是TextView的文字与左或右边界的空隙
+ TEXTVIEW_BORDER_Y  是TextView的文字与上或下边界的空隙
  BUBBLE_TIP_WIDTH   是气泡图尖角的宽度
  BUBBLE_NOT_TIP_WIDTH 是气泡图非尖角的宽度
+ IMAGE_WIDTH_MAX    是图片的最大宽度
+ IMAGE_BORDER_X 是图片与气泡图边界X方向的空隙
+ IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
  */
-- (UIView *)bubbleView:(ChatMessage *)message
+- (UIView *)createBubbleView:(ChatMessage *)message
 {
     UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	returnView.backgroundColor = [UIColor clearColor];
@@ -204,11 +196,9 @@
 	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
     bubbleImageView.backgroundColor =[UIColor clearColor];
     
-    
     if ([message.text length] > 0) {
-        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        
         //string的大小
+        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
         //设置文本
@@ -224,53 +214,40 @@
         contentTextView.font = font;
         contentTextView.text = message.text;
         
-        
         //设置气泡的frame
         bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
-        
         [bubbleImageView addSubview:contentTextView];
         [contentTextView release];
         
     }else {
-        //to do
+        //设置涂鸦
         NSArray* drawActionList = [[ChatMessageManager defaultManager] unarchiveDataToDrawActionList:message.drawData];
-        
-        //设置图片
-        //UIImage *thumbImage = [self createThumbImageBy:drawActionList];
-        ShowDrawView *thumbImageView = [self createThumbImageBy:drawActionList];
-        
-        //UIImageView *thumbImageView = [[UIImageView alloc] initWithImage:thumbImage];
-        CGRect thumbFrame = thumbImageView.frame;
-        
+        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
+        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
+        CGFloat multiple = thumbImageView.frame.size.height/thumbImageView.frame.size.width;
         if (fromSelf){
-            thumbFrame = CGRectMake(BUBBLE_NOT_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, IMAGE_WIDTH_MAX );
+            thumbImageView.frame = CGRectMake(BUBBLE_NOT_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple * IMAGE_WIDTH_MAX );
         }else {
-            thumbFrame = CGRectMake(BUBBLE_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, IMAGE_WIDTH_MAX);
+            thumbImageView.frame = CGRectMake(BUBBLE_TIP_WIDTH + IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
         }
-        thumbImageView.frame = thumbFrame;
         
         //设置气泡的frame
-        bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH + 2*IMAGE_BORDER_X, thumbImageView.frame.size.width + 2*IMAGE_BORDER_Y);
-        
-        [bubbleImageView addSubview:thumbImageView];
-        //[thumbImageView release];
+        bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH + 2*IMAGE_BORDER_X, thumbImageView.frame.size.height + 2*IMAGE_BORDER_Y);
+        [bubbleImageView addSubview:thumbImageView];;
     }
     
     
     //设置returnView的frame
-    if(fromSelf)
+    if (fromSelf) {
         returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
-    else
+    }else{
         returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
+    }
     
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
-    
     return returnView;
 }
-
-
-
 
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -286,7 +263,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self bubbleView:message];
+    UIView *view = [self createBubbleView:message];
     return view.frame.size.height;
 }
 
@@ -296,10 +273,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self bubbleView:message];
+    UIView *view = [self createBubbleView:message];
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.contentView addSubview:view];
@@ -342,20 +320,10 @@
 }
 
 - (IBAction)clickSendButton:(id)sender {
-    
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
                                          text:inputTextField.text 
                                drawActionList:nil];
-    
-    //test data
-//    [[ChatMessageManager defaultManager] createMessageWithMessageId:@"999" 
-//                                                               from:[[UserManager defaultManager] userId]
-//                                                                 to:@"456" 
-//                                                           drawData:nil 
-//                                                         createDate:[NSDate date] 
-//                                                               text:inputTextField.text  
-//                                                             status:[NSNumber numberWithInt:MessageStatusNotRead]];
 }
 
 
