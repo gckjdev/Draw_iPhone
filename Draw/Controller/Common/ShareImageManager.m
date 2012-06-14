@@ -298,6 +298,16 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"foucsme_selected.png"];
 }
 
+- (UIImage *)middleTabImage
+{
+    return [UIImage strectchableImageName:@"middle_tab.png"];
+}
+- (UIImage *)middleTabSelectedImage
+{
+    return [UIImage strectchableImageName:@"middle_tab_selected.png"];
+}
+
+
 - (UIImage *)normalButtonImage
 {
     return [UIImage strectchableImageName:@"normal_button.png"];

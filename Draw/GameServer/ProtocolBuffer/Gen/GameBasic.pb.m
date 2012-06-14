@@ -3396,6 +3396,7 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 @property (retain) NSMutableArray* mutableGuessWordsList;
 @property (retain) NSString* comment;
 @property int32_t matchTimes;
+@property int32_t correctTimes;
 @end
 
 @implementation PBFeed
@@ -3502,6 +3503,13 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   hasMatchTimes_ = !!value;
 }
 @synthesize matchTimes;
+- (BOOL) hasCorrectTimes {
+  return !!hasCorrectTimes_;
+}
+- (void) setHasCorrectTimes:(BOOL) value {
+  hasCorrectTimes_ = !!value;
+}
+@synthesize correctTimes;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -3528,6 +3536,7 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
     self.score = 0;
     self.comment = @"";
     self.matchTimes = 0;
+    self.correctTimes = 0;
   }
   return self;
 }
@@ -3613,6 +3622,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasMatchTimes) {
     [output writeInt32:61 value:self.matchTimes];
   }
+  if (self.hasCorrectTimes) {
+    [output writeInt32:62 value:self.correctTimes];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3668,6 +3680,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasMatchTimes) {
     size += computeInt32Size(61, self.matchTimes);
+  }
+  if (self.hasCorrectTimes) {
+    size += computeInt32Size(62, self.correctTimes);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3789,6 +3804,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasMatchTimes) {
     [self setMatchTimes:other.matchTimes];
   }
+  if (other.hasCorrectTimes) {
+    [self setCorrectTimes:other.correctTimes];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3869,6 +3887,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 488: {
         [self setMatchTimes:[input readInt32]];
+        break;
+      }
+      case 496: {
+        [self setCorrectTimes:[input readInt32]];
         break;
       }
     }
@@ -4125,6 +4147,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearMatchTimes {
   result.hasMatchTimes = NO;
   result.matchTimes = 0;
+  return self;
+}
+- (BOOL) hasCorrectTimes {
+  return result.hasCorrectTimes;
+}
+- (int32_t) correctTimes {
+  return result.correctTimes;
+}
+- (PBFeed_Builder*) setCorrectTimes:(int32_t) value {
+  result.hasCorrectTimes = YES;
+  result.correctTimes = value;
+  return self;
+}
+- (PBFeed_Builder*) clearCorrectTimes {
+  result.hasCorrectTimes = NO;
+  result.correctTimes = 0;
   return self;
 }
 @end

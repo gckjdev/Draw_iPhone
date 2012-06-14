@@ -24,6 +24,9 @@
 {
     
 }
-
+@property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
+@property (retain, nonatomic) IBOutlet UILabel *descLabel;
+@property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 - (void)setCellInfo:(Feed *)feed;
 @end

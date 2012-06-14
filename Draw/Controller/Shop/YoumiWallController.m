@@ -303,7 +303,7 @@
         NSDictionary* order = [orderList objectAtIndex:i];
         NSString* appName = [order objectForKey:kOneAccountRecordNameOpenKey];
         NSNumber* earnPoints = [order objectForKey:kOneAccountRecordPoinstsOpenKey];
-        str = [str stringByAppendingFormat:@"下载[%@]获取了%d金币;", appName, [earnPoints intValue]];
+        str = [str stringByAppendingFormat:@"成功通过使用应用[%@]获取了%d金币;", appName, [earnPoints intValue]];
     }
     
     if ([str length] == 0){

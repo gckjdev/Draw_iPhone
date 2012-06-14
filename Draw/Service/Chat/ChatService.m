@@ -138,6 +138,17 @@ static ChatService *_chatService = nil;
                                                                  text:text
                                                                  data:data];
         
+        NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+        NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+        
+        [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
+                                                                   from:userId 
+                                                                     to:friendUserId 
+                                                               drawData:dataForSave
+                                                             createDate:[NSDate date] 
+                                                                   text:text 
+                                                                 status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){

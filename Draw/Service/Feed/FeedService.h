@@ -12,7 +12,7 @@
 @protocol FeedServiceDelegate <NSObject>
 
 @optional
-- (void)didGetFeedList:(NSArray *)feedList resultCode:(NSInteger)resultCode;
+- (void)didGetFeedList:(NSArray *)feedList feedListType:(FeedListType)type resultCode:(NSInteger)resultCode;
 
 @end
 
