@@ -46,6 +46,10 @@
     [super viewDidLoad];
     [titleLabel setText:NSLS(@"kChatListTitle")];
     
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [addChatButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
+    
     //test data
 //    [[MessageTotalManager defaultManager] createMessageTotalWithUserId:[[UserManager defaultManager] userId]
 //                                                          friendUserId:@"123" 
@@ -169,7 +173,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)clickSelectFriend:(id)sender {
+- (IBAction)clickAddChatButton:(id)sender {
     if (_selectChatFriendController == nil) {
         SelectChatFriendController *scfc = [[SelectChatFriendController alloc] init];
         scfc.delegate = self;

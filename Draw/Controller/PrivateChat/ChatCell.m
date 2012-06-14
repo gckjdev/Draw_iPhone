@@ -14,6 +14,7 @@
 #import "PPApplication.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
+#import "ChatMessageUtil.h"
 
 @implementation ChatCell
 @synthesize avatarImage;
@@ -63,6 +64,27 @@
     }
 }
 
+- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
+{
+    ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
+    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VEIW_FRAME.size.width, scale * DRAW_VEIW_FRAME.size.height);
+    NSMutableArray *scaleActionList = nil;
+    if ([DeviceDetection isIPAD]) {
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:IPAD_WIDTH_SCALE*scale 
+                                               yScale:IPAD_HEIGHT_SCALE*scale];
+    } else {
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:scale 
+                                               yScale:scale];
+    }
+    [showDrawView setDrawActionList:scaleActionList]; 
+    [showDrawView setShowPenHidden:YES];
+    
+    
+    return showDrawView;
+}
+
 - (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
 {
     //set avatar
@@ -84,6 +106,12 @@
     }else {
         self.textLabel.hidden = YES;
         self.graffiti.hidden = NO;
+        
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:messageTotal.latestDrawData];
+        CGFloat scale = graffiti.frame.size.height / DRAW_VEIW_FRAME.size.height;
+        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
+        [graffiti addSubview:thumbImageView];
+        [thumbImageView play];
     }
     
     //set messageNumberLabel

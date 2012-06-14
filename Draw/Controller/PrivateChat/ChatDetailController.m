@@ -30,6 +30,7 @@
 - (void)findAllMessages;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
 - (UIView *)createBubbleView:(ChatMessage *)message;
+- (void)downInputView;
 
 @end
 
@@ -38,7 +39,7 @@
 @synthesize titleLabel;
 @synthesize graffitiButton;
 @synthesize inputView;
-@synthesize inputTextField;
+@synthesize inputTextView;
 @synthesize sendButton;
 @synthesize friendUserId = _friendUserId;
 @synthesize friendNickname = _friendNickname;
@@ -51,8 +52,8 @@
     PPRelease(titleLabel);
     PPRelease(graffitiButton);
     PPRelease(sendButton);
-    PPRelease(inputTextField);
     PPRelease(inputView);
+    [inputTextView release];
     [super dealloc];
 }
 
@@ -100,11 +101,9 @@
     [self setTitleLabel:nil];
     [self setGraffitiButton:nil];
     [self setSendButton:nil];
-    [self setInputTextField:nil];
     [self setInputView:nil];
+    [self setInputTextView:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -128,10 +127,10 @@
 
 - (void)didSendMessage:(int)resultCode
 {
-    [inputTextField resignFirstResponder];
+    [inputTextView resignFirstResponder];
     
     if (resultCode == 0) {
-        [inputTextField setText:@""];
+        [inputTextView setText:@""];
         self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
         [dataTableView reloadData];
     } else {
@@ -156,8 +155,7 @@
     }
     [showDrawView setDrawActionList:scaleActionList]; 
     [showDrawView setShowPenHidden:YES];
-    [showDrawView setPlaySpeed:0.02];
-    [showDrawView play];
+    [showDrawView show];
     
     return showDrawView;
 }
@@ -212,7 +210,7 @@
             contentTextViewFrame = CGRectMake(BUBBLE_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+ 2*TEXTVIEW_BORDER_Y);
         }
         UITextView *contentTextView = [[UITextView alloc] initWithFrame:contentTextViewFrame];
-        contentTextView.delegate = self;
+        //contentTextView.delegate = self;
         contentTextView.backgroundColor = [UIColor clearColor];
         contentTextView.font = font;
         contentTextView.text = message.text;
@@ -250,12 +248,6 @@
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
     return returnView;
-}
-
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -325,13 +317,13 @@
 - (IBAction)clickSendButton:(id)sender {
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
-                                         text:inputTextField.text 
+                                         text:inputTextView.text 
                                drawActionList:nil];
 }
 
 
 - (void)handleSingleTapFrom:(UITapGestureRecognizer*)recognizer {
-    [inputTextField resignFirstResponder];
+    [inputTextView resignFirstResponder];
 }
 
 
@@ -341,18 +333,14 @@
     CGRect frame = CGRectMake(0, 460 - keyboardRect.size.height - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:0.1];
     inputView.frame = frame;
     [UIImageView commitAnimations]; 
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification
 {
-    CGRect frame = CGRectMake(0, 460 - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
-    inputView.frame = frame;
-    [UIImageView commitAnimations]; 
+    [self downInputView];
 }
 
 
@@ -370,6 +358,46 @@
                                  friendUserId:_friendUserId 
                                          text:nil 
                                drawActionList:drawActionList];
+}
+
+#pragma mark - custom methods
+- (void)downInputView
+{
+    CGRect frame = CGRectMake(0, 460 - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    inputView.frame = frame;
+    [UIImageView commitAnimations];
+}
+
+#pragma mark - UITextViewDelegate
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+//{
+//    return YES;
+//}
+
+#define INPUT_TEXT_FONT 12
+#define TEXTTVIEW_MIN_HEIGHT 31
+- (void)textViewDidChange:(UITextView *)textView
+{
+    UIFont *font = [UIFont systemFontOfSize:INPUT_TEXT_FONT];
+    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(200, 140) lineBreakMode:UILineBreakModeWordWrap];
+    CGRect oldFrame = textView.frame;
+    CGFloat newHeight = size.height + 18;
+    if (newHeight < TEXTTVIEW_MIN_HEIGHT ) {
+        return;
+    }
+    CGFloat addHeight = newHeight - oldFrame.size.height;
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
+    [textView setFrame:newFrame];
+    
+    CGRect oldBackgroundFrame = inputView.frame;
+    [inputView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y-addHeight, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height+addHeight)];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self downInputView];
 }
 
 @end
