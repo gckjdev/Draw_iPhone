@@ -817,6 +817,7 @@
   BOOL hasCreateDate_:1;
   BOOL hasScore_:1;
   BOOL hasMatchTimes_:1;
+  BOOL hasCorrectTimes_:1;
   BOOL hasFeedId_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
@@ -830,6 +831,7 @@
   int32_t createDate;
   int32_t score;
   int32_t matchTimes;
+  int32_t correctTimes;
   NSString* feedId;
   NSString* userId;
   NSString* nickName;
@@ -852,6 +854,7 @@
 - (BOOL) hasScore;
 - (BOOL) hasComment;
 - (BOOL) hasMatchTimes;
+- (BOOL) hasCorrectTimes;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -865,6 +868,7 @@
 @property (readonly) int32_t score;
 @property (readonly, retain) NSString* comment;
 @property (readonly) int32_t matchTimes;
+@property (readonly) int32_t correctTimes;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 
@@ -975,5 +979,10 @@
 - (int32_t) matchTimes;
 - (PBFeed_Builder*) setMatchTimes:(int32_t) value;
 - (PBFeed_Builder*) clearMatchTimes;
+
+- (BOOL) hasCorrectTimes;
+- (int32_t) correctTimes;
+- (PBFeed_Builder*) setCorrectTimes:(int32_t) value;
+- (PBFeed_Builder*) clearCorrectTimes;
 @end
 
