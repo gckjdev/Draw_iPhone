@@ -520,8 +520,8 @@
 "kGuessRightDesc" = "%@ guessed %@'s drawing";
 "kTryGuessDesc" = "%@ tried to guess %@'s drawing";
 
-"kNoGuess" = "No guess";
-"kGuessStat" = "guess %d, correct %d";
+"kNoGuess" = "Guess 0";
+"kGuessStat" = "Guess %d, Correct %d";
 
 "kGetFeedListFail" = "Fetch feed list fail. Please try it again later.";
 
