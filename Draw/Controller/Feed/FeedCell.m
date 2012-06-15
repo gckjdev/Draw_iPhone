@@ -31,7 +31,7 @@ typedef enum{
 @synthesize avatarView = _avatarView;
 @synthesize drawView = _drawView;
 
-#define AVATAR_VEW_FRAME CGRectMake(5, 5, 55, 57)
+#define AVATAR_VEW_FRAME CGRectMake(4, 4, 31, 32)
 #define SHOW_DRAW_VEW_FRAME CGRectMake(220, 28, 70, 72)
 
 
@@ -194,7 +194,7 @@ typedef enum{
     
     self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
 //    [self.drawView playFromDrawActionIndex:[self.drawView.drawActionList count]];
-    [self.drawView show];
+    [self.drawView play];
 }
 - (void)setCellInfo:(Feed *)feed
 {

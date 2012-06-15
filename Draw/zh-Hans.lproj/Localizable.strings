@@ -528,9 +528,9 @@
 "kDrawDesc" = "%@ 画了一幅画";
 "kGuessRightDesc" = "%@猜对了%@的画";
 "kTryGuessDesc" = "%@尝试去猜%@的画";
-"kNoGuess" = "还没人猜";
+"kNoGuess" = "猜0";
 
-"kGuessStat" = "猜%d中%d";
+"kGuessStat" = "猜%d 中%d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "没有动态";
 
