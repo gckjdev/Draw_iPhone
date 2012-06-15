@@ -525,8 +525,8 @@
 "kDrawDesc" = "%@ 畫了一幅畫";
 "kGuessRightDesc" = "%@猜對%@的畫";
 "kTryGuessDesc" = "%@嘗試去猜%@的畫";
-"kNoGuess" = "還沒人猜";
-"kGuessStat" = "猜%d中%d";
+"kNoGuess" = "猜0";
+"kGuessStat" = "猜%d 中%d";
 
 "kGetFeedListFail" = "獲取動態清單失敗，請稍後再試。";
 "kNoFeedTips" = "沒有動態";
