@@ -19,6 +19,7 @@
 #import "MessageTotalManager.h"
 #import "ChatMessageUtil.h"
 #import "ShareImageManager.h"
+#import "ReplayGraffitiController.h"
 
 @interface ChatDetailController ()
 
@@ -30,8 +31,9 @@
 - (void)scrollToBottom;
 - (void)findAllMessages;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
-- (UIView *)createBubbleView:(ChatMessage *)message;
+- (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath;
 - (void)downInputView;
+- (void)replayGraffiti:(id)sender;
 
 @end
 
@@ -196,7 +198,7 @@
  IMAGE_BORDER_X 是图片与气泡图边界X方向的空隙
  IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
  */
-- (UIView *)createBubbleView:(ChatMessage *)message
+- (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath
 {
     UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	returnView.backgroundColor = [UIColor clearColor];
@@ -244,6 +246,12 @@
         //设置气泡的frame
         bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH + 2*IMAGE_BORDER_X, thumbImageView.frame.size.height + 2*IMAGE_BORDER_Y);
         [bubbleImageView addSubview:thumbImageView];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:thumbImageView.frame];
+        button.tag = indexPath.row;
+        [button addTarget:self action:@selector(replayGraffiti:) forControlEvents:UIControlEventAllEvents];
+        [bubbleImageView addSubview:button];
+        [button release];
     }
     
     
@@ -259,6 +267,20 @@
     return returnView;
 }
 
+- (void)replayGraffiti:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSInteger tag =  button.tag;
+    ChatMessage *message = [dataList objectAtIndex:tag];
+    if ([message.text length] <= 0 && message.drawData) {
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+        
+        ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [dataList count];
@@ -267,7 +289,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message];
+    UIView *view = [self createBubbleView:message indexPath:indexPath];
     return view.frame.size.height;
 }
 
@@ -281,14 +303,13 @@
     }
     
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message];
+    UIView *view = [self createBubbleView:message indexPath:indexPath];
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.contentView addSubview:view];
     
     return cell;
 }
-
 
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
