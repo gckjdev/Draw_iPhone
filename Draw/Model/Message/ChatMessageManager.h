@@ -32,4 +32,5 @@ enum{
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 
+
 @end

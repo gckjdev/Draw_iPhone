@@ -13,6 +13,7 @@
 #import "LogUtil.h"
 #import "UserManager.h"
 #import "ChatMessageUtil.h"
+#import "DrawAction.h"
 
 @interface MessageTotal()
 
@@ -124,16 +125,26 @@ static MessageTotalManager *_messageTotalManager = nil;
 
 - (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat
 {
-    NSData* drawActionListData = [ChatMessageUtil archiveDataFromDrawActionList:pbMessageStat.drawDataList];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    for (PBDrawAction *pbDrawAction in pbMessageStat.drawDataList) {
+        DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
+        [mutableArray addObject:drawAction];
+        [drawAction release];
+    }
+    NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
+    [mutableArray release];
+    
+    PPDebug(@"%@",[NSDate dateWithTimeIntervalSince1970:pbMessageStat.modifiedDate]);
+    
     return [self createMessageTotalWithUserId:pbMessageStat.userId 
                                  friendUserId:pbMessageStat.friendUserId
                                friendNickName:pbMessageStat.friendNickName
                                  friendAvatar:pbMessageStat.friendAvatar
                                    latestFrom:pbMessageStat.from 
                                      latestTo:pbMessageStat.to 
-                               latestDrawData:drawActionListData
+                               latestDrawData:data
                                    latestText:pbMessageStat.text
-                             latestCreateDate:[NSDate dateWithTimeIntervalSince1970:pbMessageStat.createDate]
+                             latestCreateDate:[NSDate dateWithTimeIntervalSince1970:pbMessageStat.modifiedDate]
                               totalNewMessage:[NSNumber numberWithInt:pbMessageStat.newMessageCount] 
                                  totalMessage:[NSNumber numberWithInt:pbMessageStat.totalMessageCount]];
 }

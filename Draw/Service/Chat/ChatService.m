@@ -48,10 +48,14 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
-                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *messageStatList = [travelResponse messageStatList];
-                for (PBMessageStat *pbMessageStat in messageStatList) {
-                    [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
+                @try{
+                    DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *messageStatList = [drawResponse messageStatList];
+                    for (PBMessageStat *pbMessageStat in messageStatList) {
+                        [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
+                    }
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
                 }
                 
                 PPDebug(@"<ChatService>findAllMessageTotals success");
@@ -86,11 +90,14 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 
-                //to do save data
-                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *messageList = [travelResponse messageList];
-                for (PBMessage *pbMessage in messageList) {
-                    [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
+                @try{
+                    DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *messageList = [travelResponse messageList];
+                    for (PBMessage *pbMessage in messageList) {
+                        [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
+                    }
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
                 }
                 
                 PPDebug(@"<ChatService>findAllMessages success");

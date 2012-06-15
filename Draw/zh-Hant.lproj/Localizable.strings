@@ -537,7 +537,8 @@
 "kChatListTitle" = "聊天";
 "kAddChat" = "創建";
 "kSelectContacts" = "選擇聯繫人";
-
+"kSendMessage" = "發送";
+"kGraffiti" = "塗鴉";
 
 
 

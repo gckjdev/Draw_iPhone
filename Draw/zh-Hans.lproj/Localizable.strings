@@ -541,7 +541,8 @@
 "kChatListTitle" = "聊天";
 "kAddChat" = "创建";
 "kSelectContacts" = "选择联系人";
-
+"kSendMessage" = "发送";
+"kGraffiti" = "涂鸦";
 
 
 
