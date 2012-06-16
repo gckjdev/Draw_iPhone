@@ -541,10 +541,13 @@
 "kChatListTitle" = "聊天";
 "kAddChat" = "创建";
 "kSelectContacts" = "选择联系人";
+"kSendMessage" = "发送";
+"kSendingChatMessage" = "发送中...";
+"kSendMessageFailed" = "发送失败";
+"kGraffiti" = "涂鸦";
 
 "kComment" = "评论";
-"kSendMessage" = "发送";
-"kGraffiti" = "涂鸦";
+
 
 
 

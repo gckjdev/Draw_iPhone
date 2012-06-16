@@ -111,7 +111,7 @@
         CGFloat scale = graffiti.frame.size.height / DRAW_VEIW_FRAME.size.height;
         ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
         [graffiti addSubview:thumbImageView];
-        [thumbImageView play];
+        [thumbImageView show];
     }
     
     //set messageNumberLabel
