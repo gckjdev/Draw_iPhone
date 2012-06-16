@@ -13,6 +13,7 @@ typedef enum{
     ActionTypeHidden = 0,
     ActionTypeOneMore = 1,
     ActionTypeGuess = 2,
+    ActionTypeCorrect = 3
 }ActionType;
 
 @interface FeedManager : NSObject

@@ -47,10 +47,17 @@ FeedManager *_staticFeedManager = nil;
     if ([userManager isMe:feed.userId]) {
         return ActionTypeHidden;
     }
+    
     if (feed.feedType == FeedTypeDraw) {
+        if ([userManager hasGuessOpus:feed.feedId]) {
+            return ActionTypeCorrect;
+        }
         return ActionTypeGuess;
     }else if(feed.feedType == FeedTypeGuess)
     {
+        if ([userManager hasGuessOpus:feed.opusId]) {
+            return ActionTypeCorrect;
+        }
         if ([userManager isMe:feed.drawData.userId]) {
             return ActionTypeOneMore;
         }else{

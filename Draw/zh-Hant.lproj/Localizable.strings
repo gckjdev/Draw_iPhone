@@ -533,6 +533,7 @@
 
 "kIGuessAction" = "我來猜猜";
 "kOneMoreAction" = "再來一幅";
+"kIGuessCorrect" = "猜對了​​";
 
 "kChatListTitle" = "聊天";
 "kAddChat" = "創建";

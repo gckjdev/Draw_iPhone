@@ -44,8 +44,7 @@
     cell.delegate = delegate;
     
     if (cell) {
-        ShareImageManager* imageManager = [ShareImageManager defaultManager];
-        [cell.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+
         cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME]autorelease];
         [cell addSubview:cell.drawView];
         [cell.drawView setShowPenHidden:YES];
@@ -117,13 +116,24 @@
 
 - (void)updateActionButton:(Feed *)feed
 {
+    ShareImageManager* imageManager = [ShareImageManager defaultManager];
     self.actionButton.hidden = NO;
+    [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    self.actionButton.userInteractionEnabled = YES;
+    self.actionButton.selected = NO;
+
+    
     ActionType type = [FeedManager actionTypeForFeed:feed];
     if (type == ActionTypeGuess) {
         [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
     }else if(type == ActionTypeOneMore)
     {
         [self.actionButton setTitle:NSLS(@"kOneMoreAction") forState:UIControlStateNormal];        
+    }else if(type == ActionTypeCorrect){
+        [self.actionButton setTitle:NSLS(@"kIGuessCorrect") forState:UIControlStateSelected];
+        [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
+        self.actionButton.userInteractionEnabled = NO;
+        self.actionButton.selected = YES;
     }else{
         self.actionButton.hidden = YES;
     }

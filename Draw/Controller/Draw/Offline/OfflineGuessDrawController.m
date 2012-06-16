@@ -638,8 +638,10 @@
         
         ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_feed.userId drawUserNickName:_feed.nickName wordText:draw.word.text score:score correct:YES isMyPaint:NO drawActionList:draw.drawActionList];
     
-        //TODO send http request
+        //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:YES score:score delegate:nil];
+        //store locally.
+        [[UserManager defaultManager] guessCorrectOpus:_feed.feedId];
         
         result.resultType = OfflineGuess;
         [self.navigationController pushViewController:result animated:YES];

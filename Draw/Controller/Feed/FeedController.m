@@ -302,10 +302,10 @@
     if (cell == nil) {
         cell = [FeedCell createCell:self];
     }
+    cell.indexPath = indexPath;
     cell.accessoryType = UITableViewCellAccessoryNone;
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:feed];
-    cell.indexPath = indexPath;
     return cell;
     
 }

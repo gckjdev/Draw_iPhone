@@ -120,4 +120,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 - (NSInteger)roomCount;
 - (void)increaseRoomCount;
 
+- (void)guessCorrectOpus:(NSString *)opusId;
+- (BOOL)hasGuessOpus:(NSString *)opusId;
+
 @end

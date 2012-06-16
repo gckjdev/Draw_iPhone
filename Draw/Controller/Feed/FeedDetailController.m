@@ -16,6 +16,7 @@
 #import "DrawAction.h"
 #import "Draw.h"
 #import "ShareImageManager.h"
+#import "CommentCell.h"
 
 @implementation FeedDetailController
 @synthesize commentInput;
@@ -58,6 +59,8 @@
     self = [super init];
     if (self) {
         self.feed = feed;
+        _feedService = [FeedService defaultService];
+        _startIndex = 0;
     }
     return self;
 }
@@ -74,11 +77,11 @@
 {
     //avatar
 //    [self.avatarView removeFromSuperview];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:_avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
     [self.view addSubview:self.avatarView];
     
     //name
-    [self.nickNameLabel setText:[FeedManager userNameForFeed:feed]];
+    [self.nickNameLabel setText:[FeedManager opusCreatorForFeed:feed]];
 }
 
 - (void)updateGuessDesc:(Feed *)feed
@@ -150,12 +153,38 @@
 
 
 
+- (void)updateInfo:(Feed *)feed
+{
+    if (feed.feedType == FeedTypeDraw) {
+        _opusId = feed.feedId;
+        _userNickName = feed.nickName;
+        _avatar = feed.avatar;
+        _author = feed.userId;
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        _opusId = feed.opusId;
+        _userNickName = feed.drawData.nickName;
+        _avatar = feed.drawData.avatar;
+        _author = feed.drawData.userId;
+    }else{
+        PPDebug(@"<FeedDetailController>:warning feed type is error");
+    }
+}
+
+
+#define COMMENT_COUNT 15
+- (void)updateCommentList
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_feedService getOpusCommentList:_opusId offset:_startIndex limit:COMMENT_COUNT delegate:self];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self updateInfo:_feed];
     [self updateTime:_feed];
     [self updateUser:_feed];
     [self updateGuessDesc:_feed];
@@ -164,6 +193,8 @@
     [self updateInputView:_feed];
     [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
+    
+    [self updateCommentList];
 }
 
 - (void)viewDidUnload
@@ -210,5 +241,96 @@
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
+    static int index = 1;
+    NSString *ifl = @"如果我很长很长呢?";
+    NSString *msg = @"";
+    for (int i = 0; i < index; ++ i) {
+        msg = [NSString stringWithFormat:@"%@%@",msg, ifl];
+    }
+    ++ index;
+//    NSString *msg = [NSString stringWithFormat:@"如果我很长很长呢?",index++];
+    [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];
 }
+
+#pragma mark - feed service delegate
+- (void)didCommentOpus:(NSString *)opusId
+               comment:(NSString *)comment
+            resultCode:(NSInteger)resultCode;
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        PPDebug(@"comment succ: opusId = %@, comment = %@", opusId, comment);
+        Feed *feed = [[Feed alloc] init];
+        UserManager *manager = [UserManager defaultManager];
+        feed.userId = [manager userId];
+        feed.nickName = [manager nickName];
+        feed.avatar = [manager avatarURL];
+        feed.opusId = opusId;
+        feed.comment = comment;
+        NSMutableArray *array = [NSMutableArray arrayWithObject:feed];
+        [feed release];
+        
+        if (self.dataList != nil) {
+            [array addObjectsFromArray:self.dataList];
+        }
+        self.dataList = array;
+        [self.dataTableView reloadData];
+        
+    }else{
+        PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
+    }
+}
+
+- (void)didGetFeedCommentList:(NSArray *)feedList 
+                       opusId:(NSString *)opusId 
+                   resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
+        self.dataList = feedList;
+        [self.dataTableView reloadData];
+        
+    }else{
+        PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
+    }
+}
+
+
+#pragma mark - table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    NSString *comment = feed.comment;
+	return [CommentCell getCellHeight:comment];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger count = [dataList count];
+    self.noCommentTipsLabel.hidden = (count != 0);
+    
+    if (count != 0) {
+        self.dataTableView.separatorColor = [UIColor lightGrayColor];
+    }else{
+        self.dataTableView.separatorColor = [UIColor clearColor];
+    }
+    return count;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *CellIdentifier = [CommentCell getCellIdentifier];
+    CommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [CommentCell createCell:self];
+    }
+    cell.indexPath = indexPath;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [cell setCellInfo:feed];
+    return cell;
+}
+
 @end

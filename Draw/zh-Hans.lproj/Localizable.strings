@@ -537,7 +537,7 @@
 
 "kIGuessAction" = "我来猜猜";
 "kOneMoreAction" = "再来一幅";
-
+"kIGuessCorrect" = "猜对了";
 "kChatListTitle" = "聊天";
 "kAddChat" = "创建";
 "kSelectContacts" = "选择联系人";

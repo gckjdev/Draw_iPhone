@@ -13,12 +13,17 @@
 @class AvatarView;
 @class Feed;
 @class ShowDrawView;
-@interface FeedDetailController : PPTableViewController
+@interface FeedDetailController : PPTableViewController<FeedServiceDelegate>
 {
     Feed *_feed;
     AvatarView *_avatarView;
     ShowDrawView *_drawView;
-    
+    NSString *_opusId;
+    NSString *_userNickName;
+    NSString *_avatar;
+    NSString *_author;
+    FeedService *_feedService;
+    NSInteger _startIndex;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *inputViewBg;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;

@@ -529,7 +529,7 @@
 
 "kIGuessAction" = "Guess";
 "kOneMoreAction" = "One More";
-
+"kIGuessCorrect" = "Correct";
 "kChatListTitle" = "Chat";
 "kAddChat" = "Create";
 "kSelectContacts" = "Select Contacts";

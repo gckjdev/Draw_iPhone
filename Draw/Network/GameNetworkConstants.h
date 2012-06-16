@@ -108,11 +108,14 @@
 //for levelService
 #define METHOD_SYND_LEVEL_EXP   @"sle"
 
-//for Draw Online
+//for Draw offline
 #define METHOD_CREATE_OPUS @"cop"
 #define METHOD_MATCH_OPUS  @"mop"
 #define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
+#define METHOD_GET_FEED_COMMENT_LIST @"gfc"
+#define ACTION_TYPE_GUESS  2
+#define ACTION_TYPE_COMMENT  3
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
