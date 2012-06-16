@@ -543,5 +543,6 @@
 "kSendMessage" = "發送";
 "kGraffiti" = "塗鴉";
 
-
+"kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
 

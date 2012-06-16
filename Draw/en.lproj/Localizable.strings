@@ -538,4 +538,5 @@
 
 "kComment" = "Comment";
 
-
+"kPushTextMessage" = "%@ sent you a message\"%@\"";
+"kPushDrawMessage" = "%@ sent you a draw";

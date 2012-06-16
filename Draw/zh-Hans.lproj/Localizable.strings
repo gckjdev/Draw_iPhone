@@ -546,5 +546,6 @@
 "kSendMessage" = "发送";
 "kGraffiti" = "涂鸦";
 
-
+"kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀您欣赏TA的大作";
 
