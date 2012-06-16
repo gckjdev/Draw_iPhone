@@ -239,6 +239,10 @@ enum{
 }
 - (void)initPens
 {
+    if (targetType == TypeGraffiti) {
+        penButton.hidden = YES;
+    }
+        
     [self initPickView];
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
@@ -271,7 +275,11 @@ enum{
 
 - (void)initTitleLabel
 {
-    [self.titleLabel setText:NSLS(@"kDrawing")];    
+    if (targetType == TypeGraffiti) {
+        [self.titleLabel setText:NSLS(@"kGraffiti")]; 
+    }else {
+        [self.titleLabel setText:NSLS(@"kDrawing")]; 
+    }
 }
 
 #pragma mark - View lifecycle

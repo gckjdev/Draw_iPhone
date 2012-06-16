@@ -534,8 +534,13 @@
 "kAddChat" = "Create";
 "kSelectContacts" = "Select Contacts";
 "kSendMessage" = "Send";
+"kSendingChatMessage" = "Sending...";
+"kSendMessageFailed" = "Failed to send";
 "kGraffiti" = "Graffiti";
+
 
 "kComment" = "Comment";
 
 
+"kPushTextMessage" = "%@ sent you a message\"%@\"";
+"kPushDrawMessage" = "%@ sent you a draw";

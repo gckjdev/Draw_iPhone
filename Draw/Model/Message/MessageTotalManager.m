@@ -47,6 +47,8 @@ static MessageTotalManager *_messageTotalManager = nil;
                      totalNewMessage:(NSNumber *)totalNewMessage 
                         totalMessage:(NSNumber *)totalMessage
 {
+    PPDebug(@"createMessageTotalWithUserId:%@ fid:%@ fn:%@ fa:%@ lfrom:%@ lto:%@ drawDataLen:%d ltext:%@ lcreDate:%@ new:%@ total:%@",userId,friendUserId,friendNickName,friendAvatar, latestFrom, latestTo, [latestDrawData length], latestText, latestCreateDate, totalNewMessage, totalMessage);
+    
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     MessageTotal *messageTotal = [self findMessageTotalByFriendUserId:friendUserId userId:userId];
     if (messageTotal) {
@@ -89,14 +91,6 @@ static MessageTotalManager *_messageTotalManager = nil;
 
 - (MessageTotal *)findMessageTotalByFriendUserId:(NSString *)friendUserId userId:(NSString *)userId
 {
-    //TEST
-    NSArray *testArray = [self findAllMessageTotals];
-    for (MessageTotal *message in testArray) {
-        PPDebug(@"%@ %@",message.friendUserId, message.userId);
-    }
-    PPDebug(@"%@",[[UserManager defaultManager] userId]);
-    
-    
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     NSArray *keys = [NSArray arrayWithObjects:@"USER_ID", @"FRIEND_USER_ID", nil];
     NSArray *values = [NSArray arrayWithObjects:userId, friendUserId, nil];
@@ -133,8 +127,6 @@ static MessageTotalManager *_messageTotalManager = nil;
     }
     NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
     [mutableArray release];
-    
-    PPDebug(@"%@",[NSDate dateWithTimeIntervalSince1970:pbMessageStat.modifiedDate]);
     
     return [self createMessageTotalWithUserId:pbMessageStat.userId 
                                  friendUserId:pbMessageStat.friendUserId

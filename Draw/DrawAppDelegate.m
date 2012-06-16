@@ -36,6 +36,7 @@
 #import "UIUtils.h"
 #import "LevelService.h"
 #import "YoumiWallService.h"
+#import "ChatDetailController.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -60,6 +61,8 @@ NSString* GlobalGetTrafficServerURL()
 @synthesize homeController = _homeController;
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
+@synthesize chatDetailController = _chatDetailController;
+
 - (void)dealloc
 {
     [_reviewRequest release];
@@ -67,6 +70,7 @@ NSString* GlobalGetTrafficServerURL()
     [_roomController release];
     [_window release];
     [_viewController release];
+    [_chatDetailController release];
     [super dealloc];
 }
 
@@ -324,6 +328,21 @@ NSString* GlobalGetTrafficServerURL()
 		NSString* text = [args objectAtIndex:1];		
 		[UIUtils alert:[NSString stringWithFormat:NSLS(msg), from, text]];
 	}	
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo 
+{
+    //test
+    PPDebug(@"didReceiveRemoteNotification");
+    NSArray *testAllKeys = [userInfo allKeys];
+    for (NSString *key in testAllKeys) {
+        PPDebug(@"%@", key);
+        PPDebug(@"%@", [userInfo objectForKey:@"aps"]); 
+    }
+    
+    if (_chatDetailController) {
+        [_chatDetailController findAllMessages];
+    }
 }
 
 #pragma mark - Alert View Delegate
