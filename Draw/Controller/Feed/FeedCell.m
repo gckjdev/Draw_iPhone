@@ -15,12 +15,8 @@
 #import "StableView.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
+#import "FeedManager.h"
 
-typedef enum{
-    ActionTypeHidden = 0,
-    ActionTypeOneMore = 1,
-    ActionTypeGuess = 2,
-}ActionType;
 
 @implementation FeedCell
 @synthesize guessStatLabel;
@@ -31,8 +27,8 @@ typedef enum{
 @synthesize avatarView = _avatarView;
 @synthesize drawView = _drawView;
 
-#define AVATAR_VEW_FRAME CGRectMake(4, 4, 31, 32)
-#define SHOW_DRAW_VEW_FRAME CGRectMake(220, 28, 70, 72)
+#define AVATAR_VIEW_FRAME CGRectMake(4, 4, 31, 32)
+#define SHOW_DRAW_VIEW_FRAME CGRectMake(220, 28, 70, 72)
 
 
 + (id)createCell:(id)delegate
@@ -50,7 +46,7 @@ typedef enum{
     if (cell) {
         ShareImageManager* imageManager = [ShareImageManager defaultManager];
         [cell.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-        cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VEW_FRAME]autorelease];
+        cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME]autorelease];
         [cell addSubview:cell.drawView];
         [cell.drawView setShowPenHidden:YES];
         cell.drawView.backgroundColor = [UIColor whiteColor];
@@ -78,38 +74,16 @@ typedef enum{
     [self.timeLabel setText:timeString];
 }
 
-- (NSString *)userNameForFeed:(Feed *)feed
-{
-    if ([[UserManager defaultManager] isMe:feed.userId]) {
-        return NSLS(@"Me");
-    }else{
-        return [feed nickName];
-    }
-}
-
-//get name
-- (NSString *)opusCreatorForFeed:(Feed *)feed
-{
-    NSString *userId = [[feed drawData] userId];
-    NSString *nick = [[feed drawData] nickName];
-    if ([[UserManager defaultManager] isMe:userId]) {
-        return NSLS(@"Me");
-    }else{
-        return nick;
-    }
-}
-
-
 - (void)updateDesc:(Feed *)feed
 {
     NSString *desc = nil;
     if (feed.feedType == FeedTypeDraw) {
-        desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"),[self userNameForFeed:feed]];
+        desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"),[FeedManager userNameForFeed:feed]];
     }else if (feed.feedType == FeedTypeGuess){
         if (feed.isCorrect) {
-            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),[self userNameForFeed:feed], [self opusCreatorForFeed:feed]];                    
+            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),[FeedManager userNameForFeed:feed], [FeedManager opusCreatorForFeed:feed]];                    
         }else{
-            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),[self userNameForFeed:feed], [self opusCreatorForFeed:feed]];                    
+            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),[FeedManager userNameForFeed:feed], [FeedManager opusCreatorForFeed:feed]];                    
         }
     }
     [self.descLabel setText:desc];
@@ -119,11 +93,11 @@ typedef enum{
 {
     //avatar
     [self.avatarView removeFromSuperview];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VEW_FRAME gender:feed.gender level:0] autorelease];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
     [self addSubview:self.avatarView];
     
     //name
-    [self.userNameLabel setText:[self userNameForFeed:feed]];
+    [self.userNameLabel setText:[FeedManager userNameForFeed:feed]];
 }
 
 - (void)updateGuessDesc:(Feed *)feed
@@ -139,38 +113,12 @@ typedef enum{
 }
 
 
-- (IBAction)clickActionButton:(id)sender {
-    //
-    
-    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
-        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
-    }
-}
 
-
-- (ActionType)actionTypeForFeed:(Feed *)feed
-{
-    UserManager *userManager = [UserManager defaultManager];
-    if ([userManager isMe:feed.userId]) {
-        return ActionTypeHidden;
-    }
-    if (feed.feedType == FeedTypeDraw) {
-        return ActionTypeGuess;
-    }else if(feed.feedType == FeedTypeGuess)
-    {
-        if ([userManager isMe:feed.drawData.userId]) {
-            return ActionTypeOneMore;
-        }else{
-            return ActionTypeGuess;
-        }
-    }
-    return ActionTypeHidden;
-}
 
 - (void)updateActionButton:(Feed *)feed
 {
     self.actionButton.hidden = NO;
-    ActionType type = [self actionTypeForFeed:feed];
+    ActionType type = [FeedManager actionTypeForFeed:feed];
     if (type == ActionTypeGuess) {
         [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
     }else if(type == ActionTypeOneMore)
@@ -179,21 +127,18 @@ typedef enum{
     }else{
         self.actionButton.hidden = YES;
     }
-    
 }
 
 
 - (void)updateDrawView:(Feed *)feed
 {
-
     [self.drawView cleanAllActions];
     CGRect normalFrame = DRAW_VEIW_FRAME;
-    CGRect currentFrame = SHOW_DRAW_VEW_FRAME;
+    CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
     CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
     CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
     
     self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-//    [self.drawView playFromDrawActionIndex:[self.drawView.drawActionList count]];
     [self.drawView play];
 }
 - (void)setCellInfo:(Feed *)feed
@@ -204,6 +149,15 @@ typedef enum{
     [self updateGuessDesc:feed];
     [self updateActionButton:feed];
     [self updateDrawView:feed];
+}
+
+
+- (IBAction)clickActionButton:(id)sender {
+    //
+    
+    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
+        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
+    }
 }
 
 - (void)dealloc {

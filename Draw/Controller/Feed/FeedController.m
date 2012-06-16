@@ -14,6 +14,7 @@
 #import "ShareImageManager.h"
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
+#import "FeedDetailController.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -316,6 +317,9 @@
         return;
     
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:feed];
+    [self.navigationController pushViewController:feedDetailController animated:YES];
+    [feedDetailController release];
     //enter the detail feed contrller
 }
 

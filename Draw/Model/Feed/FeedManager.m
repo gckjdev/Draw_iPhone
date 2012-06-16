@@ -8,6 +8,8 @@
 
 #import "FeedManager.h"
 #import "PPDebug.h"
+#import "UserManager.h"
+#import "Draw.h"
 
 FeedManager *_staticFeedManager = nil;
 
@@ -17,21 +19,48 @@ FeedManager *_staticFeedManager = nil;
 
 @implementation FeedManager
 
++ (NSString *)userNameForFeed:(Feed *)feed
+{
+    if ([[UserManager defaultManager] isMe:feed.userId]) {
+        return NSLS(@"Me");
+    }else{
+        return [feed nickName];
+    }
+}
 
-//- (NSMutableArray *)listForKey:(NSString *)key
-//{
-//    return [_dataMap objectForKey:key];
-//}
-//
-//- (void)setList:(NSMutableArray *)list forKey:(NSString *)key
-//{
-//    if (list == nil) {
-//        NSMutableArray *array = [self listForKey:key];
-//        [array removeAllObjects];
-//    }else{
-//        [_dataMap setObject:list forKey:key];
-//    }
-//}
+//get name
++ (NSString *)opusCreatorForFeed:(Feed *)feed
+{
+    NSString *userId = [[feed drawData] userId];
+    NSString *nick = [[feed drawData] nickName];
+    if ([[UserManager defaultManager] isMe:userId]) {
+        return NSLS(@"Me");
+    }else{
+        return nick;
+    }
+}
+
+
++ (ActionType)actionTypeForFeed:(Feed *)feed
+{
+    UserManager *userManager = [UserManager defaultManager];
+    if ([userManager isMe:feed.userId]) {
+        return ActionTypeHidden;
+    }
+    if (feed.feedType == FeedTypeDraw) {
+        return ActionTypeGuess;
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        if ([userManager isMe:feed.drawData.userId]) {
+            return ActionTypeOneMore;
+        }else{
+            return ActionTypeGuess;
+        }
+    }
+    return ActionTypeHidden;
+}
+
+
 - (void)addListForKey:(NSString *)key
 {
     NSMutableArray *list = [NSMutableArray array];
