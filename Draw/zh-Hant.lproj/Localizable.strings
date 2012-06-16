@@ -537,11 +537,14 @@
 "kChatListTitle" = "聊天";
 "kAddChat" = "創建";
 "kSelectContacts" = "選擇聯繫人";
+"kSendMessage" = "發送";
+"kSendingChatMessage" = "發送中...";
+"kSendMessageFailed" = "發送失敗";
+"kGraffiti" = "塗鴉";
 
 
 "kComment" = "評論";
-"kSendMessage" = "發送";
-"kGraffiti" = "塗鴉";
+
 
 "kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
 "kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
