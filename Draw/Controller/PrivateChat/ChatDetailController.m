@@ -20,6 +20,7 @@
 #import "ChatMessageUtil.h"
 #import "ShareImageManager.h"
 #import "ReplayGraffitiController.h"
+#import "DrawAppDelegate.h"
 
 @interface ChatDetailController ()
 @property (retain, nonatomic) NSString *friendUserId;
@@ -29,7 +30,6 @@
 - (IBAction)clickBack:(id)sender;
 
 - (void)scrollToBottom:(BOOL)animated;
-- (void)findAllMessages;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
 - (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath;
 - (void)replayGraffiti:(id)sender;
@@ -98,6 +98,9 @@
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     [self findAllMessages];
     [self scrollToBottom:NO];
+    
+    DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
+    drawAppDelegate.chatDetailController = self;
 }
 
 
@@ -116,6 +119,14 @@
 {
     //not reload data
     //PPDebug(@"ChatDetailController viewDidAppear");
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
+    drawAppDelegate.chatDetailController = nil;
+    [super viewDidDisappear:animated];
 }
 
 

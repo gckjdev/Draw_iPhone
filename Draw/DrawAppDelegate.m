@@ -36,11 +36,12 @@
 #import "UIUtils.h"
 #import "LevelService.h"
 #import "YoumiWallService.h"
+#import "ChatDetailController.h"
 
 NSString* GlobalGetServerURL()
 {    
 //    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.4:8000/api/i?";  
+      return @"http://192.168.1.6:8000/api/i?";  
 //    return @"http://you100.me:8001/api/i?";        
 //    return @"http://106.187.89.232:8001/api/i?";    
 //    return @"http://192.168.1.9:8000/api/i?";    
@@ -49,7 +50,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
 //    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.4:8100/api/i?";    
+    return @"http://192.168.1.6:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -60,6 +61,8 @@ NSString* GlobalGetTrafficServerURL()
 @synthesize homeController = _homeController;
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
+@synthesize chatDetailController = _chatDetailController;
+
 - (void)dealloc
 {
     [_reviewRequest release];
@@ -67,6 +70,7 @@ NSString* GlobalGetTrafficServerURL()
     [_roomController release];
     [_window release];
     [_viewController release];
+    [_chatDetailController release];
     [super dealloc];
 }
 
@@ -328,7 +332,17 @@ NSString* GlobalGetTrafficServerURL()
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo 
 {
+    //test
+    PPDebug(@"didReceiveRemoteNotification");
+    NSArray *testAllKeys = [userInfo allKeys];
+    for (NSString *key in testAllKeys) {
+        PPDebug(@"%@", key);
+        PPDebug(@"%@", [userInfo objectForKey:@"aps"]); 
+    }
     
+    if (_chatDetailController) {
+        [_chatDetailController findAllMessages];
+    }
 }
 
 #pragma mark - Alert View Delegate

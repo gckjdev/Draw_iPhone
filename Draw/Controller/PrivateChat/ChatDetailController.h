@@ -20,4 +20,6 @@
 
 - (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname;
 
+- (void)findAllMessages;
+
 @end
