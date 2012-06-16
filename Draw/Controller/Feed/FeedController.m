@@ -15,6 +15,7 @@
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
 #import "FeedDetailController.h"
+#import "OfflineGuessDrawController.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -111,7 +112,6 @@
     self.allFeedButton.tag = FeedListTypeAll;
     self.hotFeedButton.tag = FeedListTypeHot;
     [self clickFeedButton:self.allFeedButton];
-
     
 //    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
 }
@@ -330,14 +330,20 @@
     FeedListType type = [self currentFeedListType];
     [self setloadDataStartIndex:0 forType:type];
     [self updateFeedListForType:type];
-//    _currentStartIndex = 0;
-//    [self updateRoomList];
 }
 
 - (void)loadMoreTableViewDataSource
 {
     FeedListType type = [self currentFeedListType];
     [self updateFeedListForType:type];
+}
+
+
+//FeedCell delegate
+#pragma mark - FeedCell delegate
+- (void)didClickGuessButtonOnFeed:(Feed *)feed
+{
+    [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
 }
 
 

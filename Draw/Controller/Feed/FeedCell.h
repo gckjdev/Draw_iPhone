@@ -19,8 +19,11 @@
 
 @optional
 - (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath;
-- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;
-- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath;
+- (void)didClickGuessButtonOnFeed:(Feed *)feed;
+
+
+//- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;
+//- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -37,6 +40,7 @@
 
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) ShowDrawView *drawView;
+@property (retain, nonatomic) Feed *feed;
 - (IBAction)clickActionButton:(id)sender;
 - (void)setCellInfo:(Feed *)feed;
 @end

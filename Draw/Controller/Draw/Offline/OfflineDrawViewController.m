@@ -489,7 +489,7 @@ enum{
             [delegate didClickSubmit:drawView.drawActionList];
         }
     }else {
-        [self showActivityWithText:@"creating Draw"];
+        [self showActivityWithText:NSLS(@"kSending")];
         [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList drawWord:self.word language:languageType delegate:self];
     }
 }

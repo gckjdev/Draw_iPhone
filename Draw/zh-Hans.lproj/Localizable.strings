@@ -553,3 +553,7 @@
 "kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
 "kPushDrawMessage" = "%@ 邀您欣赏TA的大作";
 
+"kCorrect" = "猜对了！";
+"kSending" = "发送中...";
+"kNoCommentTips" = "还没有人评论";
+"kFeedDetail" = "动态详情";

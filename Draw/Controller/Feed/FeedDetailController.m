@@ -17,6 +17,9 @@
 #import "Draw.h"
 #import "ShareImageManager.h"
 #import "CommentCell.h"
+#import "OfflineGuessDrawController.h"
+//#import "OfflineGuessDrawController.h
+
 
 @implementation FeedDetailController
 @synthesize commentInput;
@@ -33,8 +36,8 @@
 @synthesize avatarView = _avatarView;
 
 
-#define AVATAR_VIEW_FRAME CGRectMake(14, 64, 82, 85)
-#define SHOW_DRAW_VIEW_FRAME CGRectMake(215, 65, 90, 106)
+#define AVATAR_VIEW_FRAME CGRectMake(18, 65, 62, 65)
+#define SHOW_DRAW_VIEW_FRAME CGRectMake(200, 65, 95, 100)
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -101,19 +104,28 @@
 
 - (void)updateActionButton:(Feed *)feed
 {
-    UIImage *bgImage = [[ShareImageManager defaultManager] greenImage];
-    [self.actionButton setBackgroundImage:bgImage forState:UIControlStateNormal];
-    
+    ShareImageManager* imageManager = [ShareImageManager defaultManager];
     self.actionButton.hidden = NO;
+    [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    self.actionButton.userInteractionEnabled = YES;
+    self.actionButton.selected = NO;
+    
+    
     ActionType type = [FeedManager actionTypeForFeed:feed];
     if (type == ActionTypeGuess) {
         [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
     }else if(type == ActionTypeOneMore)
     {
         [self.actionButton setTitle:NSLS(@"kOneMoreAction") forState:UIControlStateNormal];        
+    }else if(type == ActionTypeCorrect){
+        [self.actionButton setTitle:NSLS(@"kIGuessCorrect") forState:UIControlStateSelected];
+        [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
+        self.actionButton.userInteractionEnabled = NO;
+        self.actionButton.selected = YES;
     }else{
         self.actionButton.hidden = YES;
     }
+
 }
 
 
@@ -121,6 +133,7 @@
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
     [self.drawView setShowPenHidden:YES];
+    [self.drawView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_drawView];
     [self.drawView cleanAllActions];
     CGRect normalFrame = DRAW_VEIW_FRAME;
@@ -172,17 +185,31 @@
 }
 
 
-#define COMMENT_COUNT 15
+#define COMMENT_COUNT 20
 - (void)updateCommentList
 {
     [self showActivityWithText:NSLS(@"kLoading")];
     [_feedService getOpusCommentList:_opusId offset:_startIndex limit:COMMENT_COUNT delegate:self];
 }
 
+- (void)updateNoCommentLabel
+{
+    self.noCommentTipsLabel.hidden = YES;
+    [self.noCommentTipsLabel setText:NSLS(@"kNoCommentTips")];
+}
+
+- (void)updateTitle
+{
+    [self.titleLabel setText:NSLS(@"kFeedDetail")];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
+    [self setSupportRefreshFooter:YES];
+    [self setSupportRefreshHeader:YES];
+    
     [super viewDidLoad];
     [self updateInfo:_feed];
     [self updateTime:_feed];
@@ -193,7 +220,8 @@
     [self updateInputView:_feed];
     [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
-    
+    [self updateNoCommentLabel];
+    [self updateTitle];
     [self updateCommentList];
 }
 
@@ -220,6 +248,10 @@
 }
 
 - (IBAction)clickActionButton:(id)sender {
+    ActionType type = [FeedManager actionTypeForFeed:self.feed];
+    if (type == ActionTypeGuess) {
+        [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
+    }
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -248,7 +280,7 @@
         msg = [NSString stringWithFormat:@"%@%@",msg, ifl];
     }
     ++ index;
-//    NSString *msg = [NSString stringWithFormat:@"如果我很长很长呢?",index++];
+    [self showActivityWithText:NSLS(@"kSending")];
     [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];
 }
 
@@ -265,6 +297,7 @@
         feed.userId = [manager userId];
         feed.nickName = [manager nickName];
         feed.avatar = [manager avatarURL];
+        feed.gender = [manager isUserMale];
         feed.opusId = opusId;
         feed.comment = comment;
         NSMutableArray *array = [NSMutableArray arrayWithObject:feed];
@@ -274,7 +307,7 @@
             [array addObjectsFromArray:self.dataList];
         }
         self.dataList = array;
-        [self.dataTableView reloadData];
+        [self.dataTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         
     }else{
         PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
@@ -286,11 +319,37 @@
                    resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
+    [self dataSourceDidFinishLoadingNewData];   
+    [self dataSourceDidFinishLoadingMoreData];
     if (resultCode == 0) {
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
-        self.dataList = feedList;
-        [self.dataTableView reloadData];
-        
+        if (_startIndex == 0) {
+            self.dataList = feedList;
+            [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
+        }else{
+            NSMutableArray *array = [NSMutableArray array];
+            if ([self.dataList count] != 0) {
+                [array  addObjectsFromArray:self.dataList];
+            }
+            if ([feedList count] != 0) {
+                [array addObjectsFromArray:feedList];
+            }
+            NSInteger start = [self.dataList count];
+            NSInteger end = [array count];
+            self.dataList = array;
+            NSMutableArray *indexPaths = [NSMutableArray array];
+            for (int i = start; i < end; ++ i) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                [indexPaths addObject:path];
+            }
+            if ([indexPaths count] != 0) {
+                [self.dataTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }
+            
+        }
+        NSInteger count = [feedList count];
+        _startIndex += count;
+        self.noMoreData = (count < COMMENT_COUNT);        
     }else{
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
@@ -302,8 +361,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
-    NSString *comment = feed.comment;
-	return [CommentCell getCellHeight:comment];
+	return [CommentCell getCellHeight:feed];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -332,5 +390,18 @@
     [cell setCellInfo:feed];
     return cell;
 }
+
+#pragma mark - refresh header & footer delegate
+- (void)reloadTableViewDataSource
+{
+    _startIndex = 0;
+    [self updateCommentList];
+}
+
+- (void)loadMoreTableViewDataSource
+{
+    [self updateCommentList];
+}
+
 
 @end

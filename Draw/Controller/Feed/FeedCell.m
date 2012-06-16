@@ -26,6 +26,7 @@
 @synthesize actionButton;
 @synthesize avatarView = _avatarView;
 @synthesize drawView = _drawView;
+@synthesize feed = _feed;
 
 #define AVATAR_VIEW_FRAME CGRectMake(4, 4, 31, 32)
 #define SHOW_DRAW_VIEW_FRAME CGRectMake(220, 28, 70, 72)
@@ -48,7 +49,7 @@
         cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME]autorelease];
         [cell addSubview:cell.drawView];
         [cell.drawView setShowPenHidden:YES];
-        cell.drawView.backgroundColor = [UIColor whiteColor];
+        cell.drawView.backgroundColor = [UIColor clearColor];
     }
     return cell;
 }
@@ -153,6 +154,7 @@
 }
 - (void)setCellInfo:(Feed *)feed
 {
+    self.feed = feed;
     [self updateDesc:feed];
     [self updateTime:feed];
     [self updateUser:feed];
@@ -164,10 +166,15 @@
 
 - (IBAction)clickActionButton:(id)sender {
     //
-    
-    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
-        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
+    ActionType type = [FeedManager actionTypeForFeed:self.feed];
+    if (type == ActionTypeGuess) {
+        if (delegate && [delegate respondsToSelector:@selector(didClickGuessButtonOnFeed:)]) {
+            [delegate didClickGuessButtonOnFeed:self.feed];
+        }
     }
+//    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
+//        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
+//    }
 }
 
 - (void)dealloc {
@@ -177,6 +184,7 @@
     [guessStatLabel release];
     [actionButton release];
     [_drawView release];
+    [_feed release];
     [super dealloc];
 }
 @end

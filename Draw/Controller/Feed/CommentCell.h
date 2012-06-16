@@ -20,7 +20,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *commentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 
-+ (CGFloat)getCellHeight:(NSString *)comment;
++ (CGFloat)getCellHeight:(Feed *)feed;
 - (void)setCellInfo:(Feed *)feed;
 
 @end

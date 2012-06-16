@@ -471,26 +471,37 @@
 }
 
 - (IBAction)clickGuessButton:(id)sender {
-    OfflineGuessDrawController *oc = [[OfflineGuessDrawController alloc] init];
-    [self.navigationController pushViewController:oc animated:YES];
-    [oc release];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[DrawDataService defaultService] matchDraw:self];
 }
 
 - (IBAction)clickFeedButton:(id)sender {
+    
     FeedController *fc = [[FeedController alloc] init];
     [self.navigationController pushViewController:fc animated:YES];
     [fc release];
 }
 
-+ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController
+
+#pragma mark - draw data service delegate
+- (void)didMatchDraw:(Feed *)feed result:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0 && feed) {
+        [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    }else{
+        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
+        [center postMessageWithText:@"kMathOpusFail" delayTime:1.0 isHappy:NO];
+    }
+}
+
++ (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController
 {
     
     if (viewController) {        
         HomeController *home = [HomeController defaultInstance];
         [viewController.navigationController popToViewController:home animated:NO];
-        OfflineGuessDrawController *controller = [[OfflineGuessDrawController alloc] init];
-        [home.navigationController pushViewController:controller animated:NO];
-        [controller release];
+        [OfflineGuessDrawController startOfflineGuess:feed fromController:home];
     }    
 
 }

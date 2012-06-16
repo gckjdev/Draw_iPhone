@@ -538,9 +538,13 @@
 "kSendMessageFailed" = "Failed to send";
 "kGraffiti" = "Graffiti";
 
-
 "kComment" = "Comment";
 
 
 "kPushTextMessage" = "%@ sent you a message\"%@\"";
 "kPushDrawMessage" = "%@ sent you a draw";
+
+"kCorrect" = "Correct!";
+"kSending" = "Sending...";
+"kNoCommentTips" = "No Comments";
+"kFeedDetail" = "Feed Detail";

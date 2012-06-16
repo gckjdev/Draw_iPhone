@@ -59,12 +59,22 @@
 @synthesize titleLabel;
 @synthesize feed = _feed;
 
-+ (void)startOfflineGuess:(UIViewController *)fromController
+//+ (void)startOfflineGuess:(UIViewController *)fromController
+//{
+//    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
+//    [fromController.navigationController pushViewController:offGuess animated:YES];
+//    [offGuess release];    
+//}
+
++ (void)startOfflineGuess:(Feed *)feed 
+           fromController:(UIViewController *)fromController
 {
-    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
+    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
+                                            initWithFeed:feed];
     [fromController.navigationController pushViewController:offGuess animated:YES];
-    [offGuess release];    
+    [offGuess release];        
 }
+
 - (void)dealloc
 {
     moveButton = nil;
@@ -107,7 +117,22 @@
     return self;
 }
 
+- (id)initWithFeed:(Feed *)feed
+{
+    self = [super init];
+    if (self) {
+        shareImageManager = [ShareImageManager defaultManager];        
+        self.feed = feed;
+        _opusId = _feed.feedId;
+        if (_feed.feedType == FeedTypeGuess) {
+            _opusId = _feed.opusId;
+        }
+        _draw = _feed.drawData;
 
+    }
+    return self;
+    
+}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -504,6 +529,32 @@
     [toolView setEnabled:enabled];
 }
 
+- (void)updateDrawInfo
+{
+
+    self.word = _draw.word;
+    [self updateTargetViews:_draw.word];
+    [self updateCandidateViews:_draw.word lang:_draw.languageType];
+    toolView.enabled = YES;
+    if ([_draw.drawActionList count] != 0) {
+        [self.showView setDrawActionList:[NSMutableArray arrayWithArray:_draw.drawActionList]];            
+        [self.showView play];
+    }
+    
+    AvatarView *avatar = [[AvatarView alloc] initWithUrlString:_draw.avatar type:Guesser gender:YES level:1];
+    if ([DeviceDetection isIPAD]) {
+        avatar.center = CGPointMake(21 * 2, 22 * 2);
+    }else{
+        avatar.center = CGPointMake(21, 22);
+    }
+    [self.view addSubview:avatar];
+    
+    if ([[_draw nickName] length] != 0) {
+        [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[_draw nickName]]];
+    }
+
+}
+
 
 #pragma mark - View lifecycle
 
@@ -523,8 +574,8 @@
     [self initTargetViews];
 
     _shopController = nil;
-    [[DrawDataService defaultService] matchDraw:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
+    
+    [self updateDrawInfo];
     
 }
 
@@ -557,45 +608,9 @@
     [self setWord:nil];
 }
 
-- (void)didMatchDraw:(Feed *)aFeed result:(int)resultCode{
-    [self hideActivity];
-    if (resultCode == 0 && aFeed) {
-        self.feed = aFeed;
-        Draw *draw = [aFeed drawData];
-        self.word = draw.word;
-        [self updateTargetViews:draw.word];
-        [self updateCandidateViews:draw.word lang:draw.languageType];
-        toolView.enabled = YES;
-        if ([draw.drawActionList count] != 0) {
-            [self.showView setDrawActionList:[NSMutableArray arrayWithArray:draw.drawActionList]];            
-            [self.showView play];
-        }
 
-        
-        AvatarView *avatar = [[AvatarView alloc] initWithUrlString:draw.avatar type:Guesser gender:YES level:1];
-        if ([DeviceDetection isIPAD]) {
-            avatar.center = CGPointMake(21 * 2, 22 * 2);
-        }else{
-            avatar.center = CGPointMake(21, 22);
-        }
-        [self.view addSubview:avatar];
-        
-        if ([[draw nickName] length] != 0) {
-            [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[draw nickName]]];
-        }
-        
-    }else{
-        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        center.delegate = self;
-        [center postMessageWithText:@"kMathOpusFail" delayTime:1.0 isHappy:NO];
-    }
-}
 
-- (void)didShowedAlert
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    [CommonMessageCenter defaultCenter].delegate = nil;
-}
+
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
@@ -610,8 +625,8 @@
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else if(dialog.tag == QUIT_DIALOG_TAG){
-        Draw *draw = [self.feed drawData];
-        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:NO score:0 delegate:nil];
+        
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];
         
         [HomeController returnRoom:self];        
     }
@@ -633,15 +648,16 @@
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
     
-        Draw *draw = [self.feed drawData];
-        NSInteger score = [draw.word score] * [ConfigManager guessDifficultLevel];
+        NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
         
-        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_feed.userId drawUserNickName:_feed.nickName wordText:draw.word.text score:score correct:YES isMyPaint:NO drawActionList:draw.drawActionList];
+        
+        
+        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
     
         //send http request.
-        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_feed.feedId opusCreatorUid:draw.userId isCorrect:YES score:score delegate:nil];
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
         //store locally.
-        [[UserManager defaultManager] guessCorrectOpus:_feed.feedId];
+        [[UserManager defaultManager] guessCorrectOpus:_opusId];
         
         result.resultType = OfflineGuess;
         [self.navigationController pushViewController:result animated:YES];

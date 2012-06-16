@@ -265,8 +265,8 @@
 
 - (IBAction)clickContinueButton:(id)sender {
     if (self.resultType == OfflineGuess) {
-//        [HomeController startOfflineDrawFrom:self];
-        [HomeController startOfflineGuessDrawFrom:self];
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [[DrawDataService defaultService] matchDraw:self];
     }else{
         [self resetTimer];
         if ([drawGameService sessionStatus] == SESSION_WAITING) {
@@ -352,6 +352,19 @@
 - (void)levelUp:(int)level
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+}
+
+
+#pragma mark - draw data service delegate
+- (void)didMatchDraw:(Feed *)feed result:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0 && feed) {
+        [HomeController startOfflineGuessDraw:feed from:self];
+    }else{
+        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
+        [center postMessageWithText:@"kMathOpusFail" delayTime:1.0 isHappy:NO];
+    }
 }
 
 
