@@ -18,6 +18,8 @@
 #import "ShowDrawView.h"
 #import "MessageTotalManager.h"
 #import "ChatMessageUtil.h"
+#import "ShareImageManager.h"
+#import "ReplayGraffitiController.h"
 
 @interface ChatDetailController ()
 
@@ -29,8 +31,9 @@
 - (void)scrollToBottom;
 - (void)findAllMessages;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
-- (UIView *)createBubbleView:(ChatMessage *)message;
+- (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath;
 - (void)downInputView;
+- (void)replayGraffiti:(id)sender;
 
 @end
 
@@ -38,7 +41,7 @@
 @implementation ChatDetailController
 @synthesize titleLabel;
 @synthesize graffitiButton;
-@synthesize inputView;
+@synthesize inputBackgroundView;
 @synthesize inputTextView;
 @synthesize sendButton;
 @synthesize friendUserId = _friendUserId;
@@ -52,7 +55,7 @@
     PPRelease(titleLabel);
     PPRelease(graffitiButton);
     PPRelease(sendButton);
-    PPRelease(inputView);
+    PPRelease(inputBackgroundView);
     [inputTextView release];
     [super dealloc];
 }
@@ -79,6 +82,14 @@
     [singleTapRecognizer release];
     
     self.titleLabel.text = self.friendNickname;
+    inputTextView.layer.cornerRadius = 6;
+    inputTextView.layer.masksToBounds = YES;
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [sendButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [sendButton setTitle:NSLS(@"kSendMessage") forState:UIControlStateNormal];
+    [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
+    
     
     [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
                                                                   userId:[[UserManager defaultManager] userId]];
@@ -101,7 +112,7 @@
     [self setTitleLabel:nil];
     [self setGraffitiButton:nil];
     [self setSendButton:nil];
-    [self setInputView:nil];
+    [self setInputBackgroundView:nil];
     [self setInputTextView:nil];
     [super viewDidUnload];
 }
@@ -187,7 +198,7 @@
  IMAGE_BORDER_X 是图片与气泡图边界X方向的空隙
  IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
  */
-- (UIView *)createBubbleView:(ChatMessage *)message
+- (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath
 {
     UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	returnView.backgroundColor = [UIColor clearColor];
@@ -234,7 +245,13 @@
         
         //设置气泡的frame
         bubbleImageView.frame = CGRectMake(0.0f, SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH + 2*IMAGE_BORDER_X, thumbImageView.frame.size.height + 2*IMAGE_BORDER_Y);
-        [bubbleImageView addSubview:thumbImageView];;
+        [bubbleImageView addSubview:thumbImageView];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:thumbImageView.frame];
+        button.tag = indexPath.row;
+        [button addTarget:self action:@selector(replayGraffiti:) forControlEvents:UIControlEventAllEvents];
+        [bubbleImageView addSubview:button];
+        [button release];
     }
     
     
@@ -250,6 +267,20 @@
     return returnView;
 }
 
+- (void)replayGraffiti:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSInteger tag =  button.tag;
+    ChatMessage *message = [dataList objectAtIndex:tag];
+    if ([message.text length] <= 0 && message.drawData) {
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+        
+        ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [dataList count];
@@ -258,7 +289,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message];
+    UIView *view = [self createBubbleView:message indexPath:indexPath];
     return view.frame.size.height;
 }
 
@@ -272,14 +303,13 @@
     }
     
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message];
+    UIView *view = [self createBubbleView:message indexPath:indexPath];
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.contentView addSubview:view];
     
     return cell;
 }
-
 
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -301,6 +331,8 @@
     [UIView setAnimationDuration:0.4];
     _offlineDrawViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     [UIImageView commitAnimations]; 
+    
+    [inputTextView resignFirstResponder];
 }
 
 - (void)hideGraffitiView
@@ -330,12 +362,12 @@
 #pragma mark  - super Keyboard Methods
 - (void)keyboardDidShowWithRect:(CGRect)keyboardRect
 {
-    CGRect frame = CGRectMake(0, 460 - keyboardRect.size.height - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
+    CGRect frame = CGRectMake(0, 460 - keyboardRect.size.height - inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.1];
-    inputView.frame = frame;
-    [UIImageView commitAnimations]; 
+    //[UIView beginAnimations:nil context:nil];
+    //[UIView setAnimationDuration:0.1];
+    inputBackgroundView.frame = frame;
+    //[UIImageView commitAnimations]; 
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification
@@ -363,41 +395,44 @@
 #pragma mark - custom methods
 - (void)downInputView
 {
-    CGRect frame = CGRectMake(0, 460 - inputView.frame.size.height, inputView.frame.size.width, inputView.frame.size.height);
+    CGRect frame = CGRectMake(0, 460 - inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
-    inputView.frame = frame;
+    inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
 }
 
 #pragma mark - UITextViewDelegate
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-//{
-//    return YES;
-//}
-
-#define INPUT_TEXT_FONT 12
-#define TEXTTVIEW_MIN_HEIGHT 31
-- (void)textViewDidChange:(UITextView *)textView
-{
-    UIFont *font = [UIFont systemFontOfSize:INPUT_TEXT_FONT];
-    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(200, 140) lineBreakMode:UILineBreakModeWordWrap];
-    CGRect oldFrame = textView.frame;
-    CGFloat newHeight = size.height + 18;
-    if (newHeight < TEXTTVIEW_MIN_HEIGHT ) {
-        return;
-    }
-    CGFloat addHeight = newHeight - oldFrame.size.height;
-    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight);
-    [textView setFrame:newFrame];
-    
-    CGRect oldBackgroundFrame = inputView.frame;
-    [inputView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y-addHeight, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height+addHeight)];
-}
-
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     [self downInputView];
+}
+
+#define INPUT_TEXT_WIDTH_MAX    170
+#define INPUT_TEXT_HEIGHT_MAX   90
+#define TEXTTVIEW_HEIGHT_MIN    31
+#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  37
+- (void)textViewDidChange:(UITextView *)textView
+{
+    UIFont *font = textView.font;
+    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    
+    PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
+    
+    CGRect oldFrame = textView.frame;
+    CGFloat newHeight = size.height + 16;
+    CGRect oldBackgroundFrame = inputBackgroundView.frame;
+    
+    if (newHeight >= TEXTTVIEW_HEIGHT_MIN) {
+        
+        CGFloat addHeight = newHeight - oldFrame.size.height;
+        [textView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight)];
+        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y-addHeight, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height+addHeight)];
+    }else {
+        [textView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, TEXTTVIEW_HEIGHT_MIN)];
+        CGFloat delHeight = oldBackgroundFrame.size.height - INPUTBACKGROUNDVIEW_HEIGHT_MIN;
+        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
+    }
 }
 
 @end

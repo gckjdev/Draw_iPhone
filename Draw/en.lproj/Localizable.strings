@@ -533,7 +533,8 @@
 "kChatListTitle" = "Chat";
 "kAddChat" = "Create";
 "kSelectContacts" = "Select Contacts";
-
+"kSendMessage" = "Send";
+"kGraffiti" = "Graffiti";
 
 "kComment" = "Comment";
 
