@@ -47,7 +47,7 @@ static MessageTotalManager *_messageTotalManager = nil;
                      totalNewMessage:(NSNumber *)totalNewMessage 
                         totalMessage:(NSNumber *)totalMessage
 {
-    PPDebug(@"createMessageTotalWithUserId:%@ fid:%@ fn:%@ fa:%@ lfrom:%@ lto:%@ drawDataLen:%d lcreDate:%@ new:%@ total:%@",userId,friendUserId,friendNickName,friendAvatar, latestFrom, latestTo, [latestDrawData length], latestDrawData, totalNewMessage, totalMessage);
+    PPDebug(@"createMessageTotalWithUserId:%@ fid:%@ fn:%@ fa:%@ lfrom:%@ lto:%@ drawDataLen:%d ltext:%@ lcreDate:%@ new:%@ total:%@",userId,friendUserId,friendNickName,friendAvatar, latestFrom, latestTo, [latestDrawData length], latestText, latestCreateDate, totalNewMessage, totalMessage);
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     MessageTotal *messageTotal = [self findMessageTotalByFriendUserId:friendUserId userId:userId];

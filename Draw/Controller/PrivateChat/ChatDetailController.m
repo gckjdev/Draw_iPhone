@@ -28,7 +28,7 @@
 
 - (IBAction)clickBack:(id)sender;
 
-- (void)scrollToBottom;
+- (void)scrollToBottom:(BOOL)animated;
 - (void)findAllMessages;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
 - (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath;
@@ -55,8 +55,8 @@
     PPRelease(titleLabel);
     PPRelease(graffitiButton);
     PPRelease(sendButton);
+    PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
-    [inputTextView release];
     [super dealloc];
 }
 
@@ -97,7 +97,7 @@
                                                                   userId:[[UserManager defaultManager] userId]];
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     [self findAllMessages];
-    [self scrollToBottom];
+    [self scrollToBottom:NO];
 }
 
 
@@ -127,7 +127,7 @@
     }
     self.dataList = list;
     [dataTableView reloadData];
-    [self scrollToBottom];
+    [self scrollToBottom:NO];
 }
 
 
@@ -140,7 +140,7 @@
         [inputTextView setText:@""];
         self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
         [dataTableView reloadData];
-        [self scrollToBottom];
+        [self scrollToBottom:YES];
     } else {
         [self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
     }
@@ -148,11 +148,11 @@
 
 
 #pragma mark - custom methods
-- (void)scrollToBottom
+- (void)scrollToBottom:(BOOL)animated
 {
     if ([dataList count]>0) {
         NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
-        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
 
@@ -235,12 +235,12 @@
 
 #define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(400.0):(200.0))
 #define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
-#define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(24):(15))
+#define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(30):(15))
 #define SPACE_Y         (([DeviceDetection isIPAD])?(20):(10))
 #define SCREEN_WIDTH    (([DeviceDetection isIPAD])?(768):(320))
-#define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(16):(8))
-#define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(10))
+#define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(10):(8))
+#define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(10):(8))
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(16):(10))
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(10):(5))
 #define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
 #define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
@@ -282,7 +282,6 @@
             contentTextViewFrame = CGRectMake(BUBBLE_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
         }
         UITextView *contentTextView = [[UITextView alloc] initWithFrame:contentTextViewFrame];
-        //contentTextView.delegate = self;
         contentTextView.backgroundColor = [UIColor clearColor];
         contentTextView.font = font;
         contentTextView.text = message.text;
@@ -427,10 +426,10 @@
 
 
 #pragma mark - UITextViewDelegate methods
-#define INPUT_TEXT_WIDTH_MAX    170
-#define INPUT_TEXT_HEIGHT_MAX   90
-#define TEXTTVIEW_HEIGHT_MIN    32
-#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  38
+#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(170.0))
+#define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
+#define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
+#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))
 - (void)textViewDidChange:(UITextView *)textView
 {
     UIFont *font = textView.font;
