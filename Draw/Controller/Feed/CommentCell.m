@@ -89,7 +89,10 @@
     
     
     //set times
-    [self.timeLabel setText:dateToString(feed.createDate)];
+    NSString *formate = @"yy-MM-dd HH:mm";
+    NSString *timeString = dateToStringByFormat(feed.createDate, formate);
+
+    [self.timeLabel setText:timeString];
     
 }
 

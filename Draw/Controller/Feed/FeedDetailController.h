@@ -24,8 +24,8 @@
     NSString *_author;
     FeedService *_feedService;
     NSInteger _startIndex;
+    UIButton *_maskView;
 }
-@property (retain, nonatomic) IBOutlet UIImageView *inputViewBg;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UITextView *commentInput;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
@@ -38,6 +38,7 @@
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) ShowDrawView *drawView;
 
+@property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
 
 
 - (IBAction)clickActionButton:(id)sender;

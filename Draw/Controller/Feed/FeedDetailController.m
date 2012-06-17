@@ -23,7 +23,6 @@
 
 @implementation FeedDetailController
 @synthesize commentInput;
-@synthesize inputViewBg;
 @synthesize nickNameLabel;
 @synthesize titleLabel;
 @synthesize actionButton;
@@ -33,6 +32,7 @@
 @synthesize timeLabel;
 @synthesize feed = _feed;
 @synthesize drawView = _drawView;
+@synthesize inputBackgroundView = inputBackgroundView;
 @synthesize avatarView = _avatarView;
 
 
@@ -71,7 +71,8 @@
 
 - (void)updateTime:(Feed *)feed
 {
-    NSString *timeString = dateToString(feed.createDate);
+    NSString *formate = @"yy-MM-dd HH:mm";
+    NSString *timeString = dateToStringByFormat(feed.createDate, formate);
     [self.timeLabel setText:timeString];
 }
 
@@ -148,7 +149,15 @@
 #define INPUT_BG_TAG 2012061501
 - (void)updateInputView:(Feed *)feed
 {
-    self.inputViewBg.image = [[ShareImageManager defaultManager] inputImage];
+    commentInput.layer.cornerRadius = 6;
+    commentInput.layer.masksToBounds = YES;
+    _maskView = [[UIButton alloc] initWithFrame:self.view.frame];
+    _maskView.hidden = YES;
+    _maskView.backgroundColor = [UIColor clearColor];
+    [_maskView addTarget:self action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view bringSubviewToFront:inputBackgroundView];
+    [self.view insertSubview:_maskView belowSubview:inputBackgroundView];
 }
 
 - (void)updateCommentTableView:(Feed *)feed
@@ -217,12 +226,13 @@
     [self updateGuessDesc:_feed];
     [self updateActionButton:_feed];
     [self updateDrawView:_feed];
-    [self updateInputView:_feed];
     [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
+    [self updateInputView:_feed];
     [self updateCommentList];
+    
 }
 
 - (void)viewDidUnload
@@ -235,7 +245,7 @@
     [self setNickNameLabel:nil];
     [self setCommentInput:nil];
     [self setSendButton:nil];
-    [self setInputViewBg:nil];
+    [self setInputBackgroundView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -269,19 +279,16 @@
     [nickNameLabel release];
     [commentInput release];
     [sendButton release];
-    [inputViewBg release];
+    [inputBackgroundView release];
+    [_maskView release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
-    static int index = 1;
-    NSString *ifl = @"如果我很长很长呢?";
-    NSString *msg = @"";
-    for (int i = 0; i < index; ++ i) {
-        msg = [NSString stringWithFormat:@"%@%@",msg, ifl];
+    NSString *msg = commentInput.text;
+    if ([msg length] != 0) {
+        [self showActivityWithText:NSLS(@"kSending")];
+        [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];        
     }
-    ++ index;
-    [self showActivityWithText:NSLS(@"kSending")];
-    [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];
 }
 
 #pragma mark - feed service delegate
@@ -290,7 +297,11 @@
             resultCode:(NSInteger)resultCode;
 {
     [self hideActivity];
+    
     if (resultCode == 0) {
+        [self.commentInput setText:nil];
+        [self.commentInput resignFirstResponder];
+
         PPDebug(@"comment succ: opusId = %@, comment = %@", opusId, comment);
         Feed *feed = [[Feed alloc] init];
         UserManager *manager = [UserManager defaultManager];
@@ -298,6 +309,7 @@
         feed.nickName = [manager nickName];
         feed.avatar = [manager avatarURL];
         feed.gender = [manager isUserMale];
+        feed.createDate = [NSDate date];
         feed.opusId = opusId;
         feed.comment = comment;
         NSMutableArray *array = [NSMutableArray arrayWithObject:feed];
@@ -310,6 +322,7 @@
         [self.dataTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         
     }else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") delayTime:1 isHappy:NO];
         PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
     }
 }
@@ -401,6 +414,91 @@
 - (void)loadMoreTableViewDataSource
 {
     [self updateCommentList];
+}
+
+#define MAX_LENGTH 140
+
+#pragma mark - UITextViewDelegate methods
+#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(230.0))
+#define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
+#define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
+#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length] > MAX_LENGTH) {
+        textView.text = [textView.text substringToIndex:MAX_LENGTH];
+    }
+    UIFont *font = textView.font;
+    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    //PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
+    CGRect oldFrame = textView.frame;
+    CGFloat newHeight = size.height + 12;
+    CGRect oldBackgroundFrame = inputBackgroundView.frame;
+    
+    if (newHeight > TEXTTVIEW_HEIGHT_MIN) {
+        CGFloat addHeight = newHeight - oldFrame.size.height;
+        [textView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, newHeight)];
+        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y-addHeight, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height+addHeight)];
+    }else {
+        [textView setFrame: CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, TEXTTVIEW_HEIGHT_MIN)];
+        CGFloat delHeight = oldBackgroundFrame.size.height - INPUTBACKGROUNDVIEW_HEIGHT_MIN;
+        [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
+    }
+    
+    if ([textView.text length] > 0) {
+        [sendButton setEnabled:YES];
+    }else {
+        [sendButton setEnabled:NO];
+    }
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [_maskView setHidden:NO];
+    return YES;
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [_maskView setHidden:YES];
+    return YES;
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
+{  
+    
+    if ([text isEqualToString:@"\n"]) {  
+        [self clickSendButton:self.sendButton];
+        return NO;  
+    }  
+    return YES;  
+} 
+
+- (void)clickMaskView:(id)sender
+{
+    [commentInput resignFirstResponder];
+}
+
+
+#pragma mark - super methods: keyboard show and hide
+#define SUPER_VIEW_HEIGHT (([DeviceDetection isIPAD])?(1004.0):(460.0))
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    CGRect frame = CGRectMake(0, SUPER_VIEW_HEIGHT-keyboardRect.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.25];
+    inputBackgroundView.frame = frame;
+    [UIImageView commitAnimations];
+}
+
+
+- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
+{
+    CGRect frame = CGRectMake(0, SUPER_VIEW_HEIGHT-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.25];
+    inputBackgroundView.frame = frame;
+    [UIImageView commitAnimations];
 }
 
 

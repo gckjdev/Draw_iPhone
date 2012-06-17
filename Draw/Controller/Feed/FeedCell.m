@@ -70,7 +70,8 @@
 
 - (void)updateTime:(Feed *)feed
 {
-    NSString *timeString = dateToString(feed.createDate);
+    NSString *formate = @"yy-MM-dd HH:mm";
+    NSString *timeString = dateToStringByFormat(feed.createDate, formate);
     [self.timeLabel setText:timeString];
 }
 
@@ -81,11 +82,23 @@
         desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"),[FeedManager userNameForFeed:feed]];
     }else if (feed.feedType == FeedTypeGuess){
         if (feed.isCorrect) {
-            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),[FeedManager userNameForFeed:feed], [FeedManager opusCreatorForFeed:feed]];                    
+            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"), [FeedManager opusCreatorForFeed:feed]];                    
         }else{
-            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),[FeedManager userNameForFeed:feed], [FeedManager opusCreatorForFeed:feed]];                    
+            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),[FeedManager opusCreatorForFeed:feed]];                    
         }
     }
+    
+    CGPoint origin = self.descLabel.frame.origin;
+    CGSize size = self.descLabel.frame.size;
+    UIFont *font = self.descLabel.font;
+    CGSize maxSize = CGSizeMake(1000000, size.width);
+    
+    CGSize labelSize = [desc sizeWithFont:font constrainedToSize:maxSize 
+         lineBreakMode:UILineBreakModeWordWrap];
+
+    CGRect rect = CGRectMake(origin.x, origin.y, labelSize.width, labelSize.height);
+    self.descLabel.frame = rect;
+    
     [self.descLabel setText:desc];
 }
 

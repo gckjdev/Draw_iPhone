@@ -522,9 +522,9 @@
 "kMyFeed" = "我的";
 
 
-"kDrawDesc" = "%@ 畫了一幅畫";
-"kGuessRightDesc" = "%@猜對%@的畫";
-"kTryGuessDesc" = "%@嘗試去猜%@的畫";
+"kDrawDesc" = "畫了一幅畫";
+"kGuessRightDesc" = "猜對%@的畫";
+"kTryGuessDesc" = "嘗試去猜%@的畫";
 "kNoGuess" = "猜0";
 "kGuessStat" = "猜%d 中%d";
 
@@ -554,3 +554,5 @@
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
 "kFeedDetail" = "動態詳情";
+
+"kCommentFail" = "評論失敗";
