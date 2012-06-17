@@ -172,9 +172,6 @@
             [delegate didClickGuessButtonOnFeed:self.feed];
         }
     }
-//    if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
-//        [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
-//    }
 }
 
 - (void)dealloc {
