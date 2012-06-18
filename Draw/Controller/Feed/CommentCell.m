@@ -61,7 +61,6 @@
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeWordWrap];
     int height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
-    NSLog(@"comment = %@, height = %d",comment,height);
     return height;
 }
 

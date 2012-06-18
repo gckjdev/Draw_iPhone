@@ -42,7 +42,6 @@
     NSString* cellId = [self getCellIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
         return nil;
     }
     FeedCell *cell = ((FeedCell*)[topLevelObjects objectAtIndex:0]);
