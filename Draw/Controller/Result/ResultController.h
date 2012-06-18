@@ -15,7 +15,8 @@
 typedef enum {
     OnlineGuess = 0,
     OnlineDraw = 1,
-    OfflineGuess =2
+    OfflineGuess =2,
+    FeedGuess =3
 } ResultType;
 @interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate>
 {

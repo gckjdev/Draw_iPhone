@@ -26,6 +26,7 @@
 #import "DrawConstants.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
+#import "FeedController.h"
 
 #define CONTINUE_TIME 10
 
@@ -154,9 +155,11 @@
     if (self.resultType == OfflineGuess) {
         [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
 
+    }else if(self.resultType == FeedGuess){
+        self.continueButton.hidden = YES;
     }else{
         [self startTimer];        
-        [self updateContinueButton:retainCount];
+        [self updateContinueButton:retainCount];        
     }
 
     [self setUpAndDownButtonEnabled:YES];
@@ -284,8 +287,23 @@
 }
 
 - (IBAction)clickExitButton:(id)sender {
-    [[DrawGameService defaultService] quitGame];
-    [HomeController returnRoom:self];
+    if (self.resultType == OfflineGuess) {
+        [HomeController returnRoom:self];        
+    }else if(self.resultType == FeedGuess)
+    {
+        UIViewController *feedController = nil;
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[FeedController class]]) {
+                feedController = controller;
+                break;
+            }
+        }
+        [self.navigationController popToViewController:feedController animated:YES];
+    }
+    else{
+        [[DrawGameService defaultService] quitGame];
+        [HomeController returnRoom:self];
+    }
 }
 
 - (void)saveActionList:(NSArray *)actionList
