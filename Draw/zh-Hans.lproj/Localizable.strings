@@ -525,10 +525,15 @@
 "kMyFeed" = "我的";
 
 
-"kDrawDesc" = "画了一幅画";
-"kGuessRightDesc" = "猜对了%@的画";
-"kTryGuessDesc" = "尝试去猜%@的画";
-"kNoGuess" = "还没有人猜";
+"kDrawDescNoWord" = "画了一幅画";
+"kGuessRightDescNoWord" = "猜对了%@的画";
+"kTryGuessDescNoWord" = "尝试去猜%@的画";
+
+"kDrawDesc" = "画了一幅 [%@]";
+"kGuessRightDesc" = "猜对了%@画的 [%@]";
+"kTryGuessDesc" = "尝试去猜%@画的 [%@]";
+
+"kNoGuess" = "猜0";
 
 "kGuessStat" = "猜 %d  中 %d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
@@ -559,3 +564,5 @@
 "kFeedDetail" = "动态详情";
 
 "kCommentFail" = "评论失败";
+"kBlankDrawTitle" = "空白的画";
+"kBlankDrawMessage" = "不能提交空白的画哦，至少得画几笔吧？";

@@ -43,8 +43,11 @@ FeedManager *_staticFeedManager = nil;
 
 + (ActionType)actionTypeForFeed:(Feed *)feed
 {
+//    BOOL hasGuess = [feed hasGuessed];
+    BOOL isMyOpus = [feed isMyOpus];
+    
     UserManager *userManager = [UserManager defaultManager];
-    if ([userManager isMe:feed.userId]) {
+    if (isMyOpus) {
         return ActionTypeHidden;
     }
     
@@ -65,6 +68,50 @@ FeedManager *_staticFeedManager = nil;
         }
     }
     return ActionTypeHidden;
+}
+
++ (FeedActionDescType)feedActionDescFor:(Feed *)feed
+{
+
+    BOOL hasGuessed = [feed hasGuessed];
+    hasGuessed |= [feed isMyOpus];
+    
+    
+    if (feed.feedType == FeedTypeDraw) {
+        if (hasGuessed) {
+            return FeedActionDescDrawed;
+        }
+        
+        //I draw
+        if ([[UserManager defaultManager] isMe:feed.userId]) {
+            return FeedActionDescDrawed;
+        }else{
+            return FeedActionDescDrawedNoWord;            
+        }
+        
+    }else if (feed.feedType == FeedTypeGuess){
+        
+        if (hasGuessed) {
+            if (feed.isCorrect) {
+                return FeedActionDescGuessed;                
+            }else{
+                return FeedActionDescTried;
+            }
+
+        }
+        //Guess right
+        if (feed.isCorrect) {
+            //if I Guessed
+            if ([[UserManager defaultManager] isMe:feed.userId]) {
+                return FeedActionDescGuessed;
+            }else{
+                return FeedActionDescGuessedNoWord;            
+            }
+        }else{
+            return FeedActionDescTriedNoWord;
+        }
+    }
+    return FeedActionDescNo;
 }
 
 

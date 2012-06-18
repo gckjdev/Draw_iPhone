@@ -16,7 +16,8 @@
 #import "ShowDrawView.h"
 #import "DrawAction.h"
 #import "FeedManager.h"
-
+#import "WordManager.h"
+#import "Word.h"
 
 @implementation FeedCell
 @synthesize guessStatLabel;
@@ -75,18 +76,42 @@
     [self.timeLabel setText:timeString];
 }
 
+
 - (void)updateDesc:(Feed *)feed
 {
     NSString *desc = nil;
-    if (feed.feedType == FeedTypeDraw) {
-        desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"),[FeedManager userNameForFeed:feed]];
-    }else if (feed.feedType == FeedTypeGuess){
-        if (feed.isCorrect) {
-            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"), [FeedManager opusCreatorForFeed:feed]];                    
-        }else{
-            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),[FeedManager opusCreatorForFeed:feed]];                    
-        }
+    NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
+    NSString *word = feed.drawData.word.text;
+    if (feed.drawData.languageType == ChineseType 
+        && [LocaleUtils isTraditionalChinese]) {
+        word = [WordManager changeToTraditionalChinese:word];
     }
+    
+    FeedActionDescType descType = [FeedManager feedActionDescFor:feed];
+    switch (descType) {
+        case FeedActionDescDrawed:
+            desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"), word];  
+            break;
+        case FeedActionDescDrawedNoWord:
+            desc = NSLS(@"kDrawDescNoWord");  
+            break;
+        case FeedActionDescGuessed:
+            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),creatorNick, word];  
+            break;
+        case FeedActionDescGuessedNoWord:
+            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), creatorNick];  
+            break;
+        case FeedActionDescTried:
+            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),creatorNick , word];  
+            break;
+        case FeedActionDescTriedNoWord:
+            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), creatorNick];  
+            break;
+
+        default:
+            break;
+    }
+    
     
     CGPoint origin = self.descLabel.frame.origin;
     CGSize size = self.descLabel.frame.size;
@@ -183,6 +208,10 @@
     if (type == ActionTypeGuess) {
         if (delegate && [delegate respondsToSelector:@selector(didClickGuessButtonOnFeed:)]) {
             [delegate didClickGuessButtonOnFeed:self.feed];
+        }
+    }else if(type == ActionTypeOneMore){
+        if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
+            [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
         }
     }
 }

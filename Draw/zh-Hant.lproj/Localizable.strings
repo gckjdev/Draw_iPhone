@@ -521,10 +521,14 @@
 "kHotFeed" = "熱榜";
 "kMyFeed" = "我的";
 
+"kDrawDescNoWord" = "畫了一幅畫";
+"kGuessRightDescNoWord" = "猜對%@的畫";
+"kTryGuessDescNoWord" = "嘗試去猜了%@的畫";
 
-"kDrawDesc" = "畫了一幅畫";
-"kGuessRightDesc" = "猜對%@的畫";
-"kTryGuessDesc" = "嘗試去猜%@的畫";
+"kDrawDesc" = "畫了一幅 [%@]";
+"kGuessRightDesc" = "猜對%@畫的 [%@]";
+"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]";
+
 "kNoGuess" = "猜0";
 "kGuessStat" = "猜%d 中%d";
 
@@ -556,3 +560,5 @@
 "kFeedDetail" = "動態詳情";
 
 "kCommentFail" = "評論失敗";
+
+"kBlankDrawMessage" = "不能提交空白的畫哦，至少得畫幾筆吧？";

@@ -16,6 +16,8 @@
 #import "CommonMessageCenter.h"
 #import "FeedDetailController.h"
 #import "OfflineGuessDrawController.h"
+#import "SelectWordController.h"
+
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -345,7 +347,13 @@
 {
     [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
 }
-
+- (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath
+{
+    [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
+//    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    [sc release];
+}
 
 @end
 

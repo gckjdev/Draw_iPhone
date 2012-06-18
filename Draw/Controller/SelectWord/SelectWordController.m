@@ -34,6 +34,16 @@
 @synthesize timeBg = _timeBg;
 @synthesize myWordsButton = _myWordsButton;
 
+
++ (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType
+{
+    SelectWordController *sc = [[SelectWordController alloc] initWithType:gameType];
+    [controller.navigationController pushViewController:sc animated:YES];
+    [sc release];
+    
+}
+
+
 #define PICK_WORD_TIME 10
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
