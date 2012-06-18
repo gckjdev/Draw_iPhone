@@ -33,6 +33,9 @@
 #import "ShoppingManager.h"
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
+#import "FeedController.h"
+#import "SelectWordController.h"
+#import "FeedDetailController.h"
 
 @implementation OfflineDrawViewController
 
@@ -377,26 +380,71 @@ enum{
 #define DIALOG_TAG_ESCAPE 201204082
 #define DIALOG_TAG_SUBMIT 201206071
 
+- (FeedDetailController *)superFeedDetailController
+{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[FeedDetailController class]]) {
+            return (FeedDetailController *)controller;
+        }
+    }
+    return nil;
+}
+
+
+- (FeedController *)superFeedController
+{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[FeedController class]]) {
+            return (FeedController *)controller;
+        }
+    }
+    return nil;
+}
+
+- (void)quit
+{
+    UIViewController *superController = [self superFeedDetailController];
+    if (superController == nil) {
+        superController = [self superFeedController];
+    }
+    if (superController) {
+        [self.navigationController popToViewController:superController animated:YES];
+    }else{
+        [HomeController returnRoom:self];
+    }
+}
+
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
         [pickColorView setHidden:YES];        
     }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        [HomeController returnRoom:self];
+        [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
         [drawView setPenType:_willBuyPen.penType];            
     }else if(dialog.tag == DIALOG_TAG_SUBMIT){
-        [HomeController startOfflineDrawFrom:self];
+        UIViewController *superController = [self superFeedDetailController];
+        if (superController == nil) {
+            superController = [self superFeedController];
+        }
+        if (superController) {
+            [self.navigationController popToViewController:superController animated:NO];
+            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            [superController.navigationController pushViewController:sc animated:NO];
+            [sc release];
+        }else{
+            [HomeController startOfflineDrawFrom:self];
+        }
     }
 }
 
 - (void)clickBack:(CommonDialog *)dialog
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
-        [HomeController returnRoom:self];
+        [self quit];
     }
 }
 
@@ -484,6 +532,15 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
+    
+    BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
+    
+    if (isBlank) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        [dialog showInView:self.view];
+        return;
+    }
+    
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
             [delegate didClickSubmit:drawView.drawActionList];

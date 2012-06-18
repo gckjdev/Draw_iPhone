@@ -83,9 +83,10 @@
     if ([actionList count] == 0) {
         return YES;
     }
-    DrawAction *action = [actionList lastObject];
-    if (action.type == DRAW_ACTION_TYPE_DRAW && action.pointCount > 0){
-        return NO;
+    for (DrawAction *action in actionList) {
+        if (action.type == DRAW_ACTION_TYPE_DRAW && action.pointCount > 0){
+            return NO;
+        }
     }
     return YES;
 

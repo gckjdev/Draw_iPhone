@@ -14,6 +14,7 @@
 typedef enum{
     OnlineDraw = 0,
     OfflineDraw = 1,
+//    FeedDraw = 2,
 }GameType;
 
 @class ToolView;
@@ -38,7 +39,7 @@ typedef enum{
 
 
 - (IBAction)clickChangeWordButton:(id)sender;
-
++ (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType;
 
 - (id)initWithType:(GameType)gameType;
 

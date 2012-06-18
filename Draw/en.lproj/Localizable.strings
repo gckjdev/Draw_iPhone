@@ -516,9 +516,15 @@
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
 
-"kDrawDesc" = "drawed a drawing.";
-"kGuessRightDesc" = "Guessed %@'s drawing";
-"kTryGuessDesc" = "Tried to guess %@'s drawing";
+
+
+"kDrawDesc" = "drawed a drawing: [%@].";
+"kGuessRightDesc" = "Guessed %@'s drawing: [%@]";
+"kTryGuessDesc" = "Tried to guess %@'s drawing: [%@]";
+
+"kDrawDescNoWord" = "drawed a drawing";
+"kGuessRightDescNoWord" = "Guessed %@'s drawing";
+"kTryGuessDescNoWord" = "Tried to guess %@'s drawing: [%@]";
 
 "kNoGuess" = "Guess 0";
 "kGuessStat" = "Guess %d, Correct %d";
@@ -550,3 +556,6 @@
 "kFeedDetail" = "Feed Detail";
 
 "kCommentFail" = "Failed to Comment";
+
+"kBlankDrawTitle" = "Blank Drawing";
+"kBlankDrawMessage" = "You can't submit a blank drawing.";

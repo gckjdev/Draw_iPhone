@@ -12,6 +12,7 @@
 #import "TimeUtils.h"
 #import "Draw.h"
 #import "PPDebug.h"
+#import "UserManager.h"
 
 @implementation Feed
 
@@ -88,5 +89,30 @@
     return self;
 }
 
+
+- (BOOL)isMyOpus
+{
+    UserManager *defaultManager  = [UserManager defaultManager];
+    if (self.feedType == FeedTypeDraw) {
+        return [defaultManager isMe:self.userId];
+    }
+    if (self.feedType == FeedTypeGuess) {
+        return [defaultManager isMe:self.drawData.userId];
+    }
+    return NO;
+}
+
+- (BOOL) hasGuessed
+{
+    UserManager *defaultManager  = [UserManager defaultManager];
+    if (self.feedType == FeedTypeDraw) {
+        return [defaultManager hasGuessOpus:self.feedId];
+    }
+    if (self.feedType == FeedTypeGuess) {
+        return [defaultManager hasGuessOpus:self.opusId];
+    }
+    return NO;
+
+}
 
 @end

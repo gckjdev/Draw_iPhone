@@ -18,6 +18,7 @@
 #import "ShareImageManager.h"
 #import "CommentCell.h"
 #import "OfflineGuessDrawController.h"
+#import "SelectWordController.h"
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
@@ -263,6 +264,8 @@
     ActionType type = [FeedManager actionTypeForFeed:self.feed];
     if (type == ActionTypeGuess) {
         [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
+    }else if(type == ActionTypeOneMore){
+        [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
     }
 }
 

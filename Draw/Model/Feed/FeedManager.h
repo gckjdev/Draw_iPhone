@@ -16,6 +16,17 @@ typedef enum{
     ActionTypeCorrect = 3
 }ActionType;
 
+typedef enum{
+    FeedActionDescNo = 0,
+    FeedActionDescGuessed = 1,
+    FeedActionDescTried = 2,
+    FeedActionDescDrawed = 3,
+    FeedActionDescDrawedNoWord = 4,
+    FeedActionDescGuessedNoWord = 5,
+    FeedActionDescTriedNoWord = 6
+}FeedActionDescType;
+
+
 @interface FeedManager : NSObject
 {
     NSMutableDictionary *_dataMap;
@@ -28,6 +39,6 @@ typedef enum{
 + (ActionType)actionTypeForFeed:(Feed *)feed;
 + (NSString *)userNameForFeed:(Feed *)feed;
 + (NSString *)opusCreatorForFeed:(Feed *)feed;
-
++ (FeedActionDescType)feedActionDescFor:(Feed *)feed;
 
 @end
