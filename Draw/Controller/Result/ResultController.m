@@ -298,7 +298,7 @@
                 break;
             }
         }
-        [feedController.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToViewController:feedController animated:YES];
     }
     else{
         [[DrawGameService defaultService] quitGame];
