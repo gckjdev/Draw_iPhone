@@ -70,7 +70,7 @@
 
 
 "kContinue" = "继续 [%d]";
-"kExit" = "退出游戏";
+"kExit" = "不玩了";
 "kSave" = "保存";
 "kTurnResult" = "本轮结果";
 "kBuyColor" = "购买颜色";
@@ -263,7 +263,7 @@
 "kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能。";
 
 "kSharePhotoEmailSubject" = "分享有趣的画画";
-"kSharePhotoEmailBody" = "Hi，分享一副有趣的画，能猜到画的是什么吗？\n\n- 来自%@";
+"kSharePhotoEmailBody" = "Hi，分享一幅有趣的画，能猜到画的是什么吗？\n\n- 来自%@";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感谢您的反馈";
@@ -507,20 +507,20 @@
 
 "kSubmitFailure" = "不好意思，提交失败，请重新提交。";
 "kSubmitSuccTitle" = "提交成功";
-"kSubmitSuccMsg" = "恭喜！提交成功！再来一副？";
+"kSubmitSuccMsg" = "恭喜！提交成功！再来一幅？";
 
-//"kDedutCoinChangeOpusAlertMessage" = "如果更换一副作品，系统将会扣除1个金币哦。";
+//"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币哦。";
 //"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
 //"kChangeOpusTitle" = "更换作品";
 
 "kGuessDraw" = "猜画中";
 "kQuit" = "放弃";
-"kOneMore" = "再来一副";
+"kOneMore" = "再来一幅";
 
-"kGuessUserDraw" = "猜%@的画中";
+"kGuessUserDraw" = "正在猜%@的画中";
 
-"kFeedTitle" = "动态";
-"kAllFeed" = "全部";
+"kFeedTitle" = "猜画动态";
+"kAllFeed" = "好友";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
 
@@ -528,11 +528,11 @@
 "kDrawDesc" = "画了一幅画";
 "kGuessRightDesc" = "猜对了%@的画";
 "kTryGuessDesc" = "尝试去猜%@的画";
-"kNoGuess" = "猜0";
+"kNoGuess" = "还没有人猜";
 
-"kGuessStat" = "猜%d 中%d";
+"kGuessStat" = "猜 %d  中 %d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
-"kNoFeedTips" = "没有动态";
+"kNoFeedTips" = "暂时没有相关动态";
 
 
 "kIGuessAction" = "我来猜猜";
