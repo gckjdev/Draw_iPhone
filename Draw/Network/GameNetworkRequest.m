@@ -1248,7 +1248,7 @@
         str = [str stringByAddQueryParameter:PARA_WORD_LIST value:words];
         
         //TODO use type at Action Class. due to no Action Class, hard code now!
-        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:2];
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_GUESS];
         
         //action type
         return str;
@@ -1265,6 +1265,57 @@
                          responseHandler:responseHandler
                                   output:output];
 
+    
+}
+
+
+
++ (CommonNetworkOutput*)commentOpus:(NSString*)baseURL
+                            appId:(NSString*)appId
+                           userId:(NSString*)userId
+                             nick:(NSString*)nick
+                           avatar:(NSString*)avatar
+                           gender:(NSString*)gender
+                           opusId:(NSString*)opusId                        
+                   opusCreatorUId:(NSString*)opusCreatorUId  
+                            comment:(NSString*)comment
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_ACTION_ON_OPUS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
+        
+        //TODO use type at Action Class. due to no Action Class, hard code now!
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_COMMENT];
+        
+        //action type
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
     
 }
 
@@ -1408,6 +1459,39 @@
         return str;
     };
     
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL 
+                     constructURLHandler:constructURLHandler 
+                         responseHandler:responseHandler 
+                            outputFormat:FORMAT_PB 
+                                  output:output];
+    
+}
+
++ (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
+                                               opusId:(NSString *)opusId 
+                                               offset:(NSInteger)offset
+                                                limit:(int)limit
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];       
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_FEED_COMMENT_LIST];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
         return;

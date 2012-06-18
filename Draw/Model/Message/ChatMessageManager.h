@@ -11,8 +11,8 @@
 enum{
     MessageStatusNotRead = 0,
     MessageStatusRead = 1,
-    MessageStatusSendSuccess = 2,
-    MessageStatusSendFailed = 3
+    MessageStatusSendSuccess = 20,
+    MessageStatusSendFailed = 21
 };
 
 @class PBMessage;
@@ -32,7 +32,5 @@ enum{
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 
-- (NSData *)archiveDataFromDrawActionList:(NSArray *)aDrawActionList;
-- (NSArray *)unarchiveDataToDrawActionList:(NSData *)aDat;
 
 @end

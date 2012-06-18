@@ -224,12 +224,24 @@
                             score:(NSInteger)score
                             words:(NSString*)words;
 
++ (CommonNetworkOutput*)commentOpus:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                               nick:(NSString*)nick
+                             avatar:(NSString*)avatar
+                             gender:(NSString*)gender
+                             opusId:(NSString*)opusId                        
+                     opusCreatorUId:(NSString*)opusCreatorUId  
+                            comment:(NSString*)comment;
+
+
 + (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
                           friendUserId:(NSString*)friendUserId
                            startOffset:(int)startOffset
                               maxCount:(int)maxCount;
+
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL
                               appId:(NSString*)appId
                              userId:(NSString*)userId
@@ -247,6 +259,10 @@
                                                offset:(NSInteger)offset
                                                 limit:(int)limit;
 
++ (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
+                                                      opusId:(NSString *)opusId 
+                                                      offset:(NSInteger)offset
+                                                       limit:(int)limit;
 
 
 @end

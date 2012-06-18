@@ -10,14 +10,14 @@
 #import "DrawGameService.h"
 #import "PPViewController.h"
 #import "LevelService.h"
-
+#import "DrawDataService.h"
 
 typedef enum {
     OnlineGuess = 0,
     OnlineDraw = 1,
     OfflineGuess =2
 } ResultType;
-@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate>
+@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate>
 {
     UIImage * _image;
     NSArray * _paintList;

@@ -38,6 +38,7 @@ typedef enum{
     NSInteger startPlayIndex;
     BOOL _showPenHidden;
     PenView *pen;
+    BOOL _showDraw;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
@@ -47,6 +48,7 @@ typedef enum{
 
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)play;
+- (void)show; //should call after add all the drawActions
 - (UIImage *)createImage;
 - (UIImage *)createImageWithScale:(CGFloat)scale;
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
@@ -54,4 +56,5 @@ typedef enum{
 - (BOOL)isViewBlank;
 - (void)setShowPenHidden:(BOOL)showPenHidden;
 - (BOOL)isShowPenHidden;
+
 @end

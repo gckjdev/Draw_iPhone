@@ -20,5 +20,7 @@
 @interface SelectChatFriendController : PPTableViewController
 
 @property (assign, nonatomic) id<SelectChatFriendDelagate> delegate;
+@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

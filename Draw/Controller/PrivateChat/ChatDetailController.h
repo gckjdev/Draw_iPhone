@@ -14,10 +14,12 @@
  
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *graffitiButton;
-@property (retain, nonatomic) IBOutlet UIView *inputView;
-@property (retain, nonatomic) IBOutlet UITextField *inputTextField;
+@property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
+@property (retain, nonatomic) IBOutlet UITextView *inputTextView;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 
 - (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname;
+
+- (void)findAllMessages;
 
 @end

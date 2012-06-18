@@ -47,15 +47,15 @@ static ChatService *_chatService = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            
-            
             if (output.resultCode == ERROR_SUCCESS){
-                
-                //to do save data
-                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *messageStatList = [travelResponse messageStatList];
-                for (PBMessageStat *pbMessageStat in messageStatList) {
-                    [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
+                @try{
+                    DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *messageStatList = [drawResponse messageStatList];
+                    for (PBMessageStat *pbMessageStat in messageStatList) {
+                        [[MessageTotalManager defaultManager] createByPBMessageStat:pbMessageStat];
+                    }
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
                 }
                 
                 PPDebug(@"<ChatService>findAllMessageTotals success");
@@ -63,9 +63,9 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>findAllMessageTotals failed");
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessageTotals:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessageTotals:resultCode:)]){
                 NSArray *array = [[MessageTotalManager defaultManager] findAllMessageTotals];
-                [delegate didFindAllMessageTotals:array];
+                [delegate didFindAllMessageTotals:array resultCode:output.resultCode];
             }
         }); 
     });
@@ -90,11 +90,14 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 
-                //to do save data
-                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *messageList = [travelResponse messageList];
-                for (PBMessage *pbMessage in messageList) {
-                    [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
+                @try{
+                    DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *messageList = [travelResponse messageList];
+                    for (PBMessage *pbMessage in messageList) {
+                        [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
+                    }
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
                 }
                 
                 PPDebug(@"<ChatService>findAllMessages success");
@@ -102,9 +105,9 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>findAllMessages failed");
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessagesByFriendUserId:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessages:resultCode:)]){
                 NSArray *array = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
-                [delegate didFindAllMessagesByFriendUserId:array];
+                [delegate didFindAllMessages:array resultCode:output.resultCode];
             }
         }); 
     });
@@ -138,17 +141,6 @@ static ChatService *_chatService = nil;
                                                                  text:text
                                                                  data:data];
         
-        NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-        NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
-        
-        [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
-                                                                   from:userId 
-                                                                     to:friendUserId 
-                                                               drawData:dataForSave
-                                                             createDate:[NSDate date] 
-                                                                   text:text 
-                                                                 status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
@@ -180,7 +172,6 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{
-        //要改成可以发送一个messageId列表
         CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:TRAFFIC_SERVER_URL 
                                                                        appId:APP_ID 
                                                                       userId:userId 

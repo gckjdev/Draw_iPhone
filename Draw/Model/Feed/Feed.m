@@ -40,6 +40,7 @@
 
 // common data
 @synthesize matchTimes = _matchTimes;
+@synthesize correctTimes = _correctTimes;
 
 - (void)dealloc
 {
@@ -68,7 +69,8 @@
         self.nickName = [pbFeed nickName];
         self.avatar = [pbFeed avatar];
         self.gender = [pbFeed gender];
-        
+        self.matchTimes = [pbFeed matchTimes];
+        self.correctTimes = [pbFeed correctTimes];
         self.opusId = [pbFeed opusId];
         
         if ([pbFeed hasDrawData]) {

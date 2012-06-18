@@ -11,10 +11,10 @@
 #import "DrawGameService.h"
 #import "RouterService.h"
 #import "CommonDialog.h"
-
+#import "DrawDataService.h"
 @class UserManager;
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate>
 {
     BOOL        _isTryJoinGame;    
     UserManager *_userManager;
@@ -50,6 +50,6 @@
 + (void)returnRoom:(UIViewController*)superController;
 
 + (void)startOfflineDrawFrom:(UIViewController *)viewController;
-+ (void)startOfflineGuessDrawFrom:(UIViewController *)viewController;
++ (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "FeedManager.h"
 #import "PPDebug.h"
+#import "UserManager.h"
+#import "Draw.h"
 
 FeedManager *_staticFeedManager = nil;
 
@@ -17,21 +19,55 @@ FeedManager *_staticFeedManager = nil;
 
 @implementation FeedManager
 
-
-- (NSMutableArray *)listForKey:(NSString *)key
++ (NSString *)userNameForFeed:(Feed *)feed
 {
-    return [_dataMap objectForKey:key];
-}
-
-- (void)setList:(NSMutableArray *)list forKey:(NSString *)key
-{
-    if (list == nil) {
-        NSMutableArray *array = [self listForKey:key];
-        [array removeAllObjects];
+    if ([[UserManager defaultManager] isMe:feed.userId]) {
+        return NSLS(@"Me");
     }else{
-        [_dataMap setObject:list forKey:key];
+        return [feed nickName];
     }
 }
+
+//get name
++ (NSString *)opusCreatorForFeed:(Feed *)feed
+{
+    NSString *userId = [[feed drawData] userId];
+    NSString *nick = [[feed drawData] nickName];
+    if ([[UserManager defaultManager] isMe:userId]) {
+        return NSLS(@"Me");
+    }else{
+        return nick;
+    }
+}
+
+
++ (ActionType)actionTypeForFeed:(Feed *)feed
+{
+    UserManager *userManager = [UserManager defaultManager];
+    if ([userManager isMe:feed.userId]) {
+        return ActionTypeHidden;
+    }
+    
+    if (feed.feedType == FeedTypeDraw) {
+        if ([userManager hasGuessOpus:feed.feedId]) {
+            return ActionTypeCorrect;
+        }
+        return ActionTypeGuess;
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        if ([userManager hasGuessOpus:feed.opusId]) {
+            return ActionTypeCorrect;
+        }
+        if ([userManager isMe:feed.drawData.userId]) {
+            return ActionTypeOneMore;
+        }else{
+            return ActionTypeGuess;
+        }
+    }
+    return ActionTypeHidden;
+}
+
+
 - (void)addListForKey:(NSString *)key
 {
     NSMutableArray *list = [NSMutableArray array];
@@ -39,7 +75,19 @@ FeedManager *_staticFeedManager = nil;
 }
 
 
-
+- (NSString *)keyForType:(FeedListType )type
+{
+    if (type == FeedListTypeMy) {
+        return FeedKeyMy;
+    }
+    if (type == FeedListTypeAll) {
+        return FeedKeyAll;
+    }
+    if (type == FeedListTypeHot) {
+        return FeedKeyHot;
+    }
+    return nil;
+}
 
 - (id)init
 {
@@ -67,34 +115,38 @@ FeedManager *_staticFeedManager = nil;
     return _staticFeedManager;
 }
 
+- (NSMutableArray *)feedListForType:(FeedListType)type
+{
+    NSString *key = [self keyForType:type];
+    if (key) {
+        return [_dataMap objectForKey:key];
+    }
+    return nil;
+}
+- (void)setFeedList:(NSMutableArray *)feedList forType:(FeedListType)type
+{
+    NSString *key = [self keyForType:type];
+    if (key) {
+        if (feedList) {
+            [_dataMap setObject:feedList forKey:key];            
+        }else{
+            //if the list is nil;
+            NSMutableArray *list = [self feedListForType:type];
+            [list removeAllObjects];
+        }
+    }
+}
+- (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type
+{
+    if ([feedList count] == 0) {
+        return;
+    }
+    NSMutableArray *list = [self feedListForType:type];
+    if (list) {
+        [list addObjectsFromArray:feedList];
+    }
+}
 
-
-- (NSMutableArray *)myFeedList
-{
-    return [self listForKey:FeedKeyMy];
-}
-- (NSMutableArray *)allFeedList
-{
-    return [self listForKey:FeedKeyAll];    
-}
-- (NSMutableArray *)hotFeedList
-{
-    return [self listForKey:FeedKeyHot];
-}
-
-
-- (void)setMyFeedList:(NSMutableArray *)list
-{
-    [self setList:list forKey:FeedKeyMy];
-}
-- (void)setAllFeedList:(NSMutableArray *)list
-{
-    [self setList:list forKey:FeedKeyAll];    
-}
-- (void)seHhotFeedList:(NSMutableArray *)list
-{
-    [self setList:list forKey:FeedKeyHot];
-}
 
 
 @end

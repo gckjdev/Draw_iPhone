@@ -47,6 +47,7 @@
     playingActionIndex = 0;
     playingPointIndex = 0;
     startPlayIndex = 0;
+    _showDraw = NO;
     [self setNeedsDisplay];    
 }
 
@@ -64,7 +65,12 @@
     [self playFromDrawActionIndex:0];
 }
 
-
+- (void)show
+{
+//    [self playFromDrawActionIndex:[self.drawActionList count]];
+    _showDraw = YES;
+    [self setNeedsDisplay];
+}
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
     if (play) {
@@ -195,10 +201,67 @@
 }
 
 
+
+
 #pragma mark drawRect
+
+- (void)drawShowRect:(CGRect)rect
+{
+    if ([self.drawActionList count ] == 0) {
+        return;
+    }
+    CGContextRef context = UIGraphicsGetCurrentContext(); 
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    int index = -1;
+    int i = 0;
+    for (DrawAction *drawAction in self.drawActionList) {
+        if (drawAction.type == DRAW_ACTION_TYPE_CLEAN) {
+            index = i;
+        }
+        ++ i;
+    }
+    index ++;
+    
+    for (int j = index; j < [self.drawActionList count]; ++ j) {
+        DrawAction *drawAction = [self.drawActionList objectAtIndex:j];
+        Paint *paint = drawAction.paint;
+        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
+        CGContextSetLineWidth(context, paint.width);
+        for (i = 0; i < [paint pointCount]; ++ i) {
+            CGPoint point = [paint pointAtIndex:i];
+            if ([paint pointCount] == 1) {
+                //if tap gesture, draw a circle
+                CGContextSetFillColorWithColor(context, paint.color.CGColor);
+                CGFloat r = paint.width / 2;
+                CGFloat x = point.x - r;
+                CGFloat y = point.y - r;
+                CGFloat width = paint.width;
+                CGRect rect = CGRectMake(x, y, width, width);
+                CGContextFillEllipseInRect(context, rect);
+            }else{
+                //if is pan gesture, draw a line.
+                if (i == 0) {
+                    CGContextMoveToPoint(context, point.x, point.y);   
+                }else{
+                    CGContextAddLineToPoint(context, point.x, point.y);
+                }
+            }
+        }
+        CGContextStrokePath(context); 
+    }
+    
+    _showDraw = NO;
+    
+}
 
 - (void)drawRect:(CGRect)rect
 {
+    
+    if (_showDraw) {
+        [self drawShowRect:rect];
+        return;
+    }
     
     CGContextRef context = UIGraphicsGetCurrentContext(); 
     CGContextSetLineCap(context, kCGLineCapRound);

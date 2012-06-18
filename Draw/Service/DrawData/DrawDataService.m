@@ -212,8 +212,11 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                               words:words];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSInteger resultCode = output.resultCode;
+            
             if ([viewController respondsToSelector:@selector(didGuessOfflineDraw:)]){
-                [viewController didGuessOfflineDraw:output.resultCode];
+                [viewController didGuessOfflineDraw:resultCode];
             }
         });
     });

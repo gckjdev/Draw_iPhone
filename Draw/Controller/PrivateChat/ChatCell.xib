@@ -62,7 +62,7 @@
 								<string key="NSFrame">{{11, 4}, {42, 42}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="222395442"/>
+								<reference key="NSNextKeyView" ref="252803361"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -76,7 +76,7 @@
 							<object class="IBUILabel" id="222395442">
 								<reference key="NSNextResponder" ref="288792617"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{197, 4}, {116, 21}}</string>
+								<string key="NSFrame">{{224, 4}, {89, 21}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="186523253"/>
@@ -161,7 +161,7 @@
 							<object class="IBUIImageView" id="746337587">
 								<reference key="NSNextResponder" ref="288792617"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{91, 9}, {50, 50}}</string>
+								<string key="NSFrame">{{91, 14}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="591128729"/>
@@ -179,6 +179,7 @@
 								<string key="NSFrame">{{75, 22}, {121, 24}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="222395442"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -195,7 +196,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
-						<string key="NSFrameSize">{324, 67}</string>
+						<string key="NSFrameSize">{320, 67}</string>
 						<reference key="NSSuperview" ref="397773549"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="407492559"/>
@@ -211,7 +212,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{324, 68}</string>
+				<string key="NSFrameSize">{320, 68}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="288792617"/>

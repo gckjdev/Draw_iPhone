@@ -92,7 +92,7 @@
 "kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
 "kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來哦!";
 
-"kRegisterToEnter" = "馬上註冊\“猜猜畫畫\"進入遊戲吧";
+"kRegisterToEnter" = "馬上註冊\"猜猜畫畫\"進入遊戲吧";
 "kRegisterPromptLabel" = "使用微博賬號玩";
 "kRegisterTitleLabel" = "猜猜畫畫";
 "kEnterEmail" = "請輸入Email地址";
@@ -467,7 +467,7 @@
 
 "kVolume" = "音量";
 "kAddWords" = "提交新詞";
-"kAddWordsTips" = "詞之間用空格或者換行分開，如\“大地中國\”";
+"kAddWordsTips" = "詞之間用空格或者換行分開，如\"大地中國\”";
 "kAddWordsSucc" = "提交成功，感謝貢獻";
 "kAddWordsFail" = "提交失敗，請稍後再試";
 "kContentFormatError" = "格式錯誤，詞之間的分隔符號只能是空格或者換行，仔細檢查一下哦";
@@ -522,3 +522,37 @@
 "kMyFeed" = "我的";
 
 
+"kDrawDesc" = "畫了一幅畫";
+"kGuessRightDesc" = "猜對%@的畫";
+"kTryGuessDesc" = "嘗試去猜%@的畫";
+"kNoGuess" = "猜0";
+"kGuessStat" = "猜%d 中%d";
+
+"kGetFeedListFail" = "獲取動態清單失敗，請稍後再試。";
+"kNoFeedTips" = "沒有動態";
+
+"kIGuessAction" = "我來猜猜";
+"kOneMoreAction" = "再來一幅";
+"kIGuessCorrect" = "猜對了​​";
+
+"kChatListTitle" = "聊天";
+"kAddChat" = "創建";
+"kSelectContacts" = "選擇聯繫人";
+"kSendMessage" = "發送";
+"kSendingChatMessage" = "發送中...";
+"kSendMessageFailed" = "發送失敗";
+"kGraffiti" = "塗鴉";
+
+
+"kComment" = "評論";
+
+
+"kPushTextMessage" = "%@ 給您發來了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀您欣賞TA的大作";
+
+"kCorrect" = "猜對了！";
+"kSending" = "發送中...";
+"kNoCommentTips" = "還沒有人評論";
+"kFeedDetail" = "動態詳情";
+
+"kCommentFail" = "評論失敗";

@@ -675,4 +675,30 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     [[NSUserDefaults standardUserDefaults] setInteger:++count forKey:KEY_ROOM_COUNT];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+#define OPUS_PREFIX @"opus_"
+
+- (NSString *)opusKeyForOpusId:(NSString *)opusId
+{
+    return [NSString stringWithFormat:@"%@%@",OPUS_PREFIX,opusId];
+}
+
+- (void)guessCorrectOpus:(NSString *)opusId
+{
+    if([opusId length] == 0) return;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = [self opusKeyForOpusId:opusId];
+    [defaults setBool:YES forKey:key];
+    [defaults synchronize];
+}
+
+- (BOOL)hasGuessOpus:(NSString *)opusId
+{
+    if([opusId length] == 0) return NO;
+    NSString *key = [self opusKeyForOpusId:opusId];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
+        return YES;
+    }
+    return NO;
+}
 @end

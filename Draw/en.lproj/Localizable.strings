@@ -515,3 +515,38 @@
 "kAllFeed" = "All";
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
+
+"kDrawDesc" = "drawed a drawing.";
+"kGuessRightDesc" = "Guessed %@'s drawing";
+"kTryGuessDesc" = "Tried to guess %@'s drawing";
+
+"kNoGuess" = "Guess 0";
+"kGuessStat" = "Guess %d, Correct %d";
+
+"kGetFeedListFail" = "Fetch feed list fail. Please try it again later.";
+
+"kNoFeedTips" = "No feeds";
+
+"kIGuessAction" = "Guess";
+"kOneMoreAction" = "One More";
+"kIGuessCorrect" = "Correct";
+"kChatListTitle" = "Chat";
+"kAddChat" = "Create";
+"kSelectContacts" = "Select Contacts";
+"kSendMessage" = "Send";
+"kSendingChatMessage" = "Sending...";
+"kSendMessageFailed" = "Failed to send";
+"kGraffiti" = "Graffiti";
+
+"kComment" = "Comment";
+
+
+"kPushTextMessage" = "%@ sent you a message\"%@\"";
+"kPushDrawMessage" = "%@ sent you a draw";
+
+"kCorrect" = "Correct!";
+"kSending" = "Sending...";
+"kNoCommentTips" = "No Comments";
+"kFeedDetail" = "Feed Detail";
+
+"kCommentFail" = "Failed to Comment";

@@ -21,7 +21,7 @@
 @class ItemShopController;
 @class Draw;
 @class Feed;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate,CommonMessageCenterDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
@@ -38,6 +38,9 @@
     LanguageType languageType;
     Feed *_feed;
     NSMutableArray *_guessWords;
+    
+    NSString *_opusId;
+    Draw *_draw;
 
 }
 @property (retain, nonatomic) NSString *candidateString;
@@ -70,10 +73,11 @@
 
 - (void)scrollToPage:(NSInteger)pageIndex;
 
-
-
-+ (void)startOfflineGuess:(UIViewController *)fromController;
-
+//the feed should be draw type
+- (id)initWithFeed:(Feed *)feed;
+//+ (void)startOfflineGuess:(UIViewController *)fromController;
++ (void)startOfflineGuess:(Feed *)feed 
+           fromController:(UIViewController *)fromController;
 @end
 
 

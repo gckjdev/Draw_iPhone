@@ -523,3 +523,39 @@
 "kAllFeed" = "全部";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
+
+
+"kDrawDesc" = "画了一幅画";
+"kGuessRightDesc" = "猜对了%@的画";
+"kTryGuessDesc" = "尝试去猜%@的画";
+"kNoGuess" = "猜0";
+
+"kGuessStat" = "猜%d 中%d";
+"kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
+"kNoFeedTips" = "没有动态";
+
+
+"kIGuessAction" = "我来猜猜";
+"kOneMoreAction" = "再来一幅";
+"kIGuessCorrect" = "猜对了";
+"kChatListTitle" = "聊天";
+"kAddChat" = "创建";
+"kSelectContacts" = "选择联系人";
+"kSendMessage" = "发送";
+"kSendingChatMessage" = "发送中...";
+"kSendMessageFailed" = "发送失败";
+"kGraffiti" = "涂鸦";
+
+
+"kComment" = "评论";
+
+
+"kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
+"kPushDrawMessage" = "%@ 邀您欣赏TA的大作";
+
+"kCorrect" = "猜对了！";
+"kSending" = "发送中...";
+"kNoCommentTips" = "还没有人评论";
+"kFeedDetail" = "动态详情";
+
+"kCommentFail" = "评论失败";

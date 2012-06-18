@@ -12,7 +12,18 @@
 @protocol FeedServiceDelegate <NSObject>
 
 @optional
-- (void)didGetFeedList:(NSArray *)feedList resultCode:(NSInteger)resultCode;
+- (void)didGetFeedList:(NSArray *)feedList 
+          feedListType:(FeedListType)type 
+            resultCode:(NSInteger)resultCode;
+
+- (void)didGetFeedCommentList:(NSArray *)feedList 
+                       opusId:(NSString *)opusId 
+                   resultCode:(NSInteger)resultCode;
+
+- (void)didCommentOpus:(NSString *)opusId
+               comment:(NSString *)comment 
+            resultCode:(NSInteger)resultCode;
+
 
 @end
 
@@ -26,5 +37,16 @@
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
+           delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getOpusCommentList:(NSString *)opusId
+             offset:(NSInteger)offset 
+              limit:(NSInteger)limit 
+           delegate:(id<FeedServiceDelegate>)delegate;
+
+
+- (void)commentOpus:(NSString *)opusId 
+             author:(NSString *)author 
+            comment:(NSString *)comment            
            delegate:(id<FeedServiceDelegate>)delegate;
 @end

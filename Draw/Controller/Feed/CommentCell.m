@@ -7,45 +7,101 @@
 //
 
 #import "CommentCell.h"
+#import "StableView.h"
+#import "FeedManager.h"
+#import "TimeUtils.h"
+#import "LocaleUtils.h"
 
 @implementation CommentCell
+@synthesize nickNameLabel;
+@synthesize commentLabel;
+@synthesize timeLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
++ (id)createCell:(id)delegate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    NSString* cellId = [self getCellIdentifier];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    
+    return [topLevelObjects objectAtIndex:0];
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
++ (NSString*)getCellIdentifier
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    return @"CommentCell";
 }
 
-- (void)viewDidUnload
+
+#define COMMENT_WIDTH 248
+#define COMMENT_FONT_SIZE 14
+#define COMMENT_SPACE 10
+#define COMMENT_BASE_X 44
+#define COMMENT_BASE_Y 28
+
+
+#define AVATAR_VIEW_FRAME CGRectMake(4, 4, 31, 32)
+
+
+
++ (CGFloat)getCellHeight:(Feed *)feed
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    NSString *comment = feed.comment;
+    if (feed.feedType ==  FeedTypeGuess) {
+        comment = NSLS(@"kCorrect");
+    }
+    CGSize size = [comment sizeWithFont:[UIFont systemFontOfSize:COMMENT_FONT_SIZE] constrainedToSize:CGSizeMake(COMMENT_WIDTH, 1000000) lineBreakMode:UILineBreakModeWordWrap];
+    int height = COMMENT_BASE_Y + COMMENT_SPACE + size.height;
+    return height;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)setCellInfo:(Feed *)feed
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //set avatar
+    [_avatarView removeFromSuperview];
+    _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0];
+    [self addSubview:_avatarView];
+    [_avatarView release];
+
+    //set user name
+    
+    NSString *userName = [FeedManager userNameForFeed:feed];
+    [self.nickNameLabel setText:userName];
+    
+    //set comment
+    NSString *comment = feed.comment;
+    if (feed.feedType ==  FeedTypeGuess) {
+        comment = NSLS(@"kCorrect");
+        [self.commentLabel setTextColor:[UIColor redColor]];
+    }else{
+        [self.commentLabel setTextColor:[UIColor darkGrayColor]];
+    }
+    
+    CGSize commentSize = [comment sizeWithFont:[UIFont systemFontOfSize:COMMENT_FONT_SIZE] constrainedToSize:CGSizeMake(COMMENT_WIDTH, 1000000) lineBreakMode:UILineBreakModeWordWrap];
+
+    self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
+    [self.commentLabel setText:comment];
+    
+    
+    //set times
+    NSString *formate = @"yy-MM-dd HH:mm";
+    NSString *timeString = dateToStringByFormat(feed.createDate, formate);
+
+    [self.timeLabel setText:timeString];
+    
 }
 
+
+
+- (void)dealloc {
+    [nickNameLabel release];
+    [commentLabel release];
+    [timeLabel release];
+    [super dealloc];
+}
 @end

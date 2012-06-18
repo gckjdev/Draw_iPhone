@@ -27,8 +27,8 @@
 
 - (NSArray *)findAllMessageTotals;
 
-- (BOOL)deleteMessageTotal:(NSString *)friendUserId;
-
 - (BOOL)createByPBMessageStat:(PBMessageStat *)pbMessageStat;
+
+- (BOOL)readNewMessageWithFriendUserId:(NSString *)friendUserId userId:(NSString *)userId;
 
 @end
