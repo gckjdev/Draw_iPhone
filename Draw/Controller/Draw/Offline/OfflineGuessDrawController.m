@@ -37,7 +37,7 @@
 #import "Draw.h"
 #import "AccountManager.h"
 #import "CoinShopController.h"
-
+#import "FeedController.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -58,6 +58,7 @@
 @synthesize quitButton;
 @synthesize titleLabel;
 @synthesize feed = _feed;
+@synthesize superController = _supperController;
 
 //+ (void)startOfflineGuess:(UIViewController *)fromController
 //{
@@ -71,6 +72,7 @@
 {
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
                                             initWithFeed:feed];
+    offGuess.superController = fromController;
     [fromController.navigationController pushViewController:offGuess animated:YES];
     [offGuess release];        
 }
@@ -93,6 +95,7 @@
     PPRelease(_feed);
     PPRelease(quitButton);
     PPRelease(_guessWords);
+    PPRelease(_supperController);
     [super dealloc];
 }
 
@@ -658,8 +661,11 @@
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
         //store locally.
         [[UserManager defaultManager] guessCorrectOpus:_opusId];
-        
-        result.resultType = OfflineGuess;
+        if ([self.superController isKindOfClass:[FeedController class]]) {
+            result.resultType = FeedGuess;
+        }else{
+            result.resultType = OfflineGuess;
+        }
         [self.navigationController pushViewController:result animated:YES];
         [result release];
         

@@ -41,10 +41,12 @@
     
     NSString *_opusId;
     Draw *_draw;
+    UIViewController *_supperController;
 
 }
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;
+@property (retain, nonatomic) UIViewController *superController;
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -55,6 +57,8 @@
 @property (retain, nonatomic) Feed *feed;
 @property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+
+
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
