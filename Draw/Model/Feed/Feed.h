@@ -68,7 +68,7 @@ typedef enum{
 @property (nonatomic, retain) NSString *feedId;
 @property (nonatomic, retain) NSString *userId;
 @property (nonatomic, assign) FeedType feedType;
-@property (nonatomic, assign) NSDate *createDate;
+@property (nonatomic, retain) NSDate *createDate;
 
 // for user info
 @property (nonatomic, retain) NSString *nickName;
