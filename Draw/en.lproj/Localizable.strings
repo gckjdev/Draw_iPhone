@@ -536,7 +536,7 @@
 "kIGuessAction" = "Guess";
 "kOneMoreAction" = "One More";
 "kIGuessCorrect" = "Correct";
-"kChatListTitle" = "Chat";
+"kChatListTitle" = "Graffiti chat";
 "kAddChat" = "Create";
 "kSelectContacts" = "Select Contacts";
 "kSendMessage" = "Send";

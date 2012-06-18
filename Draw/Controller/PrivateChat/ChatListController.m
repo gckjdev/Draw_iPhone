@@ -51,7 +51,7 @@
     [titleLabel setText:NSLS(@"kChatListTitle")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [addChatButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+    [addChatButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];

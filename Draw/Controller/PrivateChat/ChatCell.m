@@ -65,8 +65,8 @@
 }
 
 
-#define CELL_HEIGHT_IPHONE  68
-#define CELL_HEIGHT_IPAD    136
+#define CELL_HEIGHT_IPHONE  100
+#define CELL_HEIGHT_IPAD    200
 + (CGFloat)getCellHeight
 {
     if ([DeviceDetection isIPAD]) {

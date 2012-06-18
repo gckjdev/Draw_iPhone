@@ -22,5 +22,8 @@
 @property (assign, nonatomic) id<SelectChatFriendDelagate> delegate;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *followButton;
+@property (retain, nonatomic) IBOutlet UIButton *fanButton;
+@property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 
 @end
