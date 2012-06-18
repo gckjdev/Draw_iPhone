@@ -131,7 +131,6 @@
             _opusId = _feed.opusId;
         }
         _draw = _feed.drawData;
-
     }
     return self;
     
@@ -540,7 +539,9 @@
     [self updateCandidateViews:_draw.word lang:_draw.languageType];
     toolView.enabled = YES;
     if ([_draw.drawActionList count] != 0) {
-        [self.showView setDrawActionList:[NSMutableArray arrayWithArray:_draw.drawActionList]];            
+        
+        NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
+        [self.showView setDrawActionList:list];
         [self.showView play];
     }
     
