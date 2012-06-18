@@ -19,7 +19,9 @@
 #import "CommentCell.h"
 #import "OfflineGuessDrawController.h"
 //#import "OfflineGuessDrawController.h
-
+@interface FeedDetailController()
+- (void)textViewDidChange:(UITextView *)textView;
+@end;
 
 @implementation FeedDetailController
 @synthesize commentInput;
@@ -299,9 +301,10 @@
     [self hideActivity];
     
     if (resultCode == 0) {
-        [self.commentInput setText:nil];
+        [self.commentInput setText:@""];
         [self.commentInput resignFirstResponder];
-
+        [self textViewDidChange:self.commentInput];
+        
         PPDebug(@"comment succ: opusId = %@, comment = %@", opusId, comment);
         Feed *feed = [[Feed alloc] init];
         UserManager *manager = [UserManager defaultManager];
