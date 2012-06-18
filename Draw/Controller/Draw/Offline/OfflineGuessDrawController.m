@@ -630,8 +630,11 @@
     }else if(dialog.tag == QUIT_DIALOG_TAG){
         
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];
-        
-        [HomeController returnRoom:self];        
+        if ([self.superController isKindOfClass:[FeedController class]]) {
+            [self.navigationController popToViewController:self.superController animated:YES];
+        }else{
+            [HomeController returnRoom:self];        
+        }
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
