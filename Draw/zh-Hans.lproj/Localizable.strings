@@ -525,13 +525,13 @@
 "kMyFeed" = "我的";
 
 
-"kDrawDescNoWord" = "画了一幅画";
-"kGuessRightDescNoWord" = "猜对了%@的画";
-"kTryGuessDescNoWord" = "尝试去猜%@的画";
+"kDrawDescNoWord" = "画了一幅画。";
+"kGuessRightDescNoWord" = "猜对了%@的画。";
+"kTryGuessDescNoWord" = "尝试去猜%@的画。";
 
-"kDrawDesc" = "画了一幅 [%@]";
-"kGuessRightDesc" = "猜对了%@画的 [%@]";
-"kTryGuessDesc" = "尝试去猜%@画的 [%@]";
+"kDrawDesc" = "画了一幅 [%@]。";
+"kGuessRightDesc" = "猜对了%@画的 [%@]。";
+"kTryGuessDesc" = "尝试去猜%@画的 [%@]。";
 
 "kNoGuess" = "猜0";
 

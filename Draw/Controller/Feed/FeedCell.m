@@ -30,13 +30,15 @@
 @synthesize drawView = _drawView;
 @synthesize feed = _feed;
 
-#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(8, 8, 62, 64) : CGRectMake(4, 4, 31, 32))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(440, 54, 140, 144) :CGRectMake(220, 28, 70, 72))
-#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  105 * 2 : 105)
-
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(10, 10, 82, 85) : CGRectMake(4, 4, 31, 32))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 56, 170, 170) :CGRectMake(220, 28, 70, 72))
+#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  240 : 105)
+#define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 170)
+#define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:14 * 2] : [UIFont systemFontOfSize:14])
 
 + (id)createCell:(id)delegate
 {
+
     NSString* cellId = [self getCellIdentifier];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -116,14 +118,13 @@
     
     
     CGPoint origin = self.descLabel.frame.origin;
-    CGSize size = self.descLabel.frame.size;
-    UIFont *font = self.descLabel.font;
-    CGSize maxSize = CGSizeMake(1000000, size.width);
+    UIFont *font = DESC_FONT;
+    CGSize maxSize = CGSizeMake(DESC_WIDTH, 1000000);
     
     CGSize labelSize = [desc sizeWithFont:font constrainedToSize:maxSize 
          lineBreakMode:UILineBreakModeWordWrap];
 
-    CGRect rect = CGRectMake(origin.x, origin.y, labelSize.width, labelSize.height);
+    CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;
     
     [self.descLabel setText:desc];

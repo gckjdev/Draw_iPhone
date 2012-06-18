@@ -495,7 +495,7 @@
 "kGuessing" = "Guessing";
 
 "kUpdateWord" = "Update Word";
-"kInputWordEmpty" = "word can not be empty";
+"kInputWordEmpty" = "Word can not be empty";
 "kSubmitFailure" = "Sorry. Submit failure.";
 
 "kSubmitSuccTitle" = "Submit Successfully";
@@ -509,7 +509,7 @@
 "kQuit" = "Quit";
 "kOneMore" = "One More";
 
-"kGuessUserDraw" = "Guessing %@'s draw";
+"kGuessUserDraw" = "%@'s draw";
 
 "kFeedTitle" = "Feed";
 "kAllFeed" = "All";
@@ -518,13 +518,13 @@
 
 
 
-"kDrawDesc" = "drawed a drawing: [%@].";
-"kGuessRightDesc" = "Guessed %@'s drawing: [%@]";
-"kTryGuessDesc" = "Tried to guess %@'s drawing: [%@]";
+"kDrawDesc" = "Drawed a drawing: [%@].";
+"kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
+"kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
-"kDrawDescNoWord" = "drawed a drawing";
-"kGuessRightDescNoWord" = "Guessed %@'s drawing";
-"kTryGuessDescNoWord" = "Tried to guess %@'s drawing: [%@]";
+"kDrawDescNoWord" = "Drawed a drawing.";
+"kGuessRightDescNoWord" = "Guessed %@'s drawing.";
+"kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
 
 "kNoGuess" = "Guess 0";
 "kGuessStat" = "Guess %d, Correct %d";

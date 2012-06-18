@@ -88,7 +88,7 @@
 						<string key="NSFrameSize">{768, 109}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="357810122"/>
+						<reference key="NSNextKeyView" ref="917278821"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage" id="501426279">
@@ -294,7 +294,7 @@
 					<object class="IBUIButton" id="423777887">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{608, 13}, {140, 67}}</string>
+						<string key="NSFrame">{{608, 13}, {155, 67}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="497967122"/>
@@ -305,7 +305,7 @@
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">kQuit</string>
 						<reference key="IBUIHighlightedTitleColor" ref="374436567"/>
-						<object class="NSColor" key="IBUINormalTitleColor" id="724244058">
+						<object class="NSColor" key="IBUINormalTitleColor" id="642684960">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
@@ -431,7 +431,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUINumberOfPages">2</int>
 					</object>
-					<object class="IBUILabel" id="357810122">
+					<object class="IBUILabel" id="917278821">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{164, 13}, {440, 70}}</string>
@@ -444,7 +444,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Gamy的画画</string>
-						<reference key="IBUITextColor" ref="724244058"/>
+						<reference key="IBUITextColor" ref="642684960"/>
 						<nil key="IBUIHighlightedColor"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -538,7 +538,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="357810122"/>
+						<reference key="destination" ref="917278821"/>
 					</object>
 					<int key="connectionID">99</int>
 				</object>
@@ -601,7 +601,7 @@
 							<reference ref="1050815795"/>
 							<reference ref="508684598"/>
 							<reference ref="343993874"/>
-							<reference ref="357810122"/>
+							<reference ref="917278821"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -713,7 +713,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">98</int>
-						<reference key="object" ref="357810122"/>
+						<reference key="object" ref="917278821"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
