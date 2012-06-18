@@ -599,6 +599,8 @@
 		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
 		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
 		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
+		CA7BB848158F210A00F38626 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7BB846158F210900F38626 /* CommentCell~ipad.xib */; };
+		CA7BB849158F210A00F38626 /* FeedCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7BB847158F210900F38626 /* FeedCell~ipad.xib */; };
 		CA7C7E041587213100406BFB /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E031587213100406BFB /* Feed.m */; };
 		CA7C7E071587214300406BFB /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E061587214300406BFB /* FeedManager.m */; };
 		CA7C7E0B158721B200406BFB /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E0A158721B200406BFB /* FeedService.m */; };
@@ -1684,6 +1686,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA7BB846158F210900F38626 /* CommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentCell~ipad.xib"; sourceTree = "<group>"; };
+		CA7BB847158F210900F38626 /* FeedCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedCell~ipad.xib"; sourceTree = "<group>"; };
 		CA7C7E021587213100406BFB /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		CA7C7E031587213100406BFB /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		CA7C7E051587214300406BFB /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
@@ -4122,9 +4126,11 @@
 				CAD95C5A15889611006EAC41 /* FeedCell.h */,
 				CAD95C5B15889611006EAC41 /* FeedCell.m */,
 				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
+				CA7BB847158F210900F38626 /* FeedCell~ipad.xib */,
 				CAD95C5F15889664006EAC41 /* CommentCell.h */,
 				CAD95C6015889665006EAC41 /* CommentCell.m */,
 				CAD95C6115889665006EAC41 /* CommentCell.xib */,
+				CA7BB846158F210900F38626 /* CommentCell~ipad.xib */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -4878,6 +4884,8 @@
 				CAD95C6715897F93006EAC41 /* middle_tab@2x.png in Resources */,
 				EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */,
 				EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */,
+				CA7BB848158F210A00F38626 /* CommentCell~ipad.xib in Resources */,
+				CA7BB849158F210A00F38626 /* FeedCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

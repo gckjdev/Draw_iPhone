@@ -39,8 +39,8 @@
 @synthesize avatarView = _avatarView;
 
 
-#define AVATAR_VIEW_FRAME CGRectMake(18, 65, 62, 65)
-#define SHOW_DRAW_VIEW_FRAME CGRectMake(200, 65, 95, 100)
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(38, 141, 148, 141) : CGRectMake(18, 65, 62, 65))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(480, 141, 228, 218) :CGRectMake(200, 65, 95, 100))
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -380,7 +380,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
-	return [CommentCell getCellHeight:feed];
+	CGFloat height = [CommentCell getCellHeight:feed];
+    return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -425,7 +426,7 @@
 #define MAX_LENGTH 140
 
 #pragma mark - UITextViewDelegate methods
-#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(230.0))
+#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(550.0):(230.0))
 #define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
 #define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
 #define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))

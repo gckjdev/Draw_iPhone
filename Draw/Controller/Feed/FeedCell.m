@@ -18,6 +18,7 @@
 #import "FeedManager.h"
 #import "WordManager.h"
 #import "Word.h"
+#import "DeviceDetection.h"
 
 @implementation FeedCell
 @synthesize guessStatLabel;
@@ -29,8 +30,9 @@
 @synthesize drawView = _drawView;
 @synthesize feed = _feed;
 
-#define AVATAR_VIEW_FRAME CGRectMake(4, 4, 31, 32)
-#define SHOW_DRAW_VIEW_FRAME CGRectMake(220, 28, 70, 72)
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(8, 8, 62, 64) : CGRectMake(4, 4, 31, 32))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(440, 54, 140, 144) :CGRectMake(220, 28, 70, 72))
+#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  105 * 2 : 105)
 
 
 + (id)createCell:(id)delegate
@@ -64,7 +66,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 105.0f;
+    return FEED_CELL_HEIGHT;
     
 }
 
