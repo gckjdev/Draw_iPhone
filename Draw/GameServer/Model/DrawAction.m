@@ -136,7 +136,7 @@
             NSValue *pValue = [NSValue valueWithCGPoint:point];
             [list addObject:pValue];
         }
-        Paint *newPaint = [Paint paintWithWidth:paint.width * yScale color:paint.color penType:paint.penType];
+        Paint *newPaint = [Paint paintWithWidth:paint.width * xScale color:paint.color penType:paint.penType];
         [newPaint setPointList:list];
         [list release];
         DrawAction *dAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:newPaint];

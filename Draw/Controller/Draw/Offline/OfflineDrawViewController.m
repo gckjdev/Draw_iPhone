@@ -285,6 +285,12 @@ enum{
     }
 }
 
+- (void)initSubmitButton
+{
+    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
+    [self.submitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -295,6 +301,7 @@ enum{
     [self initEraser];
     [self initPens];
     [self initWordLabel];
+    [self initSubmitButton];
 }
 
 
@@ -449,31 +456,8 @@ enum{
 }
 
 
-#pragma mark - Draw View Delegate
 
-- (void)didDrawedPaint:(Paint *)paint
-{
-    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
-    CGPoint lastPoint = ILLEGAL_POINT;
-    int i = 0;
-    for (NSValue *pointValue in paint.pointList) {
-        CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 2) 
-        {
-            CGPoint tempPoint = point;
-            if ([DeviceDetection isIPAD]) {
-                tempPoint = CGPointMake(point.x / IPAD_WIDTH_SCALE, point.y / IPAD_HEIGHT_SCALE);
-            }
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
-            [pointList addObject:pointNumber];
-        }
-        lastPoint = point;
-    }
-    CGFloat width = paint.width;
-    if ([DeviceDetection isIPAD]) {
-        width /= 2;
-    }
-}
+
 
 - (void)didStartedTouch:(Paint *)paint
 {
@@ -531,6 +515,11 @@ enum{
     [pickEraserView setHidden:YES];
 }
 
+- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
+{
+    return  [DrawAction scaleActionList:drawActionList xScale:1.0 / IPAD_WIDTH_SCALE yScale:1.0 / IPAD_HEIGHT_SCALE];
+}
+
 - (IBAction)clickSubmitButton:(id)sender {
     
     BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
@@ -541,13 +530,18 @@ enum{
         return;
     }
     
+    NSArray *drawActionList = drawView.drawActionList;
+//    if ([DeviceDetection isIPAD]) {
+//        drawActionList = [self compressActionList:drawView.drawActionList];
+//    }
+
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
-            [delegate didClickSubmit:drawView.drawActionList];
+            [delegate didClickSubmit:drawActionList];
         }
     }else {
         [self showActivityWithText:NSLS(@"kSending")];
-        [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList drawWord:self.word language:languageType delegate:self];
+        [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType delegate:self];
     }
 }
 - (void)clickBackButton:(id)sender
