@@ -539,8 +539,8 @@
 "kOneMoreAction" = "再來一幅";
 "kIGuessCorrect" = "猜對了​​";
 
-"kChatListTitle" = "聊天";
-"kAddChat" = "創建";
+"kChatListTitle" = "塗鴉聊天";
+"kAddChat" = "新建";
 "kSelectContacts" = "選擇聯繫人";
 "kSendMessage" = "發送";
 "kSendingChatMessage" = "發送中...";

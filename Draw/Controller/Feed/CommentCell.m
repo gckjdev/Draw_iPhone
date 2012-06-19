@@ -11,6 +11,7 @@
 #import "FeedManager.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
+#import "DeviceDetection.h"
 
 @implementation CommentCell
 @synthesize nickNameLabel;
@@ -37,14 +38,14 @@
 }
 
 
-#define COMMENT_WIDTH 248
-#define COMMENT_FONT_SIZE 14
-#define COMMENT_SPACE 10
-#define COMMENT_BASE_X 44
-#define COMMENT_BASE_Y 28
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 248)
+#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 14*2 : 14)
+#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
+#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 107 : 44)
+#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 60 : 28)
 
 
-#define AVATAR_VIEW_FRAME CGRectMake(4, 4, 31, 32)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 6, 71, 74) : CGRectMake(4, 3, 31, 32)
 
 
 
@@ -54,9 +55,12 @@
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
         comment = NSLS(@"kCorrect");
+    }else{
+        comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
-    CGSize size = [comment sizeWithFont:[UIFont systemFontOfSize:COMMENT_FONT_SIZE] constrainedToSize:CGSizeMake(COMMENT_WIDTH, 1000000) lineBreakMode:UILineBreakModeWordWrap];
-    int height = COMMENT_BASE_Y + COMMENT_SPACE + size.height;
+    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeWordWrap];
+    int height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
     return height;
 }
 
@@ -79,14 +83,17 @@
         comment = NSLS(@"kCorrect");
         [self.commentLabel setTextColor:[UIColor redColor]];
     }else{
+        comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         [self.commentLabel setTextColor:[UIColor darkGrayColor]];
     }
-    
-    CGSize commentSize = [comment sizeWithFont:[UIFont systemFontOfSize:COMMENT_FONT_SIZE] constrainedToSize:CGSizeMake(COMMENT_WIDTH, 1000000) lineBreakMode:UILineBreakModeWordWrap];
+    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeWordWrap];
 
-    self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
-    [self.commentLabel setText:comment];
     
+    self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
+        
+    [self.commentLabel setText:comment];
+    [self.commentLabel setFont:font];
     
     //set times
     NSString *formate = @"yy-MM-dd HH:mm";

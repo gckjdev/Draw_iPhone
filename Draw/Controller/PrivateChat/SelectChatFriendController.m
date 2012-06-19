@@ -14,6 +14,10 @@
 #import "ShareImageManager.h"
 
 @interface SelectChatFriendController ()
+
+@property (retain, nonatomic) NSArray *myFollowList;
+@property (retain, nonatomic) NSArray *myFanList;
+
 - (IBAction)clickCancel:(id)sender;
 @end
 
@@ -21,7 +25,23 @@
 @synthesize delegate;
 @synthesize cancelButton;
 @synthesize titleLabel;
+@synthesize followButton;
+@synthesize fanButton;
+@synthesize tipsLabel;
+@synthesize myFollowList = _myFollowList;
+@synthesize myFanList = _myFanList;
 
+
+- (void)dealloc {
+    PPRelease(_myFollowList);
+    PPRelease(_myFanList);
+    PPRelease(cancelButton);
+    PPRelease(titleLabel);
+    PPRelease(followButton);
+    PPRelease(fanButton);
+    [tipsLabel release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad
 {
@@ -29,16 +49,26 @@
     [titleLabel setText:NSLS(@"kSelectContacts")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [cancelButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [followButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
+    [followButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+    [fanButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [fanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [dataTableView setSeparatorColor:[UIColor clearColor]];
     
-    self.dataList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+    
+    followButton.selected = YES;
+    [self setAndReloadData:_myFollowList];
 }
 
 - (void)viewDidUnload
 {
     [self setCancelButton:nil];
     [self setTitleLabel:nil];
+    [self setFollowButton:nil];
+    [self setFanButton:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -84,9 +114,56 @@
     }
 }
 
-- (void)dealloc {
-    [cancelButton release];
-    [titleLabel release];
-    [super dealloc];
+- (void)updateFriendsCount
+{
+    NSString *followTitle = NSLS(@"kFollow");
+    NSString *fanTitle = NSLS(@"kFans") ;
+    [followButton setTitle:[NSString stringWithFormat:@"%@ (%d)",followTitle,[_myFollowList count]] forState:UIControlStateNormal];
+    [fanButton setTitle:[NSString stringWithFormat:@"%@ (%d)",fanTitle,[_myFanList count]] forState:UIControlStateNormal];
 }
+
+- (void)showNoDataTips
+{
+    dataTableView.hidden = YES;
+    tipsLabel.hidden = NO;
+    if (followButton.selected) {
+        self.tipsLabel.text = NSLS(@"kNoFollow");
+    }else if (fanButton.selected){
+        self.tipsLabel.text = NSLS(@"kNoFans");
+    }
+}
+
+
+- (void)setAndReloadData:(NSArray *)newDataList
+{
+    self.dataList = newDataList;
+    [self updateFriendsCount];
+    
+    if ([dataList count] == 0) {
+        [self showNoDataTips];
+    }
+    else {
+        dataTableView.hidden = NO;
+        tipsLabel.hidden = YES;
+        [dataTableView reloadData];
+    }
+}
+
+
+- (IBAction)clickMyFollow:(id)sender
+{
+    followButton.selected = YES;
+    fanButton.selected = NO;
+    [self setAndReloadData:_myFollowList];
+}
+
+
+- (IBAction)clickMyFan:(id)sender
+{
+    followButton.selected = NO;
+    fanButton.selected = YES;
+    [self setAndReloadData:_myFanList];
+}
+
+
 @end

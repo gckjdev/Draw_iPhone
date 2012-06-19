@@ -60,6 +60,10 @@
         _pointList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in numberPointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+            if ([DeviceDetection isIPAD]) {
+                point.x = point.x * IPAD_WIDTH_SCALE;
+                point.y = point.y * IPAD_HEIGHT_SCALE;
+            }
             [self addPoint:point];
         }
     }
