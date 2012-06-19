@@ -42,18 +42,22 @@
 
 - (void)dealloc
 {
-    [_deletedUserList release];
-    [_currentTurn release];
-    [_userId release];
-    [_roomName release];
-    [_userList release];
-    [_turnList release];
-    [_hostUserId release];
+    PPDebug(@"dealloc game session");
+    
+    PPRelease(_deletedUserList);
+    PPRelease(_currentTurn);
+    PPRelease(_userId);
+    PPRelease(_roomName);
+    PPRelease(_userList);
+    PPRelease(_turnList);
+    PPRelease(_hostUserId);
     [super dealloc];
 }
 
 - (id)init
 {
+    PPDebug(@"init game session");    
+    
     self = [super init];
     _userList = [[NSMutableArray alloc] init];
     _turnList = [[NSMutableArray alloc] init];

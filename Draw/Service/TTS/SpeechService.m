@@ -35,6 +35,10 @@ static SpeechService *_defaultSpeechService = nil;
 
 + (SpeechService *)defaultService
 {
+    if ([ConfigManager getChatVoiceEnable] == EnableNot) {
+        return nil;
+    } 
+    
     if (_defaultSpeechService == nil) {
         _defaultSpeechService = [[SpeechService alloc] init];
     }

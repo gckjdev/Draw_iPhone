@@ -138,10 +138,6 @@ static DrawGameService* _defaultService;
 
 - (void)connectServer:(id<DrawGameServiceDelegate>)connectionDelegate
 {
-
-//    [_networkClient start:@"192.167.1.103" port:8080];
-//    [_networkClient start:@"192.168.1.6" port:8080];    
-    
     _connectionDelegate = connectionDelegate;
     
     [self clearKeepAliveTimer];
@@ -228,15 +224,17 @@ static DrawGameService* _defaultService;
 - (void)registerObserver:(id<DrawGameServiceDelegate>)observer
 {
     if ([self.gameObserverList containsObject:observer] == NO){
+        PPDebug(@"<registerObserver> %@", [observer description]);
         [self.gameObserverList addObject:observer];
     }
 }
 
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer
 {
+    PPDebug(@"<unregisterObserver> %@", [observer description]);
+    
     // use this to avoid the issue of enumerate observer and call this method
     [self.gameObserverList performSelector:@selector(removeObject:) withObject:observer afterDelay:0.0f];
-//    [self.gameObserverList removeObject:observer];
 }
 
 #pragma mark Message Delegae Handle Methods
@@ -576,6 +574,8 @@ static DrawGameService* _defaultService;
   guessDiffLevel:(int)guessDiffLevel
      snsUserData:(NSArray*)snsUserData;
 {
+    PPDebug(@"<joinGame> %@, %@", userId, nickName);
+    
     [_session setStatus:SESSION_WAITING];
     
     [self clearHistoryUser];
@@ -605,6 +605,9 @@ static DrawGameService* _defaultService;
 
 - (void)startGame
 {
+    
+    PPDebug(@"<startGame> %@ at %d", _userId, [_session sessionId]);
+    
     [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
     
     [self scheduleKeepAliveTimer];
@@ -614,6 +617,8 @@ static DrawGameService* _defaultService;
 
 - (void)changeRoom
 {
+    PPDebug(@"<changeRoom> %@, %@", _userId, _nickName);
+    
     [_session setStatus:SESSION_WAITING];    
     
     [_networkClient sendJoinGameRequest:_userId 
@@ -640,6 +645,9 @@ static DrawGameService* _defaultService;
                                    width:(float)width                     
                                  penType:(int)penType
 {
+    PPDebug(@"<sendDrawData>");
+
+    
     [_networkClient sendDrawDataRequest:_userId
                               sessionId:[_session sessionId]
                               pointList:pointList
@@ -657,6 +665,8 @@ static DrawGameService* _defaultService;
 
 - (void)cleanDraw
 {
+    PPDebug(@"<cleanDraw>");
+
     [_networkClient sendCleanDraw:_userId
                         sessionId:[_session sessionId]];  
     [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
@@ -667,6 +677,8 @@ static DrawGameService* _defaultService;
 
 - (void)startDraw:(NSString*)word level:(int)level language:(int)language
 {
+    PPDebug(@"<startDraw> %@, %d", word, level);    
+    
     [_session setStatus:SESSION_PLAYING];   
     [[_session currentTurn] updateLastWord];
     [[_session currentTurn] setWord:word];
@@ -685,6 +697,8 @@ static DrawGameService* _defaultService;
 
 - (void)prolongGame
 {
+    PPDebug(@"prolong game");
+    
     [_networkClient sendProlongGame:_userId
                           sessionId:[_session sessionId]];
     
@@ -694,6 +708,8 @@ static DrawGameService* _defaultService;
 
 - (void)askQuickGame
 {
+    PPDebug(@"<askQuickGame>");
+    
     [_networkClient sendAskQuickGame:_userId
                            sessionId:[_session sessionId]];
 
@@ -702,6 +718,8 @@ static DrawGameService* _defaultService;
 
 - (void)groupChatMessage:(NSString*)message
 {
+    PPDebug(@"<sendGroupChatMessage>");
+
     [_networkClient sendChatMessage:_userId 
                           sessionId:[_session sessionId] 
                            userList:nil 
@@ -711,6 +729,7 @@ static DrawGameService* _defaultService;
 
 - (void)privateChatMessage:(NSArray*)userList message:(NSString*)message
 {
+    PPDebug(@"<sendPrivateChatMessage>");
     [_networkClient sendChatMessage:_userId 
                           sessionId:[_session sessionId] 
                            userList:userList 
@@ -720,6 +739,7 @@ static DrawGameService* _defaultService;
 
 - (void)groupChatExpression:(NSString*)key 
 {
+    PPDebug(@"<sendGroupChatExpression>");    
     [_networkClient sendChatExpression:_userId 
                              sessionId:[_session sessionId] 
                               userList:nil 
@@ -729,6 +749,7 @@ static DrawGameService* _defaultService;
 
 - (void)privateChatExpression:(NSArray*)userList key:(NSString*)key 
 {
+    PPDebug(@"<sendGroupChatExpression> to all users");    
     [_networkClient sendChatExpression:_userId 
                              sessionId:[_session sessionId] 
                               userList:userList 
@@ -751,6 +772,7 @@ static DrawGameService* _defaultService;
 
 - (void)quitGame
 {
+    PPDebug(@"<quitGame>");
     
 //    [_networkClient sendQuitGame:_userId
 //                       sessionId:[_session sessionId]];
@@ -763,6 +785,7 @@ static DrawGameService* _defaultService;
 
 - (void)rankGameResult:(int)rank
 {
+    PPDebug(@"<rankGameResult> rank = %d", rank);    
     [_networkClient sendRankGameResult:rank
                                 userId:[_session userId]
                              sessionId:[_session sessionId]
@@ -849,6 +872,8 @@ static DrawGameService* _defaultService;
            snsUserData:(NSArray*)snsUserData;
 
 {
+    PPDebug(@"<joinFriendRoom> roomId=%@", roomId);
+    
     [_session setStatus:SESSION_WAITING];
     [self clearHistoryUser];
     
