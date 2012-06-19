@@ -264,5 +264,21 @@
                                                       offset:(NSInteger)offset
                                                        limit:(int)limit;
 
-
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                          deviceId:(NSString*)deviceId
+                       deviceToken:(NSString*)deviceToken
+                          nickName:(NSString*)nickName
+                            gender:(NSString*)gender
+                          password:(NSString*)newPassword
+                            avatar:(NSData*)avatar 
+                          location:(NSString*)location 
+                            sinaId:(NSString*)sinaId 
+                         sinaToken:(NSString*)sinaToken 
+                        sinaSecret:(NSString*)sinaSecret 
+                              qqId:(NSString*)qqId 
+                           qqToken:(NSString*)qqToken 
+                     qqTokenSecret:(NSString*)qqTokenSecret 
+                        facebookId:(NSString*)facebookId;
 @end

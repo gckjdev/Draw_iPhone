@@ -142,6 +142,7 @@
 #define PARA_APPLE_IAP_PRODUCT_ID @"ipi"
 #define PARA_ACCOUNT_BALANCE @"ab"
 #define PARA_SAVE_PERCENT @"sp"
+#define PARA_RESCUE_DATA_TAG @"rdt"
 
 #define PARA_AMOUNT @"pa"
 #define PARA_SOURCE @"sr"

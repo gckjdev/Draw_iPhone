@@ -22,6 +22,7 @@
 #import "FriendService.h"
 #import "FriendManager.h"
 #import "LevelService.h"
+#import "UserService.h"
 
 
 @implementation UserService
@@ -539,6 +540,61 @@ static UserService* _defaultUserService;
         }); 
     });
     
+}
+
+- (void)updateAllUserInfo
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* password = [[UserManager defaultManager] password];
+    NSString* nickName = [[UserManager defaultManager] nickName];
+    NSString* gender = [[UserManager defaultManager] gender];
+    UIImage* avatarImage = [[UserManager defaultManager] avatarImage];
+    NSString* location = [[UserManager defaultManager] location];
+    NSString* sinaId = [[UserManager defaultManager] sinaId];
+    NSString* sinaToken = [[UserManager defaultManager] sinaToken];
+    NSString* sinaTokenSecret = [[UserManager defaultManager] sinaTokenSecret];
+    NSString* qqId = [[UserManager defaultManager] qqId];
+    NSString* qqToken = [[UserManager defaultManager] qqToken];
+    NSString* qqTokenSecret = [[UserManager defaultManager] qqTokenSecret];
+    NSString* facebookId = [[UserManager defaultManager] facebookId];
+    
+
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
+                                                               appId:APP_ID 
+                                                              userId:userId 
+                                                            deviceId:deviceId 
+                                                         deviceToken:deviceToken 
+                                                            nickName:nickName 
+                                                              gender:gender
+                                                            password:password 
+                                                              avatar:[avatarImage data] 
+                                                            location:location 
+                                                              sinaId:sinaId 
+                                                           sinaToken:sinaToken 
+                                                          sinaSecret:sinaTokenSecret 
+                                                                qqId:qqId 
+                                                             qqToken:qqToken 
+                                                       qqTokenSecret:qqTokenSecret 
+                                                          facebookId:facebookId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                // update avatar
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
+                [[UserManager defaultManager] setAvatar:retURL];
+            }
+            else{
+                
+            }
+            
+        });
+    });
 }
 //- (void)checkDevice
 //{    

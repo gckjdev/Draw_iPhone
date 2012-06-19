@@ -43,6 +43,13 @@ typedef enum {
 - (NSString*)gender;
 - (NSString*)location;
 - (NSArray*)snsUserData;
+- (NSString*)sinaId;
+- (NSString*)sinaToken;
+- (NSString*)sinaTokenSecret;
+- (NSString*)qqId;
+- (NSString*)qqToken;
+- (NSString*)qqTokenSecret;
+- (NSString*)facebookId;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
