@@ -105,6 +105,23 @@ static LevelService* _defaultLevelService;
     [userDefaults synchronize];
 }
 
+- (int)getLevelByExp:(long)exp
+{
+    long maxExp = ((NSNumber*)[self.levelMap objectAtIndex:MAX_LEVEL]).longValue;
+    if (exp >= maxExp) {
+        return MAX_LEVEL;
+    }
+    for (int i = 1; i < MAX_LEVEL; i ++) {
+        NSNumber* low = (NSNumber*)[self.levelMap objectAtIndex:i-1];
+        NSNumber* high = (NSNumber*)[self.levelMap objectAtIndex:i];
+        if (exp >= low.longValue && exp <high.longValue) {
+            return i;
+        }
+    }
+    return 1;
+}
+
+
 - (void)addExp:(long)exp 
       delegate:(id<LevelServiceDelegate>)delegate
 {
@@ -138,21 +155,6 @@ static LevelService* _defaultLevelService;
     return num.longValue;
 }
 
-- (int)getLevelByExp:(long)exp
-{
-    long maxExp = ((NSNumber*)[self.levelMap objectAtIndex:MAX_LEVEL]).longValue;
-    if (exp >= maxExp) {
-        return MAX_LEVEL;
-    }
-    for (int i = 1; i < MAX_LEVEL; i ++) {
-        NSNumber* low = (NSNumber*)[self.levelMap objectAtIndex:i-1];
-        NSNumber* high = (NSNumber*)[self.levelMap objectAtIndex:i];
-        if (exp >= low.longValue && exp <high.longValue) {
-            return i;
-        }
-    }
-    return 1;
-}
 
 
 - (void)syncExpAndLevel:(PPViewController*)viewController 
@@ -186,13 +188,14 @@ static LevelService* _defaultLevelService;
                 }                  
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                // TODO, add log here
+//                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
-                
+                // TODO, add log here                
             }
             else {
-
+                // TODO, add log here                
             }
         });
         
@@ -226,13 +229,13 @@ static LevelService* _defaultLevelService;
                 
             }
             else if (output.resultCode == ERROR_NETWORK) {
-
+                // TODO, add log here                
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
-                
+                // TODO, add log here                                
             }
             else {
-
+                // TODO, add log here                
             }
         });
         

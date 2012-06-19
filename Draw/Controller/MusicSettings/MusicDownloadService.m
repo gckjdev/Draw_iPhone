@@ -73,6 +73,19 @@ NSMutableArray *list;
     return [self.downloadDir stringByAppendingString:fileName];
 }
 
+- (void)moveFile:(MusicItem*)item
+{
+    NSString* finalFilePath = [self getFilePath:item.fileName];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] moveItemAtPath:item.localPath toPath:finalFilePath error:&error];
+    if (error != nil){
+        PPDebug(@"fail to rename file from %@ to %@", item.localPath, finalFilePath);
+    }
+    else{
+        [item setLocalPath:finalFilePath];
+    }
+}
+
 - (NSString*)getTempFilePath:(NSString*)fileName
 {
     return [self.downloadTempDir stringByAppendingString:fileName];
@@ -220,18 +233,7 @@ NSMutableArray *list;
     
 }
 
-- (void)moveFile:(MusicItem*)item
-{
-    NSString* finalFilePath = [self getFilePath:item.fileName];
-    NSError* error = nil;
-    [[NSFileManager defaultManager] moveItemAtPath:item.localPath toPath:finalFilePath error:&error];
-    if (error != nil){
-        PPDebug(@"fail to rename file from %@ to %@", item.localPath, finalFilePath);
-    }
-    else{
-        [item setLocalPath:finalFilePath];
-    }
-}
+
 
 
 - (void)requestStarted:(ASIHTTPRequest *)request
