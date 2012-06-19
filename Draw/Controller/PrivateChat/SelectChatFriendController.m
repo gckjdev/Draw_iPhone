@@ -53,6 +53,7 @@
     [followButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
     [fanButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
     [fanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [dataTableView setSeparatorColor:[UIColor clearColor]];
     
     self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
     self.myFanList = [[FriendManager defaultManager] findAllFanFriends];

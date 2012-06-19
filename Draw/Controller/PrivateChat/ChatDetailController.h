@@ -18,7 +18,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *inputTextView;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 
-- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname;
+- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar;
 
 - (void)findAllMessages;
 

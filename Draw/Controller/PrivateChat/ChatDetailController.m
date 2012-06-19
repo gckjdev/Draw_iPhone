@@ -25,6 +25,7 @@
 @interface ChatDetailController ()
 @property (retain, nonatomic) NSString *friendUserId;
 @property (retain, nonatomic) NSString *friendNickname;
+@property (retain, nonatomic) NSString *friendAvatar;
 @property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
 
 - (IBAction)clickBack:(id)sender;
@@ -45,6 +46,7 @@
 @synthesize sendButton;
 @synthesize friendUserId = _friendUserId;
 @synthesize friendNickname = _friendNickname;
+@synthesize friendAvatar = _friendAvatar;
 @synthesize offlineDrawViewController = _offlineDrawViewController;
 
 
@@ -52,6 +54,7 @@
     PPRelease(_offlineDrawViewController);
     PPRelease(_friendNickname);
     PPRelease(_friendUserId);
+    PPRelease(_friendAvatar);
     PPRelease(titleLabel);
     PPRelease(graffitiButton);
     PPRelease(sendButton);
@@ -61,12 +64,13 @@
 }
 
 
-- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname
+- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar
 {
     self = [super init];
     if (self) {
         self.friendUserId = frindUserId;
         self.friendNickname = friendNickname;
+        self.friendAvatar = _friendAvatar;
     }
     return self;
 }
@@ -325,12 +329,16 @@
         [button release];
     }
     
+    
+    
     //设置returnView的frame
     if (fromSelf) {
         returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height+SPACE_Y);
     }else{
         returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
     }
+    
+    PPDebug(@"Number %d:%f", indexPath.row, bubbleImageView.frame.size.height);
     
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
@@ -349,6 +357,9 @@
 {
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
     UIView *view = [self createBubbleView:message indexPath:indexPath];
+    
+    PPDebug(@"heightForRowAtIndexPath");
+    
     return view.frame.size.height;
 }
 
@@ -367,6 +378,8 @@
     
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [cell.contentView addSubview:view];
+    
+    PPDebug(@"cellForRowAtIndexPath");
     
     return cell;
 }
