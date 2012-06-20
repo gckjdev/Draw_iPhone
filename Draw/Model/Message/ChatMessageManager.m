@@ -74,7 +74,7 @@ static ChatMessageManager *_chatMessageManager = nil;
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    return [dataManager execute:@"findMessagesByFriend" forKey:@"FRIEND_USER_ID" value:friendUserId sortBy:@"createDate" ascending:YES];
+    return [dataManager execute:@"findMessagesByFriend" forKey:@"FRIEND_USER_ID" value:friendUserId sortBy:@"createDate" ascending:NO];
 }
 
 

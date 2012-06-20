@@ -8,19 +8,32 @@
 
 #import "PPTableViewCell.h"
 
+@protocol ChatDetailCellDelegate <NSObject>
+
+@optional
+- (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath;
+
+@end
+
+
 @class HJManagedImageV;
 @class ChatMessage;
+@class ShowDrawView;
 @interface ChatDetailCell : PPTableViewCell
 
 @property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
 @property (retain, nonatomic) IBOutlet UIImageView *bubbleImageView;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UITextView *contentTextView;
-@property (retain, nonatomic) IBOutlet UIImageView *thumbImageView;
+@property (retain, nonatomic) IBOutlet ShowDrawView *graffitiView;
+@property (assign, nonatomic) id<ChatDetailCellDelegate> chatDetailCellDelegate;
+@property (retain, nonatomic) IBOutlet UIButton *enlargeButton;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeight;
-- (void)setCellByChatMessage:(ChatMessage *)messageTotal indexPath:(NSIndexPath *)aIndexPath;
++ (CGFloat)getCellHeight:(ChatMessage *)message;
+- (void)setCellByChatMessage:(ChatMessage *)message 
+                friendAvatar:(NSString *)friendAvatar 
+                   indexPath:(NSIndexPath *)aIndexPath;
 
 @end

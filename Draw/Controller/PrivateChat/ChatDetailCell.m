@@ -18,19 +18,29 @@
 #import "DrawAppDelegate.h"
 #import "ShareImageManager.h"
 
+@interface ChatDetailCell()
+
+- (IBAction)clickEnlargeButton:(id)sender;
+- (CGRect)reverseByRect:(CGRect)rect;
+
+@end
+
 @implementation ChatDetailCell
 @synthesize avatarView;
 @synthesize bubbleImageView;
 @synthesize timeLabel;
 @synthesize contentTextView;
-@synthesize thumbImageView;
+@synthesize graffitiView;
+@synthesize chatDetailCellDelegate;
+@synthesize enlargeButton;
 
 - (void)dealloc {
     [avatarView release];
     [bubbleImageView release];
     [timeLabel release];
     [contentTextView release];
-    [thumbImageView release];
+    [graffitiView release];
+    [enlargeButton release];
     [super dealloc];
 }
 
@@ -55,29 +65,11 @@
     return @"ChatDetailCell";
 }
 
-+ (CGFloat)getCellHeight
-{
-    
-}
 
-- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
+- (CGRect)reverseByRect:(CGRect)rect
 {
-    ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VEIW_FRAME.size.width, scale * DRAW_VEIW_FRAME.size.height);
-    NSMutableArray *scaleActionList = nil;
-    if ([DeviceDetection isIPAD]) {
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:IPAD_WIDTH_SCALE*scale 
-                                               yScale:IPAD_HEIGHT_SCALE*scale];
-    } else {
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:scale 
-                                               yScale:scale];
-    }
-    [showDrawView setDrawActionList:scaleActionList]; 
-    [showDrawView setShowPenHidden:YES];
-    [showDrawView show];
-    return showDrawView;
+    CGRect newRect = CGRectMake(self.frame.size.width-rect.origin.x-rect.size.width, rect.origin.y, rect.size.width, rect.size.height);
+    return newRect;
 }
 
 #define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(400.0):(200.0))
@@ -92,11 +84,13 @@
 #define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
 #define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
 #define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
+#define TIME_AND_CONTENT_SPACE    (([DeviceDetection isIPAD])?(4):(2))
+#define TIME_HEIGHT     (([DeviceDetection isIPAD])?(32):(16))
 /*
  TEXT_WIDTH_MAX 是消息的最大长度
  TEXT_HEIGHT_MAX  是消息的最大高度
  TEXT_FONT_SIZE  是字体
- SPACE_Y  是上一个气泡图与下一个的距离
+ SPACE_Y  两个CELL之间的空隙
  SCREEN_WIDTH    是屏幕宽度
  TEXTVIEW_BORDER_X  是TextView的文字与左或右边界的空隙
  TEXTVIEW_BORDER_Y  是TextView的文字与上或下边界的空隙
@@ -105,11 +99,32 @@
  IMAGE_WIDTH_MAX    是图片的最大宽度
  IMAGE_BORDER_X 是图片与气泡图边界X方向的空隙
  IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
+ TIME_AND_CONTENT_SPACE 时间跟内容的距离
+ TIME_HEIGHT 时间高度
  */
++ (CGFloat)getCellHeight:(ChatMessage *)message
+{
+    CGFloat resultHeight = 0;
+    
+    if ([message.text length] > 0) {
+        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+        
+        resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_HEIGHT + TIME_AND_CONTENT_SPACE;
+    }else {
+        resultHeight = SPACE_Y + IMAGE_WIDTH_MAX+2*IMAGE_BORDER_Y + TIME_HEIGHT + TIME_AND_CONTENT_SPACE;
+    }
+    
+    return resultHeight;
+}
+
 - (void)setCellByChatMessage:(ChatMessage *)message friendAvatar:(NSString *)friendAvatar indexPath:(NSIndexPath *)aIndexPath
 {
+    self.indexPath = aIndexPath;
+    
     BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
     
+    //set avatar
     [avatarView clear];
     [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
     NSString *avatarUrl;
@@ -124,100 +139,85 @@
     }
     
     UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
-    [bubbleImageView setImage:bubble];
+    [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
     
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
     timeLabel.text = [dateFormatter stringFromDate:message.createDate];
     
     if ([message.text length] > 0) {
+        contentTextView.hidden = NO;
+        graffitiView.hidden = YES;
+        enlargeButton.hidden = YES;
+        
         //string的大小
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
-        //设置文本
-        CGRect contentTextViewFrame = CGRectMake(contentTextView.frame.origin.x, contentTextView.frame.origin.y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
-        contentTextView.frame = contentTextViewFrame;
-        //contentTextView.backgroundColor = [UIColor clearColor];
+        //set text
+        contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
         contentTextView.font = font;
         contentTextView.text = message.text;
+        contentTextView.backgroundColor = [UIColor clearColor];
         
+        //set bubble frame
+        bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x, 0.5*SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
         
-        //设置气泡
-        CGRect bubbleImageViewFrame = CGRectMake(bubbleImageView.frame.origin.x, bubbleImageView.frame.origin.y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
-        bubbleImageView.frame = bubbleImageViewFrame;
+    }else {
+        contentTextView.hidden = YES;
+        graffitiView.hidden = NO;
+        enlargeButton.hidden = NO;
+        
+        //set graffitiView
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
+        NSMutableArray *scaleActionList = nil;
+        if ([DeviceDetection isIPAD]) {
+            scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                                   xScale:IPAD_WIDTH_SCALE*scale 
+                                                   yScale:IPAD_HEIGHT_SCALE*scale];
+        } else {
+            scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                                   xScale:scale 
+                                                   yScale:scale];
+        }
+        [graffitiView setDrawActionList:scaleActionList]; 
+        [graffitiView setShowPenHidden:YES];
+        CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
+        graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, graffitiView.frame.origin.y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
+        
+        //set button frame
+        enlargeButton.frame = graffitiView.frame;
+        
+        //set bubble frame
+        bubbleImageView.frame = CGRectMake(bubbleImageView.frame.origin.x,0.5*SPACE_Y, graffitiView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH+2*IMAGE_BORDER_X, graffitiView.frame.size.height+2*IMAGE_BORDER_Y);
     }
-        
-        
-//    UIView *returnView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-//	returnView.backgroundColor = [UIColor clearColor];
-//    
-//    BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
-//	UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
-//	//UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
-//    //bubbleImageView.backgroundColor =[UIColor clearColor];
-//    
-//    [bubbleImageView setImage:bubble];
-//    
-//    if ([message.text length] > 0) {
-//        //string的大小
-//        UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-//        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
-//        
-//        //设置文本
-//        CGRect contentTextViewFrame;
-//        if (fromSelf){
-//            contentTextViewFrame = CGRectMake(BUBBLE_NOT_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
-//        }else {
-//            contentTextViewFrame = CGRectMake(BUBBLE_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
-//        }
-//        UITextView *contentTextView = [[UITextView alloc] initWithFrame:contentTextViewFrame];
-//        contentTextView.backgroundColor = [UIColor clearColor];
-//        contentTextView.font = font;
-//        contentTextView.text = message.text;
-//        
-//        //设置气泡的frame
-//        bubbleImageView.frame = CGRectMake(0.0f, 0.5*SPACE_Y, contentTextView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH, contentTextView.frame.size.height);
-//        [bubbleImageView addSubview:contentTextView];
-//        [contentTextView release];
-//        
-//    }else {
-//        //设置涂鸦
-//        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-//        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
-//        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
-//        CGFloat multiple = thumbImageView.frame.size.height / thumbImageView.frame.size.width;
-//        if (fromSelf){
-//            thumbImageView.frame = CGRectMake(BUBBLE_NOT_TIP_WIDTH+IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple * IMAGE_WIDTH_MAX );
-//        }else {
-//            thumbImageView.frame = CGRectMake(BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
-//        }
-//        
-//        //设置气泡的frame
-//        bubbleImageView.frame = CGRectMake(0.0f, 0.5*SPACE_Y, thumbImageView.frame.size.width+BUBBLE_TIP_WIDTH+BUBBLE_NOT_TIP_WIDTH+2*IMAGE_BORDER_X, thumbImageView.frame.size.height+2*IMAGE_BORDER_Y);
-//        [bubbleImageView addSubview:thumbImageView];
-//        
-//        UIButton *button = [[UIButton alloc] initWithFrame:thumbImageView.frame];
-//        button.tag = indexPath.row;
-//        [button addTarget:self action:@selector(replayGraffiti:) forControlEvents:UIControlEventAllEvents];
-//        [bubbleImageView addSubview:button];
-//        [button release];
-//    }
-//    
-//    
-//    
-//    //设置returnView的frame
-//    if (fromSelf) {
-//        returnView.frame = CGRectMake(SCREEN_WIDTH-bubbleImageView.frame.size.width, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height+SPACE_Y);
-//    }else{
-//        returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
-//    }
-//    
-//    PPDebug(@"Number %d:%f", indexPath.row, bubbleImageView.frame.size.height);
-//    
-//    [returnView addSubview:bubbleImageView];
-//    [bubbleImageView release];
-//    return returnView;
+    
+    //set avatar frame
+    avatarView.frame = CGRectMake(avatarView.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height-avatarView.frame.size.height, avatarView.frame.size.width, avatarView.frame.size.height);
+    
+    //set time frame
+    timeLabel.frame = CGRectMake(timeLabel.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height+TIME_AND_CONTENT_SPACE, timeLabel.frame.size.width, TIME_HEIGHT);
+    
+    if (fromSelf) {
+        avatarView.frame = [self reverseByRect:avatarView.frame];
+        contentTextView.frame = [self reverseByRect:contentTextView.frame];
+        bubbleImageView.frame = [self reverseByRect:bubbleImageView.frame];
+        graffitiView.frame = [self reverseByRect:graffitiView.frame];
+        enlargeButton.frame = [self reverseByRect:enlargeButton.frame];
+        timeLabel.frame = [self reverseByRect:timeLabel.frame];
+        [timeLabel setTextAlignment:UITextAlignmentRight];
+    }
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, timeLabel.frame.origin.y+timeLabel.frame.size.height+0.5*SPACE_Y);
+}
+
+- (IBAction)clickEnlargeButton:(id)sender
+{
+    if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickEnlargeButton:)]){
+        PPDebug(@"%d",[self.indexPath row]);
+        [chatDetailCellDelegate didClickEnlargeButton:self.indexPath];
+    }
 }
 
 

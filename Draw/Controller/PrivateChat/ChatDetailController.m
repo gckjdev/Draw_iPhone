@@ -21,6 +21,7 @@
 #import "ShareImageManager.h"
 #import "ReplayGraffitiController.h"
 #import "DrawAppDelegate.h"
+#import "ChatDetailCell.h"
 
 @interface ChatDetailController ()
 @property (retain, nonatomic) NSString *friendUserId;
@@ -30,10 +31,11 @@
 
 - (IBAction)clickBack:(id)sender;
 
-- (void)scrollToBottom:(BOOL)animated;
+//- (void)scrollToBottom:(BOOL)animated;
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
 - (UIView *)createBubbleView:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath;
 - (void)replayGraffiti:(id)sender;
+- (void)keepSendButtonSite;
 
 @end
 
@@ -44,6 +46,8 @@
 @synthesize inputBackgroundView;
 @synthesize inputTextView;
 @synthesize sendButton;
+@synthesize inputTextBackgroundImage;
+@synthesize paperImageView;
 @synthesize friendUserId = _friendUserId;
 @synthesize friendNickname = _friendNickname;
 @synthesize friendAvatar = _friendAvatar;
@@ -60,6 +64,8 @@
     PPRelease(sendButton);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
+    [inputTextBackgroundImage release];
+    [paperImageView release];
     [super dealloc];
 }
 
@@ -79,29 +85,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Add a single tap Recognizer
-    UITapGestureRecognizer* singleTapRecognizer;
-    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom:)];
-    singleTapRecognizer.numberOfTapsRequired = 1; // For single tap
-    [self.dataTableView addGestureRecognizer:singleTapRecognizer];
-    [singleTapRecognizer release];
-    
     self.titleLabel.text = self.friendNickname;
-    inputTextView.layer.cornerRadius = 6;
-    inputTextView.layer.masksToBounds = YES;
+    
+//    inputTextView.layer.cornerRadius = 6;
+//    inputTextView.layer.masksToBounds = YES;
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [inputTextBackgroundImage setImage:[imageManager inputImage]];
     [sendButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [sendButton setTitle:NSLS(@"kSendMessage") forState:UIControlStateNormal];
-    [sendButton setEnabled:NO];
     [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
+    
+    //paperImageView.frame = 
+    
+    //[self keepSendButtonSite];
     
     [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
                                                                   userId:[[UserManager defaultManager] userId]];
     self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
     [self findAllMessages];
-    [self scrollToBottom:NO];
+    //[self scrollToBottom:NO];
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
@@ -115,6 +118,8 @@
     [self setSendButton:nil];
     [self setInputBackgroundView:nil];
     [self setInputTextView:nil];
+    [self setInputTextBackgroundImage:nil];
+    [self setPaperImageView:nil];
     [super viewDidUnload];
 }
 
@@ -142,7 +147,7 @@
     }
     self.dataList = list;
     [dataTableView reloadData];
-    [self scrollToBottom:NO];
+    //[self scrollToBottom:NO];
 }
 
 
@@ -155,7 +160,7 @@
         [inputTextView setText:@""];
         self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
         [dataTableView reloadData];
-        [self scrollToBottom:YES];
+        //[self scrollToBottom:YES];
     } else {
         [self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
     }
@@ -163,13 +168,13 @@
 
 
 #pragma mark - custom methods
-- (void)scrollToBottom:(BOOL)animated
-{
-    if ([dataList count]>0) {
-        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
-        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
-    }
-}
+//- (void)scrollToBottom:(BOOL)animated
+//{
+//    if ([dataList count]>0) {
+//        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[dataList count]-1 inSection:0];
+//        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+//    }
+//}
 
 
 - (void)findAllMessages
@@ -207,9 +212,34 @@
 }
 
 
-- (void)handleSingleTapFrom:(UITapGestureRecognizer*)recognizer 
+//- (void)handleSingleTapFrom:(UITapGestureRecognizer*)recognizer 
+//{
+//    [inputTextView resignFirstResponder];
+//}
+
+#define HIDE_KEYBOARDBUTTON_TAG 77
+#define NAVIGATION_BAR_HEIGHT (([DeviceDetection isIPAD])?(100.0):(50.0))
+- (void)removeHideKeyboardButton
+{
+    UIButton *button = (UIButton*)[self.view viewWithTag:HIDE_KEYBOARDBUTTON_TAG];
+    [button removeFromSuperview];
+}
+
+
+- (void)addHideKeyboardButton
+{
+    [self removeHideKeyboardButton];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-NAVIGATION_BAR_HEIGHT)];
+    button.tag = HIDE_KEYBOARDBUTTON_TAG;
+    [button addTarget:self action:@selector(clickHideKeyboardButton:) forControlEvents:UIControlEventAllTouchEvents];
+    [self.view addSubview:button];
+    [button release];
+}
+
+- (void)clickHideKeyboardButton:(id)sender
 {
     [inputTextView resignFirstResponder];
+    [self removeHideKeyboardButton];
 }
 
 
@@ -297,7 +327,7 @@
             contentTextViewFrame = CGRectMake(BUBBLE_TIP_WIDTH, 0, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);
         }
         UITextView *contentTextView = [[UITextView alloc] initWithFrame:contentTextViewFrame];
-        contentTextView.backgroundColor = [UIColor clearColor];
+        //contentTextView.backgroundColor = [UIColor clearColor];
         contentTextView.font = font;
         contentTextView.text = message.text;
         
@@ -338,8 +368,6 @@
         returnView.frame = CGRectMake(0, 0, bubbleImageView.frame.size.width, bubbleImageView.frame.size.height + SPACE_Y);
     }
     
-    PPDebug(@"Number %d:%f", indexPath.row, bubbleImageView.frame.size.height);
-    
     [returnView addSubview:bubbleImageView];
     [bubbleImageView release];
     return returnView;
@@ -356,34 +384,29 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message indexPath:indexPath];
-    
-    PPDebug(@"heightForRowAtIndexPath");
-    
-    return view.frame.size.height;
+    return [ChatDetailCell getCellHeight:message];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"chatDetailCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    NSString *indentifier = [ChatDetailCell getCellIdentifier];
+    ChatDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [ChatDetailCell createCell:self];
     }
-    
+    cell.chatDetailCellDelegate = self;
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    UIView *view = [self createBubbleView:message indexPath:indexPath];
-    
-    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [cell.contentView addSubview:view];
-    
-    PPDebug(@"cellForRowAtIndexPath");
+    [cell setCellByChatMessage:message friendAvatar:_friendAvatar indexPath:indexPath];
     
     return cell;
 }
 
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
@@ -398,9 +421,12 @@
     [inputTextView resignFirstResponder];
 }
 
-
 - (IBAction)clickSendButton:(id)sender 
 {
+    if ([inputTextView.text length] <= 0) {
+        return;
+    }
+    
     [self showActivityWithText:NSLS(@"kSendingChatMessage")];
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
@@ -413,11 +439,16 @@
 #define SUPER_VIEW_HEIGHT (([DeviceDetection isIPAD])?(1004.0):(460.0))
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
+    [self addHideKeyboardButton];
+    [self.view bringSubviewToFront:inputBackgroundView];
+    
     CGRect frame = CGRectMake(0, SUPER_VIEW_HEIGHT-keyboardRect.size.height-inputBackgroundView.frame.size.height, inputBackgroundView.frame.size.width, inputBackgroundView.frame.size.height);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
+    
+    [self changeTableSize:YES duration:0.25];
 }
 
 
@@ -428,6 +459,27 @@
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
+    
+    [self changeTableSize:YES duration:0.25];
+}
+
+
+- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration
+{
+    CGFloat newPaperHeight = inputBackgroundView.frame.origin.y - paperImageView.frame.origin.y;
+    CGRect newPaperFrame = CGRectMake(paperImageView.frame.origin.x, paperImageView.frame.origin.y, paperImageView.frame.size.width, newPaperHeight);
+    CGFloat newTableHeight = inputBackgroundView.frame.origin.y - dataTableView.frame.origin.y - 14;
+    CGRect newTableFrame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, newTableHeight);
+    if (animated) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:duration];
+        paperImageView.frame = newPaperFrame;
+        dataTableView.frame = newTableFrame;
+        [UIView commitAnimations];
+    }else {
+        paperImageView.frame = newPaperFrame;
+        dataTableView.frame = newTableFrame;
+    }
 }
 
 
@@ -450,7 +502,7 @@
 
 
 #pragma mark - UITextViewDelegate methods
-#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(170.0))
+#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(180.0))
 #define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
 #define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
 #define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))
@@ -458,7 +510,7 @@
 {
     UIFont *font = textView.font;
     CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    //PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
+    PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
     CGRect oldFrame = textView.frame;
     CGFloat newHeight = size.height + 12;
     CGRect oldBackgroundFrame = inputBackgroundView.frame;
@@ -473,11 +525,18 @@
         [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
     }
     
-    if ([textView.text length] > 0) {
-        [sendButton setEnabled:YES];
-    }else {
-        [sendButton setEnabled:NO];
-    }
+    inputTextBackgroundImage.frame = inputTextView.frame;
+    
+    //[self keepSendButtonSite];
+    [self changeTableSize:NO duration:0];
+}
+
+#define SENDBUTTON_AND_BOTTOM_SPACE (([DeviceDetection isIPAD])?(8.0):(4.0))
+- (void)keepSendButtonSite
+{
+    CGFloat newY = inputBackgroundView.frame.size.height-sendButton.frame.size.height-SENDBUTTON_AND_BOTTOM_SPACE;
+    sendButton.frame = CGRectMake(sendButton.frame.origin.x, newY, sendButton.frame.size.width, sendButton.frame.size.height);
+    graffitiButton.frame = CGRectMake(graffitiButton.frame.origin.x, newY, graffitiButton.frame.size.width, graffitiButton.frame.size.height);
 }
 
 //change tableview frame
@@ -487,6 +546,16 @@
 //    CGRect newTableHeigth = inputBackgroundView.frame.origin.y - oldTableFrame.origin.y;
 //}
 
-
+#pragma mark - ChatDetailCellDelegate methods
+- (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath
+{
+    ChatMessage *message = [dataList objectAtIndex:aIndexPath.row];
+    if ([message.text length] <= 0 && message.drawData) {
+        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
+        ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
 
 @end
