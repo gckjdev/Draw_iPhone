@@ -272,7 +272,7 @@
                           nickName:(NSString*)nickName
                             gender:(NSString*)gender
                           password:(NSString*)newPassword
-                            avatar:(NSData*)avatar 
+                            avatar:(NSString*)avatar 
                           location:(NSString*)location 
                             sinaId:(NSString*)sinaId 
                       sinaNickName:(NSString*)sinaNickName
@@ -283,6 +283,5 @@
                            qqToken:(NSString*)qqToken 
                      qqTokenSecret:(NSString*)qqTokenSecret 
                         facebookId:(NSString*)facebookId 
-                             email:(NSString*)email 
-                          password:(NSString*)password;
+                             email:(NSString*)email;
 @end

@@ -1513,7 +1513,7 @@
                           nickName:(NSString*)nickName
                             gender:(NSString*)gender
                           password:(NSString*)newPassword
-                            avatar:(NSData*)avatar 
+                            avatar:(NSString*)avatar 
                           location:(NSString*)location 
                             sinaId:(NSString*)sinaId 
                       sinaNickName:(NSString*)sinaNickName
@@ -1524,8 +1524,7 @@
                            qqToken:(NSString*)qqToken 
                      qqTokenSecret:(NSString*)qqTokenSecret 
                         facebookId:(NSString*)facebookId 
-                             email:(NSString *)email 
-                          password:(NSString *)password
+                             email:(NSString *)email
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1537,11 +1536,30 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_EMAIL value:email];
-        str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
+        str = [str stringByAddQueryParameter:PARA_PASSWORD value:newPassword];
         str = [str stringByAddQueryParameter:PARA_REGISTER_TYPE intValue:REGISTER_TYPE_EMAIL];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nickName];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        str = [str stringByAddQueryParameter:PARA_LOCATION value:location];
+        str = [str stringByAddQueryParameter:PARA_SOURCE value:appId];
+        
+        str = [str stringByAddQueryParameter:PARA_SINA_ID value:sinaId];
+        str = [str stringByAddQueryParameter:PARA_SINA_ACCESS_TOKEN value:sinaToken];
+        str = [str stringByAddQueryParameter:PARA_SINA_ACCESS_TOKEN_SECRET value:sinaSecret];
+        str = [str stringByAddQueryParameter:PARA_SINA_NICKNAME value:sinaNickName];
+        
+        str = [str stringByAddQueryParameter:PARA_QQ_ID value:qqId];
+        str = [str stringByAddQueryParameter:PARA_QQ_ACCESS_TOKEN value:qqToken];
+        str = [str stringByAddQueryParameter:PARA_QQ_ACCESS_TOKEN_SECRET value:qqTokenSecret];
+        str = [str stringByAddQueryParameter:PARA_QQ_NICKNAME value:qqNickName];
+        
+        str = [str stringByAddQueryParameter:PARA_FACEBOOKID value:facebookId];
         
         str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];

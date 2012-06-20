@@ -547,10 +547,8 @@ static UserService* _defaultUserService;
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
-    NSString* password = [[UserManager defaultManager] password];
     NSString* nickName = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
-    UIImage* avatarImage = [[UserManager defaultManager] avatarImage];
     NSString* location = [[UserManager defaultManager] location];
     NSString* sinaId = [[UserManager defaultManager] sinaId];
     NSString* sinaNickName = [[UserManager defaultManager] sinaNickName];
@@ -563,6 +561,7 @@ static UserService* _defaultUserService;
     NSString* facebookId = [[UserManager defaultManager] facebookId];
     NSString* email = [[UserManager defaultManager] email];
     NSString* psd = [[UserManager defaultManager] password];
+    NSString* avatarUrl = [[UserManager defaultManager] avatarURL];
 
     
     dispatch_async(workingQueue, ^{
@@ -573,8 +572,8 @@ static UserService* _defaultUserService;
                                                          deviceToken:deviceToken 
                                                             nickName:nickName 
                                                               gender:gender
-                                                            password:password 
-                                                              avatar:[avatarImage data] 
+                                                            password:psd 
+                                                              avatar:avatarUrl 
                                                             location:location 
                                                               sinaId:sinaId 
                                                         sinaNickName:sinaNickName 
@@ -585,8 +584,7 @@ static UserService* _defaultUserService;
                                                              qqToken:qqToken 
                                                        qqTokenSecret:qqTokenSecret 
                                                           facebookId:facebookId 
-                                                               email:email 
-                                                            password:psd];
+                                                               email:email];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
