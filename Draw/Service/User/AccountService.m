@@ -23,6 +23,7 @@
 #import "MobClick.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "ConfigManager.h"
+#import "UserService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -557,6 +558,12 @@ static AccountService* _defaultAccountService;
 //                    }
 
                     int deviation = [ConfigManager getBalanceDeviation];
+                    
+                    int rescueDataTag = [[output.jsonDataDict objectForKey:PARA_RESCUE_DATA_TAG] intValue];
+                    if (rescueDataTag) {
+                        PPDebug(@"need data rescue");
+                        [[UserService defaultService] updateAllUserInfo];
+                    }
                     
                     int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                     int localBalance = [_accountManager getBalance];

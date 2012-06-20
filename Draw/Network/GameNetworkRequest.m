@@ -1505,4 +1505,62 @@
     
 }
 
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                             appId:(NSString*)appId
+                            userId:(NSString*)userId
+                          deviceId:(NSString*)deviceId
+                       deviceToken:(NSString*)deviceToken
+                          nickName:(NSString*)nickName
+                            gender:(NSString*)gender
+                          password:(NSString*)newPassword
+                            avatar:(NSData*)avatar 
+                          location:(NSString*)location 
+                            sinaId:(NSString*)sinaId 
+                      sinaNickName:(NSString*)sinaNickName
+                         sinaToken:(NSString*)sinaToken 
+                        sinaSecret:(NSString*)sinaSecret 
+                              qqId:(NSString*)qqId 
+                        qqNickName:(NSString*)qqNickName
+                           qqToken:(NSString*)qqToken 
+                     qqTokenSecret:(NSString*)qqTokenSecret 
+                        facebookId:(NSString*)facebookId 
+                             email:(NSString *)email 
+                          password:(NSString *)password
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_EMAIL value:email];
+        str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
+        str = [str stringByAddQueryParameter:PARA_REGISTER_TYPE intValue:REGISTER_TYPE_EMAIL];
+        str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        
+        str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
+        str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 @end
