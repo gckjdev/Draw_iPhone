@@ -12,6 +12,8 @@
 #import "RouterService.h"
 #import "CommonDialog.h"
 #import "DrawDataService.h"
+#import "NotificationManager.h"
+
 @class UserManager;
 
 @interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate>
@@ -38,12 +40,13 @@
 @property (retain, nonatomic) IBOutlet UIButton *playWithFriendButton;
 @property (retain, nonatomic) IBOutlet UIButton *guessButton;
 @property (retain, nonatomic) IBOutlet UIButton *drawButton;
-@property (nonatomic, assign) BOOL hasRemoveNotification; 
+//@property (nonatomic, assign) BOOL hasRemoveNotification; 
+@property (nonatomic, assign) NotificationType notificationType; 
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;
 - (IBAction)clickFeedButton:(id)sender;
-
+- (IBAction)clickChatButton:(id)sender;
 
 
 + (HomeController *)defaultInstance;

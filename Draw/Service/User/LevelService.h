@@ -16,6 +16,7 @@ enum {
 
 #define NORMAL_EXP  60
 #define DRAWER_EXP  60
+#define OFFLINE_DRAW_EXP  10
 
 @class PPViewController;
 

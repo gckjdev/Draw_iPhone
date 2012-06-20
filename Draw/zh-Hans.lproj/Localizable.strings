@@ -527,11 +527,15 @@
 
 "kDrawDescNoWord" = "画了一幅画。";
 "kGuessRightDescNoWord" = "猜对了%@的画。";
-"kTryGuessDescNoWord" = "尝试去猜%@的画。";
+"kTryGuessDescNoWord" = "尝试去猜了%@的画。";
 
 "kDrawDesc" = "画了一幅 [%@]。";
 "kGuessRightDesc" = "猜对了%@画的 [%@]。";
-"kTryGuessDesc" = "尝试去猜%@画的 [%@]。";
+"kTryGuessDesc" = "尝试去猜了%@画的 [%@]。";
+
+"kNotificationGuessRightDesc" = "%@猜对了你画的 [%@]。你也去猜猜TA的画？";
+"kNotificationTryGuessDesc" = "%@尝试去猜了你画的 [%@]。你也去猜猜TA的画？";
+
 
 "kNoGuess" = "猜0";
 

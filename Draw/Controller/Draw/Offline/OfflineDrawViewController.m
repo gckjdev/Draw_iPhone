@@ -473,6 +473,9 @@ enum{
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
         [dialog showInView:self.view];
+        
+        [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
+        
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
     }
@@ -556,5 +559,12 @@ enum{
         [dialog showInView:self.view];
     }
 }
+
+#pragma mark - level service delegate
+- (void)levelUp:(int)level
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+}
+
 
 @end

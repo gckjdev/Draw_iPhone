@@ -49,6 +49,7 @@
 @interface HomeController()
 
 - (void)playBackgroundMusic;
+- (void)enterNextControllerWityType:(NotificationType) type;
 
 @end
 
@@ -63,9 +64,10 @@
 @synthesize settingsLabel = _settingsLabel;
 @synthesize feedbackLabel = _feedbackLabel;
 @synthesize playWithFriendButton = _playWithFriendButton;
-@synthesize hasRemoveNotification = _hasRemoveNotification;
+//@synthesize hasRemoveNotification = _hasRemoveNotification;
 @synthesize guessButton = _guessButton;
 @synthesize drawButton = _drawButton;
+@synthesize notificationType = _notificationType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -143,14 +145,10 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
-
-    if ([self hasRemoveNotification]) {
-        [self clickPlayWithFriend:self.playWithFriendButton];
-    }
-    
     if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
         [self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
     }
+    [self enterNextControllerWityType:self.notificationType];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -190,6 +188,24 @@
 {
     // Return YES for supported orientations
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+
+- (void)enterNextControllerWityType:(NotificationType) type
+{
+    switch (type) {
+        case NotificationTypeFeed:
+            [self clickFeedButton:nil];
+            break;
+        case NotificationTypeRoom:
+            [self clickPlayWithFriend:nil];
+            break;
+        case NotificationTypeMessage:
+            [self clickChatButton:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)playBackgroundMusic
