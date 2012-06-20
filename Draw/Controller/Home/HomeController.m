@@ -49,6 +49,7 @@
 @interface HomeController()
 
 - (void)playBackgroundMusic;
+- (void)enterNextControllerWityType:(NotificationType) type;
 
 @end
 
@@ -60,12 +61,17 @@
 @synthesize checkinButton = _checkinButton;
 @synthesize settingButton = _settingButton;
 @synthesize feedbackButton = _feedbackButton;
-@synthesize settingsLabel = _settingsLabel;
-@synthesize feedbackLabel = _feedbackLabel;
 @synthesize playWithFriendButton = _playWithFriendButton;
-@synthesize hasRemoveNotification = _hasRemoveNotification;
+//@synthesize hasRemoveNotification = _hasRemoveNotification;
 @synthesize guessButton = _guessButton;
 @synthesize drawButton = _drawButton;
+@synthesize notificationType = _notificationType;
+@synthesize settingLabel = _settingLabel;
+@synthesize shareLabel = _shareLabel;
+@synthesize signLabel = _signLabel;
+@synthesize friendLabel = _friendLabel;
+@synthesize chatLabel = _chatLabel;
+@synthesize feedbackLabel = _feedbackLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -100,19 +106,18 @@
 //    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
 //    [[AudioManager defaultManager] backgroundMusicStart];
 
-
-    // setup button images
-    UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
-    [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.shopButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.playWithFriendButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
     // set text
     [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.shareButton setTitle:NSLS(@"kHomeShare") forState:UIControlStateNormal];
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     [self.playWithFriendButton setTitle:NSLS(@"kPlayWithFriend") forState:UIControlStateNormal];
+    
+    [self.shareLabel setText:NSLS(@"kShare")];
+    [self.signLabel setText:NSLS(@"kCheckin")];
+    [self.friendLabel setText:NSLS(@"kPlayWithFriend")];
+    [self.chatLabel setText:NSLS(@"kChat")];
+    
 
     
     int size;
@@ -131,7 +136,7 @@
     }
     
     self.feedbackLabel.text = NSLS(@"kFeedback");
-    self.settingsLabel.text = NSLS(@"kSettings");
+    self.settingLabel.text = NSLS(@"kSettings");
 
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -143,14 +148,10 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
-
-    if ([self hasRemoveNotification]) {
-        [self clickPlayWithFriend:self.playWithFriendButton];
-    }
-    
     if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
         [self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
     }
+    [self enterNextControllerWityType:self.notificationType];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -176,11 +177,15 @@
     [self setCheckinButton:nil];
     [self setSettingButton:nil];
     [self setFeedbackButton:nil];
-    [self setSettingsLabel:nil];
-    [self setFeedbackLabel:nil];
     [self setPlayWithFriendButton:nil];
     [self setGuessButton:nil];
     [self setDrawButton:nil];
+    [self setSettingLabel:nil];
+    [self setShareLabel:nil];
+    [self setSignLabel:nil];
+    [self setFriendLabel:nil];
+    [self setChatLabel:nil];
+    [self setFeedbackLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -190,6 +195,24 @@
 {
     // Return YES for supported orientations
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+
+- (void)enterNextControllerWityType:(NotificationType) type
+{
+    switch (type) {
+        case NotificationTypeFeed:
+            [self clickFeedButton:nil];
+            break;
+        case NotificationTypeRoom:
+            [self clickPlayWithFriend:nil];
+            break;
+        case NotificationTypeMessage:
+            [self clickChatButton:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)playBackgroundMusic
@@ -456,11 +479,15 @@
     [_checkinButton release];
     [_settingButton release];
     [_feedbackButton release];
-    [_settingsLabel release];
-    [_feedbackLabel release];
     [_playWithFriendButton release];
     [_guessButton release];
     [_drawButton release];
+    [_settingLabel release];
+    [_shareLabel release];
+    [_signLabel release];
+    [_friendLabel release];
+    [_chatLabel release];
+    [_feedbackLabel release];
     [super dealloc];
 }
 

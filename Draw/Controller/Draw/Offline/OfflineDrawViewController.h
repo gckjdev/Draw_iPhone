@@ -17,7 +17,7 @@
 #import "UserManager.h"
 #import "DrawDataService.h"
 #import "DrawConstants.h"
-
+#import "LevelService.h"
 
 @class Word;
 @class ShareImageManager;
@@ -36,7 +36,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate,LevelServiceDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
     PickEraserView *pickEraserView;

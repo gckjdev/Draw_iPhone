@@ -22,6 +22,7 @@
 #import "FriendService.h"
 #import "FriendManager.h"
 #import "LevelService.h"
+#import "UserService.h"
 
 
 @implementation UserService
@@ -50,11 +51,11 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest registerUserByEmail:SERVER_URL 
-                                                       appId:APP_ID 
-                                                       email:email 
-                                                    password:password
-                                                 deviceToken:deviceToken 
+        output = [GameNetworkRequest registerUserByEmail:SERVER_URL
+                                                   appId:APP_ID
+                                                   email:email
+                                                password:password
+                                             deviceToken:deviceToken
                                                 deviceId:deviceId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -539,6 +540,66 @@ static UserService* _defaultUserService;
         }); 
     });
     
+}
+
+- (void)updateAllUserInfo
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* nickName = [[UserManager defaultManager] nickName];
+    NSString* gender = [[UserManager defaultManager] gender];
+    NSString* location = [[UserManager defaultManager] location];
+    NSString* sinaId = [[UserManager defaultManager] sinaId];
+    NSString* sinaNickName = [[UserManager defaultManager] sinaNickName];
+    NSString* sinaToken = [[UserManager defaultManager] sinaToken];
+    NSString* sinaTokenSecret = [[UserManager defaultManager] sinaTokenSecret];
+    NSString* qqId = [[UserManager defaultManager] qqId];
+    NSString* qqNickName = [[UserManager defaultManager] qqNickName];
+    NSString* qqToken = [[UserManager defaultManager] qqToken];
+    NSString* qqTokenSecret = [[UserManager defaultManager] qqTokenSecret];
+    NSString* facebookId = [[UserManager defaultManager] facebookId];
+    NSString* email = [[UserManager defaultManager] email];
+    NSString* psd = [[UserManager defaultManager] password];
+    NSString* avatarUrl = [[UserManager defaultManager] avatarURL];
+
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
+                                                               appId:APP_ID 
+                                                              userId:userId 
+                                                            deviceId:deviceId 
+                                                         deviceToken:deviceToken 
+                                                            nickName:nickName 
+                                                              gender:gender
+                                                            password:psd 
+                                                              avatar:avatarUrl 
+                                                            location:location 
+                                                              sinaId:sinaId 
+                                                        sinaNickName:sinaNickName 
+                                                           sinaToken:sinaToken 
+                                                          sinaSecret:sinaTokenSecret 
+                                                                qqId:qqId 
+                                                          qqNickName:qqNickName 
+                                                             qqToken:qqToken 
+                                                       qqTokenSecret:qqTokenSecret 
+                                                          facebookId:facebookId 
+                                                               email:email];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                // update avatar
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
+                [[UserManager defaultManager] setAvatar:retURL];
+            }
+            else{
+                
+            }
+            
+        });
+    });
 }
 //- (void)checkDevice
 //{    

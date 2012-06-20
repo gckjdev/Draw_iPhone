@@ -16,7 +16,7 @@
 
 "kFeedback" = "Feedback";
 
-"kCheckin" = "Check In    ";
+"kCheckin" = "Check In";
 
 "Me" = "Me";
 
@@ -522,6 +522,10 @@
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
+"kNotificationGuessRightDesc" = "%@ Guessed your drawing: [%@].";
+"kNotificationTryGuessDesc" = "%@ Tried to guess your drawing: [%@].";
+
+
 "kDrawDescNoWord" = "Drawed a drawing.";
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
@@ -559,3 +563,5 @@
 
 "kBlankDrawTitle" = "Blank Drawing";
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
+
+"kChat" = "Chat";

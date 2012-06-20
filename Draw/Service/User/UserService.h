@@ -56,6 +56,6 @@
 - (void)commitWords:(NSString*)words 
      viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
-
+- (void)updateAllUserInfo;
 
 @end
