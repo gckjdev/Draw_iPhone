@@ -112,6 +112,12 @@
     [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
     [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
     [self.playWithFriendButton setTitle:NSLS(@"kPlayWithFriend") forState:UIControlStateNormal];
+    
+    [self.shareLabel setText:NSLS(@"kShare")];
+    [self.signLabel setText:NSLS(@"kCheckin")];
+    [self.friendLabel setText:NSLS(@"kPlayWithFriend")];
+    [self.chatLabel setText:NSLS(@"kChat")];
+    
 
     
     int size;

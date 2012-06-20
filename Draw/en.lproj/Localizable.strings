@@ -16,7 +16,7 @@
 
 "kFeedback" = "Feedback";
 
-"kCheckin" = "Check In    ";
+"kCheckin" = "Check In";
 
 "Me" = "Me";
 
@@ -563,3 +563,5 @@
 
 "kBlankDrawTitle" = "Blank Drawing";
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
+
+"kChat" = "Chat";

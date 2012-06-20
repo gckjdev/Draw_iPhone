@@ -19,7 +19,7 @@
 
 "kFeedback" = "反馈";
 
-"kCheckin" = "签到  ";
+"kCheckin" = "签到";
 
 "Me" = "我";
 
@@ -570,3 +570,5 @@
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";
 "kBlankDrawMessage" = "不能提交空白的画哦，至少得画几笔吧？";
+
+"kChat" = "聊天";
