@@ -678,6 +678,7 @@
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
+		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAEA70071526D85800B3D206 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70051526D85700B3D206 /* number@2x.png */; };
@@ -1815,6 +1816,8 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
+		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
+		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		CAE2CABC151B2ECA0062ED37 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
@@ -4370,6 +4373,15 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		CAE0C8941591A2D5008CDA62 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CAE0C8951591A2ED008CDA62 /* NotificationManager.h */,
+				CAE0C8961591A2ED008CDA62 /* NotificationManager.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		CAE2CABA151B2E1D0062ED37 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -4432,6 +4444,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAE0C8941591A2D5008CDA62 /* Notification */,
 				CA7C7E001587210500406BFB /* Feed */,
 				A3F66C9E1581B999000BFF9A /* Message */,
 				A4D3B1561560E4B50013C882 /* Chat */,
@@ -5287,6 +5300,7 @@
 				A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */,
 				EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */,
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
+				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

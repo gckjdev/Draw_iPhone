@@ -688,6 +688,7 @@
 					<string key="className">HomeController</string>
 					<string key="superclassName">PPViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickChatButton:">id</string>
 						<string key="clickCheckIn:">id</string>
 						<string key="clickDrawButton:">id</string>
 						<string key="clickFeedButton:">id</string>
@@ -700,6 +701,10 @@
 						<string key="clickStart:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickChatButton:">
+							<string key="name">clickChatButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clickCheckIn:">
 							<string key="name">clickCheckIn:</string>
 							<string key="candidateClassName">id</string>

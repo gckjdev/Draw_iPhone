@@ -522,6 +522,10 @@
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
+"kNotificationGuessRightDesc" = "%@ Guessed your drawing: [%@].";
+"kNotificationTryGuessDesc" = "%@ Tried to guess your drawing: [%@].";
+
+
 "kDrawDescNoWord" = "Drawed a drawing.";
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
