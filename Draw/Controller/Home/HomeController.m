@@ -106,13 +106,6 @@
 //    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
 //    [[AudioManager defaultManager] backgroundMusicStart];
 
-
-    // setup button images
-    UIImage* buttonImage = [[ShareImageManager defaultManager] woodImage];
-    [self.startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.shopButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.playWithFriendButton  setBackgroundImage:buttonImage forState:UIControlStateNormal];
     // set text
     [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.shareButton setTitle:NSLS(@"kHomeShare") forState:UIControlStateNormal];
