@@ -114,6 +114,7 @@
     if (self) {
         targetType = aTargetType;
         delegate = aDelegate;
+        shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
 }

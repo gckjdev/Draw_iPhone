@@ -28,11 +28,13 @@
 @property (retain, nonatomic) IBOutlet ShowDrawView *graffitiView;
 @property (assign, nonatomic) id<ChatDetailCellDelegate> chatDetailCellDelegate;
 @property (retain, nonatomic) IBOutlet UIButton *enlargeButton;
+@property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
 + (CGFloat)getCellHeight:(ChatMessage *)message;
 - (void)setCellByChatMessage:(ChatMessage *)message 
+              friendNickname:(NSString *)friendNickName 
                 friendAvatar:(NSString *)friendAvatar 
                    indexPath:(NSIndexPath *)aIndexPath;
 
