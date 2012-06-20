@@ -106,6 +106,13 @@ static UserManager* _defaultManager;
     return value;    
 }
 
+- (NSString*)email
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* value = [userDefaults objectForKey:KEY_EMAIL];
+    return value; 
+}
+
 - (NSString*)location
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -700,5 +707,73 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         return YES;
     }
     return NO;
+}
+
+#pragma mark - sns data getter
+- (NSString*)sinaId
+{
+    NSArray* pbUserArray = [self snsUserData];
+    for (PBSNSUser* user in pbUserArray) {
+        if (user.type == TYPE_SINA) {
+            return user.userId;
+        }
+    }
+    return nil;
+}
+- (NSString*)sinaNickName
+{
+    NSArray* pbUserArray = [self snsUserData];
+    for (PBSNSUser* user in pbUserArray) {
+        if (user.type == TYPE_SINA) {
+            return user.nickName;
+        }
+    }
+    return nil;
+}
+- (NSString*)sinaToken
+{
+    return nil;
+}
+- (NSString*)sinaTokenSecret
+{
+    return nil;
+}
+- (NSString*)qqId
+{
+    NSArray* pbUserArray = [self snsUserData];
+    for (PBSNSUser* user in pbUserArray) {
+        if (user.type == TYPE_QQ) {
+            return user.userId;
+        }
+    }
+    return nil;
+}
+- (NSString*)qqNickName
+{
+    NSArray* pbUserArray = [self snsUserData];
+    for (PBSNSUser* user in pbUserArray) {
+        if (user.type == TYPE_QQ) {
+            return user.nickName;
+        }
+    }
+    return nil;
+}
+- (NSString*)qqToken
+{
+    return nil;
+}
+- (NSString*)qqTokenSecret
+{
+    return nil;
+}
+- (NSString*)facebookId
+{
+    NSArray* pbUserArray = [self snsUserData];
+    for (PBSNSUser* user in pbUserArray) {
+        if (user.type == TYPE_FACEBOOK) {
+            return user.userId;
+        }
+    }
+    return nil;
 }
 @end

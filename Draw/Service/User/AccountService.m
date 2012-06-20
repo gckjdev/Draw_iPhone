@@ -561,6 +561,7 @@ static AccountService* _defaultAccountService;
                     
                     int rescueDataTag = [[output.jsonDataDict objectForKey:PARA_RESCUE_DATA_TAG] intValue];
                     if (rescueDataTag) {
+                        PPDebug(@"need data rescue");
                         [[UserService defaultService] updateAllUserInfo];
                     }
                     

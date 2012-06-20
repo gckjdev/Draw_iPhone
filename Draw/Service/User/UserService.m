@@ -51,11 +51,11 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest registerUserByEmail:SERVER_URL 
-                                                       appId:APP_ID 
-                                                       email:email 
-                                                    password:password
-                                                 deviceToken:deviceToken 
+        output = [GameNetworkRequest registerUserByEmail:SERVER_URL
+                                                   appId:APP_ID
+                                                   email:email
+                                                password:password
+                                             deviceToken:deviceToken
                                                 deviceId:deviceId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -553,13 +553,16 @@ static UserService* _defaultUserService;
     UIImage* avatarImage = [[UserManager defaultManager] avatarImage];
     NSString* location = [[UserManager defaultManager] location];
     NSString* sinaId = [[UserManager defaultManager] sinaId];
+    NSString* sinaNickName = [[UserManager defaultManager] sinaNickName];
     NSString* sinaToken = [[UserManager defaultManager] sinaToken];
     NSString* sinaTokenSecret = [[UserManager defaultManager] sinaTokenSecret];
     NSString* qqId = [[UserManager defaultManager] qqId];
+    NSString* qqNickName = [[UserManager defaultManager] qqNickName];
     NSString* qqToken = [[UserManager defaultManager] qqToken];
     NSString* qqTokenSecret = [[UserManager defaultManager] qqTokenSecret];
     NSString* facebookId = [[UserManager defaultManager] facebookId];
-    
+    NSString* email = [[UserManager defaultManager] email];
+    NSString* psd = [[UserManager defaultManager] password];
 
     
     dispatch_async(workingQueue, ^{
@@ -574,12 +577,16 @@ static UserService* _defaultUserService;
                                                               avatar:[avatarImage data] 
                                                             location:location 
                                                               sinaId:sinaId 
+                                                        sinaNickName:sinaNickName 
                                                            sinaToken:sinaToken 
                                                           sinaSecret:sinaTokenSecret 
                                                                 qqId:qqId 
+                                                          qqNickName:qqNickName 
                                                              qqToken:qqToken 
                                                        qqTokenSecret:qqTokenSecret 
-                                                          facebookId:facebookId];
+                                                          facebookId:facebookId 
+                                                               email:email 
+                                                            password:psd];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

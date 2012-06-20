@@ -275,10 +275,14 @@
                             avatar:(NSData*)avatar 
                           location:(NSString*)location 
                             sinaId:(NSString*)sinaId 
+                      sinaNickName:(NSString*)sinaNickName
                          sinaToken:(NSString*)sinaToken 
                         sinaSecret:(NSString*)sinaSecret 
                               qqId:(NSString*)qqId 
+                        qqNickName:(NSString*)qqNickName
                            qqToken:(NSString*)qqToken 
                      qqTokenSecret:(NSString*)qqTokenSecret 
-                        facebookId:(NSString*)facebookId;
+                        facebookId:(NSString*)facebookId 
+                             email:(NSString*)email 
+                          password:(NSString*)password;
 @end
