@@ -567,3 +567,8 @@
 "kBlankDrawMessage" = "不能提交空白的畫哦，至少得畫幾筆吧？";
 
 "kChat" = "聊天";
+"kFriend" = "好友";
+"kGuessOnly" = "我要猜";
+"kDrawOnly" = "我要畫";
+"kFeed" = "好友動態";
+"kFreeCoins" = "免費金幣";

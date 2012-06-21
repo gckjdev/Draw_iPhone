@@ -565,3 +565,8 @@
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
 
 "kChat" = "Chat";
+"kFriend" = "Friend";
+"kGuessOnly" = "Guess";
+"kDrawOnly" = "Draw";
+"kFeed" = "Feed";
+"kFreeCoins" = "Free Coins";

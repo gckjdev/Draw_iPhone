@@ -72,6 +72,12 @@
 @synthesize friendLabel = _friendLabel;
 @synthesize chatLabel = _chatLabel;
 @synthesize feedbackLabel = _feedbackLabel;
+@synthesize startLabel = _startLabel;
+@synthesize guessLabel = _guessLabel;
+@synthesize drawLabel = _drawLabel;
+@synthesize friendPlayLabel = _friendPlayLabel;
+@synthesize freeCoinLabel = _freeCoinLabel;
+@synthesize feedLabel = _feedLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -107,16 +113,20 @@
 //    [[AudioManager defaultManager] backgroundMusicStart];
 
     // set text
-    [self.startButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
-    [self.shareButton setTitle:NSLS(@"kHomeShare") forState:UIControlStateNormal];
-    [self.shopButton  setTitle:NSLS(@"kShop") forState:UIControlStateNormal];
-    [self.checkinButton setTitle:NSLS(@"kCheckin") forState:UIControlStateNormal];
-    [self.playWithFriendButton setTitle:NSLS(@"kPlayWithFriend") forState:UIControlStateNormal];
+    [self.startLabel setText:NSLS(@"kStart")];
+    [self.shareLabel setText:NSLS(@"kHomeShare")];
+    [self.freeCoinLabel  setText:NSLS(@"kFreeCoins")];
+    [self.signLabel setText:NSLS(@"kCheckin")];
+    [self.friendPlayLabel setText:NSLS(@"kPlayWithFriend")];
     
     [self.shareLabel setText:NSLS(@"kShare")];
-    [self.signLabel setText:NSLS(@"kCheckin")];
-    [self.friendLabel setText:NSLS(@"kPlayWithFriend")];
+    [self.friendLabel setText:NSLS(@"kFriend")];
     [self.chatLabel setText:NSLS(@"kChat")];
+    [self.drawLabel setText:NSLS(@"kDrawOnly")];
+    [self.guessLabel setText:NSLS(@"kGuessOnly")];
+    [self.feedLabel setText:NSLS(@"kFeed")];
+    [self.settingLabel setText:NSLS(@"kSettings")];
+    [self.feedbackLabel setText:NSLS(@"kFeedback")];
     
 
     
@@ -186,6 +196,12 @@
     [self setFriendLabel:nil];
     [self setChatLabel:nil];
     [self setFeedbackLabel:nil];
+    [self setStartLabel:nil];
+    [self setGuessLabel:nil];
+    [self setDrawLabel:nil];
+    [self setFriendPlayLabel:nil];
+    [self setFreeCoinLabel:nil];
+    [self setFeedLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -488,6 +504,12 @@
     [_friendLabel release];
     [_chatLabel release];
     [_feedbackLabel release];
+    [_startLabel release];
+    [_guessLabel release];
+    [_drawLabel release];
+    [_friendPlayLabel release];
+    [_freeCoinLabel release];
+    [_feedLabel release];
     [super dealloc];
 }
 
