@@ -15,11 +15,13 @@
 @end
 
 @implementation ReplayGraffitiController
+@synthesize titleLabel = _titleLabel;
 @synthesize drawActionList = _drawActionList;
 
 - (void)dealloc
 {
     PPRelease(_drawActionList);
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -54,6 +56,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleLabel setText:NSLS(@"kGraffiti")];
+    
     ShowDrawView *showDrawView = [self createShowDrawView:_drawActionList];
     showDrawView.center = self.view.center;
     [showDrawView setPlaySpeed:1.0/30.0];
@@ -63,6 +67,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

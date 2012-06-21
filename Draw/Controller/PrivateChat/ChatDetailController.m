@@ -22,6 +22,7 @@
 #import "ReplayGraffitiController.h"
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
+#import "CommonMessageCenter.h"
 
 @interface ChatDetailController ()
 @property (retain, nonatomic) NSString *friendUserId;
@@ -96,6 +97,8 @@
     [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
     
+    inputBackgroundView.backgroundColor = [UIColor clearColor];
+    
     //paperImageView.frame = 
     
     //[self keepSendButtonSite];
@@ -161,8 +164,11 @@
         self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
         [dataTableView reloadData];
         //[self scrollToBottom:YES];
+        
+        [self hideGraffitiView];
     } else {
-        [self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
+        //[self popupMessage:NSLS(@"kSendMessageFailed") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSendMessageFailed") delayTime:2 isHappy:NO];
     }
 }
 
@@ -397,7 +403,7 @@
     }
     cell.chatDetailCellDelegate = self;
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    [cell setCellByChatMessage:message friendAvatar:_friendAvatar indexPath:indexPath];
+    [cell setCellByChatMessage:message friendNickname:_friendNickname friendAvatar:_friendAvatar indexPath:indexPath];
     
     return cell;
 }
@@ -492,7 +498,6 @@
 
 - (void)didClickSubmit:(NSArray *)drawActionList
 {
-    [self hideGraffitiView];
     [self showActivityWithText:NSLS(@"kSendingChatMessage")];
     [[ChatService defaultService] sendMessage:self 
                                  friendUserId:_friendUserId 
@@ -502,10 +507,14 @@
 
 
 #pragma mark - UITextViewDelegate methods
-#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(380.0):(180.0))
+#define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(360.0):(180.0))
 #define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
 #define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
-#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))
+#define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(92.0):(46.0))
+#define IMAGE_AND_TEXT_DIFF  (([DeviceDetection isIPAD])?(8.0):(4.0))
+/*
+ TEXTTVIEW_HEIGHT_MIN、INPUTBACKGROUNDVIEW_HEIGHT_MIN、IMAGE_AND_TEXT_DIFF 要参照XIB的值
+ */
 - (void)textViewDidChange:(UITextView *)textView
 {
     UIFont *font = textView.font;
@@ -525,7 +534,8 @@
         [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
     }
     
-    inputTextBackgroundImage.frame = inputTextView.frame;
+    inputTextBackgroundImage.frame = CGRectMake(inputTextBackgroundImage.frame.origin.x, inputTextBackgroundImage.frame.origin.y, inputTextBackgroundImage.frame.size.width, inputTextView.frame.size.height + IMAGE_AND_TEXT_DIFF);//这个IMAGE_AND_TEXT_DIFF参照xib
+    inputTextBackgroundImage.center = inputTextView.center;
     
     //[self keepSendButtonSite];
     [self changeTableSize:NO duration:0];

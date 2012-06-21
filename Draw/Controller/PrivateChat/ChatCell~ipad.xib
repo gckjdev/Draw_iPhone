@@ -47,6 +47,7 @@
 								<string key="NSFrame">{{9, 5}, {96, 100}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="686577096"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -61,6 +62,7 @@
 								<string key="NSFrame">{{14, 10}, {86, 86}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="724891367"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -74,9 +76,10 @@
 							<object class="IBUILabel" id="225557599">
 								<reference key="NSNextResponder" ref="78891759"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{549, 10}, {199, 42}}</string>
+								<string key="NSFrame">{{391, 10}, {199, 42}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="266380227"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -108,7 +111,7 @@
 							<object class="IBUILabel" id="994679954">
 								<reference key="NSNextResponder" ref="78891759"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{503, 80}, {245, 42}}</string>
+								<string key="NSFrame">{{345, 80}, {245, 42}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -132,6 +135,7 @@
 								<string key="NSFrame">{{13, 96}, {114, 42}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="8070328"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -160,6 +164,7 @@
 								<string key="NSFrame">{{187, 28}, {80, 80}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="994679954"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -171,9 +176,10 @@
 							<object class="IBUILabel" id="724891367">
 								<reference key="NSNextResponder" ref="78891759"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{153, 39}, {322, 48}}</string>
+								<string key="NSFrame">{{153, 39}, {232, 48}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="225557599"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -190,9 +196,10 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
-						<string key="NSFrameSize">{768, 135}</string>
+						<string key="NSFrameSize">{600, 135}</string>
 						<reference key="NSSuperview" ref="450569010"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1042315490"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -205,7 +212,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 136}</string>
+				<string key="NSFrameSize">{600, 136}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="78891759"/>

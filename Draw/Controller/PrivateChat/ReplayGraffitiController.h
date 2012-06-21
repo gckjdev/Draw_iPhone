@@ -9,6 +9,7 @@
 #import "PPViewController.h"
 
 @interface ReplayGraffitiController : PPViewController
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (id)initWithDrawActionList:(NSArray *)drawActionList;
 

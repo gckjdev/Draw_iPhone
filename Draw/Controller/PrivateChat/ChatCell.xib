@@ -87,9 +87,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">[4/10]</string>
-								<object class="NSColor" key="IBUITextColor" id="56484678">
+								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<bytes key="NSRGB">MC40MTE3NjQ3MDU5IDAuMTk2MDc4NDMxNCAwLjA0NzA1ODgyMzUzAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="685771839">
 									<int key="NSColorSpace">3</int>
@@ -121,7 +121,10 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">10小时前</string>
-								<reference key="IBUITextColor" ref="56484678"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40MTE3NjQ3MDU5IDAuMTk2MDc4NDMxNCAwLjA0NzA1ODgyMzUzAA</bytes>
+								</object>
 								<reference key="IBUIHighlightedColor" ref="685771839"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -143,7 +146,10 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<reference key="IBUITextColor" ref="56484678"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40MTE3NjQ3MDU5IDAuMTk2MDc4NDMxNCAwLjA0NzA1ODgyMzUzAA</bytes>
+								</object>
 								<reference key="IBUIHighlightedColor" ref="685771839"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -165,7 +171,10 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<reference key="IBUITextColor" ref="56484678"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40MTE3NjQ3MDU5IDAuMTk2MDc4NDMxNCAwLjA0NzA1ODgyMzUzAA</bytes>
+								</object>
 								<reference key="IBUIHighlightedColor" ref="685771839"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
