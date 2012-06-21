@@ -14,5 +14,6 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *addChatButton;
+@property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 
 @end

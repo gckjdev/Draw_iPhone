@@ -126,14 +126,15 @@
     return resultHeight;
 }
 
+
+
 - (void)setCellByChatMessage:(ChatMessage *)message friendNickname:(NSString *)friendNickName friendAvatar:(NSString *)friendAvatar indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
     
-    UIColor *textColor = [UIColor colorWithRed:81.0/255.0 green:64.0/255.0 blue:34.0/255.0 alpha:1];
+    UIColor *textColor = [UIColor colorWithRed:79.0/255.0 green:62.0/255.0 blue:32.0/255.0 alpha:1];
     contentTextView.textColor = textColor;
     nicknameLabel.textColor = textColor;
-    timeLabel.textColor = textColor;
     
     BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
     
@@ -157,6 +158,7 @@
     }else {
         nicknameLabel.text = friendNickName;
     }
+    nicknameLabel.hidden = YES;
     
     UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
     [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
@@ -166,12 +168,14 @@
     timeLabel.text = [dateFormatter stringFromDate:message.createDate];
     timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
     
+    
+    /*注意要保证xib里面contentTextView,bubbleImageView,graffitiView,timeLabel的x位置一样*/
     if ([message.text length] > 0) {
         contentTextView.hidden = NO;
         graffitiView.hidden = YES;
         enlargeButton.hidden = YES;
         
-        //string的大小
+        //get string size
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
@@ -193,15 +197,17 @@
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
         CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
         NSMutableArray *scaleActionList = nil;
-        if ([DeviceDetection isIPAD]) {
-            scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                                   xScale:IPAD_WIDTH_SCALE*scale 
-                                                   yScale:IPAD_HEIGHT_SCALE*scale];
-        } else {
-            scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                                   xScale:scale 
-                                                   yScale:scale];
-        }
+        PPDebug(@"%@",timeLabel.text);
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:scale 
+                                               yScale:scale];
+        
+        //        if ([DeviceDetection isIPAD]) {
+        //            scaleActionList = [DrawAction scaleActionList:drawActionList 
+        //                                                   xScale:IPAD_WIDTH_SCALE*scale 
+        //                                                   yScale:IPAD_HEIGHT_SCALE*scale];
+        //        }
+
         [graffitiView setDrawActionList:scaleActionList]; 
         [graffitiView setShowPenHidden:YES];
         CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
@@ -222,7 +228,6 @@
     avatarBackgroundImageView.center = CGPointMake(avatarView.center.x, avatarView.center.y+2);
     
     //set nickname frame 
-    nicknameLabel.hidden = YES;
     //nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
     
     if (fromSelf) {

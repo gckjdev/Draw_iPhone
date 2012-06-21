@@ -36,6 +36,7 @@
 
 @synthesize titleLabel;
 @synthesize addChatButton;
+@synthesize tipsLabel;
 @synthesize selectChatFriendController = _selectChatFriendController;
 
 
@@ -43,6 +44,7 @@
     PPRelease(titleLabel);
     PPRelease(addChatButton);
     PPRelease(_selectChatFriendController);
+    [tipsLabel release];
     [super dealloc];
 }
 
@@ -84,6 +86,7 @@
 {
     [self setTitleLabel:nil];
     [self setAddChatButton:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -121,8 +124,9 @@
 
 - (void)showNoDataTips
 {
-    self.tipsLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1];
-    [self showTipsOnTableView:NSLS(@"kNoChatListInfo")];
+    dataTableView.hidden = YES;
+    tipsLabel.hidden = NO;
+    self.tipsLabel.text = NSLS(@"kNoChatListInfo");
 }
 
 

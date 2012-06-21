@@ -39,13 +39,14 @@
     ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
     showDrawView.frame = DRAW_VEIW_FRAME;
     NSMutableArray *scaleActionList = nil;
-    if ([DeviceDetection isIPAD]) {
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:IPAD_WIDTH_SCALE 
-                                               yScale:IPAD_HEIGHT_SCALE];
-    } else {
-        scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
-    }
+    
+    scaleActionList = [NSMutableArray arrayWithArray:drawActionList];
+    //    if ([DeviceDetection isIPAD]) {
+    //        scaleActionList = [DrawAction scaleActionList:drawActionList 
+    //                                               xScale:IPAD_WIDTH_SCALE 
+    //                                               yScale:IPAD_HEIGHT_SCALE];
+    //    }
+
     [showDrawView setDrawActionList:scaleActionList]; 
     [showDrawView setShowPenHidden:NO];
     

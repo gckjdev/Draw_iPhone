@@ -17,6 +17,7 @@
 #import "ChatMessageManager.h"
 #import "MessageTotalManager.h"
 #import "DrawDataService.h"
+#import "ChatMessageUtil.h"
 
 static ChatService *_chatService = nil;
 
@@ -145,7 +146,16 @@ static ChatService *_chatService = nil;
             
             if (output.resultCode == ERROR_SUCCESS){
                 NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+                
+                NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+                for (PBDrawAction *pbDrawAction in draw.drawDataList) {
+                    DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:pbDrawAction];
+                    [mutableArray addObject:drawAction];
+                    [drawAction release];
+                }
+                //NSData* dataForSave = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+                NSData* dataForSave = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
+                [mutableArray release];
                 
                 [[ChatMessageManager defaultManager] createMessageWithMessageId:messageId 
                                                                            from:userId 
