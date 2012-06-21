@@ -65,8 +65,8 @@
 }
 
 
-#define CELL_HEIGHT_IPHONE  100
-#define CELL_HEIGHT_IPAD    200
+#define CELL_HEIGHT_IPHONE  71
+#define CELL_HEIGHT_IPAD    142
 + (CGFloat)getCellHeight
 {
     if ([DeviceDetection isIPAD]) {
@@ -117,14 +117,14 @@
         self.graffiti.hidden = YES;
         self.textLabel.text = messageTotal.latestText;
     }else {
-        self.textLabel.hidden = YES;
-        self.graffiti.hidden = NO;
-        
-        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:messageTotal.latestDrawData];
-        CGFloat scale = graffiti.frame.size.height / DRAW_VEIW_FRAME.size.height;
-        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
-        [thumbImageView show];
-        [graffiti addSubview:thumbImageView];
+        self.textLabel.hidden = NO;
+        self.graffiti.hidden = YES;
+        self.textLabel.text = [NSString stringWithFormat:@"[%@]",NSLS(@"kGraffitiMessage")] ;
+//        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:messageTotal.latestDrawData];
+//        CGFloat scale = graffiti.frame.size.height / DRAW_VEIW_FRAME.size.height;
+//        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
+//        [thumbImageView show];
+//        [graffiti addSubview:thumbImageView];
     }
     
     //set messageNumberLabel
@@ -135,6 +135,7 @@
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
     self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
+    self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
 }
 
 @end

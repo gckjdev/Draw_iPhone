@@ -21,6 +21,7 @@
 @class ShowDrawView;
 @interface ChatDetailCell : PPTableViewCell
 
+@property (retain, nonatomic) IBOutlet UIImageView *avatarBackgroundImageView;
 @property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
 @property (retain, nonatomic) IBOutlet UIImageView *bubbleImageView;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;

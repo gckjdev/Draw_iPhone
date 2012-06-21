@@ -7,6 +7,7 @@
 //
 
 #import "PPTableViewController.h"
+#import "FriendService.h"
 
 @class Friend;
 @protocol SelectChatFriendDelagate <NSObject>
@@ -17,7 +18,7 @@
 
 @end
 
-@interface SelectChatFriendController : PPTableViewController
+@interface SelectChatFriendController : PPTableViewController<FriendServiceDelegate>
 
 @property (assign, nonatomic) id<SelectChatFriendDelagate> delegate;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;

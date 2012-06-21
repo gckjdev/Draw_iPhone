@@ -28,10 +28,12 @@
 - (void)findAllMessageTotals;
 - (void)hideSelectView:(BOOL)animated;
 - (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar;
+- (void)showNoDataTips;
 
 @end
 
 @implementation ChatListController
+
 @synthesize titleLabel;
 @synthesize addChatButton;
 @synthesize selectChatFriendController = _selectChatFriendController;
@@ -47,6 +49,7 @@
 
 - (void)viewDidLoad
 {
+    self.supportRefreshHeader = YES;
     [super viewDidLoad];
     [titleLabel setText:NSLS(@"kChatListTitle")];
     
@@ -55,6 +58,10 @@
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
+    
+    if ([dataList count] == 0) {
+        [self showNoDataTips];
+    }
 }
 
 
@@ -112,12 +119,26 @@
 }
 
 
+- (void)showNoDataTips
+{
+    self.tipsLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1];
+    [self showTipsOnTableView:NSLS(@"kNoChatListInfo")];
+}
+
+
 #pragma mark - ChatServiceDelegate methods
 - (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
 {
+    [self dataSourceDidFinishLoadingNewData];
+    
     PPDebug(@"ChatListController:didFindAllmessageTotals");
     self.dataList = totalList;
     [dataTableView reloadData];
+    
+    if ([dataList count] == 0) {
+        [self showNoDataTips];
+    }
+    
     PPDebug(@"ChatListController:didFindAllmessageTotals finish");
 }
 
@@ -127,6 +148,7 @@
 {
     return [ChatCell getCellHeight];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,6 +163,7 @@
     
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -192,5 +215,14 @@
 {
     [self hideSelectView:YES];
 }
+
+
+#pragma mark - pull down to refresh
+// When "pull down to refresh" in triggered, this function will be called  
+- (void)reloadTableViewDataSource
+{
+    [self findAllMessageTotals];
+}
+
 
 @end

@@ -547,9 +547,13 @@
 "kIGuessAction" = "我来猜猜";
 "kOneMoreAction" = "再来一幅";
 "kIGuessCorrect" = "猜对了";
+
 "kChatListTitle" = "涂鸦聊天";
+"kNoChatListInfo" = "没有记录";
+"kGraffitiMessage" = "涂鸦信息";
 "kAddChat" = "新建";
 "kSelectContacts" = "选择联系人";
+"KNoFollowContacts" = "暂未有关注";
 "kSendMessage" = "发送";
 "kSendingChatMessage" = "发送中...";
 "kSendMessageFailed" = "发送失败";
