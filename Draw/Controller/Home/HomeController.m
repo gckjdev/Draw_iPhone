@@ -78,6 +78,7 @@
 @synthesize friendPlayLabel = _friendPlayLabel;
 @synthesize freeCoinLabel = _freeCoinLabel;
 @synthesize feedLabel = _feedLabel;
+@synthesize versionLabel = _versionLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -118,7 +119,6 @@
     [self.freeCoinLabel  setText:NSLS(@"kFreeCoins")];
     [self.signLabel setText:NSLS(@"kCheckin")];
     [self.friendPlayLabel setText:NSLS(@"kPlayWithFriend")];
-    
     [self.shareLabel setText:NSLS(@"kShare")];
     [self.friendLabel setText:NSLS(@"kFriend")];
     [self.chatLabel setText:NSLS(@"kChat")];
@@ -128,6 +128,9 @@
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
     
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
+    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
+    [self.versionLabel setText:[NSString stringWithFormat:@"Ver %@", currentVersion]];
 
     
     int size;
@@ -202,6 +205,7 @@
     [self setFriendPlayLabel:nil];
     [self setFreeCoinLabel:nil];
     [self setFeedLabel:nil];
+    [self setVersionLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -510,6 +514,7 @@
     [_friendPlayLabel release];
     [_freeCoinLabel release];
     [_feedLabel release];
+    [_versionLabel release];
     [super dealloc];
 }
 
