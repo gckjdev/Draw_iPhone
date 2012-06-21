@@ -28,7 +28,7 @@
 - (void)findAllMessageTotals;
 - (void)hideSelectView:(BOOL)animated;
 - (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar;
-- (void)showNoDataTips;
+- (void)updateNoDataTips;
 
 @end
 
@@ -61,9 +61,7 @@
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
     
-    if ([dataList count] == 0) {
-        [self showNoDataTips];
-    }
+    [self updateNoDataTips];
 }
 
 
@@ -122,11 +120,28 @@
 }
 
 
-- (void)showNoDataTips
+#define NODATA_LABEL_TAG  90
+#define NODATA_LABEL_FONT  (([DeviceDetection isIPAD])?(28.0):(14.0))
+- (void)updateNoDataTips
 {
-    dataTableView.hidden = YES;
-    tipsLabel.hidden = NO;
-    self.tipsLabel.text = NSLS(@"kNoChatListInfo");
+    if ([dataList count] == 0) {
+        UILabel *noDataLabel = [[UILabel alloc] init];
+        noDataLabel.frame = CGRectMake(0, 20, dataTableView.frame.size.width, 60);
+        noDataLabel.tag = NODATA_LABEL_TAG;
+        noDataLabel.font = [UIFont systemFontOfSize:NODATA_LABEL_FONT];
+        noDataLabel.text = NSLS(@"kNoChatListInfo");
+        noDataLabel.backgroundColor = [UIColor clearColor];
+        //noDataLabel.backgroundColor = [UIColor grayColor];
+        noDataLabel.textAlignment = UITextAlignmentCenter;
+        noDataLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1];
+        [dataTableView addSubview:noDataLabel];
+        [noDataLabel release];
+    }else {
+        UILabel *noDataLabel = (UILabel *)[dataTableView viewWithTag:NODATA_LABEL_TAG];
+        if (noDataLabel) {
+            [noDataLabel removeFromSuperview];
+        }
+    }
 }
 
 
@@ -139,9 +154,7 @@
     self.dataList = totalList;
     [dataTableView reloadData];
     
-    if ([dataList count] == 0) {
-        [self showNoDataTips];
-    }
+    [self updateNoDataTips];
     
     PPDebug(@"ChatListController:didFindAllmessageTotals finish");
 }

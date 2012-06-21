@@ -13,7 +13,7 @@
 
 @optional
 - (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
-- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode;
+- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount;
 - (void)didSendMessage:(int)resultCode;
 - (void)didSendHasReadMessage:(int)resultCode;
 

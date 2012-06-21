@@ -80,6 +80,8 @@ static ChatService *_chatService = nil;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
+    
+    
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
                                                                    appId:APP_ID 
@@ -89,6 +91,9 @@ static ChatService *_chatService = nil;
                                                                 maxCount:maxCount];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSUInteger newMessagesCount = 0;
+            
             if (output.resultCode == ERROR_SUCCESS){
                 
                 @try{
@@ -97,6 +102,9 @@ static ChatService *_chatService = nil;
                     for (PBMessage *pbMessage in messageList) {
                         [[ChatMessageManager defaultManager] createByPBMessage:pbMessage];
                     }
+                    
+                    newMessagesCount = [messageList count];
+                    
                 }@catch (NSException *exception){
                     PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
                 }
@@ -106,9 +114,9 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService>findAllMessages failed");
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessages:resultCode:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didFindAllMessages:resultCode:newMessagesCount:)]){
                 NSArray *array = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
-                [delegate didFindAllMessages:array resultCode:output.resultCode];
+                [delegate didFindAllMessages:array resultCode:output.resultCode newMessagesCount:newMessagesCount];
             }
         }); 
     });

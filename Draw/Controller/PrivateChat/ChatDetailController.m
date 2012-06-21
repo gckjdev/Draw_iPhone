@@ -145,15 +145,14 @@
 
 
 #pragma mark - ChatServiceDelegate methods
-- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode
+- (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount
 {
     [self dataSourceDidFinishLoadingNewData];
     
     if (resultCode == 0) {
-//        if ([list count] > 0) {
-//            <#statements#>
-//        }
-        [[ChatService defaultService] sendHasReadMessage:nil friendUserId:_friendUserId];
+        if (newMessagesCount > 0) {
+            [[ChatService defaultService] sendHasReadMessage:nil friendUserId:_friendUserId];
+        }
     }
     self.dataList = list;
     [dataTableView reloadData];
