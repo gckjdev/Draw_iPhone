@@ -52,6 +52,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *friendPlayLabel;
 @property (retain, nonatomic) IBOutlet UILabel *freeCoinLabel;
 @property (retain, nonatomic) IBOutlet UILabel *feedLabel;
+@property (retain, nonatomic) IBOutlet UILabel *versionLabel;
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;
