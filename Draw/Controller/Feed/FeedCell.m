@@ -30,9 +30,9 @@
 @synthesize drawView = _drawView;
 @synthesize feed = _feed;
 
-#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(10, 10, 82, 85) : CGRectMake(4, 4, 31, 32))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 56, 170, 170) :CGRectMake(220, 28, 70, 72))
-#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  240 : 105)
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(12, 20, 83, 82) : CGRectMake(5, 9, 35, 36))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 9, 170, 170) :CGRectMake(222, 4, 70, 72))
+#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 170)
 #define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:14 * 2] : [UIFont systemFontOfSize:14])
 
@@ -158,7 +158,7 @@
 - (void)updateActionButton:(Feed *)feed
 {
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
-    self.actionButton.hidden = NO;
+    //self.actionButton.hidden = NO;
     [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     self.actionButton.userInteractionEnabled = YES;
     self.actionButton.selected = NO;
@@ -175,9 +175,10 @@
         [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
         self.actionButton.userInteractionEnabled = NO;
         self.actionButton.selected = YES;
-    }else{
-        self.actionButton.hidden = YES;
     }
+//    else{
+//        self.actionButton.hidden = YES;
+//    }
 }
 
 

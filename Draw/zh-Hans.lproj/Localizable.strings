@@ -539,7 +539,7 @@
 
 "kNoGuess" = "猜0";
 
-"kGuessStat" = "猜 %d  中 %d";
+"kGuessStat" = "猜%d 中%d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
 
