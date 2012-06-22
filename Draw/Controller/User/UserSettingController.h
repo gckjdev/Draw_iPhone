@@ -33,7 +33,7 @@
     NSInteger rowOfSoundSwitcher;
     NSInteger rowOfMusicSettings;
     NSInteger rowOfVolumeSetting;
-    NSInteger rowOfChatVoice;
+    //NSInteger rowOfChatVoice;
     
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;
@@ -50,7 +50,7 @@
     LanguageType languageType;
     GuessLevel guessLevel;
     NSString* _gender;
-    ChatVoiceEnable chatVoice;
+    //ChatVoiceEnable chatVoice;
 //    LevelType
     
 }

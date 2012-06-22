@@ -86,8 +86,8 @@ enum {
     rowOfSoundSwitcher = 0;
     rowOfMusicSettings = 1;
     rowOfVolumeSetting = 2;
-    rowOfChatVoice = 3;
-    rowsInSectionSound = 4;
+    //rowOfChatVoice = 3;
+    rowsInSectionSound = 3;
 }
 
 - (void)updateAvatar:(UIImage *)image
@@ -118,7 +118,7 @@ enum {
     languageType = [userManager getLanguageType];
     self.gender = [userManager gender];
     guessLevel = [ConfigManager guessDifficultLevel];
-    chatVoice = [ConfigManager getChatVoiceEnable];
+    //chatVoice = [ConfigManager getChatVoiceEnable];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -344,17 +344,18 @@ enum {
             if ([DeviceDetection isIPAD]) {
                 [slider setFrame:CGRectMake(148*2, 5*2, 184*2, 37*2)];
             }
-        } else if (row == rowOfChatVoice) {
-            [cell.textLabel setText:NSLS(@"kChatVoice")];
-            if (chatVoice == EnableAlways) {
-                [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
-            } else if (chatVoice == EnableWifi) {
-                [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
-            }else if (chatVoice == EnableNot){
-                [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
-            }
-            [cell.detailTextLabel setHidden:NO];
-        }
+        } 
+//        else if (row == rowOfChatVoice) {
+//            [cell.textLabel setText:NSLS(@"kChatVoice")];
+//            if (chatVoice == EnableAlways) {
+//                [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
+//            } else if (chatVoice == EnableWifi) {
+//                [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
+//            }else if (chatVoice == EnableNot){
+//                [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
+//            }
+//            [cell.detailTextLabel setHidden:NO];
+//        }
     }
     
     return cell;
@@ -445,17 +446,19 @@ enum {
             [controller release];
         } else if (row == rowOfVolumeSetting) {
             //no action
-        } else if (row == rowOfChatVoice) {
-            UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
-                                                                              delegate:self 
-                                                                     cancelButtonTitle:NSLS(@"kCancel") 
-                                                                destructiveButtonTitle:NSLS(@"kEnableAlways") 
-                                                                     otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
-            selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
-            [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
-            [selectChatVoiceSheet showInView:self.view];
-            [selectChatVoiceSheet release];
-        }
+        } 
+        
+//        else if (row == rowOfChatVoice) {
+//            UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
+//                                                                              delegate:self 
+//                                                                     cancelButtonTitle:NSLS(@"kCancel") 
+//                                                                destructiveButtonTitle:NSLS(@"kEnableAlways") 
+//                                                                     otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
+//            selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
+//            [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
+//            [selectChatVoiceSheet showInView:self.view];
+//            [selectChatVoiceSheet release];
+//        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -476,9 +479,11 @@ enum {
                 hasEdited = YES;
             }
             self.gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
-        }else if (actionSheet.tag == CHAT_VOICE_TAG) {
-            chatVoice = buttonIndex + 1;
         }
+        
+//        else if (actionSheet.tag == CHAT_VOICE_TAG) {
+//            chatVoice = buttonIndex + 1;
+//        }
     }
     [self updateRowIndexs];
     [self.dataTableView reloadData];
@@ -487,7 +492,7 @@ enum {
 - (BOOL)isLocalChanged
 {    
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn || [ConfigManager getChatVoiceEnable] != chatVoice);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn);
     return localChanged;
 }
 
@@ -500,7 +505,7 @@ enum {
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:self.gender];
         [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
-        [ConfigManager setChatVoiceEnable:chatVoice];
+        //[ConfigManager setChatVoiceEnable:chatVoice];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
             [self.navigationController popViewControllerAnimated:YES];
