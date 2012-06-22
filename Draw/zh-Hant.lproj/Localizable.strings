@@ -533,12 +533,12 @@
 "kNotificationTryGuessDesc" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
 
 "kNoGuess" = "猜0";
-"kGuessStat" = "猜%d 中%d";
+"kGuessStat" = "(%d人猜過/%d人猜中)";
 
 "kGetFeedListFail" = "獲取動態清單失敗，請稍後再試。";
 "kNoFeedTips" = "沒有動態";
 
-"kIGuessAction" = "我來猜猜";
+"kIGuessAction" = "我來猜";
 "kOneMoreAction" = "再來一幅";
 "kIGuessCorrect" = "猜對了​​";
 
@@ -575,3 +575,5 @@
 "kDrawOnly" = "我要畫";
 "kFeed" = "好友動態";
 "kFreeCoins" = "免費金幣";
+
+"kFeeds" = "動態";

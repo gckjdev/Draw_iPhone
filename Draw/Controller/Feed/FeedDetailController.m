@@ -40,6 +40,8 @@
 @synthesize inputBackgroundView = inputBackgroundView;
 @synthesize followButton = _followButton;
 @synthesize replayButton = _replayButton;
+@synthesize inputBackground = _inputBackground;
+@synthesize paperImage = _paperImage;
 @synthesize avatarView = _avatarView;
 
 
@@ -172,6 +174,7 @@
     
     [self.view bringSubviewToFront:inputBackgroundView];
     [self.view insertSubview:_maskView belowSubview:inputBackgroundView];
+    [self.inputBackground setImage:[ShareImageManager defaultManager].inputImage];
 }
 
 - (void)updateCommentTableView:(Feed *)feed
@@ -224,6 +227,7 @@
 - (void)updateTitle
 {
     [self.titleLabel setText:NSLS(@"kFeedDetail")];
+    [self.commentLabel setText:NSLS(@"kFeeds")];
 }
 
 #pragma mark - View lifecycle
@@ -244,7 +248,7 @@
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
-   // [self updateInputView:_feed];
+    [self updateInputView:_feed];
     [self updateCommentList];
 }
 
@@ -263,6 +267,8 @@
     [self setCommentLabel:nil];
     [self setReplayButton:nil];
     [self setDrawView:nil];
+    [self setInputBackground:nil];
+    [self setPaperImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -315,6 +321,8 @@
     [_commentLabel release];
     [_replayButton release];
     [_drawView release];
+    [_inputBackground release];
+    [_paperImage release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
@@ -456,17 +464,14 @@
 
 #pragma mark - UITextViewDelegate methods
 #define INPUT_TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(550.0):(230.0))
-#define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(180.0):(90.0))
+#define INPUT_TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(120.0):(60.0))
 #define TEXTTVIEW_HEIGHT_MIN    (([DeviceDetection isIPAD])?(64.0):(32.0))
 #define INPUTBACKGROUNDVIEW_HEIGHT_MIN  (([DeviceDetection isIPAD])?(80.0):(38.0))
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if ([textView.text length] > MAX_LENGTH) {
-        textView.text = [textView.text substringToIndex:MAX_LENGTH];
-    }
     UIFont *font = textView.font;
-    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    //PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
+    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+    PPDebug(@"%f %f %f", textView.frame.size.height, size.height, size.width);
     CGRect oldFrame = textView.frame;
     CGFloat newHeight = size.height + 12;
     CGRect oldBackgroundFrame = inputBackgroundView.frame;
@@ -481,11 +486,10 @@
         [inputBackgroundView setFrame:CGRectMake(oldBackgroundFrame.origin.x, oldBackgroundFrame.origin.y+delHeight, oldBackgroundFrame.size.width, INPUTBACKGROUNDVIEW_HEIGHT_MIN)];
     }
     
-    if ([textView.text length] > 0) {
-        [sendButton setEnabled:YES];
-    }else {
-        [sendButton setEnabled:NO];
-    }
+    self.inputBackground.frame = CGRectMake(self.inputBackground.frame.origin.x, self.inputBackground.frame.origin.y, self.inputBackground.frame.size.width, textView.frame.size.height );//这个IMAGE_AND_TEXT_DIFF参照xib
+    self.inputBackground.center = textView.center;
+    
+    [self changeTableSize:NO duration:0];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -525,6 +529,8 @@
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
+    
+    [self changeTableSize:YES duration:0.25];
 }
 
 
@@ -535,6 +541,28 @@
     [UIView setAnimationDuration:0.25];
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
+    
+    [self changeTableSize:YES duration:0.25];
+}
+
+#define TABLE_AND_INPUT_SPACE (([DeviceDetection isIPAD])?(24.0):(12.0))
+- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration
+{
+    CGFloat newPaperHeight = self.inputBackgroundView.frame.origin.y - self.paperImage.frame.origin.y;
+    CGRect newPaperFrame = CGRectMake(self.paperImage.frame.origin.x, self.paperImage.frame.origin.y, self.paperImage.frame.size.width, newPaperHeight);
+//    CGFloat newTableHeight = inputBackgroundView.frame.origin.y - dataTableView.frame.origin.y - TABLE_AND_INPUT_SPACE;
+//    CGRect newTableFrame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, newTableHeight);
+    
+    if (animated) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:duration];
+        self.paperImage.frame = newPaperFrame;
+        //dataTableView.frame = newTableFrame;
+        [UIView commitAnimations];
+    }else {
+        self.paperImage.frame = newPaperFrame;
+        //dataTableView.frame = newTableFrame;
+    }
 }
 
 

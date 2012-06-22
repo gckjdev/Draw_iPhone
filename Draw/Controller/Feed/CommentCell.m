@@ -16,6 +16,7 @@
 @implementation CommentCell
 @synthesize commentLabel;
 @synthesize timeLabel;
+@synthesize nickNameLabel;
 
 
 + (id)createCell:(id)delegate
@@ -38,10 +39,10 @@
 
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 209)
-#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 14*2 : 14)
-#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 50 : 25)
+#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
+#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 60 : 15)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 107 : 44)
-#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 60 : 9)
+#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 60 : 30)
 
 
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 6, 71, 74) : CGRectMake(5, 9, 31, 32)
@@ -50,7 +51,6 @@
 
 + (CGFloat)getCellHeight:(Feed *)feed
 {
-    
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
         comment = NSLS(@"kCorrect");
@@ -58,7 +58,7 @@
         comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     int height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
     return height;
 }
@@ -72,25 +72,25 @@
     [_avatarView release];
 
     //set user name
-    
     NSString *userName = [FeedManager userNameForFeed:feed];
+    [self.nickNameLabel setText:userName];
     
     //set comment
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
         comment = NSLS(@"kCorrect");
-        [self.commentLabel setTextColor:[UIColor redColor]];
+        //[self.commentLabel setTextColor:[UIColor redColor]];
     }else{
         comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         [self.commentLabel setTextColor:[UIColor darkGrayColor]];
     }
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
 
     
     self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
         
-    [self.commentLabel setText:[NSString stringWithFormat:@"%@%@", userName, comment]];
+    [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
     [self.commentLabel setFont:font];
     
     //set times
@@ -98,7 +98,6 @@
     NSString *timeString = dateToStringByFormat(feed.createDate, formate);
 
     [self.timeLabel setText:timeString];
-    
 }
 
 
@@ -106,6 +105,7 @@
 - (void)dealloc {
     [commentLabel release];
     [timeLabel release];
+    [nickNameLabel release];
     [super dealloc];
 }
 @end
