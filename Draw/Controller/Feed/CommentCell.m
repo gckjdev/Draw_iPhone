@@ -14,7 +14,6 @@
 #import "DeviceDetection.h"
 
 @implementation CommentCell
-@synthesize nickNameLabel;
 @synthesize commentLabel;
 @synthesize timeLabel;
 
@@ -38,14 +37,14 @@
 }
 
 
-#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 248)
+#define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 550 : 209)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 14*2 : 14)
-#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
+#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 50 : 25)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 107 : 44)
-#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 60 : 28)
+#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 60 : 9)
 
 
-#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 6, 71, 74) : CGRectMake(4, 3, 31, 32)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 6, 71, 74) : CGRectMake(5, 9, 31, 32)
 
 
 
@@ -75,7 +74,6 @@
     //set user name
     
     NSString *userName = [FeedManager userNameForFeed:feed];
-    [self.nickNameLabel setText:userName];
     
     //set comment
     NSString *comment = feed.comment;
@@ -92,7 +90,7 @@
     
     self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
         
-    [self.commentLabel setText:comment];
+    [self.commentLabel setText:[NSString stringWithFormat:@"%@%@", userName, comment]];
     [self.commentLabel setFont:font];
     
     //set times
@@ -106,7 +104,6 @@
 
 
 - (void)dealloc {
-    [nickNameLabel release];
     [commentLabel release];
     [timeLabel release];
     [super dealloc];

@@ -114,8 +114,8 @@
 {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-    CGFloat wEdge = -width/16;//width / EDGE_WIDTH_TIMES;
-    CGFloat hEdge = -height/15.5;//height / EDGE_HEIGHT_TIMES;
+    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
+    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
     return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 

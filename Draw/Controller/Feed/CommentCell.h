@@ -16,7 +16,6 @@
     AvatarView *_avatarView;
 }
 
-@property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *commentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 

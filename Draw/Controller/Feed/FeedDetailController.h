@@ -26,6 +26,7 @@
     NSInteger _startIndex;
     UIButton *_maskView;
 }
+@property (retain, nonatomic) IBOutlet UILabel *commentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UITextView *commentInput;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
@@ -36,9 +37,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) Feed *feed;
 @property (retain, nonatomic) AvatarView *avatarView;
-@property (retain, nonatomic) ShowDrawView *drawView;
+@property (retain, nonatomic) IBOutlet ShowDrawView *drawView;
 
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
+@property (retain, nonatomic) IBOutlet UIButton *followButton;
+@property (retain, nonatomic) IBOutlet UIButton *replayButton;
 
 
 - (IBAction)clickActionButton:(id)sender;

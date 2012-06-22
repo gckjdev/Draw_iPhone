@@ -19,6 +19,7 @@
 #import "CommentCell.h"
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
+#import "TimeUtils.h"
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
@@ -26,6 +27,7 @@
 
 @implementation FeedDetailController
 @synthesize commentInput;
+@synthesize commentLabel = _commentLabel;
 @synthesize nickNameLabel;
 @synthesize titleLabel;
 @synthesize actionButton;
@@ -36,11 +38,13 @@
 @synthesize feed = _feed;
 @synthesize drawView = _drawView;
 @synthesize inputBackgroundView = inputBackgroundView;
+@synthesize followButton = _followButton;
+@synthesize replayButton = _replayButton;
 @synthesize avatarView = _avatarView;
 
 
-#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(38, 141, 148, 141) : CGRectMake(18, 65, 62, 65))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(480, 141, 228, 218) :CGRectMake(200, 65, 95, 100))
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(38, 141, 148, 141) : CGRectMake(278, 6, 29, 28))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(435, 141, 285, 258) :CGRectMake(200, 76, 95, 100))
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -74,9 +78,14 @@
 
 - (void)updateTime:(Feed *)feed
 {
-    NSString *formate = @"yy-MM-dd HH:mm";
-    NSString *timeString = dateToStringByFormat(feed.createDate, formate);
-    [self.timeLabel setText:timeString];
+    if (time != nil) {
+        [self.timeLabel setText:chineseBeforeTime(feed.createDate)];
+    } else {
+        NSString *formate = @"yy-MM-dd HH:mm";
+        NSString *timeString = dateToStringByFormat(feed.createDate, formate);
+        [self.timeLabel setText:timeString];
+    }
+    
 }
 
 
@@ -126,6 +135,7 @@
         [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
         self.actionButton.userInteractionEnabled = NO;
         self.actionButton.selected = YES;
+        self.actionButton.hidden = YES;
     }else{
         self.actionButton.hidden = YES;
     }
@@ -135,10 +145,10 @@
 
 - (void)updateDrawView:(Feed *)feed
 {
-    self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
+//    self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
     [self.drawView setShowPenHidden:YES];
     [self.drawView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:_drawView];
+    //[self.view insertSubview:_drawView aboveSubview:self.followButton];
     [self.drawView cleanAllActions];
     CGRect normalFrame = DRAW_VEIW_FRAME;
     CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
@@ -146,6 +156,7 @@
     CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
     
     self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+    [self.drawView setPlaySpeed:0.01];
     [self.drawView play];
 }
 
@@ -233,9 +244,8 @@
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
-    [self updateInputView:_feed];
+   // [self updateInputView:_feed];
     [self updateCommentList];
-    
 }
 
 - (void)viewDidUnload
@@ -249,6 +259,10 @@
     [self setCommentInput:nil];
     [self setSendButton:nil];
     [self setInputBackgroundView:nil];
+    [self setFollowButton:nil];
+    [self setCommentLabel:nil];
+    [self setReplayButton:nil];
+    [self setDrawView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -269,6 +283,17 @@
     }
 }
 
+- (IBAction)clickFollowButton:(id)sender
+{
+    
+}
+
+- (IBAction)clickReplayShowDrawView:(id)sender
+{
+    [self.drawView setPlaySpeed:0.01];
+    [self.drawView play];
+}
+
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -286,6 +311,10 @@
     [sendButton release];
     [inputBackgroundView release];
     [_maskView release];
+    [_followButton release];
+    [_commentLabel release];
+    [_replayButton release];
+    [_drawView release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
