@@ -84,7 +84,7 @@
 #define TEXTVIEW_BORDER_X (([DeviceDetection isIPAD])?(10):(8))
 #define TEXTVIEW_BORDER_Y (([DeviceDetection isIPAD])?(10):(8))
 #define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(16):(10))
-#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(10):(5))
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(9):(4.5))
 #define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
 #define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
 #define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
@@ -197,7 +197,7 @@
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
         CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
         NSMutableArray *scaleActionList = nil;
-        PPDebug(@"%@",timeLabel.text);
+        //PPDebug(@"%@",timeLabel.text);
         scaleActionList = [DrawAction scaleActionList:drawActionList 
                                                xScale:scale 
                                                yScale:scale];
@@ -212,6 +212,8 @@
         [graffitiView setShowPenHidden:YES];
         CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
         graffitiView.frame = CGRectMake(graffitiView.frame.origin.x+BUBBLE_TIP_WIDTH+IMAGE_BORDER_X, 0.5*SPACE_Y+IMAGE_BORDER_Y, IMAGE_WIDTH_MAX, multiple *IMAGE_WIDTH_MAX);
+        graffitiView.layer.cornerRadius = 4;
+        graffitiView.layer.masksToBounds = YES;
         
         //set button frame
         enlargeButton.frame = graffitiView.frame;
@@ -248,7 +250,7 @@
 - (IBAction)clickEnlargeButton:(id)sender
 {
     if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickEnlargeButton:)]){
-        PPDebug(@"%d",[self.indexPath row]);
+        //PPDebug(@"%d",[self.indexPath row]);
         [chatDetailCellDelegate didClickEnlargeButton:self.indexPath];
     }
 }

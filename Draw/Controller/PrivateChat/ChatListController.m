@@ -36,7 +36,6 @@
 
 @synthesize titleLabel;
 @synthesize addChatButton;
-@synthesize tipsLabel;
 @synthesize selectChatFriendController = _selectChatFriendController;
 
 
@@ -44,8 +43,14 @@
     PPRelease(titleLabel);
     PPRelease(addChatButton);
     PPRelease(_selectChatFriendController);
-    [tipsLabel release];
     [super dealloc];
+}
+
+- (void)setEmptyTableCanScroll
+{
+    CGRect frame = dataTableView.frame;
+    frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height-0.0001);
+    dataTableView.frame = frame;
 }
 
 
@@ -62,6 +67,8 @@
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
     
     [self updateNoDataTips];
+    
+    [self setEmptyTableCanScroll];
 }
 
 
@@ -84,7 +91,6 @@
 {
     [self setTitleLabel:nil];
     [self setAddChatButton:nil];
-    [self setTipsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -124,8 +130,9 @@
 #define NODATA_LABEL_FONT  (([DeviceDetection isIPAD])?(28.0):(14.0))
 - (void)updateNoDataTips
 {
-    if ([dataList count] == 0) {
-        UILabel *noDataLabel = [[UILabel alloc] init];
+    UILabel *noDataLabel = (UILabel *)[dataTableView viewWithTag:NODATA_LABEL_TAG];
+    if (noDataLabel == nil) {
+        noDataLabel = [[UILabel alloc] init];
         noDataLabel.frame = CGRectMake(0, 20, dataTableView.frame.size.width, 60);
         noDataLabel.tag = NODATA_LABEL_TAG;
         noDataLabel.font = [UIFont systemFontOfSize:NODATA_LABEL_FONT];
@@ -136,11 +143,12 @@
         noDataLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1];
         [dataTableView addSubview:noDataLabel];
         [noDataLabel release];
+    }
+    
+    if ([dataList count] == 0) {
+        noDataLabel.hidden = NO;
     }else {
-        UILabel *noDataLabel = (UILabel *)[dataTableView viewWithTag:NODATA_LABEL_TAG];
-        if (noDataLabel) {
-            [noDataLabel removeFromSuperview];
-        }
+        noDataLabel.hidden = YES;
     }
 }
 
@@ -150,13 +158,13 @@
 {
     [self dataSourceDidFinishLoadingNewData];
     
-    PPDebug(@"ChatListController:didFindAllmessageTotals");
+    //PPDebug(@"ChatListController:didFindAllmessageTotals");
     self.dataList = totalList;
     [dataTableView reloadData];
     
     [self updateNoDataTips];
     
-    PPDebug(@"ChatListController:didFindAllmessageTotals finish");
+    //PPDebug(@"ChatListController:didFindAllmessageTotals finish");
 }
 
 

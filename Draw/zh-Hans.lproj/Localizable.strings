@@ -552,11 +552,12 @@
 "kNoChatListInfo" = "没有记录";
 "kGraffitiMessage" = "涂鸦信息";
 "kAddChat" = "新建";
-"kSelectContacts" = "选择联系人";
+"kSelectContacts" = "选择好友";
 "KNoFollowContacts" = "暂未有关注";
 "kSendMessage" = "发送";
 "kSendingChatMessage" = "发送中...";
 "kSendMessageFailed" = "发送失败";
+"kSendMessageSuccessfully" = "发送成功";
 "kGraffiti" = "涂鸦";
 
 
