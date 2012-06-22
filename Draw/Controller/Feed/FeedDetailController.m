@@ -45,7 +45,7 @@
 @synthesize avatarView = _avatarView;
 
 
-#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(38, 141, 148, 141) : CGRectMake(278, 6, 29, 28))
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(660, 11, 84, 78) : CGRectMake(278, 6, 29, 28))
 #define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(435, 141, 285, 258) :CGRectMake(200, 76, 95, 100))
 
 
