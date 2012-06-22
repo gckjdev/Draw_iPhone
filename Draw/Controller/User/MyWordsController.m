@@ -15,6 +15,7 @@
 #import "Word.h"
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
+#import "UserService.h"
 
 @interface MyWordsController ()
 {
@@ -96,11 +97,12 @@
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
+    cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     
     if ([DeviceDetection isIPAD]) {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:40]];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
     }else {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
     }
     
     
@@ -184,6 +186,7 @@
         }
         [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:WordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
         
+        [[UserService defaultService] commitWords:targetText viewController:nil];
     }
     else if (dialog.tag == INPUTDIALOG_UPDATE_TAG){
         CustomWord *customWord = [dataList objectAtIndex:updateRow];
@@ -194,6 +197,8 @@
             return;
         }
         [[CustomWordManager defaultManager] update:customWord.word newWord:targetText];
+        
+        [[UserService defaultService] commitWords:targetText viewController:nil];
     }
     
     self.dataList = [[CustomWordManager defaultManager] findAllWords];
