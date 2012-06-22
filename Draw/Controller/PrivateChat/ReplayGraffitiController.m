@@ -57,7 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.titleLabel setText:NSLS(@"kGraffiti")];
+    [self.titleLabel setText:NSLS(@"kGraffitiMessage")];
     
     ShowDrawView *showDrawView = [self createShowDrawView:_drawActionList];
     showDrawView.center = self.view.center;

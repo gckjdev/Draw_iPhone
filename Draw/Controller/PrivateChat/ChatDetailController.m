@@ -171,6 +171,8 @@
         [dataTableView reloadData];
         
         [self hideGraffitiView];
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSendMessageSuccessfully") delayTime:1 isSuccessful:YES];
     } else {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSendMessageFailed") delayTime:2 isHappy:NO];
     }
