@@ -539,12 +539,12 @@
 
 "kNoGuess" = "猜0";
 
-"kGuessStat" = "猜%d 中%d";
+"kGuessStat" = "(%d人猜过/%d人猜中)";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
 
 
-"kIGuessAction" = "我来猜猜";
+"kIGuessAction" = "我来猜";
 "kOneMoreAction" = "再来一幅";
 "kIGuessCorrect" = "猜对了";
 
@@ -582,3 +582,4 @@
 "kDrawOnly" = "我要画";
 "kFeed" = "好友动态";
 "kFreeCoins" = "免费金币";
+"kFeeds" = "动态";

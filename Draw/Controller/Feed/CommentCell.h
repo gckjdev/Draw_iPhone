@@ -18,6 +18,7 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *commentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 
 + (CGFloat)getCellHeight:(Feed *)feed;
 - (void)setCellInfo:(Feed *)feed;

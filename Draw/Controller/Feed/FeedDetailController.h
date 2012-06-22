@@ -42,6 +42,8 @@
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
 @property (retain, nonatomic) IBOutlet UIButton *followButton;
 @property (retain, nonatomic) IBOutlet UIButton *replayButton;
+@property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
+@property (retain, nonatomic) IBOutlet UIImageView *paperImage;
 
 
 - (IBAction)clickActionButton:(id)sender;
