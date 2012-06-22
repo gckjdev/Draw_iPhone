@@ -12,6 +12,7 @@
 #import "FriendManager.h"
 #import "ChatDetailController.h"
 #import "ShareImageManager.h"
+#import "FriendService.h"
 
 @interface SelectChatFriendController ()
 
@@ -55,12 +56,41 @@
     [fanButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
     [dataTableView setSeparatorColor:[UIColor clearColor]];
     
-    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
-    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
-    
     followButton.selected = YES;
-    [self setAndReloadData:_myFollowList];
+    
+    [self loadMyFollow];
+    [self loadMyFans];
 }
+
+- (void)loadMyFollow
+{
+    [[FriendService defaultService] findFriendsByType:FOLLOW viewController:self];
+}
+
+
+- (void)loadMyFans
+{
+    [[FriendService defaultService] findFriendsByType:FAN viewController:self];
+}
+
+
+- (void)didfindFriendsByType:(int)type friendList:(NSArray *)friendList result:(int)resultCode
+{
+    if (type == FOLLOW) {
+        self.myFollowList = friendList;
+    }else if(type == FAN)
+    {
+        self.myFanList = friendList;
+    }
+    
+    [self updateFriendsCount];
+    if (followButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else {
+        [self setAndReloadData:_myFanList];
+    }
+}
+
 
 - (void)viewDidUnload
 {
@@ -72,6 +102,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    PPDebug(@"<SelectChatFriendController> viewWillAppear");
+    
+    [self updateFriendsListFromLocal];
 }
 
 #pragma mark - table view delegate
@@ -94,6 +131,7 @@
     
     Friend *friend = [dataList objectAtIndex:[indexPath row]];
     [cell setCellWithFriend:friend indexPath:indexPath fromType:FromFriendList];
+    cell.followButton.hidden = YES;
     
     return cell;
 }
@@ -114,6 +152,18 @@
     }
 }
 
+- (void)updateFriendsListFromLocal
+{
+    self.myFollowList = [[FriendManager defaultManager] findAllFollowFriends];
+    self.myFanList = [[FriendManager defaultManager] findAllFanFriends];
+    
+    if (followButton.selected) {
+        [self setAndReloadData:_myFollowList];
+    }else if (fanButton.selected){
+        [self setAndReloadData:_myFanList];
+    } 
+}
+
 - (void)updateFriendsCount
 {
     NSString *followTitle = NSLS(@"kFollow");
@@ -127,7 +177,7 @@
     dataTableView.hidden = YES;
     tipsLabel.hidden = NO;
     if (followButton.selected) {
-        self.tipsLabel.text = NSLS(@"kNoFollow");
+        self.tipsLabel.text = NSLS(@"KNoFollowContacts");
     }else if (fanButton.selected){
         self.tipsLabel.text = NSLS(@"kNoFans");
     }

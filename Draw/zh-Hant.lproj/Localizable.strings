@@ -543,8 +543,11 @@
 "kIGuessCorrect" = "猜對了​​";
 
 "kChatListTitle" = "塗鴉聊天";
+"kNoChatListInfo" = "沒有記錄";
+"kGraffitiMessage" = "塗鴉信息";
 "kAddChat" = "新建";
 "kSelectContacts" = "選擇聯繫人";
+"KNoFollowContacts" = "暫未有關注";
 "kSendMessage" = "發送";
 "kSendingChatMessage" = "發送中...";
 "kSendMessageFailed" = "發送失敗";

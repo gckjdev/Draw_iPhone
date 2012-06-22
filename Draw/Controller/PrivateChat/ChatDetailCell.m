@@ -26,6 +26,7 @@
 @end
 
 @implementation ChatDetailCell
+@synthesize avatarBackgroundImageView;
 @synthesize avatarView;
 @synthesize bubbleImageView;
 @synthesize timeLabel;
@@ -43,6 +44,7 @@
     [graffitiView release];
     [enlargeButton release];
     [nicknameLabel release];
+    [avatarBackgroundImageView release];
     [super dealloc];
 }
 
@@ -86,7 +88,7 @@
 #define IMAGE_WIDTH_MAX (([DeviceDetection isIPAD])?(200.0):(100.0))
 #define IMAGE_BORDER_X (([DeviceDetection isIPAD])?(10):(5))
 #define IMAGE_BORDER_Y (([DeviceDetection isIPAD])?(16):(8))
-#define TIME_AND_CONTENT_SPACE    (([DeviceDetection isIPAD])?(4):(2))
+#define TIME_AND_CONTENT_SPACE    (([DeviceDetection isIPAD])?(2):(1))
 #define TIME_HEIGHT     (([DeviceDetection isIPAD])?(32):(16))
 #define NICKNAME_AND_AVATAR_SPACE (([DeviceDetection isIPAD])?(4):(2))
 #define NICKNAME_HEIGHT (([DeviceDetection isIPAD])?(32):(16))
@@ -105,6 +107,8 @@
  IMAGE_BORDER_Y 是图片与气泡图边界Y方向的空隙
  TIME_AND_CONTENT_SPACE 时间跟内容的距离
  TIME_HEIGHT 时间高度
+ NICKNAME_AND_AVATAR_SPACE  名字与头像距离
+ NICKNAME_HEIGHT  名字高度
  */
 + (CGFloat)getCellHeight:(ChatMessage *)message
 {
@@ -114,22 +118,23 @@
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
-        resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_HEIGHT + TIME_AND_CONTENT_SPACE - 0.5*TIME_HEIGHT + NICKNAME_AND_AVATAR_SPACE + NICKNAME_HEIGHT;
+        resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
     }else {
-        resultHeight = SPACE_Y + IMAGE_WIDTH_MAX+2*IMAGE_BORDER_Y + TIME_HEIGHT + TIME_AND_CONTENT_SPACE - 0.5*TIME_HEIGHT + NICKNAME_AND_AVATAR_SPACE + NICKNAME_HEIGHT;
+        resultHeight = SPACE_Y + IMAGE_WIDTH_MAX+2*IMAGE_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
     }
     
     return resultHeight;
 }
 
+
+
 - (void)setCellByChatMessage:(ChatMessage *)message friendNickname:(NSString *)friendNickName friendAvatar:(NSString *)friendAvatar indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
     
-    UIColor *textColor = [UIColor colorWithRed:81.0/255.0 green:64.0/255.0 blue:34.0/255.0 alpha:1];
+    UIColor *textColor = [UIColor colorWithRed:79.0/255.0 green:62.0/255.0 blue:32.0/255.0 alpha:1];
     contentTextView.textColor = textColor;
     nicknameLabel.textColor = textColor;
-    timeLabel.textColor = textColor;
     
     BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
     
@@ -143,7 +148,7 @@
         avatarUrl = friendAvatar;
     }
     if ([avatarUrl length] > 0) {
-        [avatarView setUrl:[NSURL URLWithString:friendAvatar]];
+        [avatarView setUrl:[NSURL URLWithString:avatarUrl]];
         [GlobalGetImageCache() manage:avatarView];
     }
     
@@ -153,6 +158,7 @@
     }else {
         nicknameLabel.text = friendNickName;
     }
+    nicknameLabel.hidden = YES;
     
     UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
     [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
@@ -160,13 +166,16 @@
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
     timeLabel.text = [dateFormatter stringFromDate:message.createDate];
+    timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
     
+    
+    /*注意要保证xib里面contentTextView,bubbleImageView,graffitiView,timeLabel的x位置一样*/
     if ([message.text length] > 0) {
         contentTextView.hidden = NO;
         graffitiView.hidden = YES;
         enlargeButton.hidden = YES;
         
-        //string的大小
+        //get string size
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
         CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
         
@@ -188,15 +197,17 @@
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
         CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
         NSMutableArray *scaleActionList = nil;
-        if ([DeviceDetection isIPAD]) {
-            scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                                   xScale:IPAD_WIDTH_SCALE*scale 
-                                                   yScale:IPAD_HEIGHT_SCALE*scale];
-        } else {
-            scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                                   xScale:scale 
-                                                   yScale:scale];
-        }
+        PPDebug(@"%@",timeLabel.text);
+        scaleActionList = [DrawAction scaleActionList:drawActionList 
+                                               xScale:scale 
+                                               yScale:scale];
+        
+        //        if ([DeviceDetection isIPAD]) {
+        //            scaleActionList = [DrawAction scaleActionList:drawActionList 
+        //                                                   xScale:IPAD_WIDTH_SCALE*scale 
+        //                                                   yScale:IPAD_HEIGHT_SCALE*scale];
+        //        }
+
         [graffitiView setDrawActionList:scaleActionList]; 
         [graffitiView setShowPenHidden:YES];
         CGFloat multiple = graffitiView.frame.size.height / graffitiView.frame.size.width;
@@ -213,12 +224,14 @@
     timeLabel.frame = CGRectMake(timeLabel.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height+TIME_AND_CONTENT_SPACE, timeLabel.frame.size.width, TIME_HEIGHT);
     
     //set avatar frame
-    avatarView.frame = CGRectMake(avatarView.frame.origin.x, timeLabel.frame.origin.y+0.5*timeLabel.frame.size.height-avatarView.frame.size.height, avatarView.frame.size.width, avatarView.frame.size.height);
+    avatarView.frame = CGRectMake(avatarView.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height-avatarView.frame.size.height-2, avatarView.frame.size.width, avatarView.frame.size.height);
+    avatarBackgroundImageView.center = CGPointMake(avatarView.center.x, avatarView.center.y+2);
     
     //set nickname frame 
-    nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
+    //nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
     
     if (fromSelf) {
+        avatarBackgroundImageView.frame = [self reverseByRect:avatarBackgroundImageView.frame];
         avatarView.frame = [self reverseByRect:avatarView.frame];
         contentTextView.frame = [self reverseByRect:contentTextView.frame];
         bubbleImageView.frame = [self reverseByRect:bubbleImageView.frame];
@@ -229,7 +242,7 @@
         nicknameLabel.frame = [self reverseByRect:nicknameLabel.frame];
     }
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, nicknameLabel.frame.origin.y+nicknameLabel.frame.size.height+0.5*SPACE_Y);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, timeLabel.frame.origin.y+timeLabel.frame.size.height+0.5*SPACE_Y);
 }
 
 - (IBAction)clickEnlargeButton:(id)sender

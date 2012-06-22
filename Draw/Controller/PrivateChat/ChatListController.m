@@ -28,12 +28,15 @@
 - (void)findAllMessageTotals;
 - (void)hideSelectView:(BOOL)animated;
 - (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar;
+- (void)updateNoDataTips;
 
 @end
 
 @implementation ChatListController
+
 @synthesize titleLabel;
 @synthesize addChatButton;
+@synthesize tipsLabel;
 @synthesize selectChatFriendController = _selectChatFriendController;
 
 
@@ -41,12 +44,14 @@
     PPRelease(titleLabel);
     PPRelease(addChatButton);
     PPRelease(_selectChatFriendController);
+    [tipsLabel release];
     [super dealloc];
 }
 
 
 - (void)viewDidLoad
 {
+    self.supportRefreshHeader = YES;
     [super viewDidLoad];
     [titleLabel setText:NSLS(@"kChatListTitle")];
     
@@ -55,6 +60,8 @@
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
     
     self.dataList = [[MessageTotalManager defaultManager] findAllMessageTotals];
+    
+    [self updateNoDataTips];
 }
 
 
@@ -77,6 +84,7 @@
 {
     [self setTitleLabel:nil];
     [self setAddChatButton:nil];
+    [self setTipsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -112,12 +120,42 @@
 }
 
 
+#define NODATA_LABEL_TAG  90
+#define NODATA_LABEL_FONT  (([DeviceDetection isIPAD])?(28.0):(14.0))
+- (void)updateNoDataTips
+{
+    if ([dataList count] == 0) {
+        UILabel *noDataLabel = [[UILabel alloc] init];
+        noDataLabel.frame = CGRectMake(0, 20, dataTableView.frame.size.width, 60);
+        noDataLabel.tag = NODATA_LABEL_TAG;
+        noDataLabel.font = [UIFont systemFontOfSize:NODATA_LABEL_FONT];
+        noDataLabel.text = NSLS(@"kNoChatListInfo");
+        noDataLabel.backgroundColor = [UIColor clearColor];
+        //noDataLabel.backgroundColor = [UIColor grayColor];
+        noDataLabel.textAlignment = UITextAlignmentCenter;
+        noDataLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1];
+        [dataTableView addSubview:noDataLabel];
+        [noDataLabel release];
+    }else {
+        UILabel *noDataLabel = (UILabel *)[dataTableView viewWithTag:NODATA_LABEL_TAG];
+        if (noDataLabel) {
+            [noDataLabel removeFromSuperview];
+        }
+    }
+}
+
+
 #pragma mark - ChatServiceDelegate methods
 - (void)didFindAllMessageTotals:(NSArray *)totalList resultCode:(int)resultCode;
 {
+    [self dataSourceDidFinishLoadingNewData];
+    
     PPDebug(@"ChatListController:didFindAllmessageTotals");
     self.dataList = totalList;
     [dataTableView reloadData];
+    
+    [self updateNoDataTips];
+    
     PPDebug(@"ChatListController:didFindAllmessageTotals finish");
 }
 
@@ -127,6 +165,7 @@
 {
     return [ChatCell getCellHeight];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,6 +180,7 @@
     
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -192,5 +232,14 @@
 {
     [self hideSelectView:YES];
 }
+
+
+#pragma mark - pull down to refresh
+// When "pull down to refresh" in triggered, this function will be called  
+- (void)reloadTableViewDataSource
+{
+    [self findAllMessageTotals];
+}
+
 
 @end
