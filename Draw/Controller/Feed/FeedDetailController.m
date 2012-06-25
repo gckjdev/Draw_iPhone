@@ -23,6 +23,7 @@
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
+- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration;
 @end;
 
 @implementation FeedDetailController
@@ -104,17 +105,15 @@
 
 - (void)updateGuessDesc:(Feed *)feed
 {
-    if (feed.matchTimes == 0) {
+    if (feed.guessTimes == 0) {
         [self.guessStatLabel setText:NSLS(@"kNoGuess")];
     }else{
-        NSInteger guessTimes = feed.matchTimes;
+        NSInteger guessTimes = feed.guessTimes;
         NSInteger correctTimes = feed.correctTimes;
         NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
         [self.guessStatLabel setText:desc];        
     }
 }
-
-
 
 
 - (void)updateActionButton:(Feed *)feed

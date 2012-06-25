@@ -62,6 +62,8 @@ typedef enum{
     
     // common data
     NSInteger _matchTimes;
+    NSInteger _guessTimes;
+    NSInteger _commentTimes;
     NSInteger _correctTimes;
 }
 
@@ -92,6 +94,8 @@ typedef enum{
 // common data
 @property (nonatomic, assign) NSInteger matchTimes;
 @property (nonatomic, assign) NSInteger correctTimes;;
+@property (nonatomic, assign) NSInteger commentTimes;
+@property (nonatomic, assign) NSInteger guessTimes;;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (BOOL)isMyOpus;

@@ -3397,6 +3397,8 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 @property (retain) NSString* comment;
 @property int32_t matchTimes;
 @property int32_t correctTimes;
+@property int32_t guessTimes;
+@property int32_t commentTimes;
 @end
 
 @implementation PBFeed
@@ -3510,6 +3512,20 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   hasCorrectTimes_ = !!value;
 }
 @synthesize correctTimes;
+- (BOOL) hasGuessTimes {
+  return !!hasGuessTimes_;
+}
+- (void) setHasGuessTimes:(BOOL) value {
+  hasGuessTimes_ = !!value;
+}
+@synthesize guessTimes;
+- (BOOL) hasCommentTimes {
+  return !!hasCommentTimes_;
+}
+- (void) setHasCommentTimes:(BOOL) value {
+  hasCommentTimes_ = !!value;
+}
+@synthesize commentTimes;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -3537,6 +3553,8 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
     self.comment = @"";
     self.matchTimes = 0;
     self.correctTimes = 0;
+    self.guessTimes = 0;
+    self.commentTimes = 0;
   }
   return self;
 }
@@ -3625,6 +3643,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasCorrectTimes) {
     [output writeInt32:62 value:self.correctTimes];
   }
+  if (self.hasGuessTimes) {
+    [output writeInt32:63 value:self.guessTimes];
+  }
+  if (self.hasCommentTimes) {
+    [output writeInt32:64 value:self.commentTimes];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3683,6 +3707,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCorrectTimes) {
     size += computeInt32Size(62, self.correctTimes);
+  }
+  if (self.hasGuessTimes) {
+    size += computeInt32Size(63, self.guessTimes);
+  }
+  if (self.hasCommentTimes) {
+    size += computeInt32Size(64, self.commentTimes);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3807,6 +3837,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasCorrectTimes) {
     [self setCorrectTimes:other.correctTimes];
   }
+  if (other.hasGuessTimes) {
+    [self setGuessTimes:other.guessTimes];
+  }
+  if (other.hasCommentTimes) {
+    [self setCommentTimes:other.commentTimes];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3891,6 +3927,14 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 496: {
         [self setCorrectTimes:[input readInt32]];
+        break;
+      }
+      case 504: {
+        [self setGuessTimes:[input readInt32]];
+        break;
+      }
+      case 512: {
+        [self setCommentTimes:[input readInt32]];
         break;
       }
     }
@@ -4163,6 +4207,38 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCorrectTimes {
   result.hasCorrectTimes = NO;
   result.correctTimes = 0;
+  return self;
+}
+- (BOOL) hasGuessTimes {
+  return result.hasGuessTimes;
+}
+- (int32_t) guessTimes {
+  return result.guessTimes;
+}
+- (PBFeed_Builder*) setGuessTimes:(int32_t) value {
+  result.hasGuessTimes = YES;
+  result.guessTimes = value;
+  return self;
+}
+- (PBFeed_Builder*) clearGuessTimes {
+  result.hasGuessTimes = NO;
+  result.guessTimes = 0;
+  return self;
+}
+- (BOOL) hasCommentTimes {
+  return result.hasCommentTimes;
+}
+- (int32_t) commentTimes {
+  return result.commentTimes;
+}
+- (PBFeed_Builder*) setCommentTimes:(int32_t) value {
+  result.hasCommentTimes = YES;
+  result.commentTimes = value;
+  return self;
+}
+- (PBFeed_Builder*) clearCommentTimes {
+  result.hasCommentTimes = NO;
+  result.commentTimes = 0;
   return self;
 }
 @end

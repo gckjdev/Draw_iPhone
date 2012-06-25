@@ -53,7 +53,7 @@
 
 + (NSInteger)loadDataCount
 {
-    return 50;
+    return 20;
 }
 @end
 

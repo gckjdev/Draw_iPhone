@@ -18,6 +18,7 @@
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
 #import "YoumiWallService.h"
+#import "MobClick.h"
 
 @implementation YoumiWallController
 @synthesize helpButton;
@@ -204,6 +205,7 @@
         return;
     
     YouMiWallAppModel *model = [openApps objectAtIndex:indexPath.row];
+    [MobClick event:@"CLICK_WALL" label:[model name]];
     [wall userInstallOffersApp:model];
     
     // 查询积分
