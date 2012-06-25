@@ -116,7 +116,7 @@
     
     if ([message.text length] > 0) {
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
         
         resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
     }else {
@@ -177,7 +177,7 @@
         
         //get string size
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
         
         //set text
         contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);

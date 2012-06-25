@@ -58,7 +58,7 @@
 - (IBAction)clickGuessButton:(id)sender;
 - (IBAction)clickFeedButton:(id)sender;
 - (IBAction)clickChatButton:(id)sender;
-
+- (IBAction)clickFriendsButton:(id)sender;
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;
