@@ -233,8 +233,8 @@
     if (!_guessCorrect && [text length] != 0) {
         UIButton *pButton = [self candidateButtonForText:text];
         if (pButton) {
-            [self setButton:button title:nil enabled:NO];
             [self setButton:pButton title:text enabled:YES];
+            [self setButton:button title:nil enabled:NO];
         }
         
     }

@@ -133,6 +133,9 @@
 		C2615A9715946ADC00CEEC66 /* draw_guess2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9315946ADB00CEEC66 /* draw_guess2@2x.png */; };
 		C2615A9815946ADC00CEEC66 /* home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9415946ADC00CEEC66 /* home_bg@2x.png */; };
 		C2615A9A1597FA0200CEEC66 /* friend_detail_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A991597FA0200CEEC66 /* friend_detail_bg.png */; };
+		C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */; };
+		C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */; };
+		C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */; };
 		C274D470156A2B84003B6B47 /* share_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C274D46F156A2B84003B6B47 /* share_bg@2x.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
@@ -941,6 +944,10 @@
 		C2615A9315946ADB00CEEC66 /* draw_guess2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "draw_guess2@2x.png"; path = "Images/draw_guess2@2x.png"; sourceTree = "<group>"; };
 		C2615A9415946ADC00CEEC66 /* home_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_bg@2x.png"; path = "Images/home_bg@2x.png"; sourceTree = "<group>"; };
 		C2615A991597FA0200CEEC66 /* friend_detail_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friend_detail_bg.png; sourceTree = "<group>"; };
+		C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUserInfoView.h; sourceTree = "<group>"; };
+		C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUserInfoView.m; sourceTree = "<group>"; };
+		C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonUserInfoView.xib; sourceTree = "<group>"; };
+		C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C274D46F156A2B84003B6B47 /* share_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_bg@2x.png"; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
@@ -3381,6 +3388,10 @@
 				CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */,
 				CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */,
 				CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */,
+				C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */,
+				C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */,
+				C2615A9E1597FBEB00CEEC66 /* CommonUserInfoView.xib */,
+				C2615AA01597FC0B00CEEC66 /* CommonUserInfoView~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -4996,6 +5007,8 @@
 				C2615A9715946ADC00CEEC66 /* draw_guess2@2x.png in Resources */,
 				C2615A9815946ADC00CEEC66 /* home_bg@2x.png in Resources */,
 				C2615A9A1597FA0200CEEC66 /* friend_detail_bg.png in Resources */,
+				C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */,
+				C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5385,6 +5398,7 @@
 				EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */,
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
+				C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

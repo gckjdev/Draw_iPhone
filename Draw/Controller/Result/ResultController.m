@@ -381,7 +381,7 @@
         [HomeController startOfflineGuessDraw:feed from:self];
     }else{
         CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        [center postMessageWithText:@"kMathOpusFail" delayTime:1.0 isHappy:NO];
+        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
     }
 }
 
