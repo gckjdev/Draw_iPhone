@@ -287,7 +287,6 @@
 
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
-                               userId:(NSString *)userId
-                        feedTimestamp:(int)feedTimestamp;
+                               userId:(NSString *)userId;
 
 @end

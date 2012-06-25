@@ -671,10 +671,10 @@ static UserService* _defaultUserService;
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    time_t timestamp = [[UserManager defaultManager] lastFeedTimeStamp];
+
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:APP_ID userId:userId feedTimestamp:timestamp];
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:APP_ID userId:userId];
         
         long messageCount = 0;
         long feedCount = 0;

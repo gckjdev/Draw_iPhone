@@ -1585,7 +1585,6 @@
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
                                userId:(NSString *)userId
-                        feedTimestamp:(time_t)feedTimestamp
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1595,7 +1594,6 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_STATISTICS];        
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];   
-        str = [str stringByAddQueryParameter:PARA_FEED_TIMESTAMP intValue:feedTimestamp];        
         return str;
     };
     
