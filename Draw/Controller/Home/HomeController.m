@@ -557,6 +557,7 @@
     MyFriendsController *mfc = [[MyFriendsController alloc] init];
     [self.navigationController pushViewController:mfc animated:YES];
     [mfc release];
+    [self updateBadge:_fanBadge value:0];
 }
 
 
