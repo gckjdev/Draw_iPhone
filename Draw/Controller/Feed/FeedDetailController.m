@@ -23,6 +23,7 @@
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
+- (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration;
 @end;
 
 @implementation FeedDetailController

@@ -12,6 +12,8 @@
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
+#import "LocaleUtils.h"
+#import "WordManager.h"
 
 @implementation CommentCell
 @synthesize commentLabel;
@@ -78,7 +80,24 @@
     //set comment
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
-        comment = NSLS(@"kCorrect");
+        if (feed.isCorrect) {
+            comment = NSLS(@"kCorrect");            
+        }else{
+            NSString *guessWords = nil;
+            if ([feed.guessWords count] != 0) {
+                guessWords = [feed.guessWords componentsJoinedByString:@", "];
+                if ([LocaleUtils isTraditionalChinese]) {
+                    guessWords = [WordManager changeToTraditionalChinese:guessWords];
+                }
+                guessWords = [NSString stringWithFormat:NSLS(@"kGuessWords"),guessWords];
+            }
+            comment = NSLS(@"kGuessWrong");
+            if (guessWords) {
+                comment = [NSString stringWithFormat:@"%@ %@",comment, guessWords];
+            }
+            //who guess wrong! he guess: [2/2/2]
+        }
+
         //[self.commentLabel setTextColor:[UIColor redColor]];
     }else{
         comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -86,7 +105,6 @@
     }
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
-
     
     self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
         

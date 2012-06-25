@@ -578,3 +578,6 @@
 "kFeeds" = "Feeds";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
+
+
+"kGuessWords" = "Guessing: %@";
