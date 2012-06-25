@@ -586,3 +586,5 @@
 
 
 "kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
+"kGuessWords" = "TA猜: %@";
+

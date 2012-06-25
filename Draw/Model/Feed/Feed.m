@@ -42,6 +42,8 @@
 // common data
 @synthesize matchTimes = _matchTimes;
 @synthesize correctTimes = _correctTimes;
+@synthesize commentTimes = _commentTimes;
+@synthesize guessTimes = _guessTimes;
 
 - (void)dealloc
 {

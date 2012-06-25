@@ -506,6 +506,7 @@
 "kGuessing" = "猜畫中";
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一副？";
+"kSubmitSuccTitle" = "提交成功";
 
 //"kDedutCoinChangeOpusAlertMessage" = "如果更換一副作品，系統將會扣除1個金幣哦。";
 //"kNoCoinChangeOpusMessage" = "更換作品需要扣除1個金幣，你的賬戶餘額不足，是不是現在購買一些金幣？";
@@ -579,3 +580,5 @@
 
 "kFeeds" = "動態";
 "kMathOpusFail" = "不好意思，不能為你找到匹配的作品。";
+
+"kGuessWords" = "TA猜: %@";
