@@ -132,6 +132,7 @@
 		C2615A9615946ADC00CEEC66 /* draw_guess@2x(1).png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9215946AD900CEEC66 /* draw_guess@2x(1).png */; };
 		C2615A9715946ADC00CEEC66 /* draw_guess2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9315946ADB00CEEC66 /* draw_guess2@2x.png */; };
 		C2615A9815946ADC00CEEC66 /* home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A9415946ADC00CEEC66 /* home_bg@2x.png */; };
+		C2615A9A1597FA0200CEEC66 /* friend_detail_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A991597FA0200CEEC66 /* friend_detail_bg.png */; };
 		C274D470156A2B84003B6B47 /* share_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C274D46F156A2B84003B6B47 /* share_bg@2x.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
@@ -939,6 +940,7 @@
 		C2615A9215946AD900CEEC66 /* draw_guess@2x(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "draw_guess@2x(1).png"; path = "Images/draw_guess@2x(1).png"; sourceTree = "<group>"; };
 		C2615A9315946ADB00CEEC66 /* draw_guess2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "draw_guess2@2x.png"; path = "Images/draw_guess2@2x.png"; sourceTree = "<group>"; };
 		C2615A9415946ADC00CEEC66 /* home_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_bg@2x.png"; path = "Images/home_bg@2x.png"; sourceTree = "<group>"; };
+		C2615A991597FA0200CEEC66 /* friend_detail_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friend_detail_bg.png; sourceTree = "<group>"; };
 		C274D46F156A2B84003B6B47 /* share_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_bg@2x.png"; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
@@ -3720,6 +3722,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2615A991597FA0200CEEC66 /* friend_detail_bg.png */,
 				CAD95C6415897F93006EAC41 /* middle_tab_selected@2x.png */,
 				CAD95C6515897F93006EAC41 /* middle_tab@2x.png */,
 				C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */,
@@ -4992,6 +4995,7 @@
 				C2615A9615946ADC00CEEC66 /* draw_guess@2x(1).png in Resources */,
 				C2615A9715946ADC00CEEC66 /* draw_guess2@2x.png in Resources */,
 				C2615A9815946ADC00CEEC66 /* home_bg@2x.png in Resources */,
+				C2615A9A1597FA0200CEEC66 /* friend_detail_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
