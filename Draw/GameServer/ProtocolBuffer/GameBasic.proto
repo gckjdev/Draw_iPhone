@@ -122,6 +122,8 @@ message PBFeed {
   // common data
   optional int32  matchTimes = 61;
   optional int32  correctTimes = 62;
+  optional int32  guessTimes = 63;
+  optional int32  commentTimes = 64;
 
 }
 
