@@ -576,3 +576,5 @@
 "kFeed" = "Feed";
 "kFreeCoins" = "Free Coins";
 "kFeeds" = "Feeds";
+
+"kMathOpusFail" = "Sorry. Can't match a opus for you.";

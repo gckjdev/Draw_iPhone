@@ -467,7 +467,7 @@
 
 "kVolume" = "音量";
 "kAddWords" = "提交新詞";
-"kAddWordsTips" = "詞之間用空格或者換行分開，如\"大地中國\”";
+"kAddWordsTips" = "詞之間用空格或者換行分開，如\"大地中國\"";
 "kAddWordsSucc" = "提交成功，感謝貢獻";
 "kAddWordsFail" = "提交失敗，請稍後再試";
 "kContentFormatError" = "格式錯誤，詞之間的分隔符號只能是空格或者換行，仔細檢查一下哦";
@@ -514,7 +514,7 @@
 
 "kGuessDraw" = "猜畫中";
 "kOneMore" = "再來一副";
-"kGuessUserDraw" = "猜％的畫中";
+"kGuessUserDraw" = "猜%@的畫中";
 
 "kFeedTitle" = "動態";
 "kAllFeed" = "全部";
@@ -578,3 +578,4 @@
 "kFreeCoins" = "免費金幣";
 
 "kFeeds" = "動態";
+"kMathOpusFail" = "不好意思，不能為你找到匹配的作品。";
