@@ -813,31 +813,35 @@
 @private
   BOOL hasGender_:1;
   BOOL hasIsCorrect_:1;
+  BOOL hasCommentTimes_:1;
+  BOOL hasGuessTimes_:1;
   BOOL hasActionType_:1;
   BOOL hasCreateDate_:1;
-  BOOL hasScore_:1;
-  BOOL hasMatchTimes_:1;
   BOOL hasCorrectTimes_:1;
-  BOOL hasFeedId_:1;
-  BOOL hasUserId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasOpusId_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasScore_:1;
   BOOL hasComment_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasUserId_:1;
+  BOOL hasFeedId_:1;
   BOOL hasDrawData_:1;
   BOOL gender_:1;
   BOOL isCorrect_:1;
+  int32_t commentTimes;
+  int32_t guessTimes;
   int32_t actionType;
   int32_t createDate;
-  int32_t score;
-  int32_t matchTimes;
   int32_t correctTimes;
-  NSString* feedId;
-  NSString* userId;
-  NSString* nickName;
-  NSString* avatar;
-  NSString* opusId;
+  int32_t matchTimes;
+  int32_t score;
   NSString* comment;
+  NSString* opusId;
+  NSString* avatar;
+  NSString* nickName;
+  NSString* userId;
+  NSString* feedId;
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
 }
@@ -855,6 +859,8 @@
 - (BOOL) hasComment;
 - (BOOL) hasMatchTimes;
 - (BOOL) hasCorrectTimes;
+- (BOOL) hasGuessTimes;
+- (BOOL) hasCommentTimes;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -869,6 +875,8 @@
 @property (readonly, retain) NSString* comment;
 @property (readonly) int32_t matchTimes;
 @property (readonly) int32_t correctTimes;
+@property (readonly) int32_t guessTimes;
+@property (readonly) int32_t commentTimes;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 
@@ -984,5 +992,15 @@
 - (int32_t) correctTimes;
 - (PBFeed_Builder*) setCorrectTimes:(int32_t) value;
 - (PBFeed_Builder*) clearCorrectTimes;
+
+- (BOOL) hasGuessTimes;
+- (int32_t) guessTimes;
+- (PBFeed_Builder*) setGuessTimes:(int32_t) value;
+- (PBFeed_Builder*) clearGuessTimes;
+
+- (BOOL) hasCommentTimes;
+- (int32_t) commentTimes;
+- (PBFeed_Builder*) setCommentTimes:(int32_t) value;
+- (PBFeed_Builder*) clearCommentTimes;
 @end
 
