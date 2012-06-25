@@ -776,4 +776,24 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     }
     return nil;
 }
+
+#define LAST_FEED_TIMESTAMP @"LAST_FEED_TIMESTAMP"
+- (time_t)lastFeedTimeStamp
+{
+    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_FEED_TIMESTAMP];
+    if (number) {
+        return [number longValue];
+    }
+    return 0;
+}
+
+- (void)setLastFeedTimestamp:(NSDate *)date
+{
+    time_t ts = (time_t)[date timeIntervalSince1970];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *number = [NSNumber numberWithLong:ts];
+    [defaults setObject:number forKey:LAST_FEED_TIMESTAMP];
+    [defaults synchronize];
+}
+
 @end

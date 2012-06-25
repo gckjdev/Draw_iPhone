@@ -85,15 +85,22 @@
         }else{
             NSString *guessWords = nil;
             if ([feed.guessWords count] != 0) {
-                guessWords = [feed.guessWords componentsJoinedByString:@", "];
+                if ([LocaleUtils isChinese]) {
+                    guessWords = [feed.guessWords componentsJoinedByString:@"、"];    
+                }else{
+                    guessWords = [feed.guessWords componentsJoinedByString:@", "];
+                }
+                
                 if ([LocaleUtils isTraditionalChinese]) {
                     guessWords = [WordManager changeToTraditionalChinese:guessWords];
                 }
                 guessWords = [NSString stringWithFormat:NSLS(@"kGuessWords"),guessWords];
             }
-            comment = NSLS(@"kGuessWrong");
+
             if (guessWords) {
-                comment = [NSString stringWithFormat:@"%@ %@",comment, guessWords];
+                comment = [NSString stringWithFormat:@"%@",guessWords];
+            }else{
+                comment = NSLS(@"kGuessWrong");                
             }
             //who guess wrong! he guess: [2/2/2]
         }

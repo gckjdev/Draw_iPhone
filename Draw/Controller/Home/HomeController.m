@@ -50,7 +50,7 @@
 
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-
+- (void)updateBadge:(UIButton *)badgeButton value:(int )value;
 @end
 
 @implementation HomeController
@@ -79,6 +79,9 @@
 @synthesize freeCoinLabel = _freeCoinLabel;
 @synthesize feedLabel = _feedLabel;
 @synthesize versionLabel = _versionLabel;
+@synthesize feedBadge = _feedBadge;
+@synthesize fanBadge = _fanBadge;
+@synthesize messageBadge = _messageBadge;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -165,10 +168,16 @@
         [self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
     }
     [self enterNextControllerWityType:self.notificationType];
+    
+    UIImage *badgeImage = [[ShareImageManager defaultManager] toolNumberImage];
+    [self.feedBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
+    [self.messageBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
+    [self.fanBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[UserService defaultService] getStatistic:self];    
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 //    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
@@ -206,6 +215,9 @@
     [self setFreeCoinLabel:nil];
     [self setFeedLabel:nil];
     [self setVersionLabel:nil];
+    [self setFeedBadge:nil];
+    [self setFanBadge:nil];
+    [self setMessageBadge:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -515,6 +527,9 @@
     [_freeCoinLabel release];
     [_feedLabel release];
     [_versionLabel release];
+    [_feedBadge release];
+    [_fanBadge release];
+    [_messageBadge release];
     [super dealloc];
 }
 
@@ -534,6 +549,7 @@
     FeedController *fc = [[FeedController alloc] init];
     [self.navigationController pushViewController:fc animated:YES];
     [fc release];
+    [self updateBadge:_feedBadge value:0];
 }
 
 
@@ -564,6 +580,37 @@
     ChatListController *controller = [[ChatListController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+    
+    [self updateBadge:_messageBadge value:0];
+}
+
+
+- (void)updateBadge:(UIButton *)badgeButton value:(int )value
+{
+    if (value <= 0) {
+        badgeButton.hidden = YES;
+    }else{
+        badgeButton.hidden = NO;
+        if (value > 99) {
+            [badgeButton setTitle:@"N" forState:UIControlStateNormal];
+        }else{
+            [badgeButton setTitle:[NSString stringWithInt:value] forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)didGetStatistic:(int)resultCode 
+              feedCount:(long)feedCount 
+           messageCount:(long)messageCount 
+               fanCount:(long)fanCount
+{
+    if (resultCode == 0) {
+        PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
+        //update badge
+        [self updateBadge:self.feedBadge value:feedCount];
+        [self updateBadge:self.messageBadge value:messageCount];
+        [self updateBadge:self.fanBadge value:fanCount];
+    }
 }
 
 

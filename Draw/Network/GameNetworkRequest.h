@@ -284,4 +284,10 @@
                      qqTokenSecret:(NSString*)qqTokenSecret 
                         facebookId:(NSString*)facebookId 
                              email:(NSString*)email;
+
++ (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
+                                appId:(NSString *)appId 
+                               userId:(NSString *)userId
+                        feedTimestamp:(int)feedTimestamp;
+
 @end

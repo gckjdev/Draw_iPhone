@@ -100,7 +100,7 @@
 #define METHOD_REOMOVE_ROOM @"rr"
 #define METHOD_NEW_JOIN_ROOM @"njr"
 
-
+#define METHOD_GET_STATISTICS @"gss"
 
 //find draw
 #define METHOD_FINDDRAW @"fd"
@@ -284,6 +284,9 @@
 #define PARA_EXPIRE_DATE @"e_date"
 
 #define PARA_WORD @"word"
+
+#define PARA_FEED_TIMESTAMP @"fts"
+
 // response parameters
 
 #define RET_MESSAGE @"msg"
@@ -358,6 +361,11 @@
 
 #define PARA_FEEDBACK @"fb"
 #define PARA_CONTACT @"ca"
+
+#define PARA_FEED_COUNT @"fec"
+#define PARA_FAN_COUNT @"fac"
+#define PARA_MESSAGE_COUNT @"mc"
+
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

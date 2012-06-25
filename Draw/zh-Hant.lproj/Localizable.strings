@@ -565,7 +565,7 @@
 "kCorrect" = "猜對了！";
 "kSending" = "發送中...";
 "kNoCommentTips" = "還沒有人評論";
-"kFeedDetail" = "動態詳情";
+"kFeedDetail" = "%@的畫";
 
 "kCommentFail" = "評論失敗";
 
@@ -581,4 +581,4 @@
 "kFeeds" = "動態";
 "kMathOpusFail" = "不好意思，不能為你找到匹配的作品。";
 
-"kGuessWords" = "TA猜: %@";
+"kGuessWords" = "猜畫的是: %@";

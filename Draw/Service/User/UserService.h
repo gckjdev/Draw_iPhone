@@ -17,6 +17,11 @@
 - (void)didUserUpdated:(int)resultCode;
 - (void)didSendFeedback:(int)resultCode;
 - (void)didUserLogined:(int)resultCode;
+
+- (void)didGetStatistic:(int)resultCode 
+              feedCount:(long)feedCount 
+              messageCount:(long)messageCount 
+               fanCount:(long)fanCount;
 @end
 
 @interface UserService : CommonService
@@ -57,5 +62,7 @@
      viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
 - (void)updateAllUserInfo;
+
+- (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
 
 @end

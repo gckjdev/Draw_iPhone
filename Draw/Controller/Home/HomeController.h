@@ -13,10 +13,11 @@
 #import "CommonDialog.h"
 #import "DrawDataService.h"
 #import "NotificationManager.h"
+#import "UserService.h"
 
 @class UserManager;
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate>
 {
     BOOL        _isTryJoinGame;    
     UserManager *_userManager;
@@ -53,6 +54,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *freeCoinLabel;
 @property (retain, nonatomic) IBOutlet UILabel *feedLabel;
 @property (retain, nonatomic) IBOutlet UILabel *versionLabel;
+@property (retain, nonatomic) IBOutlet UIButton *feedBadge;
+@property (retain, nonatomic) IBOutlet UIButton *fanBadge;
+@property (retain, nonatomic) IBOutlet UIButton *messageBadge;
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;

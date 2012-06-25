@@ -132,5 +132,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)guessCorrectOpus:(NSString *)opusId;
 - (BOOL)hasGuessOpus:(NSString *)opusId;
+- (time_t)lastFeedTimeStamp;
+- (void)setLastFeedTimestamp:(NSDate *)date;
 
 @end

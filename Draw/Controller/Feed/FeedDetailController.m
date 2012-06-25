@@ -225,7 +225,8 @@
 
 - (void)updateTitle
 {
-    [self.titleLabel setText:NSLS(@"kFeedDetail")];
+    NSString *title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),self.feed.nickName];
+    [self.titleLabel setText:title];
     [self.commentLabel setText:NSLS(@"kFeeds")];
 }
 
