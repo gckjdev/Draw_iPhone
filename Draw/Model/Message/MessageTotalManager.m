@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "ChatMessageUtil.h"
 #import "DrawAction.h"
+#import "FriendManager.h"
 
 @interface MessageTotal()
 
@@ -39,6 +40,7 @@ static MessageTotalManager *_messageTotalManager = nil;
                         friendUserId:(NSString *)friendUserId 
                       friendNickName:(NSString *)friendNickName 
                         friendAvatar:(NSString *)friendAvatar 
+                        friendGender:(NSString *)friendGender
                           latestFrom:(NSString *)latestFrom 
                             latestTo:(NSString *)latestTo 
                       latestDrawData:(NSData *)latestDrawData 
@@ -56,6 +58,7 @@ static MessageTotalManager *_messageTotalManager = nil;
         [messageTotal setFriendUserId:friendUserId];
         [messageTotal setFriendNickName:friendNickName];
         [messageTotal setFriendAvatar:friendAvatar];
+        [messageTotal setFriendGender:friendGender];
         [messageTotal setLatestFrom:latestFrom];
         [messageTotal setLatestTo:latestTo];
         [messageTotal setLatestDrawData:latestDrawData];
@@ -71,6 +74,7 @@ static MessageTotalManager *_messageTotalManager = nil;
     [newMessageTotal setFriendUserId:friendUserId];
     [newMessageTotal setFriendNickName:friendNickName];
     [newMessageTotal setFriendAvatar:friendAvatar];
+    [newMessageTotal setFriendGender:friendGender];
     [newMessageTotal setLatestFrom:latestFrom];
     [newMessageTotal setLatestTo:latestTo];
     [newMessageTotal setLatestDrawData:latestDrawData];
@@ -128,10 +132,19 @@ static MessageTotalManager *_messageTotalManager = nil;
     NSData *data = [ChatMessageUtil archiveDataFromDrawActionList:mutableArray];
     [mutableArray release];
     
+    BOOL isMale = pbMessageStat.friendGender;
+    NSString *genderString = nil;
+    if (isMale) {
+        genderString = MALE;
+    }else {
+        genderString = FEMALE;
+    }
+    
     return [self createMessageTotalWithUserId:pbMessageStat.userId 
                                  friendUserId:pbMessageStat.friendUserId
                                friendNickName:pbMessageStat.friendNickName
-                                 friendAvatar:pbMessageStat.friendAvatar
+                                 friendAvatar:pbMessageStat.friendAvatar 
+                                 friendGender:genderString
                                    latestFrom:pbMessageStat.from 
                                      latestTo:pbMessageStat.to 
                                latestDrawData:data

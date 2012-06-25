@@ -15,6 +15,7 @@
 #import "ShowDrawView.h"
 #import "DrawAction.h"
 #import "ChatMessageUtil.h"
+#import "FriendManager.h"
 
 @interface ChatCell()
 
@@ -102,7 +103,11 @@
 {
     //set avatar
     [avatarImage clear];
-    [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    if ([messageTotal.friendGender isEqualToString:MALE]) {
+        [avatarImage setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    } else {
+        [avatarImage setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    }
     if ([messageTotal.friendAvatar length] > 0) {
         [avatarImage setUrl:[NSURL URLWithString:messageTotal.friendAvatar]];
         [GlobalGetImageCache() manage:avatarImage];

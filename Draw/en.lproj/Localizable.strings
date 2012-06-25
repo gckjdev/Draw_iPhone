@@ -552,6 +552,8 @@
 "kSendMessageFailed" = "Failed to send";
 "kSendMessageSuccessfully" = "Send successfully";
 "kGraffiti" = "Graffiti";
+"kRefreshMessage" = "Refresh";
+"kRefreshMessageing" = "Refreshing...";
 
 "kComment" = "Comment";
 

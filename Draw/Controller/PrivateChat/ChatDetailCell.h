@@ -37,6 +37,7 @@
 - (void)setCellByChatMessage:(ChatMessage *)message 
               friendNickname:(NSString *)friendNickName 
                 friendAvatar:(NSString *)friendAvatar 
+                friendGender:(NSString *)friendGender
                    indexPath:(NSIndexPath *)aIndexPath;
 
 @end

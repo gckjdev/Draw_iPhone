@@ -559,6 +559,8 @@
 "kSendMessageFailed" = "发送失败";
 "kSendMessageSuccessfully" = "发送成功";
 "kGraffiti" = "涂鸦";
+"kRefreshMessage" = "刷新";
+"kRefreshMessageing" = "正在刷新...";
 
 
 "kComment" = "评论";

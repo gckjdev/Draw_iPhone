@@ -44,6 +44,7 @@
     </entity>
     <entity name="MessageTotal" representedClassName="MessageTotal" syncable="YES">
         <attribute name="friendAvatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendGender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendNickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latestCreateDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -119,7 +120,7 @@
         <element name="ChatMessage" positionX="160" positionY="192" width="128" height="150"/>
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
-        <element name="MessageTotal" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="MessageTotal" positionX="160" positionY="192" width="128" height="225"/>
         <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>

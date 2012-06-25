@@ -17,6 +17,7 @@
                         friendUserId:(NSString *)friendUserId 
                       friendNickName:(NSString *)friendNickName 
                         friendAvatar:(NSString *)friendAvatar 
+                        friendGender:(NSString *)friendGender
                           latestFrom:(NSString *)latestFrom 
                             latestTo:(NSString *)latestTo 
                       latestDrawData:(NSData *)latestDrawData 
