@@ -210,7 +210,7 @@
 enum{
     BLACK_COLOR = 0,
     RED_COLOR = 1,  
-    GREEN_COLOR,
+//    GREEN_COLOR,
     BLUE_COLOR,
     ORANGE_COLOR,
     COLOR_COUNT
@@ -225,8 +225,8 @@ enum{
             return [DrawColor redColor];
         case BLUE_COLOR:
             return [DrawColor blueColor];
-        case GREEN_COLOR:
-            return [DrawColor greenColor];
+//        case GREEN_COLOR:
+//            return [DrawColor greenColor];
         case ORANGE_COLOR:
             return [DrawColor orangeColor];
         case BLACK_COLOR:
