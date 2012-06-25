@@ -17,6 +17,7 @@
 #import "HJManagedImageV.h"
 #import "DrawAppDelegate.h"
 #import "ShareImageManager.h"
+#import "FriendManager.h"
 
 @interface ChatDetailCell()
 
@@ -116,7 +117,7 @@
     
     if ([message.text length] > 0) {
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
         
         resultHeight = SPACE_Y + textSize.height+2*TEXTVIEW_BORDER_Y + TIME_AND_CONTENT_SPACE + TIME_HEIGHT;
     }else {
@@ -128,7 +129,11 @@
 
 
 
-- (void)setCellByChatMessage:(ChatMessage *)message friendNickname:(NSString *)friendNickName friendAvatar:(NSString *)friendAvatar indexPath:(NSIndexPath *)aIndexPath
+- (void)setCellByChatMessage:(ChatMessage *)message 
+              friendNickname:(NSString *)friendNickName 
+                friendAvatar:(NSString *)friendAvatar 
+                friendGender:(NSString *)friendGender
+                   indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
     
@@ -140,13 +145,22 @@
     
     //set avatar
     [avatarView clear];
-    [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    NSString *gender;
     NSString *avatarUrl;
     if (fromSelf) {
+        gender = [[UserManager defaultManager] gender];
         avatarUrl = [[UserManager defaultManager] avatarURL];
     }else {
+        gender = friendGender;
         avatarUrl = friendAvatar;
     }
+    
+    if ([gender isEqualToString:MALE]) {
+        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+    } else {
+        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    }
+    
     if ([avatarUrl length] > 0) {
         [avatarView setUrl:[NSURL URLWithString:avatarUrl]];
         [GlobalGetImageCache() manage:avatarView];
@@ -177,7 +191,7 @@
         
         //get string size
         UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
-        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize textSize = [message.text sizeWithFont:font constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
         
         //set text
         contentTextView.frame = CGRectMake(contentTextView.frame.origin.x+BUBBLE_TIP_WIDTH, 0.5*SPACE_Y, textSize.width+2*TEXTVIEW_BORDER_X, textSize.height+2*TEXTVIEW_BORDER_Y);

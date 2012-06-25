@@ -28,9 +28,14 @@
 @property (retain, nonatomic) NSString *friendUserId;
 @property (retain, nonatomic) NSString *friendNickname;
 @property (retain, nonatomic) NSString *friendAvatar;
+@property (retain, nonatomic) NSString *friendGender;
 @property (retain, nonatomic) OfflineDrawViewController *offlineDrawViewController;
 
 - (IBAction)clickBack:(id)sender;
+- (IBAction)clickRefreshButton:(id)sender;
+- (IBAction)clickGraffitiButton:(id)sender;
+- (IBAction)clickSendButton:(id)sender;
+
 
 - (void)scrollToBottom:(BOOL)animated;
 - (void)showGraffitiView;
@@ -44,6 +49,7 @@
 - (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration;
 - (void)keepSendButtonSite;
 - (void)updateInputViewAndTableFrame;
+- (void)setAndReloadData:(NSArray *)newDataList;
 
 @end
 
@@ -56,9 +62,11 @@
 @synthesize sendButton;
 @synthesize inputTextBackgroundImage;
 @synthesize paperImageView;
+@synthesize refreshButton;
 @synthesize friendUserId = _friendUserId;
 @synthesize friendNickname = _friendNickname;
 @synthesize friendAvatar = _friendAvatar;
+@synthesize friendGender = _friendGender;
 @synthesize offlineDrawViewController = _offlineDrawViewController;
 
 
@@ -67,24 +75,30 @@
     PPRelease(_friendNickname);
     PPRelease(_friendUserId);
     PPRelease(_friendAvatar);
+    PPRelease(_friendGender);
     PPRelease(titleLabel);
     PPRelease(graffitiButton);
     PPRelease(sendButton);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
-    [inputTextBackgroundImage release];
-    [paperImageView release];
+    PPRelease(inputTextBackgroundImage);
+    PPRelease(paperImageView);
+    PPRelease(refreshButton);
     [super dealloc];
 }
 
 
-- (id)initWithFriendUserId:(NSString *)frindUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar
+- (id)initWithFriendUserId:(NSString *)frindUserId 
+            friendNickname:(NSString *)friendNickname 
+              friendAvatar:(NSString *)friendAvatar 
+              friendGender:(NSString *)friendGender
 {
     self = [super init];
     if (self) {
         self.friendUserId = frindUserId;
         self.friendNickname = friendNickname;
         self.friendAvatar = friendAvatar;
+        self.friendGender = friendGender;
     }
     return self;
 }
@@ -92,19 +106,18 @@
 
 - (void)viewDidLoad
 {
-    self.supportRefreshHeader = YES;
-    
     [super viewDidLoad];
     self.titleLabel.text = self.friendNickname;
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [refreshButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+    [refreshButton setTitle:NSLS(@"kRefreshMessage") forState:UIControlStateNormal];
     [inputTextBackgroundImage setImage:[imageManager inputImage]];
     [sendButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [sendButton setTitle:NSLS(@"kSendMessage") forState:UIControlStateNormal];
     [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
     inputBackgroundView.backgroundColor = [UIColor clearColor];
-    [self changeTableSize:NO duration:0];
     
     [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
                                                                   userId:[[UserManager defaultManager] userId]];
@@ -113,6 +126,8 @@
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
+    
+    [self changeTableSize:NO duration:0];
 }
 
 
@@ -125,6 +140,7 @@
     [self setInputTextView:nil];
     [self setInputTextBackgroundImage:nil];
     [self setPaperImageView:nil];
+    [self setRefreshButton:nil];
     [super viewDidUnload];
 }
 
@@ -147,15 +163,15 @@
 #pragma mark - ChatServiceDelegate methods
 - (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount
 {
-    [self dataSourceDidFinishLoadingNewData];
+    [self hideActivity];
     
     if (resultCode == 0) {
         if (newMessagesCount > 0) {
             [[ChatService defaultService] sendHasReadMessage:nil friendUserId:_friendUserId];
         }
     }
-    self.dataList = list;
-    [dataTableView reloadData];
+    
+    [self setAndReloadData:list];
 }
 
 
@@ -167,8 +183,8 @@
         [inputTextView setText:@""];
         [self updateInputViewAndTableFrame];
         
-        self.dataList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
-        [dataTableView reloadData];
+        NSArray *list = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:_friendUserId];
+        [self setAndReloadData:list];
         
         [self hideGraffitiView];
         
@@ -401,6 +417,8 @@
         paperImageView.frame = newPaperFrame;
         dataTableView.frame = newTableFrame;
     }
+    
+    [self scrollToBottom:NO];
 }
 
 
@@ -412,6 +430,13 @@
     graffitiButton.frame = CGRectMake(graffitiButton.frame.origin.x, newY, graffitiButton.frame.size.width, graffitiButton.frame.size.height);
 }
 
+
+- (void)setAndReloadData:(NSArray *)newDataList
+{
+    self.dataList = newDataList;
+    [dataTableView reloadData];
+    [self scrollToBottom:NO];
+}
 
 
 #pragma mark - UITableViewDelegate or UITableViewDataSource methods
@@ -437,7 +462,11 @@
     }
     cell.chatDetailCellDelegate = self;
     ChatMessage *message = (ChatMessage *)[dataList objectAtIndex:indexPath.row];
-    [cell setCellByChatMessage:message friendNickname:_friendNickname friendAvatar:_friendAvatar indexPath:indexPath];
+    [cell setCellByChatMessage:message 
+                friendNickname:_friendNickname 
+                  friendAvatar:_friendAvatar 
+                  friendGender:_friendGender
+                     indexPath:indexPath];
     
     return cell;
 }
@@ -454,6 +483,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickRefreshButton:(id)sender
+{
+    [self showActivityWithText:NSLS(@"kRefreshMessageing")];
+    [self findAllMessages];
+}
 
 - (IBAction)clickGraffitiButton:(id)sender 
 {
@@ -488,9 +522,8 @@
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
     
-    [self changeTableSize:YES duration:0.25];
+    
 }
-
 
 - (void)keyboardWillHideWithRect:(CGRect)keyboardRect
 {
@@ -500,7 +533,19 @@
     inputBackgroundView.frame = frame;
     [UIImageView commitAnimations];
     
-    [self changeTableSize:YES duration:0.25];
+    
+}
+
+
+- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
+{
+    [self changeTableSize:NO duration:0.25];
+}
+
+
+- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
+{
+    [self changeTableSize:NO duration:0.1];
 }
 
 
@@ -572,14 +617,6 @@
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
-}
-
-
-#pragma mark - pull down to refresh
-// When "pull down to refresh" in triggered, this function will be called  
-- (void)reloadTableViewDataSource
-{
-    [self findAllMessages];
 }
 
 

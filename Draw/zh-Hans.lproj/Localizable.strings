@@ -9,11 +9,11 @@
  
  */
 
-"kStart" = "开始游戏";
+"kStart" = "在线猜画";
 
 "kShop" = "商店";
 
-"kHomeShare" = "作品分享";
+"kHomeShare" = "作品";
 
 "kSettings" = "设置";
 
@@ -559,6 +559,8 @@
 "kSendMessageFailed" = "发送失败";
 "kSendMessageSuccessfully" = "发送成功";
 "kGraffiti" = "涂鸦";
+"kRefreshMessage" = "刷新";
+"kRefreshMessageing" = "正在刷新...";
 
 
 "kComment" = "评论";
@@ -580,11 +582,10 @@
 "kFriend" = "好友";
 "kGuessOnly" = "我要猜";
 "kDrawOnly" = "我要画";
-"kFeed" = "好友动态";
+"kFeed" = "猜画动态";
 "kFreeCoins" = "免费金币";
 "kFeeds" = "动态";
 
 
-"kMathOpusFail" = "不好意思，不能为你找到匹配的作品。";
-
+"kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
 "kGuessWords" = "猜画的是: %@";

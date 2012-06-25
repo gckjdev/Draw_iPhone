@@ -13,7 +13,7 @@
 
 "kShop" = "商店";
 
-"kHomeShare" = "作品分享";
+"kHomeShare" = "作品";
 
 "kSettings" = "設置";
 
@@ -554,7 +554,8 @@
 "kSendMessageFailed" = "發送失敗";
 "kSendMessageSuccessfully" = "發送成功";
 "kGraffiti" = "塗鴉";
-
+"kRefreshMessage" = "刷新";
+"kRefreshMessageing" = "正在刷新...";
 
 "kComment" = "評論";
 

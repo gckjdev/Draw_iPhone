@@ -27,7 +27,10 @@
 
 - (void)findAllMessageTotals;
 - (void)hideSelectView:(BOOL)animated;
-- (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar;
+- (void)openChatDetail:(NSString *)friendUserId 
+        friendNickname:(NSString *)friendNickname 
+          friendAvatar:(NSString *)friendAvatar 
+          friendGender:(NSString *)friendGender;
 - (void)updateNoDataTips;
 
 @end
@@ -118,9 +121,16 @@
 }
 
 
-- (void)openChatDetail:(NSString *)friendUserId friendNickname:(NSString *)friendNickname friendAvatar:(NSString *)friendAvatar
+- (void)openChatDetail:(NSString *)friendUserId 
+        friendNickname:(NSString *)friendNickname 
+          friendAvatar:(NSString *)friendAvatar 
+          friendGender:(NSString *)friendGender
 {
-    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:friendUserId friendNickname:friendNickname friendAvatar:friendAvatar];
+//    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:friendUserId friendNickname:friendNickname friendAvatar:friendAvatar];
+    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:friendUserId 
+                                                                           friendNickname:friendNickname 
+                                                                             friendAvatar:friendAvatar 
+                                                                             friendGender:friendGender];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
@@ -196,7 +206,12 @@
     NSString *selectFriendUserId = messageTotal.friendUserId;
     NSString *selectFriendNickname = messageTotal.friendNickName;
     NSString *selectFriendAvatar = messageTotal.friendAvatar;
-    [self openChatDetail:selectFriendUserId friendNickname:selectFriendNickname friendAvatar:selectFriendAvatar];
+    NSString *selectFriendGender = messageTotal.friendGender;
+    
+    [self openChatDetail:selectFriendUserId 
+          friendNickname:selectFriendNickname 
+            friendAvatar:selectFriendAvatar 
+            friendGender:selectFriendGender];
 }
 
 
@@ -231,7 +246,10 @@
 - (void)didSelectFriend:(Friend *)aFriend;
 {
     NSString *nickname = [[FriendManager defaultManager] getFriendNick:aFriend];
-    [self openChatDetail:aFriend.friendUserId friendNickname:nickname friendAvatar:aFriend.avatar];
+    [self openChatDetail:aFriend.friendUserId 
+          friendNickname:nickname 
+            friendAvatar:aFriend.avatar 
+            friendGender:aFriend.gender];
     [self hideSelectView:NO];
 }
 

@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * friendUserId;
 @property (nonatomic, retain) NSString * friendNickName;
 @property (nonatomic, retain) NSString * friendAvatar;
+@property (nonatomic, retain) NSString * friendGender;
 @property (nonatomic, retain) NSString * latestFrom;
 @property (nonatomic, retain) NSString * latestTo;
 @property (nonatomic, retain) NSData * latestDrawData;

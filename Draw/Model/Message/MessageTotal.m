@@ -15,6 +15,7 @@
 @dynamic friendUserId;
 @dynamic friendNickName;
 @dynamic friendAvatar;
+@dynamic friendGender;
 @dynamic latestFrom;
 @dynamic latestTo;
 @dynamic latestDrawData;

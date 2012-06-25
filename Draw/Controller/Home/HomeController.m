@@ -37,6 +37,7 @@
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
+#import "MyFriendsController.h"
 
 #import "OfflineDrawViewController.h"
 #import "OfflineGuessDrawController.h"
@@ -122,7 +123,6 @@
     [self.freeCoinLabel  setText:NSLS(@"kFreeCoins")];
     [self.signLabel setText:NSLS(@"kCheckin")];
     [self.friendPlayLabel setText:NSLS(@"kPlayWithFriend")];
-    [self.shareLabel setText:NSLS(@"kShare")];
     [self.friendLabel setText:NSLS(@"kFriend")];
     [self.chatLabel setText:NSLS(@"kChat")];
     [self.drawLabel setText:NSLS(@"kDrawOnly")];
@@ -550,6 +550,13 @@
     [self.navigationController pushViewController:fc animated:YES];
     [fc release];
     [self updateBadge:_feedBadge value:0];
+}
+
+- (IBAction)clickFriendsButton:(id)sender
+{
+    MyFriendsController *mfc = [[MyFriendsController alloc] init];
+    [self.navigationController pushViewController:mfc animated:YES];
+    [mfc release];
 }
 
 
