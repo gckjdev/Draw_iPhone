@@ -290,8 +290,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self.drawView cleanAllActions];
-    self.drawView.delegate = nil;
     [super viewDidDisappear:animated];
 }
 
@@ -335,6 +333,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)dealloc {
+    
+    [_drawView cleanAllActions];
+    _drawView.delegate = nil;
+    
     PPRelease(_feed);
     PPRelease(_avatarView);
     PPRelease(_drawView);
@@ -375,7 +377,7 @@
         _maskView.hidden = YES;
         _maskView.backgroundColor = [UIColor clearColor];
         showDrawView.tag = SHOW_VIEW_TAG_SMALL;        
-        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:YES];
+        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
     }
 }
 

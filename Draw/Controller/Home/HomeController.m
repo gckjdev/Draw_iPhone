@@ -87,6 +87,7 @@
 @synthesize feedBadge = _feedBadge;
 @synthesize fanBadge = _fanBadge;
 @synthesize messageBadge = _messageBadge;
+@synthesize roomBadge = _roomBadge;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -177,11 +178,13 @@
     [self.feedBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.messageBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.fanBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
+    [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[UserService defaultService] getStatistic:self];    
+    [[UserService defaultService] getStatistic:self]; 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 //    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
@@ -222,6 +225,7 @@
     [self setFeedBadge:nil];
     [self setFanBadge:nil];
     [self setMessageBadge:nil];
+    [self setRoomBadge:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -306,6 +310,7 @@
         FriendRoomController *frc = [[FriendRoomController alloc] init];
         [self.navigationController pushViewController:frc animated:YES];
         [frc release];
+        [self updateBadge:self.roomBadge value:0];
     }
 }
 
@@ -555,6 +560,7 @@
     [_feedBadge release];
     [_fanBadge release];
     [_messageBadge release];
+    [_roomBadge release];
     [super dealloc];
 }
 
@@ -667,7 +673,8 @@
 - (void)didGetStatistic:(int)resultCode 
               feedCount:(long)feedCount 
            messageCount:(long)messageCount 
-               fanCount:(long)fanCount
+               fanCount:(long)fanCount 
+              roomCount:(long)roomCount
 {
     if (resultCode == 0) {
         PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
@@ -675,8 +682,25 @@
         [self updateBadge:self.feedBadge value:feedCount];
         [self updateBadge:self.messageBadge value:messageCount];
         [self updateBadge:self.fanBadge value:fanCount];
+        [self updateBadge:self.roomBadge value:roomCount];
     }
 }
 
 
+
+- (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
+{
+    int badge = [NotificationManager feedBadge:userInfo];
+    [self updateBadge:self.feedBadge value:badge];
+    
+    badge = [NotificationManager fanBadge:userInfo];
+    [self updateBadge:self.fanBadge value:badge];
+    
+    badge = [NotificationManager messageBadge:userInfo];
+    [self updateBadge:self.messageBadge value:badge];
+    
+    badge = [NotificationManager roomBadge:userInfo];
+    [self updateBadge:self.roomBadge value:badge];
+
+}
 @end
