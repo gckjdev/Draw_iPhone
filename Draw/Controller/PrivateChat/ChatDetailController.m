@@ -106,7 +106,7 @@
 
 - (void)viewDidLoad
 {
-    [self setSupportRefreshFooter:YES];
+    //[self setSupportRefreshFooter:YES];
     
     [super viewDidLoad];
     self.titleLabel.text = self.friendNickname;
@@ -174,9 +174,9 @@
     
     [self setAndReloadData:list];
     
-    //must call twice
-    [self dataSourceDidFinishLoadingMoreData];
-    [self dataSourceDidFinishLoadingMoreData];
+//    //must call twice
+//    [self dataSourceDidFinishLoadingMoreData];
+//    [self dataSourceDidFinishLoadingMoreData];
 }
 
 
@@ -635,9 +635,9 @@
 }
 
 #pragma mark - super methods
-- (void)loadMoreTableViewDataSource
-{
-    [self findAllMessages];
-}
+//- (void)loadMoreTableViewDataSource
+//{
+//    [self findAllMessages];
+//}
 
 @end
