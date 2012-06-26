@@ -362,6 +362,9 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"eraser.png"];    
 }
-
+- (UIImage *)friendDetailBgImage
+{
+    return [UIImage strectchableImageName:@"friend_detail_bg.png"];
+}
 
 @end
