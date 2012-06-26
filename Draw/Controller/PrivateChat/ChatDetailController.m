@@ -116,6 +116,7 @@
     [graffitiButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [graffitiButton setTitle:NSLS(@"kGraffiti") forState:UIControlStateNormal];
     inputBackgroundView.backgroundColor = [UIColor clearColor];
+    inputTextView.returnKeyType = UIReturnKeySend;
     
     [[MessageTotalManager defaultManager] readNewMessageWithFriendUserId:_friendUserId 
                                                                   userId:[[UserManager defaultManager] userId]];
@@ -603,6 +604,16 @@
     
     [self changeTableSize:NO duration:0];
 }
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
+{  
+    if ([text isEqualToString:@"\n"]) {  
+        [self clickSendButton:self.sendButton];
+        return NO;  
+    }  
+    return YES;  
+} 
 
 
 #pragma mark - ChatDetailCellDelegate methods

@@ -106,4 +106,6 @@
 - (UIImage *)goldenAvatarImage;
 - (UIImage *)greenAvatarImage;
 - (UIImage *)purpleAvatarImage;
+
+- (UIImage *)friendDetailBgImage;
 @end
