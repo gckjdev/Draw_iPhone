@@ -607,7 +607,7 @@
         
         UIDevice* myDevice = [UIDevice currentDevice];
         
-        NSString* currnetNetwork;
+        NSString* currnetNetwork = @"NONE";
         NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
         if (currentStatus == ReachableViaWiFi) {
             currnetNetwork = @"WIFI";

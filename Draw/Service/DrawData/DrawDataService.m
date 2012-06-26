@@ -19,6 +19,8 @@
 #import "Draw.h"
 #import "DrawManager.h"
 #import "Feed.h"
+#import "MyPaintManager.h"
+
 static DrawDataService* _defaultDrawDataService = nil;
 
 @implementation DrawDataService
@@ -221,6 +223,63 @@ static DrawDataService* _defaultDrawDataService = nil;
         });
     });
 
+}
+
+// save draw data locally
+- (void)saveActionList:(NSArray *)actionList 
+                userId:(NSString*)userId 
+              nickName:(NSString*)nickName 
+             isMyPaint:(BOOL)isMyPaint
+                  word:(NSString*)word
+                 image:(UIImage*)image
+        viewController:(PPViewController*)viewController
+{
+    
+    if (actionList.count == 0) {
+        PPDebug(@"actionList has no object");        
+    }
+    
+    if ([DrawAction isDrawActionListBlank:actionList]) {
+        return;
+    }
+    time_t aTime = time(0);
+    NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
+    if (image!=nil) 
+    {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (queue == NULL){
+            return;
+        }
+        
+        dispatch_async(queue, ^{
+            //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+            if (!paths) {
+                PPDebug(@"Document directory not found!");
+            }
+            //并给文件起个文件名
+            NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
+            //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
+            NSData* imageData = UIImagePNGRepresentation(image);
+            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+            PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (result) {                    
+                    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
+                    [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+                                                                        data:drawActionListData 
+                                                                  drawUserId:userId
+                                                            drawUserNickName:nickName 
+                                                                    drawByMe:isMyPaint
+                                                                    drawWord:word];
+                    
+                    [viewController popupMessage:NSLS(@"kSaveImageOK") title:nil];
+                }
+            });
+        });
+    }
+    
 }
 
 

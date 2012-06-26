@@ -351,6 +351,8 @@ NSString* GlobalGetTrafficServerURL()
     if (type == NotificationTypeMessage && _chatDetailController) {
         [_chatDetailController findAllMessages];
     }
+    
+    
 }
 
 #pragma mark - Alert View Delegate

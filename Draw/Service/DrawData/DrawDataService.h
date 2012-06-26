@@ -59,4 +59,14 @@
               drawWord:(Word*)drawWord
               language:(LanguageType)language;
 
+// save draw data locally
+- (void)saveActionList:(NSArray *)actionList 
+                userId:(NSString*)userId 
+              nickName:(NSString*)nickName 
+             isMyPaint:(BOOL)isMyPaint
+                  word:(NSString*)word
+                 image:(UIImage*)image
+        viewController:(PPViewController*)viewController;
+
+
 @end

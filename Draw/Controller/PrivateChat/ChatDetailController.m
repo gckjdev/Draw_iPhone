@@ -584,7 +584,7 @@
 {
     UIFont *font = inputTextView.font;
     CGSize size = [inputTextView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    PPDebug(@"%f %f %f", inputTextView.frame.size.height, size.height, size.width);
+    //PPDebug(@"%f %f %f", inputTextView.frame.size.height, size.height, size.width);
     CGRect oldFrame = inputTextView.frame;
     CGFloat newHeight = size.height + 12;
     CGRect oldBackgroundFrame = inputBackgroundView.frame;
