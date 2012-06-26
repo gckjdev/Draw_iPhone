@@ -530,8 +530,8 @@
 "kGuessRightDesc" = "猜對了%@畫的 [%@]";
 "kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]";
 
-"kNotificationGuessRightDesc" = "%@猜對了你畫的[%@]。你也去猜猜TA的畫？";
-"kNotificationTryGuessDesc" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
+"kNGRD" = "%@猜對了你畫的[%@]。你也去猜猜TA的畫？";
+"kNTGD" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
 
 "kNoGuess" = "猜0";
 "kGuessStat" = "(%d人猜過/%d人猜中)";
