@@ -520,7 +520,7 @@
 "kGuessUserDraw" = "正在猜%@的画中";
 
 "kFeedTitle" = "猜画动态";
-"kAllFeed" = "好友";
+"kAllFeed" = "全部";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
 
@@ -537,9 +537,9 @@
 "kNTGD" = "%@尝试去猜了你画的 [%@]。你也去猜猜TA的画？";
 
 
-"kNoGuess" = "猜0";
+"kNoGuess" = "没有人猜";
 
-"kGuessStat" = "(%d人猜过/%d人猜中)";
+"kGuessStat" = "(%d人猜过,%d人猜中)";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
 
@@ -548,9 +548,9 @@
 "kOneMoreAction" = "再来一幅";
 "kIGuessCorrect" = "猜对了";
 
-"kChatListTitle" = "涂鸦聊天";
+"kChatListTitle" = "聊天";
 "kNoChatListInfo" = "没有记录";
-"kGraffitiMessage" = "涂鸦信息";
+"kGraffitiMessage" = "涂鸦消息";
 "kAddChat" = "新建";
 "kSelectContacts" = "选择好友";
 "KNoFollowContacts" = "暂未有关注";
