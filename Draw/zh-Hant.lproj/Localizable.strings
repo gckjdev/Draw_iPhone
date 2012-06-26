@@ -584,3 +584,7 @@
 
 "kGuessWords" = "猜畫的是: %@";
 "kMyDrawing" = "我的[%@]";
+"kDrawToHim" = "畫幅畫給TA";
+"kExploreHim" = "TA的動態";
+"kPlayWithHim" = "和TA一起玩猜猜畫畫";
+"kChatToHim" = "搭個訕";

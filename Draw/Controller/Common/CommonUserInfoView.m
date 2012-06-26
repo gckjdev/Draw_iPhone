@@ -10,6 +10,9 @@
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "LocaleUtils.h"
+#import "Friend.h"
+#import "StableView.h"
+#import "DeviceDetection.h"
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
@@ -43,9 +46,15 @@
     [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
 }
 
-- (void)initAvatar
+#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 0, 0):CGRectMake(18, 39, 42, 42)
+- (void)initAvatar:(Friend*)aFriend
 {
-    
+    CGRect rect = AVATAR_FRAME;
+    AvatarView* view = [[AvatarView alloc] initWithUrlString:aFriend.avatar 
+                                                       frame:rect
+                                                      gender:([aFriend.gender isEqualToString:@"m"])
+                                                       level:aFriend.level.intValue];
+    [self.contentView addSubview:view];
 }
 
 - (void)initButton
@@ -61,9 +70,35 @@
 - (void)initView
 {
     [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
-    [self initAvatar];
     [self initTitle];
     [self initButton];
+    
+}
+
+- (void)initViewWithFriend:(Friend*)aFriend
+{
+    [self initView];
+    [self.userName setText:aFriend.nickName];
+    [self.locationLabel setText:aFriend.location];
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    if (aFriend.sinaNick) {
+        self.snsTagImageView.hidden = NO;
+        [self.snsTagImageView setImage:[imageManager sinaWeiboImage]];
+    }else if (aFriend.qqNick){
+        self.snsTagImageView.hidden = NO;
+        [self.snsTagImageView setImage:[imageManager qqWeiboImage]];
+    }else if (aFriend.facebookNick){
+        self.snsTagImageView.hidden = NO;
+        [self.snsTagImageView setImage:[imageManager facebookImage]];
+    }else {
+        self.snsTagImageView.hidden = YES;
+    }
+    
+    NSString* gender = [aFriend.gender isEqualToString:@"m"]?NSLS(@"kMale"):NSLS(@"kFemale");
+    [self.genderLabel setText:gender];
+    
+    [self initAvatar:aFriend];
     
 }
 
@@ -75,7 +110,6 @@
         return nil;
     }
     CommonUserInfoView* view =  (CommonUserInfoView*)[topLevelObjects objectAtIndex:0];
-    [view initView];
     
     CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
     [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
@@ -83,9 +117,11 @@
     return view;
 }
 
-+ (void)showUserInfoInView:(UIViewController*)superController
++ (void)showUser:(Friend*)afriend 
+      infoInView:(UIViewController*)superController
 {
     CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+    [view initViewWithFriend:afriend];
     [superController.view addSubview:view];
 }
 

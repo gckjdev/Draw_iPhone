@@ -590,3 +590,8 @@
 "kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
 "kGuessWords" = "猜画的是: %@";
 "kMyDrawing" = "我的[%@]";
+
+"kDrawToHim" = "画幅画给TA";
+"kExploreHim" = "TA动态";
+"kPlayWithHim" = "和TA一起玩猜猜画画";
+"kChatToHim" = "搭个讪";

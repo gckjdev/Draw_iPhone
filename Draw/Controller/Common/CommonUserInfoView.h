@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Friend;
 
 @interface CommonUserInfoView : UIView
 
-+ (void)showUserInfoInView:(UIViewController*)superController;
++ (void)showUser:(Friend*)afriend 
+      infoInView:(UIViewController*)superController;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
