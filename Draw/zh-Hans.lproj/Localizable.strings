@@ -589,3 +589,4 @@
 
 "kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
 "kGuessWords" = "猜画的是: %@";
+"kMyDrawing" = "我的[%@]";

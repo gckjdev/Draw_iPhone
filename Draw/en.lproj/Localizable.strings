@@ -584,3 +584,4 @@
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
 "kGuessWords" = "Guessing: %@";
+"kMyDrawing" = "My Drawing:[%@]";
