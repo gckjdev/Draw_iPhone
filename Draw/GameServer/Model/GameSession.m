@@ -128,8 +128,9 @@
              snsUserData:[notification snsUsersList]];
     }
     
-    if ([[notification quitUserId] length] > 0){
-        [self removeUser:[notification quitUserId]];
+    NSString* quitUserId = [notification quitUserId];
+    if ([quitUserId length] > 0){
+        [self removeUser:quitUserId];
     }
     
     if ([[notification sessionHost] length] > 0){

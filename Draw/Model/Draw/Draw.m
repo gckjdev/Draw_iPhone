@@ -39,6 +39,7 @@
         for (PBDrawAction *action in array) {
             DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:action];
             [list addObject:drawAction];
+            [drawAction release];
         }
         return list;
     }
