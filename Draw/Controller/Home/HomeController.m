@@ -38,6 +38,7 @@
 #import "AnimationManager.h"
 #import "WordManager.h"
 #import "MyFriendsController.h"
+#import "RegisterUserController.h"
 
 #import "OfflineDrawViewController.h"
 #import "OfflineGuessDrawController.h"
@@ -52,6 +53,9 @@
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
 - (void)updateBadge:(UIButton *)badgeButton value:(int )value;
+- (BOOL)isRegistered;
+- (void)toRegister;
+
 @end
 
 @implementation HomeController
@@ -258,41 +262,51 @@
 
 }
 - (IBAction)clickStart:(id)sender
-{        
-    [self showActivityWithText:NSLS(@"kJoiningGame")];
-    
-    NSString* userId = [_userManager userId];
-    NSString* nickName = [_userManager nickName];
-    
-    if (userId == nil){
-        userId = [NSString GetUUID];
-    }
-    
-    if (nickName == nil){
-        nickName = NSLS(@"guest");
-    }
-    
-    if ([[DrawGameService defaultService] isConnected]){        
-        [[DrawGameService defaultService] joinGame:userId
-                                          nickName:nickName
-                                            avatar:[_userManager avatarURL]
-                                            gender:[_userManager isUserMale]
-                                          location:[_userManager location]  
-                                         userLevel:[[LevelService defaultService] level]
-                                    guessDiffLevel:[ConfigManager guessDifficultLevel]
-                                       snsUserData:[_userManager snsUserData]];    
-    }
-    else{
+{
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
         
-        [self showActivityWithText:NSLS(@"kConnectingServer")];        
-        [[RouterService defaultService] tryFetchServerList:self];        
+        [self showActivityWithText:NSLS(@"kJoiningGame")];
+        
+        NSString* userId = [_userManager userId];
+        NSString* nickName = [_userManager nickName];
+        
+        if (userId == nil){
+            userId = [NSString GetUUID];
+        }
+        
+        if (nickName == nil){
+            nickName = NSLS(@"guest");
+        }
+        
+        if ([[DrawGameService defaultService] isConnected]){        
+            [[DrawGameService defaultService] joinGame:userId
+                                              nickName:nickName
+                                                avatar:[_userManager avatarURL]
+                                                gender:[_userManager isUserMale]
+                                              location:[_userManager location]  
+                                             userLevel:[[LevelService defaultService] level]
+                                        guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                           snsUserData:[_userManager snsUserData]];    
+        }
+        else{
+            
+            [self showActivityWithText:NSLS(@"kConnectingServer")];        
+            [[RouterService defaultService] tryFetchServerList:self];        
+        }
     }
+    
 }
 
 - (IBAction)clickPlayWithFriend:(id)sender {
-    FriendRoomController *frc = [[FriendRoomController alloc] init];
-    [self.navigationController pushViewController:frc animated:YES];
-    [frc release];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        FriendRoomController *frc = [[FriendRoomController alloc] init];
+        [self.navigationController pushViewController:frc animated:YES];
+        [frc release];
+    }
 }
 
 - (IBAction)clickShop:(id)sender {
@@ -300,9 +314,12 @@
 //    [self.navigationController pushViewController:sc animated:YES];
 //    [sc release];
     
-    ItemShopController *ic = [ItemShopController instance];
-    [self.navigationController pushViewController:ic animated:YES];
-
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        ItemShopController *ic = [ItemShopController instance];
+        [self.navigationController pushViewController:ic animated:YES];
+    }
 }
 
 - (void)didJoinGame:(GameMessage *)message
@@ -350,16 +367,24 @@
 
 - (IBAction)clickSettings:(id)sender
 {
-    UserSettingController *settings = [[UserSettingController alloc] init];
-    [self.navigationController pushViewController:settings animated:YES];
-    [settings release];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        UserSettingController *settings = [[UserSettingController alloc] init];
+        [self.navigationController pushViewController:settings animated:YES];
+        [settings release];
+    }
 }
 
 - (IBAction)clickShare:(id)sender
 {
-    ShareController* share = [[ShareController alloc] init ];
-    [self.navigationController pushViewController:share animated:YES];
-    [share release];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        ShareController* share = [[ShareController alloc] init ];
+        [self.navigationController pushViewController:share animated:YES];
+        [share release];
+    }
 }
 
 
@@ -534,30 +559,58 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+        [self.navigationController pushViewController:sc animated:YES];
+        [sc release];
+    }
 }
 
 - (IBAction)clickGuessButton:(id)sender {
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[DrawDataService defaultService] matchDraw:self];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [[DrawDataService defaultService] matchDraw:self];
+    }
 }
 
 - (IBAction)clickFeedButton:(id)sender {
-    
-    FeedController *fc = [[FeedController alloc] init];
-    [self.navigationController pushViewController:fc animated:YES];
-    [fc release];
-    [self updateBadge:_feedBadge value:0];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        FeedController *fc = [[FeedController alloc] init];
+        [self.navigationController pushViewController:fc animated:YES];
+        [fc release];
+        [self updateBadge:_feedBadge value:0];
+    }
 }
 
 - (IBAction)clickFriendsButton:(id)sender
 {
-    MyFriendsController *mfc = [[MyFriendsController alloc] init];
-    [self.navigationController pushViewController:mfc animated:YES];
-    [mfc release];
-    [self updateBadge:_fanBadge value:0];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        MyFriendsController *mfc = [[MyFriendsController alloc] init];
+        [self.navigationController pushViewController:mfc animated:YES];
+        [mfc release];
+        [self updateBadge:_fanBadge value:0];
+    }
+}
+
+
+- (BOOL)isRegistered
+{
+    return [[UserManager defaultManager] hasUser];
+}
+
+- (void)toRegister
+{
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
 }
 
 
@@ -585,11 +638,15 @@
 }
 
 - (IBAction)clickChatButton:(id)sender {
-    ChatListController *controller = [[ChatListController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-    
-    [self updateBadge:_messageBadge value:0];
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        ChatListController *controller = [[ChatListController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+        
+        [self updateBadge:_messageBadge value:0];
+    }
 }
 
 

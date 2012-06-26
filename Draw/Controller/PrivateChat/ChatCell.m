@@ -16,6 +16,7 @@
 #import "DrawAction.h"
 #import "ChatMessageUtil.h"
 #import "FriendManager.h"
+#import "TimeUtils.h"
 
 @interface ChatCell()
 
@@ -137,9 +138,19 @@
     self.messageNumberLabel.text = newAndTotal;
     
     //set timeLabel
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
-    self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
+    NSString *timeString = nil;
+    if ([LocaleUtils isChinese]) {
+        timeString = chineseBeforeTime(messageTotal.latestCreateDate);
+    } else {
+        timeString = englishBeforeTime(messageTotal.latestCreateDate);
+    }
+    if (timeString) {
+        self.timeLabel.text = timeString;
+    } else {
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
+        self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
+    }
     self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
 }
 

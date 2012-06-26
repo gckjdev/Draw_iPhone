@@ -110,8 +110,6 @@
     self.titleLabel.text = self.friendNickname;
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [refreshButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [refreshButton setTitle:NSLS(@"kRefreshMessage") forState:UIControlStateNormal];
     [inputTextBackgroundImage setImage:[imageManager inputImage]];
     [sendButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [sendButton setTitle:NSLS(@"kSendMessage") forState:UIControlStateNormal];
