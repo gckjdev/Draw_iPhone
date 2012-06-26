@@ -65,6 +65,7 @@
 		A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE093C15908AB700E2C746 /* ChatDetailCell.m */; };
 		A3DE094015908AB700E2C746 /* ChatDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE093D15908AB700E2C746 /* ChatDetailCell.xib */; };
 		A3DE094115908AB700E2C746 /* ChatDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3DE093E15908AB700E2C746 /* ChatDetailCell~ipad.xib */; };
+		A3EC170515996D8100D7872D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EC170415996D8100D7872D /* refresh@2x.png */; };
 		A3F66CA61581B999000BFF9A /* MessageTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CA21581B999000BFF9A /* MessageTotal.m */; };
 		A3F66CB01581BA8C000BFF9A /* MessageTotalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CAF1581BA8C000BFF9A /* MessageTotalManager.m */; };
 		A3F66CC115820B2E000BFF9A /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F66CC015820B2D000BFF9A /* ChatService.m */; };
@@ -862,6 +863,7 @@
 		A3DE093C15908AB700E2C746 /* ChatDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailCell.m; sourceTree = "<group>"; };
 		A3DE093D15908AB700E2C746 /* ChatDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCell.xib; sourceTree = "<group>"; };
 		A3DE093E15908AB700E2C746 /* ChatDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatDetailCell~ipad.xib"; sourceTree = "<group>"; };
+		A3EC170415996D8100D7872D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
 		A3F66CA11581B999000BFF9A /* MessageTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotal.h; sourceTree = "<group>"; };
 		A3F66CA21581B999000BFF9A /* MessageTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTotal.m; sourceTree = "<group>"; };
 		A3F66CAE1581BA8C000BFF9A /* MessageTotalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTotalManager.h; sourceTree = "<group>"; };
@@ -3733,6 +3735,7 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A3EC170415996D8100D7872D /* refresh@2x.png */,
 				C2615A991597FA0200CEEC66 /* friend_detail_bg.png */,
 				CAD95C6415897F93006EAC41 /* middle_tab_selected@2x.png */,
 				CAD95C6515897F93006EAC41 /* middle_tab@2x.png */,
@@ -5009,6 +5012,7 @@
 				C2615A9A1597FA0200CEEC66 /* friend_detail_bg.png in Resources */,
 				C2615A9F1597FBEC00CEEC66 /* CommonUserInfoView.xib in Resources */,
 				C2615AA11597FC0C00CEEC66 /* CommonUserInfoView~ipad.xib in Resources */,
+				A3EC170515996D8100D7872D /* refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
