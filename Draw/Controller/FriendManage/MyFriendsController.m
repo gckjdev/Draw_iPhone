@@ -302,7 +302,7 @@
                              withRowAnimation:UITableViewRowAnimationFade];
             editButton.hidden = ([_selectedSet count] == 0);
         } else {
-            [CommonUserInfoView showUserInfoInView:self];
+            [CommonUserInfoView showUser:friend infoInView:self];
         }
     }
 }
