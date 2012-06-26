@@ -350,11 +350,11 @@
 - (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath
 {
     [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
-//    SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-//    [self.navigationController pushViewController:sc animated:YES];
-//    [sc release];
 }
 
+- (IBAction)clickRefreshButton:(id)sender {
+    [self reloadTableViewDataSource];
+}
 @end
 
 

@@ -39,15 +39,13 @@
 @synthesize feed = _feed;
 @synthesize drawView = _drawView;
 @synthesize inputBackgroundView = inputBackgroundView;
-@synthesize followButton = _followButton;
-@synthesize replayButton = _replayButton;
 @synthesize inputBackground = _inputBackground;
 @synthesize paperImage = _paperImage;
 @synthesize avatarView = _avatarView;
 
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(660, 11, 84, 78) : CGRectMake(278, 6, 29, 28))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(400, 141, 228, 217) :CGRectMake(200, 76, 95, 100))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(271,158,228,217) :CGRectMake(113, 73, 95, 100))
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -144,21 +142,47 @@
 }
 
 
+#define SHOW_VIEW_TAG_SMALL 2012062601
+#define SHOW_VIEW_TAG_NORMAL 2012062602
+
+- (void)setShowDrawView:(CGRect)frame animated:(BOOL)animated
+{
+//    CGRect currentFrame = self.drawView.frame;
+    [self.drawView cleanAllActions];
+    CGRect normalFrame = DRAW_VIEW_FRAME; 
+    if (animated) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1];
+        [self.drawView setFrame:frame];
+        if (self.drawView.tag == SHOW_VIEW_TAG_NORMAL) {
+            self.drawView.center = self.view.center;
+        }
+        [UIView commitAnimations];
+    }else{
+        [self.drawView setFrame:frame];
+    }
+    
+    CGFloat xScale = frame.size.width / normalFrame.size.width;
+    CGFloat yScale = frame.size.height / normalFrame.size.height;
+    if (xScale == 1 && yScale == 1) {
+        self.drawView.drawActionList = [NSMutableArray arrayWithArray:self.feed.drawData.drawActionList];
+    }else{
+        self.drawView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
+    }
+    [self.drawView play];
+    
+}
+
 - (void)updateDrawView:(Feed *)feed
 {
-//    self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
+    self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
     [self.drawView setShowPenHidden:YES];
-    [self.drawView setBackgroundColor:[UIColor clearColor]];
-    //[self.view insertSubview:_drawView aboveSubview:self.followButton];
+    self.drawView.delegate = self;
+    [self.drawView setBackgroundColor:[UIColor whiteColor]];
     [self.drawView cleanAllActions];
-    CGRect normalFrame = DRAW_VEIW_FRAME;
-    CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
-    CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
-    CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
-    
-    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-    [self.drawView setPlaySpeed:0.01];
-    [self.drawView play];
+    [self.view addSubview:self.drawView];
+    self.drawView.tag = SHOW_VIEW_TAG_SMALL;
+    [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
 }
 
 #define INPUT_BG_TAG 2012061501
@@ -264,6 +288,13 @@
     [super viewDidAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.drawView cleanAllActions];
+    self.drawView.delegate = nil;
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
@@ -275,9 +306,7 @@
     [self setCommentInput:nil];
     [self setSendButton:nil];
     [self setInputBackgroundView:nil];
-    [self setFollowButton:nil];
     [self setCommentLabel:nil];
-    [self setReplayButton:nil];
     [self setDrawView:nil];
     [self setInputBackground:nil];
     [self setPaperImage:nil];
@@ -301,16 +330,6 @@
     }
 }
 
-- (IBAction)clickFollowButton:(id)sender
-{
-    
-}
-
-- (IBAction)clickReplayShowDrawView:(id)sender
-{
-    [self.drawView setPlaySpeed:0.01];
-    [self.drawView play];
-}
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -329,9 +348,7 @@
     [sendButton release];
     [inputBackgroundView release];
     [_maskView release];
-    [_followButton release];
     [_commentLabel release];
-    [_replayButton release];
     [_drawView release];
     [_inputBackground release];
     [_paperImage release];
@@ -342,6 +359,23 @@
     if ([msg length] != 0) {
         [self showActivityWithText:NSLS(@"kSending")];
         [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];        
+    }
+}
+
+- (void)didClickShowDrawView:(ShowDrawView *)showDrawView
+{
+    if (showDrawView.tag == SHOW_VIEW_TAG_SMALL) {
+        showDrawView.tag = SHOW_VIEW_TAG_NORMAL;
+        [self setShowDrawView:DRAW_VIEW_FRAME animated:YES];
+        _maskView.hidden = NO;
+        _maskView.backgroundColor = [UIColor blackColor];
+        [self.view bringSubviewToFront:_maskView];
+        [self.view bringSubviewToFront:self.drawView];
+    }else{
+        _maskView.hidden = YES;
+        _maskView.backgroundColor = [UIColor clearColor];
+        showDrawView.tag = SHOW_VIEW_TAG_SMALL;        
+        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:YES];
     }
 }
 
@@ -507,6 +541,8 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [_maskView setHidden:NO];
+    [self.view bringSubviewToFront:_maskView];
+    [self.view bringSubviewToFront:textView];
     return YES;
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
@@ -528,6 +564,9 @@
 
 - (void)clickMaskView:(id)sender
 {
+    if (self.drawView.tag == SHOW_VIEW_TAG_NORMAL) {
+        return;
+    }
     [commentInput resignFirstResponder];
 }
 

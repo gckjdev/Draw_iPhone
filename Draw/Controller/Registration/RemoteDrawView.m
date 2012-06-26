@@ -88,7 +88,7 @@
     [nickNameLabel setText:remoteDrawData.nickName];
     
     //set drawView
-    showDrawView.frame = DRAW_VEIW_FRAME;
+    showDrawView.frame = DRAW_VIEW_FRAME;
     showDrawView.center = playbackButton.center;
     CGFloat multiple = self.playbackButton.frame.size.height / showDrawView.frame.size.height;
     showDrawView.transform = CGAffineTransformMakeScale(multiple, multiple);

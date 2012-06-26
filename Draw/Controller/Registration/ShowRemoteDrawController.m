@@ -58,8 +58,8 @@
 
 //#define IPAD_WIDTH_SCALE 2.4
 //#define IPAD_HEIGHT_SCALE 2.18
-//#define DRAW_VEIW_FRAME_IPAD CGRectMake(18, 106, 304 * IPAD_WIDTH_SCALE, 320 * IPAD_HEIGHT_SCALE)
-//#define DRAW_VEIW_FRAME_IPHONE CGRectMake(8, 46, 304, 320)
+//#define DRAW_VIEW_FRAME_IPAD CGRectMake(18, 106, 304 * IPAD_WIDTH_SCALE, 320 * IPAD_HEIGHT_SCALE)
+//#define DRAW_VIEW_FRAME_IPHONE CGRectMake(8, 46, 304, 320)
 
 - (void)viewDidLoad
 {
@@ -70,7 +70,7 @@
     
     
     ShowDrawView *showDrawView = [[ShowDrawView alloc] init];
-    showDrawView.frame = DRAW_VEIW_FRAME;
+    showDrawView.frame = DRAW_VIEW_FRAME;
     CGFloat multiple = self.holderView.frame.size.width / showDrawView.frame.size.width;
     showDrawView.center = CGPointMake(self.holderView.frame.size.width/2, self.holderView.frame.size.height/2);
     //self.holderView.center;

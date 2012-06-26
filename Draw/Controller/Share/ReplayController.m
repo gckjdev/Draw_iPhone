@@ -109,8 +109,8 @@
     NSData* currentData = [NSKeyedUnarchiver unarchiveObjectWithData:currentPaint.data ];
     NSArray* drawActionList = (NSArray*)currentData;
     
-    CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VEIW_FRAME.size.width;
-    CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VEIW_FRAME.size.height;
+    CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
+    CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
     
     ShowDrawView* replayView = [[ShowDrawView alloc]initWithFrame:
                                 self.showHolderView.frame];

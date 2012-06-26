@@ -185,7 +185,7 @@
 - (void)updateDrawView:(Feed *)feed
 {
     [self.drawView cleanAllActions];
-    CGRect normalFrame = DRAW_VEIW_FRAME;
+    CGRect normalFrame = DRAW_VIEW_FRAME;
     CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
     CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
     CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
