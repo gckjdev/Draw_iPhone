@@ -679,7 +679,8 @@ static UserService* _defaultUserService;
         long messageCount = 0;
         long feedCount = 0;
         long fanCount = 0;
-            
+        long roomCount = 0;            
+        
         if (output.resultCode == ERROR_SUCCESS) {
             NSNumber *count = [output.jsonDataDict objectForKey:PARA_FEED_COUNT];
             feedCount = [count longValue];
@@ -687,11 +688,13 @@ static UserService* _defaultUserService;
             fanCount = [count longValue];
             count = [output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT];
             messageCount = [count longValue];            
+            count = [output.jsonDataDict objectForKey:PARA_ROOM_COUNT];
+            roomCount = [count longValue];            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:)]) {
-                [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount];
+            if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:roomCount:)]) {
+                [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount roomCount:roomCount];
             }
         });
     });

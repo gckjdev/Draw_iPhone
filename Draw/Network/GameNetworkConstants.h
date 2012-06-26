@@ -365,7 +365,7 @@
 #define PARA_FEED_COUNT @"fec"
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
-
+#define PARA_ROOM_COUNT @"rc"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

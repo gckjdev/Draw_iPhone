@@ -258,7 +258,9 @@
         self.noMoreData = NO;
     }
     
-    if ([self startIndexForType:type] == 0) {
+    BOOL isReload = [self startIndexForType:type] == 0;
+    
+    if (isReload) {
         if (feedList) {
             [feedManager setFeedList:[NSMutableArray arrayWithArray:feedList] forType:type];
         }else{
@@ -273,6 +275,10 @@
     [self setloadDataStartIndex:newIndex forType:type];
     self.dataList = [feedManager feedListForType:type];
     [self.dataTableView reloadData];
+    if (isReload) {
+        //scroll to top.
+        [self.dataTableView setContentOffset:CGPointZero animated:YES];
+    }
 }
 
 

@@ -79,14 +79,20 @@
 
 - (void)updateTime:(Feed *)feed
 {
-    if (time != nil) {
-        [self.timeLabel setText:chineseBeforeTime(feed.createDate)];
+    NSString *timeString = nil;
+    if ([LocaleUtils isChinese]) {
+        timeString = chineseBeforeTime(feed.createDate);
     } else {
-        NSString *formate = @"yy-MM-dd HH:mm";
-        NSString *timeString = dateToStringByFormat(feed.createDate, formate);
-        [self.timeLabel setText:timeString];
+        timeString = englishBeforeTime(feed.createDate);
     }
     
+    if (timeString) {
+        [self.timeLabel setText:timeString];
+    }else {
+        NSString *formate = @"yy-MM-dd HH:mm";
+        timeString = dateToStringByFormat(feed.createDate, formate);
+        [self.timeLabel setText:timeString];
+    }
 }
 
 
@@ -290,8 +296,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self.drawView cleanAllActions];
-    self.drawView.delegate = nil;
     [super viewDidDisappear:animated];
 }
 
@@ -335,6 +339,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)dealloc {
+    
+    [_drawView cleanAllActions];
+    _drawView.delegate = nil;
+    
     PPRelease(_feed);
     PPRelease(_avatarView);
     PPRelease(_drawView);
@@ -375,7 +383,7 @@
         _maskView.hidden = YES;
         _maskView.backgroundColor = [UIColor clearColor];
         showDrawView.tag = SHOW_VIEW_TAG_SMALL;        
-        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:YES];
+        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
     }
 }
 
