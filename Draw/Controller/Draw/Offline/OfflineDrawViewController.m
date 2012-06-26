@@ -36,6 +36,9 @@
 #import "FeedController.h"
 #import "SelectWordController.h"
 #import "FeedDetailController.h"
+#import "MyPaintManager.h"
+#import "UserManager.h"
+#import "DrawDataService.h"
 
 @implementation OfflineDrawViewController
 
@@ -431,6 +434,16 @@ enum{
         [self.penButton setPenType:_willBuyPen.penType];
         [drawView setPenType:_willBuyPen.penType];            
     }else if(dialog.tag == DIALOG_TAG_SUBMIT){
+        
+        // Save Image Locally        
+        [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
+                                                  userId:[[UserManager defaultManager] userId] 
+                                                nickName:[[UserManager defaultManager] nickName]
+                                               isMyPaint:YES    
+                                                    word:[_word text]
+                                                   image:[drawView createImage]
+                                          viewController:self];
+        
         UIViewController *superController = [self superFeedDetailController];
         if (superController == nil) {
             superController = [self superFeedController];
@@ -449,6 +462,15 @@ enum{
 - (void)clickBack:(CommonDialog *)dialog
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
+        
+        // Save Image Locally        
+        [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
+                                                  userId:[[UserManager defaultManager] userId] 
+                                                nickName:[[UserManager defaultManager] nickName]
+                                               isMyPaint:YES    
+                                                    word:[_word text]
+                                                   image:[drawView createImage]
+                                          viewController:self];
         [self quit];
     }
 }

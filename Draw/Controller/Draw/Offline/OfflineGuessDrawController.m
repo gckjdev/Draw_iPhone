@@ -553,6 +553,7 @@
         avatar.center = CGPointMake(21, 22);
     }
     [self.view addSubview:avatar];
+    [avatar release];
     
     if ([[_draw nickName] length] != 0) {
         [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[_draw nickName]]];

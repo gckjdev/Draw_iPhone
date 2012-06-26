@@ -345,10 +345,14 @@ NSString* GlobalGetTrafficServerURL()
         PPDebug(@"%@", key);
         PPDebug(@"%@", [userInfo objectForKey:@"aps"]); 
     }
+    [_homeController updateBadgeWithUserInfo:userInfo];
     
-    if (_chatDetailController) {
+    NotificationType type = [NotificationManager typeForUserInfo:userInfo];
+    if (type == NotificationTypeMessage && _chatDetailController) {
         [_chatDetailController findAllMessages];
     }
+    
+    
 }
 
 #pragma mark - Alert View Delegate

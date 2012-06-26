@@ -93,7 +93,7 @@
 
 - (void)updateDesc:(Feed *)feed
 {
-    NSString *desc = nil;
+    NSString *desc = @"";
     NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
     NSString *word = feed.drawData.word.text;
     if (feed.drawData.languageType == ChineseType 

@@ -54,6 +54,7 @@ static FeedService *_staticFeedService = nil;
                     for (PBFeed *pbFeed in pbFeedList) {
                         Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
                         [list addObject:feed];
+                        [feed release];
                     }
                 }
             }
@@ -88,6 +89,7 @@ static FeedService *_staticFeedService = nil;
                     for (PBFeed *pbFeed in pbFeedList) {
                         Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
                         [list addObject:feed];
+                        [feed release];
                     }
                 }
             }

@@ -21,7 +21,8 @@
 - (void)didGetStatistic:(int)resultCode 
               feedCount:(long)feedCount 
               messageCount:(long)messageCount 
-               fanCount:(long)fanCount;
+               fanCount:(long)fanCount 
+              roomCount:(long)roomCount;
 @end
 
 @interface UserService : CommonService

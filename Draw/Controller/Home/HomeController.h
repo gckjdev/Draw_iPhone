@@ -57,6 +57,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *feedBadge;
 @property (retain, nonatomic) IBOutlet UIButton *fanBadge;
 @property (retain, nonatomic) IBOutlet UIButton *messageBadge;
+@property (retain, nonatomic) IBOutlet UIButton *roomBadge;
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;
@@ -70,4 +71,5 @@
 + (void)startOfflineDrawFrom:(UIViewController *)viewController;
 + (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController;
 
+- (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
 @end

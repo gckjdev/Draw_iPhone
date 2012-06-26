@@ -72,13 +72,13 @@
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
 {
-    [self initWithWidth:width color:color];
+    self = [self initWithWidth:width color:color];
     self.penType = type;
     return self;
 }
 - (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(PenType)type
 {
-    [self initWithWidth:width intColor:color numberPointList:numberPointList];
+    self = [self initWithWidth:width intColor:color numberPointList:numberPointList];
     self.penType = type;
     return self;
 }

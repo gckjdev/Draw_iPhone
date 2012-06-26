@@ -13,7 +13,10 @@ typedef enum{
     NotificationTypeRoom = 1,
     NotificationTypeMessage,
     NotificationTypeFeed,
+    NotificationTypeFan
 }NotificationType;
+
+
 
 @interface NotificationManager : NSObject
 {
@@ -21,4 +24,9 @@ typedef enum{
 }
 
 + (NotificationType) typeForUserInfo:(NSDictionary *)notification;
++ (int)feedBadge:(NSDictionary *)userInfo;
++ (int)fanBadge:(NSDictionary *)userInfo;
++ (int)roomBadge:(NSDictionary *)userInfo;
++ (int)messageBadge:(NSDictionary *)userInfo;
+
 @end
