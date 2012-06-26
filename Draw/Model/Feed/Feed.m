@@ -74,6 +74,8 @@
         self.gender = [pbFeed gender];
         self.matchTimes = [pbFeed matchTimes];
         self.correctTimes = [pbFeed correctTimes];
+        self.guessTimes = [pbFeed guessTimes];
+        self.commentTimes = [pbFeed commentTimes];
         self.opusId = [pbFeed opusId];
         
         if ([pbFeed hasDrawData]) {

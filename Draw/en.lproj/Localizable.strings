@@ -522,8 +522,10 @@
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
-"kNotificationGuessRightDesc" = "%@ Guessed your drawing: [%@].";
-"kNotificationTryGuessDesc" = "%@ Tried to guess your drawing: [%@].";
+//notification guess right desc
+//notification try guess desc
+"kNGRD" = "%@ Guessed your drawing: [%@].";
+"kNTGD" = "%@ Tried to guess your drawing: [%@].";
 
 
 "kDrawDescNoWord" = "Drawed a drawing.";
@@ -582,3 +584,4 @@
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
 "kGuessWords" = "Guessing: %@";
+"kMyDrawing" = "My Drawing:[%@]";

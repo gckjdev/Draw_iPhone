@@ -12,12 +12,12 @@
 #import "LevelService.h"
 #import "DrawDataService.h"
 
-typedef enum {
-    OnlineGuess = 0,
-    OnlineDraw = 1,
-    OfflineGuess =2,
-    FeedGuess =3
-} ResultType;
+//typedef enum {
+//    OnlineGuess = 0,
+//    OnlineDraw = 1,
+//    OfflineGuess =2,
+//    FeedGuess =3
+//} ResultType;
 @interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate>
 {
     UIImage * _image;
@@ -38,7 +38,7 @@ typedef enum {
 @property (retain, nonatomic) NSString *drawUserId;
 @property (retain, nonatomic) NSString *drawUserNickName;
 @property (assign, nonatomic) NSInteger score;
-@property (assign, nonatomic) ResultType resultType;
+//@property (assign, nonatomic) ResultType resultType;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *whitePaper;
@@ -64,6 +64,5 @@ typedef enum {
      drawActionList:(NSArray *)drawActionList;
 
 - (void)saveActionList:(NSArray *)actionList;
-
 //- (void)didFinishAPaint:(NSArray *)drawAction;
 @end

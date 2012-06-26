@@ -27,8 +27,17 @@
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
 #import "FeedController.h"
+#import "FeedDetailController.h"
+#import "OfflineGuessDrawController.h"
 
 #define CONTINUE_TIME 10
+
+@interface ResultController()
+
+//- (BOOL)fromFeedDetailController;
+//- (BOOL)fromFeedController;
+
+@end
 
 @implementation ResultController
 @synthesize drawImage;
@@ -46,7 +55,7 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize drawUserId = _drawUserId;
 @synthesize drawUserNickName = _drawUserNickName;
-@synthesize resultType = _resultType;
+//@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -133,6 +142,22 @@
     [downButton setEnabled:enabled];
 }
 
+
+- (BOOL)fromFeedDetailController
+{
+    return [self hasSuperViewControllerForClass:[FeedDetailController class]];
+}
+//- (BOOL)fromFeedController
+//{
+//    return [self hasSuperViewControllerForClass:[FeedController class]];
+//}
+- (BOOL)fromOfflineGuessController
+{
+    return [self hasSuperViewControllerForClass:[OfflineGuessDrawController class]];
+}
+
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -152,12 +177,14 @@
 
     [self.wordLabel setText:answer];
     [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
-    if (self.resultType == OfflineGuess) {
-        [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
-
-    }else if(self.resultType == FeedGuess){
+    
+     if([self fromFeedDetailController]){
         self.continueButton.hidden = YES;
-    }else{
+     }
+     else if ([self fromOfflineGuessController]) 
+     {
+         [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
+     }else{
         [self startTimer];        
         [self updateContinueButton:retainCount];        
     }
@@ -267,7 +294,9 @@
 }
 
 - (IBAction)clickContinueButton:(id)sender {
-    if (self.resultType == OfflineGuess) {
+    
+    
+    if ([self fromOfflineGuessController]) {
         [self showActivityWithText:NSLS(@"kLoading")];
         [[DrawDataService defaultService] matchDraw:self];
     }else{
@@ -287,23 +316,18 @@
 }
 
 - (IBAction)clickExitButton:(id)sender {
-    if (self.resultType == OfflineGuess) {
-        [HomeController returnRoom:self];        
-    }else if(self.resultType == FeedGuess)
-    {
-        UIViewController *feedController = nil;
-        for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[FeedController class]]) {
-                feedController = controller;
-                break;
-            }
+    
+    UIViewController *viewController = [self superViewControllerForClass:[FeedDetailController class]];
+    
+    if (viewController) {
+        [self.navigationController popToViewController:viewController animated:YES];
+    }else{
+        if ([self hasSuperViewControllerForClass:[OfflineGuessDrawController class]]) {
+            [[DrawGameService defaultService] quitGame];
         }
-        [self.navigationController popToViewController:feedController animated:YES];
-    }
-    else{
-        [[DrawGameService defaultService] quitGame];
         [HomeController returnRoom:self];
     }
+    
 }
 
 - (void)saveActionList:(NSArray *)actionList

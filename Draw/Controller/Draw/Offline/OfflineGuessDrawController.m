@@ -38,6 +38,7 @@
 #import "AccountManager.h"
 #import "CoinShopController.h"
 #import "FeedController.h"
+#import "FeedDetailController.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -631,8 +632,9 @@
     }else if(dialog.tag == QUIT_DIALOG_TAG){
         
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];
-        if ([self.superController isKindOfClass:[FeedController class]]) {
-            [self.navigationController popToViewController:self.superController animated:YES];
+        UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
+        if (feedDetail) {
+            [self.navigationController popToViewController:feedDetail animated:YES];
         }else{
             [HomeController returnRoom:self];        
         }
@@ -665,11 +667,6 @@
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
         //store locally.
         [[UserManager defaultManager] guessCorrectOpus:_opusId];
-        if ([self.superController isKindOfClass:[FeedController class]]) {
-            result.resultType = FeedGuess;
-        }else{
-            result.resultType = OfflineGuess;
-        }
         [self.navigationController pushViewController:result animated:YES];
         [result release];
         

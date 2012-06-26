@@ -40,9 +40,6 @@
 {
     [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
-//    if (_playTimer && [_playTimer isValid]) {
-//        [_playTimer invalidate];
-//    }
     _playTimer = nil;
     playingActionIndex = 0;
     playingPointIndex = 0;
@@ -67,7 +64,6 @@
 
 - (void)show
 {
-//    [self playFromDrawActionIndex:[self.drawActionList count]];
     _showDraw = YES;
     [self setNeedsDisplay];
 }
@@ -158,6 +154,20 @@
     
 }
 
+- (void)performTapGuesture:(UITapGestureRecognizer *)tap
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didClickShowDrawView:)]){
+        [self.delegate didClickShowDrawView:self];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (gestureRecognizer.view == self) {
+        return YES;
+    }
+    return NO;
+}
 
 
 #pragma mark Constructor & Destructor
@@ -170,7 +180,13 @@
         self.playSpeed = DEFAULT_PLAY_SPEED;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];      
-//        pen = [[PenView alloc] initWithPenColor:[DrawColor blackColor]];
+        //add tap guesture
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTapGuesture:)];
+        tap.delegate = self;
+        [self addGestureRecognizer:tap];
+        [tap release];
+        
+        //set pen
         pen = [[PenView alloc] initWithPenType:Pencil];
         [self setShowPenHidden:NO];
         pen.hidden = YES;

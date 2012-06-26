@@ -18,6 +18,8 @@
 #import "DrawAppDelegate.h"
 #import "ShareImageManager.h"
 #import "FriendManager.h"
+#import "TimeUtils.h"
+#import "LocaleUtils.h"
 
 @interface ChatDetailCell()
 
@@ -177,9 +179,22 @@
     UIImage *bubble = [UIImage imageNamed:fromSelf ? @"sent_message.png" : @"receive_message.png"];
     [bubbleImageView setImage:[bubble stretchableImageWithLeftCapWidth:14 topCapHeight:14]];
     
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
-    timeLabel.text = [dateFormatter stringFromDate:message.createDate];
+    
+    //set time
+    NSString *timeString ;
+    if ([LocaleUtils isChinese]) {
+        timeString = chineseBeforeTime(message.createDate);
+    } else {
+        timeString = englishBeforeTime(message.createDate);
+    }
+    
+    if (timeString) {
+        self.timeLabel.text = timeString;
+    } else {
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
+        self.timeLabel.text = [dateFormatter stringFromDate:message.createDate];
+    }
     timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
     
     

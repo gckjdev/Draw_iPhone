@@ -21,7 +21,7 @@ typedef enum{
 @optional
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView;
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView AtActionIndex:(NSInteger)actionIndex pointIndex:(NSInteger)pointIndex;
-
+- (void)didClickShowDrawView:(ShowDrawView *)showDrawView;
 
 @end
 
@@ -29,7 +29,7 @@ typedef enum{
 @class DrawAction;
 @class PenView;
 
-@interface ShowDrawView : UIView
+@interface ShowDrawView : UIView<UIGestureRecognizerDelegate>
 {
     NSMutableArray *_drawActionList;
     NSTimer *_playTimer;
