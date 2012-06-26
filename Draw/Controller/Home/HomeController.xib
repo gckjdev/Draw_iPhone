@@ -802,11 +802,11 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">2</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1035273632">
 							<int key="type">1</int>
 							<double key="pointSize">12</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="559035225">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">12</double>
 							<int key="NSfFlags">16</int>
@@ -853,6 +853,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="539365989"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -873,10 +874,11 @@
 					<object class="IBUIButton" id="472996412">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{229, 410}, {25, 25}}</string>
+						<string key="NSFrame">{{229, 410}, {21, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -888,16 +890,17 @@
 						<reference key="IBUINormalTitleColor" ref="700530203"/>
 						<reference key="IBUINormalTitleShadowColor" ref="493617894"/>
 						<reference key="IBUINormalBackgroundImage" ref="231831172"/>
-						<reference key="IBUIFontDescription" ref="830635091"/>
-						<reference key="IBUIFont" ref="1034210836"/>
+						<reference key="IBUIFontDescription" ref="1035273632"/>
+						<reference key="IBUIFont" ref="559035225"/>
 					</object>
 					<object class="IBUIButton" id="100250627">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{162, 410}, {25, 25}}</string>
+						<string key="NSFrame">{{162, 410}, {21, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -909,8 +912,8 @@
 						<reference key="IBUINormalTitleColor" ref="700530203"/>
 						<reference key="IBUINormalTitleShadowColor" ref="493617894"/>
 						<reference key="IBUINormalBackgroundImage" ref="231831172"/>
-						<reference key="IBUIFontDescription" ref="830635091"/>
-						<reference key="IBUIFont" ref="1034210836"/>
+						<reference key="IBUIFontDescription" ref="1035273632"/>
+						<reference key="IBUIFont" ref="559035225"/>
 					</object>
 					<object class="IBUIButton" id="1009675856">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -919,6 +922,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
