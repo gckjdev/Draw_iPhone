@@ -23,6 +23,7 @@
 #import "RoomService.h"
 #import "WXApi.h"
 #import "DrawAppDelegate.h"
+#import "CommonUserInfoView.h"
 
 @interface MyFriendsController ()
 
@@ -272,9 +273,11 @@
                                    containsUser:friend.friendUserId])
         {
             return indexPath;            
+        } else {
+            return nil;
         }
     }
-    return nil;
+    return indexPath;
 }
 
 
@@ -282,21 +285,25 @@
 {
     Friend *friend = [self friendForIndexPath:indexPath];
     if (friend) {        
-        if ([self isFriendSelected:friend]) {
-            [self unSelectFriend:friend];
-        }else{
-            NSInteger userCount = [self.room.userList count] + [_selectedSet count];
-            NSInteger capacity = [[RoomManager defaultManager]roomFriendCapacity];
-            if (userCount >= capacity) {
-                NSString *string = [NSString stringWithFormat:NSLS(@"kInviteFull"),capacity,userCount];
-                [self popupMessage:string title:nil];
-                return;
+        if (_isInviteFriend) {
+            if ([self isFriendSelected:friend]) {
+                [self unSelectFriend:friend];
+            }else{
+                NSInteger userCount = [self.room.userList count] + [_selectedSet count];
+                NSInteger capacity = [[RoomManager defaultManager]roomFriendCapacity];
+                if (userCount >= capacity) {
+                    NSString *string = [NSString stringWithFormat:NSLS(@"kInviteFull"),capacity,userCount];
+                    [self popupMessage:string title:nil];
+                    return;
+                }
+                [_selectedSet addObject:friend];
             }
-            [_selectedSet addObject:friend];
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                             withRowAnimation:UITableViewRowAnimationFade];
+            editButton.hidden = ([_selectedSet count] == 0);
+        } else {
+            [CommonUserInfoView showUserInfoInView:self];
         }
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-                         withRowAnimation:UITableViewRowAnimationFade];
-        editButton.hidden = ([_selectedSet count] == 0);
     }
 }
 
