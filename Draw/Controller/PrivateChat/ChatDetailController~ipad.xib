@@ -137,7 +137,7 @@
 					<object class="IBUIButton" id="73250954">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{659, 15}, {100, 56}}</string>
+						<string key="NSFrame">{{658, 15}, {100, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -147,7 +147,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-						<double key="IBUIContentEdgeInsets.left">36</double>
+						<double key="IBUIContentEdgeInsets.left">32</double>
 						<double key="IBUIContentEdgeInsets.right">8</double>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<reference key="IBUIHighlightedTitleColor" ref="800337820"/>
