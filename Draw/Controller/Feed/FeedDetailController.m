@@ -47,7 +47,7 @@
 
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(660, 11, 84, 78) : CGRectMake(278, 6, 29, 28))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(435, 141, 285, 258) :CGRectMake(200, 76, 95, 100))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(400, 141, 228, 217) :CGRectMake(200, 76, 95, 100))
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -225,7 +225,13 @@
 
 - (void)updateTitle
 {
-    NSString *title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),self.feed.nickName];
+    NSString *title = nil;
+    if ([self.feed isMyOpus]) {
+        title = [NSString stringWithFormat:NSLS(@"kMyDrawing"),
+                 self.feed.drawData.word.text];        
+    }else{
+        title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),[FeedManager opusCreatorForFeed:self.feed]];
+    }
     [self.titleLabel setText:title];
     [self.commentLabel setText:NSLS(@"kFeeds")];
 }
@@ -250,6 +256,12 @@
     [self updateTitle];
     [self updateInputView:_feed];
     [self updateCommentList];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updateActionButton:_feed];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
