@@ -585,3 +585,8 @@
 
 "kGuessWords" = "Guessing: %@";
 "kMyDrawing" = "My Drawing:[%@]";
+
+"kDrawToHim" = "Draw him(her) a picture";
+"kExploreHim" = "His(Her) feed";
+"kPlayWithHim" = "Play with him(her)";
+"kChatToHim" = "Talk something";
