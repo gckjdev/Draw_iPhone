@@ -67,7 +67,7 @@
 					</object>
 					<object class="IBUIImageView" id="286849877">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">311</int>
+						<int key="NSvFlags">-2147483337</int>
 						<string key="NSFrame">{{62, 0}, {196, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -912,7 +912,7 @@
 						<reference key="IBUIFontDescription" ref="830635091"/>
 						<reference key="IBUIFont" ref="1034210836"/>
 					</object>
-					<object class="IBUIButton" id="35750965">
+					<object class="IBUIButton" id="1009675856">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{73, 251}, {25, 25}}</string>
@@ -1160,7 +1160,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">roomBadge</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="35750965"/>
+						<reference key="destination" ref="1009675856"/>
 					</object>
 					<int key="connectionID">91</int>
 				</object>
@@ -1318,7 +1318,7 @@
 							<reference ref="121819782"/>
 							<reference ref="100250627"/>
 							<reference ref="472996412"/>
-							<reference ref="35750965"/>
+							<reference ref="1009675856"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1500,7 +1500,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">90</int>
-						<reference key="object" ref="35750965"/>
+						<reference key="object" ref="1009675856"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
