@@ -43,7 +43,7 @@ static ChatMessageManager *_chatMessageManager = nil;
                               text:(NSString *)text 
                             status:(NSNumber *)status
 {
-    PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
+    //PPDebug(@"createMessageWithMessageId:%@ from:%@ to:%@ drawDataLen:%d createDate:%@ text:%@ status:%@",messageId,from,to,[drawData length], createDate, text, status);
     
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
     
