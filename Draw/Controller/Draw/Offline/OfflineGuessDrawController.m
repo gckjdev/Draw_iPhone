@@ -773,7 +773,7 @@
 
 - (void)initShowView
 {
-     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VEIW_FRAME];  
+     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
 

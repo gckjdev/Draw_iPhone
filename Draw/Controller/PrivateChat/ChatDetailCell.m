@@ -224,7 +224,7 @@
         
         //set graffitiView
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
+        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
         NSMutableArray *scaleActionList = nil;
         //PPDebug(@"%@",timeLabel.text);
         scaleActionList = [DrawAction scaleActionList:drawActionList 

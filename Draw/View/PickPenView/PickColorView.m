@@ -217,8 +217,11 @@
         [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
     }else{
         if (index > INSERT_INDEX) {
+            ColorView *newColorView = [ColorView 
+                                       colorViewWithDrawColor:lastUsedColorView.drawColor 
+                                                        scale:ColorViewScaleSmall];
             [colorViewArray removeObject:lastUsedColorView];
-            [colorViewArray insertObject:lastUsedColorView atIndex:INSERT_INDEX];
+            [colorViewArray insertObject:newColorView atIndex:INSERT_INDEX];
         }
     }
     [self updatePickColorView];    

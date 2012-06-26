@@ -24,7 +24,7 @@
 #define PATTERN_TAG_OFFSET 20120403
 #define IPAD_INFUSEVIEW_FRAME CGRectMake(31*2.4,130*2.13,259*2.4,259*2.13)
 #define IPHONE_INFUSEVIEW_FRAME CGRectMake(31,130,259,259)
-#define INFUSE_VEIW_FRAME ([DeviceDetection isIPAD] ? IPAD_INFUSEVIEW_FRAME : IPHONE_INFUSEVIEW_FRAME)
+#define INFUSE_VIEW_FRAME ([DeviceDetection isIPAD] ? IPAD_INFUSEVIEW_FRAME : IPHONE_INFUSEVIEW_FRAME)
 
 @interface ShareEditController ()
 
@@ -343,7 +343,7 @@ enum {
     }
     else{
 //        _infuseImageView = [[SynthesisView alloc] init];
-//        [self.infuseImageView setFrame:INFUSE_VEIW_FRAME];   
+//        [self.infuseImageView setFrame:INFUSE_VIEW_FRAME];   
 //        [self.infuseImageView setBackgroundColor:[UIColor clearColor]];
 //        [self.infuseImageView setDrawImage:self.myImage];
 //        if (self.patternsArray) {

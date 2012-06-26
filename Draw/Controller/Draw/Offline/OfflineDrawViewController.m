@@ -214,7 +214,7 @@ enum{
     BLACK_COLOR = 0,
     RED_COLOR = 1,  
     BLUE_COLOR,
-    ORANGE_COLOR,
+    YELLOW_COLOR,
     COLOR_COUNT
 };
 
@@ -227,8 +227,8 @@ enum{
             return [DrawColor redColor];
         case BLUE_COLOR:
             return [DrawColor blueColor];
-        case ORANGE_COLOR:
-            return [DrawColor orangeColor];
+        case YELLOW_COLOR:
+            return [DrawColor yellowColor];
         case BLACK_COLOR:
         default:
             return [DrawColor blackColor];            
@@ -260,7 +260,7 @@ enum{
 {
     
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    drawView = [[DrawView alloc] initWithFrame:DRAW_VEIW_FRAME];   
+    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     [self.view insertSubview:drawView aboveSubview:paperView];

@@ -284,7 +284,7 @@
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
 {
     ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VEIW_FRAME.size.width, scale * DRAW_VEIW_FRAME.size.height);
+    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VIEW_FRAME.size.width, scale * DRAW_VIEW_FRAME.size.height);
     NSMutableArray *scaleActionList = nil;
     if ([DeviceDetection isIPAD]) {
         scaleActionList = [DrawAction scaleActionList:drawActionList 
@@ -363,7 +363,7 @@
     }else {
         //设置涂鸦
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
-        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VEIW_FRAME.size.width;
+        CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
         ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
         CGFloat multiple = thumbImageView.frame.size.height / thumbImageView.frame.size.width;
         if (fromSelf){
@@ -584,7 +584,7 @@
 {
     UIFont *font = inputTextView.font;
     CGSize size = [inputTextView.text sizeWithFont:font constrainedToSize:CGSizeMake(INPUT_TEXT_WIDTH_MAX, INPUT_TEXT_HEIGHT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    PPDebug(@"%f %f %f", inputTextView.frame.size.height, size.height, size.width);
+    //PPDebug(@"%f %f %f", inputTextView.frame.size.height, size.height, size.width);
     CGRect oldFrame = inputTextView.frame;
     CGFloat newHeight = size.height + 12;
     CGRect oldBackgroundFrame = inputBackgroundView.frame;

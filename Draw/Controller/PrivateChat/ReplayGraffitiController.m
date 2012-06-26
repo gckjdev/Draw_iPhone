@@ -37,7 +37,7 @@
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList
 {
     ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = DRAW_VEIW_FRAME;
+    showDrawView.frame = DRAW_VIEW_FRAME;
     NSMutableArray *scaleActionList = nil;
     
     scaleActionList = [NSMutableArray arrayWithArray:drawActionList];

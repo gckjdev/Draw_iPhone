@@ -82,7 +82,7 @@
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
 {
     ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VEIW_FRAME.size.width, scale * DRAW_VEIW_FRAME.size.height);
+    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VIEW_FRAME.size.width, scale * DRAW_VIEW_FRAME.size.height);
     NSMutableArray *scaleActionList = nil;
     if ([DeviceDetection isIPAD]) {
         scaleActionList = [DrawAction scaleActionList:drawActionList 
@@ -127,7 +127,7 @@
         self.graffiti.hidden = YES;
         self.textLabel.text = [NSString stringWithFormat:@"[%@]",NSLS(@"kGraffitiMessage")] ;
 //        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:messageTotal.latestDrawData];
-//        CGFloat scale = graffiti.frame.size.height / DRAW_VEIW_FRAME.size.height;
+//        CGFloat scale = graffiti.frame.size.height / DRAW_VIEW_FRAME.size.height;
 //        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
 //        [thumbImageView show];
 //        [graffiti addSubview:thumbImageView];

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "FeedService.h"
+#import "ShowDrawView.h"
 
 @class AvatarView;
 @class Feed;
-@class ShowDrawView;
-@interface FeedDetailController : PPTableViewController<FeedServiceDelegate>
+
+@interface FeedDetailController : PPTableViewController<FeedServiceDelegate, ShowDrawViewDelegate>
 {
     Feed *_feed;
     AvatarView *_avatarView;
@@ -37,11 +38,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) Feed *feed;
 @property (retain, nonatomic) AvatarView *avatarView;
-@property (retain, nonatomic) IBOutlet ShowDrawView *drawView;
+@property (retain, nonatomic) ShowDrawView *drawView;
 
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
-@property (retain, nonatomic) IBOutlet UIButton *followButton;
-@property (retain, nonatomic) IBOutlet UIButton *replayButton;
+//@property (retain, nonatomic) IBOutlet UIButton *followButton;
+//@property (retain, nonatomic) IBOutlet UIButton *replayButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIImageView *paperImage;
 
