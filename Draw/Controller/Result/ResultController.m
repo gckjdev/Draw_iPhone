@@ -181,6 +181,7 @@
     
      if([self fromFeedDetailController]){
         self.continueButton.hidden = YES;
+         self.saveButton.frame = self.continueButton.frame;
      }
      else if ([self fromOfflineGuessController]) 
      {

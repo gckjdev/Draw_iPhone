@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11D50b</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<int key="IBDocument.SystemTarget">1280</int>
+		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1179</string>
+			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIButton</string>
@@ -154,7 +154,7 @@
 					<object class="IBUIButton" id="818560397">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{82, 846}, {202, 80}}</string>
+						<string key="NSFrame">{{42, 846}, {200, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="823235535"/>
@@ -170,6 +170,10 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="39453732">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">green_button@2x.png</string>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="363280779">
 							<int key="type">2</int>
 							<double key="pointSize">28</double>
@@ -183,7 +187,7 @@
 					<object class="IBUIButton" id="124057649">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{526, 846}, {158, 80}}</string>
+						<string key="NSFrame">{{526, 846}, {200, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -196,13 +200,14 @@
 						<reference key="IBUIHighlightedTitleColor" ref="892336532"/>
 						<reference key="IBUINormalTitleColor" ref="892336532"/>
 						<reference key="IBUINormalTitleShadowColor" ref="982591614"/>
+						<reference key="IBUINormalBackgroundImage" ref="39453732"/>
 						<reference key="IBUIFontDescription" ref="363280779"/>
 						<reference key="IBUIFont" ref="654585108"/>
 					</object>
 					<object class="IBUIButton" id="823235535">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{326, 846}, {158, 80}}</string>
+						<string key="NSFrame">{{284, 846}, {200, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="124057649"/>
@@ -215,6 +220,7 @@
 						<reference key="IBUIHighlightedTitleColor" ref="892336532"/>
 						<reference key="IBUINormalTitleColor" ref="892336532"/>
 						<reference key="IBUINormalTitleShadowColor" ref="982591614"/>
+						<reference key="IBUINormalBackgroundImage" ref="39453732"/>
 						<reference key="IBUIFontDescription" ref="363280779"/>
 						<reference key="IBUIFont" ref="654585108"/>
 					</object>
@@ -298,6 +304,7 @@
 						<reference key="IBUIShadowColor" ref="892336532"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -309,7 +316,6 @@
 							<double key="NSSize">40</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIButton" id="102047949">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -759,7 +765,7 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
+			<real value="1280" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
@@ -767,10 +773,11 @@
 			<string key="bad@2x.png">{100, 114}</string>
 			<string key="coin@2x.png">{64, 68}</string>
 			<string key="good@2x.png">{100, 114}</string>
+			<string key="green_button@2x.png">{71, 84}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="white_paper@2x.png">{480, 168}</string>
 			<string key="wood_bg@2x.png">{640, 960}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1179</string>
+		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>
