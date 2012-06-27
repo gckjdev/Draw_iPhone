@@ -179,11 +179,11 @@
     [self.messageBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.fanBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
-     [[UserService defaultService] getStatistic:self];   
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 //    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
