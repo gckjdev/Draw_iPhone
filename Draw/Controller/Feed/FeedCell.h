@@ -8,26 +8,28 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
-//#import "StableView.h"
+#import "StableView.h"
 
 
 @class Feed;
 @class ShowDrawView;
-@class AvatarView;
+
 
 @protocol FeedCellDelegate <NSObject>
 
 @optional
 - (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath;
 - (void)didClickGuessButtonOnFeed:(Feed *)feed;
-
+- (void)didClickAvatar:(NSString *)userId 
+              nickName:(NSString *)nickName 
+           atIndexPath:(NSIndexPath *)indexPath;
 
 //- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;
 //- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
-@interface FeedCell : PPTableViewCell
+@interface FeedCell : PPTableViewCell<AvatarViewDelegate>
 {
     AvatarView *_avatarView;
     ShowDrawView *_drawView;

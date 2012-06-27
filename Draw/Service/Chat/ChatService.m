@@ -126,7 +126,7 @@ static ChatService *_chatService = nil;
 - (void)sendMessage:(id<ChatServiceDelegate>)delegate
        friendUserId:(NSString *)friendUserId
                text:(NSString *)text 
-     drawActionList:(NSArray*)drawActionList; 
+     drawActionList:(NSArray*)drawActionList
 {
     NSString *userId = [[UserManager defaultManager] userId];
     

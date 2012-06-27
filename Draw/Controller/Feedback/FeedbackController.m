@@ -73,7 +73,9 @@ enum {
             break;
     }
     if ([DeviceDetection isIPAD]) {
-        [aCell.textLabel setFont:[UIFont systemFontOfSize:40]];
+        [aCell.textLabel setFont:[UIFont systemFontOfSize:32]];
+    } else {
+        [aCell.textLabel setFont:[UIFont systemFontOfSize:17]];
     }
 }
 enum {
