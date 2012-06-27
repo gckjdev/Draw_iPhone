@@ -52,7 +52,7 @@ FriendService* globalGetFriendService()
                 PPDebug(@"<FriendService> findFriends success!");
                 
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
-                if ([userList count] != 0) {
+                if ([userList count] != 0 || type == FAN) {
                     [[FriendManager defaultManager] deleteAllFriends:type];
                 }
                 
