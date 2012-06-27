@@ -15,13 +15,15 @@
 {
     NSInteger _startIndex;
     NSString *_userId;
+    NSString *_nickName;
 }
 @property (retain, nonatomic) IBOutlet UILabel *noFeedTipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property(nonatomic, assign) NSInteger startIndex;
 @property(nonatomic, retain) NSString *userId;
+@property(nonatomic, retain) NSString *nickName;
 
-- (id)initWithUserId:(NSString *)userId;
+- (id)initWithUserId:(NSString *)userId nickName:(NSString *)nickName;
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
 

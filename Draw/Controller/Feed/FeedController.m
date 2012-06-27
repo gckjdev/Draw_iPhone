@@ -17,7 +17,7 @@
 #import "FeedDetailController.h"
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
-
+#import "UserFeedController.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -356,6 +356,19 @@
 - (void)didClickDrawOneMoreButtonAtIndexPath:(NSIndexPath *)indexPath
 {
     [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
+}
+
+- (void)didClickAvatar:(NSString *)userId 
+              nickName:(NSString *)nickName 
+           atIndexPath:(NSIndexPath *)indexPath
+
+{
+    
+    //for test user feed controller
+    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
+    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
+    [self.navigationController pushViewController:userFeed animated:YES];
+    [userFeed release];
 }
 
 - (IBAction)clickRefreshButton:(id)sender {

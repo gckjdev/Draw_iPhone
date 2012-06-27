@@ -23,6 +23,7 @@
 @synthesize noFeedTipsLabel = _noFeedTipsLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize userId = _userId;
+@synthesize nickName = _nickName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,15 +47,17 @@
     PPRelease(_noFeedTipsLabel);
     PPRelease(_titleLabel);
     PPRelease(_userId);
+    PPRelease(_nickName);
     [super dealloc];
 }
 
-- (id)initWithUserId:(NSString *)userId
+- (id)initWithUserId:(NSString *)userId nickName:(NSString *)nickName
 {
     self = [super init];
     if(self)
     {
         self.userId = userId;
+        self.nickName = nickName;
         self.startIndex = 0;
     }
     return self;
@@ -70,7 +73,16 @@
     [super viewDidLoad];
     //init lable and button
     [self.noFeedTipsLabel setText:NSLS(@"kNoFeedTips")];
-    [self.titleLabel setText:NSLS(@"kUserFeedTitle")];
+    NSString *title = nil;
+    
+    if ([[UserManager defaultManager] isMe:_userId]) {
+        title = NSLS(@"kMyFeedList");
+    }else{
+        title = [NSString stringWithFormat:NSLS(@"kUserFeedTitle"), self.nickName];
+    }
+
+
+    [self.titleLabel setText:title];
     [self updateFeedList];
 }
 
@@ -151,7 +163,7 @@
 
 #pragma mark - click action
 - (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickRefreshButton:(id)sender {
