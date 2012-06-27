@@ -523,7 +523,7 @@
 "kAllFeed" = "全部";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
-
+"kMyFeedList" = "我的动态";
 
 "kDrawDescNoWord" = "画了一幅画。";
 "kGuessRightDescNoWord" = "猜对了%@的画。";
@@ -595,3 +595,5 @@
 "kExploreHim" = "TA动态";
 "kPlayWithHim" = "和TA一起玩猜猜画画";
 "kChatToHim" = "搭个讪";
+
+"kUserFeedTitle" = "%@的动态";

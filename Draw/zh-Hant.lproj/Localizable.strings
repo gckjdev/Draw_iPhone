@@ -521,6 +521,7 @@
 "kAllFeed" = "全部";
 "kHotFeed" = "熱榜";
 "kMyFeed" = "我的";
+"kMyFeedList" = "我的動態";
 
 "kDrawDescNoWord" = "畫了一幅畫";
 "kGuessRightDescNoWord" = "猜對了%@的畫";
@@ -588,3 +589,5 @@
 "kExploreHim" = "TA的動態";
 "kPlayWithHim" = "和TA一起玩猜猜畫畫";
 "kChatToHim" = "搭個訕";
+
+"kUserFeedTitle" = "%@的動態";
