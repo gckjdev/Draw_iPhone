@@ -19,6 +19,7 @@
 #import "CommonMessageCenter.h"
 #import "AnimationManager.h"
 #import "PPDebug.h"
+#import "ChatService.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
 
@@ -350,6 +351,11 @@
     }
     
     if (_chatType == GameChatTypeChatPrivate) {
+        [[ChatService defaultService] sendMessage:nil 
+                                     friendUserId:_selectedUserId 
+                                             text:message 
+                                   drawActionList:nil];
+        
         [[DrawGameService defaultService] privateChatMessage:[NSArray arrayWithObjects:_selectedUserId, nil] message:message];            
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            
