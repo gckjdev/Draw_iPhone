@@ -229,11 +229,11 @@ enum {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         if ([DeviceDetection isIPAD]) {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:36]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:32]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:32]];
         }else {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:18]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:17]];
         }
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
