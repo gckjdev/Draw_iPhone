@@ -182,6 +182,7 @@
 - (void)updateDrawView:(Feed *)feed
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
+    self.drawView.playSpeed = 1.0/20.0;
     [self.drawView setShowPenHidden:YES];
     self.drawView.delegate = self;
     [self.drawView setBackgroundColor:[UIColor whiteColor]];
@@ -376,7 +377,7 @@
         showDrawView.tag = SHOW_VIEW_TAG_NORMAL;
         [self setShowDrawView:DRAW_VIEW_FRAME animated:YES];
         _maskView.hidden = NO;
-        _maskView.backgroundColor = [UIColor blackColor];
+        _maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
         [self.view bringSubviewToFront:_maskView];
         [self.view bringSubviewToFront:self.drawView];
     }else{
