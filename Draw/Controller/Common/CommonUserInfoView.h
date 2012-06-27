@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FriendService.h"
+@class PPViewController;
 @class Friend;
 
-@interface CommonUserInfoView : UIView
+@interface CommonUserInfoView : UIView<FriendServiceDelegate>
 
 + (void)showUser:(Friend*)afriend 
       infoInView:(UIViewController*)superController;
@@ -26,5 +28,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *exploreUserFeedButton;
 @property (retain, nonatomic) IBOutlet UIButton *chatToUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *followUserButton;
+@property (retain, nonatomic) IBOutlet UILabel *statusLabel;
+@property (retain, nonatomic) Friend* targetFriend;
+@property (assign, nonatomic) PPViewController* superViewController;
 
 @end

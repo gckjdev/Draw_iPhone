@@ -28,5 +28,7 @@
 - (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 - (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
 - (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)followUser:(NSString*)targetUserId 
+      withDelegate:(UIView<FriendServiceDelegate>*)aDelegate;
 
 @end

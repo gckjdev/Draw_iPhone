@@ -32,7 +32,7 @@ FriendService* globalGetFriendService()
 }
 
 
-- (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)findFriendsByType:(int)type viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     NSString *userId = [[UserManager defaultManager] userId];
     //[viewController showActivity];
@@ -78,7 +78,7 @@ FriendService* globalGetFriendService()
 }
 
 
-- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)searchUsersByString:(NSString*)searchString viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     [viewController showActivityWithText:NSLS(@"kSearching")];
     dispatch_async(workingQueue, ^{            
@@ -106,7 +106,7 @@ FriendService* globalGetFriendService()
 }
 
 
-- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)followUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     [viewController showActivityWithText:NSLS(@"kFollowing")];
     NSString *userId = [[UserManager defaultManager] userId];
@@ -143,7 +143,7 @@ FriendService* globalGetFriendService()
 }
 
 
-- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController;
+- (void)unFollowUser:(NSString*)targetUserId viewController:(PPViewController<FriendServiceDelegate>*)viewController
 {
     [viewController showActivityWithText:NSLS(@"kUnfollowing")];
     NSString *userId = [[UserManager defaultManager] userId];
@@ -172,5 +172,41 @@ FriendService* globalGetFriendService()
         }); 
     });
 }
+
+- (void)followUser:(NSString*)targetUserId 
+      withDelegate:(UIView<FriendServiceDelegate>*)aDelegate
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    NSArray *targetList = [NSArray arrayWithObject:targetUserId];
+    
+    dispatch_async(workingQueue, ^{            
+        CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
+                                                               appId:APP_ID
+                                                              userId:userId 
+                                                   targetUserIdArray:targetList];             
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<FriendService> followUser success!");
+                NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
+                for (NSDictionary* user in userList){
+                    [[FriendManager defaultManager] createFriendByDictionary:user];
+                    
+                }
+            }else {
+                if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {
+                    PPDebug(@"<FriendService> followUser Failed: user not found");
+                }else {
+                    PPDebug(@"<FriendService> followUser Failed!");
+                }
+            }
+            
+            if (aDelegate && [aDelegate respondsToSelector:@selector(didFollowUser:)]){
+                [aDelegate didFollowUser:output.resultCode];
+            }
+        }); 
+    });
+}
+
 
 @end
