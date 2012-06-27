@@ -631,8 +631,11 @@
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else if(dialog.tag == QUIT_DIALOG_TAG){
-        
-        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];
+
+        //if have no words, don't send the action.
+        if ([_guessWords count] != 0) {
+            [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
+        }
         UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
         if (feedDetail) {
             [self.navigationController popToViewController:feedDetail animated:YES];
