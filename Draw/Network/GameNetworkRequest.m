@@ -296,9 +296,9 @@
                        deviceToken:(NSString*)deviceToken
                           nickName:(NSString*)nickName
                             gender:(NSString*)gender
+                             email:(NSString *)email
                           password:(NSString*)newPassword
                             avatar:(NSData*)avatar
-//                       newPassword:(NSString*)newPassword
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -334,6 +334,10 @@
         
         if (gender != nil && [gender length] > 0){
             str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        }
+        
+        if (email != nil && [email length] > 0){
+            str = [str stringByAddQueryParameter:PARA_EMAIL value:email];
         }
 
         return str;

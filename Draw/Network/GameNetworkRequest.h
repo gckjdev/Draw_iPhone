@@ -72,6 +72,7 @@
                        deviceToken:(NSString*)deviceToken
                           nickName:(NSString*)nickName
                             gender:(NSString*)gender
+                             email:(NSString *)email
                           password:(NSString*)newPassword
                             avatar:(NSData*)avatar;
 

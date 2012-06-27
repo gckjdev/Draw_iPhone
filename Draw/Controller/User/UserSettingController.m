@@ -22,12 +22,22 @@
 #import "MusicSettingController.h"
 #import "LevelService.h"
 #import "MyWordsController.h"
+#import "StringUtil.h"
 
 enum{
     SECTION_USER = 0,
-    SECTION_GUESSWORD = 1,
-    SECTION_SOUND = 2,
-    SECTION_COUNT = 3
+    SECTION_ACCOUNT,
+    SECTION_GUESSWORD,
+    SECTION_SOUND,
+    SECTION_COUNT
+};
+
+enum{
+    ROW_EMAIL = 0,
+    ROW_SINA_WEIBO,
+    ROW_QQ_WEIBO,
+    ROW_FACEBOOK,
+    ROW_ACCOUNT_COUNT
 };
 
 enum {
@@ -38,6 +48,7 @@ enum {
 
 #define DIALOG_TAG_NICKNAME 201204071
 #define DIALOG_TAG_PASSWORD 201204072
+#define DIALOG_TAG_EMAIL    201206271
 
 @implementation UserSettingController
 @synthesize expAndLevelLabel;
@@ -48,8 +59,10 @@ enum {
 @synthesize nicknameLabel;
 @synthesize updatePassword = _updatePassword;
 @synthesize gender = _gender;
+@synthesize tempEmail = _tempEmail;
 
 - (void)dealloc {
+    PPRelease(_tempEmail);
     PPRelease(titleLabel);
     PPRelease(tableViewBG);
     PPRelease(avatarButton);
@@ -88,6 +101,8 @@ enum {
     rowOfVolumeSetting = 2;
     //rowOfChatVoice = 3;
     rowsInSectionSound = 3;
+    
+    rowsInSectionAccount = ROW_ACCOUNT_COUNT;
 }
 
 - (void)updateAvatar:(UIImage *)image
@@ -99,6 +114,16 @@ enum {
 {
     [self.nicknameLabel setText:nick];
 }
+
+- (void)askInputEmail:(NSString*)text
+{
+    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kInputEmail") delegate:self];
+    dialog.tag = DIALOG_TAG_EMAIL;
+    [dialog setTargetText:text];
+    [dialog.targetTextField setPlaceholder:NSLS(@"kInputEmail")];
+    [dialog showInView:self.view];                    
+}
+
 
 - (void)updateInfoFromUserManager
 {
@@ -125,7 +150,7 @@ enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        _userManager = [UserManager defaultManager];
     }
     return self;
 }
@@ -145,7 +170,9 @@ enum {
 {
     [super viewDidLoad];
 
+    
     userManager = [UserManager defaultManager];
+    self.tempEmail = [userManager email];
     isSoundOn = [AudioManager defaultManager].isSoundOn;
 
 
@@ -197,7 +224,10 @@ enum {
         return rowsInSectionGuessWord;
     } else if (section == SECTION_SOUND) {
         return rowsInSectionSound;
-    } else {
+    } else if (section == SECTION_ACCOUNT){
+        return rowsInSectionAccount;
+    }
+    else{
         return 0;
     }
 }
@@ -228,12 +258,13 @@ enum {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
+        int fontSize = 15;
         if ([DeviceDetection isIPAD]) {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:36]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
         }else {
-            [cell.textLabel setFont:[UIFont systemFontOfSize:18]];
-            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:18]];
+            [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize]];
         }
         [cell.textLabel setTextColor:[UIColor brownColor]];
         
@@ -262,6 +293,8 @@ enum {
     UISlider* slider = (UISlider*)[cell viewWithTag:SLIDER_TAG];
     [slider setHidden:YES];
     
+    cell.textLabel.text = @"";
+    cell.detailTextLabel.text = @"";
     
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
@@ -356,6 +389,61 @@ enum {
 //            }
 //            [cell.detailTextLabel setHidden:NO];
 //        }
+    }
+    else if (section == SECTION_ACCOUNT){
+                        
+        [cell.detailTextLabel setHidden:NO];
+        switch (row) {
+            case ROW_EMAIL:
+            {
+                [cell.textLabel setText:NSLS(@"kSetEmail")];
+                if ([_tempEmail length] > 0){
+                    [cell.detailTextLabel setText:_tempEmail];
+                }
+                else{
+                    [cell.detailTextLabel setText:NSLS(@"kEmailNotSet")];
+                }
+            }
+                break;
+            case ROW_SINA_WEIBO:
+            {
+                [cell.textLabel setText:NSLS(@"kSetSinaWeibo")];
+                if ([_userManager hasBindSinaWeibo]){
+                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                }
+                else{
+                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                }                
+            }
+                break;
+                
+            case ROW_QQ_WEIBO:
+            {
+                [cell.textLabel setText:NSLS(@"kSetQQWeibo")];
+                if ([_userManager hasBindQQWeibo]){
+                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                }
+                else{
+                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                }                
+            }
+                break;
+                
+            case ROW_FACEBOOK:
+            {
+                [cell.textLabel setText:NSLS(@"kSetFacebook")];
+                if ([_userManager hasBindFacebook]){
+                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                }
+                else{
+                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                }                
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
     
     return cell;
@@ -460,6 +548,36 @@ enum {
 //            [selectChatVoiceSheet release];
 //        }
     }
+    else if (section == SECTION_ACCOUNT){
+        
+        switch (row) {
+            case ROW_EMAIL:
+            {
+                [self askInputEmail:_tempEmail];
+            }
+                break;
+            case ROW_SINA_WEIBO:
+            {
+                if ([_userManager hasBindSinaWeibo]){
+                    
+                }
+            }
+                break;
+                
+            case ROW_QQ_WEIBO:
+            {
+            }
+                break;
+                
+            case ROW_FACEBOOK:
+            {
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -513,7 +631,13 @@ enum {
     }
     if (hasEdited) {
         UIImage *image = avatarChanged ?  imageView.image : nil;
-        [[UserService defaultService] updateUserAvatar:image nickName:nicknameLabel.text gender:self.gender password:self.updatePassword viewController:self];        
+        [[UserService defaultService] updateUserAvatar:image 
+                                              nickName:nicknameLabel.text 
+                                                gender:self.gender 
+                                              password:self.updatePassword          
+                                                 email:_tempEmail
+                                        viewController:self];               
+        
     }else if(!localChanged){
         [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
     }
@@ -562,13 +686,24 @@ enum {
 {
     if (dialog.tag == DIALOG_TAG_NICKNAME) {
         [self updateNickname:targetText];
-        [self.dataTableView reloadData];
-    }else if(dialog.tag == DIALOG_TAG_PASSWORD)
+        hasEdited = YES;
+    }
+    else if(dialog.tag == DIALOG_TAG_PASSWORD)
     {
         self.updatePassword = [targetText encodeMD5Base64:PASSWORD_KEY];        
-        NSLog(@"password = %@", self.updatePassword);
+        hasEdited = YES;
     }
-    hasEdited = YES;
+    else if (dialog.tag == DIALOG_TAG_EMAIL){
+        if (NSStringIsValidEmail(targetText)){
+            self.tempEmail = targetText;            
+            hasEdited = YES;
+        }
+        else{
+            [self popupMessage:NSLS(@"kEmailNotValid") title:@""];
+            [self askInputEmail:targetText];
+        }
+    }
+    
     [self.dataTableView reloadData];
 
 }

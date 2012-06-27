@@ -38,6 +38,7 @@
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;
     NSInteger rowsInSectionSound;
+    NSInteger rowsInSectionAccount;
     
     HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
@@ -53,6 +54,7 @@
     //ChatVoiceEnable chatVoice;
 //    LevelType
     
+    UserManager *_userManager;
 }
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
@@ -65,5 +67,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (retain, nonatomic) NSString *updatePassword;
 @property (retain, nonatomic) NSString* gender;
+@property (retain, nonatomic) NSString* tempEmail;
+
 - (void)updateRowIndexs;
 @end

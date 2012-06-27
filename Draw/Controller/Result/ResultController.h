@@ -63,6 +63,6 @@
           isMyPaint:(BOOL)isMyPaint 
      drawActionList:(NSArray *)drawActionList;
 
-- (void)saveActionList:(NSArray *)actionList;
+//- (void)saveActionList:(NSArray *)actionList;
 //- (void)didFinishAPaint:(NSArray *)drawAction;
 @end

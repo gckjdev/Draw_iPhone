@@ -266,6 +266,16 @@ static UserManager* _defaultManager;
     
 }
 
+- (void)setEmail:(NSString *)email
+{
+    if (email == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:email forKey:KEY_EMAIL];    
+    [userDefaults synchronize];    
+}
+
 - (void)setDeviceToken:(NSString*)deviceToken
 {
     if (deviceToken == nil)

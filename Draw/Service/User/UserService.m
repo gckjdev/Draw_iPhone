@@ -231,6 +231,7 @@ static UserService* _defaultUserService;
                 nickName:(NSString*)nickName 
                   gender:(NSString*)gender
                 password:(NSString*)pwd
+                   email:(NSString*)email
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     // save data locally firstly
@@ -238,6 +239,7 @@ static UserService* _defaultUserService;
     [[UserManager defaultManager] setGender:gender];
     [[UserManager defaultManager] setPassword:pwd];
     [[UserManager defaultManager] saveAvatarLocally:avatarImage];
+    [[UserManager defaultManager] setEmail:email];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -253,6 +255,7 @@ static UserService* _defaultUserService;
                                                          deviceToken:deviceToken 
                                                             nickName:nickName 
                                                               gender:gender
+                                                               email:email
                                                             password:password 
                                                               avatar:[avatarImage data]];
                 
@@ -286,8 +289,9 @@ static UserService* _defaultUserService;
 {
     [self updateUserAvatar:avatarImage 
                   nickName:nickName 
-                    gender:gender 
+                    gender:gender      
                   password:nil 
+                     email:nil
             viewController:viewController];
 }
 

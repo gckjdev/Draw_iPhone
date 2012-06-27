@@ -45,6 +45,7 @@
                 nickName:(NSString*)nickName 
                   gender:(NSString*)gender
                 password:(NSString*)password
+                   email:(NSString*)email
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 - (void)feedback:(NSString*)feedback 

@@ -539,7 +539,7 @@
 
 "kNoGuess" = "没有人猜";
 
-"kGuessStat" = "(%d人猜过,%d人猜中)";
+"kGuessStat" = "%d人猜过，%d人猜中";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
 
@@ -595,3 +595,13 @@
 "kExploreHim" = "TA动态";
 "kPlayWithHim" = "和TA一起玩猜猜画画";
 "kChatToHim" = "搭个讪";
+
+// For Weibo Settings
+"kSetEmail" = "电子邮件";
+"kEmailNotSet" = "";
+"kSetSinaWeibo" = "新浪微博";
+"kWeiboSet" = "已绑定";
+"kNotSet" = "未绑定";
+"kSetQQWeibo" = "腾讯微博";
+"kSetFacebook" = "Facebook";
+"kInputEmail" = "请输入电子邮件地址";
