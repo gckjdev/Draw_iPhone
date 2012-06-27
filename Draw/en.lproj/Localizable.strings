@@ -603,3 +603,5 @@
 "kSetQQWeibo" = "腾讯微博";
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "Enter Email Address";
+"kUserBindSucc" = "Update user successfully.";
+"kUserBindFail" = "Fail to update user information. Please try later.";

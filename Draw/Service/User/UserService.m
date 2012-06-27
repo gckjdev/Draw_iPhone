@@ -126,6 +126,126 @@ static UserService* _defaultUserService;
     return -1;
 }
 
+- (void)updateUserWithSNSUserInfo:(NSString*)userId
+                         userInfo:(NSDictionary*)userInfo 
+                   viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    NSString* appId = APP_ID;
+    NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
+    int loginIdType = [self getRegisterType:userInfo];
+    
+    NSString* nickName = [userInfo objectForKey:SNS_NICK_NAME];
+    NSString* gender = [userInfo objectForKey:SNS_GENDER];
+    NSString* avatar = [userInfo objectForKey:SNS_USER_IMAGE_URL];
+    NSString* location = [userInfo objectForKey:SNS_LOCATION];
+    NSString* sinaId = nil;
+    NSString* qqId = nil;
+    NSString* facebookId = nil;
+    NSString* qqNickName = nil;
+    NSString* sinaNickName = nil;
+    NSString* qqToken = nil;
+    NSString* qqTokenSecret = nil;
+    
+    switch (loginIdType) {
+        case REGISTER_TYPE_SINA:
+            sinaId = loginId;
+            sinaNickName = nickName;
+            break;
+        
+        case REGISTER_TYPE_QQ:
+            qqId = loginId;
+            qqNickName = nickName;
+            qqToken = [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            qqTokenSecret = [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
+            break;
+            
+        case REGISTER_TYPE_FACEBOOK:
+            facebookId = loginId;
+            break;
+            
+        default:
+            break;
+    }
+    
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];    
+    dispatch_async(workingQueue, ^{            
+        
+        CommonNetworkOutput* output = 
+        [GameNetworkRequest updateUser:SERVER_URL appId:appId userId:userId deviceId:nil deviceToken:nil nickName:nickName gender:gender password:nil avatar:avatar location:location sinaId:sinaId sinaNickName:sinaNickName sinaToken:nil sinaSecret:nil qqId:qqId qqNickName:qqNickName qqToken:qqToken qqTokenSecret:qqTokenSecret facebookId:facebookId email:nil];                
+        
+//        [GameNetworkRequest registerUserBySNS:SERVER_URL
+//                                        snsId:loginId
+//                                 registerType:loginIdType
+//                                        appId:appId
+//                                  deviceToken:deviceToken
+//                                     nickName:[userInfo objectForKey:SNS_NICK_NAME]
+//                                       avatar:[userInfo objectForKey:SNS_USER_IMAGE_URL]
+//                                  accessToken:[userInfo objectForKey:SNS_OAUTH_TOKEN]
+//                            accessTokenSecret:[userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET]
+//                                     province:[[userInfo objectForKey:SNS_PROVINCE] intValue]
+//                                         city:[[userInfo objectForKey:SNS_CITY] intValue]
+//                                     location:[userInfo objectForKey:SNS_LOCATION]
+//                                       gender:[userInfo objectForKey:SNS_GENDER]
+//                                     birthday:[userInfo objectForKey:SNS_BIRTHDAY]
+//                                       domain:[userInfo objectForKey:SNS_DOMAIN]
+//                                     deviceId:deviceId];                
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                // save user data locally
+                if (loginIdType == REGISTER_TYPE_SINA){
+                    [[UserManager defaultManager] saveUserId:userId
+                                                      sinaId:loginId
+                                                    password:nil 
+                                                    nickName:nickName
+                                                   avatarURL:avatar
+                                             sinaAccessToken:nil
+                                       sinaAccessTokenSecret:nil
+                                                      gender:gender];
+                }
+                else if (loginIdType == REGISTER_TYPE_QQ) {  
+                    [[UserManager defaultManager] saveUserId:userId
+                                                        qqId:loginId
+                                                    password:nil 
+                                                    nickName:nickName
+                                                   avatarURL:avatar
+                                               qqAccessToken:qqToken
+                                         qqAccessTokenSecret:qqTokenSecret
+                                                      gender:gender];                    
+                }   
+                else if (loginIdType == REGISTER_TYPE_FACEBOOK) {  
+                    [[UserManager defaultManager] saveUserId:userId
+                                                  facebookId:loginId
+                                                    password:nil 
+                                                    nickName:nickName
+                                                   avatarURL:avatar
+                                                      gender:gender];                    
+                }   
+                
+                // set location
+                [[UserManager defaultManager] setLocation:location];                                
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else {
+                // @"对不起，注册失败，请稍候再试"
+                [viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                [viewController didUserRegistered:output.resultCode];                    
+            }
+        }); 
+    });
+    
+}
+
+
 - (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
                      viewController:(PPViewController<UserServiceDelegate>*)viewController
 {

@@ -23,6 +23,10 @@
 #import "LevelService.h"
 #import "MyWordsController.h"
 #import "StringUtil.h"
+#import "SinaSNSService.h"
+#import "QQWeiboService.h"
+#import "FacebookSNSService.h"
+#import "GameNetworkConstants.h"
 
 enum{
     SECTION_USER = 0,
@@ -409,7 +413,12 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetSinaWeibo")];
                 if ([_userManager hasBindSinaWeibo]){
-                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    if ([[SinaSNSService defaultService] isAuthorizeExpired]){
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                    }
+                    else{
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    }
                 }
                 else{
                     [cell.detailTextLabel setText:NSLS(@"kNotSet")];
@@ -558,19 +567,37 @@ enum {
                 break;
             case ROW_SINA_WEIBO:
             {
-                if ([_userManager hasBindSinaWeibo]){
-                    
+                if ([_userManager hasBindSinaWeibo] == NO || [[SinaSNSService defaultService] isAuthorizeExpired]){
+                    _currentLoginType = REGISTER_TYPE_SINA;
+                    [[SinaSNSService defaultService] startLogin:self];                                        
                 }
             }
                 break;
                 
             case ROW_QQ_WEIBO:
             {
+                if ([_userManager hasBindQQWeibo]){
+                    
+                }
+                else{
+                    self.navigationController.navigationBarHidden = NO;
+                    self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
+                    
+                    _currentLoginType = REGISTER_TYPE_QQ;
+                    [[QQWeiboService defaultService] startLogin:self];                    
+                }
             }
                 break;
                 
             case ROW_FACEBOOK:
             {
+                if ([_userManager hasBindFacebook]){
+                    
+                }
+                else{
+                    _currentLoginType = REGISTER_TYPE_FACEBOOK;
+                    [[FacebookSNSService defaultService] startLogin:self];                    
+                }
             }
                 break;
                 
@@ -580,6 +607,31 @@ enum {
     }    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - SNS Delegate
+
+- (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
+{        
+    if (result == 0){
+        [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+    }
+
+    self.navigationController.navigationBarHidden = YES;        
+}
+
+- (void)didUserRegistered:(int)resultCode
+{
+    if (resultCode == 0){
+        [self popupMessage:NSLS(@"kUserBindSucc") title:nil];
+    }
+    else{
+        [self popupMessage:NSLS(@"kUserBindFail") title:nil];
+    }
+    
+    self.navigationController.navigationBarHidden = YES;    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

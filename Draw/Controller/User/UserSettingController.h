@@ -55,6 +55,7 @@
 //    LevelType
     
     UserManager *_userManager;
+    int _currentLoginType;
 }
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;

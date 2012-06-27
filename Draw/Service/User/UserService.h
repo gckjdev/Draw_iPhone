@@ -64,7 +64,12 @@
      viewController:(PPViewController<UserServiceDelegate>*)viewController;
 //- (void)checkDevice;
 - (void)updateAllUserInfo;
+- (void)updateUserWithSNSUserInfo:(NSString*)userId
+                         userInfo:(NSDictionary*)userInfo 
+                   viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
+
+
 
 @end

@@ -201,10 +201,10 @@
 - (IBAction)clickSinaLogin:(id)sender
 {
     [self.view endEditing:YES];
-    _currentLoginType = REGISTER_TYPE_SINA;
     
 //    self.navigationController.navigationBarHidden = NO;
 //    self.navigationController.navigationItem.title = NSLS(@"微博授权");
+    _currentLoginType = REGISTER_TYPE_SINA;
     [[SinaSNSService defaultService] startLogin:self];
 }
 

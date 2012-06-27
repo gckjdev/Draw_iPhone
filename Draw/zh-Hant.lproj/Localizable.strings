@@ -595,3 +595,14 @@
 
 "kUserFeedTitle" = "%@的動態";
 
+// For Weibo Settings
+"kSetEmail" = "電子郵件";
+"kEmailNotSet" = "";
+"kSetSinaWeibo" = "新浪微博";
+"kWeiboSet" = "已綁定";
+"kNotSet" = "未綁定";
+"kSetQQWeibo" = "騰訊微博";
+"kSetFacebook" = "Facebook";
+"kInputEmail" = "請輸入電子郵件地址";
+"kUserBindSucc" = "成功綁定了用​​戶帳號";
+"kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";

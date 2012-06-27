@@ -359,7 +359,8 @@ static UserManager* _defaultManager;
 
     BOOL found = NO;
     int index = 0;
-    for (PBSNSUser* user in newData){
+    for (NSData* data in newData){
+        PBSNSUser* user = [PBSNSUser parseFromData:data];
         if ([user type] == type){
             found = YES;            
             break;
