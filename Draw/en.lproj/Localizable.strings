@@ -516,7 +516,7 @@
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
 
-
+"kMyFeedList" = "My Feed";
 
 "kDrawDesc" = "Drawed a drawing: [%@].";
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
@@ -590,6 +590,10 @@
 "kExploreHim" = "His(Her) feed";
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Talk something";
+
+"kFM" = "Someone has just followed you";
+
+"kUserFeedTitle" = "%@'s Feed";
 
 "kSetEmail" = "Email";
 "kEmailNotSet" = "";

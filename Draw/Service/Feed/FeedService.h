@@ -16,6 +16,11 @@
           feedListType:(FeedListType)type 
             resultCode:(NSInteger)resultCode;
 
+- (void)didGetFeedList:(NSArray *)feedList 
+          targetUser:(NSString *)userId
+            resultCode:(NSInteger)resultCode;
+
+
 - (void)didGetFeedCommentList:(NSArray *)feedList 
                        opusId:(NSString *)opusId 
                    resultCode:(NSInteger)resultCode;
@@ -33,6 +38,12 @@
 }
 
 + (FeedService *)defaultService;
+
+- (void)getUserFeedList:(NSString *)userId
+             offset:(NSInteger)offset 
+              limit:(NSInteger)limit 
+           delegate:(id<FeedServiceDelegate>)delegate;
+
 
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 

@@ -13,6 +13,8 @@
 #import "Friend.h"
 #import "StableView.h"
 #import "DeviceDetection.h"
+#import "FriendManager.h"
+#import "CommonMessageCenter.h"
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
@@ -30,6 +32,9 @@
 @synthesize exploreUserFeedButton;
 @synthesize chatToUserButton;
 @synthesize followUserButton;
+@synthesize statusLabel;
+@synthesize targetFriend = _targetFriend;
+@synthesize superViewController = _superViewController;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -78,6 +83,7 @@
 - (void)initViewWithFriend:(Friend*)aFriend
 {
     [self initView];
+    self.targetFriend = aFriend;
     [self.userName setText:aFriend.nickName];
     [self.locationLabel setText:aFriend.location];
     
@@ -100,6 +106,24 @@
     
     [self initAvatar:aFriend];
     
+    //set followbutton or statusLabel
+    [self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+    [self.followUserButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
+    if ([[[UserManager defaultManager] userId] isEqualToString:aFriend.friendUserId]){
+        statusLabel.hidden = NO;
+        self.followUserButton.hidden = YES;
+        statusLabel.text = NSLS(@"kMyself");
+    }else if ([[FriendManager defaultManager] isFollowFriend:aFriend.friendUserId]) {
+        statusLabel.hidden = NO;
+        self.followUserButton.hidden = YES;
+        statusLabel.text = NSLS(@"kAlreadyBeFriend");
+    }
+    else {
+        statusLabel.hidden = YES;
+        self.followUserButton.hidden = NO; 
+    }
+
+    
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -118,10 +142,11 @@
 }
 
 + (void)showUser:(Friend*)afriend 
-      infoInView:(UIViewController*)superController
+      infoInView:(PPViewController<FriendServiceDelegate>*)superController
 {
     CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
     [view initViewWithFriend:afriend];
+    view.superViewController = superController;
     [superController.view addSubview:view];
 }
 
@@ -147,6 +172,43 @@
     [self startRunOutAnimation];
 }
 
+- (IBAction)clickFollowButton:(id)sender
+{
+    [[FriendService defaultService] followUser:self.targetFriend.friendUserId withDelegate:self];
+    [self.superViewController showActivityWithText:NSLS(@"kFollowing")];
+}
+
+- (void)didFollowUser:(int)resultCode
+{
+    [self.superViewController hideActivity];
+    if (resultCode) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowFailed")
+                                                       delayTime:1.5 
+                                                         isHappy:NO];        
+    } else {        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSuccessfully")
+                                                       delayTime:1.5 
+                                                         isHappy:YES];
+        [self.followUserButton setHidden:YES];
+        [self.statusLabel setText:NSLS(@"kAlreadyBeFriend")];
+    }
+}
+
+- (IBAction)drawToHim:(id)sender
+{
+    
+}
+
+- (IBAction)talkToHim:(id)sender
+{
+    
+}
+
+- (IBAction)seeHisFeed:(id)sender
+{
+    
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -170,6 +232,7 @@
     [exploreUserFeedButton release];
     [chatToUserButton release];
     [followUserButton release];
+    [statusLabel release];
     [super dealloc];
 }
 @end

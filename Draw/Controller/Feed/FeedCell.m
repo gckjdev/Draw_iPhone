@@ -12,7 +12,6 @@
 #import "Draw.h"
 #import "UserManager.h"
 #import "ShareImageManager.h"
-#import "StableView.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
 #import "FeedManager.h"
@@ -144,7 +143,10 @@
 {
     //avatar
     [self.avatarView removeFromSuperview];
+    [self.avatarView setDelegate:nil];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
+    self.avatarView.userId = feed.userId;
+    self.avatarView.delegate = self;
     [self addSubview:self.avatarView];
     
     //name
@@ -229,6 +231,16 @@
         }
     }
 }
+
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    if (delegate && [delegate respondsToSelector:@selector(didClickAvatar:nickName: atIndexPath:)]) {
+        [delegate didClickAvatar:self.feed.userId 
+                        nickName:self.feed.nickName 
+                     atIndexPath:self.indexPath];
+    }
+}
+
 
 - (void)dealloc {
     [timeLabel release];

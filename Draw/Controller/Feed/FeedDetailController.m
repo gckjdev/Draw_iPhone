@@ -158,7 +158,7 @@
     CGRect normalFrame = DRAW_VIEW_FRAME; 
     if (animated) {
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1];
+        [UIView setAnimationDuration:0.5];
         [self.drawView setFrame:frame];
         if (self.drawView.tag == SHOW_VIEW_TAG_NORMAL) {
             self.drawView.center = self.view.center;
@@ -384,7 +384,7 @@
         _maskView.hidden = YES;
         _maskView.backgroundColor = [UIColor clearColor];
         showDrawView.tag = SHOW_VIEW_TAG_SMALL;        
-        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
+        [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:YES];
     }
 }
 
