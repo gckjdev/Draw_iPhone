@@ -244,11 +244,11 @@
 "kCreating_gif" = "正在生成GIF动画文件中... 文件可能比较大，请耐心等待";
 
 
-"kShareOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画美图分享# http://caicaihuahua.me";
-"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://caicaihuahua.me";
+"kShareOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMeText" = "我在玩@猜猜画画手机版，快来围观我画了什么吧！画的词是［%@］，看来我画工还不错！#猜猜画画美图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
-"kShareGIFOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://caicaihuahua.me";
-"kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://caicaihuahua.me";
+"kShareGIFOtherText" = "我在玩@猜猜画画手机版，对手真油菜花！TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareSend" = "发送微博";
 
@@ -611,3 +611,8 @@
 "kUserBindSucc" = "成功绑定了用户帐号";
 "kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
 "kWeiboExpired" = "微博授权已过期";
+"kSaveAndShare" = "保存&分享";
+
+"kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
+"kRebindSina" = "你已经绑定了新浪微博了，是否要重新尝试绑定？";
+"kRebindFacebook" = "你已经绑定了Facebook了，是否要重新尝试绑定？";

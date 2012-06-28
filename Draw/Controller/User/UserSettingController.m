@@ -50,9 +50,12 @@ enum {
 };
 
 
-#define DIALOG_TAG_NICKNAME 201204071
-#define DIALOG_TAG_PASSWORD 201204072
-#define DIALOG_TAG_EMAIL    201206271
+#define DIALOG_TAG_NICKNAME         201204071
+#define DIALOG_TAG_PASSWORD         201204072
+#define DIALOG_TAG_EMAIL            201206271
+#define DIALOG_TAG_REBIND_QQ        201206281
+#define DIALOG_TAG_REBIND_SINA      201206282
+#define DIALOG_TAG_REBIND_FACEBOOK  201206283
 
 @implementation UserSettingController
 @synthesize expAndLevelLabel;
@@ -195,6 +198,12 @@ enum {
     [self.expAndLevelLabel setText:[NSString stringWithFormat:NSLS(@"kLevelInfo"), svc.level, svc.experience, svc.expRequiredForNextLevel]];
     
     [dataTableView setBackgroundView:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -568,8 +577,10 @@ enum {
             case ROW_SINA_WEIBO:
             {
                 if ([_userManager hasBindSinaWeibo] == NO || [[SinaSNSService defaultService] isAuthorizeExpired]){
-                    _currentLoginType = REGISTER_TYPE_SINA;
-                    [[SinaSNSService defaultService] startLogin:self];                                        
+                    [self bindSina];
+                }
+                else{
+                    [self askRebindSina];                                        
                 }
             }
                 break;
@@ -577,14 +588,10 @@ enum {
             case ROW_QQ_WEIBO:
             {
                 if ([_userManager hasBindQQWeibo]){
-                    
+                    [self askRebindQQ];                    
                 }
                 else{
-                    self.navigationController.navigationBarHidden = NO;
-                    self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
-                    
-                    _currentLoginType = REGISTER_TYPE_QQ;
-                    [[QQWeiboService defaultService] startLogin:self];                    
+                    [self bindQQ];                    
                 }
             }
                 break;
@@ -592,11 +599,10 @@ enum {
             case ROW_FACEBOOK:
             {
                 if ([_userManager hasBindFacebook]){
-                    
+                    [self askRebindFacebook];
                 }
                 else{
-                    _currentLoginType = REGISTER_TYPE_FACEBOOK;
-                    [[FacebookSNSService defaultService] startLogin:self];                    
+                    [self bindFacebook];
                 }
             }
                 break;
@@ -633,6 +639,50 @@ enum {
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
+
+- (void)bindQQ
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationItem.title = NSLS(@"微博授权");                    
+    
+    _currentLoginType = REGISTER_TYPE_QQ;
+    [[QQWeiboService defaultService] startLogin:self];                        
+}
+
+- (void)bindSina
+{    
+    _currentLoginType = REGISTER_TYPE_SINA;
+    [[SinaSNSService defaultService] startLogin:self];                                            
+}
+
+- (void)bindFacebook
+{
+    _currentLoginType = REGISTER_TYPE_FACEBOOK;
+    [[FacebookSNSService defaultService] startLogin:self];                        
+}
+
+- (void)askRebindQQ
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = DIALOG_TAG_REBIND_QQ;
+    [dialog showInView:self.view];
+}
+
+- (void)askRebindSina
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = DIALOG_TAG_REBIND_SINA;
+    [dialog showInView:self.view];    
+}
+
+- (void)askRebindFacebook
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:self];
+    dialog.tag = DIALOG_TAG_REBIND_FACEBOOK;
+    [dialog showInView:self.view];    
+}
+
+#pragma mark - SNS End
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -716,7 +766,23 @@ enum {
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-//    [dialog removeFromSuperview];
+    switch (dialog.tag) {
+        case DIALOG_TAG_REBIND_FACEBOOK:
+            [self bindFacebook];
+            return;
+
+        case DIALOG_TAG_REBIND_QQ:
+            [self bindQQ];
+            return;
+            
+        case DIALOG_TAG_REBIND_SINA:
+            [self bindSina];
+            return;
+            
+        default:
+            break;
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)clickBack:(CommonDialog *)dialog

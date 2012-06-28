@@ -185,6 +185,7 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [[FeedManager defaultManager] cleanData];
 }
 
 

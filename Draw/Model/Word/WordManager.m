@@ -335,7 +335,6 @@ WordManager *GlobalGetWordManager()
     if (text == nil) {
         return nil;
     }
-    PPDebug(@"<changeToTraditionalChinese>: before text = %@", text);    
     
     NSString *ret = @"";
     for (int i = 0; i < text.length; ++ i) {
@@ -343,7 +342,6 @@ WordManager *GlobalGetWordManager()
         sub = TSLS(sub);
         ret = [NSString stringWithFormat:@"%@%@",ret,sub];
     }
-    PPDebug(@"<changeToTraditionalChinese>: after text = %@", text);
     return ret;
 }
 

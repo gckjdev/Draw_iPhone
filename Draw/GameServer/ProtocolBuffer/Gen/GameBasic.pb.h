@@ -30,16 +30,24 @@
   BOOL hasType_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
+  BOOL hasAccessToken_:1;
+  BOOL hasAccessTokenSecret_:1;
   int32_t type;
   NSString* userId;
   NSString* nickName;
+  NSString* accessToken;
+  NSString* accessTokenSecret;
 }
 - (BOOL) hasType;
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
+- (BOOL) hasAccessToken;
+- (BOOL) hasAccessTokenSecret;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* accessToken;
+@property (readonly, retain) NSString* accessTokenSecret;
 
 + (PBSNSUser*) defaultInstance;
 - (PBSNSUser*) defaultInstance;
@@ -89,6 +97,16 @@
 - (NSString*) nickName;
 - (PBSNSUser_Builder*) setNickName:(NSString*) value;
 - (PBSNSUser_Builder*) clearNickName;
+
+- (BOOL) hasAccessToken;
+- (NSString*) accessToken;
+- (PBSNSUser_Builder*) setAccessToken:(NSString*) value;
+- (PBSNSUser_Builder*) clearAccessToken;
+
+- (BOOL) hasAccessTokenSecret;
+- (NSString*) accessTokenSecret;
+- (PBSNSUser_Builder*) setAccessTokenSecret:(NSString*) value;
+- (PBSNSUser_Builder*) clearAccessTokenSecret;
 @end
 
 @interface PBGameUser : PBGeneratedMessage {

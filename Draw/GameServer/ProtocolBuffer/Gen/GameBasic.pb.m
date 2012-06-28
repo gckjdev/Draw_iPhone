@@ -23,6 +23,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t type;
 @property (retain) NSString* userId;
 @property (retain) NSString* nickName;
+@property (retain) NSString* accessToken;
+@property (retain) NSString* accessTokenSecret;
 @end
 
 @implementation PBSNSUser
@@ -48,9 +50,25 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasNickName_ = !!value;
 }
 @synthesize nickName;
+- (BOOL) hasAccessToken {
+  return !!hasAccessToken_;
+}
+- (void) setHasAccessToken:(BOOL) value {
+  hasAccessToken_ = !!value;
+}
+@synthesize accessToken;
+- (BOOL) hasAccessTokenSecret {
+  return !!hasAccessTokenSecret_;
+}
+- (void) setHasAccessTokenSecret:(BOOL) value {
+  hasAccessTokenSecret_ = !!value;
+}
+@synthesize accessTokenSecret;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
+  self.accessToken = nil;
+  self.accessTokenSecret = nil;
   [super dealloc];
 }
 - (id) init {
@@ -58,6 +76,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.type = 0;
     self.userId = @"";
     self.nickName = @"";
+    self.accessToken = @"";
+    self.accessTokenSecret = @"";
   }
   return self;
 }
@@ -95,6 +115,12 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   if (self.hasNickName) {
     [output writeString:3 value:self.nickName];
   }
+  if (self.hasAccessToken) {
+    [output writeString:4 value:self.accessToken];
+  }
+  if (self.hasAccessTokenSecret) {
+    [output writeString:5 value:self.accessTokenSecret];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -112,6 +138,12 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   }
   if (self.hasNickName) {
     size += computeStringSize(3, self.nickName);
+  }
+  if (self.hasAccessToken) {
+    size += computeStringSize(4, self.accessToken);
+  }
+  if (self.hasAccessTokenSecret) {
+    size += computeStringSize(5, self.accessTokenSecret);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -197,6 +229,12 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
+  if (other.hasAccessToken) {
+    [self setAccessToken:other.accessToken];
+  }
+  if (other.hasAccessTokenSecret) {
+    [self setAccessTokenSecret:other.accessTokenSecret];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -228,6 +266,14 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
       }
       case 26: {
         [self setNickName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setAccessToken:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setAccessTokenSecret:[input readString]];
         break;
       }
     }
@@ -279,6 +325,38 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 - (PBSNSUser_Builder*) clearNickName {
   result.hasNickName = NO;
   result.nickName = @"";
+  return self;
+}
+- (BOOL) hasAccessToken {
+  return result.hasAccessToken;
+}
+- (NSString*) accessToken {
+  return result.accessToken;
+}
+- (PBSNSUser_Builder*) setAccessToken:(NSString*) value {
+  result.hasAccessToken = YES;
+  result.accessToken = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearAccessToken {
+  result.hasAccessToken = NO;
+  result.accessToken = @"";
+  return self;
+}
+- (BOOL) hasAccessTokenSecret {
+  return result.hasAccessTokenSecret;
+}
+- (NSString*) accessTokenSecret {
+  return result.accessTokenSecret;
+}
+- (PBSNSUser_Builder*) setAccessTokenSecret:(NSString*) value {
+  result.hasAccessTokenSecret = YES;
+  result.accessTokenSecret = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearAccessTokenSecret {
+  result.hasAccessTokenSecret = NO;
+  result.accessTokenSecret = @"";
   return self;
 }
 @end

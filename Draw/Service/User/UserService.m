@@ -23,7 +23,7 @@
 #import "FriendManager.h"
 #import "LevelService.h"
 #import "UserService.h"
-
+#import "QQWeiboService.h"
 
 @implementation UserService
 
@@ -130,6 +130,8 @@ static UserService* _defaultUserService;
                          userInfo:(NSDictionary*)userInfo 
                    viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
     NSString* appId = APP_ID;
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
@@ -643,6 +645,8 @@ static UserService* _defaultUserService;
                                                   gender:gender];
             
                 [[UserManager defaultManager] setLocation:location];
+
+                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
                 [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
                 [[FriendService defaultService] findFriendsByType:FAN viewController:nil];

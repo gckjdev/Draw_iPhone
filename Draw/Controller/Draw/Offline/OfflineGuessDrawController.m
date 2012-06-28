@@ -60,15 +60,10 @@
 @synthesize titleLabel;
 @synthesize feed = _feed;
 @synthesize superController = _supperController;
+@synthesize delegate = _delegate;
 
-//+ (void)startOfflineGuess:(UIViewController *)fromController
-//{
-//    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] init];
-//    [fromController.navigationController pushViewController:offGuess animated:YES];
-//    [offGuess release];    
-//}
 
-+ (void)startOfflineGuess:(Feed *)feed 
++ (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
            fromController:(UIViewController *)fromController
 {
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
@@ -76,6 +71,7 @@
     offGuess.superController = fromController;
     [fromController.navigationController pushViewController:offGuess animated:YES];
     [offGuess release];        
+    return offGuess;
 }
 
 - (void)dealloc
@@ -616,7 +612,18 @@
 
 
 
-
+- (void)updateFeed:(BOOL)isCorrect
+{
+    if ([_guessWords count] != 0) {
+        self.feed.guessTimes ++;
+        if (isCorrect) {
+            self.feed.correctTimes ++;
+        }
+        if (_delegate && [_delegate respondsToSelector:@selector(didGuessFeed:isCorrect:words:)]) {
+            [_delegate didGuessFeed:_feed isCorrect:isCorrect words:_guessWords];
+        }
+    }
+}
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
@@ -635,6 +642,7 @@
         //if have no words, don't send the action.
         if ([_guessWords count] != 0) {
             [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
+            [self updateFeed:NO];
         }
         UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
         if (feedDetail) {
@@ -663,12 +671,12 @@
     
         NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
         
-        
-        
         ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
     
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
+        [self updateFeed:YES];
+        
         //store locally.
         [[UserManager defaultManager] guessCorrectOpus:_opusId];
         [self.navigationController pushViewController:result animated:YES];
