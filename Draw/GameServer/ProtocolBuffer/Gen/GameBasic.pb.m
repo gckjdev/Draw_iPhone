@@ -3468,6 +3468,8 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 @property (retain) NSString* avatar;
 @property BOOL gender;
 @property (retain) PBDraw* drawData;
+@property (retain) NSString* targetUserId;
+@property (retain) NSString* targetUserNickName;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
@@ -3542,6 +3544,20 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   hasDrawData_ = !!value;
 }
 @synthesize drawData;
+- (BOOL) hasTargetUserId {
+  return !!hasTargetUserId_;
+}
+- (void) setHasTargetUserId:(BOOL) value {
+  hasTargetUserId_ = !!value;
+}
+@synthesize targetUserId;
+- (BOOL) hasTargetUserNickName {
+  return !!hasTargetUserNickName_;
+}
+- (void) setHasTargetUserNickName:(BOOL) value {
+  hasTargetUserNickName_ = !!value;
+}
+@synthesize targetUserNickName;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -3610,6 +3626,8 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   self.nickName = nil;
   self.avatar = nil;
   self.drawData = nil;
+  self.targetUserId = nil;
+  self.targetUserNickName = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
@@ -3625,6 +3643,8 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
     self.avatar = @"";
     self.gender = NO;
     self.drawData = [PBDraw defaultInstance];
+    self.targetUserId = @"";
+    self.targetUserNickName = @"";
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
@@ -3700,6 +3720,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasDrawData) {
     [output writeMessage:31 value:self.drawData];
   }
+  if (self.hasTargetUserId) {
+    [output writeString:32 value:self.targetUserId];
+  }
+  if (self.hasTargetUserNickName) {
+    [output writeString:33 value:self.targetUserNickName];
+  }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
   }
@@ -3759,6 +3785,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDrawData) {
     size += computeMessageSize(31, self.drawData);
+  }
+  if (self.hasTargetUserId) {
+    size += computeStringSize(32, self.targetUserId);
+  }
+  if (self.hasTargetUserNickName) {
+    size += computeStringSize(33, self.targetUserNickName);
   }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
@@ -3891,6 +3923,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasDrawData) {
     [self mergeDrawData:other.drawData];
   }
+  if (other.hasTargetUserId) {
+    [self setTargetUserId:other.targetUserId];
+  }
+  if (other.hasTargetUserNickName) {
+    [self setTargetUserNickName:other.targetUserNickName];
+  }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
@@ -3977,6 +4015,14 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 258: {
+        [self setTargetUserId:[input readString]];
+        break;
+      }
+      case 266: {
+        [self setTargetUserNickName:[input readString]];
         break;
       }
       case 330: {
@@ -4158,6 +4204,38 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearDrawData {
   result.hasDrawData = NO;
   result.drawData = [PBDraw defaultInstance];
+  return self;
+}
+- (BOOL) hasTargetUserId {
+  return result.hasTargetUserId;
+}
+- (NSString*) targetUserId {
+  return result.targetUserId;
+}
+- (PBFeed_Builder*) setTargetUserId:(NSString*) value {
+  result.hasTargetUserId = YES;
+  result.targetUserId = value;
+  return self;
+}
+- (PBFeed_Builder*) clearTargetUserId {
+  result.hasTargetUserId = NO;
+  result.targetUserId = @"";
+  return self;
+}
+- (BOOL) hasTargetUserNickName {
+  return result.hasTargetUserNickName;
+}
+- (NSString*) targetUserNickName {
+  return result.targetUserNickName;
+}
+- (PBFeed_Builder*) setTargetUserNickName:(NSString*) value {
+  result.hasTargetUserNickName = YES;
+  result.targetUserNickName = value;
+  return self;
+}
+- (PBFeed_Builder*) clearTargetUserNickName {
+  result.hasTargetUserNickName = NO;
+  result.targetUserNickName = @"";
   return self;
 }
 - (BOOL) hasOpusId {
