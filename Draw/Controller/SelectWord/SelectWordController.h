@@ -26,6 +26,7 @@ typedef enum{
     ToolView *toolView;
     DrawGameService *drawGameService;
     NSTimer *_timer;
+    NSString *_targetUid;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *wordTableView;
@@ -36,11 +37,13 @@ typedef enum{
 @property (assign, nonatomic) GameType gameType;
 @property (retain, nonatomic) IBOutlet UIImageView *timeBg;
 @property (retain, nonatomic) IBOutlet UIButton *myWordsButton;
-
+@property (retain, nonatomic) NSString *targetUid;
 
 - (IBAction)clickChangeWordButton:(id)sender;
 + (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType;
++ (void)startSelectWordFrom:(UIViewController *)controller targetUid:(NSString *)targetUid;
 
+- (id)initWithTargetUid:(NSString *)targetUid;
 - (id)initWithType:(GameType)gameType;
 
 @end

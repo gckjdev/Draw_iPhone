@@ -38,7 +38,8 @@
 
 - (void)createOfflineDraw:(NSArray*)drawActionList
                  drawWord:(Word*)drawWord
-                 language:(LanguageType)language
+                 language:(LanguageType)language 
+                  targetUid:(NSString *)targetUid
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

@@ -1176,7 +1176,8 @@
                               word:(NSString *)word
                              level:(NSInteger)level
                               lang:(NSInteger)lang
-                              data:(NSData*)data
+                              data:(NSData*)data 
+                              targetUid:(NSString *)targetUid
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1194,9 +1195,9 @@
         str = [str stringByAddQueryParameter:PARA_WORD value:word];                
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
-        
-        // TOOD add other parameters
-        
+        if ([targetUid length] != 0) {
+            str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
+        }
         return str;
     };
     

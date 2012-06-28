@@ -51,7 +51,7 @@
 @synthesize word = _word;
 @synthesize titleLabel;
 @synthesize delegate;
-
+@synthesize targetUid = _targetUid;
 #define PAPER_VIEW_TAG 20120403 
 
 
@@ -63,8 +63,22 @@
     [fromController.navigationController pushViewController:vc animated:YES];   
     [vc release];
     
-    PPDebug(@"<StartDraw>: word = %@, need reset Data", word.text);
+
 }
+
++ (void)startDraw:(Word *)word 
+   fromController:(UIViewController*)fromController 
+        targetUid:(NSString *)targetUid
+{
+    LanguageType language = [[UserManager defaultManager] getLanguageType];
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
+    [fromController.navigationController pushViewController:vc animated:YES];   
+    [vc release];
+    
+    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
+    
+}
+
 
 - (void)dealloc
 {
@@ -78,12 +92,12 @@
     PPRelease(pickEraserView);
     PPRelease(pickPenView);
     PPRelease(_word);
+    PPRelease(_targetUid);
+    PPRelease(titleLabel);
+    PPRelease(submitButton);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
-    
-    [titleLabel release];
-    [submitButton release];
     [super dealloc];
 }
 
@@ -100,7 +114,6 @@
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
 - (id)initWithWord:(Word *)word lang:(LanguageType)lang{
-//    self = [super initWithNibName:nil bundle:nil];
     self = [super init];
     if (self) {
         //        autoReleasePool = [[NSAutoreleasePool alloc] init];
@@ -110,6 +123,24 @@
     }
     return self;
 }
+
+
+
+- (id)initWithWord:(Word *)word
+              lang:(LanguageType)lang 
+        targetUid:(NSString *)targetUid
+{
+    self = [super init];
+    if (self) {
+        self.word = word;
+        languageType = lang;
+        shareImageManager = [ShareImageManager defaultManager];
+        self.targetUid = targetUid;
+    }
+    return self;
+    
+}
+
 
 - (id)initWithTargetType:(TargetType)aTargetType delegate:(id<OfflineDrawDelegate>)aDelegate
 {
@@ -434,7 +465,6 @@ enum{
         [self.penButton setPenType:_willBuyPen.penType];
         [drawView setPenType:_willBuyPen.penType];            
     }else if(dialog.tag == DIALOG_TAG_SUBMIT){
-        
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -443,18 +473,32 @@ enum{
                                                     word:[_word text]
                                                    image:[drawView createImage]
                                           viewController:self];
+
         
         UIViewController *superController = [self superFeedDetailController];
         if (superController == nil) {
-            superController = [self superFeedController];
+            superController = [self superFeedDetailController];
         }
+        
+        //if come from feed detail controller
         if (superController) {
             [self.navigationController popToViewController:superController animated:NO];
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            SelectWordController *sc = nil;
+            if ([_targetUid length] == 0) {
+                sc = [[SelectWordController alloc] initWithType:OfflineDraw];                
+            }else{
+                sc = [[SelectWordController alloc] initWithTargetUid:self.targetUid];
+            }
             [superController.navigationController pushViewController:sc animated:NO];
             [sc release];
         }else{
-            [HomeController startOfflineDrawFrom:self];
+            //if come from home controller
+            if ([_targetUid length] == 0) {
+                [HomeController startOfflineDrawFrom:self];    
+            }else{
+                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+            }
+            
         }
     }
 }
@@ -495,6 +539,7 @@ enum{
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
+     
         
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
@@ -564,7 +609,7 @@ enum{
         }
     }else {
         [self showActivityWithText:NSLS(@"kSending")];
-        [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType delegate:self];
+        [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType targetUid:self.targetUid delegate:self];
     }
 }
 - (void)clickBackButton:(id)sender

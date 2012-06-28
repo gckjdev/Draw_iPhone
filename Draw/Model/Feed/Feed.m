@@ -97,7 +97,7 @@
 - (BOOL)isMyOpus
 {
     UserManager *defaultManager  = [UserManager defaultManager];
-    if (self.feedType == FeedTypeDraw) {
+    if ([self isDrawType]) {
         return [defaultManager isMe:self.userId];
     }
     if (self.feedType == FeedTypeGuess) {
@@ -109,7 +109,7 @@
 - (BOOL) hasGuessed
 {
     UserManager *defaultManager  = [UserManager defaultManager];
-    if (self.feedType == FeedTypeDraw) {
+    if ([self isDrawType]) {
         return [defaultManager hasGuessOpus:self.feedId];
     }
     if (self.feedType == FeedTypeGuess) {
@@ -118,5 +118,8 @@
     return NO;
 
 }
-
+- (BOOL) isDrawType
+{
+    return self.feedType == FeedTypeDraw || self.feedType == FeedTypeDrawToUser;
+}
 @end

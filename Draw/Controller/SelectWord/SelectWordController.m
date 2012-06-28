@@ -33,7 +33,7 @@
 @synthesize gameType = _gameType;
 @synthesize timeBg = _timeBg;
 @synthesize myWordsButton = _myWordsButton;
-
+@synthesize targetUid = _targetUid;
 
 + (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType
 {
@@ -41,6 +41,13 @@
     [controller.navigationController pushViewController:sc animated:YES];
     [sc release];
     
+}
+
++ (void)startSelectWordFrom:(UIViewController *)controller targetUid:(NSString *)targetUid
+{
+    SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:targetUid];
+    [controller.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 
@@ -73,6 +80,16 @@
         self.gameType = gameType;
     }
     return self;
+}
+
+- (id)initWithTargetUid:(NSString *)targetUid
+{
+    self = [super init];
+    if (self) {
+        self.gameType = OfflineDraw;
+        self.targetUid = targetUid;
+    }
+    return self;    
 }
 
 - (id)init
@@ -111,7 +128,8 @@
         if (self.gameType == OnlineDraw) {
             [OnlineDrawViewController startDraw:word fromController:self];            
         }else{
-            [OfflineDrawViewController startDraw:word fromController:self];
+//            [OfflineDrawViewController startDraw:word fromController:self];
+            [OfflineDrawViewController startDraw:word fromController:self targetUid:self.targetUid];
         }
     }
     [self resetTimer];
@@ -204,14 +222,16 @@
 }
 
 - (void)dealloc {
-    [_wordTableView release];
-    [_clockLabel release];
-    [_changeWordButton release];
-    [_titleLabel release];
-    [toolView release];
-    [_wordArray release];
-    [_timeBg release];
-    [_myWordsButton release];
+    
+    PPRelease(_wordTableView);
+    PPRelease(_clockLabel);
+    PPRelease(_changeWordButton);
+    PPRelease(_titleLabel);
+    PPRelease(toolView);
+    PPRelease(_wordArray);
+    PPRelease(_myWordsButton);
+    PPRelease(_timeBg);
+    PPRelease(_targetUid);
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {

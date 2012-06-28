@@ -840,6 +840,8 @@
   BOOL hasScore_:1;
   BOOL hasComment_:1;
   BOOL hasOpusId_:1;
+  BOOL hasTargetUserNickName_:1;
+  BOOL hasTargetUserId_:1;
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
   BOOL hasUserId_:1;
@@ -856,6 +858,8 @@
   int32_t score;
   NSString* comment;
   NSString* opusId;
+  NSString* targetUserNickName;
+  NSString* targetUserId;
   NSString* avatar;
   NSString* nickName;
   NSString* userId;
@@ -871,6 +875,8 @@
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
 - (BOOL) hasDrawData;
+- (BOOL) hasTargetUserId;
+- (BOOL) hasTargetUserNickName;
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
@@ -887,6 +893,8 @@
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
 @property (readonly, retain) PBDraw* drawData;
+@property (readonly, retain) NSString* targetUserId;
+@property (readonly, retain) NSString* targetUserNickName;
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
@@ -973,6 +981,16 @@
 - (PBFeed_Builder*) setDrawDataBuilder:(PBDraw_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeDrawData:(PBDraw*) value;
 - (PBFeed_Builder*) clearDrawData;
+
+- (BOOL) hasTargetUserId;
+- (NSString*) targetUserId;
+- (PBFeed_Builder*) setTargetUserId:(NSString*) value;
+- (PBFeed_Builder*) clearTargetUserId;
+
+- (BOOL) hasTargetUserNickName;
+- (NSString*) targetUserNickName;
+- (PBFeed_Builder*) setTargetUserNickName:(NSString*) value;
+- (PBFeed_Builder*) clearTargetUserNickName;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;

@@ -54,7 +54,7 @@ FeedManager *_staticFeedManager = nil;
         return ActionTypeHidden;
     }
     
-    if (feed.feedType == FeedTypeDraw) {
+    if ([feed isDrawType]) {
         if ([userManager hasGuessOpus:feed.feedId]) {
             return ActionTypeCorrect;
         }
@@ -92,7 +92,21 @@ FeedManager *_staticFeedManager = nil;
             return FeedActionDescDrawedNoWord;            
         }
         
-    }else if (feed.feedType == FeedTypeGuess){
+    }else if(feed.feedType == FeedTypeDrawToUser)
+    {
+        if (hasGuessed) {
+            return FeedActionDescDrawedToUser;
+        }
+        
+        //I draw
+        if ([[UserManager defaultManager] isMe:feed.userId]) {
+            return FeedActionDescDrawedToUser;
+        }else{
+            return FeedActionDescDrawedToUserNoWord;            
+        }
+        
+    }
+    else if (feed.feedType == FeedTypeGuess){
         
         if (hasGuessed) {
             if (feed.isCorrect) {

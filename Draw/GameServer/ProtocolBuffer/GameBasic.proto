@@ -112,6 +112,8 @@ message PBFeed {
 
   // for user draw
   optional PBDraw drawData = 31;
+  optional string targetUserId = 32;
+  optional string targetUserNickName = 33;
   
   // for user guess
   optional string opusId = 41;          // 猜作品的ID
