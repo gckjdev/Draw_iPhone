@@ -28,7 +28,9 @@ typedef enum {
 
 @end
 
-@interface UserManager : NSObject
+@interface UserManager : NSObject{
+//    NSUserDefaults* _userDefaults;    
+}
 
 + (UserManager*)defaultManager;
 
@@ -65,6 +67,7 @@ typedef enum {
 - (void)setDeviceToken:(NSString*)deviceToken;
 - (void)setLocation:(NSString*)location;
 - (void)setEmail:(NSString *)email;
+
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
@@ -132,5 +135,9 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)guessCorrectOpus:(NSString *)opusId;
 - (BOOL)hasGuessOpus:(NSString *)opusId;
+
+- (void)setQQId:(NSString*)qqId nickName:(NSString*)nickName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
+- (void)setSinaId:(NSString*)sinaId nickName:(NSString*)nickName;
+- (void)setFacebookId:(NSString*)facebookId nickName:(NSString*)nickName;
 
 @end

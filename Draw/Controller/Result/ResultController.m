@@ -205,7 +205,7 @@
 
 
     [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
-    [self.saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    [self.saveButton setTitle:NSLS(@"kSaveAndShare") forState:UIControlStateNormal];
     if (_isMyPaint) {
         [self.titleLabel setText:NSLS(@"kTurnResult")];   
         [[LevelService defaultService] addExp:DRAWER_EXP delegate:self];

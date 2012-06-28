@@ -130,6 +130,8 @@ static UserService* _defaultUserService;
                          userInfo:(NSDictionary*)userInfo 
                    viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
     NSString* appId = APP_ID;
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
