@@ -202,6 +202,12 @@
 }
 
 
+- (void)didDeleteMessage:(int)resultCode
+{
+    
+}
+
+
 #pragma mark - custom methods
 - (void)scrollToBottom:(BOOL)animated
 {
@@ -481,6 +487,28 @@
 {
     return nil;
 }
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ChatMessage *chatMessage = [dataList objectAtIndex:indexPath.row];
+        
+        NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:dataList];
+        [mutableArray removeObjectAtIndex:indexPath.row];
+        self.dataList = mutableArray;
+        [mutableArray release];
+        
+        [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        
+        [[ChatService defaultService] deleteMessage:self messageIdList:[NSArray arrayWithObject:chatMessage.messageId]];
+    }
+}
+
 
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 

@@ -616,3 +616,13 @@
 "kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
 "kRebindSina" = "你已经绑定了新浪微博了，是否要重新尝试绑定？";
 "kRebindFacebook" = "你已经绑定了Facebook了，是否要重新尝试绑定？";
+
+
+"kPDUM" = "%@给你画了一幅画，赶紧去猜猜TA画了些什么。";
+
+"kDrawToUserDesc" = "画了一幅[%@]给%@。";
+"kDrawToUserNoWordDesc" = "画了一幅画给%@。";
+"kHisFriend" = "TA好友";
+
+
+

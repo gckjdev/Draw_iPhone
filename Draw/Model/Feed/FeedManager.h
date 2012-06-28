@@ -19,11 +19,16 @@ typedef enum{
 typedef enum{
     FeedActionDescNo = 0,
     FeedActionDescGuessed = 1,
-    FeedActionDescTried = 2,
-    FeedActionDescDrawed = 3,
-    FeedActionDescDrawedNoWord = 4,
-    FeedActionDescGuessedNoWord = 5,
-    FeedActionDescTriedNoWord = 6
+    FeedActionDescTried,
+    FeedActionDescDrawed,
+    FeedActionDescDrawedToUser,
+    
+    FeedActionDescDrawedNoWord = 1001,
+    FeedActionDescGuessedNoWord,
+    FeedActionDescTriedNoWord,
+    FeedActionDescDrawedToUserNoWord,    
+    
+    
 }FeedActionDescType;
 
 

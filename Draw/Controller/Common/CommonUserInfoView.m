@@ -17,6 +17,10 @@
 #import "CommonMessageCenter.h"
 #import "UserFeedController.h"
 #import "ChatDetailController.h"
+#import "SelectWordController.h"
+#import "LocaleUtils.h"
+#import "WordManager.h"
+
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
@@ -53,7 +57,7 @@
     [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
 }
 
-#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 0, 0):CGRectMake(18, 39, 42, 42)
+#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 0, 0):CGRectMake(18, 46, 42, 42)
 - (void)initAvatar:(Friend*)aFriend
 {
     CGRect rect = AVATAR_FRAME;
@@ -87,7 +91,9 @@
     [self initView];
     self.targetFriend = aFriend;
     [self.userName setText:aFriend.nickName];
-    [self.locationLabel setText:aFriend.location];
+    
+    NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:aFriend.location]:aFriend.location;
+    [self.locationLabel setText:location];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (aFriend.sinaNick) {
@@ -198,7 +204,7 @@
 
 - (IBAction)drawToHim:(id)sender
 {
-    
+    [SelectWordController startSelectWordFrom:self.superViewController targetUid:self.targetFriend.friendUserId];
 }
 
 - (IBAction)talkToHim:(id)sender

@@ -18,7 +18,7 @@
 
 @interface MessageTotal()
 
-- (BOOL)deleteMessageTotal:(NSString *)friendUserId;
+
 - (MessageTotal *)findMessageTotalByFriendUserId:(NSString *)friendUserId userId:(NSString *)userId;
 
 @end
@@ -111,13 +111,11 @@ static MessageTotalManager *_messageTotalManager = nil;
 - (BOOL)deleteMessageTotal:(NSString *)friendUserId
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    NSArray *array = [self findAllMessageTotals];
-    for (MessageTotal *messageTotal in array) {
-        if ([messageTotal.friendUserId isEqualToString:friendUserId]) {
-            [dataManager del:messageTotal];
-            break;
-        }
-    }
+    
+    MessageTotal *messageTotal = [self findMessageTotalByFriendUserId:friendUserId userId:[[UserManager defaultManager] userId]];
+    
+    [dataManager del:messageTotal];
+    
     return [dataManager save];
 }
 

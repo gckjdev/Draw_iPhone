@@ -105,4 +105,22 @@ static ChatMessageManager *_chatMessageManager = nil;
 }
 
 
+- (BOOL)deleteMessageByMessageId:(NSString *)messageId
+{
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    ChatMessage *chatMessage = [self findMessageByMessageId:messageId];
+    [dataManager del:chatMessage];
+    return [dataManager save];
+}
+
+- (BOOL)deleteMessagesByFriendUserId:(NSString *)friendUserId
+{
+    CoreDataManager *dataManager = [CoreDataManager defaultManager];
+    NSArray *list = [self findMessagesByFriendUserId:friendUserId];
+    for (ChatMessage *chatMessage in list) {
+        [dataManager del:chatMessage];
+    }
+    return [dataManager save];
+}
+
 @end

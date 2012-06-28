@@ -205,13 +205,14 @@
 + (CommonNetworkOutput*)createOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId
-                             nick:(NSString*)nick
+                              nick:(NSString*)nick
                             avatar:(NSString*)avatar
-                             gender:(NSString*)gender
+                            gender:(NSString*)gender
                               word:(NSString *)word
-                              level:(NSInteger)level
+                             level:(NSInteger)level
                               lang:(NSInteger)lang
-                              data:(NSData*)data;
+                              data:(NSData*)data 
+                         targetUid:(NSString *)targetUid;
 
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                             appId:(NSString*)appId
@@ -289,5 +290,15 @@
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
                                userId:(NSString *)userId;
+
++ (CommonNetworkOutput*)deleteMessage:(NSString*)baseURL 
+                                appId:(NSString*)appId
+                               userId:(NSString*)userId
+                 targetMessageIdArray:(NSArray*)targetMessageIdArray;
+
++ (CommonNetworkOutput*)deleteMessageStat:(NSString*)baseURL 
+                                    appId:(NSString*)appId
+                                   userId:(NSString*)userId
+                             targetUserId:(NSString*)targetUserId;
 
 @end

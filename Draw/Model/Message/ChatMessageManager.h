@@ -32,5 +32,8 @@ enum{
 
 - (NSArray *)findMessagesByFriendUserId:(NSString *)friendUserId;
 
+- (BOOL)deleteMessageByMessageId:(NSString *)messageId;
+
+- (BOOL)deleteMessagesByFriendUserId:(NSString *)friendUserId;
 
 @end
