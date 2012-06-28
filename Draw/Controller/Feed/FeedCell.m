@@ -95,6 +95,10 @@
     NSString *desc = @"";
     NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
     NSString *word = feed.drawData.word.text;
+    
+    // TODO user real uid from feed instead of the test.
+    NSString *targetUid= NSLS(@"kHisFriend");
+    
     if (feed.drawData.languageType == ChineseType 
         && [LocaleUtils isTraditionalChinese]) {
         word = [WordManager changeToTraditionalChinese:word];
@@ -108,6 +112,15 @@
         case FeedActionDescDrawedNoWord:
             desc = NSLS(@"kDrawDescNoWord");  
             break;
+            
+        case FeedActionDescDrawedToUser:
+            desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), word, targetUid];  
+            break;
+            
+        case FeedActionDescDrawedToUserNoWord:
+            desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"),targetUid];  
+            break;
+            
         case FeedActionDescGuessed:
             desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),creatorNick, word];  
             break;
@@ -121,6 +134,7 @@
             desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), creatorNick];  
             break;
 
+            
         default:
             break;
     }

@@ -69,7 +69,12 @@
 + (void)returnRoom:(UIViewController*)superController;
 
 + (void)startOfflineDrawFrom:(UIViewController *)viewController;
-+ (void)startOfflineGuessDraw:(Feed *)feed from:(UIViewController *)viewController;
+
++ (void)startOfflineDrawFrom:(UIViewController *)viewController 
+                      uid:(NSString *)uid;
+
++ (void)startOfflineGuessDraw:(Feed *)feed 
+                         from:(UIViewController *)viewController;
 
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
 @end

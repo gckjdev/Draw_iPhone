@@ -17,6 +17,8 @@
 #import "CommonMessageCenter.h"
 #import "UserFeedController.h"
 #import "ChatDetailController.h"
+#import "SelectWordController.h"
+
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
@@ -198,7 +200,7 @@
 
 - (IBAction)drawToHim:(id)sender
 {
-    
+    [SelectWordController startSelectWordFrom:self.superViewController targetUid:self.targetFriend.friendUserId];
 }
 
 - (IBAction)talkToHim:(id)sender

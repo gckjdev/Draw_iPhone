@@ -149,9 +149,11 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 - (void)createOfflineDraw:(NSArray*)drawActionList
                  drawWord:(Word*)drawWord
-                 language:(LanguageType)language
-                 delegate:(PPViewController<DrawDataServiceDelegate>*)viewController
+                 language:(LanguageType)language 
+                targetUid:(NSString *)targetUid
+                 delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
+
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
@@ -164,6 +166,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                             drawWord:drawWord 
                             language:language];
     
+    
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createOpus:TRAFFIC_SERVER_URL
                                                                appId:appId 
@@ -174,7 +177,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                 word:drawWord.text 
                                                                level:drawWord.level 
                                                                 lang:language 
-                                                                data:[draw data]];
+                                                                data:[draw data] 
+                                                           targetUid:targetUid];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didCreateDraw:)]){

@@ -51,6 +51,8 @@
     ShareImageManager *shareImageManager;
     
     TargetType targetType;
+    
+    NSString*_targetUid;
 }
 
 - (IBAction)clickRedraw:(id)sender;
@@ -68,12 +70,24 @@
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
+@property (retain, nonatomic) NSString *targetUid;
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 
-- (id)initWithTargetType:(TargetType)aTargetType delegate:(id<OfflineDrawDelegate>)aDelegate;
+- (id)initWithTargetType:(TargetType)aTargetType 
+                delegate:(id<OfflineDrawDelegate>)aDelegate;
 
-- (id)initWithWord:(Word *)word lang:(LanguageType)lang;
+- (id)initWithWord:(Word *)word 
+              lang:(LanguageType)lang;
+
++ (void)startDraw:(Word *)word 
+   fromController:(UIViewController*)fromController 
+        targetUid:(NSString *)targetUid;
+
+- (id)initWithWord:(Word *)word
+              lang:(LanguageType)lang 
+         targetUid:(NSString *)targetUid;
+
 - (void)initEraser;
 - (void)initPens;
 - (void)initDrawView;

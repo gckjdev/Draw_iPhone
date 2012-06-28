@@ -15,7 +15,8 @@ typedef enum{
 	FeedTypeDraw = 1,
 	FeedTypeGuess = 2,
 	FeedTypeComment = 3, 
-	FeedTypeRepost = 4
+	FeedTypeRepost = 4,
+    FeedTypeDrawToUser = 5,
     
 }FeedType;
 
@@ -101,5 +102,5 @@ typedef enum{
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (BOOL)isMyOpus;
 - (BOOL) hasGuessed;
-
+- (BOOL) isDrawType;
 @end

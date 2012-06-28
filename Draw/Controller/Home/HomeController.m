@@ -534,6 +534,18 @@
     }    
 }
 
++ (void)startOfflineDrawFrom:(UIViewController *)viewController 
+                         uid:(NSString *)uid
+{
+    if (viewController) {        
+        HomeController *home = [HomeController defaultInstance];
+        [viewController.navigationController popToViewController:home animated:NO];
+        SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:uid];
+        [home.navigationController pushViewController:sc animated:NO];
+        [sc release];
+    }    
+
+}
 - (void)dealloc {
     [_startButton release];
     [_shopButton release];

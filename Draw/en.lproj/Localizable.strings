@@ -607,3 +607,10 @@
 "kUserBindFail" = "Fail to update user information. Please try later.";
 "kWeiboExpired" = "微博授权过期";
 
+"kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
+
+
+"kDrawToUserDesc" = "Drawed a drawing: [%@] to %@.";
+"kDrawToUserNoWordDesc" = "Drawed a drawing to %@.";
+
+"kHisFriend" = "His(Her) Friend";

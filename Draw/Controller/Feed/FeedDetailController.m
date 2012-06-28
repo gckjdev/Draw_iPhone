@@ -224,7 +224,7 @@
 
 - (void)updateInfo:(Feed *)feed
 {
-    if (feed.feedType == FeedTypeDraw) {
+    if ([feed isDrawType]) {
         _opusId = feed.feedId;
         _userNickName = feed.nickName;
         _avatar = feed.avatar;
