@@ -530,7 +530,7 @@
     [comment setUserId:[userManager userId]];
     [comment setAvatar:[userManager avatarURL]];
     [comment setGender:[userManager isUserMale]];
-    [comment setCorrectTimes:[[NSDate date] timeIntervalSince1970]];
+    [comment setCreateDate:[NSDate date]];
     [comment setFeedType:FeedTypeGuess];
     
     NSMutableArray *array = [NSMutableArray array];
