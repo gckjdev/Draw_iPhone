@@ -663,7 +663,10 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
 - (BOOL)hasBindQQWeibo
 {
     NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_QQ_LOGINID];
-    if (obj != nil) {
+    NSString* token = [self qqToken];
+    NSString* secret = [self qqTokenSecret];
+    
+    if (obj != nil && [token length] > 0 && [secret length] > 0) {
         return YES;
     }
     return NO;

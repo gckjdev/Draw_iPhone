@@ -23,7 +23,7 @@
 #import "FriendManager.h"
 #import "LevelService.h"
 #import "UserService.h"
-
+#import "QQWeiboService.h"
 
 @implementation UserService
 
@@ -643,6 +643,8 @@ static UserService* _defaultUserService;
                                                   gender:gender];
             
                 [[UserManager defaultManager] setLocation:location];
+
+                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
                 
                 [[FriendService defaultService] findFriendsByType:FOLLOW viewController:nil];
                 [[FriendService defaultService] findFriendsByType:FAN viewController:nil];

@@ -30,6 +30,7 @@
 #import "FeedDetailController.h"
 #import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
+#import "ShareService.h"
 
 #define CONTINUE_TIME 10
 
@@ -313,8 +314,8 @@
 }
 
 - (IBAction)clickSaveButton:(id)sender {
-//    UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
-//    [self saveActionList:self.drawActionList];
+
+    [[ShareService defaultService] shareWithImage:_image isDrawByMe:_isMyPaint drawWord:wordText];
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
 }

@@ -10,4 +10,8 @@
 
 @interface ShareService : NSObject
 
++ (ShareService*)defaultService;
+
+- (void)shareWithImage:(UIImage*)image isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
+
 @end
