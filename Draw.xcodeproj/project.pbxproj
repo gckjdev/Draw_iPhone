@@ -665,6 +665,7 @@
 		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
 		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
 		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
@@ -1809,6 +1810,8 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
+		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
 		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
@@ -2476,6 +2479,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CAA9C424159BF40A00398EC5 /* Share */,
 				CA7C7E081587219600406BFB /* Feed */,
 				A3F66CBE15820B2D000BFF9A /* Chat */,
 				CAAE4A891579B8180012F6B8 /* YoumiWall */,
@@ -4421,6 +4425,15 @@
 			path = Word;
 			sourceTree = "<group>";
 		};
+		CAA9C424159BF40A00398EC5 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9C425159BF41B00398EC5 /* ShareService.h */,
+				CAA9C426159BF41B00398EC5 /* ShareService.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		CAAE4A711578FD5C0012F6B8 /* YoumiSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -5417,6 +5430,7 @@
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
 				C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */,
 				CA04B163159AE47F00D7ACD1 /* UserFeedController.m in Sources */,
+				CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

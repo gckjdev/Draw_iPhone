@@ -607,3 +607,8 @@
 "kUserBindFail" = "Fail to update user information. Please try later.";
 "kWeiboExpired" = "微博授权过期";
 
+"kSaveAndShare" = "Share";
+"kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
+"kRebindSina" = "你已经绑定了新浪微博了，是否要重新尝试绑定？";
+"kRebindFacebook" = "You have connected to Facebook. Do you want to connect again?";
+
