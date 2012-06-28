@@ -137,6 +137,9 @@
             self.dataList = temp;            
         }
     }    
+    
+    _startIndex += [feedList count];
+    
     [self.dataTableView reloadData];
     if (isReload) {
         //scroll to top.
