@@ -58,6 +58,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *fanBadge;
 @property (retain, nonatomic) IBOutlet UIButton *messageBadge;
 @property (retain, nonatomic) IBOutlet UIButton *roomBadge;
+@property (retain, nonatomic) IBOutlet UIScrollView *homeScrollView;
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;

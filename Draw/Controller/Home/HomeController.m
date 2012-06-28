@@ -88,6 +88,7 @@
 @synthesize fanBadge = _fanBadge;
 @synthesize messageBadge = _messageBadge;
 @synthesize roomBadge = _roomBadge;
+@synthesize homeScrollView = _homeScrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -135,6 +136,8 @@
     [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
+    
+    self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
     NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
@@ -225,6 +228,7 @@
     [self setFanBadge:nil];
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
+    [self setHomeScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -573,6 +577,7 @@
     [_fanBadge release];
     [_messageBadge release];
     [_roomBadge release];
+    [_homeScrollView release];
     [super dealloc];
 }
 

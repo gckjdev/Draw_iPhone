@@ -9,6 +9,8 @@ message PBSNSUser {
   required int32  type = 1;
   required string userId = 2;
   required string nickName = 3; 
+     optional string accessToken = 4;
+     optional string accessTokenSecret = 5;
 }
 
 message PBGameUser {
@@ -19,6 +21,7 @@ message PBGameUser {
   repeated PBSNSUser snsUsers = 5;             // 用户社交网络信息
      optional      string location = 6;
      optional int32 userLevel = 7;                 // 用户等级
+     
 }
 
 message PBGameSession {
