@@ -14,6 +14,16 @@
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
 
+
+@protocol OfflineGuessDelegate <NSObject>
+
+@optional
+- (void)didGuessFeed:(Feed *)feed 
+           isCorrect:(BOOL)isCorrect 
+               words:(NSArray *)words;
+
+@end
+
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
@@ -58,6 +68,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (assign, nonatomic) id<OfflineGuessDelegate>delegate;
 
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
@@ -80,8 +91,8 @@
 //the feed should be draw type
 - (id)initWithFeed:(Feed *)feed;
 //+ (void)startOfflineGuess:(UIViewController *)fromController;
-+ (void)startOfflineGuess:(Feed *)feed 
-           fromController:(UIViewController *)fromController;
++ (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
+                                   fromController:(UIViewController *)fromController;
 @end
 
 

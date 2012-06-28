@@ -317,6 +317,8 @@
 //    [self saveActionList:self.drawActionList];
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
+    self.saveButton.userInteractionEnabled = NO;
+    self.saveButton.selected = YES;
 }
 
 - (IBAction)clickExitButton:(id)sender {

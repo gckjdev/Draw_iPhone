@@ -35,6 +35,8 @@ typedef enum{
 - (NSMutableArray *)feedListForType:(FeedListType)type;
 - (void)setFeedList:(NSMutableArray *)feedList forType:(FeedListType)type;
 - (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type;
+- (void)cleanData;
+
 
 + (ActionType)actionTypeForFeed:(Feed *)feed;
 + (NSString *)userNameForFeed:(Feed *)feed;
