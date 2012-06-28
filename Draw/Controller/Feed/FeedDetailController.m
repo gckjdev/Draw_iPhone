@@ -292,6 +292,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self updateActionButton:_feed];
+    [self updateGuessDesc:_feed];
     [super viewDidAppear:animated];
 }
 
@@ -329,7 +330,9 @@
 - (IBAction)clickActionButton:(id)sender {
     ActionType type = [FeedManager actionTypeForFeed:self.feed];
     if (type == ActionTypeGuess) {
-        [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
+        OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
+        controller.delegate = self;
+        
     }else if(type == ActionTypeOneMore){
         [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
     }
@@ -514,6 +517,32 @@
 {
     [self updateCommentList];
 }
+
+#pragma offline guess delegate
+- (void)didGuessFeed:(Feed *)feed 
+           isCorrect:(BOOL)isCorrect 
+               words:(NSArray *)words
+{
+    UserManager *userManager = [UserManager defaultManager];
+    Feed *comment = [[Feed alloc] init];
+    [comment setCorrect:isCorrect];
+    [comment setGuessWords:words];
+    [comment setUserId:[userManager userId]];
+    [comment setAvatar:[userManager avatarURL]];
+    [comment setGender:[userManager isUserMale]];
+    [comment setCorrectTimes:[[NSDate date] timeIntervalSince1970]];
+    [comment setFeedType:FeedTypeGuess];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:comment];
+    if ([[self dataList] count] != 0) {
+        [array addObjectsFromArray:self.dataList];
+    }
+    self.dataList = array;
+    [comment release];
+}
+
+
 
 #define MAX_LENGTH 140
 
