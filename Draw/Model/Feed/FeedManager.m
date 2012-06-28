@@ -19,6 +19,9 @@ FeedManager *_staticFeedManager = nil;
 
 @implementation FeedManager
 
+
+
+
 + (NSString *)userNameForFeed:(Feed *)feed
 {
     if ([[UserManager defaultManager] isMe:feed.userId]) {
@@ -152,6 +155,12 @@ FeedManager *_staticFeedManager = nil;
 {
     PPRelease(_dataMap);
     [super dealloc];
+}
+
+
+- (void)cleanData
+{
+    [_dataMap removeAllObjects];
 }
 
 + (FeedManager *)defaultManager
