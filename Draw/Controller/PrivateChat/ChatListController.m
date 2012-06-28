@@ -16,6 +16,7 @@
 #import "SelectChatFriendController.h"
 #import "Friend.h"
 #import "FriendManager.h"
+#import "ChatMessage.h"
 
 #import "UserManager.h"
 
@@ -178,6 +179,26 @@
 }
 
 
+- (void)didDeleteMessageTotal:(NSString *)friendUserId resultCode:(int)resultCode
+{
+    //delete all messages about this friend
+    NSArray *localMessageList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
+    NSMutableArray *mutableIdList = [[NSMutableArray alloc] init];
+    for (ChatMessage *chatMessage in localMessageList) {
+        [mutableIdList addObject:chatMessage.messageId] ;
+    }
+    
+    [[ChatService defaultService] deleteMessage:self messageIdList:mutableIdList];
+    [mutableIdList release];
+}
+
+
+- (void)didDeleteMessage:(int)resultCode
+{
+    
+}
+
+
 #pragma mark - table methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -212,6 +233,30 @@
           friendNickname:selectFriendNickname 
             friendAvatar:selectFriendAvatar 
             friendGender:selectFriendGender];
+}
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        MessageTotal *messageTotal = [dataList objectAtIndex:indexPath.row];
+        
+        NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:dataList];
+        [mutableArray removeObjectAtIndex:indexPath.row];
+        self.dataList = mutableArray;
+        [mutableArray release];
+        
+        [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        
+        //delete message total
+        [[ChatService defaultService] deleteMessageTotal:self friendUserId:messageTotal.friendUserId];
+    }
 }
 
 

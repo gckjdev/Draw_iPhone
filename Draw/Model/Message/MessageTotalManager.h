@@ -32,4 +32,6 @@
 
 - (BOOL)readNewMessageWithFriendUserId:(NSString *)friendUserId userId:(NSString *)userId;
 
+- (BOOL)deleteMessageTotal:(NSString *)friendUserId;
+
 @end

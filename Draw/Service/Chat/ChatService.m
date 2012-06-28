@@ -209,4 +209,65 @@ static ChatService *_chatService = nil;
     });
 }
 
+
+- (void)deleteMessageTotal:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    
+    [[MessageTotalManager defaultManager] deleteMessageTotal:friendUserId];
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:TRAFFIC_SERVER_URL 
+                                                                      appId:APP_ID 
+                                                                     userId:userId 
+                                                               targetUserId:friendUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<ChatService>deleteMessageTotal success");
+            }else {
+                PPDebug(@"<ChatService>deleteMessageTotal failed");
+            }
+            
+            if (delegate && [delegate respondsToSelector:@selector(didDeleteMessageTotal:resultCode:)]){
+                [delegate didDeleteMessageTotal:friendUserId resultCode:output.resultCode];
+            }
+        }); 
+    });
+}
+
+
+- (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
+        messageIdList:(NSArray *)messageIdList
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    
+    for (NSString *messageId in messageIdList) {
+        [[ChatMessageManager defaultManager] deleteMessageByMessageId:messageId];
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL 
+                                                                  appId:APP_ID 
+                                                                 userId:userId 
+                                                   targetMessageIdArray:messageIdList];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<ChatService>deleteMessage success");
+            }else {
+                PPDebug(@"<ChatService>deleteMessage failed");
+            }
+            
+            if (delegate && [delegate respondsToSelector:@selector(didDeleteMessage:)]){
+                [delegate didDeleteMessage:output.resultCode];
+            }
+        }); 
+    });
+    
+}
+
+
 @end

@@ -16,6 +16,8 @@
 - (void)didFindAllMessages:(NSArray *)list resultCode:(int)resultCode newMessagesCount:(NSUInteger)newMessagesCount;
 - (void)didSendMessage:(int)resultCode;
 - (void)didSendHasReadMessage:(int)resultCode;
+- (void)didDeleteMessageTotal:(NSString *)friendUserId resultCode:(int)resultCode;
+- (void)didDeleteMessage:(int)resultCode;
 
 @end
 
@@ -38,5 +40,11 @@
      drawActionList:(NSArray*)drawActionList;
 
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId;
+
+- (void)deleteMessageTotal:(id<ChatServiceDelegate>)delegate 
+              friendUserId:(NSString *)friendUserId;
+
+- (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
+        messageIdList:(NSArray *)messageIdList;
 
 @end

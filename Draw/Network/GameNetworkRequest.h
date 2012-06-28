@@ -290,4 +290,14 @@
                                 appId:(NSString *)appId 
                                userId:(NSString *)userId;
 
++ (CommonNetworkOutput*)deleteMessage:(NSString*)baseURL 
+                                appId:(NSString*)appId
+                               userId:(NSString*)userId
+                 targetMessageIdArray:(NSArray*)targetMessageIdArray;
+
++ (CommonNetworkOutput*)deleteMessageStat:(NSString*)baseURL 
+                                    appId:(NSString*)appId
+                                   userId:(NSString*)userId
+                             targetUserId:(NSString*)targetUserId;
+
 @end
