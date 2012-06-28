@@ -605,3 +605,5 @@
 "kInputEmail" = "Enter Email Address";
 "kUserBindSucc" = "Update user successfully.";
 "kUserBindFail" = "Fail to update user information. Please try later.";
+"kWeiboExpired" = "微博授权过期";
+

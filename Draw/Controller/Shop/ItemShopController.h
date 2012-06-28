@@ -11,6 +11,7 @@
 #import "ShoppingCell.h"
 #import "PriceService.h"
 #import "CommonDialog.h"
+#import "AccountService.h"
 
 @class CoinShopController;
 
@@ -18,7 +19,7 @@ enum{
     DIALOG_ACTION_ASK_BUY_COIN = 1
 };
 
-@interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, CommonDialogDelegate>
+@interface ItemShopController : PPTableViewController<ShoppingCellDelegate, PriceServiceDelegate, CommonDialogDelegate, AccountServiceDelegate>
 {
     int _dialogAction;
     CoinShopController *_coinController;
