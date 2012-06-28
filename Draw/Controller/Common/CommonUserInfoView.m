@@ -15,6 +15,8 @@
 #import "DeviceDetection.h"
 #import "FriendManager.h"
 #import "CommonMessageCenter.h"
+#import "UserFeedController.h"
+#import "ChatDetailController.h"
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
@@ -201,12 +203,19 @@
 
 - (IBAction)talkToHim:(id)sender
 {
-    
+    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.targetFriend.friendUserId
+                                                                           friendNickname:self.targetFriend.nickName
+                                                                             friendAvatar:self.targetFriend.avatar
+                                                                             friendGender:self.targetFriend.gender];
+    [self.superViewController.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)seeHisFeed:(id)sender
 {
-    
+    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName];
+    [self.superViewController.navigationController pushViewController:userFeed animated:YES];
+    [userFeed release];
 }
 
 /*
