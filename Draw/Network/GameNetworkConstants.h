@@ -194,6 +194,7 @@
 
 #define PARA_TO_USERID @"tuid"
 #define PARA_MESSAGE_ID @"mid"
+#define PARA_TARGET_MESSAGE_ID @"tmd"
 
 #define PARA_COUNTRYCODE @"cc"
 
