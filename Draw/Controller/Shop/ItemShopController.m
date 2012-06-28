@@ -23,6 +23,7 @@
 #import "ColorShopView.h"
 #import "YoumiWallController.h"
 #import "ConfigManager.h"
+#import "MobClick.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -188,16 +189,21 @@ ItemShopController *staticItemController = nil;
 - (void)didClickBuyButtonAtIndexPath:(NSIndexPath *)indexPath 
                                model:(PriceModel *)model
 {
+    [MobClick event:@"BUY_ITEM" label:[[model price] description]];
+    
     NSInteger price = [[model price] intValue];
     if ([[AccountService defaultService] hasEnoughCoins:price] == NO){
         PPDebug(@"<ItemShopController> click buy item but coins not enough");        
-        if (callFromShowViewController) {
-            NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), price];
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
-            dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
-            [dialog showInView:self.view];
-            
-        }else{        
+        // rem by Benson for call IAP directly
+//        if (callFromShowViewController) {
+//            NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), price];
+//            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
+//            dialog.tag = DIALOG_NOT_BUY_COIN_TAG;
+//            [dialog showInView:self.view];
+//            
+//        }else
+        {        
+            [MobClick event:@"NO_COINS"];
             _dialogAction = DIALOG_ACTION_ASK_BUY_COIN;
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:NSLS(@"kCoinsNotEnough") style:CommonDialogStyleDoubleButton delegate:self];
             dialog.tag = DIALOG_ACTION_ASK_BUY_COIN;
@@ -216,16 +222,26 @@ ItemShopController *staticItemController = nil;
 {
     if (dialog.tag == DIALOG_NOT_BUY_COIN_TAG) {
     }else{
-        if ([ConfigManager isInReviewVersion] == NO && 
-            ([LocaleUtils isChina] == YES || 
-             [LocaleUtils isOtherChina] == YES)){
-            [self showYoumiWall];            
-        }
-        else{
-            [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
-            _coinController = [CoinShopController instance];
-        }
+//        if ([ConfigManager isInReviewVersion] == NO && 
+//            ([LocaleUtils isChina] == YES || 
+//             [LocaleUtils isOtherChina] == YES)){
+//            [self showYoumiWall];            
+//        }
+//        else{
+//            [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
+//            _coinController = [CoinShopController instance];
+//        }
+
+        [MobClick event:@"BUY_COINS"];
         
+        NSArray* coinPriceList = [[ShoppingManager defaultManager] findCoinPriceList];
+        if ([coinPriceList count] > 0){
+            PriceModel* model = [coinPriceList objectAtIndex:0];
+            [self showActivityWithText:NSLS(@"kBuying")];
+            [[AccountService defaultService] setDelegate:self];
+            [[AccountService defaultService] buyCoin:model];
+
+        }
     }
 }
 
@@ -258,6 +274,38 @@ ItemShopController *staticItemController = nil;
 }
 
 
+#pragma mark - Account Service Delegate
+
+- (void)didFinishBuyProduct:(int)resultCode
+{
+    [self hideActivity];
+    
+    if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
+        [MobClick event:@"BUY_COINS_OK"];
+        
+        [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil]; 
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    else if (resultCode == PAYMENT_CANCEL){
+        [MobClick event:@"BUY_COINS_CANCEL"];
+        return;
+    }
+    
+    [self updateLabels];
+    
+    if (resultCode == 0){
+        [self popupMessage:NSLS(@"kBuyCoinsSucc") title:nil];
+    }
+}
+
+- (void)didProcessingBuyProduct
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kProcessingIAP")];
+}
+
+
 - (UINavigationController *)topNavigationController
 {
     if (_coinController) {
@@ -268,6 +316,7 @@ ItemShopController *staticItemController = nil;
 
 - (void)showYoumiWall
 {
+    [MobClick event:@"SHOW_WALL"];
     YoumiWallController* controller = [[YoumiWallController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
