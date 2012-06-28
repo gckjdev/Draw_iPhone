@@ -197,6 +197,12 @@ enum {
     [dataTableView setBackgroundView:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
