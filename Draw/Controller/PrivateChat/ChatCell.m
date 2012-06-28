@@ -30,17 +30,19 @@
 @synthesize nickNameLabel;
 @synthesize graffiti;
 @synthesize textLabel;
-@synthesize messageNumberLabel;
 @synthesize timeLabel;
+@synthesize countLabel;
+@synthesize countBackground;
 
 
 - (void)dealloc {
     PPRelease(avatarImage);
     PPRelease(nickNameLabel);
     PPRelease(graffiti);
-    PPRelease(messageNumberLabel);
     PPRelease(timeLabel);
     PPRelease(textLabel);
+    PPRelease(countLabel);
+    PPRelease(countBackground);
     [super dealloc];
 }
 
@@ -133,9 +135,23 @@
 //        [graffiti addSubview:thumbImageView];
     }
     
-    //set messageNumberLabel
-    NSString *newAndTotal = [NSString stringWithFormat:@"[%@/%@]", messageTotal.totalNewMessage, messageTotal.totalMessage];
-    self.messageNumberLabel.text = newAndTotal;
+    //set countLabel
+    if ([messageTotal.totalNewMessage intValue] > 0) {
+        countBackground.hidden = NO;
+        countLabel.hidden = NO;
+        
+        if ([messageTotal.totalNewMessage intValue] > 99) {
+            countLabel.text = @"N";
+        } else {
+            countLabel.text = [NSString stringWithFormat:@"%@",messageTotal.totalNewMessage];
+        }
+        
+    } else {
+        countBackground.hidden = YES;
+        countLabel.hidden = YES;
+    }
+    
+    
     
     //set timeLabel
     NSString *timeString = nil;

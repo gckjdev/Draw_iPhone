@@ -16,9 +16,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *graffiti;
 @property (retain, nonatomic) IBOutlet UILabel *textLabel;
-
-@property (retain, nonatomic) IBOutlet UILabel *messageNumberLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *countLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *countBackground;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
