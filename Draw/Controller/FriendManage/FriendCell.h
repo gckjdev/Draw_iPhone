@@ -10,7 +10,8 @@
 
 typedef enum{
     FromFriendList = 1,
-    FromInviteList = 2
+    FromInviteList = 2,
+    FromSearchUserList = 3
 }FromType;
 
 @protocol FollowDelegate <NSObject>
@@ -29,18 +30,18 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;
 @property (retain, nonatomic) IBOutlet UILabel *areaLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *authImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *authImageView1;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UIButton *followButton;
 @property (retain, nonatomic) IBOutlet UILabel* levelLabel;
-
+@property (retain, nonatomic) IBOutlet UIImageView *authImageView2;
+@property (retain, nonatomic) IBOutlet UIImageView *authImageView3;
 @property (retain, nonatomic) NSDictionary *user;
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;
 //@property (assign, nonatomic) id<FollowDelegate> inviteDelegate;
 
 
-- (void)setCellByDictionary:(NSDictionary *)aUser indexPath:(NSIndexPath *)aIndexPath;
-- (void)setCellByFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath;
+- (void)setCellByDictionary:(NSDictionary *)aUser indexPath:(NSIndexPath *)aIndexPath fromType:(FromType)type;
 - (void)setCellWithFriend:(Friend *)aFriend indexPath:(NSIndexPath *)aIndexPath fromType:(FromType)type;
 
 - (IBAction)clickFollowButton:(id)sender;
