@@ -36,6 +36,11 @@
 @synthesize score = _score;
 @synthesize guessWords = _guessWords;  
 
+// for draw to user guess
+@synthesize targetUid = _targetUid;
+@synthesize targetNickName = _targetNickName;
+
+
 // for user comment
 @synthesize comment = _comment;
 
@@ -56,6 +61,8 @@
     PPRelease(_opusId);
     PPRelease(_guessWords);
     PPRelease(_comment);
+    PPRelease(_targetUid);
+    PPRelease(_targetNickName);
     [super dealloc];
 }
 
@@ -88,6 +95,9 @@
             self.guessWords = [pbFeed guessWordsList];
         }else if(self.feedType == FeedTypeComment){
             self.comment = [pbFeed comment];
+        }else if(self.feedType == FeedTypeDrawToUser){
+            self.targetUid = [pbFeed targetUserId];
+            self.targetNickName = [pbFeed targetUserNickName];
         }
     }
     return self;

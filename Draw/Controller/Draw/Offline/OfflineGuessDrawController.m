@@ -21,7 +21,6 @@
 #import "PPApplication.h"
 #import "HomeController.h"
 #import "DrawAction.h"
-#import "StableView.h"
 #import "ShareImageManager.h"
 #import "RoomController.h"
 #import "GameMessage.pb.h"
@@ -39,6 +38,7 @@
 #import "CoinShopController.h"
 #import "FeedController.h"
 #import "FeedDetailController.h"
+#import "CommonUserInfoView.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -543,11 +543,13 @@
     }
     
     AvatarView *avatar = [[AvatarView alloc] initWithUrlString:_draw.avatar type:Guesser gender:YES level:1];
+    avatar.userId = _draw.userId;
     if ([DeviceDetection isIPAD]) {
         avatar.center = CGPointMake(21 * 2, 22 * 2);
     }else{
         avatar.center = CGPointMake(21, 22);
     }
+    avatar.delegate = self;
     [self.view addSubview:avatar];
     [avatar release];
     
@@ -803,6 +805,19 @@
 - (NSString *)realValueForButton:(UIButton *)button
 {
     return [button titleForState:UIControlStateSelected];
+}
+
+#pragma mark - avatar view delegate
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    [CommonUserInfoView showUser:userId 
+                        nickName:nil 
+                          avatar:nil 
+                          gender:nil 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 

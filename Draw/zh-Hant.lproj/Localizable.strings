@@ -523,13 +523,13 @@
 "kMyFeed" = "我的";
 "kMyFeedList" = "我的動態";
 
-"kDrawDescNoWord" = "畫了一幅畫";
-"kGuessRightDescNoWord" = "猜對了%@的畫";
-"kTryGuessDescNoWord" = "嘗試去猜了%@的畫";
+"kDrawDescNoWord" = "畫了一幅畫。";
+"kGuessRightDescNoWord" = "猜對了%@的畫。";
+"kTryGuessDescNoWord" = "嘗試去猜了%@的畫。";
 
-"kDrawDesc" = "畫了一幅 [%@]";
-"kGuessRightDesc" = "猜對了%@畫的 [%@]";
-"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]";
+"kDrawDesc" = "畫了一幅 [%@]。";
+"kGuessRightDesc" = "猜對了%@畫的 [%@]。";
+"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]。";
 
 "kNGRD" = "%@猜對了你畫的[%@]。你也去猜猜TA的畫？";
 "kNTGD" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
@@ -590,7 +590,7 @@
 "kPlayWithHim" = "和TA一起玩猜猜畫畫";
 "kChatToHim" = "搭個訕";
 
-"kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰";
+"kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
 
 
 "kUserFeedTitle" = "%@的動態";
@@ -604,6 +604,7 @@
 "kSetQQWeibo" = "騰訊微博";
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "請輸入電子郵件地址";
+
 "kUserBindSucc" = "成功綁定了用​​戶帳號";
 "kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";
 "kWeiboExpired" = "微博授權已過期";

@@ -58,6 +58,10 @@ typedef enum{
     BOOL _correct;
     NSInteger _score;
     NSArray *_guessWords;  
+ 
+    // for draw to user guess
+    NSString *_targetUid;
+    NSString *_targetNickName;
     
     // for user comment
     NSString *_comment;
@@ -68,7 +72,6 @@ typedef enum{
     NSInteger _commentTimes;
     NSInteger _correctTimes;
 }
-
 
 @property (nonatomic, retain) NSString *feedId;
 @property (nonatomic, retain) NSString *userId;
@@ -92,6 +95,11 @@ typedef enum{
 
 // for user comment
 @property (nonatomic, retain) NSString *comment;
+
+// for draw to user guess
+@property (nonatomic, retain) NSString *targetUid;
+@property (nonatomic, retain) NSString *targetNickName;
+
 
 // common data
 @property (nonatomic, assign) NSInteger matchTimes;

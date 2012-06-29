@@ -47,5 +47,7 @@ typedef enum{
 + (NSString *)userNameForFeed:(Feed *)feed;
 + (NSString *)opusCreatorForFeed:(Feed *)feed;
 + (FeedActionDescType)feedActionDescFor:(Feed *)feed;
++ (NSString *)targetNameForFeed:(Feed *)feed;
+
 
 @end

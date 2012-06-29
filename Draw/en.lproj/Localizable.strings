@@ -614,7 +614,7 @@
 "kDrawToUserDesc" = "Drawed a drawing: [%@] to %@.";
 "kDrawToUserNoWordDesc" = "Drawed a drawing to %@.";
 
-"kHisFriend" = "His(Her) Friend";
+"kHisFriend" = "his(her) friend";
 
 "kSaveAndShare" = "Share";
 "kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";

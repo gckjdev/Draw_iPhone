@@ -11,11 +11,12 @@
 #import "FeedService.h"
 #import "ShowDrawView.h"
 #import "OfflineGuessDrawController.h"
+#import "StableView.h"
 
 @class AvatarView;
 @class Feed;
 
-@interface FeedDetailController : PPTableViewController<FeedServiceDelegate, ShowDrawViewDelegate,OfflineGuessDelegate>
+@interface FeedDetailController : PPTableViewController<FeedServiceDelegate, ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
 {
     Feed *_feed;
     AvatarView *_avatarView;

@@ -20,6 +20,7 @@
 #import "SelectWordController.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
+#import "CommonSnsInfoView.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -111,26 +112,18 @@
     [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
 }
 
-- (void)initUserInfo
+- (void)resetUserInfo
 {
     [self.userName setText:self.userNickName];
     
     NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:self.userLocation]:self.userLocation;
     [self.locationLabel setText:location];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    if (hasSina) {
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager sinaWeiboImage]];
-    }else if (hasQQ){
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager qqWeiboImage]];
-    }else if (hasFacebook){
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager facebookImage]];
-    }else {
-        self.snsTagImageView.hidden = YES;
-    }
+    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
+                                                               hasSina:self.hasSina 
+                                                                 hasQQ:self.hasQQ 
+                                                           hasFacebook:self.hasFacebook] autorelease];
+    [self.contentView addSubview:view];
     
     NSString* gender = [self.userGender isEqualToString:@"m"]?NSLS(@"kMale"):NSLS(@"kFemale");
     [self.genderLabel setText:gender];
@@ -161,7 +154,7 @@
     [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
     [self initTitle];
     [self initButton];
-    [self initUserInfo];
+    [self resetUserInfo];
     
 }
 
@@ -171,9 +164,9 @@
                     nickName:aFriend.nickName 
                       avatar:aFriend.avatar 
                       gender:aFriend.gender 
-                     hasSina:(aFriend.sinaNick == nil) 
-                       hasQQ:(aFriend.qqNick == nil) 
-                 hasFacebook:(aFriend.facebookNick == nil) ];
+                     hasSina:(aFriend.sinaNick != nil) 
+                       hasQQ:(aFriend.qqNick != nil) 
+                 hasFacebook:(aFriend.facebookNick != nil) ];
 }
 
 - (void)initViewWithUserId:(NSString*)aUserId 
@@ -230,18 +223,21 @@
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController
 {
-    CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
-    [view initViewWithUserId:userId 
-                    nickName:nickName 
-                      avatar:avatar 
-                      gender:aGender 
-                     hasSina:didHasSina 
-                       hasQQ:didHasQQ 
-                 hasFacebook:didHasFacebook];
-    view.superViewController = superController;
-    [superController showActivity];
-    [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
-    //[superController.view addSubview:view];
+    if (![[[UserManager defaultManager] userId] isEqualToString:userId]) {
+        CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+        [view initViewWithUserId:userId 
+                        nickName:nickName 
+                          avatar:avatar 
+                          gender:aGender 
+                         hasSina:didHasSina 
+                           hasQQ:didHasQQ 
+                     hasFacebook:didHasFacebook];
+        view.superViewController = superController;
+        [superController showActivity];
+        [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
+        //[superController.view addSubview:view];
+    }
+    
 }
 
 - (void)startRunOutAnimation
@@ -351,7 +347,7 @@
     if (facebookId != nil) {
         self.hasFacebook = YES;
     }
-    
+    [self resetUserInfo];
     [self.superViewController hideActivity];
     [self.superViewController.view addSubview:self];
 }

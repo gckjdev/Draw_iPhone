@@ -13,7 +13,7 @@
 #import "PPViewController.h"
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
-
+#import "StableView.h"
 
 @protocol OfflineGuessDelegate <NSObject>
 
@@ -31,7 +31,7 @@
 @class ItemShopController;
 @class Draw;
 @class Feed;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
