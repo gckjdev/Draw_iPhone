@@ -23,11 +23,11 @@
               messageCount:(long)messageCount 
                fanCount:(long)fanCount 
               roomCount:(long)roomCount;
-- (void)didGetUserNickName:(NSString*)userNickName
-                UserAvatar:(NSString*)userAvatar
-                UserGender:(NSString*)userGender
-              UserLocation:(NSString*)userLocation 
-                 UserLevel:(int)userLevel 
+- (void)didGetUserNickName:(NSString*)nickName
+                UserAvatar:(NSString*)avatar
+                UserGender:(NSString*)gender
+              UserLocation:(NSString*)location 
+                 UserLevel:(NSString*)level 
                   SinaNick:(NSString*)sinaNick 
                     QQNick:(NSString*)qqNick 
                 FacebookId:(NSString*)facebookId;

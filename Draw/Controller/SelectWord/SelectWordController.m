@@ -23,6 +23,7 @@
 #import "DeviceDetection.h"
 #import "OfflineDrawViewController.h"
 #import "CustomWordManager.h"
+#import "AdService.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -163,6 +164,8 @@
 #define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 780) : CGPointMake(272, 344))
 - (void)viewDidLoad
 {
+
+    
     [super viewDidLoad];
     toolView = [[ToolView alloc] initWithNumber:0];
     toolView.number = [[ItemManager defaultManager] tipsItemAmount];
@@ -196,12 +199,17 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[AdService defaultService] showAdInView:self.view 
+                                       frame:CGRectMake(0, 480-50-20, 0, 0) 
+                                   iPadFrame:CGRectMake(112, 883, 0, 0)];
+    
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] hideAdViewInView:self.view];
 //    [self clearUnPopupMessages];
 //    [drawGameService unregisterObserver:self];
     [super viewDidDisappear:animated];

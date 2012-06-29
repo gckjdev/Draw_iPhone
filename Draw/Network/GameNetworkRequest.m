@@ -1679,7 +1679,8 @@
     
 }
 
-+ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL
++ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
+                                    appId:(NSString*)appId
                                  ByUserId:(NSString*)targetUserId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1687,7 +1688,8 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO]; 
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO];
+        str = [str stringByAddQueryParameter:PARA_APPID value:APP_ID];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
         return str;
     };

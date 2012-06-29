@@ -27,9 +27,11 @@
 #import "QQWeiboService.h"
 #import "FacebookSNSService.h"
 #import "GameNetworkConstants.h"
+#import "AdService.h"
 
 enum{
     SECTION_USER = 0,
+    SECTION_REMOVE_AD,
     SECTION_ACCOUNT,
     SECTION_GUESSWORD,
     SECTION_SOUND,
@@ -239,6 +241,9 @@ enum {
         return rowsInSectionSound;
     } else if (section == SECTION_ACCOUNT){
         return rowsInSectionAccount;
+    }
+    else if (section == SECTION_REMOVE_AD){
+        return 1;
     }
     else{
         return 0;
@@ -463,6 +468,11 @@ enum {
                 break;
         }
     }
+    else if (section == SECTION_REMOVE_AD) {
+        cell.textLabel.text = NSLS(@"kRemoveAd");
+        cell.detailTextLabel.hidden = NO;
+        cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
+    }
     
     return cell;
 }
@@ -611,6 +621,9 @@ enum {
                 break;
         }
     }    
+    else if (section == SECTION_REMOVE_AD) {
+        [[AdService defaultService] requestRemoveAd:self];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

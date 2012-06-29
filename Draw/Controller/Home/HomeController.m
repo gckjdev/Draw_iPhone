@@ -48,6 +48,7 @@
 #import "ChatListController.h"
 #import "LevelService.h"
 #import "LmWallService.h"
+#import "AdService.h"
 
 @interface HomeController()
 
@@ -114,37 +115,11 @@
 
 #pragma mark - View lifecycle
 
-- (void)initAdView
-{
-    if ([DeviceDetection isIPAD]){
-        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(65, 800, 0, 0)];
-        self.adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
-        self.adView.specId = 0;
-    }
-    else{
-        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        self.adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
-        self.adView.specId = 0;
-    }
-    self.adView.appVersionString = [UIUtils getAppVersion];
-    self.adView.delegate = self;
-    [self.view addSubview:_adView];
-    [self.adView requestBannerAd];    
-}
-
 - (void)viewDidLoad
 {    
-//    [self setBackgroundImageName:@"home.png"];
-
-    [self initAdView];
-    
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     [self playBackgroundMusic];
     
-//    [[AudioManager defaultManager] setBackGroundMusicWithName:@"cannon.mp3"];
-//    [[AudioManager defaultManager] backgroundMusicStart];
-
     // set text
     [self.startLabel setText:NSLS(@"kStart")];
     [self.shareLabel setText:NSLS(@"kHomeShare")];
@@ -208,15 +183,19 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[AdService defaultService] showAdInView:self.view 
+                                       frame:CGRectMake(0, 0, 0, 0) 
+                                   iPadFrame:CGRectMake(65, 800, 0, 0)];
+    
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-//    [[RouterService defaultService] fetchServerListAtBackground];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] hideAdViewInView:self.view];
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
@@ -261,21 +240,6 @@
 {
     // Return YES for supported orientations
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
-#pragma mark - Ad View Delegate
-
-- (void) lmmobAdBannerViewDidReceiveAd: (LmmobAdBannerView*) bannerView{
-    
-    PPDebug(@"<lmmobAdBannerViewDidReceiveAd> success");    
-}
-
-- (void) lmmobAdBannerViewWillPresentScreen: (LmmobAdBannerView*) bannerView{
-    PPDebug(@"<lmmobAdBannerViewWillPresentScreen> success");        
-}
-
-- (void) lmmobAdBannerView: (LmmobAdBannerView*) bannerView didFailReceiveBannerADWithError: (NSError*) error{
-    PPDebug(@"<didFailReceiveBannerADWithError>:%@", error);    
 }
 
 

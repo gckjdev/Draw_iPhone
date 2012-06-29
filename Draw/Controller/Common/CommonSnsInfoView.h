@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CommonSnsInfoView : UIView
+- (id)initWithFrame:(CGRect)frame 
+            hasSina:(BOOL)hasSina 
+              hasQQ:(BOOL)hasQQ 
+        hasFacebook:(BOOL)hasFacebook;
+
 
 @end

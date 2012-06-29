@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
+#import "UserService.h"
 @class PPViewController;
 @class Friend;
 
-@interface CommonUserInfoView : UIView<FriendServiceDelegate>
+@interface CommonUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
 
 + (void)showUser:(Friend*)afriend 
       infoInView:(UIViewController*)superController;

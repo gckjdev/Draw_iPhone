@@ -10,6 +10,8 @@
 #import "PPDebug.h"
 #import "MobClick.h"
 #import "AccountService.h"
+#import "UIUtils.h"
+#import "AdService.h"
 
 #define IPHONE_WALL_ID      @"ed21340370b99ad5bd2a5e304e3ea6c4"
 
@@ -48,11 +50,38 @@ static LmWallService* _defaultService;
 
 - (void)show:(UIViewController*)viewController
 {
+    
+    
     [MobClick event:@"SHOW_LM_WALL"];
     _viewController = viewController;
     if([[LmmobAdWallSDK defaultSDK] lmmob]){
         [_viewController presentModalViewController:[[LmmobAdWallSDK defaultSDK] lmmob] animated:YES];
     }    
+}
+
+- (void)setWallForRemoveAd
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"1" forKey:@"WALL_FOR_REMOVE_AD"];
+    [userDefaults synchronize];    
+}
+
+- (void)clearWallForRemoveAd
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"WALL_FOR_REMOVE_AD"];
+}
+
+- (BOOL)isWallForRemoveAd
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return ([userDefaults objectForKey:@"WALL_FOR_REMOVE_AD"] != nil);
+}
+
+- (void)show:(UIViewController*)viewController isForRemoveAd:(BOOL)isForRemoveAd
+{
+    [self setWallForRemoveAd];
+    [self show:viewController];    
 }
 
 /*! 
@@ -126,7 +155,11 @@ static LmWallService* _defaultService;
     [alert show];
     [alert release];
     
-
+    if ([self isWallForRemoveAd]){
+        [[AdService defaultService] setAdDisable];
+        [self clearWallForRemoveAd];
+    }
+    
 }
 
 
