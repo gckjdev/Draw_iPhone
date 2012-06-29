@@ -11,10 +11,11 @@
 #import "RoomService.h"
 #import "DrawGameService.h"
 #import "RoomPasswordDialog.h"
+#import "RoomCell.h"
 
 @class UserManager;
 
-@interface FriendRoomController : PPTableViewController<RoomServiceDelegate, DrawGameServiceDelegate,InputDialogDelegate>
+@interface FriendRoomController : PPTableViewController<RoomServiceDelegate, DrawGameServiceDelegate,InputDialogDelegate, RoomCellDelegate>
 {
     UserManager *_userManager;
     BOOL _isTryJoinGame;    

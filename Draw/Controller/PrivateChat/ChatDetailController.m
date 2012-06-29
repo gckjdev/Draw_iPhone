@@ -497,6 +497,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         ChatMessage *chatMessage = [dataList objectAtIndex:indexPath.row];
+        NSString *messageId = chatMessage.messageId;
         
         NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:dataList];
         [mutableArray removeObjectAtIndex:indexPath.row];
@@ -505,7 +506,7 @@
         
         [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
-        [[ChatService defaultService] deleteMessage:self messageIdList:[NSArray arrayWithObject:chatMessage.messageId]];
+        [[ChatService defaultService] deleteMessage:self messageIdList:[NSArray arrayWithObject:messageId]];
     }
 }
 
