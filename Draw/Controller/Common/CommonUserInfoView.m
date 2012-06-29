@@ -20,6 +20,7 @@
 #import "SelectWordController.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
+#import "CommonSnsInfoView.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -118,19 +119,11 @@
     NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:self.userLocation]:self.userLocation;
     [self.locationLabel setText:location];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    if (hasSina) {
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager sinaWeiboImage]];
-    }else if (hasQQ){
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager qqWeiboImage]];
-    }else if (hasFacebook){
-        self.snsTagImageView.hidden = NO;
-        [self.snsTagImageView setImage:[imageManager facebookImage]];
-    }else {
-        self.snsTagImageView.hidden = YES;
-    }
+    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
+                                                               hasSina:self.hasSina 
+                                                                 hasQQ:self.hasQQ 
+                                                           hasFacebook:self.hasFacebook] autorelease];
+    [self.contentView addSubview:view];
     
     NSString* gender = [self.userGender isEqualToString:@"m"]?NSLS(@"kMale"):NSLS(@"kFemale");
     [self.genderLabel setText:gender];
@@ -171,9 +164,9 @@
                     nickName:aFriend.nickName 
                       avatar:aFriend.avatar 
                       gender:aFriend.gender 
-                     hasSina:(aFriend.sinaNick == nil) 
-                       hasQQ:(aFriend.qqNick == nil) 
-                 hasFacebook:(aFriend.facebookNick == nil) ];
+                     hasSina:(aFriend.sinaNick != nil) 
+                       hasQQ:(aFriend.qqNick != nil) 
+                 hasFacebook:(aFriend.facebookNick != nil) ];
 }
 
 - (void)initViewWithUserId:(NSString*)aUserId 
