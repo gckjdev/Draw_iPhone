@@ -16,6 +16,7 @@
 
 + (LmWallService*)defaultService;
 - (void)show:(UIViewController*)viewController;
+- (void)show:(UIViewController*)viewController isForRemoveAd:(BOOL)isForRemoveAd;
 - (void)queryScore;
 
 @end
