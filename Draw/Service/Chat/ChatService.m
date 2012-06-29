@@ -153,7 +153,17 @@ static ChatService *_chatService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
-                NSString* messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                
+                NSString *createDateStr = [output.jsonDataDict objectForKey:PARA_CREATE_DATE];
+                double createDateDouble = [createDateStr doubleValue];
+                NSDate *createDate ;
+                if (createDateDouble > 0) {
+                    createDate = [NSDate dateWithTimeIntervalSince1970:createDateDouble];
+                } else {
+                    createDate = [NSDate date];
+                }
+                
                 
                 NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
                 for (PBDrawAction *pbDrawAction in draw.drawDataList) {
@@ -169,7 +179,7 @@ static ChatService *_chatService = nil;
                                                                            from:userId 
                                                                              to:friendUserId 
                                                                        drawData:dataForSave
-                                                                     createDate:[NSDate date] 
+                                                                     createDate:createDate
                                                                            text:text 
                                                                          status:[NSNumber numberWithInt:MessageStatusSendSuccess]];
                 PPDebug(@"<ChatService>sendMessage success");
