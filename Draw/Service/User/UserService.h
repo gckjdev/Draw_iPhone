@@ -26,7 +26,11 @@
 - (void)didGetUserNickName:(NSString*)userNickName
                 UserAvatar:(NSString*)userAvatar
                 UserGender:(NSString*)userGender
-              UserLocation:(NSString*)userLocation;
+              UserLocation:(NSString*)userLocation 
+                 UserLevel:(int)userLevel 
+                  SinaNick:(NSString*)sinaNick 
+                    QQNick:(NSString*)qqNick 
+                FacebookId:(NSString*)facebookId;
 @end
 
 @interface UserService : CommonService
@@ -74,7 +78,7 @@
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
 - (void)getUserSimpleInfoByUserId:(NSString*)targetUserId 
-                   viewController:(PPViewController*)viewController;
+                         delegate:(id<UserServiceDelegate>)delegate;
 
 
 
