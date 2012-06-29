@@ -25,6 +25,7 @@
 #import "ConfigManager.h"
 #import "MobClick.h"
 #import "LmWallService.h"
+#import "AdService.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -120,18 +121,22 @@ ItemShopController *staticItemController = nil;
     [self.gotoCoinShopButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
-
+    
     [self.removeAdButton setTitle:NSLS(@"kRemoveAd") forState:UIControlStateNormal];
     [self.removeAdButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
-    
-    
-    if ([LocaleUtils isChina] == YES || 
-        [LocaleUtils isOtherChina] == YES){
-        self.gotoCoinShopButton.hidden = YES;
+
+    if ([[AdService defaultService] isShowAd] == NO){
+        self.removeAdButton.hidden = YES;
     }
-    else{
-        self.gotoCoinShopButton.hidden = NO;
-    }
+    
+    self.gotoCoinShopButton.hidden = YES;
+//    if ([LocaleUtils isChina] == YES || 
+//        [LocaleUtils isOtherChina] == YES){
+//        self.gotoCoinShopButton.hidden = YES;
+//    }
+//    else{
+//        self.gotoCoinShopButton.hidden = NO;
+//    }
     
     _coinController = nil;
     
@@ -261,12 +266,7 @@ ItemShopController *staticItemController = nil;
 
 - (IBAction)clickRemoveAd:(id)sender
 {
-    if ([ConfigManager wallEnabled]){
-        [self showYoumiWall];
-    }
-    else{
-        [self buyCoins];
-    }
+    [[AdService defaultService] requestRemoveAd:self];
 }
 
 #pragma mark - Price service delegate
@@ -333,8 +333,8 @@ ItemShopController *staticItemController = nil;
 
 - (void)showYoumiWall
 {
-    [UIUtils alert:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
     
+    [UIUtils alert:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
     [[LmWallService defaultService] show:self];
 
     /*

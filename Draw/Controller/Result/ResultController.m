@@ -31,6 +31,7 @@
 #import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
+#import "AdService.h"
 
 #define CONTINUE_TIME 10
 
@@ -163,7 +164,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{
+{        
     [super viewDidLoad];
         
     [self.drawImage setImage:_image];
@@ -230,10 +231,14 @@
         [AnimationManager snowAnimationAtView:self.view];
     }
     
+    [[AdService defaultService] showAdInView:self.view 
+                                       frame:CGRectMake(0, 0, 0, 0) 
+                                   iPadFrame:CGRectMake(224, 755, 0, 0)];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] hideAdViewInView:self.view];
     [super viewDidDisappear:animated];
 //    [drawGameService unregisterObserver:self];
 //    [drawGameService setRoomDelegate:nil];

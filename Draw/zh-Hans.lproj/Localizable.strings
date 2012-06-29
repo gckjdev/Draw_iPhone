@@ -567,7 +567,7 @@
 
 
 "kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣赏TA的大作";
+"kPushDrawMessage" = "%@ 邀您欣赏TA的大作。";
 
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
@@ -587,7 +587,7 @@
 "kFeeds" = "动态";
 
 
-"kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
+"kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来。";
 "kGuessWords" = "猜画的是: %@";
 "kMyDrawing" = "我的[%@]";
 
@@ -596,7 +596,7 @@
 "kPlayWithHim" = "和TA一起玩猜猜画画";
 "kChatToHim" = "搭个讪";
 
-"kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁";
+"kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kUserFeedTitle" = "%@的动态";
 
 // For Weibo Settings
@@ -624,5 +624,9 @@
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
 "kHisFriend" = "TA好友";
 
-"kRemoveAd" = "金币去广告";
+"kRemoveAd" = "移除广告";
+"kRemoveAdByIAP" = "你只需要购买400个金币即可直接移除广告，确认吗？";
+"kMessage" = "消息";
+"kAdRemoved" = "已移除";
+"kAdNotRemoved" = "待移除";
 
