@@ -41,6 +41,10 @@
 @synthesize statusLabel;
 @synthesize targetFriend = _targetFriend;
 @synthesize superViewController = _superViewController;
+@synthesize userAvatar;
+@synthesize userNickName;
+@synthesize userLocation;
+@synthesize userGender;
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -30,6 +30,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *followUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) Friend* targetFriend;
+@property (retain, nonatomic) NSString* userAvatar;
+@property (retain, nonatomic) NSString* userNickName;
+@property (retain, nonatomic) NSString* userLocation;
+@property (retain, nonatomic) NSString* userGender;
 @property (assign, nonatomic) PPViewController* superViewController;
 
 @end

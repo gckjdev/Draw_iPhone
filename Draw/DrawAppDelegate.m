@@ -38,17 +38,18 @@
 #import "YoumiWallService.h"
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
+#import "LmWallService.h"
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.14:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//      return @"http://192.168.1.14:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.14:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.14:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -257,7 +258,8 @@ NSString* GlobalGetTrafficServerURL()
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    [[YoumiWallService defaultService] queryPoints];
+//    [[YoumiWallService defaultService] queryPoints];
+    [[LmWallService defaultService] queryScore];
     [[DrawGameService defaultService] clearDisconnectTimer];
     [self.networkDetector start];        
     

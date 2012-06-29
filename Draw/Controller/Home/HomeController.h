@@ -14,10 +14,11 @@
 #import "DrawDataService.h"
 #import "NotificationManager.h"
 #import "UserService.h"
+#import <Lmmob/LmmobADBannerView.h>
 
 @class UserManager;
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, LmmobAdBannerViewDelegate>
 {
     BOOL        _isTryJoinGame;    
     UserManager *_userManager;
@@ -59,6 +60,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *messageBadge;
 @property (retain, nonatomic) IBOutlet UIButton *roomBadge;
 @property (retain, nonatomic) IBOutlet UIScrollView *homeScrollView;
+
+// Ad View
+@property (nonatomic, retain) LmmobAdBannerView* adView;
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;

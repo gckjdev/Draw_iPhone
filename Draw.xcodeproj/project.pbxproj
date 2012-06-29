@@ -199,6 +199,7 @@
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
+		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2D9E573155BA9CD007DBD01 /* volume_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D9E570155BA9CD007DBD01 /* volume_off@2x.png */; };
 		C2D9E574155BA9CD007DBD01 /* volume_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D9E571155BA9CD007DBD01 /* volume_on@2x.png */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -666,6 +667,12 @@
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
+		CAA9C430159CA8CA00398EC5 /* AdWallSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */; };
+		CAA9C431159CA8CA00398EC5 /* LmmobAdWallSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */; };
+		CAA9C432159CA8CA00398EC5 /* readme.doc in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C42F159CA8CA00398EC5 /* readme.doc */; };
+		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
+		CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */; };
+		CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */; };
 		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
 		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
 		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
@@ -1049,6 +1056,8 @@
 		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
+		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
+		C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSnsInfoView.m; sourceTree = "<group>"; };
 		C2D9E570155BA9CD007DBD01 /* volume_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_off@2x.png"; sourceTree = "<group>"; };
 		C2D9E571155BA9CD007DBD01 /* volume_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_on@2x.png"; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
@@ -1812,6 +1821,13 @@
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
+		CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AdWallSDK.bundle; sourceTree = "<group>"; };
+		CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LmmobAdWallSDK.framework; sourceTree = "<group>"; };
+		CAA9C42F159CA8CA00398EC5 /* readme.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = readme.doc; sourceTree = "<group>"; };
+		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
+		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
+		CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lmmob.framework; sourceTree = "<group>"; };
+		CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReadMe.docx; sourceTree = "<group>"; };
 		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
 		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
@@ -1946,6 +1962,8 @@
 				A38894A315778B1200764158 /* iFlyISR.framework in Frameworks */,
 				A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */,
 				CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */,
+				CAA9C431159CA8CA00398EC5 /* LmmobAdWallSDK.framework in Frameworks */,
+				CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3378,6 +3396,8 @@
 		CA1041D51509B6E700F60C03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */,
+				C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */,
 				C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */,
 				C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */,
 				C29B8A201563B02000B9707D /* CommonMessageView.xib */,
@@ -4136,6 +4156,8 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAA9C43A159D3F7800398EC5 /* LmmobSDK */,
+				CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */,
 				CAAE4A711578FD5C0012F6B8 /* YoumiSDK */,
 				A388949115778B1200764158 /* iFly */,
 				A357930C1574BD670007B2C0 /* WeixinSDK */,
@@ -4434,6 +4456,27 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */,
+				CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */,
+				CAA9C42F159CA8CA00398EC5 /* readme.doc */,
+			);
+			name = LmmobAdWallSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK";
+			sourceTree = "<group>";
+		};
+		CAA9C43A159D3F7800398EC5 /* LmmobSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */,
+				CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */,
+			);
+			name = LmmobSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/LmmobSDK";
+			sourceTree = "<group>";
+		};
 		CAAE4A711578FD5C0012F6B8 /* YoumiSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -4451,6 +4494,8 @@
 			children = (
 				CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */,
 				CAAE4A8B1579B82D0012F6B8 /* YoumiWallService.m */,
+				CAA9C433159CA97100398EC5 /* LmWallService.h */,
+				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 			);
 			path = YoumiWall;
 			sourceTree = "<group>";
@@ -5039,6 +5084,9 @@
 				A3EC170515996D8100D7872D /* refresh@2x.png in Resources */,
 				CA04B164159AE47F00D7ACD1 /* UserFeedController.xib in Resources */,
 				CA04B166159AE4D900D7ACD1 /* UserFeedController~ipad.xib in Resources */,
+				CAA9C430159CA8CA00398EC5 /* AdWallSDK.bundle in Resources */,
+				CAA9C432159CA8CA00398EC5 /* readme.doc in Resources */,
+				CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5431,6 +5479,8 @@
 				C2615A9D1597FBB900CEEC66 /* CommonUserInfoView.m in Sources */,
 				CA04B163159AE47F00D7ACD1 /* UserFeedController.m in Sources */,
 				CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */,
+				CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */,
+				C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5621,6 +5671,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5649,6 +5701,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
