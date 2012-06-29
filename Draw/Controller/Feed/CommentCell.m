@@ -64,11 +64,16 @@
     return height;
 }
 
+#define SHOW_COMMENT_COUNT 3
+
 - (void)setCellInfo:(Feed *)feed
 {
     //set avatar
     [_avatarView removeFromSuperview];
-    _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0];
+    _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar 
+                                                  frame:AVATAR_VIEW_FRAME 
+                                                 gender:feed.gender 
+                                                  level:0];
     _avatarView.delegate = self;
     _avatarView.userId = feed.userId;
     [self addSubview:_avatarView];
@@ -85,15 +90,27 @@
             comment = NSLS(@"kCorrect");            
         }else{
             NSString *guessWords = nil;
-            if ([feed.guessWords count] != 0) {
-                if ([LocaleUtils isChinese]) {
-                    guessWords = [feed.guessWords componentsJoinedByString:@"、"];    
+            NSInteger wordCount = [feed.guessWords count];
+            if (wordCount != 0) {
+                NSArray *wordList = nil;
+                if (wordCount > SHOW_COMMENT_COUNT) {
+                    wordList = [feed.guessWords objectsAtIndexes:
+                                [NSIndexSet indexSetWithIndexesInRange:
+                                 NSMakeRange(0, SHOW_COMMENT_COUNT)]];
                 }else{
-                    guessWords = [feed.guessWords componentsJoinedByString:@", "];
+                    wordList = feed.guessWords;
+                }
+                if ([LocaleUtils isChinese]) {
+                    guessWords = [wordList componentsJoinedByString:@"、"];    
+                }else{
+                    guessWords = [wordList componentsJoinedByString:@", "];
                 }
                 
                 if ([LocaleUtils isTraditionalChinese]) {
                     guessWords = [WordManager changeToTraditionalChinese:guessWords];
+                }
+                if (wordCount > SHOW_COMMENT_COUNT) {
+                    guessWords = [NSString stringWithFormat:@"%@%@",guessWords,@"..."];
                 }
                 guessWords = [NSString stringWithFormat:NSLS(@"kGuessWords"),guessWords];
             }
@@ -103,10 +120,8 @@
             }else{
                 comment = NSLS(@"kGuessWrong");                
             }
-            //who guess wrong! he guess: [2/2/2]
         }
 
-        //[self.commentLabel setTextColor:[UIColor redColor]];
     }else{
         comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         [self.commentLabel setTextColor:[UIColor darkGrayColor]];
