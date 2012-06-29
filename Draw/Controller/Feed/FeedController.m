@@ -362,8 +362,8 @@
 
 - (void)didClickAvatar:(NSString *)userId 
               nickName:(NSString *)nickName 
+                gender:(BOOL)gender 
            atIndexPath:(NSIndexPath *)indexPath
-
 {
     
     //for test user feed controller

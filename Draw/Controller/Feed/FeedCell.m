@@ -251,6 +251,7 @@
     if (delegate && [delegate respondsToSelector:@selector(didClickAvatar:nickName: atIndexPath:)]) {
         [delegate didClickAvatar:self.feed.userId 
                         nickName:self.feed.nickName 
+                          gender:self.feed.gender 
                      atIndexPath:self.indexPath];
     }
 }

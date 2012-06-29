@@ -829,4 +829,27 @@ static UserService* _defaultUserService;
 
 }
 
+- (void)getUserSimpleInfoByUserId:(NSString *)targetUserId 
+                   viewController:(PPViewController<UserServiceDelegate> *)viewController
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL ByUserId:targetUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+            NSString* userAvatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+            NSString* userGender = [output.jsonDataDict objectForKey:PARA_GENDER];
+            NSString* userLocation = [output.jsonDataDict objectForKey:PARA_LOCATION];
+            
+            if (viewController && [viewController respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:)]) {
+                [viewController didGetUserNickName:userNickName
+                                        UserAvatar:userAvatar
+                                        UserGender:userGender
+                                      UserLocation:userLocation];
+            }
+            });
+    });
+
+}
+
 @end

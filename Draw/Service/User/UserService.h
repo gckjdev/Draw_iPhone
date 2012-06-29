@@ -23,6 +23,10 @@
               messageCount:(long)messageCount 
                fanCount:(long)fanCount 
               roomCount:(long)roomCount;
+- (void)didGetUserNickName:(NSString*)userNickName
+                UserAvatar:(NSString*)userAvatar
+                UserGender:(NSString*)userGender
+              UserLocation:(NSString*)userLocation;
 @end
 
 @interface UserService : CommonService
@@ -69,6 +73,8 @@
                    viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
+- (void)getUserSimpleInfoByUserId:(NSString*)targetUserId 
+                   viewController:(PPViewController*)viewController;
 
 
 
