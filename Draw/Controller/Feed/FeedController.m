@@ -18,6 +18,8 @@
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
 #import "UserFeedController.h"
+#import "MobClickUtils.h"
+#import "CommonUserInfoView.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -53,7 +55,7 @@
 
 + (NSInteger)loadDataCount
 {
-    return 20;
+    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:15];
 }
 @end
 
@@ -361,15 +363,24 @@
 
 - (void)didClickAvatar:(NSString *)userId 
               nickName:(NSString *)nickName 
+                gender:(BOOL)gender 
            atIndexPath:(NSIndexPath *)indexPath
-
 {
     
     //for test user feed controller
-    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
-    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
-    [self.navigationController pushViewController:userFeed animated:YES];
-    [userFeed release];
+//    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
+//    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
+//    [self.navigationController pushViewController:userFeed animated:YES];
+//    [userFeed release];
+    NSString* genderString = gender?@"m":@"f";
+    [CommonUserInfoView showUser:userId 
+                        nickName:nickName 
+                          avatar:nil 
+                          gender:genderString 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 - (IBAction)clickRefreshButton:(id)sender {

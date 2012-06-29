@@ -47,6 +47,7 @@
 
 #import "ChatListController.h"
 #import "LevelService.h"
+#import "LmWallService.h"
 
 @interface HomeController()
 
@@ -60,6 +61,7 @@
 
 @implementation HomeController
 
+@synthesize adView = _adView;
 @synthesize startButton = _startButton;
 @synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
@@ -112,10 +114,30 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+- (void)initAdView
 {
+    if ([DeviceDetection isIPAD]){
+        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(65, 800, 0, 0)];
+        self.adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
+        self.adView.specId = 0;
+    }
+    else{
+        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        self.adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+        self.adView.specId = 0;
+    }
+    self.adView.appVersionString = [UIUtils getAppVersion];
+    self.adView.delegate = self;
+    [self.view addSubview:_adView];
+    [self.adView requestBannerAd];    
+}
+
+- (void)viewDidLoad
+{    
 //    [self setBackgroundImageName:@"home.png"];
 
+    [self initAdView];
+    
     [super viewDidLoad];
     
     [self playBackgroundMusic];
@@ -229,6 +251,7 @@
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
+    [self setAdView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -238,6 +261,21 @@
 {
     // Return YES for supported orientations
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark - Ad View Delegate
+
+- (void) lmmobAdBannerViewDidReceiveAd: (LmmobAdBannerView*) bannerView{
+    
+    PPDebug(@"<lmmobAdBannerViewDidReceiveAd> success");    
+}
+
+- (void) lmmobAdBannerViewWillPresentScreen: (LmmobAdBannerView*) bannerView{
+    PPDebug(@"<lmmobAdBannerViewWillPresentScreen> success");        
+}
+
+- (void) lmmobAdBannerView: (LmmobAdBannerView*) bannerView didFailReceiveBannerADWithError: (NSError*) error{
+    PPDebug(@"<didFailReceiveBannerADWithError>:%@", error);    
 }
 
 

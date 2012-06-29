@@ -9,6 +9,13 @@
 #import "PPTableViewCell.h"
 #import "HJManagedImageV.h"
 
+@protocol ChatCellDelegate <NSObject>
+
+- (void)didClickAvatar:(NSIndexPath *)aIndexPath;
+
+@end
+
+
 @class MessageTotal;
 @interface ChatCell : PPTableViewCell
 
@@ -16,9 +23,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *graffiti;
 @property (retain, nonatomic) IBOutlet UILabel *textLabel;
-
-@property (retain, nonatomic) IBOutlet UILabel *messageNumberLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *countLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *countBackground;
+@property (assign, nonatomic) id<ChatCellDelegate> chatCellDelegate;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;

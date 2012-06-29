@@ -23,6 +23,7 @@
 #import "DeviceDetection.h"
 #import "WordManager.h"
 #import "LevelService.h"
+#import "CommonUserInfoView.h"
 
 @interface FriendRoomController ()
 
@@ -181,6 +182,27 @@
     }
 }
 
+
+- (void)didClickAvatar:(NSIndexPath *)indexPath
+{
+    Room *room = [self.dataList objectAtIndex:indexPath.row];
+    RoomUser *roomUser = room.creator;
+    
+    if ([roomUser.userId isEqualToString:[[UserManager defaultManager] userId]]) {
+        return;
+    }
+    
+    [CommonUserInfoView showUser:roomUser.userId
+                        nickName:roomUser.nickName
+                          avatar:roomUser.avatar 
+                          gender:roomUser.gender 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
+}
+
+
 - (IBAction)clickSearchButton:(id)sender {
     SearchRoomController *src = [[SearchRoomController alloc] init];
     [self.navigationController pushViewController:src animated:YES];
@@ -299,6 +321,7 @@
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     [cell setInfo:room];
     cell.indexPath = indexPath;
+    cell.roomCellDelegate = self;
     return cell;
     
 }

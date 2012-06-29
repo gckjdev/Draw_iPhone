@@ -134,6 +134,8 @@
 #define METHOD_FEEDBACK @"fb"
 #define METHOD_COMMIT_WORDS @"cw"
 
+#define METHOD_GET_TARGET_USER_INFO    @"gtui"
+
 //game parameters
 
 #define PARA_SHOPPING_TYPE @"pt"

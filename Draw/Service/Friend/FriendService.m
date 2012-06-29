@@ -174,7 +174,7 @@ FriendService* globalGetFriendService()
 }
 
 - (void)followUser:(NSString*)targetUserId 
-      withDelegate:(UIView<FriendServiceDelegate>*)aDelegate
+      withDelegate:(id<FriendServiceDelegate>)aDelegate
 {
     NSString *userId = [[UserManager defaultManager] userId];
     NSArray *targetList = [NSArray arrayWithObject:targetUserId];

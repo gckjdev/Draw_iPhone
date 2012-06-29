@@ -21,26 +21,30 @@
 @interface ChatCell()
 
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
+- (IBAction)clickAvatar:(id)sender;
 
 @end
 
 
 @implementation ChatCell
+
 @synthesize avatarImage;
 @synthesize nickNameLabel;
 @synthesize graffiti;
 @synthesize textLabel;
-@synthesize messageNumberLabel;
 @synthesize timeLabel;
-
+@synthesize countLabel;
+@synthesize countBackground;
+@synthesize chatCellDelegate;
 
 - (void)dealloc {
     PPRelease(avatarImage);
     PPRelease(nickNameLabel);
     PPRelease(graffiti);
-    PPRelease(messageNumberLabel);
     PPRelease(timeLabel);
     PPRelease(textLabel);
+    PPRelease(countLabel);
+    PPRelease(countBackground);
     [super dealloc];
 }
 
@@ -102,6 +106,8 @@
 
 - (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
 {
+    self.indexPath = aIndexPath;
+    
     //set avatar
     [avatarImage clear];
     if ([messageTotal.friendGender isEqualToString:MALE]) {
@@ -133,9 +139,23 @@
 //        [graffiti addSubview:thumbImageView];
     }
     
-    //set messageNumberLabel
-    NSString *newAndTotal = [NSString stringWithFormat:@"[%@/%@]", messageTotal.totalNewMessage, messageTotal.totalMessage];
-    self.messageNumberLabel.text = newAndTotal;
+    //set countLabel
+    if ([messageTotal.totalNewMessage intValue] > 0) {
+        countBackground.hidden = NO;
+        countLabel.hidden = NO;
+        
+        if ([messageTotal.totalNewMessage intValue] > 99) {
+            countLabel.text = @"N";
+        } else {
+            countLabel.text = [NSString stringWithFormat:@"%@",messageTotal.totalNewMessage];
+        }
+        
+    } else {
+        countBackground.hidden = YES;
+        countLabel.hidden = YES;
+    }
+    
+    
     
     //set timeLabel
     NSString *timeString = nil;
@@ -152,6 +172,14 @@
         self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
     }
     self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+}
+
+- (IBAction)clickAvatar:(id)sender
+{
+    if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
+        //PPDebug(@"%d",[self.indexPath row]);
+        [chatCellDelegate didClickAvatar:self.indexPath];
+    }
 }
 
 @end

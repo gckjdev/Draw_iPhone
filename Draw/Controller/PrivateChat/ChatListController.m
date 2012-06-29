@@ -17,6 +17,7 @@
 #import "Friend.h"
 #import "FriendManager.h"
 #import "ChatMessage.h"
+#import "CommonUserInfoView.h"
 
 #import "UserManager.h"
 
@@ -181,15 +182,7 @@
 
 - (void)didDeleteMessageTotal:(NSString *)friendUserId resultCode:(int)resultCode
 {
-    //delete all messages about this friend
-    NSArray *localMessageList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
-    NSMutableArray *mutableIdList = [[NSMutableArray alloc] init];
-    for (ChatMessage *chatMessage in localMessageList) {
-        [mutableIdList addObject:chatMessage.messageId] ;
-    }
-    
-    [[ChatService defaultService] deleteMessage:self messageIdList:mutableIdList];
-    [mutableIdList release];
+
 }
 
 
@@ -216,6 +209,7 @@
     
     MessageTotal *messageTotal = (MessageTotal *)[dataList objectAtIndex:indexPath.row];
     [cell setCellByMessageTotal:messageTotal indexPath:indexPath];
+    cell.chatCellDelegate = self;
     
     return cell;
 }
@@ -246,16 +240,26 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         MessageTotal *messageTotal = [dataList objectAtIndex:indexPath.row];
+        NSString *friendUserId = messageTotal.friendUserId;
         
         NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:dataList];
         [mutableArray removeObjectAtIndex:indexPath.row];
         self.dataList = mutableArray;
         [mutableArray release];
-        
         [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
         //delete message total
-        [[ChatService defaultService] deleteMessageTotal:self friendUserId:messageTotal.friendUserId];
+        [[ChatService defaultService] deleteMessageTotal:self friendUserId:friendUserId];
+        
+        //delete all messages about this friend
+        
+        NSArray *localMessageList = [[ChatMessageManager defaultManager] findMessagesByFriendUserId:friendUserId];
+        NSMutableArray *mutableIdList = [[NSMutableArray alloc] init];
+        for (ChatMessage *chatMessage in localMessageList) {
+            [mutableIdList addObject:chatMessage.messageId] ;
+        }
+        [[ChatService defaultService] deleteMessage:self messageIdList:mutableIdList];
+        [mutableIdList release];
     }
 }
 
@@ -311,6 +315,22 @@
 {
     [self findAllMessageTotals];
 }
+
+
+#pragma mark - ChatCellDelegate method
+- (void)didClickAvatar:(NSIndexPath *)aIndexPath
+{
+    MessageTotal *messageTotal = [dataList objectAtIndex:aIndexPath.row];
+    [CommonUserInfoView showUser:messageTotal.friendUserId 
+                        nickName:messageTotal.friendNickName 
+                          avatar:messageTotal.friendAvatar 
+                          gender:messageTotal.friendGender 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
+}
+
 
 
 @end

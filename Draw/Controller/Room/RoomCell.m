@@ -22,6 +22,7 @@
 @synthesize inviteInfoButton;
 @synthesize inviteButton;
 @synthesize roomCellType = _roomCellType;
+@synthesize roomCellDelegate;
 
 #define ROOM_CELL_HEIGHT     [DeviceDetection isIPAD] ? 150.0f : 75.0f
 
@@ -180,6 +181,13 @@
 - (IBAction)clickInviteButton:(id)sender {
     if ([self.delegate respondsToSelector:@selector(didClickInvite:)]) {
         [self.delegate didClickInvite:self.indexPath];
+    }
+}
+
+- (IBAction)clickAvatar:(id)sender
+{
+    if (roomCellDelegate && [roomCellDelegate respondsToSelector:@selector(didClickAvatar:)]) {
+        [roomCellDelegate didClickAvatar:self.indexPath];
     }
 }
 
