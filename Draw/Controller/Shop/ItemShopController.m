@@ -35,6 +35,7 @@ ItemShopController *staticItemController = nil;
 @synthesize titleLabel;
 @synthesize callFromShowViewController;
 @synthesize gotoCoinShopButton;
+@synthesize removeAdButton;
 
 +(ItemShopController *)instance
 {
@@ -120,6 +121,10 @@ ItemShopController *staticItemController = nil;
     
     self.gotoCoinShopButton.hidden = callFromShowViewController;
 
+    [self.removeAdButton setTitle:NSLS(@"kRemoveAd") forState:UIControlStateNormal];
+    [self.removeAdButton setBackgroundImage:[[ShareImageManager defaultManager] buyButtonImage] forState:UIControlStateNormal];
+    
+    
     if ([LocaleUtils isChina] == YES || 
         [LocaleUtils isOtherChina] == YES){
         self.gotoCoinShopButton.hidden = YES;
@@ -145,6 +150,8 @@ ItemShopController *staticItemController = nil;
     [self setCoinsAmountLabel:nil];
     [self setItemAmountLabel:nil];
     [self setFreeGetCoinsButton:nil];
+    [self setRemoveAdButton:nil];
+    [self setGotoCoinShopButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -219,30 +226,25 @@ ItemShopController *staticItemController = nil;
     [self updateLabels];
 }
 
+- (void)buyCoins
+{
+    [MobClick event:@"BUY_COINS"];
+    
+    NSArray* coinPriceList = [[ShoppingManager defaultManager] findCoinPriceList];
+    if ([coinPriceList count] > 0){
+        PriceModel* model = [coinPriceList objectAtIndex:0];
+        [self showActivityWithText:NSLS(@"kBuying")];
+        [[AccountService defaultService] setDelegate:self];
+        [[AccountService defaultService] buyCoin:model];
+        
+    }    
+}
+
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_NOT_BUY_COIN_TAG) {
     }else{
-//        if ([ConfigManager isInReviewVersion] == NO && 
-//            ([LocaleUtils isChina] == YES || 
-//             [LocaleUtils isOtherChina] == YES)){
-//            [self showYoumiWall];            
-//        }
-//        else{
-//            [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
-//            _coinController = [CoinShopController instance];
-//        }
-
-        [MobClick event:@"BUY_COINS"];
-        
-        NSArray* coinPriceList = [[ShoppingManager defaultManager] findCoinPriceList];
-        if ([coinPriceList count] > 0){
-            PriceModel* model = [coinPriceList objectAtIndex:0];
-            [self showActivityWithText:NSLS(@"kBuying")];
-            [[AccountService defaultService] setDelegate:self];
-            [[AccountService defaultService] buyCoin:model];
-
-        }
+        [self buyCoins];
     }
 }
 
@@ -255,6 +257,16 @@ ItemShopController *staticItemController = nil;
 {
     [self.navigationController pushViewController:[CoinShopController instance] animated:YES];
     _coinController = [CoinShopController instance];
+}
+
+- (IBAction)clickRemoveAd:(id)sender
+{
+    if ([ConfigManager wallEnabled]){
+        [self showYoumiWall];
+    }
+    else{
+        [self buyCoins];
+    }
 }
 
 #pragma mark - Price service delegate
@@ -321,6 +333,8 @@ ItemShopController *staticItemController = nil;
 
 - (void)showYoumiWall
 {
+    [UIUtils alert:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+    
     [[LmWallService defaultService] show:self];
 
     /*

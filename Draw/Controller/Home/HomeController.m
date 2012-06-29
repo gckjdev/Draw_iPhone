@@ -116,13 +116,15 @@
 
 - (void)initAdView
 {
-    _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    self.adView.specId = 1;
     if ([DeviceDetection isIPAD]){
+        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(65, 800, 0, 0)];
         self.adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
+        self.adView.specId = 0;
     }
     else{
+        _adView = [[LmmobAdBannerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         self.adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+        self.adView.specId = 0;
     }
     self.adView.appVersionString = [UIUtils getAppVersion];
     self.adView.delegate = self;

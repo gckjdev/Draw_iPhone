@@ -31,10 +31,13 @@ enum{
 @property (retain, nonatomic) IBOutlet UILabel *coinsAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemAmountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *gotoCoinShopButton;
+@property (retain, nonatomic) IBOutlet UIButton *removeAdButton;
 @property (assign, nonatomic) BOOL callFromShowViewController;
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickGotoCoinShopButton:(id)sender;
+- (IBAction)clickRemoveAd:(id)sender;
+
 +(ItemShopController *)instance;
 - (UINavigationController *)topNavigationController;
 

@@ -51,4 +51,6 @@ typedef enum{
 + (BOOL)isInReview;
 + (BOOL)isInReviewVersion;
 
++ (BOOL)wallEnabled;
+
 @end

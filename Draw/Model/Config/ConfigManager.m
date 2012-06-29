@@ -135,4 +135,16 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)wallEnabled
+{
+    if ([ConfigManager isInReviewVersion] == NO && 
+        ([LocaleUtils isChina] == YES || 
+         [LocaleUtils isOtherChina] == YES)){        
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 @end

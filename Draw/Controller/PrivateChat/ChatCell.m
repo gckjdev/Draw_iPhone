@@ -21,11 +21,13 @@
 @interface ChatCell()
 
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale;
+- (IBAction)clickAvatar:(id)sender;
 
 @end
 
 
 @implementation ChatCell
+
 @synthesize avatarImage;
 @synthesize nickNameLabel;
 @synthesize graffiti;
@@ -33,7 +35,7 @@
 @synthesize timeLabel;
 @synthesize countLabel;
 @synthesize countBackground;
-
+@synthesize chatCellDelegate;
 
 - (void)dealloc {
     PPRelease(avatarImage);
@@ -104,6 +106,8 @@
 
 - (void)setCellByMessageTotal:(MessageTotal *)messageTotal indexPath:(NSIndexPath *)aIndexPath
 {
+    self.indexPath = aIndexPath;
+    
     //set avatar
     [avatarImage clear];
     if ([messageTotal.friendGender isEqualToString:MALE]) {
@@ -168,6 +172,14 @@
         self.timeLabel.text = [dateFormatter stringFromDate:messageTotal.latestCreateDate];
     }
     self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+}
+
+- (IBAction)clickAvatar:(id)sender
+{
+    if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
+        //PPDebug(@"%d",[self.indexPath row]);
+        [chatCellDelegate didClickAvatar:self.indexPath];
+    }
 }
 
 @end
