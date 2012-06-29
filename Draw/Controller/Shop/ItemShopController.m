@@ -24,6 +24,7 @@
 #import "YoumiWallController.h"
 #import "ConfigManager.h"
 #import "MobClick.h"
+#import "LmWallService.h"
 
 ItemShopController *staticItemController = nil;
 
@@ -74,7 +75,7 @@ ItemShopController *staticItemController = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     NSArray* itemList = [[ShoppingManager defaultManager] findItemPriceList];
     if ([itemList count] == 0){
         [[PriceService defaultService] fetchShoppingListByType:SHOPPING_ITEM_TYPE viewController:self];
@@ -314,12 +315,20 @@ ItemShopController *staticItemController = nil;
     return self.navigationController;
 }
 
+- (void)showLmWall
+{
+}
+
 - (void)showYoumiWall
 {
-    [MobClick event:@"SHOW_WALL"];
+    [[LmWallService defaultService] show:self];
+
+    /*
+    [MobClick event:@"SHOW_YOUMI_WALL"];
     YoumiWallController* controller = [[YoumiWallController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+    */
 }
 
 - (void)dealloc {

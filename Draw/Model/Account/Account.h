@@ -17,6 +17,7 @@ typedef enum  {
     ShareWeiboReward = 6,
     ShareAppReward = 7,
     YoumiAppReward = 8,
+    LmAppReward = 9,
     
     EscapeType = 10,
     ChangeRoomType = 11,

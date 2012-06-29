@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LmmobAdWallSDK/LmmobAdWallSDK.h>
 
-@interface LmWallService : NSObject
+@interface LmWallService : NSObject<LmmobAdWallDelegate>
+{
+    UIViewController* _viewController;
+}
+
++ (LmWallService*)defaultService;
+- (void)show:(UIViewController*)viewController;
+- (void)queryScore;
 
 @end

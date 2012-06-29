@@ -18,6 +18,7 @@
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
 #import "UserFeedController.h"
+#import "MobClickUtils.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -53,7 +54,7 @@
 
 + (NSInteger)loadDataCount
 {
-    return 20;
+    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:15];
 }
 @end
 

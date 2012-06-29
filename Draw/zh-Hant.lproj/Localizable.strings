@@ -607,18 +607,15 @@
 "kUserBindSucc" = "成功綁定了用​​戶帳號";
 "kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";
 "kWeiboExpired" = "微博授權已過期";
-
-
-"kPDUM" = "%@給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
-
-"kDrawToUserDesc" = "畫了一幅[%@]給%@。";
-"kDrawToUserNoWordDesc" = "畫了一幅畫給%@。";
-
-"kHisFriend" = "TA好友";
-
 "kSaveAndShare" = "保存&分享";
-
 "kRebindQQ" = "你已經綁定過騰訊微博了，是否要重新嘗試綁​​定？"; 
 "kRebindSina" = "你已經綁定了新浪微博了，是否要重新嘗試綁​​定？"; 
 "kRebindFacebook" = "你已經綁定了Facebook了，是否要重新嘗試綁​​定？"; 
+
+
+"kPDUM" = "%@給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
+"kDrawToUserDesc" = "畫了一幅[%@]給%@。";
+"kDrawToUserNoWordDesc" = "畫了一幅畫給%@。";
+"kHisFriend" = "TA好友";
+
 
