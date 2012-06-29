@@ -19,6 +19,7 @@
 #import "SelectWordController.h"
 #import "UserFeedController.h"
 #import "MobClickUtils.h"
+#import "CommonUserInfoView.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -367,10 +368,19 @@
 {
     
     //for test user feed controller
-    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
-    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
-    [self.navigationController pushViewController:userFeed animated:YES];
-    [userFeed release];
+//    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
+//    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
+//    [self.navigationController pushViewController:userFeed animated:YES];
+//    [userFeed release];
+    NSString* genderString = gender?@"m":@"f";
+    [CommonUserInfoView showUser:userId 
+                        nickName:nickName 
+                          avatar:nil 
+                          gender:genderString 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 - (IBAction)clickRefreshButton:(id)sender {
