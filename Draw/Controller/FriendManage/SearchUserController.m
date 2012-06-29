@@ -108,7 +108,7 @@
         cell.followDelegate = self;
     }
     NSDictionary *userDic = (NSDictionary *)[dataList objectAtIndex:[indexPath row]];
-    [cell setCellByDictionary:userDic indexPath:indexPath];
+    [cell setCellByDictionary:userDic indexPath:indexPath fromType:FromSearchUserList];
     
     return cell;
 }
