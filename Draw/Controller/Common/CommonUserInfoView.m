@@ -111,7 +111,7 @@
     [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
 }
 
-- (void)initUserInfo
+- (void)resetUserInfo
 {
     [self.userName setText:self.userNickName];
     
@@ -161,7 +161,7 @@
     [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
     [self initTitle];
     [self initButton];
-    [self initUserInfo];
+    [self resetUserInfo];
     
 }
 
@@ -230,18 +230,21 @@
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController
 {
-    CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
-    [view initViewWithUserId:userId 
-                    nickName:nickName 
-                      avatar:avatar 
-                      gender:aGender 
-                     hasSina:didHasSina 
-                       hasQQ:didHasQQ 
-                 hasFacebook:didHasFacebook];
-    view.superViewController = superController;
-    [superController showActivity];
-    [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
-    //[superController.view addSubview:view];
+    if (![[[UserManager defaultManager] userId] isEqualToString:userId]) {
+        CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+        [view initViewWithUserId:userId 
+                        nickName:nickName 
+                          avatar:avatar 
+                          gender:aGender 
+                         hasSina:didHasSina 
+                           hasQQ:didHasQQ 
+                     hasFacebook:didHasFacebook];
+        view.superViewController = superController;
+        [superController showActivity];
+        [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
+        //[superController.view addSubview:view];
+    }
+    
 }
 
 - (void)startRunOutAnimation
@@ -351,7 +354,7 @@
     if (facebookId != nil) {
         self.hasFacebook = YES;
     }
-    
+    [self resetUserInfo];
     [self.superViewController hideActivity];
     [self.superViewController.view addSubview:self];
 }

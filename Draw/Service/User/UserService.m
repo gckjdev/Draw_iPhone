@@ -846,7 +846,7 @@ static UserService* _defaultUserService;
             NSString* qqNick = nil;
             NSString* facebookId = nil;
 
-            if (output.resultCode = ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS) {
                 userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
                 userAvatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
                 userGender = [output.jsonDataDict objectForKey:PARA_GENDER];
@@ -867,7 +867,7 @@ static UserService* _defaultUserService;
                                       QQNick:qqNick 
                                   FacebookId:facebookId];
             }
-            });
+        });
     });
 
 }

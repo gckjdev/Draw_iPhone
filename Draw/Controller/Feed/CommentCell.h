@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
 #import "Feed.h"
+#import "StableView.h"
+#import "PPViewController.h"
 
 @class AvatarView;
-@interface CommentCell : PPTableViewCell
+@interface CommentCell : PPTableViewCell<AvatarViewDelegate>
 {
     AvatarView *_avatarView;
 }

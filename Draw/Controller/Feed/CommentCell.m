@@ -7,19 +7,18 @@
 //
 
 #import "CommentCell.h"
-#import "StableView.h"
 #import "FeedManager.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
+#import "CommonUserInfoView.h"
 
 @implementation CommentCell
 @synthesize commentLabel;
 @synthesize timeLabel;
 @synthesize nickNameLabel;
-
 
 + (id)createCell:(id)delegate
 {
@@ -70,6 +69,8 @@
     //set avatar
     [_avatarView removeFromSuperview];
     _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0];
+    _avatarView.delegate = self;
+    _avatarView.userId = feed.userId;
     [self addSubview:_avatarView];
     [_avatarView release];
 
@@ -142,5 +143,18 @@
     [timeLabel release];
     [nickNameLabel release];
     [super dealloc];
+}
+
+#pragma mark - avatar view delegate
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    [CommonUserInfoView showUser:userId 
+                        nickName:nil 
+                          avatar:nil 
+                          gender:nil 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self.delegate];
 }
 @end

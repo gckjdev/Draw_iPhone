@@ -11,7 +11,6 @@
 #import "LocaleUtils.h"
 #import "FeedManager.h"
 #import "TimeUtils.h"
-#import "StableView.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
 #import "Draw.h"
@@ -20,6 +19,7 @@
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
 #import "TimeUtils.h"
+#import "CommonUserInfoView.h"
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
@@ -101,7 +101,9 @@
     //avatar
 //    [self.avatarView removeFromSuperview];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:_avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
+    [self.avatarView setUserId:feed.userId];
     [self.view addSubview:self.avatarView];
+    self.avatarView.delegate = self;
     
     //name
     [self.nickNameLabel setText:[FeedManager opusCreatorForFeed:feed]];
@@ -652,6 +654,19 @@
         self.paperImage.frame = newPaperFrame;
         //dataTableView.frame = newTableFrame;
     }
+}
+
+#pragma mark - avatar view delegate
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    [CommonUserInfoView showUser:userId 
+                        nickName:nil 
+                          avatar:nil 
+                          gender:nil 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
 }
 
 
