@@ -248,9 +248,10 @@
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
-    if (delegate && [delegate respondsToSelector:@selector(didClickAvatar:nickName: atIndexPath:)]) {
+    if (delegate && [delegate respondsToSelector:@selector(didClickAvatar:nickName:gender:atIndexPath:)]) {
         [delegate didClickAvatar:self.feed.userId 
                         nickName:self.feed.nickName 
+                          gender:self.feed.gender 
                      atIndexPath:self.indexPath];
     }
 }

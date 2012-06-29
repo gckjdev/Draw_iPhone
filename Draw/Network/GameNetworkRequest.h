@@ -301,4 +301,7 @@
                                    userId:(NSString*)userId
                              targetUserId:(NSString*)targetUserId;
 
++ (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
+                                    appId:(NSString*)appId
+                                 ByUserId:(NSString*)targetUserId;
 @end

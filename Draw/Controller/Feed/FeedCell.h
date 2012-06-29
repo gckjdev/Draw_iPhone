@@ -22,6 +22,7 @@
 - (void)didClickGuessButtonOnFeed:(Feed *)feed;
 - (void)didClickAvatar:(NSString *)userId 
               nickName:(NSString *)nickName 
+                gender:(BOOL)gender
            atIndexPath:(NSIndexPath *)indexPath;
 
 //- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;

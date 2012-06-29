@@ -239,7 +239,9 @@
                        hasQQ:didHasQQ 
                  hasFacebook:didHasFacebook];
     view.superViewController = superController;
-    [superController.view addSubview:view];
+    [superController showActivity];
+    [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
+    //[superController.view addSubview:view];
 }
 
 - (void)startRunOutAnimation
@@ -306,6 +308,52 @@
     UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:self.userId nickName:self.userNickName];
     [self.superViewController.navigationController pushViewController:userFeed animated:YES];
     [userFeed release];
+}
+
+#pragma mark - user service delegate
+- (void)didGetUserNickName:(NSString*)nickName
+                UserAvatar:(NSString*)avatar
+                UserGender:(NSString*)gender
+              UserLocation:(NSString*)location 
+                 UserLevel:(NSString*)level 
+                  SinaNick:(NSString*)sinaNick 
+                    QQNick:(NSString*)qqNick 
+                FacebookId:(NSString*)facebookId
+{
+    if (nickName != nil) {
+        self.userNickName = nickName;
+    }
+    
+    if (avatar != nil) {
+        self.userAvatar = avatar;
+    }
+    
+    if (gender != nil) {
+        self.userGender = gender;
+    }
+    
+    if (location != nil) {
+        self.userLocation = location;
+    }
+    
+    if (level != nil) {
+        self.userLevel = level.intValue;
+    }
+    
+    if (sinaNick != nil) {
+        self.hasSina = YES;
+    }
+    
+    if (qqNick != nil) {
+        self.hasQQ = YES;
+    }
+    
+    if (facebookId != nil) {
+        self.hasFacebook = YES;
+    }
+    
+    [self.superViewController hideActivity];
+    [self.superViewController.view addSubview:self];
 }
 
 /*

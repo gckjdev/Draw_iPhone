@@ -17,10 +17,12 @@ typedef enum
     
 }RoomCellType ;
 
+
 @protocol RoomCellDelegate <NSObject>
 
 @optional
 - (void)didClickInvite:(NSIndexPath *)indexPath;
+- (void)didClickAvatar:(NSIndexPath *)indexPath;
 
 @end
 @class HJManagedImageV;
@@ -38,8 +40,10 @@ typedef enum
 @property (retain, nonatomic) IBOutlet UIButton *inviteInfoButton;
 @property (retain, nonatomic) IBOutlet UIButton *inviteButton;
 @property (assign, nonatomic) RoomCellType roomCellType;
+@property (assign, nonatomic) id<RoomCellDelegate> roomCellDelegate;
 
 - (IBAction)clickInviteButton:(id)sender;
+- (IBAction)clickAvatar:(id)sender;
 
 - (void)setInfo:(Room *)room;
 @end

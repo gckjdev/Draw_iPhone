@@ -829,4 +829,47 @@ static UserService* _defaultUserService;
 
 }
 
+- (void)getUserSimpleInfoByUserId:(NSString *)targetUserId
+                         delegate:(id<UserServiceDelegate>)delegate{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
+                                                                      appId:APP_ID
+                                                                   ByUserId:targetUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* userNickName = nil;
+            NSString* userAvatar = nil;
+            NSString* userGender = nil;
+            NSString* userLocation = nil;
+            NSString* userLevel = nil;
+            NSString* sinaNick = nil;
+            NSString* qqNick = nil;
+            NSString* facebookId = nil;
+
+            if (output.resultCode = ERROR_SUCCESS) {
+                userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+                userAvatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+                userGender = [output.jsonDataDict objectForKey:PARA_GENDER];
+                userLocation = [output.jsonDataDict objectForKey:PARA_LOCATION];
+                userLevel = [output.jsonDataDict objectForKey:PARA_LEVEL];
+                sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
+                qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
+                facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
+
+            }            
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:FacebookId:)]) {
+                [delegate didGetUserNickName:userNickName
+                                  UserAvatar:userAvatar
+                                  UserGender:userGender
+                                UserLocation:userLocation
+                                   UserLevel:userLevel 
+                                    SinaNick:sinaNick 
+                                      QQNick:qqNick 
+                                  FacebookId:facebookId];
+            }
+            });
+    });
+
+}
+
 @end
