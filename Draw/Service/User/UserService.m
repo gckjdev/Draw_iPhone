@@ -829,4 +829,34 @@ static UserService* _defaultUserService;
 
 }
 
+- (void)getUserSimpleInfoByUserId:(NSString *)targetUserId
+                         delegate:(id<UserServiceDelegate>)delegate{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL ByUserId:targetUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+            NSString* userAvatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+            NSString* userGender = [output.jsonDataDict objectForKey:PARA_GENDER];
+            NSString* userLocation = [output.jsonDataDict objectForKey:PARA_LOCATION];
+            NSString* userLevel = [output.jsonDataDict objectForKey:PARA_LEVEL];
+            NSString* sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
+            NSString* qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
+            NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:FacebookId:)]) {
+                [delegate didGetUserNickName:userNickName
+                                        UserAvatar:userAvatar
+                                        UserGender:userGender
+                                      UserLocation:userLocation 
+                                   UserLevel:userLevel.intValue 
+                                    SinaNick:sinaNick 
+                                      QQNick:qqNick 
+                                  FacebookId:facebookId];
+            }
+            });
+    });
+
+}
+
 @end
