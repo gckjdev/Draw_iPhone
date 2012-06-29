@@ -17,6 +17,7 @@
 #import "Friend.h"
 #import "FriendManager.h"
 #import "ChatMessage.h"
+#import "CommonUserInfoView.h"
 
 #import "UserManager.h"
 
@@ -216,6 +217,7 @@
     
     MessageTotal *messageTotal = (MessageTotal *)[dataList objectAtIndex:indexPath.row];
     [cell setCellByMessageTotal:messageTotal indexPath:indexPath];
+    cell.chatCellDelegate = self;
     
     return cell;
 }
@@ -311,6 +313,22 @@
 {
     [self findAllMessageTotals];
 }
+
+
+#pragma mark - ChatCellDelegate method
+- (void)didClickAvatar:(NSIndexPath *)aIndexPath
+{
+    MessageTotal *messageTotal = [dataList objectAtIndex:aIndexPath.row];
+    [CommonUserInfoView showUser:messageTotal.friendUserId 
+                        nickName:messageTotal.friendNickName 
+                          avatar:messageTotal.friendAvatar 
+                          gender:messageTotal.friendGender 
+                         hasSina:NO 
+                           hasQQ:NO 
+                     hasFacebook:NO 
+                      infoInView:self];
+}
+
 
 
 @end

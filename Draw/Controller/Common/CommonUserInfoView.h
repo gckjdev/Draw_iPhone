@@ -23,7 +23,7 @@
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
-      infoInView:(PPViewController<FriendServiceDelegate>*)superController;
+      infoInView:(PPViewController*)superController;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *userName;

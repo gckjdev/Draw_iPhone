@@ -228,7 +228,7 @@
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
-      infoInView:(PPViewController<FriendServiceDelegate>*)superController
+      infoInView:(PPViewController*)superController
 {
     CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
     [view initViewWithUserId:userId 
