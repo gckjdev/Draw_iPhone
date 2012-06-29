@@ -567,7 +567,7 @@
 
 
 "kPushTextMessage" = "%@ 给您发来了消息\"%@\"";
-"kPushDrawMessage" = "%@ 邀您欣赏TA的大作";
+"kPushDrawMessage" = "%@ 邀您欣赏TA的大作。";
 
 "kCorrect" = "猜对了！";
 "kSending" = "发送中...";
@@ -587,7 +587,7 @@
 "kFeeds" = "动态";
 
 
-"kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来";
+"kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来。";
 "kGuessWords" = "猜画的是: %@";
 "kMyDrawing" = "我的[%@]";
 
@@ -596,7 +596,7 @@
 "kPlayWithHim" = "和TA一起玩猜猜画画";
 "kChatToHim" = "搭个讪";
 
-"kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁";
+"kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kUserFeedTitle" = "%@的动态";
 
 // For Weibo Settings
@@ -608,9 +608,9 @@
 "kSetQQWeibo" = "腾讯微博";
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "请输入电子邮件地址";
-"kUserBindSucc" = "成功绑定了用户帐号";
-"kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
-"kWeiboExpired" = "微博授权已过期";
+"kUserBindSucc" = "成功绑定了用户帐号。";
+"kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持。";
+"kWeiboExpired" = "微博授权已过期。";
 
 "kPDUM" = "%@给你画了一幅画，赶紧去猜猜TA画了些什么。";
 
