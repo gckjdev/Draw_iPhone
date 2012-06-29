@@ -30,6 +30,16 @@ FeedManager *_staticFeedManager = nil;
         return [feed nickName];
     }
 }
++ (NSString *)targetNameForFeed:(Feed *)feed
+{
+    if ([[UserManager defaultManager] isMe:feed.targetUid]) {
+        return NSLS(@"Me");
+    }else if([[feed targetNickName] length] != 0){
+        return [feed targetNickName];
+    }
+    return NSLS(@"kHisFriend");
+}
+
 
 //get name
 + (NSString *)opusCreatorForFeed:(Feed *)feed
