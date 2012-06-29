@@ -624,5 +624,9 @@
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
 "kHisFriend" = "TA好友";
 
-"kRemoveAd" = "金币去广告";
+"kRemoveAd" = "移除广告";
+"kRemoveAdByIAP" = "你只需要购买400个金币即可直接移除广告，确认吗？";
+"kMessage" = "消息";
+"kAdRemoved" = "已移除";
+"kAdNotRemoved" = "待移除";
 

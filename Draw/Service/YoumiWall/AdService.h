@@ -7,7 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AccountService.h"
+#import <Lmmob/LmmobADBannerView.h>
 
-@interface AdService : NSObject
+@class PPViewController;
+
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, LmmobAdBannerViewDelegate>
+{
+//    LmmobAdBannerView   *_adView;
+    NSMutableDictionary *_allAdViews;
+}
++ (AdService*)defaultService;
+
+- (BOOL)isShowAd;
+- (void)requestRemoveAd:(PPViewController*)viewController;
+- (void)showAdInView:(UIView*)superView frame:(CGRect)frame iPadFrame:(CGRect)iPadFrame;
+- (void)setAdDisable;
+- (void)hideAdViewInView:(UIView*)superView;
+
+@property (nonatomic, retain) PPViewController* viewController;
+//@property (nonatomic, retain) LmmobAdBannerView* adView;
 
 @end
