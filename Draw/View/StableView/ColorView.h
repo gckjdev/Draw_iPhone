@@ -48,4 +48,6 @@ typedef enum{
 + (ColorView *)brownColorView;
 + (ColorView *)skyColorView;
 + (ColorView *)whiteColorView;
+
+
 @end

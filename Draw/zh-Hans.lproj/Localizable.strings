@@ -630,3 +630,4 @@
 "kAdRemoved" = "已移除";
 "kAdNotRemoved" = "待移除";
 
+"kQuerying" = "查询中...";
