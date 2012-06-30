@@ -8,23 +8,37 @@
 
 #import "CommonSnsInfoView.h"
 #import "ShareImageManager.h"
+#import "PPDebug.h"
+
+#define SNS_VIEW_TAG_OFFSET 20120630
+#define MAX_SNS_COUNT 3
 
 @interface CommonSnsInfoView()
 
 - (CGRect)calFrame:(CGRect)frame ByCount:(int)count;
-- (NSMutableArray*)creatImageArraySina:(BOOL)hasSina 
-                                    QQ:(BOOL)hasQQ 
-                              Facebook:(BOOL)hasFacebook;
 
 @end
 
 @implementation CommonSnsInfoView
+@synthesize sinaImageView = _sinaImageView;
+@synthesize qqImageView = _qqImageView;
+@synthesize facebookImageView = _facebookImageView;
+
+- (void)dealloc
+{
+    PPRelease(_sinaImageView);
+    PPRelease(_qqImageView);
+    PPRelease(_facebookImageView);
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        _sinaImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
+        _qqImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
+        _facebookImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
     }
     return self;
 }
@@ -36,17 +50,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        int snsCount = (hasSina?1:0) + (hasQQ?1:0) + (hasFacebook?1:0);
-        CGRect aFrame = [self calFrame:frame ByCount:snsCount];
-        NSMutableArray* snsImageArray = [self creatImageArraySina:hasSina 
-                                                               QQ:hasQQ 
-                                                         Facebook:hasFacebook];
-        for (int i = 0; i < snsImageArray.count; i ++) {
-            UIView* view = [snsImageArray objectAtIndex:i];
-            [view setFrame:CGRectMake(i*frame.size.height, 0, aFrame.size.height, aFrame.size.height)];
-            [self addSubview:view];
-        }
-        
+        [self initWithFrame:frame];
+        [self addSubview:_sinaImageView];
+        [self addSubview:_qqImageView];
+        [self addSubview:_facebookImageView];
+        [self setHasSina:hasSina 
+                   hasQQ:hasQQ 
+             hasFacebook:hasFacebook];
     }
     return self;
 }
@@ -65,25 +75,35 @@
                           frame.size.width/count);
     }
 }
-- (NSMutableArray*)creatImageArraySina:(BOOL)hasSina 
-                             QQ:(BOOL)hasQQ 
-                       Facebook:(BOOL)hasFacebook
+
+- (void)setHasSina:(BOOL)hasSina 
+             hasQQ:(BOOL)hasQQ 
+       hasFacebook:(BOOL)hasFacebook
 {
-    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
+    [_sinaImageView setHidden:YES];
+    [_qqImageView setHidden:YES];
+    [_facebookImageView setHidden:YES];
+    
+    int snsCount = (hasSina?1:0) + (hasQQ?1:0) + (hasFacebook?1:0);
+    CGRect aFrame = [self calFrame:self.frame ByCount:snsCount];
+    CGPoint point = CGPointMake(0, 0);
     if (hasSina) {
-        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
-        [array addObject:view];
+        [_sinaImageView setFrame:CGRectMake(point.x, point.y, aFrame.size.height, aFrame.size.height)];
+        point.x += aFrame.size.height;
+        [_sinaImageView setHidden:NO];
     }
     if (hasQQ) {
-        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
-        [array addObject:view];
+        [_qqImageView setFrame:CGRectMake(point.x, point.y, aFrame.size.height, aFrame.size.height)];
+        point.x += aFrame.size.height;
+        [_qqImageView setHidden:NO];
     }
     if (hasFacebook) {
-        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
-        [array addObject:view];
+        [_facebookImageView setFrame:CGRectMake(point.x, point.y, aFrame.size.height, aFrame.size.height)];
+        point.x += aFrame.size.height;
+        [_facebookImageView setHidden:NO];
     }
-    return array;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
