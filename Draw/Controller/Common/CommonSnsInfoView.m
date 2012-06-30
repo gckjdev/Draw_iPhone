@@ -36,6 +36,7 @@
             UIView* view = [snsImageArray objectAtIndex:i];
             [view setFrame:CGRectMake(i*frame.size.height, 0, aFrame.size.height, aFrame.size.height)];
             [self addSubview:view];
+            [view release];
         }
         
     }
@@ -62,13 +63,16 @@
 {
     NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
     if (hasSina) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
+        [array addObject:view];
     }
     if (hasQQ) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
+        [array addObject:view];
     }
     if (hasFacebook) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
+        [array addObject:view];
     }
     return array;
 }
