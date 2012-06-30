@@ -72,8 +72,8 @@ static AdService* _defaultService;
 
 - (int)getLmAdPercentage
 {
-//    return [MobClickUtils getIntValueByKey:@"LM_AD_PERCENTAGE" defaultValue:0];
-    return 0; // For DoMob Test
+    return [MobClickUtils getIntValueByKey:@"LM_AD_PERCENTAGE" defaultValue:0];
+//    return 0; // For DoMob Test
 }
 
 - (BOOL)isShowLmAd
@@ -246,9 +246,9 @@ static AdService* _defaultService;
 
 - (NSString *)adMoGoApplicationKey
 {
-//    return @"ad29f0cf8361452db392ffdef8057eff";
+    return @"ad29f0cf8361452db392ffdef8057eff";
     
-    return @"d5d65eff49774712aa2aeef656b4c600"; // DoMob Test ID
+//    return @"d5d65eff49774712aa2aeef656b4c600"; // DoMob Test ID
 }
 
 - (UIViewController *)viewControllerForPresentingModalView
@@ -303,7 +303,7 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {
-    return YES;
+//    return YES;
     
     BOOL hasItemBought = [[AccountService defaultService] hasEnoughItemAmount:ITEM_TYPE_REMOVE_AD 
                                                                      amount:1];
