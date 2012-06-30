@@ -158,17 +158,6 @@
     
 }
 
-- (void)initViewWithFriend:(Friend*)aFriend
-{  
-    [self initViewWithUserId:aFriend.friendUserId 
-                    nickName:aFriend.nickName 
-                      avatar:aFriend.avatar 
-                      gender:aFriend.gender 
-                     hasSina:(aFriend.sinaNick != nil) 
-                       hasQQ:(aFriend.qqNick != nil) 
-                 hasFacebook:(aFriend.facebookNick != nil) ];
-}
-
 - (void)initViewWithUserId:(NSString*)aUserId 
                   nickName:(NSString*)nickName 
                     avatar:(NSString*)avatar 
@@ -188,6 +177,18 @@
     self.hasFacebook = didHasFacebook;
     
     [self initView];
+}
+
+
+- (void)initViewWithFriend:(Friend*)aFriend
+{  
+    [self initViewWithUserId:aFriend.friendUserId 
+                    nickName:aFriend.nickName 
+                      avatar:aFriend.avatar 
+                      gender:aFriend.gender 
+                     hasSina:(aFriend.sinaNick != nil) 
+                       hasQQ:(aFriend.qqNick != nil) 
+                 hasFacebook:(aFriend.facebookNick != nil) ];
 }
 
 + (CommonUserInfoView*)createUserInfoView

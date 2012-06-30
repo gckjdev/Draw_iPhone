@@ -9,6 +9,15 @@
 #import "CommonSnsInfoView.h"
 #import "ShareImageManager.h"
 
+@interface CommonSnsInfoView()
+
+- (CGRect)calFrame:(CGRect)frame ByCount:(int)count;
+- (NSMutableArray*)creatImageArraySina:(BOOL)hasSina 
+                                    QQ:(BOOL)hasQQ 
+                              Facebook:(BOOL)hasFacebook;
+
+@end
+
 @implementation CommonSnsInfoView
 
 - (id)initWithFrame:(CGRect)frame
