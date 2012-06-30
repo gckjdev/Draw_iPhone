@@ -23,9 +23,10 @@
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
+#import "CommonUserInfoView.h"
 
 @interface ChatDetailController ()
-@property (retain, nonatomic) NSString *friendUserId;
+
 @property (retain, nonatomic) NSString *friendNickname;
 @property (retain, nonatomic) NSString *friendAvatar;
 @property (retain, nonatomic) NSString *friendGender;
@@ -660,6 +661,32 @@
         ReplayGraffitiController *controller = [[ReplayGraffitiController alloc] initWithDrawActionList:drawActionList];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
+    }
+}
+
+- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath
+{
+    ChatMessage *message = [dataList objectAtIndex:aIndexPath.row];
+    NSString *fromUserId = message.from;
+    
+    if ([fromUserId isEqualToString:[[UserManager defaultManager] userId]]) {
+        [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
+                            nickName:[[UserManager defaultManager] nickName]
+                              avatar:[[UserManager defaultManager] avatarURL]
+                              gender:[[UserManager defaultManager] gender]
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
+    } else if ([fromUserId isEqualToString:self.friendUserId]) {
+        [CommonUserInfoView showUser:self.friendUserId
+                            nickName:self.friendNickname 
+                              avatar:self.friendAvatar 
+                              gender:self.friendGender
+                             hasSina:NO 
+                               hasQQ:NO 
+                         hasFacebook:NO 
+                          infoInView:self];
     }
 }
 

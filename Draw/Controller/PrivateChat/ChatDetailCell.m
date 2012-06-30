@@ -24,6 +24,7 @@
 @interface ChatDetailCell()
 
 - (IBAction)clickEnlargeButton:(id)sender;
+- (IBAction)clcikAvatarButton:(id)sender;
 - (CGRect)reverseByRect:(CGRect)rect;
 
 @end
@@ -38,6 +39,7 @@
 @synthesize chatDetailCellDelegate;
 @synthesize enlargeButton;
 @synthesize nicknameLabel;
+@synthesize avatarButton;
 
 - (void)dealloc {
     [avatarView release];
@@ -48,6 +50,7 @@
     [enlargeButton release];
     [nicknameLabel release];
     [avatarBackgroundImageView release];
+    [avatarButton release];
     [super dealloc];
 }
 
@@ -257,6 +260,7 @@
     //set avatar frame
     avatarView.frame = CGRectMake(avatarView.frame.origin.x, bubbleImageView.frame.origin.y+bubbleImageView.frame.size.height-avatarView.frame.size.height-2, avatarView.frame.size.width, avatarView.frame.size.height);
     avatarBackgroundImageView.center = CGPointMake(avatarView.center.x, avatarView.center.y+2);
+    avatarButton.frame = avatarBackgroundImageView.frame;
     
     //set nickname frame 
     //nicknameLabel.frame = CGRectMake(nicknameLabel.frame.origin.x, avatarView.frame.origin.y+avatarView.frame.size.height+NICKNAME_AND_AVATAR_SPACE, nicknameLabel.frame.size.width, NICKNAME_HEIGHT);
@@ -271,6 +275,7 @@
         timeLabel.frame = [self reverseByRect:timeLabel.frame];
         [timeLabel setTextAlignment:UITextAlignmentRight];
         nicknameLabel.frame = [self reverseByRect:nicknameLabel.frame];
+        avatarButton.frame = [self reverseByRect:avatarButton.frame];
     }
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, timeLabel.frame.origin.y+timeLabel.frame.size.height+0.5*SPACE_Y);
@@ -279,10 +284,15 @@
 - (IBAction)clickEnlargeButton:(id)sender
 {
     if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickEnlargeButton:)]){
-        //PPDebug(@"%d",[self.indexPath row]);
         [chatDetailCellDelegate didClickEnlargeButton:self.indexPath];
     }
 }
 
+- (IBAction)clcikAvatarButton:(id)sender
+{
+    if (chatDetailCellDelegate && [chatDetailCellDelegate respondsToSelector:@selector(didClickAvatarButton:)]){
+        [chatDetailCellDelegate didClickAvatarButton:self.indexPath];
+    }
+}
 
 @end
