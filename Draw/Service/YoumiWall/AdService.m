@@ -303,10 +303,11 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {
-//    return YES;
+    if ([ConfigManager isProVersion])
+        return NO;
     
     BOOL hasItemBought = [[AccountService defaultService] hasEnoughItemAmount:ITEM_TYPE_REMOVE_AD 
-                                                                     amount:1];
+                                                                       amount:1];
     return (hasItemBought == NO); // item not bought, then show Ad
 }
 

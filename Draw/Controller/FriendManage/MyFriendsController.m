@@ -24,6 +24,7 @@
 #import "WXApi.h"
 #import "DrawAppDelegate.h"
 #import "CommonUserInfoView.h"
+#import "ConfigManager.h"
 
 @interface MyFriendsController ()
 
@@ -373,7 +374,7 @@
 - (IBAction)clickSearchUser:(id)sender
 {
     if (_isInviteFriend) {
-        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:DRAW_APP_ID]]];
+        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:[ConfigManager appId]]]];
     }else {
         editButton.selected = NO;
         [dataTableView setEditing:editButton.selected animated:NO];
@@ -386,7 +387,7 @@
 - (IBAction)clickInviteButton:(id)sender
 {
     if (_isInviteFriend) {
-        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:DRAW_APP_ID]]];
+        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), self.room.roomName, self.room.password, [UIUtils getAppLink:[ConfigManager appId]]]];
     }else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kSelectInvitation") 
                                                                  delegate:self 
@@ -608,9 +609,9 @@ enum {
     PPDebug(@"%d",buttonIndex);
     if (buttonIndex == INVITE_SMS) {
         
-        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:DRAW_APP_ID]]];
+        [self sendSMS:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:[ConfigManager appId]]]];
     }else if (buttonIndex == INVITE_WEIXIN){
-        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:DRAW_APP_ID]]];
+        [self sendWeixin:[NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:[ConfigManager appId]]]];
     }else {
         return;
     }

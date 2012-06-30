@@ -126,7 +126,7 @@ NSString* GlobalGetTrafficServerURL()
     // Ask For Review
     if ([ConfigManager isInReviewVersion] == NO){
         if ([DeviceDetection isOS5]){
-            self.reviewRequest = [ReviewRequest startReviewRequest:DRAW_APP_ID appName:GlobalGetAppName() isTest:YES];
+            self.reviewRequest = [ReviewRequest startReviewRequest:[ConfigManager appId] appName:GlobalGetAppName() isTest:YES];
             self.reviewRequest.delegate = self;
         }
     }
@@ -153,10 +153,10 @@ NSString* GlobalGetTrafficServerURL()
 
     // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
-        [self checkAppVersion:DRAW_APP_ID];
+        [self checkAppVersion:[ConfigManager appId]];
     }
     else if (isAskBindDevice == NO){        
-        [self checkAppVersion:DRAW_APP_ID];
+        [self checkAppVersion:[ConfigManager appId]];
     }
 
     // Show Root View
@@ -363,7 +363,7 @@ NSString* GlobalGetTrafficServerURL()
 {
     if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
         if (buttonIndex == 1){
-            [self openAppForUpgrade:DRAW_APP_ID];
+            [self openAppForUpgrade:[ConfigManager appId]];
         }
     }
 }

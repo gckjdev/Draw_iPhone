@@ -15,6 +15,21 @@
 
 @implementation ConfigManager
 
++ (BOOL)isProVersion
+{
+    return NO;
+}
+
++ (NSString*)appId
+{
+    if ([ConfigManager isProVersion]){
+        return @"541354772";
+    }
+    else{
+        return @"513819630";
+    }
+}
+
 + (int)getBalanceDeviation
 {
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
