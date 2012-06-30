@@ -297,12 +297,21 @@
 
 - (IBAction)talkToHim:(id)sender
 {
-    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
-                                                                           friendNickname:self.userNickName
-                                                                             friendAvatar:self.userAvatar
-                                                                             friendGender:self.userGender];
-    [self.superViewController.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    if ([self.superViewController isKindOfClass:[ChatDetailController class]]) {
+        ChatDetailController *currentController = (ChatDetailController *)self.superViewController;
+        if ([currentController.friendUserId isEqualToString:self.userId])
+        {
+            [self clickMask:mask];
+        }
+    }
+    else {
+        ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
+                                                                               friendNickname:self.userNickName
+                                                                                 friendAvatar:self.userAvatar
+                                                                                 friendGender:self.userGender];
+        [self.superViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (IBAction)seeHisFeed:(id)sender

@@ -12,7 +12,7 @@
 
 @optional
 - (void)didClickEnlargeButton:(NSIndexPath *)aIndexPath;
-
+- (void)didClickAvatarButton:(NSIndexPath *)aIndexPath;
 @end
 
 
@@ -30,6 +30,8 @@
 @property (assign, nonatomic) id<ChatDetailCellDelegate> chatDetailCellDelegate;
 @property (retain, nonatomic) IBOutlet UIButton *enlargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (retain, nonatomic) IBOutlet UIButton *avatarButton;
+
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;

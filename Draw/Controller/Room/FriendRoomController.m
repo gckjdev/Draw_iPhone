@@ -188,10 +188,6 @@
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     RoomUser *roomUser = room.creator;
     
-    if ([roomUser.userId isEqualToString:[[UserManager defaultManager] userId]]) {
-        return;
-    }
-    
     [CommonUserInfoView showUser:roomUser.userId
                         nickName:roomUser.nickName
                           avatar:roomUser.avatar 
