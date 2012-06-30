@@ -101,7 +101,7 @@
     //avatar
 //    [self.avatarView removeFromSuperview];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:_avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
-    [self.avatarView setUserId:feed.userId];
+    [self.avatarView setUserId:_author];
     [self.view addSubview:self.avatarView];
     self.avatarView.delegate = self;
     
