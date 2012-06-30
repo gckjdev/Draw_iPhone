@@ -59,7 +59,19 @@ enum {
 #define DIALOG_TAG_REBIND_SINA      201206282
 #define DIALOG_TAG_REBIND_FACEBOOK  201206283
 
+@interface UserSettingController()
+
+- (void)bindFacebook;
+- (void)bindSina;
+- (void)bindQQ;
+- (void)askRebindFacebook;
+- (void)askRebindQQ;
+- (void)askRebindSina;
+
+@end
+
 @implementation UserSettingController
+
 @synthesize expAndLevelLabel;
 @synthesize saveButton;
 @synthesize titleLabel;
@@ -665,6 +677,7 @@ enum {
 - (void)bindSina
 {    
     _currentLoginType = REGISTER_TYPE_SINA;
+    [[SinaSNSService defaultService] logout];
     [[SinaSNSService defaultService] startLogin:self];                                            
 }
 

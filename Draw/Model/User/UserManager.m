@@ -495,7 +495,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }    
     [self setGender:gender];    
-    [self setFacebookId:loginId];
+    [self setFacebookId:loginId nickName:nickName];
     [userDefaults synchronize];     
 }
 

@@ -117,6 +117,10 @@
 
 - (void)viewDidLoad
 {    
+    self.adView = [[AdService defaultService] createAdInView:self                  
+                                                       frame:CGRectMake(0, 0, 320, 50) 
+                                                   iPadFrame:CGRectMake(65, 800, 320, 50)];
+    
     [super viewDidLoad];    
     [self playBackgroundMusic];
     
@@ -183,9 +187,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AdService defaultService] showAdInView:self.view 
-                                       frame:CGRectMake(0, 0, 0, 0) 
-                                   iPadFrame:CGRectMake(65, 800, 0, 0)];
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -195,7 +196,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[AdService defaultService] hideAdViewInView:self.view];
+
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
@@ -203,6 +204,7 @@
 
 - (void)viewDidUnload
 {
+    [[AdService defaultService] clearAdView:_adView];    
     [self setStartButton:nil];
     [self setShopButton:nil];
     [self setShareButton:nil];

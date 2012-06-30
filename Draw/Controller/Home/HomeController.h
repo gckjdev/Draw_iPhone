@@ -60,10 +60,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *messageBadge;
 @property (retain, nonatomic) IBOutlet UIButton *roomBadge;
 @property (retain, nonatomic) IBOutlet UIScrollView *homeScrollView;
+@property (retain, nonatomic) UIView  *adView;
 
 // Ad View
-@property (nonatomic, retain) LmmobAdBannerView* adView;
-
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickGuessButton:(id)sender;
 - (IBAction)clickFeedButton:(id)sender;

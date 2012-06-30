@@ -20,6 +20,12 @@
 @property (retain, nonatomic) NSArray *myFanList;
 
 - (IBAction)clickCancel:(id)sender;
+- (void)loadMyFollow;
+- (void)loadMyFans;
+- (void)updateFriendsCount;
+- (void)updateFriendsListFromLocal;
+- (void)setAndReloadData:(NSArray *)newDataList;
+
 @end
 
 @implementation SelectChatFriendController

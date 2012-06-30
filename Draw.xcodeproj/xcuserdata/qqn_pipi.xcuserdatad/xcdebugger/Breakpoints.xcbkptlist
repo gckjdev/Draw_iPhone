@@ -31,19 +31,5 @@
          landmarkName = "-setBackGroundMusicWithName:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/gitdata/Common_iPhone_20/Components/Component-Service/SNS/Service/QQWeiboService.m"
-         timestampString = "362546821.550059"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
-         landmarkName = "-publishWeibo:imageFilePath:delegate:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
