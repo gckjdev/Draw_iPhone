@@ -239,7 +239,7 @@
                            hasQQ:didHasQQ 
                      hasFacebook:didHasFacebook];
         view.superViewController = superController;
-        [superController showActivity];
+        [superController showActivityWithText:NSLS(@"kQuerying")];
         [[UserService defaultService] getUserSimpleInfoByUserId:userId delegate:view];
         //[superController.view addSubview:view];
     }

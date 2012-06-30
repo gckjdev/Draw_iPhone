@@ -64,9 +64,16 @@
         return nil;
     }
     
-    ((ChatDetailCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
+    ChatDetailCell *cell = (ChatDetailCell*)[topLevelObjects objectAtIndex:0];
+    cell.delegate = delegate;
     
-    return [topLevelObjects objectAtIndex:0];
+    UIColor *textColor = [UIColor colorWithRed:79.0/255.0 green:62.0/255.0 blue:32.0/255.0 alpha:1];
+    cell.contentTextView.textColor = textColor;
+    cell.nicknameLabel.textColor = textColor;
+    
+    cell.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+    
+    return cell;
 }
 
 
@@ -142,10 +149,6 @@
 {
     self.indexPath = aIndexPath;
     
-    UIColor *textColor = [UIColor colorWithRed:79.0/255.0 green:62.0/255.0 blue:32.0/255.0 alpha:1];
-    contentTextView.textColor = textColor;
-    nicknameLabel.textColor = textColor;
-    
     BOOL fromSelf = [message.from isEqualToString:[[UserManager defaultManager] userId]];
     
     //set avatar
@@ -198,7 +201,7 @@
         [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
         self.timeLabel.text = [dateFormatter stringFromDate:message.createDate];
     }
-    timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+    
     
     
     /*注意要保证xib里面contentTextView,bubbleImageView,graffitiView,timeLabel的x位置一样*/
@@ -229,16 +232,9 @@
         NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:message.drawData];
         CGFloat scale = IMAGE_WIDTH_MAX / DRAW_VIEW_FRAME.size.width;
         NSMutableArray *scaleActionList = nil;
-        //PPDebug(@"%@",timeLabel.text);
         scaleActionList = [DrawAction scaleActionList:drawActionList 
                                                xScale:scale 
                                                yScale:scale];
-        
-        //        if ([DeviceDetection isIPAD]) {
-        //            scaleActionList = [DrawAction scaleActionList:drawActionList 
-        //                                                   xScale:IPAD_WIDTH_SCALE*scale 
-        //                                                   yScale:IPAD_HEIGHT_SCALE*scale];
-        //        }
 
         [graffitiView setDrawActionList:scaleActionList]; 
         [graffitiView setShowPenHidden:YES];

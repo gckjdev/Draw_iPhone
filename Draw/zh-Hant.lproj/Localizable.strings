@@ -624,3 +624,5 @@
 "kMessage" = "消息";
 "kAdRemoved" = "已移除";
 "kAdNotRemoved" = "待移除";
+
+"kQuerying" = "查詢中...";
