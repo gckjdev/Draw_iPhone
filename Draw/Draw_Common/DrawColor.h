@@ -50,4 +50,8 @@
 
 
 //- (id)initWithRed:(CGFloat)red 
+
++ (NSArray *)getRecentColorList;
++ (void)setRecentColorList:(NSArray *)list;
+
 @end
