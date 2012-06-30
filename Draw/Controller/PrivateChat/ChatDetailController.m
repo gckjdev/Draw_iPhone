@@ -670,19 +670,23 @@
     NSString *fromUserId = message.from;
     
     if ([fromUserId isEqualToString:[[UserManager defaultManager] userId]]) {
+
         [CommonUserInfoView showUser:[[UserManager defaultManager] userId]
                             nickName:[[UserManager defaultManager] nickName]
                               avatar:[[UserManager defaultManager] avatarURL]
                               gender:[[UserManager defaultManager] gender]
+                            location:nil
                              hasSina:NO 
                                hasQQ:NO 
                          hasFacebook:NO 
                           infoInView:self];
+        
     } else if ([fromUserId isEqualToString:self.friendUserId]) {
         [CommonUserInfoView showUser:self.friendUserId
                             nickName:self.friendNickname 
                               avatar:self.friendAvatar 
                               gender:self.friendGender
+                            location:nil
                              hasSina:NO 
                                hasQQ:NO 
                          hasFacebook:NO 
