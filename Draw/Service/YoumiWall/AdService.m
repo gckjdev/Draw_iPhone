@@ -16,6 +16,9 @@
 #import "ItemType.h"
 #import "DeviceDetection.h"
 #import "LmWallService.h"
+#import "AdMoGoView.h"
+#import "UserManager.h"
+#import "HomeController.h"
 
 #define ASK_REMOVE_AD_BY_WALL       101
 #define ASK_REMOVE_AD_BY_IAP        102
@@ -32,6 +35,7 @@
 @implementation AdService
 
 @synthesize viewController = _viewController;
+@synthesize adSuperViewController = _adSuperViewController;
 //@synthesize adView = _adView;
 
 static AdService* _defaultService;
@@ -39,6 +43,7 @@ static AdService* _defaultService;
 - (void)dealloc
 {
 //    PPRelease(_adView);
+    PPRelease(_adSuperViewController);
     PPRelease(_viewController);
     PPRelease(_allAdViews);
     [super dealloc];
@@ -62,7 +67,26 @@ static AdService* _defaultService;
 
 - (NSInteger)getRemoveAdPrice
 {
-    return [MobClickUtils getIntValueByKey:@"" defaultValue:1];
+    return [MobClickUtils getIntValueByKey:@"REMOVE_AD_PRICE" defaultValue:1];
+}
+
+- (int)getLmAdPercentage
+{
+    return [MobClickUtils getIntValueByKey:@"LM_AD_PERCENTAGE" defaultValue:0];
+//    return 0; // For DoMob Test
+}
+
+- (BOOL)isShowLmAd
+{
+    int percentage = [self getLmAdPercentage];
+    if (percentage == 0)
+        return NO;
+    
+    int randValue = rand() % 100;
+    if (randValue <= percentage)
+        return YES;
+    else
+        return NO;
 }
 
 - (void)setAdDisable
@@ -198,24 +222,70 @@ static AdService* _defaultService;
     PPDebug(@"<didFailReceiveBannerADWithError>:%@", error);    
 }
 
-#pragma mark - Ad View Dictionary Management
+//#pragma mark - Ad View Dictionary Management
+//
+//- (void)addAdView:(UIView*)adView superView:(UIView*)superView
+//{
+//    if (superView == nil || adView == nil)
+//        return;
+//
+//    NSString* key = [superView description];
+//    [_allAdViews setObject:adView forKey:key];
+//}
+//
+//- (UIView*)adViewBySuperView:(UIView*)superView
+//{
+//    if (superView == nil)
+//        return nil;
+//    
+//    NSString* key = [superView description];
+//    return [_allAdViews objectForKey:key];
+//}
 
-- (void)addAdView:(UIView*)adView superView:(UIView*)superView
+#pragma mark - Mango Ad View Delegate
+
+- (NSString *)adMoGoApplicationKey
 {
-    if (superView == nil || adView == nil)
-        return;
-
-    NSString* key = [superView description];
-    [_allAdViews setObject:adView forKey:key];
+    return @"ad29f0cf8361452db392ffdef8057eff";
+    
+//    return @"d5d65eff49774712aa2aeef656b4c600"; // DoMob Test ID
 }
 
-- (UIView*)adViewBySuperView:(UIView*)superView
+- (UIViewController *)viewControllerForPresentingModalView
 {
-    if (superView == nil)
-        return nil;
-    
-    NSString* key = [superView description];
-    return [_allAdViews objectForKey:key];
+    return [HomeController defaultInstance].navigationController;
+}
+
+- (void)adMoGoDidReceiveAd:(AdMoGoView *)adMoGoView
+{
+    PPDebug(@"<adMoGoDidReceiveAd>");
+}
+
+- (void)adMoGoDeleteAd:(AdMoGoView *)adMoGoView
+{
+    PPDebug(@"<adMoGoDeleteAd>");    
+}
+
+- (void)adMoGoDidFailToReceiveAd:(AdMoGoView *)adMoGoView usingBackup:(BOOL)yesOrNo
+{
+    PPDebug(@"<adMoGoDidFailToReceiveAd> usingBackup=%d", yesOrNo);    
+}
+
+//- (void)adMoGoWillPresentFullScreenModal;
+//- (void)adMoGoDidDismissFullScreenModal;
+//- (void)adMoGoFullScreenAdReceivedRequest;
+//- (void)adMoGoFullScreenAdFailed;
+//- (void)adMoGoWillPresentFullScreenAdModal;
+//- (void)adMoGoDidDismissFullScreenAdModal;
+
+//- (NSString *)phoneNumber; // user's phone number
+//- (CLLocation *)locationInfo; // user's current location
+//- (NSString *)postalCode; // user's postal code, e.g. "94401"
+//- (NSString *)areaCode; // user's area code, e.g. "415"
+//- (NSDate *)dateOfBirth; // user's date of birth
+- (NSString *)gender
+{
+    return [[UserManager defaultManager] gender];
 }
 
 #pragma mark - Methods For External
@@ -242,42 +312,81 @@ static AdService* _defaultService;
 
 - (void)hideAdViewInView:(UIView*)superView;
 {
-    UIView* adView = [self adViewBySuperView:superView];    
-    if ([adView superview] != nil){
-        [adView removeFromSuperview];
+//    UIView* adView = [self adViewBySuperView:superView];    
+//    if ([adView superview] != nil){
+//        [adView removeFromSuperview];
+//    }
+}
+
+- (UIView*)createMangoAdInView:(UIViewController*)superViewContoller
+                         frame:(CGRect)frame 
+                     iPadFrame:(CGRect)iPadFrame
+{
+    if ([self isShowAd] == NO){
+        return nil;
+    }
+        
+    self.adSuperViewController = superViewContoller;        
+    UIView* superView = superViewContoller.view;
+    AdMoGoView* adView = nil;
+    
+    // create view
+    adView = [AdMoGoView requestAdMoGoViewWithDelegate:self 
+                                             AndAdType:AdViewTypeNormalBanner
+                                           ExpressMode:YES];            
+    
+    // set view frame
+    if ([DeviceDetection isIPAD]){
+        [adView setFrame:iPadFrame];
+    }
+    else{
+        [adView setFrame:frame];
+    }
+    
+    // set view data
+    adView.tag = AD_VIEW_TAG;
+    adView.delegate = self;
+    
+    // add to super view
+    [superView addSubview:adView];    
+    return adView;
+}
+
+
+- (void)clearAdView:(UIView*)adView
+{
+    if ([adView isKindOfClass:[AdMoGoView class]]){
+        ((AdMoGoView*)adView).delegate = nil;
+    }
+    else if ([adView isKindOfClass:[LmmobAdBannerView class]]){
+        ((LmmobAdBannerView*)adView).delegate = nil;
     }
 }
 
-- (void)showAdInView:(UIView*)superView frame:(CGRect)frame iPadFrame:(CGRect)iPadFrame
-{
-    LmmobAdBannerView* adView = (LmmobAdBannerView*)[self adViewBySuperView:superView];
-    
+- (UIView*)createAdInView:(UIViewController*)superViewContoller
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+{        
     if ([self isShowAd] == NO){
-        // Ad Disable, Remove Ad View
-        [adView removeFromSuperview];
-        return;
+        return nil;
     }
-    
-    if ([superView viewWithTag:AD_VIEW_TAG] != nil){
-        // Ad View Exist, Return
-        return;
+
+    if ([self isShowLmAd] == NO){
+        return [self createMangoAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
     }
-    
-    BOOL firstRequest = NO;
-    if (adView == nil){
-        if ([DeviceDetection isIPAD]){
-            adView = [[LmmobAdBannerView alloc] initWithFrame:iPadFrame];
-            adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
-            adView.specId = 0;
-        }
-        else{
-            adView = [[LmmobAdBannerView alloc] initWithFrame:frame];
-            adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
-            adView.specId = 0;
-        }
-        
-        [self addAdView:adView superView:superView];
-        firstRequest = YES;
+            
+    // Create LM Ad View
+    UIView* superView = superViewContoller.view;
+    LmmobAdBannerView* adView = nil;
+    if ([DeviceDetection isIPAD]){
+        adView = [[[LmmobAdBannerView alloc] initWithFrame:iPadFrame] autorelease];
+        adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
+        adView.specId = 0;
+    }
+    else{
+        adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
+        adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+        adView.specId = 0;
     }
     
     if ([DeviceDetection isIPAD]){
@@ -291,11 +400,9 @@ static AdService* _defaultService;
     adView.appVersionString = [UIUtils getAppVersion];
     adView.delegate = self;
     adView.autoRefreshAdTimeOfSeconds = 30;
-    [superView addSubview:adView];
-    
-    if (firstRequest){
-        [adView requestBannerAd];    
-    }
+    [superView addSubview:adView];    
+    [adView requestBannerAd];        
+    return adView;
 }
 
 

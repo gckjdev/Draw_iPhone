@@ -44,6 +44,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *whitePaper;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) NSArray *drawActionList;
+@property (retain, nonatomic) UIView  *adView;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;

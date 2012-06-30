@@ -58,6 +58,7 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize drawUserId = _drawUserId;
 @synthesize drawUserNickName = _drawUserNickName;
+@synthesize adView = _adView;
 //@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -231,14 +232,13 @@
         [AnimationManager snowAnimationAtView:self.view];
     }
     
-    [[AdService defaultService] showAdInView:self.view 
-                                       frame:CGRectMake(0, 0, 0, 0) 
-                                   iPadFrame:CGRectMake(224, 755, 0, 0)];    
+    self.adView = [[AdService defaultService] createAdInView:self 
+                                       frame:CGRectMake(0, 0, 320, 50) 
+                                   iPadFrame:CGRectMake(224, 755, 320, 50)];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[AdService defaultService] hideAdViewInView:self.view];
     [super viewDidDisappear:animated];
 //    [drawGameService unregisterObserver:self];
 //    [drawGameService setRoomDelegate:nil];
@@ -256,6 +256,9 @@
 
 - (void)viewDidUnload
 {
+    [[AdService defaultService] clearAdView:_adView];
+
+    [self setAdView:nil];
     [self setUpButton:nil];
     [self setDownButton:nil];
     [self setContinueButton:nil];

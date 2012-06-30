@@ -35,6 +35,7 @@
 @synthesize timeBg = _timeBg;
 @synthesize myWordsButton = _myWordsButton;
 @synthesize targetUid = _targetUid;
+@synthesize adView = _adView;
 
 + (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType
 {
@@ -164,6 +165,9 @@
 #define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 780) : CGPointMake(272, 344))
 - (void)viewDidLoad
 {
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, 480-50-20, 320, 50) 
+                                                   iPadFrame:CGRectMake(112, 883, 320, 50)];
 
     
     [super viewDidLoad];
@@ -199,9 +203,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AdService defaultService] showAdInView:self.view 
-                                       frame:CGRectMake(0, 480-50-20, 0, 0) 
-                                   iPadFrame:CGRectMake(112, 883, 0, 0)];
     
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
@@ -209,7 +210,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[AdService defaultService] hideAdViewInView:self.view];
 //    [self clearUnPopupMessages];
 //    [drawGameService unregisterObserver:self];
     [super viewDidDisappear:animated];
@@ -217,6 +217,9 @@
 
 - (void)viewDidUnload
 {
+    [[AdService defaultService] clearAdView:_adView];
+    
+    [self setAdView:nil];    
     [self setWordTableView:nil];
     [self setWordArray:nil];
     [self setClockLabel:nil];

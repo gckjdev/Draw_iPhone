@@ -195,7 +195,8 @@ static DrawGameService* _defaultService;
 
 - (void)notifyGameObserver:(SEL)selector message:(GameMessage*)message
 {
-    for (id observer in _gameObserverList){        
+    NSArray* arrayForNotify = [NSArray arrayWithArray:_gameObserverList];    
+    for (id observer in arrayForNotify){        
         if ([observer respondsToSelector:selector]){
             [observer performSelector:selector withObject:message];
         }
@@ -204,7 +205,8 @@ static DrawGameService* _defaultService;
 
 - (void)notifyGameObserver:(SEL)selector withObject:(NSObject*)object
 {
-    for (id observer in _gameObserverList){        
+    NSArray* arrayForNotify = [NSArray arrayWithArray:_gameObserverList];    
+    for (id observer in arrayForNotify){        
         if ([observer respondsToSelector:selector]){
             [observer performSelector:selector withObject:object];
         }
@@ -213,7 +215,8 @@ static DrawGameService* _defaultService;
 
 - (void)notifyGameObserver:(SEL)selector withObject1:(NSObject*)object1 withObject2:(NSObject*)object2
 {
-    for (id observer in _gameObserverList){        
+    NSArray* arrayForNotify = [NSArray arrayWithArray:_gameObserverList];        
+    for (id observer in arrayForNotify){        
         if ([observer respondsToSelector:selector]){
             [observer performSelector:selector withObject:object1 withObject:object2];
         }
@@ -231,10 +234,8 @@ static DrawGameService* _defaultService;
 
 - (void)unregisterObserver:(id<DrawGameServiceDelegate>)observer
 {
-    PPDebug(@"<unregisterObserver> %@", [observer description]);
-    
-    // use this to avoid the issue of enumerate observer and call this method
-    [self.gameObserverList performSelector:@selector(removeObject:) withObject:observer afterDelay:0.0f];
+    PPDebug(@"<unregisterObserver> %@", [observer description]);    
+    [self.gameObserverList removeObject:observer];
 }
 
 #pragma mark Message Delegae Handle Methods
