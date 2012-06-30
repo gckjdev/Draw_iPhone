@@ -325,6 +325,7 @@
                         nickName:messageTotal.friendNickName 
                           avatar:messageTotal.friendAvatar 
                           gender:messageTotal.friendGender 
+                        location:nil
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 

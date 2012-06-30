@@ -91,7 +91,7 @@
     [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
 }
 
-#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 0, 0):CGRectMake(18, 46, 42, 42)
+#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
@@ -164,15 +164,18 @@
                     nickName:aFriend.nickName 
                       avatar:aFriend.avatar 
                       gender:aFriend.gender 
+                    location:aFriend.location 
                      hasSina:(aFriend.sinaNick != nil) 
                        hasQQ:(aFriend.qqNick != nil) 
-                 hasFacebook:(aFriend.facebookNick != nil) ];
+                 hasFacebook:(aFriend.facebookNick != nil) 
+     ];
 }
 
 - (void)initViewWithUserId:(NSString*)aUserId 
                   nickName:(NSString*)nickName 
                     avatar:(NSString*)avatar 
                     gender:(NSString*)aGender 
+                  location:(NSString*)location
                    hasSina:(BOOL)didHasSina 
                      hasQQ:(BOOL)didHasQQ 
                hasFacebook:(BOOL)didHasFacebook
@@ -186,6 +189,7 @@
     self.hasQQ = didHasQQ;
     self.hasSina = didHasSina;
     self.hasFacebook = didHasFacebook;
+    self.userLocation = location;
     
     [self initView];
 }
@@ -218,6 +222,7 @@
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(NSString*)aGender 
+        location:(NSString*)location
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
@@ -229,6 +234,7 @@
                         nickName:nickName 
                           avatar:avatar 
                           gender:aGender 
+                        location:location
                          hasSina:didHasSina 
                            hasQQ:didHasQQ 
                      hasFacebook:didHasFacebook];
