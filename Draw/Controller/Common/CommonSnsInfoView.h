@@ -14,5 +14,12 @@
               hasQQ:(BOOL)hasQQ 
         hasFacebook:(BOOL)hasFacebook;
 
+- (void)setHasSina:(BOOL)hasSina 
+             hasQQ:(BOOL)hasQQ 
+       hasFacebook:(BOOL)hasFacebook;
+
+@property (retain, nonatomic) UIImageView* sinaImageView;
+@property (retain, nonatomic) UIImageView* qqImageView;
+@property (retain, nonatomic) UIImageView* facebookImageView;
 
 @end
