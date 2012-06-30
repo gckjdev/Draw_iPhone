@@ -132,11 +132,7 @@
         self.textLabel.hidden = NO;
         self.graffiti.hidden = YES;
         self.textLabel.text = [NSString stringWithFormat:@"[%@]",NSLS(@"kGraffitiMessage")] ;
-//        NSArray* drawActionList = [ChatMessageUtil unarchiveDataToDrawActionList:messageTotal.latestDrawData];
-//        CGFloat scale = graffiti.frame.size.height / DRAW_VIEW_FRAME.size.height;
-//        ShowDrawView *thumbImageView = [self createShowDrawView:drawActionList scale:scale];
-//        [thumbImageView show];
-//        [graffiti addSubview:thumbImageView];
+
     }
     
     //set countLabel
