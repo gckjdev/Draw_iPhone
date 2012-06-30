@@ -156,6 +156,8 @@
 #define PICK_ERASER_VIEW_TAG 2012053101
 #define PICK_PEN_VIEW_TAG 2012053102
 #define PICK_COLOR_VIEW_TAG 2012053103
+
+#define DEFAULT_COLOR_NUMBER 5
 - (void)initPickView
 {
 
@@ -226,6 +228,13 @@
     [colorViewArray addObject:[ColorView yellowColorView]];
     [colorViewArray addObject:[ColorView blueColorView]];
     [colorViewArray addObject:[ColorView whiteColorView]];
+    NSArray *recentColors = [DrawColor getRecentColorList];
+    if (recentColors ) {
+        for (DrawColor *color in recentColors) {
+            ColorView *view = [ColorView colorViewWithDrawColor:color scale:ColorViewScaleSmall];
+            [colorViewArray addObject:view];
+        }
+    }
     [pickColorView setColorViews:colorViewArray];
     [colorViewArray release];
     [widthArray release];
@@ -353,7 +362,21 @@ enum{
     [super viewDidUnload];
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    //save the recent draw color
+    if ([pickColorView.colorViews count] > DEFAULT_COLOR_NUMBER) {
+        NSMutableArray *array = [NSMutableArray array];
+        NSInteger count = MIN([pickColorView.colorViews count], DEFAULT_COLOR_NUMBER * 2-1);
+        for (int i = DEFAULT_COLOR_NUMBER; i < count; ++ i) {
+            ColorView *view = [pickColorView.colorViews objectAtIndex:i];
+            [array addObject:view.drawColor];
+        }
+        [DrawColor setRecentColorList:array];
+    }
+    
+}
 
 
 #pragma mark - Pick view delegate
