@@ -43,8 +43,9 @@
                                                          Facebook:hasFacebook];
         for (int i = 0; i < snsImageArray.count; i ++) {
             UIView* view = [snsImageArray objectAtIndex:i];
-            [view setFrame:CGRectMake(i*1.1*frame.size.height, 0, aFrame.size.height, aFrame.size.height)];
+            [view setFrame:CGRectMake(i*frame.size.height, 0, aFrame.size.height, aFrame.size.height)];
             [self addSubview:view];
+            [view release];
         }
         
     }
@@ -53,16 +54,16 @@
 
 - (CGRect)calFrame:(CGRect)frame ByCount:(int)count
 {
-    if (frame.size.width >= frame.size.height*1.1*count) {
+    if (frame.size.width >= frame.size.height*count) {
         return CGRectMake(0, 
                           0, 
-                          frame.size.height*1.1*count, 
+                          frame.size.height*count, 
                           frame.size.height);
     } else {
         return CGRectMake(0, 
                           0, 
                           frame.size.width, 
-                          frame.size.width/(count*1.1));
+                          frame.size.width/count);
     }
 }
 - (NSMutableArray*)creatImageArraySina:(BOOL)hasSina 
@@ -71,13 +72,16 @@
 {
     NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
     if (hasSina) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
+        [array addObject:view];
     }
     if (hasQQ) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
+        [array addObject:view];
     }
     if (hasFacebook) {
-        [array addObject:[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage]];
+        UIImageView* view = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
+        [array addObject:view];
     }
     return array;
 }

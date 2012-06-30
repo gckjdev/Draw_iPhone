@@ -377,6 +377,7 @@
                         nickName:nickName 
                           avatar:nil 
                           gender:genderString 
+                        location:nil
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 

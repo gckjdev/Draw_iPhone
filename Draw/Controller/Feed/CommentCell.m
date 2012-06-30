@@ -167,6 +167,7 @@
                         nickName:nil 
                           avatar:nil 
                           gender:nil 
+                        location:nil
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 

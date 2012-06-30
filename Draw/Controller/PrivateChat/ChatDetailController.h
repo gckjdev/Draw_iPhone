@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *paperImageView;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
+@property (retain, nonatomic) NSString *friendUserId;
 
 - (id)initWithFriendUserId:(NSString *)frindUserId 
             friendNickname:(NSString *)friendNickname 

@@ -91,7 +91,7 @@
     [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
 }
 
-#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 0, 0):CGRectMake(18, 46, 42, 42)
+#define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
@@ -158,10 +158,24 @@
     
 }
 
+- (void)initViewWithFriend:(Friend*)aFriend
+{  
+    [self initViewWithUserId:aFriend.friendUserId 
+                    nickName:aFriend.nickName 
+                      avatar:aFriend.avatar 
+                      gender:aFriend.gender 
+                    location:aFriend.location 
+                     hasSina:(aFriend.sinaNick != nil) 
+                       hasQQ:(aFriend.qqNick != nil) 
+                 hasFacebook:(aFriend.facebookNick != nil) 
+     ];
+}
+
 - (void)initViewWithUserId:(NSString*)aUserId 
                   nickName:(NSString*)nickName 
                     avatar:(NSString*)avatar 
                     gender:(NSString*)aGender 
+                  location:(NSString*)location
                    hasSina:(BOOL)didHasSina 
                      hasQQ:(BOOL)didHasQQ 
                hasFacebook:(BOOL)didHasFacebook
@@ -175,20 +189,9 @@
     self.hasQQ = didHasQQ;
     self.hasSina = didHasSina;
     self.hasFacebook = didHasFacebook;
+    self.userLocation = location;
     
     [self initView];
-}
-
-
-- (void)initViewWithFriend:(Friend*)aFriend
-{  
-    [self initViewWithUserId:aFriend.friendUserId 
-                    nickName:aFriend.nickName 
-                      avatar:aFriend.avatar 
-                      gender:aFriend.gender 
-                     hasSina:(aFriend.sinaNick != nil) 
-                       hasQQ:(aFriend.qqNick != nil) 
-                 hasFacebook:(aFriend.facebookNick != nil) ];
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -219,6 +222,7 @@
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(NSString*)aGender 
+        location:(NSString*)location
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
@@ -230,6 +234,7 @@
                         nickName:nickName 
                           avatar:avatar 
                           gender:aGender 
+                        location:location
                          hasSina:didHasSina 
                            hasQQ:didHasQQ 
                      hasFacebook:didHasFacebook];
@@ -292,12 +297,21 @@
 
 - (IBAction)talkToHim:(id)sender
 {
-    ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
-                                                                           friendNickname:self.userNickName
-                                                                             friendAvatar:self.userAvatar
-                                                                             friendGender:self.userGender];
-    [self.superViewController.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    if ([self.superViewController isKindOfClass:[ChatDetailController class]]) {
+        ChatDetailController *currentController = (ChatDetailController *)self.superViewController;
+        if ([currentController.friendUserId isEqualToString:self.userId])
+        {
+            [self clickMask:mask];
+        }
+    }
+    else {
+        ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
+                                                                               friendNickname:self.userNickName
+                                                                                 friendAvatar:self.userAvatar
+                                                                                 friendGender:self.userGender];
+        [self.superViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (IBAction)seeHisFeed:(id)sender

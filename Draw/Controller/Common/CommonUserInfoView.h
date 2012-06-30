@@ -21,6 +21,7 @@
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(NSString*)aGender 
+        location:(NSString*)location 
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
