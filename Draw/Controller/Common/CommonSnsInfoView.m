@@ -45,7 +45,6 @@
             UIView* view = [snsImageArray objectAtIndex:i];
             [view setFrame:CGRectMake(i*frame.size.height, 0, aFrame.size.height, aFrame.size.height)];
             [self addSubview:view];
-            [view release];
         }
         
     }

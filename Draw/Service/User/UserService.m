@@ -804,23 +804,24 @@ static UserService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:APP_ID userId:userId];
         
-        long messageCount = 0;
-        long feedCount = 0;
-        long fanCount = 0;
-        long roomCount = 0;            
-        
-        if (output.resultCode == ERROR_SUCCESS) {
-            NSNumber *count = [output.jsonDataDict objectForKey:PARA_FEED_COUNT];
-            feedCount = [count longValue];
-            count = [output.jsonDataDict objectForKey:PARA_FAN_COUNT];
-            fanCount = [count longValue];
-            count = [output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT];
-            messageCount = [count longValue];            
-            count = [output.jsonDataDict objectForKey:PARA_ROOM_COUNT];
-            roomCount = [count longValue];            
-        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            long messageCount = 0;
+            long feedCount = 0;
+            long fanCount = 0;
+            long roomCount = 0;            
+            
+            if (output.resultCode == ERROR_SUCCESS) {
+                NSNumber *count = [output.jsonDataDict objectForKey:PARA_FEED_COUNT];
+                feedCount = [count longValue];
+                count = [output.jsonDataDict objectForKey:PARA_FAN_COUNT];
+                fanCount = [count longValue];
+                count = [output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT];
+                messageCount = [count longValue];            
+                count = [output.jsonDataDict objectForKey:PARA_ROOM_COUNT];
+                roomCount = [count longValue];            
+            }
             if (viewController && [viewController respondsToSelector:@selector(didGetStatistic:feedCount:messageCount:fanCount:roomCount:)]) {
                 [viewController didGetStatistic:output.resultCode feedCount:feedCount messageCount:messageCount fanCount:fanCount roomCount:roomCount];
             }
