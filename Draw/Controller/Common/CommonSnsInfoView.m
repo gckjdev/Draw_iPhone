@@ -36,9 +36,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.sinaImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
-        self.qqImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
-        self.facebookImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
+        _sinaImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].sinaWeiboImage] autorelease];
+        _qqImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].qqWeiboImage] autorelease];
+        _facebookImageView = [[[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].facebookImage] autorelease];
     }
     return self;
 }
