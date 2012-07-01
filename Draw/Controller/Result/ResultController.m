@@ -166,6 +166,11 @@
 
 - (void)viewDidLoad
 {        
+    self.adView = [[AdService defaultService] createAdInView:self 
+                                                       frame:CGRectMake(0, 0, 320, 50) 
+                                                   iPadFrame:CGRectMake(224, 755, 320, 50)
+                                                     useLmAd:NO];    
+    
     [super viewDidLoad];
         
     [self.drawImage setImage:_image];
@@ -232,14 +237,15 @@
         [AnimationManager snowAnimationAtView:self.view];
     }
     
-    self.adView = [[AdService defaultService] createAdInView:self 
-                                       frame:CGRectMake(0, 0, 320, 50) 
-                                   iPadFrame:CGRectMake(224, 755, 320, 50)];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+
     [super viewDidDisappear:animated];
+    
 //    [drawGameService unregisterObserver:self];
 //    [drawGameService setRoomDelegate:nil];
     
@@ -247,7 +253,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-        
+
+    if (self.adView == nil){
+        self.adView = [[AdService defaultService] createAdInView:self 
+                                                           frame:CGRectMake(0, 0, 320, 50) 
+                                                       iPadFrame:CGRectMake(224, 755, 320, 50)
+                                                         useLmAd:NO];        
+    }        
 //    [drawGameService setRoomDelegate:self];
 //    [drawGameService registerObserver:self];
 //    [self.upButton setEnabled:YES];
@@ -257,8 +269,8 @@
 - (void)viewDidUnload
 {
     [[AdService defaultService] clearAdView:_adView];
-
-    [self setAdView:nil];
+    [self setAdView:nil];    
+    
     [self setUpButton:nil];
     [self setDownButton:nil];
     [self setContinueButton:nil];

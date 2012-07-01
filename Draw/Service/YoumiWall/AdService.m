@@ -35,7 +35,7 @@
 @implementation AdService
 
 @synthesize viewController = _viewController;
-@synthesize adSuperViewController = _adSuperViewController;
+//@synthesize adSuperViewController = _adSuperViewController;
 //@synthesize adView = _adView;
 
 static AdService* _defaultService;
@@ -43,16 +43,19 @@ static AdService* _defaultService;
 - (void)dealloc
 {
 //    PPRelease(_adView);
-    PPRelease(_adSuperViewController);
+//    PPRelease(_adSuperViewController);
     PPRelease(_viewController);
-    PPRelease(_allAdViews);
+//    PPRelease(_allAdViews);
     [super dealloc];
 }
 
 - (id)init
 {
     self = [super init];
-    _allAdViews = [[NSMutableDictionary alloc] init];
+//    _allAdViews = [[NSMutableDictionary alloc] init];
+    
+    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ITEM_TYPE_REMOVE_AD                                                             
+                                                               amount:1] == NO);    
     return self;
 }
 
@@ -96,7 +99,8 @@ static AdService* _defaultService;
     [[AccountService defaultService] buyItem:ITEM_TYPE_REMOVE_AD 
                                    itemCount:1
                                    itemCoins:[self getRemoveAdPrice]];
-    
+ 
+    _isShowAd = NO;
 }
 
 - (void)askRemoveAdByWall
@@ -302,13 +306,11 @@ static AdService* _defaultService;
 }
 
 - (BOOL)isShowAd
-{
+{    
     if ([ConfigManager isProVersion])
         return NO;
-    
-    BOOL hasItemBought = [[AccountService defaultService] hasEnoughItemAmount:ITEM_TYPE_REMOVE_AD 
-                                                                       amount:1];
-    return (hasItemBought == NO); // item not bought, then show Ad
+
+    return _isShowAd;
 }
 
 - (void)hideAdViewInView:(UIView*)superView;
@@ -327,7 +329,7 @@ static AdService* _defaultService;
         return nil;
     }
         
-    self.adSuperViewController = superViewContoller;        
+//    self.adSuperViewController = superViewContoller;        
     UIView* superView = superViewContoller.view;
     AdMoGoView* adView = nil;
     
@@ -349,46 +351,70 @@ static AdService* _defaultService;
     adView.delegate = self;
     
     // add to super view
-    [superView addSubview:adView];    
+    [superView addSubview:adView];
+    [adView resumeAdRequest];
     return adView;
 }
 
 
 - (void)clearAdView:(UIView*)adView
 {
+    PPDebug(@"<clearAdView>");
+    [adView removeFromSuperview];
+    
     if ([adView isKindOfClass:[AdMoGoView class]]){
         ((AdMoGoView*)adView).delegate = nil;
     }
     else if ([adView isKindOfClass:[LmmobAdBannerView class]]){
-        ((LmmobAdBannerView*)adView).delegate = nil;
+        ((LmmobAdBannerView*)adView).delegate = nil;  
+        ((LmmobAdBannerView*)adView).rootViewController = nil;  
     }
 }
+
+- (void)pauseAdView:(UIView*)adView
+{
+    if ([adView isKindOfClass:[AdMoGoView class]]){
+        [((AdMoGoView*)adView) pauseAdRequest];
+    }
+    else if ([adView isKindOfClass:[LmmobAdBannerView class]]){
+        // Do Nothing For Lmmob, because of not support
+    }
+    
+}
+
+- (void)resumeAdView:(UIView*)adView
+{
+    if ([adView isKindOfClass:[AdMoGoView class]]){
+        [((AdMoGoView*)adView) resumeAdRequest];
+    }
+    else if ([adView isKindOfClass:[LmmobAdBannerView class]]){
+        // Do Nothing For Lmmob, because of not support
+    }    
+}
+
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame
+                  useLmAd:(BOOL)useLmAd
 {        
+    PPDebug(@"<createAdView>");
+    
     if ([self isShowAd] == NO){
         return nil;
     }
 
-    if ([self isShowLmAd] == NO){
+    if (useLmAd == NO || [self isShowLmAd] == NO){
         return [self createMangoAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
     }
             
     // Create LM Ad View
     UIView* superView = superViewContoller.view;
     LmmobAdBannerView* adView = nil;
-    if ([DeviceDetection isIPAD]){
-        adView = [[[LmmobAdBannerView alloc] initWithFrame:iPadFrame] autorelease];
-        adView.adPositionIdString = @"5a1da27e02e91c4bf169452cef159a6e";    
-        adView.specId = 0;
-    }
-    else{
-        adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
-        adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
-        adView.specId = 0;
-    }
+    adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
+    adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+    adView.specId = 0;
+    adView.rootViewController = [HomeController defaultInstance];
     
     if ([DeviceDetection isIPAD]){
         [adView setFrame:iPadFrame];

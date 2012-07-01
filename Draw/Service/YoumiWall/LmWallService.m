@@ -145,9 +145,29 @@ static LmWallService* _defaultService;
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
     [[LmmobAdWallSDK defaultSDK] ScoreSubstract:score];
+
+    BOOL isForRemoveAd = NO;
+    if ([self isWallForRemoveAd]){
+        [[AdService defaultService] setAdDisable];
+        [self clearWallForRemoveAd];
+        isForRemoveAd = YES;
+    }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"免费金币"
-                                                    message:[NSString stringWithFormat:@"成功下载应用后获取了%d金币",(int)score] 
+    NSString* title;
+    NSString* message;
+    
+    if (isForRemoveAd){
+        title = @"广告已移除";
+        message = [NSString stringWithFormat:@"成功下载和使用应用，广告已移除，同时您获取了%d金币",(int)score-1] ;        
+    }
+    else{
+        title = @"免费金币";
+        message = [NSString stringWithFormat:@"成功下载应用后获取了%d金币",(int)score] ;
+    }
+        
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
                                                    delegate:nil 
                                           cancelButtonTitle:@"知道了" 
                                           otherButtonTitles:nil];
@@ -155,10 +175,6 @@ static LmWallService* _defaultService;
     [alert show];
     [alert release];
     
-    if ([self isWallForRemoveAd]){
-        [[AdService defaultService] setAdDisable];
-        [self clearWallForRemoveAd];
-    }
     
 }
 

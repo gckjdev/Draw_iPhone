@@ -14,6 +14,7 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "GameNetworkConstants.h"
+#import "ConfigManager.h"
 
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
@@ -147,7 +148,7 @@ static FeedService *_staticFeedService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     
     
     dispatch_async(workingQueue, ^{

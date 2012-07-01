@@ -9,7 +9,7 @@
 
 #define SERVER_URL                  (GlobalGetServerURL())
 #define TRAFFIC_SERVER_URL                  (GlobalGetTrafficServerURL())
-#define APP_ID                      @"Game"
+//#define APP_ID                      @"Game"
 
 #define STRING_SEPERATOR @"$"
 

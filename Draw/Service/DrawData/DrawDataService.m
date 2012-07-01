@@ -20,6 +20,7 @@
 #import "DrawManager.h"
 #import "Feed.h"
 #import "MyPaintManager.h"
+#import "ConfigManager.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -158,7 +159,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     PBDraw* draw = [self buildPBDraw:userId 
                                 nick:nick 
                               avatar:avatar
@@ -200,7 +201,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     
     NSString *words = [guessWords componentsJoinedByString:@":"];
     

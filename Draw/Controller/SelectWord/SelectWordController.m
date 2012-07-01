@@ -72,6 +72,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
 }
 
 
@@ -167,8 +169,8 @@
 {
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, 480-50-20, 320, 50) 
-                                                   iPadFrame:CGRectMake(112, 883, 320, 50)];
-
+                                                   iPadFrame:CGRectMake(112, 883, 320, 50)
+                                                     useLmAd:NO];        
     
     [super viewDidLoad];
     toolView = [[ToolView alloc] initWithNumber:0];
@@ -206,20 +208,31 @@
     
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
+
+    if (self.adView == nil){
+        self.adView = [[AdService defaultService] createAdInView:self
+                                                           frame:CGRectMake(0, 480-50-20, 320, 50) 
+                                                       iPadFrame:CGRectMake(112, 883, 320, 50)
+                                                         useLmAd:NO];        
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
 //    [self clearUnPopupMessages];
 //    [drawGameService unregisterObserver:self];
+    
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+
     [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
 {
     [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
     
-    [self setAdView:nil];    
     [self setWordTableView:nil];
     [self setWordArray:nil];
     [self setClockLabel:nil];

@@ -12,6 +12,8 @@
 #import "GameNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "UserManager.h"
+#import "ConfigManager.h"
+
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
 #define MAX_LEVEL           50
@@ -166,7 +168,7 @@ static LevelService* _defaultLevelService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
-                                               appId:APP_ID 
+                                               appId:[ConfigManager appId] 
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
@@ -211,7 +213,7 @@ static LevelService* _defaultLevelService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
-                                               appId:APP_ID 
+                                               appId:[ConfigManager appId] 
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 

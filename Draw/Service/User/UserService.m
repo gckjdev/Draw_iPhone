@@ -24,6 +24,7 @@
 #import "LevelService.h"
 #import "UserService.h"
 #import "QQWeiboService.h"
+#import "ConfigManager.h"
 
 @implementation UserService
 
@@ -52,7 +53,7 @@ static UserService* _defaultUserService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest registerUserByEmail:SERVER_URL
-                                                   appId:APP_ID
+                                                   appId:[ConfigManager appId]
                                                    email:email
                                                 password:password
                                              deviceToken:deviceToken
@@ -132,7 +133,7 @@ static UserService* _defaultUserService;
 {
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
     
@@ -251,7 +252,7 @@ static UserService* _defaultUserService;
 - (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
                      viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
@@ -371,7 +372,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:APP_ID 
+                                                               appId:[ConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -430,7 +431,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                               appId:APP_ID 
+                                                               appId:[ConfigManager appId] 
                                                               userId:userId 
                                                               feedback:feedback 
                                                                contact:contact
@@ -461,7 +462,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                                 appId:APP_ID 
+                                                                 appId:[ConfigManager appId] 
                                                                 userId:userId 
                                                               feedback:bugDescription 
                                                                contact:contact
@@ -491,7 +492,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest commitWords:SERVER_URL 
-                                                                appId:APP_ID 
+                                                                appId:[ConfigManager appId] 
                                                                userId:userId
                                                                 words:words];
         
@@ -511,7 +512,7 @@ static UserService* _defaultUserService;
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
 {
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     [viewController showActivityWithText:NSLS(@"kLoginUser")];    
@@ -585,7 +586,7 @@ static UserService* _defaultUserService;
 
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
-    NSString* appId = APP_ID;
+    NSString* appId = [ConfigManager appId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -694,7 +695,7 @@ static UserService* _defaultUserService;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:APP_ID 
+                                                               appId:[ConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -802,7 +803,7 @@ static UserService* _defaultUserService;
 
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:APP_ID userId:userId];
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -834,7 +835,7 @@ static UserService* _defaultUserService;
                          delegate:(id<UserServiceDelegate>)delegate{
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
-                                                                      appId:APP_ID
+                                                                      appId:[ConfigManager appId]
                                                                    ByUserId:targetUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{

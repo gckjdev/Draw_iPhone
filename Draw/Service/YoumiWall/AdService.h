@@ -16,7 +16,9 @@
 @interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, LmmobAdBannerViewDelegate, AdMoGoDelegate>
 {
 //    LmmobAdBannerView   *_adView;
-    NSMutableDictionary *_allAdViews;
+//    NSMutableDictionary *_allAdViews;
+    
+    BOOL _isShowAd;
 }
 + (AdService*)defaultService;
 
@@ -29,13 +31,16 @@
 //           iPadFrame:(CGRect)iPadFrame;
 
 - (void)clearAdView:(UIView*)adView;
+//- (void)pauseAdView:(UIView*)adView;
+//- (void)resumeAdView:(UIView*)adView;
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
-                 frame:(CGRect)frame 
-             iPadFrame:(CGRect)iPadFrame;
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+                  useLmAd:(BOOL)useLmAd;
 
 
 @property (nonatomic, retain) PPViewController* viewController;
-@property (nonatomic, retain) UIViewController* adSuperViewController;
+//@property (nonatomic, retain) UIViewController* adSuperViewController;
 //@property (nonatomic, retain) LmmobAdBannerView* adView;
 
 @end

@@ -42,14 +42,14 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.101:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//      return @"http://192.168.1.101:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.101:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.101:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -246,9 +246,10 @@ NSString* GlobalGetTrafficServerURL()
     [[AudioManager defaultManager] backgroundMusicStart];
 
     //update the statistic
-    if (_homeController) {
-        [[UserService defaultService] getStatistic:_homeController];        
-    }
+    // rem by Benson due to ViewDidAppear also called it
+//    if (_homeController) {
+//        [[UserService defaultService] getStatistic:_homeController];        
+//    }
     application.applicationIconBadgeNumber = 0;
 }
 

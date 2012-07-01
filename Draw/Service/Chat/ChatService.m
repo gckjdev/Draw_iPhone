@@ -18,6 +18,7 @@
 #import "MessageTotalManager.h"
 #import "DrawDataService.h"
 #import "ChatMessageUtil.h"
+#import "ConfigManager.h"
 
 static ChatService *_chatService = nil;
 
@@ -40,7 +41,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
-                                                                   appId:APP_ID 
+                                                                   appId:[ConfigManager appId] 
                                                                   userId:userId
                                                             friendUserId:nil 
                                                              startOffset:starOffset 
@@ -84,7 +85,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest getUserMessage:TRAFFIC_SERVER_URL 
-                                                                   appId:APP_ID 
+                                                                   appId:[ConfigManager appId] 
                                                                   userId:userId
                                                             friendUserId:friendUserId 
                                                              startOffset:starOffset 
@@ -144,7 +145,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL 
-                                                                appId:APP_ID 
+                                                                appId:[ConfigManager appId] 
                                                                userId:userId 
                                                          targetUserId:friendUserId 
                                                                  text:text
@@ -201,7 +202,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:TRAFFIC_SERVER_URL 
-                                                                       appId:APP_ID 
+                                                                       appId:[ConfigManager appId] 
                                                                       userId:userId 
                                                                 friendUserId:friendUserId];
         
@@ -229,7 +230,7 @@ static ChatService *_chatService = nil;
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:TRAFFIC_SERVER_URL 
-                                                                      appId:APP_ID 
+                                                                      appId:[ConfigManager appId] 
                                                                      userId:userId 
                                                                targetUserId:friendUserId];
         
@@ -260,7 +261,7 @@ static ChatService *_chatService = nil;
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL 
-                                                                  appId:APP_ID 
+                                                                  appId:[ConfigManager appId] 
                                                                  userId:userId 
                                                    targetMessageIdArray:messageIdList];
         

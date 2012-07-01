@@ -17,6 +17,7 @@
 #import "Reachability.h"
 #import "PPApplication.h"
 #import "DeviceDetection.h"
+#import "ConfigManager.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
@@ -124,6 +125,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FETCH_SHOPPING_LIST];
         str = [str stringByAddQueryParameter:PARA_SHOPPING_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         return str;
     };
     
@@ -150,6 +152,8 @@
         NSString* str = [NSString stringWithString:baseURL];       
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_ACCOUNT_BALANCE];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -400,7 +404,9 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TRAFFIC_SERVER_LIST];        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TRAFFIC_SERVER_LIST];   
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -434,6 +440,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         
         return str;
     };
@@ -464,7 +471,9 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_DEDUCT_ACCOUNT];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
-        str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];        
+        str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];     
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -492,7 +501,9 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_ACCOUNT_BALANCE];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:balance];        
+        str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:balance];    
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -522,7 +533,9 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_ITEM_AMOUNT];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];        
-        str = [str stringByAddQueryParameter:PARA_ITEM_TYPE intValue:itemType];        
+        str = [str stringByAddQueryParameter:PARA_ITEM_TYPE intValue:itemType];     
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -551,6 +564,8 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_USER_ACCOUNT_ITEM];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -580,6 +595,8 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_USER_ACCOUNT_ITEM];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -881,6 +898,8 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -913,6 +932,8 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -944,6 +965,8 @@
         str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyword];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -977,6 +1000,7 @@
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_USERID_LIST value:userList];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
 
         return str;
     };
@@ -1009,6 +1033,7 @@
         str = [str stringByAddQueryParameter:PARA_ROOM_ID value:roomId];
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         
         return str;
     };
@@ -1049,6 +1074,7 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         
         return str;
     };
@@ -1075,6 +1101,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDDRAW];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         
         return str;
     };
@@ -1111,6 +1138,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         
         return str;
     };
@@ -1148,7 +1176,7 @@
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
         str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];
-        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
        
         return str;
     };
@@ -1198,6 +1226,9 @@
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
         }
+        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
         return str;
     };
     
@@ -1254,6 +1285,8 @@
         
         //TODO use type at Action Class. due to no Action Class, hard code now!
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_GUESS];
+        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
         //action type
         return str;
@@ -1461,6 +1494,7 @@
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:feedListType];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
         return str;
     };
     
@@ -1494,6 +1528,7 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         
         return str;
     };
@@ -1689,7 +1724,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO];
-        str = [str stringByAddQueryParameter:PARA_APPID value:APP_ID];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
         return str;
     };

@@ -116,10 +116,11 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{    
+{        
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(65, 800, 320, 50)];
+                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                     useLmAd:YES];
     
     [super viewDidLoad];    
     [self playBackgroundMusic];
@@ -186,12 +187,24 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated
-{
+{    
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
+
+    if (self.adView == nil){    
+        self.adView = [[AdService defaultService] createAdInView:self                  
+                                                           frame:CGRectMake(0, 0, 320, 50) 
+                                                       iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                         useLmAd:YES];
+    }
+    else{
+        if ([[AdService defaultService] isShowAd] == NO){
+            [_adView removeFromSuperview];
+        }
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -204,7 +217,9 @@
 
 - (void)viewDidUnload
 {
-    [[AdService defaultService] clearAdView:_adView];    
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];    
+    
     [self setStartButton:nil];
     [self setShopButton:nil];
     [self setShareButton:nil];
@@ -232,7 +247,6 @@
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
-    [self setAdView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

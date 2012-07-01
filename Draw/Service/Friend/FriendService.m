@@ -14,6 +14,7 @@
 #import "LogUtil.h"
 #import "FriendManager.h"
 #import "TimeUtils.h"
+#import "ConfigManager.h"
 
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
@@ -39,7 +40,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
-                                                                appId:APP_ID
+                                                                appId:[ConfigManager appId]
                                                                userId:userId 
                                                                  type:type
                                                            startIndex:0 
@@ -83,7 +84,7 @@ FriendService* globalGetFriendService()
     [viewController showActivityWithText:NSLS(@"kSearching")];
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
-                                                                appId:APP_ID
+                                                                appId:[ConfigManager appId]
                                                             keyString:searchString 
                                                            startIndex:0 
                                                              endIndex:100];             
@@ -114,7 +115,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
-                                                               appId:APP_ID
+                                                               appId:[ConfigManager appId]
                                                               userId:userId 
                                                    targetUserIdArray:targetList];             
         
@@ -151,7 +152,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
-                                                                 appId:APP_ID
+                                                                 appId:[ConfigManager appId]
                                                                 userId:userId 
                                                      targetUserIdArray:targetList];             
         
@@ -181,7 +182,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
-                                                               appId:APP_ID
+                                                               appId:[ConfigManager appId]
                                                               userId:userId 
                                                    targetUserIdArray:targetList];             
         
