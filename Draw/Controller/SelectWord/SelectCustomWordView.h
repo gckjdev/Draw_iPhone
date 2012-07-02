@@ -10,6 +10,8 @@
 #import "CommonDialog.h"
 
 @protocol SelectCustomWordViewDelegate <NSObject>
+
+@optional
 - (void)didSelecCustomWord:(NSString *)word;
 @end
 

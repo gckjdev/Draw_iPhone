@@ -631,3 +631,6 @@
 "kAdRemoved" = "Removed";
 "kAdNotRemoved" = "Not Removed";
 "kQuerying" = "Querying...";
+
+
+"kChallenge" = "Challenge";

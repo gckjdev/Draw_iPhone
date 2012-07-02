@@ -55,7 +55,7 @@
 
 + (NSInteger)loadDataCount
 {
-    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:15];
+    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:12];
 }
 @end
 
@@ -133,12 +133,12 @@
 }
 
 - (void)dealloc {
-    [titleLabel release];
-    [myFeedButton release];
-    [allFeedButton release];
-    [hotFeedButton release];
-    [_feedListStats release];
-    [noFeedTipsLabel release];
+    PPRelease(titleLabel);
+    PPRelease(myFeedButton);
+    PPRelease(allFeedButton);
+    PPRelease(hotFeedButton);
+    PPRelease(_feedListStats);
+    PPRelease(noFeedTipsLabel);
     [super dealloc];
 }
 
