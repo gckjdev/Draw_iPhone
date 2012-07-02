@@ -66,19 +66,24 @@ FeedManager *_staticFeedManager = nil;
     
     if ([feed isDrawType]) {
         if ([userManager hasGuessOpus:feed.feedId]) {
-            return ActionTypeCorrect;
+//            return ActionTypeCorrect;
+            return ActionTypeChallenge;
         }
         return ActionTypeGuess;
     }else if(feed.feedType == FeedTypeGuess)
     {
         if ([userManager hasGuessOpus:feed.opusId]) {
-            return ActionTypeCorrect;
-        }
-        if ([userManager isMe:feed.drawData.userId]) {
-            return ActionTypeOneMore;
+//            return ActionTypeCorrect;
+            return ActionTypeChallenge;
         }else{
             return ActionTypeGuess;
         }
+        
+//        if ([userManager isMe:feed.drawData.userId]) {
+//            return ActionTypeOneMore;
+//        }else{
+//            return ActionTypeGuess;
+//        }
     }
     return ActionTypeHidden;
 }

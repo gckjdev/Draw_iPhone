@@ -39,7 +39,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) IBOutlet UIButton *actionButton;
 
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) ShowDrawView *drawView;

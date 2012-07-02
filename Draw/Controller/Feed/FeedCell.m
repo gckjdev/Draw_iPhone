@@ -24,7 +24,6 @@
 @synthesize descLabel;
 @synthesize userNameLabel;
 @synthesize timeLabel;
-@synthesize actionButton;
 @synthesize avatarView = _avatarView;
 @synthesize drawView = _drawView;
 @synthesize feed = _feed;
@@ -177,36 +176,6 @@
     }
 }
 
-
-
-
-- (void)updateActionButton:(Feed *)feed
-{
-    ShareImageManager* imageManager = [ShareImageManager defaultManager];
-    //self.actionButton.hidden = NO;
-    [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    self.actionButton.userInteractionEnabled = YES;
-    self.actionButton.selected = NO;
-
-    
-    ActionType type = [FeedManager actionTypeForFeed:feed];
-    if (type == ActionTypeGuess) {
-        [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
-    }else if(type == ActionTypeOneMore)
-    {
-        [self.actionButton setTitle:NSLS(@"kOneMoreAction") forState:UIControlStateNormal];        
-    }else if(type == ActionTypeCorrect){
-        [self.actionButton setTitle:NSLS(@"kIGuessCorrect") forState:UIControlStateSelected];
-        [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
-        self.actionButton.userInteractionEnabled = NO;
-        self.actionButton.selected = YES;
-    }
-//    else{
-//        self.actionButton.hidden = YES;
-//    }
-}
-
-
 - (void)updateDrawView:(Feed *)feed
 {
     [self.drawView cleanAllActions];
@@ -225,7 +194,6 @@
     [self updateTime:feed];
     [self updateUser:feed];
     [self updateGuessDesc:feed];
-    [self updateActionButton:feed];
     [self updateDrawView:feed];
 }
 
@@ -260,7 +228,6 @@
     [descLabel release];
     [userNameLabel release];
     [guessStatLabel release];
-    [actionButton release];
     [_drawView release];
     [_feed release];
     [super dealloc];

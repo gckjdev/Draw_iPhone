@@ -55,7 +55,7 @@
 
 + (NSInteger)loadDataCount
 {
-    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:15];
+    return [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:12];
 }
 @end
 
