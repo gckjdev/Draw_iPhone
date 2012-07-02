@@ -123,7 +123,7 @@
     UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
     float maxWidth = [DeviceDetection isIPAD]?224:101;
     CGSize nameSize = [self.userNickName sizeWithFont:font];
-    if (nameSize.width < maxWidth) {
+    if (self.userNickName && nameSize.width < maxWidth) {
         [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
                                            self.userName.frame.origin.y, 
                                            nameSize.width, 
@@ -185,8 +185,22 @@
 
 - (void)initViewWithFriend:(Friend*)aFriend
 {  
+    NSString* nickName;
+    if (aFriend.nickName && [aFriend.nickName length] != 0) {
+        nickName = aFriend.nickName;
+    }
+    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
+        nickName = aFriend.sinaNick;
+    }
+    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
+        nickName = aFriend.qqNick;
+    }
+    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
+        nickName = aFriend.facebookNick;
+    }
+    
     [self initViewWithUserId:aFriend.friendUserId 
-                    nickName:aFriend.nickName 
+                    nickName:nickName 
                       avatar:aFriend.avatar 
                       gender:aFriend.gender 
                     location:aFriend.location 
