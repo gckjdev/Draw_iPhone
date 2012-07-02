@@ -96,7 +96,7 @@
 }
 
 - (void)nextFrame:(NSTimer *)theTimer;
-{   
+{       
     DrawAction *currentAction = [self playingAction];
     if (!_showPenHidden) {
         if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {

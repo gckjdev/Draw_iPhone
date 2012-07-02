@@ -12,6 +12,6 @@
 
 + (ShareService*)defaultService;
 
-- (void)shareWithImage:(UIImage*)image isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
+- (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
 
 @end

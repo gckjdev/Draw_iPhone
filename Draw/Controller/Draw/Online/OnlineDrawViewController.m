@@ -209,6 +209,7 @@
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
+    PPDebug(@"<OnlineDrawViewController> handle timer");
     --retainCount;
     if (retainCount <= 0) {
         [self resetTimer];

@@ -244,6 +244,10 @@
 
 
 "kCreating_gif" = "Creating GIF Files...";
+
+"kShareOtherTextAuto" = "%@What An Awesome Drawing - %@ %@";
+"kShareMeTextAuto" = "%@My Awesome Drawing for %@";
+
 "kShareOtherText" = "What An Awesome Drawing - %@";
 "kShareMeText" = "My Awesome Drawing for %@";
 "kShareGIFOtherText" = "What An Awesome Drawing - %@";

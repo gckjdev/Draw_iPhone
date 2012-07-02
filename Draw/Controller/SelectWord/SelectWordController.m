@@ -141,6 +141,8 @@
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
+    PPDebug(@"<SelectWordController> handle timer");    
+    
     --retainCount;
     if (retainCount <= 0) {
         [self startGameWithWord:[self.wordArray objectAtIndex:1]];
