@@ -584,7 +584,8 @@
 {
     [_maskView setHidden:NO];
     [self.view bringSubviewToFront:_maskView];
-    [self.view bringSubviewToFront:textView];
+    [self.view bringSubviewToFront:self.inputBackgroundView];
+//    [self.view bringSubviewToFront:textView];
     return YES;
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
