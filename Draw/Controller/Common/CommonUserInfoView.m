@@ -117,10 +117,10 @@
 
 - (void)initLevelAndName
 {
-    [self.userName setText:self.userNickName];
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",self.userLevel]];
-    
+    [self.userName setText:self.userNickName];
     if (self.userNickName) {
+        
         UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
         float maxWidth = [DeviceDetection isIPAD]?224:101;
         CGSize nameSize = [self.userNickName sizeWithFont:font];
@@ -202,7 +202,7 @@
 
 - (void)initViewWithFriend:(Friend*)aFriend
 {  
-    NSString* nickName;
+    NSString* nickName = nil;
     if (aFriend.nickName && [aFriend.nickName length] != 0) {
         nickName = aFriend.nickName;
     }
