@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
+#import "PPDebug.h"
 
 @class Word;
 @interface SelectWordCell : PPTableViewCell

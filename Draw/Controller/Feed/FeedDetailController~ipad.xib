@@ -244,7 +244,7 @@
 						<string key="NSFrame">{{660, 10}, {84, 76}}</string>
 						<reference key="NSSuperview" ref="141827972"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="554680063"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -312,7 +312,7 @@
 					<object class="IBUIButton" id="554680063">
 						<reference key="NSNextResponder" ref="141827972"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{518, 257}, {163, 56}}</string>
+						<string key="NSFrame">{{518, 257}, {180, 56}}</string>
 						<reference key="NSSuperview" ref="141827972"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="444596871"/>
@@ -321,7 +321,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
-						<string key="IBUINormalTitle">kIguess</string>
+						<string key="IBUINormalTitle">kChallenge</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<object class="NSColor" key="IBUISelectedTitleColor" id="810389762">
 							<int key="NSColorSpace">3</int>
@@ -368,6 +368,7 @@
 								<string key="NSFrame">{{578, 3}, {175, 71}}</string>
 								<reference key="NSSuperview" ref="845434084"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -777,7 +778,7 @@
 				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="130.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="130.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="130.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="134.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="135.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

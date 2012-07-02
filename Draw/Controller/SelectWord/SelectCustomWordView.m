@@ -12,6 +12,7 @@
 #import "CustomWord.h"
 #import "ShareImageManager.h"
 #import "DeviceDetection.h"
+#import "PPDebug.h"
 
 @interface SelectCustomWordView ()
 {
@@ -138,9 +139,9 @@
 //}
 
 - (void)dealloc {
-    [dataTableView release];
-    [dataList release];
-    [closeButton release];
+    PPRelease(dataTableView);
+    PPRelease(dataList);
+    PPRelease(closeButton);
     [super dealloc];
 }
 @end

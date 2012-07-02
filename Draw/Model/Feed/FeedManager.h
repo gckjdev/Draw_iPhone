@@ -13,7 +13,8 @@ typedef enum{
     ActionTypeHidden = 0,
     ActionTypeOneMore = 1,
     ActionTypeGuess = 2,
-    ActionTypeCorrect = 3
+    ActionTypeCorrect = 3,
+    ActionTypeChallenge = 4
 }ActionType;
 
 typedef enum{

@@ -121,6 +121,8 @@
     }
 }
 
+#define ACTION_TAG_GUESS 2012070201
+#define ACTION_TAG_CHALLENGE 2012070202
 
 - (void)updateActionButton:(Feed *)feed
 {
@@ -134,15 +136,13 @@
     ActionType type = [FeedManager actionTypeForFeed:feed];
     if (type == ActionTypeGuess) {
         [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
-    }else if(type == ActionTypeOneMore)
+        self.actionButton.tag = ACTION_TAG_GUESS;
+        self.actionButton.hidden = NO;
+    }else if(type == ActionTypeChallenge)
     {
-        [self.actionButton setTitle:NSLS(@"kOneMoreAction") forState:UIControlStateNormal];        
-    }else if(type == ActionTypeCorrect){
-        [self.actionButton setTitle:NSLS(@"kIGuessCorrect") forState:UIControlStateSelected];
-        [self.actionButton setBackgroundImage:[imageManager normalButtonImage] forState:UIControlStateNormal];
-        self.actionButton.userInteractionEnabled = NO;
-        self.actionButton.selected = YES;
-        self.actionButton.hidden = YES;
+        [self.actionButton setTitle:NSLS(@"kChallenge") forState:UIControlStateNormal];        
+        self.actionButton.tag = ACTION_TAG_CHALLENGE;
+        self.actionButton.hidden = NO;
     }else{
         self.actionButton.hidden = YES;
     }
@@ -243,7 +243,7 @@
 }
 
 
-#define COMMENT_COUNT 20
+#define COMMENT_COUNT 12
 - (void)updateCommentList
 {
     [self showActivityWithText:NSLS(@"kLoading")];
@@ -330,13 +330,15 @@
 }
 
 - (IBAction)clickActionButton:(id)sender {
-    ActionType type = [FeedManager actionTypeForFeed:self.feed];
-    if (type == ActionTypeGuess) {
+
+    NSInteger tag = [(UIButton *)sender tag];
+    if (tag == ACTION_TAG_GUESS) {
         OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
         controller.delegate = self;
         
-    }else if(type == ActionTypeOneMore){
-        [SelectWordController startSelectWordFrom:self gameType:OfflineDraw];
+    }else if(tag == ACTION_TAG_CHALLENGE){
+        [self didClickOnAvatar:_author];
+    
     }
 }
 
@@ -352,20 +354,23 @@
     PPRelease(_feed);
     PPRelease(_avatarView);
     PPRelease(_drawView);
-    [titleLabel release];
-    [noCommentTipsLabel release];
-    [timeLabel release];
-    [guessStatLabel release];
-    [actionButton release];
-    [nickNameLabel release];
-    [commentInput release];
-    [sendButton release];
-    [inputBackgroundView release];
-    [_maskView release];
-    [_commentLabel release];
-    [_drawView release];
-    [_inputBackground release];
-    [_paperImage release];
+    
+    
+    PPRelease(titleLabel);
+    PPRelease(noCommentTipsLabel);
+    PPRelease(timeLabel);
+    PPRelease(guessStatLabel);
+    PPRelease(actionButton);
+    PPRelease(nickNameLabel);
+    PPRelease(commentInput);
+    PPRelease(sendButton);
+    PPRelease(inputBackgroundView);
+    PPRelease(_maskView);
+    PPRelease(_commentLabel);
+    PPRelease(_drawView);
+    PPRelease(_inputBackground);
+    PPRelease(_paperImage);
+    
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
