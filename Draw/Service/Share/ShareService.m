@@ -12,6 +12,10 @@
 #import "FacebookSNSService.h"
 #import "UserManager.h"
 #import "StringUtil.h"
+#import "GameNetworkRequest.h"
+#import "GameNetworkConstants.h"
+#import "ConfigManager.h"
+#import "PPNetworkRequest.h"
 
 @implementation ShareService
 
@@ -26,17 +30,116 @@ static ShareService* _defaultService;
     return _defaultService;
 }
 
-- (void)shareWithImage:(UIImage*)image isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord
+
+- (NSString*)getWeiboText:(int)snsType 
+         drawUserNickName:(NSString*)drawUserNickName 
+               isDrawByMe:(BOOL)isDrawByMe 
+                 drawWord:(NSString*)drawWord
 {
-    PPDebug(@"<shareWithImage> word=%@", drawWord);
+    NSString* appNick = @"";
+    switch (snsType) {
+        case TYPE_SINA:
+            appNick = @"@猜猜画画手机版";
+            break;
+            
+        case TYPE_QQ:
+            appNick = @"@drawlively";
+            break;
+            
+        default:
+            break;
+    }       
+    
+    if (appNick == nil)
+        appNick = @"";
+    
+    if (drawUserNickName == nil)
+        drawUserNickName = @"";            
     
     NSString* text = @"";
     if (isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), drawWord];            
+        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
     }
     else{
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), drawWord];
+        NSString* nick = nil;
+        if ([drawUserNickName length] > 0){
+            nick = [NSString stringWithFormat:@"@%@", drawUserNickName];
+        }
+        else{
+            nick = @"";
+        }
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, drawWord, nick];                
+    }                
+    
+    PPDebug(@"Share Weibo Text=%@", text); 
+    return text;
+}
+
+- (void)shareWeiboWithDrawUserId:(NSString*)drawUserId         
+                      isDrawByMe:(BOOL)isDrawByMe 
+                        drawWord:(NSString*)drawWord         
+                       imagePath:(NSString*)imagePath
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    if (queue == NULL){
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
+    
+    if (queue == NULL){
+        PPDebug(@"<Warning> Share Weibo But Queue is NULL");
+        return;
+    }
+    
+    dispatch_async(queue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
+                                                                      appId:[ConfigManager appId]
+                                                                   ByUserId:drawUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* sinaNick = nil;
+            NSString* qqId = nil;
+            
+            if (output.resultCode == ERROR_SUCCESS) {
+                sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
+                qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+            }            
+            
+            if ([[UserManager defaultManager] hasBindQQWeibo]){
+                NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:qqId isDrawByMe:isDrawByMe drawWord:drawWord];
+                [[QQWeiboService defaultService] publishWeibo:textForQQ
+                                                imageFilePath:imagePath 
+                                                     delegate:nil];        
+            }
+            
+            if ([[UserManager defaultManager] hasBindSinaWeibo]){
+                NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord];
+                [[SinaSNSService defaultService] publishWeibo:textForSina
+                                                imageFilePath:imagePath 
+                                                     delegate:nil];
+            }
+            
+            if ([[UserManager defaultManager] hasBindFacebook]){
+                NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:@"" isDrawByMe:isDrawByMe drawWord:drawWord];
+                [[FacebookSNSService defaultService] publishWeibo:textForFacebook
+                                                    imageFilePath:imagePath 
+                                                         delegate:nil];                
+            }
+        });
+    });
+
+}
+
+- (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord
+{
+    PPDebug(@"<shareWithImage> word=%@", drawWord);
+    
+//    NSString* text = @"";
+//    if (isDrawByMe){
+//        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), drawWord];            
+//    }
+//    else{
+//        text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), drawWord];
+//    }
     
     UIImage* background = [UIImage imageNamed:@"share_bg.png"];
     UIImage* title = [UIImage imageNamed:@"name.png"];
@@ -63,24 +166,26 @@ static ShareService* _defaultService;
         PPDebug(@"creat temp image failed");
         return;
     }
+    
+    [self shareWeiboWithDrawUserId:drawUserId isDrawByMe:isDrawByMe drawWord:drawWord imagePath:path];
 
-    if ([[UserManager defaultManager] hasBindQQWeibo]){
-        [[QQWeiboService defaultService] publishWeibo:text
-                                        imageFilePath:path 
-                                             delegate:nil];        
-    }
-
-    if ([[UserManager defaultManager] hasBindSinaWeibo]){
-        [[SinaSNSService defaultService] publishWeibo:text 
-                                        imageFilePath:path 
-                                             delegate:nil];
-    }
-
-    if ([[UserManager defaultManager] hasBindFacebook]){
-        [[FacebookSNSService defaultService] publishWeibo:text
-                                            imageFilePath:path 
-                                                 delegate:nil];                
-    }
+//    if ([[UserManager defaultManager] hasBindQQWeibo]){
+//        [[QQWeiboService defaultService] publishWeibo:text
+//                                        imageFilePath:path 
+//                                             delegate:nil];        
+//    }
+//
+//    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+//        [[SinaSNSService defaultService] publishWeibo:text 
+//                                        imageFilePath:path 
+//                                             delegate:nil];
+//    }
+//
+//    if ([[UserManager defaultManager] hasBindFacebook]){
+//        [[FacebookSNSService defaultService] publishWeibo:text
+//                                            imageFilePath:path 
+//                                                 delegate:nil];                
+//    }
     
 }
 

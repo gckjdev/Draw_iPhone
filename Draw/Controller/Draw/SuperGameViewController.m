@@ -126,7 +126,7 @@
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
-    
+    PPDebug(@"<SuperGameViewController> handle timer");
 }
 - (void)startTimer
 {

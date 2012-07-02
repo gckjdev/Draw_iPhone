@@ -484,6 +484,7 @@
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
+    PPDebug(@"<OnlineGuessDrawViewController> handle timer");    
     --retainCount;
     if (retainCount <= 0) {
         [self resetTimer];

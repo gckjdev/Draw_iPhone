@@ -168,17 +168,19 @@ enum {
 - (void)clickOk:(CommonDialog *)dialog
 {
     if ([[UserManager defaultManager] hasBindQQWeibo]){
-        [self showActivityWithText:NSLS(@"kSendingRequest")];
+//        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:self.imageFilePath 
-                                             delegate:self];        
+                                             delegate:nil];        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
-        [self showActivityWithText:NSLS(@"kSendingRequest")];
+//        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:self.imageFilePath  
-                                             delegate:self];
+                                             delegate:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){
@@ -239,17 +241,19 @@ enum {
         }
     }
     if ([[UserManager defaultManager] hasBindQQWeibo]){
-        [self showActivityWithText:NSLS(@"kSendingRequest")];
+//        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:path 
                                              delegate:self];        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
     }
     
     if ([[UserManager defaultManager] hasBindSinaWeibo]){
-        [self showActivityWithText:NSLS(@"kSendingRequest")];
+//        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:path 
-                                             delegate:self];
+                                             delegate:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
     }
     
     if ([[UserManager defaultManager] hasBindFacebook]){

@@ -125,6 +125,8 @@
 
 - (void)handleContinueTimer:(NSTimer *)theTimer
 {
+    PPDebug(@"<ResultController> handle timer");    
+    
     -- retainCount;
     if (retainCount <= 0) {
         retainCount = 0;
@@ -335,7 +337,7 @@
 
 - (IBAction)clickSaveButton:(id)sender {
 
-    [[ShareService defaultService] shareWithImage:_image isDrawByMe:_isMyPaint drawWord:wordText];
+    [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
     self.saveButton.userInteractionEnabled = NO;
