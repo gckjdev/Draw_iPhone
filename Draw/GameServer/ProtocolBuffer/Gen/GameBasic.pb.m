@@ -3474,6 +3474,7 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 @property BOOL isCorrect;
 @property int32_t score;
 @property (retain) NSMutableArray* mutableGuessWordsList;
+@property int32_t opusStatus;
 @property (retain) NSString* comment;
 @property int32_t matchTimes;
 @property int32_t correctTimes;
@@ -3585,6 +3586,13 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 }
 @synthesize score;
 @synthesize mutableGuessWordsList;
+- (BOOL) hasOpusStatus {
+  return !!hasOpusStatus_;
+}
+- (void) setHasOpusStatus:(BOOL) value {
+  hasOpusStatus_ = !!value;
+}
+@synthesize opusStatus;
 - (BOOL) hasComment {
   return !!hasComment_;
 }
@@ -3648,6 +3656,7 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
+    self.opusStatus = 0;
     self.comment = @"";
     self.matchTimes = 0;
     self.correctTimes = 0;
@@ -3738,6 +3747,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (NSString* element in self.mutableGuessWordsList) {
     [output writeString:44 value:element];
   }
+  if (self.hasOpusStatus) {
+    [output writeInt32:45 value:self.opusStatus];
+  }
   if (self.hasComment) {
     [output writeString:51 value:self.comment];
   }
@@ -3808,6 +3820,9 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableGuessWordsList.count;
+  }
+  if (self.hasOpusStatus) {
+    size += computeInt32Size(45, self.opusStatus);
   }
   if (self.hasComment) {
     size += computeStringSize(51, self.comment);
@@ -3944,6 +3959,9 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
     [result.mutableGuessWordsList addObjectsFromArray:other.mutableGuessWordsList];
   }
+  if (other.hasOpusStatus) {
+    [self setOpusStatus:other.opusStatus];
+  }
   if (other.hasComment) {
     [self setComment:other.comment];
   }
@@ -4039,6 +4057,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 354: {
         [self addGuessWords:[input readString]];
+        break;
+      }
+      case 360: {
+        [self setOpusStatus:[input readInt32]];
         break;
       }
       case 410: {
@@ -4315,6 +4337,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 }
 - (PBFeed_Builder*) clearGuessWordsList {
   result.mutableGuessWordsList = nil;
+  return self;
+}
+- (BOOL) hasOpusStatus {
+  return result.hasOpusStatus;
+}
+- (int32_t) opusStatus {
+  return result.opusStatus;
+}
+- (PBFeed_Builder*) setOpusStatus:(int32_t) value {
+  result.hasOpusStatus = YES;
+  result.opusStatus = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusStatus {
+  result.hasOpusStatus = NO;
+  result.opusStatus = 0;
   return self;
 }
 - (BOOL) hasComment {
