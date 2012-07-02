@@ -94,7 +94,7 @@
     [self setUserId:nil];
 }
 
-#define FEED_COUNT 20
+#define FEED_COUNT 12
 - (void)updateFeedList
 {
     [self showActivityWithText:NSLS(@"kLoading")];

@@ -224,12 +224,13 @@
 
 
 - (void)dealloc {
-    [timeLabel release];
-    [descLabel release];
-    [userNameLabel release];
-    [guessStatLabel release];
-    [_drawView release];
-    [_feed release];
+    PPRelease(timeLabel);
+    PPRelease(descLabel);
+    PPRelease(userNameLabel);
+    PPRelease(guessStatLabel);
+    PPRelease(_drawView);
+    PPRelease(_avatarView);
+    PPRelease(_feed);
     [super dealloc];
 }
 @end

@@ -354,20 +354,23 @@
     PPRelease(_feed);
     PPRelease(_avatarView);
     PPRelease(_drawView);
-    [titleLabel release];
-    [noCommentTipsLabel release];
-    [timeLabel release];
-    [guessStatLabel release];
-    [actionButton release];
-    [nickNameLabel release];
-    [commentInput release];
-    [sendButton release];
-    [inputBackgroundView release];
-    [_maskView release];
-    [_commentLabel release];
-    [_drawView release];
-    [_inputBackground release];
-    [_paperImage release];
+    
+    
+    PPRelease(titleLabel);
+    PPRelease(noCommentTipsLabel);
+    PPRelease(timeLabel);
+    PPRelease(guessStatLabel);
+    PPRelease(actionButton);
+    PPRelease(nickNameLabel);
+    PPRelease(commentInput);
+    PPRelease(sendButton);
+    PPRelease(inputBackgroundView);
+    PPRelease(_maskView);
+    PPRelease(_commentLabel);
+    PPRelease(_drawView);
+    PPRelease(_inputBackground);
+    PPRelease(_paperImage);
+    
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {

@@ -154,9 +154,9 @@
 
 
 - (void)dealloc {
-    [commentLabel release];
-    [timeLabel release];
-    [nickNameLabel release];
+    PPRelease(commentLabel);
+    PPRelease(timeLabel);
+    PPRelease(nickNameLabel);
     [super dealloc];
 }
 

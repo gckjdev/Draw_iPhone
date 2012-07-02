@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
 #import "StableView.h"
-
+#import "PPDebug.h"
 
 @class Feed;
 @class ShowDrawView;

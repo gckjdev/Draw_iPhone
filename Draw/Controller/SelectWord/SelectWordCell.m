@@ -73,10 +73,10 @@
 }
 
 - (void)dealloc {
-    [wordLabel release];
-    [levelLabel release];
-    [scoreLabel release];
-    [backgroundImage release];
+    PPRelease(wordLabel);
+    PPRelease(levelLabel);
+    PPRelease(scoreLabel);
+    PPRelease(backgroundImage);
     [super dealloc];
 }
 @end
