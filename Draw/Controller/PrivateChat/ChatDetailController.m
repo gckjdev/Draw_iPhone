@@ -552,7 +552,8 @@
                             nickName:[[UserManager defaultManager] nickName]
                               avatar:[[UserManager defaultManager] avatarURL]
                               gender:[[UserManager defaultManager] gender]
-                            location:nil
+                            location:nil 
+                               level:1
                              hasSina:NO 
                                hasQQ:NO 
                          hasFacebook:NO 
@@ -563,7 +564,8 @@
                             nickName:self.friendNickname 
                               avatar:self.friendAvatar 
                               gender:self.friendGender
-                            location:nil
+                            location:nil 
+                               level:1
                              hasSina:NO 
                                hasQQ:NO 
                          hasFacebook:NO 

@@ -192,7 +192,8 @@
                         nickName:roomUser.nickName
                           avatar:roomUser.avatar 
                           gender:roomUser.gender 
-                        location:nil
+                        location:nil 
+                           level:1
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 
