@@ -814,7 +814,8 @@
                         nickName:nil 
                           avatar:nil 
                           gender:nil 
-                        location:nil
+                        location:nil 
+                           level:1
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 

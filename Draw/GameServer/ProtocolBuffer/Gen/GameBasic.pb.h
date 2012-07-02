@@ -837,6 +837,7 @@
   BOOL hasCreateDate_:1;
   BOOL hasCorrectTimes_:1;
   BOOL hasMatchTimes_:1;
+  BOOL hasOpusStatus_:1;
   BOOL hasScore_:1;
   BOOL hasComment_:1;
   BOOL hasOpusId_:1;
@@ -855,6 +856,7 @@
   int32_t createDate;
   int32_t correctTimes;
   int32_t matchTimes;
+  int32_t opusStatus;
   int32_t score;
   NSString* comment;
   NSString* opusId;
@@ -880,6 +882,7 @@
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
+- (BOOL) hasOpusStatus;
 - (BOOL) hasComment;
 - (BOOL) hasMatchTimes;
 - (BOOL) hasCorrectTimes;
@@ -898,6 +901,7 @@
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
+@property (readonly) int32_t opusStatus;
 @property (readonly, retain) NSString* comment;
 @property (readonly) int32_t matchTimes;
 @property (readonly) int32_t correctTimes;
@@ -1013,6 +1017,11 @@
 - (PBFeed_Builder*) addGuessWords:(NSString*) value;
 - (PBFeed_Builder*) addAllGuessWords:(NSArray*) values;
 - (PBFeed_Builder*) clearGuessWordsList;
+
+- (BOOL) hasOpusStatus;
+- (int32_t) opusStatus;
+- (PBFeed_Builder*) setOpusStatus:(int32_t) value;
+- (PBFeed_Builder*) clearOpusStatus;
 
 - (BOOL) hasComment;
 - (NSString*) comment;

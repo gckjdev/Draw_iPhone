@@ -307,6 +307,8 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
+//    return YES;    
+    
     if ([ConfigManager isProVersion])
         return NO;
 

@@ -22,6 +22,7 @@
           avatar:(NSString*)avatar 
           gender:(NSString*)aGender 
         location:(NSString*)location 
+           level:(int)level
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
@@ -49,6 +50,7 @@
 @property (assign, nonatomic) BOOL hasQQ;
 @property (assign, nonatomic) BOOL hasFacebook;
 @property (assign, nonatomic) int userLevel;
+@property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) PPViewController* superViewController;
 
 @end

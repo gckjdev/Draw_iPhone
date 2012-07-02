@@ -120,6 +120,7 @@ message PBFeed {
   optional bool   isCorrect = 42;
   optional int32  score = 43;
   repeated string guessWords = 44;  
+  optional int32  opusStatus = 45;      // 猜作品的状态：0：正常；1：已删除
   
   // for user comment
   optional string comment = 51;

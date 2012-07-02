@@ -51,6 +51,7 @@
 @synthesize hasSina;
 @synthesize hasFacebook;
 @synthesize userLevel;
+@synthesize levelLabel;
 
 - (void)dealloc {
     [backgroundImageView release];
@@ -73,6 +74,7 @@
     [userGender release];
     [userLocation release];
     [userId release];
+    [levelLabel release];
     [super dealloc];
 }
 
@@ -92,12 +94,13 @@
 }
 
 #define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
+#define LEVEL_LABEL_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 30, 21):CGRectMake(0, 0, 60, 45)
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
     AvatarView* view = [[AvatarView alloc] initWithUrlString:self.userAvatar
                                                        frame:rect
-                                                      gender:([self.userGender isEqualToString:@"m"])
+                                                      gender:[@"m" isEqualToString:self.userGender]
                                                        level:self.userLevel];
     [self.contentView addSubview:view];
 }
@@ -112,24 +115,53 @@
     [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
 }
 
-- (void)resetUserInfo
+- (void)initLevelAndName
 {
     [self.userName setText:self.userNickName];
+    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",self.userLevel]];
     
+    if (self.userNickName) {
+        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
+        float maxWidth = [DeviceDetection isIPAD]?224:101;
+        CGSize nameSize = [self.userNickName sizeWithFont:font];
+        if (nameSize.width < maxWidth) {
+            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
+                                               self.userName.frame.origin.y, 
+                                               nameSize.width, 
+                                               self.userName.frame.size.height)];
+            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
+                                                 +nameSize.width, 
+                                                 self.levelLabel.frame.origin.y, 
+                                                 self.levelLabel.frame.size.width, 
+                                                 self.levelLabel.frame.size.height)];
+        }
+    }
+
+}
+
+- (void)initLocation
+{
     NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:self.userLocation]:self.userLocation;
     [self.locationLabel setText:location];
-    
-    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
-                                                               hasSina:self.hasSina 
-                                                                 hasQQ:self.hasQQ 
-                                                           hasFacebook:self.hasFacebook] autorelease];
-    [self.contentView addSubview:view];
-    
-    NSString* gender = [self.userGender isEqualToString:@"m"]?NSLS(@"kMale"):NSLS(@"kFemale");
+}
+
+- (void)initGender
+{
+    NSString* gender = [@"m" isEqualToString:self.userGender]?NSLS(@"kMale"):NSLS(@"kFemale");
     [self.genderLabel setText:gender];
-    
-    [self initAvatar];
-    
+}
+
+- (void)initSNSInfo
+{
+    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
+                                                                hasSina:self.hasSina 
+                                                                  hasQQ:self.hasQQ 
+                                                            hasFacebook:self.hasFacebook] autorelease];
+    [self.contentView addSubview:view];
+}
+
+- (void)initFollowStatus
+{
     //set followbutton or statusLabel
     [self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
     [self.followUserButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
@@ -148,6 +180,16 @@
     }
 }
 
+- (void)resetUserInfo
+{
+    [self initLevelAndName];
+    [self initLocation];
+    [self initGender];
+    [self initSNSInfo];
+    [self initAvatar];
+    [self initFollowStatus];
+    
+}
 
 - (void)initView
 {
@@ -160,11 +202,26 @@
 
 - (void)initViewWithFriend:(Friend*)aFriend
 {  
+    NSString* nickName;
+    if (aFriend.nickName && [aFriend.nickName length] != 0) {
+        nickName = aFriend.nickName;
+    }
+    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
+        nickName = aFriend.sinaNick;
+    }
+    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
+        nickName = aFriend.qqNick;
+    }
+    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
+        nickName = aFriend.facebookNick;
+    }
+    
     [self initViewWithUserId:aFriend.friendUserId 
-                    nickName:aFriend.nickName 
+                    nickName:nickName 
                       avatar:aFriend.avatar 
                       gender:aFriend.gender 
                     location:aFriend.location 
+                       level:aFriend.level.intValue
                      hasSina:(aFriend.sinaNick != nil) 
                        hasQQ:(aFriend.qqNick != nil) 
                  hasFacebook:(aFriend.facebookNick != nil) 
@@ -175,7 +232,8 @@
                   nickName:(NSString*)nickName 
                     avatar:(NSString*)avatar 
                     gender:(NSString*)aGender 
-                  location:(NSString*)location
+                  location:(NSString*)location 
+                     level:(int)level
                    hasSina:(BOOL)didHasSina 
                      hasQQ:(BOOL)didHasQQ 
                hasFacebook:(BOOL)didHasFacebook
@@ -190,6 +248,7 @@
     self.hasSina = didHasSina;
     self.hasFacebook = didHasFacebook;
     self.userLocation = location;
+    self.userLevel = level;
     
     [self initView];
 }
@@ -222,7 +281,8 @@
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
           gender:(NSString*)aGender 
-        location:(NSString*)location
+        location:(NSString*)location 
+           level:(int)level
          hasSina:(BOOL)didHasSina 
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
@@ -234,7 +294,8 @@
                         nickName:nickName 
                           avatar:avatar 
                           gender:aGender 
-                        location:location
+                        location:location 
+                           level:level
                          hasSina:didHasSina 
                            hasQQ:didHasQQ 
                      hasFacebook:didHasFacebook];

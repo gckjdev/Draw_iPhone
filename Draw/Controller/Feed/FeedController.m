@@ -405,7 +405,8 @@
                         nickName:nickName 
                           avatar:nil 
                           gender:genderString 
-                        location:nil
+                        location:nil 
+                           level:1
                          hasSina:NO 
                            hasQQ:NO 
                      hasFacebook:NO 
