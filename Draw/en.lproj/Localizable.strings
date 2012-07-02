@@ -634,3 +634,5 @@
 
 
 "kChallenge" = "Challenge";
+"kDeleting" = "Deleting...";
+"kDeleteFail" = "Fail to delete.";

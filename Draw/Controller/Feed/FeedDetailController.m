@@ -477,6 +477,22 @@
 }
 
 
+- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
+
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    NSInteger row = [self.dataList indexOfObject:feed];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataList];
+    [array removeObject:feed];
+    self.dataList = array;
+    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -512,6 +528,22 @@
     [cell setCellInfo:feed];
     return cell;
 }
+
+
+#pragma mark - delete feed.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [self showActivityWithText:NSLS(@"kDeleting")];
+    [[FeedService defaultService] deleteFeed:feed delegate:self];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    return [[UserManager defaultManager] isMe:feed.userId] || [self.feed isMyOpus];
+}
+
 
 #pragma mark - refresh header & footer delegate
 - (void)reloadTableViewDataSource

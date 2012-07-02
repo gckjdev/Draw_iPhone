@@ -631,3 +631,6 @@
 "kQuerying" = "查詢中...";
 
 "kChallenge" = "挑釁TA";
+
+"kDeleting" = "刪除中...";
+"kDeleteFail" = "刪除失敗！";

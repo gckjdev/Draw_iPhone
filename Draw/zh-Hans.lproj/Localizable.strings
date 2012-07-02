@@ -639,3 +639,7 @@
 "kQuerying" = "查询中...";
 
 "kChallenge" = "挑衅TA";
+
+
+"kDeleting" = "删除中...";
+"kDeleteFail" = "删除失败！";
