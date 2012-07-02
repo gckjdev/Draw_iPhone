@@ -245,6 +245,8 @@
     [self dataSourceDidFinishLoadingNewData];   
     [self dataSourceDidFinishLoadingMoreData];
 
+    PPDebug(@"<didGetFeedList> feed list count = %d", [feedList count]);
+    
     if (resultCode != 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGetFeedListFail") 
                                                        delayTime:1 

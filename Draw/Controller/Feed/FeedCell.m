@@ -56,8 +56,6 @@
     return cell;
 }
 
-
-
 + (NSString*)getCellIdentifier
 {
     return @"FeedCell";

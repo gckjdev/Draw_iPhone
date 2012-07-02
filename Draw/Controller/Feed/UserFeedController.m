@@ -11,6 +11,7 @@
 #import "FeedManager.h"
 #import "CommonMessageCenter.h"
 #import "FeedDetailController.h"
+#import "MobClickUtils.h"
 
 @interface UserFeedController()
 
@@ -94,7 +95,7 @@
     [self setUserId:nil];
 }
 
-#define FEED_COUNT 12
+#define FEED_COUNT [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:12]
 - (void)updateFeedList
 {
     [self showActivityWithText:NSLS(@"kLoading")];
