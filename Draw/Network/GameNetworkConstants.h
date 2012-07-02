@@ -135,6 +135,7 @@
 #define METHOD_COMMIT_WORDS @"cw"
 
 #define METHOD_GET_TARGET_USER_INFO    @"gtui"
+#define METHOD_DELETE_FEED @"delf"
 
 //game parameters
 
@@ -204,6 +205,8 @@
 
 #define PARA_LANGUAGE @"lang"
 #define PARA_APPID @"app"
+
+#define PARA_FEED_ID @"fid"
 
 #define PARA_COMMENT_CONTENT @"comc"
 

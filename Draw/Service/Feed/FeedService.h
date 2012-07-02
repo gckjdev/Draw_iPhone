@@ -29,6 +29,9 @@
                comment:(NSString *)comment 
             resultCode:(NSInteger)resultCode;
 
+- (void)didDeleteFeed:(Feed *)feed
+            resultCode:(NSInteger)resultCode;
+
 
 @end
 
@@ -60,4 +63,8 @@
              author:(NSString *)author 
             comment:(NSString *)comment            
            delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)deleteFeed:(Feed *)feed
+          delegate:(id<FeedServiceDelegate>)delegate;
+
 @end

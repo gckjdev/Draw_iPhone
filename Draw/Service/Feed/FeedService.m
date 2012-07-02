@@ -165,6 +165,21 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+- (void)deleteFeed:(Feed *)feed
+          delegate:(id<FeedServiceDelegate>)delegate
+{
+        NSString* userId = [[UserManager defaultManager] userId];
+        NSString* appId = [ConfigManager appId];
+    
+        dispatch_async(workingQueue, ^{
+            CommonNetworkOutput* output = [GameNetworkRequest deleteFeed:TRAFFIC_SERVER_URL appId:appId feedId:feed.feedId userId:userId];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didDeleteFeed:resultCode:)]) {
+                    [delegate didDeleteFeed:feed resultCode:output.resultCode];
+                }
+            });
+        });
 
+}
 
 @end

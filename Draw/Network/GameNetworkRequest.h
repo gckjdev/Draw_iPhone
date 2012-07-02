@@ -304,4 +304,10 @@
 + (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
                                     appId:(NSString*)appId
                                  ByUserId:(NSString*)targetUserId;
+
++ (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL 
+                             appId:(NSString*)appId
+                            feedId:(NSString*)feedId 
+                            userId:(NSString *)userId;
+
 @end
