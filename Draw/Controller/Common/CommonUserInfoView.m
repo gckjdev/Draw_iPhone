@@ -100,7 +100,7 @@
     CGRect rect = AVATAR_FRAME;
     AvatarView* view = [[AvatarView alloc] initWithUrlString:self.userAvatar
                                                        frame:rect
-                                                      gender:([self.userGender isEqualToString:@"m"])
+                                                      gender:[@"m" isEqualToString:self.userGender]
                                                        level:self.userLevel];
     [self.contentView addSubview:view];
 }
@@ -120,41 +120,48 @@
     [self.userName setText:self.userNickName];
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",self.userLevel]];
     
-    UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
-    float maxWidth = [DeviceDetection isIPAD]?224:101;
-    CGSize nameSize = [self.userNickName sizeWithFont:font];
-    if (self.userNickName && nameSize.width < maxWidth) {
-        [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
-                                           self.userName.frame.origin.y, 
-                                           nameSize.width, 
-                                           self.userName.frame.size.height)];
-        [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
-                                             +nameSize.width, 
-                                             self.levelLabel.frame.origin.y, 
-                                             self.levelLabel.frame.size.width, 
-                                             self.levelLabel.frame.size.height)];
+    if (self.userNickName) {
+        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
+        float maxWidth = [DeviceDetection isIPAD]?224:101;
+        CGSize nameSize = [self.userNickName sizeWithFont:font];
+        if (nameSize.width < maxWidth) {
+            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
+                                               self.userName.frame.origin.y, 
+                                               nameSize.width, 
+                                               self.userName.frame.size.height)];
+            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
+                                                 +nameSize.width, 
+                                                 self.levelLabel.frame.origin.y, 
+                                                 self.levelLabel.frame.size.width, 
+                                                 self.levelLabel.frame.size.height)];
+        }
     }
-    
+
 }
 
-- (void)resetUserInfo
+- (void)initLocation
 {
-    [self initLevelAndName];
-    
     NSString* location = [LocaleUtils isTraditionalChinese]?[WordManager changeToTraditionalChinese:self.userLocation]:self.userLocation;
     [self.locationLabel setText:location];
-    
-    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
-                                                               hasSina:self.hasSina 
-                                                                 hasQQ:self.hasQQ 
-                                                           hasFacebook:self.hasFacebook] autorelease];
-    [self.contentView addSubview:view];
-    
-    NSString* gender = [self.userGender isEqualToString:@"m"]?NSLS(@"kMale"):NSLS(@"kFemale");
+}
+
+- (void)initGender
+{
+    NSString* gender = [@"m" isEqualToString:self.userGender]?NSLS(@"kMale"):NSLS(@"kFemale");
     [self.genderLabel setText:gender];
-    
-    [self initAvatar];
-    
+}
+
+- (void)initSNSInfo
+{
+    CommonSnsInfoView* view = [[[CommonSnsInfoView alloc] initWithFrame:self.snsTagImageView.frame 
+                                                                hasSina:self.hasSina 
+                                                                  hasQQ:self.hasQQ 
+                                                            hasFacebook:self.hasFacebook] autorelease];
+    [self.contentView addSubview:view];
+}
+
+- (void)initFollowStatus
+{
     //set followbutton or statusLabel
     [self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
     [self.followUserButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
@@ -173,6 +180,16 @@
     }
 }
 
+- (void)resetUserInfo
+{
+    [self initLevelAndName];
+    [self initLocation];
+    [self initGender];
+    [self initSNSInfo];
+    [self initAvatar];
+    [self initFollowStatus];
+    
+}
 
 - (void)initView
 {
