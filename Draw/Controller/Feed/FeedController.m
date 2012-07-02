@@ -287,6 +287,23 @@
 }
 
 
+- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
+
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    NSInteger row = [self.dataList indexOfObject:feed];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataList];
+    [array removeObject:feed];
+    self.dataList = array;
+    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
 #pragma mark - table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -336,10 +353,12 @@
     //enter the detail feed contrller
 }
 
+
+#pragma mark - delete feed.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    PPDebug(@"commint delete at row = %d", indexPath.row);
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [self showActivityWithText:NSLS(@"kDeleting")];
     [[FeedService defaultService] deleteFeed:feed delegate:self];
 }
 
@@ -349,6 +368,7 @@
     return [[UserManager defaultManager] isMe:feed.userId];
 }
 
+#pragma mark - refresh header & footer delegate
 - (void)reloadTableViewDataSource
 {
     FeedListType type = [self currentFeedListType];
@@ -362,20 +382,6 @@
     [self updateFeedListForType:type];
 }
 
-- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
-
-{
-    if (resultCode != 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
-        return;
-    }
-    NSInteger row = [self.dataList indexOfObject:feed];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataList];
-    [array removeObject:feed];
-    self.dataList = array;
-    [self.dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
-}
 
 
 //FeedCell delegate
