@@ -50,6 +50,8 @@
 @synthesize commentTimes = _commentTimes;
 @synthesize guessTimes = _guessTimes;
 
+@synthesize opusStatus = _opusStatus;
+
 - (void)dealloc
 {
     PPRelease(_feedId);
@@ -84,6 +86,7 @@
         self.guessTimes = [pbFeed guessTimes];
         self.commentTimes = [pbFeed commentTimes];
         self.opusId = [pbFeed opusId];
+        self.opusStatus = [pbFeed opusStatus];
         
         if ([pbFeed hasDrawData]) {
             self.drawData = [[[Draw alloc] initWithPBDraw:

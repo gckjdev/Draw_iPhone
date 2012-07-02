@@ -107,6 +107,8 @@ typedef enum{
 @property (nonatomic, assign) NSInteger commentTimes;
 @property (nonatomic, assign) NSInteger guessTimes;;
 
+@property (nonatomic, assign) NSInteger opusStatus;
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (BOOL)isMyOpus;
 - (BOOL) hasGuessed;
