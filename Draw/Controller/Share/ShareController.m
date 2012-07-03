@@ -134,6 +134,9 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
     MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
     
     if (buttonIndex == SHARE_AS_PHOTO) {                        
