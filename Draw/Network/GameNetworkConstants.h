@@ -155,7 +155,7 @@
 #define PARA_ITEM_AMOUNT @"ia"
 #define PARA_ITEMS @"is"
 #define PARA_DEVIATION @"dv"
-
+#define PARA_GUESS_BALANCE @"gb"
 
 #define PARA_ROOM_ID @"frid"
 #define PARA_ROOM_NAME @"rn"

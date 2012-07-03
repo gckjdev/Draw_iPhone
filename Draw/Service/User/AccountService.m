@@ -588,7 +588,7 @@ static AccountService* _defaultAccountService;
                     else{
                         PPDebug(@"<syncAccountAndItem> no change for balance = %d", balance);                        
                     }
-
+                    
                     NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
                     for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
                         int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
@@ -617,6 +617,12 @@ static AccountService* _defaultAccountService;
                             }
                         }
                     }
+                    //decrease the guess balance and add it to the account balance.
+                    int guessBalance = [[output.jsonDataDict objectForKey:PARA_GUESS_BALANCE] intValue];
+                    if (guessBalance > 0) {
+                        [self chargeAccount:guessBalance source:AddGuessCoinType];
+                    }
+                    
                 });                
             }
             else{

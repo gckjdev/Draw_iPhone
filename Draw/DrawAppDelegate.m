@@ -42,14 +42,14 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return [ConfigManager getAPIServerURL];
-//      return @"http://192.168.1.101:8000/api/i?";  
+//    return [ConfigManager getAPIServerURL];
+      return @"http://192.168.1.15:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.101:8100/api/i?";    
+//    return [ConfigManager getTrafficAPIServerURL];
+    return @"http://192.168.1.15:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
