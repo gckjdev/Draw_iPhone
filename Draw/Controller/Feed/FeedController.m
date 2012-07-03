@@ -20,6 +20,7 @@
 #import "UserFeedController.h"
 #import "MobClickUtils.h"
 #import "CommonUserInfoView.h"
+#import "NotificationManager.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -130,6 +131,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NotificationManager defaultManager] hideNotificationForType:NotificationTypeFeed];
+    [super viewDidAppear:animated];
 }
 
 - (void)dealloc {

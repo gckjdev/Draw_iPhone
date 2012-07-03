@@ -25,6 +25,7 @@
 #import "DrawAppDelegate.h"
 #import "CommonUserInfoView.h"
 #import "ConfigManager.h"
+#import "NotificationManager.h"
 
 @interface MyFriendsController ()
 
@@ -150,6 +151,11 @@
     [self loadMyFans];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NotificationManager defaultManager] hideNotificationForType:NotificationTypeFan];
+    [super viewDidAppear:animated];
+}
 
 - (void)viewDidUnload
 {

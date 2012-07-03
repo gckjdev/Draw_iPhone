@@ -20,6 +20,7 @@
 #import "AnimationManager.h"
 #import "PPDebug.h"
 #import "ChatService.h"
+#import "NotificationManager.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
 
@@ -156,6 +157,13 @@
         self.selectedUserId = user.userId;
     }
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NotificationManager defaultManager]hideNotificationForType:NotificationTypeRoom];
+    [super viewDidDisappear:animated];    
+}
+
 
 - (void)viewDidUnload
 {

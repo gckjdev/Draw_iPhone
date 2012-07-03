@@ -634,3 +634,8 @@
 
 "kDeleting" = "刪除中...";
 "kDeleteFail" = "刪除失敗！";
+
+"kFanStatus" = "新粉絲(%d)";
+"kFeedStatus" = "新動態(%d)";
+"kRoomStatus" = "新房間邀請(%d)";
+"kMessageStatus" = "新消息(%d)";
