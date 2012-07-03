@@ -88,7 +88,7 @@ NotificationManager *_staticNotificationManager = nil;
     return _staticNotificationManager;
 }
 
-#define OFFSET ([DeviceDetection isIPAD] ? 668 : 220 )
+#define OFFSET ([DeviceDetection isIPAD] ? 0 : 0 )
 #define WIDTH ([DeviceDetection isIPAD] ? 768  : 320 )
 
 - (id)init
@@ -97,7 +97,7 @@ NotificationManager *_staticNotificationManager = nil;
     if (self) {
 //        statusArray = [[NSMutableArray alloc] init];
         statueBar = [[CustomStatueBar alloc] initWithFrame:CGRectMake(OFFSET, 0, WIDTH-OFFSET, 20)];
-        [statueBar setBackgroundColor:[UIColor blueColor]];
+        [statueBar setBackgroundColor:[UIColor blackColor]];
         statueBar.hidden = YES;
         statusMessage = [[StatusMessage alloc] init];
     }
