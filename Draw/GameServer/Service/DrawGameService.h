@@ -86,8 +86,9 @@
 @property (nonatomic, retain) NSArray* snsUserData;
 @property (nonatomic, assign) BOOL gender;
 @property (nonatomic, assign) int guessDiffLevel;
-@property (nonatomic, retain) id<DrawGameServiceDelegate> drawDelegate;
-@property (nonatomic, retain) id<DrawGameServiceDelegate> showDelegate;
+
+@property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
+@property (nonatomic, assign) id<DrawGameServiceDelegate> showDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> roomDelegate;
 @property (nonatomic, assign) id<DrawGameServiceDelegate> homeDelegate;
 

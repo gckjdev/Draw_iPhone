@@ -151,6 +151,7 @@
 - (void)updateUser:(Feed *)feed
 {
     //avatar
+    
     [self.avatarView removeFromSuperview];
     [self.avatarView setDelegate:nil];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
@@ -222,6 +223,7 @@
 
 
 - (void)dealloc {
+    [_drawView cleanAllActions];
     PPRelease(timeLabel);
     PPRelease(descLabel);
     PPRelease(userNameLabel);

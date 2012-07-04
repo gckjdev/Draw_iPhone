@@ -16,6 +16,7 @@
 @interface FeedController : PPTableViewController<FeedServiceDelegate>
 {
     NSArray *_feedListStats;
+    FeedManager *_feedManager;
 }
 @property (retain, nonatomic) IBOutlet UILabel *noFeedTipsLabel;
 @property (retain, nonatomic) IBOutlet UIButton *myFeedButton;

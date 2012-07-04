@@ -20,7 +20,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *drawWord;
 @property (nonatomic, retain) IBOutlet UIImageView* background;
 @property (retain, nonatomic) IBOutlet UIImageView *myPrintTag;
-@property (retain, nonatomic) id<MyPaintButtonDelegate>delegate;
+@property (assign, nonatomic) id<MyPaintButtonDelegate>delegate;
 
 + (MyPaintButton*)creatMyPaintButton;
 + (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 

@@ -10,4 +10,7 @@
 
 @interface UIManager : NSObject
 
++ (UIFont*) roomTitleFont;
++ (UIColor*)cellTextColor;
+
 @end

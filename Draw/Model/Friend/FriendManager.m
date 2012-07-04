@@ -75,7 +75,7 @@ static FriendManager *_defaultFriendManager = nil;
                                sinaNick:sinaNick 
                                  qqNick:qqNick 
                            facebookNick:facebookNick 
-                             createDate:[NSDate date]
+                             createDate:lastModifiedDate
                        lastModifiedDate:lastModifiedDate 
                                location:location 
                                   level:level];
@@ -186,14 +186,14 @@ static FriendManager *_defaultFriendManager = nil;
 - (NSArray *)findAllFanFriends
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    return [dataManager execute:@"findAllFanFriends" sortBy:@"createDate" ascending:NO];
+    return [dataManager execute:@"findAllFanFriends" sortBy:@"lastModifiedDate" ascending:NO];
 }
 
 
 - (NSArray *)findAllFollowFriends
 {
     CoreDataManager *dataManager = [CoreDataManager defaultManager];
-    return [dataManager execute:@"findAllFollowFriends" sortBy:@"createDate" ascending:NO];
+    return [dataManager execute:@"findAllFollowFriends" sortBy:@"lastModifiedDate" ascending:NO];
 }
 
 

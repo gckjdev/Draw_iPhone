@@ -667,7 +667,10 @@
     
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
-        [self.showView show];
+        if ([self.showView status] != Stop) {
+            [self.showView show];            
+        }
+
         
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundById:BINGO];

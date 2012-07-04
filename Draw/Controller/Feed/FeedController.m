@@ -20,6 +20,7 @@
 #import "UserFeedController.h"
 #import "MobClickUtils.h"
 #import "CommonUserInfoView.h"
+#import "NotificationManager.h"
 
 #pragma mark - Class FeedListState
 @interface FeedListState : NSObject {
@@ -78,6 +79,7 @@
                           [FeedListState feedListState],
                           [FeedListState feedListState],
                           [FeedListState feedListState], nil];
+        _feedManager = [[FeedManager alloc] init];
     }
     return self;
 }
@@ -132,6 +134,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NotificationManager defaultManager] hideNotificationForType:NotificationTypeFeed];
+    [super viewDidAppear:animated];
+}
+
 - (void)dealloc {
     PPRelease(titleLabel);
     PPRelease(myFeedButton);
@@ -139,6 +148,7 @@
     PPRelease(hotFeedButton);
     PPRelease(_feedListStats);
     PPRelease(noFeedTipsLabel);
+    PPRelease(_feedManager);
     [super dealloc];
 }
 
@@ -187,7 +197,7 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
-    [[FeedManager defaultManager] cleanData];
+    [_feedManager cleanData];
 }
 
 
@@ -209,7 +219,7 @@
     UIButton *button = (UIButton *)[self.view viewWithTag:tag];
     button.selected = YES;
 
-    self.dataList = [[FeedManager defaultManager] feedListForType:tag];
+    self.dataList = [_feedManager feedListForType:tag];
     [self.dataTableView reloadData];
     
     if (![self hasLoadDataForType:tag]) {
@@ -255,7 +265,7 @@
     }
     
 
-    FeedManager *feedManager = [FeedManager defaultManager];
+//    FeedManager *feedManager = _feedManager;
     
     if ([feedList count] < [FeedListState loadDataCount]) {
         self.noMoreData = YES;
@@ -267,18 +277,18 @@
     
     if (isReload) {
         if (feedList) {
-            [feedManager setFeedList:[NSMutableArray arrayWithArray:feedList] forType:type];
+            [_feedManager setFeedList:[NSMutableArray arrayWithArray:feedList] forType:type];
         }else{
-            [feedManager setFeedList:nil forType:type];
+            [_feedManager setFeedList:nil forType:type];
         }
     }else{
         if (feedList) {
-            [feedManager addFeedList:feedList forType:type];
+            [_feedManager addFeedList:feedList forType:type];
         }
     }
     NSInteger newIndex = [self startIndexForType:type] + [feedList count];
     [self setloadDataStartIndex:newIndex forType:type];
-    self.dataList = [feedManager feedListForType:type];
+    self.dataList = [_feedManager feedListForType:type];
     [self.dataTableView reloadData];
     if (isReload) {
         //scroll to top.
@@ -347,6 +357,12 @@
         return;
     
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    
+    if (feed.opusStatus == OPusStatusDelete) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
     FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:feed];
     [self.navigationController pushViewController:feedDetailController animated:YES];
     [feedDetailController release];

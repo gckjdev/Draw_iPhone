@@ -643,3 +643,10 @@
 
 "kDeleting" = "删除中...";
 "kDeleteFail" = "删除失败！";
+
+"kFanStatus" = "新粉丝(%d)";
+"kFeedStatus" = "新动态(%d)";
+"kRoomStatus" = "新房间邀请(%d)";
+"kMessageStatus" = "新消息(%d)";
+
+"kOpusDelete" = "不好意思，这幅作品已经被删除。";

@@ -356,7 +356,7 @@ NSString* GlobalGetTrafficServerURL()
         [_chatDetailController findAllMessages];
     }
     
-    
+    [[NotificationManager defaultManager] showNotification:userInfo];
 }
 
 #pragma mark - Alert View Delegate

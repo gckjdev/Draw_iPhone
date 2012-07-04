@@ -245,13 +245,13 @@
 
 "kCreating_gif" = "Creating GIF Files...";
 
-"kShareOtherTextAuto" = "%@What An Awesome Drawing - %@ %@";
-"kShareMeTextAuto" = "%@My Awesome Drawing for %@";
+"kShareOtherTextAuto" = "%@ What An Awesome Drawing - %@ %@ ";
+"kShareMeTextAuto" = "%@ My Awesome Drawing for %@";
 
-"kShareOtherText" = "What An Awesome Drawing - %@";
-"kShareMeText" = "My Awesome Drawing for %@";
-"kShareGIFOtherText" = "What An Awesome Drawing - %@";
-"kShareGIFMeText" = "My Awesome Drawing for %@";
+"kShareOtherText" = "What An Awesome Drawing - %@ ";
+"kShareMeText" = "My Awesome Drawing for %@ ";
+"kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
+"kShareGIFMeText" = "My Awesome Drawing for %@ ";
 "kShareSend" = "Send";
 
 "kPublishWeiboSucc" = "Message Sent";
@@ -636,3 +636,12 @@
 "kChallenge" = "Challenge";
 "kDeleting" = "Deleting...";
 "kDeleteFail" = "Fail to delete.";
+
+
+"kFanStatus" = "Fans(%d)";
+"kFeedStatus" = "Feed(%d)";
+"kRoomStatus" = "Room(%d)";
+"kMessageStatus" = "Message(%d)";
+
+
+"kOpusDelete" = "Sorry. The opus has been deleted.";

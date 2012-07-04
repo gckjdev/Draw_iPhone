@@ -78,7 +78,7 @@
     _avatarView.userId = feed.userId;
     [self addSubview:_avatarView];
     [_avatarView release];
-
+    
     //set user name
     NSString *userName = [FeedManager userNameForFeed:feed];
     [self.nickNameLabel setText:userName];
