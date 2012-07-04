@@ -569,6 +569,7 @@
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA56DC8315661D1C00F11E01 /* room_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA56DC8215661D1C00F11E01 /* room_cell_bg@2x.png */; };
@@ -1697,6 +1698,8 @@
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
 		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
+		CA51816B15A2D79700AD5A78 /* CustomStatueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatueBar.h; sourceTree = "<group>"; };
+		CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatueBar.m; sourceTree = "<group>"; };
 		CA51BD711525DED100C77E50 /* RewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardManager.h; sourceTree = "<group>"; };
 		CA51BD721525DED100C77E50 /* RewardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardManager.m; sourceTree = "<group>"; };
 		CA51BD741525DEDE00C77E50 /* Reward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reward.h; sourceTree = "<group>"; };
@@ -2778,6 +2781,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				CA51816A15A2D79700AD5A78 /* CustomStatueBar */,
 				A455F8AE1585D21400CA5743 /* EGOTableViewPullRefresh */,
 				CA103D071509A56100F60C03 /* BackgroundView */,
 				CA103D0C1509A56100F60C03 /* BadgeView */,
@@ -4072,6 +4076,15 @@
 				CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */,
 			);
 			path = StoreKit;
+			sourceTree = "<group>";
+		};
+		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
+			isa = PBXGroup;
+			children = (
+				CA51816B15A2D79700AD5A78 /* CustomStatueBar.h */,
+				CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */,
+			);
+			path = CustomStatueBar;
 			sourceTree = "<group>";
 		};
 		CA51BD701525DEBF00C77E50 /* Reward */ = {
@@ -5771,6 +5784,7 @@
 				CAA1AFBC159EAA5900504C98 /* AdMoGoAdapterGoogleAdMobAds.m in Sources */,
 				CAA1AFBE159EAA5900504C98 /* AdMoGoAdapterDoMob.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
+				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

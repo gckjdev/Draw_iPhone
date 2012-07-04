@@ -636,3 +636,9 @@
 "kChallenge" = "Challenge";
 "kDeleting" = "Deleting...";
 "kDeleteFail" = "Fail to delete.";
+
+
+"kFanStatus" = "Fans(%d)";
+"kFeedStatus" = "Feed(%d)";
+"kRoomStatus" = "Room(%d)";
+"kMessageStatus" = "Message(%d)";

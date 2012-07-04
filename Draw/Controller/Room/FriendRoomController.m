@@ -24,6 +24,7 @@
 #import "WordManager.h"
 #import "LevelService.h"
 #import "CommonUserInfoView.h"
+#import "NotificationManager.h"
 
 @interface FriendRoomController ()
 
@@ -107,7 +108,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.dataTableView reloadData];
+    [[NotificationManager defaultManager]hideNotificationForType:NotificationTypeRoom];
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidDisappear:animated];    
 }
