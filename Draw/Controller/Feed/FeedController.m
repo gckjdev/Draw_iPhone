@@ -355,6 +355,12 @@
         return;
     
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    
+    if (feed.opusStatus == OPusStatusDelete) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
     FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:feed];
     [self.navigationController pushViewController:feedDetailController animated:YES];
     [feedDetailController release];
