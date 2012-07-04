@@ -13,6 +13,7 @@
 #import "StableView.h"
 #import "RoomManager.h"
 #import "DeviceDetection.h"
+#import "UIManager.h"
 
 @implementation RoomCell
 @synthesize avatarView;
@@ -220,9 +221,9 @@
     [self setUserListInfo:room];
     
     if ([room isMeCreator]) {
-        [self setViewsColor:[UIColor grayColor]];
+        [self setViewsColor:[UIManager cellTextColor]];
     }else{
-        [self setViewsColor:[UIColor brownColor]];
+        [self setViewsColor:[UIManager cellTextColor]];
     }
     if (self.roomCellType == RoomCellTypeMyRoom) {
         [self setInviteInfo:room];  
