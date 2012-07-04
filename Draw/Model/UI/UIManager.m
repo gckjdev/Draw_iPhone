@@ -7,6 +7,7 @@
 //
 
 #import "UIManager.h"
+#import "DeviceDetection.h"
 
 @implementation UIManager
 + (UIFont*) roomTitleFont
