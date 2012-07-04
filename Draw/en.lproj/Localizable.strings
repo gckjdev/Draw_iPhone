@@ -642,3 +642,6 @@
 "kFeedStatus" = "Feed(%d)";
 "kRoomStatus" = "Room(%d)";
 "kMessageStatus" = "Message(%d)";
+
+
+"kOpusDelete" = "Sorry. The opus has been deleted.";

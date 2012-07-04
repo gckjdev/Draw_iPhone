@@ -31,6 +31,10 @@ typedef enum{
     
 }FeedListType;
 
+typedef enum {
+    OPusStatusNormal = 0, 
+    OPusStatusDelete = 1 
+}OpusStatus;
 
 
 
