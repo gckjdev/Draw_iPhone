@@ -152,8 +152,6 @@
 {
     //avatar
     
-    PPDebug(@"<UpdateUser> before: retainCount = %d", [self.avatarView retainCount]);
-    
     [self.avatarView removeFromSuperview];
     [self.avatarView setDelegate:nil];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
@@ -163,8 +161,6 @@
     
     //name
     [self.userNameLabel setText:[FeedManager userNameForFeed:feed]];
-    
-    PPDebug(@"<UpdateUser> after: retainCount = %d", [self.avatarView retainCount]);
 }
 
 - (void)updateGuessDesc:(Feed *)feed

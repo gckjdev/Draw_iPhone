@@ -68,7 +68,6 @@
 
 - (void)setCellInfo:(Feed *)feed
 {
-    PPDebug(@"<setCellInfo> before: retainCount = %d", [_avatarView retainCount]);
     //set avatar
     [_avatarView removeFromSuperview];
     _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar 
@@ -79,8 +78,6 @@
     _avatarView.userId = feed.userId;
     [self addSubview:_avatarView];
     [_avatarView release];
-
-    PPDebug(@"<setCellInfo> after: retainCount = %d", [_avatarView retainCount]);
     
     //set user name
     NSString *userName = [FeedManager userNameForFeed:feed];
