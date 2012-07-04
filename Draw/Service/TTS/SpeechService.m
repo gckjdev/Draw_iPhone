@@ -52,6 +52,7 @@ static SpeechService *_defaultSpeechService = nil;
         NSString *initParam = [[NSString alloc] initWithFormat:
                                @"server_url=%@,appid=%@",ENGINE_URL,KDXF_APPID];
         _iFlySynthesizerControl = [[IFlySynthesizerControl alloc] initWithOrigin:CGPointMake(1, 1) theInitParam:initParam];
+        [initParam release];
         [_iFlySynthesizerControl setShowUI:NO];
         _iFlySynthesizerControl.delegate = self;
     }
