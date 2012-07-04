@@ -97,7 +97,7 @@
 "kEnterEmail" = "Enter Email";
 "kStartGame" = "Start";
 "kLookOverDraw" = "View Drawing";
-"kPainted" = " drawed ";
+"kPainted" = " drew ";
 
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
@@ -522,7 +522,7 @@
 
 "kMyFeedList" = "My Timeline";
 
-"kDrawDesc" = "Drawed a drawing: [%@].";
+"kDrawDesc" = "Drew a picture: [%@].";
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
@@ -532,7 +532,7 @@
 "kNTGD" = "%@ Tried to guess your drawing: [%@].";
 
 
-"kDrawDescNoWord" = "Drawed a drawing.";
+"kDrawDescNoWord" = "Drew a picture.";
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
 
@@ -615,8 +615,8 @@
 "kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
 
 
-"kDrawToUserDesc" = "Drawed a drawing: [%@] to %@.";
-"kDrawToUserNoWordDesc" = "Drawed a drawing to %@.";
+"kDrawToUserDesc" = "Drew a picture: [%@] to %@.";
+"kDrawToUserNoWordDesc" = "Drew a picture to %@.";
 
 "kHisFriend" = "his(her) friend";
 
