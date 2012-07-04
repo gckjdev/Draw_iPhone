@@ -42,14 +42,14 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.15:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//      return @"http://192.168.1.198:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.15:8100/api/i?";    
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.198:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -346,9 +346,9 @@ NSString* GlobalGetTrafficServerURL()
     PPDebug(@"didReceiveRemoteNotification");
     NSArray *testAllKeys = [userInfo allKeys];
     for (NSString *key in testAllKeys) {
-        PPDebug(@"%@", key);
-        PPDebug(@"%@", [userInfo objectForKey:@"aps"]); 
+        PPDebug(@"<didReceiveRemoteNotification> loc-key=%@", key);
     }
+    PPDebug(@"<didReceiveRemoteNotification> aps=%@", [userInfo objectForKey:@"aps"]); 
     [_homeController updateBadgeWithUserInfo:userInfo];
     
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];

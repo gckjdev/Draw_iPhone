@@ -37,8 +37,8 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];  
-        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
-        
+        NSString* deviceOS = [DeviceDetection deviceOS];        
+
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_EMAIL value:email];
@@ -81,7 +81,7 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
-        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
+        NSString* deviceOS = [DeviceDetection deviceOS];        
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -192,7 +192,7 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
-        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
+        NSString* deviceOS = [DeviceDetection deviceOS];       
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -254,7 +254,7 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];  
-        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
+        NSString* deviceOS = [DeviceDetection deviceOS];        
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -1572,7 +1572,7 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
-        NSString* deviceOS = [NSString stringWithFormat:@"%@_%@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
+        NSString* deviceOS = [DeviceDetection deviceOS];        
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -1601,6 +1601,47 @@
         
         str = [str stringByAddQueryParameter:PARA_FACEBOOKID value:facebookId];
         
+        str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
+        str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
+
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                            userId:(NSString*)userId
+                             appId:(NSString*)appId
+                          newAppId:(NSString*)newAppId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        NSString* deviceOS = [DeviceDetection deviceOS];        
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATEUSER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        if ([newAppId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_NEW_APPID value:newAppId];
+        }
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];                
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];

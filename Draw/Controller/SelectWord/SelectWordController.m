@@ -249,6 +249,8 @@
 
 - (void)dealloc {
     
+    [[AdService defaultService] clearAdView:_adView];
+    PPRelease(_adView);    
     PPRelease(_wordTableView);
     PPRelease(_clockLabel);
     PPRelease(_changeWordButton);

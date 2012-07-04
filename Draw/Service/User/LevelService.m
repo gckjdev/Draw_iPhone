@@ -162,6 +162,10 @@ static LevelService* _defaultLevelService;
 - (void)syncExpAndLevel:(PPViewController*)viewController 
                    type:(int)type
 {
+    if ([[UserManager defaultManager] hasUser] == NO){
+        PPDebug(@"<syncExpAndLevel> but user not found yet.");
+        return;
+    }
     
     //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
     dispatch_async(workingQueue, ^{
@@ -206,7 +210,11 @@ static LevelService* _defaultLevelService;
 
 
 - (void)syncExpAndLevel:(int)type
-{
+{    
+    if ([[UserManager defaultManager] hasUser] == NO){
+        PPDebug(@"<syncExpAndLevel> but user not found yet.");
+        return;
+    }
     
     //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];    
     dispatch_async(workingQueue, ^{

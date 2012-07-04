@@ -129,7 +129,13 @@ ItemShopController *staticItemController = nil;
         self.removeAdButton.hidden = YES;
     }
     
-    self.gotoCoinShopButton.hidden = YES;
+    if ([ConfigManager isProVersion]){
+        self.gotoCoinShopButton.hidden = NO;
+    }
+    else{
+        self.gotoCoinShopButton.hidden = YES;
+    }
+    
 //    if ([LocaleUtils isChina] == YES || 
 //        [LocaleUtils isOtherChina] == YES){
 //        self.gotoCoinShopButton.hidden = YES;

@@ -291,6 +291,10 @@
 }
 
 - (void)dealloc {
+
+    [[AdService defaultService] clearAdView:_adView];
+    PPRelease(_adView);
+    
     PPRelease(_drawUserId);
     PPRelease(_drawUserNickName);
     PPRelease(upButton);

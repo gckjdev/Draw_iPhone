@@ -6,7 +6,7 @@
  Copyright (c) 2012年 orange. All rights reserved.
  */
 
-"kStart" = "Start";
+"kStart" = "Online";
 
 "kShop" = "Shop";
 
@@ -493,7 +493,7 @@
 
 "kUpgradeMsg" = "Congratulations!You upgraded to level %d";
 "kDegradeMsg" = "You ran away too much times, now degrade to level %d";
-"kLevelInfo" = "level:%d    exp:%d/%d";
+"kLevelInfo" = "Level:%d    Exp:%d/%d";
 
 "kDrawing" = "Drawing";
 "kGuessing" = "Guessing";
@@ -515,12 +515,12 @@
 
 "kGuessUserDraw" = "%@'s draw";
 
-"kFeedTitle" = "Feed";
+"kFeedTitle" = "Timeline";
 "kAllFeed" = "All";
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
 
-"kMyFeedList" = "My Feed";
+"kMyFeedList" = "My Timeline";
 
 "kDrawDesc" = "Drawed a drawing: [%@].";
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
@@ -539,15 +539,15 @@
 "kNoGuess" = "Guess 0";
 "kGuessStat" = "Guess %d, Correct %d";
 
-"kGetFeedListFail" = "Fetch feed list fail. Please try it again later.";
+"kGetFeedListFail" = "Fetch timeline fail. Please try it again later.";
 
-"kNoFeedTips" = "No feeds";
+"kNoFeedTips" = "No timeline";
 
 "kIGuessAction" = "Guess";
 "kOneMoreAction" = "One More";
 "kIGuessCorrect" = "Correct";
 
-"kChatListTitle" = "Graffiti chat";
+"kChatListTitle" = "Chat";
 "kNoChatListInfo" = "No record";
 "kGraffitiMessage" = "Graffiti";
 "kAddChat" = "Create";
@@ -581,30 +581,30 @@
 "kFriend" = "Friend";
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
-"kFeed" = "Feed";
+"kFeed" = "Timeline";
 "kFreeCoins" = "Free Coins";
-"kFeeds" = "Feeds";
+"kFeeds" = "Timeline";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
 "kGuessWords" = "Guessing: %@";
 "kMyDrawing" = "My Drawing:[%@]";
 
-"kDrawToHim" = "Draw something";
-"kExploreHim" = "Feed";
+"kDrawToHim" = "Draw Something";
+"kExploreHim" = "View Timeline";
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Talk something";
 
 "kFM" = "Someone has just followed you";
 
-"kUserFeedTitle" = "%@'s Feed";
+"kUserFeedTitle" = "%@'s Timeline";
 
 "kSetEmail" = "Email";
 "kEmailNotSet" = "";
-"kSetSinaWeibo" = "新浪微博";
+"kSetSinaWeibo" = "SINA Weibo";
 "kWeiboSet" = "Connected";
 "kNotSet" = "Not Connected";
-"kSetQQWeibo" = "腾讯微博";
+"kSetQQWeibo" = "QQ Weibo";
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "Enter Email Address";
 "kUserBindSucc" = "Update user successfully.";

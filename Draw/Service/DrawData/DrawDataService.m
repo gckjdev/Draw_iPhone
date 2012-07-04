@@ -43,6 +43,11 @@ static DrawDataService* _defaultDrawDataService = nil;
             NSArray *list = nil;
             
             if (output.resultCode == ERROR_SUCCESS){
+                if ([output.responseData length] <= 0){
+                    PPDebug(@"<findRecentDraw> but no draw data return");
+                    return;
+                }
+                
                 DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
                 list = [travelResponse drawDataList];
             }

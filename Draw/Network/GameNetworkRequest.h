@@ -76,6 +76,11 @@
                           password:(NSString*)newPassword
                             avatar:(NSData*)avatar;
 
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                            userId:(NSString*)userId
+                             appId:(NSString*)appId
+                          newAppId:(NSString*)newAppId;
+
 + (CommonNetworkOutput*)fetchShoppingList:(NSString*)baseURL 
                                      type:(int)type;
 + (CommonNetworkOutput*)fetchAccountBalance:(NSString*)baseURL userId:(NSString *)userId;

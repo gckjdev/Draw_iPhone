@@ -17,7 +17,7 @@
 
 + (BOOL)isProVersion
 {
-    return NO;
+    return YES;
 }
 
 + (NSString*)appId

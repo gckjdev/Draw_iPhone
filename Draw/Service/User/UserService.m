@@ -584,6 +584,14 @@ static UserService* _defaultUserService;
     
 }
 
+- (void)updateNewAppId:(NSString*)newAppId
+{
+    PPDebug(@"<updateNewAppId> to %@", newAppId);
+    dispatch_async(workingQueue, ^{ 
+        [GameNetworkRequest updateUser:SERVER_URL userId:[[UserManager defaultManager] userId] appId:newAppId newAppId:newAppId];
+    });
+}
+
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
     NSString* appId = [ConfigManager appId];
@@ -653,6 +661,11 @@ static UserService* _defaultUserService;
                 [[FriendService defaultService] findFriendsByType:FAN viewController:nil];
                 [[LevelService defaultService] setLevel:levelSring.intValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
+                
+                if ([ConfigManager isProVersion]){
+                    // update new appId of user
+                    [self updateNewAppId:appId];
+                }
 
             }
             else if (output.resultCode == ERROR_NETWORK) {

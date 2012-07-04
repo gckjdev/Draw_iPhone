@@ -194,6 +194,7 @@
 
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"
+#define PARA_NEW_APPID  @"napp"
 
 #define PARA_TO_USERID @"tuid"
 #define PARA_MESSAGE_ID @"mid"
