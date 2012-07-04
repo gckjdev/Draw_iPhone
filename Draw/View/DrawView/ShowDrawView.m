@@ -337,6 +337,7 @@
 
 - (UIImage*)createImage
 {
+    pen.hidden = YES;
     CGRect rect = self.frame;
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
