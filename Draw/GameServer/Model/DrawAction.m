@@ -127,8 +127,11 @@
         if (paint.pointCount == 0) {
             return [DrawAction actionWithType:action.type paint:action.paint];
         }
+        
         NSMutableArray *list = [[NSMutableArray alloc] 
                                 initWithCapacity:paint.pointCount];
+
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         for (NSValue *value in paint.pointList) {
             CGPoint point = [value CGPointValue];
             point.x = point.x * xScale;
@@ -136,6 +139,8 @@
             NSValue *pValue = [NSValue valueWithCGPoint:point];
             [list addObject:pValue];
         }
+        [pool release];
+
         Paint *newPaint = [Paint paintWithWidth:paint.width * xScale color:paint.color penType:paint.penType];
         [newPaint setPointList:list];
         [list release];

@@ -618,7 +618,7 @@
 
 
 "kPDUM" = "%@給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
-"kDrawToUserDesc" = "畫了一幅[%@]給%@。";
+"kDrawToUserDesc" = "畫了一幅 [%@] 給%@。";
 "kDrawToUserNoWordDesc" = "畫了一幅畫給%@。";
 "kHisFriend" = "TA好友";
 
@@ -642,3 +642,6 @@
 
 "kOpusDelete" = "不好意思，這幅作品已經被刪除。";
 "kChatTitle" = "發送消息";
+
+"kOpusDelete" = "不好意思，這幅作品已經被刪除了。";
+

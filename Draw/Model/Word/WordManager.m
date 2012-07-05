@@ -77,11 +77,13 @@ WordManager *GlobalGetWordManager()
 - (NSMutableArray *)parsePathArray:(NSArray *)array level:(WordLevel)level
 {
     NSMutableArray *retArray = [[[NSMutableArray alloc] init]autorelease];   
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];        
     for (NSString *text in array) {
         Word *word = [[Word alloc] initWithText:text level:level];
         [retArray addObject:word];
         [word release];
     }
+    [pool release];
     return  retArray;
 
 }
