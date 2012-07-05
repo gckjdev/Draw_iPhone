@@ -650,3 +650,4 @@
 "kMessageStatus" = "新消息(%d)";
 
 "kOpusDelete" = "不好意思，这幅作品已经被删除。";
+"kChatTitle" = "发送消息";

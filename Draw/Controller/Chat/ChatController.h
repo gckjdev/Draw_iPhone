@@ -41,6 +41,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *payAttentionButton;
 @property (retain, nonatomic) IBOutlet UIScrollView *expressionScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
+@property (retain, nonatomic) IBOutlet UILabel *chatTitleLabel;
 
 - (id)initWithChatType:(GameChatType)type;
 - (void)showInView:(UIView*)superView messagesType:(MessagesType)type selectedUserId:(NSString*)selectedUserId needAnimation:(BOOL)needAnimation;

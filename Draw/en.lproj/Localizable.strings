@@ -645,3 +645,5 @@
 
 
 "kOpusDelete" = "Sorry. The opus has been deleted.";
+
+"kChatTitle" = "Send Message";

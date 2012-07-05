@@ -115,6 +115,7 @@
 @synthesize payAttentionButton;
 @synthesize expressionScrollView;
 @synthesize closeButton;
+@synthesize chatTitleLabel;
 
 - (id)initWithChatType:(GameChatType)chatType 
 {
@@ -135,6 +136,7 @@
     [payAttentionButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
     [payAttentionButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [alreadPayAttentionLabel setText:NSLS(@"kFollowed")];
+    [chatTitleLabel setText:NSLS(@"kChatTitle")];
     
     [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
     
@@ -182,6 +184,7 @@
     [self setCloseButton:nil];
     [self setAlreadPayAttentionLabel:nil];
     [self setLevelLabel:nil];
+    [self setChatTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -205,6 +208,7 @@
     [closeButton release];
     [alreadPayAttentionLabel release];
     [levelLabel release];
+    [chatTitleLabel release];
     [super dealloc];
 }
 
