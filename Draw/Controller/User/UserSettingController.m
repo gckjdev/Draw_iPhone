@@ -483,7 +483,12 @@ enum {
     else if (section == SECTION_REMOVE_AD) {
         cell.textLabel.text = NSLS(@"kRemoveAd");
         cell.detailTextLabel.hidden = NO;
-        cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
+        if ([ConfigManager isProVersion]){
+            cell.detailTextLabel.text = @"N/A";
+        }
+        else{
+            cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
+        }
     }
     
     return cell;
@@ -634,7 +639,11 @@ enum {
         }
     }    
     else if (section == SECTION_REMOVE_AD) {
-        [[AdService defaultService] requestRemoveAd:self];
+        if ([ConfigManager isProVersion]){            
+        }
+        else{
+            [[AdService defaultService] requestRemoveAd:self];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

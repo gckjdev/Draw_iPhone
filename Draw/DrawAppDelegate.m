@@ -194,7 +194,13 @@ NSString* GlobalGetTrafficServerURL()
     if ([LocaleUtils isChina] == NO)
         return;
     
-    NSString* news = [MobClick getConfigParams:@"NEWS"];
+    NSString* news = @"";
+    if ([ConfigManager isProVersion]){
+        news = [MobClick getConfigParams:@"NEWS_PRO"];
+    }
+    else{
+        news = [MobClick getConfigParams:@"NEWS"];
+    }
     if ([news length] <= 1)
         return;
     

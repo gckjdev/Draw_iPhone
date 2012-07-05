@@ -18,6 +18,7 @@
 #import "PPApplication.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
+#import "UIUtils.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
@@ -591,15 +592,12 @@
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
-        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
-        NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_USER_ACCOUNT_ITEM];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        str = [str stringByAddQueryParameter:PARA_VERSION value:currentVersion];
-        
+        str = [str stringByAddQueryParameter:PARA_VERSION value:[UIUtils getAppVersion]];        
         return str;
     };
     
