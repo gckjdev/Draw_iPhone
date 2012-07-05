@@ -626,7 +626,7 @@
 
 "kPDUM" = "%@给你画了一幅画，赶紧去猜猜TA画了些什么。";
 
-"kDrawToUserDesc" = "画了一幅[%@]给%@。";
+"kDrawToUserDesc" = "画了一幅 [%@] 给%@。";
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
 "kHisFriend" = "TA好友";
 
@@ -649,4 +649,4 @@
 "kRoomStatus" = "新房间邀请(%d)";
 "kMessageStatus" = "新消息(%d)";
 
-"kOpusDelete" = "不好意思，这幅作品已经被删除。";
+"kOpusDelete" = "不好意思，这幅作品已经被删除了。";
