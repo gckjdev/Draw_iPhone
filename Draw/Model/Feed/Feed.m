@@ -31,6 +31,7 @@
 
 // for user draw
 @synthesize drawData = _drawData;
+@synthesize drawImage = _drawImage;
 
 // for user guess
 @synthesize opusId = _opusId;          // 猜作品的ID
@@ -67,6 +68,7 @@
     PPRelease(_comment);
     PPRelease(_targetUid);
     PPRelease(_targetNickName);
+    PPRelease(_drawImage);
     [super dealloc];
 }
 

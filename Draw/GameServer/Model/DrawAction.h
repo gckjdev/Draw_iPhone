@@ -40,5 +40,6 @@ typedef enum {
                              yScale:(CGFloat)yScale;
 
 
-
++ (NSInteger)pointCountForActions:(NSArray *)actionList;
++ (double)calculateSpeed:(NSArray *)actionList;
 @end

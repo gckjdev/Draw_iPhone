@@ -43,7 +43,7 @@
 							<object class="IBUIImageView" id="822126487">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{222, 4}, {70, 72}}</string>
+								<string key="NSFrame">{{218, 4}, {70, 72}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -52,10 +52,9 @@
 							<object class="IBUILabel" id="571946735">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{46, 75}, {94, 21}}</string>
+								<string key="NSFrame">{{42, 75}, {94, 21}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -83,7 +82,7 @@
 							<object class="IBUIImageView" id="745456885">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{4, 8}, {40, 41}}</string>
+								<string key="NSFrame">{{0, 8}, {40, 41}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="995215504"/>
@@ -93,7 +92,7 @@
 							<object class="IBUILabel" id="995215504">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{46, 5}, {143, 21}}</string>
+								<string key="NSFrame">{{42, 5}, {143, 21}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="460381817"/>
@@ -126,7 +125,7 @@
 							<object class="IBUILabel" id="460381817">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{46, 27}, {170, 39}}</string>
+								<string key="NSFrame">{{42, 27}, {170, 39}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="571946735"/>
@@ -160,7 +159,7 @@
 							<object class="IBUILabel" id="386031461">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{167, 75}, {123, 21}}</string>
+								<string key="NSFrame">{{163, 75}, {123, 21}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="822126487"/>
@@ -179,7 +178,7 @@
 								<reference key="IBUIFont" ref="287219238"/>
 							</object>
 						</array>
-						<string key="NSFrameSize">{300, 99}</string>
+						<string key="NSFrameSize">{296, 96}</string>
 						<reference key="NSSuperview" ref="83653790"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="745456885"/>
@@ -191,13 +190,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{300, 100}</string>
+				<string key="NSFrameSize">{296, 97}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="703497056"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="703497056"/>
 				<string key="IBUIReuseIdentifier">FeedCell</string>
+				<real value="97" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -336,17 +336,12 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="actionButton">UIButton</string>
 						<string key="descLabel">UILabel</string>
 						<string key="guessStatLabel">UILabel</string>
 						<string key="timeLabel">UILabel</string>
 						<string key="userNameLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="actionButton">
-							<string key="name">actionButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="descLabel">
 							<string key="name">descLabel</string>
 							<string key="candidateClassName">UILabel</string>

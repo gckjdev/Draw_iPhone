@@ -33,7 +33,7 @@
 @interface FeedCell : PPTableViewCell<AvatarViewDelegate>
 {
     AvatarView *_avatarView;
-    ShowDrawView *_drawView;
+    UIView *_drawView;
 }
 @property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
@@ -41,7 +41,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (retain, nonatomic) AvatarView *avatarView;
-@property (retain, nonatomic) ShowDrawView *drawView;
+@property (retain, nonatomic) UIView *drawView;
 @property (retain, nonatomic) Feed *feed;
 - (IBAction)clickActionButton:(id)sender;
 - (void)setCellInfo:(Feed *)feed;
