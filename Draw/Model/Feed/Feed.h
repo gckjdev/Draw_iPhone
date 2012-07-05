@@ -28,6 +28,7 @@ typedef enum{
     FeedListTypeAll = 2,
     FeedListTypeHot = 3,
     FeedListTypeUser = 4,
+    FeedListTypeUserOpus = 5,
     
 }FeedListType;
 
