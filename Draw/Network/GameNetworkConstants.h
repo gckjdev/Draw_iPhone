@@ -206,6 +206,7 @@
 
 #define PARA_LANGUAGE @"lang"
 #define PARA_APPID @"app"
+#define PARA_GAME_ID @"gid"
 
 #define PARA_FEED_ID @"fid"
 

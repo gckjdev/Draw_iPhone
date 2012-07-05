@@ -92,6 +92,7 @@
     NSString *desc = @"";
     NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
     NSString *word = feed.drawData.word.text;
+    NSString *creatorId = feed.drawData.userId;
     
     NSString *targetNick= [FeedManager targetNameForFeed:feed];
     if (feed.drawData.languageType == ChineseType 
@@ -117,16 +118,34 @@
             break;
             
         case FeedActionDescGuessed:
-            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),creatorNick, word];  
+            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
+                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc_MyDraw"), word]; 
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),creatorNick, word];
+            }
             break;
         case FeedActionDescGuessedNoWord:
-            desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), creatorNick];  
+            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
+                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord_MyDraw")];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), creatorNick]; 
+            }
             break;
         case FeedActionDescTried:
-            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),creatorNick , word];  
+            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
+                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc_MyDraw"), word];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),creatorNick , word]; 
+            }
+              
             break;
         case FeedActionDescTriedNoWord:
-            desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), creatorNick];  
+            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
+                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord_MyDraw")];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), creatorNick]; 
+            }
+              
             break;
 
             

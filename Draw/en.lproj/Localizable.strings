@@ -515,6 +515,7 @@
 
 "kGuessUserDraw" = "%@'s draw";
 
+
 "kFeedTitle" = "Timeline";
 "kAllFeed" = "All";
 "kHotFeed" = "Hot";
@@ -524,7 +525,9 @@
 
 "kDrawDesc" = "Drew a picture: [%@].";
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
+
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
+
 
 //notification guess right desc
 //notification try guess desc
@@ -647,3 +650,11 @@
 "kOpusDelete" = "Sorry. The opus has been deleted.";
 
 "kChatTitle" = "Send Message";
+
+"kGuessUserDraw_MyDraw" = "my draw";
+"kGuessRightDesc_MyDraw" = "Guessed my drawing: [%@].";
+"kTryGuessDesc_MyDraw" = "Tried to guess my drawing: [%@].";
+"kGuessRightDescNoWord_MyDraw" = "Guessed my drawing.";
+"kTryGuessDescNoWord_MyDraw" = "Tried to guess my drawing.";
+"kFeedDetail_Me" = "My Drawing";
+"kUserFeedTitle_Me" = "My Timeline";

@@ -137,6 +137,7 @@
     [payAttentionButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [alreadPayAttentionLabel setText:NSLS(@"kFollowed")];
     [chatTitleLabel setText:NSLS(@"kChatTitle")];
+    [closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
     [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
     
@@ -474,9 +475,9 @@
         payAttentionButton.hidden = NO;
         alreadPayAttentionLabel.hidden = YES;
     }
-    if (user.level != 0) {
-        [levelLabel setText:[NSString stringWithFormat:@"LV:%d",user.level]];
-    }
+    int level = (user.level <= 0)?1:user.level;
+    [levelLabel setText:[NSString stringWithFormat:@"LV:%d",level]];
+    
     
 }
 

@@ -554,7 +554,11 @@
     [avatar release];
     
     if ([[_draw nickName] length] != 0) {
-        [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[_draw nickName]]];
+        if ([_draw.userId isEqualToString:[UserManager defaultManager].userId]) {
+            [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw_MyDraw")]];
+        } else {
+            [self.titleLabel setText:[NSString stringWithFormat:NSLS(@"kGuessUserDraw"),[_draw nickName]]];
+        }
     }
 
 }
