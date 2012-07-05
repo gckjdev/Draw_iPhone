@@ -137,6 +137,7 @@
     [payAttentionButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [alreadPayAttentionLabel setText:NSLS(@"kFollowed")];
     [chatTitleLabel setText:NSLS(@"kChatTitle")];
+    [closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
     [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
     

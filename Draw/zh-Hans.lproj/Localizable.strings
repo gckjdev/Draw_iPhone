@@ -523,7 +523,7 @@
 "kQuit" = "放弃";
 "kOneMore" = "再来一幅";
 
-"kGuessUserDraw" = "正在猜%@的画中";
+"kGuessUserDraw" = "正在猜%@的画";
 
 "kFeedTitle" = "猜画动态";
 "kAllFeed" = "全部";
@@ -655,3 +655,10 @@
 
 "kOpusDelete" = "不好意思，这幅作品已经被删除了。";
 
+"kGuessUserDraw_MyDraw" = "正在猜我的画";
+"kGuessRightDesc_MyDraw" = "猜对了我画的 [%@]。";
+"kTryGuessDesc_MyDraw" = "尝试去猜了我画的 [%@]。";
+"kGuessRightDescNoWord_MyDraw" = "猜对了我的画。";
+"kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的画。";
+"kFeedDetail_Me" = "%@的画";
+"kUserFeedTitle_Me" = "%@的动态";
