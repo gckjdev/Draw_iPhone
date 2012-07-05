@@ -655,6 +655,10 @@
 		CA96E360150E107800292335 /* GameBasic.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35C150E107800292335 /* GameBasic.pb.m */; };
 		CA96E361150E107800292335 /* GameMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E35E150E107800292335 /* GameMessage.pb.m */; };
 		CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA96E340150DF27400292335 /* libProtocolBuffers.a */; };
+		CA985EB415A53C6B00CAF51A /* new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB015A53C6B00CAF51A /* new_icon@2x.png */; };
+		CA985EB515A53C6B00CAF51A /* new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB115A53C6B00CAF51A /* new_icon.png */; };
+		CA985EB615A53C6B00CAF51A /* new_icon_ipad1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB215A53C6B00CAF51A /* new_icon_ipad1.png */; };
+		CA985EB715A53C6B00CAF51A /* new_icon_ipad2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB315A53C6B00CAF51A /* new_icon_ipad2.png */; };
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
@@ -1828,6 +1832,10 @@
 		CA96E35D150E107800292335 /* GameBasic.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBasic.pb.h; sourceTree = "<group>"; };
 		CA96E35E150E107800292335 /* GameMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMessage.pb.m; sourceTree = "<group>"; };
 		CA96E35F150E107800292335 /* GameMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMessage.pb.h; sourceTree = "<group>"; };
+		CA985EB015A53C6B00CAF51A /* new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_icon@2x.png"; sourceTree = "<group>"; };
+		CA985EB115A53C6B00CAF51A /* new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon.png; sourceTree = "<group>"; };
+		CA985EB215A53C6B00CAF51A /* new_icon_ipad1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad1.png; sourceTree = "<group>"; };
+		CA985EB315A53C6B00CAF51A /* new_icon_ipad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon_ipad2.png; sourceTree = "<group>"; };
 		CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QAdditions.m"; sourceTree = "<group>"; };
 		CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QAdditions.h"; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
@@ -3856,6 +3864,10 @@
 		CA32213E151E0FC00039A384 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				CA985EB015A53C6B00CAF51A /* new_icon@2x.png */,
+				CA985EB115A53C6B00CAF51A /* new_icon.png */,
+				CA985EB215A53C6B00CAF51A /* new_icon_ipad1.png */,
+				CA985EB315A53C6B00CAF51A /* new_icon_ipad2.png */,
 				CA4215FA1521915300FAA008 /* 57@2x.png */,
 				CA4215FB1521915300FAA008 /* 57.png */,
 				A3FAE0EF1553712E008B5827 /* 50.png */,
@@ -5385,6 +5397,10 @@
 				CAA1AF90159EA8DA00504C98 /* ad29f0cf8361452db392ffdef8057eff.config in Resources */,
 				CAA1AFBF159EAA5900504C98 /* DomobAdSDKBundle.bundle in Resources */,
 				CAA1AFFD159ED2D200504C98 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
+				CA985EB415A53C6B00CAF51A /* new_icon@2x.png in Resources */,
+				CA985EB515A53C6B00CAF51A /* new_icon.png in Resources */,
+				CA985EB615A53C6B00CAF51A /* new_icon_ipad1.png in Resources */,
+				CA985EB715A53C6B00CAF51A /* new_icon_ipad2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

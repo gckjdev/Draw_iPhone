@@ -1155,6 +1155,8 @@
                                   output:output];
 }
 
+#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
+
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
@@ -1167,17 +1169,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL]; 
-        
+        NSString* str = [NSString stringWithString:baseURL];         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYND_LEVEL_EXP];
-        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:DRAW_GAME_ID_FOR_LEVEL];  // set app ID to game here for level sync
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
-        str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
-       
+        str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];       
         return str;
     };
     
