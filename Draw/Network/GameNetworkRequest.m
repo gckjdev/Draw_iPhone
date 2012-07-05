@@ -23,6 +23,7 @@
 #define DEVICE_INFO_SEPERATOR   @"_"
 #define DEVICE_TYPE_IOS         1
 
+#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
 
 @implementation GameNetworkRequest
 
@@ -820,6 +821,7 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
@@ -1156,7 +1158,7 @@
                                   output:output];
 }
 
-#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
+
 
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
@@ -1767,6 +1769,7 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
         return str;
     };

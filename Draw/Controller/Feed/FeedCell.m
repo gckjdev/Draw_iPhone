@@ -196,14 +196,31 @@
 
 - (void)updateDrawView:(Feed *)feed
 {
-    [self.drawView cleanAllActions];
-    CGRect normalFrame = DRAW_VIEW_FRAME;
-    CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
-    CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
-    CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
+//    [self.drawView cleanAllActions];
+    [self.drawView removeFromSuperview];
+    if (feed.drawImage) {
+        self.drawView = [[[UIImageView alloc] initWithImage:feed.drawImage] autorelease];
+        self.drawView.frame = SHOW_DRAW_VIEW_FRAME;
+        [self addSubview:self.drawView];
+    }else{
+        PPDebug(@"<update draw view> create image for feed = %@", feed.feedId);
+        
+        CGRect normalFrame = DRAW_VIEW_FRAME;
+        CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
+        CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
+        CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
+        ShowDrawView *view = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];
+        view.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+        self.drawView = view;
+        [self addSubview:self.drawView];
+        [view show];
+        [view release];
+        feed.drawImage = [view createImage];
+    }
+
     
-    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-    [self.drawView show];
+//    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+//    [self.drawView show];
 }
 - (void)setCellInfo:(Feed *)feed
 {

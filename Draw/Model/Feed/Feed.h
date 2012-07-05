@@ -76,6 +76,8 @@ typedef enum {
     NSInteger _guessTimes;
     NSInteger _commentTimes;
     NSInteger _correctTimes;
+    
+    UIImage *_drawImage;
 }
 
 @property (nonatomic, retain) NSString *feedId;
@@ -91,6 +93,7 @@ typedef enum {
 
 // for user draw
 @property (nonatomic, retain) Draw *drawData;
+@property (nonatomic, retain) UIImage *drawImage;;
 
 // for user guess
 @property (nonatomic, retain) NSString *opusId;          // 猜作品的ID
