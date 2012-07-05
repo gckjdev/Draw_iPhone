@@ -36,11 +36,13 @@
 {
     if (array) {
         NSMutableArray *list = [NSMutableArray array];
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];        
         for (PBDrawAction *action in array) {
             DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:action];
             [list addObject:drawAction];
             [drawAction release];
         }
+        [pool release];
         return list;
     }
     return nil;
