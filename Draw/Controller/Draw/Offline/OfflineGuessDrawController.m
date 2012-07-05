@@ -793,7 +793,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
-    showView.playSpeed = 1.0/20.0;
+    showView.playSpeed = 1.0/28.0;
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled

@@ -184,7 +184,7 @@
     CGFloat yScale = currentFrame.size.height / normalFrame.size.height;
     
     self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-    [self.drawView play];
+    [self.drawView show];
 }
 - (void)setCellInfo:(Feed *)feed
 {

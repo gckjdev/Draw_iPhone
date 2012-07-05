@@ -177,14 +177,20 @@
     }else{
         self.drawView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
     }
-    [self.drawView play];
+    if (self.drawView.tag == SHOW_VIEW_TAG_SMALL) {
+        [self.drawView show];        
+    }else{
+        [self.drawView play];
+    }
+    
+
     
 }
 
 - (void)updateDrawView:(Feed *)feed
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
-    self.drawView.playSpeed = 1.0/20.0;
+    self.drawView.playSpeed = 1.0/36.0;
     [self.drawView setShowPenHidden:YES];
     self.drawView.delegate = self;
     [self.drawView setBackgroundColor:[UIColor whiteColor]];
