@@ -240,33 +240,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
     ShareCell* cell = [tableView dequeueReusableCellWithIdentifier:[ShareCell getIdentifier]];
     if (cell == nil) {
         cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSMutableArray* myPaintArray = [[NSMutableArray alloc] init];
+
+    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
-            MyPaint* paint  = [self.paints objectAtIndex:paintIndex];
-            
-//            NSString* paintName = [paint image];
-//            UIImage* image = nil;
+            MyPaint* paint  = [self.paints objectAtIndex:paintIndex];            
             if ([[NSFileManager defaultManager] fileExistsAtPath:paint.image]) {
                 [myPaintArray addObject:paint];
-//                NSData* data = [[NSData alloc] initWithContentsOfFile:paintName];
-//                image = [UIImage imageWithData:data];
-//                [data release];
-//                [imageArray addObject:image];
             }
         }
     }
+    [loopPool release];
+
     cell.indexPath = indexPath;
     [cell setImagesWithArray:myPaintArray];
     [myPaintArray release];
-    [loopPool release];
     return cell;
 }
 //
