@@ -475,9 +475,9 @@
         payAttentionButton.hidden = NO;
         alreadPayAttentionLabel.hidden = YES;
     }
-    if (user.level != 0) {
-        [levelLabel setText:[NSString stringWithFormat:@"LV:%d",user.level]];
-    }
+    int level = (user.level <= 0)?1:user.level;
+    [levelLabel setText:[NSString stringWithFormat:@"LV:%d",level]];
+    
     
 }
 
