@@ -24,7 +24,7 @@
 {
     NSMutableDictionary *_wordDict;
     LanguageType _languageType;
-    NSDictionary *wordBaseDictionary;
+//    NSDictionary *wordBaseDictionary;
 //    NSDictionary *wordDictionary;
 }
 
