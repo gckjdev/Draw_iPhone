@@ -9,26 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Draw/Model/Word/WordManager.m"
-         timestampString = "360224375.85438"
+         timestampString = "363159939.198494"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-dealloc"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/gitdata/Common_iPhone_20/Core/Core-Utils-Misc/Audio/AudioManager.m"
-         timestampString = "362385664.83234"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
-         landmarkName = "-setBackGroundMusicWithName:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
