@@ -1478,7 +1478,8 @@
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
                                                offset:(NSInteger)offset
-                                                limit:(int)limit
+                                                limit:(NSInteger)limit 
+                                                 lang:(NSInteger)lang;
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1492,8 +1493,8 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:feedListType];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
         return str;
     };
@@ -1514,7 +1515,7 @@
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                opusId:(NSString *)opusId 
                                                offset:(NSInteger)offset
-                                                limit:(int)limit
+                                                limit:(NSInteger)limit
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     

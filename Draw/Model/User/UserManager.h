@@ -13,6 +13,7 @@
 
 
 typedef enum {
+    UnknowType = 0,
     ChineseType = 1,
     EnglishType = 2
 }LanguageType;

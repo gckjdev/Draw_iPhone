@@ -16,6 +16,7 @@
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 
+
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
 
@@ -34,6 +35,11 @@ static FeedService *_staticFeedService = nil;
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
+    LanguageType lang = UnknowType;
+    if (feedListType == FeedListTypeHot) {
+        lang = [[UserManager defaultManager] getLanguageType];
+    }
+    
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest 
@@ -41,7 +47,8 @@ static FeedService *_staticFeedService = nil;
                                        userId:userId 
                                        feedListType:feedListType 
                                        offset:offset 
-                                       limit:limit];
+                                       limit:limit 
+                                       lang:lang];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableArray *list = nil;
@@ -80,7 +87,8 @@ static FeedService *_staticFeedService = nil;
                                        userId:userId 
                                        feedListType:FeedListTypeUser 
                                        offset:offset 
-                                       limit:limit];
+                                       limit:limit 
+                                       lang:UnknowType];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableArray *list = nil;
