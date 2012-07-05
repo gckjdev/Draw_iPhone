@@ -48,16 +48,17 @@ WordManager *GlobalGetWordManager()
 
 - (NSDictionary *)getWordBaseDictionary
 {
-    if (wordBaseDictionary == nil) {
-        wordBaseDictionary = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
-        [wordBaseDictionary retain];
-    }
-    return wordBaseDictionary;
+//    if (wordBaseDictionary == nil) {
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:WORD_BASE];    
+        return dict;
+//        [wordBaseDictionary retain];
+//    }
+//    return wordBaseDictionary;
 }
 
 - (void)clearWordBaseDictionary
 {
-    PPRelease(wordBaseDictionary);
+//    PPRelease(wordBaseDictionary);
 }
 
 - (NSArray *)wordArrayOfLevel:(WordLevel)level
@@ -133,7 +134,7 @@ WordManager *GlobalGetWordManager()
 - (void)dealloc
 {
     [_wordDict release];
-    [wordBaseDictionary release];
+//    [wordBaseDictionary release];
     [super dealloc];
 }
 
@@ -195,6 +196,7 @@ WordManager *GlobalGetWordManager()
         }
         [retArray addObject:value];
     }
+    wordBase = nil;
     int k = rand() % retArray.count;
     for (int i = length - 1 ; i >= 0; -- i) {
         NSString *value = [word.text substringWithRange:NSMakeRange(i, 1)];
