@@ -50,7 +50,9 @@
 
         cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME]autorelease];
         [cell addSubview:cell.drawView];
-        [cell.drawView setShowPenHidden:YES];
+        if ([cell.drawView isKindOfClass:[ShowDrawView class]]){
+            [(ShowDrawView*)cell.drawView setShowPenHidden:YES];
+        }
         cell.drawView.backgroundColor = [UIColor clearColor];
     }
     return cell;
@@ -259,7 +261,10 @@
 
 
 - (void)dealloc {
-    [_drawView cleanAllActions];
+    if ([_drawView respondsToSelector:@selector(cleanAllActions)]){
+        [_drawView performSelector:@selector(cleanAllActions)];
+    }
+
     PPRelease(timeLabel);
     PPRelease(descLabel);
     PPRelease(userNameLabel);
