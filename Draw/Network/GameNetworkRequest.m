@@ -1158,6 +1158,8 @@
                                   output:output];
 }
 
+#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
+
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
                                  userId:(NSString*)userId 
@@ -1170,17 +1172,14 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL]; 
-        
+        NSString* str = [NSString stringWithString:baseURL];         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYND_LEVEL_EXP];
-        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:DRAW_GAME_ID_FOR_LEVEL];  // set app ID to game here for level sync
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
-        str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
-       
+        str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];       
         return str;
     };
     
@@ -1481,7 +1480,8 @@
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
                                                offset:(NSInteger)offset
-                                                limit:(int)limit
+                                                limit:(NSInteger)limit 
+                                                 lang:(NSInteger)lang;
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1495,8 +1495,8 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:feedListType];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
         return str;
     };
@@ -1517,7 +1517,7 @@
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                opusId:(NSString *)opusId 
                                                offset:(NSInteger)offset
-                                                limit:(int)limit
+                                                limit:(NSInteger)limit
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     

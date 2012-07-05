@@ -264,12 +264,13 @@
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
                                                offset:(NSInteger)offset
-                                                limit:(int)limit;
+                                                limit:(NSInteger)limit 
+                                                 lang:(NSInteger)lang;
 
 + (CommonNetworkOutput*)getFeedCommentListWithProtocolBuffer:(NSString*)baseURL 
                                                       opusId:(NSString *)opusId 
                                                       offset:(NSInteger)offset
-                                                       limit:(int)limit;
+                                                       limit:(NSInteger)limit;
 
 + (CommonNetworkOutput*)updateUser:(NSString*)baseURL
                              appId:(NSString*)appId
