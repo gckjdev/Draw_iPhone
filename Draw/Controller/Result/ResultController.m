@@ -226,8 +226,6 @@
             [self.titleLabel setText:NSLS(@"kPity")];
         }
     }
-    [[LevelService defaultService] syncExpAndLevel:self type:UPDATE];
-
     //add score
     if (self.score > 0) {
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;

@@ -136,6 +136,7 @@ static LevelService* _defaultLevelService;
             [delegate levelUp:newLevel];
         }
     }
+    [self syncExpAndLevel:UPDATE];
 }
 - (void)minusExp:(long)exp 
         delegate:(id<LevelServiceDelegate>)delegate
@@ -149,6 +150,7 @@ static LevelService* _defaultLevelService;
             [delegate levelDown:newLevel];
         }
     }
+    [self syncExpAndLevel:UPDATE];
 }
 - (long)expRequiredForNextLevel
 {

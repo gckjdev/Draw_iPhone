@@ -464,7 +464,6 @@ enum{
         [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
-        [[LevelService defaultService] syncExpAndLevel:UPDATE];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];

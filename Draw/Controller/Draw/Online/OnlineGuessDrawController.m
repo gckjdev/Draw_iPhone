@@ -653,7 +653,6 @@
         [HomeController returnRoom:self];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
-        [[LevelService defaultService] syncExpAndLevel:UPDATE];
     }
 }
 - (void)clickBack:(CommonDialog *)dialog
