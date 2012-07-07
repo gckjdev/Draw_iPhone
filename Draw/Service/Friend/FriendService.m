@@ -40,7 +40,8 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
-                                                                appId:[ConfigManager appId]
+                                                                appId:[ConfigManager appId] 
+                                                               gameId:[ConfigManager gameId]
                                                                userId:userId 
                                                                  type:type
                                                            startIndex:0 
@@ -84,7 +85,8 @@ FriendService* globalGetFriendService()
     [viewController showActivityWithText:NSLS(@"kSearching")];
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
-                                                                appId:[ConfigManager appId]
+                                                                appId:[ConfigManager appId] 
+                                                               gameId:[ConfigManager gameId]
                                                             keyString:searchString 
                                                            startIndex:0 
                                                              endIndex:100];             

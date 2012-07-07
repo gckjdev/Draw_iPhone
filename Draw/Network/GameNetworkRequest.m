@@ -364,7 +364,8 @@
 }
 
 + (CommonNetworkOutput*)loginUser:(NSString*)baseURL
-                            appId:(NSString*)appId
+                            appId:(NSString*)appId 
+                           gameId:(NSString*)gameId
                             email:(NSString*)email 
                          password:(NSString*)password 
                       deviceToken:(NSString*)deviceToken
@@ -379,6 +380,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_LOGIN];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_EMAIL value:email];
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
@@ -704,7 +706,8 @@
 }
 
 + (CommonNetworkOutput*)loginUser:(NSString*)baseURL
-                            appId:(NSString*)appId
+                            appId:(NSString*)appId 
+                           gameId:(NSString*)gameId
                             deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken
 
@@ -717,8 +720,8 @@
         NSString* str = [NSString stringWithString:baseURL];       
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_DEVICELOGIN];
-        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
-        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
+        str = [str stringByAddQueryParameter:PARA_APPID value:gameId];//modify by kira, tempely use for get correct level info
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
         
@@ -810,6 +813,7 @@
 
 + (CommonNetworkOutput*)findFriends:(NSString*)baseURL
                               appId:(NSString*)appId 
+                             gameId:(NSString*)gameId
                              userId:(NSString*)userId
                                type:(int)type 
                          startIndex:(NSInteger)startIndex 
@@ -822,7 +826,7 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDFRIENDS];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
-        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_FRIENDSTYPE intValue:type];  
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
@@ -845,7 +849,8 @@
 }
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
-                              appId:(NSString*)appId
+                              appId:(NSString*)appId 
+                             gameId:(NSString*)gameId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex
@@ -857,7 +862,7 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCHUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
-        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_SEARCHSTRING value:keyString]; 
         str = [str stringByAddQueryParameter:PARA_START_INDEX intValue:startIndex];
         str = [str stringByAddQueryParameter:PARA_END_INDEX intValue:endIndex];
@@ -1164,6 +1169,7 @@
 
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
+                                 gameId:(NSString*)gameId
                                  userId:(NSString*)userId 
                                   level:(int)level 
                                     exp:(long)exp 
@@ -1177,7 +1183,8 @@
         NSString* str = [NSString stringWithString:baseURL];         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYND_LEVEL_EXP];
-        str = [str stringByAddQueryParameter:PARA_APPID value:DRAW_GAME_ID_FOR_LEVEL];  // set app ID to game here for level sync
+        str = [str stringByAddQueryParameter:PARA_APPID value:gameId];  // set app ID to game here for level sync
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
@@ -1761,7 +1768,8 @@
 }
 
 + (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
-                                    appId:(NSString*)appId
+                                    appId:(NSString*)appId 
+                                   gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1770,8 +1778,8 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_INFO];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        str = [str stringByAddQueryParameter:PARA_GAME_ID value:DRAW_GAME_ID_FOR_LEVEL];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
         return str;
     };

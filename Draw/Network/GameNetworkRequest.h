@@ -60,7 +60,8 @@
                                  deviceId:(NSString*)deviceId;
 
 + (CommonNetworkOutput*)loginUser:(NSString*)baseURL
-                            appId:(NSString*)appId
+                            appId:(NSString*)appId 
+                           gameId:(NSString*)gameId
                             email:(NSString*)email 
                          password:(NSString*)password 
                       deviceToken:(NSString*)deviceToken;
@@ -123,7 +124,8 @@
                               type:(int)type;
 
 + (CommonNetworkOutput*)loginUser:(NSString*)baseURL
-                            appId:(NSString*)appId
+                            appId:(NSString*)appId 
+                           gameId:(NSString*)gameId
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken;
 
@@ -139,13 +141,15 @@
 
 + (CommonNetworkOutput*)findFriends:(NSString*)baseURL
                               appId:(NSString*)appId 
+                             gameId:(NSString*)gameId
                              userId:(NSString*)userId
                                type:(int)type 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
 
 + (CommonNetworkOutput*)searchUsers:(NSString*)baseURL
-                              appId:(NSString*)appId
+                              appId:(NSString*)appId 
+                             gameId:(NSString*)gameId
                           keyString:(NSString*)keyString 
                          startIndex:(NSInteger)startIndex 
                            endIndex:(NSInteger)endIndex;
@@ -194,6 +198,7 @@
 
 + (CommonNetworkOutput*)syncExpAndLevel:(NSString*)baseURL 
                                   appId:(NSString*)appId 
+                                 gameId:(NSString*)gameId
                                  userId:(NSString*)userId 
                                   level:(int)level 
                                     exp:(long)exp 
@@ -308,7 +313,8 @@
                              targetUserId:(NSString*)targetUserId;
 
 + (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL 
-                                    appId:(NSString*)appId
+                                    appId:(NSString*)appId 
+                                   gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId;
 
 + (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL 

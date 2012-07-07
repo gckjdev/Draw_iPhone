@@ -55,5 +55,5 @@ typedef enum{
 
 + (BOOL)isProVersion;
 + (NSString*)appId;
-
++ (NSString*)gameId;
 @end

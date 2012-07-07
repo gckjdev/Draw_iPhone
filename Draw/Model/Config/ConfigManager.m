@@ -30,6 +30,11 @@
     }
 }
 
++ (NSString*)gameId
+{
+    return @"Game";
+}
+
 + (int)getBalanceDeviation
 {
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
