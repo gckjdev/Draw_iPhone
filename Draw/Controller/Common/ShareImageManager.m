@@ -367,4 +367,9 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"friend_detail_bg.png"];
 }
 
+//for toolbox
+- (UIImage *)toolBoxImage
+{
+    return [UIImage imageNamed:@"toolbox.png"];
+}
 @end

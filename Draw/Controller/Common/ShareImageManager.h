@@ -108,4 +108,8 @@
 - (UIImage *)purpleAvatarImage;
 
 - (UIImage *)friendDetailBgImage;
+
+
+//for tool
+- (UIImage *)toolBoxImage;
 @end
