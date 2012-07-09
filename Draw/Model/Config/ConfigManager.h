@@ -59,4 +59,5 @@ typedef enum{
 + (BOOL)removeAdByIAP;
 + (BOOL)useLmWall;
 
++ (NSString*)gameId;
 @end

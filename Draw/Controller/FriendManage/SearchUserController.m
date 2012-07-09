@@ -19,6 +19,7 @@
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
+#import "CommonUserInfoView.h"
 
 @interface SearchUserController ()
 
@@ -114,9 +115,42 @@
 }
 
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return nil;
+//}
+
+- (NSDictionary *)friendForIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger row = indexPath.row;
+    if ([dataList count] > row) {
+        return [self.dataList objectAtIndex:row];
+    }
     return nil;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *userDic = [self friendForIndexPath:indexPath];
+    int level = ((NSString*)[userDic objectForKey:PARA_LEVEL]).intValue;
+    NSString* nickName = [userDic objectForKey:PARA_NICKNAME];
+    NSString* sinaNick = [userDic objectForKey:PARA_SINA_NICKNAME];
+    NSString* qqNick = [userDic objectForKey:PARA_QQ_NICKNAME];
+    NSString* facebookId = [userDic objectForKey:PARA_FACEBOOKID];
+    NSString* nick = (nickName != nil)?nickName:
+    ((sinaNick != nil)?sinaNick:
+     ((qqNick != nil)?qqNick:
+      ((facebookId!=nil)?facebookId:nil)));//just find any avalible nickname if possible
+    [CommonUserInfoView showUser:[userDic objectForKey:PARA_USERID] 
+                        nickName:nick 
+                          avatar:[userDic objectForKey:PARA_AVATAR] 
+                          gender:[userDic objectForKey:PARA_GENDER] 
+                        location:[userDic objectForKey:PARA_LOCATION] 
+                           level:level  
+                         hasSina:(sinaNick != nil)
+                           hasQQ:(qqNick != nil)
+                     hasFacebook:(facebookId != nil)
+                      infoInView:self];
+
 }
 
 

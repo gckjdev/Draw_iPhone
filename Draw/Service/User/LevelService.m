@@ -175,6 +175,7 @@ static LevelService* _defaultLevelService;
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
                                                appId:[ConfigManager appId] 
+                                              gameId:[ConfigManager gameId]
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
@@ -224,6 +225,7 @@ static LevelService* _defaultLevelService;
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
                                                appId:[ConfigManager appId] 
+                                              gameId:[ConfigManager gameId]
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 

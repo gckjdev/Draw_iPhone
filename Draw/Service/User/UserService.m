@@ -513,6 +513,7 @@ static UserService* _defaultUserService;
           viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
 {
     NSString* appId = [ConfigManager appId];
+    NSString* gameId = [ConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     [viewController showActivityWithText:NSLS(@"kLoginUser")];    
@@ -521,6 +522,7 @@ static UserService* _defaultUserService;
         CommonNetworkOutput* output = 
         [GameNetworkRequest loginUser:SERVER_URL 
                                 appId:appId 
+                               gameId:gameId
                                 email:email 
                              password:password 
                           deviceToken:deviceToken];                
@@ -595,6 +597,7 @@ static UserService* _defaultUserService;
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
     NSString* appId = [ConfigManager appId];
+    NSString* gameId = [ConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -604,6 +607,7 @@ static UserService* _defaultUserService;
         CommonNetworkOutput* output = 
         [GameNetworkRequest loginUser:SERVER_URL 
                                 appId:appId 
+                               gameId:gameId
                              deviceId:deviceId
                           deviceToken:deviceToken];                
         
@@ -848,7 +852,8 @@ static UserService* _defaultUserService;
                          delegate:(id<UserServiceDelegate>)delegate{
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
-                                                                      appId:[ConfigManager appId]
+                                                                      appId:[ConfigManager appId] 
+                                                                     gameId:[ConfigManager gameId]
                                                                    ByUserId:targetUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
