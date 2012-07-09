@@ -717,6 +717,9 @@
 		CAA47816152FF70D005EDB24 /* PassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA47814152FF70D005EDB24 /* PassWordDialog.xib */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
+		CAA8D28E15AADF1000EE67E4 /* experience@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D28C15AADF0F00EE67E4 /* experience@2x.png */; };
+		CAA8D28F15AADF1000EE67E4 /* draw_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D28D15AADF0F00EE67E4 /* draw_share@2x.png */; };
+		CAA8D29115AADF4300EE67E4 /* playagain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D29015AADF4200EE67E4 /* playagain@2x.png */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C430159CA8CA00398EC5 /* AdWallSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */; };
 		CAA9C431159CA8CA00398EC5 /* LmmobAdWallSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */; };
@@ -1956,6 +1959,9 @@
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
 		CAA754BB150A02EA00B9391E /* SelectWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordController.m; sourceTree = "<group>"; };
 		CAA754BC150A02EA00B9391E /* SelectWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordController.xib; sourceTree = "<group>"; };
+		CAA8D28C15AADF0F00EE67E4 /* experience@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "experience@2x.png"; sourceTree = "<group>"; };
+		CAA8D28D15AADF0F00EE67E4 /* draw_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_share@2x.png"; sourceTree = "<group>"; };
+		CAA8D29015AADF4200EE67E4 /* playagain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playagain@2x.png"; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AdWallSDK.bundle; sourceTree = "<group>"; };
@@ -3951,6 +3957,9 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAA8D29015AADF4200EE67E4 /* playagain@2x.png */,
+				CAA8D28C15AADF0F00EE67E4 /* experience@2x.png */,
+				CAA8D28D15AADF0F00EE67E4 /* draw_share@2x.png */,
 				CA03470B15AA7B7F00C2C172 /* tool */,
 				A3EC170415996D8100D7872D /* refresh@2x.png */,
 				C2615A991597FA0200CEEC66 /* friend_detail_bg.png */,
@@ -5490,6 +5499,9 @@
 				C2433A0015AAB02400325A76 /* VendingController.xib in Resources */,
 				C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */,
 				C2433A1415AAC94000325A76 /* small_coin@2x.png in Resources */,
+				CAA8D28E15AADF1000EE67E4 /* experience@2x.png in Resources */,
+				CAA8D28F15AADF1000EE67E4 /* draw_share@2x.png in Resources */,
+				CAA8D29115AADF4300EE67E4 /* playagain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
