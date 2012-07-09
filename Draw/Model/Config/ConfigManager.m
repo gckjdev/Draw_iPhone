@@ -101,11 +101,11 @@
 
 + (GuessLevel)guessDifficultLevel
 {
-    NSInteger level = [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
-    if (level == 0) {
-        return NormalLevel;
-    }
-    return level;
+//    NSInteger level = [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
+//    if (level == 0) {
+    return NormalLevel;
+//    }
+//    return level;
 }
 
 + (void)setGuessDifficultLevel:(GuessLevel)level
