@@ -45,6 +45,7 @@ typedef enum{
 @property(nonatomic, assign) CGFloat playSpeed; //default is 1/40.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) NSInteger status;
+@property(nonatomic, retain) NSTimer *playTimer;    // Add By Benson
 
 - (void)playFromDrawActionIndex:(NSInteger)index;
 - (void)play;

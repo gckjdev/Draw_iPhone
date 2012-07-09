@@ -272,6 +272,7 @@ ItemShopController *staticItemController = nil;
 
 - (IBAction)clickRemoveAd:(id)sender
 {
+    [MobClick event:@"REMOVE_AD"];
     [[AdService defaultService] requestRemoveAd:self];
 }
 
@@ -338,17 +339,17 @@ ItemShopController *staticItemController = nil;
 }
 
 - (void)showYoumiWall
-{
-    
-    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-    [[LmWallService defaultService] show:self];
-
-    /*
-    [MobClick event:@"SHOW_YOUMI_WALL"];
-    YoumiWallController* controller = [[YoumiWallController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-    */
+{        
+    if ([ConfigManager useLmWall]){    
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }
+    else{
+        [MobClick event:@"SHOW_YOUMI_WALL"];
+        YoumiWallController* controller = [[YoumiWallController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (void)dealloc {

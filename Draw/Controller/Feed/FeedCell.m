@@ -201,7 +201,9 @@
 //    [self.drawView cleanAllActions];
     [self.drawView removeFromSuperview];
     if (feed.drawImage) {
-        self.drawView = [[[UIImageView alloc] initWithImage:feed.drawImage] autorelease];
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:feed.drawImage];
+        self.drawView = imageView;
+        [imageView release];
         self.drawView.frame = SHOW_DRAW_VIEW_FRAME;
         [self addSubview:self.drawView];
     }else{

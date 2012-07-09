@@ -162,4 +162,14 @@
     }
 }
 
++ (BOOL)useLmWall
+{
+    return ([MobClickUtils getIntValueByKey:@"WALL_TYPE" defaultValue:0] == 1);
+}
+
++ (BOOL)removeAdByIAP
+{
+    return ([MobClickUtils getIntValueByKey:@"DEL_AD_TYPE" defaultValue:0] == 1);
+}
+
 @end

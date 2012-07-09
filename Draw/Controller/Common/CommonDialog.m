@@ -23,6 +23,8 @@
 @synthesize style = _style;
 - (void)dealloc
 {
+    _delegate = nil;
+    
     [_contentView release];
     [_OKButton release];
     [_backButton release];
