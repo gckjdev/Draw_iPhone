@@ -419,8 +419,14 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken>");
     [self hideActivity];
-    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    if ([[DrawGameService defaultService] session] != nil){
+        PPDebug(@"<Network Broken> but session is nil");
+    }
+    else{
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
     
     //        // disable this policy at this moment...
 //    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){

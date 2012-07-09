@@ -15,6 +15,7 @@
 #import "UIImageExt.h"
 #import "UIImageUtil.h"
 #import "PenView.h"
+#import "PPDebug.h"
 
 #define DEFAULT_PLAY_SPEED (1/30.0)
 #define DEFAULT_SIMPLING_DISTANCE (5.0)
@@ -25,6 +26,7 @@
 @synthesize delegate = _delegate;
 @synthesize drawActionList = _drawActionList;
 @synthesize status = _status;
+@synthesize playTimer = _playTimer;
 #pragma mark Action Funtion
 
 
@@ -40,7 +42,13 @@
 {
     [self.drawActionList removeAllObjects];
     [self setStatus:Stop];
-    _playTimer = nil;
+    
+    // Add by Benson
+    if ([_playTimer isValid]){
+        [_playTimer invalidate];
+    }
+    
+    self.playTimer = nil;
     playingActionIndex = 0;
     playingPointIndex = 0;
     startPlayIndex = 0;
@@ -87,6 +95,8 @@
 
 - (void)cleanFrame:(NSTimer *)theTimer
 {
+    PPDebug(@"<Debug> Show Draw View Clean Frame Timer");
+    
     self.status = Stop;
     pen.hidden = YES;
     [self setNeedsDisplay];
@@ -97,6 +107,7 @@
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {       
+    PPDebug(@"<Debug> Show Draw View For Next Frame");
     DrawAction *currentAction = [self playingAction];
     if (!_showPenHidden) {
         if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {
@@ -199,8 +210,17 @@
 
 - (void)dealloc
 {
-    [_drawActionList release];
-    [pen release];
+    PPDebug(@"%@ dealloc", [self description]);
+    
+    // Add by Benson
+    if ([_playTimer isValid]){
+        PPDebug(@"<Debug> ShowDRawView Clear Play Timer");
+        [_playTimer invalidate];
+    }    
+
+    PPRelease(_playTimer);
+    PPRelease(_drawActionList);
+    PPRelease(pen);
     [super dealloc];
 }
 
@@ -312,7 +332,7 @@
                 //if is playing then play the next frame
                 if (self.status == Playing && j == playingActionIndex && i == playingPointIndex) {
                     CGContextStrokePath(context);            
-                    _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+                    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                     return;
                 }
             }
@@ -321,11 +341,11 @@
             //is the last action
             startPlayIndex = j + 1;
             if (playingActionIndex == [self.drawActionList count] - 1) {
-                _playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(cleanFrame:) userInfo:nil repeats:NO];
+                self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(cleanFrame:) userInfo:nil repeats:NO];
             }else{
                 if (self.status == Playing && j == playingActionIndex) {
                     CGContextStrokePath(context);            
-                    _playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
+                    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:_playSpeed target:self selector:@selector(nextFrame:) userInfo:nil repeats:NO];
                     return;
                 }
             }

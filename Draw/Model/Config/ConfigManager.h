@@ -55,5 +55,9 @@ typedef enum{
 
 + (BOOL)isProVersion;
 + (NSString*)appId;
+
++ (BOOL)removeAdByIAP;
++ (BOOL)useLmWall;
+
 + (NSString*)gameId;
 @end

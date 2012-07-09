@@ -8,12 +8,12 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFiles</key>
+	<key>Icon files Draw</key>
 	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
+		<string>57.png</string>
+		<string>57@2x.png</string>
+		<string>50.png</string>
+		<string>72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.drawpro</string>
@@ -49,7 +49,14 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFChannelId</key>
-	<string>App Store</string>
+	<string>91</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>new_icon.png</string>
+		<string>new_icon@2x.png</string>
+		<string>new_icon_ipad1.png</string>
+		<string>new_icon_ipad2.png</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
