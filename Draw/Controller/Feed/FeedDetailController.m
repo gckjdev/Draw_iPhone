@@ -180,10 +180,7 @@
     if (self.drawView.tag == SHOW_VIEW_TAG_SMALL) {
         [self.drawView show];        
     }else{
-        NSInteger count = [DrawAction pointCountForActions:self.drawView.drawActionList];
-        PPDebug(@"count of point = %d", count);        
         double speed = [DrawAction calculateSpeed:self.drawView.drawActionList];
-        PPDebug(@"play speed = %f", speed);        
         self.drawView.playSpeed = speed;
         [self.drawView play];
     }

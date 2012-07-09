@@ -142,7 +142,7 @@
 #define CANDIDATE_END_TAG 39
 
 #define RowNumber 2
-#define WORD_BASE_X (([DeviceDetection isIPAD])? 26 : 5)
+#define WORD_BASE_X (([DeviceDetection isIPAD])? 26 : 9)
 #define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : 390)
 #define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : 425)
 #define WORD_SPACE_X (([DeviceDetection isIPAD])? 22 : 4)
@@ -455,6 +455,8 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
+        double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
+        self.showView.playSpeed = speed;
         [self.showView play];
     }
     
