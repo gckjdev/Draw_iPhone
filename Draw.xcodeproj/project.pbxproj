@@ -511,7 +511,6 @@
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
 		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
-		CA1FB7DD153078F900237D3F /* flower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7D8153078F900237D3F /* flower@2x.png */; };
 		CA1FB7DF153078F900237D3F /* bottom2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7DA153078F900237D3F /* bottom2@2x.png */; };
 		CA1FB7E0153078F900237D3F /* main_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7DB153078F900237D3F /* main_top@2x.png */; };
 		CA1FB7E1153078F900237D3F /* wood_wall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7DC153078F900237D3F /* wood_wall@2x.png */; };
@@ -537,7 +536,6 @@
 		CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */; };
 		CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
 		CA28C0D215312FF300E531AE /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CC15312FF300E531AE /* bottom@2x.png */; };
-		CA28C0D315312FF300E531AE /* flower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CD15312FF300E531AE /* flower@2x.png */; };
 		CA28C0D415312FF300E531AE /* room_mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CE15312FF300E531AE /* room_mumber@2x.png */; };
 		CA28C0D515312FF300E531AE /* top_menu_left_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0CF15312FF300E531AE /* top_menu_left_bg.png */; };
 		CA28C0D615312FF300E531AE /* top_menu_right_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0D015312FF300E531AE /* top_menu_right_bg.png */; };
@@ -1628,7 +1626,6 @@
 		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
-		CA1FB7D8153078F900237D3F /* flower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower@2x.png"; sourceTree = "<group>"; };
 		CA1FB7DA153078F900237D3F /* bottom2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom2@2x.png"; sourceTree = "<group>"; };
 		CA1FB7DB153078F900237D3F /* main_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_top@2x.png"; sourceTree = "<group>"; };
 		CA1FB7DC153078F900237D3F /* wood_wall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_wall@2x.png"; sourceTree = "<group>"; };
@@ -1659,7 +1656,6 @@
 		CA22DD01157CB40B009C95CB /* OfflineGuessDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineGuessDrawController.h; sourceTree = "<group>"; };
 		CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OfflineGuessDrawController~ipad.xib"; sourceTree = "<group>"; };
 		CA28C0CC15312FF300E531AE /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
-		CA28C0CD15312FF300E531AE /* flower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower@2x.png"; sourceTree = "<group>"; };
 		CA28C0CE15312FF300E531AE /* room_mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_mumber@2x.png"; sourceTree = "<group>"; };
 		CA28C0CF15312FF300E531AE /* top_menu_left_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_menu_left_bg.png; sourceTree = "<group>"; };
 		CA28C0D015312FF300E531AE /* top_menu_right_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_menu_right_bg.png; sourceTree = "<group>"; };
@@ -4016,7 +4012,6 @@
 				CA8D60311531C9AB00E016ED /* name@2x.png */,
 				CA28C0CC15312FF300E531AE /* bottom@2x.png */,
 				CA6F0582153C14CC00B1AE11 /* pen_mask@2x.png */,
-				CA28C0CD15312FF300E531AE /* flower@2x.png */,
 				CA28C0CE15312FF300E531AE /* room_mumber@2x.png */,
 				CA03787F155378A600CF41E3 /* left_button@2x.png */,
 				CA037880155378A600CF41E3 /* right_button@2x.png */,
@@ -4027,7 +4022,6 @@
 				CA28C0DE1531327300E531AE /* normalpallets@2x.png */,
 				CA1FB7E215307DCB00237D3F /* bottom@2x.png */,
 				CA1FB7E315307DCB00237D3F /* room_mumber@2x.png */,
-				CA1FB7D8153078F900237D3F /* flower@2x.png */,
 				CA1FB7DA153078F900237D3F /* bottom2@2x.png */,
 				CA1FB7DB153078F900237D3F /* main_top@2x.png */,
 				CA1FB7DC153078F900237D3F /* wood_wall@2x.png */,
@@ -5257,7 +5251,6 @@
 				CA63914915306B9F007564C6 /* home_menu@2x.png in Resources */,
 				CA63914A15306B9F007564C6 /* facebook@2x.png in Resources */,
 				CA63914B15306B9F007564C6 /* man2@2x.png in Resources */,
-				CA1FB7DD153078F900237D3F /* flower@2x.png in Resources */,
 				CA1FB7DF153078F900237D3F /* bottom2@2x.png in Resources */,
 				CA1FB7E0153078F900237D3F /* main_top@2x.png in Resources */,
 				CA1FB7E1153078F900237D3F /* wood_wall@2x.png in Resources */,
@@ -5266,7 +5259,6 @@
 				CA1FB7E8153086ED00237D3F /* top_menu_right_bg.png in Resources */,
 				CA1FB7E9153086ED00237D3F /* top_menu_left_bg.png in Resources */,
 				CA28C0D215312FF300E531AE /* bottom@2x.png in Resources */,
-				CA28C0D315312FF300E531AE /* flower@2x.png in Resources */,
 				CA28C0D415312FF300E531AE /* room_mumber@2x.png in Resources */,
 				CA28C0D515312FF300E531AE /* top_menu_left_bg.png in Resources */,
 				CA28C0D615312FF300E531AE /* top_menu_right_bg.png in Resources */,

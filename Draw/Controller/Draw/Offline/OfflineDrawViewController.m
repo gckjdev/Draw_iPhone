@@ -168,7 +168,7 @@
     [pickPenView setDelegate:self];
     NSMutableArray *penArray = [[NSMutableArray alloc] init];
     NSInteger price = [[ShoppingManager defaultManager] getPenPrice];
-    for (int i = PenStartType; i < PenCount; ++ i) {
+    for (int i = Pencil; i < PenCount; ++ i) {
         PenView *pen = [PenView penViewWithType:i];
         pen.price = price;
         [penArray addObject:pen];

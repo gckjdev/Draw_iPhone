@@ -21,8 +21,8 @@ typedef enum {
     Eraser = 1100
 }PenType;
 
-#define PenStartType Pencil
-
+//#define PenStartType Pencil
+#define PenStartType 1000
 @interface PenView : UIButton
 {
 //    CGImageRef maskImage;

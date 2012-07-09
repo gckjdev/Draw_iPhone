@@ -232,9 +232,8 @@
         [[AccountService defaultService] chargeAccount:self.score source:type];    
         
         [[AudioManager defaultManager] playSoundById:GAME_WIN];
-        [AnimationManager fireworksAnimationAtView:self.view];
     }else{
-        [AnimationManager snowAnimationAtView:self.view];
+//        [AnimationManager snowAnimationAtView:self.view];
     }
     
 }
@@ -260,10 +259,6 @@
                                                        iPadFrame:CGRectMake(224, 755, 320, 50)
                                                          useLmAd:NO];        
     }        
-//    [drawGameService setRoomDelegate:self];
-//    [drawGameService registerObserver:self];
-//    [self.upButton setEnabled:YES];
-//    [self.downButton setEnabled:YES];
 }
 
 - (void)viewDidUnload
@@ -361,56 +356,6 @@
     
 }
 
-//- (void)saveActionList:(NSArray *)actionList
-//{
-// 
-//    if (actionList.count == 0) {
-//        PPDebug(@"actionList has no object");        
-//    }
-//
-//    if ([DrawAction isDrawActionListBlank:actionList]) {
-//        return;
-//    }
-//    time_t aTime = time(0);
-//    NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
-//    if (_image!=nil) 
-//    {
-//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//        if (queue == NULL){
-//            return;
-//        }
-//                
-//        dispatch_async(queue, ^{
-//            //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
-//            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-//            if (!paths) {
-//                PPDebug(@"Document directory not found!");
-//            }
-//            //并给文件起个文件名
-//            NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
-//            //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
-//            NSData* imageData = UIImagePNGRepresentation(_image);
-//            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-//            PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                if (result) {                    
-//                    NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-//                    [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
-//                                                                        data:drawActionListData 
-//                                                                  drawUserId:_drawUserId 
-//                                                            drawUserNickName:_drawUserNickName 
-//                                                                    drawByMe:_isMyPaint 
-//                                                                    drawWord:self.wordText];
-//                    
-//                    [self popupMessage:NSLS(@"kSaveImageOK") title:nil];
-//                }
-//            });
-//        });
-//    }
-//   
-//}
-
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
 {
     if (rank.integerValue == RANK_BAD) {
@@ -425,6 +370,7 @@
 - (void)levelUp:(int)level
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+    [AnimationManager fireworksAnimationAtView:self.view];
 }
 
 
