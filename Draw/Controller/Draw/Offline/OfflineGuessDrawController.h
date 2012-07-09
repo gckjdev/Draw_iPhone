@@ -27,7 +27,7 @@
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
-@class ToolView;
+//@class ToolView;
 @class ItemShopController;
 @class Draw;
 @class Feed;
@@ -36,12 +36,12 @@
     ShowDrawView *showView;
     NSString *_candidateString;
     ItemShopController *_shopController;
-    ToolView *toolView;
+//    ToolView *toolView;
     UIButton *moveButton;
     UIButton *lastScaleTarget;
     
-    NSInteger numberPerPage;
-    NSInteger pageCount;
+//    NSInteger numberPerPage;
+//    NSInteger pageCount;
     ShareImageManager *shareImageManager;
 
     Word *_word;
@@ -59,10 +59,6 @@
 @property (retain, nonatomic) UIViewController *superController;
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (retain, nonatomic) IBOutlet UIButton *leftPageButton;
-@property (retain, nonatomic) IBOutlet UIButton *rightPageButton;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) Feed *feed;
 @property (retain, nonatomic) IBOutlet UIButton *quitButton;
@@ -73,20 +69,18 @@
 - (IBAction)clickRunAway:(id)sender;
 - (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
-- (IBAction)clickLeftPage:(id)sender;
-- (IBAction)clickRightPage:(id)sender;
+- (IBAction)clickToolBox:(id)sender;
 
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
 - (NSString *)realValueForButton:(UIButton *)button;
 - (void)initShowView;
-- (void)initBomb;
+//- (void)initBomb;
 
 - (void)initTargetViews;
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
 - (void)updateTargetViews:(Word *)word;
 
-- (void)scrollToPage:(NSInteger)pageIndex;
 
 //the feed should be draw type
 - (id)initWithFeed:(Feed *)feed;

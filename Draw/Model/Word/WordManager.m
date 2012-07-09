@@ -287,7 +287,7 @@ WordManager *GlobalGetWordManager()
     
     NSInteger count = 0;
     NSInteger canLenth = candidateString.length;
-    if (canLenth == EN_WORD_COUNT_PER_PAGE) {
+    if (canLenth == CANDIDATE_WORD_NUMBER) {
         count = MIN(canLenth / 2,canLenth - [[word text] length]);
     }else{
         count = canLenth - 12;
