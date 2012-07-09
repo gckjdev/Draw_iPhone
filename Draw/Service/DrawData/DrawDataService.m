@@ -64,7 +64,6 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     dispatch_async(workingQueue, ^{
             
-        [viewController retain];
         NSString *uid = [[UserManager defaultManager] userId];
         NSString *gender = [[UserManager defaultManager] gender];
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
@@ -91,7 +90,6 @@ static DrawDataService* _defaultDrawDataService = nil;
             if (viewController && [viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
                 [viewController didMatchDraw:feed result:resultCode];
             }  
-            [viewController release];
         });
     });    
 }
