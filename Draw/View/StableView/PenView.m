@@ -92,14 +92,30 @@
     }
     UIImage *image = [self penImageForType:penType];
     [self setBackgroundImage:image forState:UIControlStateNormal];
-
-    NSLog(@"pentype: type = %d.",penType);        
     
-    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1];
+    BOOL hasBought = _penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:_penType amount:1];
     if (!hasBought) {
-        NSLog(@"type = %d, not bought.",penType);        
         [self setAlpha:0.3];
     }
     
 }
+
+
+#define LAST_PEN_TYPE @"LastPenTypeKey"
++ (PenType)lastPenType
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSInteger type = [userDefaults integerForKey:LAST_PEN_TYPE];
+    if (type < PenStartType || type >= PenCount) {
+        return Pencil;
+    }
+    return type;
+}
++ (void)savePenType:(PenType)type
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:type forKey:LAST_PEN_TYPE];
+    [userDefaults synchronize];
+}
+
 @end

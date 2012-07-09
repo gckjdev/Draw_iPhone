@@ -9,6 +9,8 @@
 #import "PickPenView.h"
 #import "PPDebug.h"
 #import "PenView.h"
+#import "AccountService.h"
+
 @implementation PickPenView
 
 - (id)initWithFrame:(CGRect)frame
@@ -44,12 +46,29 @@
     [self setHidden:YES animated:YES];
 }
 
+- (void)sortPens
+{
+    [_penArray sortUsingComparator:^(id obj1,id obj2){
+        PenView *pen1 = (PenView *)obj1;
+        PenView *pen2 = (PenView *)obj2;
+        BOOL hasBought1 = [pen1 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen1.penType amount:1];
+        BOOL hasBought2 = [pen2 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen2.penType amount:1];
+        NSInteger ret = hasBought2 - hasBought1;
+        if (ret == 0) {
+            return NSOrderedAscending;
+        }
+        return ret;
+    }];
+
+}
+
 - (void)updatePenViews
 {
     NSInteger count = [_penArray count];
     if (count == 0) {
         return;
     }
+    [self sortPens];
     CGFloat height = self.frame.size.height;
     CGFloat width = self.frame.size.width;
     CGFloat xSpace = (width - [PenView width] * count)/ (count + 1);
@@ -64,6 +83,8 @@
         x += xSpace + [PenView width];
     }
 }
+
+
 
 - (void)setPens:(NSArray *)pens
 {

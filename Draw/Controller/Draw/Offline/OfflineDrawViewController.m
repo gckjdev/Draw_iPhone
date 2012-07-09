@@ -168,23 +168,11 @@
     [pickPenView setDelegate:self];
     NSMutableArray *penArray = [[NSMutableArray alloc] init];
     NSInteger price = [[ShoppingManager defaultManager] getPenPrice];
-    for (int i = Pencil; i < PenCount; ++ i) {
+    for (int i = PenStartType; i < PenCount; ++ i) {
         PenView *pen = [PenView penViewWithType:i];
         pen.price = price;
         [penArray addObject:pen];
     }
-    
-    [penArray sortUsingComparator:^(id obj1,id obj2){
-        PenView *pen1 = (PenView *)obj1;
-        PenView *pen2 = (PenView *)obj2;
-        BOOL hasBought1 = [pen1 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen1.penType amount:1];
-        BOOL hasBought2 = [pen2 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen2.penType amount:1];
-        NSInteger ret = hasBought2 - hasBought1;
-        if (ret == 0) {
-            return NSOrderedAscending;
-        }
-        return ret;
-    }];
     
     [pickPenView setPens:penArray];
     [penArray release];
@@ -291,7 +279,8 @@ enum{
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
-    [penButton setPenType:Pencil];
+//    [penButton setPenType:Pencil];
+    [penButton setPenType:[PenView lastPenType]];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
 }
@@ -391,7 +380,7 @@ enum{
 {
     if (pickView.tag == PICK_COLOR_VIEW_TAG) {
         [drawView setLineWidth:width];
-        penWidth = width;        
+        penWidth = width;   
     }else if(pickView.tag == PICK_ERASER_VIEW_TAG)
     {
         [drawView setLineWidth:width];
@@ -415,7 +404,8 @@ enum{
         _willBuyPen = nil;
         if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
             [self.penButton setPenType:penView.penType];
-            [drawView setPenType:penView.penType];            
+            [drawView setPenType:penView.penType];       
+            [PenView savePenType:penView.penType];
         }else{
             AccountService *service = [AccountService defaultService];
             if (![service hasEnoughCoins:penView.price]) {
@@ -486,7 +476,10 @@ enum{
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
-        [drawView setPenType:_willBuyPen.penType];            
+        [_willBuyPen setAlpha:1];
+        [drawView setPenType:_willBuyPen.penType];   
+        [PenView savePenType:_willBuyPen.penType];
+        [pickPenView updatePenViews];
     }else if(dialog.tag == DIALOG_TAG_SUBMIT){
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 

@@ -36,6 +36,9 @@ typedef enum {
 + (CGFloat)width;
 - (BOOL)isRightDownRotate;
 - (BOOL)isDefaultPen;
++ (PenType)lastPenType;
++ (void)savePenType:(PenType)type;
+
 @property(nonatomic, assign)PenType penType;
 @property(nonatomic, assign)NSInteger price;
 
