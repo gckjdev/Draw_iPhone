@@ -116,6 +116,7 @@
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
+		C2433A1415AAC94000325A76 /* small_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2433A1315AAC94000325A76 /* small_coin@2x.png */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
 		C2615A831591C17B00CEEC66 /* h_chat@@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A751591C17B00CEEC66 /* h_chat@@2x.png */; };
 		C2615A841591C17B00CEEC66 /* h_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A761591C17B00CEEC66 /* h_coin@2x.png */; };
@@ -238,7 +239,6 @@
 		CA03472F15AA7B7F00C2C172 /* reward_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471615AA7B7F00C2C172 /* reward_coin@2x.png */; };
 		CA03473215AA7B7F00C2C172 /* shop_shelf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471915AA7B7F00C2C172 /* shop_shelf@2x.png */; };
 		CA03473315AA7B7F00C2C172 /* shopping_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471A15AA7B7F00C2C172 /* shopping_bg@2x.png */; };
-		CA03473415AA7B7F00C2C172 /* smaill_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471B15AA7B7F00C2C172 /* smaill_coin@2x.png */; };
 		CA03473515AA7B7F00C2C172 /* tipbag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471C15AA7B7F00C2C172 /* tipbag@2x.png */; };
 		CA03473615AA7B7F00C2C172 /* tomato@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471D15AA7B7F00C2C172 /* tomato@2x.png */; };
 		CA03473715AA7B7F00C2C172 /* toolbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03471E15AA7B7F00C2C172 /* toolbox@2x.png */; };
@@ -990,6 +990,7 @@
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
 		C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VendingController~ipad.xib"; sourceTree = "<group>"; };
+		C2433A1315AAC94000325A76 /* small_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_coin@2x.png"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
 		C2615A751591C17B00CEEC66 /* h_chat@@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_chat@@2x.png"; path = "Images/h_chat@@2x.png"; sourceTree = "<group>"; };
@@ -1159,7 +1160,6 @@
 		CA03471615AA7B7F00C2C172 /* reward_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reward_coin@2x.png"; sourceTree = "<group>"; };
 		CA03471915AA7B7F00C2C172 /* shop_shelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_shelf@2x.png"; sourceTree = "<group>"; };
 		CA03471A15AA7B7F00C2C172 /* shopping_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_bg@2x.png"; sourceTree = "<group>"; };
-		CA03471B15AA7B7F00C2C172 /* smaill_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smaill_coin@2x.png"; sourceTree = "<group>"; };
 		CA03471C15AA7B7F00C2C172 /* tipbag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tipbag@2x.png"; sourceTree = "<group>"; };
 		CA03471D15AA7B7F00C2C172 /* tomato@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomato@2x.png"; sourceTree = "<group>"; };
 		CA03471E15AA7B7F00C2C172 /* toolbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbox@2x.png"; sourceTree = "<group>"; };
@@ -2553,6 +2553,7 @@
 		CA03470B15AA7B7F00C2C172 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				C2433A1315AAC94000325A76 /* small_coin@2x.png */,
 				CA03470C15AA7B7F00C2C172 /* brush_pen@2x.png */,
 				CA03470D15AA7B7F00C2C172 /* buyed_2x.png */,
 				CA03473A15AA7C3100C2C172 /* clean_ad@2x.png */,
@@ -2567,7 +2568,6 @@
 				CA03473F15AA7F2D00C2C172 /* shop_icon@2x.png */,
 				CA03471915AA7B7F00C2C172 /* shop_shelf@2x.png */,
 				CA03471A15AA7B7F00C2C172 /* shopping_bg@2x.png */,
-				CA03471B15AA7B7F00C2C172 /* smaill_coin@2x.png */,
 				CA03471C15AA7B7F00C2C172 /* tipbag@2x.png */,
 				CA03471D15AA7B7F00C2C172 /* tomato@2x.png */,
 				CA03471E15AA7B7F00C2C172 /* toolbox@2x.png */,
@@ -5484,12 +5484,12 @@
 				CA03473D15AA7F2D00C2C172 /* shop_icon@2x.png in Resources */,
 				CA03473215AA7B7F00C2C172 /* shop_shelf@2x.png in Resources */,
 				CA03473315AA7B7F00C2C172 /* shopping_bg@2x.png in Resources */,
-				CA03473415AA7B7F00C2C172 /* smaill_coin@2x.png in Resources */,
 				CA03473515AA7B7F00C2C172 /* tipbag@2x.png in Resources */,
 				CA03473615AA7B7F00C2C172 /* tomato@2x.png in Resources */,
 				CA03473715AA7B7F00C2C172 /* toolbox@2x.png in Resources */,
 				C2433A0015AAB02400325A76 /* VendingController.xib in Resources */,
 				C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */,
+				C2433A1415AAC94000325A76 /* small_coin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

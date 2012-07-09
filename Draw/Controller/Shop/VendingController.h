@@ -9,5 +9,8 @@
 #import "PPViewController.h"
 
 @interface VendingController : PPViewController
+@property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
+@property (retain, nonatomic) IBOutlet UIButton *coinsButton;
+@property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
 
 @end

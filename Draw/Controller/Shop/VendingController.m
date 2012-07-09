@@ -13,6 +13,21 @@
 @end
 
 @implementation VendingController
+@synthesize itemListScrollView;
+@synthesize coinsButton;
+@synthesize buyCoinButton;
+
+- (void)dealloc {
+    [itemListScrollView release];
+    [coinsButton release];
+    [buyCoinButton release];
+    [super dealloc];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +46,9 @@
 
 - (void)viewDidUnload
 {
+    [self setItemListScrollView:nil];
+    [self setCoinsButton:nil];
+    [self setBuyCoinButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -40,5 +58,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end
