@@ -556,6 +556,7 @@ enum{
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
+    self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
@@ -622,9 +623,6 @@ enum{
     }
     
     NSArray *drawActionList = drawView.drawActionList;
-//    if ([DeviceDetection isIPAD]) {
-//        drawActionList = [self compressActionList:drawView.drawActionList];
-//    }
 
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
@@ -632,6 +630,7 @@ enum{
         }
     }else {
         [self showActivityWithText:NSLS(@"kSending")];
+        self.submitButton.userInteractionEnabled = NO;
         [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType targetUid:self.targetUid delegate:self];
     }
 }
