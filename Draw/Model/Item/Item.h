@@ -32,9 +32,9 @@
              image:(UIImage*)anImage 
               name:(NSString*)aName 
        description:(NSString*)aDescription 
-
   buyAmountForOnce:(int)amount 
-             price:(int)aPrice;
+             price:(int)aPrice 
+            amount:(int)currentAmount;
 + (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
 + (Item*)tomato;
 + (Item*)flower;

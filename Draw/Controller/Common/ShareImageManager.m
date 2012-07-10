@@ -430,4 +430,8 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"tomato.png"];
 }
+- (UIImage *)smallCoin
+{
+    return [UIImage imageNamed:@"small_coin.png"];
+}
 @end

@@ -10,6 +10,7 @@
 #import "ItemType.h"
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
+#import "ItemManager.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -61,7 +62,8 @@
               name:(NSString*)aName 
        description:(NSString*)aDescription 
   buyAmountForOnce:(int)amount 
-             price:(int)aPrice
+             price:(int)aPrice 
+            amount:(int)currentAmount
 {
     self = [super init];
     if(self){
@@ -71,6 +73,7 @@
         self.itemDescription = aDescription;
         self.buyAmountForOnce = amount;
         self.price = aPrice;
+        self.amount = currentAmount;
     }
     return self;
 }
@@ -168,7 +171,8 @@
                                   name:[Item nameForItemType:ItemTypeTomato]
                            description:[Item descriptionForItemType:ItemTypeTomato]
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
 }
 
 + (Item*)flower
@@ -178,7 +182,8 @@
                                   name:[Item nameForItemType:ItemTypeFlower]
                            description:[Item descriptionForItemType:ItemTypeFlower]
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
 }
 
 + (Item*)tips
@@ -188,7 +193,8 @@
                                   name:[Item nameForItemType:ItemTypeTips]
                            description:[Item descriptionForItemType:ItemTypeTips] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeTips]] autorelease];
 }
 
 + (Item*)colors
@@ -198,7 +204,8 @@
                                   name:[Item nameForItemType:ItemTypeColor]
                            description:[Item descriptionForItemType:ItemTypeColor] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeColor]] autorelease];
 }
 
 + (Item*)removeAd
@@ -208,7 +215,8 @@
                                   name:[Item nameForItemType:ItemTypeRemoveAd]
                            description:[Item descriptionForItemType:ItemTypeRemoveAd] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeRemoveAd]] autorelease];
 }
 
 + (Item*)featherPen
@@ -218,7 +226,8 @@
                                   name:[Item nameForItemType:Quill]
                            description:[Item descriptionForItemType:Quill] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:Quill]] autorelease];
 }
 
 + (Item*)brushPen
@@ -228,7 +237,8 @@
                                   name:[Item nameForItemType:Pen]
                            description:[Item descriptionForItemType:Pen] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:Pen]] autorelease];
 }
 
 + (Item*)iceCreamPen
@@ -238,7 +248,8 @@
                                   name:[Item nameForItemType:IcePen]
                            description:[Item descriptionForItemType:IcePen] 
                       buyAmountForOnce:10 
-                                 price:5] autorelease];
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:IcePen]] autorelease];
 }
 
 @end

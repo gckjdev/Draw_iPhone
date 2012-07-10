@@ -128,5 +128,6 @@
 - (UIImage *)shoppingBackground;
 - (UIImage *)tipBag;
 - (UIImage *)tomato;
+- (UIImage *)smallCoin;
 
 @end

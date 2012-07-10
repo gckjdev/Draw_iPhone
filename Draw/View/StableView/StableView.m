@@ -14,7 +14,7 @@
 #import "DeviceDetection.h"
 #import "Item.h"
 
-#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 39, 52))
+#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 61, 61))
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
@@ -49,6 +49,9 @@
             ShareImageManager *imageManager = [ShareImageManager defaultManager];
             [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
             [numberButton setUserInteractionEnabled:NO];
+            float width = self.frame.size.width;
+            float height = self.frame.size.height;
+            [numberButton setFrame:CGRectMake(width*0.6, height*0.6, width*0.4, height*0.4)];
             
             [self addSubview:numberButton];
             [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
@@ -56,7 +59,16 @@
             [self setNumber:number];
             [numberButton retain];            
         }else{
-            //TODO show the has flag.
+            ShareImageManager *imageManager = [ShareImageManager defaultManager];
+            UIImageView* flag = [[[UIImageView alloc] initWithImage:imageManager.buyedImage] autorelease];
+ 
+            float width = self.frame.size.width;
+            float height = self.frame.size.height;
+            [flag setFrame:CGRectMake(width*0.5, height*0.5, width*0.3, height*0.5)];
+            
+            [self addSubview:flag];
+            [self setNumber:number];
+            [flag retain];
         }
         
     }
