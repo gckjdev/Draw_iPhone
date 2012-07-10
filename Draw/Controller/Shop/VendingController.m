@@ -12,6 +12,7 @@
 #import "AccountManager.h"
 #import "ItemType.h"
 #import "StableView.h"
+#import "ItemManager.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -221,5 +222,26 @@
 - (void)didBuyItem:(Item *)anItem
 {
     [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
+    int pageCount = _itemList.count/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
+    for (int i = 0; i < pageCount; i ++) {
+        UIView* view = [self.itemListScrollView viewWithTag:PAGE_TAG_OFFSET+i];
+        int firstItemTag = i*LINE_PER_PAGE*ITEM_COUNT_PER_LINE;
+        for (int j = firstItemTag; j < firstItemTag+LINE_PER_PAGE*ITEM_COUNT_PER_LINE; j ++) {
+            ToolView* tool = (ToolView*)[view viewWithTag:(ITEM_BUTTON_OFFSET+j)];
+            Item* item;
+            if (j < _itemList.count) {
+                item = [_itemList objectAtIndex:j];
+            }
+            if (tool && anItem.type == item.type) {
+                if ([Item isItemCountable:anItem.type]) {
+                    [tool setNumber:[[ItemManager defaultManager] amountForItem:anItem.type]];
+                        
+                } else {
+                    [tool setAlreadyHas:YES];
+                                
+                }
+            }
+        }
+    }
 }
 @end

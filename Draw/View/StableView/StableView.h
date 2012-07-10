@@ -16,6 +16,7 @@
 {
     NSInteger _number;
     UIButton *numberButton;
+    UIImageView* alreadyHasFlag;
 }
 
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number;

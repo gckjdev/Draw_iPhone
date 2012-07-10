@@ -225,7 +225,7 @@
                                  image:[Item imageForItemType:Quill]
                                   name:[Item nameForItemType:Quill]
                            description:[Item descriptionForItemType:Quill] 
-                      buyAmountForOnce:10 
+                      buyAmountForOnce:1
                                  price:5 
                                 amount:[[ItemManager defaultManager] amountForItem:Quill]] autorelease];
 }
@@ -236,7 +236,7 @@
                                  image:[Item imageForItemType:Pen]
                                   name:[Item nameForItemType:Pen]
                            description:[Item descriptionForItemType:Pen] 
-                      buyAmountForOnce:10 
+                      buyAmountForOnce:1 
                                  price:5 
                                 amount:[[ItemManager defaultManager] amountForItem:Pen]] autorelease];
 }
@@ -247,7 +247,7 @@
                                  image:[Item imageForItemType:IcePen]
                                   name:[Item nameForItemType:IcePen]
                            description:[Item descriptionForItemType:IcePen] 
-                      buyAmountForOnce:10 
+                      buyAmountForOnce:1 
                                  price:5 
                                 amount:[[ItemManager defaultManager] amountForItem:IcePen]] autorelease];
 }

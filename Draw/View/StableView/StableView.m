@@ -60,15 +60,19 @@
             [numberButton retain];            
         }else{
             ShareImageManager *imageManager = [ShareImageManager defaultManager];
-            UIImageView* flag = [[[UIImageView alloc] initWithImage:imageManager.buyedImage] autorelease];
+            alreadyHasFlag = [[[UIImageView alloc] initWithImage:imageManager.buyedImage] autorelease];
  
             float width = self.frame.size.width;
             float height = self.frame.size.height;
-            [flag setFrame:CGRectMake(width*0.5, height*0.5, width*0.3, height*0.5)];
+            [alreadyHasFlag setFrame:CGRectMake(width*0.5, height*0.5, width*0.3, height*0.5)];
             
-            [self addSubview:flag];
-            [self setNumber:number];
-            [flag retain];
+            [self addSubview:alreadyHasFlag];
+            if (number <= 0) {
+                [alreadyHasFlag setHidden:YES];
+            } else {
+                [self setEnabled:NO];
+            }
+            [alreadyHasFlag retain];
         }
         
     }
@@ -99,6 +103,7 @@
 - (void)dealloc
 {
     [numberButton release], numberButton = nil;
+    [alreadyHasFlag release], alreadyHasFlag = nil;
     [super dealloc];
 }
 - (void)setNumber:(NSInteger)number
@@ -140,8 +145,8 @@
 
 - (void)setAlreadyHas:(BOOL)alreadyHas
 {
-    [numberButton setBackgroundImage:[UIImage imageNamed:@"buyed"] forState:UIControlStateNormal];
-    [numberButton setTitle:nil forState:UIControlStateNormal];
+    [alreadyHasFlag setHidden:NO];
+    [self setEnabled:NO];
 }
 
 @end
