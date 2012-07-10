@@ -7,8 +7,11 @@
 //
 
 #import "PPViewController.h"
+#import "ColorShopView.h"
 
-@interface VendingController : PPViewController
+@interface VendingController : PPViewController <ColorShopViewDelegate>{
+    NSMutableArray* _itemList;
+}
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
