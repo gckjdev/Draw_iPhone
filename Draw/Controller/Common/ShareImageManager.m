@@ -372,4 +372,10 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"toolbox.png"];
 }
+
+//for shop
+- (UIImage *)buyedImage
+{
+    return [UIImage imageNamed:@"buyed.png"];
+}
 @end

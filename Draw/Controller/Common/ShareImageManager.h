@@ -112,4 +112,7 @@
 
 //for tool
 - (UIImage *)toolBoxImage;
+
+//for shop
+- (UIImage *)buyedImage;
 @end

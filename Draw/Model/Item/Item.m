@@ -86,7 +86,7 @@
                                   name:NSLS(@"kTomato") 
                            description:NSLS(@"kTomatoDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)flower
@@ -96,7 +96,7 @@
                                   name:NSLS(@"kFlower") 
                            description:NSLS(@"kFlowerDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)tips
@@ -106,7 +106,7 @@
                                   name:NSLS(@"kTips") 
                            description:NSLS(@"kTipsDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)colors
@@ -116,7 +116,7 @@
                                   name:NSLS(@"kColors") 
                            description:NSLS(@"kColorsDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)removeAd
@@ -126,7 +126,7 @@
                                   name:NSLS(@"kRemoveAd") 
                            description:NSLS(@"kFlowerDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)featherPen
@@ -136,7 +136,7 @@
                                   name:NSLS(@"kFeather") 
                            description:NSLS(@"kFeatherDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)brushPen
@@ -146,7 +146,7 @@
                                   name:NSLS(@"kPen") 
                            description:NSLS(@"kPenDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)iceCreamPen
@@ -156,7 +156,7 @@
                                   name:NSLS(@"kIceCream") 
                            description:NSLS(@"kIceCreamDescription") 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 @end
