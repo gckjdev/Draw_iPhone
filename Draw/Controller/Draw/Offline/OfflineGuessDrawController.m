@@ -614,8 +614,7 @@
 }
 
 
-- (IBAction)clickToolBox:(id)sender {
-}
+
 
 - (void)bomb:(id)sender
 {
@@ -630,9 +629,12 @@
         [self updateTargetViews:self.word];
         NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
         [self updateCandidateViewsWithText:result];
-        [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+        [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
     }
     
+}
+- (IBAction)clickToolBox:(id)sender {
+//    [self bomb:sender];
 }
 
 - (IBAction)clickRunAway:(id)sender {

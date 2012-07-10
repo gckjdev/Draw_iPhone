@@ -67,7 +67,7 @@
 "kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct 1 coin.";
 "kNoCoinQuitGameAlertMessage" = "You have no coins, cannot quit the game!";
 
-"kContinue" = "Continue [%d]";
+"kContinue" = "Next [%d]";
 "kExit" = "Exit";
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
@@ -511,7 +511,7 @@
 "kGuessDraw" = "Guessing";
 
 "kQuit" = "Quit";
-"kOneMore" = "One More";
+"kOneMore" = "More";
 
 "kGuessUserDraw" = "%@'s draw";
 
@@ -658,3 +658,10 @@
 "kTryGuessDescNoWord_MyDraw" = "Tried to guess my drawing.";
 "kFeedDetail_Me" = "My Drawing";
 "kUserFeedTitle_Me" = "My Timeline";
+
+"kOnlineResultTitle" = "Turn Complete";
+"kOfflineResultTitle" = "Game Complete";
+
+
+"kThrowFlower" = "Flower";
+"kThrowTomato" = "Tomato";

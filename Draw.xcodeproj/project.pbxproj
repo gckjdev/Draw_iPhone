@@ -230,6 +230,8 @@
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
+		CA02B52315AC111800B2A3E2 /* flower_result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA02B52115AC111800B2A3E2 /* flower_result@2x.png */; };
+		CA02B52415AC111800B2A3E2 /* tomato_result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */; };
 		CA03472515AA7B7F00C2C172 /* brush_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03470C15AA7B7F00C2C172 /* brush_pen@2x.png */; };
 		CA03472615AA7B7F00C2C172 /* buyed_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03470D15AA7B7F00C2C172 /* buyed_2x.png */; };
 		CA03472815AA7B7F00C2C172 /* cones_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA03470F15AA7B7F00C2C172 /* cones_pen@2x.png */; };
@@ -1159,6 +1161,8 @@
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
+		CA02B52115AC111800B2A3E2 /* flower_result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower_result@2x.png"; sourceTree = "<group>"; };
+		CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomato_result@2x.png"; sourceTree = "<group>"; };
 		CA03470C15AA7B7F00C2C172 /* brush_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_pen@2x.png"; sourceTree = "<group>"; };
 		CA03470D15AA7B7F00C2C172 /* buyed_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyed_2x.png; sourceTree = "<group>"; };
 		CA03470F15AA7B7F00C2C172 /* cones_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cones_pen@2x.png"; sourceTree = "<group>"; };
@@ -2568,6 +2572,8 @@
 		CA03470B15AA7B7F00C2C172 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA02B52115AC111800B2A3E2 /* flower_result@2x.png */,
+				CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */,
 				C2433A1315AAC94000325A76 /* small_coin@2x.png */,
 				CA03470C15AA7B7F00C2C172 /* brush_pen@2x.png */,
 				CA03470D15AA7B7F00C2C172 /* buyed_2x.png */,
@@ -5519,6 +5525,8 @@
 				CAA8D29315AAE02000EE67E4 /* tools_wood.png in Resources */,
 				C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */,
 				C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */,
+				CA02B52315AC111800B2A3E2 /* flower_result@2x.png in Resources */,
+				CA02B52415AC111800B2A3E2 /* tomato_result@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

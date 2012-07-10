@@ -10,6 +10,7 @@
 #import "DrawUtils.h"
 #import "Paint.h"
 #import "PenView.h"
+#import "ItemType.h"
 
 @protocol DrawViewDelegate <NSObject>
 
@@ -30,7 +31,7 @@
     NSInteger startDrawActionIndex;
     CGFloat _lineWidth;
     DrawColor* _lineColor;    
-    PenType _penType;
+    ItemType _penType;
 //    PenView *pen;
 }
 
@@ -39,7 +40,7 @@
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) CGFloat simplingDistance; //default is 4.0 * 1.414
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
-@property(nonatomic, assign) PenType penType;
+@property(nonatomic, assign) ItemType penType;
 
 - (void)clearAllActions; //remove all the actions
 - (void)addCleanAction;

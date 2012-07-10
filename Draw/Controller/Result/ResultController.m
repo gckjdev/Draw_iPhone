@@ -32,6 +32,7 @@
 #import "DrawDataService.h"
 #import "ShareService.h"
 #import "AdService.h"
+#import "UIButtonExt.h"
 
 #define CONTINUE_TIME 10
 
@@ -48,17 +49,18 @@
 @synthesize downButton;
 @synthesize continueButton;
 @synthesize saveButton;
-@synthesize exitButton;
 @synthesize wordText;
 @synthesize score;
 @synthesize wordLabel;
 @synthesize scoreLabel;
 @synthesize whitePaper;
-@synthesize titleLabel;
+@synthesize resultLabel;
 @synthesize drawActionList = _drawActionList;
 @synthesize drawUserId = _drawUserId;
 @synthesize drawUserNickName = _drawUserNickName;
 @synthesize adView = _adView;
+@synthesize experienceLabel;
+@synthesize titleLabel;
 //@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -162,7 +164,120 @@
     return [self hasSuperViewControllerForClass:[OfflineGuessDrawController class]];
 }
 
+- (void)initResultType
+{
+    if([self fromFeedDetailController]){
+        _resultType = FeedGuess;
+    }
+    else if ([self fromOfflineGuessController]) 
+    {
+        _resultType = OfflineGuess;
+    }else if(_isMyPaint){
+        _resultType = OnlineDraw;
+    }else{
+        _resultType = OnlineGuess;
+    }
 
+}
+
+- (void)initTitleLabel
+{
+    if (_resultType == OnlineDraw || _resultType == OnlineDraw) {
+        [titleLabel setText:NSLS(@"kOnlineResultTitle")];
+    }else{
+        [titleLabel setText:NSLS(@"kOfflineResultTitle")];        
+    }
+}
+
+- (void)initDrawImage
+{
+    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
+    [self.whitePaper setImage:[shareImageManager whitePaperImage]];
+    [self.drawImage setImage:_image];
+}
+
+- (void)initScore
+{
+    //init score
+    [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
+    //add score
+    if (self.score > 0) {
+        BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
+        [[AccountService defaultService] chargeAccount:self.score source:type];    
+        
+        [[AudioManager defaultManager] playSoundById:GAME_WIN];
+    }
+
+    //init experience.
+    NSInteger exp = 0;
+    if (_isMyPaint) {
+        exp = DRAWER_EXP;
+    }else{
+        exp = NORMAL_EXP;
+    }
+    [[LevelService defaultService] addExp:exp delegate:self];
+    [self.experienceLabel setText:[NSString stringWithFormat:@"+ %d",exp]];
+}
+
+- (void)initAnswer
+{
+    NSString *answer = nil;
+    if (self.wordText) {
+        answer = self.wordText;        
+        if ([LocaleUtils isTraditionalChinese]) {
+            answer = [WordManager changeToTraditionalChinese:answer];
+        }
+    }else{
+        answer = NSLS(@"kNoWord");
+    }
+    
+    [self.wordLabel setText:answer];
+
+}
+
+- (void)initResultLabel
+{
+    if (_isMyPaint) {
+        [self.resultLabel setText:NSLS(@"kTurnResult")];   
+    }else if (_correct) {
+        [self.resultLabel setText:NSLS(@"kCongratulations")];        
+    }else{
+        [self.resultLabel setText:NSLS(@"kPity")];
+    }
+}
+- (void)initActionButton
+{
+    //init the up & down button
+    if (_resultType != OnlineDraw) {
+        [upButton setTitle:NSLS(@"kThrowFlower") forState:UIControlStateNormal];
+        [downButton setTitle:NSLS(@"kThrowTomato") forState:UIControlStateNormal];
+    }else{
+        upButton.hidden = downButton.hidden = YES;
+        continueButton.frame = upButton.frame;
+    }
+    
+    //init the continue button
+    if (_resultType == OnlineDraw || _resultType == OnlineGuess) {
+        [self startTimer];        
+        [self updateContinueButton:retainCount];     
+    }else if(_resultType == OfflineGuess)
+    {
+        [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
+    }else{
+        continueButton.hidden = YES;
+        downButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
+    }
+    
+    //init the share button
+    [self.saveButton setTitle:NSLS(@"kSaveAndShare") forState:UIControlStateNormal];
+    
+    
+    [self.saveButton centerImageAndTitle:-1];
+    [self.continueButton centerImageAndTitle:-1];
+    [self.upButton centerImageAndTitle:-1];
+    [self.downButton centerImageAndTitle:-1];
+        
+}
 
 #pragma mark - View lifecycle
 
@@ -172,82 +287,24 @@
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(224, 755, 320, 50)
                                                      useLmAd:NO];    
-    
     [super viewDidLoad];
-        
-    [self.drawImage setImage:_image];
-    NSString *answer = nil;
-    if (self.wordText) {
-        answer = [NSString stringWithFormat:NSLS(@"kAnswer"),self.wordText];        
-        if ([LocaleUtils isTraditionalChinese]) {
-            answer = [WordManager changeToTraditionalChinese:answer];
-        }
-    }else{
-        answer = NSLS(@"kNoWord");
-    }
-
-    [self.wordLabel setText:answer];
-    [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
-    
-     if([self fromFeedDetailController]){
-        self.continueButton.hidden = YES;
-         self.saveButton.frame = self.continueButton.frame;
-     }
-     else if ([self fromOfflineGuessController]) 
-     {
-         [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
-     }else{
-        [self startTimer];        
-        [self updateContinueButton:retainCount];        
-    }
-
-    [self setUpAndDownButtonEnabled:YES];
-    
-    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
-    [self.whitePaper setImage:[shareImageManager whitePaperImage]];
-    [self.saveButton setBackgroundImage:[shareImageManager orangeImage] 
-                               forState:UIControlStateNormal];
-    [self.continueButton setBackgroundImage:[shareImageManager greenImage] 
-                                   forState:UIControlStateNormal];
-    [self.exitButton  setBackgroundImage:[shareImageManager redImage] 
-                                forState:UIControlStateNormal];
-
-
-    [self.exitButton setTitle:NSLS(@"kExit") forState:UIControlStateNormal];
-    [self.saveButton setTitle:NSLS(@"kSaveAndShare") forState:UIControlStateNormal];
-    if (_isMyPaint) {
-        [self.titleLabel setText:NSLS(@"kTurnResult")];   
-        [[LevelService defaultService] addExp:DRAWER_EXP delegate:self];
-    }else{
-        [[LevelService defaultService] addExp:NORMAL_EXP delegate:self];
-        if (_correct) {
-            [self.titleLabel setText:NSLS(@"kCongratulations")];        
-        }else{
-            [self.titleLabel setText:NSLS(@"kPity")];
-        }
-    }
-    //add score
-    if (self.score > 0) {
-        BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
-        [[AccountService defaultService] chargeAccount:self.score source:type];    
-        
-        [[AudioManager defaultManager] playSoundById:GAME_WIN];
-    }else{
-//        [AnimationManager snowAnimationAtView:self.view];
-    }
-    
+    [self initResultType];
+    [self initTitleLabel];
+    [self initDrawImage];
+    [self initScore];
+    [self initResultLabel];
+    [self initActionButton];
+    [self initAnswer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
 
     [super viewDidDisappear:animated];
-    
-//    [drawGameService unregisterObserver:self];
-//    [drawGameService setRoomDelegate:nil];
-    
+        
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -270,12 +327,13 @@
     [self setDownButton:nil];
     [self setContinueButton:nil];
     [self setSaveButton:nil];
-    [self setExitButton:nil];
     [self setDrawImage:nil];
     _image = nil;
     [self setWordLabel:nil];
     [self setScoreLabel:nil];
     [self setWhitePaper:nil];
+    [self setResultLabel:nil];
+    [self setExperienceLabel:nil];
     [self setTitleLabel:nil];
     [super viewDidUnload];
     
@@ -294,31 +352,34 @@
     PPRelease(downButton);
     PPRelease(continueButton);
     PPRelease(saveButton);
-    PPRelease(exitButton);
     PPRelease(drawImage);
     PPRelease(_image);
     PPRelease(wordText);
     PPRelease(wordLabel);
     PPRelease(scoreLabel);
     PPRelease(whitePaper);
-    PPRelease(titleLabel);
+    PPRelease(resultLabel);
     PPRelease(_drawActionList);
+    [experienceLabel release];
+    [titleLabel release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
-    [drawGameService rankGameResult:RANK_GOOD];
+//    [drawGameService rankGameResult:RANK_GOOD];
+//    TODO  send up request.
     [self setUpAndDownButtonEnabled:NO];
 }
 
 - (IBAction)clickDownButton:(id)sender {
-    [drawGameService rankGameResult:RANK_BAD];
+//    [drawGameService rankGameResult:RANK_BAD];
+    //    TODO  send down request.
     [self setUpAndDownButtonEnabled:NO];
 }
 
 - (IBAction)clickContinueButton:(id)sender {
     
     
-    if ([self fromOfflineGuessController]) {
+    if (_resultType == OfflineGuess) {
         [self showActivityWithText:NSLS(@"kLoading")];
         [[DrawDataService defaultService] matchDraw:self];
     }else{
@@ -337,7 +398,7 @@
     [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
-    self.saveButton.userInteractionEnabled = NO;
+    self.saveButton.enabled = NO;
     self.saveButton.selected = YES;
 }
 

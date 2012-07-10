@@ -617,7 +617,7 @@
 "kUserBindSucc" = "成功绑定了用户帐号";
 "kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
 "kWeiboExpired" = "微博授权已过期";
-"kSaveAndShare" = "保存并分享";
+"kSaveAndShare" = "保存分享";
 
 "kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
 "kRebindSina" = "你已经绑定了新浪微博了，是否要重新尝试绑定？";
@@ -662,3 +662,9 @@
 "kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的画。";
 "kFeedDetail_Me" = "%@的画";
 "kUserFeedTitle_Me" = "%@的动态";
+
+"kOnlineResultTitle" = "回合结束";
+"kOfflineResultTitle" = "猜画结束";
+
+"kThrowFlower" = "送鲜花";
+"kThrowTomato" = "丢番茄";

@@ -27,7 +27,7 @@
     [super dealloc];
 }
 
-- (id)initWithType:(int)type amount:(NSInteger)amount
+- (id)initWithType:(ItemType)type amount:(NSInteger)amount
 {
     self = [super init];
     if (self) {
@@ -55,7 +55,7 @@
     return self;
 }
 
-- (id)initWithType:(int)type 
+- (id)initWithType:(ItemType)type 
              image:(UIImage*)anImage 
               name:(NSString*)aName 
        description:(NSString*)aDescription 
@@ -74,24 +74,65 @@
     return self;
 }
 
-+ (Item *)itemWithType:(int)type amount:(NSInteger)amount
+
++(UIImage *)imageForItemType:(ItemType)type
+{
+    switch (type) {
+        case ItemTypeFlower:
+            return [UIImage imageNamed:@"flower"];
+
+        default:
+            return nil;
+    }    
+}
++(NSString *)nameForItemType:(ItemType)type
+{
+    switch (type) {
+        case ItemTypeFlower:
+            return NSLS(@"kFlower");
+            
+        default:
+            return nil;
+    }
+
+}
++(NSString *)descriptionForItemType:(ItemType)type
+{
+    switch (type) {
+        case ItemTypeFlower:
+            return  NSLS(@"kFlowerDescription");
+            
+        default:
+            return nil;
+    }
+    
+}
+
++ (BOOL)isItemCountable:(ItemType)type
+{
+    if(type == ItemTypeTomato || type == ItemTypeFlower || type == ItemTypeTips)
+        return YES;
+    return NO;
+}
+
++ (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount
 {
     return [[[Item alloc] initWithType:type amount:amount]autorelease];
 }
 
 + (Item*)tomato
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_TOMATO 
-                                 image:[UIImage imageNamed:@"tomato"] 
-                                  name:NSLS(@"kTomato") 
-                           description:NSLS(@"kTomatoDescription") 
+    return [[[Item alloc] initWithType:ItemTypeTomato 
+                                 image:[Item imageForItemType:ItemTypeTomato]
+                                  name:[Item nameForItemType:ItemTypeTomato]
+                           description:[Item descriptionForItemType:ItemTypeTomato]
                       buyAmountForOnce:10 
                                  price:5] autorelease];
 }
 
 + (Item*)flower
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_FLOWER 
+    return [[[Item alloc] initWithType:ItemTypeFlower
                                  image:[UIImage imageNamed:@"flower"] 
                                   name:NSLS(@"kFlower") 
                            description:NSLS(@"kFlowerDescription") 
@@ -101,7 +142,7 @@
 
 + (Item*)tips
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_TIPS 
+    return [[[Item alloc] initWithType:ItemTypeTips 
                                  image:[UIImage imageNamed:@"tipbag"] 
                                   name:NSLS(@"kTips") 
                            description:NSLS(@"kTipsDescription") 
@@ -111,7 +152,7 @@
 
 + (Item*)colors
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_COLORS 
+    return [[[Item alloc] initWithType:ItemTypeColor 
                                  image:[UIImage imageNamed:@"print_oil"] 
                                   name:NSLS(@"kColors") 
                            description:NSLS(@"kColorsDescription") 
@@ -121,7 +162,7 @@
 
 + (Item*)removeAd
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_REMOVE_AD 
+    return [[[Item alloc] initWithType:ItemTypeRemoveAd 
                                  image:[UIImage imageNamed:@"clean_ad"] 
                                   name:NSLS(@"kRemoveAd") 
                            description:NSLS(@"kFlowerDescription") 
@@ -131,7 +172,7 @@
 
 + (Item*)featherPen
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_PEN_FEATHER 
+    return [[[Item alloc] initWithType:Quill 
                                  image:[UIImage imageNamed:@"quill_pen"] 
                                   name:NSLS(@"kFeather") 
                            description:NSLS(@"kFeatherDescription") 
@@ -141,7 +182,7 @@
 
 + (Item*)brushPen
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_PEN_FOUNTAIN 
+    return [[[Item alloc] initWithType:Pen 
                                  image:[UIImage imageNamed:@"brush_pen"] 
                                   name:NSLS(@"kPen") 
                            description:NSLS(@"kPenDescription") 
@@ -151,7 +192,7 @@
 
 + (Item*)iceCreamPen
 {
-    return [[[Item alloc] initWithType:ITEM_TYPE_PEN_ICE_CREAM 
+    return [[[Item alloc] initWithType:IcePen 
                                  image:[UIImage imageNamed:@"cones_pen"] 
                                   name:NSLS(@"kIceCream") 
                            description:NSLS(@"kIceCreamDescription") 
