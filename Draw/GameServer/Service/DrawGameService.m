@@ -274,10 +274,9 @@ static DrawGameService* _defaultService;
         }
         
         [self notifyGameObserver:@selector(didStartGame:) message:message];        
-    });
-//    [self.drawActionList removeAllObjects];
-    [self.session removeAllDrawActions];
-    
+
+        [self.session removeAllDrawActions];
+    });    
 }
 
 - (void)handleGameStartNotification:(GameMessage*)message
@@ -470,8 +469,9 @@ static DrawGameService* _defaultService;
         if ([_showDelegate respondsToSelector:@selector(didReceiveRedrawResponse:)]) {
             [_showDelegate didReceiveRedrawResponse:message];
         }
+
+        [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     });
-    [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
 }
 
 - (void)handleUserQuitGameResponse:(GameMessage*)message
