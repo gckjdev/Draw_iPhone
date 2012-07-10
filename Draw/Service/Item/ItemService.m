@@ -7,6 +7,7 @@
 //
 
 #import "ItemService.h"
+#import "AccountService.h"
 
 ItemService *_staticItemService = nil;
 
@@ -18,6 +19,19 @@ ItemService *_staticItemService = nil;
         _staticItemService = [[ItemService alloc] init];
     }
     return _staticItemService;
+}
+
+
+
+- (void)useItem:(ItemType)type 
+   toTargetFeed:(Feed *)feed 
+       delegate:(id<ItemServiceDelegate>)delegate
+{
+    
+//    NSString *userID feedId createUid 
+    
+    //comsum item
+    
 }
 
 @end

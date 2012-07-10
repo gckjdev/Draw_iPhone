@@ -199,7 +199,7 @@
 - (void)initScore
 {
     //init score
-    [self.scoreLabel setText:[NSString stringWithFormat:@"+%d",self.score]];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"+ %d",self.score]];
     //add score
     if (self.score > 0) {
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
