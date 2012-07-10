@@ -614,8 +614,7 @@
 }
 
 
-- (IBAction)clickToolBox:(id)sender {
-}
+
 
 - (void)bomb:(id)sender
 {
@@ -633,6 +632,9 @@
         [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
     }
     
+}
+- (IBAction)clickToolBox:(id)sender {
+//    [self bomb:sender];
 }
 
 - (IBAction)clickRunAway:(id)sender {

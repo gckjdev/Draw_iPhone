@@ -652,3 +652,9 @@
 "kTryGuessDescNoWord_MyDraw" = "嘗試去猜了我的畫。";
 "kFeedDetail_Me" = "%@的畫";
 "kUserFeedTitle_Me" = "%@的動態";
+
+"kOnlineResultTitle" = "回合結束";
+"kOfflineResultTitle" = "猜畫結束";
+
+"kThrowFlower" = "送鮮花";
+"kThrowTomato" = "丟番茄";
