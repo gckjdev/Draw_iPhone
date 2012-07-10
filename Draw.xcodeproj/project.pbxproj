@@ -117,6 +117,9 @@
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
 		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
 		C2433A1415AAC94000325A76 /* small_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2433A1315AAC94000325A76 /* small_coin@2x.png */; };
+		C2433A2715AC01E000325A76 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
+		C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
+		C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
 		C2615A831591C17B00CEEC66 /* h_chat@@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A751591C17B00CEEC66 /* h_chat@@2x.png */; };
 		C2615A841591C17B00CEEC66 /* h_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A761591C17B00CEEC66 /* h_coin@2x.png */; };
@@ -995,6 +998,10 @@
 		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
 		C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VendingController~ipad.xib"; sourceTree = "<group>"; };
 		C2433A1315AAC94000325A76 /* small_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_coin@2x.png"; sourceTree = "<group>"; };
+		C2433A2515AC01DA00325A76 /* CommonItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonItemInfoView.h; sourceTree = "<group>"; };
+		C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItemInfoView.m; sourceTree = "<group>"; };
+		C2433A2815AC025900325A76 /* CommonItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonItemInfoView.xib; sourceTree = "<group>"; };
+		C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonItemInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
 		C2615A751591C17B00CEEC66 /* h_chat@@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_chat@@2x.png"; path = "Images/h_chat@@2x.png"; sourceTree = "<group>"; };
@@ -3656,6 +3663,10 @@
 				C24339FD15AAB01D00325A76 /* VendingController.m */,
 				C24339FE15AAB02000325A76 /* VendingController.xib */,
 				C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */,
+				C2433A2515AC01DA00325A76 /* CommonItemInfoView.h */,
+				C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */,
+				C2433A2815AC025900325A76 /* CommonItemInfoView.xib */,
+				C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -5506,6 +5517,8 @@
 				CAA8D28F15AADF1000EE67E4 /* draw_share@2x.png in Resources */,
 				CAA8D29115AADF4300EE67E4 /* playagain@2x.png in Resources */,
 				CAA8D29315AAE02000EE67E4 /* tools_wood.png in Resources */,
+				C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */,
+				C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5907,6 +5920,7 @@
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
 				C24339FF15AAB02400325A76 /* VendingController.m in Sources */,
+				C2433A2715AC01E000325A76 /* CommonItemInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
