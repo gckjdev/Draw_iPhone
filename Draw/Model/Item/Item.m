@@ -9,6 +9,7 @@
 #import "Item.h"
 #import "ItemType.h"
 #import "LocaleUtils.h"
+#import "ShareImageManager.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -77,10 +78,24 @@
 
 +(UIImage *)imageForItemType:(ItemType)type
 {
+    ShareImageManager* manager = [ShareImageManager defaultManager];
     switch (type) {
         case ItemTypeFlower:
-            return [UIImage imageNamed:@"flower"];
-
+            return manager.flower;
+        case ItemTypeTomato:
+            return manager.tomato;
+        case ItemTypeColor:
+            return manager.printOil;
+        case ItemTypeRemoveAd:
+            return manager.removeAd;
+        case ItemTypeTips:
+            return manager.tipBag;
+        case Pen:
+            return manager.brushPen;
+        case IcePen:
+            return manager.icePen;
+        case Quill:
+            return manager.quillPen;
         default:
             return nil;
     }    
@@ -90,7 +105,20 @@
     switch (type) {
         case ItemTypeFlower:
             return NSLS(@"kFlower");
-            
+        case ItemTypeTomato:
+            return NSLS(@"kTomato");
+        case ItemTypeColor:
+            return NSLS(@"kColor");
+        case ItemTypeRemoveAd:
+            return NSLS(@"kRemoveAd");
+        case ItemTypeTips:
+            return NSLS(@"kTips");
+        case Pen:
+            return NSLS(@"kPen");
+        case IcePen:
+            return NSLS(@"kIcePen");
+        case Quill:
+            return NSLS(@"kQuill");    
         default:
             return nil;
     }
@@ -101,7 +129,20 @@
     switch (type) {
         case ItemTypeFlower:
             return  NSLS(@"kFlowerDescription");
-            
+        case ItemTypeTomato:
+            return NSLS(@"kTomatoDescription");
+        case ItemTypeColor:
+            return NSLS(@"kColorDescription");
+        case ItemTypeRemoveAd:
+            return NSLS(@"kRemoveAdDescription");
+        case ItemTypeTips:
+            return NSLS(@"kTipsDescription");
+        case Pen:
+            return NSLS(@"kBrushPenDescription");
+        case IcePen:
+            return NSLS(@"kIcePenDescription");
+        case Quill:
+            return NSLS(@"kQuillDescription");     
         default:
             return nil;
     }
@@ -127,77 +168,77 @@
                                   name:[Item nameForItemType:ItemTypeTomato]
                            description:[Item descriptionForItemType:ItemTypeTomato]
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)flower
 {
     return [[[Item alloc] initWithType:ItemTypeFlower
-                                 image:[UIImage imageNamed:@"flower"] 
-                                  name:NSLS(@"kFlower") 
-                           description:NSLS(@"kFlowerDescription") 
+                                 image:[Item imageForItemType:ItemTypeFlower]
+                                  name:[Item nameForItemType:ItemTypeFlower]
+                           description:[Item descriptionForItemType:ItemTypeFlower]
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)tips
 {
     return [[[Item alloc] initWithType:ItemTypeTips 
-                                 image:[UIImage imageNamed:@"tipbag"] 
-                                  name:NSLS(@"kTips") 
-                           description:NSLS(@"kTipsDescription") 
+                                 image:[Item imageForItemType:ItemTypeTips]
+                                  name:[Item nameForItemType:ItemTypeTips]
+                           description:[Item descriptionForItemType:ItemTypeTips] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)colors
 {
     return [[[Item alloc] initWithType:ItemTypeColor 
-                                 image:[UIImage imageNamed:@"print_oil"] 
-                                  name:NSLS(@"kColors") 
-                           description:NSLS(@"kColorsDescription") 
+                                 image:[Item imageForItemType:ItemTypeColor]
+                                  name:[Item nameForItemType:ItemTypeColor]
+                           description:[Item descriptionForItemType:ItemTypeColor] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)removeAd
 {
     return [[[Item alloc] initWithType:ItemTypeRemoveAd 
-                                 image:[UIImage imageNamed:@"clean_ad"] 
-                                  name:NSLS(@"kRemoveAd") 
-                           description:NSLS(@"kFlowerDescription") 
+                                 image:[Item imageForItemType:ItemTypeRemoveAd]
+                                  name:[Item nameForItemType:ItemTypeRemoveAd]
+                           description:[Item descriptionForItemType:ItemTypeRemoveAd] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)featherPen
 {
     return [[[Item alloc] initWithType:Quill 
-                                 image:[UIImage imageNamed:@"quill_pen"] 
-                                  name:NSLS(@"kFeather") 
-                           description:NSLS(@"kFeatherDescription") 
+                                 image:[Item imageForItemType:Quill]
+                                  name:[Item nameForItemType:Quill]
+                           description:[Item descriptionForItemType:Quill] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)brushPen
 {
     return [[[Item alloc] initWithType:Pen 
-                                 image:[UIImage imageNamed:@"brush_pen"] 
-                                  name:NSLS(@"kPen") 
-                           description:NSLS(@"kPenDescription") 
+                                 image:[Item imageForItemType:Pen]
+                                  name:[Item nameForItemType:Pen]
+                           description:[Item descriptionForItemType:Pen] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 + (Item*)iceCreamPen
 {
     return [[[Item alloc] initWithType:IcePen 
-                                 image:[UIImage imageNamed:@"cones_pen"] 
-                                  name:NSLS(@"kIceCream") 
-                           description:NSLS(@"kIceCreamDescription") 
+                                 image:[Item imageForItemType:IcePen]
+                                  name:[Item nameForItemType:IcePen]
+                           description:[Item descriptionForItemType:IcePen] 
                       buyAmountForOnce:10 
-                                 price:500] autorelease];
+                                 price:5] autorelease];
 }
 
 @end

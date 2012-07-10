@@ -8,8 +8,9 @@
 
 #import "PPViewController.h"
 #import "ColorShopView.h"
+#import "CommonItemInfoView.h"
 
-@interface VendingController : PPViewController <ColorShopViewDelegate>{
+@interface VendingController : PPViewController <ColorShopViewDelegate, CommonItemInfoViewDelegate>{
     NSMutableArray* _itemList;
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;

@@ -162,7 +162,7 @@
             colorShop.delegate = self;
             [colorShop showInView:self.view animated:YES];
         } else {
-            //
+            [CommonItemInfoView showItem:item infoInView:self];
         }
     }
     
@@ -205,5 +205,11 @@
 - (void)didPickedColorView:(ColorView *)colorView
 {
     
+}
+
+#pragma mark - commonItemInfoViewDelegate
+- (void)didBuyItem:(Item *)anItem
+{
+    [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
 }
 @end

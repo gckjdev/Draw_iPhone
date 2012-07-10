@@ -126,6 +126,12 @@
     [numberButton setEnabled:enabled];
 }
 
+- (void)setAlreadyHas:(BOOL)alreadyHas
+{
+    [numberButton setBackgroundImage:[UIImage imageNamed:@"buyed"] forState:UIControlStateNormal];
+    [numberButton setTitle:nil forState:UIControlStateNormal];
+}
+
 @end
 
 
