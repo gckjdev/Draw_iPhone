@@ -10,8 +10,8 @@
 typedef enum
 {
     ItemTypeTips = 1,
-    ItemTypeTomato = 2,
-    ItemTypeFlower = 3,
+    ItemTypeTomato = 7,
+    ItemTypeFlower = 6,
     ItemTypeRemoveAd = 10,
     
     ItemTypeColor = 100, // star from 100

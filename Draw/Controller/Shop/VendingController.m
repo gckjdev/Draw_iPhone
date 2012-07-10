@@ -11,6 +11,7 @@
 #import "Item.h"
 #import "AccountManager.h"
 #import "ItemType.h"
+#import "StableView.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -21,7 +22,7 @@
 
 #define FIRST_SHELF_FRAME   CGRectMake(5, 69, 297, 54)
 #define SHELF_SEPERATOR     102
-#define FIRST_ITEM_FRAME    CGRectMake(22, 20, 67, 67)
+#define FIRST_ITEM_FRAME    CGRectMake(24, 23, 61, 61)
 #define FIRST_PRICE_COIN_FRAME  CGRectMake(23, 89, 17, 17)
 #define FIRST_PRICE_LABEL_FRAME CGRectMake(45, 89, 45, 17)
 #define ITEM_SEPERATOR  98
@@ -56,8 +57,9 @@
 
 - (void)addPageViewBackground:(UIView*)view
 {
+    ShareImageManager* manager = [ShareImageManager defaultManager];
     //add background
-    UIImageView* bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shopping_bg.png"]];
+    UIImageView* bg = [[[UIImageView alloc] initWithImage:manager.shoppingBackground] autorelease];
     [bg setFrame:CGRectMake(0, 
                             0, 
                             self.itemListScrollView.frame.size.width, 
@@ -66,7 +68,7 @@
     
     //add shelf
     for (int i = 0; i < LINE_PER_PAGE; i ++) {
-        UIImageView* shelf = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shop_shelf.png"]];
+        UIImageView* shelf = [[[UIImageView alloc] initWithImage:manager.shopShelf] autorelease];
         CGRect rect = FIRST_SHELF_FRAME;
         [shelf setFrame:CGRectMake(rect.origin.x, 
                                    rect.origin.y + i*SHELF_SEPERATOR, 
@@ -80,10 +82,15 @@
      toPageView:(UIView*)view 
       withIndex:(int)index
 {
-    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(FIRST_ITEM_FRAME.origin.x + ITEM_SEPERATOR*(index%ITEM_COUNT_PER_LINE), 
-                                                                  FIRST_ITEM_FRAME.origin.y + SHELF_SEPERATOR*(index/ITEM_COUNT_PER_LINE), 
-                                                                  FIRST_ITEM_FRAME.size.width, 
-                                                                  FIRST_ITEM_FRAME.size.height)];
+    ToolView* toolView = [[ToolView alloc] initWithItemType:item.type number:item.amount];
+    [toolView setFrame:CGRectMake(FIRST_ITEM_FRAME.origin.x + ITEM_SEPERATOR*(index%ITEM_COUNT_PER_LINE), 
+                                 FIRST_ITEM_FRAME.origin.y + SHELF_SEPERATOR*(index/ITEM_COUNT_PER_LINE), 
+                                 FIRST_ITEM_FRAME.size.width, 
+                                  FIRST_ITEM_FRAME.size.height)];
+//    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(FIRST_ITEM_FRAME.origin.x + ITEM_SEPERATOR*(index%ITEM_COUNT_PER_LINE), 
+//                                                                  FIRST_ITEM_FRAME.origin.y + SHELF_SEPERATOR*(index/ITEM_COUNT_PER_LINE), 
+//                                                                  FIRST_ITEM_FRAME.size.width, 
+//                                                                  FIRST_ITEM_FRAME.size.height)];
     UIImageView* coin = [[UIImageView alloc] initWithFrame:CGRectMake(FIRST_PRICE_COIN_FRAME.origin.x + ITEM_SEPERATOR*(index%ITEM_COUNT_PER_LINE), 
                                                                   FIRST_PRICE_COIN_FRAME.origin.y + SHELF_SEPERATOR*(index/ITEM_COUNT_PER_LINE), 
                                                                   FIRST_PRICE_COIN_FRAME.size.width, 
@@ -93,19 +100,22 @@
                                                                   FIRST_PRICE_LABEL_FRAME.size.width, 
                                                                   FIRST_PRICE_LABEL_FRAME.size.height)];
     
-    [coin setImage:[UIImage imageNamed:@"small_coin.png"]];
+    [coin setImage:[ShareImageManager defaultManager].smallCoin];
     
     [priceLabel setText:[NSString stringWithFormat:@"%d",item.price]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
     
-    [button setImage:item.itemImage forState:UIControlStateNormal];
     int pageIndex = view.tag-PAGE_TAG_OFFSET;
-    button.tag = pageIndex*LINE_PER_PAGE*ITEM_COUNT_PER_LINE+index+ITEM_BUTTON_OFFSET;
-    [button addTarget:self action:@selector(clickItemButton:) forControlEvents:UIControlEventTouchUpInside];
+    toolView.tag = pageIndex*LINE_PER_PAGE*ITEM_COUNT_PER_LINE+index+ITEM_BUTTON_OFFSET;
+    [toolView addTarget:self action:@selector(clickItemButton:)];
     
-    [view addSubview:button];
+    [view addSubview:toolView];
     [view addSubview:coin];
     [view addSubview:priceLabel];
+    [toolView release];
+    [coin release];
+    [priceLabel release];
+    
     
 }
 
@@ -153,7 +163,7 @@
 
 - (void)clickItemButton:(id)sender
 {
-    UIButton* button = (UIButton*)sender;
+    ToolView* button = (ToolView*)sender;
     int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
     if (itemIndex < _itemList.count) {
         Item* item = [_itemList objectAtIndex:itemIndex];

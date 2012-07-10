@@ -20,8 +20,6 @@
 
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number;
 - (id)initWithNumber:(NSInteger)number;
-- (id)initWithNumber:(NSInteger)number 
-           withImage:(UIImage*)image;
 - (void)setNumber:(NSInteger)number;
 - (NSInteger)number;
 - (void)addTarget:(id)target action:(SEL)action;
