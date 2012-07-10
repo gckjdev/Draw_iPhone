@@ -1,5 +1,10 @@
 
 
 #define ITEM_TYPE_TIPS      1
+#define ITEM_TYPE_TOMATO    2
+#define ITEM_TYPE_FLOWER    3
 #define ITEM_TYPE_REMOVE_AD 10
+#define ITEM_TYPE_PEN_ICE_CREAM 20
+#define ITEM_TYPE_PEN_FOUNTAIN   21
+#define ITEM_TYPE_PEN_FEATHER   22
 #define ITEM_TYPE_COLORS    100     // star from 100
