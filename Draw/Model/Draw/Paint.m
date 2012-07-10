@@ -70,13 +70,13 @@
     return self;
 }
 
-- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
+- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type
 {
     self = [self initWithWidth:width color:color];
     self.penType = type;
     return self;
 }
-- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(PenType)type
+- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(ItemType)type
 {
     self = [self initWithWidth:width intColor:color numberPointList:numberPointList];
     self.penType = type;
@@ -115,7 +115,7 @@
     return [[[Paint alloc] initWithWidth:width color:color]autorelease];
 }
 
-+ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(PenType)type
++ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type
 {
     return [[[Paint alloc] initWithWidth:width color:color penType:type] autorelease];
 }

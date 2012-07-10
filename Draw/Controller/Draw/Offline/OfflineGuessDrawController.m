@@ -629,7 +629,7 @@
         [self updateTargetViews:self.word];
         NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
         [self updateCandidateViewsWithText:result];
-        [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+        [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
     }
     
 }

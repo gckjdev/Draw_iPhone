@@ -12,6 +12,7 @@
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
+#import "Item.h"
 
 #define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 39, 52))
 
@@ -28,6 +29,40 @@
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
 @implementation ToolView
+
+- (id)initWithItemType:(ItemType)type number:(NSInteger)number
+{
+    
+    self = [super initWithFrame:TOOL_VIEW_FRAM];
+    if(self){
+        UIImage *image = [Item imageForItemType:type];
+        //set image
+        
+        self.userInteractionEnabled = NO;
+        [self setBackgroundImage:image forState:UIControlStateNormal];
+        
+
+        if ([Item isItemCountable:type]) {
+            numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [numberButton setFrame:NUMBER_VIEW_FRAME];
+            
+            ShareImageManager *imageManager = [ShareImageManager defaultManager];
+            [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
+            [numberButton setUserInteractionEnabled:NO];
+            
+            [self addSubview:numberButton];
+            [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
+            numberButton.titleLabel.minimumFontSize = 10;
+            [self setNumber:number];
+            [numberButton retain];            
+        }else{
+            //TODO show the has flag.
+        }
+        
+    }
+    return self;
+}
+
 - (id)initWithNumber:(NSInteger)number
 {
 

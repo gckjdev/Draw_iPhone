@@ -157,7 +157,7 @@
     int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
     if (itemIndex < _itemList.count) {
         Item* item = [_itemList objectAtIndex:itemIndex];
-        if (item.type == ITEM_TYPE_COLORS) {
+        if (item.type == ItemTypeColor) {
             ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
             colorShop.delegate = self;
             [colorShop showInView:self.view animated:YES];

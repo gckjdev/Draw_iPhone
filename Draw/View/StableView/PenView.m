@@ -26,7 +26,7 @@
     [super dealloc];
 }
 
-- (id)initWithPenType:(PenType)type
+- (id)initWithPenType:(ItemType)type
 {
     self = [super initWithFrame:VIEW_FRAME];
     if (self) {
@@ -35,7 +35,7 @@
     return self;
 }
 
-+ (PenView *)penViewWithType:(PenType)type
++ (PenView *)penViewWithType:(ItemType)type
 {
     return [[[PenView alloc] initWithPenType:type]autorelease];
 }
@@ -60,7 +60,7 @@
 {
     return self.penType == Pencil;
 }
-- (UIImage *)penImageForType:(PenType)type
+- (UIImage *)penImageForType:(ItemType)type
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (type) {
@@ -83,7 +83,7 @@
 
 
 
-- (void) setPenType:(PenType)penType
+- (void) setPenType:(ItemType)penType
 {
     if (penType < PenStartType || (penType >= PenCount && penType != Eraser)) {
         _penType = Pencil;
@@ -102,7 +102,7 @@
 
 
 #define LAST_PEN_TYPE @"LastPenTypeKey"
-+ (PenType)lastPenType
++ (ItemType)lastPenType
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSInteger type = [userDefaults integerForKey:LAST_PEN_TYPE];
@@ -111,7 +111,7 @@
     }
     return type;
 }
-+ (void)savePenType:(PenType)type
++ (void)savePenType:(ItemType)type
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:type forKey:LAST_PEN_TYPE];

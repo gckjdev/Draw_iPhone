@@ -231,7 +231,7 @@ ItemShopController *staticItemController = nil;
         return;
     }
               
-    [[AccountService defaultService] buyItem:ITEM_TYPE_TIPS 
+    [[AccountService defaultService] buyItem:ItemTypeTips 
                                    itemCount:[[model count] intValue]
                                    itemCoins:[[model price] intValue]];
     [self updateLabels];

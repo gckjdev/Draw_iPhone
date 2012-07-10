@@ -107,7 +107,7 @@
 //        }
     }
 }
-- (void)setPenType:(PenType)penType
+- (void)setPenType:(ItemType)penType
 {
 //    pen.penType = penType;
     _penType = penType;

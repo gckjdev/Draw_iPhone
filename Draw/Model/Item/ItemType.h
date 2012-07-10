@@ -1,10 +1,30 @@
 
 
-#define ITEM_TYPE_TIPS      1
-#define ITEM_TYPE_TOMATO    2
-#define ITEM_TYPE_FLOWER    3
-#define ITEM_TYPE_REMOVE_AD 10
-#define ITEM_TYPE_PEN_ICE_CREAM 20
-#define ITEM_TYPE_PEN_FOUNTAIN   21
-#define ITEM_TYPE_PEN_FEATHER   22
-#define ITEM_TYPE_COLORS    100     // star from 100
+//#define ITEM_TYPE_TIPS      1
+//#define ITEM_TYPE_TOMATO    2
+//#define ITEM_TYPE_FLOWER    3
+//#define ITEM_TYPE_REMOVE_AD 10
+//#define ITEM_TYPE_COLORS    100     // star from 100
+
+
+typedef enum
+{
+    ItemTypeTips = 1,
+    ItemTypeTomato = 2,
+    ItemTypeFlower = 3,
+    ItemTypeRemoveAd = 10,
+    
+    ItemTypeColor = 100, // star from 100
+
+    //pen type
+    Pencil = 1000,
+    WaterPen,
+    Pen,
+    IcePen,
+    Quill,
+    PenCount,
+    
+    Eraser = 1100
+
+    
+}ItemType;

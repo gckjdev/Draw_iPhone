@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemType.h"
+#import "Item.h"
 @class HJManagedImageV;
+
 
 @interface ToolView : UIButton
 {
     NSInteger _number;
     UIButton *numberButton;
 }
+
+- (id)initWithItemType:(ItemType)type number:(NSInteger)number;
 - (id)initWithNumber:(NSInteger)number;
 - (void)setNumber:(NSInteger)number;
 - (NSInteger)number;

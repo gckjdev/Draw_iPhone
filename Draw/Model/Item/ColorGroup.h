@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#define GROUP_START 101
+#import "ItemType.h"
+#define GROUP_START (ItemTypeColor + 1)
 
 enum{
     GROUP_GRAY = GROUP_START,

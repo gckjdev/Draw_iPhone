@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ItemType.h"
 //typedef enum {
 //    Bomb = 1, 
 //    Kit = 2
@@ -15,25 +15,27 @@
 
 @interface Item : NSObject<NSCoding>
 {
-    int _type;
+    ItemType _type;
     NSInteger _amount;
 }
 
-@property(nonatomic, assign)int type;
+@property(nonatomic, assign)ItemType type;
 @property(nonatomic, assign)NSInteger amount;
 @property (nonatomic, retain) UIImage* itemImage;
 @property (nonatomic, retain) NSString* itemName;
 @property (nonatomic, retain) NSString* itemDescription;
 @property (nonatomic, assign) int buyAmountForOnce;
 @property (nonatomic, assign) int price;
-- (id)initWithType:(int)type amount:(NSInteger)amount;
-- (id)initWithType:(int)type 
+
+- (id)initWithType:(ItemType)type amount:(NSInteger)amount;
+- (id)initWithType:(ItemType)type 
              image:(UIImage*)anImage 
               name:(NSString*)aName 
        description:(NSString*)aDescription 
+
   buyAmountForOnce:(int)amount 
              price:(int)aPrice;
-+ (Item *)itemWithType:(int)type amount:(NSInteger)amount;
++ (Item *)itemWithType:(ItemType)type amount:(NSInteger)amount;
 + (Item*)tomato;
 + (Item*)flower;
 + (Item*)tips;
@@ -42,4 +44,11 @@
 + (Item*)featherPen;
 + (Item*)brushPen;
 + (Item*)iceCreamPen;
+
++ (UIImage *)imageForItemType:(ItemType)type;
++ (NSString *)nameForItemType:(ItemType)type;
++ (NSString *)descriptionForItemType:(ItemType)type;
++ (BOOL)isItemCountable:(ItemType)type;
+
+
 @end
