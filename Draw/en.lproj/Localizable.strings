@@ -511,7 +511,7 @@
 "kGuessDraw" = "Guessing";
 
 "kQuit" = "Quit";
-"kOneMore" = "One More";
+"kOneMore" = "More";
 
 "kGuessUserDraw" = "%@'s draw";
 

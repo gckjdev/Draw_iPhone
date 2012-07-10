@@ -202,14 +202,10 @@
 					<object class="IBUIButton" id="205093427">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{24, 382}, {50, 76}}</string>
+						<string key="NSFrame">{{24, 390}, {50, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="976911382"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1034506779">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -226,7 +222,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">flower.png</string>
+							<string key="NSResourceName">flower_result.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="129413665">
 							<int key="type">1</int>
@@ -241,11 +237,10 @@
 					<object class="IBUIButton" id="976911382">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{98, 382}, {50, 76}}</string>
+						<string key="NSFrame">{{98, 390}, {50, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="115608941"/>
-						<reference key="IBUIBackgroundColor" ref="1034506779"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -256,7 +251,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="174998393"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tomato.png</string>
+							<string key="NSResourceName">tomato_result.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="129413665"/>
 						<reference key="IBUIFont" ref="22447837"/>
@@ -264,11 +259,10 @@
 					<object class="IBUIButton" id="115608941">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{172, 382}, {50, 76}}</string>
+						<string key="NSFrame">{{172, 390}, {50, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="328027314"/>
-						<reference key="IBUIBackgroundColor" ref="1034506779"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -287,11 +281,10 @@
 					<object class="IBUIButton" id="328027314">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{246, 382}, {50, 76}}</string>
+						<string key="NSFrame">{{246, 390}, {50, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
-						<reference key="IBUIBackgroundColor" ref="1034506779"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -395,7 +388,10 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="1034506779"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">run@2x.png</string>
@@ -883,10 +879,10 @@
 			<string key="coin@2x.png">{64, 68}</string>
 			<string key="draw_share.png">{16, 16}</string>
 			<string key="experience@2x.png">{84, 84}</string>
-			<string key="flower.png">{16, 16}</string>
+			<string key="flower_result.png">{16, 16}</string>
 			<string key="playagain.png">{16, 16}</string>
 			<string key="run@2x.png">{74, 74}</string>
-			<string key="tomato.png">{16, 16}</string>
+			<string key="tomato_result.png">{16, 16}</string>
 			<string key="tools_wood.png">{640, 59}</string>
 			<string key="topwood@2x.png">{640, 99}</string>
 			<string key="white_paper@2x.png">{480, 168}</string>
