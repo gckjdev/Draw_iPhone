@@ -9,13 +9,15 @@
 #import "VendingController.h"
 #import "ShareImageManager.h"
 #import "Item.h"
+#import "AccountManager.h"
+#import "ItemType.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
 
 #define PRICE_TAG_OFFSET 20120710
 #define ITEM_BUTTON_OFFSET  120120710
-#define FIRST_PAGE_TAG      220120710
+#define PAGE_TAG_OFFSET      220120710
 
 #define FIRST_SHELF_FRAME   CGRectMake(5, 69, 297, 54)
 #define SHELF_SEPERATOR     102
@@ -24,7 +26,7 @@
 #define FIRST_PRICE_LABEL_FRAME CGRectMake(45, 89, 45, 17)
 #define ITEM_SEPERATOR  98
 
-@interface VendingController ()
+@interface VendingController () <ColorShopViewDelegate>
 
 @end
 
@@ -44,12 +46,12 @@
 - (void)initButtons
 {
     [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.buyCoinButton setTitle:NSLS(@"kBuyCoin") forState:UIControlStateNormal];
+    [self.buyCoinButton setTitle:NSLS(@"kCoinShopTitle") forState:UIControlStateNormal];
 }
 
 - (void)initTitles
 {
-    
+    [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
 }
 
 - (void)addPageViewBackground:(UIView*)view
@@ -90,10 +92,16 @@
                                                                   FIRST_PRICE_LABEL_FRAME.origin.y + SHELF_SEPERATOR*(index/ITEM_COUNT_PER_LINE), 
                                                                   FIRST_PRICE_LABEL_FRAME.size.width, 
                                                                   FIRST_PRICE_LABEL_FRAME.size.height)];
-    [button setImage:item.itemImage forState:UIControlStateNormal];
+    
     [coin setImage:[UIImage imageNamed:@"small_coin.png"]];
+    
     [priceLabel setText:[NSString stringWithFormat:@"%d",item.price]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [button setImage:item.itemImage forState:UIControlStateNormal];
+    int pageIndex = view.tag-PAGE_TAG_OFFSET;
+    button.tag = pageIndex*LINE_PER_PAGE*ITEM_COUNT_PER_LINE+index+ITEM_BUTTON_OFFSET;
+    [button addTarget:self action:@selector(clickItemButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:button];
     [view addSubview:coin];
@@ -110,6 +118,7 @@
             return;
         }
         Item* item = [_itemList objectAtIndex:itemIndex];
+        view.tag = pageIndex+PAGE_TAG_OFFSET;
         [self addItem:item 
            toPageView:view 
             withIndex:i];
@@ -140,6 +149,23 @@
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickItemButton:(id)sender
+{
+    UIButton* button = (UIButton*)sender;
+    int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
+    if (itemIndex < _itemList.count) {
+        Item* item = [_itemList objectAtIndex:itemIndex];
+        if (item.type == ITEM_TYPE_COLORS) {
+            ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+            colorShop.delegate = self;
+            [colorShop showInView:self.view animated:YES];
+        } else {
+            //
+        }
+    }
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -175,5 +201,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
+#pragma mark - colorShopView delegate
+- (void)didPickedColorView:(ColorView *)colorView
+{
+    
+}
 @end
