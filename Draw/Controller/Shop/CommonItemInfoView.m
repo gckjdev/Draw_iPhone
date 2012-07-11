@@ -58,6 +58,8 @@
     [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
     [self.cancelButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     [self.buyButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
 }
 
 - (void)initViewWithItem:(Item*)anItem

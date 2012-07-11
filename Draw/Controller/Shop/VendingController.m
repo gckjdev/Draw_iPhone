@@ -13,6 +13,8 @@
 #import "ItemType.h"
 #import "StableView.h"
 #import "ItemManager.h"
+#import "AnimationManager.h"
+#import "CoinShopController.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -36,12 +38,14 @@
 @synthesize itemListScrollView;
 @synthesize coinsButton;
 @synthesize buyCoinButton;
+@synthesize outItem;
 
 - (void)dealloc {
     [itemListScrollView release];
     [coinsButton release];
     [buyCoinButton release];
     [_itemList release];
+    [outItem release];
     [super dealloc];
 }
 
@@ -162,6 +166,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)buyCoin:(id)sender
+{
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)clickItemButton:(id)sender
 {
     ToolView* button = (ToolView*)sender;
@@ -177,6 +187,14 @@
         }
     }
     
+}
+
+- (void)showBuyItemAnimation:(Item*)anItem
+{
+    [self.outItem setImage:anItem.itemImage];
+    CAAnimation* animation = [AnimationManager translationAnimationTo:CGPointMake(64, 428) duration:0.5];
+    animation.delegate = self;
+    [self.outItem.layer addAnimation:animation forKey:@"fall"];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -202,6 +220,7 @@
     [self setItemListScrollView:nil];
     [self setCoinsButton:nil];
     [self setBuyCoinButton:nil];
+    [self setOutItem:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -210,6 +229,17 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma animation delegate
+- (void)animationDidStart:(CAAnimation *)anim
+{
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.outItem setImage:nil];
 }
 
 #pragma mark - colorShopView delegate
@@ -222,6 +252,7 @@
 - (void)didBuyItem:(Item *)anItem
 {
     [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
+    [self showBuyItemAnimation:anItem];
     int pageCount = _itemList.count/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
     for (int i = 0; i < pageCount; i ++) {
         UIView* view = [self.itemListScrollView viewWithTag:PAGE_TAG_OFFSET+i];

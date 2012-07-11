@@ -668,3 +668,19 @@
 
 "kThrowFlower" = "送鲜花";
 "kThrowTomato" = "丢番茄";
+
+"kFlower" = "鲜花          朵";
+"kTomato" = "番茄          个";
+"kRemoveAd" = "移除广告";
+"kTips" = "锦囊          个";
+"kPen" = "毛笔          支";
+"kIcePen" = "雪糕笔          支";
+"kQuill" = "鹅毛笔          支";
+
+"kFlowerDescription" = "看到好的作品就送些鲜花吧！赠人玫瑰，手有余香。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄吧，还能让作者扣分扣经验哦。";
+"kRemoveAdDescription" = "买了它！从此远离广告！";
+"kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
+"kBrushPenDescription" = "好多毛的笔";
+"kIcePenDescription" = "看上去像雪糕的笔";
+"kQuillDescription" = "用鹅毛做的笔";  

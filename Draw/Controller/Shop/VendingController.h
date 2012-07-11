@@ -16,5 +16,6 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *itemListScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
+@property (retain, nonatomic) IBOutlet UIImageView *outItem;
 
 @end
