@@ -55,6 +55,7 @@
     PPRelease(_candidateString);
     PPRelease(showView);
     PPRelease(drawBackground);
+    PPRelease(_pickToolView);
     [super dealloc];
 }
 
