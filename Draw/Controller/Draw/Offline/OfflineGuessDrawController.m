@@ -627,27 +627,29 @@
 
 
 
-- (void)bomb:(ToolView *)toolView
+- (BOOL)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
-        return;
+        return NO;
     }
     [self updateTargetViews:self.word];
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateCandidateViewsWithText:result];
     [toolView setEnabled:NO];
+    return YES;
 }
 
 
-- (void)throwFlower:(ToolView *)toolView
+- (BOOL)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
+    return NO;
 }
 
-- (void)throwTomato:(ToolView *)toolView
+- (BOOL)throwTomato:(ToolView *)toolView
 {
     //TODO add throw animation
-    
+    return NO;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
@@ -660,16 +662,22 @@
         [dialog showInView:self.view];
         return;
     }
+    BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
-        [self bomb:toolView];
+        flag = [self bomb:toolView];
     }else if(toolView.itemType == ItemTypeFlower)
     {
-        [self throwFlower:toolView];
+        flag = [self throwFlower:toolView];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        [self throwTomato:toolView];
+        flag = [self throwTomato:toolView];
     }
-    [[AccountService defaultService] consumeItem:ItemTypeTips amount:toolView.itemType];
+    if (flag) {
+        [[AccountService defaultService] consumeItem:ItemTypeTips 
+                                              amount:toolView.itemType];        
+        [toolView decreaseNumber];
+    }
+
 }
 
 
