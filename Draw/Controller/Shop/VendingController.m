@@ -15,6 +15,7 @@
 #import "ItemManager.h"
 #import "AnimationManager.h"
 #import "CoinShopController.h"
+#import "DeviceDetection.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -23,12 +24,16 @@
 #define ITEM_BUTTON_OFFSET  120120710
 #define PAGE_TAG_OFFSET      220120710
 
-#define FIRST_SHELF_FRAME   CGRectMake(5, 69, 297, 54)
-#define SHELF_SEPERATOR     102
-#define FIRST_ITEM_FRAME    CGRectMake(24, 23, 61, 61)
-#define FIRST_PRICE_COIN_FRAME  CGRectMake(23, 89, 17, 17)
-#define FIRST_PRICE_LABEL_FRAME CGRectMake(45, 89, 45, 17)
-#define ITEM_SEPERATOR  98
+#define FIRST_SHELF_FRAME   ([DeviceDetection isIPAD]?CGRectMake(12, 150, 712, 117):CGRectMake(5, 69, 297, 54))
+#define SHELF_SEPERATOR     ([DeviceDetection isIPAD]?222:102)
+#define FIRST_ITEM_FRAME    ([DeviceDetection isIPAD]?CGRectMake(70, 56, 122, 122):CGRectMake(24, 23, 61, 61))
+#define FIRST_PRICE_COIN_FRAME  ([DeviceDetection isIPAD]?CGRectMake(56, 194, 37, 37):CGRectMake(23, 89, 17, 17))
+#define FIRST_PRICE_LABEL_FRAME ([DeviceDetection isIPAD]?CGRectMake(108, 194, 100, 37):CGRectMake(45, 89, 45, 17))
+#define ITEM_SEPERATOR  ([DeviceDetection isIPAD]?235:98)
+
+#define ANIM_ROTATE        @"animationRotate"
+#define ANIM_FALLING    @"animationFalling"
+#define ANIM_GROUP        @"animationFallingRotate"
 
 @interface VendingController () <ColorShopViewDelegate>
 
@@ -47,6 +52,7 @@
     [_itemList release];
     [outItem release];
     [super dealloc];
+    
 }
 
 - (void)initButtons
@@ -161,6 +167,27 @@
     }
 }
 
+- (void)refleshToolViewForItem:(Item*)anItem
+{
+    int pageCount = _itemList.count/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
+    for (int i = 0; i < pageCount; i ++) {
+        UIView* view = [self.itemListScrollView viewWithTag:PAGE_TAG_OFFSET+i];
+        int firstItemTag = i*LINE_PER_PAGE*ITEM_COUNT_PER_LINE;
+        for (int j = firstItemTag; j < firstItemTag+LINE_PER_PAGE*ITEM_COUNT_PER_LINE; j ++) {
+            ToolView* tool = (ToolView*)[view viewWithTag:(ITEM_BUTTON_OFFSET+j)];
+            if (tool && tool.itemType == anItem.type) {
+                if ([Item isItemCountable:anItem.type]) {
+                    [tool setNumber:[[ItemManager defaultManager] amountForItem:anItem.type]];
+                    
+                } else {
+                    [tool setAlreadyHas:YES];
+                }
+            }
+        }
+    }
+
+}
+
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -192,9 +219,47 @@
 - (void)showBuyItemAnimation:(Item*)anItem
 {
     [self.outItem setImage:anItem.itemImage];
-    CAAnimation* animation = [AnimationManager translationAnimationTo:CGPointMake(64, 428) duration:0.5];
-    animation.delegate = self;
-    [self.outItem.layer addAnimation:animation forKey:@"fall"];
+    
+    CAAnimation* falling = [AnimationManager translationAnimationTo:CGPointMake(64, 428) duration:1];
+    falling.delegate = self;
+    falling.removedOnCompletion = NO;
+    
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:2 duration:1];
+    rolling.delegate = self;
+    //rolling.beginTime =0.5;
+    rolling.autoreverses = YES;
+    rolling.repeatCount = 2;
+    
+    CAAnimation* moveToRight = [AnimationManager translationAnimationTo:CGPointMake(94, 428) duration:0.5];
+    moveToRight.beginTime = 0.5;
+    moveToRight.removedOnCompletion = NO;
+    
+    CAAnimation* moveToLeft = [AnimationManager translationAnimationFrom:CGPointMake(94, 428) to:CGPointMake(34, 428) duration:1];
+    moveToLeft.beginTime = 1;
+    moveToLeft.removedOnCompletion = NO;
+    
+    CAAnimation* moveToCenter = [AnimationManager translationAnimationFrom:CGPointMake(34, 428) to:CGPointMake(64, 428) duration:1];
+    moveToCenter.beginTime = 2;
+    moveToCenter.removedOnCompletion = NO;
+    
+    //method2:放入动画数组，统一处理！
+    CAAnimationGroup* m_pGroupAnimation    = [CAAnimationGroup animation];
+    
+    //设置动画代理
+    m_pGroupAnimation.delegate = self;
+    
+    m_pGroupAnimation.removedOnCompletion = NO;
+    
+    m_pGroupAnimation.duration             = 3.0;
+    m_pGroupAnimation.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
+    m_pGroupAnimation.repeatCount         = 1;//FLT_MAX;  //"forever";
+    m_pGroupAnimation.fillMode             = kCAFillModeForwards;
+    m_pGroupAnimation.animations             = [NSArray arrayWithObjects:falling, rolling, moveToRight, moveToLeft, moveToCenter, nil];
+    //对视图自身的层添加组动画
+    [self.outItem.layer addAnimation:m_pGroupAnimation forKey:ANIM_GROUP];
+    
+    
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -239,7 +304,7 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    [self.outItem setImage:nil];
+    
 }
 
 #pragma mark - colorShopView delegate
@@ -253,26 +318,9 @@
 {
     [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
     [self showBuyItemAnimation:anItem];
-    int pageCount = _itemList.count/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
-    for (int i = 0; i < pageCount; i ++) {
-        UIView* view = [self.itemListScrollView viewWithTag:PAGE_TAG_OFFSET+i];
-        int firstItemTag = i*LINE_PER_PAGE*ITEM_COUNT_PER_LINE;
-        for (int j = firstItemTag; j < firstItemTag+LINE_PER_PAGE*ITEM_COUNT_PER_LINE; j ++) {
-            ToolView* tool = (ToolView*)[view viewWithTag:(ITEM_BUTTON_OFFSET+j)];
-            Item* item;
-            if (j < _itemList.count) {
-                item = [_itemList objectAtIndex:j];
-            }
-            if (tool && anItem.type == item.type) {
-                if ([Item isItemCountable:anItem.type]) {
-                    [tool setNumber:[[ItemManager defaultManager] amountForItem:anItem.type]];
-                        
-                } else {
-                    [tool setAlreadyHas:YES];
-                                
-                }
-            }
-        }
-    }
+    [self refleshToolViewForItem:anItem];
 }
+
+
+
 @end

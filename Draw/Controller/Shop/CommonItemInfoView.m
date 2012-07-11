@@ -60,6 +60,8 @@
     [self.buyButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+    [self.priceLabel setText:NSLS(@"kPrice")];
+    [self.coinLabel setText:NSLS(@"kCoin")];
 }
 
 - (void)initViewWithItem:(Item*)anItem
