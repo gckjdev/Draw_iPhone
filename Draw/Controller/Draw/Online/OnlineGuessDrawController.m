@@ -53,7 +53,6 @@
     lastScaleTarget = nil;
     
     PPRelease(_candidateString);
-    PPRelease(toolView);
     PPRelease(showView);
     PPRelease(drawBackground);
     [super dealloc];
@@ -329,6 +328,21 @@
     [self initMoveButton];
 }
 
+- (void)initPickToolView
+{
+    NSMutableArray *array = [NSMutableArray array];
+    ItemManager *itemManager = [ItemManager defaultManager];
+    ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    [array addObject:tips];
+    [array addObject:flower];
+    [array addObject:tomato];
+    _pickToolView = [[PickToolView alloc] initWithTools:array];
+    _pickToolView.hidden = YES;
+    _pickToolView.delegate = self;
+    [self.view addSubview:_pickToolView];
+}
 
 
 #pragma mark - Word && Word Views
@@ -354,13 +368,6 @@
         button.hidden = YES;
     }
 }
-
-
-//- (void)updateBomb
-//{
-//    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
-//}
-//
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang
 {
     self.word = word;
@@ -428,7 +435,7 @@
     [self initWordViews];
     [self initTargetViews];
     [self initWithCachData];
-
+    [self initPickToolView];
     _guessCorrect = NO;
     _shopController = nil;
     
@@ -469,7 +476,6 @@
         Word *word = [[[Word alloc] initWithText:wordText level:wordLevel]autorelease];
         [self updateTargetViews:word];
         [self updateCandidateViews:word lang:language];
-        toolView.enabled = YES;
     }else{
         PPDebug(@"warn:<ShowDrawController> word is nil");
     }
@@ -588,22 +594,55 @@
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
 
-- (void)bomb:(id)sender
+- (void)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
         return;
     }
-    if ([[ItemManager defaultManager] tipsItemAmount] <= 0) {
+    [self updateTargetViews:self.word];
+    NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+    [self updateCandidateViewsWithText:result];
+    [toolView setEnabled:NO];
+}
+
+
+- (void)throwFlower:(ToolView *)toolView
+{
+    //TODO add throw animation
+}
+
+- (void)throwTomato:(ToolView *)toolView
+{
+    //TODO add throw animation
+    
+}
+#pragma mark - click tool delegate
+- (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
+{
+    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    if(amout <= 0){
+        //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
-    }else{
-        [self updateTargetViews:self.word];
-        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
-        [self updateCandidateViewsWithText:result];
-        [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
+        return;
     }
-    
+    if (toolView.itemType == ItemTypeTips) {
+        [self bomb:toolView];
+    }else if(toolView.itemType == ItemTypeFlower)
+    {
+        [self throwFlower:toolView];
+    }else if(toolView.itemType == ItemTypeTomato)
+    {
+        [self throwTomato:toolView];
+    }
+    [[AccountService defaultService] consumeItem:ItemTypeTips amount:toolView.itemType];
+}
+
+
+- (IBAction)clickToolBox:(id)sender {
+    [self.view bringSubviewToFront:_pickToolView];
+    [_pickToolView setHidden:!_pickToolView.hidden animated:YES];
 }
 
 - (IBAction)clickRunAway:(id)sender {
@@ -613,14 +652,6 @@
 
 
 
-- (void)initBomb
-{
-    toolView = [[ToolView alloc] initWithNumber:0];
-    toolView.center = TOOLVIEW_CENTER;
-    [self.view addSubview:toolView];
-    [toolView addTarget:self action:@selector(bomb:)];
-    [toolView setEnabled:NO];
-}
 
 - (void)initTargetViews
 {

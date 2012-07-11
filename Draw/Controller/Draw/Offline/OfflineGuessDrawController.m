@@ -627,8 +627,7 @@
 
 
 
-
-- (void)bomb
+- (void)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
         return;
@@ -636,15 +635,16 @@
     [self updateTargetViews:self.word];
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateCandidateViewsWithText:result];
+    [toolView setEnabled:NO];
 }
 
 
-- (void)throwFlower
+- (void)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
 }
 
-- (void)throwTomato
+- (void)throwTomato:(ToolView *)toolView
 {
     //TODO add throw animation
     
@@ -661,17 +661,17 @@
         return;
     }
     if (toolView.itemType == ItemTypeTips) {
-        [self bomb];
-        [toolView setEnabled:NO];
+        [self bomb:toolView];
     }else if(toolView.itemType == ItemTypeFlower)
     {
-        [self throwFlower];
+        [self throwFlower:toolView];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        [self throwTomato];
+        [self throwTomato:toolView];
     }
     [[AccountService defaultService] consumeItem:ItemTypeTips amount:toolView.itemType];
 }
+
 
 - (IBAction)clickToolBox:(id)sender {
     [self.view bringSubviewToFront:_pickToolView];
