@@ -29,16 +29,24 @@
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
 @implementation ToolView
+@synthesize itemType = _itemType;
+
++ (ToolView *)tipsViewWithNumber:(NSInteger)number
+{
+    return [[[ToolView alloc] initWithItemType:ItemTypeTips number:number] autorelease];
+}
 
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number
 {
     
     self = [super initWithFrame:TOOL_VIEW_FRAM];
     if(self){
-        UIImage *image = [Item imageForItemType:type];
-        //set image
         
+        self.itemType = type;
         self.userInteractionEnabled = NO;
+
+        //set image        
+        UIImage *image = [Item imageForItemType:type];
         [self setBackgroundImage:image forState:UIControlStateNormal];
         
 
@@ -79,25 +87,16 @@
     return self;
 }
 
+- (void)setItemType:(ItemType)itemType
+{
+    _itemType = itemType;
+    UIImage *image = [Item imageForItemType:itemType];
+    [self setBackgroundImage:image forState:UIControlStateNormal];
+}
+
 - (id)initWithNumber:(NSInteger)number
 {
-
-    self = [super initWithFrame:TOOL_VIEW_FRAM];
-    if(self){
-        self.userInteractionEnabled = NO;
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [self setBackgroundImage:[imageManager toolImage] forState:UIControlStateNormal];
-        numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [numberButton setFrame:NUMBER_VIEW_FRAME];
-        [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
-        [numberButton setUserInteractionEnabled:NO];
-        [self addSubview:numberButton];
-        [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
-        numberButton.titleLabel.minimumFontSize = 10;
-        [self setNumber:number];
-        [numberButton retain];
-    }
-    return self;
+    return [self initWithItemType:ItemTypeTips number:number];
 }
 
 - (void)dealloc
