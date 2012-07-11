@@ -9,6 +9,7 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "LocaleUtils.h"
+#import "DeviceDetection.h"
 
 @implementation ShareImageManager
 
@@ -373,6 +374,17 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"toolbox.png"];
 }
 
+- (UIImage *)fixedImageNamed:(NSString *)name
+{
+    NSString *temp = name;
+    if ([DeviceDetection isIPAD]) {
+        temp = [NSString stringWithFormat:@"%@@2x.png",name];        
+    }else{
+
+    }
+    return [UIImage imageNamed:temp];
+}
+
 //for tool
 - (UIImage *)buyedImage
 {
@@ -390,10 +402,20 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"cones_pen.png"];
 }
+//set button image not background image.
 - (UIImage *)flower
 {
-    return [UIImage imageNamed:@"flower.png"];
+    return [self fixedImageNamed:@"flower"];
 }
+- (UIImage *)tomato
+{
+    return [self fixedImageNamed:@"tomato"];
+}
+- (UIImage *)tipBag
+{
+    return [self fixedImageNamed:@"tipbag"];
+}
+
 - (UIImage *)itemOut
 {
     return [UIImage imageNamed:@"itemOut.png"];
@@ -422,16 +444,14 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"shopping_bg.png"];
 }
-- (UIImage *)tipBag
-{
-    return [UIImage imageNamed:@"tipbag.png"];
-}
-- (UIImage *)tomato
-{
-    return [UIImage imageNamed:@"tomato.png"];
-}
 - (UIImage *)smallCoin
 {
     return [UIImage imageNamed:@"small_coin.png"];
 }
+
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
+}
 @end
+

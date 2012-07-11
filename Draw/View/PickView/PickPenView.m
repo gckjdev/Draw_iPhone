@@ -7,7 +7,6 @@
 //
 
 #import "PickPenView.h"
-#import "PPDebug.h"
 #import "PenView.h"
 #import "AccountService.h"
 

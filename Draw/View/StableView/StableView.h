@@ -31,8 +31,11 @@
 - (void)decreaseNumber;
 - (void)setEnabled:(BOOL)enabled;
 - (void)setAlreadyHas:(BOOL)alreadyHas;
-
++ (CGFloat)width;
++ (CGFloat)height;
 + (ToolView *)tipsViewWithNumber:(NSInteger)number;
++ (ToolView *)flowerViewWithNumber:(NSInteger)number;
++ (ToolView *)tomatoViewWithNumber:(NSInteger)number;
 
 @end
 

@@ -130,4 +130,6 @@
 - (UIImage *)tomato;
 - (UIImage *)smallCoin;
 
+- (UIImage *)pickToolBackground;
+
 @end

@@ -10,5 +10,10 @@
 #import "PickView.h"
 
 @interface PickToolView : PickView
+{
+ 
+}
+- (id)initWithTools:(NSArray *)tools;
+
 
 @end

@@ -124,8 +124,8 @@
 "kJoinGameFailure" = "加入遊戲失敗，請稍候再試";
 
 "kChangeRoom" = "更換房間中...";
-"kNoTipsItemTitle" = "消息";
-"kNoTipsItemMessage" = "你的道具不夠了，是不是現在購買一些？";
+"kNoItemTitle" = "消息";
+"kNoItemMessage" = "你的道具不夠了，是不是現在購買一些？";
 "kQuickMessage" = "快點,快點啦!";
 "kWaitMessage" = "等等,等等吧!";
 "kClickTooFast" = "你的點擊頻率太快了，不妨休息一下。";
@@ -658,6 +658,7 @@
 
 "kThrowFlower" = "送鮮花";
 "kThrowTomato" = "丟番茄";
+"kBombTips" = "炸词锦囊";
 
 "kFlower" = "鮮花          朵";
 "kTomato" = "番茄          個";
@@ -674,3 +675,5 @@
 "kBrushPenDescription" = "好多毛的筆";
 "kIcePenDescription" = "看上去像雪糕的筆";
 "kQuillDescription" = "用鵝毛做的筆";
+
+"kPickToolTitle" = "使用道具";
