@@ -17,7 +17,11 @@
     NSInteger _number;
     UIButton *numberButton;
     UIImageView* alreadyHasFlag;
+    ItemType _itemType;
 }
+
+
+@property(nonatomic,assign)ItemType itemType;
 
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number;
 - (id)initWithNumber:(NSInteger)number;
@@ -27,6 +31,8 @@
 - (void)decreaseNumber;
 - (void)setEnabled:(BOOL)enabled;
 - (void)setAlreadyHas:(BOOL)alreadyHas;
+
++ (ToolView *)tipsViewWithNumber:(NSInteger)number;
 
 @end
 
