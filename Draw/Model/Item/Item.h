@@ -48,6 +48,7 @@
 + (UIImage *)imageForItemType:(ItemType)type;
 + (NSString *)nameForItemType:(ItemType)type;
 + (NSString *)descriptionForItemType:(ItemType)type;
++ (NSString *)actionNameForItemType:(ItemType)type;
 + (BOOL)isItemCountable:(ItemType)type;
 
 

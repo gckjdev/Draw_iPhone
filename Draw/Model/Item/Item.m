@@ -152,6 +152,21 @@
     
 }
 
++ (NSString *)actionNameForItemType:(ItemType)type
+{
+    if(ItemTypeTips == type)
+    {
+        return NSLS(@"kBombTips");
+    }
+    if (ItemTypeFlower == type) {
+        return NSLS(@"kThrowFlower");        
+    }
+    if (ItemTypeTomato == type) {
+        return NSLS(@"kThrowTomato");
+    }
+    return nil;
+}
+
 + (BOOL)isItemCountable:(ItemType)type
 {
     if(type == ItemTypeTomato || type == ItemTypeFlower || type == ItemTypeTips)

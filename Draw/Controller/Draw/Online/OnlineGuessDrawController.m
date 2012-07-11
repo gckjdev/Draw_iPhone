@@ -594,7 +594,7 @@
         return;
     }
     if ([[ItemManager defaultManager] tipsItemAmount] <= 0) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoTipsItemTitle") message:NSLS(@"kNoTipsItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
     }else{

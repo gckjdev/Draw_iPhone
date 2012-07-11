@@ -9,8 +9,9 @@
 #import "PickColorView.h"
 #import "ShareImageManager.h"
 #import "ColorView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "WidthView.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @implementation PickColorView
 
