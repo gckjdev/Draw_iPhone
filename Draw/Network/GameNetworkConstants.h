@@ -117,6 +117,7 @@
 #define ACTION_TYPE_GUESS  2
 #define ACTION_TYPE_COMMENT  3
 
+
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
 #define PARA_SERVER_PORT @"sp"
@@ -242,6 +243,7 @@
 #define PARA_WORD_LIST @"wl"
 #define PARA_SCORE @"sco"
 #define PARA_OPUS_CREATOR_UID @"opc"
+#define PARA_RETURN_ITEM @"ri"
 
 #define PARA_RADIUS @"ra"
 #define PARA_POSTTYPE @"pt"

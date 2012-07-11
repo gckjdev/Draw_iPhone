@@ -75,26 +75,26 @@
     [self setHidden:YES animated:YES];
 }
 
-- (void)sortTools
-{
-    [_toolArray sortUsingComparator:^(id obj1,id obj2){
-        return NSOrderedAscending;
-        ToolView *tool1 = (ToolView *)obj1;
-        ToolView *tool2 = (ToolView *)obj2;
-        NSInteger toolCount1 = [[ItemManager defaultManager] amountForItem:tool1.itemType];
-        NSInteger toolCount2 = [[ItemManager defaultManager] amountForItem:tool2.itemType];
-        NSInteger ret = toolCount2 - toolCount1;
-        if (ret == 0) {
-            return NSOrderedSame;
-        }else if(ret < 0)
-        {
-            return NSOrderedDescending;
-        }else{
-            return NSOrderedDescending;
-        }
-    }];
-    
-}
+//- (void)sortTools
+//{
+//    [_toolArray sortUsingComparator:^(id obj1,id obj2){
+//        return NSOrderedAscending;
+//        ToolView *tool1 = (ToolView *)obj1;
+//        ToolView *tool2 = (ToolView *)obj2;
+//        NSInteger toolCount1 = [[ItemManager defaultManager] amountForItem:tool1.itemType];
+//        NSInteger toolCount2 = [[ItemManager defaultManager] amountForItem:tool2.itemType];
+//        NSInteger ret = toolCount2 - toolCount1;
+//        if (ret == 0) {
+//            return NSOrderedSame;
+//        }else if(ret < 0)
+//        {
+//            return NSOrderedDescending;
+//        }else{
+//            return NSOrderedDescending;
+//        }
+//    }];
+//    
+//}
 
 - (void)updateToolViews
 {
@@ -102,7 +102,7 @@
     if (count == 0) {
         return;
     }
-    [self sortTools];
+//    [self sortTools];
     CGFloat width = self.frame.size.width;
     CGFloat xSpace = (width - [ToolView width] * count)/ (count + 1);
     CGFloat x = xSpace;

@@ -39,6 +39,7 @@
 #import "FeedController.h"
 #import "FeedDetailController.h"
 #import "CommonUserInfoView.h"
+#import "FeedService.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -643,13 +644,18 @@
 - (BOOL)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
-    return NO;
+    
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
     //TODO add throw animation
-    return NO;
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
