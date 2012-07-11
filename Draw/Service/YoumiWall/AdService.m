@@ -56,7 +56,7 @@ static AdService* _defaultService;
     self = [super init];
 //    _allAdViews = [[NSMutableDictionary alloc] init];
     
-    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ITEM_TYPE_REMOVE_AD                                                             
+    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd                                                             
                                                                amount:1] == NO);    
     return self;
 }
@@ -98,7 +98,7 @@ static AdService* _defaultService;
 {
     PPDebug(@"<setAdDisable> Ad Is Disabled Now");
     
-    [[AccountService defaultService] buyItem:ITEM_TYPE_REMOVE_AD 
+    [[AccountService defaultService] buyItem:ItemTypeRemoveAd 
                                    itemCount:1
                                    itemCoins:[self getRemoveAdPrice]];
  

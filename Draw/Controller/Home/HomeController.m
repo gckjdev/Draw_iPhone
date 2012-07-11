@@ -49,6 +49,7 @@
 #import "LevelService.h"
 #import "LmWallService.h"
 #import "AdService.h"
+#import "VendingController.h"
 
 @interface HomeController()
 
@@ -343,8 +344,10 @@
     if ([self isRegistered] == NO) {
         [self toRegister];
     } else {
-        ItemShopController *ic = [ItemShopController instance];
-        [self.navigationController pushViewController:ic animated:YES];
+//        ItemShopController *ic = [ItemShopController instance];
+//        [self.navigationController pushViewController:ic animated:YES];
+        VendingController* vc = [[VendingController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

@@ -108,4 +108,26 @@
 - (UIImage *)purpleAvatarImage;
 
 - (UIImage *)friendDetailBgImage;
+
+
+//for tool
+- (UIImage *)toolBoxImage;
+
+//for tool
+- (UIImage *)buyedImage;
+- (UIImage *)brushPen;
+- (UIImage *)removeAd;
+- (UIImage *)icePen;
+- (UIImage *)flower;
+- (UIImage *)itemOut;
+- (UIImage *)itemShadow;
+- (UIImage *)printOil;
+- (UIImage *)quillPen;
+- (UIImage *)rewardCoin;
+- (UIImage *)shopShelf;
+- (UIImage *)shoppingBackground;
+- (UIImage *)tipBag;
+- (UIImage *)tomato;
+- (UIImage *)smallCoin;
+
 @end

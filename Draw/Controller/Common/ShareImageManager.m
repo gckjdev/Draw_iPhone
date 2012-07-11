@@ -367,4 +367,71 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"friend_detail_bg.png"];
 }
 
+//for toolbox
+- (UIImage *)toolBoxImage
+{
+    return [UIImage imageNamed:@"toolbox.png"];
+}
+
+//for tool
+- (UIImage *)buyedImage
+{
+    return [UIImage imageNamed:@"buyed.png"];
+}
+- (UIImage *)brushPen
+{
+    return [UIImage imageNamed:@"brush_pen.png"];
+}
+- (UIImage *)removeAd
+{
+    return [UIImage imageNamed:@"clean_ad.png"];
+}
+- (UIImage *)icePen
+{
+    return [UIImage imageNamed:@"cones_pen.png"];
+}
+- (UIImage *)flower
+{
+    return [UIImage imageNamed:@"flower.png"];
+}
+- (UIImage *)itemOut
+{
+    return [UIImage imageNamed:@"itemOut.png"];
+}
+- (UIImage *)itemShadow
+{
+    return [UIImage imageNamed:@"item_shadow.png"];
+}
+- (UIImage *)printOil
+{
+    return [UIImage imageNamed:@"print_oil.png"];
+}
+- (UIImage *)quillPen
+{
+    return [UIImage imageNamed:@"quill_pen.png"];
+}
+- (UIImage *)rewardCoin
+{
+    return [UIImage imageNamed:@"reward_coin.png"];
+}
+- (UIImage *)shopShelf
+{
+    return [UIImage imageNamed:@"shop_shelf.png"];
+}
+- (UIImage *)shoppingBackground
+{
+    return [UIImage imageNamed:@"shopping_bg.png"];
+}
+- (UIImage *)tipBag
+{
+    return [UIImage imageNamed:@"tipbag.png"];
+}
+- (UIImage *)tomato
+{
+    return [UIImage imageNamed:@"tomato.png"];
+}
+- (UIImage *)smallCoin
+{
+    return [UIImage imageNamed:@"small_coin.png"];
+}
 @end

@@ -67,7 +67,7 @@
 "kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct 1 coin.";
 "kNoCoinQuitGameAlertMessage" = "You have no coins, cannot quit the game!";
 
-"kContinue" = "Continue [%d]";
+"kContinue" = "Next [%d]";
 "kExit" = "Exit";
 "kSave" = "Save";
 "kTurnResult" = "Result of turn";
@@ -511,7 +511,7 @@
 "kGuessDraw" = "Guessing";
 
 "kQuit" = "Quit";
-"kOneMore" = "One More";
+"kOneMore" = "More";
 
 "kGuessUserDraw" = "%@'s draw";
 
@@ -658,3 +658,26 @@
 "kTryGuessDescNoWord_MyDraw" = "Tried to guess my drawing.";
 "kFeedDetail_Me" = "My Drawing";
 "kUserFeedTitle_Me" = "My Timeline";
+
+"kOnlineResultTitle" = "Turn Complete";
+"kOfflineResultTitle" = "Game Complete";
+
+
+"kThrowFlower" = "Flower";
+"kThrowTomato" = "Tomato";
+
+"kFlower" = "Flower";
+"kTomato" = "Tomato";
+"kRemoveAd" = "No Ad!";
+"kTips" = "Tips";
+"kPen" = "Brush Pen";
+"kIcePen" = "Ice-cream Pen";
+"kQuill" = "Quill Pen";
+
+"kFlowerDescription" = "Whenever you see awesome draws, send some flowers to the author!";
+"kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
+"kRemoveAdDescription" = "Buy it and remove all the advertisements!";
+"kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
+"kBrushPenDescription" = "Just look cool...";
+"kIcePenDescription" = "Just look cool...";
+"kQuillDescription" = "Just look cool...";   

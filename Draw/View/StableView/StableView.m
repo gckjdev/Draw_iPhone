@@ -12,8 +12,9 @@
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
+#import "Item.h"
 
-#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 39, 52))
+#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 61, 61))
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
@@ -28,30 +29,80 @@
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
 @implementation ToolView
-- (id)initWithNumber:(NSInteger)number
-{
+@synthesize itemType = _itemType;
 
++ (ToolView *)tipsViewWithNumber:(NSInteger)number
+{
+    return [[[ToolView alloc] initWithItemType:ItemTypeTips number:number] autorelease];
+}
+
+- (id)initWithItemType:(ItemType)type number:(NSInteger)number
+{
+    
     self = [super initWithFrame:TOOL_VIEW_FRAM];
     if(self){
+        
+        self.itemType = type;
         self.userInteractionEnabled = NO;
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [self setBackgroundImage:[imageManager toolImage] forState:UIControlStateNormal];
-        numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [numberButton setFrame:NUMBER_VIEW_FRAME];
-        [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
-        [numberButton setUserInteractionEnabled:NO];
-        [self addSubview:numberButton];
-        [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
-        numberButton.titleLabel.minimumFontSize = 10;
-        [self setNumber:number];
-        [numberButton retain];
+
+        //set image        
+        UIImage *image = [Item imageForItemType:type];
+        [self setBackgroundImage:image forState:UIControlStateNormal];
+        
+
+        if ([Item isItemCountable:type]) {
+            numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [numberButton setFrame:NUMBER_VIEW_FRAME];
+            
+            ShareImageManager *imageManager = [ShareImageManager defaultManager];
+            [numberButton setBackgroundImage:[imageManager toolNumberImage] forState:UIButtonTypeCustom];
+            [numberButton setUserInteractionEnabled:NO];
+            float width = self.frame.size.width;
+            float height = self.frame.size.height;
+            [numberButton setFrame:CGRectMake(width*0.6, height*0.6, width*0.4, height*0.4)];
+            
+            [self addSubview:numberButton];
+            [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
+            numberButton.titleLabel.minimumFontSize = 10;
+            [self setNumber:number];
+            [numberButton retain];            
+        }else{
+            ShareImageManager *imageManager = [ShareImageManager defaultManager];
+            alreadyHasFlag = [[[UIImageView alloc] initWithImage:imageManager.buyedImage] autorelease];
+ 
+            float width = self.frame.size.width;
+            float height = self.frame.size.height;
+            [alreadyHasFlag setFrame:CGRectMake(width*0.5, height*0.5, width*0.3, height*0.5)];
+            
+            [self addSubview:alreadyHasFlag];
+            if (number <= 0) {
+                [alreadyHasFlag setHidden:YES];
+            } else {
+                [self setEnabled:NO];
+            }
+            [alreadyHasFlag retain];
+        }
+        
     }
     return self;
+}
+
+- (void)setItemType:(ItemType)itemType
+{
+    _itemType = itemType;
+    UIImage *image = [Item imageForItemType:itemType];
+    [self setBackgroundImage:image forState:UIControlStateNormal];
+}
+
+- (id)initWithNumber:(NSInteger)number
+{
+    return [self initWithItemType:ItemTypeTips number:number];
 }
 
 - (void)dealloc
 {
     [numberButton release], numberButton = nil;
+    [alreadyHasFlag release], alreadyHasFlag = nil;
     [super dealloc];
 }
 - (void)setNumber:(NSInteger)number
@@ -89,6 +140,12 @@
 {
     [super setEnabled:enabled];
     [numberButton setEnabled:enabled];
+}
+
+- (void)setAlreadyHas:(BOOL)alreadyHas
+{
+    [alreadyHasFlag setHidden:NO];
+    [self setEnabled:NO];
 }
 
 @end

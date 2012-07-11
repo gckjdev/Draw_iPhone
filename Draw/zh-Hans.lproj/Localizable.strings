@@ -617,7 +617,7 @@
 "kUserBindSucc" = "成功绑定了用户帐号";
 "kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
 "kWeiboExpired" = "微博授权已过期";
-"kSaveAndShare" = "保存并分享";
+"kSaveAndShare" = "保存分享";
 
 "kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
 "kRebindSina" = "你已经绑定了新浪微博了，是否要重新尝试绑定？";
@@ -662,3 +662,25 @@
 "kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的画。";
 "kFeedDetail_Me" = "%@的画";
 "kUserFeedTitle_Me" = "%@的动态";
+
+"kOnlineResultTitle" = "回合结束";
+"kOfflineResultTitle" = "猜画结束";
+
+"kThrowFlower" = "送鲜花";
+"kThrowTomato" = "丢番茄";
+
+"kFlower" = "鲜花          朵";
+"kTomato" = "番茄          个";
+"kRemoveAd" = "移除广告";
+"kTips" = "锦囊          个";
+"kPen" = "毛笔          支";
+"kIcePen" = "雪糕笔          支";
+"kQuill" = "鹅毛笔          支";
+
+"kFlowerDescription" = "看到好的作品就送些鲜花吧！赠人玫瑰，手有余香。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄吧，还能让作者扣分扣经验哦。";
+"kRemoveAdDescription" = "买了它！从此远离广告！";
+"kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
+"kBrushPenDescription" = "好多毛的笔";
+"kIcePenDescription" = "看上去像雪糕的笔";
+"kQuillDescription" = "用鹅毛做的笔";  

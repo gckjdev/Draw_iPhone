@@ -269,7 +269,7 @@
         }
         self.wordArray = [[WordManager defaultManager]randDrawWordList];
         [self.wordTableView reloadData];
-        [[AccountService defaultService] consumeItem:ITEM_TYPE_TIPS amount:1];
+        [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
         [toolView setNumber:[[ItemManager defaultManager]tipsItemAmount]];        
     }else{
         [self popupUnhappyMessage:NSLS(@"kNoTipItem") title:nil];

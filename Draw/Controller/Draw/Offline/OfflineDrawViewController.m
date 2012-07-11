@@ -174,18 +174,6 @@
         [penArray addObject:pen];
     }
     
-    [penArray sortUsingComparator:^(id obj1,id obj2){
-        PenView *pen1 = (PenView *)obj1;
-        PenView *pen2 = (PenView *)obj2;
-        BOOL hasBought1 = [pen1 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen1.penType amount:1];
-        BOOL hasBought2 = [pen2 isDefaultPen] || [[AccountService defaultService] hasEnoughItemAmount:pen2.penType amount:1];
-        NSInteger ret = hasBought2 - hasBought1;
-        if (ret == 0) {
-            return NSOrderedAscending;
-        }
-        return ret;
-    }];
-    
     [pickPenView setPens:penArray];
     [penArray release];
     [self.view addSubview:pickPenView];
@@ -291,7 +279,8 @@ enum{
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
-    [penButton setPenType:Pencil];
+//    [penButton setPenType:Pencil];
+    [penButton setPenType:[PenView lastPenType]];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
 }
@@ -391,7 +380,7 @@ enum{
 {
     if (pickView.tag == PICK_COLOR_VIEW_TAG) {
         [drawView setLineWidth:width];
-        penWidth = width;        
+        penWidth = width;   
     }else if(pickView.tag == PICK_ERASER_VIEW_TAG)
     {
         [drawView setLineWidth:width];
@@ -415,7 +404,8 @@ enum{
         _willBuyPen = nil;
         if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
             [self.penButton setPenType:penView.penType];
-            [drawView setPenType:penView.penType];            
+            [drawView setPenType:penView.penType];       
+            [PenView savePenType:penView.penType];
         }else{
             AccountService *service = [AccountService defaultService];
             if (![service hasEnoughCoins:penView.price]) {
@@ -486,7 +476,10 @@ enum{
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
         [self.penButton setPenType:_willBuyPen.penType];
-        [drawView setPenType:_willBuyPen.penType];            
+        [_willBuyPen setAlpha:1];
+        [drawView setPenType:_willBuyPen.penType];   
+        [PenView savePenType:_willBuyPen.penType];
+        [pickPenView updatePenViews];
     }else if(dialog.tag == DIALOG_TAG_SUBMIT){
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
@@ -556,6 +549,7 @@ enum{
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
+    self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") message:NSLS(@"kSubmitSuccMsg") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_SUBMIT;
@@ -622,9 +616,6 @@ enum{
     }
     
     NSArray *drawActionList = drawView.drawActionList;
-//    if ([DeviceDetection isIPAD]) {
-//        drawActionList = [self compressActionList:drawView.drawActionList];
-//    }
 
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didClickSubmit:)]) {
@@ -632,6 +623,7 @@ enum{
         }
     }else {
         [self showActivityWithText:NSLS(@"kSending")];
+        self.submitButton.userInteractionEnabled = NO;
         [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType targetUid:self.targetUid delegate:self];
     }
 }

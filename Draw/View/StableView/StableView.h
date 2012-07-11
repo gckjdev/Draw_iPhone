@@ -7,19 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemType.h"
+#import "Item.h"
 @class HJManagedImageV;
+
 
 @interface ToolView : UIButton
 {
     NSInteger _number;
     UIButton *numberButton;
+    UIImageView* alreadyHasFlag;
+    ItemType _itemType;
 }
+
+
+@property(nonatomic,assign)ItemType itemType;
+
+- (id)initWithItemType:(ItemType)type number:(NSInteger)number;
 - (id)initWithNumber:(NSInteger)number;
 - (void)setNumber:(NSInteger)number;
 - (NSInteger)number;
 - (void)addTarget:(id)target action:(SEL)action;
 - (void)decreaseNumber;
 - (void)setEnabled:(BOOL)enabled;
+- (void)setAlreadyHas:(BOOL)alreadyHas;
+
++ (ToolView *)tipsViewWithNumber:(NSInteger)number;
 
 @end
 

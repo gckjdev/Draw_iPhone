@@ -10,9 +10,9 @@
 #import "UserManager.h"
 #import "DeviceDetection.h"
 
-#define CN_WORD_COUNT_PER_PAGE 12
-#define EN_WORD_COUNT_PER_PAGE (([DeviceDetection isIPAD]) ? 16 : 14)
-
+//#define CN_WORD_COUNT_PER_PAGE 12
+//#define EN_WORD_COUNT_PER_PAGE (([DeviceDetection isIPAD]) ? 18 : 18)
+#define CANDIDATE_WORD_NUMBER 18
 
 #define KEY_LOW_LEVEL @"Low"
 #define KEY_MEDIUM_LEVEL @"Medium"

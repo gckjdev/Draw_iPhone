@@ -106,10 +106,12 @@ enum {
     
     //section guessword
     rowOfLanguage = 0;
+    
+    //no matter what the language is, the level is normal.
     if (languageType == ChineseType) {
-        rowOfLevel = 1;
-        rowOfCustomWord = 2;
-        rowsInSectionGuessWord = 3;
+        rowOfLevel = -1;
+        rowOfCustomWord = 1;
+        rowsInSectionGuessWord = 2;
     }else {
         rowOfLevel = -1;
         rowOfCustomWord = -1;
