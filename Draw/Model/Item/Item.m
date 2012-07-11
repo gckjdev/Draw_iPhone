@@ -185,8 +185,8 @@
                                  image:[Item imageForItemType:ItemTypeTomato]
                                   name:[Item nameForItemType:ItemTypeTomato]
                            description:[Item descriptionForItemType:ItemTypeTomato]
-                      buyAmountForOnce:10 
-                                 price:5 
+                      buyAmountForOnce:0 
+                                 price:1 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
 }
 
