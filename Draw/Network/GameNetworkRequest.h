@@ -246,6 +246,16 @@
                      opusCreatorUId:(NSString*)opusCreatorUId  
                             comment:(NSString*)comment;
 
++ (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL
+                                  appId:(NSString*)appId
+                                 userId:(NSString*)userId
+                                   nick:(NSString*)nick
+                                 avatar:(NSString*)avatar
+                                 gender:(NSString*)gender
+                                 opusId:(NSString*)opusId                        
+                         opusCreatorUId:(NSString*)opusCreatorUId  
+                               itemType:(int)itemType;
+
 
 + (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
                                  appId:(NSString*)appId

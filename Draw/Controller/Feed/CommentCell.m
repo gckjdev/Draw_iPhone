@@ -14,11 +14,14 @@
 #import "LocaleUtils.h"
 #import "WordManager.h"
 #import "CommonUserInfoView.h"
+#import "ShareImageManager.h"
+
 
 @implementation CommentCell
 @synthesize commentLabel;
 @synthesize timeLabel;
 @synthesize nickNameLabel;
+@synthesize itemImage;
 
 + (id)createCell:(id)delegate
 {
@@ -45,6 +48,7 @@
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
 #define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 64 : 30)
 
+#define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 120 : 60)
 
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 14, 71, 74) : CGRectMake(5, 9, 31, 32)
 
@@ -52,6 +56,9 @@
 
 + (CGFloat)getCellHeight:(Feed *)feed
 {
+    if (feed.feedType == ItemTypeFlower || feed.feedType == ItemTypeTomato) {
+        return COMMENT_ITEM_HEIGHT;
+    }
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
         comment = NSLS(@"kCorrect");
@@ -83,6 +90,19 @@
     NSString *userName = [FeedManager userNameForFeed:feed];
     [self.nickNameLabel setText:userName];
     
+    commentLabel.hidden = itemImage.hidden = YES;
+    if (feed.feedType == ItemTypeFlower) {
+        itemImage.hidden = NO;
+        [itemImage setImage:[[ShareImageManager defaultManager] flower]];
+        return;
+    }else if(feed.feedType == ItemTypeTomato)
+    {
+        itemImage.hidden = NO;
+        [itemImage setImage:[[ShareImageManager defaultManager] tomato]];
+        return;
+    }
+    
+    commentLabel.hidden = NO;
     //set comment
     NSString *comment = feed.comment;
     if (feed.feedType ==  FeedTypeGuess) {
@@ -157,6 +177,7 @@
     PPRelease(commentLabel);
     PPRelease(timeLabel);
     PPRelease(nickNameLabel);
+    [itemImage release];
     [super dealloc];
 }
 

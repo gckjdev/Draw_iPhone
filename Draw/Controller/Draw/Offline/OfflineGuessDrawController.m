@@ -39,6 +39,7 @@
 #import "FeedController.h"
 #import "FeedDetailController.h"
 #import "CommonUserInfoView.h"
+#import "FeedService.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -627,27 +628,34 @@
 
 
 
-
-- (void)bomb
+- (BOOL)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
-        return;
+        return NO;
     }
     [self updateTargetViews:self.word];
     NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
     [self updateCandidateViewsWithText:result];
+    [toolView setEnabled:NO];
+    return YES;
 }
 
 
-- (void)throwFlower
-{
-    //TODO add throw animation
-}
-
-- (void)throwTomato
+- (BOOL)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
     
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
+}
+
+- (BOOL)throwTomato:(ToolView *)toolView
+{
+    //TODO add throw animation
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
@@ -660,18 +668,24 @@
         [dialog showInView:self.view];
         return;
     }
+    BOOL flag = NO;
     if (toolView.itemType == ItemTypeTips) {
-        [self bomb];
-        [toolView setEnabled:NO];
+        flag = [self bomb:toolView];
     }else if(toolView.itemType == ItemTypeFlower)
     {
-        [self throwFlower];
+        flag = [self throwFlower:toolView];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        [self throwTomato];
+        flag = [self throwTomato:toolView];
     }
-    [[AccountService defaultService] consumeItem:ItemTypeTips amount:toolView.itemType];
+    if (flag) {
+        [[AccountService defaultService] consumeItem:ItemTypeTips 
+                                              amount:toolView.itemType];        
+        [toolView decreaseNumber];
+    }
+
 }
+
 
 - (IBAction)clickToolBox:(id)sender {
     [self.view bringSubviewToFront:_pickToolView];

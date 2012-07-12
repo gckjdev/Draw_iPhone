@@ -12,33 +12,30 @@
 #import "CommonDialog.h"
 #import "SuperGameViewController.h"
 #import "LevelService.h"
-
+#import "PickToolView.h"
 
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
-@class ToolView;
 @class ItemShopController;
-@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate>
+@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
     ItemShopController *_shopController;
-    ToolView *toolView;
     BOOL _guessCorrect;
     UIButton *moveButton;
     UIButton *lastScaleTarget;
+    PickToolView *_pickToolView;
     
-    NSInteger numberPerPage;
-    NSInteger pageCount;
 }
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
+- (IBAction)clickToolBox:(id)sender;
 
 - (IBAction)clickRunAway:(id)sender;
-- (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;

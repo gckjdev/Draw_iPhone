@@ -1369,6 +1369,55 @@
 }
 
 
+
++ (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                               nick:(NSString*)nick
+                             avatar:(NSString*)avatar
+                             gender:(NSString*)gender
+                             opusId:(NSString*)opusId                        
+                     opusCreatorUId:(NSString*)opusCreatorUId  
+                            itemType:(int)itemType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL]; 
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_ACTION_ON_OPUS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
+        
+        //use item type as a action type. the action will show in the comment.
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:itemType];
+        
+        //action type
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                        
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
 + (CommonNetworkOutput*)getUserMessage:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
@@ -1541,6 +1590,7 @@
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_RETURN_ITEM intValue:1];
         
         return str;
     };
