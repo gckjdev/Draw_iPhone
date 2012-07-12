@@ -78,7 +78,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             Feed *feed = nil;
             NSInteger resultCode = [output resultCode];            
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
