@@ -108,7 +108,7 @@
 								<string key="NSFrame">{{33, 297}, {556, 2}}</string>
 								<reference key="NSSuperview" ref="889029020"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="291528773"/>
+								<reference key="NSNextKeyView" ref="297121548"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -263,7 +263,7 @@
 								<string key="NSFrame">{{40, 210}, {549, 89}}</string>
 								<reference key="NSSuperview" ref="889029020"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="978718182"/>
+								<reference key="NSNextKeyView" ref="291528773"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -314,19 +314,18 @@
 								<string key="NSFrame">{{292, 80}, {115, 76}}</string>
 								<reference key="NSSuperview" ref="889029020"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="297121548"/>
+								<reference key="NSNextKeyView" ref="978718182"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">10</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="440554006"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">88</double>

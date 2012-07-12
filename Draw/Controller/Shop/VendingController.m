@@ -64,7 +64,7 @@
 
 - (void)initTitles
 {
-    [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
+    [self.coinsButton setTitle:[NSString stringWithFormat:@"x %d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
 }
 
 - (void)addPageViewBackground:(UIView*)view

@@ -660,14 +660,14 @@
 "kThrowTomato" = "丟番茄";
 "kBombTips" = "炸词锦囊";
 
-"kFlower" = "鮮花          朵";
-"kTomato" = "番茄          個";
+"kFlower" = "鮮花";
+"kTomato" = "番茄";
 "kRemoveAd" = "移除廣告";
-"kTips" = "錦囊          個";
-"kPen" = "毛筆          隻";
-"kIcePen" = "雪糕筆          隻";
-"kQuill" = "鵝毛筆          隻";
-"kWaterPen" = "水筆          隻";
+"kTips" = "錦囊";
+"kPen" = "毛筆";
+"kIcePen" = "雪糕筆";
+"kQuill" = "鵝毛筆";
+"kWaterPen" = "水筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";

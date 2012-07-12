@@ -196,6 +196,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{166, 181}, {80, 30}}</string>
 								<reference key="NSSuperview" ref="1004052234"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -272,7 +273,7 @@
 							<object class="IBUILabel" id="129940377">
 								<reference key="NSNextResponder" ref="1004052234"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{87, 51}, {110, 21}}</string>
+								<string key="NSFrame">{{87, 51}, {59, 21}}</string>
 								<reference key="NSSuperview" ref="1004052234"/>
 								<reference key="NSNextKeyView" ref="429536069"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -281,7 +282,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">锦囊</string>
+								<string key="IBUIText">Flower</string>
 								<reference key="IBUITextColor" ref="67646780"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -299,20 +300,20 @@
 							<object class="IBUILabel" id="429536069">
 								<reference key="NSNextResponder" ref="1004052234"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{122, 37}, {48, 35}}</string>
+								<string key="NSFrame">{{149, 37}, {48, 35}}</string>
 								<reference key="NSSuperview" ref="1004052234"/>
+								<reference key="NSNextKeyView" ref="589866758"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">10</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="67646780"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">44</double>
