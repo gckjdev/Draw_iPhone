@@ -674,6 +674,7 @@
 "kPen" = "Brush Pen";
 "kIcePen" = "Ice-cream Pen";
 "kQuill" = "Quill Pen";
+"kWaterPen" = "Mike Pen";
 
 "kFlowerDescription" = "Whenever you see awesome draws, send some flowers to the author!";
 "kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
@@ -681,10 +682,12 @@
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
 "kBrushPenDescription" = "Just look cool...";
 "kIcePenDescription" = "Just look cool...";
-"kQuillDescription" = "Just look cool...";   
+"kQuillDescription" = "Just look cool..."; 
+"kWaterPenDescription" = "Just look cool...";
 
 
 "kPickToolTitle" = "Use Item";
 
 "kPrice" = "Price";
-"kCoins" = "Coins";
+"kCost" = "Cost";
+"kCoins" = "coins";

@@ -450,6 +450,11 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"small_coin.png"];
 }
 
+- (UIImage*)waterPen
+{
+    return [self fixedImageNamed:@"mike_pen"];
+}
+
 - (UIImage *)pickToolBackground
 {
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    

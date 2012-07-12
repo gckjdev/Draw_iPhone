@@ -100,7 +100,7 @@
         case Quill:
             return manager.quillPen;
         case WaterPen:
-            return manager.waterPenImage;
+            return manager.waterPen;
         default:
             return nil;
     }    
