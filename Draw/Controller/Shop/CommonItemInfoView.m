@@ -61,7 +61,7 @@
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
     [self.priceLabel setText:NSLS(@"kPrice")];
-    [self.coinLabel setText:NSLS(@"kCoin")];
+    [self.coinLabel setText:NSLS(@"kCoins")];
 }
 
 - (void)initViewWithItem:(Item*)anItem

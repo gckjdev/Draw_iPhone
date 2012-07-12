@@ -392,15 +392,15 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)brushPen
 {
-    return [UIImage imageNamed:@"brush_pen.png"];
+    return [self fixedImageNamed:@"brush_pen"];
 }
 - (UIImage *)removeAd
 {
-    return [UIImage imageNamed:@"clean_ad.png"];
+    return [self fixedImageNamed:@"clean_ad"];
 }
 - (UIImage *)icePen
 {
-    return [UIImage imageNamed:@"cones_pen.png"];
+    return [self fixedImageNamed:@"cones_pen"];
 }
 //set button image not background image.
 - (UIImage *)flower
@@ -426,12 +426,13 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)printOil
 {
-    return [UIImage imageNamed:@"print_oil.png"];
+    return [self fixedImageNamed:@"print_oil"];
 }
 - (UIImage *)quillPen
 {
-    return [UIImage imageNamed:@"quill_pen.png"];
+    return [self fixedImageNamed:@"quill_pen"];
 }
+
 - (UIImage *)rewardCoin
 {
     return [UIImage imageNamed:@"reward_coin.png"];

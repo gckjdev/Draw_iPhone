@@ -44,6 +44,7 @@
 + (Item*)featherPen;
 + (Item*)brushPen;
 + (Item*)iceCreamPen;
++ (Item*)waterPen;
 
 + (UIImage *)imageForItemType:(ItemType)type;
 + (NSString *)nameForItemType:(ItemType)type;

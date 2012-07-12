@@ -685,3 +685,6 @@
 
 
 "kPickToolTitle" = "Use Item";
+
+"kPrice" = "Price";
+"kCoins" = "Coins";
