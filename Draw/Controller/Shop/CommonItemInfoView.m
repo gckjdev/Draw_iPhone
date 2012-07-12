@@ -13,6 +13,7 @@
 #import "Item.h"
 #import "PPDebug.h"
 #import "AccountService.h"
+#import "DeviceDetection.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -52,11 +53,6 @@
     [super dealloc];
 }
 
-- (void)ajustAmountLabel
-{
-    
-}
-
 - (void)initView
 {
     [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
@@ -75,9 +71,11 @@
     [self.itemImageView setImage:anItem.itemImage];
     [self.itemDescriptionLabel setText:anItem.itemDescription];
     [self.itemTitle setText:anItem.itemName];
-    [self.itemCountLabel setText:[NSString stringWithFormat:@"%d",anItem.buyAmountForOnce]];
+    if ([Item isItemCountable:anItem.type]) {
+        [self.itemCountLabel setText:[NSString stringWithFormat:@"x %d",anItem.buyAmountForOnce]];
+    }
     [self.coinCountLabel setText:[NSString stringWithFormat:@"%d",anItem.price]];
-    [self ajustAmountLabel];
+
 }
 
 
