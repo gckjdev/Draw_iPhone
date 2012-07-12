@@ -99,6 +99,8 @@
             return manager.icePen;
         case Quill:
             return manager.quillPen;
+        case WaterPen:
+            return manager.waterPen;
         default:
             return nil;
     }    
@@ -121,7 +123,9 @@
         case IcePen:
             return NSLS(@"kIcePen");
         case Quill:
-            return NSLS(@"kQuill");    
+            return NSLS(@"kQuill"); 
+        case WaterPen:
+            return NSLS(@"kWaterPen");
         default:
             return nil;
     }
@@ -145,11 +149,28 @@
         case IcePen:
             return NSLS(@"kIcePenDescription");
         case Quill:
-            return NSLS(@"kQuillDescription");     
+            return NSLS(@"kQuillDescription");  
+        case WaterPen:
+            return NSLS(@"kWaterPenDescription");
         default:
             return nil;
     }
     
+}
+
++ (NSString *)actionNameForItemType:(ItemType)type
+{
+    if(ItemTypeTips == type)
+    {
+        return NSLS(@"kBombTips");
+    }
+    if (ItemTypeFlower == type) {
+        return NSLS(@"kThrowFlower");        
+    }
+    if (ItemTypeTomato == type) {
+        return NSLS(@"kThrowTomato");
+    }
+    return nil;
 }
 
 + (BOOL)isItemCountable:(ItemType)type
@@ -170,8 +191,8 @@
                                  image:[Item imageForItemType:ItemTypeTomato]
                                   name:[Item nameForItemType:ItemTypeTomato]
                            description:[Item descriptionForItemType:ItemTypeTomato]
-                      buyAmountForOnce:10 
-                                 price:5 
+                      buyAmountForOnce:0 
+                                 price:1 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
 }
 
@@ -250,6 +271,17 @@
                       buyAmountForOnce:1 
                                  price:5 
                                 amount:[[ItemManager defaultManager] amountForItem:IcePen]] autorelease];
+}
+
++ (Item*)waterPen
+{
+    return [[[Item alloc] initWithType:WaterPen 
+                                 image:[Item imageForItemType:WaterPen]
+                                  name:[Item nameForItemType:WaterPen]
+                           description:[Item descriptionForItemType:WaterPen] 
+                      buyAmountForOnce:1 
+                                 price:5 
+                                amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
 
 @end

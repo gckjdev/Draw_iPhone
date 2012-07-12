@@ -121,4 +121,7 @@ typedef enum {
 - (BOOL)isMyOpus;
 - (BOOL) hasGuessed;
 - (BOOL) isDrawType;
+- (NSString *)author;
+
+
 @end

@@ -14,7 +14,7 @@
 #import "DeviceDetection.h"
 #import "Item.h"
 
-#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 39 * 2, 52 * 2) : CGRectMake(0, 0, 61, 61))
+#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 2, 61 * 2) : CGRectMake(0, 0, 61, 61))
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
@@ -24,7 +24,7 @@
 
 
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
-#define TOOL_NUMBER_SIZE (([DeviceDetection isIPAD]) ? 16 * 2 : 16)
+#define TOOL_NUMBER_SIZE (([DeviceDetection isIPAD]) ? 13 * 2 : 13)
 
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
 
@@ -36,6 +36,16 @@
     return [[[ToolView alloc] initWithItemType:ItemTypeTips number:number] autorelease];
 }
 
++ (ToolView *)flowerViewWithNumber:(NSInteger)number
+{
+    return [[[ToolView alloc] initWithItemType:ItemTypeFlower number:number] autorelease];
+}
++ (ToolView *)tomatoViewWithNumber:(NSInteger)number
+{
+    return [[[ToolView alloc] initWithItemType:ItemTypeTomato number:number] autorelease];
+}
+
+
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number
 {
     
@@ -44,10 +54,6 @@
         
         self.itemType = type;
         self.userInteractionEnabled = NO;
-
-        //set image        
-        UIImage *image = [Item imageForItemType:type];
-        [self setBackgroundImage:image forState:UIControlStateNormal];
         
 
         if ([Item isItemCountable:type]) {
@@ -59,7 +65,7 @@
             [numberButton setUserInteractionEnabled:NO];
             float width = self.frame.size.width;
             float height = self.frame.size.height;
-            [numberButton setFrame:CGRectMake(width*0.6, height*0.6, width*0.4, height*0.4)];
+            [numberButton setFrame:CGRectMake(width*0.6, height*0.6, width*0.3, height*0.3)];
             
             [self addSubview:numberButton];
             [numberButton.titleLabel setFont:[UIFont systemFontOfSize:TOOL_NUMBER_SIZE]];
@@ -91,7 +97,7 @@
 {
     _itemType = itemType;
     UIImage *image = [Item imageForItemType:itemType];
-    [self setBackgroundImage:image forState:UIControlStateNormal];
+    [self setImage:image forState:UIControlStateNormal];
 }
 
 - (id)initWithNumber:(NSInteger)number
@@ -147,6 +153,16 @@
     [alreadyHasFlag setHidden:NO];
     [self setEnabled:NO];
 }
+
++ (CGFloat)width
+{
+    return TOOL_VIEW_FRAM.size.width;
+}
++ (CGFloat)height
+{
+    return TOOL_VIEW_FRAM.size.height;
+}
+
 
 @end
 

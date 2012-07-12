@@ -39,6 +39,7 @@
 #import "FeedController.h"
 #import "FeedDetailController.h"
 #import "CommonUserInfoView.h"
+#import "FeedService.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -52,7 +53,6 @@
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
 @synthesize word = _word;
-@synthesize quitButton;
 @synthesize titleLabel;
 @synthesize feed = _feed;
 @synthesize superController = _supperController;
@@ -82,9 +82,9 @@
     PPRelease(drawBackground);
     PPRelease(titleLabel);
     PPRelease(_feed);
-    PPRelease(quitButton);
     PPRelease(_guessWords);
     PPRelease(_supperController);
+    PPRelease(_pickToolView);
     [super dealloc];
 }
 
@@ -377,6 +377,22 @@
 }
 
 
+- (void)initPickToolView
+{
+    NSMutableArray *array = [NSMutableArray array];
+    ItemManager *itemManager = [ItemManager defaultManager];
+    ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    [array addObject:tips];
+    [array addObject:flower];
+    [array addObject:tomato];
+    _pickToolView = [[PickToolView alloc] initWithTools:array];
+    _pickToolView.hidden = YES;
+    _pickToolView.delegate = self;
+    [self.view addSubview:_pickToolView];
+}
+
 
 #pragma mark - Word && Word Views
 
@@ -489,8 +505,6 @@
     [super viewDidLoad];
     
     [self.titleLabel setText:NSLS(@"kGuessDraw")];
-    [self.quitButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
-    [self.quitButton setBackgroundImage:[shareImageManager orangeImage] forState:UIControlStateNormal];
     
     [self initShowView];
     
@@ -502,7 +516,7 @@
     _shopController = nil;
     
     [self updateDrawInfo];
-    
+    [self initPickToolView];
 }
 
 
@@ -525,7 +539,6 @@
     [self setShowView:nil];
     [self setDrawBackground:nil];
     [self setTitleLabel:nil];
-    [self setQuitButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
 }
@@ -615,26 +628,68 @@
 
 
 
-
-- (void)bomb:(id)sender
+- (BOOL)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
-        return;
+        return NO;
     }
-    if ([[ItemManager defaultManager] tipsItemAmount] <= 0) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoTipsItemTitle") message:NSLS(@"kNoTipsItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    [self updateTargetViews:self.word];
+    NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
+    [self updateCandidateViewsWithText:result];
+    [toolView setEnabled:NO];
+    return YES;
+}
+
+
+- (BOOL)throwFlower:(ToolView *)toolView
+{
+    //TODO add throw animation
+    
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
+}
+
+- (BOOL)throwTomato:(ToolView *)toolView
+{
+    //TODO add throw animation
+    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    return YES;
+}
+#pragma mark - click tool delegate
+- (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
+{
+    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    if(amout <= 0){
+        //TODO go the shopping page.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
-    }else{
-        [self updateTargetViews:self.word];
-        NSString *result  = [WordManager bombCandidateString:self.candidateString word:self.word];
-        [self updateCandidateViewsWithText:result];
-        [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
+        return;
     }
-    
+    BOOL flag = NO;
+    if (toolView.itemType == ItemTypeTips) {
+        flag = [self bomb:toolView];
+    }else if(toolView.itemType == ItemTypeFlower)
+    {
+        flag = [self throwFlower:toolView];
+    }else if(toolView.itemType == ItemTypeTomato)
+    {
+        flag = [self throwTomato:toolView];
+    }
+    if (flag) {
+        [[AccountService defaultService] consumeItem:ItemTypeTips 
+                                              amount:toolView.itemType];        
+        [toolView decreaseNumber];
+    }
+
 }
+
+
 - (IBAction)clickToolBox:(id)sender {
-//    [self bomb:sender];
+    [self.view bringSubviewToFront:_pickToolView];
+    [_pickToolView setHidden:!_pickToolView.hidden animated:YES];
 }
 
 - (IBAction)clickRunAway:(id)sender {

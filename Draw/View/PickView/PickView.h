@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "DeviceDetection.h"
+#import "PPDebug.h"
 
 @class DrawColor;
 @class ColorView;
 @class PickView;
 @class PenView;
+@class ToolView;
+
 @protocol PickViewDelegate <NSObject>
 
 @optional
@@ -21,6 +24,7 @@
 - (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width;
 - (void)didPickedMoreColor;
 - (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView;
+- (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView;
 
 @end
 

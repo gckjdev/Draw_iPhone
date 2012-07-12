@@ -125,8 +125,8 @@
 
 "kChangeRoom" = "Loading...";
 
-"kNoTipsItemTitle" = "Message";
-"kNoTipsItemMessage" = "You don't have any tip now. Do you want to buy some?";
+"kNoItemTitle" = "Message";
+"kNoItemMessage" = "You have no the tool now. Do you want to buy some?";
 "kQuickMessage" = "Hurry Up!";
 "kWaitMessage" = "Wait a minute!";
 "kClickTooFast" = "Your click rate is too high, please take a break.";
@@ -665,6 +665,7 @@
 
 "kThrowFlower" = "Flower";
 "kThrowTomato" = "Tomato";
+"kBombTips" = "Bomb";
 
 "kFlower" = "Flower";
 "kTomato" = "Tomato";
@@ -673,6 +674,7 @@
 "kPen" = "Brush Pen";
 "kIcePen" = "Ice-cream Pen";
 "kQuill" = "Quill Pen";
+"kWaterPen" = "Mike Pen";
 
 "kFlowerDescription" = "Whenever you see awesome draws, send some flowers to the author!";
 "kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
@@ -680,4 +682,12 @@
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
 "kBrushPenDescription" = "Just look cool...";
 "kIcePenDescription" = "Just look cool...";
-"kQuillDescription" = "Just look cool...";   
+"kQuillDescription" = "Just look cool..."; 
+"kWaterPenDescription" = "Just look cool...";
+
+
+"kPickToolTitle" = "Use Item";
+
+"kPrice" = "Price";
+"kCost" = "Cost";
+"kCoins" = "coins";

@@ -32,6 +32,12 @@
 - (void)didDeleteFeed:(Feed *)feed
             resultCode:(NSInteger)resultCode;
 
+- (void)didThrowFlowerToOpus:(NSString *)opusId
+            resultCode:(NSInteger)resultCode;
+
+- (void)didThrowTomatoToOpus:(NSString *)opusId
+                  resultCode:(NSInteger)resultCode;
+
 
 @end
 
@@ -66,5 +72,14 @@
 
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)throwFlowerToOpus:(NSString *)opusId 
+                   author:(NSString *)author  
+                 delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)throwTomatoToOpus:(NSString *)opusId 
+                   author:(NSString *)author 
+                 delegate:(id<FeedServiceDelegate>)delegate;
+
 
 @end

@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 
+@property (retain, nonatomic) IBOutlet UIImageView *itemImage;
 + (CGFloat)getCellHeight:(Feed *)feed;
 - (void)setCellInfo:(Feed *)feed;
 

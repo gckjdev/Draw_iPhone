@@ -15,7 +15,7 @@
 #import "UserManager.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
-
+#import "ItemType.h"
 
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
@@ -189,5 +189,48 @@ static FeedService *_staticFeedService = nil;
         });
 
 }
+
+- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
+                   author:(NSString *)author   
+                 delegate:(id<FeedServiceDelegate>)delegate
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* nick = [[UserManager defaultManager] nickName];
+    NSString* gender = [[UserManager defaultManager] gender];
+    NSString* avatar = [[UserManager defaultManager] avatarURL];
+    NSString* appId = [ConfigManager appId];
+    
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (itemType == ItemTypeFlower && delegate && [delegate respondsToSelector:@selector(didThrowFlowerToOpus:resultCode:)]) {
+                [delegate didThrowFlowerToOpus:opusId resultCode:output.resultCode];
+                
+            }else if(itemType == ItemTypeTomato && delegate && [delegate respondsToSelector:@selector(didThrowTomatoToOpus:resultCode:)]){
+                [delegate didThrowTomatoToOpus:opusId resultCode:output.resultCode];
+                
+            }
+        });
+    });
+
+}
+
+
+- (void)throwFlowerToOpus:(NSString *)opusId 
+                   author:(NSString *)author  
+                 delegate:(id<FeedServiceDelegate>)delegate
+{
+    [self throwItem:ItemTypeFlower toOpus:opusId author:author delegate:delegate];
+}
+
+- (void)throwTomatoToOpus:(NSString *)opusId 
+                   author:(NSString *)author 
+                 delegate:(id<FeedServiceDelegate>)delegate;
+{
+    [self throwItem:ItemTypeTomato toOpus:opusId author:author delegate:delegate];    
+}
+
 
 @end

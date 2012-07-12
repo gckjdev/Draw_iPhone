@@ -139,4 +139,12 @@
 {
     return self.feedType == FeedTypeDraw || self.feedType == FeedTypeDrawToUser;
 }
+
+- (NSString *)author
+{
+    if ([self isDrawType]) {
+        return self.userId;
+    }
+    return self.drawData.userId;
+}
 @end

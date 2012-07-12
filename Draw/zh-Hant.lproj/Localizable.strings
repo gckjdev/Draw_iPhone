@@ -124,8 +124,8 @@
 "kJoinGameFailure" = "加入遊戲失敗，請稍候再試";
 
 "kChangeRoom" = "更換房間中...";
-"kNoTipsItemTitle" = "消息";
-"kNoTipsItemMessage" = "你的道具不夠了，是不是現在購買一些？";
+"kNoItemTitle" = "消息";
+"kNoItemMessage" = "你的道具不夠了，是不是現在購買一些？";
 "kQuickMessage" = "快點,快點啦!";
 "kWaitMessage" = "等等,等等吧!";
 "kClickTooFast" = "你的點擊頻率太快了，不妨休息一下。";
@@ -658,6 +658,7 @@
 
 "kThrowFlower" = "送鮮花";
 "kThrowTomato" = "丟番茄";
+"kBombTips" = "炸词锦囊";
 
 "kFlower" = "鮮花          朵";
 "kTomato" = "番茄          個";
@@ -666,6 +667,7 @@
 "kPen" = "毛筆          隻";
 "kIcePen" = "雪糕筆          隻";
 "kQuill" = "鵝毛筆          隻";
+"kWaterPen" = "水筆          隻";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
@@ -674,3 +676,10 @@
 "kBrushPenDescription" = "好多毛的筆";
 "kIcePenDescription" = "看上去像雪糕的筆";
 "kQuillDescription" = "用鵝毛做的筆";
+"kWaterPenDescription" = "好多水的筆";
+
+"kPickToolTitle" = "使用道具";
+
+"kPrice" = "價格";
+"kCost" = "花費";
+"kCoins" = "金幣";

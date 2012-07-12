@@ -14,6 +14,7 @@
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
 #import "StableView.h"
+#import "PickToolView.h"
 
 @protocol OfflineGuessDelegate <NSObject>
 
@@ -31,17 +32,16 @@
 @class ItemShopController;
 @class Draw;
 @class Feed;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
     ItemShopController *_shopController;
-//    ToolView *toolView;
+    PickToolView *_pickToolView;
+    
     UIButton *moveButton;
     UIButton *lastScaleTarget;
     
-//    NSInteger numberPerPage;
-//    NSInteger pageCount;
     ShareImageManager *shareImageManager;
 
     Word *_word;
@@ -61,13 +61,11 @@
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) Feed *feed;
-@property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (assign, nonatomic) id<OfflineGuessDelegate>delegate;
 
 - (IBAction)clickRunAway:(id)sender;
-- (void)bomb:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
 - (IBAction)clickToolBox:(id)sender;
 
@@ -75,7 +73,6 @@
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
 - (NSString *)realValueForButton:(UIButton *)button;
 - (void)initShowView;
-//- (void)initBomb;
 
 - (void)initTargetViews;
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;

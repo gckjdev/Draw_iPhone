@@ -33,6 +33,7 @@
 #import "ShareService.h"
 #import "AdService.h"
 #import "UIButtonExt.h"
+#import "FeedService.h"
 
 #define CONTINUE_TIME 10
 
@@ -365,14 +366,26 @@
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
-//    [drawGameService rankGameResult:RANK_GOOD];
-//    TODO  send up request.
+    
+    if (_resultType == OfflineGuess) {
+//    TODO  send flower http request.
+        
+    }else{
+//    TODO  send flower socket request.
+        
+    }
+
     [self setUpAndDownButtonEnabled:NO];
 }
 
 - (IBAction)clickDownButton:(id)sender {
-//    [drawGameService rankGameResult:RANK_BAD];
-    //    TODO  send down request.
+    if (_resultType == OfflineGuess) {
+        //    TODO  send tomato http request.
+        
+    }else{
+        //    TODO  send tomato socket request.
+        
+    }
     [self setUpAndDownButtonEnabled:NO];
 }
 

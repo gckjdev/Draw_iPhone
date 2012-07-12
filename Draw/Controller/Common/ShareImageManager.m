@@ -9,6 +9,7 @@
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
 #import "LocaleUtils.h"
+#import "DeviceDetection.h"
 
 @implementation ShareImageManager
 
@@ -373,6 +374,17 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"toolbox.png"];
 }
 
+- (UIImage *)fixedImageNamed:(NSString *)name
+{
+    NSString *temp = name;
+    if ([DeviceDetection isIPAD]) {
+        temp = [NSString stringWithFormat:@"%@@2x.png",name];        
+    }else{
+
+    }
+    return [UIImage imageNamed:temp];
+}
+
 //for tool
 - (UIImage *)buyedImage
 {
@@ -380,20 +392,30 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)brushPen
 {
-    return [UIImage imageNamed:@"brush_pen.png"];
+    return [self fixedImageNamed:@"brush_pen"];
 }
 - (UIImage *)removeAd
 {
-    return [UIImage imageNamed:@"clean_ad.png"];
+    return [self fixedImageNamed:@"clean_ad"];
 }
 - (UIImage *)icePen
 {
-    return [UIImage imageNamed:@"cones_pen.png"];
+    return [self fixedImageNamed:@"cones_pen"];
 }
+//set button image not background image.
 - (UIImage *)flower
 {
-    return [UIImage imageNamed:@"flower.png"];
+    return [self fixedImageNamed:@"flower"];
 }
+- (UIImage *)tomato
+{
+    return [self fixedImageNamed:@"tomato"];
+}
+- (UIImage *)tipBag
+{
+    return [self fixedImageNamed:@"tipbag"];
+}
+
 - (UIImage *)itemOut
 {
     return [UIImage imageNamed:@"itemOut.png"];
@@ -404,12 +426,13 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)printOil
 {
-    return [UIImage imageNamed:@"print_oil.png"];
+    return [self fixedImageNamed:@"print_oil"];
 }
 - (UIImage *)quillPen
 {
-    return [UIImage imageNamed:@"quill_pen.png"];
+    return [self fixedImageNamed:@"quill_pen"];
 }
+
 - (UIImage *)rewardCoin
 {
     return [UIImage imageNamed:@"reward_coin.png"];
@@ -422,16 +445,19 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"shopping_bg.png"];
 }
-- (UIImage *)tipBag
-{
-    return [UIImage imageNamed:@"tipbag.png"];
-}
-- (UIImage *)tomato
-{
-    return [UIImage imageNamed:@"tomato.png"];
-}
 - (UIImage *)smallCoin
 {
     return [UIImage imageNamed:@"small_coin.png"];
 }
+
+- (UIImage*)waterPen
+{
+    return [self fixedImageNamed:@"mike_pen"];
+}
+
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
+}
 @end
+

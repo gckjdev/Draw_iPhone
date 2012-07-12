@@ -121,6 +121,7 @@
 		C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
 		C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
+		C24D34A715AE86EA00CFC5A0 /* mike_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */; };
 		C2615A831591C17B00CEEC66 /* h_chat@@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A751591C17B00CEEC66 /* h_chat@@2x.png */; };
 		C2615A841591C17B00CEEC66 /* h_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A761591C17B00CEEC66 /* h_coin@2x.png */; };
 		C2615A851591C17B00CEEC66 /* h_draw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A771591C17B00CEEC66 /* h_draw@2x.png */; };
@@ -1007,6 +1008,7 @@
 		C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonItemInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
+		C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mike_pen@2x.png"; sourceTree = "<group>"; };
 		C2615A751591C17B00CEEC66 /* h_chat@@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_chat@@2x.png"; path = "Images/h_chat@@2x.png"; sourceTree = "<group>"; };
 		C2615A761591C17B00CEEC66 /* h_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_coin@2x.png"; path = "Images/h_coin@2x.png"; sourceTree = "<group>"; };
 		C2615A771591C17B00CEEC66 /* h_draw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_draw@2x.png"; path = "Images/h_draw@2x.png"; sourceTree = "<group>"; };
@@ -2584,6 +2586,7 @@
 		CA03470B15AA7B7F00C2C172 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */,
 				CA02B52915AC2CA400B2A3E2 /* buyed@2x.png */,
 				CA02B52115AC111800B2A3E2 /* flower_result@2x.png */,
 				CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */,
@@ -5541,6 +5544,7 @@
 				CA02B52315AC111800B2A3E2 /* flower_result@2x.png in Resources */,
 				CA02B52415AC111800B2A3E2 /* tomato_result@2x.png in Resources */,
 				CA02B52A15AC2CA400B2A3E2 /* buyed@2x.png in Resources */,
+				C24D34A715AE86EA00CFC5A0 /* mike_pen@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

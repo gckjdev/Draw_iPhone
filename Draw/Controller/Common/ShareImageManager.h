@@ -129,5 +129,8 @@
 - (UIImage *)tipBag;
 - (UIImage *)tomato;
 - (UIImage *)smallCoin;
+- (UIImage*)waterPen;
+
+- (UIImage *)pickToolBackground;
 
 @end

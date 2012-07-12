@@ -52,6 +52,10 @@
     [super dealloc];
 }
 
+- (void)ajustAmountLabel
+{
+    
+}
 
 - (void)initView
 {
@@ -60,6 +64,8 @@
     [self.buyButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+    [self.priceLabel setText:NSLS(@"kCost")];
+    [self.coinLabel setText:NSLS(@"kCoins")];
 }
 
 - (void)initViewWithItem:(Item*)anItem
@@ -71,7 +77,7 @@
     [self.itemTitle setText:anItem.itemName];
     [self.itemCountLabel setText:[NSString stringWithFormat:@"%d",anItem.buyAmountForOnce]];
     [self.coinCountLabel setText:[NSString stringWithFormat:@"%d",anItem.price]];
-    
+    [self ajustAmountLabel];
 }
 
 
