@@ -622,12 +622,14 @@
     [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwFlower];
     //TODO add throw animation
+    [self throwFlower];
     return NO;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
     [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+    [self throwTomato];
     [self throwTomato];
     //TODO add throw animation
     return NO;

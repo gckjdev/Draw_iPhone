@@ -377,7 +377,8 @@
         
     }else{
 //    TODO  send flower socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];                
+        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
+        
     }
 
     [self setUpAndDownButtonEnabled:NO];

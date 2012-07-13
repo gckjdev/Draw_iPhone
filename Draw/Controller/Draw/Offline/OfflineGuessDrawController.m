@@ -645,6 +645,7 @@
 {
     //TODO add throw animation
     
+    
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
     return YES;
