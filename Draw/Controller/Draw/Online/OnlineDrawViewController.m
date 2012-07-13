@@ -40,7 +40,7 @@
 #import "PickPenView.h"
 #import "ShoppingManager.h"
 #import "FriendRoomController.h"
-
+#import "GameConstants.h"
 
 @implementation OnlineDrawViewController
 
@@ -377,6 +377,17 @@ enum{
         //[self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil]; 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAllUserQuit") delayTime:1 isHappy:NO]; 
     }
+}
+
+- (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
+{
+    if (rank.integerValue == RANK_TOMATO) {
+        PPDebug(@"%@ give you an tomato", userId);
+    }else{
+        PPDebug(@"%@ give you a flower", userId);
+    }
+    
+    // TODO show animation here
 }
 
 #pragma mark - Pick view delegate

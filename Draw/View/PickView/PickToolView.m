@@ -34,7 +34,7 @@
 }
 
 - (void)updateToolViews;
-@property(nonatomic, assign)NSArray *tools;
+@property(nonatomic, retain) NSArray *tools;
 @end
 
 

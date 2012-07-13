@@ -10,8 +10,8 @@
 #define Draw_GameConstants_h
 
 typedef enum{
-    RANK_GOOD = 1,
-    RANK_BAD = 2
+    RANK_FLOWER = 1,
+    RANK_TOMATO = 2
 } GameRankType;
 
 #define CHAT_COMMAND_RANK   @"RANK$$"

@@ -33,7 +33,7 @@
 #import "AudioManager.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
-
+#import "GameConstants.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -553,7 +553,16 @@
     
 }
 
-
+- (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
+{
+    if (rank.integerValue == RANK_TOMATO) {
+        PPDebug(@"%@ give you an tomato", userId);
+    }else{
+        PPDebug(@"%@ give you a flower", userId);
+    }
+    
+    // TODO show animation here
+}
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
@@ -610,12 +619,16 @@
 
 - (BOOL)throwFlower:(ToolView *)toolView
 {
+    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
+    
     //TODO add throw animation
     return NO;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
+    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+    
     //TODO add throw animation
     return NO;
 }

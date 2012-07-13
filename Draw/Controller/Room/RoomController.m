@@ -976,7 +976,7 @@
 
 - (void)handleStartTimer:(id)sender
 {
-    PPDebug(@"<handleStartTimer> fire start game timer");
+    PPDebug(@"<handleStartTimer> fire start game timer, timer count=%d", _currentTimeCounter);
     
     _currentTimeCounter --;
     [self updateStartButton];    

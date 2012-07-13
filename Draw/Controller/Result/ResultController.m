@@ -284,6 +284,7 @@
 
 - (void)viewDidLoad
 {        
+    
     self.adView = [[AdService defaultService] createAdInView:self 
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(224, 755, 320, 50)
@@ -295,12 +296,13 @@
     [self initScore];
     [self initResultLabel];
     [self initActionButton];
-    [self initAnswer];
+    [self initAnswer];        
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-
+    [[DrawGameService defaultService] unregisterObserver:self];
+    
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
 
@@ -309,6 +311,8 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[DrawGameService defaultService] registerObserver:self];    
+    
     [super viewDidAppear:animated];
 
     if (self.adView == nil){
@@ -320,7 +324,8 @@
 }
 
 - (void)viewDidUnload
-{
+{    
+    
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];    
     
@@ -372,7 +377,7 @@
         
     }else{
 //    TODO  send flower socket request.
-        
+        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];                
     }
 
     [self setUpAndDownButtonEnabled:NO];
@@ -384,7 +389,7 @@
         
     }else{
         //    TODO  send tomato socket request.
-        
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];        
     }
     [self setUpAndDownButtonEnabled:NO];
 }
@@ -432,11 +437,13 @@
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
 {
-    if (rank.integerValue == RANK_BAD) {
-        NSLog(@"%@ give you an egg", userId);
+    if (rank.integerValue == RANK_TOMATO) {
+        PPDebug(@"%@ give you an tomato", userId);
     }else{
-        NSLog(@"%@ give you a flower", userId);
+        PPDebug(@"%@ give you a flower", userId);
     }
+    
+    // TODO show animation here
 }
 
 #pragma mark - LevelServiceDelegate
