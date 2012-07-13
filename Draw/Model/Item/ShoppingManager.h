@@ -31,6 +31,10 @@
 - (NSArray*)findItemPriceList;
 - (NSInteger)getColorPrice;
 - (NSInteger)getPenPrice;
+- (NSInteger)getTomatoPrice;
+- (NSInteger)getFlowerPrice;
+- (NSInteger)getTipBagPrice;
+- (NSInteger)getRemoveAdPrice;
 - (SKProduct*)productWithId:(NSString*)product;
 
 @end

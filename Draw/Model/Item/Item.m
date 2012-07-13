@@ -11,6 +11,7 @@
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
 #import "ItemManager.h"
+#import "ShoppingManager.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -191,8 +192,8 @@
                                  image:[Item imageForItemType:ItemTypeTomato]
                                   name:[Item nameForItemType:ItemTypeTomato]
                            description:[Item descriptionForItemType:ItemTypeTomato]
-                      buyAmountForOnce:0 
-                                 price:1 
+                      buyAmountForOnce:10 
+                                 price:[[ShoppingManager defaultManager] getTomatoPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
 }
 
@@ -203,7 +204,7 @@
                                   name:[Item nameForItemType:ItemTypeFlower]
                            description:[Item descriptionForItemType:ItemTypeFlower]
                       buyAmountForOnce:10 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getFlowerPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
 }
 
@@ -214,7 +215,7 @@
                                   name:[Item nameForItemType:ItemTypeTips]
                            description:[Item descriptionForItemType:ItemTypeTips] 
                       buyAmountForOnce:10 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getTipBagPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeTips]] autorelease];
 }
 
@@ -225,7 +226,7 @@
                                   name:[Item nameForItemType:ItemTypeColor]
                            description:[Item descriptionForItemType:ItemTypeColor] 
                       buyAmountForOnce:10 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getColorPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeColor]] autorelease];
 }
 
@@ -236,7 +237,7 @@
                                   name:[Item nameForItemType:ItemTypeRemoveAd]
                            description:[Item descriptionForItemType:ItemTypeRemoveAd] 
                       buyAmountForOnce:10 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getRemoveAdPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeRemoveAd]] autorelease];
 }
 
@@ -247,7 +248,7 @@
                                   name:[Item nameForItemType:Quill]
                            description:[Item descriptionForItemType:Quill] 
                       buyAmountForOnce:1
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getPenPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:Quill]] autorelease];
 }
 
@@ -258,7 +259,7 @@
                                   name:[Item nameForItemType:Pen]
                            description:[Item descriptionForItemType:Pen] 
                       buyAmountForOnce:1 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getPenPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:Pen]] autorelease];
 }
 
@@ -269,7 +270,7 @@
                                   name:[Item nameForItemType:IcePen]
                            description:[Item descriptionForItemType:IcePen] 
                       buyAmountForOnce:1 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getPenPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:IcePen]] autorelease];
 }
 
@@ -280,7 +281,7 @@
                                   name:[Item nameForItemType:WaterPen]
                            description:[Item descriptionForItemType:WaterPen] 
                       buyAmountForOnce:1 
-                                 price:5 
+                                 price:[[ShoppingManager defaultManager] getPenPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
 

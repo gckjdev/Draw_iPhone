@@ -25,13 +25,15 @@
 #define PAGE_TAG_OFFSET      220120710
 
 #define FIRST_SHELF_FRAME   ([DeviceDetection isIPAD]?CGRectMake(12, 150, 712, 117):CGRectMake(5, 69, 297, 54))
-#define SHELF_SEPERATOR     ([DeviceDetection isIPAD]?222:102)
+#define SHELF_SEPERATOR     ([DeviceDetection isIPAD]?240:110)
 #define FIRST_ITEM_FRAME    ([DeviceDetection isIPAD]?CGRectMake(70, 56, 122, 122):CGRectMake(24, 23, 61, 61))
-#define FIRST_PRICE_COIN_FRAME  ([DeviceDetection isIPAD]?CGRectMake(86, 194, 37, 37):CGRectMake(23, 89, 17, 17))
-#define FIRST_PRICE_LABEL_FRAME ([DeviceDetection isIPAD]?CGRectMake(138, 194, 100, 37):CGRectMake(45, 89, 45, 17))
+#define FIRST_PRICE_COIN_FRAME  ([DeviceDetection isIPAD]?CGRectMake(96, 196, 34, 34):CGRectMake(37, 89, 17, 17))
+#define FIRST_PRICE_LABEL_FRAME ([DeviceDetection isIPAD]?CGRectMake(138, 196, 100, 34):CGRectMake(57, 89, 42, 17))
 #define ITEM_SEPERATOR  ([DeviceDetection isIPAD]?235:98)
-#define OUT_ITEM_CENTER ([DeviceDetection isIPAD]?CGPointMake(153,938):CGPointMake(64,429))
-#define OUT_ITEM_AMPLITUDE  ([DeviceDetection isIPAD]?90:30)
+#define OUT_ITEM_CENTER ([DeviceDetection isIPAD]?CGPointMake(153,951):CGPointMake(64,436))
+#define OUT_ITEM_AMPLITUDE  ([DeviceDetection isIPAD]?100:35)
+
+#define PRICE_LABEL_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
 
 #define ANIM_GROUP        @"animationFallingRotate"
 #define FALLING_GROUP       @"fallingGroup"
@@ -116,6 +118,8 @@
     
     [priceLabel setText:[NSString stringWithFormat:@"%d",item.price]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [priceLabel setFont:[UIFont systemFontOfSize:PRICE_LABEL_FONT_SIZE]];
     
     int pageIndex = view.tag-PAGE_TAG_OFFSET;
     toolView.tag = pageIndex*LINE_PER_PAGE*ITEM_COUNT_PER_LINE+index+ITEM_BUTTON_OFFSET;
@@ -204,6 +208,9 @@
 {
     [self.outItem.layer removeAllAnimations];
     ToolView* button = (ToolView*)sender;
+    if (button.alreadyHas) {
+        return;
+    }
     int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
     if (itemIndex < _itemList.count) {
         Item* item = [_itemList objectAtIndex:itemIndex];
@@ -218,41 +225,69 @@
     
 }
 
+#define FALLING_TIME    0.05
+#define TIME_FROME_CENTER_TO_SIDE   1
+#define ENLARGE_DURATION    2
+#define ENLARGE_RATE    20
 - (void)showBuyItemAnimation:(Item*)anItem
 {
     [self.outItem setImage:anItem.itemImage];
     
-    CAAnimation* falling = [AnimationManager translationAnimationTo:OUT_ITEM_CENTER duration:0.1];
-    falling.delegate = self;
-    falling.removedOnCompletion = NO;
-    falling.autoreverses = YES;
-    falling.repeatCount = 1.5;
+    CAAnimation* falling = [AnimationManager translationAnimationFrom:self.outItem.center 
+                                                                   to:OUT_ITEM_CENTER 
+                                                             duration:FALLING_TIME 
+                                                             delegate:self 
+                                                     removeCompeleted:NO];
     
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:1 duration:1];
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:1 
+                                                                    duration:TIME_FROME_CENTER_TO_SIDE];
     rolling.delegate = self;
-    rolling.beginTime =0.3;
+    rolling.beginTime =FALLING_TIME;
     rolling.autoreverses = YES;
-    rolling.repeatCount = 1;
     rolling.removedOnCompletion = NO;
     
-    CAAnimation* rRolling = [AnimationManager rotationAnimationWithRoundCount:-1 duration:1];
+    CAAnimation* rRolling = [AnimationManager rotationAnimationWithRoundCount:-1 
+                                                                     duration:TIME_FROME_CENTER_TO_SIDE];
     rRolling.delegate = self;
-    rRolling.beginTime =2.3;
+    rRolling.beginTime =FALLING_TIME + 2*TIME_FROME_CENTER_TO_SIDE;
     rRolling.autoreverses = YES;
-    rRolling.repeatCount = 1;
     rRolling.removedOnCompletion = NO;
     
-    CAAnimation* moveToRight = [AnimationManager translationAnimationTo:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) duration:1];
-    moveToRight.beginTime = 0.3;
+    CAAnimation* moveToRight = [AnimationManager translationAnimationTo:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) 
+                                                               duration:TIME_FROME_CENTER_TO_SIDE];
+    moveToRight.beginTime = FALLING_TIME;
     moveToRight.removedOnCompletion = NO;
     
-    CAAnimation* moveToLeft = [AnimationManager translationAnimationFrom:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) to:CGPointMake(OUT_ITEM_CENTER.x-OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) duration:2];
-    moveToLeft.beginTime = 1.3;
+    CAAnimation* moveToLeft = [AnimationManager translationAnimationFrom:CGPointMake(OUT_ITEM_CENTER.x+OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) 
+                                                                      to:CGPointMake(OUT_ITEM_CENTER.x-OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) 
+                                                                duration:2*TIME_FROME_CENTER_TO_SIDE];
+    moveToLeft.beginTime = moveToRight.beginTime+moveToRight.duration;
     moveToLeft.removedOnCompletion = NO;
     
-    CAAnimation* moveToCenter = [AnimationManager translationAnimationFrom:CGPointMake(OUT_ITEM_CENTER.x-OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) to:OUT_ITEM_CENTER duration:1];
-    moveToCenter.beginTime = 3.3;
+    CAAnimation* moveToCenter = [AnimationManager translationAnimationFrom:CGPointMake(OUT_ITEM_CENTER.x-OUT_ITEM_AMPLITUDE, OUT_ITEM_CENTER.y) 
+                                                                        to:OUT_ITEM_CENTER 
+                                                                  duration:TIME_FROME_CENTER_TO_SIDE];
+    moveToCenter.beginTime = moveToLeft.beginTime+moveToLeft.duration;
     moveToCenter.removedOnCompletion = NO;
+    
+    CAAnimation* toScreenCenter = [AnimationManager translationAnimationFrom:OUT_ITEM_CENTER 
+                                                                          to:self.view.center 
+                                                                    duration:ENLARGE_DURATION 
+                                                                    delegate:self 
+                                                            removeCompeleted:NO];
+    toScreenCenter.beginTime = moveToCenter.beginTime + moveToCenter.duration;
+    
+    
+    CAAnimation* enLarge = [AnimationManager scaleAnimationWithScale:ENLARGE_RATE 
+                                                            duration:ENLARGE_DURATION 
+                                                            delegate:self 
+                                                    removeCompeleted:NO];
+    enLarge.beginTime = moveToCenter.beginTime + moveToCenter.duration;
+    //enLarge.removedOnCompletion = NO;
+    
+    CAAnimation* disappear = [AnimationManager missingAnimationWithDuration:ENLARGE_DURATION];
+    disappear.beginTime = moveToCenter.beginTime + moveToCenter.duration;
+    disappear.removedOnCompletion = NO;
     
     //method2:放入动画数组，统一处理！
     CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
@@ -262,11 +297,11 @@
     
     animGroup.removedOnCompletion = NO;
     
-    animGroup.duration             = 4.3;
+    animGroup.duration             = disappear.beginTime+disappear.duration;
     animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
     animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
     animGroup.fillMode             = kCAFillModeForwards;
-    animGroup.animations             = [NSArray arrayWithObjects:falling, rolling, moveToRight, moveToLeft, moveToCenter, rRolling, nil];
+    animGroup.animations             = [NSArray arrayWithObjects:falling, rolling, moveToRight, moveToLeft, moveToCenter, rRolling, enLarge, disappear, toScreenCenter,nil];
     [animGroup setValue:FALLING_GROUP  forKey:ANIM_GROUP];
     //对视图自身的层添加组动画
     [self.outItem.layer addAnimation:animGroup forKey:ANIM_GROUP];
@@ -332,7 +367,7 @@
 #pragma mark - commonItemInfoViewDelegate
 - (void)didBuyItem:(Item *)anItem
 {
-    [self.coinsButton setTitle:[NSString stringWithFormat:@"X%d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
+    [self.coinsButton setTitle:[NSString stringWithFormat:@"x %d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
     [self showBuyItemAnimation:anItem];
     [self refleshToolViewForItem:anItem];
 }

@@ -30,6 +30,7 @@
 
 @implementation ToolView
 @synthesize itemType = _itemType;
+@synthesize alreadyHas = _alreadyHas;
 
 + (ToolView *)tipsViewWithNumber:(NSInteger)number
 {
@@ -82,9 +83,9 @@
             
             [self addSubview:alreadyHasFlag];
             if (number <= 0) {
-                [alreadyHasFlag setHidden:YES];
+                self.alreadyHas = YES;
             } else {
-                [self setEnabled:NO];
+                self.alreadyHas = NO;
             }
             [alreadyHasFlag retain];
         }
@@ -150,8 +151,12 @@
 
 - (void)setAlreadyHas:(BOOL)alreadyHas
 {
-    [alreadyHasFlag setHidden:NO];
-    [self setEnabled:NO];
+    _alreadyHas = alreadyHas;
+    if (_alreadyHas) {
+        alreadyHasFlag.hidden = NO;
+    } else {
+        alreadyHasFlag.hidden = YES;
+    }
 }
 
 + (CGFloat)width

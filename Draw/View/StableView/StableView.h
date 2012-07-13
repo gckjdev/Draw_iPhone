@@ -22,6 +22,7 @@
 
 
 @property(nonatomic,assign)ItemType itemType;
+@property(nonatomic, assign) BOOL alreadyHas;
 
 - (id)initWithItemType:(ItemType)type number:(NSInteger)number;
 - (id)initWithNumber:(NSInteger)number;

@@ -175,6 +175,10 @@ static ShoppingManager *staticShoppingManager = nil;
 
 #define DEFAULT_COLOR_PRICE 100
 #define DEFAULT_PEN_PRICE 400
+#define DEFAULT_TOMATO_PRICE  400
+#define DEFAULT_FLOWER_PRICE    400
+#define DEFAULT_REMOVE_AD_PRICE 400
+#define DEFAULT_TIPS_PRICE      400
 - (NSInteger)getColorPrice
 {
     NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
@@ -198,4 +202,53 @@ static ShoppingManager *staticShoppingManager = nil;
     PPDebug(@"<getPenPrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
+
+- (NSInteger)getTomatoPrice
+{
+    NSString* price = [MobClick getConfigParams:@"TOMATO_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getTomatoPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        return DEFAULT_TOMATO_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getTomatoPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getFlowerPrice
+{
+    NSString* price = [MobClick getConfigParams:@"FLOWER_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getFlowerPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        return DEFAULT_FLOWER_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getFlowerPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getTipBagPrice
+{
+    NSString* price = [MobClick getConfigParams:@"TIPBAG_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getTipBagPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        return DEFAULT_TIPS_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getTipBagPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getRemoveAdPrice
+{
+    NSString* price = [MobClick getConfigParams:@"REMOVE_AD_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getRemoveAdPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        return DEFAULT_REMOVE_AD_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getRemoveAdPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
 @end
