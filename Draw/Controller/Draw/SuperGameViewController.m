@@ -20,6 +20,11 @@
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
 
+#define THROWING_TIME   2
+#define ROATE_RATE      10
+
+#define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
+
 @interface SuperGameViewController ()
 
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message;
@@ -398,6 +403,54 @@
     AvatarView *player = [self avatarViewForUserId:userId];
     CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
+}
+
+- (void)throwItem:(UIView*)item
+{
+    [item setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height)];
+    [self.view addSubview:item];
+    item.tag = 999000;
+    
+    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
+    CAAnimation* throw = [AnimationManager translationAnimationTo:CGPointMake(self.view.frame.size.width/2, 0) duration:THROWING_TIME];
+    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:0.01 duration:THROWING_TIME delegate:self removeCompeleted:NO];
+    
+    [item.layer addAnimation:rolling forKey:@"rolling"];
+    [item.layer addAnimation:throw forKey:@"throw"];
+    [item.layer addAnimation:zoom forKey:@"zoom"];
+}
+
+- (void)throwFlower
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:999000];
+    if (!item) {
+        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
+    }
+    [item setImage:[ShareImageManager defaultManager].flower];
+    [self throwItem:item];
+    
+}
+- (void)throwTomato
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:999000];
+    if (!item) {
+        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
+    }
+    [item setImage:[ShareImageManager defaultManager].tomato];
+    [self throwItem:item];
+}
+- (void)recieveFlower
+{
+    
+}
+- (void)recieveTomato
+{
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    
 }
 
 @end

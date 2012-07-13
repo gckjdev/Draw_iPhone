@@ -83,9 +83,9 @@
             
             [self addSubview:alreadyHasFlag];
             if (number <= 0) {
-                self.alreadyHas = YES;
-            } else {
                 self.alreadyHas = NO;
+            } else {
+                self.alreadyHas = YES;
             }
             [alreadyHasFlag retain];
         }

@@ -128,11 +128,13 @@
 
 - (IBAction)clickOK:(id)sender
 {
-    [[AccountService defaultService] buyItem:self.currentItem.type 
+    
+    int result = [[AccountService defaultService] buyItem:self.currentItem.type 
                                    itemCount:self.currentItem.buyAmountForOnce 
                                    itemCoins:self.currentItem.price];
-    if (_delegate && [_delegate respondsToSelector:@selector(didBuyItem:)]) {
-        [_delegate didBuyItem:self.currentItem];
+    if (_delegate && [_delegate respondsToSelector:@selector(didBuyItem:result:)]) {
+        [_delegate didBuyItem:self.currentItem 
+                       result:result];
     }
     [self startRunOutAnimation];
 }
