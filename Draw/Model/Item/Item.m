@@ -227,7 +227,7 @@
                            description:[Item descriptionForItemType:ItemTypeColor] 
                       buyAmountForOnce:10 
                                  price:[[ShoppingManager defaultManager] getColorPrice]
-                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeColor]] autorelease];
+                                amount:0] autorelease];//kira:amount=0 because color is not countable,and always can be bought
 }
 
 + (Item*)removeAd

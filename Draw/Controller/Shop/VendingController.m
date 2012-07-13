@@ -208,7 +208,7 @@
 {
     [self.outItem.layer removeAllAnimations];
     ToolView* button = (ToolView*)sender;
-    if (button.alreadyHas) {
+    if (![Item isItemCountable:button.itemType] && button.alreadyHas) {
         return;
     }
     int itemIndex = button.tag-ITEM_BUTTON_OFFSET;
