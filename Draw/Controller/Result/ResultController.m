@@ -34,13 +34,24 @@
 #import "AdService.h"
 #import "UIButtonExt.h"
 #import "FeedService.h"
+#import "DeviceDetection.h"
+#import "DrawGameAnimationManager.h"
 
 #define CONTINUE_TIME 10
+
+#define THROW_ITEM_TAG  20120713
+#define RECIEVE_ITEM_TAG    120120713
+
+#define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
 @interface ResultController()
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
+- (void)throwImage:(UIImage*)image;
+- (void)receiveFlower;
+- (void)receiveTomato;
+
 
 @end
 
@@ -378,7 +389,7 @@
     }else{
 //    TODO  send flower socket request.
         [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
-        
+        [self throwImage:[ShareImageManager defaultManager].flower];
     }
 
     [self setUpAndDownButtonEnabled:NO];
@@ -390,7 +401,8 @@
         
     }else{
         //    TODO  send tomato socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];        
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO]; 
+        [self throwImage:[ShareImageManager defaultManager].tomato];
     }
     [self setUpAndDownButtonEnabled:NO];
 }
@@ -440,8 +452,10 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
+        [self receiveTomato];
     }else{
         PPDebug(@"%@ give you a flower", userId);
+        [self receiveFlower];
     }
     
     // TODO show animation here
@@ -465,6 +479,48 @@
     }else{
         CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
         [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
+    }
+}
+
+#pragma mark - throw item animation
+- (void)throwImage:(UIImage*)image
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:image];
+    [DrawGameAnimationManager showSendItem:item animInController:self];
+    
+}
+
+- (void)receiveFlower
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:[ShareImageManager defaultManager].flower];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
+}
+- (void)receiveTomato
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:[ShareImageManager defaultManager].tomato];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+    if (item) {
+        item.image = nil;
     }
 }
 

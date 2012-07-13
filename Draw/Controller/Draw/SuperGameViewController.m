@@ -19,9 +19,7 @@
 #import "ExpressionManager.h"
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
-
-#define THROWING_TIME   2
-#define ROATE_RATE      10
+#import "DrawGameAnimationManager.h"
 
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
@@ -408,77 +406,45 @@
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
 }
 
-- (void)throwItem:(UIView*)item
-{
-    [item setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height)];
-    [self.view addSubview:item];
-    item.tag = THROW_ITEM_TAG;
-    
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
-    CAAnimation* throw = [AnimationManager translationAnimationTo:CGPointMake(self.view.frame.size.width/2, 0) duration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:0.01 duration:THROWING_TIME delegate:self removeCompeleted:NO];
-    
-    [item.layer addAnimation:rolling forKey:@"rolling"];
-    [item.layer addAnimation:throw forKey:@"throw"];
-    [item.layer addAnimation:zoom forKey:@"zoom"];
-}
-
-- (void)recieveItem:(UIView*)item
-{
-    [item setCenter:self.view.center];
-    [self.view addSubview:item];
-    item.tag = RECIEVE_ITEM_TAG;
-    
-    CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
-    CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:0.01 duration:THROWING_TIME delegate:self removeCompeleted:NO];
-    
-    [item.layer addAnimation:rolling forKey:@"rolling"];
-    [item.layer addAnimation:disMiss forKey:@"disMiss"];
-    [item.layer addAnimation:zoom forKey:@"zoom"];
-}
-
-- (void)throwFlower
+- (void)throwTool:(ToolView*)toolView
 {
     UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
     if (!item) {
-        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
     }
-    [item setImage:[ShareImageManager defaultManager].flower];
-    [self throwItem:item];
+    [item setImage:toolView.imageView.image];
+    [DrawGameAnimationManager showSendItem:item animInController:self];
     
 }
-- (void)throwTomato
-{
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
-    if (!item) {
-        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
-    }
-    [item setImage:[ShareImageManager defaultManager].tomato];
-    [self throwItem:item];
-}
+
 - (void)recieveFlower
 {
     UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
     if (!item) {
-        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
     }
     [item setImage:[ShareImageManager defaultManager].flower];
-    [self throwItem:item];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
 }
 - (void)recieveTomato
 {
     UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
     if (!item) {
-        item = [[UIImageView alloc] initWithFrame:ITEM_FRAME];
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
     }
-    [item setImage:[ShareImageManager defaultManager].flower];
-    [self throwItem:item];
+    [item setImage:[ShareImageManager defaultManager].tomato];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+    if (item) {
+        item.image = nil;
+    }
 }
 
 @end

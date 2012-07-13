@@ -40,6 +40,7 @@
 #import "FeedDetailController.h"
 #import "CommonUserInfoView.h"
 #import "FeedService.h"
+#import "DrawGameAnimationManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
