@@ -46,7 +46,10 @@
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
+#define THROW_ITEM_TAG  20120713
+#define RECIEVE_ITEM_TAG    120120713
 
+#define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
 
 @implementation OfflineGuessDrawController
@@ -87,6 +90,19 @@
     PPRelease(_supperController);
     PPRelease(_pickToolView);
     [super dealloc];
+}
+
+#pragma mark - throw item animation
+- (void)throwTool:(ToolView*)toolView
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:toolView.imageView.image];
+    [DrawGameAnimationManager showSendItem:item animInController:self];
+    
 }
 
 
@@ -645,7 +661,7 @@
 - (BOOL)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
-    
+    [self throwTool:toolView];
     
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
@@ -655,6 +671,7 @@
 - (BOOL)throwTomato:(ToolView *)toolView
 {
     //TODO add throw animation
+    [self throwTool:toolView];
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
     return YES;

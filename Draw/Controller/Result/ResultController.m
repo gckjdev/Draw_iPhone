@@ -36,6 +36,7 @@
 #import "FeedService.h"
 #import "DeviceDetection.h"
 #import "DrawGameAnimationManager.h"
+#import "ItemManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -43,6 +44,7 @@
 #define RECIEVE_ITEM_TAG    120120713
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
+
 
 @interface ResultController()
 
@@ -73,6 +75,8 @@
 @synthesize adView = _adView;
 @synthesize experienceLabel;
 @synthesize titleLabel;
+@synthesize upLabel;
+@synthesize downLabel;
 //@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -257,14 +261,33 @@
         [self.resultLabel setText:NSLS(@"kPity")];
     }
 }
+
+- (void)initToolViews
+{
+    ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
+    ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
+    [self.view addSubview:tomato];
+    [self.view addSubview:flower];
+    [tomato setCenter:downButton.center];
+    [flower setCenter:upButton.center];
+    [tomato addTarget:self action:@selector(clickDownButton:)];
+    [flower addTarget:self action:@selector(clickUpButton:)];
+    [flower setFrame:upButton.frame];
+    [tomato setFrame:downButton.frame];
+    
+}
 - (void)initActionButton
 {
     //init the up & down button
     if (_resultType != OnlineDraw) {
-        [upButton setTitle:NSLS(@"kThrowFlower") forState:UIControlStateNormal];
-        [downButton setTitle:NSLS(@"kThrowTomato") forState:UIControlStateNormal];
+        [self initToolViews];
+        [upLabel setText:NSLS(@"kThrowFlower")];
+        [downLabel setText:NSLS(@"kThrowTomato")];
+        upButton.hidden = YES;
+        downButton.hidden = YES;
     }else{
         upButton.hidden = downButton.hidden = YES;
+        upLabel.hidden = downLabel.hidden = YES;
         continueButton.frame = upButton.frame;
     }
     
@@ -352,6 +375,8 @@
     [self setResultLabel:nil];
     [self setExperienceLabel:nil];
     [self setTitleLabel:nil];
+    [self setUpLabel:nil];
+    [self setDownLabel:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -379,6 +404,8 @@
     PPRelease(_drawActionList);
     [experienceLabel release];
     [titleLabel release];
+    [upLabel release];
+    [downLabel release];
     [super dealloc];
 }
 - (IBAction)clickUpButton:(id)sender {
@@ -389,9 +416,9 @@
     }else{
 //    TODO  send flower socket request.
         [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
-        [self throwImage:[ShareImageManager defaultManager].flower];
+        
     }
-
+    [self throwImage:[ShareImageManager defaultManager].flower];
     [self setUpAndDownButtonEnabled:NO];
 }
 
@@ -402,8 +429,9 @@
     }else{
         //    TODO  send tomato socket request.
         [[DrawGameService defaultService] rankGameResult:RANK_TOMATO]; 
-        [self throwImage:[ShareImageManager defaultManager].tomato];
+        
     }
+    [self throwImage:[ShareImageManager defaultManager].tomato];
     [self setUpAndDownButtonEnabled:NO];
 }
 
@@ -520,7 +548,7 @@
 {
     UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
     if (item) {
-        item.image = nil;
+        //item.image = nil;
     }
 }
 
