@@ -420,31 +420,33 @@
 
 - (void)recieveFlower
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
 }
 - (void)recieveTomato
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
+    [item.layer removeAllAnimations];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
+    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (item) {
-        item.image = nil;
-    }
+//    NSString* str = [anim valueForKey:@"showTomato"];
+//    if ([str isEqualToString:@"zoom"]) {
+//        UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+//        if (item) {
+//            item.image = [UIImage imageNamed:@"bad_tomato.png"];
+//        }
+//    }
+//    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
+//    if (item) {
+//        item.image = nil;
+//    }
 }
 
 @end

@@ -58,12 +58,13 @@
 + (void)showReceiveFlower:(UIImageView*)flowerImageView 
     animationInController:(UIViewController*)viewController
 {
-    [flowerImageView setCenter:viewController.view.center];
+    CGPoint point = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y-RADIUS+(rand()%(2*RADIUS)));
+    [flowerImageView setCenter:point];
 
     
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:20 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
+    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
     
     [flowerImageView.layer addAnimation:rolling forKey:@"rolling"];
     [flowerImageView.layer addAnimation:disMiss forKey:@"disMiss"];
@@ -72,12 +73,14 @@
 + (void)showReceiveTomato:(UIImageView*)tomatoImageView  
     animaitonInController:(UIViewController*)viewController
 {
-    [tomatoImageView setCenter:viewController.view.center];
     
+    CGPoint point = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y-RADIUS+(rand()%(2*RADIUS)));
+    [tomatoImageView setCenter:point];
     
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];
     CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:THROWING_TIME];
-    CAAnimation* zoom = [AnimationManager scaleAnimationWithScale:20 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
+    CAAnimation* zoom = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:3 duration:THROWING_TIME delegate:viewController removeCompeleted:NO];
+    [zoom setValue:@"zoom" forKey:@"showTomato"];
     
     [tomatoImageView.layer addAnimation:rolling forKey:@"rolling"];
     [tomatoImageView.layer addAnimation:disMiss forKey:@"disMiss"];
