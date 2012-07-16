@@ -34,12 +34,14 @@
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "GameConstants.h"
+#import "AccountManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
-
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
 
 
 @implementation OnlineGuessDrawController
@@ -560,8 +562,10 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
+        //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }else{
         PPDebug(@"%@ give you a flower", userId);
+        //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     
     // TODO show animation here
@@ -624,6 +628,7 @@
 {
     [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwTool:toolView];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [toolView decreaseNumber];
     if (--_maxFlower == 0) {
         [toolView setEnabled:NO];
@@ -636,6 +641,7 @@
     [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
     [toolView decreaseNumber];
     [self throwTool:toolView];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     if (--_maxTomato == 0) {
         [toolView setEnabled:NO];
     }

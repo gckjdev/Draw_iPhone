@@ -51,6 +51,14 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
+
+#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
+#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
+#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
+#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
+
 
 @implementation OfflineGuessDrawController
 @synthesize showView;
@@ -101,7 +109,8 @@
         [self.view addSubview:item];
     }
     [item setImage:toolView.imageView.image];
-    [DrawGameAnimationManager showSendItem:item animInController:self];
+    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
+    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
     [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
@@ -669,6 +678,7 @@
     
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+    [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
 
@@ -682,6 +692,7 @@
     }
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
 #pragma mark - click tool delegate
@@ -786,6 +797,26 @@
                            hasQQ:NO 
                      hasFacebook:NO 
                       infoInView:self];
+}
+
+#pragma mark - animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* key = [anim valueForKey:DRAW_ANIM];
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
+    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
 }
 
 

@@ -10,14 +10,19 @@
 @class CAAnimation;
 @class CAAnimationGroup;
 
+#define DRAW_ANIM   @"DrawGameAnimation"
+
 @interface DrawGameAnimationManager : NSObject
 
 + (void)showSendItem:(UIImageView*)ItemImageView 
-    animInController:(UIViewController*)viewController;
+    animInController:(UIViewController*)viewController 
+             withKey:(NSString*)key;
 + (void)showReceiveFlower:(UIImageView*)flowerImageView 
-    animationInController:(UIViewController*)viewController;
+    animationInController:(UIViewController*)viewController 
+                  withKey:(NSString*)key;
 + (void)showReceiveTomato:(UIImageView*)tomatoImageView  
-    animaitonInController:(UIViewController*)viewController;
+    animaitonInController:(UIViewController*)viewController 
+                  withKey:(NSString*)key;
 + (void)showBuyItem:(UIImageView*)itemImageView  
    animInController:(UIViewController*)viewController;
 

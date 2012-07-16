@@ -14,9 +14,6 @@
 #import "LevelService.h"
 #import "PickToolView.h"
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
-
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;

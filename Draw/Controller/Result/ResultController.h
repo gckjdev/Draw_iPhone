@@ -11,9 +11,9 @@
 #import "PPViewController.h"
 #import "LevelService.h"
 #import "DrawDataService.h"
+#import "CommonDialog.h"
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
+
 
 typedef enum {
     OnlineDraw = 0x1,
@@ -22,7 +22,7 @@ typedef enum {
     FeedGuess = 0x1 << 3
 } ResultType;
 
-@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate>
+@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate, CommonDialogDelegate>
 {
     UIImage * _image;
     NSArray * _paintList;

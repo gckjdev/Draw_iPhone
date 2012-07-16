@@ -16,8 +16,7 @@
 #import "StableView.h"
 #import "PickToolView.h"
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
+
 
 @protocol OfflineGuessDelegate <NSObject>
 

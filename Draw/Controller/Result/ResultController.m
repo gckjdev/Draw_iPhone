@@ -37,6 +37,8 @@
 #import "DeviceDetection.h"
 #import "DrawGameAnimationManager.h"
 #import "ItemManager.h"
+#import "ItemShopController.h"
+#import "AccountManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -45,6 +47,13 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
+#define MAX_TOMATO 70
+#define MAX_FLOWER 10
+
+#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
+#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
+#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
+#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
 @interface ResultController()
 
@@ -424,6 +433,7 @@
     }
     ToolView* toolview = (ToolView*)sender;
     [self throwTool:toolview];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [self setUpAndDownButtonEnabled:NO];
     [toolview decreaseNumber];
     if (--_maxFlower <= 0) {
@@ -442,6 +452,7 @@
     }
     ToolView* toolview = (ToolView*)sender;
     [self throwTool:toolview];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [self setUpAndDownButtonEnabled:NO];
     [toolview decreaseNumber];
     if (--_maxTomato <= 0) {
@@ -527,10 +538,19 @@
 #pragma mark - throw item animation
 - (void)throwTool:(ToolView*)toolView
 {
+    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
+    if(amout <= 0){
+        //TODO go the shopping page.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        //dialog.tag = SHOP_DIALOG_TAG;
+        [dialog showInView:self.view];
+        return;
+    }
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
-    [DrawGameAnimationManager showSendItem:item animInController:self];
+    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
+    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
     [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
@@ -539,19 +559,52 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_RECEIVE_FLOWER];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 - (void)receiveTomato
 {
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_THROW_TOMATO];
+    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
+    NSString* key = [anim valueForKey:DRAW_ANIM];
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
+    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
+}
+#pragma mark - Common Dialog Delegate
+#define SHOP_DIALOG_TAG 20120406
 
+
+- (void)clickOk:(CommonDialog *)dialog
+{
+    //run away
+
+    ItemShopController *itemShop = [ItemShopController instance];
+    [self.navigationController pushViewController:itemShop animated:YES];
+    //_shopController = itemShop;
+
+}
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
 }
 
 

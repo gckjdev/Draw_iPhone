@@ -683,3 +683,8 @@
 "kPrice" = "價格";
 "kCost" = "花費";
 "kCoins" = "金幣";
+
+"kThrowTomatoMessage" = "你給作者扔個個番茄，把TA的經驗值扔掉了%d點, 把TA的金幣扔掉了%d個";
+"kSendFlowerMessage" = "你給作者送了朵鮮花，TA的經驗值額外增加了%d點，TA的金幣額外增加了%d個";
+"kReceiveTomatoMessage" = "憤怒的觀眾朝你扔了個番茄，你的經驗值減了%d點，金幣扣了%d個";
+"kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你的經驗值額外增加%d點，金幣額外增加%d個";

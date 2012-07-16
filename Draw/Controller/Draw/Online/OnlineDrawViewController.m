@@ -384,9 +384,11 @@ enum{
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
         [self recieveTomato];
+        
     }else{
         PPDebug(@"%@ give you a flower", userId);
         [self recieveFlower];
+        
     }
     
     // TODO show animation here
