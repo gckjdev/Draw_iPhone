@@ -50,7 +50,7 @@
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
-- (void)throwImage:(UIImage*)image;
+- (void)throwTool:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -311,6 +311,9 @@
     [self.continueButton centerImageAndTitle:-1];
     [self.upButton centerImageAndTitle:-1];
     [self.downButton centerImageAndTitle:-1];
+    
+    _maxFlower = MAX_FLOWER;
+    _maxTomato = MAX_TOMATO;
         
 }
 
@@ -330,7 +333,8 @@
     [self initScore];
     [self initResultLabel];
     [self initActionButton];
-    [self initAnswer];        
+    [self initAnswer];   
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -418,8 +422,13 @@
         [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
         
     }
-    [self throwImage:[ShareImageManager defaultManager].flower];
+    ToolView* toolview = (ToolView*)sender;
+    [self throwTool:toolview];
     [self setUpAndDownButtonEnabled:NO];
+    [toolview decreaseNumber];
+    if (--_maxFlower <= 0) {
+        [toolview setEnabled:NO];
+    }
 }
 
 - (IBAction)clickDownButton:(id)sender {
@@ -431,8 +440,13 @@
         [[DrawGameService defaultService] rankGameResult:RANK_TOMATO]; 
         
     }
-    [self throwImage:[ShareImageManager defaultManager].tomato];
+    ToolView* toolview = (ToolView*)sender;
+    [self throwTool:toolview];
     [self setUpAndDownButtonEnabled:NO];
+    [toolview decreaseNumber];
+    if (--_maxTomato <= 0) {
+        [toolview setEnabled:NO];
+    }
 }
 
 - (IBAction)clickContinueButton:(id)sender {
@@ -511,45 +525,33 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwImage:(UIImage*)image
+- (void)throwTool:(ToolView*)toolView
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
-    [item setImage:image];
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
+    [item setImage:toolView.imageView.image];
     [DrawGameAnimationManager showSendItem:item animInController:self];
-    
+    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 - (void)receiveFlower
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
 }
 - (void)receiveTomato
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:RECIEVE_ITEM_TAG];
-    if (item) {
-        //item.image = nil;
-    }
+
 }
 
 

@@ -20,6 +20,7 @@
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
 #import "DrawGameAnimationManager.h"
+#import "ItemManager.h"
 
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
@@ -415,7 +416,7 @@
     }
     [item setImage:toolView.imageView.image];
     [DrawGameAnimationManager showSendItem:item animInController:self];
-    
+    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 - (void)recieveFlower

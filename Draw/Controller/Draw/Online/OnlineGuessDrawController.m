@@ -440,6 +440,9 @@
     _guessCorrect = NO;
     _shopController = nil;
     
+    _maxFlower = MAX_FLOWER;
+    _maxTomato = MAX_TOMATO;
+    
 }
 
 
@@ -621,14 +624,21 @@
 {
     [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwTool:toolView];
+    [toolView decreaseNumber];
+    if (--_maxFlower == 0) {
+        [toolView setEnabled:NO];
+    }
     return NO;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
     [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+    [toolView decreaseNumber];
     [self throwTool:toolView];
-    //TODO add throw animation
+    if (--_maxTomato == 0) {
+        [toolView setEnabled:NO];
+    }
     return NO;
 }
 #pragma mark - click tool delegate

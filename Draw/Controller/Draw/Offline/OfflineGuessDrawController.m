@@ -102,7 +102,7 @@
     }
     [item setImage:toolView.imageView.image];
     [DrawGameAnimationManager showSendItem:item animInController:self];
-    
+    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 
@@ -662,6 +662,10 @@
 {
     //TODO add throw animation
     [self throwTool:toolView];
+    [toolView decreaseNumber];
+    if (--_maxFlower <= 0) {
+        [toolView setEnabled:NO];
+    }
     
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
@@ -672,6 +676,10 @@
 {
     //TODO add throw animation
     [self throwTool:toolView];
+    [toolView decreaseNumber];
+    if (--_maxTomato <= 0) {
+        [toolView setEnabled:NO];
+    }
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
     return YES;

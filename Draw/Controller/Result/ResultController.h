@@ -12,6 +12,9 @@
 #import "LevelService.h"
 #import "DrawDataService.h"
 
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
+
 typedef enum {
     OnlineDraw = 0x1,
     OnlineGuess = 0x1 << 1,
@@ -30,6 +33,9 @@ typedef enum {
     BOOL _isMyPaint;
     NSArray *_drawActionList;
     ResultType _resultType;
+    
+    int _maxTomato;
+    int _maxFlower;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
