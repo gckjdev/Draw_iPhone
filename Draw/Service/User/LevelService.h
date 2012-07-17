@@ -17,7 +17,7 @@ enum {
 #define OFFLINE_DRAW_EXP  10
 #define NORMAL_EXP  10
 #define DRAWER_EXP  15
-
+#define REWARD_EXP  5
 
 @class PPViewController;
 

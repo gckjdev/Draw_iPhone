@@ -19,6 +19,20 @@
 #import "ExpressionManager.h"
 #import "GameMessage.pb.h"
 #import "SpeechService.h"
+#import "DrawGameAnimationManager.h"
+#import "ItemManager.h"
+#import "LevelService.h"
+#import "AccountManager.h"
+
+#define THROW_ITEM_TAG  20120713
+#define RECIEVE_ITEM_TAG    120120713
+
+#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
+#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
+#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
+#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
+
+#define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
 @interface SuperGameViewController ()
 
@@ -398,6 +412,55 @@
     AvatarView *player = [self avatarViewForUserId:userId];
     CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
+}
+
+- (void)throwTool:(ToolView*)toolView
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:toolView.imageView.image];
+    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
+    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
+    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
+}
+
+- (void)recieveFlower
+{
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
+    [item setImage:[ShareImageManager defaultManager].flower];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_RECEIVE_FLOWER];
+    
+}
+- (void)recieveTomato
+{
+    UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
+    [item.layer removeAllAnimations];
+    [item setImage:[ShareImageManager defaultManager].tomato];
+    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self withKey:ANIM_KEY_RECEIVE_TOMATO];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* key = [anim valueForKey:DRAW_ANIM];
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
+    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
 }
 
 @end

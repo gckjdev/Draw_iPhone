@@ -40,12 +40,24 @@
 #import "FeedDetailController.h"
 #import "CommonUserInfoView.h"
 #import "FeedService.h"
+#import "DrawGameAnimationManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
+#define THROW_ITEM_TAG  20120713
+#define RECIEVE_ITEM_TAG    120120713
 
+#define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
+
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
+
+#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
+#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
+#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
+#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
 
 @implementation OfflineGuessDrawController
@@ -86,6 +98,20 @@
     PPRelease(_supperController);
     PPRelease(_pickToolView);
     [super dealloc];
+}
+
+#pragma mark - throw item animation
+- (void)throwTool:(ToolView*)toolView
+{
+    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
+    if (!item) {
+        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+        [self.view addSubview:item];
+    }
+    [item setImage:toolView.imageView.image];
+    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
+    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
+    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 
@@ -644,17 +670,29 @@
 - (BOOL)throwFlower:(ToolView *)toolView
 {
     //TODO add throw animation
+    [self throwTool:toolView];
+    [toolView decreaseNumber];
+    if (--_maxFlower <= 0) {
+        [toolView setEnabled:NO];
+    }
     
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+    [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
     //TODO add throw animation
+    [self throwTool:toolView];
+    [toolView decreaseNumber];
+    if (--_maxTomato <= 0) {
+        [toolView setEnabled:NO];
+    }
     NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
     [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
 #pragma mark - click tool delegate
@@ -759,6 +797,26 @@
                            hasQQ:NO 
                      hasFacebook:NO 
                       infoInView:self];
+}
+
+#pragma mark - animation delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* key = [anim valueForKey:DRAW_ANIM];
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
+    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    }
+    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
+        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    }
 }
 
 

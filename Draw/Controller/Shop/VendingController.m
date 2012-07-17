@@ -16,6 +16,7 @@
 #import "AnimationManager.h"
 #import "CoinShopController.h"
 #import "DeviceDetection.h"
+#import "CommonMessageCenter.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -164,7 +165,7 @@
 
 - (void)createItemList
 {
-    int pageCount = _itemList.count/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
+    int pageCount = (_itemList.count-1)/(LINE_PER_PAGE*ITEM_COUNT_PER_LINE) + 1;
     [self.itemListScrollView setContentSize:CGSizeMake(self.itemListScrollView.frame.size.width*pageCount, self.itemListScrollView.frame.size.height)];
     for (int i = 0; i < pageCount; i ++) {
         UIView* view = [self viewWithPageIndex:i];
@@ -365,11 +366,17 @@
 }
 
 #pragma mark - commonItemInfoViewDelegate
-- (void)didBuyItem:(Item *)anItem
-{
-    [self.coinsButton setTitle:[NSString stringWithFormat:@"x %d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
-    [self showBuyItemAnimation:anItem];
-    [self refleshToolViewForItem:anItem];
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{ 
+    if (result == ERROR_COINS_NOT_ENOUGH) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCoinsNotEnough") delayTime:1 isHappy:NO];
+    } else {
+        [self.coinsButton setTitle:[NSString stringWithFormat:@"x %d",[AccountManager defaultManager].getBalance] forState:UIControlStateNormal];
+        [self showBuyItemAnimation:anItem];
+        [self refleshToolViewForItem:anItem];
+    }
+    
 }
 
 

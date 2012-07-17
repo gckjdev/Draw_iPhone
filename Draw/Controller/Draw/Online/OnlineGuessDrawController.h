@@ -27,7 +27,8 @@
     UIButton *moveButton;
     UIButton *lastScaleTarget;
     PickToolView *_pickToolView;
-    
+    int _maxTomato;
+    int _maxFlower;
 }
 @property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;

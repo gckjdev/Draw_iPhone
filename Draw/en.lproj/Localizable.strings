@@ -691,3 +691,8 @@
 "kPrice" = "Price";
 "kCost" = "Cost";
 "kCoins" = "coins";
+
+"kThrowTomatoMessage" = "You threw a tomato to the drawer, his/her experience decrease by %d, his/her coins decrease by %d";
+"kSendFlowerMessage" = "You sent a flower to the drawer, his/her experience increase by %d, his/her coins decrease by %d";
+"kReceiveTomatoMessage" = "Someone have threw you a tomato, your experience decrease by %d, your coins decrease by %d";
+"kReceiveFlowerMessage" = "Someone have sent you a flower, your experience increase by %d, your coins decrease by %d";

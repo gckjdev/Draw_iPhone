@@ -10,6 +10,8 @@
 #import "PriceService.h"
 #import "Account.h"
 
+#define REWARD_COINS  3
+
 @class UserAccount;
 @interface AccountManager : NSObject<PriceServiceDelegate>
 {

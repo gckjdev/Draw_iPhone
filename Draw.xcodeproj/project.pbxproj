@@ -206,6 +206,7 @@
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
+		C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2D9A504159D4C4100794B24 /* CommonSnsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D9A503159D4C4100794B24 /* CommonSnsInfoView.m */; };
 		C2D9E573155BA9CD007DBD01 /* volume_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D9E570155BA9CD007DBD01 /* volume_off@2x.png */; };
@@ -1128,6 +1129,8 @@
 		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
+		C2BBCE1815B00283006A13A6 /* DrawGameAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawGameAnimationManager.h; path = Animation/DrawGameAnimationManager.h; sourceTree = "<group>"; };
+		C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawGameAnimationManager.m; path = Animation/DrawGameAnimationManager.m; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2D9A502159D4C4100794B24 /* CommonSnsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSnsInfoView.h; sourceTree = "<group>"; };
@@ -2542,6 +2545,15 @@
 				C2A09736152E979C006535F7 /* BitmapScaleManipulator.m */,
 			);
 			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		C2BBCE1715B001F1006A13A6 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C2BBCE1815B00283006A13A6 /* DrawGameAnimationManager.h */,
+				C2BBCE1915B00283006A13A6 /* DrawGameAnimationManager.m */,
+			);
+			name = Animation;
 			sourceTree = "<group>";
 		};
 		C2C1BF4215A2A884001A2BFC /* UI */ = {
@@ -5006,6 +5018,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2BBCE1715B001F1006A13A6 /* Animation */,
 				C2C1BF4215A2A884001A2BFC /* UI */,
 				CAE0C8941591A2D5008CDA62 /* Notification */,
 				CA7C7E001587210500406BFB /* Feed */,
@@ -5953,6 +5966,7 @@
 				CAB15E8715AD41C300502106 /* PickPenView.m in Sources */,
 				CAB15E8815AD41C300502106 /* PickView.m in Sources */,
 				CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */,
+				C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

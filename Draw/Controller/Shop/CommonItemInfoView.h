@@ -11,7 +11,8 @@
 
 @protocol CommonItemInfoViewDelegate <NSObject>
 
-- (void)didBuyItem:(Item*)anItem;
+- (void)didBuyItem:(Item*)anItem 
+            result:(int)result;
 
 @end
 

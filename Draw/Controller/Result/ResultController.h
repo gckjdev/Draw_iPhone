@@ -11,6 +11,9 @@
 #import "PPViewController.h"
 #import "LevelService.h"
 #import "DrawDataService.h"
+#import "CommonDialog.h"
+
+
 
 typedef enum {
     OnlineDraw = 0x1,
@@ -19,7 +22,7 @@ typedef enum {
     FeedGuess = 0x1 << 3
 } ResultType;
 
-@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate>
+@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate, CommonDialogDelegate>
 {
     UIImage * _image;
     NSArray * _paintList;
@@ -30,6 +33,9 @@ typedef enum {
     BOOL _isMyPaint;
     NSArray *_drawActionList;
     ResultType _resultType;
+    
+    int _maxTomato;
+    int _maxFlower;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
@@ -49,6 +55,8 @@ typedef enum {
 @property (retain, nonatomic) UIView  *adView;
 @property (retain, nonatomic) IBOutlet UILabel *experienceLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *upLabel;
+@property (retain, nonatomic) IBOutlet UILabel *downLabel;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;

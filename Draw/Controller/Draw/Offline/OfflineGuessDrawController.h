@@ -16,6 +16,8 @@
 #import "StableView.h"
 #import "PickToolView.h"
 
+
+
 @protocol OfflineGuessDelegate <NSObject>
 
 @optional
@@ -52,6 +54,9 @@
     NSString *_opusId;
     Draw *_draw;
     UIViewController *_supperController;
+    
+    int _maxTomato;
+    int _maxFlower;
 
 }
 @property (retain, nonatomic) NSString *candidateString;

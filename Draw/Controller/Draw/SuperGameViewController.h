@@ -63,4 +63,8 @@
 
 - (void)showGroupChatView;
 
+- (void)throwTool:(ToolView*)toolView;
+- (void)recieveFlower;
+- (void)recieveTomato;
+
 @end
