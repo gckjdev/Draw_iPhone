@@ -7,6 +7,10 @@
 
 @class DataQueryResponse;
 @class DataQueryResponse_Builder;
+@class FacetimeChatRequest;
+@class FacetimeChatRequest_Builder;
+@class FacetimeChatResponse;
+@class FacetimeChatResponse_Builder;
 @class GameChatRequest;
 @class GameChatRequest_Builder;
 @class GameChatResponse;
@@ -952,6 +956,114 @@
 - (GeneralNotification_Builder*) clearTurnGainCoins;
 @end
 
+@interface FacetimeChatRequest : PBGeneratedMessage {
+@private
+  BOOL hasChatGender_:1;
+  BOOL hasUser_:1;
+  BOOL chatGender_:1;
+  PBGameUser* user;
+}
+- (BOOL) hasUser;
+- (BOOL) hasChatGender;
+@property (readonly, retain) PBGameUser* user;
+- (BOOL) chatGender;
+
++ (FacetimeChatRequest*) defaultInstance;
+- (FacetimeChatRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (FacetimeChatRequest_Builder*) builder;
++ (FacetimeChatRequest_Builder*) builder;
++ (FacetimeChatRequest_Builder*) builderWithPrototype:(FacetimeChatRequest*) prototype;
+
++ (FacetimeChatRequest*) parseFromData:(NSData*) data;
++ (FacetimeChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input;
++ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FacetimeChatRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  FacetimeChatRequest* result;
+}
+
+- (FacetimeChatRequest*) defaultInstance;
+
+- (FacetimeChatRequest_Builder*) clear;
+- (FacetimeChatRequest_Builder*) clone;
+
+- (FacetimeChatRequest*) build;
+- (FacetimeChatRequest*) buildPartial;
+
+- (FacetimeChatRequest_Builder*) mergeFrom:(FacetimeChatRequest*) other;
+- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (FacetimeChatRequest_Builder*) setUser:(PBGameUser*) value;
+- (FacetimeChatRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (FacetimeChatRequest_Builder*) mergeUser:(PBGameUser*) value;
+- (FacetimeChatRequest_Builder*) clearUser;
+
+- (BOOL) hasChatGender;
+- (BOOL) chatGender;
+- (FacetimeChatRequest_Builder*) setChatGender:(BOOL) value;
+- (FacetimeChatRequest_Builder*) clearChatGender;
+@end
+
+@interface FacetimeChatResponse : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableUserList;
+}
+- (NSArray*) userList;
+- (PBGameUser*) userAtIndex:(int32_t) index;
+
++ (FacetimeChatResponse*) defaultInstance;
+- (FacetimeChatResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (FacetimeChatResponse_Builder*) builder;
++ (FacetimeChatResponse_Builder*) builder;
++ (FacetimeChatResponse_Builder*) builderWithPrototype:(FacetimeChatResponse*) prototype;
+
++ (FacetimeChatResponse*) parseFromData:(NSData*) data;
++ (FacetimeChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input;
++ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface FacetimeChatResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  FacetimeChatResponse* result;
+}
+
+- (FacetimeChatResponse*) defaultInstance;
+
+- (FacetimeChatResponse_Builder*) clear;
+- (FacetimeChatResponse_Builder*) clone;
+
+- (FacetimeChatResponse*) build;
+- (FacetimeChatResponse*) buildPartial;
+
+- (FacetimeChatResponse_Builder*) mergeFrom:(FacetimeChatResponse*) other;
+- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) userList;
+- (PBGameUser*) userAtIndex:(int32_t) index;
+- (FacetimeChatResponse_Builder*) replaceUserAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (FacetimeChatResponse_Builder*) addUser:(PBGameUser*) value;
+- (FacetimeChatResponse_Builder*) addAllUser:(NSArray*) values;
+- (FacetimeChatResponse_Builder*) clearUserList;
+@end
+
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
@@ -961,6 +1073,8 @@
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasNotification_:1;
+  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasFacetimeChatRequest_:1;
   BOOL hasChatResponse_:1;
   BOOL hasChatRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
@@ -979,6 +1093,8 @@
   NSString* userId;
   NSString* toUserId;
   GeneralNotification* notification;
+  FacetimeChatResponse* facetimeChatResponse;
+  FacetimeChatRequest* facetimeChatRequest;
   GameChatResponse* chatResponse;
   GameChatRequest* chatRequest;
   SendDrawDataResponse* sendDrawDataResponse;
@@ -1008,6 +1124,8 @@
 - (BOOL) hasSendDrawDataResponse;
 - (BOOL) hasChatRequest;
 - (BOOL) hasChatResponse;
+- (BOOL) hasFacetimeChatRequest;
+- (BOOL) hasFacetimeChatResponse;
 - (BOOL) hasNotification;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
@@ -1026,6 +1144,8 @@
 @property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (readonly, retain) GameChatRequest* chatRequest;
 @property (readonly, retain) GameChatResponse* chatResponse;
+@property (readonly, retain) FacetimeChatRequest* facetimeChatRequest;
+@property (readonly, retain) FacetimeChatResponse* facetimeChatResponse;
 @property (readonly, retain) GeneralNotification* notification;
 
 + (GameMessage*) defaultInstance;
@@ -1162,6 +1282,20 @@
 - (GameMessage_Builder*) setChatResponseBuilder:(GameChatResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeChatResponse:(GameChatResponse*) value;
 - (GameMessage_Builder*) clearChatResponse;
+
+- (BOOL) hasFacetimeChatRequest;
+- (FacetimeChatRequest*) facetimeChatRequest;
+- (GameMessage_Builder*) setFacetimeChatRequest:(FacetimeChatRequest*) value;
+- (GameMessage_Builder*) setFacetimeChatRequestBuilder:(FacetimeChatRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeFacetimeChatRequest:(FacetimeChatRequest*) value;
+- (GameMessage_Builder*) clearFacetimeChatRequest;
+
+- (BOOL) hasFacetimeChatResponse;
+- (FacetimeChatResponse*) facetimeChatResponse;
+- (GameMessage_Builder*) setFacetimeChatResponse:(FacetimeChatResponse*) value;
+- (GameMessage_Builder*) setFacetimeChatResponseBuilder:(FacetimeChatResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeFacetimeChatResponse:(FacetimeChatResponse*) value;
+- (GameMessage_Builder*) clearFacetimeChatResponse;
 
 - (BOOL) hasNotification;
 - (GeneralNotification*) notification;

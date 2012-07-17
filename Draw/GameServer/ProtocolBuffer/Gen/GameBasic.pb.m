@@ -369,6 +369,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
 @property int32_t userLevel;
+@property (retain) NSString* facetimeId;
 @end
 
 @implementation PBGameUser
@@ -421,12 +422,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasUserLevel_ = !!value;
 }
 @synthesize userLevel;
+- (BOOL) hasFacetimeId {
+  return !!hasFacetimeId_;
+}
+- (void) setHasFacetimeId:(BOOL) value {
+  hasFacetimeId_ = !!value;
+}
+@synthesize facetimeId;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
   self.avatar = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
+  self.facetimeId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -437,6 +446,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.gender = NO;
     self.location = @"";
     self.userLevel = 0;
+    self.facetimeId = @"";
   }
   return self;
 }
@@ -495,6 +505,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasUserLevel) {
     [output writeInt32:7 value:self.userLevel];
   }
+  if (self.hasFacetimeId) {
+    [output writeString:8 value:self.facetimeId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -524,6 +537,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasUserLevel) {
     size += computeInt32Size(7, self.userLevel);
+  }
+  if (self.hasFacetimeId) {
+    size += computeStringSize(8, self.facetimeId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -624,6 +640,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasUserLevel) {
     [self setUserLevel:other.userLevel];
   }
+  if (other.hasFacetimeId) {
+    [self setFacetimeId:other.facetimeId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -673,6 +692,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 56: {
         [self setUserLevel:[input readInt32]];
+        break;
+      }
+      case 66: {
+        [self setFacetimeId:[input readString]];
         break;
       }
     }
@@ -801,6 +824,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearUserLevel {
   result.hasUserLevel = NO;
   result.userLevel = 0;
+  return self;
+}
+- (BOOL) hasFacetimeId {
+  return result.hasFacetimeId;
+}
+- (NSString*) facetimeId {
+  return result.facetimeId;
+}
+- (PBGameUser_Builder*) setFacetimeId:(NSString*) value {
+  result.hasFacetimeId = YES;
+  result.facetimeId = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearFacetimeId {
+  result.hasFacetimeId = NO;
+  result.facetimeId = @"";
   return self;
 }
 @end

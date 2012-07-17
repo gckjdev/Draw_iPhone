@@ -37,6 +37,9 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCompleteGameResponse:
     case GameCommandTypeForceUserQuitRequest:
     case GameCommandTypeForceUserQuitResponse:
+    case GameCommandTypeFacetimeChatRequest:
+    case GameCommandTypeFacetimeChatResponse:
+    case GameCommandTypeFacetimeChatStart:
     case GameCommandTypeKeepAliveRequest:
     case GameCommandTypeKeepAliveResponse:
     case GameCommandTypeUserJoinNotificationRequest:
