@@ -103,7 +103,10 @@
 + (CommonNetworkOutput*)updateItemAmount:(NSString*)baseURL
                                   userId:(NSString*)userId
                                 itemType:(int)itemType
-                                  amount:(int)amount;
+                                  amount:(int)amount
+                            targetUserId:(NSString*)targetUserId
+                             awardAmount:(int)awardAmount
+                                awardExp:(int)awardExp;
 
 + (CommonNetworkOutput*)updateBalance:(NSString*)baseURL
                                   userId:(NSString*)userId

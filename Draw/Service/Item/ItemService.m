@@ -8,6 +8,9 @@
 
 #import "ItemService.h"
 #import "AccountService.h"
+#import "ItemManager.h"
+#import "LevelService.h"
+#import "PPDebug.h"
 
 ItemService *_staticItemService = nil;
 
@@ -23,15 +26,15 @@ ItemService *_staticItemService = nil;
 
 
 
-- (void)useItem:(ItemType)type 
-   toTargetFeed:(Feed *)feed 
-       delegate:(id<ItemServiceDelegate>)delegate
+- (void)receiveItem:(ItemType)type
 {
-    
-//    NSString *userID feedId createUid 
-    
-    //comsum item
-    
+    int awardAmount = [ItemManager awardAmountByItem:type];
+    int awardExp = [ItemManager awardExpByItem:type];
+    PPDebug(@"<receiveItem> type=%d, awardAmount=%d, exp=%d",
+            type, awardAmount, awardExp);
+
+    [[AccountService defaultService] awardAccount:awardAmount source:AwardCoinType];
+    [[LevelService defaultService] awardExp:awardExp delegate:nil];
 }
 
 @end

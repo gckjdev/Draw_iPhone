@@ -39,6 +39,8 @@
 #import "ItemManager.h"
 #import "ItemShopController.h"
 #import "AccountManager.h"
+#import "ConfigManager.h"
+#import "ItemService.h"
 
 #define CONTINUE_TIME 10
 
@@ -59,7 +61,7 @@
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
-- (void)throwTool:(ToolView*)toolView;
+- (void)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -421,42 +423,59 @@
     [downLabel release];
     [super dealloc];
 }
+
 - (IBAction)clickUpButton:(id)sender {
     
+    NSString* targetUserId = nil;
     if (_resultType == OfflineGuess) {
-//    TODO  send flower http request.
+        targetUserId = _drawUserId;
         
+        // TODO send flower action
     }else{
-//    TODO  send flower socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
-        
+        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];             
     }
-    ToolView* toolview = (ToolView*)sender;
-    [self throwTool:toolview];
+    
+    ToolView* toolView = (ToolView*)sender;
+    [self throwItem:toolView];
+    
+    [[AccountService defaultService] consumeItem:toolView.itemType 
+                                          amount:1 
+                                    targetUserId:targetUserId 
+                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
+                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]];    
+    
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [self setUpAndDownButtonEnabled:NO];
-    [toolview decreaseNumber];
+    [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
-        [toolview setEnabled:NO];
+        [toolView setEnabled:NO];
     }
 }
 
 - (IBAction)clickDownButton:(id)sender {
+    
+    NSString* targetUserId = nil;    
     if (_resultType == OfflineGuess) {
-        //    TODO  send tomato http request.
+        targetUserId = _drawUserId;
+        
+        // TODO send tomato action
         
     }else{
-        //    TODO  send tomato socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO]; 
-        
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];         
     }
-    ToolView* toolview = (ToolView*)sender;
-    [self throwTool:toolview];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    ToolView* toolView = (ToolView*)sender;
+    [self throwItem:toolView];
+    
+    [[AccountService defaultService] consumeItem:toolView.itemType 
+                                          amount:1 
+                                    targetUserId:targetUserId 
+                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
+                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]];    
+    
     [self setUpAndDownButtonEnabled:NO];
-    [toolview decreaseNumber];
+    [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
-        [toolview setEnabled:NO];
+        [toolView setEnabled:NO];
     }
 }
 
@@ -502,12 +521,14 @@
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
-{
+{        
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
+        [[ItemService defaultService] receiveItem:ItemTypeTomato];
         [self receiveTomato];
     }else{
         PPDebug(@"%@ give you a flower", userId);
+        [[ItemService defaultService] receiveItem:ItemTypeFlower];
         [self receiveFlower];
     }
     
@@ -536,10 +557,9 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwTool:(ToolView*)toolView
+- (void)throwItem:(ToolView*)toolView
 {
-    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
-    if(amout <= 0){
+    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         //dialog.tag = SHOP_DIALOG_TAG;
@@ -551,7 +571,6 @@
     [item setImage:toolView.imageView.image];
     NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
     [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 - (void)receiveFlower
@@ -575,24 +594,48 @@
 {
     NSString* key = [anim valueForKey:DRAW_ANIM];
     if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] 
+         postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),
+                              abs([ConfigManager getFlowerAwardExp]), 
+                              abs([ConfigManager getFlowerAwardAmount])
+                              ]
+         delayTime:2 
+         isHappy:YES 
+         atHorizon:(-150)];
     }
     if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:NO atHorizon:(-150)];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] 
+         postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),
+                              abs([ConfigManager getTomatoAwardExp]), 
+                              abs([ConfigManager getTomatoAwardAmount])
+                              ] 
+         delayTime:2 
+         isHappy:NO 
+         atHorizon:(-150)];
         
     }
     if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] 
+         postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),
+                              abs([ConfigManager getFlowerAwardExp]), 
+                              abs([ConfigManager getFlowerAwardAmount])
+                              ]
+         delayTime:2 
+         isHappy:YES 
+         atHorizon:(-150)];
     }
     if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-        
+        [[CommonMessageCenter defaultCenter] 
+         postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),
+                              abs([ConfigManager getTomatoAwardExp]), 
+                              abs([ConfigManager getTomatoAwardAmount])
+                              ]
+         delayTime:2 
+         isHappy:YES 
+         atHorizon:(-150)];
     }
 }
+
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
 

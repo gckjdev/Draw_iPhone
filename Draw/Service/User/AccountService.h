@@ -62,6 +62,12 @@
 - (int)consumeItem:(int)itemType
             amount:(int)amount;
 
+- (int)consumeItem:(int)itemType
+            amount:(int)amount
+      targetUserId:(NSString*)targetUserId
+       awardAmount:(int)awardAmount
+          awardExp:(int)awardAmount;
+
 - (BOOL)hasEnoughCoins:(int)amount;
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
@@ -70,5 +76,8 @@
 - (void)retryVerifyReceiptAtBackground;
 
 - (int)rewardForShareWeibo;
+
+- (void)awardAccount:(int)amount 
+            source:(BalanceSourceType)source;
 
 @end

@@ -11,7 +11,7 @@
 #import "UserItem.h"
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
-
+#import "ConfigManager.h"
 
 ItemManager *staticItemManager = nil;
 
@@ -43,6 +43,11 @@ ItemManager *GlobalGetItemManager()
 {
     UserItem* item = [self findUserItemByType:ItemTypeTips];
     return [[item amount] intValue];
+}
+
+- (BOOL)hasEnoughItem:(int)itemType
+{
+    return [self amountForItem:itemType] > 0;
 }
 
 - (int)amountForItem:(int)itemType
@@ -118,5 +123,34 @@ ItemManager *GlobalGetItemManager()
 {
     return [self findUserItemByType:itemType];
 }
+
++ (int)awardAmountByItem:(int)itemType
+{
+    switch (itemType) {
+        case ItemTypeTomato:
+            return [ConfigManager getTomatoAwardAmount];
+
+        case ItemTypeFlower:
+            return [ConfigManager getFlowerAwardAmount];
+
+        default:
+            return 0;
+    }
+}
+
++ (int)awardExpByItem:(int)itemType
+{
+    switch (itemType) {
+        case ItemTypeTomato:
+            return [ConfigManager getTomatoAwardExp];
+            
+        case ItemTypeFlower:
+            return [ConfigManager getFlowerAwardAmount];
+            
+        default:
+            return 0;
+    }    
+}
+
 
 @end

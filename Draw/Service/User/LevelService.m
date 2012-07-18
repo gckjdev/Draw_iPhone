@@ -138,6 +138,35 @@ static LevelService* _defaultLevelService;
     }
     [self syncExpAndLevel:UPDATE];
 }
+
+- (void)awardExp:(long)exp
+        delegate:(id<LevelServiceDelegate>)delegate
+{
+    if (exp > 0){
+        long currentExp = [self experience] + exp ;
+        int newLevel = [self getLevelByExp:(currentExp)];
+        [self setExperience:(currentExp)];
+        if ([self level] != newLevel) {
+            [self setLevel:newLevel];
+            if (delegate && [delegate respondsToSelector:@selector(levelUp:)]) {
+                [delegate levelUp:newLevel];
+            }
+        }
+    }
+    else{
+        long currentExp = [self experience]-exp;
+        [self setExperience:(currentExp)];
+        int newLevel = [self getLevelByExp:(currentExp)];
+        if ([self level] != newLevel) {
+            [self setLevel:newLevel];
+            if (delegate && [delegate respondsToSelector:@selector(levelDown:)]) {
+                [delegate levelDown:newLevel];
+            }
+        }        
+    }
+    [self syncExpAndLevel:AWARD];
+}
+
 - (void)minusExp:(long)exp 
         delegate:(id<LevelServiceDelegate>)delegate
 {
@@ -152,6 +181,7 @@ static LevelService* _defaultLevelService;
     }
     [self syncExpAndLevel:UPDATE];
 }
+
 - (long)expRequiredForNextLevel
 {
     int level = [self level];

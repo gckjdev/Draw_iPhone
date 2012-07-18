@@ -11,13 +11,15 @@
 
 enum {
     SYNC = 0,
-    UPDATE = 1
+    UPDATE = 1,
+    AWARD = 2
 };
 
-#define OFFLINE_DRAW_EXP  10
-#define NORMAL_EXP  10
-#define DRAWER_EXP  15
-#define REWARD_EXP  5
+#define OFFLINE_DRAW_EXP    10
+#define NORMAL_EXP          10
+#define DRAWER_EXP          15
+
+//#define REWARD_EXP  5
 
 @class PPViewController;
 
@@ -41,8 +43,13 @@ enum {
 
 - (void)addExp:(long)exp 
       delegate:(id<LevelServiceDelegate>)delegate;
+
 - (void)minusExp:(long)exp 
         delegate:(id<LevelServiceDelegate>)delegate;
+
+- (void)awardExp:(long)exp
+        delegate:(id<LevelServiceDelegate>)delegate;
+
 - (long)expRequiredForNextLevel;
 - (void)syncExpAndLevel:(PPViewController*)viewController 
                    type:(int)type;

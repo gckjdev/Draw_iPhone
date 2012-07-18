@@ -27,8 +27,6 @@
 }
 + (ItemService *)defaultService;
 
-- (void)useItem:(ItemType)type 
-   toTargetFeed:(Feed *)feed 
-       delegate:(id<ItemServiceDelegate>)delegate;
+- (void)receiveItem:(ItemType)type;
 
 @end

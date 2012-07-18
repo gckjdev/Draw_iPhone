@@ -177,4 +177,25 @@
     return ([MobClickUtils getIntValueByKey:@"DEL_AD_TYPE" defaultValue:0] == 1);
 }
 
++ (int)getTomatoAwardExp
+{
+    return [MobClickUtils getIntValueByKey:@"TOMATO_EXP" defaultValue:-5];
+}
+
++ (int)getTomatoAwardAmount
+{
+    return [MobClickUtils getIntValueByKey:@"TOMATO_AMOUNT" defaultValue:-3];
+}
+
++ (int)getFlowerAwardExp
+{
+    return [MobClickUtils getIntValueByKey:@"FLOWER_EXP" defaultValue:5];
+}
+
++ (int)getFlowerAwardAmount
+{
+    return [MobClickUtils getIntValueByKey:@"FLOWER_AMOUNT" defaultValue:3];
+}
+
+
 @end

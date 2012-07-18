@@ -22,7 +22,7 @@ typedef enum  {
     EscapeType = 10,
     ChangeRoomType = 11,
     
-    AddGuessCoinType = 10001,
+    AwardCoinType = 10001,
     
     RefundForVerifyReceiptFailure = 21
     

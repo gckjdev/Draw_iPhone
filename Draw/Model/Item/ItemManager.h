@@ -26,6 +26,9 @@
 - (BOOL)addNewItem:(int)itemType amount:(int)amount;
 - (BOOL)increaseItem:(int)itemType amount:(int)amount;
 - (BOOL)decreaseItem:(int)itemType amount:(int)amount;
+- (BOOL)hasEnoughItem:(int)itemType;
++ (int)awardAmountByItem:(int)itemType;
++ (int)awardExpByItem:(int)itemType;
 
 @end
 

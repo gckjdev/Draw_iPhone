@@ -528,6 +528,9 @@
                                   userId:(NSString*)userId
                                 itemType:(int)itemType
                                   amount:(int)amount
+                            targetUserId:(NSString*)targetUserId
+                             awardAmount:(int)awardAmount
+                                awardExp:(int)awardExp
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -539,6 +542,12 @@
         str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];        
         str = [str stringByAddQueryParameter:PARA_ITEM_TYPE intValue:itemType];     
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        
+        if ([targetUserId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
+            str = [str stringByAddQueryParameter:PARA_EXP intValue:awardExp];
+            str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:awardAmount];
+        }
         
         return str;
     };

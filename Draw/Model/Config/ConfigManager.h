@@ -60,4 +60,11 @@ typedef enum{
 + (BOOL)useLmWall;
 
 + (NSString*)gameId;
+
++ (int)getTomatoAwardExp;
++ (int)getTomatoAwardAmount;
++ (int)getFlowerAwardExp;
++ (int)getFlowerAwardAmount;
+
+
 @end

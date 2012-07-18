@@ -24,6 +24,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "ConfigManager.h"
 #import "UserService.h"
+#import "LevelService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -344,6 +345,12 @@ static AccountService* _defaultAccountService;
     });
 }
 
+- (void)awardAccount:(int)amount 
+               source:(BalanceSourceType)source
+{
+    [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];        
+}
+
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source
 {
@@ -408,9 +415,15 @@ static AccountService* _defaultAccountService;
     });
 }
 
+
 - (void)syncItemRequest:(UserItem*)userItem
+           targetUserId:(NSString*)targetUserId
+            awardAmount:(int)awardAmount
+               awardExp:(int)awardExp
+
 {
-    PPDebug(@"<syncItemRequest> item=%@", [userItem description]);
+    PPDebug(@"<syncItemRequest> item=%@ targetUserId=%@ awardAmount=%d awardExp=%d", 
+            [userItem description], targetUserId, awardAmount, awardExp);
     NSString* userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{
@@ -418,22 +431,23 @@ static AccountService* _defaultAccountService;
         output = [GameNetworkRequest updateItemAmount:SERVER_URL 
                                                userId:userId 
                                              itemType:[[userItem itemType] intValue]
-                                               amount:[[userItem amount] intValue]];
+                                               amount:[[userItem amount] intValue]
+                                         targetUserId:targetUserId
+                                          awardAmount:awardAmount 
+                                             awardExp:awardExp];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                // update balance from server
-//                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-//                if (balance != [[AccountManager defaultManager] getBalance]){
-//                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
-//                            [[AccountManager defaultManager] getBalance], balance);
-//                }
-            }
-            else{
-//                PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
-            }
-        });      
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (output.resultCode == ERROR_SUCCESS) {
+//            }
+//            else{
+//            }
+//        });      
     });
+}
+
+- (void)syncItemRequest:(UserItem*)userItem
+{
+    [self syncItemRequest:userItem targetUserId:nil awardAmount:0 awardExp:0];
 }
 
 - (int)buyItem:(int)itemType
@@ -474,6 +488,29 @@ static AccountService* _defaultAccountService;
     [self syncItemRequest:userItem];
     
     return 0;
+}
+
+- (int)consumeItem:(int)itemType
+            amount:(int)amount
+      targetUserId:(NSString*)targetUserId
+       awardAmount:(int)awardAmount
+          awardExp:(int)awardExp
+{
+    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
+        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
+                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+        return ERROR_ITEM_NOT_ENOUGH;
+    }
+    
+    // save item locally and synchronize remotely
+    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
+    [self syncItemRequest:userItem
+             targetUserId:targetUserId
+              awardAmount:awardAmount
+                 awardExp:awardExp];
+    
+    return 0;    
 }
 
 - (BOOL)hasEnoughCoins:(int)amount
@@ -618,9 +655,20 @@ static AccountService* _defaultAccountService;
                         }
                     }
                     //decrease the guess balance and add it to the account balance.
-                    int guessBalance = [[output.jsonDataDict objectForKey:PARA_GUESS_BALANCE] intValue];
-                    if (guessBalance > 0) {
-                        [self chargeAccount:guessBalance source:AddGuessCoinType];
+                    int awardBalance = [[output.jsonDataDict objectForKey:PARA_GUESS_BALANCE] intValue];
+                    if (awardBalance > 0) {
+                        PPDebug(@"<syncAccountAndItem> awardBalance=%d", awardBalance);
+                        [self chargeAccount:awardBalance source:AwardCoinType];
+                    }
+                    else if (awardBalance < 0) {
+                        PPDebug(@"<syncAccountAndItem> awardBalance=%d", awardBalance);
+                        [self deductAccount:awardBalance source:AwardCoinType];
+                    }
+                    
+                    int awardExp = [[output.jsonDataDict objectForKey:PARA_AWARD_EXP] intValue];
+                    if (awardExp != 0) {
+                        PPDebug(@"<syncAccountAndItem> award exp=%d", awardExp);
+                        [[LevelService defaultService] awardExp:awardExp delegate:nil];
                     }
                     
                 });                
