@@ -656,13 +656,9 @@ static AccountService* _defaultAccountService;
                     }
                     //decrease the guess balance and add it to the account balance.
                     int awardBalance = [[output.jsonDataDict objectForKey:PARA_GUESS_BALANCE] intValue];
-                    if (awardBalance > 0) {
+                    if (awardBalance != 0) {
                         PPDebug(@"<syncAccountAndItem> awardBalance=%d", awardBalance);
-                        [self chargeAccount:awardBalance source:AwardCoinType];
-                    }
-                    else if (awardBalance < 0) {
-                        PPDebug(@"<syncAccountAndItem> awardBalance=%d", awardBalance);
-                        [self deductAccount:awardBalance source:AwardCoinType];
+                        [self awardAccount:awardBalance source:AwardCoinType];
                     }
                     
                     int awardExp = [[output.jsonDataDict objectForKey:PARA_AWARD_EXP] intValue];

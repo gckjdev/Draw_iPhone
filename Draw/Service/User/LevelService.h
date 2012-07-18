@@ -51,9 +51,12 @@ enum {
         delegate:(id<LevelServiceDelegate>)delegate;
 
 - (long)expRequiredForNextLevel;
+
 - (void)syncExpAndLevel:(PPViewController*)viewController 
                    type:(int)type;
 - (void)syncExpAndLevel:(int)type;
+- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp;
+
 - (void)initLevelDict;
 
 @end

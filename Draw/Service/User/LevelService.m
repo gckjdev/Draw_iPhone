@@ -139,10 +139,11 @@ static LevelService* _defaultLevelService;
     [self syncExpAndLevel:UPDATE];
 }
 
-- (void)awardExp:(long)exp
+- (void)awardExp:(long)awardExp
         delegate:(id<LevelServiceDelegate>)delegate
 {
-    if (exp > 0){
+    if (awardExp > 0){
+        long exp = abs(awardExp);
         long currentExp = [self experience] + exp ;
         int newLevel = [self getLevelByExp:(currentExp)];
         [self setExperience:(currentExp)];
@@ -154,6 +155,7 @@ static LevelService* _defaultLevelService;
         }
     }
     else{
+        long exp = abs(awardExp);
         long currentExp = [self experience]-exp;
         [self setExperience:(currentExp)];
         int newLevel = [self getLevelByExp:(currentExp)];
@@ -164,7 +166,7 @@ static LevelService* _defaultLevelService;
             }
         }        
     }
-    [self syncExpAndLevel:AWARD];
+    [self syncExpAndLevel:AWARD awardExp:awardExp];
 }
 
 - (void)minusExp:(long)exp 
@@ -209,7 +211,8 @@ static LevelService* _defaultLevelService;
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
-                                                type:type];
+                                                type:type
+                                            awardExp:0];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //[viewController hideActivity];
@@ -242,7 +245,7 @@ static LevelService* _defaultLevelService;
 }
 
 
-- (void)syncExpAndLevel:(int)type
+- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp
 {    
     if ([[UserManager defaultManager] hasUser] == NO){
         PPDebug(@"<syncExpAndLevel> but user not found yet.");
@@ -259,7 +262,8 @@ static LevelService* _defaultLevelService;
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
-                                                type:type];
+                                                type:type
+                                            awardExp:awardExp];
         
         dispatch_async(dispatch_get_main_queue(), ^{
            // [viewController hideActivity];
@@ -284,6 +288,11 @@ static LevelService* _defaultLevelService;
         });
         
     });
+}
+
+- (void)syncExpAndLevel:(int)type
+{
+    [self syncExpAndLevel:type awardExp:0];
 }
 
 

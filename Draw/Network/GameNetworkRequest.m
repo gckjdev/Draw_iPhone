@@ -1183,6 +1183,7 @@
                                   level:(int)level 
                                     exp:(long)exp 
                                    type:(int)type
+                               awardExp:(long)awardExp
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1198,6 +1199,7 @@
         str = [str stringByAddQueryParameter:PARA_LEVEL intValue:level];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:exp];
         str = [str stringByAddQueryParameter:PARA_SYNC_TYPE intValue:type];       
+        str = [str stringByAddQueryParameter:PARA_AWARD_EXP intValue:awardExp];       
         return str;
     };
     
