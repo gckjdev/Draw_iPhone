@@ -459,5 +459,10 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    
 }
+
+- (UIImage*)backButtonImage
+{
+    return [self fixedImageNamed:@"back"];
+}
 @end
 

@@ -47,9 +47,12 @@
 #define THROW_ITEM_TAG  20120713
 #define RECIEVE_ITEM_TAG    120120713
 
+#define TOMATO_TOOLVIEW_TAG 20120718
+#define FLOWER_TOOLVIEW_TAG 120120718
+
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO 70
+#define MAX_TOMATO 10
 #define MAX_FLOWER 10
 
 #define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
@@ -88,6 +91,7 @@
 @synthesize titleLabel;
 @synthesize upLabel;
 @synthesize downLabel;
+@synthesize backButton;
 //@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -195,10 +199,14 @@
 {
     if([self fromFeedDetailController]){
         _resultType = FeedGuess;
+        [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
+        [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
     }
     else if ([self fromOfflineGuessController]) 
     {
         _resultType = OfflineGuess;
+        [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
+        [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
     }else if(_isMyPaint){
         _resultType = OnlineDraw;
     }else{
@@ -277,6 +285,8 @@
 {
     ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
+    tomato.tag = TOMATO_TOOLVIEW_TAG;
+    flower.tag = FLOWER_TOOLVIEW_TAG;
     [self.view addSubview:tomato];
     [self.view addSubview:flower];
     [tomato setCenter:downButton.center];
@@ -312,6 +322,9 @@
     }else{
         continueButton.hidden = YES;
         downButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
+        ToolView* tomatoToolView = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+        [tomatoToolView setCenter:CGPointMake(downButton.center.x, tomatoToolView.center.y)];
+        [downLabel setCenter:CGPointMake(downButton.center.x, downLabel.center.y)];
     }
     
     //init the share button
@@ -392,6 +405,7 @@
     [self setTitleLabel:nil];
     [self setUpLabel:nil];
     [self setDownLabel:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -421,6 +435,7 @@
     [titleLabel release];
     [upLabel release];
     [downLabel release];
+    [backButton release];
     [super dealloc];
 }
 
