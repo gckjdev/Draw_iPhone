@@ -129,7 +129,7 @@
     // set text
     [self.startLabel setText:NSLS(@"kStart")];
     [self.shareLabel setText:NSLS(@"kHomeShare")];
-    [self.freeCoinLabel  setText:NSLS(@"kFreeCoins")];
+    [self.freeCoinLabel  setText:NSLS(@"kShop")];
     [self.signLabel setText:NSLS(@"kCheckin")];
     [self.friendPlayLabel setText:NSLS(@"kPlayWithFriend")];
     [self.friendLabel setText:NSLS(@"kFriend")];
@@ -499,14 +499,14 @@
     }
 
 
-//    [[DrawGameService defaultService] setServerAddress:address];
-//    [[DrawGameService defaultService] setServerPort:port];    
+    [[DrawGameService defaultService] setServerAddress:address];
+    [[DrawGameService defaultService] setServerPort:port];    
 
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
-    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-    [[DrawGameService defaultService] setServerPort:8080];   
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.3"];
+//    [[DrawGameService defaultService] setServerPort:8080];   
 
 
 //    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];

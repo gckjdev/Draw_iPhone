@@ -58,7 +58,7 @@
 						<string key="NSFrame">{{0, 12}, {768, 893}}</string>
 						<reference key="NSSuperview" ref="711550771"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="117498315"/>
+						<reference key="NSNextKeyView" ref="792830027"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -205,6 +205,7 @@
 						<string key="NSFrame">{{643, 967}, {120, 39}}</string>
 						<reference key="NSSuperview" ref="711550771"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -528,6 +529,7 @@
 								<string key="NSFrame">{{36, 63}, {655, 179}}</string>
 								<reference key="NSSuperview" ref="792830027"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="310933226"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -634,7 +636,7 @@
 								<string key="NSFrame">{{31, 672}, {160, 45}}</string>
 								<reference key="NSSuperview" ref="792830027"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="554567597"/>
+								<reference key="NSNextKeyView" ref="513382529"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -878,7 +880,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="634139745"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">bigCoin@2x.png</string>
+									<string key="NSResourceName">shop@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="143101871"/>
 								<reference key="IBUIFont" ref="646173143"/>
@@ -889,7 +891,7 @@
 								<string key="NSFrame">{{380, 537}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="792830027"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="808785578"/>
+								<reference key="NSNextKeyView" ref="554567597"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -912,7 +914,7 @@
 								<string key="NSFrame">{{138, 537}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="792830027"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="513382529"/>
+								<reference key="NSNextKeyView" ref="808785578"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -933,6 +935,7 @@
 						<string key="NSFrame">{{23, 20}, {726, 781}}</string>
 						<reference key="NSSuperview" ref="711550771"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="117498315"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -1805,7 +1808,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bigCoin@2x.png">{134, 134}</string>
 			<string key="draw_guess@2x(1).png">{134, 134}</string>
 			<string key="h_chat@@2x.png">{134, 134}</string>
 			<string key="h_draw@2x.png">{134, 134}</string>
@@ -1815,6 +1817,7 @@
 			<string key="home_bg@2x.png">{640, 866}</string>
 			<string key="name@2x.png">{451, 189}</string>
 			<string key="number@2x.png">{50, 45}</string>
+			<string key="shop@2x.png">{122, 122}</string>
 			<string key="small_chat@2x.png">{59, 59}</string>
 			<string key="small_feedback@2x.png">{59, 59}</string>
 			<string key="small_friend_manager@2x.png">{59, 59}</string>

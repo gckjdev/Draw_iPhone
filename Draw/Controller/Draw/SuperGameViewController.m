@@ -26,11 +26,6 @@
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
 
-#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
-#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
-#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
-#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
-
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
 @interface SuperGameViewController ()
@@ -418,8 +413,12 @@
     UIImageView*  item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
-    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
-    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
+    if (toolView.itemType == ItemTypeTomato) {
+        [DrawGameAnimationManager showThrowTomato:item animInController:self];
+    }
+    if (toolView.itemType == ItemTypeFlower) {
+        [DrawGameAnimationManager showThrowFlower:item animInController:self];
+    }
     [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
@@ -428,7 +427,7 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_RECEIVE_FLOWER];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     
 }
 - (void)recieveTomato
@@ -437,53 +436,12 @@
     [self.view addSubview:item];
     [item.layer removeAllAnimations];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self withKey:ANIM_KEY_RECEIVE_TOMATO];
+    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    NSString* key = [anim valueForKey:DRAW_ANIM];
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),
-                              abs([ConfigManager getFlowerAwardExp]), 
-                              abs([ConfigManager getFlowerAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] 
-             postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),
-                                  abs([ConfigManager getTomatoAwardExp]), 
-                                  abs([ConfigManager getTomatoAwardAmount])
-                                  ] 
-             delayTime:2 
-             isHappy:NO 
-             atHorizon:(-150)];
-        
-    }
-    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),
-                              abs([ConfigManager getFlowerAwardExp]), 
-                              abs([ConfigManager getFlowerAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
-    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),
-                              abs([ConfigManager getTomatoAwardExp]), 
-                              abs([ConfigManager getTomatoAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
+    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
 }
 
 @end

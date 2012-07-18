@@ -44,9 +44,6 @@
 
 #define CONTINUE_TIME 10
 
-#define THROW_ITEM_TAG  20120713
-#define RECIEVE_ITEM_TAG    120120713
-
 #define TOMATO_TOOLVIEW_TAG 20120718
 #define FLOWER_TOOLVIEW_TAG 120120718
 
@@ -55,10 +52,6 @@
 #define MAX_TOMATO 10
 #define MAX_FLOWER 10
 
-#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
-#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
-#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
-#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
 @interface ResultController()
 
@@ -584,8 +577,13 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
-    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
-    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
+    if (toolView.itemType == ItemTypeTomato) {
+        [DrawGameAnimationManager showThrowTomato:item animInController:self];
+    }
+    if (toolView.itemType == ItemTypeFlower) {
+        [DrawGameAnimationManager showThrowFlower:item animInController:self];
+    }
+    
 }
 
 - (void)receiveFlower
@@ -593,7 +591,7 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_RECEIVE_FLOWER];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 - (void)receiveTomato
@@ -601,54 +599,13 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_THROW_TOMATO];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    NSString* key = [anim valueForKey:DRAW_ANIM];
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),
-                              abs([ConfigManager getFlowerAwardExp]), 
-                              abs([ConfigManager getFlowerAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),
-                              abs([ConfigManager getTomatoAwardExp]), 
-                              abs([ConfigManager getTomatoAwardAmount])
-                              ] 
-         delayTime:2 
-         isHappy:NO 
-         atHorizon:(-150)];
-        
-    }
-    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),
-                              abs([ConfigManager getFlowerAwardExp]), 
-                              abs([ConfigManager getFlowerAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
-    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] 
-         postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),
-                              abs([ConfigManager getTomatoAwardExp]), 
-                              abs([ConfigManager getTomatoAwardAmount])
-                              ]
-         delayTime:2 
-         isHappy:YES 
-         atHorizon:(-150)];
-    }
+    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
 }
 
 #pragma mark - Common Dialog Delegate
