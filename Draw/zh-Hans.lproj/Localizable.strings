@@ -694,7 +694,7 @@
 "kCost" = "花费";
 "kCoins" = "金币";
 
-"kThrowTomatoMessage" = "你给作者扔个个番茄，把TA的经验值扔掉了%d点, 把TA的金币扔掉了%d个";
-"kSendFlowerMessage" = "你给作者送了朵鲜花，TA的经验值额外增加了%d点，TA的金币额外增加了%d个";
-"kReceiveTomatoMessage" = "愤怒的观众朝你扔了个番茄，你的经验值减了%d点，金币扣了%d个";
-"kReceiveFlowerMessage" = "疯狂的粉丝给你送了朵鲜花，你的经验值额外增加%d点，金币额外增加%d个";
+"kThrowTomatoMessage" = "你给作者扔了个番茄，让TA扣了%d点经验, %d个金币";
+"kSendFlowerMessage" = "你给作者送了朵鲜花，让TA额外增加了%d点经验，%d个金币";
+"kReceiveTomatoMessage" = "愤怒的观众朝你扔了个番茄，你被扣了%d点经验，%d个金币";
+"kReceiveFlowerMessage" = "疯狂的粉丝给你送了朵鲜花，你额外得到%d点经验，%d个金币";

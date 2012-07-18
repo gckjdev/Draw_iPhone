@@ -28,7 +28,7 @@
 {
     [ItemImageView setFrame:CGRectMake(0, 0, ItemImageView.frame.size.width*2, ItemImageView.frame.size.height*2)];
     CGPoint startPoint = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height);
-    CGPoint endPoint = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y+(rand()%RADIUS));
+    CGPoint endPoint = CGPointMake(viewController.view.center.x-RADIUS+(rand()%(2*RADIUS)), viewController.view.center.y-(rand()%RADIUS));
     [ItemImageView setCenter:endPoint];
     
     CAAnimation* rolling = [AnimationManager rotationAnimationWithRoundCount:ROATE_RATE*THROWING_TIME duration:THROWING_TIME];

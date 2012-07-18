@@ -23,9 +23,8 @@
 #import "ItemManager.h"
 #import "LevelService.h"
 #import "AccountManager.h"
+#import "CommonMessageCenter.h"
 
-#define THROW_ITEM_TAG  20120713
-#define RECIEVE_ITEM_TAG    120120713
 
 #define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
 #define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
@@ -416,11 +415,8 @@
 
 - (void)throwTool:(ToolView*)toolView
 {
-    UIImageView* item = (UIImageView*)[self.view viewWithTag:THROW_ITEM_TAG];
-    if (!item) {
-        item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
-        [self.view addSubview:item];
-    }
+    UIImageView*  item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
+    [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
     NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
     [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
@@ -448,17 +444,21 @@
 {
     NSString* key = [anim valueForKey:DRAW_ANIM];
     if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
+//        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:NO atHorizon:(-150)];
+//        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
         
     }
     if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
+//        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:(-150)];
+//        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
         
     }
 }

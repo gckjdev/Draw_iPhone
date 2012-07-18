@@ -40,8 +40,8 @@
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
+#define MAX_TOMATO_CAN_THROW 2
+#define MAX_FLOWER_CAN_SEND 10
 
 
 @implementation OnlineGuessDrawController
@@ -442,8 +442,8 @@
     _guessCorrect = NO;
     _shopController = nil;
     
-    _maxFlower = MAX_FLOWER;
-    _maxTomato = MAX_TOMATO;
+    _maxFlower = MAX_FLOWER_CAN_SEND;
+    _maxTomato = MAX_TOMATO_CAN_THROW;
     
 }
 

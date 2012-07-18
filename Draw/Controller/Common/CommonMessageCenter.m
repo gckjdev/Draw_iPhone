@@ -171,13 +171,13 @@
 #define INDEX_OF_WORDS 0
 #define INDEX_OF_DELAY_TIME 1
 #define INDEX_OF_IMAGE 2
-- (void) showAlerts{
+- (void) showAlertsAtHorizon:(int)horizon{
 	
 	if([_messages count] < 1) {
 		_active = NO;
 		return;
 	}
-	
+	_horizon = horizon;
 	_active = YES;
 	
 	_messageView.transform = CGAffineTransformIdentity;
@@ -190,7 +190,7 @@
 	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
     [_messageView setImage:img];
 	if (!img) {
-        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y)];
+        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y+horizon)];
         [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
     }
 	    
@@ -198,7 +198,7 @@
 	
 	
 	
-	_messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_messageFrame.size.height/2);
+	_messageView.center = CGPointMake(_messageFrame.origin.x+_messageFrame.size.width/2, _messageFrame.origin.y+_horizon+_messageFrame.size.height/2);
     
 	
 	CGRect rr = _messageView.frame;
@@ -265,18 +265,20 @@
         [self.delegate didShowedAlert];
     }
     
-	[self showAlerts];
+	[self showAlertsAtHorizon:_horizon];
 	
 }
 - (void)postMessageWithText:(NSString *)text 
                       image:(UIImage *)image 
                   delayTime:(float)delayTime{
 	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
-	if(!_active) [self showAlerts];
+	if(!_active) [self showAlertsAtHorizon:0];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime{
-	[self postMessageWithText:text image:nil delayTime:delayTime];
+	[self postMessageWithText:text 
+                        image:nil 
+                    delayTime:delayTime];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
@@ -288,7 +290,9 @@
     } else {
         face = [UIImage imageNamed:@"face_wry.png"];
     }
-	[self postMessageWithText:text image:face delayTime:delayTime];
+	[self postMessageWithText:text 
+                        image:face 
+                    delayTime:delayTime];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
@@ -300,8 +304,60 @@
     } else {
         face = [UIImage imageNamed:@"wrong.png"];
     }
-	[self postMessageWithText:text image:face delayTime:delayTime];
+	[self postMessageWithText:text 
+                        image:face 
+                    delayTime:delayTime];
 }
+
+#pragma mark - show with horizon
+- (void)postMessageWithText:(NSString *)text 
+                      image:(UIImage *)image 
+                  delayTime:(float)delayTime 
+                  atHorizon:(int)horizon{
+	[_messages addObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil]];
+	if(!_active) [self showAlertsAtHorizon:horizon];
+}
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime 
+                  atHorizon:(int)horizon{
+	[self postMessageWithText:text 
+                        image:nil 
+                    delayTime:delayTime 
+                    atHorizon:horizon];
+}
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime 
+                    isHappy:(BOOL)isHappy 
+                  atHorizon:(int)horizon
+{
+    UIImage* face;
+    if (isHappy) {
+        face = [UIImage imageNamed:@"face_smile.png"];
+    } else {
+        face = [UIImage imageNamed:@"face_wry.png"];
+    }
+	[self postMessageWithText:text 
+                        image:face 
+                    delayTime:delayTime 
+                    atHorizon:horizon];
+}
+- (void)postMessageWithText:(NSString *)text 
+                  delayTime:(float)delayTime
+               isSuccessful:(BOOL)isSuccessful 
+                  atHorizon:(int)horizon
+{
+    UIImage* face;
+    if (isSuccessful) {
+        face = [UIImage imageNamed:@"right.png"];
+    } else {
+        face = [UIImage imageNamed:@"wrong.png"];
+    }
+	[self postMessageWithText:text 
+                        image:face 
+                    delayTime:delayTime 
+                    atHorizon:horizon];
+}
+
 
 
 #pragma mark System Observation Changes
