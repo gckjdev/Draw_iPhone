@@ -57,6 +57,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *upLabel;
 @property (retain, nonatomic) IBOutlet UILabel *downLabel;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;

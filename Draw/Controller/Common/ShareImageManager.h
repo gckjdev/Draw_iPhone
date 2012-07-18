@@ -133,4 +133,6 @@
 
 - (UIImage *)pickToolBackground;
 
+- (UIImage*)backButtonImage;
+
 @end
