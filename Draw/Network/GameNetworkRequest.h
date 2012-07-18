@@ -205,7 +205,8 @@
                                  userId:(NSString*)userId 
                                   level:(int)level 
                                     exp:(long)exp 
-                                   type:(int)type;
+                                   type:(int)type
+                               awardExp:(long)awardExp;
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 

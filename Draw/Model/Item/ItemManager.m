@@ -145,7 +145,7 @@ ItemManager *GlobalGetItemManager()
             return [ConfigManager getTomatoAwardExp];
             
         case ItemTypeFlower:
-            return [ConfigManager getFlowerAwardAmount];
+            return [ConfigManager getFlowerAwardExp];
             
         default:
             return 0;
