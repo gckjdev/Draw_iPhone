@@ -117,12 +117,14 @@
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasLocation_:1;
+  BOOL hasFacetimeId_:1;
   BOOL gender_:1;
   int32_t userLevel;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
   NSString* location;
+  NSString* facetimeId;
   NSMutableArray* mutableSnsUsersList;
 }
 - (BOOL) hasUserId;
@@ -131,12 +133,14 @@
 - (BOOL) hasGender;
 - (BOOL) hasLocation;
 - (BOOL) hasUserLevel;
+- (BOOL) hasFacetimeId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
 @property (readonly, retain) NSString* location;
 @property (readonly) int32_t userLevel;
+@property (readonly, retain) NSString* facetimeId;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 
@@ -210,6 +214,11 @@
 - (int32_t) userLevel;
 - (PBGameUser_Builder*) setUserLevel:(int32_t) value;
 - (PBGameUser_Builder*) clearUserLevel;
+
+- (BOOL) hasFacetimeId;
+- (NSString*) facetimeId;
+- (PBGameUser_Builder*) setFacetimeId:(NSString*) value;
+- (PBGameUser_Builder*) clearFacetimeId;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {

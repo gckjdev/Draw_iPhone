@@ -3831,6 +3831,453 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 }
 @end
 
+@interface FacetimeChatRequest ()
+@property (retain) PBGameUser* user;
+@property BOOL chatGender;
+@end
+
+@implementation FacetimeChatRequest
+
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
+- (BOOL) hasChatGender {
+  return !!hasChatGender_;
+}
+- (void) setHasChatGender:(BOOL) value {
+  hasChatGender_ = !!value;
+}
+- (BOOL) chatGender {
+  return !!chatGender_;
+}
+- (void) setChatGender:(BOOL) value {
+  chatGender_ = !!value;
+}
+- (void) dealloc {
+  self.user = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.user = [PBGameUser defaultInstance];
+    self.chatGender = NO;
+  }
+  return self;
+}
+static FacetimeChatRequest* defaultFacetimeChatRequestInstance = nil;
++ (void) initialize {
+  if (self == [FacetimeChatRequest class]) {
+    defaultFacetimeChatRequestInstance = [[FacetimeChatRequest alloc] init];
+  }
+}
++ (FacetimeChatRequest*) defaultInstance {
+  return defaultFacetimeChatRequestInstance;
+}
+- (FacetimeChatRequest*) defaultInstance {
+  return defaultFacetimeChatRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUser) {
+    return NO;
+  }
+  if (!self.user.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUser) {
+    [output writeMessage:1 value:self.user];
+  }
+  if (self.hasChatGender) {
+    [output writeBool:2 value:self.chatGender];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUser) {
+    size += computeMessageSize(1, self.user);
+  }
+  if (self.hasChatGender) {
+    size += computeBoolSize(2, self.chatGender);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (FacetimeChatRequest*) parseFromData:(NSData*) data {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromData:data] build];
+}
++ (FacetimeChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromInputStream:input] build];
+}
++ (FacetimeChatRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatRequest*)[[[FacetimeChatRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatRequest_Builder*) builder {
+  return [[[FacetimeChatRequest_Builder alloc] init] autorelease];
+}
++ (FacetimeChatRequest_Builder*) builderWithPrototype:(FacetimeChatRequest*) prototype {
+  return [[FacetimeChatRequest builder] mergeFrom:prototype];
+}
+- (FacetimeChatRequest_Builder*) builder {
+  return [FacetimeChatRequest builder];
+}
+@end
+
+@interface FacetimeChatRequest_Builder()
+@property (retain) FacetimeChatRequest* result;
+@end
+
+@implementation FacetimeChatRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[FacetimeChatRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (FacetimeChatRequest_Builder*) clear {
+  self.result = [[[FacetimeChatRequest alloc] init] autorelease];
+  return self;
+}
+- (FacetimeChatRequest_Builder*) clone {
+  return [FacetimeChatRequest builderWithPrototype:result];
+}
+- (FacetimeChatRequest*) defaultInstance {
+  return [FacetimeChatRequest defaultInstance];
+}
+- (FacetimeChatRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (FacetimeChatRequest*) buildPartial {
+  FacetimeChatRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (FacetimeChatRequest_Builder*) mergeFrom:(FacetimeChatRequest*) other {
+  if (other == [FacetimeChatRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
+  if (other.hasChatGender) {
+    [self setChatGender:other.chatGender];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setChatGender:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (FacetimeChatRequest_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (FacetimeChatRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (FacetimeChatRequest_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (FacetimeChatRequest_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasChatGender {
+  return result.hasChatGender;
+}
+- (BOOL) chatGender {
+  return result.chatGender;
+}
+- (FacetimeChatRequest_Builder*) setChatGender:(BOOL) value {
+  result.hasChatGender = YES;
+  result.chatGender = value;
+  return self;
+}
+- (FacetimeChatRequest_Builder*) clearChatGender {
+  result.hasChatGender = NO;
+  result.chatGender = NO;
+  return self;
+}
+@end
+
+@interface FacetimeChatResponse ()
+@property (retain) NSMutableArray* mutableUserList;
+@end
+
+@implementation FacetimeChatResponse
+
+@synthesize mutableUserList;
+- (void) dealloc {
+  self.mutableUserList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
++ (void) initialize {
+  if (self == [FacetimeChatResponse class]) {
+    defaultFacetimeChatResponseInstance = [[FacetimeChatResponse alloc] init];
+  }
+}
++ (FacetimeChatResponse*) defaultInstance {
+  return defaultFacetimeChatResponseInstance;
+}
+- (FacetimeChatResponse*) defaultInstance {
+  return defaultFacetimeChatResponseInstance;
+}
+- (NSArray*) userList {
+  return mutableUserList;
+}
+- (PBGameUser*) userAtIndex:(int32_t) index {
+  id value = [mutableUserList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBGameUser* element in self.userList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBGameUser* element in self.userList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBGameUser* element in self.userList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (FacetimeChatResponse*) parseFromData:(NSData*) data {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromData:data] build];
+}
++ (FacetimeChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromInputStream:input] build];
+}
++ (FacetimeChatResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (FacetimeChatResponse*)[[[FacetimeChatResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (FacetimeChatResponse_Builder*) builder {
+  return [[[FacetimeChatResponse_Builder alloc] init] autorelease];
+}
++ (FacetimeChatResponse_Builder*) builderWithPrototype:(FacetimeChatResponse*) prototype {
+  return [[FacetimeChatResponse builder] mergeFrom:prototype];
+}
+- (FacetimeChatResponse_Builder*) builder {
+  return [FacetimeChatResponse builder];
+}
+@end
+
+@interface FacetimeChatResponse_Builder()
+@property (retain) FacetimeChatResponse* result;
+@end
+
+@implementation FacetimeChatResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[FacetimeChatResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (FacetimeChatResponse_Builder*) clear {
+  self.result = [[[FacetimeChatResponse alloc] init] autorelease];
+  return self;
+}
+- (FacetimeChatResponse_Builder*) clone {
+  return [FacetimeChatResponse builderWithPrototype:result];
+}
+- (FacetimeChatResponse*) defaultInstance {
+  return [FacetimeChatResponse defaultInstance];
+}
+- (FacetimeChatResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (FacetimeChatResponse*) buildPartial {
+  FacetimeChatResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (FacetimeChatResponse_Builder*) mergeFrom:(FacetimeChatResponse*) other {
+  if (other == [FacetimeChatResponse defaultInstance]) {
+    return self;
+  }
+  if (other.mutableUserList.count > 0) {
+    if (result.mutableUserList == nil) {
+      result.mutableUserList = [NSMutableArray array];
+    }
+    [result.mutableUserList addObjectsFromArray:other.mutableUserList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUser:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) userList {
+  if (result.mutableUserList == nil) { return [NSArray array]; }
+  return result.mutableUserList;
+}
+- (PBGameUser*) userAtIndex:(int32_t) index {
+  return [result userAtIndex:index];
+}
+- (FacetimeChatResponse_Builder*) replaceUserAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableUserList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (FacetimeChatResponse_Builder*) addAllUser:(NSArray*) values {
+  if (result.mutableUserList == nil) {
+    result.mutableUserList = [NSMutableArray array];
+  }
+  [result.mutableUserList addObjectsFromArray:values];
+  return self;
+}
+- (FacetimeChatResponse_Builder*) clearUserList {
+  result.mutableUserList = nil;
+  return self;
+}
+- (FacetimeChatResponse_Builder*) addUser:(PBGameUser*) value {
+  if (result.mutableUserList == nil) {
+    result.mutableUserList = [NSMutableArray array];
+  }
+  [result.mutableUserList addObject:value];
+  return self;
+}
+@end
+
 @interface GameMessage ()
 @property GameCommandType command;
 @property int32_t messageId;
@@ -3849,6 +4296,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 @property (retain) SendDrawDataResponse* sendDrawDataResponse;
 @property (retain) GameChatRequest* chatRequest;
 @property (retain) GameChatResponse* chatResponse;
+@property (retain) FacetimeChatRequest* facetimeChatRequest;
+@property (retain) FacetimeChatResponse* facetimeChatResponse;
 @property (retain) GeneralNotification* notification;
 @end
 
@@ -3973,6 +4422,20 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   hasChatResponse_ = !!value;
 }
 @synthesize chatResponse;
+- (BOOL) hasFacetimeChatRequest {
+  return !!hasFacetimeChatRequest_;
+}
+- (void) setHasFacetimeChatRequest:(BOOL) value {
+  hasFacetimeChatRequest_ = !!value;
+}
+@synthesize facetimeChatRequest;
+- (BOOL) hasFacetimeChatResponse {
+  return !!hasFacetimeChatResponse_;
+}
+- (void) setHasFacetimeChatResponse:(BOOL) value {
+  hasFacetimeChatResponse_ = !!value;
+}
+@synthesize facetimeChatResponse;
 - (BOOL) hasNotification {
   return !!hasNotification_;
 }
@@ -3991,6 +4454,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   self.sendDrawDataResponse = nil;
   self.chatRequest = nil;
   self.chatResponse = nil;
+  self.facetimeChatRequest = nil;
+  self.facetimeChatResponse = nil;
   self.notification = nil;
   [super dealloc];
 }
@@ -4013,6 +4478,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
     self.sendDrawDataResponse = [SendDrawDataResponse defaultInstance];
     self.chatRequest = [GameChatRequest defaultInstance];
     self.chatResponse = [GameChatResponse defaultInstance];
+    self.facetimeChatRequest = [FacetimeChatRequest defaultInstance];
+    self.facetimeChatResponse = [FacetimeChatResponse defaultInstance];
     self.notification = [GeneralNotification defaultInstance];
   }
   return self;
@@ -4043,6 +4510,16 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasJoinGameResponse) {
     if (!self.joinGameResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasFacetimeChatRequest) {
+    if (!self.facetimeChatRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasFacetimeChatResponse) {
+    if (!self.facetimeChatResponse.isInitialized) {
       return NO;
     }
   }
@@ -4104,6 +4581,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasChatResponse) {
     [output writeMessage:24 value:self.chatResponse];
+  }
+  if (self.hasFacetimeChatRequest) {
+    [output writeMessage:31 value:self.facetimeChatRequest];
+  }
+  if (self.hasFacetimeChatResponse) {
+    [output writeMessage:32 value:self.facetimeChatResponse];
   }
   if (self.hasNotification) {
     [output writeMessage:51 value:self.notification];
@@ -4167,6 +4650,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasChatResponse) {
     size += computeMessageSize(24, self.chatResponse);
+  }
+  if (self.hasFacetimeChatRequest) {
+    size += computeMessageSize(31, self.facetimeChatRequest);
+  }
+  if (self.hasFacetimeChatResponse) {
+    size += computeMessageSize(32, self.facetimeChatResponse);
   }
   if (self.hasNotification) {
     size += computeMessageSize(51, self.notification);
@@ -4296,6 +4785,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasChatResponse) {
     [self mergeChatResponse:other.chatResponse];
+  }
+  if (other.hasFacetimeChatRequest) {
+    [self mergeFacetimeChatRequest:other.facetimeChatRequest];
+  }
+  if (other.hasFacetimeChatResponse) {
+    [self mergeFacetimeChatResponse:other.facetimeChatResponse];
   }
   if (other.hasNotification) {
     [self mergeNotification:other.notification];
@@ -4442,6 +4937,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setChatResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 250: {
+        FacetimeChatRequest_Builder* subBuilder = [FacetimeChatRequest builder];
+        if (self.hasFacetimeChatRequest) {
+          [subBuilder mergeFrom:self.facetimeChatRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFacetimeChatRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 258: {
+        FacetimeChatResponse_Builder* subBuilder = [FacetimeChatResponse builder];
+        if (self.hasFacetimeChatResponse) {
+          [subBuilder mergeFrom:self.facetimeChatResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFacetimeChatResponse:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -4838,6 +5351,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearChatResponse {
   result.hasChatResponse = NO;
   result.chatResponse = [GameChatResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasFacetimeChatRequest {
+  return result.hasFacetimeChatRequest;
+}
+- (FacetimeChatRequest*) facetimeChatRequest {
+  return result.facetimeChatRequest;
+}
+- (GameMessage_Builder*) setFacetimeChatRequest:(FacetimeChatRequest*) value {
+  result.hasFacetimeChatRequest = YES;
+  result.facetimeChatRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setFacetimeChatRequestBuilder:(FacetimeChatRequest_Builder*) builderForValue {
+  return [self setFacetimeChatRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeFacetimeChatRequest:(FacetimeChatRequest*) value {
+  if (result.hasFacetimeChatRequest &&
+      result.facetimeChatRequest != [FacetimeChatRequest defaultInstance]) {
+    result.facetimeChatRequest =
+      [[[FacetimeChatRequest builderWithPrototype:result.facetimeChatRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.facetimeChatRequest = value;
+  }
+  result.hasFacetimeChatRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearFacetimeChatRequest {
+  result.hasFacetimeChatRequest = NO;
+  result.facetimeChatRequest = [FacetimeChatRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasFacetimeChatResponse {
+  return result.hasFacetimeChatResponse;
+}
+- (FacetimeChatResponse*) facetimeChatResponse {
+  return result.facetimeChatResponse;
+}
+- (GameMessage_Builder*) setFacetimeChatResponse:(FacetimeChatResponse*) value {
+  result.hasFacetimeChatResponse = YES;
+  result.facetimeChatResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setFacetimeChatResponseBuilder:(FacetimeChatResponse_Builder*) builderForValue {
+  return [self setFacetimeChatResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeFacetimeChatResponse:(FacetimeChatResponse*) value {
+  if (result.hasFacetimeChatResponse &&
+      result.facetimeChatResponse != [FacetimeChatResponse defaultInstance]) {
+    result.facetimeChatResponse =
+      [[[FacetimeChatResponse builderWithPrototype:result.facetimeChatResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.facetimeChatResponse = value;
+  }
+  result.hasFacetimeChatResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearFacetimeChatResponse {
+  result.hasFacetimeChatResponse = NO;
+  result.facetimeChatResponse = [FacetimeChatResponse defaultInstance];
   return self;
 }
 - (BOOL) hasNotification {

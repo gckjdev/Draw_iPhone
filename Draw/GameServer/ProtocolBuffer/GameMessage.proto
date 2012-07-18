@@ -122,6 +122,15 @@ message GeneralNotification{
   optional int32 turnGainCoins = 61;
 }
 
+message FacetimeChatRequest {    
+  required PBGameUser user = 1;
+  optional bool chatGender = 2;
+}
+
+message FacetimeChatResponse {    
+  repeated PBGameUser user = 1;
+}
+
 message GameMessage {
   required GameCommandType command = 1;
   required int32 messageId = 2;                             // 和请求消息对应的消息ID
@@ -145,8 +154,12 @@ message GameMessage {
     
   optional GameChatRequest chatRequest = 23;
   optional GameChatResponse chatResponse = 24;
+
+  optional FacetimeChatRequest facetimeChatRequest = 31;
+  optional FacetimeChatResponse facetimeChatResponse = 32;
   
   optional GeneralNotification notification = 51;
+  
   
 }
 

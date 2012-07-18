@@ -190,7 +190,7 @@ static AdService* _defaultService;
     [_viewController hideActivity];
     
     if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
-        [MobClick event:@"BUY_COINS_OK"];        
+        [MobClick event:@"BUY_COINS_FAIL"];        
         [_viewController popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil]; 
 
         // clear view controller after finishing IAP
@@ -206,6 +206,7 @@ static AdService* _defaultService;
     }
     
     if (resultCode == 0){
+        [MobClick event:@"BUY_COINS_OK"];        
         [_viewController popupMessage:NSLS(@"kBuyCoinsSucc") title:nil];
         
         // Remove Ad here
