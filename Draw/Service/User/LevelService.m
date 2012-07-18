@@ -93,6 +93,7 @@ static LevelService* _defaultLevelService;
     if (level <= 0)
         return;
     
+    PPDebug(@"<setLevel> level=%d", level);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithLong:level] forKey:KEY_LEVEL];    
     [userDefaults synchronize];
@@ -102,6 +103,7 @@ static LevelService* _defaultLevelService;
     if (experience < 0)
         return;
     
+    PPDebug(@"<setExperience> experience=%ld", experience);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithLong:experience] forKey:KEY_EXP];    
     [userDefaults synchronize];

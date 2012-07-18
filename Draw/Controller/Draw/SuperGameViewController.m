@@ -419,7 +419,6 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
 }
 
 - (void)recieveFlower
@@ -432,11 +431,12 @@
 }
 - (void)recieveTomato
 {
+    // show animation
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item.layer removeAllAnimations];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];
+    [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];    
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag

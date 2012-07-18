@@ -41,6 +41,7 @@
 #import "CommonUserInfoView.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
+#import "ItemService.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -103,8 +104,7 @@
     }
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
-    }
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
+    }    
 }
 
 
@@ -667,6 +667,12 @@
 {
     //TODO add throw animation
     [self throwTool:toolView];
+    
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:_draw.userId 
+                                      isOffline:YES];    
+    
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
         [toolView setEnabled:NO];
@@ -682,6 +688,12 @@
 {
     //TODO add throw animation
     [self throwTool:toolView];
+    
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:_draw.userId 
+                                      isOffline:YES];
+    
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
         [toolView setEnabled:NO];

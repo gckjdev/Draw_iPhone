@@ -35,6 +35,7 @@
 #import "CommonMessageCenter.h"
 #import "GameConstants.h"
 #import "AccountManager.h"
+#import "ItemService.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -626,8 +627,14 @@
 
 - (BOOL)throwFlower:(ToolView *)toolView
 {
-    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
+//    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwTool:toolView];
+    
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
+                                      isOffline:NO];
+    
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [toolView decreaseNumber];
     if (--_maxFlower == 0) {
@@ -638,9 +645,17 @@
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
-    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+//    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+
     [toolView decreaseNumber];
     [self throwTool:toolView];
+
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
+                                      isOffline:NO];
+
+    
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     if (--_maxTomato == 0) {
         [toolView setEnabled:NO];

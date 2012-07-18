@@ -11,6 +11,8 @@
 #import "ItemManager.h"
 #import "LevelService.h"
 #import "PPDebug.h"
+#import "DrawGameService.h"
+#import "GameConstants.h"
 
 ItemService *_staticItemService = nil;
 
@@ -33,8 +35,50 @@ ItemService *_staticItemService = nil;
     PPDebug(@"<receiveItem> type=%d, awardAmount=%d, exp=%d",
             type, awardAmount, awardExp);
 
-    [[AccountService defaultService] awardAccount:awardAmount source:AwardCoinType];
-    [[LevelService defaultService] awardExp:awardExp delegate:nil];
+    // update account
+    [[AccountService defaultService] chargeAccount:awardAmount 
+                                            source:DirectAwardCoinType 
+                                     transactionId:nil 
+                                transactionRecepit:nil];
+    
+    // update experience
+    if (awardExp > 0){
+        [[LevelService defaultService] addExp:awardExp 
+                                     delegate:nil];
+    }
+    else if (awardExp < 0){
+        [[LevelService defaultService] minusExp:-awardExp 
+                                       delegate:nil];
+    }
 }
+
+- (void)sendItemAward:(ItemType)itemType 
+         targetUserId:(NSString*)toUserId 
+            isOffline:(BOOL)isOffline
+{
+    int awardAmount = 0;
+    int awardExp = 0;
+    NSString* targetUserId = nil;
+    
+    if (isOffline) {
+        targetUserId = toUserId;
+        awardAmount = [ItemManager awardAmountByItem:itemType];
+        awardExp = [ItemManager awardExpByItem:itemType];
+        
+        // TODO send flower action here
+    }else{
+        // send online request for online realtime play
+        int rankResult = (itemType == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
+        [[DrawGameService defaultService] rankGameResult:rankResult];             
+    }
+    
+    [[AccountService defaultService] consumeItem:itemType 
+                                          amount:1 
+                                    targetUserId:targetUserId 
+                                     awardAmount:awardAmount
+                                        awardExp:awardExp];    
+    
+}
+
 
 @end

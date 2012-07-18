@@ -432,27 +432,20 @@
     [super dealloc];
 }
 
+
 - (IBAction)clickUpButton:(id)sender {
     
-    NSString* targetUserId = nil;
-    if (_resultType == OfflineGuess) {
-        targetUserId = _drawUserId;
-        
-        // TODO send flower action
-    }else{
-        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];             
-    }
+    ToolView* toolView = (ToolView*)sender;    
     
-    ToolView* toolView = (ToolView*)sender;
+    // show animation
     [self throwItem:toolView];
-    
-    [[AccountService defaultService] consumeItem:toolView.itemType 
-                                          amount:1 
-                                    targetUserId:targetUserId 
-                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
-                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]];    
-    
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+        
+    // send request
+    [[ItemService defaultService] sendItemAward:toolView.itemType
+                                   targetUserId:_drawUserId
+                                      isOffline:(_resultType == OfflineGuess)];
+
+    // update UI
     [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
@@ -461,25 +454,18 @@
 }
 
 - (IBAction)clickDownButton:(id)sender {
+
+    ToolView* toolView = (ToolView*)sender;    
     
-    NSString* targetUserId = nil;    
-    if (_resultType == OfflineGuess) {
-        targetUserId = _drawUserId;
-        
-        // TODO send tomato action
-        
-    }else{
-        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];         
-    }
-    ToolView* toolView = (ToolView*)sender;
+    // throw item animation
     [self throwItem:toolView];
+
+    // send request
+    [[ItemService defaultService] sendItemAward:toolView.itemType
+                                   targetUserId:_drawUserId
+                                      isOffline:(_resultType == OfflineGuess)];
     
-    [[AccountService defaultService] consumeItem:toolView.itemType 
-                                          amount:1 
-                                    targetUserId:targetUserId 
-                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
-                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]];    
-    
+    // update UI
     [self setUpAndDownButtonEnabled:NO];
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
