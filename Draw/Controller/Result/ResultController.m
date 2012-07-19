@@ -49,8 +49,8 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
+#define MAX_TOMATO 1000
+#define MAX_FLOWER 1000
 
 
 @interface ResultController()
@@ -462,8 +462,8 @@
     NSString* targetUserId = nil;
     if (_resultType == OfflineGuess) {
         targetUserId = _drawUserId;
-        
-        [[FeedService defaultService] throwFlowerToOpus:_feed.opusId author:_feed.author delegate:nil];
+        NSString *opusId = [_feed isDrawType] ? _feed.feedId : _feed.opusId;
+        [[FeedService defaultService] throwFlowerToOpus:opusId author:_feed.author delegate:nil];
     }else{
         [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];             
     }
@@ -495,7 +495,8 @@
     NSString* targetUserId = nil;    
     if (_resultType == OfflineGuess) {
         targetUserId = _drawUserId;        
-        [[FeedService defaultService] throwTomatoToOpus:_feed.opusId author:_feed.author delegate:nil];
+        NSString *opusId = [_feed isDrawType] ? _feed.feedId : _feed.opusId;
+        [[FeedService defaultService] throwTomatoToOpus:opusId author:_feed.author delegate:nil];
         PPDebug(@"<test>feed opus id = %@",_feed.opusId);
         
     }else{

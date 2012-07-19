@@ -49,8 +49,8 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO_CAN_THROW 10
-#define MAX_FLOWER_CAN_THROW 10
+#define MAX_TOMATO_CAN_THROW 1000
+#define MAX_FLOWER_CAN_THROW 1000
 
 
 @implementation OfflineGuessDrawController
