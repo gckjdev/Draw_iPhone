@@ -106,12 +106,6 @@
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
 
     }
-    [[AccountService defaultService] consumeItem:toolView.itemType 
-                                          amount:1 
-                                    targetUserId:self.feed.author
-                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
-                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]]; 
-
 }
 
 

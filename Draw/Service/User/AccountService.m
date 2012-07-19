@@ -504,6 +504,7 @@ static AccountService* _defaultAccountService;
     
     // save item locally and synchronize remotely
     [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+    
     UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
     [self syncItemRequest:userItem
              targetUserId:targetUserId

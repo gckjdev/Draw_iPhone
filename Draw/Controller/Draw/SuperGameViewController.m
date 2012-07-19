@@ -420,13 +420,6 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-
-    [[AccountService defaultService] consumeItem:toolView.itemType 
-                                          amount:1 
-                                    targetUserId:drawGameService.session.drawingUserId 
-                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
-                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]]; 
-
 }
 
 - (void)recieveFlower
