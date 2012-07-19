@@ -33,6 +33,8 @@
 // call this method when send item request
 - (void)sendItemAward:(ItemType)itemType 
          targetUserId:(NSString*)toUserId 
-            isOffline:(BOOL)isOffline;
+            isOffline:(BOOL)isOffline
+           feedOpusId:(NSString*)feedOpusId
+           feedAuthor:(NSString*)feedAuthor;
 
 @end

@@ -633,7 +633,9 @@
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
-                                      isOffline:NO];
+                                      isOffline:NO
+                                     feedOpusId:nil
+                                     feedAuthor:nil];
     
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [toolView decreaseNumber];
@@ -653,7 +655,9 @@
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
-                                      isOffline:NO];
+                                      isOffline:NO
+                                     feedOpusId:nil
+                                     feedAuthor:nil];
 
     
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];

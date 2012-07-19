@@ -13,6 +13,7 @@
 #import "PPDebug.h"
 #import "DrawGameService.h"
 #import "GameConstants.h"
+#import "FeedService.h"
 
 ItemService *_staticItemService = nil;
 
@@ -55,17 +56,23 @@ ItemService *_staticItemService = nil;
 - (void)sendItemAward:(ItemType)itemType 
          targetUserId:(NSString*)toUserId 
             isOffline:(BOOL)isOffline
+           feedOpusId:(NSString*)feedOpusId
+           feedAuthor:(NSString*)feedAuthor
 {
     int awardAmount = 0;
     int awardExp = 0;
     NSString* targetUserId = nil;
     
     if (isOffline) {
+        
+        // prepare data for consumeItem request
         targetUserId = toUserId;
         awardAmount = [ItemManager awardAmountByItem:itemType];
         awardExp = [ItemManager awardExpByItem:itemType];
         
-        // TODO send flower action here
+        // send feed action
+        [[FeedService defaultService] throwTomatoToOpus:feedOpusId author:feedAuthor delegate:nil];
+        
     }else{
         // send online request for online realtime play
         int rankResult = (itemType == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
