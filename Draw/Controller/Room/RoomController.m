@@ -506,6 +506,20 @@
 
 #pragma mark - Draw Game Service Delegate
 
+- (void)didBroken
+{
+    PPDebug(@"<didBroken> Room Controller");
+    [self hideActivity];
+    
+    if ([[DrawGameService defaultService] session] != nil){
+        PPDebug(@"<Network Broken> but session is nil");
+    }
+    else{
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];

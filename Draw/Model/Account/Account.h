@@ -23,6 +23,7 @@ typedef enum  {
     ChangeRoomType = 11,
     
     AwardCoinType = 10001,
+    DirectAwardCoinType = 1002,
     
     RefundForVerifyReceiptFailure = 21
     
