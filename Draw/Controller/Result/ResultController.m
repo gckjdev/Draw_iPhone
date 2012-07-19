@@ -477,7 +477,9 @@
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
-                                      isOffline:(_resultType == OfflineGuess)];
+                                      isOffline:(_resultType == OfflineGuess)
+                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                     feedAuthor:_feed.author];  
 
     // update UI
     [self setUpAndDownButtonEnabled:NO];
@@ -510,7 +512,9 @@
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
-                                      isOffline:(_resultType == OfflineGuess)];
+                                      isOffline:(_resultType == OfflineGuess)
+                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                     feedAuthor:_feed.author];
     
     // update UI
     [self setUpAndDownButtonEnabled:NO];

@@ -678,15 +678,17 @@
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:_draw.userId 
-                                      isOffline:YES];    
+                                      isOffline:YES
+                                     feedOpusId:[self.feed isDrawType] ? self.feed.feedId : self.feed.opusId
+                                     feedAuthor:self.feed.author];    
     
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
         [toolView setEnabled:NO];
     }
     
-    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
-    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
+//    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+//    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
@@ -699,14 +701,17 @@
     // send request for item usage and award
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:_draw.userId 
-                                      isOffline:YES];
+                                      isOffline:YES
+                                     feedOpusId:[self.feed isDrawType] ? self.feed.feedId : self.feed.opusId
+                                     feedAuthor:self.feed.author];
     
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
         [toolView setEnabled:NO];
     }
-    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
-    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
+    
+//    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
+//    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     return YES;
 }
