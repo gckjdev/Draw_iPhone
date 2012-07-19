@@ -135,6 +135,29 @@
     return self;
 }
 
+- (id)initWithImage:(UIImage *)image 
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText 
+              score:(NSInteger)aScore 
+            correct:(BOOL)correct 
+          isMyPaint:(BOOL)isMyPaint 
+     drawActionList:(NSArray *)drawActionList 
+               feed:(Feed *)feed
+
+{
+    self = [self initWithImage:image 
+                    drawUserId:drawUserId 
+              drawUserNickName:drawUserNickName 
+                      wordText:aWordText 
+                         score:aScore 
+                       correct:correct 
+                     isMyPaint:isMyPaint 
+                drawActionList:drawActionList];
+    _feed = feed;
+    return self;
+}
+
 - (void)updateContinueButton:(NSInteger)count
 {
     [self.continueButton setTitle:[NSString stringWithFormat:NSLS(@"kContinue"),count] forState:UIControlStateNormal];
@@ -435,7 +458,18 @@
 
 - (IBAction)clickUpButton:(id)sender {
     
+
+    NSString* targetUserId = nil;
+    if (_resultType == OfflineGuess) {
+        targetUserId = _drawUserId;
+        
+        [[FeedService defaultService] throwFlowerToOpus:_feed.opusId author:_feed.author delegate:nil];
+    }else{
+        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];             
+    }
+
     ToolView* toolView = (ToolView*)sender;    
+
     
     // show animation
     [self throwItem:toolView];
@@ -457,7 +491,19 @@
 
     ToolView* toolView = (ToolView*)sender;    
     
+
+    NSString* targetUserId = nil;    
+    if (_resultType == OfflineGuess) {
+        targetUserId = _drawUserId;        
+        [[FeedService defaultService] throwTomatoToOpus:_feed.opusId author:_feed.author delegate:nil];
+        PPDebug(@"<test>feed opus id = %@",_feed.opusId);
+        
+    }else{
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];         
+    }
+
     // throw item animation
+
     [self throwItem:toolView];
 
     // send request
