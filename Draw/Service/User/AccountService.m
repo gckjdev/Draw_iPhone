@@ -679,21 +679,13 @@ static AccountService* _defaultAccountService;
 
 - (int)rewardForShareWeibo
 {
-    NSString* value = [MobClick getConfigParams:@"REWARD_SHARE_WEIBO"];
-    if ([value length] == 0)
-        value = @"100";
-            
-    [self chargeAccount:[value intValue] source:ShareWeiboReward];
-    return [value intValue];
+    [self chargeAccount:[ConfigManager getShareWeiboReward] source:ShareWeiboReward];
+    return [ConfigManager getShareWeiboReward];
 }
 
 - (void)rewardForShareApp
 {
-    NSString* value = [MobClick getConfigParams:@"REWARD_SHARE_APP"];
-    if ([value length] == 0)
-        value = @"100";
-    
-    [self chargeAccount:[value intValue] source:ShareAppReward];
+    [self chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];
 }
 
 @end

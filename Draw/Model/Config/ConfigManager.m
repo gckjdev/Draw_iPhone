@@ -159,8 +159,14 @@
 {
     if ([ConfigManager isInReviewVersion] == NO && 
         ([LocaleUtils isChina] == YES || 
-         [LocaleUtils isOtherChina] == YES)){        
-        return YES;
+         [LocaleUtils isOtherChina] == YES)){   
+            
+        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:0] == 1){            
+            return YES;
+        }            
+        else{
+            return NO;
+        }
     }
     else{
         return NO;
@@ -195,6 +201,16 @@
 + (int)getFlowerAwardAmount
 {
     return [MobClickUtils getIntValueByKey:@"FLOWER_AMOUNT" defaultValue:3];
+}
+
++ (int)getShareFriendReward
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_APP" defaultValue:10];
+}
+
++ (int)getShareWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
 }
 
 

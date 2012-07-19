@@ -66,5 +66,7 @@ typedef enum{
 + (int)getFlowerAwardExp;
 + (int)getFlowerAwardAmount;
 
++ (int)getShareFriendReward;
++ (int)getShareWeiboReward;
 
 @end
