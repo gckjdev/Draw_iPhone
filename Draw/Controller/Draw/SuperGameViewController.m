@@ -25,6 +25,7 @@
 #import "AccountManager.h"
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
+#import "AccountService.h"
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
@@ -419,7 +420,11 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
+    [[AccountService defaultService] consumeItem:toolView.itemType 
+                                          amount:1 
+                                    targetUserId:drawGameService.session.drawingUserId 
+                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
+                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]]; 
 }
 
 - (void)recieveFlower

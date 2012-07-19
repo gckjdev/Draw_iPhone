@@ -104,7 +104,11 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
+    [[AccountService defaultService] consumeItem:toolView.itemType 
+                                          amount:1 
+                                    targetUserId:self.feed.author
+                                     awardAmount:[ItemManager awardAmountByItem:toolView.itemType] 
+                                        awardExp:[ItemManager awardExpByItem:toolView.itemType]]; 
 }
 
 
@@ -631,7 +635,7 @@
     
         NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
         
-        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList];
+        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
     
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
