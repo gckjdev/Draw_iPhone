@@ -458,18 +458,7 @@
 
 - (IBAction)clickUpButton:(id)sender {
     
-
-    NSString* targetUserId = nil;
-    if (_resultType == OfflineGuess) {
-        targetUserId = _drawUserId;
-        NSString *opusId = [_feed isDrawType] ? _feed.feedId : _feed.opusId;
-        [[FeedService defaultService] throwFlowerToOpus:opusId author:_feed.author delegate:nil];
-    }else{
-        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];             
-    }
-
     ToolView* toolView = (ToolView*)sender;    
-
     
     // show animation
     [self throwItem:toolView];
@@ -493,20 +482,7 @@
 
     ToolView* toolView = (ToolView*)sender;    
     
-
-    NSString* targetUserId = nil;    
-    if (_resultType == OfflineGuess) {
-        targetUserId = _drawUserId;        
-        NSString *opusId = [_feed isDrawType] ? _feed.feedId : _feed.opusId;
-        [[FeedService defaultService] throwTomatoToOpus:opusId author:_feed.author delegate:nil];
-        PPDebug(@"<test>feed opus id = %@",_feed.opusId);
-        
-    }else{
-        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];         
-    }
-
     // throw item animation
-
     [self throwItem:toolView];
 
     // send request
