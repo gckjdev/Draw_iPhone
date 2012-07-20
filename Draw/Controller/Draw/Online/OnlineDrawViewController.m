@@ -41,6 +41,7 @@
 #import "ShoppingManager.h"
 #import "FriendRoomController.h"
 #import "GameConstants.h"
+#import "ItemService.h"
 
 @implementation OnlineDrawViewController
 
@@ -385,13 +386,17 @@ enum{
         PPDebug(@"%@ give you an tomato", userId);
         [self recieveTomato];
         
+        // item award handling for online draw/guess
+        [[ItemService defaultService] receiveItem:ItemTypeTomato];        
+        
     }else{
         PPDebug(@"%@ give you a flower", userId);
         [self recieveFlower];
         
+        // item award handling for online draw/guess
+        [[ItemService defaultService] receiveItem:ItemTypeFlower];
     }
     
-    // TODO show animation here
     
 }
 
@@ -584,6 +589,6 @@ enum{
 #pragma mark - levelServiceDelegate
 - (void)levelDown:(int)level
 {
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+    
 }
 @end

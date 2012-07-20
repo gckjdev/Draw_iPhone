@@ -114,8 +114,10 @@
 #define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
-#define ACTION_TYPE_GUESS  2
+
+#define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3
+#define ACTION_TYPE_SAVE     100
 
 
 // for traffic server
@@ -157,6 +159,7 @@
 #define PARA_ITEMS @"is"
 #define PARA_DEVIATION @"dv"
 #define PARA_GUESS_BALANCE @"gb"
+#define PARA_AWARD_EXP @"ae"
 
 #define PARA_ROOM_ID @"frid"
 #define PARA_ROOM_NAME @"rn"

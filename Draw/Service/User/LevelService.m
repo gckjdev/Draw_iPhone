@@ -13,6 +13,9 @@
 #import "PPNetworkRequest.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "AccountService.h"
+#import "ItemType.h"
+#import "CommonMessageCenter.h"
 
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
@@ -93,6 +96,7 @@ static LevelService* _defaultLevelService;
     if (level <= 0)
         return;
     
+    PPDebug(@"<setLevel> level=%d", level);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithLong:level] forKey:KEY_LEVEL];    
     [userDefaults synchronize];
@@ -102,6 +106,7 @@ static LevelService* _defaultLevelService;
     if (experience < 0)
         return;
     
+    PPDebug(@"<setExperience> experience=%ld", experience);
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithLong:experience] forKey:KEY_EXP];    
     [userDefaults synchronize];
@@ -123,6 +128,13 @@ static LevelService* _defaultLevelService;
     return 1;
 }
 
+- (void)awardForLevelUp
+{
+    [[AccountService defaultService] buyItem:ItemTypeFlower 
+                                   itemCount:[ConfigManager flowerAwardFordLevelUp] 
+                                   itemCoins:0];
+}
+
 
 - (void)addExp:(long)exp 
       delegate:(id<LevelServiceDelegate>)delegate
@@ -132,12 +144,47 @@ static LevelService* _defaultLevelService;
     [self setExperience:(currentExp)];
     if ([self level] != newLevel) {
         [self setLevel:newLevel];
+        [self awardForLevelUp];
         if (delegate && [delegate respondsToSelector:@selector(levelUp:)]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]] delayTime:1.5 isHappy:YES];
             [delegate levelUp:newLevel];
         }
     }
     [self syncExpAndLevel:UPDATE];
 }
+
+- (void)awardExp:(long)awardExp
+        delegate:(id<LevelServiceDelegate>)delegate
+{
+    if (awardExp > 0){
+        long exp = abs(awardExp);
+        long currentExp = [self experience] + exp ;
+        int newLevel = [self getLevelByExp:(currentExp)];
+        [self setExperience:(currentExp)];
+        if ([self level] != newLevel) {
+            [self setLevel:newLevel];
+            if (delegate && [delegate respondsToSelector:@selector(levelUp:)]) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]] delayTime:1.5 isHappy:YES];
+                [delegate levelUp:newLevel];
+            }
+        }
+    }
+    else{
+        long exp = abs(awardExp);
+        long currentExp = [self experience]-exp;
+        [self setExperience:(currentExp)];
+        int newLevel = [self getLevelByExp:(currentExp)];
+        if ([self level] != newLevel) {
+            [self setLevel:newLevel];
+            if (delegate && [delegate respondsToSelector:@selector(levelDown:)]) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel] delayTime:2 isHappy:NO];
+                [delegate levelDown:newLevel];
+            }
+        }        
+    }
+    [self syncExpAndLevel:AWARD awardExp:awardExp];
+}
+
 - (void)minusExp:(long)exp 
         delegate:(id<LevelServiceDelegate>)delegate
 {
@@ -147,11 +194,13 @@ static LevelService* _defaultLevelService;
     if ([self level] != newLevel) {
         [self setLevel:newLevel];
         if (delegate && [delegate respondsToSelector:@selector(levelDown:)]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel] delayTime:2 isHappy:NO];
             [delegate levelDown:newLevel];
         }
     }
     [self syncExpAndLevel:UPDATE];
 }
+
 - (long)expRequiredForNextLevel
 {
     int level = [self level];
@@ -179,7 +228,8 @@ static LevelService* _defaultLevelService;
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
-                                                type:type];
+                                                type:type
+                                            awardExp:0];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //[viewController hideActivity];
@@ -212,7 +262,7 @@ static LevelService* _defaultLevelService;
 }
 
 
-- (void)syncExpAndLevel:(int)type
+- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp
 {    
     if ([[UserManager defaultManager] hasUser] == NO){
         PPDebug(@"<syncExpAndLevel> but user not found yet.");
@@ -229,7 +279,8 @@ static LevelService* _defaultLevelService;
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
-                                                type:type];
+                                                type:type
+                                            awardExp:awardExp];
         
         dispatch_async(dispatch_get_main_queue(), ^{
            // [viewController hideActivity];
@@ -254,6 +305,11 @@ static LevelService* _defaultLevelService;
         });
         
     });
+}
+
+- (void)syncExpAndLevel:(int)type
+{
+    [self syncExpAndLevel:type awardExp:0];
 }
 
 

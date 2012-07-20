@@ -13,7 +13,7 @@
 #import "DrawDataService.h"
 #import "CommonDialog.h"
 
-
+@class Feed;
 
 typedef enum {
     OnlineDraw = 0x1,
@@ -36,6 +36,8 @@ typedef enum {
     
     int _maxTomato;
     int _maxFlower;
+    
+    Feed* _feed;
 }
 @property (retain, nonatomic) IBOutlet UIButton *upButton;
 @property (retain, nonatomic) IBOutlet UIButton *downButton;
@@ -57,6 +59,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *upLabel;
 @property (retain, nonatomic) IBOutlet UILabel *downLabel;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;
@@ -75,6 +78,17 @@ typedef enum {
             correct:(BOOL)correct 
           isMyPaint:(BOOL)isMyPaint 
      drawActionList:(NSArray *)drawActionList;
+
+- (id)initWithImage:(UIImage *)image 
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText 
+              score:(NSInteger)aScore 
+            correct:(BOOL)correct 
+          isMyPaint:(BOOL)isMyPaint 
+     drawActionList:(NSArray *)drawActionList 
+               feed:(Feed*)feed;
+
 
 //- (void)saveActionList:(NSArray *)actionList;
 //- (void)didFinishAPaint:(NSArray *)drawAction;

@@ -19,6 +19,8 @@
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
+#import "CommonMessageCenter.h"
+#import "AccountService.h"
 
 @implementation FeedbackController
 @synthesize dataTableView;
@@ -43,7 +45,10 @@ enum {
     [aCell.textLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     switch (anIndex) {
         case SHARE: {
-            [aCell.textLabel setText:NSLS(@"kShare_to_friends")];
+            
+            NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];            
+            message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
+            [aCell.textLabel setText:message];
         }
             break;
         case REPORT_BUG: {
@@ -87,11 +92,20 @@ enum {
     SHARE_VIA_FACEBOOK = 2,
     SHARE_COUNT
 };
+                 
 - (void)didPublishWeibo:(int)result
 {
-#ifdef DEBUG
     PPDebug(@"publish weibo result : %d", result);
-#endif
+    
+    if (result == 0){
+        
+        // reward
+        [[AccountService defaultService] chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];        
+        
+        // show message
+        NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [ConfigManager getShareFriendReward]];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2.0 isHappy:YES];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -135,21 +149,26 @@ enum {
                                                              otherButtonTitles:NSLS(@"kShare_via_Email"), 
                                            nil];
             
+            int shareCount = 2;
+            
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
+                shareCount ++;
                 [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
             }
             
             if ([[UserManager defaultManager] hasBindQQWeibo]){
+                shareCount ++;
                 [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
             }
             
             if ([[UserManager defaultManager] hasBindFacebook]){
+                shareCount ++;
                 [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Facebook")];
             } 
             
             if (![DeviceDetection isIPAD]) {
                 [shareOptions addButtonWithTitle:NSLS(@"kCancel")];
-                [shareOptions setCancelButtonIndex:SHARE_COUNT];
+                [shareOptions setCancelButtonIndex:shareCount];
             }
             [shareOptions showInView:self.view];
             [shareOptions release];

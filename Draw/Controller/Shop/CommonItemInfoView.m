@@ -14,6 +14,8 @@
 #import "PPDebug.h"
 #import "AccountService.h"
 #import "DeviceDetection.h"
+#import "AdService.h"
+#import "PPViewController.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -95,7 +97,7 @@
 }
 
 + (void)showItem:(Item*)anItem 
-      infoInView:(UIViewController<CommonItemInfoViewDelegate>*)superController
+      infoInView:(PPViewController<CommonItemInfoViewDelegate>*)superController
 {
     CommonItemInfoView* view = [CommonItemInfoView createUserInfoView];
     [view initViewWithItem:anItem];
@@ -128,6 +130,11 @@
 
 - (IBAction)clickOK:(id)sender
 {
+    if (self.currentItem.type == ItemTypeRemoveAd){
+        // special handling for ad
+        [[AdService defaultService] requestRemoveAd:self.delegate];
+        return;
+    }    
     
     int result = [[AccountService defaultService] buyItem:self.currentItem.type 
                                    itemCount:self.currentItem.buyAmountForOnce 

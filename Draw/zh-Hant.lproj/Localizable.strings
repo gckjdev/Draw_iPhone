@@ -501,8 +501,8 @@
 "kExistWord" = "已存在此詞語";
 "kSureUseThisWord" = "確定選擇[%@]嗎?";
 
-"kUpgradeMsg" = "恭喜！您剛剛升到第 %d級";
-"kDegradeMsg" = "你逃得太多啦，都降到第%d級了";
+"kUpgradeMsg" = "恭喜！您剛剛升到第 %d級，鮮花＋%d";
+"kDegradeMsg" = "你畫畫不認真，都降到第%d級了";
 "kLevelInfo" = "等級:%d    經驗值:%d/%d";
 
 "kDrawing" = "畫畫中";
@@ -684,7 +684,15 @@
 "kCost" = "花費";
 "kCoins" = "金幣";
 
-"kThrowTomatoMessage" = "你給作者扔個個番茄，把TA的經驗值扔掉了%d點, 把TA的金幣扔掉了%d個";
-"kSendFlowerMessage" = "你給作者送了朵鮮花，TA的經驗值額外增加了%d點，TA的金幣額外增加了%d個";
-"kReceiveTomatoMessage" = "憤怒的觀眾朝你扔了個番茄，你的經驗值減了%d點，金幣扣了%d個";
-"kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你的經驗值額外增加%d點，金幣額外增加%d個";
+"kThrowTomatoMessage" = "你給作者扔了個番茄，讓TA扣了%d點經驗, %d個金幣";
+"kSendFlowerMessage" = "你給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
+"kReceiveTomatoMessage" = "憤怒的觀眾朝你扔了個番茄，你被扣了%d點經驗，%d個金幣";
+"kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你額外得到%d點經驗，%d個金幣";
+
+"kCoinsForShareToFriends" = "+%d金幣";
+"kGetCoinsByShareToFriends" = "分享微博成功，獲得了%d個金幣!";
+
+"kSendAFlower" = "給作者贈送了一朵鮮花!";
+"kThrowATomato" = "向作者丟了個番茄!";
+
+"kShareAwardCoinTips" = "分享你的作品可獲%d金幣!";

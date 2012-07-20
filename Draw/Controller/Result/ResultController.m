@@ -39,27 +39,26 @@
 #import "ItemManager.h"
 #import "ItemShopController.h"
 #import "AccountManager.h"
+#import "ConfigManager.h"
+#import "ItemService.h"
+#import "VendingController.h"
 
 #define CONTINUE_TIME 10
 
-#define THROW_ITEM_TAG  20120713
-#define RECIEVE_ITEM_TAG    120120713
+#define TOMATO_TOOLVIEW_TAG 20120718
+#define FLOWER_TOOLVIEW_TAG 120120718
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO 70
-#define MAX_FLOWER 10
+#define MAX_TOMATO 1000
+#define MAX_FLOWER 1000
 
-#define ANIM_KEY_RECEIVE_TOMATO  @"ReceiveTomato"
-#define ANIM_KEY_RECEIVE_FLOWER  @"ReceiveFlower"
-#define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
-#define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
 @interface ResultController()
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
-- (void)throwTool:(ToolView*)toolView;
+- (void)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -86,6 +85,7 @@
 @synthesize titleLabel;
 @synthesize upLabel;
 @synthesize downLabel;
+@synthesize backButton;
 //@synthesize resultType = _resultType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -133,6 +133,29 @@
         
         drawGameService = [DrawGameService defaultService];
     }
+    return self;
+}
+
+- (id)initWithImage:(UIImage *)image 
+         drawUserId:(NSString *)drawUserId
+   drawUserNickName:(NSString *)drawUserNickName
+           wordText:(NSString *)aWordText 
+              score:(NSInteger)aScore 
+            correct:(BOOL)correct 
+          isMyPaint:(BOOL)isMyPaint 
+     drawActionList:(NSArray *)drawActionList 
+               feed:(Feed *)feed
+
+{
+    self = [self initWithImage:image 
+                    drawUserId:drawUserId 
+              drawUserNickName:drawUserNickName 
+                      wordText:aWordText 
+                         score:aScore 
+                       correct:correct 
+                     isMyPaint:isMyPaint 
+                drawActionList:drawActionList];
+    _feed = feed;
     return self;
 }
 
@@ -193,10 +216,14 @@
 {
     if([self fromFeedDetailController]){
         _resultType = FeedGuess;
+        [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
+        [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
     }
     else if ([self fromOfflineGuessController]) 
     {
         _resultType = OfflineGuess;
+        [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
+        [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
     }else if(_isMyPaint){
         _resultType = OnlineDraw;
     }else{
@@ -275,6 +302,8 @@
 {
     ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
+    tomato.tag = TOMATO_TOOLVIEW_TAG;
+    flower.tag = FLOWER_TOOLVIEW_TAG;
     [self.view addSubview:tomato];
     [self.view addSubview:flower];
     [tomato setCenter:downButton.center];
@@ -310,6 +339,9 @@
     }else{
         continueButton.hidden = YES;
         downButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
+        ToolView* tomatoToolView = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+        [tomatoToolView setCenter:CGPointMake(downButton.center.x, tomatoToolView.center.y)];
+        [downLabel setCenter:CGPointMake(downButton.center.x, downLabel.center.y)];
     }
     
     //init the share button
@@ -332,8 +364,8 @@
 {        
     
     self.adView = [[AdService defaultService] createAdInView:self 
-                                                       frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 755, 320, 50)
+                                                       frame:CGRectMake(0, 47, 320, 50) 
+                                                   iPadFrame:CGRectMake(224, 780, 320, 50)
                                                      useLmAd:NO];    
     [super viewDidLoad];
     [self initResultType];
@@ -390,6 +422,7 @@
     [self setTitleLabel:nil];
     [self setUpLabel:nil];
     [self setDownLabel:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -419,44 +452,56 @@
     [titleLabel release];
     [upLabel release];
     [downLabel release];
+    [backButton release];
     [super dealloc];
 }
+
+- (BOOL)isOffline
+{
+    return (_resultType == OfflineGuess || _resultType == FeedGuess);
+}
+
 - (IBAction)clickUpButton:(id)sender {
     
-    if (_resultType == OfflineGuess) {
-//    TODO  send flower http request.
+    ToolView* toolView = (ToolView*)sender;    
+    
+    // show animation
+    [self throwItem:toolView];
         
-    }else{
-//    TODO  send flower socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_FLOWER]; 
-        
-    }
-    ToolView* toolview = (ToolView*)sender;
-    [self throwTool:toolview];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+    // send request
+    [[ItemService defaultService] sendItemAward:toolView.itemType
+                                   targetUserId:_drawUserId
+                                      isOffline:[self isOffline] 
+                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                     feedAuthor:_feed.author];  
+
+    // update UI
     [self setUpAndDownButtonEnabled:NO];
-    [toolview decreaseNumber];
+    [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
-        [toolview setEnabled:NO];
+        [toolView setEnabled:NO];
     }
 }
 
 - (IBAction)clickDownButton:(id)sender {
-    if (_resultType == OfflineGuess) {
-        //    TODO  send tomato http request.
-        
-    }else{
-        //    TODO  send tomato socket request.
-        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO]; 
-        
-    }
-    ToolView* toolview = (ToolView*)sender;
-    [self throwTool:toolview];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+
+    ToolView* toolView = (ToolView*)sender;    
+    
+    // throw item animation
+    [self throwItem:toolView];
+
+    // send request
+    [[ItemService defaultService] sendItemAward:toolView.itemType
+                                   targetUserId:_drawUserId
+                                      isOffline:[self isOffline]
+                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                     feedAuthor:_feed.author];
+    
+    // update UI
     [self setUpAndDownButtonEnabled:NO];
-    [toolview decreaseNumber];
+    [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
-        [toolview setEnabled:NO];
+        [toolView setEnabled:NO];
     }
 }
 
@@ -479,6 +524,11 @@
 
 - (IBAction)clickSaveButton:(id)sender {
 
+    if (_isMyPaint == NO){
+        [[FeedService defaultService] actionSaveOpus:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                          actionName:DB_FIELD_ACTION_SAVE_TIMES];
+    }
+    
     [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
@@ -502,12 +552,14 @@
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
-{
+{        
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
+        [[ItemService defaultService] receiveItem:ItemTypeTomato];
         [self receiveTomato];
     }else{
         PPDebug(@"%@ give you a flower", userId);
+        [[ItemService defaultService] receiveItem:ItemTypeFlower];
         [self receiveFlower];
     }
     
@@ -518,7 +570,7 @@
 
 - (void)levelUp:(int)level
 {
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
     [AnimationManager fireworksAnimationAtView:self.view];
 }
 
@@ -536,10 +588,9 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwTool:(ToolView*)toolView
+- (void)throwItem:(ToolView*)toolView
 {
-    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
-    if(amout <= 0){
+    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         //dialog.tag = SHOP_DIALOG_TAG;
@@ -549,9 +600,13 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:toolView.imageView.image];
-    NSString* key = (toolView.itemType == ItemTypeTomato)?ANIM_KEY_THROW_TOMATO:ANIM_KEY_SEND_FLOWER;
-    [DrawGameAnimationManager showSendItem:item animInController:self withKey:key];
-    [[ItemManager defaultManager] decreaseItem:toolView.itemType amount:1];
+    if (toolView.itemType == ItemTypeTomato) {
+        [DrawGameAnimationManager showThrowTomato:item animInController:self];
+    }
+    if (toolView.itemType == ItemTypeFlower) {
+        [DrawGameAnimationManager showThrowFlower:item animInController:self];
+    }
+    
 }
 
 - (void)receiveFlower
@@ -559,7 +614,7 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_RECEIVE_FLOWER];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 - (void)receiveTomato
@@ -567,28 +622,15 @@
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
-    [DrawGameAnimationManager showReceiveFlower:item animationInController:self withKey:ANIM_KEY_THROW_TOMATO];
+    [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    NSString* key = [anim valueForKey:DRAW_ANIM];
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-    }
-    if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-        
-    }
-    if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-    }
-    if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-        
-    }
+    [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
 }
+
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
 
@@ -597,7 +639,7 @@
 {
     //run away
 
-    ItemShopController *itemShop = [ItemShopController instance];
+    VendingController *itemShop = [VendingController instance];
     [self.navigationController pushViewController:itemShop animated:YES];
     //_shopController = itemShop;
 

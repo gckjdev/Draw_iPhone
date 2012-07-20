@@ -17,6 +17,9 @@
 #import "CoinShopController.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
+#import "ConfigManager.h"
+#import "YoumiWallController.h"
+#import "LmWallService.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -39,6 +42,8 @@
 #define ANIM_GROUP        @"animationFallingRotate"
 #define FALLING_GROUP       @"fallingGroup"
 
+static VendingController* staticVendingController = nil;
+
 @interface VendingController () <ColorShopViewDelegate>
 
 @end
@@ -59,10 +64,32 @@
     
 }
 
++(VendingController *)instance
+{
+    if (staticVendingController == nil) {
+        staticVendingController = [[VendingController alloc] init];
+    }
+    return staticVendingController;
+}
+
+- (UINavigationController *)topNavigationController
+{
+//    if (_coinController) {
+//        return _coinController.navigationController;
+//    }
+    return self.navigationController;
+}
+
 - (void)initButtons
 {
     [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.buyCoinButton setTitle:NSLS(@"kCoinShopTitle") forState:UIControlStateNormal];
+    NSString* buyCoinButtonTitle;
+    if ([ConfigManager wallEnabled]) {
+        buyCoinButtonTitle = NSLS(@"kFreeCoins");
+    } else {
+        buyCoinButtonTitle = NSLS(@"kCoinShopTitle");
+    }
+    [self.buyCoinButton setTitle:buyCoinButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)initTitles
@@ -194,6 +221,20 @@
 
 }
 
+- (void)showWall
+{        
+    if ([ConfigManager useLmWall]){    
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }
+    else{
+        [MobClick event:@"SHOW_YOUMI_WALL"];
+        YoumiWallController* controller = [[YoumiWallController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -201,8 +242,13 @@
 
 - (IBAction)buyCoin:(id)sender
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    } else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
 }
 
 - (void)clickItemButton:(id)sender
@@ -315,7 +361,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+        if ([ConfigManager isProVersion]){
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];            
+        }
+        else{
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+        }
     }
     return self;
 }

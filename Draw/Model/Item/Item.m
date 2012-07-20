@@ -12,6 +12,7 @@
 #import "ShareImageManager.h"
 #import "ItemManager.h"
 #import "ShoppingManager.h"
+#import "ConfigManager.h"
 
 @implementation Item
 @synthesize amount = _amount;
@@ -232,13 +233,22 @@
 
 + (Item*)removeAd
 {
+    
+    int amount = 0;
+    if ([ConfigManager isProVersion]){
+        amount = 1;
+    }
+    else{
+        amount = [[ItemManager defaultManager] amountForItem:ItemTypeRemoveAd];
+    }
+    
     return [[[Item alloc] initWithType:ItemTypeRemoveAd 
                                  image:[Item imageForItemType:ItemTypeRemoveAd]
                                   name:[Item nameForItemType:ItemTypeRemoveAd]
                            description:[Item descriptionForItemType:ItemTypeRemoveAd] 
                       buyAmountForOnce:10 
                                  price:[[ShoppingManager defaultManager] getRemoveAdPrice]
-                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeRemoveAd]] autorelease];
+                                amount:amount] autorelease];
 }
 
 + (Item*)featherPen

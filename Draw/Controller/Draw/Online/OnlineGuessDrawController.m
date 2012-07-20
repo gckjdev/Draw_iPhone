@@ -35,13 +35,15 @@
 #import "CommonMessageCenter.h"
 #import "GameConstants.h"
 #import "AccountManager.h"
+#import "ItemService.h"
+#import "VendingController.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
-#define MAX_TOMATO 10
-#define MAX_FLOWER 10
+#define MAX_TOMATO_CAN_THROW 200
+#define MAX_FLOWER_CAN_SEND 1000
 
 
 @implementation OnlineGuessDrawController
@@ -442,8 +444,8 @@
     _guessCorrect = NO;
     _shopController = nil;
     
-    _maxFlower = MAX_FLOWER;
-    _maxTomato = MAX_TOMATO;
+    _maxFlower = MAX_FLOWER_CAN_SEND;
+    _maxTomato = MAX_TOMATO_CAN_THROW;
     
 }
 
@@ -579,7 +581,7 @@
 {
     //run away
     if (dialog.tag == SHOP_DIALOG_TAG) {
-        ItemShopController *itemShop = [ItemShopController instance];
+        VendingController *itemShop = [VendingController instance];
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else{
@@ -626,8 +628,16 @@
 
 - (BOOL)throwFlower:(ToolView *)toolView
 {
-    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
+//    [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
     [self throwTool:toolView];
+    
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
+                                      isOffline:NO
+                                     feedOpusId:nil
+                                     feedAuthor:nil];
+    
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     [toolView decreaseNumber];
     if (--_maxFlower == 0) {
@@ -638,9 +648,19 @@
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
-    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+//    [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+
     [toolView decreaseNumber];
     [self throwTool:toolView];
+
+    // send request for item usage and award
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
+                                      isOffline:NO
+                                     feedOpusId:nil
+                                     feedAuthor:nil];
+
+    
     //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     if (--_maxTomato == 0) {
         [toolView setEnabled:NO];
@@ -761,7 +781,7 @@
 #pragma mark - levelServiceDelegate
 - (void)levelDown:(int)level
 {
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
 }
 
 @end

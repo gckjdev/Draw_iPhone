@@ -112,7 +112,7 @@ static ShareService* _defaultService;
                                                      delegate:nil];        
             }
             
-            if ([[UserManager defaultManager] hasBindSinaWeibo]){
+            if ([[UserManager defaultManager] hasBindSinaWeibo] && [[SinaSNSService defaultService] isAuthorizeExpired] == NO){
                 NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord];
                 [[SinaSNSService defaultService] publishWeibo:textForSina
                                                 imageFilePath:imagePath 

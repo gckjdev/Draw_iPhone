@@ -31,14 +31,14 @@
 @class ShowDrawView;
 @class ShareImageManager;
 //@class ToolView;
-@class ItemShopController;
+@class VendingController;
 @class Draw;
 @class Feed;
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
-    ItemShopController *_shopController;
+    VendingController *_shopController;
     PickToolView *_pickToolView;
     
     UIButton *moveButton;

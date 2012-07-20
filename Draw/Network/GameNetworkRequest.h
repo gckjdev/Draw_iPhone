@@ -103,7 +103,10 @@
 + (CommonNetworkOutput*)updateItemAmount:(NSString*)baseURL
                                   userId:(NSString*)userId
                                 itemType:(int)itemType
-                                  amount:(int)amount;
+                                  amount:(int)amount
+                            targetUserId:(NSString*)targetUserId
+                             awardAmount:(int)awardAmount
+                                awardExp:(int)awardExp;
 
 + (CommonNetworkOutput*)updateBalance:(NSString*)baseURL
                                   userId:(NSString*)userId
@@ -202,7 +205,8 @@
                                  userId:(NSString*)userId 
                                   level:(int)level 
                                     exp:(long)exp 
-                                   type:(int)type;
+                                   type:(int)type
+                               awardExp:(long)awardExp;
 
 + (CommonNetworkOutput*)findDrawWithProtocolBuffer:(NSString*)baseURL;
 
@@ -331,5 +335,11 @@
                              appId:(NSString*)appId
                             feedId:(NSString*)feedId 
                             userId:(NSString *)userId;
+
++ (CommonNetworkOutput*)actionSaveOnOpus:(NSString*)baseURL                                  
+                                   appId:(NSString*)appId                                 
+                                  userId:(NSString*)userId
+                              actionName:(NSString*)actionName
+                                  opusId:(NSString*)opusId;
 
 @end

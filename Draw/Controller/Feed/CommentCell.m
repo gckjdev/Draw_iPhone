@@ -86,6 +86,23 @@
     [self addSubview:_avatarView];
     [_avatarView release];
     
+    //set times
+    NSString *timeString = nil;
+    if ([LocaleUtils isChinese]) {
+        timeString = chineseBeforeTime(feed.createDate);
+    } else {
+        timeString = englishBeforeTime(feed.createDate);
+    }
+    
+    if (timeString) {
+        [self.timeLabel setText:timeString];
+    }else {
+        NSString *formate = @"yy-MM-dd HH:mm";
+        timeString = dateToStringByFormat(feed.createDate, formate);
+        [self.timeLabel setText:timeString];
+    }
+    
+     NSString *comment = feed.comment;
     //set user name
     NSString *userName = [FeedManager userNameForFeed:feed];
     [self.nickNameLabel setText:userName];
@@ -94,17 +111,19 @@
     if (feed.feedType == ItemTypeFlower) {
         itemImage.hidden = NO;
         [itemImage setImage:[[ShareImageManager defaultManager] flower]];
-        return;
+        comment = NSLS(@"kSendAFlower");
+        
     }else if(feed.feedType == ItemTypeTomato)
     {
         itemImage.hidden = NO;
         [itemImage setImage:[[ShareImageManager defaultManager] tomato]];
-        return;
+        comment = NSLS(@"kThrowATomato");
+        
     }
     
     commentLabel.hidden = NO;
     //set comment
-    NSString *comment = feed.comment;
+   
     if (feed.feedType ==  FeedTypeGuess) {
         if (feed.isCorrect) {
             comment = NSLS(@"kCorrect");            
@@ -154,21 +173,7 @@
     [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
     [self.commentLabel setFont:font];
     
-    //set times
-    NSString *timeString = nil;
-    if ([LocaleUtils isChinese]) {
-        timeString = chineseBeforeTime(feed.createDate);
-    } else {
-        timeString = englishBeforeTime(feed.createDate);
-    }
     
-    if (timeString) {
-        [self.timeLabel setText:timeString];
-    }else {
-        NSString *formate = @"yy-MM-dd HH:mm";
-        timeString = dateToStringByFormat(feed.createDate, formate);
-        [self.timeLabel setText:timeString];
-    }
 }
 
 
