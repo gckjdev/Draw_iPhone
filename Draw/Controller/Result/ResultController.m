@@ -50,8 +50,8 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO 1000
-#define MAX_FLOWER 1000
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
 
 
 @interface ResultController()
