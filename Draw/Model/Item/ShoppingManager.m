@@ -177,7 +177,7 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_PEN_PRICE 400
 #define DEFAULT_TOMATO_PRICE  400
 #define DEFAULT_FLOWER_PRICE    400
-#define DEFAULT_REMOVE_AD_PRICE 400
+#define DEFAULT_REMOVE_AD_PRICE 999
 #define DEFAULT_TIPS_PRICE      400
 - (NSInteger)getColorPrice
 {
