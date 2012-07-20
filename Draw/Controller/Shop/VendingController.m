@@ -85,7 +85,7 @@ static VendingController* staticVendingController = nil;
     [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     NSString* buyCoinButtonTitle;
     if ([ConfigManager wallEnabled]) {
-        buyCoinButtonTitle = NSLS(@"kFreeCoin");
+        buyCoinButtonTitle = NSLS(@"kFreeCoins");
     } else {
         buyCoinButtonTitle = NSLS(@"kCoinShopTitle");
     }
