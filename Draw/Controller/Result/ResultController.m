@@ -456,6 +456,10 @@
     [super dealloc];
 }
 
+- (BOOL)isOffline
+{
+    return (_resultType == OfflineGuess || _resultType == FeedGuess);
+}
 
 - (IBAction)clickUpButton:(id)sender {
     
@@ -467,7 +471,7 @@
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
-                                      isOffline:(_resultType == OfflineGuess)
+                                      isOffline:[self isOffline] 
                                      feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
                                      feedAuthor:_feed.author];  
 
@@ -489,7 +493,7 @@
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
-                                      isOffline:(_resultType == OfflineGuess)
+                                      isOffline:[self isOffline]
                                      feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
                                      feedAuthor:_feed.author];
     

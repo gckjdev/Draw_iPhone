@@ -212,7 +212,7 @@
 
 "kDrawWord" = "Drawing: %@";
 "kAnswer" = "Answer: [%@]";
-"kNoWord" = "Maybe Drawer Quit!";
+"kNoWord" = "Maybe Painter Quit!";
 "kCleanDrawTitle" = "Clean Draw";
 "kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
@@ -692,10 +692,13 @@
 "kCost" = "Cost";
 "kCoins" = "coins";
 
-"kThrowTomatoMessage" = "You threw a tomato to the drawer, his/her experience decrease by %d, his/her coins decrease by %d";
-"kSendFlowerMessage" = "You sent a flower to the drawer, his/her experience increase by %d, his/her coins decrease by %d";
+"kThrowTomatoMessage" = "You threw a tomato to the painter, his/her experience decrease by %d, his/her coins decrease by %d";
+"kSendFlowerMessage" = "You sent a flower to the painter, his/her experience increase by %d, his/her coins decrease by %d";
 "kReceiveTomatoMessage" = "Someone have threw you a tomato, your experience decrease by %d, your coins decrease by %d";
 "kReceiveFlowerMessage" = "Someone have sent you a flower, your experience increase by %d, your coins decrease by %d";
 
 "kCoinsForShareToFriends" = "+%d coins";
 "kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
+
+"kSendAFlower" = "Send a flower to painter!";
+"kThrowATomato" = "Throw a tomato to painter!";
