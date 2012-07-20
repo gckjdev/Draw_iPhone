@@ -36,6 +36,7 @@
 #import "GameConstants.h"
 #import "AccountManager.h"
 #import "ItemService.h"
+#import "VendingController.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -580,7 +581,7 @@
 {
     //run away
     if (dialog.tag == SHOP_DIALOG_TAG) {
-        ItemShopController *itemShop = [ItemShopController instance];
+        VendingController *itemShop = [VendingController instance];
         [self.navigationController pushViewController:itemShop animated:YES];
         _shopController = itemShop;
     }else{

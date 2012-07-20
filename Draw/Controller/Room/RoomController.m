@@ -510,6 +510,7 @@
 {
     PPDebug(@"<didBroken> Room Controller");
     [self hideActivity];
+    [self resetStartTimer];
     
     if ([[DrawGameService defaultService] session] != nil){
         PPDebug(@"<Network Broken> but session is nil");

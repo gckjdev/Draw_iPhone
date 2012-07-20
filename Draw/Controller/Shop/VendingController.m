@@ -40,6 +40,8 @@
 #define ANIM_GROUP        @"animationFallingRotate"
 #define FALLING_GROUP       @"fallingGroup"
 
+static VendingController* staticVendingController = nil;
+
 @interface VendingController () <ColorShopViewDelegate>
 
 @end
@@ -58,6 +60,22 @@
     [outItem release];
     [super dealloc];
     
+}
+
++(VendingController *)instance
+{
+    if (staticVendingController == nil) {
+        staticVendingController = [[VendingController alloc] init];
+    }
+    return staticVendingController;
+}
+
+- (UINavigationController *)topNavigationController
+{
+//    if (_coinController) {
+//        return _coinController.navigationController;
+//    }
+    return self.navigationController;
 }
 
 - (void)initButtons
