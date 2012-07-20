@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class Item;
+@class PPViewController;
 
 @protocol CommonItemInfoViewDelegate <NSObject>
 
@@ -19,7 +20,7 @@
 @interface CommonItemInfoView : UIView
 
 + (void)showItem:(Item*)anItem 
-      infoInView:(UIViewController*)superController;
+      infoInView:(PPViewController*)superController;
 
 @property (retain, nonatomic) IBOutlet UIImageView* backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
@@ -35,6 +36,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
 @property (retain, nonatomic) Item* currentItem;
-@property (assign, nonatomic) id<CommonItemInfoViewDelegate> delegate;
+@property (assign, nonatomic) PPViewController<CommonItemInfoViewDelegate> *delegate;
 
 @end
