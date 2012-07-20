@@ -688,3 +688,6 @@
 "kSendFlowerMessage" = "你給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
 "kReceiveTomatoMessage" = "憤怒的觀眾朝你扔了個番茄，你被扣了%d點經驗，%d個金幣";
 "kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你額外得到%d點經驗，%d個金幣";
+
+"kCoinsForShareToFriends" = "+%d金幣";
+"kGetCoinsByShareToFriends" = "分享微博成功，獲得了%d個金幣!";

@@ -696,3 +696,6 @@
 "kSendFlowerMessage" = "You sent a flower to the drawer, his/her experience increase by %d, his/her coins decrease by %d";
 "kReceiveTomatoMessage" = "Someone have threw you a tomato, your experience decrease by %d, your coins decrease by %d";
 "kReceiveFlowerMessage" = "Someone have sent you a flower, your experience increase by %d, your coins decrease by %d";
+
+"kCoinsForShareToFriends" = "+%d coins";
+"kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
