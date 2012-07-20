@@ -18,6 +18,8 @@
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
+#import "YoumiWallController.h"
+#import "LmWallService.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -81,7 +83,13 @@ static VendingController* staticVendingController = nil;
 - (void)initButtons
 {
     [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.buyCoinButton setTitle:NSLS(@"kCoinShopTitle") forState:UIControlStateNormal];
+    NSString* buyCoinButtonTitle;
+    if ([ConfigManager wallEnabled]) {
+        buyCoinButtonTitle = NSLS(@"kFreeCoin");
+    } else {
+        buyCoinButtonTitle = NSLS(@"kCoinShopTitle");
+    }
+    [self.buyCoinButton setTitle:buyCoinButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)initTitles
@@ -213,6 +221,20 @@ static VendingController* staticVendingController = nil;
 
 }
 
+- (void)showWall
+{        
+    if ([ConfigManager useLmWall]){    
+        [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
+        [[LmWallService defaultService] show:self];
+    }
+    else{
+        [MobClick event:@"SHOW_YOUMI_WALL"];
+        YoumiWallController* controller = [[YoumiWallController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
 - (IBAction)clickBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -220,8 +242,13 @@ static VendingController* staticVendingController = nil;
 
 - (IBAction)buyCoin:(id)sender
 {
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+    if ([ConfigManager wallEnabled]) {
+        [self showWall];
+    } else {
+        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
 }
 
 - (void)clickItemButton:(id)sender

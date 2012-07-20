@@ -694,3 +694,5 @@
 
 "kSendAFlower" = "給作者贈送了一朵鮮花!";
 "kThrowATomato" = "向作者丟了個番茄!";
+
+"kShareAwardCoinTips" = "分享你的作品可獲%d金幣!";
