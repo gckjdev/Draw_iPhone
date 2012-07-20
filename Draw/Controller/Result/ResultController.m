@@ -364,8 +364,8 @@
 {        
     
     self.adView = [[AdService defaultService] createAdInView:self 
-                                                       frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 755, 320, 50)
+                                                       frame:CGRectMake(0, 47, 320, 50) 
+                                                   iPadFrame:CGRectMake(224, 780, 320, 50)
                                                      useLmAd:NO];    
     [super viewDidLoad];
     [self initResultType];
@@ -520,6 +520,11 @@
 
 - (IBAction)clickSaveButton:(id)sender {
 
+    if (_isMyPaint == NO){
+        [[FeedService defaultService] actionSaveOpus:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+                                          actionName:DB_FIELD_ACTION_SAVE_TIMES];
+    }
+    
     [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
     
     [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];

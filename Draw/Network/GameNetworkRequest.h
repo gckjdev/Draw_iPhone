@@ -336,4 +336,10 @@
                             feedId:(NSString*)feedId 
                             userId:(NSString *)userId;
 
++ (CommonNetworkOutput*)actionSaveOnOpus:(NSString*)baseURL                                  
+                                   appId:(NSString*)appId                                 
+                                  userId:(NSString*)userId
+                              actionName:(NSString*)actionName
+                                  opusId:(NSString*)opusId;
+
 @end
