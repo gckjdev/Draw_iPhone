@@ -17,6 +17,7 @@
 #import "CoinShopController.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
+#import "ConfigManager.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -315,7 +316,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+        if ([ConfigManager isProVersion]){
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];            
+        }
+        else{
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+        }
     }
     return self;
 }
