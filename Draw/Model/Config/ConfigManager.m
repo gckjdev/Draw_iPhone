@@ -213,5 +213,9 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
 }
 
++ (int)flowerAwardFordLevelUp
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
+}
 
 @end

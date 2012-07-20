@@ -20,6 +20,7 @@
 #import "PPDebug.h"
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
+#import "ConfigManager.h"
 
 
 #define BUTTON_INDEX_OFFSET 20120229
@@ -43,6 +44,7 @@
 @synthesize paints = _paints;
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
+@synthesize awardCoinTips;
 @synthesize noDrawingLabel;
 
 - (void)dealloc {
@@ -55,6 +57,7 @@
     [_gifImages release];
     [selectAllButton release];
     [selectMineButton release];
+    [awardCoinTips release];
     [super dealloc];
 }
 
@@ -366,7 +369,7 @@
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
-
+    self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
 }
 
 - (void)viewDidUnload
@@ -377,6 +380,7 @@
     [self setTitleLabel:nil];
     [self setSelectAllButton:nil];
     [self setSelectMineButton:nil];
+    [self setAwardCoinTips:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -501,8 +501,8 @@
 "kExistWord" = "已存在此詞語";
 "kSureUseThisWord" = "確定選擇[%@]嗎?";
 
-"kUpgradeMsg" = "恭喜！您剛剛升到第 %d級";
-"kDegradeMsg" = "你逃得太多啦，都降到第%d級了";
+"kUpgradeMsg" = "恭喜！您剛剛升到第 %d級，鮮花＋%d";
+"kDegradeMsg" = "你畫畫不認真，都降到第%d級了";
 "kLevelInfo" = "等級:%d    經驗值:%d/%d";
 
 "kDrawing" = "畫畫中";
@@ -694,3 +694,5 @@
 
 "kSendAFlower" = "給作者贈送了一朵鮮花!";
 "kThrowATomato" = "向作者丟了個番茄!";
+
+"kShareAwardCoinTips" = "分享你的作品可獲%d金幣!";

@@ -570,7 +570,7 @@
 
 - (void)levelUp:(int)level
 {
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
     [AnimationManager fireworksAnimationAtView:self.view];
 }
 
