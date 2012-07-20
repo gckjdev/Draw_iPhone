@@ -701,3 +701,6 @@
 
 "kCoinsForShareToFriends" = "+%d金币";
 "kGetCoinsByShareToFriends" = "分享微博成功，获得了%d个金币!";
+
+"kSendAFlower" = "给作者赠送了一朵鲜花!";
+"kThrowATomato" = "向作者丢了个番茄!";
