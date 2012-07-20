@@ -129,6 +129,7 @@ message FacetimeChatRequest {
 
 message FacetimeChatResponse {    
   repeated PBGameUser user = 1;
+  required bool  chosenToInitiate = 2; 	// 是否能主动发起聊天
 }
 
 message GameMessage {
