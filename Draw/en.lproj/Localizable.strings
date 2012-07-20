@@ -491,8 +491,8 @@
 "kExistWord" = "Already exists in this word";
 "kSureUseThisWord "="Sure to use [%@] ? ";
 
-"kUpgradeMsg" = "Congratulations!You upgraded to level %d";
-"kDegradeMsg" = "You ran away too much times, now degrade to level %d";
+"kUpgradeMsg" = "Congratulations!You upgraded to level %d, flower +%d";
+"kDegradeMsg" = "You draw terribly, now degrade to level %d";
 "kLevelInfo" = "Level:%d    Exp:%d/%d";
 
 "kDrawing" = "Drawing";

@@ -15,9 +15,9 @@ enum {
     AWARD = 2
 };
 
-#define OFFLINE_DRAW_EXP    10
-#define NORMAL_EXP          10
-#define DRAWER_EXP          15
+#define OFFLINE_DRAW_EXP    1000
+#define NORMAL_EXP          1000
+#define DRAWER_EXP          1500
 
 //#define REWARD_EXP  5
 

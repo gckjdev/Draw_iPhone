@@ -13,6 +13,9 @@
 #import "PPNetworkRequest.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "AccountService.h"
+#import "ItemType.h"
+#import "CommonMessageCenter.h"
 
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
@@ -125,6 +128,13 @@ static LevelService* _defaultLevelService;
     return 1;
 }
 
+- (void)awardForLevelUp
+{
+    [[AccountService defaultService] buyItem:ItemTypeFlower 
+                                   itemCount:[ConfigManager flowerAwardFordLevelUp] 
+                                   itemCoins:0];
+}
+
 
 - (void)addExp:(long)exp 
       delegate:(id<LevelServiceDelegate>)delegate
@@ -134,7 +144,9 @@ static LevelService* _defaultLevelService;
     [self setExperience:(currentExp)];
     if ([self level] != newLevel) {
         [self setLevel:newLevel];
+        [self awardForLevelUp];
         if (delegate && [delegate respondsToSelector:@selector(levelUp:)]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]] delayTime:1.5 isHappy:YES];
             [delegate levelUp:newLevel];
         }
     }
@@ -152,6 +164,7 @@ static LevelService* _defaultLevelService;
         if ([self level] != newLevel) {
             [self setLevel:newLevel];
             if (delegate && [delegate respondsToSelector:@selector(levelUp:)]) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]] delayTime:1.5 isHappy:YES];
                 [delegate levelUp:newLevel];
             }
         }
@@ -164,6 +177,7 @@ static LevelService* _defaultLevelService;
         if ([self level] != newLevel) {
             [self setLevel:newLevel];
             if (delegate && [delegate respondsToSelector:@selector(levelDown:)]) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel] delayTime:2 isHappy:NO];
                 [delegate levelDown:newLevel];
             }
         }        
@@ -180,6 +194,7 @@ static LevelService* _defaultLevelService;
     if ([self level] != newLevel) {
         [self setLevel:newLevel];
         if (delegate && [delegate respondsToSelector:@selector(levelDown:)]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel] delayTime:2 isHappy:NO];
             [delegate levelDown:newLevel];
         }
     }

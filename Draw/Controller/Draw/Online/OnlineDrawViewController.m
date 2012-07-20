@@ -589,6 +589,6 @@ enum{
 #pragma mark - levelServiceDelegate
 - (void)levelDown:(int)level
 {
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+    
 }
 @end

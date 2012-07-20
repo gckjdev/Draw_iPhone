@@ -504,8 +504,8 @@
 "kExistWord" = "已存在此词语";
 "kSureUseThisWord" = "确定选择[%@]吗?";
 
-"kUpgradeMsg" = "恭喜！您刚刚升到第 %d级";
-"kDegradeMsg" = "你逃得太多啦，都降到第%d级了";
+"kUpgradeMsg" = "恭喜！您刚刚升到第 %d级, 鲜花+%d";
+"kDegradeMsg" = "你画画不认真，都降到第%d级了";
 "kLevelInfo" = "等级:%d    经验值:%d/%d";
 
 "kDrawing" = "画画中";
