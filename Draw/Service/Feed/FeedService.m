@@ -232,5 +232,20 @@ static FeedService *_staticFeedService = nil;
     [self throwItem:ItemTypeTomato toOpus:opusId author:author delegate:delegate];    
 }
 
+- (void)actionSaveOpus:(NSString *)opusId 
+            actionName:(NSString*)actionName
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* appId = [ConfigManager appId];    
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL appId:appId userId:userId actionName:actionName opusId:opusId];
+        
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//        });
+    });
+    
+}
 
 @end
