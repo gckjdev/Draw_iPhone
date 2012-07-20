@@ -173,11 +173,11 @@ static ShoppingManager *staticShoppingManager = nil;
     return array;
 }
 
-#define DEFAULT_COLOR_PRICE 100
-#define DEFAULT_PEN_PRICE 400
-#define DEFAULT_TOMATO_PRICE  400
+#define DEFAULT_COLOR_PRICE     100
+#define DEFAULT_PEN_PRICE       400
+#define DEFAULT_TOMATO_PRICE    400
 #define DEFAULT_FLOWER_PRICE    400
-#define DEFAULT_REMOVE_AD_PRICE 999
+#define DEFAULT_REMOVE_AD_PRICE 400
 #define DEFAULT_TIPS_PRICE      400
 - (NSInteger)getColorPrice
 {
@@ -243,7 +243,7 @@ static ShoppingManager *staticShoppingManager = nil;
 {
     NSString* price = [MobClick getConfigParams:@"REMOVE_AD_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getRemoveAdPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        PPDebug(@"<getRemoveAdPrice>: price is nil, return default price = %d",DEFAULT_REMOVE_AD_PRICE);
         return DEFAULT_REMOVE_AD_PRICE;
     }
     NSInteger retPrice = [price integerValue];
