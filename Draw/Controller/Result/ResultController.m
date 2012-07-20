@@ -41,6 +41,7 @@
 #import "AccountManager.h"
 #import "ConfigManager.h"
 #import "ItemService.h"
+#import "VendingController.h"
 
 #define CONTINUE_TIME 10
 
@@ -629,7 +630,7 @@
 {
     //run away
 
-    ItemShopController *itemShop = [ItemShopController instance];
+    VendingController *itemShop = [VendingController instance];
     [self.navigationController pushViewController:itemShop animated:YES];
     //_shopController = itemShop;
 

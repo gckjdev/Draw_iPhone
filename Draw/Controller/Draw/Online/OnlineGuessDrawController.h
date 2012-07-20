@@ -17,12 +17,12 @@
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
-@class ItemShopController;
+@class VendingController;
 @interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
-    ItemShopController *_shopController;
+    VendingController *_shopController;
     BOOL _guessCorrect;
     UIButton *moveButton;
     UIButton *lastScaleTarget;
