@@ -677,16 +677,16 @@
 "kPen" = "毛笔";
 "kIcePen" = "雪糕笔";
 "kQuill" = "鹅毛笔";
-"kWaterPen" = "水笔";
+"kWaterPen" = "麦克笔";
 
 "kFlowerDescription" = "看到好的作品就送些鲜花吧！赠人玫瑰，手有余香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄吧，还能让作者扣分扣经验哦。";
 "kRemoveAdDescription" = "买了它！从此远离广告！";
 "kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
-"kBrushPenDescription" = "好多毛的笔";
-"kIcePenDescription" = "看上去像雪糕的笔";
-"kQuillDescription" = "用鹅毛做的笔";  
-"kWaterPenDescription" = "好多水的笔";
+"kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
+"kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
+"kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
+"kWaterPenDescription" = "麦克笔，国外进口的一种高级画笔";
 
 "kPickToolTitle" = "使用道具";
 

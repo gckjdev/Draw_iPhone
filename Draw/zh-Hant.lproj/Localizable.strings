@@ -664,19 +664,20 @@
 "kTomato" = "番茄";
 "kRemoveAd" = "移除廣告";
 "kTips" = "錦囊";
+
 "kPen" = "毛筆";
 "kIcePen" = "雪糕筆";
 "kQuill" = "鵝毛筆";
-"kWaterPen" = "水筆";
+"kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
 "kRemoveAdDescription" = "買了它！從此遠離廣告！";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
-"kBrushPenDescription" = "好多毛的筆";
-"kIcePenDescription" = "看上去像雪糕的筆";
-"kQuillDescription" = "用鵝毛做的筆";
-"kWaterPenDescription" = "好多水的筆";
+"kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
+"kIcePenDescription" = "看上去像雪糕的筆，畫起來更加甜蜜";
+"kQuillDescription" = "用鵝毛做的筆，畫起來更加輕便";
+"kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
 
 "kPickToolTitle" = "使用道具";
 

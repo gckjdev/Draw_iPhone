@@ -631,7 +631,7 @@
         [[AudioManager defaultManager] playSoundById:BINGO];
         [self setWordButtonsEnabled:NO];
     
-        NSInteger score = [_draw.word score] * [ConfigManager guessDifficultLevel];
+        NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
         
         ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
     
