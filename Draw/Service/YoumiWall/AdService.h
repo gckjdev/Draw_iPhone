@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "AccountService.h"
 #import <Lmmob/LmmobADBannerView.h>
+#import "AderSDK.h"
+#import "AderDelegateProtocal.h"
 #import "AdMoGoView.h"
 
 @class PPViewController;
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, LmmobAdBannerViewDelegate, AdMoGoDelegate>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, LmmobAdBannerViewDelegate, AdMoGoDelegate, AderDelegateProtocal>
 {
 //    LmmobAdBannerView   *_adView;
 //    NSMutableDictionary *_allAdViews;

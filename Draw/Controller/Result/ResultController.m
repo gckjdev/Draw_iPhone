@@ -363,10 +363,6 @@
 - (void)viewDidLoad
 {        
     
-    self.adView = [[AdService defaultService] createAdInView:self 
-                                                       frame:CGRectMake(0, 47, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 780, 320, 50)
-                                                     useLmAd:NO];    
     [super viewDidLoad];
     [self initResultType];
     [self initTitleLabel];
@@ -396,9 +392,9 @@
 
     if (self.adView == nil){
         self.adView = [[AdService defaultService] createAdInView:self 
-                                                           frame:CGRectMake(0, 0, 320, 50) 
-                                                       iPadFrame:CGRectMake(224, 755, 320, 50)
-                                                         useLmAd:NO];        
+                                                           frame:CGRectMake(0, 47, 320, 50) 
+                                                       iPadFrame:CGRectMake(224, 780, 320, 50)
+                                                         useLmAd:NO];   
     }        
 }
 

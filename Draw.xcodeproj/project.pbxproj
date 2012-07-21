@@ -704,9 +704,6 @@
 		CAA1AFBB159EAA5900504C98 /* libAderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AF97159EAA5800504C98 /* libAderSDK.a */; };
 		CAA1AFBC159EAA5900504C98 /* AdMoGoAdapterGoogleAdMobAds.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AF9B159EAA5800504C98 /* AdMoGoAdapterGoogleAdMobAds.m */; };
 		CAA1AFBD159EAA5900504C98 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFA5159EAA5800504C98 /* libGoogleAdMobAds.a */; };
-		CAA1AFBE159EAA5900504C98 /* AdMoGoAdapterDoMob.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AFA9159EAA5800504C98 /* AdMoGoAdapterDoMob.m */; };
-		CAA1AFBF159EAA5900504C98 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA1AFAE159EAA5800504C98 /* DomobAdSDKBundle.bundle */; };
-		CAA1AFC0159EAA5900504C98 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFAF159EAA5800504C98 /* libDomobAdSDK.a */; };
 		CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFC4159EAA9800504C98 /* EventKit.framework */; };
 		CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */; };
 		CAA1AFFD159ED2D200504C98 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */ = {isa = PBXBuildFile; fileRef = CAA1AFFC159ED2D100504C98 /* d5d65eff49774712aa2aeef656b4c600.config */; };
@@ -1943,13 +1940,6 @@
 		CAA1AFA3159EAA5800504C98 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		CAA1AFA4159EAA5800504C98 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
 		CAA1AFA5159EAA5800504C98 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		CAA1AFA8159EAA5800504C98 /* AdMoGoAdapterDoMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMoGoAdapterDoMob.h; sourceTree = "<group>"; };
-		CAA1AFA9159EAA5800504C98 /* AdMoGoAdapterDoMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMoGoAdapterDoMob.m; sourceTree = "<group>"; };
-		CAA1AFAA159EAA5800504C98 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
-		CAA1AFAB159EAA5800504C98 /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
-		CAA1AFAC159EAA5800504C98 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
-		CAA1AFAE159EAA5800504C98 /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
-		CAA1AFAF159EAA5800504C98 /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
 		CAA1AFC4159EAA9800504C98 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		CAA1AFFC159ED2D100504C98 /* d5d65eff49774712aa2aeef656b4c600.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = d5d65eff49774712aa2aeef656b4c600.config; sourceTree = "<group>"; };
@@ -2131,7 +2121,6 @@
 				CAA1AF8C159DB00B00504C98 /* libAdMoGo.a in Frameworks */,
 				CAA1AFBB159EAA5900504C98 /* libAderSDK.a in Frameworks */,
 				CAA1AFBD159EAA5900504C98 /* libGoogleAdMobAds.a in Frameworks */,
-				CAA1AFC0159EAA5900504C98 /* libDomobAdSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4706,7 +4695,6 @@
 			children = (
 				CAA1AF91159EAA5800504C98 /* Adermob */,
 				CAA1AF98159EAA5800504C98 /* AdMob */,
-				CAA1AFA6159EAA5800504C98 /* DoMob */,
 				CAA1AEFE159DB00B00504C98 /* AdsMoGoRes */,
 				CAA1AF0D159DB00B00504C98 /* AdsMoGoSDK */,
 			);
@@ -4814,37 +4802,6 @@
 				CAA1AF9B159EAA5800504C98 /* AdMoGoAdapterGoogleAdMobAds.m */,
 			);
 			path = AdsMoGoAdapter;
-			sourceTree = "<group>";
-		};
-		CAA1AFA6159EAA5800504C98 /* DoMob */ = {
-			isa = PBXGroup;
-			children = (
-				CAA1AFA7159EAA5800504C98 /* AdsMoGoAdapter */,
-				CAA1AFAA159EAA5800504C98 /* DMAdView.h */,
-				CAA1AFAB159EAA5800504C98 /* DMInterstitialAdController.h */,
-				CAA1AFAC159EAA5800504C98 /* DMTools.h */,
-				CAA1AFAD159EAA5800504C98 /* DomobAdSDKBundle */,
-				CAA1AFAF159EAA5800504C98 /* libDomobAdSDK.a */,
-			);
-			name = DoMob;
-			path = AdNetworkLibs/DoMob;
-			sourceTree = "<group>";
-		};
-		CAA1AFA7159EAA5800504C98 /* AdsMoGoAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				CAA1AFA8159EAA5800504C98 /* AdMoGoAdapterDoMob.h */,
-				CAA1AFA9159EAA5800504C98 /* AdMoGoAdapterDoMob.m */,
-			);
-			path = AdsMoGoAdapter;
-			sourceTree = "<group>";
-		};
-		CAA1AFAD159EAA5800504C98 /* DomobAdSDKBundle */ = {
-			isa = PBXGroup;
-			children = (
-				CAA1AFAE159EAA5800504C98 /* DomobAdSDKBundle.bundle */,
-			);
-			path = DomobAdSDKBundle;
 			sourceTree = "<group>";
 		};
 		CAA9C424159BF40A00398EC5 /* Share */ = {
@@ -5514,7 +5471,6 @@
 				CAA1AF8A159DB00B00504C98 /* adsmogo_picrollbg.png in Resources */,
 				CAA1AF8B159DB00B00504C98 /* AdMoGoWebBrowser.xib in Resources */,
 				CAA1AF90159EA8DA00504C98 /* ad29f0cf8361452db392ffdef8057eff.config in Resources */,
-				CAA1AFBF159EAA5900504C98 /* DomobAdSDKBundle.bundle in Resources */,
 				CAA1AFFD159ED2D200504C98 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
 				CA985EB415A53C6B00CAF51A /* new_icon@2x.png in Resources */,
 				CA985EB515A53C6B00CAF51A /* new_icon.png in Resources */,
@@ -5945,7 +5901,6 @@
 				CAA1AA3F159D78C200504C98 /* AdService.m in Sources */,
 				CAA1AFBA159EAA5900504C98 /* AdMoGoAdapterAdermob.m in Sources */,
 				CAA1AFBC159EAA5900504C98 /* AdMoGoAdapterGoogleAdMobAds.m in Sources */,
-				CAA1AFBE159EAA5900504C98 /* AdMoGoAdapterDoMob.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
 				C24339FF15AAB02400325A76 /* VendingController.m in Sources */,

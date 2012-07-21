@@ -671,8 +671,8 @@
 "kTomato" = "Tomato";
 "kRemoveAd" = "No Ad!";
 "kTips" = "Tips";
-"kPen" = "Brush Pen";
-"kIcePen" = "Ice-cream Pen";
+"kPen" = "Mao Pen";
+"kIcePen" = "Ice Cream Pen";
 "kQuill" = "Quill Pen";
 "kWaterPen" = "Mike Pen";
 
@@ -680,10 +680,10 @@
 "kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
 "kRemoveAdDescription" = "Buy it and remove all the advertisements!";
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
-"kBrushPenDescription" = "Just look cool...";
-"kIcePenDescription" = "Just look cool...";
-"kQuillDescription" = "Just look cool..."; 
-"kWaterPenDescription" = "Just look cool...";
+"kBrushPenDescription" = "Mao pen from ancient China...";
+"kIcePenDescription" = "Ice cream pen to draw sweetly...";
+"kQuillDescription" = "Quill pen to draw much faster..."; 
+"kWaterPenDescription" = "Mike pen from United Kingdom...";
 
 
 "kPickToolTitle" = "Use Item";
