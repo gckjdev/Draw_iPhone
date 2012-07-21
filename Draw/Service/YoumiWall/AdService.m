@@ -78,12 +78,15 @@ static AdService* _defaultService;
 - (int)getLmAdPercentage
 {
     return [MobClickUtils getIntValueByKey:@"LM_AD_PERCENTAGE" defaultValue:0];
-//    return 0; // For DoMob Test
 }
 
-- (BOOL)isShowLmAd
+- (int)getAderAdPercentage
 {
-    int percentage = [self getLmAdPercentage];
+    return [MobClickUtils getIntValueByKey:@"ADER_AD_PERCENTAGE" defaultValue:100];    
+}
+
+- (BOOL)isShowAdByPercentage:(int)percentage
+{
     if (percentage == 0)
         return NO;
     
@@ -91,7 +94,19 @@ static AdService* _defaultService;
     if (randValue <= percentage)
         return YES;
     else
-        return NO;
+        return NO;    
+}
+
+- (BOOL)isShowLmAd
+{
+    int percentage = [self getLmAdPercentage];
+    return [self isShowAdByPercentage:percentage];
+}
+
+- (BOOL)isShowAderAd
+{
+    int percentage = [self getAderAdPercentage];
+    return [self isShowAdByPercentage:percentage];    
 }
 
 - (void)setAdDisable
@@ -319,7 +334,7 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {    
-//    return YES;    
+    return YES;    
     
     if ([ConfigManager isProVersion])
         return NO;
@@ -383,6 +398,8 @@ static AdService* _defaultService;
         ((LmmobAdBannerView*)adView).delegate = nil;  
         ((LmmobAdBannerView*)adView).rootViewController = nil;  
     }
+    
+    [AderSDK stopAdService];
 }
 
 - (void)pauseAdView:(UIView*)adView
@@ -394,6 +411,7 @@ static AdService* _defaultService;
         // Do Nothing For Lmmob, because of not support
     }
     
+    [AderSDK pauseAdService:YES];
 }
 
 - (void)resumeAdView:(UIView*)adView
@@ -404,8 +422,32 @@ static AdService* _defaultService;
     else if ([adView isKindOfClass:[LmmobAdBannerView class]]){
         // Do Nothing For Lmmob, because of not support
     }    
+    
+    [AderSDK pauseAdService:NO];
 }
 
+- (UIView*)createAderAdInView:(UIViewController*)superViewContoller
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+{
+    PPDebug(@"<createAderAdInView>");
+    [AderSDK stopAdService];
+    if ([DeviceDetection isIPAD]){
+        [AderSDK startAdService:superViewContoller.view 
+                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+                        adFrame:iPadFrame 
+                          model:MODEL_RELEASE];
+    }
+    else{
+        [AderSDK startAdService:superViewContoller.view 
+                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+                        adFrame:frame 
+                          model:MODEL_RELEASE];
+    }
+    
+    [AderSDK setDelegate:self];    
+    return nil;
+}
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
                     frame:(CGRect)frame 
@@ -418,6 +460,10 @@ static AdService* _defaultService;
         return nil;
     }
 
+    if ([self isShowAderAd] == YES){
+        return [self createAderAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
+    }
+    
     if (useLmAd == NO || [self isShowLmAd] == NO){
         return [self createMangoAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
     }
