@@ -639,6 +639,8 @@ enum {
         SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
         req.bText = YES;
         req.text = message;
+        req.scene = WXSceneSession;
+        
         [WXApi sendReq:req];
     }
 }

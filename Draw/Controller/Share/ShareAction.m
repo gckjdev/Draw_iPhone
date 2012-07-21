@@ -191,6 +191,7 @@
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
         req.message = message;
+        req.scene = WXSceneTimeline;
         
         [WXApi sendReq:req];
         [req release];
