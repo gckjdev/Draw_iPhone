@@ -32,7 +32,6 @@
 @property (retain, nonatomic) IBOutlet UITableView *gallery;
 @property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UILabel *noDrawingLabel;
 @property (retain, nonatomic) ShareAction *shareAction;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;
 
