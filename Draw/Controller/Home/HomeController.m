@@ -348,6 +348,7 @@
 //        [self.navigationController pushViewController:ic animated:YES];
         VendingController* vc = [[VendingController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
     }
 }
 

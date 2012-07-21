@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonService.h"
 
-@interface UserStatusService : NSObject
+@interface UserStatusService : CommonService
 
 + (UserStatusService*)defaultService;
 

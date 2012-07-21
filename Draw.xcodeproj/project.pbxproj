@@ -2708,7 +2708,7 @@
 				CAA9C424159BF40A00398EC5 /* Share */,
 				CA7C7E081587219600406BFB /* Feed */,
 				A3F66CBE15820B2D000BFF9A /* Chat */,
-				CAAE4A891579B8180012F6B8 /* YoumiWall */,
+				CAAE4A891579B8180012F6B8 /* Ad */,
 				A38894AB15778B3200764158 /* TTS */,
 				A3C129D51563A6B600C021A7 /* DrawData */,
 				CA0CB767155CB75F009C8EE6 /* Room */,
@@ -4889,7 +4889,7 @@
 			path = "../../Common_iPhone_20/3PP-SDK/YoumiSDK";
 			sourceTree = "<group>";
 		};
-		CAAE4A891579B8180012F6B8 /* YoumiWall */ = {
+		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
 				CAAE4A8A1579B82D0012F6B8 /* YoumiWallService.h */,
@@ -4899,6 +4899,7 @@
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
 				CAA1AA3E159D78C200504C98 /* AdService.m */,
 			);
+			name = Ad;
 			path = YoumiWall;
 			sourceTree = "<group>";
 		};
