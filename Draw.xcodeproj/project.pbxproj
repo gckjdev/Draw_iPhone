@@ -522,7 +522,6 @@
 		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
-		CA22DCD4157CAFFD009C95CB /* ResultController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
 		CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */; };
 		CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCE2157CB00A009C95CB /* OnlineDrawViewController~ipad.xib */; };
@@ -589,6 +588,7 @@
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
+		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		CA51BD731525DED100C77E50 /* RewardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD721525DED100C77E50 /* RewardManager.m */; };
 		CA51BD761525DEDE00C77E50 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
@@ -1648,7 +1648,6 @@
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
-		CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~iPad.xib"; sourceTree = "<group>"; };
 		CA22DCDF157CB00A009C95CB /* OnlineDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineDrawViewController.h; sourceTree = "<group>"; };
 		CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineDrawViewController.m; sourceTree = "<group>"; };
 		CA22DCE1157CB00A009C95CB /* OnlineDrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlineDrawViewController.xib; sourceTree = "<group>"; };
@@ -1756,6 +1755,7 @@
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
+		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
 		CA51816B15A2D79700AD5A78 /* CustomStatueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatueBar.h; sourceTree = "<group>"; };
 		CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatueBar.m; sourceTree = "<group>"; };
 		CA51BD711525DED100C77E50 /* RewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardManager.h; sourceTree = "<group>"; };
@@ -3906,10 +3906,10 @@
 		CA22DCCD157CAFFC009C95CB /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */,
 				CA22DCCE157CAFFD009C95CB /* ResultController.h */,
 				CA22DCCF157CAFFD009C95CB /* ResultController.m */,
 				CA22DCD0157CAFFD009C95CB /* ResultController.xib */,
-				CA22DCD1157CAFFD009C95CB /* ResultController~iPad.xib */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -5428,7 +5428,6 @@
 				CAAE4A8E1579C62D0012F6B8 /* YoumiWallController~ipad.xib in Resources */,
 				CAAE4A901579C6440012F6B8 /* YoumiWallCell~ipad.xib in Resources */,
 				CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */,
-				CA22DCD4157CAFFD009C95CB /* ResultController~iPad.xib in Resources */,
 				CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */,
 				CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */,
 				CA22DCF1157CB00A009C95CB /* OnlineGuessDrawController.xib in Resources */,
@@ -5552,6 +5551,7 @@
 				C24D34A715AE86EA00CFC5A0 /* mike_pen@2x.png in Resources */,
 				C24D34A915AEA95400CFC5A0 /* wood_shop_bg@2x.png in Resources */,
 				C20118F115B69312001C56A6 /* shop@2x.png in Resources */,
+				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
