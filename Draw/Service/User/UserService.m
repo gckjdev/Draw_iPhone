@@ -817,7 +817,8 @@ static UserService* _defaultUserService;
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
     NSString* userId = [[UserManager defaultManager] userId];
-
+    if ([userId length] == 0)
+        return;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];
