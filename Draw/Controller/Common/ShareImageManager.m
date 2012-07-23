@@ -464,5 +464,11 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedImageNamed:@"back"];
 }
+
+- (UIImage *)shareDrawButtonImage
+{
+    return [UIImage imageNamed:@"draw_share.png"];
+}
+
 @end
 

@@ -135,4 +135,6 @@
 
 - (UIImage*)backButtonImage;
 
+- (UIImage *)shareDrawButtonImage;
+
 @end
