@@ -697,3 +697,5 @@
 "kThrowATomato" = "向作者丟了個番茄!";
 
 "kShareAwardCoinTips" = "分享作品可獲%d金幣!";
+
+"kQueryingDrawer" = "查詢作者信息中...";

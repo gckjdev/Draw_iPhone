@@ -143,7 +143,7 @@
         self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:currentPaint.image 
                                                                  isGIF:NO
                                                              drawWord:currentPaint.drawWord
-                                                                 isMe:[currentPaint.drawByMe boolValue]] autorelease];
+                                                                 drawUserId:currentPaint.drawUserId] autorelease];
             
         [_shareAction displayWithViewController:self];                       
     }                            

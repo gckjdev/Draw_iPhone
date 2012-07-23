@@ -704,3 +704,5 @@
 "kThrowATomato" = "Throw a tomato to painter!";
 
 "kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
+
+"kQueryingDrawer" = "Querying painter info";
