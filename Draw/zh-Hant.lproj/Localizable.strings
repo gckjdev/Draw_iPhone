@@ -610,7 +610,7 @@
 
 "kUserBindSucc" = "成功綁定了用​​戶帳號";
 "kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";
-"kWeiboExpired" = "微博授權已過期";
+"kWeiboExpired" = "授權已過期";
 "kSaveAndShare" = "保存分享";
 "kRebindQQ" = "你已經綁定過騰訊微博了，是否要重新嘗試綁​​定？"; 
 "kRebindSina" = "你已經綁定了新浪微博了，是否要重新嘗試綁​​定？"; 

@@ -122,7 +122,7 @@ static ShareService* _defaultService;
                                                      delegate:nil];
             }
             
-            if ([[UserManager defaultManager] hasBindFacebook]){
+            if ([[UserManager defaultManager] hasBindFacebook] && [[FacebookSNSService defaultService] isAuthorizeExpired] == NO){
                 NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:@"" isDrawByMe:isDrawByMe drawWord:drawWord];
                 [[FacebookSNSService defaultService] publishWeibo:textForFacebook
                                                     imageFilePath:imagePath 

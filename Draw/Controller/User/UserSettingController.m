@@ -470,7 +470,12 @@ enum {
             {
                 [cell.textLabel setText:NSLS(@"kSetFacebook")];
                 if ([_userManager hasBindFacebook]){
-                    [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    if ([[FacebookSNSService defaultService] isAuthorizeExpired]){
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                    }
+                    else{
+                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                    }
                 }
                 else{
                     [cell.detailTextLabel setText:NSLS(@"kNotSet")];
@@ -627,11 +632,12 @@ enum {
                 
             case ROW_FACEBOOK:
             {
-                if ([_userManager hasBindFacebook]){
-                    [self askRebindFacebook];
+                
+                if ([_userManager hasBindFacebook] == NO || [[FacebookSNSService defaultService] isAuthorizeExpired]){
+                    [self bindFacebook];
                 }
                 else{
-                    [self bindFacebook];
+                    [self askRebindFacebook];
                 }
             }
                 break;
