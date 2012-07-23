@@ -219,6 +219,14 @@
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
+		C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */; };
+		C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */; };
+		C2E90FE215BD3F2D00828562 /* RecommendedAppsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FDE15BD3F2D00828562 /* RecommendedAppsControllerViewController.m */; };
+		C2E90FE315BD3F2D00828562 /* RecommendedAppsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FDF15BD3F2D00828562 /* RecommendedAppsControllerViewController.xib */; };
+		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
+		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
+		C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */; };
+		C2E90FF215BD521300828562 /* RecommendedAppsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF115BD521100828562 /* RecommendedAppsControllerViewController~ipad.xib */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1143,6 +1151,18 @@
 		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
 		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
+		C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppCell.h; sourceTree = "<group>"; };
+		C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppCell.m; sourceTree = "<group>"; };
+		C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppCell.xib; sourceTree = "<group>"; };
+		C2E90FDD15BD3F2D00828562 /* RecommendedAppsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppsControllerViewController.h; sourceTree = "<group>"; };
+		C2E90FDE15BD3F2D00828562 /* RecommendedAppsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppsControllerViewController.m; sourceTree = "<group>"; };
+		C2E90FDF15BD3F2D00828562 /* RecommendedAppsControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppsControllerViewController.xib; sourceTree = "<group>"; };
+		C2E90FE915BD44DA00828562 /* RecommendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendApp.h; sourceTree = "<group>"; };
+		C2E90FEA15BD44DA00828562 /* RecommendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendApp.m; sourceTree = "<group>"; };
+		C2E90FEC15BD454200828562 /* RecommendAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppManager.h; sourceTree = "<group>"; };
+		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
+		C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppCell~ipad.xib"; sourceTree = "<group>"; };
+		C2E90FF115BD521100828562 /* RecommendedAppsControllerViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsControllerViewController~ipad.xib"; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -2548,6 +2568,32 @@
 				C2C1BF4415A2A9B6001A2BFC /* UIManager.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		C2E90FD915BD3F2C00828562 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */,
+				C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */,
+				C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */,
+				C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */,
+				C2E90FDD15BD3F2D00828562 /* RecommendedAppsControllerViewController.h */,
+				C2E90FDE15BD3F2D00828562 /* RecommendedAppsControllerViewController.m */,
+				C2E90FDF15BD3F2D00828562 /* RecommendedAppsControllerViewController.xib */,
+				C2E90FF115BD521100828562 /* RecommendedAppsControllerViewController~ipad.xib */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		C2E90FE815BD44DA00828562 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2E90FEC15BD454200828562 /* RecommendAppManager.h */,
+				C2E90FED15BD454200828562 /* RecommendAppManager.m */,
+				C2E90FE915BD44DA00828562 /* RecommendApp.h */,
+				C2E90FEA15BD44DA00828562 /* RecommendApp.m */,
+			);
+			path = Recommend;
 			sourceTree = "<group>";
 		};
 		C2F947BE1533D8BF0034C895 /* MobClick */ = {
@@ -4945,6 +4991,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2E90FD915BD3F2C00828562 /* Recommend */,
 				CA7C7E111587237B00406BFB /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
@@ -4969,6 +5016,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2E90FE815BD44DA00828562 /* Recommend */,
 				C2BBCE1715B001F1006A13A6 /* Animation */,
 				C2C1BF4215A2A884001A2BFC /* UI */,
 				CAE0C8941591A2D5008CDA62 /* Notification */,
@@ -5508,6 +5556,10 @@
 				C24D34A915AEA95400CFC5A0 /* wood_shop_bg@2x.png in Resources */,
 				C20118F115B69312001C56A6 /* shop@2x.png in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
+				C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */,
+				C2E90FE315BD3F2D00828562 /* RecommendedAppsControllerViewController.xib in Resources */,
+				C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */,
+				C2E90FF215BD521300828562 /* RecommendedAppsControllerViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5913,6 +5965,10 @@
 				CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */,
 				C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
+				C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */,
+				C2E90FE215BD3F2D00828562 /* RecommendedAppsControllerViewController.m in Sources */,
+				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
+				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
