@@ -9,11 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 
+enum {
+    
+    USER_STATUS_ONLINE = 0,
+    USER_STATUS_OFFLINE    
+};
+
 @interface UserStatusService : CommonService
+{
+    
+}
+
+@property (nonatomic, retain) NSTimer *timer;
 
 + (UserStatusService*)defaultService;
 
-- (void)reportStatusOnline;
-- (void)reportStatusOffline;
+- (void)start;
+- (void)stop;
+
 
 @end

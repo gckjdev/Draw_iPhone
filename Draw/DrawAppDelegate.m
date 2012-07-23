@@ -39,6 +39,8 @@
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
 #import "LmWallService.h"
+#import "UserStatusService.h"
+
 
 NSString* GlobalGetServerURL()
 {    
@@ -241,6 +243,8 @@ NSString* GlobalGetTrafficServerURL()
     
     [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
+    
+    [[UserStatusService defaultService] stop];
 
 }
 
@@ -268,7 +272,9 @@ NSString* GlobalGetTrafficServerURL()
     [[YoumiWallService defaultService] queryPoints];
     [[LmWallService defaultService] queryScore];
     [[DrawGameService defaultService] clearDisconnectTimer];
-    [self.networkDetector start];        
+    [self.networkDetector start];     
+    
+    [[UserStatusService defaultService] start];
     
 }
 
