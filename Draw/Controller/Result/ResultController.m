@@ -539,7 +539,7 @@
     if (viewController) {
         [self.navigationController popToViewController:viewController animated:YES];
     }else{
-        if ([self hasSuperViewControllerForClass:[OfflineGuessDrawController class]]) {
+        if ([[DrawGameService defaultService] session] != nil){
             [[DrawGameService defaultService] quitGame];
         }
         [HomeController returnRoom:self];

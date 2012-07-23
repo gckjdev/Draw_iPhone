@@ -424,13 +424,8 @@
     PPDebug(@"<didBroken>");
     [self hideActivity];
     
-    if ([[DrawGameService defaultService] session] != nil){
-        PPDebug(@"<Network Broken> but session is nil");
-    }
-    else{
-        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...
 //    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
@@ -489,12 +484,7 @@
     }
     
     
-    if (server != nil){
-//        [self hideActivity];
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton delegate:nil];
-//        [dialog showInView:self.view];
-//        return;
-        
+    if (server != nil){        
         address = [server address];
         port = [server.port intValue];            
     }
@@ -506,7 +496,7 @@
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.10"];
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
 

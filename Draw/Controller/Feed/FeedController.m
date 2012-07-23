@@ -117,7 +117,7 @@
     self.myFeedButton.tag = FeedListTypeMy;
     self.allFeedButton.tag = FeedListTypeAll;
     self.hotFeedButton.tag = FeedListTypeHot;
-    [self clickFeedButton:self.allFeedButton];
+    [self clickFeedButton:self.hotFeedButton];
     
 //    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
 }
