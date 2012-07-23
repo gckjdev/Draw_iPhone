@@ -54,7 +54,10 @@ static ShareService* _defaultService;
         appNick = @"";
     
     if (drawUserNickName == nil)
-        drawUserNickName = @"";            
+        drawUserNickName = @"";     
+    
+    if (drawWord == nil)
+        drawWord = @"";
     
     NSString* text = @"";
     if (isDrawByMe){
@@ -134,14 +137,6 @@ static ShareService* _defaultService;
 {
     PPDebug(@"<shareWithImage> word=%@", drawWord);
     
-//    NSString* text = @"";
-//    if (isDrawByMe){
-//        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), drawWord];            
-//    }
-//    else{
-//        text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), drawWord];
-//    }
-    
     UIImage* background = [UIImage imageNamed:@"share_bg.png"];
     UIImage* title = [UIImage imageNamed:@"name.png"];
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(48, 90, 224, 25)] autorelease];
@@ -168,26 +163,7 @@ static ShareService* _defaultService;
         return;
     }
     
-    [self shareWeiboWithDrawUserId:drawUserId isDrawByMe:isDrawByMe drawWord:drawWord imagePath:path];
-
-//    if ([[UserManager defaultManager] hasBindQQWeibo]){
-//        [[QQWeiboService defaultService] publishWeibo:text
-//                                        imageFilePath:path 
-//                                             delegate:nil];        
-//    }
-//
-//    if ([[UserManager defaultManager] hasBindSinaWeibo]){
-//        [[SinaSNSService defaultService] publishWeibo:text 
-//                                        imageFilePath:path 
-//                                             delegate:nil];
-//    }
-//
-//    if ([[UserManager defaultManager] hasBindFacebook]){
-//        [[FacebookSNSService defaultService] publishWeibo:text
-//                                            imageFilePath:path 
-//                                                 delegate:nil];                
-//    }
-    
+    [self shareWeiboWithDrawUserId:drawUserId isDrawByMe:isDrawByMe drawWord:drawWord imagePath:path];    
 }
 
 @end
