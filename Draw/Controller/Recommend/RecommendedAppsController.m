@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 甘橙软件. All rights reserved.
 //
 
-#import "RecommendedAppsControllerViewController.h"
+#import "RecommendedAppsController.h"
 #import "RecommendedAppCell.h"
 #import "PPDebug.h"
 #import "UIUtils.h"
@@ -15,7 +15,7 @@
 #import "LocaleUtils.h"
 
 
-@implementation RecommendedAppsControllerViewController
+@implementation RecommendedAppsController
 
 - (void)viewDidLoad
 {
@@ -90,6 +90,11 @@
 {
     RecommendApp *app = [dataList objectAtIndex:indexPath.row];
     [UIUtils openApp:app.appUrl];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

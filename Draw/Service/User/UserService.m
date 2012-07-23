@@ -866,6 +866,7 @@ static UserService* _defaultUserService;
             NSString* sinaNick = nil;
             NSString* qqNick = nil;
             NSString* facebookId = nil;
+            NSString* qqId = nil;
 
             if (output.resultCode == ERROR_SUCCESS) {
                 userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
@@ -876,6 +877,7 @@ static UserService* _defaultUserService;
                 sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
                 qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
                 facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
+                qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
 
             }            
             if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:FacebookId:)]) {
@@ -886,6 +888,7 @@ static UserService* _defaultUserService;
                                    UserLevel:userLevel 
                                     SinaNick:sinaNick 
                                       QQNick:qqNick 
+                                        qqId:qqId
                                   FacebookId:facebookId];
             }
         });

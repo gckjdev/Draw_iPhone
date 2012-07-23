@@ -11,6 +11,6 @@
 
 #define RECOMMENDED_APP     @"精彩应用推荐"
 
-@interface RecommendedAppsControllerViewController : PPTableViewController
+@interface RecommendedAppsController : PPTableViewController
 
 @end

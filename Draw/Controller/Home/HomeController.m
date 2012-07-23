@@ -50,6 +50,7 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
+#import "RecommendedAppsController.h"
 
 @interface HomeController()
 
@@ -641,6 +642,12 @@
     }
 }
 
+- (IBAction)clickRecommend:(id)sender
+{
+    RecommendedAppsController* vc = [[[RecommendedAppsController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (BOOL)isRegistered
 {
