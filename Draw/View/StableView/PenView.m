@@ -95,7 +95,7 @@
     
     BOOL hasBought = _penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:_penType amount:1];
     if (!hasBought) {
-        [self setAlpha:0.3];
+        [self setAlpha:1.0];
     }
     
 }
