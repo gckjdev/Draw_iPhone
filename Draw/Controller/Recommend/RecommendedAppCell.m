@@ -29,6 +29,13 @@
 
 #pragma mark -
 #pragma mark: Customize the appearance of cell.
+- (void)setAppIcon:(RecommendApp*)app
+{
+    [imageView clear];
+    [imageView setUrl:[NSURL URLWithString:app.appIconUrl]];
+    [GlobalGetImageCache() manage:imageView];
+}
+
 - (void)setCellData:(RecommendApp*)app
 {
     titleLabel.text = app.appName;
@@ -39,12 +46,7 @@
     [self setAppIcon:app];
 }
 
-- (void)setAppIcon:(RecommendApp*)app
-{
-    [imageView clear];
-    [imageView setUrl:[NSURL URLWithString:app.appIconUrl]];
-    [GlobalGetImageCache() manage:imageView];
-}
+
 
 -(void) managedImageSet:(HJManagedImageV*)mi
 {
