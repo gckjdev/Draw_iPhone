@@ -16,8 +16,13 @@
 @property (nonatomic, copy) NSString* imageFilePath;
 @property (nonatomic, assign) BOOL isDrawByMe;
 @property (nonatomic, assign) BOOL isGIF;
+@property (nonatomic, retain) NSString* drawUserId;
 
 - (id)initWithDrawImageFile:(NSString*)imageFilePath isGIF:(BOOL)isGIF drawWord:(NSString*)drawWord isMe:(BOOL)isDrawByMe;
+- (id)initWithDrawImageFile:(NSString*)imageFilePath 
+                      isGIF:(BOOL)isGIF 
+                   drawWord:(NSString*)drawWord 
+                 drawUserId:(NSString*)drawUserId;
 - (void)displayWithViewController:(UIViewController*)superViewController;
 
 @end
