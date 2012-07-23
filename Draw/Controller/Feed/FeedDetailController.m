@@ -20,6 +20,8 @@
 #import "SelectWordController.h"
 #import "TimeUtils.h"
 #import "CommonUserInfoView.h"
+#import "ShareService.h"
+#import "DrawDataService.h"
 //#import "OfflineGuessDrawController.h
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
@@ -184,8 +186,6 @@
         self.drawView.playSpeed = speed;
         [self.drawView play];
     }
-    
-
     
 }
 
@@ -389,6 +389,57 @@
     }
 }
 
+#define WIDTH_SHARE_BUTTON      ([DeviceDetection isIPAD] ? 180.0 : 90.0)
+#define HEIGHT_SHARE_BUTTON     ([DeviceDetection isIPAD] ? 60.0 : 30.0)
+#define FONT_SIZE_SHARE_BUTTON  ([DeviceDetection isIPAD] ? 28.0 : 14.0)
+#define SPACE_DRAW_AND_BUTTON   ([DeviceDetection isIPAD] ? 4.0 : 2.0)
+#define TAG_SHARE_BUTTON        2012072301
+- (void)removeShareButton
+{
+    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_SHARE_BUTTON];
+    [button removeFromSuperview];
+}
+
+- (void)addShareButton
+{
+    [self removeShareButton];
+    UIButton *button = [[UIButton alloc] init];
+    button.tag = TAG_SHARE_BUTTON;
+    [button setFrame:CGRectMake((self.view.frame.size.width-WIDTH_SHARE_BUTTON)/2, _drawView.frame.origin.y+ _drawView.frame.size.height + SPACE_DRAW_AND_BUTTON, WIDTH_SHARE_BUTTON, HEIGHT_SHARE_BUTTON)];
+    [button addTarget:self action:@selector(clickSaveAndShare:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [button setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
+    [button setTitle:NSLS(@"kSaveAndShare") forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_SHARE_BUTTON]];
+    [button.titleLabel setShadowColor:[UIColor blackColor]];
+    [button.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    
+    [self.view addSubview:button];
+    [button release];
+}
+
+- (void)clickSaveAndShare:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    [self.drawView show]; 
+    [[ShareService defaultService] shareWithImage:[_drawView createImage] 
+                                       drawUserId:_feed.userId 
+                                       isDrawByMe:[_feed isMyOpus] 
+                                         drawWord:_feed.drawData.word.text];    
+    
+    [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
+                                              userId:_feed.userId 
+                                            nickName:_feed.nickName 
+                                           isMyPaint:[_feed isMyOpus] 
+                                                word:_feed.drawData.word.text 
+                                               image:[_drawView createImage] viewController:self];
+    
+    button.enabled = NO;
+    button.selected = YES;
+}
+
+
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
     if (showDrawView.tag == SHOW_VIEW_TAG_SMALL) {
@@ -398,11 +449,13 @@
         _maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
         [self.view bringSubviewToFront:_maskView];
         [self.view bringSubviewToFront:self.drawView];
+        [self addShareButton];
     }else{
         _maskView.hidden = YES;
         _maskView.backgroundColor = [UIColor clearColor];
         showDrawView.tag = SHOW_VIEW_TAG_SMALL;        
         [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:YES];
+        [self removeShareButton];
     }
 }
 
