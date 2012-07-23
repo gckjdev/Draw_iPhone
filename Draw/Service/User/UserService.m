@@ -880,7 +880,7 @@ static UserService* _defaultUserService;
                 qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
 
             }            
-            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:FacebookId:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:qqId:FacebookId:)]) {
                 [delegate didGetUserNickName:userNickName
                                   UserAvatar:userAvatar
                                   UserGender:userGender
