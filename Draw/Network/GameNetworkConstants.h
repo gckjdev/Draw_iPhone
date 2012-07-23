@@ -101,6 +101,7 @@
 #define METHOD_NEW_JOIN_ROOM @"njr"
 
 #define METHOD_GET_STATISTICS @"gss"
+#define METHOD_REPORT_STATUS  @"rs" 
 
 //find draw
 #define METHOD_FINDDRAW @"fd"
