@@ -15,12 +15,6 @@
 
 #define GET_RECOMMEND_APP @"get_recommend_app"
 
-enum {
-    APP_NAME = 0,
-    APP_DESCRIPTION,
-    APP_ICON_URL,
-    APP_ULR
-};
 
 static RecommendAppService* shareInstance;
 
@@ -46,26 +40,23 @@ static RecommendAppService* shareInstance;
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            NSArray* appArray = nil;
+            NSArray* appList = nil;
             
             if (output.resultCode == ERROR_SUCCESS){
-                appArray = (NSArray*)[output.arrayData objectAtIndex:0];
+                appList = [output.jsonDataDict objectForKey:PARA_RECOMMEND_APPS];
                 [[RecommendAppManager defaultManager].appList removeAllObjects];
-                for (NSArray* array in appArray) {
-                    if (array.count == 4) {
-                        NSString* appName = [array objectAtIndex:APP_NAME];
-                        NSString* appDescription = [array objectAtIndex:APP_DESCRIPTION];
-                        NSString* appIconUrl = [array objectAtIndex:APP_ICON_URL];
-                        NSString* appUrl = [array objectAtIndex:APP_ULR];
-                        
-                        RecommendApp* app = [[RecommendApp alloc] initWithAppName:appName
-                                                                      description:appDescription 
-                                                                          iconUrl:appIconUrl 
-                                                                           appUrl:appUrl];
-                        
-                        [[RecommendAppManager defaultManager].appList addObject:app];
-                        
-                    }
+                for (NSDictionary* appDic in appList) {
+                    NSString* appName = [appDic objectForKey:PARA_APP_NAME];
+                    NSString* appDescription = [appDic objectForKey:PARA_APP_DESCRIPTION];
+                    NSString* appIconUrl = [appDic objectForKey:PARA_APP_ICON_URL];
+                    NSString* appUrl = [appDic objectForKey:PARA_APP_ULR];
+                    
+                    RecommendApp* app = [[RecommendApp alloc] initWithAppName:appName
+                                                                  description:appDescription 
+                                                                      iconUrl:appIconUrl 
+                                                                       appUrl:appUrl];
+                    
+                    [[RecommendAppManager defaultManager].appList addObject:app];
                 }
                 if (_delegate && [_delegate respondsToSelector:@selector(getRecommendAppFinish)]) {
                     [_delegate getRecommendAppFinish];

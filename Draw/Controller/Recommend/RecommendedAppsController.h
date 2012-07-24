@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "recommendAppService.h"
 
 #define RECOMMENDED_APP     @"精彩应用推荐"
 
-@interface RecommendedAppsController : PPTableViewController
+@interface RecommendedAppsController : PPTableViewController <RecommendAppServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

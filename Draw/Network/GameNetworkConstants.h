@@ -404,6 +404,13 @@
 #define PARA_LEVEL_INFO @"lif"
 #define PARA_SYNC_TYPE  @"st"
 
+//for recommend app
+#define PARA_RECOMMEND_APPS @"ra"
+#define PARA_APP_NAME   @"an"
+#define PARA_APP_DESCRIPTION    @"ad"
+#define PARA_APP_ICON_URL   @"aiu"
+#define PARA_APP_ULR        @"au"
+
 
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
