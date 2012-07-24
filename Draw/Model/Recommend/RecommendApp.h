@@ -19,4 +19,10 @@
               iconUrl:(NSString*)iconUrl 
                appUrl:(NSString*)appUrl;
 
++ (RecommendApp*)draw;
++ (RecommendApp*)shuriken;
++ (RecommendApp*)crazyFinger;
++ (RecommendApp*)ghostGame;
++ (RecommendApp*)countBean;
++ (RecommendApp*)groupBuy;
 @end

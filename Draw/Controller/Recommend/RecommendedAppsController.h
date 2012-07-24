@@ -12,5 +12,6 @@
 #define RECOMMENDED_APP     @"精彩应用推荐"
 
 @interface RecommendedAppsController : PPTableViewController
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

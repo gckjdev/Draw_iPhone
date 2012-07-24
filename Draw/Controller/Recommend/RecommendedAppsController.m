@@ -16,22 +16,24 @@
 
 
 @implementation RecommendedAppsController
+@synthesize titleLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleLabel setText:NSLS(@"kRecommendApps")];
     // Do any additional setup after loading the view from its nib.
     
     [self.navigationItem setTitle:RECOMMENDED_APP];
-    RecommendApp* app = [[RecommendApp alloc] initWithAppName:NSLS(@"猜猜画画") description:NSLS(@"猜猜畫畫,又叫做你畫我猜,是一款多人一起玩的畫畫和猜詞的趣味小游戏") iconUrl:@"http://img.you100.me:8080/upload/20120722/1fc73af0-d3b4-11e1-83de-00163e0174e8_pp" appUrl:@"http://itunes.apple.com/cn/app/ni-hua-wo-cai/id513819630?l=en&mt=8"];
-    [[RecommendAppManager defaultManager].appList addObject:app];
-    [app release];
+    NSMutableArray* appsArray = [NSMutableArray arrayWithObjects:[RecommendApp shuriken], [RecommendApp ghostGame], [RecommendApp countBean], [RecommendApp crazyFinger], nil];
+    [RecommendAppManager defaultManager].appList = appsArray;
     self.dataList = [RecommendAppManager defaultManager].appList;
 //    self.dataList = [[[AppManager defaultManager] app] recommendedAppsList];
 }
 
 - (void)viewDidUnload
 {
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -91,4 +93,8 @@
 }
 
 
+- (void)dealloc {
+    [titleLabel release];
+    [super dealloc];
+}
 @end
