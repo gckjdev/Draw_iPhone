@@ -667,7 +667,7 @@
 
 - (BOOL)throwFlower:(ToolView *)toolView
 {
-    //TODO add throw animation
+    // add throw animation
     [self throwTool:toolView];
     
     // send request for item usage and award
@@ -682,15 +682,12 @@
         [toolView setEnabled:NO];
     }
     
-//    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
-//    [[FeedService defaultService] throwFlowerToOpus:opusId author:self.feed.author delegate:nil];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-    return YES;
+    return NO;
 }
 
 - (BOOL)throwTomato:(ToolView *)toolView
 {
-    //TODO add throw animation
+    // throw animation
     [self throwTool:toolView];
     
     // send request for item usage and award
@@ -705,10 +702,7 @@
         [toolView setEnabled:NO];
     }
     
-//    NSString *opusId = [self.feed isDrawType] ? self.feed.feedId : self.feed.opusId;
-//    [[FeedService defaultService] throwTomatoToOpus:opusId author:self.feed.author delegate:nil];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
-    return YES;
+    return NO;
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView

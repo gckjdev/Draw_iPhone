@@ -70,14 +70,11 @@ ItemService *_staticItemService = nil;
         awardAmount = [ItemManager awardAmountByItem:itemType];
         awardExp = [ItemManager awardExpByItem:itemType];
         
-        // send feed action
-        if (itemType == ItemTypeTomato) {
-            [[FeedService defaultService] throwTomatoToOpus:feedOpusId author:feedAuthor delegate:nil];
-        }
-    if (itemType == ItemTypeFlower) {
-        [[FeedService defaultService] throwFlowerToOpus:feedOpusId author:feedAuthor delegate:nil];
-    }
-        
+        // send feed action        
+        [[FeedService defaultService] throwItem:itemType 
+                                         toOpus:feedOpusId 
+                                         author:feedAuthor 
+                                       delegate:nil];        
         
     }else{
         // send online request for online realtime play

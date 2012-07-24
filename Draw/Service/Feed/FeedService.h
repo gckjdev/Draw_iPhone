@@ -8,6 +8,7 @@
 
 #import "CommonService.h"
 #import "Feed.h"
+#import "ItemType.h"
 
 #define DB_FIELD_ACTION_SAVE_TIMES      @"save_times"
 
@@ -85,6 +86,10 @@
 
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
+
+- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
+           author:(NSString *)author   
+         delegate:(id<FeedServiceDelegate>)delegate;
 
 
 @end
