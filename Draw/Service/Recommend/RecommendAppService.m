@@ -57,6 +57,7 @@ static RecommendAppService* shareInstance;
                                                                        appUrl:appUrl];
                     
                     [[RecommendAppManager defaultManager].appList addObject:app];
+                    [app release];
                 }
                 if (_delegate && [_delegate respondsToSelector:@selector(getRecommendAppFinish)]) {
                     [_delegate getRecommendAppFinish];
