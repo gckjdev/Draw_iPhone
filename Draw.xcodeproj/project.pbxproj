@@ -227,6 +227,7 @@
 		C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FF415BD553700828562 /* RecommendedAppsController.m */; };
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
+		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1163,6 +1164,8 @@
 		C2E90FF415BD553700828562 /* RecommendedAppsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppsController.m; sourceTree = "<group>"; };
 		C2E90FF515BD553800828562 /* RecommendedAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppsController.xib; sourceTree = "<group>"; };
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
+		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
+		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -2596,6 +2599,15 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
+		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */,
+				C2F48BD015BE4484005C4D72 /* RecommendAppService.m */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
 		C2F947BE1533D8BF0034C895 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
@@ -2739,6 +2751,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48BCE15BE4484005C4D72 /* Recommend */,
 				CA02B52515AC240700B2A3E2 /* Item */,
 				CAA9C424159BF40A00398EC5 /* Share */,
 				CA7C7E081587219600406BFB /* Feed */,
@@ -5969,6 +5982,7 @@
 				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
 				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
 				C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */,
+				C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -140,6 +140,7 @@
 
 #define METHOD_GET_TARGET_USER_INFO    @"gtui"
 #define METHOD_DELETE_FEED @"delf"
+#define METHOD_GET_RECOMMEND_APP    @"gra"
 
 //game parameters
 
