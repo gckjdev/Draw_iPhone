@@ -118,6 +118,20 @@
 
 #pragma mark - View lifecycle
 
+- (void)initRecommendButton
+{
+    [self.recommendButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
+    [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
+    int fontSize = ([DeviceDetection isIPAD]?30:17);
+    CGSize size = [self.recommendButton.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+    if (size.width >= self.recommendButton.frame.size.width) {
+        [self.recommendButton setFrame:CGRectMake(self.recommendButton.frame.origin.x, 
+                                                  self.recommendButton.frame.origin.y, 
+                                                  self.recommendButton.frame.size.width*2, 
+                                                  self.recommendButton.frame.size.height)];
+    }
+}
+
 - (void)viewDidLoad
 {        
     self.adView = [[AdService defaultService] createAdInView:self                  
@@ -141,7 +155,7 @@
     [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
-    [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
+    [self initRecommendButton];
     
     self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
@@ -207,7 +221,7 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
-            [self.recommendButton setFrame:CGRectMake(65, 792, 66, 66)];
+            [self.recommendButton setFrame:CGRectMake(65, 800, 50, 50)];
         }
     }
 }
