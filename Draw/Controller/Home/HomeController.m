@@ -130,6 +130,9 @@
                                                   self.recommendButton.frame.size.width*2, 
                                                   self.recommendButton.frame.size.height)];
     }
+    if (![[AdService defaultService] isShowAd]) {
+        [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+    }
 }
 
 - (void)viewDidLoad
@@ -221,7 +224,7 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
-            [self.recommendButton setFrame:CGRectMake(65, 800, 50, 50)];
+            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
         }
     }
 }
