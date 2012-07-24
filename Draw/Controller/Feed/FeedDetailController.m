@@ -392,7 +392,7 @@
 #define WIDTH_SHARE_BUTTON      ([DeviceDetection isIPAD] ? 180.0 : 90.0)
 #define HEIGHT_SHARE_BUTTON     ([DeviceDetection isIPAD] ? 60.0 : 30.0)
 #define FONT_SIZE_SHARE_BUTTON  ([DeviceDetection isIPAD] ? 28.0 : 14.0)
-#define SPACE_DRAW_AND_BUTTON   ([DeviceDetection isIPAD] ? 4.0 : 2.0)
+#define SPACE_DRAW_AND_BUTTON   ([DeviceDetection isIPAD] ? 20.0 : 10.0)
 #define TAG_SHARE_BUTTON        2012072301
 - (void)removeShareButton
 {
