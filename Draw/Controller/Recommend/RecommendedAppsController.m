@@ -13,7 +13,7 @@
 #import "RecommendAppManager.h"
 #import "RecommendApp.h"
 #import "LocaleUtils.h"
-
+#import "DeviceDetection.h"
 
 
 @implementation RecommendedAppsController
@@ -53,7 +53,7 @@
 #pragma mark Table View Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 75;
+	return [DeviceDetection isIPAD]?164:82;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
