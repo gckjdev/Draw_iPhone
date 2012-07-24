@@ -1958,7 +1958,6 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_RECOMMEND_APP];
         return str;
     };
     

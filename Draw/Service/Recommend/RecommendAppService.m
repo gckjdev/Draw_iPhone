@@ -12,6 +12,7 @@
 #import "RecommendAppManager.h"
 #import "GameNetworkConstants.h"
 #import "PPNetworkRequest.h"
+#import "ConfigManager.h"
 
 #define GET_RECOMMEND_APP @"get_recommend_app"
 
@@ -36,7 +37,7 @@ static RecommendAppService* shareInstance;
     [queue addOperationWithBlock:^{
         
         CommonNetworkOutput* output = nil;
-        output = [GameNetworkRequest getRecommendApp:SERVER_URL];
+        output = [GameNetworkRequest getRecommendApp:[ConfigManager getRecommendAppLink]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
@@ -59,9 +60,10 @@ static RecommendAppService* shareInstance;
                     [[RecommendAppManager defaultManager].appList addObject:app];
                     [app release];
                 }
-                if (_delegate && [_delegate respondsToSelector:@selector(getRecommendAppFinish)]) {
-                    [_delegate getRecommendAppFinish];
-                }
+                
+            }
+            if (_delegate && [_delegate respondsToSelector:@selector(getRecommendAppFinish)]) {
+                [_delegate getRecommendAppFinish];
             }
             
         });                        

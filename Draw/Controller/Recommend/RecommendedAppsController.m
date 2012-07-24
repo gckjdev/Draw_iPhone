@@ -26,11 +26,10 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.navigationItem setTitle:RECOMMENDED_APP];
-//    [[RecommendAppService defaultService] getRecommendApp];
-//    [self showActivityWithText:NSLS(@"kLoading")];
-    NSMutableArray* appsArray = [NSMutableArray arrayWithObjects:[RecommendApp shuriken], [RecommendApp ghostGame], [RecommendApp countBean], [RecommendApp crazyFinger], nil];
-    [RecommendAppManager defaultManager].appList = appsArray;
-    self.dataList = [RecommendAppManager defaultManager].appList;
+    [RecommendAppService defaultService].delegate = self;
+    [[RecommendAppService defaultService] getRecommendApp];
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
 //    self.dataList = [[[AppManager defaultManager] app] recommendedAppsList];
 }
 
