@@ -405,11 +405,11 @@
 #define PARA_SYNC_TYPE  @"st"
 
 //for recommend app
-#define PARA_RECOMMEND_APPS @"ra"
-#define PARA_APP_NAME   @"an"
-#define PARA_APP_DESCRIPTION    @"ad"
-#define PARA_APP_ICON_URL   @"aiu"
-#define PARA_APP_ULR        @"au"
+#define PARA_RECOMMEND_APPS @"recommend_apps"
+#define PARA_APP_NAME   @"name"
+#define PARA_APP_DESCRIPTION    @"description"
+#define PARA_APP_ICON_URL   @"icon_url"
+#define PARA_APP_ULR        @"url"
 
 
 
