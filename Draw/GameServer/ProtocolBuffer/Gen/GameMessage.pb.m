@@ -4079,17 +4079,31 @@ static FacetimeChatRequest* defaultFacetimeChatRequestInstance = nil;
 
 @interface FacetimeChatResponse ()
 @property (retain) NSMutableArray* mutableUserList;
+@property BOOL chosenToInitiate;
 @end
 
 @implementation FacetimeChatResponse
 
 @synthesize mutableUserList;
+- (BOOL) hasChosenToInitiate {
+  return !!hasChosenToInitiate_;
+}
+- (void) setHasChosenToInitiate:(BOOL) value {
+  hasChosenToInitiate_ = !!value;
+}
+- (BOOL) chosenToInitiate {
+  return !!chosenToInitiate_;
+}
+- (void) setChosenToInitiate:(BOOL) value {
+  chosenToInitiate_ = !!value;
+}
 - (void) dealloc {
   self.mutableUserList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.chosenToInitiate = NO;
   }
   return self;
 }
@@ -4113,6 +4127,9 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
+  if (!self.hasChosenToInitiate) {
+    return NO;
+  }
   for (PBGameUser* element in self.userList) {
     if (!element.isInitialized) {
       return NO;
@@ -4123,6 +4140,9 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (PBGameUser* element in self.userList) {
     [output writeMessage:1 value:element];
+  }
+  if (self.hasChosenToInitiate) {
+    [output writeBool:2 value:self.chosenToInitiate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4135,6 +4155,9 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   size = 0;
   for (PBGameUser* element in self.userList) {
     size += computeMessageSize(1, element);
+  }
+  if (self.hasChosenToInitiate) {
+    size += computeBoolSize(2, self.chosenToInitiate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4217,6 +4240,9 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     }
     [result.mutableUserList addObjectsFromArray:other.mutableUserList];
   }
+  if (other.hasChosenToInitiate) {
+    [self setChosenToInitiate:other.chosenToInitiate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4242,6 +4268,10 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setChosenToInitiate:[input readBool]];
         break;
       }
     }
@@ -4274,6 +4304,22 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     result.mutableUserList = [NSMutableArray array];
   }
   [result.mutableUserList addObject:value];
+  return self;
+}
+- (BOOL) hasChosenToInitiate {
+  return result.hasChosenToInitiate;
+}
+- (BOOL) chosenToInitiate {
+  return result.chosenToInitiate;
+}
+- (FacetimeChatResponse_Builder*) setChosenToInitiate:(BOOL) value {
+  result.hasChosenToInitiate = YES;
+  result.chosenToInitiate = value;
+  return self;
+}
+- (FacetimeChatResponse_Builder*) clearChosenToInitiate {
+  result.hasChosenToInitiate = NO;
+  result.chosenToInitiate = NO;
   return self;
 }
 @end

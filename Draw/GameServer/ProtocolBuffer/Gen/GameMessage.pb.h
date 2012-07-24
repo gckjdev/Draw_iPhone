@@ -1017,8 +1017,12 @@
 
 @interface FacetimeChatResponse : PBGeneratedMessage {
 @private
+  BOOL hasChosenToInitiate_:1;
+  BOOL chosenToInitiate_:1;
   NSMutableArray* mutableUserList;
 }
+- (BOOL) hasChosenToInitiate;
+- (BOOL) chosenToInitiate;
 - (NSArray*) userList;
 - (PBGameUser*) userAtIndex:(int32_t) index;
 
@@ -1062,6 +1066,11 @@
 - (FacetimeChatResponse_Builder*) addUser:(PBGameUser*) value;
 - (FacetimeChatResponse_Builder*) addAllUser:(NSArray*) values;
 - (FacetimeChatResponse_Builder*) clearUserList;
+
+- (BOOL) hasChosenToInitiate;
+- (BOOL) chosenToInitiate;
+- (FacetimeChatResponse_Builder*) setChosenToInitiate:(BOOL) value;
+- (FacetimeChatResponse_Builder*) clearChosenToInitiate;
 @end
 
 @interface GameMessage : PBGeneratedMessage {

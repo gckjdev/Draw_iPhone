@@ -131,7 +131,9 @@
                                                   self.recommendButton.frame.size.height)];
     }
     if (![[AdService defaultService] isShowAd]) {
-        [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+        if ([DeviceDetection isIPAD]){
+            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+        }
     }
 }
 
@@ -224,7 +226,10 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
-            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+            
+            if ([DeviceDetection isIPAD]){
+                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+            }
         }
     }
 }
