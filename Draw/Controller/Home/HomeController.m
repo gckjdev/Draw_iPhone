@@ -65,6 +65,7 @@
 @implementation HomeController
 
 @synthesize adView = _adView;
+@synthesize recommendButton = _recommendButton;
 @synthesize startButton = _startButton;
 @synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
@@ -140,6 +141,7 @@
     [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
+    [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
     
     self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
@@ -205,6 +207,7 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
+            [self.recommendButton setFrame:CGRectMake(65, 792, 66, 66)];
         }
     }
 }
@@ -249,6 +252,7 @@
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
+    [self setRecommendButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -597,6 +601,7 @@
     [_messageBadge release];
     [_roomBadge release];
     [_homeScrollView release];
+    [_recommendButton release];
     [super dealloc];
 }
 

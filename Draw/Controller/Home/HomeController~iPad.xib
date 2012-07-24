@@ -865,7 +865,7 @@
 								<string key="NSFrame">{{535, 526}, {160, 191}}</string>
 								<reference key="NSSuperview" ref="792830027"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="628276490"/>
+								<reference key="NSNextKeyView" ref="46329440"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -940,6 +940,41 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<object class="IBUIButton" id="46329440">
+						<reference key="NSNextResponder" ref="711550771"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{393, 792}, {66, 66}}</string>
+						<reference key="NSSuperview" ref="711550771"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="628276490"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
+						<string key="IBUINormalTitle">More</string>
+						<reference key="IBUIHighlightedTitleColor" ref="634139745"/>
+						<reference key="IBUINormalTitleColor" ref="634139745"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">green_button@2x.png</string>
+						</object>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">23</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">23</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
@@ -1181,6 +1216,14 @@
 					<int key="connectionID">208</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">recommendButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="46329440"/>
+					</object>
+					<int key="connectionID">210</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickFeedButton:</string>
 						<reference key="source" ref="513382529"/>
@@ -1288,6 +1331,15 @@
 					</object>
 					<int key="connectionID">189</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickRecommend:</string>
+						<reference key="source" ref="46329440"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">211</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1330,6 +1382,7 @@
 							<reference ref="199568882"/>
 							<reference ref="694885542"/>
 							<reference ref="792830027"/>
+							<reference ref="46329440"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1521,6 +1574,11 @@
 						<reference key="object" ref="55822452"/>
 						<reference key="parent" ref="792830027"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">209</int>
+						<reference key="object" ref="46329440"/>
+						<reference key="parent" ref="711550771"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1569,12 +1627,13 @@
 				<string key="200.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="204.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="206.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="209.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">208</int>
+			<int key="maxID">211</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1663,6 +1722,7 @@
 						<string key="homeScrollView">UIScrollView</string>
 						<string key="messageBadge">UIButton</string>
 						<string key="playWithFriendButton">UIButton</string>
+						<string key="recommendButton">UIButton</string>
 						<string key="roomBadge">UIButton</string>
 						<string key="settingButton">UIButton</string>
 						<string key="settingLabel">UILabel</string>
@@ -1743,6 +1803,10 @@
 							<string key="name">playWithFriendButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="recommendButton">
+							<string key="name">recommendButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="roomBadge">
 							<string key="name">roomBadge</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1809,6 +1873,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_guess@2x(1).png">{134, 134}</string>
+			<string key="green_button@2x.png">{71, 84}</string>
 			<string key="h_chat@@2x.png">{134, 134}</string>
 			<string key="h_draw@2x.png">{134, 134}</string>
 			<string key="h_friends@2x.png">{134, 134}</string>
