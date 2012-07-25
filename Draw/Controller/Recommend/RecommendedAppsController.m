@@ -86,7 +86,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecommendApp *app = [dataList objectAtIndex:indexPath.row];
-    [UIUtils openApp:app.appUrl];
+    [UIUtils openURL:app.appUrl];
 }
 
 - (IBAction)clickBackButton:(id)sender
