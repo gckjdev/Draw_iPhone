@@ -772,4 +772,15 @@
     [self updateBadge:self.roomBadge value:badge];
 
 }
+
+- (IBAction)clickDice:(id)sender
+{
+    
+}
+
+- (IBAction)clickFacetime:(id)sender
+{
+    
+}
+
 @end
