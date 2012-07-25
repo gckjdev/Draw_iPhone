@@ -753,9 +753,10 @@ enum {
 }
 
 - (BOOL)isLocalChanged
-{    
+{ 
+    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
     BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn);
+    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]) || [AudioManager defaultManager].isSoundOn != isSoundOn || [AudioManager defaultManager].volume != slider.value);
     return localChanged;
 }
 
@@ -768,6 +769,7 @@ enum {
         [ConfigManager setGuessDifficultLevel:guessLevel];
         [userManager setGender:self.gender];
         [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
+        [[AudioManager defaultManager] saveSoundSettings];
         //[ConfigManager setChatVoiceEnable:chatVoice];
         if (!hasEdited) {
             [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
