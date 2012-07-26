@@ -115,7 +115,7 @@
 							<object class="IBUIImageView" id="320889418">
 								<reference key="NSNextResponder" ref="792597380"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{29, 82}, {64, 68}}</string>
+								<string key="NSFrame">{{29, 90}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="792597380"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="782027522"/>
@@ -168,7 +168,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{729, 245}</string>
+						<string key="NSFrameSize">{729, 199}</string>
 						<reference key="NSSuperview" ref="820496868"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="320889418"/>
@@ -180,7 +180,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{729, 246}</string>
+				<string key="NSFrameSize">{729, 200}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="792597380"/>
@@ -188,7 +188,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="792597380"/>
 				<string key="IBUIReuseIdentifier">ColorShopCell</string>
-				<real value="123" key="IBUIRowHeight"/>
+				<real value="77" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

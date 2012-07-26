@@ -228,6 +228,7 @@
 		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
+		C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1170,6 +1171,7 @@
 		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
 		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
 		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
+		C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_buyed@2x.png"; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -2654,6 +2656,7 @@
 		CA03470B15AA7B7F00C2C172 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */,
 				C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */,
 				CA02B52915AC2CA400B2A3E2 /* buyed@2x.png */,
 				CA02B52115AC111800B2A3E2 /* flower_result@2x.png */,
@@ -5704,6 +5707,7 @@
 				C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */,
 				C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */,
 				CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */,
+				C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

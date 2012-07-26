@@ -13,7 +13,7 @@
 #import "DeviceDetection.h"
 #import "ShareImageManager.h"
 
-#define CELL_HEIGHT_IPHONE 73.0
+#define CELL_HEIGHT_IPHONE 93.0
 #define CELL_HEIGHT_IPAD ((CELL_HEIGHT_IPHONE)*2.0)
 
 #define CELL_HEIGHT ([DeviceDetection isIPAD] ? (CELL_HEIGHT_IPAD) : (CELL_HEIGHT_IPHONE))
@@ -67,7 +67,7 @@
 - (void)setCellInfo:(ColorGroup *)colorGroup hasBought:(BOOL)hasBought
 {
     priceLabel.hidden = YES;
-    [coinImageView setImage:(hasBought?[ShareImageManager defaultManager].buyedImage:nil)];
+    [coinImageView setImage:(hasBought?[ShareImageManager defaultManager].colorBuyedImage:nil)];
     
     if (colorGroup) {
         [self updatePrice:colorGroup.price];
