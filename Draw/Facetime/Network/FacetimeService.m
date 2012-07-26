@@ -10,6 +10,8 @@
 
 @implementation FacetimeService
 
+static FacetimeService *_defaultService;
+
 + (FacetimeService*)defaultService
 {
     return nil;
