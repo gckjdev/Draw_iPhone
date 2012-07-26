@@ -7,6 +7,8 @@
 //
 
 #import "FacetimeMainController.h"
+#import "FacetimeService.h"
+#import "CommonMessageCenter.h"
 
 @implementation FacetimeMainController
 
@@ -29,6 +31,13 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[FacetimeService defaultService] connectServer:self];
+    [self showActivity];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,4 +57,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)chatToMale:(id)sender
+{
+    [[FacetimeService defaultService] sendFacetimeRequestForMaleWithGender:YES];
+}
+
+
+#pragma mark - facetimeservice delegate
+- (void)didConnected
+{
+    [self hideActivity];
+}
 @end

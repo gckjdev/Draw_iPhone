@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonNetworkClient.h"
+@class PBGameUser;
 
-@interface FacetimeNetworkClient : NSObject
+@interface FacetimeNetworkClient : CommonNetworkClient <CommonNetworkClientDelegate>
+
++ (FacetimeNetworkClient*)defaultInstance;
+- (void)start:(NSString*)serverAddress port:(int)port;
+- (void)askFaceTime:(PBGameUser*)user;
+- (void)askFaceTime:(PBGameUser*)user 
+             gender:(BOOL)gender;
 
 @end

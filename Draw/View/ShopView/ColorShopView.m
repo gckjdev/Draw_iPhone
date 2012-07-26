@@ -76,7 +76,7 @@
 
 - (void)updateBalanceLabel
 {
-    NSString *accountString = [NSString stringWithFormat:@"%d",[[AccountManager defaultManager] getBalance]];
+    NSString *accountString = [NSString stringWithFormat:@"x%d",[[AccountManager defaultManager] getBalance]];
     [self.coinCountLabel setText:accountString];    
 }
 

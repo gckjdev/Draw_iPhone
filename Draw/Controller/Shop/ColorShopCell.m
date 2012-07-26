@@ -11,8 +11,9 @@
 #import "ColorView.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
+#import "ShareImageManager.h"
 
-#define CELL_HEIGHT_IPHONE 123.0
+#define CELL_HEIGHT_IPHONE 73.0
 #define CELL_HEIGHT_IPAD ((CELL_HEIGHT_IPHONE)*2.0)
 
 #define CELL_HEIGHT ([DeviceDetection isIPAD] ? (CELL_HEIGHT_IPAD) : (CELL_HEIGHT_IPHONE))
@@ -49,7 +50,7 @@
 
 - (void)updatePrice:(NSInteger)price
 {
-    NSString *priceString = [NSString stringWithFormat:@"x%d",price];
+    NSString *priceString = [NSString stringWithFormat:@"%d",price];
     [self.priceLabel setText:priceString];
 }
 
@@ -65,7 +66,9 @@
 #define COLOR_NUMBER_PER_ROW 5
 - (void)setCellInfo:(ColorGroup *)colorGroup hasBought:(BOOL)hasBought
 {
-    priceLabel.hidden = coinImageView.hidden = hasBought;
+    priceLabel.hidden = YES;
+    [coinImageView setImage:(hasBought?[ShareImageManager defaultManager].buyedImage:nil)];
+    
     if (colorGroup) {
         [self updatePrice:colorGroup.price];
         for (int i = BASE_COLOR_VIEW_TAG; i < BASE_COLOR_VIEW_TAG + COLOR_NUMBER_PER_ROW; ++ i) {
