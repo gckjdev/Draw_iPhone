@@ -3992,6 +3992,116 @@
 			path = Online;
 			sourceTree = "<group>";
 		};
+		CA2F81D915C0D62D002038A6 /* Facetime */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81DA15C0D62E002038A6 /* Controller */,
+				CA2F81DB15C0D62E002038A6 /* Model */,
+				CA2F81DC15C0D62E002038A6 /* Network */,
+				CA2F81DD15C0D62E002038A6 /* Resource */,
+				CA2F81DE15C0D62E002038A6 /* Service */,
+				CA2F81DF15C0D62E002038A6 /* View */,
+			);
+			path = Facetime;
+			sourceTree = "<group>";
+		};
+		CA2F81DA15C0D62E002038A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2F81DB15C0D62E002038A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA2F81DC15C0D62E002038A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA2F81DD15C0D62E002038A6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA2F81DE15C0D62E002038A6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA2F81DF15C0D62E002038A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA2F81E015C0D62E002038A6 /* Dice */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81E115C0D62E002038A6 /* Controller */,
+				CA2F81E215C0D62E002038A6 /* Model */,
+				CA2F81E315C0D62E002038A6 /* Network */,
+				CA2F81E415C0D62E002038A6 /* Resource */,
+				CA2F81E515C0D62E002038A6 /* Service */,
+				CA2F81E615C0D62E002038A6 /* View */,
+			);
+			path = Dice;
+			sourceTree = "<group>";
+		};
+		CA2F81E115C0D62E002038A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2F81E215C0D62E002038A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA2F81E315C0D62E002038A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA2F81E415C0D62E002038A6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA2F81E515C0D62E002038A6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA2F81E615C0D62E002038A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -4460,6 +4570,8 @@
 				CA9AA963150F4071009D1CB6 /* View */,
 				CAECE0291503B25500BC2404 /* Model */,
 				CA3220FF151B6A490039A384 /* Network */,
+				CA2F81D915C0D62D002038A6 /* Facetime */,
+				CA2F81E015C0D62E002038A6 /* Dice */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
