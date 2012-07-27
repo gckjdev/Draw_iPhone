@@ -691,6 +691,8 @@
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
+		CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */; };
+		CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7915C27A4000E9C1CD /* DiceGameService.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
@@ -1930,6 +1932,10 @@
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
+		CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceNetworkClient.m; sourceTree = "<group>"; };
+		CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceNetworkClient.h; sourceTree = "<group>"; };
+		CA91FC7915C27A4000E9C1CD /* DiceGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameService.m; sourceTree = "<group>"; };
+		CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameService.h; sourceTree = "<group>"; };
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
@@ -4133,6 +4139,10 @@
 		CA2F81E315C0D62E002038A6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */,
+				CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */,
+				CA91FC7915C27A4000E9C1CD /* DiceGameService.m */,
+				CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -6173,6 +6183,8 @@
 				C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */,
 				A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */,
 				A4B763A915C25218003B4E72 /* LieDice.pb.m in Sources */,
+				CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */,
+				CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
