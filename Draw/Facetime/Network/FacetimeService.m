@@ -93,6 +93,7 @@ static FacetimeService *_defaultService;
 #pragma mark - CommonNetworkClientDelegate
 - (void)didConnected
 {
+    PPDebug(@"<FacetimeService> connect to server success");
     if (_connectionDelegate && [_connectionDelegate respondsToSelector:@selector(didConnected)]) {
         [_connectionDelegate didConnected];
     }

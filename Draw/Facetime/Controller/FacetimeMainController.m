@@ -112,6 +112,9 @@ typedef enum {
 
 - (IBAction)clickBack:(id)sender
 {
+    [[FacetimeService defaultService] disconnectServer];
+    [[FacetimeService defaultService] setMatchDelegate:nil];
+    [[FacetimeService defaultService] setConnectionDelegate:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -119,7 +122,8 @@ typedef enum {
 #pragma mark - facetimeservice delegate
 - (void)didConnected
 {
-    [_matchingFacetimeView.matchingLabel setText:NSLS(@"kMatching")];
+    PPDebug(@"<FacetimeMainController> start matching, type = %d",_requestType);
+    //[_matchingFacetimeView.matchingLabel setText:NSLS(@"kMatching")];
     switch (_requestType) {
         case FacetimeChatRequestTypeOnlyMale: {
             [[FacetimeService defaultService] sendFacetimeRequestWithGender:YES delegate:self];
@@ -141,7 +145,7 @@ typedef enum {
 {
     _matchingFacetimeView.hidden = YES;
     PBGameUser* user = [userList objectAtIndex:0];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:@"recieve message" delayTime:1];
+    //[[CommonMessageCenter defaultCenter] postMessageWithText:@"recieve message" delayTime:1];
     [self showFacetimeUserView:user];
 }
 - (void)didMatchUserFailed:(MatchUserFailedType)type
@@ -158,7 +162,7 @@ typedef enum {
 #pragma mark - FacetimeUserInfoViewDelegate
 - (void)clickStartChat:(FacetimeUserInfoView *)view
 {
-    
+    [[FacetimeService defaultService] disconnectServer];
 }
 - (void)clickChange:(FacetimeUserInfoView *)view
 {

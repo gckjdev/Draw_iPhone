@@ -65,6 +65,7 @@
     _runInAnimTime = timeInterval;
     _delegate = superController;
     self.hidden = NO;
+    [self.matchingLabel setText:NSLS(@"kMatching")];
     CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:_runInAnimTime delegate:self removeCompeleted:NO];
     [self.contentView.layer addAnimation:runIn forKey:@"runIn"];
 }

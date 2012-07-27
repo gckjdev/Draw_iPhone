@@ -48,6 +48,9 @@
 {
     NSString* value = [anim valueForKey:@"AnimationKey"];
     if ([value isEqualToString:@"runOut"]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(clickStart:)]) {
+            [_delegate clickStartChat:self];
+        }
         self.hidden = YES;
     }
 }
@@ -93,6 +96,8 @@
     [self.nickNameLabel setText:user.nickName];
     [self.locationLabel setText:user.location];
     [self.genderLabel setText:(user.gender)?NSLS(@"kMale"):NSLS(@"kFemale")];
+    
+    [self showInViewController:superController inTime:timeInterval];
     
 }
 
