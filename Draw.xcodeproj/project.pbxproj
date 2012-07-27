@@ -83,6 +83,8 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
+		A44969BD15C241A3002D06E1 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44969BA15C241A3002D06E1 /* Draw.pb.m */; };
+		A44969BE15C241A3002D06E1 /* LieDice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44969BC15C241A3002D06E1 /* LieDice.pb.m */; };
 		A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44C91FB1564DFD300018D0D /* messagebg@2x.png */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -109,6 +111,8 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A4BB4D1315BFFDA00026FA53 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4BB4D1215BFFDA00026FA53 /* Draw.proto */; };
+		A4BB4D1515C139A20026FA53 /* LieDice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4BB4D1415C139A20026FA53 /* LieDice.proto */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
@@ -953,6 +957,10 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
+		A44969B915C241A3002D06E1 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
+		A44969BA15C241A3002D06E1 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
+		A44969BB15C241A3002D06E1 /* LieDice.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LieDice.pb.h; sourceTree = "<group>"; };
+		A44969BC15C241A3002D06E1 /* LieDice.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LieDice.pb.m; sourceTree = "<group>"; };
 		A44C91FB1564DFD300018D0D /* messagebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messagebg@2x.png"; sourceTree = "<group>"; };
 		A454CB6C1558F5CE00896761 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		A454CB6D1558F5CE00896761 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
@@ -987,6 +995,8 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A4BB4D1215BFFDA00026FA53 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
+		A4BB4D1415C139A20026FA53 /* LieDice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LieDice.proto; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -4555,6 +4565,8 @@
 				CA96E275150DE8AA00292335 /* GameBasic.proto */,
 				CADD7FCE1510DC530075C739 /* GameConstants.proto */,
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
+				A4BB4D1215BFFDA00026FA53 /* Draw.proto */,
+				A4BB4D1415C139A20026FA53 /* LieDice.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -4562,6 +4574,10 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				A44969B915C241A3002D06E1 /* Draw.pb.h */,
+				A44969BA15C241A3002D06E1 /* Draw.pb.m */,
+				A44969BB15C241A3002D06E1 /* LieDice.pb.h */,
+				A44969BC15C241A3002D06E1 /* LieDice.pb.m */,
 				CADD7FCB1510C9700075C739 /* GameConstants.pb.m */,
 				CADD7FCC1510C9700075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
@@ -5508,6 +5524,8 @@
 				C24D34A915AEA95400CFC5A0 /* wood_shop_bg@2x.png in Resources */,
 				C20118F115B69312001C56A6 /* shop@2x.png in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
+				A4BB4D1315BFFDA00026FA53 /* Draw.proto in Resources */,
+				A4BB4D1515C139A20026FA53 /* LieDice.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5913,6 +5931,8 @@
 				CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */,
 				C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
+				A44969BD15C241A3002D06E1 /* Draw.pb.m in Sources */,
+				A44969BE15C241A3002D06E1 /* LieDice.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

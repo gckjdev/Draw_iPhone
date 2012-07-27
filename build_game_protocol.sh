@@ -8,7 +8,11 @@ echo build Objective-C codes
 
 ./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameMessage.proto
 
-#echo build Java codes
+./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Draw.proto
+
+./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/LieDice.proto
+
+#echo build Java codes
 
 #cd
 

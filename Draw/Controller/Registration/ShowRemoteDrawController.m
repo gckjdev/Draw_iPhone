@@ -8,6 +8,7 @@
 
 #import "ShowRemoteDrawController.h"
 #import "GameBasic.pb.h"
+#import "Draw.pb.h"
 #import "DrawAction.h"
 #import "ShowDrawView.h"
 #import "DrawUtils.h"
