@@ -4,7 +4,7 @@ import "GameBasic.proto";
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
-option java_outer_classname = "DahuatouProtos";
+option java_outer_classname = "LieDiceProtos";
 
 message Dice {
   optional int32 diceId = 1;
