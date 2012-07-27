@@ -229,6 +229,13 @@
 		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
 		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
 		C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */; };
+		C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */; };
+		C2F48C1615C23DA4005C4D72 /* FacetimeMainController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */; };
+		C2F48C1815C23DFE005C4D72 /* MatchingFacetimeUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */; };
+		C2F48C1A15C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */; };
+		C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */; };
+		C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */; };
+		C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1172,6 +1179,15 @@
 		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
 		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
 		C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_buyed@2x.png"; sourceTree = "<group>"; };
+		C2F48C1215C23D3D005C4D72 /* MatchingFacetimeUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingFacetimeUserView.h; sourceTree = "<group>"; };
+		C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingFacetimeUserView.m; sourceTree = "<group>"; };
+		C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeMainController~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingFacetimeUserView.xib; sourceTree = "<group>"; };
+		C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MatchingFacetimeUserView~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C1B15C23E4F005C4D72 /* FacetimeUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeUserInfoView.h; sourceTree = "<group>"; };
+		C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeUserInfoView.m; sourceTree = "<group>"; };
+		C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeUserInfoView.xib; sourceTree = "<group>"; };
+		C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -4025,6 +4041,7 @@
 				CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */,
 				CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */,
 				CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */,
+				C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4064,6 +4081,14 @@
 		CA2F81DF15C0D62E002038A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C1215C23D3D005C4D72 /* MatchingFacetimeUserView.h */,
+				C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */,
+				C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */,
+				C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */,
+				C2F48C1B15C23E4F005C4D72 /* FacetimeUserInfoView.h */,
+				C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */,
+				C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */,
+				C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5708,6 +5733,11 @@
 				C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */,
 				CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */,
 				C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */,
+				C2F48C1615C23DA4005C4D72 /* FacetimeMainController~ipad.xib in Resources */,
+				C2F48C1815C23DFE005C4D72 /* MatchingFacetimeUserView.xib in Resources */,
+				C2F48C1A15C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib in Resources */,
+				C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */,
+				C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6121,6 +6151,8 @@
 				CA2F81E915C0D97C002038A6 /* FacetimeService.m in Sources */,
 				CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */,
 				CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */,
+				C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */,
+				C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

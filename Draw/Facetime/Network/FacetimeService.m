@@ -9,6 +9,7 @@
 #import "FacetimeService.h"
 #import "FacetimeNetworkClient.h"
 #import "UserManager.h"
+#import "GameMessage.pb.h"
 
 @implementation FacetimeService
 @synthesize connectionDelegate = _connectionDelegate;
@@ -42,29 +43,47 @@ static FacetimeService *_defaultService;
     return self;
 }
 
+- (BOOL)isConnected
+{
+    return [_networkClient isConnected];
+}
+
 - (void)connectServer:(id<FacetimeServiceDelegate>)connectionDelegate
 {
     _connectionDelegate = connectionDelegate;
     
 //    [self clearKeepAliveTimer];
 //    [self clearDisconnectTimer];
-    [_networkClient start:_serverAddress port:_serverPort];    
+    [_networkClient start:@"192.168.1.3" port:8191];    
     
+}
+- (void)disconnectServer
+{
+    [_networkClient disconnect];
 }
 
 - (PBGameUser*)createPBGameUser
 {
-    return nil;
+    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+    [builder setAvatar:[UserManager defaultManager].avatarURL];
+    [builder setNickName:[UserManager defaultManager].nickName];
+    [builder setLocation:[UserManager defaultManager].location];
+    [builder setUserId:[UserManager defaultManager].userId];
+    [builder setGender:[[UserManager defaultManager].gender isEqualToString:@"m"]];
+    return [builder build];
 }
 
-- (void)sendFacetimeRequest
+- (void)sendFacetimeRequest:(id<FacetimeServiceDelegate>)aDelegate
 {
+    _matchDelegate = aDelegate;
     PBGameUser* user = [self createPBGameUser];
     [_networkClient askFaceTime:user];
 }
 
-- (void)sendFacetimeRequestForMaleWithGender:(BOOL)gender
+- (void)sendFacetimeRequestWithGender:(BOOL)gender 
+                                    delegate:(id<FacetimeServiceDelegate>)aDelegate
 {
+    _matchDelegate = aDelegate;
     PBGameUser* user = [self createPBGameUser];
     [_networkClient askFaceTime:user 
                          gender:gender];
@@ -80,9 +99,24 @@ static FacetimeService *_defaultService;
 
 - (void)didBroken
 {
-    
+    if (_connectionDelegate && [_connectionDelegate respondsToSelector:@selector(didBroken)]) {
+        [_connectionDelegate didBroken];
+    }
 }
 
+- (void)handleData:(GameMessage*)message
+{
+    if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:)]) {
+        [_matchDelegate didMatchUser:[message.facetimeChatResponse userAtIndex:0]];
+    }
+    switch ([message command]) {
+        
+            
+        default:
+            break;
+    }
+
+}
 
 
 @end
