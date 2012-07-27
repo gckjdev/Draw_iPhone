@@ -76,4 +76,6 @@ typedef enum{
 + (NSString*)getRecommendAppLinkEn;
 + (NSString*)getRecommendAppLink;
 
++ (BOOL)isShowRecommendApp;
+
 @end

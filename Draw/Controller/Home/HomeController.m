@@ -65,6 +65,8 @@
 @end
 
 @implementation HomeController
+@synthesize facetimeButton = _facetimeButton;
+@synthesize diceButton = _diceButton;
 
 @synthesize adView = _adView;
 @synthesize recommendButton = _recommendButton;
@@ -141,6 +143,17 @@
 
 - (void)viewDidLoad
 {        
+    
+//    self.facetimeButton.hidden = YES;
+//    self.diceButton.hidden = YES;
+    if ([ConfigManager isShowRecommendApp]){
+        self.recommendButton.hidden = NO;
+    }
+    else{
+        self.recommendButton.hidden = YES;
+    }
+    
+    
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(65, 800, 320, 50)
@@ -277,6 +290,8 @@
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
     [self setRecommendButton:nil];
+    [self setFacetimeButton:nil];
+    [self setDiceButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -626,6 +641,8 @@
     [_roomBadge release];
     [_homeScrollView release];
     [_recommendButton release];
+    [_facetimeButton release];
+    [_diceButton release];
     [super dealloc];
 }
 
