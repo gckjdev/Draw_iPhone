@@ -52,6 +52,8 @@
 #import "VendingController.h"
 #import "RecommendedAppsController.h"
 
+#import "FacetimeMainController.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -780,7 +782,8 @@
 
 - (IBAction)clickFacetime:(id)sender
 {
-    
+    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
