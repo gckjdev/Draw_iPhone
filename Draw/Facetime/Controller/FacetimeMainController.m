@@ -7,6 +7,10 @@
 //
 
 #import "FacetimeMainController.h"
+#import "FacetimeService.h"
+#import "CommonMessageCenter.h"
+#import "CommonUserInfoView.h"
+#import "GameBasic.pb.h"
 
 @implementation FacetimeMainController
 
@@ -29,6 +33,13 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[FacetimeService defaultService] connectServer:self];
+    [self showActivity];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,4 +59,45 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)chatToMale:(id)sender
+{
+    [self showActivity];
+    [[FacetimeService defaultService] sendFacetimeRequestWithGender:YES delegate:self];
+}
+
+- (IBAction)chatToFemale:(id)sender
+{
+    [self showActivity];
+    [[FacetimeService defaultService] sendFacetimeRequestWithGender:NO delegate:self];
+}
+
+- (IBAction)chatToAnyOne:(id)sender
+{
+    [self showActivity];
+    [[FacetimeService defaultService] sendFacetimeRequest:self];
+}
+
+- (IBAction)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - facetimeservice delegate
+- (void)didConnected
+{
+    [self hideActivity];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:@"connected" delayTime:1];
+}
+- (void)didBroken
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:@"broken" delayTime:1];
+}
+- (void)didMatchUser:(PBGameUser *)user
+{
+    [self hideActivity];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:@"recieve message" delayTime:1];
+    NSString* gender = user.gender?@"m":@"f";
+    [CommonUserInfoView showUser:user.userId nickName:user.nickName avatar:user.avatar gender:gender location:user.location level:user.userLevel hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+}
 @end

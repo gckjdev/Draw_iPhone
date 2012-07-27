@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FacetimeService.h"
+#import "PPViewController.h"
 
-@interface FacetimeMainController : UIViewController
+@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate>
 
 @end
