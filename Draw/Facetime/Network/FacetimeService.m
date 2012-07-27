@@ -10,6 +10,7 @@
 #import "FacetimeNetworkClient.h"
 #import "UserManager.h"
 #import "GameMessage.pb.h"
+#import "PPDebug.h"
 
 @implementation FacetimeService
 @synthesize connectionDelegate = _connectionDelegate;
@@ -106,13 +107,28 @@ static FacetimeService *_defaultService;
 
 - (void)handleData:(GameMessage*)message
 {
-    if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:)]) {
-        [_matchDelegate didMatchUser:[message.facetimeChatResponse userAtIndex:0]];
-    }
+    
     switch ([message command]) {
-        
-            
+        case GameCommandTypeFacetimeChatResponse: {
+            if (message.facetimeChatResponse 
+                && message.facetimeChatResponse.userList
+                && [message.facetimeChatResponse.userList count] > 0) {
+                PPDebug(@"<FacetimeService> Get facetimeChatResponse, user count = %d",message.facetimeChatResponse.userList.count);
+                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:)]) {
+                    [_matchDelegate didMatchUser:message.facetimeChatResponse.userList];
+                }                
+            } else {
+                PPDebug(@"<FacetimeService> Get facetimeChatResponse failed, no user is responsed");
+                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUserFailed:)]) {
+                    [_matchDelegate didMatchUserFailed:NoUserResponse];
+                }
+            } 
+        } break;
         default:
+            PPDebug(@"<FacetimeService> Get facetimeChatResponse failed, gameMessage command error, command is %d",[message command]);
+            if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUserFailed:)]) {
+                [_matchDelegate didMatchUserFailed:MessageCommandError];
+            }
             break;
     }
 

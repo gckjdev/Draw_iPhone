@@ -12,12 +12,17 @@
 @class FacetimeNetworkClient;
 @class PBGameUser;
 
+typedef enum {
+    MessageCommandError = 0,
+    NoUserResponse = 1
+}MatchUserFailedType;
+
 @protocol FacetimeServiceDelegate <NSObject>
 
 @optional
 //match user
-- (void)didMatchUser:(PBGameUser*)user;
-- (void)didMatchFailed;
+- (void)didMatchUser:(NSArray*)userList;
+- (void)didMatchUserFailed:(MatchUserFailedType)type;
 
 // server connection
 - (void)didConnected;

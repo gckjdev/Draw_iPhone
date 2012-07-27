@@ -12,7 +12,20 @@
 #import "CommonUserInfoView.h"
 #import "GameBasic.pb.h"
 
+typedef enum {
+    FacetimeChatRequestTypeOnlyMale = 0,
+    FacetimeChatRequestTypeOnlyFemale = 1,
+    FacetimeChatRequestTypeRandom = 2
+}FacetimeChatRequestType;
+
 @implementation FacetimeMainController
+
+- (void)dealloc
+{
+    [_matchingFacetimeView release];
+    [_facetimeUserInfoView release];
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,15 +46,10 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [[FacetimeService defaultService] connectServer:self];
-    [self showActivity];
-}
-
 - (void)viewDidLoad
 {
+    _matchingFacetimeView = nil;
+    _facetimeUserInfoView = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -59,22 +67,47 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)showMatchingView
+{
+    if (_matchingFacetimeView == nil) {
+        _matchingFacetimeView = [[MatchingFacetimeUserView createUserInfoView] retain];
+        [self.view addSubview:_matchingFacetimeView];
+    }
+    [_matchingFacetimeView showInViewController:self inTime:0.1];
+}
+- (void)showFacetimeUserView:(PBGameUser*)user
+{
+    if (!_facetimeUserInfoView) {
+        _facetimeUserInfoView = [[FacetimeUserInfoView createUserInfoView] retain];
+        [self.view addSubview:_facetimeUserInfoView];
+    }
+    [_facetimeUserInfoView showFacetimeUser:user 
+                           inViewController:self 
+                                     inTime:0.1];
+}
+
 - (IBAction)chatToMale:(id)sender
 {
-    [self showActivity];
-    [[FacetimeService defaultService] sendFacetimeRequestWithGender:YES delegate:self];
+    [self showMatchingView];
+    _requestType = FacetimeChatRequestTypeOnlyMale;
+    [[FacetimeService defaultService] connectServer:self];
+    //[[FacetimeService defaultService] sendFacetimeRequestWithGender:YES delegate:self];
 }
 
 - (IBAction)chatToFemale:(id)sender
 {
-    [self showActivity];
-    [[FacetimeService defaultService] sendFacetimeRequestWithGender:NO delegate:self];
+    [self showMatchingView];
+    _requestType = FacetimeChatRequestTypeOnlyFemale;
+    [[FacetimeService defaultService] connectServer:self];
+    //[[FacetimeService defaultService] sendFacetimeRequestWithGender:NO delegate:self];
 }
 
 - (IBAction)chatToAnyOne:(id)sender
 {
-    [self showActivity];
-    [[FacetimeService defaultService] sendFacetimeRequest:self];
+    [self showMatchingView];
+    _requestType = FacetimeChatRequestTypeRandom;
+    [[FacetimeService defaultService] connectServer:self];
+    //[[FacetimeService defaultService] sendFacetimeRequest:self];
 }
 
 - (IBAction)clickBack:(id)sender
@@ -86,18 +119,49 @@
 #pragma mark - facetimeservice delegate
 - (void)didConnected
 {
-    [self hideActivity];
-    [[CommonMessageCenter defaultCenter] postMessageWithText:@"connected" delayTime:1];
+    [_matchingFacetimeView.matchingLabel setText:NSLS(@"kMatching")];
+    switch (_requestType) {
+        case FacetimeChatRequestTypeOnlyMale: {
+            [[FacetimeService defaultService] sendFacetimeRequestWithGender:YES delegate:self];
+        }break;
+        case FacetimeChatRequestTypeOnlyFemale: {
+            [[FacetimeService defaultService] sendFacetimeRequestWithGender:NO delegate:self];
+        }break;
+        case FacetimeChatRequestTypeRandom:
+        default: {
+            [[FacetimeService defaultService] sendFacetimeRequest:self];
+        } break;
+    }
 }
 - (void)didBroken
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:@"broken" delayTime:1];
 }
-- (void)didMatchUser:(PBGameUser *)user
+- (void)didMatchUser:(NSArray *)userList
 {
-    [self hideActivity];
+    _matchingFacetimeView.hidden = YES;
+    PBGameUser* user = [userList objectAtIndex:0];
     [[CommonMessageCenter defaultCenter] postMessageWithText:@"recieve message" delayTime:1];
-    NSString* gender = user.gender?@"m":@"f";
-    [CommonUserInfoView showUser:user.userId nickName:user.nickName avatar:user.avatar gender:gender location:user.location level:user.userLevel hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+    [self showFacetimeUserView:user];
+}
+- (void)didMatchUserFailed:(MatchUserFailedType)type
+{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMatchUserFailed") delayTime:1 isHappy:NO];
+}
+
+#pragma mark - MatchingFacetimeUserViewDelegate
+- (void)clickCancelButton:(MatchingFacetimeUserView *)view
+{
+    [[FacetimeService defaultService] disconnectServer];
+}
+
+#pragma mark - FacetimeUserInfoViewDelegate
+- (void)clickStartChat:(FacetimeUserInfoView *)view
+{
+    
+}
+- (void)clickChange:(FacetimeUserInfoView *)view
+{
+    
 }
 @end

@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "FacetimeService.h"
 #import "PPViewController.h"
+#import "MatchingFacetimeUserView.h"
+#import "FacetimeUserInfoView.h"
 
-@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate>
+@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate,MatchingFacetimeUserViewDelegate,FacetimeUserInfoViewDelegate> {
+    MatchingFacetimeUserView* _matchingFacetimeView;
+    FacetimeUserInfoView* _facetimeUserInfoView;
+    int _requestType;
+}
 
 @end
