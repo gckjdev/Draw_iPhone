@@ -42,6 +42,22 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeFacetimeChatStart:
     case GameCommandTypeKeepAliveRequest:
     case GameCommandTypeKeepAliveResponse:
+    case GameCommandTypeGetRoomsRequest:
+    case GameCommandTypeGetRoomsResponse:
+    case GameCommandTypeCreateRoomRequest:
+    case GameCommandTypeCreateRoomResponse:
+    case GameCommandTypeEnterRoomRequest:
+    case GameCommandTypeEnterRoomResponse:
+    case GameCommandTypeRegisterRoomsNotificationRequest:
+    case GameCommandTypeRegisterRoomsNotificationResponse:
+    case GameCommandTypeUnregisterRoomsNotificationRequest:
+    case GameCommandTypeUnregisterRoomsNotificationResponse:
+    case GameCommandTypeCallDiceRequest:
+    case GameCommandTypeCallDiceResponse:
+    case GameCommandTypeOpenDiceRequest:
+    case GameCommandTypeOpenDiceResponse:
+    case GameCommandTypeUseItemRequest:
+    case GameCommandTypeUseItemResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:
@@ -73,6 +89,16 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalWordPicked:
     case GameCommandTypeLocalAllUserGuess:
     case GameCommandTypeLocalDrawUserChat:
+    case GameCommandTypeRoomNotificationRequest:
+    case GameCommandTypeRoomNotificationResponse:
+    case GameCommandTypeRollDiceBeginNotificationRequest:
+    case GameCommandTypeRollDiceBeginNotificationResponse:
+    case GameCommandTypeRollDiceEndNotificationRequest:
+    case GameCommandTypeRollDiceEndNotificationResponse:
+    case GameCommandTypeNextPlayerStartNotificationRequest:
+    case GameCommandTypeNextPlayerStartNotificationResponse:
+    case GameCommandTypeGameOverNotificationRequest:
+    case GameCommandTypeGameOverNotificationResponse:
       return YES;
     default:
       return NO;

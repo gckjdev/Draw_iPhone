@@ -13,11 +13,3027 @@ static PBExtensionRegistry* extensionRegistry = nil;
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
+    [DrawRoot registerAllExtensions:registry];
+    [LieDiceRoot registerAllExtensions:registry];
     [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
+}
+@end
+
+@interface GetRoomsRequest ()
+@property (retain) NSString* gameId;
+@property int32_t roomType;
+@end
+
+@implementation GetRoomsRequest
+
+- (BOOL) hasGameId {
+  return !!hasGameId_;
+}
+- (void) setHasGameId:(BOOL) value {
+  hasGameId_ = !!value;
+}
+@synthesize gameId;
+- (BOOL) hasRoomType {
+  return !!hasRoomType_;
+}
+- (void) setHasRoomType:(BOOL) value {
+  hasRoomType_ = !!value;
+}
+@synthesize roomType;
+- (void) dealloc {
+  self.gameId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameId = @"";
+    self.roomType = 0;
+  }
+  return self;
+}
+static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
++ (void) initialize {
+  if (self == [GetRoomsRequest class]) {
+    defaultGetRoomsRequestInstance = [[GetRoomsRequest alloc] init];
+  }
+}
++ (GetRoomsRequest*) defaultInstance {
+  return defaultGetRoomsRequestInstance;
+}
+- (GetRoomsRequest*) defaultInstance {
+  return defaultGetRoomsRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGameId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameId) {
+    [output writeString:2 value:self.gameId];
+  }
+  if (self.hasRoomType) {
+    [output writeInt32:3 value:self.roomType];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameId) {
+    size += computeStringSize(2, self.gameId);
+  }
+  if (self.hasRoomType) {
+    size += computeInt32Size(3, self.roomType);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GetRoomsRequest*) parseFromData:(NSData*) data {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromData:data] build];
+}
++ (GetRoomsRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromInputStream:input] build];
+}
++ (GetRoomsRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (GetRoomsRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsRequest*)[[[GetRoomsRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsRequest_Builder*) builder {
+  return [[[GetRoomsRequest_Builder alloc] init] autorelease];
+}
++ (GetRoomsRequest_Builder*) builderWithPrototype:(GetRoomsRequest*) prototype {
+  return [[GetRoomsRequest builder] mergeFrom:prototype];
+}
+- (GetRoomsRequest_Builder*) builder {
+  return [GetRoomsRequest builder];
+}
+@end
+
+@interface GetRoomsRequest_Builder()
+@property (retain) GetRoomsRequest* result;
+@end
+
+@implementation GetRoomsRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GetRoomsRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GetRoomsRequest_Builder*) clear {
+  self.result = [[[GetRoomsRequest alloc] init] autorelease];
+  return self;
+}
+- (GetRoomsRequest_Builder*) clone {
+  return [GetRoomsRequest builderWithPrototype:result];
+}
+- (GetRoomsRequest*) defaultInstance {
+  return [GetRoomsRequest defaultInstance];
+}
+- (GetRoomsRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GetRoomsRequest*) buildPartial {
+  GetRoomsRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GetRoomsRequest_Builder*) mergeFrom:(GetRoomsRequest*) other {
+  if (other == [GetRoomsRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameId) {
+    [self setGameId:other.gameId];
+  }
+  if (other.hasRoomType) {
+    [self setRoomType:other.roomType];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 18: {
+        [self setGameId:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setRoomType:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameId {
+  return result.hasGameId;
+}
+- (NSString*) gameId {
+  return result.gameId;
+}
+- (GetRoomsRequest_Builder*) setGameId:(NSString*) value {
+  result.hasGameId = YES;
+  result.gameId = value;
+  return self;
+}
+- (GetRoomsRequest_Builder*) clearGameId {
+  result.hasGameId = NO;
+  result.gameId = @"";
+  return self;
+}
+- (BOOL) hasRoomType {
+  return result.hasRoomType;
+}
+- (int32_t) roomType {
+  return result.roomType;
+}
+- (GetRoomsRequest_Builder*) setRoomType:(int32_t) value {
+  result.hasRoomType = YES;
+  result.roomType = value;
+  return self;
+}
+- (GetRoomsRequest_Builder*) clearRoomType {
+  result.hasRoomType = NO;
+  result.roomType = 0;
+  return self;
+}
+@end
+
+@interface GetRoomsResponse ()
+@property (retain) NSMutableArray* mutableGameSessionsList;
+@end
+
+@implementation GetRoomsResponse
+
+@synthesize mutableGameSessionsList;
+- (void) dealloc {
+  self.mutableGameSessionsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
++ (void) initialize {
+  if (self == [GetRoomsResponse class]) {
+    defaultGetRoomsResponseInstance = [[GetRoomsResponse alloc] init];
+  }
+}
++ (GetRoomsResponse*) defaultInstance {
+  return defaultGetRoomsResponseInstance;
+}
+- (GetRoomsResponse*) defaultInstance {
+  return defaultGetRoomsResponseInstance;
+}
+- (NSArray*) gameSessionsList {
+  return mutableGameSessionsList;
+}
+- (PBGameSession*) gameSessionsAtIndex:(int32_t) index {
+  id value = [mutableGameSessionsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBGameSession* element in self.gameSessionsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBGameSession* element in self.gameSessionsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBGameSession* element in self.gameSessionsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GetRoomsResponse*) parseFromData:(NSData*) data {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromData:data] build];
+}
++ (GetRoomsResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromInputStream:input] build];
+}
++ (GetRoomsResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (GetRoomsResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GetRoomsResponse*)[[[GetRoomsResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GetRoomsResponse_Builder*) builder {
+  return [[[GetRoomsResponse_Builder alloc] init] autorelease];
+}
++ (GetRoomsResponse_Builder*) builderWithPrototype:(GetRoomsResponse*) prototype {
+  return [[GetRoomsResponse builder] mergeFrom:prototype];
+}
+- (GetRoomsResponse_Builder*) builder {
+  return [GetRoomsResponse builder];
+}
+@end
+
+@interface GetRoomsResponse_Builder()
+@property (retain) GetRoomsResponse* result;
+@end
+
+@implementation GetRoomsResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GetRoomsResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GetRoomsResponse_Builder*) clear {
+  self.result = [[[GetRoomsResponse alloc] init] autorelease];
+  return self;
+}
+- (GetRoomsResponse_Builder*) clone {
+  return [GetRoomsResponse builderWithPrototype:result];
+}
+- (GetRoomsResponse*) defaultInstance {
+  return [GetRoomsResponse defaultInstance];
+}
+- (GetRoomsResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GetRoomsResponse*) buildPartial {
+  GetRoomsResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GetRoomsResponse_Builder*) mergeFrom:(GetRoomsResponse*) other {
+  if (other == [GetRoomsResponse defaultInstance]) {
+    return self;
+  }
+  if (other.mutableGameSessionsList.count > 0) {
+    if (result.mutableGameSessionsList == nil) {
+      result.mutableGameSessionsList = [NSMutableArray array];
+    }
+    [result.mutableGameSessionsList addObjectsFromArray:other.mutableGameSessionsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGameSessions:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) gameSessionsList {
+  if (result.mutableGameSessionsList == nil) { return [NSArray array]; }
+  return result.mutableGameSessionsList;
+}
+- (PBGameSession*) gameSessionsAtIndex:(int32_t) index {
+  return [result gameSessionsAtIndex:index];
+}
+- (GetRoomsResponse_Builder*) replaceGameSessionsAtIndex:(int32_t) index with:(PBGameSession*) value {
+  [result.mutableGameSessionsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (GetRoomsResponse_Builder*) addAllGameSessions:(NSArray*) values {
+  if (result.mutableGameSessionsList == nil) {
+    result.mutableGameSessionsList = [NSMutableArray array];
+  }
+  [result.mutableGameSessionsList addObjectsFromArray:values];
+  return self;
+}
+- (GetRoomsResponse_Builder*) clearGameSessionsList {
+  result.mutableGameSessionsList = nil;
+  return self;
+}
+- (GetRoomsResponse_Builder*) addGameSessions:(PBGameSession*) value {
+  if (result.mutableGameSessionsList == nil) {
+    result.mutableGameSessionsList = [NSMutableArray array];
+  }
+  [result.mutableGameSessionsList addObject:value];
+  return self;
+}
+@end
+
+@interface CreateRoomRequest ()
+@property (retain) NSString* gameId;
+@property (retain) PBGameUser* user;
+@property (retain) NSString* roomName;
+@end
+
+@implementation CreateRoomRequest
+
+- (BOOL) hasGameId {
+  return !!hasGameId_;
+}
+- (void) setHasGameId:(BOOL) value {
+  hasGameId_ = !!value;
+}
+@synthesize gameId;
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
+- (BOOL) hasRoomName {
+  return !!hasRoomName_;
+}
+- (void) setHasRoomName:(BOOL) value {
+  hasRoomName_ = !!value;
+}
+@synthesize roomName;
+- (void) dealloc {
+  self.gameId = nil;
+  self.user = nil;
+  self.roomName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameId = @"";
+    self.user = [PBGameUser defaultInstance];
+    self.roomName = @"";
+  }
+  return self;
+}
+static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
++ (void) initialize {
+  if (self == [CreateRoomRequest class]) {
+    defaultCreateRoomRequestInstance = [[CreateRoomRequest alloc] init];
+  }
+}
++ (CreateRoomRequest*) defaultInstance {
+  return defaultCreateRoomRequestInstance;
+}
+- (CreateRoomRequest*) defaultInstance {
+  return defaultCreateRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGameId) {
+    return NO;
+  }
+  if (!self.hasUser) {
+    return NO;
+  }
+  if (!self.hasRoomName) {
+    return NO;
+  }
+  if (!self.user.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameId) {
+    [output writeString:1 value:self.gameId];
+  }
+  if (self.hasUser) {
+    [output writeMessage:2 value:self.user];
+  }
+  if (self.hasRoomName) {
+    [output writeString:3 value:self.roomName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameId) {
+    size += computeStringSize(1, self.gameId);
+  }
+  if (self.hasUser) {
+    size += computeMessageSize(2, self.user);
+  }
+  if (self.hasRoomName) {
+    size += computeStringSize(3, self.roomName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CreateRoomRequest*) parseFromData:(NSData*) data {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromData:data] build];
+}
++ (CreateRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (CreateRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (CreateRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomRequest*)[[[CreateRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomRequest_Builder*) builder {
+  return [[[CreateRoomRequest_Builder alloc] init] autorelease];
+}
++ (CreateRoomRequest_Builder*) builderWithPrototype:(CreateRoomRequest*) prototype {
+  return [[CreateRoomRequest builder] mergeFrom:prototype];
+}
+- (CreateRoomRequest_Builder*) builder {
+  return [CreateRoomRequest builder];
+}
+@end
+
+@interface CreateRoomRequest_Builder()
+@property (retain) CreateRoomRequest* result;
+@end
+
+@implementation CreateRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CreateRoomRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CreateRoomRequest_Builder*) clear {
+  self.result = [[[CreateRoomRequest alloc] init] autorelease];
+  return self;
+}
+- (CreateRoomRequest_Builder*) clone {
+  return [CreateRoomRequest builderWithPrototype:result];
+}
+- (CreateRoomRequest*) defaultInstance {
+  return [CreateRoomRequest defaultInstance];
+}
+- (CreateRoomRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CreateRoomRequest*) buildPartial {
+  CreateRoomRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CreateRoomRequest_Builder*) mergeFrom:(CreateRoomRequest*) other {
+  if (other == [CreateRoomRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameId) {
+    [self setGameId:other.gameId];
+  }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
+  if (other.hasRoomName) {
+    [self setRoomName:other.roomName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGameId:[input readString]];
+        break;
+      }
+      case 18: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 26: {
+        [self setRoomName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameId {
+  return result.hasGameId;
+}
+- (NSString*) gameId {
+  return result.gameId;
+}
+- (CreateRoomRequest_Builder*) setGameId:(NSString*) value {
+  result.hasGameId = YES;
+  result.gameId = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearGameId {
+  result.hasGameId = NO;
+  result.gameId = @"";
+  return self;
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (CreateRoomRequest_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (CreateRoomRequest_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasRoomName {
+  return result.hasRoomName;
+}
+- (NSString*) roomName {
+  return result.roomName;
+}
+- (CreateRoomRequest_Builder*) setRoomName:(NSString*) value {
+  result.hasRoomName = YES;
+  result.roomName = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearRoomName {
+  result.hasRoomName = NO;
+  result.roomName = @"";
+  return self;
+}
+@end
+
+@interface CreateRoomResponse ()
+@end
+
+@implementation CreateRoomResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
++ (void) initialize {
+  if (self == [CreateRoomResponse class]) {
+    defaultCreateRoomResponseInstance = [[CreateRoomResponse alloc] init];
+  }
+}
++ (CreateRoomResponse*) defaultInstance {
+  return defaultCreateRoomResponseInstance;
+}
+- (CreateRoomResponse*) defaultInstance {
+  return defaultCreateRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CreateRoomResponse*) parseFromData:(NSData*) data {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromData:data] build];
+}
++ (CreateRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (CreateRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (CreateRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CreateRoomResponse*)[[[CreateRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CreateRoomResponse_Builder*) builder {
+  return [[[CreateRoomResponse_Builder alloc] init] autorelease];
+}
++ (CreateRoomResponse_Builder*) builderWithPrototype:(CreateRoomResponse*) prototype {
+  return [[CreateRoomResponse builder] mergeFrom:prototype];
+}
+- (CreateRoomResponse_Builder*) builder {
+  return [CreateRoomResponse builder];
+}
+@end
+
+@interface CreateRoomResponse_Builder()
+@property (retain) CreateRoomResponse* result;
+@end
+
+@implementation CreateRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CreateRoomResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CreateRoomResponse_Builder*) clear {
+  self.result = [[[CreateRoomResponse alloc] init] autorelease];
+  return self;
+}
+- (CreateRoomResponse_Builder*) clone {
+  return [CreateRoomResponse builderWithPrototype:result];
+}
+- (CreateRoomResponse*) defaultInstance {
+  return [CreateRoomResponse defaultInstance];
+}
+- (CreateRoomResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CreateRoomResponse*) buildPartial {
+  CreateRoomResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CreateRoomResponse_Builder*) mergeFrom:(CreateRoomResponse*) other {
+  if (other == [CreateRoomResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface EnterRoomRequest ()
+@property (retain) PBGameUser* user;
+@end
+
+@implementation EnterRoomRequest
+
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
+- (void) dealloc {
+  self.user = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.user = [PBGameUser defaultInstance];
+  }
+  return self;
+}
+static EnterRoomRequest* defaultEnterRoomRequestInstance = nil;
++ (void) initialize {
+  if (self == [EnterRoomRequest class]) {
+    defaultEnterRoomRequestInstance = [[EnterRoomRequest alloc] init];
+  }
+}
++ (EnterRoomRequest*) defaultInstance {
+  return defaultEnterRoomRequestInstance;
+}
+- (EnterRoomRequest*) defaultInstance {
+  return defaultEnterRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUser) {
+    return NO;
+  }
+  if (!self.user.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUser) {
+    [output writeMessage:1 value:self.user];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUser) {
+    size += computeMessageSize(1, self.user);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (EnterRoomRequest*) parseFromData:(NSData*) data {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromData:data] build];
+}
++ (EnterRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomRequest_Builder*) builder {
+  return [[[EnterRoomRequest_Builder alloc] init] autorelease];
+}
++ (EnterRoomRequest_Builder*) builderWithPrototype:(EnterRoomRequest*) prototype {
+  return [[EnterRoomRequest builder] mergeFrom:prototype];
+}
+- (EnterRoomRequest_Builder*) builder {
+  return [EnterRoomRequest builder];
+}
+@end
+
+@interface EnterRoomRequest_Builder()
+@property (retain) EnterRoomRequest* result;
+@end
+
+@implementation EnterRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[EnterRoomRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (EnterRoomRequest_Builder*) clear {
+  self.result = [[[EnterRoomRequest alloc] init] autorelease];
+  return self;
+}
+- (EnterRoomRequest_Builder*) clone {
+  return [EnterRoomRequest builderWithPrototype:result];
+}
+- (EnterRoomRequest*) defaultInstance {
+  return [EnterRoomRequest defaultInstance];
+}
+- (EnterRoomRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (EnterRoomRequest*) buildPartial {
+  EnterRoomRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (EnterRoomRequest_Builder*) mergeFrom:(EnterRoomRequest*) other {
+  if (other == [EnterRoomRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (EnterRoomRequest_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (EnterRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (EnterRoomRequest_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (EnterRoomRequest_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
+  return self;
+}
+@end
+
+@interface EnterRoomResponse ()
+@property (retain) PBGameSession* gameSession;
+@end
+
+@implementation EnterRoomResponse
+
+- (BOOL) hasGameSession {
+  return !!hasGameSession_;
+}
+- (void) setHasGameSession:(BOOL) value {
+  hasGameSession_ = !!value;
+}
+@synthesize gameSession;
+- (void) dealloc {
+  self.gameSession = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameSession = [PBGameSession defaultInstance];
+  }
+  return self;
+}
+static EnterRoomResponse* defaultEnterRoomResponseInstance = nil;
++ (void) initialize {
+  if (self == [EnterRoomResponse class]) {
+    defaultEnterRoomResponseInstance = [[EnterRoomResponse alloc] init];
+  }
+}
++ (EnterRoomResponse*) defaultInstance {
+  return defaultEnterRoomResponseInstance;
+}
+- (EnterRoomResponse*) defaultInstance {
+  return defaultEnterRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGameSession) {
+    return NO;
+  }
+  if (!self.gameSession.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameSession) {
+    [output writeMessage:1 value:self.gameSession];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameSession) {
+    size += computeMessageSize(1, self.gameSession);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (EnterRoomResponse*) parseFromData:(NSData*) data {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromData:data] build];
+}
++ (EnterRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (EnterRoomResponse_Builder*) builder {
+  return [[[EnterRoomResponse_Builder alloc] init] autorelease];
+}
++ (EnterRoomResponse_Builder*) builderWithPrototype:(EnterRoomResponse*) prototype {
+  return [[EnterRoomResponse builder] mergeFrom:prototype];
+}
+- (EnterRoomResponse_Builder*) builder {
+  return [EnterRoomResponse builder];
+}
+@end
+
+@interface EnterRoomResponse_Builder()
+@property (retain) EnterRoomResponse* result;
+@end
+
+@implementation EnterRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[EnterRoomResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (EnterRoomResponse_Builder*) clear {
+  self.result = [[[EnterRoomResponse alloc] init] autorelease];
+  return self;
+}
+- (EnterRoomResponse_Builder*) clone {
+  return [EnterRoomResponse builderWithPrototype:result];
+}
+- (EnterRoomResponse*) defaultInstance {
+  return [EnterRoomResponse defaultInstance];
+}
+- (EnterRoomResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (EnterRoomResponse*) buildPartial {
+  EnterRoomResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (EnterRoomResponse_Builder*) mergeFrom:(EnterRoomResponse*) other {
+  if (other == [EnterRoomResponse defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameSession) {
+    [self mergeGameSession:other.gameSession];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        if (self.hasGameSession) {
+          [subBuilder mergeFrom:self.gameSession];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameSession:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameSession {
+  return result.hasGameSession;
+}
+- (PBGameSession*) gameSession {
+  return result.gameSession;
+}
+- (EnterRoomResponse_Builder*) setGameSession:(PBGameSession*) value {
+  result.hasGameSession = YES;
+  result.gameSession = value;
+  return self;
+}
+- (EnterRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue {
+  return [self setGameSession:[builderForValue build]];
+}
+- (EnterRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value {
+  if (result.hasGameSession &&
+      result.gameSession != [PBGameSession defaultInstance]) {
+    result.gameSession =
+      [[[PBGameSession builderWithPrototype:result.gameSession] mergeFrom:value] buildPartial];
+  } else {
+    result.gameSession = value;
+  }
+  result.hasGameSession = YES;
+  return self;
+}
+- (EnterRoomResponse_Builder*) clearGameSession {
+  result.hasGameSession = NO;
+  result.gameSession = [PBGameSession defaultInstance];
+  return self;
+}
+@end
+
+@interface RegisterRoomsNotificationRequest ()
+@property int32_t userId;
+@property (retain) NSMutableArray* mutableSessionIdsList;
+@end
+
+@implementation RegisterRoomsNotificationRequest
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+@synthesize mutableSessionIdsList;
+- (void) dealloc {
+  self.mutableSessionIdsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = 0;
+  }
+  return self;
+}
+static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [RegisterRoomsNotificationRequest class]) {
+    defaultRegisterRoomsNotificationRequestInstance = [[RegisterRoomsNotificationRequest alloc] init];
+  }
+}
++ (RegisterRoomsNotificationRequest*) defaultInstance {
+  return defaultRegisterRoomsNotificationRequestInstance;
+}
+- (RegisterRoomsNotificationRequest*) defaultInstance {
+  return defaultRegisterRoomsNotificationRequestInstance;
+}
+- (NSArray*) sessionIdsList {
+  return mutableSessionIdsList;
+}
+- (int32_t) sessionIdsAtIndex:(int32_t) index {
+  id value = [mutableSessionIdsList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeInt32:1 value:self.userId];
+  }
+  if (self.mutableSessionIdsList.count > 0) {
+    [output writeRawVarint32:18];
+    [output writeRawVarint32:sessionIdsMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutableSessionIdsList) {
+    [output writeInt32NoTag:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeInt32Size(1, self.userId);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableSessionIdsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutableSessionIdsList.count > 0) {
+      size += 1;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    sessionIdsMemoizedSerializedSize = dataSize;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromData:data] build];
+}
++ (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (RegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (RegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationRequest*)[[[RegisterRoomsNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationRequest_Builder*) builder {
+  return [[[RegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+}
++ (RegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(RegisterRoomsNotificationRequest*) prototype {
+  return [[RegisterRoomsNotificationRequest builder] mergeFrom:prototype];
+}
+- (RegisterRoomsNotificationRequest_Builder*) builder {
+  return [RegisterRoomsNotificationRequest builder];
+}
+@end
+
+@interface RegisterRoomsNotificationRequest_Builder()
+@property (retain) RegisterRoomsNotificationRequest* result;
+@end
+
+@implementation RegisterRoomsNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RegisterRoomsNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RegisterRoomsNotificationRequest_Builder*) clear {
+  self.result = [[[RegisterRoomsNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) clone {
+  return [RegisterRoomsNotificationRequest builderWithPrototype:result];
+}
+- (RegisterRoomsNotificationRequest*) defaultInstance {
+  return [RegisterRoomsNotificationRequest defaultInstance];
+}
+- (RegisterRoomsNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RegisterRoomsNotificationRequest*) buildPartial {
+  RegisterRoomsNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RegisterRoomsNotificationRequest_Builder*) mergeFrom:(RegisterRoomsNotificationRequest*) other {
+  if (other == [RegisterRoomsNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.mutableSessionIdsList.count > 0) {
+    if (result.mutableSessionIdsList == nil) {
+      result.mutableSessionIdsList = [NSMutableArray array];
+    }
+    [result.mutableSessionIdsList addObjectsFromArray:other.mutableSessionIdsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setUserId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addSessionIds:[input readInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (int32_t) userId {
+  return result.userId;
+}
+- (RegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = 0;
+  return self;
+}
+- (NSArray*) sessionIdsList {
+  if (result.mutableSessionIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableSessionIdsList;
+}
+- (int32_t) sessionIdsAtIndex:(int32_t) index {
+  return [result sessionIdsAtIndex:index];
+}
+- (RegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableSessionIdsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value {
+  if (result.mutableSessionIdsList == nil) {
+    result.mutableSessionIdsList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values {
+  if (result.mutableSessionIdsList == nil) {
+    result.mutableSessionIdsList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsList addObjectsFromArray:values];
+  return self;
+}
+- (RegisterRoomsNotificationRequest_Builder*) clearSessionIdsList {
+  result.mutableSessionIdsList = nil;
+  return self;
+}
+@end
+
+@interface RegisterRoomsNotificationResponse ()
+@end
+
+@implementation RegisterRoomsNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RegisterRoomsNotificationResponse* defaultRegisterRoomsNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [RegisterRoomsNotificationResponse class]) {
+    defaultRegisterRoomsNotificationResponseInstance = [[RegisterRoomsNotificationResponse alloc] init];
+  }
+}
++ (RegisterRoomsNotificationResponse*) defaultInstance {
+  return defaultRegisterRoomsNotificationResponseInstance;
+}
+- (RegisterRoomsNotificationResponse*) defaultInstance {
+  return defaultRegisterRoomsNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromData:data] build];
+}
++ (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (RegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (RegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RegisterRoomsNotificationResponse*)[[[RegisterRoomsNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RegisterRoomsNotificationResponse_Builder*) builder {
+  return [[[RegisterRoomsNotificationResponse_Builder alloc] init] autorelease];
+}
++ (RegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(RegisterRoomsNotificationResponse*) prototype {
+  return [[RegisterRoomsNotificationResponse builder] mergeFrom:prototype];
+}
+- (RegisterRoomsNotificationResponse_Builder*) builder {
+  return [RegisterRoomsNotificationResponse builder];
+}
+@end
+
+@interface RegisterRoomsNotificationResponse_Builder()
+@property (retain) RegisterRoomsNotificationResponse* result;
+@end
+
+@implementation RegisterRoomsNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RegisterRoomsNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RegisterRoomsNotificationResponse_Builder*) clear {
+  self.result = [[[RegisterRoomsNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (RegisterRoomsNotificationResponse_Builder*) clone {
+  return [RegisterRoomsNotificationResponse builderWithPrototype:result];
+}
+- (RegisterRoomsNotificationResponse*) defaultInstance {
+  return [RegisterRoomsNotificationResponse defaultInstance];
+}
+- (RegisterRoomsNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RegisterRoomsNotificationResponse*) buildPartial {
+  RegisterRoomsNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RegisterRoomsNotificationResponse_Builder*) mergeFrom:(RegisterRoomsNotificationResponse*) other {
+  if (other == [RegisterRoomsNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface UnRegisterRoomsNotificationRequest ()
+@property int32_t userId;
+@property (retain) NSMutableArray* mutableSessionIdsList;
+@end
+
+@implementation UnRegisterRoomsNotificationRequest
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+@synthesize mutableSessionIdsList;
+- (void) dealloc {
+  self.mutableSessionIdsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = 0;
+  }
+  return self;
+}
+static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [UnRegisterRoomsNotificationRequest class]) {
+    defaultUnRegisterRoomsNotificationRequestInstance = [[UnRegisterRoomsNotificationRequest alloc] init];
+  }
+}
++ (UnRegisterRoomsNotificationRequest*) defaultInstance {
+  return defaultUnRegisterRoomsNotificationRequestInstance;
+}
+- (UnRegisterRoomsNotificationRequest*) defaultInstance {
+  return defaultUnRegisterRoomsNotificationRequestInstance;
+}
+- (NSArray*) sessionIdsList {
+  return mutableSessionIdsList;
+}
+- (int32_t) sessionIdsAtIndex:(int32_t) index {
+  id value = [mutableSessionIdsList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeInt32:1 value:self.userId];
+  }
+  if (self.mutableSessionIdsList.count > 0) {
+    [output writeRawVarint32:18];
+    [output writeRawVarint32:sessionIdsMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutableSessionIdsList) {
+    [output writeInt32NoTag:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeInt32Size(1, self.userId);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableSessionIdsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutableSessionIdsList.count > 0) {
+      size += 1;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    sessionIdsMemoizedSerializedSize = dataSize;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromData:data] build];
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (UnRegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationRequest*)[[[UnRegisterRoomsNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationRequest_Builder*) builder {
+  return [[[UnRegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+}
++ (UnRegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationRequest*) prototype {
+  return [[UnRegisterRoomsNotificationRequest builder] mergeFrom:prototype];
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) builder {
+  return [UnRegisterRoomsNotificationRequest builder];
+}
+@end
+
+@interface UnRegisterRoomsNotificationRequest_Builder()
+@property (retain) UnRegisterRoomsNotificationRequest* result;
+@end
+
+@implementation UnRegisterRoomsNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[UnRegisterRoomsNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) clear {
+  self.result = [[[UnRegisterRoomsNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) clone {
+  return [UnRegisterRoomsNotificationRequest builderWithPrototype:result];
+}
+- (UnRegisterRoomsNotificationRequest*) defaultInstance {
+  return [UnRegisterRoomsNotificationRequest defaultInstance];
+}
+- (UnRegisterRoomsNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (UnRegisterRoomsNotificationRequest*) buildPartial {
+  UnRegisterRoomsNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFrom:(UnRegisterRoomsNotificationRequest*) other {
+  if (other == [UnRegisterRoomsNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.mutableSessionIdsList.count > 0) {
+    if (result.mutableSessionIdsList == nil) {
+      result.mutableSessionIdsList = [NSMutableArray array];
+    }
+    [result.mutableSessionIdsList addObjectsFromArray:other.mutableSessionIdsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setUserId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addSessionIds:[input readInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (int32_t) userId {
+  return result.userId;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = 0;
+  return self;
+}
+- (NSArray*) sessionIdsList {
+  if (result.mutableSessionIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableSessionIdsList;
+}
+- (int32_t) sessionIdsAtIndex:(int32_t) index {
+  return [result sessionIdsAtIndex:index];
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableSessionIdsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value {
+  if (result.mutableSessionIdsList == nil) {
+    result.mutableSessionIdsList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values {
+  if (result.mutableSessionIdsList == nil) {
+    result.mutableSessionIdsList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsList addObjectsFromArray:values];
+  return self;
+}
+- (UnRegisterRoomsNotificationRequest_Builder*) clearSessionIdsList {
+  result.mutableSessionIdsList = nil;
+  return self;
+}
+@end
+
+@interface UnRegisterRoomsNotificationResponse ()
+@end
+
+@implementation UnRegisterRoomsNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static UnRegisterRoomsNotificationResponse* defaultUnRegisterRoomsNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [UnRegisterRoomsNotificationResponse class]) {
+    defaultUnRegisterRoomsNotificationResponseInstance = [[UnRegisterRoomsNotificationResponse alloc] init];
+  }
+}
++ (UnRegisterRoomsNotificationResponse*) defaultInstance {
+  return defaultUnRegisterRoomsNotificationResponseInstance;
+}
+- (UnRegisterRoomsNotificationResponse*) defaultInstance {
+  return defaultUnRegisterRoomsNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromData:data] build];
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (UnRegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UnRegisterRoomsNotificationResponse*)[[[UnRegisterRoomsNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UnRegisterRoomsNotificationResponse_Builder*) builder {
+  return [[[UnRegisterRoomsNotificationResponse_Builder alloc] init] autorelease];
+}
++ (UnRegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationResponse*) prototype {
+  return [[UnRegisterRoomsNotificationResponse builder] mergeFrom:prototype];
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) builder {
+  return [UnRegisterRoomsNotificationResponse builder];
+}
+@end
+
+@interface UnRegisterRoomsNotificationResponse_Builder()
+@property (retain) UnRegisterRoomsNotificationResponse* result;
+@end
+
+@implementation UnRegisterRoomsNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[UnRegisterRoomsNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) clear {
+  self.result = [[[UnRegisterRoomsNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) clone {
+  return [UnRegisterRoomsNotificationResponse builderWithPrototype:result];
+}
+- (UnRegisterRoomsNotificationResponse*) defaultInstance {
+  return [UnRegisterRoomsNotificationResponse defaultInstance];
+}
+- (UnRegisterRoomsNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (UnRegisterRoomsNotificationResponse*) buildPartial {
+  UnRegisterRoomsNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFrom:(UnRegisterRoomsNotificationResponse*) other {
+  if (other == [UnRegisterRoomsNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface CallDiceRequest ()
+@property int32_t num;
+@property int32_t dice;
+@end
+
+@implementation CallDiceRequest
+
+- (BOOL) hasNum {
+  return !!hasNum_;
+}
+- (void) setHasNum:(BOOL) value {
+  hasNum_ = !!value;
+}
+@synthesize num;
+- (BOOL) hasDice {
+  return !!hasDice_;
+}
+- (void) setHasDice:(BOOL) value {
+  hasDice_ = !!value;
+}
+@synthesize dice;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.num = 0;
+    self.dice = 0;
+  }
+  return self;
+}
+static CallDiceRequest* defaultCallDiceRequestInstance = nil;
++ (void) initialize {
+  if (self == [CallDiceRequest class]) {
+    defaultCallDiceRequestInstance = [[CallDiceRequest alloc] init];
+  }
+}
++ (CallDiceRequest*) defaultInstance {
+  return defaultCallDiceRequestInstance;
+}
+- (CallDiceRequest*) defaultInstance {
+  return defaultCallDiceRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasNum) {
+    [output writeInt32:10 value:self.num];
+  }
+  if (self.hasDice) {
+    [output writeInt32:11 value:self.dice];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasNum) {
+    size += computeInt32Size(10, self.num);
+  }
+  if (self.hasDice) {
+    size += computeInt32Size(11, self.dice);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CallDiceRequest*) parseFromData:(NSData*) data {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromData:data] build];
+}
++ (CallDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromInputStream:input] build];
+}
++ (CallDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (CallDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceRequest*)[[[CallDiceRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceRequest_Builder*) builder {
+  return [[[CallDiceRequest_Builder alloc] init] autorelease];
+}
++ (CallDiceRequest_Builder*) builderWithPrototype:(CallDiceRequest*) prototype {
+  return [[CallDiceRequest builder] mergeFrom:prototype];
+}
+- (CallDiceRequest_Builder*) builder {
+  return [CallDiceRequest builder];
+}
+@end
+
+@interface CallDiceRequest_Builder()
+@property (retain) CallDiceRequest* result;
+@end
+
+@implementation CallDiceRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CallDiceRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CallDiceRequest_Builder*) clear {
+  self.result = [[[CallDiceRequest alloc] init] autorelease];
+  return self;
+}
+- (CallDiceRequest_Builder*) clone {
+  return [CallDiceRequest builderWithPrototype:result];
+}
+- (CallDiceRequest*) defaultInstance {
+  return [CallDiceRequest defaultInstance];
+}
+- (CallDiceRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CallDiceRequest*) buildPartial {
+  CallDiceRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CallDiceRequest_Builder*) mergeFrom:(CallDiceRequest*) other {
+  if (other == [CallDiceRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasNum) {
+    [self setNum:other.num];
+  }
+  if (other.hasDice) {
+    [self setDice:other.dice];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 80: {
+        [self setNum:[input readInt32]];
+        break;
+      }
+      case 88: {
+        [self setDice:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasNum {
+  return result.hasNum;
+}
+- (int32_t) num {
+  return result.num;
+}
+- (CallDiceRequest_Builder*) setNum:(int32_t) value {
+  result.hasNum = YES;
+  result.num = value;
+  return self;
+}
+- (CallDiceRequest_Builder*) clearNum {
+  result.hasNum = NO;
+  result.num = 0;
+  return self;
+}
+- (BOOL) hasDice {
+  return result.hasDice;
+}
+- (int32_t) dice {
+  return result.dice;
+}
+- (CallDiceRequest_Builder*) setDice:(int32_t) value {
+  result.hasDice = YES;
+  result.dice = value;
+  return self;
+}
+- (CallDiceRequest_Builder*) clearDice {
+  result.hasDice = NO;
+  result.dice = 0;
+  return self;
+}
+@end
+
+@interface CallDiceResponse ()
+@end
+
+@implementation CallDiceResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static CallDiceResponse* defaultCallDiceResponseInstance = nil;
++ (void) initialize {
+  if (self == [CallDiceResponse class]) {
+    defaultCallDiceResponseInstance = [[CallDiceResponse alloc] init];
+  }
+}
++ (CallDiceResponse*) defaultInstance {
+  return defaultCallDiceResponseInstance;
+}
+- (CallDiceResponse*) defaultInstance {
+  return defaultCallDiceResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (CallDiceResponse*) parseFromData:(NSData*) data {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromData:data] build];
+}
++ (CallDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromInputStream:input] build];
+}
++ (CallDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (CallDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (CallDiceResponse*)[[[CallDiceResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (CallDiceResponse_Builder*) builder {
+  return [[[CallDiceResponse_Builder alloc] init] autorelease];
+}
++ (CallDiceResponse_Builder*) builderWithPrototype:(CallDiceResponse*) prototype {
+  return [[CallDiceResponse builder] mergeFrom:prototype];
+}
+- (CallDiceResponse_Builder*) builder {
+  return [CallDiceResponse builder];
+}
+@end
+
+@interface CallDiceResponse_Builder()
+@property (retain) CallDiceResponse* result;
+@end
+
+@implementation CallDiceResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[CallDiceResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (CallDiceResponse_Builder*) clear {
+  self.result = [[[CallDiceResponse alloc] init] autorelease];
+  return self;
+}
+- (CallDiceResponse_Builder*) clone {
+  return [CallDiceResponse builderWithPrototype:result];
+}
+- (CallDiceResponse*) defaultInstance {
+  return [CallDiceResponse defaultInstance];
+}
+- (CallDiceResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (CallDiceResponse*) buildPartial {
+  CallDiceResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (CallDiceResponse_Builder*) mergeFrom:(CallDiceResponse*) other {
+  if (other == [CallDiceResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface OpenDiceRequest ()
+@end
+
+@implementation OpenDiceRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
++ (void) initialize {
+  if (self == [OpenDiceRequest class]) {
+    defaultOpenDiceRequestInstance = [[OpenDiceRequest alloc] init];
+  }
+}
++ (OpenDiceRequest*) defaultInstance {
+  return defaultOpenDiceRequestInstance;
+}
+- (OpenDiceRequest*) defaultInstance {
+  return defaultOpenDiceRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (OpenDiceRequest*) parseFromData:(NSData*) data {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromData:data] build];
+}
++ (OpenDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromInputStream:input] build];
+}
++ (OpenDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (OpenDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceRequest*)[[[OpenDiceRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceRequest_Builder*) builder {
+  return [[[OpenDiceRequest_Builder alloc] init] autorelease];
+}
++ (OpenDiceRequest_Builder*) builderWithPrototype:(OpenDiceRequest*) prototype {
+  return [[OpenDiceRequest builder] mergeFrom:prototype];
+}
+- (OpenDiceRequest_Builder*) builder {
+  return [OpenDiceRequest builder];
+}
+@end
+
+@interface OpenDiceRequest_Builder()
+@property (retain) OpenDiceRequest* result;
+@end
+
+@implementation OpenDiceRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[OpenDiceRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (OpenDiceRequest_Builder*) clear {
+  self.result = [[[OpenDiceRequest alloc] init] autorelease];
+  return self;
+}
+- (OpenDiceRequest_Builder*) clone {
+  return [OpenDiceRequest builderWithPrototype:result];
+}
+- (OpenDiceRequest*) defaultInstance {
+  return [OpenDiceRequest defaultInstance];
+}
+- (OpenDiceRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (OpenDiceRequest*) buildPartial {
+  OpenDiceRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (OpenDiceRequest_Builder*) mergeFrom:(OpenDiceRequest*) other {
+  if (other == [OpenDiceRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface OpenDiceResponse ()
+@end
+
+@implementation OpenDiceResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
++ (void) initialize {
+  if (self == [OpenDiceResponse class]) {
+    defaultOpenDiceResponseInstance = [[OpenDiceResponse alloc] init];
+  }
+}
++ (OpenDiceResponse*) defaultInstance {
+  return defaultOpenDiceResponseInstance;
+}
+- (OpenDiceResponse*) defaultInstance {
+  return defaultOpenDiceResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (OpenDiceResponse*) parseFromData:(NSData*) data {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromData:data] build];
+}
++ (OpenDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromInputStream:input] build];
+}
++ (OpenDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (OpenDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OpenDiceResponse*)[[[OpenDiceResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OpenDiceResponse_Builder*) builder {
+  return [[[OpenDiceResponse_Builder alloc] init] autorelease];
+}
++ (OpenDiceResponse_Builder*) builderWithPrototype:(OpenDiceResponse*) prototype {
+  return [[OpenDiceResponse builder] mergeFrom:prototype];
+}
+- (OpenDiceResponse_Builder*) builder {
+  return [OpenDiceResponse builder];
+}
+@end
+
+@interface OpenDiceResponse_Builder()
+@property (retain) OpenDiceResponse* result;
+@end
+
+@implementation OpenDiceResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[OpenDiceResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (OpenDiceResponse_Builder*) clear {
+  self.result = [[[OpenDiceResponse alloc] init] autorelease];
+  return self;
+}
+- (OpenDiceResponse_Builder*) clone {
+  return [OpenDiceResponse builderWithPrototype:result];
+}
+- (OpenDiceResponse*) defaultInstance {
+  return [OpenDiceResponse defaultInstance];
+}
+- (OpenDiceResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (OpenDiceResponse*) buildPartial {
+  OpenDiceResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (OpenDiceResponse_Builder*) mergeFrom:(OpenDiceResponse*) other {
+  if (other == [OpenDiceResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface UseItemRequest ()
+@property (retain) PBGameItem* item;
+@end
+
+@implementation UseItemRequest
+
+- (BOOL) hasItem {
+  return !!hasItem_;
+}
+- (void) setHasItem:(BOOL) value {
+  hasItem_ = !!value;
+}
+@synthesize item;
+- (void) dealloc {
+  self.item = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.item = [PBGameItem defaultInstance];
+  }
+  return self;
+}
+static UseItemRequest* defaultUseItemRequestInstance = nil;
++ (void) initialize {
+  if (self == [UseItemRequest class]) {
+    defaultUseItemRequestInstance = [[UseItemRequest alloc] init];
+  }
+}
++ (UseItemRequest*) defaultInstance {
+  return defaultUseItemRequestInstance;
+}
+- (UseItemRequest*) defaultInstance {
+  return defaultUseItemRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasItem) {
+    return NO;
+  }
+  if (!self.item.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasItem) {
+    [output writeMessage:10 value:self.item];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasItem) {
+    size += computeMessageSize(10, self.item);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (UseItemRequest*) parseFromData:(NSData*) data {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromData:data] build];
+}
++ (UseItemRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (UseItemRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromInputStream:input] build];
+}
++ (UseItemRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UseItemRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (UseItemRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemRequest*)[[[UseItemRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UseItemRequest_Builder*) builder {
+  return [[[UseItemRequest_Builder alloc] init] autorelease];
+}
++ (UseItemRequest_Builder*) builderWithPrototype:(UseItemRequest*) prototype {
+  return [[UseItemRequest builder] mergeFrom:prototype];
+}
+- (UseItemRequest_Builder*) builder {
+  return [UseItemRequest builder];
+}
+@end
+
+@interface UseItemRequest_Builder()
+@property (retain) UseItemRequest* result;
+@end
+
+@implementation UseItemRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[UseItemRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (UseItemRequest_Builder*) clear {
+  self.result = [[[UseItemRequest alloc] init] autorelease];
+  return self;
+}
+- (UseItemRequest_Builder*) clone {
+  return [UseItemRequest builderWithPrototype:result];
+}
+- (UseItemRequest*) defaultInstance {
+  return [UseItemRequest defaultInstance];
+}
+- (UseItemRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (UseItemRequest*) buildPartial {
+  UseItemRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (UseItemRequest_Builder*) mergeFrom:(UseItemRequest*) other {
+  if (other == [UseItemRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasItem) {
+    [self mergeItem:other.item];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 82: {
+        PBGameItem_Builder* subBuilder = [PBGameItem builder];
+        if (self.hasItem) {
+          [subBuilder mergeFrom:self.item];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setItem:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasItem {
+  return result.hasItem;
+}
+- (PBGameItem*) item {
+  return result.item;
+}
+- (UseItemRequest_Builder*) setItem:(PBGameItem*) value {
+  result.hasItem = YES;
+  result.item = value;
+  return self;
+}
+- (UseItemRequest_Builder*) setItemBuilder:(PBGameItem_Builder*) builderForValue {
+  return [self setItem:[builderForValue build]];
+}
+- (UseItemRequest_Builder*) mergeItem:(PBGameItem*) value {
+  if (result.hasItem &&
+      result.item != [PBGameItem defaultInstance]) {
+    result.item =
+      [[[PBGameItem builderWithPrototype:result.item] mergeFrom:value] buildPartial];
+  } else {
+    result.item = value;
+  }
+  result.hasItem = YES;
+  return self;
+}
+- (UseItemRequest_Builder*) clearItem {
+  result.hasItem = NO;
+  result.item = [PBGameItem defaultInstance];
+  return self;
+}
+@end
+
+@interface UserItemResponse ()
+@end
+
+@implementation UserItemResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static UserItemResponse* defaultUserItemResponseInstance = nil;
++ (void) initialize {
+  if (self == [UserItemResponse class]) {
+    defaultUserItemResponseInstance = [[UserItemResponse alloc] init];
+  }
+}
++ (UserItemResponse*) defaultInstance {
+  return defaultUserItemResponseInstance;
+}
+- (UserItemResponse*) defaultInstance {
+  return defaultUserItemResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (UserItemResponse*) parseFromData:(NSData*) data {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromData:data] build];
+}
++ (UserItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromInputStream:input] build];
+}
++ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UserItemResponse_Builder*) builder {
+  return [[[UserItemResponse_Builder alloc] init] autorelease];
+}
++ (UserItemResponse_Builder*) builderWithPrototype:(UserItemResponse*) prototype {
+  return [[UserItemResponse builder] mergeFrom:prototype];
+}
+- (UserItemResponse_Builder*) builder {
+  return [UserItemResponse builder];
+}
+@end
+
+@interface UserItemResponse_Builder()
+@property (retain) UserItemResponse* result;
+@end
+
+@implementation UserItemResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[UserItemResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (UserItemResponse_Builder*) clear {
+  self.result = [[[UserItemResponse alloc] init] autorelease];
+  return self;
+}
+- (UserItemResponse_Builder*) clone {
+  return [UserItemResponse builderWithPrototype:result];
+}
+- (UserItemResponse*) defaultInstance {
+  return [UserItemResponse defaultInstance];
+}
+- (UserItemResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (UserItemResponse*) buildPartial {
+  UserItemResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (UserItemResponse_Builder*) mergeFrom:(UserItemResponse*) other {
+  if (other == [UserItemResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
 }
 @end
 
@@ -1398,6 +4414,1789 @@ static StartGameResponse* defaultStartGameResponseInstance = nil;
   result.hasNextPlayUserId = NO;
   result.nextPlayUserId = @"";
   return self;
+}
+@end
+
+@interface RoomNotificationRequest ()
+@property (retain) NSMutableArray* mutableSessionsChangedList;
+@property (retain) NSMutableArray* mutableSessionsAddedList;
+@property (retain) NSMutableArray* mutableSessionIdsDeletedList;
+@end
+
+@implementation RoomNotificationRequest
+
+@synthesize mutableSessionsChangedList;
+@synthesize mutableSessionsAddedList;
+@synthesize mutableSessionIdsDeletedList;
+- (void) dealloc {
+  self.mutableSessionsChangedList = nil;
+  self.mutableSessionsAddedList = nil;
+  self.mutableSessionIdsDeletedList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RoomNotificationRequest* defaultRoomNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [RoomNotificationRequest class]) {
+    defaultRoomNotificationRequestInstance = [[RoomNotificationRequest alloc] init];
+  }
+}
++ (RoomNotificationRequest*) defaultInstance {
+  return defaultRoomNotificationRequestInstance;
+}
+- (RoomNotificationRequest*) defaultInstance {
+  return defaultRoomNotificationRequestInstance;
+}
+- (NSArray*) sessionsChangedList {
+  return mutableSessionsChangedList;
+}
+- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index {
+  id value = [mutableSessionsChangedList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) sessionsAddedList {
+  return mutableSessionsAddedList;
+}
+- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index {
+  id value = [mutableSessionsAddedList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) sessionIdsDeletedList {
+  return mutableSessionIdsDeletedList;
+}
+- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index {
+  id value = [mutableSessionIdsDeletedList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  for (PBGameSessionChanged* element in self.sessionsChangedList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGameSession* element in self.sessionsAddedList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBGameSessionChanged* element in self.sessionsChangedList) {
+    [output writeMessage:1 value:element];
+  }
+  for (PBGameSession* element in self.sessionsAddedList) {
+    [output writeMessage:2 value:element];
+  }
+  for (NSNumber* value in self.mutableSessionIdsDeletedList) {
+    [output writeInt32:3 value:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBGameSessionChanged* element in self.sessionsChangedList) {
+    size += computeMessageSize(1, element);
+  }
+  for (PBGameSession* element in self.sessionsAddedList) {
+    size += computeMessageSize(2, element);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableSessionIdsDeletedList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableSessionIdsDeletedList.count;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RoomNotificationRequest*) parseFromData:(NSData*) data {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromData:data] build];
+}
++ (RoomNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (RoomNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (RoomNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationRequest*)[[[RoomNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationRequest_Builder*) builder {
+  return [[[RoomNotificationRequest_Builder alloc] init] autorelease];
+}
++ (RoomNotificationRequest_Builder*) builderWithPrototype:(RoomNotificationRequest*) prototype {
+  return [[RoomNotificationRequest builder] mergeFrom:prototype];
+}
+- (RoomNotificationRequest_Builder*) builder {
+  return [RoomNotificationRequest builder];
+}
+@end
+
+@interface RoomNotificationRequest_Builder()
+@property (retain) RoomNotificationRequest* result;
+@end
+
+@implementation RoomNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RoomNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RoomNotificationRequest_Builder*) clear {
+  self.result = [[[RoomNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) clone {
+  return [RoomNotificationRequest builderWithPrototype:result];
+}
+- (RoomNotificationRequest*) defaultInstance {
+  return [RoomNotificationRequest defaultInstance];
+}
+- (RoomNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RoomNotificationRequest*) buildPartial {
+  RoomNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RoomNotificationRequest_Builder*) mergeFrom:(RoomNotificationRequest*) other {
+  if (other == [RoomNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.mutableSessionsChangedList.count > 0) {
+    if (result.mutableSessionsChangedList == nil) {
+      result.mutableSessionsChangedList = [NSMutableArray array];
+    }
+    [result.mutableSessionsChangedList addObjectsFromArray:other.mutableSessionsChangedList];
+  }
+  if (other.mutableSessionsAddedList.count > 0) {
+    if (result.mutableSessionsAddedList == nil) {
+      result.mutableSessionsAddedList = [NSMutableArray array];
+    }
+    [result.mutableSessionsAddedList addObjectsFromArray:other.mutableSessionsAddedList];
+  }
+  if (other.mutableSessionIdsDeletedList.count > 0) {
+    if (result.mutableSessionIdsDeletedList == nil) {
+      result.mutableSessionIdsDeletedList = [NSMutableArray array];
+    }
+    [result.mutableSessionIdsDeletedList addObjectsFromArray:other.mutableSessionIdsDeletedList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameSessionChanged_Builder* subBuilder = [PBGameSessionChanged builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSessionsChanged:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSessionsAdded:[subBuilder buildPartial]];
+        break;
+      }
+      case 24: {
+        [self addSessionIdsDeleted:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) sessionsChangedList {
+  if (result.mutableSessionsChangedList == nil) { return [NSArray array]; }
+  return result.mutableSessionsChangedList;
+}
+- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index {
+  return [result sessionsChangedAtIndex:index];
+}
+- (RoomNotificationRequest_Builder*) replaceSessionsChangedAtIndex:(int32_t) index with:(PBGameSessionChanged*) value {
+  [result.mutableSessionsChangedList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addAllSessionsChanged:(NSArray*) values {
+  if (result.mutableSessionsChangedList == nil) {
+    result.mutableSessionsChangedList = [NSMutableArray array];
+  }
+  [result.mutableSessionsChangedList addObjectsFromArray:values];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) clearSessionsChangedList {
+  result.mutableSessionsChangedList = nil;
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addSessionsChanged:(PBGameSessionChanged*) value {
+  if (result.mutableSessionsChangedList == nil) {
+    result.mutableSessionsChangedList = [NSMutableArray array];
+  }
+  [result.mutableSessionsChangedList addObject:value];
+  return self;
+}
+- (NSArray*) sessionsAddedList {
+  if (result.mutableSessionsAddedList == nil) { return [NSArray array]; }
+  return result.mutableSessionsAddedList;
+}
+- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index {
+  return [result sessionsAddedAtIndex:index];
+}
+- (RoomNotificationRequest_Builder*) replaceSessionsAddedAtIndex:(int32_t) index with:(PBGameSession*) value {
+  [result.mutableSessionsAddedList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addAllSessionsAdded:(NSArray*) values {
+  if (result.mutableSessionsAddedList == nil) {
+    result.mutableSessionsAddedList = [NSMutableArray array];
+  }
+  [result.mutableSessionsAddedList addObjectsFromArray:values];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) clearSessionsAddedList {
+  result.mutableSessionsAddedList = nil;
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addSessionsAdded:(PBGameSession*) value {
+  if (result.mutableSessionsAddedList == nil) {
+    result.mutableSessionsAddedList = [NSMutableArray array];
+  }
+  [result.mutableSessionsAddedList addObject:value];
+  return self;
+}
+- (NSArray*) sessionIdsDeletedList {
+  if (result.mutableSessionIdsDeletedList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableSessionIdsDeletedList;
+}
+- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index {
+  return [result sessionIdsDeletedAtIndex:index];
+}
+- (RoomNotificationRequest_Builder*) replaceSessionIdsDeletedAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableSessionIdsDeletedList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addSessionIdsDeleted:(int32_t) value {
+  if (result.mutableSessionIdsDeletedList == nil) {
+    result.mutableSessionIdsDeletedList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsDeletedList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) addAllSessionIdsDeleted:(NSArray*) values {
+  if (result.mutableSessionIdsDeletedList == nil) {
+    result.mutableSessionIdsDeletedList = [NSMutableArray array];
+  }
+  [result.mutableSessionIdsDeletedList addObjectsFromArray:values];
+  return self;
+}
+- (RoomNotificationRequest_Builder*) clearSessionIdsDeletedList {
+  result.mutableSessionIdsDeletedList = nil;
+  return self;
+}
+@end
+
+@interface RoomNotificationResponse ()
+@end
+
+@implementation RoomNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RoomNotificationResponse* defaultRoomNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [RoomNotificationResponse class]) {
+    defaultRoomNotificationResponseInstance = [[RoomNotificationResponse alloc] init];
+  }
+}
++ (RoomNotificationResponse*) defaultInstance {
+  return defaultRoomNotificationResponseInstance;
+}
+- (RoomNotificationResponse*) defaultInstance {
+  return defaultRoomNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RoomNotificationResponse*) parseFromData:(NSData*) data {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromData:data] build];
+}
++ (RoomNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (RoomNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (RoomNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RoomNotificationResponse*)[[[RoomNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RoomNotificationResponse_Builder*) builder {
+  return [[[RoomNotificationResponse_Builder alloc] init] autorelease];
+}
++ (RoomNotificationResponse_Builder*) builderWithPrototype:(RoomNotificationResponse*) prototype {
+  return [[RoomNotificationResponse builder] mergeFrom:prototype];
+}
+- (RoomNotificationResponse_Builder*) builder {
+  return [RoomNotificationResponse builder];
+}
+@end
+
+@interface RoomNotificationResponse_Builder()
+@property (retain) RoomNotificationResponse* result;
+@end
+
+@implementation RoomNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RoomNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RoomNotificationResponse_Builder*) clear {
+  self.result = [[[RoomNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (RoomNotificationResponse_Builder*) clone {
+  return [RoomNotificationResponse builderWithPrototype:result];
+}
+- (RoomNotificationResponse*) defaultInstance {
+  return [RoomNotificationResponse defaultInstance];
+}
+- (RoomNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RoomNotificationResponse*) buildPartial {
+  RoomNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RoomNotificationResponse_Builder*) mergeFrom:(RoomNotificationResponse*) other {
+  if (other == [RoomNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface RollDiceBeginNotificationRequest ()
+@end
+
+@implementation RollDiceBeginNotificationRequest
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RollDiceBeginNotificationRequest* defaultRollDiceBeginNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [RollDiceBeginNotificationRequest class]) {
+    defaultRollDiceBeginNotificationRequestInstance = [[RollDiceBeginNotificationRequest alloc] init];
+  }
+}
++ (RollDiceBeginNotificationRequest*) defaultInstance {
+  return defaultRollDiceBeginNotificationRequestInstance;
+}
+- (RollDiceBeginNotificationRequest*) defaultInstance {
+  return defaultRollDiceBeginNotificationRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromData:data] build];
+}
++ (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (RollDiceBeginNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (RollDiceBeginNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationRequest*)[[[RollDiceBeginNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationRequest_Builder*) builder {
+  return [[[RollDiceBeginNotificationRequest_Builder alloc] init] autorelease];
+}
++ (RollDiceBeginNotificationRequest_Builder*) builderWithPrototype:(RollDiceBeginNotificationRequest*) prototype {
+  return [[RollDiceBeginNotificationRequest builder] mergeFrom:prototype];
+}
+- (RollDiceBeginNotificationRequest_Builder*) builder {
+  return [RollDiceBeginNotificationRequest builder];
+}
+@end
+
+@interface RollDiceBeginNotificationRequest_Builder()
+@property (retain) RollDiceBeginNotificationRequest* result;
+@end
+
+@implementation RollDiceBeginNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RollDiceBeginNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RollDiceBeginNotificationRequest_Builder*) clear {
+  self.result = [[[RollDiceBeginNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (RollDiceBeginNotificationRequest_Builder*) clone {
+  return [RollDiceBeginNotificationRequest builderWithPrototype:result];
+}
+- (RollDiceBeginNotificationRequest*) defaultInstance {
+  return [RollDiceBeginNotificationRequest defaultInstance];
+}
+- (RollDiceBeginNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RollDiceBeginNotificationRequest*) buildPartial {
+  RollDiceBeginNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RollDiceBeginNotificationRequest_Builder*) mergeFrom:(RollDiceBeginNotificationRequest*) other {
+  if (other == [RollDiceBeginNotificationRequest defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface RollDiceBeginNotificationResponse ()
+@end
+
+@implementation RollDiceBeginNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RollDiceBeginNotificationResponse* defaultRollDiceBeginNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [RollDiceBeginNotificationResponse class]) {
+    defaultRollDiceBeginNotificationResponseInstance = [[RollDiceBeginNotificationResponse alloc] init];
+  }
+}
++ (RollDiceBeginNotificationResponse*) defaultInstance {
+  return defaultRollDiceBeginNotificationResponseInstance;
+}
+- (RollDiceBeginNotificationResponse*) defaultInstance {
+  return defaultRollDiceBeginNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromData:data] build];
+}
++ (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (RollDiceBeginNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (RollDiceBeginNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceBeginNotificationResponse*)[[[RollDiceBeginNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceBeginNotificationResponse_Builder*) builder {
+  return [[[RollDiceBeginNotificationResponse_Builder alloc] init] autorelease];
+}
++ (RollDiceBeginNotificationResponse_Builder*) builderWithPrototype:(RollDiceBeginNotificationResponse*) prototype {
+  return [[RollDiceBeginNotificationResponse builder] mergeFrom:prototype];
+}
+- (RollDiceBeginNotificationResponse_Builder*) builder {
+  return [RollDiceBeginNotificationResponse builder];
+}
+@end
+
+@interface RollDiceBeginNotificationResponse_Builder()
+@property (retain) RollDiceBeginNotificationResponse* result;
+@end
+
+@implementation RollDiceBeginNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RollDiceBeginNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RollDiceBeginNotificationResponse_Builder*) clear {
+  self.result = [[[RollDiceBeginNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (RollDiceBeginNotificationResponse_Builder*) clone {
+  return [RollDiceBeginNotificationResponse builderWithPrototype:result];
+}
+- (RollDiceBeginNotificationResponse*) defaultInstance {
+  return [RollDiceBeginNotificationResponse defaultInstance];
+}
+- (RollDiceBeginNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RollDiceBeginNotificationResponse*) buildPartial {
+  RollDiceBeginNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RollDiceBeginNotificationResponse_Builder*) mergeFrom:(RollDiceBeginNotificationResponse*) other {
+  if (other == [RollDiceBeginNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface RollDiceEndNotificationRequest ()
+@property (retain) NSMutableArray* mutableUserDiceList;
+@end
+
+@implementation RollDiceEndNotificationRequest
+
+@synthesize mutableUserDiceList;
+- (void) dealloc {
+  self.mutableUserDiceList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [RollDiceEndNotificationRequest class]) {
+    defaultRollDiceEndNotificationRequestInstance = [[RollDiceEndNotificationRequest alloc] init];
+  }
+}
++ (RollDiceEndNotificationRequest*) defaultInstance {
+  return defaultRollDiceEndNotificationRequestInstance;
+}
+- (RollDiceEndNotificationRequest*) defaultInstance {
+  return defaultRollDiceEndNotificationRequestInstance;
+}
+- (NSArray*) userDiceList {
+  return mutableUserDiceList;
+}
+- (UserDice*) userDiceAtIndex:(int32_t) index {
+  id value = [mutableUserDiceList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (UserDice* element in self.userDiceList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (UserDice* element in self.userDiceList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (UserDice* element in self.userDiceList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromData:data] build];
+}
++ (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (RollDiceEndNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (RollDiceEndNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationRequest*)[[[RollDiceEndNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationRequest_Builder*) builder {
+  return [[[RollDiceEndNotificationRequest_Builder alloc] init] autorelease];
+}
++ (RollDiceEndNotificationRequest_Builder*) builderWithPrototype:(RollDiceEndNotificationRequest*) prototype {
+  return [[RollDiceEndNotificationRequest builder] mergeFrom:prototype];
+}
+- (RollDiceEndNotificationRequest_Builder*) builder {
+  return [RollDiceEndNotificationRequest builder];
+}
+@end
+
+@interface RollDiceEndNotificationRequest_Builder()
+@property (retain) RollDiceEndNotificationRequest* result;
+@end
+
+@implementation RollDiceEndNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RollDiceEndNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RollDiceEndNotificationRequest_Builder*) clear {
+  self.result = [[[RollDiceEndNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (RollDiceEndNotificationRequest_Builder*) clone {
+  return [RollDiceEndNotificationRequest builderWithPrototype:result];
+}
+- (RollDiceEndNotificationRequest*) defaultInstance {
+  return [RollDiceEndNotificationRequest defaultInstance];
+}
+- (RollDiceEndNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RollDiceEndNotificationRequest*) buildPartial {
+  RollDiceEndNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RollDiceEndNotificationRequest_Builder*) mergeFrom:(RollDiceEndNotificationRequest*) other {
+  if (other == [RollDiceEndNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.mutableUserDiceList.count > 0) {
+    if (result.mutableUserDiceList == nil) {
+      result.mutableUserDiceList = [NSMutableArray array];
+    }
+    [result.mutableUserDiceList addObjectsFromArray:other.mutableUserDiceList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        UserDice_Builder* subBuilder = [UserDice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserDice:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) userDiceList {
+  if (result.mutableUserDiceList == nil) { return [NSArray array]; }
+  return result.mutableUserDiceList;
+}
+- (UserDice*) userDiceAtIndex:(int32_t) index {
+  return [result userDiceAtIndex:index];
+}
+- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(UserDice*) value {
+  [result.mutableUserDiceList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (RollDiceEndNotificationRequest_Builder*) addAllUserDice:(NSArray*) values {
+  if (result.mutableUserDiceList == nil) {
+    result.mutableUserDiceList = [NSMutableArray array];
+  }
+  [result.mutableUserDiceList addObjectsFromArray:values];
+  return self;
+}
+- (RollDiceEndNotificationRequest_Builder*) clearUserDiceList {
+  result.mutableUserDiceList = nil;
+  return self;
+}
+- (RollDiceEndNotificationRequest_Builder*) addUserDice:(UserDice*) value {
+  if (result.mutableUserDiceList == nil) {
+    result.mutableUserDiceList = [NSMutableArray array];
+  }
+  [result.mutableUserDiceList addObject:value];
+  return self;
+}
+@end
+
+@interface RollDiceEndNotificationResponse ()
+@end
+
+@implementation RollDiceEndNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [RollDiceEndNotificationResponse class]) {
+    defaultRollDiceEndNotificationResponseInstance = [[RollDiceEndNotificationResponse alloc] init];
+  }
+}
++ (RollDiceEndNotificationResponse*) defaultInstance {
+  return defaultRollDiceEndNotificationResponseInstance;
+}
+- (RollDiceEndNotificationResponse*) defaultInstance {
+  return defaultRollDiceEndNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromData:data] build];
+}
++ (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (RollDiceEndNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (RollDiceEndNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (RollDiceEndNotificationResponse*)[[[RollDiceEndNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (RollDiceEndNotificationResponse_Builder*) builder {
+  return [[[RollDiceEndNotificationResponse_Builder alloc] init] autorelease];
+}
++ (RollDiceEndNotificationResponse_Builder*) builderWithPrototype:(RollDiceEndNotificationResponse*) prototype {
+  return [[RollDiceEndNotificationResponse builder] mergeFrom:prototype];
+}
+- (RollDiceEndNotificationResponse_Builder*) builder {
+  return [RollDiceEndNotificationResponse builder];
+}
+@end
+
+@interface RollDiceEndNotificationResponse_Builder()
+@property (retain) RollDiceEndNotificationResponse* result;
+@end
+
+@implementation RollDiceEndNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[RollDiceEndNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (RollDiceEndNotificationResponse_Builder*) clear {
+  self.result = [[[RollDiceEndNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (RollDiceEndNotificationResponse_Builder*) clone {
+  return [RollDiceEndNotificationResponse builderWithPrototype:result];
+}
+- (RollDiceEndNotificationResponse*) defaultInstance {
+  return [RollDiceEndNotificationResponse defaultInstance];
+}
+- (RollDiceEndNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (RollDiceEndNotificationResponse*) buildPartial {
+  RollDiceEndNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (RollDiceEndNotificationResponse_Builder*) mergeFrom:(RollDiceEndNotificationResponse*) other {
+  if (other == [RollDiceEndNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface NextPlayerStartNotificationRequest ()
+@property int32_t currentPlayUserId;
+@property int32_t nextPlayUserId;
+@end
+
+@implementation NextPlayerStartNotificationRequest
+
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
+- (BOOL) hasNextPlayUserId {
+  return !!hasNextPlayUserId_;
+}
+- (void) setHasNextPlayUserId:(BOOL) value {
+  hasNextPlayUserId_ = !!value;
+}
+@synthesize nextPlayUserId;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.currentPlayUserId = 0;
+    self.nextPlayUserId = 0;
+  }
+  return self;
+}
+static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [NextPlayerStartNotificationRequest class]) {
+    defaultNextPlayerStartNotificationRequestInstance = [[NextPlayerStartNotificationRequest alloc] init];
+  }
+}
++ (NextPlayerStartNotificationRequest*) defaultInstance {
+  return defaultNextPlayerStartNotificationRequestInstance;
+}
+- (NextPlayerStartNotificationRequest*) defaultInstance {
+  return defaultNextPlayerStartNotificationRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasCurrentPlayUserId) {
+    return NO;
+  }
+  if (!self.hasNextPlayUserId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasCurrentPlayUserId) {
+    [output writeInt32:1 value:self.currentPlayUserId];
+  }
+  if (self.hasNextPlayUserId) {
+    [output writeInt32:2 value:self.nextPlayUserId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasCurrentPlayUserId) {
+    size += computeInt32Size(1, self.currentPlayUserId);
+  }
+  if (self.hasNextPlayUserId) {
+    size += computeInt32Size(2, self.nextPlayUserId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromData:data] build];
+}
++ (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (NextPlayerStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (NextPlayerStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationRequest*)[[[NextPlayerStartNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationRequest_Builder*) builder {
+  return [[[NextPlayerStartNotificationRequest_Builder alloc] init] autorelease];
+}
++ (NextPlayerStartNotificationRequest_Builder*) builderWithPrototype:(NextPlayerStartNotificationRequest*) prototype {
+  return [[NextPlayerStartNotificationRequest builder] mergeFrom:prototype];
+}
+- (NextPlayerStartNotificationRequest_Builder*) builder {
+  return [NextPlayerStartNotificationRequest builder];
+}
+@end
+
+@interface NextPlayerStartNotificationRequest_Builder()
+@property (retain) NextPlayerStartNotificationRequest* result;
+@end
+
+@implementation NextPlayerStartNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[NextPlayerStartNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clear {
+  self.result = [[[NextPlayerStartNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clone {
+  return [NextPlayerStartNotificationRequest builderWithPrototype:result];
+}
+- (NextPlayerStartNotificationRequest*) defaultInstance {
+  return [NextPlayerStartNotificationRequest defaultInstance];
+}
+- (NextPlayerStartNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (NextPlayerStartNotificationRequest*) buildPartial {
+  NextPlayerStartNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (NextPlayerStartNotificationRequest_Builder*) mergeFrom:(NextPlayerStartNotificationRequest*) other {
+  if (other == [NextPlayerStartNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
+  if (other.hasNextPlayUserId) {
+    [self setNextPlayUserId:other.nextPlayUserId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setCurrentPlayUserId:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setNextPlayUserId:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (int32_t) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(int32_t) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = 0;
+  return self;
+}
+- (BOOL) hasNextPlayUserId {
+  return result.hasNextPlayUserId;
+}
+- (int32_t) nextPlayUserId {
+  return result.nextPlayUserId;
+}
+- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(int32_t) value {
+  result.hasNextPlayUserId = YES;
+  result.nextPlayUserId = value;
+  return self;
+}
+- (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId {
+  result.hasNextPlayUserId = NO;
+  result.nextPlayUserId = 0;
+  return self;
+}
+@end
+
+@interface NextPlayerStartNotificationResponse ()
+@end
+
+@implementation NextPlayerStartNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [NextPlayerStartNotificationResponse class]) {
+    defaultNextPlayerStartNotificationResponseInstance = [[NextPlayerStartNotificationResponse alloc] init];
+  }
+}
++ (NextPlayerStartNotificationResponse*) defaultInstance {
+  return defaultNextPlayerStartNotificationResponseInstance;
+}
+- (NextPlayerStartNotificationResponse*) defaultInstance {
+  return defaultNextPlayerStartNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromData:data] build];
+}
++ (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (NextPlayerStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (NextPlayerStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (NextPlayerStartNotificationResponse*)[[[NextPlayerStartNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (NextPlayerStartNotificationResponse_Builder*) builder {
+  return [[[NextPlayerStartNotificationResponse_Builder alloc] init] autorelease];
+}
++ (NextPlayerStartNotificationResponse_Builder*) builderWithPrototype:(NextPlayerStartNotificationResponse*) prototype {
+  return [[NextPlayerStartNotificationResponse builder] mergeFrom:prototype];
+}
+- (NextPlayerStartNotificationResponse_Builder*) builder {
+  return [NextPlayerStartNotificationResponse builder];
+}
+@end
+
+@interface NextPlayerStartNotificationResponse_Builder()
+@property (retain) NextPlayerStartNotificationResponse* result;
+@end
+
+@implementation NextPlayerStartNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[NextPlayerStartNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (NextPlayerStartNotificationResponse_Builder*) clear {
+  self.result = [[[NextPlayerStartNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (NextPlayerStartNotificationResponse_Builder*) clone {
+  return [NextPlayerStartNotificationResponse builderWithPrototype:result];
+}
+- (NextPlayerStartNotificationResponse*) defaultInstance {
+  return [NextPlayerStartNotificationResponse defaultInstance];
+}
+- (NextPlayerStartNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (NextPlayerStartNotificationResponse*) buildPartial {
+  NextPlayerStartNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (NextPlayerStartNotificationResponse_Builder*) mergeFrom:(NextPlayerStartNotificationResponse*) other {
+  if (other == [NextPlayerStartNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface GameOverNotificationRequest ()
+@property (retain) LieDiceGameResult* gameResult;
+@end
+
+@implementation GameOverNotificationRequest
+
+- (BOOL) hasGameResult {
+  return !!hasGameResult_;
+}
+- (void) setHasGameResult:(BOOL) value {
+  hasGameResult_ = !!value;
+}
+@synthesize gameResult;
+- (void) dealloc {
+  self.gameResult = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameResult = [LieDiceGameResult defaultInstance];
+  }
+  return self;
+}
+static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance = nil;
++ (void) initialize {
+  if (self == [GameOverNotificationRequest class]) {
+    defaultGameOverNotificationRequestInstance = [[GameOverNotificationRequest alloc] init];
+  }
+}
++ (GameOverNotificationRequest*) defaultInstance {
+  return defaultGameOverNotificationRequestInstance;
+}
+- (GameOverNotificationRequest*) defaultInstance {
+  return defaultGameOverNotificationRequestInstance;
+}
+- (BOOL) isInitialized {
+  if (self.hasGameResult) {
+    if (!self.gameResult.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameResult) {
+    [output writeMessage:1 value:self.gameResult];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameResult) {
+    size += computeMessageSize(1, self.gameResult);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameOverNotificationRequest*) parseFromData:(NSData*) data {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromData:data] build];
+}
++ (GameOverNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromInputStream:input] build];
+}
++ (GameOverNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (GameOverNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationRequest*)[[[GameOverNotificationRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationRequest_Builder*) builder {
+  return [[[GameOverNotificationRequest_Builder alloc] init] autorelease];
+}
++ (GameOverNotificationRequest_Builder*) builderWithPrototype:(GameOverNotificationRequest*) prototype {
+  return [[GameOverNotificationRequest builder] mergeFrom:prototype];
+}
+- (GameOverNotificationRequest_Builder*) builder {
+  return [GameOverNotificationRequest builder];
+}
+@end
+
+@interface GameOverNotificationRequest_Builder()
+@property (retain) GameOverNotificationRequest* result;
+@end
+
+@implementation GameOverNotificationRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameOverNotificationRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameOverNotificationRequest_Builder*) clear {
+  self.result = [[[GameOverNotificationRequest alloc] init] autorelease];
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) clone {
+  return [GameOverNotificationRequest builderWithPrototype:result];
+}
+- (GameOverNotificationRequest*) defaultInstance {
+  return [GameOverNotificationRequest defaultInstance];
+}
+- (GameOverNotificationRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameOverNotificationRequest*) buildPartial {
+  GameOverNotificationRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameOverNotificationRequest_Builder*) mergeFrom:(GameOverNotificationRequest*) other {
+  if (other == [GameOverNotificationRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameResult) {
+    [self mergeGameResult:other.gameResult];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        LieDiceGameResult_Builder* subBuilder = [LieDiceGameResult builder];
+        if (self.hasGameResult) {
+          [subBuilder mergeFrom:self.gameResult];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameResult:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameResult {
+  return result.hasGameResult;
+}
+- (LieDiceGameResult*) gameResult {
+  return result.gameResult;
+}
+- (GameOverNotificationRequest_Builder*) setGameResult:(LieDiceGameResult*) value {
+  result.hasGameResult = YES;
+  result.gameResult = value;
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(LieDiceGameResult_Builder*) builderForValue {
+  return [self setGameResult:[builderForValue build]];
+}
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(LieDiceGameResult*) value {
+  if (result.hasGameResult &&
+      result.gameResult != [LieDiceGameResult defaultInstance]) {
+    result.gameResult =
+      [[[LieDiceGameResult builderWithPrototype:result.gameResult] mergeFrom:value] buildPartial];
+  } else {
+    result.gameResult = value;
+  }
+  result.hasGameResult = YES;
+  return self;
+}
+- (GameOverNotificationRequest_Builder*) clearGameResult {
+  result.hasGameResult = NO;
+  result.gameResult = [LieDiceGameResult defaultInstance];
+  return self;
+}
+@end
+
+@interface GameOverNotificationResponse ()
+@end
+
+@implementation GameOverNotificationResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance = nil;
++ (void) initialize {
+  if (self == [GameOverNotificationResponse class]) {
+    defaultGameOverNotificationResponseInstance = [[GameOverNotificationResponse alloc] init];
+  }
+}
++ (GameOverNotificationResponse*) defaultInstance {
+  return defaultGameOverNotificationResponseInstance;
+}
+- (GameOverNotificationResponse*) defaultInstance {
+  return defaultGameOverNotificationResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (GameOverNotificationResponse*) parseFromData:(NSData*) data {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromData:data] build];
+}
++ (GameOverNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromInputStream:input] build];
+}
++ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (GameOverNotificationResponse*)[[[GameOverNotificationResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (GameOverNotificationResponse_Builder*) builder {
+  return [[[GameOverNotificationResponse_Builder alloc] init] autorelease];
+}
++ (GameOverNotificationResponse_Builder*) builderWithPrototype:(GameOverNotificationResponse*) prototype {
+  return [[GameOverNotificationResponse builder] mergeFrom:prototype];
+}
+- (GameOverNotificationResponse_Builder*) builder {
+  return [GameOverNotificationResponse builder];
+}
+@end
+
+@interface GameOverNotificationResponse_Builder()
+@property (retain) GameOverNotificationResponse* result;
+@end
+
+@implementation GameOverNotificationResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[GameOverNotificationResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (GameOverNotificationResponse_Builder*) clear {
+  self.result = [[[GameOverNotificationResponse alloc] init] autorelease];
+  return self;
+}
+- (GameOverNotificationResponse_Builder*) clone {
+  return [GameOverNotificationResponse builderWithPrototype:result];
+}
+- (GameOverNotificationResponse*) defaultInstance {
+  return [GameOverNotificationResponse defaultInstance];
+}
+- (GameOverNotificationResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (GameOverNotificationResponse*) buildPartial {
+  GameOverNotificationResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (GameOverNotificationResponse_Builder*) mergeFrom:(GameOverNotificationResponse*) other {
+  if (other == [GameOverNotificationResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
 }
 @end
 

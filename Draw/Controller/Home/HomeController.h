@@ -23,6 +23,8 @@
     BOOL        _isTryJoinGame;    
     UserManager *_userManager;
 }
+@property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
+@property (retain, nonatomic) IBOutlet UIButton *diceButton;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickPlayWithFriend:(id)sender;

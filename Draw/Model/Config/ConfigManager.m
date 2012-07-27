@@ -242,4 +242,9 @@
     }
 }
 
++ (BOOL)isShowRecommendApp
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_RECOMMEND_APP" defaultValue:NO];
+}
+
 @end

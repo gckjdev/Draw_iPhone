@@ -3,10 +3,26 @@
 #import "ProtocolBuffers.h"
 
 #import "GameBasic.pb.h"
+#import "Draw.pb.h"
+#import "LieDice.pb.h"
 #import "GameConstants.pb.h"
 
+@class CallDiceRequest;
+@class CallDiceRequest_Builder;
+@class CallDiceResponse;
+@class CallDiceResponse_Builder;
+@class CreateRoomRequest;
+@class CreateRoomRequest_Builder;
+@class CreateRoomResponse;
+@class CreateRoomResponse_Builder;
 @class DataQueryResponse;
 @class DataQueryResponse_Builder;
+@class Dice;
+@class Dice_Builder;
+@class EnterRoomRequest;
+@class EnterRoomRequest_Builder;
+@class EnterRoomResponse;
+@class EnterRoomResponse_Builder;
 @class FacetimeChatRequest;
 @class FacetimeChatRequest_Builder;
 @class FacetimeChatResponse;
@@ -17,19 +33,41 @@
 @class GameChatResponse_Builder;
 @class GameMessage;
 @class GameMessage_Builder;
+@class GameOverNotificationRequest;
+@class GameOverNotificationRequest_Builder;
+@class GameOverNotificationResponse;
+@class GameOverNotificationResponse_Builder;
 @class GeneralNotification;
 @class GeneralNotification_Builder;
+@class GetRoomsRequest;
+@class GetRoomsRequest_Builder;
+@class GetRoomsResponse;
+@class GetRoomsResponse_Builder;
 @class JoinGameRequest;
 @class JoinGameRequest_Builder;
 @class JoinGameResponse;
 @class JoinGameResponse_Builder;
+@class LieDiceGameResult;
+@class LieDiceGameResult_Builder;
+@class NextPlayerStartNotificationRequest;
+@class NextPlayerStartNotificationRequest_Builder;
+@class NextPlayerStartNotificationResponse;
+@class NextPlayerStartNotificationResponse_Builder;
+@class OpenDiceRequest;
+@class OpenDiceRequest_Builder;
+@class OpenDiceResponse;
+@class OpenDiceResponse_Builder;
 @class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
 @class PBFeed_Builder;
+@class PBGameItem;
+@class PBGameItem_Builder;
 @class PBGameSession;
+@class PBGameSessionChanged;
+@class PBGameSessionChanged_Builder;
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
@@ -39,6 +77,22 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class RegisterRoomsNotificationRequest;
+@class RegisterRoomsNotificationRequest_Builder;
+@class RegisterRoomsNotificationResponse;
+@class RegisterRoomsNotificationResponse_Builder;
+@class RollDiceBeginNotificationRequest;
+@class RollDiceBeginNotificationRequest_Builder;
+@class RollDiceBeginNotificationResponse;
+@class RollDiceBeginNotificationResponse_Builder;
+@class RollDiceEndNotificationRequest;
+@class RollDiceEndNotificationRequest_Builder;
+@class RollDiceEndNotificationResponse;
+@class RollDiceEndNotificationResponse_Builder;
+@class RoomNotificationRequest;
+@class RoomNotificationRequest_Builder;
+@class RoomNotificationResponse;
+@class RoomNotificationResponse_Builder;
 @class SendDrawDataRequest;
 @class SendDrawDataRequest_Builder;
 @class SendDrawDataResponse;
@@ -47,11 +101,795 @@
 @class StartGameRequest_Builder;
 @class StartGameResponse;
 @class StartGameResponse_Builder;
+@class UnRegisterRoomsNotificationRequest;
+@class UnRegisterRoomsNotificationRequest_Builder;
+@class UnRegisterRoomsNotificationResponse;
+@class UnRegisterRoomsNotificationResponse_Builder;
+@class UseItemRequest;
+@class UseItemRequest_Builder;
+@class UserDice;
+@class UserDice_Builder;
+@class UserItemResponse;
+@class UserItemResponse_Builder;
+@class UserResult;
+@class UserResult_Builder;
 
 @interface GameMessageRoot : NSObject {
 }
 + (PBExtensionRegistry*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
+@end
+
+@interface GetRoomsRequest : PBGeneratedMessage {
+@private
+  BOOL hasRoomType_:1;
+  BOOL hasGameId_:1;
+  int32_t roomType;
+  NSString* gameId;
+}
+- (BOOL) hasGameId;
+- (BOOL) hasRoomType;
+@property (readonly, retain) NSString* gameId;
+@property (readonly) int32_t roomType;
+
++ (GetRoomsRequest*) defaultInstance;
+- (GetRoomsRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GetRoomsRequest_Builder*) builder;
++ (GetRoomsRequest_Builder*) builder;
++ (GetRoomsRequest_Builder*) builderWithPrototype:(GetRoomsRequest*) prototype;
+
++ (GetRoomsRequest*) parseFromData:(NSData*) data;
++ (GetRoomsRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GetRoomsRequest*) parseFromInputStream:(NSInputStream*) input;
++ (GetRoomsRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GetRoomsRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GetRoomsRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GetRoomsRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  GetRoomsRequest* result;
+}
+
+- (GetRoomsRequest*) defaultInstance;
+
+- (GetRoomsRequest_Builder*) clear;
+- (GetRoomsRequest_Builder*) clone;
+
+- (GetRoomsRequest*) build;
+- (GetRoomsRequest*) buildPartial;
+
+- (GetRoomsRequest_Builder*) mergeFrom:(GetRoomsRequest*) other;
+- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameId;
+- (NSString*) gameId;
+- (GetRoomsRequest_Builder*) setGameId:(NSString*) value;
+- (GetRoomsRequest_Builder*) clearGameId;
+
+- (BOOL) hasRoomType;
+- (int32_t) roomType;
+- (GetRoomsRequest_Builder*) setRoomType:(int32_t) value;
+- (GetRoomsRequest_Builder*) clearRoomType;
+@end
+
+@interface GetRoomsResponse : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableGameSessionsList;
+}
+- (NSArray*) gameSessionsList;
+- (PBGameSession*) gameSessionsAtIndex:(int32_t) index;
+
++ (GetRoomsResponse*) defaultInstance;
+- (GetRoomsResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GetRoomsResponse_Builder*) builder;
++ (GetRoomsResponse_Builder*) builder;
++ (GetRoomsResponse_Builder*) builderWithPrototype:(GetRoomsResponse*) prototype;
+
++ (GetRoomsResponse*) parseFromData:(NSData*) data;
++ (GetRoomsResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GetRoomsResponse*) parseFromInputStream:(NSInputStream*) input;
++ (GetRoomsResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GetRoomsResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GetRoomsResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GetRoomsResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  GetRoomsResponse* result;
+}
+
+- (GetRoomsResponse*) defaultInstance;
+
+- (GetRoomsResponse_Builder*) clear;
+- (GetRoomsResponse_Builder*) clone;
+
+- (GetRoomsResponse*) build;
+- (GetRoomsResponse*) buildPartial;
+
+- (GetRoomsResponse_Builder*) mergeFrom:(GetRoomsResponse*) other;
+- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) gameSessionsList;
+- (PBGameSession*) gameSessionsAtIndex:(int32_t) index;
+- (GetRoomsResponse_Builder*) replaceGameSessionsAtIndex:(int32_t) index with:(PBGameSession*) value;
+- (GetRoomsResponse_Builder*) addGameSessions:(PBGameSession*) value;
+- (GetRoomsResponse_Builder*) addAllGameSessions:(NSArray*) values;
+- (GetRoomsResponse_Builder*) clearGameSessionsList;
+@end
+
+@interface CreateRoomRequest : PBGeneratedMessage {
+@private
+  BOOL hasGameId_:1;
+  BOOL hasRoomName_:1;
+  BOOL hasUser_:1;
+  NSString* gameId;
+  NSString* roomName;
+  PBGameUser* user;
+}
+- (BOOL) hasGameId;
+- (BOOL) hasUser;
+- (BOOL) hasRoomName;
+@property (readonly, retain) NSString* gameId;
+@property (readonly, retain) PBGameUser* user;
+@property (readonly, retain) NSString* roomName;
+
++ (CreateRoomRequest*) defaultInstance;
+- (CreateRoomRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CreateRoomRequest_Builder*) builder;
++ (CreateRoomRequest_Builder*) builder;
++ (CreateRoomRequest_Builder*) builderWithPrototype:(CreateRoomRequest*) prototype;
+
++ (CreateRoomRequest*) parseFromData:(NSData*) data;
++ (CreateRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CreateRoomRequest*) parseFromInputStream:(NSInputStream*) input;
++ (CreateRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CreateRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CreateRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CreateRoomRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  CreateRoomRequest* result;
+}
+
+- (CreateRoomRequest*) defaultInstance;
+
+- (CreateRoomRequest_Builder*) clear;
+- (CreateRoomRequest_Builder*) clone;
+
+- (CreateRoomRequest*) build;
+- (CreateRoomRequest*) buildPartial;
+
+- (CreateRoomRequest_Builder*) mergeFrom:(CreateRoomRequest*) other;
+- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameId;
+- (NSString*) gameId;
+- (CreateRoomRequest_Builder*) setGameId:(NSString*) value;
+- (CreateRoomRequest_Builder*) clearGameId;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (CreateRoomRequest_Builder*) setUser:(PBGameUser*) value;
+- (CreateRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (CreateRoomRequest_Builder*) mergeUser:(PBGameUser*) value;
+- (CreateRoomRequest_Builder*) clearUser;
+
+- (BOOL) hasRoomName;
+- (NSString*) roomName;
+- (CreateRoomRequest_Builder*) setRoomName:(NSString*) value;
+- (CreateRoomRequest_Builder*) clearRoomName;
+@end
+
+@interface CreateRoomResponse : PBGeneratedMessage {
+@private
+}
+
++ (CreateRoomResponse*) defaultInstance;
+- (CreateRoomResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CreateRoomResponse_Builder*) builder;
++ (CreateRoomResponse_Builder*) builder;
++ (CreateRoomResponse_Builder*) builderWithPrototype:(CreateRoomResponse*) prototype;
+
++ (CreateRoomResponse*) parseFromData:(NSData*) data;
++ (CreateRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CreateRoomResponse*) parseFromInputStream:(NSInputStream*) input;
++ (CreateRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CreateRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CreateRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CreateRoomResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  CreateRoomResponse* result;
+}
+
+- (CreateRoomResponse*) defaultInstance;
+
+- (CreateRoomResponse_Builder*) clear;
+- (CreateRoomResponse_Builder*) clone;
+
+- (CreateRoomResponse*) build;
+- (CreateRoomResponse*) buildPartial;
+
+- (CreateRoomResponse_Builder*) mergeFrom:(CreateRoomResponse*) other;
+- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface EnterRoomRequest : PBGeneratedMessage {
+@private
+  BOOL hasUser_:1;
+  PBGameUser* user;
+}
+- (BOOL) hasUser;
+@property (readonly, retain) PBGameUser* user;
+
++ (EnterRoomRequest*) defaultInstance;
+- (EnterRoomRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (EnterRoomRequest_Builder*) builder;
++ (EnterRoomRequest_Builder*) builder;
++ (EnterRoomRequest_Builder*) builderWithPrototype:(EnterRoomRequest*) prototype;
+
++ (EnterRoomRequest*) parseFromData:(NSData*) data;
++ (EnterRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input;
++ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface EnterRoomRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  EnterRoomRequest* result;
+}
+
+- (EnterRoomRequest*) defaultInstance;
+
+- (EnterRoomRequest_Builder*) clear;
+- (EnterRoomRequest_Builder*) clone;
+
+- (EnterRoomRequest*) build;
+- (EnterRoomRequest*) buildPartial;
+
+- (EnterRoomRequest_Builder*) mergeFrom:(EnterRoomRequest*) other;
+- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (EnterRoomRequest_Builder*) setUser:(PBGameUser*) value;
+- (EnterRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (EnterRoomRequest_Builder*) mergeUser:(PBGameUser*) value;
+- (EnterRoomRequest_Builder*) clearUser;
+@end
+
+@interface EnterRoomResponse : PBGeneratedMessage {
+@private
+  BOOL hasGameSession_:1;
+  PBGameSession* gameSession;
+}
+- (BOOL) hasGameSession;
+@property (readonly, retain) PBGameSession* gameSession;
+
++ (EnterRoomResponse*) defaultInstance;
+- (EnterRoomResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (EnterRoomResponse_Builder*) builder;
++ (EnterRoomResponse_Builder*) builder;
++ (EnterRoomResponse_Builder*) builderWithPrototype:(EnterRoomResponse*) prototype;
+
++ (EnterRoomResponse*) parseFromData:(NSData*) data;
++ (EnterRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input;
++ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface EnterRoomResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  EnterRoomResponse* result;
+}
+
+- (EnterRoomResponse*) defaultInstance;
+
+- (EnterRoomResponse_Builder*) clear;
+- (EnterRoomResponse_Builder*) clone;
+
+- (EnterRoomResponse*) build;
+- (EnterRoomResponse*) buildPartial;
+
+- (EnterRoomResponse_Builder*) mergeFrom:(EnterRoomResponse*) other;
+- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameSession;
+- (PBGameSession*) gameSession;
+- (EnterRoomResponse_Builder*) setGameSession:(PBGameSession*) value;
+- (EnterRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
+- (EnterRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
+- (EnterRoomResponse_Builder*) clearGameSession;
+@end
+
+@interface RegisterRoomsNotificationRequest : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  int32_t userId;
+  NSMutableArray* mutableSessionIdsList;
+  int32_t sessionIdsMemoizedSerializedSize;
+}
+- (BOOL) hasUserId;
+@property (readonly) int32_t userId;
+- (NSArray*) sessionIdsList;
+- (int32_t) sessionIdsAtIndex:(int32_t) index;
+
++ (RegisterRoomsNotificationRequest*) defaultInstance;
+- (RegisterRoomsNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RegisterRoomsNotificationRequest_Builder*) builder;
++ (RegisterRoomsNotificationRequest_Builder*) builder;
++ (RegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(RegisterRoomsNotificationRequest*) prototype;
+
++ (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data;
++ (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (RegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RegisterRoomsNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  RegisterRoomsNotificationRequest* result;
+}
+
+- (RegisterRoomsNotificationRequest*) defaultInstance;
+
+- (RegisterRoomsNotificationRequest_Builder*) clear;
+- (RegisterRoomsNotificationRequest_Builder*) clone;
+
+- (RegisterRoomsNotificationRequest*) build;
+- (RegisterRoomsNotificationRequest*) buildPartial;
+
+- (RegisterRoomsNotificationRequest_Builder*) mergeFrom:(RegisterRoomsNotificationRequest*) other;
+- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (int32_t) userId;
+- (RegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value;
+- (RegisterRoomsNotificationRequest_Builder*) clearUserId;
+
+- (NSArray*) sessionIdsList;
+- (int32_t) sessionIdsAtIndex:(int32_t) index;
+- (RegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value;
+- (RegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value;
+- (RegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values;
+- (RegisterRoomsNotificationRequest_Builder*) clearSessionIdsList;
+@end
+
+@interface RegisterRoomsNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (RegisterRoomsNotificationResponse*) defaultInstance;
+- (RegisterRoomsNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RegisterRoomsNotificationResponse_Builder*) builder;
++ (RegisterRoomsNotificationResponse_Builder*) builder;
++ (RegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(RegisterRoomsNotificationResponse*) prototype;
+
++ (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data;
++ (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (RegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RegisterRoomsNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  RegisterRoomsNotificationResponse* result;
+}
+
+- (RegisterRoomsNotificationResponse*) defaultInstance;
+
+- (RegisterRoomsNotificationResponse_Builder*) clear;
+- (RegisterRoomsNotificationResponse_Builder*) clone;
+
+- (RegisterRoomsNotificationResponse*) build;
+- (RegisterRoomsNotificationResponse*) buildPartial;
+
+- (RegisterRoomsNotificationResponse_Builder*) mergeFrom:(RegisterRoomsNotificationResponse*) other;
+- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UnRegisterRoomsNotificationRequest : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  int32_t userId;
+  NSMutableArray* mutableSessionIdsList;
+  int32_t sessionIdsMemoizedSerializedSize;
+}
+- (BOOL) hasUserId;
+@property (readonly) int32_t userId;
+- (NSArray*) sessionIdsList;
+- (int32_t) sessionIdsAtIndex:(int32_t) index;
+
++ (UnRegisterRoomsNotificationRequest*) defaultInstance;
+- (UnRegisterRoomsNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (UnRegisterRoomsNotificationRequest_Builder*) builder;
++ (UnRegisterRoomsNotificationRequest_Builder*) builder;
++ (UnRegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationRequest*) prototype;
+
++ (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data;
++ (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UnRegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (UnRegisterRoomsNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UnRegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UnRegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UnRegisterRoomsNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  UnRegisterRoomsNotificationRequest* result;
+}
+
+- (UnRegisterRoomsNotificationRequest*) defaultInstance;
+
+- (UnRegisterRoomsNotificationRequest_Builder*) clear;
+- (UnRegisterRoomsNotificationRequest_Builder*) clone;
+
+- (UnRegisterRoomsNotificationRequest*) build;
+- (UnRegisterRoomsNotificationRequest*) buildPartial;
+
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFrom:(UnRegisterRoomsNotificationRequest*) other;
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (int32_t) userId;
+- (UnRegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value;
+- (UnRegisterRoomsNotificationRequest_Builder*) clearUserId;
+
+- (NSArray*) sessionIdsList;
+- (int32_t) sessionIdsAtIndex:(int32_t) index;
+- (UnRegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value;
+- (UnRegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value;
+- (UnRegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values;
+- (UnRegisterRoomsNotificationRequest_Builder*) clearSessionIdsList;
+@end
+
+@interface UnRegisterRoomsNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (UnRegisterRoomsNotificationResponse*) defaultInstance;
+- (UnRegisterRoomsNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (UnRegisterRoomsNotificationResponse_Builder*) builder;
++ (UnRegisterRoomsNotificationResponse_Builder*) builder;
++ (UnRegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationResponse*) prototype;
+
++ (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data;
++ (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UnRegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (UnRegisterRoomsNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UnRegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UnRegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UnRegisterRoomsNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  UnRegisterRoomsNotificationResponse* result;
+}
+
+- (UnRegisterRoomsNotificationResponse*) defaultInstance;
+
+- (UnRegisterRoomsNotificationResponse_Builder*) clear;
+- (UnRegisterRoomsNotificationResponse_Builder*) clone;
+
+- (UnRegisterRoomsNotificationResponse*) build;
+- (UnRegisterRoomsNotificationResponse*) buildPartial;
+
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFrom:(UnRegisterRoomsNotificationResponse*) other;
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CallDiceRequest : PBGeneratedMessage {
+@private
+  BOOL hasNum_:1;
+  BOOL hasDice_:1;
+  int32_t num;
+  int32_t dice;
+}
+- (BOOL) hasNum;
+- (BOOL) hasDice;
+@property (readonly) int32_t num;
+@property (readonly) int32_t dice;
+
++ (CallDiceRequest*) defaultInstance;
+- (CallDiceRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CallDiceRequest_Builder*) builder;
++ (CallDiceRequest_Builder*) builder;
++ (CallDiceRequest_Builder*) builderWithPrototype:(CallDiceRequest*) prototype;
+
++ (CallDiceRequest*) parseFromData:(NSData*) data;
++ (CallDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CallDiceRequest*) parseFromInputStream:(NSInputStream*) input;
++ (CallDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CallDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CallDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CallDiceRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  CallDiceRequest* result;
+}
+
+- (CallDiceRequest*) defaultInstance;
+
+- (CallDiceRequest_Builder*) clear;
+- (CallDiceRequest_Builder*) clone;
+
+- (CallDiceRequest*) build;
+- (CallDiceRequest*) buildPartial;
+
+- (CallDiceRequest_Builder*) mergeFrom:(CallDiceRequest*) other;
+- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasNum;
+- (int32_t) num;
+- (CallDiceRequest_Builder*) setNum:(int32_t) value;
+- (CallDiceRequest_Builder*) clearNum;
+
+- (BOOL) hasDice;
+- (int32_t) dice;
+- (CallDiceRequest_Builder*) setDice:(int32_t) value;
+- (CallDiceRequest_Builder*) clearDice;
+@end
+
+@interface CallDiceResponse : PBGeneratedMessage {
+@private
+}
+
++ (CallDiceResponse*) defaultInstance;
+- (CallDiceResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (CallDiceResponse_Builder*) builder;
++ (CallDiceResponse_Builder*) builder;
++ (CallDiceResponse_Builder*) builderWithPrototype:(CallDiceResponse*) prototype;
+
++ (CallDiceResponse*) parseFromData:(NSData*) data;
++ (CallDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CallDiceResponse*) parseFromInputStream:(NSInputStream*) input;
++ (CallDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (CallDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (CallDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface CallDiceResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  CallDiceResponse* result;
+}
+
+- (CallDiceResponse*) defaultInstance;
+
+- (CallDiceResponse_Builder*) clear;
+- (CallDiceResponse_Builder*) clone;
+
+- (CallDiceResponse*) build;
+- (CallDiceResponse*) buildPartial;
+
+- (CallDiceResponse_Builder*) mergeFrom:(CallDiceResponse*) other;
+- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OpenDiceRequest : PBGeneratedMessage {
+@private
+}
+
++ (OpenDiceRequest*) defaultInstance;
+- (OpenDiceRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (OpenDiceRequest_Builder*) builder;
++ (OpenDiceRequest_Builder*) builder;
++ (OpenDiceRequest_Builder*) builderWithPrototype:(OpenDiceRequest*) prototype;
+
++ (OpenDiceRequest*) parseFromData:(NSData*) data;
++ (OpenDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OpenDiceRequest*) parseFromInputStream:(NSInputStream*) input;
++ (OpenDiceRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OpenDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (OpenDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OpenDiceRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  OpenDiceRequest* result;
+}
+
+- (OpenDiceRequest*) defaultInstance;
+
+- (OpenDiceRequest_Builder*) clear;
+- (OpenDiceRequest_Builder*) clone;
+
+- (OpenDiceRequest*) build;
+- (OpenDiceRequest*) buildPartial;
+
+- (OpenDiceRequest_Builder*) mergeFrom:(OpenDiceRequest*) other;
+- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OpenDiceResponse : PBGeneratedMessage {
+@private
+}
+
++ (OpenDiceResponse*) defaultInstance;
+- (OpenDiceResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (OpenDiceResponse_Builder*) builder;
++ (OpenDiceResponse_Builder*) builder;
++ (OpenDiceResponse_Builder*) builderWithPrototype:(OpenDiceResponse*) prototype;
+
++ (OpenDiceResponse*) parseFromData:(NSData*) data;
++ (OpenDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OpenDiceResponse*) parseFromInputStream:(NSInputStream*) input;
++ (OpenDiceResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OpenDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (OpenDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OpenDiceResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  OpenDiceResponse* result;
+}
+
+- (OpenDiceResponse*) defaultInstance;
+
+- (OpenDiceResponse_Builder*) clear;
+- (OpenDiceResponse_Builder*) clone;
+
+- (OpenDiceResponse*) build;
+- (OpenDiceResponse*) buildPartial;
+
+- (OpenDiceResponse_Builder*) mergeFrom:(OpenDiceResponse*) other;
+- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UseItemRequest : PBGeneratedMessage {
+@private
+  BOOL hasItem_:1;
+  PBGameItem* item;
+}
+- (BOOL) hasItem;
+@property (readonly, retain) PBGameItem* item;
+
++ (UseItemRequest*) defaultInstance;
+- (UseItemRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (UseItemRequest_Builder*) builder;
++ (UseItemRequest_Builder*) builder;
++ (UseItemRequest_Builder*) builderWithPrototype:(UseItemRequest*) prototype;
+
++ (UseItemRequest*) parseFromData:(NSData*) data;
++ (UseItemRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UseItemRequest*) parseFromInputStream:(NSInputStream*) input;
++ (UseItemRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UseItemRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UseItemRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UseItemRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  UseItemRequest* result;
+}
+
+- (UseItemRequest*) defaultInstance;
+
+- (UseItemRequest_Builder*) clear;
+- (UseItemRequest_Builder*) clone;
+
+- (UseItemRequest*) build;
+- (UseItemRequest*) buildPartial;
+
+- (UseItemRequest_Builder*) mergeFrom:(UseItemRequest*) other;
+- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasItem;
+- (PBGameItem*) item;
+- (UseItemRequest_Builder*) setItem:(PBGameItem*) value;
+- (UseItemRequest_Builder*) setItemBuilder:(PBGameItem_Builder*) builderForValue;
+- (UseItemRequest_Builder*) mergeItem:(PBGameItem*) value;
+- (UseItemRequest_Builder*) clearItem;
+@end
+
+@interface UserItemResponse : PBGeneratedMessage {
+@private
+}
+
++ (UserItemResponse*) defaultInstance;
+- (UserItemResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (UserItemResponse_Builder*) builder;
++ (UserItemResponse_Builder*) builder;
++ (UserItemResponse_Builder*) builderWithPrototype:(UserItemResponse*) prototype;
+
++ (UserItemResponse*) parseFromData:(NSData*) data;
++ (UserItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input;
++ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UserItemResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  UserItemResponse* result;
+}
+
+- (UserItemResponse*) defaultInstance;
+
+- (UserItemResponse_Builder*) clear;
+- (UserItemResponse_Builder*) clone;
+
+- (UserItemResponse*) build;
+- (UserItemResponse*) buildPartial;
+
+- (UserItemResponse_Builder*) mergeFrom:(UserItemResponse*) other;
+- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
@@ -383,6 +1221,465 @@
 - (NSString*) nextPlayUserId;
 - (StartGameResponse_Builder*) setNextPlayUserId:(NSString*) value;
 - (StartGameResponse_Builder*) clearNextPlayUserId;
+@end
+
+@interface RoomNotificationRequest : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableSessionIdsDeletedList;
+  NSMutableArray* mutableSessionsChangedList;
+  NSMutableArray* mutableSessionsAddedList;
+}
+- (NSArray*) sessionsChangedList;
+- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index;
+- (NSArray*) sessionsAddedList;
+- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index;
+- (NSArray*) sessionIdsDeletedList;
+- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index;
+
++ (RoomNotificationRequest*) defaultInstance;
+- (RoomNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RoomNotificationRequest_Builder*) builder;
++ (RoomNotificationRequest_Builder*) builder;
++ (RoomNotificationRequest_Builder*) builderWithPrototype:(RoomNotificationRequest*) prototype;
+
++ (RoomNotificationRequest*) parseFromData:(NSData*) data;
++ (RoomNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RoomNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (RoomNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RoomNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RoomNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RoomNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  RoomNotificationRequest* result;
+}
+
+- (RoomNotificationRequest*) defaultInstance;
+
+- (RoomNotificationRequest_Builder*) clear;
+- (RoomNotificationRequest_Builder*) clone;
+
+- (RoomNotificationRequest*) build;
+- (RoomNotificationRequest*) buildPartial;
+
+- (RoomNotificationRequest_Builder*) mergeFrom:(RoomNotificationRequest*) other;
+- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) sessionsChangedList;
+- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index;
+- (RoomNotificationRequest_Builder*) replaceSessionsChangedAtIndex:(int32_t) index with:(PBGameSessionChanged*) value;
+- (RoomNotificationRequest_Builder*) addSessionsChanged:(PBGameSessionChanged*) value;
+- (RoomNotificationRequest_Builder*) addAllSessionsChanged:(NSArray*) values;
+- (RoomNotificationRequest_Builder*) clearSessionsChangedList;
+
+- (NSArray*) sessionsAddedList;
+- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index;
+- (RoomNotificationRequest_Builder*) replaceSessionsAddedAtIndex:(int32_t) index with:(PBGameSession*) value;
+- (RoomNotificationRequest_Builder*) addSessionsAdded:(PBGameSession*) value;
+- (RoomNotificationRequest_Builder*) addAllSessionsAdded:(NSArray*) values;
+- (RoomNotificationRequest_Builder*) clearSessionsAddedList;
+
+- (NSArray*) sessionIdsDeletedList;
+- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index;
+- (RoomNotificationRequest_Builder*) replaceSessionIdsDeletedAtIndex:(int32_t) index with:(int32_t) value;
+- (RoomNotificationRequest_Builder*) addSessionIdsDeleted:(int32_t) value;
+- (RoomNotificationRequest_Builder*) addAllSessionIdsDeleted:(NSArray*) values;
+- (RoomNotificationRequest_Builder*) clearSessionIdsDeletedList;
+@end
+
+@interface RoomNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (RoomNotificationResponse*) defaultInstance;
+- (RoomNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RoomNotificationResponse_Builder*) builder;
++ (RoomNotificationResponse_Builder*) builder;
++ (RoomNotificationResponse_Builder*) builderWithPrototype:(RoomNotificationResponse*) prototype;
+
++ (RoomNotificationResponse*) parseFromData:(NSData*) data;
++ (RoomNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RoomNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (RoomNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RoomNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RoomNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RoomNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  RoomNotificationResponse* result;
+}
+
+- (RoomNotificationResponse*) defaultInstance;
+
+- (RoomNotificationResponse_Builder*) clear;
+- (RoomNotificationResponse_Builder*) clone;
+
+- (RoomNotificationResponse*) build;
+- (RoomNotificationResponse*) buildPartial;
+
+- (RoomNotificationResponse_Builder*) mergeFrom:(RoomNotificationResponse*) other;
+- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceBeginNotificationRequest : PBGeneratedMessage {
+@private
+}
+
++ (RollDiceBeginNotificationRequest*) defaultInstance;
+- (RollDiceBeginNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RollDiceBeginNotificationRequest_Builder*) builder;
++ (RollDiceBeginNotificationRequest_Builder*) builder;
++ (RollDiceBeginNotificationRequest_Builder*) builderWithPrototype:(RollDiceBeginNotificationRequest*) prototype;
+
++ (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data;
++ (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceBeginNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (RollDiceBeginNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceBeginNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RollDiceBeginNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceBeginNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  RollDiceBeginNotificationRequest* result;
+}
+
+- (RollDiceBeginNotificationRequest*) defaultInstance;
+
+- (RollDiceBeginNotificationRequest_Builder*) clear;
+- (RollDiceBeginNotificationRequest_Builder*) clone;
+
+- (RollDiceBeginNotificationRequest*) build;
+- (RollDiceBeginNotificationRequest*) buildPartial;
+
+- (RollDiceBeginNotificationRequest_Builder*) mergeFrom:(RollDiceBeginNotificationRequest*) other;
+- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceBeginNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (RollDiceBeginNotificationResponse*) defaultInstance;
+- (RollDiceBeginNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RollDiceBeginNotificationResponse_Builder*) builder;
++ (RollDiceBeginNotificationResponse_Builder*) builder;
++ (RollDiceBeginNotificationResponse_Builder*) builderWithPrototype:(RollDiceBeginNotificationResponse*) prototype;
+
++ (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data;
++ (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceBeginNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (RollDiceBeginNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceBeginNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RollDiceBeginNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceBeginNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  RollDiceBeginNotificationResponse* result;
+}
+
+- (RollDiceBeginNotificationResponse*) defaultInstance;
+
+- (RollDiceBeginNotificationResponse_Builder*) clear;
+- (RollDiceBeginNotificationResponse_Builder*) clone;
+
+- (RollDiceBeginNotificationResponse*) build;
+- (RollDiceBeginNotificationResponse*) buildPartial;
+
+- (RollDiceBeginNotificationResponse_Builder*) mergeFrom:(RollDiceBeginNotificationResponse*) other;
+- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceEndNotificationRequest : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableUserDiceList;
+}
+- (NSArray*) userDiceList;
+- (UserDice*) userDiceAtIndex:(int32_t) index;
+
++ (RollDiceEndNotificationRequest*) defaultInstance;
+- (RollDiceEndNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RollDiceEndNotificationRequest_Builder*) builder;
++ (RollDiceEndNotificationRequest_Builder*) builder;
++ (RollDiceEndNotificationRequest_Builder*) builderWithPrototype:(RollDiceEndNotificationRequest*) prototype;
+
++ (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data;
++ (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceEndNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (RollDiceEndNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceEndNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RollDiceEndNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceEndNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  RollDiceEndNotificationRequest* result;
+}
+
+- (RollDiceEndNotificationRequest*) defaultInstance;
+
+- (RollDiceEndNotificationRequest_Builder*) clear;
+- (RollDiceEndNotificationRequest_Builder*) clone;
+
+- (RollDiceEndNotificationRequest*) build;
+- (RollDiceEndNotificationRequest*) buildPartial;
+
+- (RollDiceEndNotificationRequest_Builder*) mergeFrom:(RollDiceEndNotificationRequest*) other;
+- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) userDiceList;
+- (UserDice*) userDiceAtIndex:(int32_t) index;
+- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(UserDice*) value;
+- (RollDiceEndNotificationRequest_Builder*) addUserDice:(UserDice*) value;
+- (RollDiceEndNotificationRequest_Builder*) addAllUserDice:(NSArray*) values;
+- (RollDiceEndNotificationRequest_Builder*) clearUserDiceList;
+@end
+
+@interface RollDiceEndNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (RollDiceEndNotificationResponse*) defaultInstance;
+- (RollDiceEndNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (RollDiceEndNotificationResponse_Builder*) builder;
++ (RollDiceEndNotificationResponse_Builder*) builder;
++ (RollDiceEndNotificationResponse_Builder*) builderWithPrototype:(RollDiceEndNotificationResponse*) prototype;
+
++ (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data;
++ (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceEndNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (RollDiceEndNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (RollDiceEndNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (RollDiceEndNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface RollDiceEndNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  RollDiceEndNotificationResponse* result;
+}
+
+- (RollDiceEndNotificationResponse*) defaultInstance;
+
+- (RollDiceEndNotificationResponse_Builder*) clear;
+- (RollDiceEndNotificationResponse_Builder*) clone;
+
+- (RollDiceEndNotificationResponse*) build;
+- (RollDiceEndNotificationResponse*) buildPartial;
+
+- (RollDiceEndNotificationResponse_Builder*) mergeFrom:(RollDiceEndNotificationResponse*) other;
+- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface NextPlayerStartNotificationRequest : PBGeneratedMessage {
+@private
+  BOOL hasCurrentPlayUserId_:1;
+  BOOL hasNextPlayUserId_:1;
+  int32_t currentPlayUserId;
+  int32_t nextPlayUserId;
+}
+- (BOOL) hasCurrentPlayUserId;
+- (BOOL) hasNextPlayUserId;
+@property (readonly) int32_t currentPlayUserId;
+@property (readonly) int32_t nextPlayUserId;
+
++ (NextPlayerStartNotificationRequest*) defaultInstance;
+- (NextPlayerStartNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (NextPlayerStartNotificationRequest_Builder*) builder;
++ (NextPlayerStartNotificationRequest_Builder*) builder;
++ (NextPlayerStartNotificationRequest_Builder*) builderWithPrototype:(NextPlayerStartNotificationRequest*) prototype;
+
++ (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data;
++ (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (NextPlayerStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (NextPlayerStartNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (NextPlayerStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (NextPlayerStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface NextPlayerStartNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  NextPlayerStartNotificationRequest* result;
+}
+
+- (NextPlayerStartNotificationRequest*) defaultInstance;
+
+- (NextPlayerStartNotificationRequest_Builder*) clear;
+- (NextPlayerStartNotificationRequest_Builder*) clone;
+
+- (NextPlayerStartNotificationRequest*) build;
+- (NextPlayerStartNotificationRequest*) buildPartial;
+
+- (NextPlayerStartNotificationRequest_Builder*) mergeFrom:(NextPlayerStartNotificationRequest*) other;
+- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasCurrentPlayUserId;
+- (int32_t) currentPlayUserId;
+- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(int32_t) value;
+- (NextPlayerStartNotificationRequest_Builder*) clearCurrentPlayUserId;
+
+- (BOOL) hasNextPlayUserId;
+- (int32_t) nextPlayUserId;
+- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(int32_t) value;
+- (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId;
+@end
+
+@interface NextPlayerStartNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (NextPlayerStartNotificationResponse*) defaultInstance;
+- (NextPlayerStartNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (NextPlayerStartNotificationResponse_Builder*) builder;
++ (NextPlayerStartNotificationResponse_Builder*) builder;
++ (NextPlayerStartNotificationResponse_Builder*) builderWithPrototype:(NextPlayerStartNotificationResponse*) prototype;
+
++ (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data;
++ (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (NextPlayerStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (NextPlayerStartNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (NextPlayerStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (NextPlayerStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface NextPlayerStartNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  NextPlayerStartNotificationResponse* result;
+}
+
+- (NextPlayerStartNotificationResponse*) defaultInstance;
+
+- (NextPlayerStartNotificationResponse_Builder*) clear;
+- (NextPlayerStartNotificationResponse_Builder*) clone;
+
+- (NextPlayerStartNotificationResponse*) build;
+- (NextPlayerStartNotificationResponse*) buildPartial;
+
+- (NextPlayerStartNotificationResponse_Builder*) mergeFrom:(NextPlayerStartNotificationResponse*) other;
+- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameOverNotificationRequest : PBGeneratedMessage {
+@private
+  BOOL hasGameResult_:1;
+  LieDiceGameResult* gameResult;
+}
+- (BOOL) hasGameResult;
+@property (readonly, retain) LieDiceGameResult* gameResult;
+
++ (GameOverNotificationRequest*) defaultInstance;
+- (GameOverNotificationRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameOverNotificationRequest_Builder*) builder;
++ (GameOverNotificationRequest_Builder*) builder;
++ (GameOverNotificationRequest_Builder*) builderWithPrototype:(GameOverNotificationRequest*) prototype;
+
++ (GameOverNotificationRequest*) parseFromData:(NSData*) data;
++ (GameOverNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameOverNotificationRequest*) parseFromInputStream:(NSInputStream*) input;
++ (GameOverNotificationRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameOverNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameOverNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameOverNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  GameOverNotificationRequest* result;
+}
+
+- (GameOverNotificationRequest*) defaultInstance;
+
+- (GameOverNotificationRequest_Builder*) clear;
+- (GameOverNotificationRequest_Builder*) clone;
+
+- (GameOverNotificationRequest*) build;
+- (GameOverNotificationRequest*) buildPartial;
+
+- (GameOverNotificationRequest_Builder*) mergeFrom:(GameOverNotificationRequest*) other;
+- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameResult;
+- (LieDiceGameResult*) gameResult;
+- (GameOverNotificationRequest_Builder*) setGameResult:(LieDiceGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(LieDiceGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(LieDiceGameResult*) value;
+- (GameOverNotificationRequest_Builder*) clearGameResult;
+@end
+
+@interface GameOverNotificationResponse : PBGeneratedMessage {
+@private
+}
+
++ (GameOverNotificationResponse*) defaultInstance;
+- (GameOverNotificationResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (GameOverNotificationResponse_Builder*) builder;
++ (GameOverNotificationResponse_Builder*) builder;
++ (GameOverNotificationResponse_Builder*) builderWithPrototype:(GameOverNotificationResponse*) prototype;
+
++ (GameOverNotificationResponse*) parseFromData:(NSData*) data;
++ (GameOverNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input;
++ (GameOverNotificationResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface GameOverNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  GameOverNotificationResponse* result;
+}
+
+- (GameOverNotificationResponse*) defaultInstance;
+
+- (GameOverNotificationResponse_Builder*) clear;
+- (GameOverNotificationResponse_Builder*) clone;
+
+- (GameOverNotificationResponse*) build;
+- (GameOverNotificationResponse*) buildPartial;
+
+- (GameOverNotificationResponse_Builder*) mergeFrom:(GameOverNotificationResponse*) other;
+- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface GameChatRequest : PBGeneratedMessage {

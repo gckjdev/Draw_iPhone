@@ -109,6 +109,10 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
+		A4B763A315C25208003B4E72 /* LieDice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* LieDice.proto */; };
+		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
+		A4B763A915C25218003B4E72 /* LieDice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A715C25218003B4E72 /* LieDice.pb.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
@@ -687,6 +691,10 @@
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
+		CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */; };
+		CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7915C27A4000E9C1CD /* DiceGameService.m */; };
+		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
+		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
@@ -1008,6 +1016,12 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
+		A4B763A115C25208003B4E72 /* LieDice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LieDice.proto; sourceTree = "<group>"; };
+		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
+		A4B763A515C25218003B4E72 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
+		A4B763A615C25218003B4E72 /* LieDice.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LieDice.pb.h; sourceTree = "<group>"; };
+		A4B763A715C25218003B4E72 /* LieDice.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LieDice.pb.m; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -1920,6 +1934,14 @@
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
+		CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceNetworkClient.m; sourceTree = "<group>"; };
+		CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceNetworkClient.h; sourceTree = "<group>"; };
+		CA91FC7915C27A4000E9C1CD /* DiceGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameService.m; sourceTree = "<group>"; };
+		CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameService.h; sourceTree = "<group>"; };
+		CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkClient.h; sourceTree = "<group>"; };
+		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
+		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
+		CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkService.m; sourceTree = "<group>"; };
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
@@ -4123,6 +4145,10 @@
 		CA2F81E315C0D62E002038A6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */,
+				CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */,
+				CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */,
+				CA91FC7915C27A4000E9C1CD /* DiceGameService.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -4734,6 +4760,10 @@
 				CADD7FD51511BA240075C739 /* GameNetworkClient.m */,
 				CADD7FDB1511BAAB0075C739 /* DrawGameService.h */,
 				CADD7FDC1511BAAB0075C739 /* DrawGameService.m */,
+				CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */,
+				CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */,
+				CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */,
+				CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -4772,6 +4802,8 @@
 				CA96E275150DE8AA00292335 /* GameBasic.proto */,
 				CADD7FCE1510DC530075C739 /* GameConstants.proto */,
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
+				A4B763A015C25208003B4E72 /* Draw.proto */,
+				A4B763A115C25208003B4E72 /* LieDice.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -4779,6 +4811,10 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				A4B763A415C25218003B4E72 /* Draw.pb.h */,
+				A4B763A515C25218003B4E72 /* Draw.pb.m */,
+				A4B763A615C25218003B4E72 /* LieDice.pb.h */,
+				A4B763A715C25218003B4E72 /* LieDice.pb.m */,
 				CADD7FCB1510C9700075C739 /* GameConstants.pb.m */,
 				CADD7FCC1510C9700075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
@@ -5738,6 +5774,8 @@
 				C2F48C1A15C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib in Resources */,
 				C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */,
 				C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */,
+				A4B763A215C25208003B4E72 /* Draw.proto in Resources */,
+				A4B763A315C25208003B4E72 /* LieDice.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6153,6 +6191,12 @@
 				CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */,
 				C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */,
 				C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */,
+				A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */,
+				A4B763A915C25218003B4E72 /* LieDice.pb.m in Sources */,
+				CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */,
+				CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */,
+				CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */,
+				CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

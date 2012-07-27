@@ -10,6 +10,7 @@
 #import "ShareImageManager.h"
 #import "PPApplication.h"
 #import "GameBasic.pb.h"
+#import "Draw.pb.h"
 #import "LogUtil.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
