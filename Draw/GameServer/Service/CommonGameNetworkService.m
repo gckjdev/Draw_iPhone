@@ -126,9 +126,12 @@
     }
 }
 
+#pragma mark - Service Operations
+
 - (void)getRoomList
 {
     // send get room request here
+    
 }
 
 @end
