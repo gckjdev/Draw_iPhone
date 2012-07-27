@@ -761,6 +761,7 @@
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */; };
 		CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */; };
+		CAAD127315C29715003D7327 /* CommonGameRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAD127215C29715003D7327 /* CommonGameRoom.m */; };
 		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
 		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
 		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
@@ -2059,6 +2060,8 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lmmob.framework; sourceTree = "<group>"; };
 		CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReadMe.docx; sourceTree = "<group>"; };
+		CAAD127115C29715003D7327 /* CommonGameRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameRoom.h; sourceTree = "<group>"; };
+		CAAD127215C29715003D7327 /* CommonGameRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameRoom.m; sourceTree = "<group>"; };
 		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
 		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
@@ -4811,6 +4814,8 @@
 		CA96E267150DD63900292335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAAD127115C29715003D7327 /* CommonGameRoom.h */,
+				CAAD127215C29715003D7327 /* CommonGameRoom.m */,
 				CA96E26C150DE4FD00292335 /* GameSession.h */,
 				CA96E26D150DE4FD00292335 /* GameSession.m */,
 				CA3B56DB1514C92800A93137 /* GameSessionUser.h */,
@@ -6243,6 +6248,7 @@
 				A4B7640815C28F8E003B4E72 /* DiceRoomListController.m in Sources */,
 				A4B7640A15C28F8E003B4E72 /* DiceGameService.m in Sources */,
 				A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */,
+				CAAD127315C29715003D7327 /* CommonGameRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
