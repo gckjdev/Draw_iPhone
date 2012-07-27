@@ -83,8 +83,6 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
-		A44969BD15C241A3002D06E1 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44969BA15C241A3002D06E1 /* Draw.pb.m */; };
-		A44969BE15C241A3002D06E1 /* LieDice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44969BC15C241A3002D06E1 /* LieDice.pb.m */; };
 		A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44C91FB1564DFD300018D0D /* messagebg@2x.png */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -111,8 +109,6 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
-		A4BB4D1315BFFDA00026FA53 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4BB4D1215BFFDA00026FA53 /* Draw.proto */; };
-		A4BB4D1515C139A20026FA53 /* LieDice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4BB4D1415C139A20026FA53 /* LieDice.proto */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
@@ -223,6 +219,23 @@
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E6629F152463B900487601 /* ShareEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6629D152463B900487601 /* ShareEditController.m */; };
 		C2E662A0152463B900487601 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
+		C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */; };
+		C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */; };
+		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
+		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
+		C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */; };
+		C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FF415BD553700828562 /* RecommendedAppsController.m */; };
+		C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF515BD553800828562 /* RecommendedAppsController.xib */; };
+		C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */; };
+		C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48BD015BE4484005C4D72 /* RecommendAppService.m */; };
+		C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */; };
+		C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */; };
+		C2F48C1615C23DA4005C4D72 /* FacetimeMainController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */; };
+		C2F48C1815C23DFE005C4D72 /* MatchingFacetimeUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */; };
+		C2F48C1A15C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */; };
+		C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */; };
+		C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */; };
+		C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -546,6 +559,10 @@
 		CA28C0DC1531301D00E531AE /* main_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0D91531301D00E531AE /* main_top@2x.png */; };
 		CA28C0DF1531327300E531AE /* normalpallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0DE1531327300E531AE /* normalpallets@2x.png */; };
 		CA28C0E115313B9400E531AE /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA28C0E015313B9400E531AE /* submit@2x.png */; };
+		CA2F81E915C0D97C002038A6 /* FacetimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81E815C0D97C002038A6 /* FacetimeService.m */; };
+		CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */; };
+		CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */; };
+		CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */; };
 		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
 		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
 		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
@@ -957,10 +974,6 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
-		A44969B915C241A3002D06E1 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
-		A44969BA15C241A3002D06E1 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
-		A44969BB15C241A3002D06E1 /* LieDice.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LieDice.pb.h; sourceTree = "<group>"; };
-		A44969BC15C241A3002D06E1 /* LieDice.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LieDice.pb.m; sourceTree = "<group>"; };
 		A44C91FB1564DFD300018D0D /* messagebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messagebg@2x.png"; sourceTree = "<group>"; };
 		A454CB6C1558F5CE00896761 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		A454CB6D1558F5CE00896761 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
@@ -995,8 +1008,6 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
-		A4BB4D1215BFFDA00026FA53 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
-		A4BB4D1415C139A20026FA53 /* LieDice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LieDice.proto; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -1153,6 +1164,30 @@
 		C2E6629C152463B900487601 /* ShareEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareEditController.h; sourceTree = "<group>"; };
 		C2E6629D152463B900487601 /* ShareEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareEditController.m; sourceTree = "<group>"; };
 		C2E6629E152463B900487601 /* ShareEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareEditController.xib; sourceTree = "<group>"; };
+		C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppCell.h; sourceTree = "<group>"; };
+		C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppCell.m; sourceTree = "<group>"; };
+		C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppCell.xib; sourceTree = "<group>"; };
+		C2E90FE915BD44DA00828562 /* RecommendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendApp.h; sourceTree = "<group>"; };
+		C2E90FEA15BD44DA00828562 /* RecommendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendApp.m; sourceTree = "<group>"; };
+		C2E90FEC15BD454200828562 /* RecommendAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppManager.h; sourceTree = "<group>"; };
+		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
+		C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppCell~ipad.xib"; sourceTree = "<group>"; };
+		C2E90FF315BD553700828562 /* RecommendedAppsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedAppsController.h; sourceTree = "<group>"; };
+		C2E90FF415BD553700828562 /* RecommendedAppsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedAppsController.m; sourceTree = "<group>"; };
+		C2E90FF515BD553800828562 /* RecommendedAppsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedAppsController.xib; sourceTree = "<group>"; };
+		C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecommendedAppsController~ipad.xib"; sourceTree = "<group>"; };
+		C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppService.h; sourceTree = "<group>"; };
+		C2F48BD015BE4484005C4D72 /* RecommendAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppService.m; sourceTree = "<group>"; };
+		C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_buyed@2x.png"; sourceTree = "<group>"; };
+		C2F48C1215C23D3D005C4D72 /* MatchingFacetimeUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingFacetimeUserView.h; sourceTree = "<group>"; };
+		C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingFacetimeUserView.m; sourceTree = "<group>"; };
+		C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeMainController~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingFacetimeUserView.xib; sourceTree = "<group>"; };
+		C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MatchingFacetimeUserView~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C1B15C23E4F005C4D72 /* FacetimeUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeUserInfoView.h; sourceTree = "<group>"; };
+		C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeUserInfoView.m; sourceTree = "<group>"; };
+		C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeUserInfoView.xib; sourceTree = "<group>"; };
+		C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -1679,6 +1714,13 @@
 		CA28C0D91531301D00E531AE /* main_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_top@2x.png"; sourceTree = "<group>"; };
 		CA28C0DE1531327300E531AE /* normalpallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalpallets@2x.png"; sourceTree = "<group>"; };
 		CA28C0E015313B9400E531AE /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
+		CA2F81E715C0D97C002038A6 /* FacetimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeService.h; sourceTree = "<group>"; };
+		CA2F81E815C0D97C002038A6 /* FacetimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeService.m; sourceTree = "<group>"; };
+		CA2F81EA15C0D995002038A6 /* FacetimeNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeNetworkClient.h; sourceTree = "<group>"; };
+		CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeNetworkClient.m; sourceTree = "<group>"; };
+		CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeMainController.h; sourceTree = "<group>"; };
+		CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeMainController.m; sourceTree = "<group>"; };
+		CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeMainController.xib; sourceTree = "<group>"; };
 		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
 		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
@@ -2560,6 +2602,41 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		C2E90FD915BD3F2C00828562 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2E90FF315BD553700828562 /* RecommendedAppsController.h */,
+				C2E90FF415BD553700828562 /* RecommendedAppsController.m */,
+				C2E90FF515BD553800828562 /* RecommendedAppsController.xib */,
+				C2E90FF615BD553900828562 /* RecommendedAppsController~ipad.xib */,
+				C2E90FDA15BD3F2D00828562 /* RecommendedAppCell.h */,
+				C2E90FDB15BD3F2D00828562 /* RecommendedAppCell.m */,
+				C2E90FDC15BD3F2D00828562 /* RecommendedAppCell.xib */,
+				C2E90FEF15BD51F100828562 /* RecommendedAppCell~ipad.xib */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		C2E90FE815BD44DA00828562 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2E90FEC15BD454200828562 /* RecommendAppManager.h */,
+				C2E90FED15BD454200828562 /* RecommendAppManager.m */,
+				C2E90FE915BD44DA00828562 /* RecommendApp.h */,
+				C2E90FEA15BD44DA00828562 /* RecommendApp.m */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		C2F48BCE15BE4484005C4D72 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				C2F48BCF15BE4484005C4D72 /* RecommendAppService.h */,
+				C2F48BD015BE4484005C4D72 /* RecommendAppService.m */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
 		C2F947BE1533D8BF0034C895 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
@@ -2595,6 +2672,7 @@
 		CA03470B15AA7B7F00C2C172 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C1015C1351A005C4D72 /* color_buyed@2x.png */,
 				C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */,
 				CA02B52915AC2CA400B2A3E2 /* buyed@2x.png */,
 				CA02B52115AC111800B2A3E2 /* flower_result@2x.png */,
@@ -2703,6 +2781,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48BCE15BE4484005C4D72 /* Recommend */,
 				CA02B52515AC240700B2A3E2 /* Item */,
 				CAA9C424159BF40A00398EC5 /* Share */,
 				CA7C7E081587219600406BFB /* Feed */,
@@ -3943,6 +4022,132 @@
 			path = Online;
 			sourceTree = "<group>";
 		};
+		CA2F81D915C0D62D002038A6 /* Facetime */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81DA15C0D62E002038A6 /* Controller */,
+				CA2F81DB15C0D62E002038A6 /* Model */,
+				CA2F81DC15C0D62E002038A6 /* Network */,
+				CA2F81DD15C0D62E002038A6 /* Resource */,
+				CA2F81DE15C0D62E002038A6 /* Service */,
+				CA2F81DF15C0D62E002038A6 /* View */,
+			);
+			path = Facetime;
+			sourceTree = "<group>";
+		};
+		CA2F81DA15C0D62E002038A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */,
+				CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */,
+				CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */,
+				C2F48C1515C23DA3005C4D72 /* FacetimeMainController~ipad.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2F81DB15C0D62E002038A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA2F81DC15C0D62E002038A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81E715C0D97C002038A6 /* FacetimeService.h */,
+				CA2F81E815C0D97C002038A6 /* FacetimeService.m */,
+				CA2F81EA15C0D995002038A6 /* FacetimeNetworkClient.h */,
+				CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA2F81DD15C0D62E002038A6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA2F81DE15C0D62E002038A6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA2F81DF15C0D62E002038A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2F48C1215C23D3D005C4D72 /* MatchingFacetimeUserView.h */,
+				C2F48C1315C23D3D005C4D72 /* MatchingFacetimeUserView.m */,
+				C2F48C1715C23DFE005C4D72 /* MatchingFacetimeUserView.xib */,
+				C2F48C1915C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib */,
+				C2F48C1B15C23E4F005C4D72 /* FacetimeUserInfoView.h */,
+				C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */,
+				C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */,
+				C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA2F81E015C0D62E002038A6 /* Dice */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F81E115C0D62E002038A6 /* Controller */,
+				CA2F81E215C0D62E002038A6 /* Model */,
+				CA2F81E315C0D62E002038A6 /* Network */,
+				CA2F81E415C0D62E002038A6 /* Resource */,
+				CA2F81E515C0D62E002038A6 /* Service */,
+				CA2F81E615C0D62E002038A6 /* View */,
+			);
+			path = Dice;
+			sourceTree = "<group>";
+		};
+		CA2F81E115C0D62E002038A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2F81E215C0D62E002038A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA2F81E315C0D62E002038A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA2F81E415C0D62E002038A6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA2F81E515C0D62E002038A6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA2F81E615C0D62E002038A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -4411,6 +4616,8 @@
 				CA9AA963150F4071009D1CB6 /* View */,
 				CAECE0291503B25500BC2404 /* Model */,
 				CA3220FF151B6A490039A384 /* Network */,
+				CA2F81D915C0D62D002038A6 /* Facetime */,
+				CA2F81E015C0D62E002038A6 /* Dice */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
 				CA745D341503B1B500600024 /* MainWindow.xib */,
@@ -4565,8 +4772,6 @@
 				CA96E275150DE8AA00292335 /* GameBasic.proto */,
 				CADD7FCE1510DC530075C739 /* GameConstants.proto */,
 				CA96E34F150DFBFA00292335 /* GameMessage.proto */,
-				A4BB4D1215BFFDA00026FA53 /* Draw.proto */,
-				A4BB4D1415C139A20026FA53 /* LieDice.proto */,
 			);
 			path = ProtocolBuffer;
 			sourceTree = "<group>";
@@ -4574,10 +4779,6 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
-				A44969B915C241A3002D06E1 /* Draw.pb.h */,
-				A44969BA15C241A3002D06E1 /* Draw.pb.m */,
-				A44969BB15C241A3002D06E1 /* LieDice.pb.h */,
-				A44969BC15C241A3002D06E1 /* LieDice.pb.m */,
 				CADD7FCB1510C9700075C739 /* GameConstants.pb.m */,
 				CADD7FCC1510C9700075C739 /* GameConstants.pb.h */,
 				CA96E35C150E107800292335 /* GameBasic.pb.m */,
@@ -4961,6 +5162,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2E90FD915BD3F2C00828562 /* Recommend */,
 				CA7C7E111587237B00406BFB /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,
 				EAF5AFCD155E2DB4008CD8EE /* MusicSettings */,
@@ -4985,6 +5187,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2E90FE815BD44DA00828562 /* Recommend */,
 				C2BBCE1715B001F1006A13A6 /* Animation */,
 				C2C1BF4215A2A884001A2BFC /* UI */,
 				CAE0C8941591A2D5008CDA62 /* Notification */,
@@ -5524,8 +5727,17 @@
 				C24D34A915AEA95400CFC5A0 /* wood_shop_bg@2x.png in Resources */,
 				C20118F115B69312001C56A6 /* shop@2x.png in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
-				A4BB4D1315BFFDA00026FA53 /* Draw.proto in Resources */,
-				A4BB4D1515C139A20026FA53 /* LieDice.proto in Resources */,
+				C2E90FE115BD3F2D00828562 /* RecommendedAppCell.xib in Resources */,
+				C2E90FF015BD51F200828562 /* RecommendedAppCell~ipad.xib in Resources */,
+				C2E90FF815BD553A00828562 /* RecommendedAppsController.xib in Resources */,
+				C2E90FF915BD553A00828562 /* RecommendedAppsController~ipad.xib in Resources */,
+				CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */,
+				C2F48C1115C1351A005C4D72 /* color_buyed@2x.png in Resources */,
+				C2F48C1615C23DA4005C4D72 /* FacetimeMainController~ipad.xib in Resources */,
+				C2F48C1815C23DFE005C4D72 /* MatchingFacetimeUserView.xib in Resources */,
+				C2F48C1A15C23E12005C4D72 /* MatchingFacetimeUserView~ipad.xib in Resources */,
+				C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */,
+				C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5931,8 +6143,16 @@
 				CAB15E8B15AD41E600502106 /* PickToolView.m in Sources */,
 				C2BBCE1A15B00283006A13A6 /* DrawGameAnimationManager.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
-				A44969BD15C241A3002D06E1 /* Draw.pb.m in Sources */,
-				A44969BE15C241A3002D06E1 /* LieDice.pb.m in Sources */,
+				C2E90FE015BD3F2D00828562 /* RecommendedAppCell.m in Sources */,
+				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
+				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
+				C2E90FF715BD553A00828562 /* RecommendedAppsController.m in Sources */,
+				C2F48BD115BE4484005C4D72 /* RecommendAppService.m in Sources */,
+				CA2F81E915C0D97C002038A6 /* FacetimeService.m in Sources */,
+				CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */,
+				CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */,
+				C2F48C1415C23D3D005C4D72 /* MatchingFacetimeUserView.m in Sources */,
+				C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

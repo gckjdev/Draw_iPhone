@@ -421,12 +421,13 @@ enum {
                  UserLevel:(NSString *)level 
                   SinaNick:(NSString *)sinaNick 
                     QQNick:(NSString *)qqNick 
+                      qqId:(NSString*)qqId
                 FacebookId:(NSString *)facebookId
 {
     [self hideActivity];
     NSString* publishText = self.text;
     if (qqNick && [[UserManager defaultManager] hasBindQQWeibo]){
-        publishText = [publishText stringByAppendingFormat:@" @%@",qqNick];       
+        publishText = [publishText stringByAppendingFormat:@" @%@",qqId];       
     }
     
     if (sinaNick && [[UserManager defaultManager] hasBindSinaWeibo] && [[SinaSNSService defaultService] isAuthorizeExpired] == NO){

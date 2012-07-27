@@ -218,4 +218,28 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
 }
 
++ (NSString*)getRecommendAppLinkZh
+{
+    return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_zh.txt"];
+}
++ (NSString*)getRecommendAppLinkZht
+{
+    return [MobClickUtils getStringValueByKey:@"CHINESE_SIMPLIFY_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_zht.txt"];
+}
++ (NSString*)getRecommendAppLinkEn
+{
+    return [MobClickUtils getStringValueByKey:@"CHINESE_TRADITIONAL_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_en.txt"];
+}
+
++ (NSString*)getRecommendAppLink
+{
+    if ([LocaleUtils isChina]) {
+        return [ConfigManager getRecommendAppLinkZh];
+    } else  if ([LocaleUtils isOtherChina]){
+        return [ConfigManager getRecommendAppLinkZht];
+    } else {
+        return [ConfigManager getRecommendAppLinkEn];
+    }
+}
+
 @end

@@ -58,7 +58,7 @@
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
-- (void)throwItem:(ToolView*)toolView;
+- (BOOL)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -462,7 +462,8 @@
     ToolView* toolView = (ToolView*)sender;    
     
     // show animation
-    [self throwItem:toolView];
+    if (![self throwItem:toolView]) 
+        return;
         
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
@@ -484,7 +485,8 @@
     ToolView* toolView = (ToolView*)sender;    
     
     // throw item animation
-    [self throwItem:toolView];
+    if (![self throwItem:toolView]) 
+        return;
 
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
@@ -584,14 +586,14 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwItem:(ToolView*)toolView
+- (BOOL)throwItem:(ToolView*)toolView
 {
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
         //dialog.tag = SHOP_DIALOG_TAG;
         [dialog showInView:self.view];
-        return;
+        return NO;
     }
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
@@ -602,7 +604,7 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-    
+    return YES;
 }
 
 - (void)receiveFlower

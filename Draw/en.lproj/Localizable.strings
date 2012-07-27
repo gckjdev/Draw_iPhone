@@ -362,7 +362,7 @@
 "kPayAttentionToMe" = "Follow me";
 "kDrawTillDawn" = "Awesome";
 "kHelloEveryone" = "Hello";
-"kDontLeave" = "Hi All";
+"kDontLeave" = "So smart";
 "kFunny" = "Funny";
 "kDrawedWhat" = "What ?!";
 "kHardToGuess" = "Unbelivable";
@@ -706,3 +706,17 @@
 "kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
 
 "kQueryingDrawer" = "Querying painter info";
+
+"kGhostGame" = "GhostGame";
+"kGhostGameDescription" = "...";
+"kShuriken" = "Shuriken";
+"kShurikenDescription" = "shiu~shiu~shiu~";
+"kCountBean" = "Count Bean";
+"kCountBeanDescription" = "";
+"kCrazyFinger" = "Crazy Finger";
+"kCrazyFingerDescription" = "";
+"kGroupBuy" = "Groupbuy";
+"kGroupBuyDescription" = "";
+
+"kRecommendApps" = "App Recommend";
+"kRecommend" = "More";

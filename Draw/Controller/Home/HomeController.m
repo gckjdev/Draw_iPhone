@@ -50,6 +50,9 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
+#import "RecommendedAppsController.h"
+
+#import "FacetimeMainController.h"
 
 @interface HomeController()
 
@@ -64,6 +67,7 @@
 @implementation HomeController
 
 @synthesize adView = _adView;
+@synthesize recommendButton = _recommendButton;
 @synthesize startButton = _startButton;
 @synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
@@ -116,6 +120,25 @@
 
 #pragma mark - View lifecycle
 
+- (void)initRecommendButton
+{
+    [self.recommendButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
+    [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
+    int fontSize = ([DeviceDetection isIPAD]?30:17);
+    CGSize size = [self.recommendButton.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+    if (size.width >= self.recommendButton.frame.size.width) {
+        [self.recommendButton setFrame:CGRectMake(self.recommendButton.frame.origin.x, 
+                                                  self.recommendButton.frame.origin.y, 
+                                                  self.recommendButton.frame.size.width*2, 
+                                                  self.recommendButton.frame.size.height)];
+    }
+    if (![[AdService defaultService] isShowAd]) {
+        if ([DeviceDetection isIPAD]){
+            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+        }
+    }
+}
+
 - (void)viewDidLoad
 {        
     self.adView = [[AdService defaultService] createAdInView:self                  
@@ -139,6 +162,7 @@
     [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
+    [self initRecommendButton];
     
     self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
@@ -204,6 +228,10 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
+            
+            if ([DeviceDetection isIPAD]){
+                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+            }
         }
     }
 }
@@ -248,6 +276,7 @@
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
+    [self setRecommendButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -596,6 +625,7 @@
     [_messageBadge release];
     [_roomBadge release];
     [_homeScrollView release];
+    [_recommendButton release];
     [super dealloc];
 }
 
@@ -641,6 +671,12 @@
     }
 }
 
+- (IBAction)clickRecommend:(id)sender
+{
+    RecommendedAppsController* vc = [[[RecommendedAppsController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (BOOL)isRegistered
 {
@@ -738,4 +774,16 @@
     [self updateBadge:self.roomBadge value:badge];
 
 }
+
+- (IBAction)clickDice:(id)sender
+{
+    
+}
+
+- (IBAction)clickFacetime:(id)sender
+{
+    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

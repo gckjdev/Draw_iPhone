@@ -114,6 +114,7 @@
 - (UIImage *)toolBoxImage;
 
 //for tool
+- (UIImage*)colorBuyedImage;
 - (UIImage *)buyedImage;
 - (UIImage *)brushPen;
 - (UIImage *)removeAd;

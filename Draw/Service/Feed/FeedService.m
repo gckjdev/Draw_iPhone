@@ -36,9 +36,7 @@ static FeedService *_staticFeedService = nil;
     
     NSString *userId = [[UserManager defaultManager] userId];
     LanguageType lang = UnknowType;
-    if (feedListType == FeedListTypeHot) {
-        lang = [[UserManager defaultManager] getLanguageType];
-    }
+    lang = [[UserManager defaultManager] getLanguageType];
     
     dispatch_async(workingQueue, ^{
         

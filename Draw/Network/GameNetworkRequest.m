@@ -1951,4 +1951,26 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)getRecommendApp:(NSString*)baseURL
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 @end

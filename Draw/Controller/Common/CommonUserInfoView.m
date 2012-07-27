@@ -390,6 +390,7 @@
                  UserLevel:(NSString*)level 
                   SinaNick:(NSString*)sinaNick 
                     QQNick:(NSString*)qqNick 
+                      qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
 {
     if (nickName != nil) {

@@ -240,6 +240,12 @@ static VendingController* staticVendingController = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickCoin:(id)sender
+{
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];    
+}
+
 - (IBAction)buyCoin:(id)sender
 {
     if ([ConfigManager wallEnabled]) {

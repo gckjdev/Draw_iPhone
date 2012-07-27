@@ -386,6 +386,10 @@ static UIImage* _whitePaperImage;
 }
 
 //for tool
+- (UIImage*)colorBuyedImage
+{
+    return [UIImage imageNamed:@"right.png"];
+}
 - (UIImage *)buyedImage
 {
     return [UIImage imageNamed:@"buyed.png"];

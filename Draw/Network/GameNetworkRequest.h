@@ -347,4 +347,5 @@
                               userId:(NSString *)userId
                               status:(int)status;
 
++ (CommonNetworkOutput*)getRecommendApp:(NSString*)baseURL;
 @end
