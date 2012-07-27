@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonGameNetworkService.h"
 
-@interface DiceGameService : NSObject
+@interface DiceGameService : CommonGameNetworkService
 
 @end

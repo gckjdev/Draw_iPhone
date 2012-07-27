@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonNetworkClient.h"
+#import "GameConstants.pb.h"
 
-@interface CommonGameNetworkClient : NSObject
+@interface CommonGameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
+{
+    int _messageIdIndex;    
+}
+
++ (CommonGameNetworkClient*)defaultInstance;
+- (void)start:(NSString*)serverAddress port:(int)port;
+
 
 @end

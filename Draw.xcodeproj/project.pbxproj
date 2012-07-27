@@ -693,6 +693,8 @@
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */; };
 		CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7915C27A4000E9C1CD /* DiceGameService.m */; };
+		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
+		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
@@ -1936,6 +1938,10 @@
 		CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceNetworkClient.h; sourceTree = "<group>"; };
 		CA91FC7915C27A4000E9C1CD /* DiceGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameService.m; sourceTree = "<group>"; };
 		CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameService.h; sourceTree = "<group>"; };
+		CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkClient.h; sourceTree = "<group>"; };
+		CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkClient.m; sourceTree = "<group>"; };
+		CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameNetworkService.h; sourceTree = "<group>"; };
+		CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkService.m; sourceTree = "<group>"; };
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
@@ -4139,10 +4145,10 @@
 		CA2F81E315C0D62E002038A6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */,
 				CA91FC7815C27A4000E9C1CD /* DiceNetworkClient.h */,
-				CA91FC7915C27A4000E9C1CD /* DiceGameService.m */,
+				CA91FC7715C27A4000E9C1CD /* DiceNetworkClient.m */,
 				CA91FC7A15C27A4000E9C1CD /* DiceGameService.h */,
+				CA91FC7915C27A4000E9C1CD /* DiceGameService.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -4754,6 +4760,10 @@
 				CADD7FD51511BA240075C739 /* GameNetworkClient.m */,
 				CADD7FDB1511BAAB0075C739 /* DrawGameService.h */,
 				CADD7FDC1511BAAB0075C739 /* DrawGameService.m */,
+				CA91FC7D15C27BE700E9C1CD /* CommonGameNetworkClient.h */,
+				CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */,
+				CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */,
+				CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -6185,6 +6195,8 @@
 				A4B763A915C25218003B4E72 /* LieDice.pb.m in Sources */,
 				CA91FC7B15C27A4000E9C1CD /* DiceNetworkClient.m in Sources */,
 				CA91FC7C15C27A4000E9C1CD /* DiceGameService.m in Sources */,
+				CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */,
+				CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
