@@ -56,6 +56,17 @@
 {
     return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
 }
+
+#define BACK_GROUND_WIDTH 3000
+
++ (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color
+{
+    Paint *paint = [Paint paintWithWidth:BACK_GROUND_WIDTH color:color];
+    [paint addPoint:CGPointMake(0, 0)];
+    [paint addPoint:CGPointMake(0, BACK_GROUND_WIDTH)];
+    return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.paint forKey:@"paint"];

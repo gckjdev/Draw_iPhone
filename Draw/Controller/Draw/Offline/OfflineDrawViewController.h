@@ -26,6 +26,7 @@
 @class PickPenView;
 @class PickEraserView;
 @class PickColorView;
+@class PickBackgroundColorView;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -53,6 +54,8 @@
     TargetType targetType;
     
     NSString*_targetUid;
+    DrawColor *bgColor;
+    DrawColor *eraserColor;
 }
 
 - (IBAction)clickRedraw:(id)sender;
@@ -72,6 +75,7 @@
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;
 
+- (IBAction)changeBackground:(id)sender;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 
 - (id)initWithTargetType:(TargetType)aTargetType 

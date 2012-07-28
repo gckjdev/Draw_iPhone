@@ -214,7 +214,7 @@
 "kAnswer" = "Answer: [%@]";
 "kNoWord" = "Maybe Painter Quit!";
 "kCleanDrawTitle" = "Clean Draw";
-"kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
+"kCleanDrawMessage" = "Clean the draw? All the paints will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "Share";
@@ -720,3 +720,6 @@
 
 "kRecommendApps" = "App Recommend";
 "kRecommend" = "More";
+
+"kChangeBackgroundTitle" = "Change Background";
+"kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";

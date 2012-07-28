@@ -165,7 +165,7 @@
 						<string key="NSFrame">{{120, 377}, {21, 34}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="70881159"/>
+						<reference key="NSNextKeyView" ref="276991159"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -348,6 +348,31 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
+					<object class="IBUIButton" id="276991159">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{162, 376}, {31, 34}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="70881159"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">B</string>
+						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="309240068"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">change_bg@2x.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="300407582"/>
+						<reference key="IBUIFont" ref="812508533"/>
+					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
@@ -486,6 +511,15 @@
 					</object>
 					<int key="connectionID">130</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">changeBackground:</string>
+						<reference key="source" ref="276991159"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">137</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -528,6 +562,7 @@
 							<reference ref="934589813"/>
 							<reference ref="76228336"/>
 							<reference ref="587339147"/>
+							<reference ref="276991159"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -601,6 +636,11 @@
 						<reference key="object" ref="587339147"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">136</int>
+						<reference key="object" ref="276991159"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -618,6 +658,7 @@
 					<string>122.IBPluginDependency</string>
 					<string>129.IBPluginDependency</string>
 					<string>131.IBPluginDependency</string>
+					<string>136.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>41.CustomClassName</string>
@@ -639,6 +680,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ColorView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -666,7 +708,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">137</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -739,9 +781,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickFeedButton:</string>
+							<string>clickRefreshButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -752,6 +796,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickFeedButton:</string>
+							<string>clickRefreshButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -761,6 +806,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickFeedButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickRefreshButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -871,10 +920,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>actionButton</string>
 							<string>commentInput</string>
+							<string>commentLabel</string>
 							<string>guessStatLabel</string>
+							<string>inputBackground</string>
 							<string>inputBackgroundView</string>
 							<string>nickNameLabel</string>
 							<string>noCommentTipsLabel</string>
+							<string>paperImage</string>
 							<string>sendButton</string>
 							<string>timeLabel</string>
 							<string>titleLabel</string>
@@ -884,9 +936,12 @@
 							<string>UIButton</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -898,10 +953,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>actionButton</string>
 							<string>commentInput</string>
+							<string>commentLabel</string>
 							<string>guessStatLabel</string>
+							<string>inputBackground</string>
 							<string>inputBackgroundView</string>
 							<string>nickNameLabel</string>
 							<string>noCommentTipsLabel</string>
+							<string>paperImage</string>
 							<string>sendButton</string>
 							<string>timeLabel</string>
 							<string>titleLabel</string>
@@ -917,8 +975,16 @@
 								<string key="candidateClassName">UITextView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">commentLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">guessStatLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">inputBackground</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">inputBackgroundView</string>
@@ -931,6 +997,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">noCommentTipsLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">paperImage</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">sendButton</string>
@@ -968,10 +1038,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickGotoCoinShopButton:</string>
+							<string>clickRemoveAd:</string>
 							<string>showYoumiWall</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -983,6 +1055,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickGotoCoinShopButton:</string>
+							<string>clickRemoveAd:</string>
 							<string>showYoumiWall</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -993,6 +1066,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickGotoCoinShopButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickRemoveAd:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1009,6 +1086,7 @@
 							<string>freeGetCoinsButton</string>
 							<string>gotoCoinShopButton</string>
 							<string>itemAmountLabel</string>
+							<string>removeAdButton</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1017,6 +1095,7 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -1028,6 +1107,7 @@
 							<string>freeGetCoinsButton</string>
 							<string>gotoCoinShopButton</string>
 							<string>itemAmountLabel</string>
+							<string>removeAdButton</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1049,6 +1129,10 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">removeAdButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">titleLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
@@ -1066,6 +1150,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>changeBackground:</string>
 							<string>clickColorButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
@@ -1074,6 +1159,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1085,6 +1171,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>changeBackground:</string>
 							<string>clickColorButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
@@ -1093,6 +1180,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">changeBackground:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickColorButton:</string>
 								<string key="candidateClassName">id</string>
@@ -1381,6 +1472,78 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UserFeedController</string>
+					<string key="superclassName">PPTableViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clickBackButton:</string>
+							<string>clickRefreshButton:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clickBackButton:</string>
+							<string>clickRefreshButton:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">clickBackButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickRefreshButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>noFeedTipsLabel</string>
+							<string>titleLabel</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
+							<string>UILabel</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>noFeedTipsLabel</string>
+							<string>titleLabel</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">noFeedTipsLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">titleLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UserFeedController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UserSettingController</string>
 					<string key="superclassName">PPTableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
@@ -1506,6 +1669,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>back@2x.png</string>
+				<string>change_bg@2x.png</string>
 				<string>clean@2x.png</string>
 				<string>eraser@2x.png</string>
 				<string>normalpallets@2x.png</string>
@@ -1518,6 +1682,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{74, 74}</string>
+				<string>{61, 68}</string>
 				<string>{55, 66}</string>
 				<string>{42, 67}</string>
 				<string>{640, 81}</string>

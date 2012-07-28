@@ -72,4 +72,9 @@
     }
 }
 
+- (void)setHidden:(BOOL)hidden animated:(BOOL)animated withTag:(NSInteger)tag
+{
+    [self setHidden:hidden animated:animated];
+    self.tag = tag;
+}
 @end

@@ -56,6 +56,7 @@
 
 
 #pragma mark - Static Method
+
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
@@ -157,6 +158,7 @@
 #define PICK_PEN_VIEW_TAG 2012053102
 #define PICK_COLOR_VIEW_TAG 2012053103
 
+
 #define DEFAULT_COLOR_NUMBER 5
 - (void)initPickView
 {
@@ -164,6 +166,7 @@
     //init pick pen view
 
     pickPenView = [[PickPenView alloc] initWithFrame:PICK_PEN_VIEW];
+
     [pickPenView setImage:[shareImageManager penPopupImage]];
     [pickPenView setDelegate:self];
     NSMutableArray *penArray = [[NSMutableArray alloc] init];
@@ -177,6 +180,9 @@
     [pickPenView setPens:penArray];
     [penArray release];
     [self.view addSubview:pickPenView];
+    
+    
+    
     
     
     NSMutableArray *widthArray = [[NSMutableArray alloc] init];
@@ -209,6 +215,7 @@
     [pickColorView setLineWidths:widthArray];
     [self.view addSubview:pickColorView];
 
+
     NSMutableArray *colorViewArray = [[NSMutableArray alloc] init];
     
     [colorViewArray addObject:[ColorView blackColorView]];
@@ -224,6 +231,7 @@
         }
     }
     [pickColorView setColorViews:colorViewArray];
+    
     [colorViewArray release];
     [widthArray release];
     
@@ -279,7 +287,6 @@ enum{
     DrawColor *randColor = [self randColor];
     [drawView setLineColor:randColor];
     [colorButton setDrawColor:randColor];
-//    [penButton setPenType:Pencil];
     [penButton setPenType:[PenView lastPenType]];
     [drawView setLineWidth:pickColorView.currentWidth];
     penWidth = pickColorView.currentWidth;
@@ -367,8 +374,31 @@ enum{
     
 }
 
+#define ESCAPE_DEDUT_COIN 1
+#define DIALOG_TAG_CLEAN_DRAW 201204081
+#define DIALOG_TAG_ESCAPE 201204082
+#define DIALOG_TAG_SUBMIT 201206071
+#define DIALOG_TAG_CHANGE_BACK 201207281
+
 
 #pragma mark - Pick view delegate
+- (void)didPickedPickView:(PickView *)pickView colorView:(ColorView *)colorView
+{
+    if (pickColorView.type == PickColorViewTypePen) {
+        [drawView setLineColor:colorView.drawColor];
+        [drawView setLineWidth:penWidth];
+        [colorButton setDrawColor:colorView.drawColor];
+        [pickColorView updatePickColorView:colorView];
+    }else if(pickColorView.type == PickColorViewTypeBackground)
+    {
+        bgColor = colorView.drawColor;
+        //show tips.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = DIALOG_TAG_CHANGE_BACK;
+        [dialog showInView:self.view];
+    }
+}
+
 - (void)didPickedColorView:(ColorView *)colorView
 {
     [drawView setLineColor:colorView.drawColor];
@@ -376,6 +406,8 @@ enum{
     [colorButton setDrawColor:colorView.drawColor];
     [pickColorView updatePickColorView:colorView];
 }
+
+
 - (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width
 {
     if (pickView.tag == PICK_COLOR_VIEW_TAG) {
@@ -427,10 +459,7 @@ enum{
 }
 
 #pragma mark - Common Dialog Delegate
-#define ESCAPE_DEDUT_COIN 1
-#define DIALOG_TAG_CLEAN_DRAW 201204081
-#define DIALOG_TAG_ESCAPE 201204082
-#define DIALOG_TAG_SUBMIT 201206071
+
 
 - (FeedDetailController *)superFeedDetailController
 {
@@ -470,7 +499,8 @@ enum{
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
-        [pickColorView setHidden:YES];        
+        [pickColorView setHidden:YES];   
+        bgColor = eraserColor = nil;
     }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
@@ -480,7 +510,17 @@ enum{
         [drawView setPenType:_willBuyPen.penType];   
         [PenView savePenType:_willBuyPen.penType];
         [pickPenView updatePenViews];
-    }else if(dialog.tag == DIALOG_TAG_SUBMIT){
+    }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
+    {
+        DrawAction *action = [DrawAction 
+                              changeBackgroundActionWithColor:bgColor];
+        [drawView addAction:action];
+        eraserColor = bgColor;
+        if (drawView.penType == Eraser) {
+            drawView.lineColor = eraserColor;
+        }
+    }
+    else if(dialog.tag == DIALOG_TAG_SUBMIT){
         // Save Image Locally        
         [[DrawDataService defaultService] saveActionList:drawView.drawActionList 
                                                   userId:[[UserManager defaultManager] userId] 
@@ -564,7 +604,41 @@ enum{
 }
 
 
+
 #pragma mark - Actions
+
+
+- (void)updatePickColorViewType:(PickColorViewType)type
+{
+    if (pickColorView.type == type) {
+        return;
+    }
+    
+    if (type == PickColorViewTypePen) {
+        [pickColorView setFrame:PICK_COLOR_VIEW];
+        [pickColorView setImage:[shareImageManager toolPopupImage]];
+    }else if(type == PickColorViewTypeBackground){
+        [pickColorView setFrame:PICK_BACKGROUND_COLOR_VIEW];        
+        [pickColorView setImage:[shareImageManager backgroundColorPopupImage]];
+    }else{
+        //use later.
+        return;
+    }
+    [pickColorView setType:type];
+}
+
+
+- (IBAction)changeBackground:(id)sender {
+    if (pickColorView.type != PickColorViewTypeBackground) {
+        [self updatePickColorViewType:PickColorViewTypeBackground];
+        [pickColorView setHidden:NO animated:YES];    
+    }else{
+        [pickColorView setHidden:!pickColorView.hidden animated:YES];            
+    }    
+    [pickPenView setHidden:YES];
+    [pickEraserView setHidden:YES];
+}
+
 
 - (IBAction)clickRedraw:(id)sender {
     [pickColorView setHidden:YES animated:YES];
@@ -576,7 +650,11 @@ enum{
 - (IBAction)clickEraserButton:(id)sender {
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
     [drawView setPenType:Eraser];
-    [drawView setLineColor:[DrawColor whiteColor]];
+    if (eraserColor == nil) {
+        [drawView setLineColor:[DrawColor whiteColor]];        
+    }else{
+        [drawView setLineColor:eraserColor];
+    }
     [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
     [pickColorView setHidden:YES];
@@ -592,7 +670,13 @@ enum{
 }
 
 - (IBAction)clickColorButton:(id)sender {
-    [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    if (pickColorView.type != PickColorViewTypePen) {
+        [self updatePickColorViewType:PickColorViewTypePen];
+        [pickColorView setHidden:NO animated:YES];    
+    }else{
+        [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    }
+
     [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
     [drawView setPenType:penButton.penType];

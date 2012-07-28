@@ -194,6 +194,8 @@
     
 }
 
+
+
 #pragma mark - Timer
 
 - (void)handleTimer:(NSTimer *)theTimer
@@ -401,7 +403,7 @@ enum{
 }
 
 #pragma mark - Pick view delegate
-- (void)didPickedColorView:(ColorView *)colorView
+- (void)didPickedPickView:(PickView *)pickView colorView:(ColorView *)colorView
 {
     [drawView setLineColor:colorView.drawColor];
     [drawView setLineWidth:penWidth];
@@ -426,6 +428,15 @@ enum{
     [colorShop showInView:self.view animated:YES];
     
 }
+
+- (void)didPickedColorView:(ColorView *)colorView
+{
+    [drawView setLineColor:colorView.drawColor];
+    [drawView setLineWidth:penWidth];
+    [colorButton setDrawColor:colorView.drawColor];
+    [pickColorView updatePickColorView:colorView];
+}
+
 
 #define NO_COIN_TAG 201204271
 #define BUY_CONFIRM_TAG 201204272
