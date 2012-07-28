@@ -64,6 +64,7 @@
 - (UIImage *)toolPopupImage;
 - (UIImage *)penPopupImage;
 - (UIImage *)eraserPopupImage;
+- (UIImage *)backgroundColorPopupImage;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
