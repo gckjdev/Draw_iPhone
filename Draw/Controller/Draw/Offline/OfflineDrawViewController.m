@@ -52,6 +52,9 @@
 @synthesize titleLabel;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
+@synthesize eraserColor = _eraserColor;
+@synthesize bgColor = _bgColor;
+
 #define PAPER_VIEW_TAG 20120403 
 
 
@@ -96,6 +99,8 @@
     PPRelease(_targetUid);
     PPRelease(titleLabel);
     PPRelease(submitButton);
+    PPRelease(_bgColor);
+    PPRelease(_eraserColor);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
@@ -300,6 +305,7 @@ enum{
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     [self.view insertSubview:drawView aboveSubview:paperView];
+    self.bgColor = self.eraserColor = [DrawColor whiteColor];
 }
 
 - (void)initWordLabel
@@ -391,7 +397,7 @@ enum{
         [pickColorView updatePickColorView:colorView];
     }else if(pickColorView.type == PickColorViewTypeBackground)
     {
-        bgColor = colorView.drawColor;
+        self.bgColor = colorView.drawColor;
         //show tips.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_CHANGE_BACK;
@@ -401,10 +407,11 @@ enum{
 
 - (void)didPickedColorView:(ColorView *)colorView
 {
-    [drawView setLineColor:colorView.drawColor];
-    [drawView setLineWidth:penWidth];
-    [colorButton setDrawColor:colorView.drawColor];
-    [pickColorView updatePickColorView:colorView];
+    [self didPickedPickView:pickPenView colorView:colorView];
+//    [drawView setLineColor:colorView.drawColor];
+//    [drawView setLineWidth:penWidth];
+//    [colorButton setDrawColor:colorView.drawColor];
+//    [pickColorView updatePickColorView:colorView];
 }
 
 
@@ -500,7 +507,7 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
         [pickColorView setHidden:YES];   
-        bgColor = eraserColor = nil;
+        self.bgColor = self.eraserColor = [DrawColor whiteColor];
     }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
@@ -513,11 +520,11 @@ enum{
     }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
     {
         DrawAction *action = [DrawAction 
-                              changeBackgroundActionWithColor:bgColor];
+                              changeBackgroundActionWithColor:self.bgColor];
         [drawView addAction:action];
-        eraserColor = bgColor;
+        self.eraserColor = self.bgColor;
         if (drawView.penType == Eraser) {
-            drawView.lineColor = eraserColor;
+            drawView.lineColor = self.eraserColor;
         }
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
@@ -650,11 +657,7 @@ enum{
 - (IBAction)clickEraserButton:(id)sender {
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
     [drawView setPenType:Eraser];
-    if (eraserColor == nil) {
-        [drawView setLineColor:[DrawColor whiteColor]];        
-    }else{
-        [drawView setLineColor:eraserColor];
-    }
+    [drawView setLineColor:self.eraserColor];
     [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
     [pickColorView setHidden:YES];

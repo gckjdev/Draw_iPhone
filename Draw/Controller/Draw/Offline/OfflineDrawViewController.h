@@ -54,8 +54,8 @@
     TargetType targetType;
     
     NSString*_targetUid;
-    DrawColor *bgColor;
-    DrawColor *eraserColor;
+    DrawColor *_bgColor;
+    DrawColor *_eraserColor;
 }
 
 - (IBAction)clickRedraw:(id)sender;
@@ -74,6 +74,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;
+@property (retain, nonatomic) DrawColor* eraserColor;
+@property (retain, nonatomic) DrawColor* bgColor;
 
 - (IBAction)changeBackground:(id)sender;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
