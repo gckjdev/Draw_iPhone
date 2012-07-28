@@ -18,5 +18,6 @@
 + (CommonGameNetworkClient*)defaultInstance;
 - (void)start:(NSString*)serverAddress port:(int)port;
 
+- (void)sendGetRoomsRequest:(NSString*)userId;
 
 @end

@@ -7,6 +7,10 @@
 //
 
 #import "DiceRoomListController.h"
+#import "DiceImageManager.h"
+#import "DiceRoomListCell.h"
+#import "CommonGameNetworkClient.h"
+#import "UserManager.h"
 
 @interface DiceRoomListController ()
 
@@ -14,31 +18,60 @@
 
 @implementation DiceRoomListController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+#pragma mark - Life cycle
+@synthesize createRoomButton;
+@synthesize fastEntryButton;
+
+- (void)dealloc {
+    [createRoomButton release];
+    [fastEntryButton release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[[DiceImageManager defaultManager] roomBgImage]];
+    
+    [createRoomButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
+    
+    [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
+    
+    [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
 }
 
 - (void)viewDidUnload
 {
+    [self setCreateRoomButton:nil];
+    [self setFastEntryButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark - TableView delegate methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return [DiceRoomListCell getCellHeight];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DiceRoomListCell *cell = [tableView dequeueReusableCellWithIdentifier:[DiceRoomListCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [DiceRoomListCell createCell:[DiceRoomListCell getCellIdentifier]];
+    }
+    
+    return cell;
+}
+
+#pragma mark - Button action
+
+- (IBAction)clickBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

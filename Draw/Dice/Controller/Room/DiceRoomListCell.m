@@ -7,12 +7,16 @@
 //
 
 #import "DiceRoomListCell.h"
+#import "GameBasic.pb.h"
+
+#define TAG_USER_VIEW 101
 
 @interface DiceRoomListCell ()
 
 @end
 
 @implementation DiceRoomListCell
+@synthesize roomNameLabel;
 
 + (NSString *)getCellIdentifier
 {
@@ -24,4 +28,15 @@
     return 205;
 }
 
+- (void)setCellInfo:(PBGameSession *)session
+{
+    roomNameLabel.text = session.name;
+    
+    
+}
+
+- (void)dealloc {
+    [roomNameLabel release];
+    [super dealloc];
+}
 @end

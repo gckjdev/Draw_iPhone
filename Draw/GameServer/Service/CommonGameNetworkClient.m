@@ -62,6 +62,25 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     return _messageIdIndex;
 }
 
+#pragma mark - Send Message
 
+- (void)sendSimpleMessage:(int)command
+                   userId:(NSString*)userId 
+                sessionId:(long)sessionId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:command];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];                
+}
+
+- (void)sendGetRoomsRequest:(NSString*)userId
+{
+    [self sendSimpleMessage:GameCommandTypeGetRoomsRequest userId:userId sessionId:0];
+}
 
 @end
