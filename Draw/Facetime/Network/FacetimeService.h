@@ -44,7 +44,7 @@ typedef enum {
 - (BOOL)isConnected;
 - (void)connectServer:(id<FacetimeServiceDelegate>)connectionDelegate;
 - (void)disconnectServer;
-
+- (void)getFacetimeServerList;
 - (void)sendFacetimeRequest:(id<FacetimeServiceDelegate>)aDelegate;
 - (void)sendFacetimeRequestWithGender:(BOOL)gender 
                              delegate:(id<FacetimeServiceDelegate>)aDelegate;

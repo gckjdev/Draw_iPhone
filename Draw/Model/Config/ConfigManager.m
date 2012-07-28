@@ -247,4 +247,9 @@
     return [MobClickUtils getBoolValueByKey:@"SHOW_RECOMMEND_APP" defaultValue:NO];
 }
 
++ (NSString*)getFacetimeServerListString
+{
+    return [MobClickUtils getStringValueByKey:@"FACETIME_SERVER_LIST" defaultValue:@"192.168.1.5:8191"];
+}
+
 @end
