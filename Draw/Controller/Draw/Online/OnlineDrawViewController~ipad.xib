@@ -202,7 +202,7 @@
 						<string key="NSFrame">{{302, 816}, {42, 68}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="459239458"/>
+						<reference key="NSNextKeyView" ref="124815000"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -250,10 +250,10 @@
 					<object class="IBUIButton" id="459239458">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{413, 815}, {56, 66}}</string>
+						<string key="NSFrame">{{517, 815}, {56, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="61658780"/>
+						<reference key="NSNextKeyView" ref="191278475"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -311,10 +311,10 @@
 					<object class="IBUIButton" id="198413603">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 930}, {768, 60}}</string>
+						<string key="NSFrame">{{150, 930}, {468, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="61658780"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -377,10 +377,10 @@
 					<object class="IBUIButton" id="61658780">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{530, 811}, {74, 74}}</string>
+						<string key="NSFrame">{{648, 923}, {74, 74}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="191278475"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -415,6 +415,30 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="118339798"/>
+						<reference key="IBUIFontDescription" ref="323626887"/>
+						<reference key="IBUIFont" ref="970717372"/>
+					</object>
+					<object class="IBUIButton" id="124815000">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{403, 813}, {61, 68}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="459239458"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="902714629"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="118339798"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">change_bg@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="323626887"/>
 						<reference key="IBUIFont" ref="970717372"/>
 					</object>
@@ -564,6 +588,15 @@
 					</object>
 					<int key="connectionID">56</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">changeBackground:</string>
+						<reference key="source" ref="124815000"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -591,8 +624,9 @@
 							<reference ref="13999363"/>
 							<reference ref="191278475"/>
 							<reference ref="459239458"/>
-							<reference ref="61658780"/>
 							<reference ref="382766777"/>
+							<reference ref="124815000"/>
+							<reference ref="61658780"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -687,6 +721,11 @@
 						<reference key="object" ref="382766777"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">58</int>
+						<reference key="object" ref="124815000"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -713,12 +752,13 @@
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.CustomClassName">ColorView</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">57</int>
+			<int key="maxID">59</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -734,6 +774,7 @@
 					<string key="className">OnlineDrawViewController</string>
 					<string key="superclassName">SuperGameViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeBackground:">id</string>
 						<string key="clickChangeRoomButton:">id</string>
 						<string key="clickColorButton:">id</string>
 						<string key="clickEraserButton:">id</string>
@@ -741,6 +782,10 @@
 						<string key="clickRedraw:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeBackground:">
+							<string key="name">changeBackground:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clickChangeRoomButton:">
 							<string key="name">clickChangeRoomButton:</string>
 							<string key="candidateClassName">id</string>
@@ -850,6 +895,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="change_bg@2x.png">{61, 68}</string>
 			<string key="clean@2x.png">{55, 66}</string>
 			<string key="eraser@2x.png">{42, 67}</string>
 			<string key="group_message@2x.png">{74, 74}</string>
