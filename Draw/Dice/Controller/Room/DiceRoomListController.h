@@ -11,4 +11,6 @@
 
 @interface DiceRoomListController : PPTableViewController
 
+@property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
+@property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;
 @end

@@ -21,7 +21,8 @@ typedef enum {
 
 @optional
 //match user
-- (void)didMatchUser:(NSArray*)userList;
+- (void)didMatchUser:(NSArray*)userList 
+      isChosenToInit:(BOOL)isChosenToInit;
 - (void)didMatchUserFailed:(MatchUserFailedType)type;
 
 // server connection

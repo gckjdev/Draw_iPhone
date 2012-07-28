@@ -11,8 +11,9 @@
 #import "PPViewController.h"
 #import "MatchingFacetimeUserView.h"
 #import "FacetimeUserInfoView.h"
+#import "InputDialog.h"
 
-@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate,MatchingFacetimeUserViewDelegate,FacetimeUserInfoViewDelegate> {
+@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate,MatchingFacetimeUserViewDelegate,FacetimeUserInfoViewDelegate,InputDialogDelegate> {
     MatchingFacetimeUserView* _matchingFacetimeView;
     FacetimeUserInfoView* _facetimeUserInfoView;
     int _requestType;
