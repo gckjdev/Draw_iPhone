@@ -351,7 +351,7 @@
 					<object class="IBUIButton" id="276991159">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{164, 374}, {32, 37}}</string>
+						<string key="NSFrame">{{162, 376}, {31, 34}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="70881159"/>
@@ -359,7 +359,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">B</string>
 						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -367,6 +366,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="309240068"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">change_bg@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="300407582"/>
 						<reference key="IBUIFont" ref="812508533"/>
 					</object>
@@ -1666,6 +1669,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>back@2x.png</string>
+				<string>change_bg@2x.png</string>
 				<string>clean@2x.png</string>
 				<string>eraser@2x.png</string>
 				<string>normalpallets@2x.png</string>
@@ -1678,6 +1682,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{74, 74}</string>
+				<string>{61, 68}</string>
 				<string>{55, 66}</string>
 				<string>{42, 67}</string>
 				<string>{640, 81}</string>
