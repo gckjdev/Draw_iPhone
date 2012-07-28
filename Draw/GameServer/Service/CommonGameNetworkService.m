@@ -10,6 +10,7 @@
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
 #import "UIUtils.h"
+#import "UserManager.h"
 
 @implementation CommonGameNetworkService
 
@@ -106,6 +107,11 @@
 - (void)handleGetRoomsResponse:(GameMessage*)message
 {
     // save room into _roomList and fire the notification
+    if ([message resultCode] != 0){
+        return;
+    }
+    
+
 }
 
 - (void)handleCustomMessage:(GameMessage*)message
@@ -131,7 +137,12 @@
 - (void)getRoomList
 {
     // send get room request here
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
     
+    [_networkClient sendGetRoomsRequest:userId];
 }
 
 @end

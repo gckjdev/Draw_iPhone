@@ -53,6 +53,7 @@
 #import "RecommendedAppsController.h"
 
 #import "FacetimeMainController.h"
+#import "DiceRoomListController.h"
 
 @interface HomeController()
 
@@ -794,7 +795,8 @@
 
 - (IBAction)clickDice:(id)sender
 {
-    
+    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)clickFacetime:(id)sender
