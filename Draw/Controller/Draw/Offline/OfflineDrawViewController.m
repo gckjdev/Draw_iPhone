@@ -499,7 +499,8 @@ enum{
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
-        [pickColorView setHidden:YES];        
+        [pickColorView setHidden:YES];   
+        bgColor = eraserColor = nil;
     }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
@@ -515,6 +516,9 @@ enum{
                               changeBackgroundActionWithColor:bgColor];
         [drawView addAction:action];
         eraserColor = bgColor;
+        if (drawView.penType == Eraser) {
+            drawView.lineColor = eraserColor;
+        }
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         // Save Image Locally        
