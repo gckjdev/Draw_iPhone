@@ -56,6 +56,7 @@ typedef enum {
 - (NSString*)qqTokenSecret;
 - (NSString*)facebookId;
 - (NSString*)email;
+- (NSString*)facetimeId;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
@@ -68,6 +69,7 @@ typedef enum {
 - (void)setDeviceToken:(NSString*)deviceToken;
 - (void)setLocation:(NSString*)location;
 - (void)setEmail:(NSString *)email;
+- (void)setFacetimeId:(NSString*)facetimeId;
 
 
 - (BOOL)hasUser;

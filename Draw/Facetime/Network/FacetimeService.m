@@ -55,7 +55,7 @@ static FacetimeService *_defaultService;
     
 //    [self clearKeepAliveTimer];
 //    [self clearDisconnectTimer];
-    [_networkClient start:@"192.168.1.3" port:8191];    
+    [_networkClient start:@"192.168.1.5" port:8191];    
     
 }
 - (void)disconnectServer
@@ -71,6 +71,7 @@ static FacetimeService *_defaultService;
     [builder setLocation:[UserManager defaultManager].location];
     [builder setUserId:[UserManager defaultManager].userId];
     [builder setGender:[[UserManager defaultManager].gender isEqualToString:@"m"]];
+    [builder setFacetimeId:[UserManager defaultManager].facetimeId];
     return [builder build];
 }
 
@@ -115,8 +116,8 @@ static FacetimeService *_defaultService;
                 && message.facetimeChatResponse.userList
                 && [message.facetimeChatResponse.userList count] > 0) {
                 PPDebug(@"<FacetimeService> Get facetimeChatResponse, user count = %d",message.facetimeChatResponse.userList.count);
-                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:)]) {
-                    [_matchDelegate didMatchUser:message.facetimeChatResponse.userList];
+                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:isChosenToInit:)]) {
+                    [_matchDelegate didMatchUser:message.facetimeChatResponse.userList isChosenToInit:message.facetimeChatResponse.chosenToInitiate];
                 }                
             } else {
                 PPDebug(@"<FacetimeService> Get facetimeChatResponse failed, no user is responsed");
