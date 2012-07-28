@@ -38,6 +38,7 @@
 #import "ItemService.h"
 #import "VendingController.h"
 
+
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
@@ -575,21 +576,30 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
+#define ITEM_TAG_OFFSET 20120728
 
 
 - (void)clickOk:(CommonDialog *)dialog
 {
     //run away
-    if (dialog.tag == SHOP_DIALOG_TAG) {
-        VendingController *itemShop = [VendingController instance];
-        [self.navigationController pushViewController:itemShop animated:YES];
-        _shopController = itemShop;
-    }else{
-        [drawGameService quitGame];
-        [HomeController returnRoom:self];
-        [self cleanData];
-        [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        default:
+            [drawGameService quitGame];
+            [HomeController returnRoom:self];
+            [self cleanData];
+            [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+            break;
     }
+
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
@@ -674,7 +684,7 @@
     if(amout <= 0){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = SHOP_DIALOG_TAG;
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
         return;
     }
@@ -782,6 +792,15 @@
 - (void)levelDown:(int)level
 {
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+    }
 }
 
 @end

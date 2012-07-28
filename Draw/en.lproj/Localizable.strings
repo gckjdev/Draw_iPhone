@@ -723,3 +723,5 @@
 
 "kChangeBackgroundTitle" = "Change Background";
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
+
+"kBuySuccess" = "Buy item successfully!";
