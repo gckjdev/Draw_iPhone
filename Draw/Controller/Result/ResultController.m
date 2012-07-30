@@ -586,12 +586,13 @@
 }
 
 #pragma mark - throw item animation
+#define ITEM_TAG_OFFSET 20120728
 - (BOOL)throwItem:(ToolView*)toolView
 {
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        //dialog.tag = SHOP_DIALOG_TAG;
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
         return NO;
     }
@@ -635,16 +636,45 @@
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    //run away
-
-    VendingController *itemShop = [VendingController instance];
-    [self.navigationController pushViewController:itemShop animated:YES];
-    //_shopController = itemShop;
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        default:
+            break;
+    }
 
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
     
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview;
+        switch (anItem.type) {
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
+    }
 }
 
 

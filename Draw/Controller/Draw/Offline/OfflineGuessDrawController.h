@@ -15,6 +15,7 @@
 #import "CommonMessageCenter.h"
 #import "StableView.h"
 #import "PickToolView.h"
+#import "CommonItemInfoView.h"
 
 
 
@@ -34,7 +35,7 @@
 @class VendingController;
 @class Draw;
 @class Feed;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate>
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate, CommonItemInfoViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
