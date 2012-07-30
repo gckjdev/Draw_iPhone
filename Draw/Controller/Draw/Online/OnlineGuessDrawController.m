@@ -46,6 +46,10 @@
 #define MAX_TOMATO_CAN_THROW 3
 #define MAX_FLOWER_CAN_SEND 10
 
+#define TOOLVIEW_TAG_TIPS   120120730
+#define TOOLVIEW_TAG_FLOWER 220120730
+#define TOOLVIEW_TAG_TOMATO 320120730
+
 
 @implementation OnlineGuessDrawController
 @synthesize showView;
@@ -339,8 +343,11 @@
     NSMutableArray *array = [NSMutableArray array];
     ItemManager *itemManager = [ItemManager defaultManager];
     ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    flower.tag = TOOLVIEW_TAG_FLOWER;
     ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
     [array addObject:tomato];
@@ -800,6 +807,21 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview;
+        switch (anItem.type) {
+            case ItemTypeTips: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
+            } break;
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
 }
 
