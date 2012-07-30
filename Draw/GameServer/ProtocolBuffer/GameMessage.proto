@@ -16,7 +16,7 @@ message GetRoomsRequest {
 }
 
 message GetRoomsResponse {
-  repeated PBGameSession gameSessions = 1;     
+  repeated PBGameSession sessions = 1;     
 }
 
 message CreateRoomRequest {
@@ -271,7 +271,14 @@ message GameMessage {
   
   optional GeneralNotification notification = 51;
   
+  optional GetRoomsRequest getRoomsRequest = 101;
+  optional GetRoomsResponse getRoomsResponse = 102;
   
+  optional CreateRoomRequest createRoomRequest= 103;
+  optional CreateRoomResponse createRoomResponse= 104;
+  
+  optional EnterRoomRequest enterRoomRequest= 105;
+  optional EnterRoomResponse enterRoomResponse= 106;
 }
 
 message DataQueryResponse {

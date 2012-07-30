@@ -111,6 +111,8 @@
         return;
     }
     
+    [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
+    
     
 }
 

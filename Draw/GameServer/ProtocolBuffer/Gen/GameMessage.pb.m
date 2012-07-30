@@ -243,14 +243,14 @@ static GetRoomsRequest* defaultGetRoomsRequestInstance = nil;
 @end
 
 @interface GetRoomsResponse ()
-@property (retain) NSMutableArray* mutableGameSessionsList;
+@property (retain) NSMutableArray* mutableSessionsList;
 @end
 
 @implementation GetRoomsResponse
 
-@synthesize mutableGameSessionsList;
+@synthesize mutableSessionsList;
 - (void) dealloc {
-  self.mutableGameSessionsList = nil;
+  self.mutableSessionsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -270,15 +270,15 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
 - (GetRoomsResponse*) defaultInstance {
   return defaultGetRoomsResponseInstance;
 }
-- (NSArray*) gameSessionsList {
-  return mutableGameSessionsList;
+- (NSArray*) sessionsList {
+  return mutableSessionsList;
 }
-- (PBGameSession*) gameSessionsAtIndex:(int32_t) index {
-  id value = [mutableGameSessionsList objectAtIndex:index];
+- (PBGameSession*) sessionsAtIndex:(int32_t) index {
+  id value = [mutableSessionsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  for (PBGameSession* element in self.gameSessionsList) {
+  for (PBGameSession* element in self.sessionsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -286,7 +286,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBGameSession* element in self.gameSessionsList) {
+  for (PBGameSession* element in self.sessionsList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -298,7 +298,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   }
 
   size = 0;
-  for (PBGameSession* element in self.gameSessionsList) {
+  for (PBGameSession* element in self.sessionsList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
@@ -376,11 +376,11 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   if (other == [GetRoomsResponse defaultInstance]) {
     return self;
   }
-  if (other.mutableGameSessionsList.count > 0) {
-    if (result.mutableGameSessionsList == nil) {
-      result.mutableGameSessionsList = [NSMutableArray array];
+  if (other.mutableSessionsList.count > 0) {
+    if (result.mutableSessionsList == nil) {
+      result.mutableSessionsList = [NSMutableArray array];
     }
-    [result.mutableGameSessionsList addObjectsFromArray:other.mutableGameSessionsList];
+    [result.mutableSessionsList addObjectsFromArray:other.mutableSessionsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -406,39 +406,39 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
       case 10: {
         PBGameSession_Builder* subBuilder = [PBGameSession builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addGameSessions:[subBuilder buildPartial]];
+        [self addSessions:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (NSArray*) gameSessionsList {
-  if (result.mutableGameSessionsList == nil) { return [NSArray array]; }
-  return result.mutableGameSessionsList;
+- (NSArray*) sessionsList {
+  if (result.mutableSessionsList == nil) { return [NSArray array]; }
+  return result.mutableSessionsList;
 }
-- (PBGameSession*) gameSessionsAtIndex:(int32_t) index {
-  return [result gameSessionsAtIndex:index];
+- (PBGameSession*) sessionsAtIndex:(int32_t) index {
+  return [result sessionsAtIndex:index];
 }
-- (GetRoomsResponse_Builder*) replaceGameSessionsAtIndex:(int32_t) index with:(PBGameSession*) value {
-  [result.mutableGameSessionsList replaceObjectAtIndex:index withObject:value];
+- (GetRoomsResponse_Builder*) replaceSessionsAtIndex:(int32_t) index with:(PBGameSession*) value {
+  [result.mutableSessionsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (GetRoomsResponse_Builder*) addAllGameSessions:(NSArray*) values {
-  if (result.mutableGameSessionsList == nil) {
-    result.mutableGameSessionsList = [NSMutableArray array];
+- (GetRoomsResponse_Builder*) addAllSessions:(NSArray*) values {
+  if (result.mutableSessionsList == nil) {
+    result.mutableSessionsList = [NSMutableArray array];
   }
-  [result.mutableGameSessionsList addObjectsFromArray:values];
+  [result.mutableSessionsList addObjectsFromArray:values];
   return self;
 }
-- (GetRoomsResponse_Builder*) clearGameSessionsList {
-  result.mutableGameSessionsList = nil;
+- (GetRoomsResponse_Builder*) clearSessionsList {
+  result.mutableSessionsList = nil;
   return self;
 }
-- (GetRoomsResponse_Builder*) addGameSessions:(PBGameSession*) value {
-  if (result.mutableGameSessionsList == nil) {
-    result.mutableGameSessionsList = [NSMutableArray array];
+- (GetRoomsResponse_Builder*) addSessions:(PBGameSession*) value {
+  if (result.mutableSessionsList == nil) {
+    result.mutableSessionsList = [NSMutableArray array];
   }
-  [result.mutableGameSessionsList addObject:value];
+  [result.mutableSessionsList addObject:value];
   return self;
 }
 @end
@@ -9144,6 +9144,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) FacetimeChatRequest* facetimeChatRequest;
 @property (retain) FacetimeChatResponse* facetimeChatResponse;
 @property (retain) GeneralNotification* notification;
+@property (retain) GetRoomsRequest* getRoomsRequest;
+@property (retain) GetRoomsResponse* getRoomsResponse;
+@property (retain) CreateRoomRequest* createRoomRequest;
+@property (retain) CreateRoomResponse* createRoomResponse;
+@property (retain) EnterRoomRequest* enterRoomRequest;
+@property (retain) EnterRoomResponse* enterRoomResponse;
 @end
 
 @implementation GameMessage
@@ -9288,6 +9294,48 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasNotification_ = !!value;
 }
 @synthesize notification;
+- (BOOL) hasGetRoomsRequest {
+  return !!hasGetRoomsRequest_;
+}
+- (void) setHasGetRoomsRequest:(BOOL) value {
+  hasGetRoomsRequest_ = !!value;
+}
+@synthesize getRoomsRequest;
+- (BOOL) hasGetRoomsResponse {
+  return !!hasGetRoomsResponse_;
+}
+- (void) setHasGetRoomsResponse:(BOOL) value {
+  hasGetRoomsResponse_ = !!value;
+}
+@synthesize getRoomsResponse;
+- (BOOL) hasCreateRoomRequest {
+  return !!hasCreateRoomRequest_;
+}
+- (void) setHasCreateRoomRequest:(BOOL) value {
+  hasCreateRoomRequest_ = !!value;
+}
+@synthesize createRoomRequest;
+- (BOOL) hasCreateRoomResponse {
+  return !!hasCreateRoomResponse_;
+}
+- (void) setHasCreateRoomResponse:(BOOL) value {
+  hasCreateRoomResponse_ = !!value;
+}
+@synthesize createRoomResponse;
+- (BOOL) hasEnterRoomRequest {
+  return !!hasEnterRoomRequest_;
+}
+- (void) setHasEnterRoomRequest:(BOOL) value {
+  hasEnterRoomRequest_ = !!value;
+}
+@synthesize enterRoomRequest;
+- (BOOL) hasEnterRoomResponse {
+  return !!hasEnterRoomResponse_;
+}
+- (void) setHasEnterRoomResponse:(BOOL) value {
+  hasEnterRoomResponse_ = !!value;
+}
+@synthesize enterRoomResponse;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
@@ -9302,6 +9350,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.facetimeChatRequest = nil;
   self.facetimeChatResponse = nil;
   self.notification = nil;
+  self.getRoomsRequest = nil;
+  self.getRoomsResponse = nil;
+  self.createRoomRequest = nil;
+  self.createRoomResponse = nil;
+  self.enterRoomRequest = nil;
+  self.enterRoomResponse = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9326,6 +9380,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.facetimeChatRequest = [FacetimeChatRequest defaultInstance];
     self.facetimeChatResponse = [FacetimeChatResponse defaultInstance];
     self.notification = [GeneralNotification defaultInstance];
+    self.getRoomsRequest = [GetRoomsRequest defaultInstance];
+    self.getRoomsResponse = [GetRoomsResponse defaultInstance];
+    self.createRoomRequest = [CreateRoomRequest defaultInstance];
+    self.createRoomResponse = [CreateRoomResponse defaultInstance];
+    self.enterRoomRequest = [EnterRoomRequest defaultInstance];
+    self.enterRoomResponse = [EnterRoomResponse defaultInstance];
   }
   return self;
 }
@@ -9370,6 +9430,31 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasNotification) {
     if (!self.notification.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGetRoomsRequest) {
+    if (!self.getRoomsRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGetRoomsResponse) {
+    if (!self.getRoomsResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasCreateRoomRequest) {
+    if (!self.createRoomRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasEnterRoomRequest) {
+    if (!self.enterRoomRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasEnterRoomResponse) {
+    if (!self.enterRoomResponse.isInitialized) {
       return NO;
     }
   }
@@ -9435,6 +9520,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasNotification) {
     [output writeMessage:51 value:self.notification];
+  }
+  if (self.hasGetRoomsRequest) {
+    [output writeMessage:101 value:self.getRoomsRequest];
+  }
+  if (self.hasGetRoomsResponse) {
+    [output writeMessage:102 value:self.getRoomsResponse];
+  }
+  if (self.hasCreateRoomRequest) {
+    [output writeMessage:103 value:self.createRoomRequest];
+  }
+  if (self.hasCreateRoomResponse) {
+    [output writeMessage:104 value:self.createRoomResponse];
+  }
+  if (self.hasEnterRoomRequest) {
+    [output writeMessage:105 value:self.enterRoomRequest];
+  }
+  if (self.hasEnterRoomResponse) {
+    [output writeMessage:106 value:self.enterRoomResponse];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -9504,6 +9607,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasNotification) {
     size += computeMessageSize(51, self.notification);
+  }
+  if (self.hasGetRoomsRequest) {
+    size += computeMessageSize(101, self.getRoomsRequest);
+  }
+  if (self.hasGetRoomsResponse) {
+    size += computeMessageSize(102, self.getRoomsResponse);
+  }
+  if (self.hasCreateRoomRequest) {
+    size += computeMessageSize(103, self.createRoomRequest);
+  }
+  if (self.hasCreateRoomResponse) {
+    size += computeMessageSize(104, self.createRoomResponse);
+  }
+  if (self.hasEnterRoomRequest) {
+    size += computeMessageSize(105, self.enterRoomRequest);
+  }
+  if (self.hasEnterRoomResponse) {
+    size += computeMessageSize(106, self.enterRoomResponse);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9639,6 +9760,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasNotification) {
     [self mergeNotification:other.notification];
+  }
+  if (other.hasGetRoomsRequest) {
+    [self mergeGetRoomsRequest:other.getRoomsRequest];
+  }
+  if (other.hasGetRoomsResponse) {
+    [self mergeGetRoomsResponse:other.getRoomsResponse];
+  }
+  if (other.hasCreateRoomRequest) {
+    [self mergeCreateRoomRequest:other.createRoomRequest];
+  }
+  if (other.hasCreateRoomResponse) {
+    [self mergeCreateRoomResponse:other.createRoomResponse];
+  }
+  if (other.hasEnterRoomRequest) {
+    [self mergeEnterRoomRequest:other.enterRoomRequest];
+  }
+  if (other.hasEnterRoomResponse) {
+    [self mergeEnterRoomResponse:other.enterRoomResponse];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -9809,6 +9948,60 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setNotification:[subBuilder buildPartial]];
+        break;
+      }
+      case 810: {
+        GetRoomsRequest_Builder* subBuilder = [GetRoomsRequest builder];
+        if (self.hasGetRoomsRequest) {
+          [subBuilder mergeFrom:self.getRoomsRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGetRoomsRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 818: {
+        GetRoomsResponse_Builder* subBuilder = [GetRoomsResponse builder];
+        if (self.hasGetRoomsResponse) {
+          [subBuilder mergeFrom:self.getRoomsResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGetRoomsResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 826: {
+        CreateRoomRequest_Builder* subBuilder = [CreateRoomRequest builder];
+        if (self.hasCreateRoomRequest) {
+          [subBuilder mergeFrom:self.createRoomRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCreateRoomRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 834: {
+        CreateRoomResponse_Builder* subBuilder = [CreateRoomResponse builder];
+        if (self.hasCreateRoomResponse) {
+          [subBuilder mergeFrom:self.createRoomResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCreateRoomResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 842: {
+        EnterRoomRequest_Builder* subBuilder = [EnterRoomRequest builder];
+        if (self.hasEnterRoomRequest) {
+          [subBuilder mergeFrom:self.enterRoomRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setEnterRoomRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 850: {
+        EnterRoomResponse_Builder* subBuilder = [EnterRoomResponse builder];
+        if (self.hasEnterRoomResponse) {
+          [subBuilder mergeFrom:self.enterRoomResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setEnterRoomResponse:[subBuilder buildPartial]];
         break;
       }
     }
@@ -10286,6 +10479,186 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearNotification {
   result.hasNotification = NO;
   result.notification = [GeneralNotification defaultInstance];
+  return self;
+}
+- (BOOL) hasGetRoomsRequest {
+  return result.hasGetRoomsRequest;
+}
+- (GetRoomsRequest*) getRoomsRequest {
+  return result.getRoomsRequest;
+}
+- (GameMessage_Builder*) setGetRoomsRequest:(GetRoomsRequest*) value {
+  result.hasGetRoomsRequest = YES;
+  result.getRoomsRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setGetRoomsRequestBuilder:(GetRoomsRequest_Builder*) builderForValue {
+  return [self setGetRoomsRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGetRoomsRequest:(GetRoomsRequest*) value {
+  if (result.hasGetRoomsRequest &&
+      result.getRoomsRequest != [GetRoomsRequest defaultInstance]) {
+    result.getRoomsRequest =
+      [[[GetRoomsRequest builderWithPrototype:result.getRoomsRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.getRoomsRequest = value;
+  }
+  result.hasGetRoomsRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGetRoomsRequest {
+  result.hasGetRoomsRequest = NO;
+  result.getRoomsRequest = [GetRoomsRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasGetRoomsResponse {
+  return result.hasGetRoomsResponse;
+}
+- (GetRoomsResponse*) getRoomsResponse {
+  return result.getRoomsResponse;
+}
+- (GameMessage_Builder*) setGetRoomsResponse:(GetRoomsResponse*) value {
+  result.hasGetRoomsResponse = YES;
+  result.getRoomsResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setGetRoomsResponseBuilder:(GetRoomsResponse_Builder*) builderForValue {
+  return [self setGetRoomsResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGetRoomsResponse:(GetRoomsResponse*) value {
+  if (result.hasGetRoomsResponse &&
+      result.getRoomsResponse != [GetRoomsResponse defaultInstance]) {
+    result.getRoomsResponse =
+      [[[GetRoomsResponse builderWithPrototype:result.getRoomsResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.getRoomsResponse = value;
+  }
+  result.hasGetRoomsResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGetRoomsResponse {
+  result.hasGetRoomsResponse = NO;
+  result.getRoomsResponse = [GetRoomsResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasCreateRoomRequest {
+  return result.hasCreateRoomRequest;
+}
+- (CreateRoomRequest*) createRoomRequest {
+  return result.createRoomRequest;
+}
+- (GameMessage_Builder*) setCreateRoomRequest:(CreateRoomRequest*) value {
+  result.hasCreateRoomRequest = YES;
+  result.createRoomRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setCreateRoomRequestBuilder:(CreateRoomRequest_Builder*) builderForValue {
+  return [self setCreateRoomRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCreateRoomRequest:(CreateRoomRequest*) value {
+  if (result.hasCreateRoomRequest &&
+      result.createRoomRequest != [CreateRoomRequest defaultInstance]) {
+    result.createRoomRequest =
+      [[[CreateRoomRequest builderWithPrototype:result.createRoomRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.createRoomRequest = value;
+  }
+  result.hasCreateRoomRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCreateRoomRequest {
+  result.hasCreateRoomRequest = NO;
+  result.createRoomRequest = [CreateRoomRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasCreateRoomResponse {
+  return result.hasCreateRoomResponse;
+}
+- (CreateRoomResponse*) createRoomResponse {
+  return result.createRoomResponse;
+}
+- (GameMessage_Builder*) setCreateRoomResponse:(CreateRoomResponse*) value {
+  result.hasCreateRoomResponse = YES;
+  result.createRoomResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setCreateRoomResponseBuilder:(CreateRoomResponse_Builder*) builderForValue {
+  return [self setCreateRoomResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCreateRoomResponse:(CreateRoomResponse*) value {
+  if (result.hasCreateRoomResponse &&
+      result.createRoomResponse != [CreateRoomResponse defaultInstance]) {
+    result.createRoomResponse =
+      [[[CreateRoomResponse builderWithPrototype:result.createRoomResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.createRoomResponse = value;
+  }
+  result.hasCreateRoomResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCreateRoomResponse {
+  result.hasCreateRoomResponse = NO;
+  result.createRoomResponse = [CreateRoomResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasEnterRoomRequest {
+  return result.hasEnterRoomRequest;
+}
+- (EnterRoomRequest*) enterRoomRequest {
+  return result.enterRoomRequest;
+}
+- (GameMessage_Builder*) setEnterRoomRequest:(EnterRoomRequest*) value {
+  result.hasEnterRoomRequest = YES;
+  result.enterRoomRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setEnterRoomRequestBuilder:(EnterRoomRequest_Builder*) builderForValue {
+  return [self setEnterRoomRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeEnterRoomRequest:(EnterRoomRequest*) value {
+  if (result.hasEnterRoomRequest &&
+      result.enterRoomRequest != [EnterRoomRequest defaultInstance]) {
+    result.enterRoomRequest =
+      [[[EnterRoomRequest builderWithPrototype:result.enterRoomRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.enterRoomRequest = value;
+  }
+  result.hasEnterRoomRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearEnterRoomRequest {
+  result.hasEnterRoomRequest = NO;
+  result.enterRoomRequest = [EnterRoomRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasEnterRoomResponse {
+  return result.hasEnterRoomResponse;
+}
+- (EnterRoomResponse*) enterRoomResponse {
+  return result.enterRoomResponse;
+}
+- (GameMessage_Builder*) setEnterRoomResponse:(EnterRoomResponse*) value {
+  result.hasEnterRoomResponse = YES;
+  result.enterRoomResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setEnterRoomResponseBuilder:(EnterRoomResponse_Builder*) builderForValue {
+  return [self setEnterRoomResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeEnterRoomResponse:(EnterRoomResponse*) value {
+  if (result.hasEnterRoomResponse &&
+      result.enterRoomResponse != [EnterRoomResponse defaultInstance]) {
+    result.enterRoomResponse =
+      [[[EnterRoomResponse builderWithPrototype:result.enterRoomResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.enterRoomResponse = value;
+  }
+  result.hasEnterRoomResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearEnterRoomResponse {
+  result.hasEnterRoomResponse = NO;
+  result.enterRoomResponse = [EnterRoomResponse defaultInstance];
   return self;
 }
 @end
