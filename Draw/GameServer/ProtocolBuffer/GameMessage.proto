@@ -1,7 +1,7 @@
 
 import "GameBasic.proto";
 import "Draw.proto";
-import "LieDice.proto";
+import "Dice.proto";
 import "GameConstants.proto";
 
 package game;
@@ -154,7 +154,7 @@ message NextPlayerStartNotificationResponse {
 }
 
 message GameOverNotificationRequest {
-  optional LieDiceGameResult gameResult = 1;
+  optional DiceGameResult gameResult = 1;
 } 
   
 message GameOverNotificationResponse{

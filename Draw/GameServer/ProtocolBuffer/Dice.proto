@@ -4,7 +4,7 @@ import "GameBasic.proto";
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
-option java_outer_classname = "LieDiceProtos";
+option java_outer_classname = "DiceProtos";
 
 message Dice {
   optional int32 diceId = 1;
@@ -23,7 +23,7 @@ message UserResult {
   required int32 gainCoins = 5;             // 获得的金币
 }
 
-message LieDiceGameResult {
+message DiceGameResult {
   required UserResult openDiceUserResult = 1;
   required UserResult callDiceUserResult = 2;  
   optional int32 openType = 5[default=0];           // 开0，抢开1

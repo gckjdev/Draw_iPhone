@@ -4,7 +4,7 @@
 
 #import "GameBasic.pb.h"
 #import "Draw.pb.h"
-#import "LieDice.pb.h"
+#import "Dice.pb.h"
 #import "GameConstants.pb.h"
 
 @class CallDiceRequest;
@@ -18,6 +18,8 @@
 @class DataQueryResponse;
 @class DataQueryResponse_Builder;
 @class Dice;
+@class DiceGameResult;
+@class DiceGameResult_Builder;
 @class Dice_Builder;
 @class EnterRoomRequest;
 @class EnterRoomRequest_Builder;
@@ -47,8 +49,6 @@
 @class JoinGameRequest_Builder;
 @class JoinGameResponse;
 @class JoinGameResponse_Builder;
-@class LieDiceGameResult;
-@class LieDiceGameResult_Builder;
 @class NextPlayerStartNotificationRequest;
 @class NextPlayerStartNotificationRequest_Builder;
 @class NextPlayerStartNotificationResponse;
@@ -1607,10 +1607,10 @@
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
-  LieDiceGameResult* gameResult;
+  DiceGameResult* gameResult;
 }
 - (BOOL) hasGameResult;
-@property (readonly, retain) LieDiceGameResult* gameResult;
+@property (readonly, retain) DiceGameResult* gameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -1647,10 +1647,10 @@
 - (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameResult;
-- (LieDiceGameResult*) gameResult;
-- (GameOverNotificationRequest_Builder*) setGameResult:(LieDiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(LieDiceGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(LieDiceGameResult*) value;
+- (DiceGameResult*) gameResult;
+- (GameOverNotificationRequest_Builder*) setGameResult:(DiceGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(DiceGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(DiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
 @end
 

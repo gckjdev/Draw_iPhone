@@ -778,8 +778,6 @@
     [self.view addSubview:dialog];
 }
 
-
-
 - (void)initTargetViews
 {
     NSInteger tag = TARGET_BASE_TAG;
