@@ -3054,6 +3054,7 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
 @property (retain) NSMutableArray* mutableSnsUsersList;
 @property (retain) NSString* location;
 @property int32_t userLevel;
+@property (retain) PBGameUser* user;
 @end
 
 @implementation JoinGameRequest
@@ -3168,6 +3169,13 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
   hasUserLevel_ = !!value;
 }
 @synthesize userLevel;
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -3178,6 +3186,7 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
   self.roomName = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
+  self.user = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3196,6 +3205,7 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
     self.roomName = @"";
     self.location = @"";
     self.userLevel = 0;
+    self.user = [PBGameUser defaultInstance];
   }
   return self;
 }
@@ -3237,6 +3247,11 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   for (PBSNSUser* element in self.snsUsersList) {
     if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasUser) {
+    if (!self.user.isInitialized) {
       return NO;
     }
   }
@@ -3290,6 +3305,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasUserLevel) {
     [output writeInt32:16 value:self.userLevel];
+  }
+  if (self.hasUser) {
+    [output writeMessage:100 value:self.user];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3352,6 +3370,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasUserLevel) {
     size += computeInt32Size(16, self.userLevel);
+  }
+  if (self.hasUser) {
+    size += computeMessageSize(100, self.user);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3482,6 +3503,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasUserLevel) {
     [self setUserLevel:other.userLevel];
   }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3567,6 +3591,15 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 128: {
         [self setUserLevel:[input readInt32]];
+        break;
+      }
+      case 802: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3854,6 +3887,36 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearUserLevel {
   result.hasUserLevel = NO;
   result.userLevel = 0;
+  return self;
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (JoinGameRequest_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (JoinGameRequest_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
   return self;
 }
 @end

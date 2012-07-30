@@ -772,5 +772,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [user userId];
 }
 
+- (PBGameUser*)toPBGameUser
+{
+    if ([self hasUser] == NO)
+        return nil;
+    
+    // return a PBGame User structure here
+    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+    [builder setUserId:[self userId]];
+    [builder setNickName:[self nickName]];    
+    
+    // TODO add other parameters
+    
+    return [builder build];
+}
 
 @end

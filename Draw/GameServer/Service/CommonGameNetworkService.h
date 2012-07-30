@@ -11,15 +11,18 @@
 
 @protocol CommonGameServiceDelegate <NSObject>
 
-
+- (void)didConnected;
+- (void)didBroken;
 
 @end
 
-@interface CommonGameNetworkService : NSObject
+@interface CommonGameNetworkService : NSObject<CommonNetworkClientDelegate>
 {
     CommonGameNetworkClient         *_networkClient;    
     NSTimer                         *_disconnectTimer;
     id<CommonGameServiceDelegate>   _connectionDelegate;    
+    
+    NSString                        *_gameId;
 }
 
 @property (nonatomic, retain) NSString       *serverAddress;
@@ -35,5 +38,6 @@
 - (void)clearDisconnectTimer;
 
 - (void)getRoomList;
+- (void)joinGameRequest;
 
 @end

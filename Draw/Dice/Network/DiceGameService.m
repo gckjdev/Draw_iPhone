@@ -9,9 +9,33 @@
 #import "DiceGameService.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
+#import "DiceNetworkClient.h"
+
+#define DICE_GAME_ID    @"LiarDice"
 
 @implementation DiceGameService
 
+static DiceGameService* _defaultService;
+
++ (DiceGameService*)defaultService
+{
+    if (_defaultService == nil){
+        _defaultService = [[DiceGameService alloc] init];
+    }
+    
+    return _defaultService;
+}
+
+- (id)init
+{
+    self = [super init];
+    
+    _gameId = DICE_GAME_ID;
+    _networkClient = [[DiceNetworkClient alloc] init];
+    [_networkClient setDelegate:self]; 
+    
+    return self;
+}
 
 - (void)handleNextPlayerStartNotification:(GameMessage*)message
 {

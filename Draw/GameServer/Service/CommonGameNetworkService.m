@@ -93,6 +93,7 @@
     _connectionDelegate = connectionDelegate;
     
     [self clearDisconnectTimer];
+    [_networkClient setDelegate:self];
     [_networkClient start:_serverAddress port:_serverPort];        
 }
 
@@ -101,6 +102,34 @@
     [_networkClient disconnect];
     _connectionDelegate = nil;
 }
+
+#pragma CommonNetworkClientDelegate
+
+- (void)didConnected
+{
+    if (_connectionDelegate == nil)
+        return;
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if ([_connectionDelegate respondsToSelector:@selector(didConnected)]){
+            [_connectionDelegate didConnected];
+        }
+    });
+}
+
+- (void)didBroken
+{    
+    if (_connectionDelegate == nil)
+        return;
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{                
+                
+        if ([_connectionDelegate respondsToSelector:@selector(didBroken)]){
+            [_connectionDelegate didBroken];
+        }
+    });
+}
+
 
 #pragma mark - Handle Game Message
 
@@ -116,6 +145,27 @@
     
 }
 
+- (void)handleJoinGameResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        
+        // create game session
+        if ([message resultCode] == 0){
+//            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+//            self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
+//            PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
+
+            // TODO update online user
+            // [self updateOnlineUserCount:message];
+            
+        }
+        
+        // [self notifyGameObserver:@selector(didJoinGame:) message:message];
+        
+        // TODO add notification here
+    });
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     PPDebug(@"<handleCustomMessage> NO IMPLEMENTATION HERE... VERY STRANGE, ARE YOU KIDDING?");
@@ -126,6 +176,10 @@
     switch ([message command]){
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
+            break;
+        
+        case GameCommandTypeJoinGameResponse:
+            [self handleJoinGameResponse:message];
             break;
             
         default:
@@ -145,6 +199,13 @@
     }
     
     [_networkClient sendGetRoomsRequest:userId];
+}
+
+- (void)joinGameRequest
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user gameId:_gameId];
 }
 
 @end

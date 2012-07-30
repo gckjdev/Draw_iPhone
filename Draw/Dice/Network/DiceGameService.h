@@ -11,4 +11,6 @@
 
 @interface DiceGameService : CommonGameNetworkService
 
++ (DiceGameService*)defaultService;
+
 @end

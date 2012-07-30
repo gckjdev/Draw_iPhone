@@ -897,31 +897,33 @@
   BOOL hasGender_:1;
   BOOL hasIsRobot_:1;
   BOOL hasSessionToBeChange_:1;
-  BOOL hasAutoNew_:1;
-  BOOL hasTargetSessionId_:1;
-  BOOL hasGuessDifficultLevel_:1;
   BOOL hasUserLevel_:1;
-  BOOL hasUserId_:1;
-  BOOL hasGameId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasRoomId_:1;
-  BOOL hasRoomName_:1;
+  BOOL hasAutoNew_:1;
+  BOOL hasGuessDifficultLevel_:1;
+  BOOL hasTargetSessionId_:1;
   BOOL hasLocation_:1;
+  BOOL hasRoomName_:1;
+  BOOL hasRoomId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasGameId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasUser_:1;
   BOOL gender_:1;
   BOOL isRobot_:1;
   int64_t sessionToBeChange;
-  int32_t autoNew;
-  int32_t targetSessionId;
-  int32_t guessDifficultLevel;
   int32_t userLevel;
-  NSString* userId;
-  NSString* gameId;
-  NSString* nickName;
-  NSString* avatar;
-  NSString* roomId;
-  NSString* roomName;
+  int32_t autoNew;
+  int32_t guessDifficultLevel;
+  int32_t targetSessionId;
   NSString* location;
+  NSString* roomName;
+  NSString* roomId;
+  NSString* avatar;
+  NSString* nickName;
+  NSString* gameId;
+  NSString* userId;
+  PBGameUser* user;
   NSMutableArray* mutableExcludeSessionIdList;
   NSMutableArray* mutableSnsUsersList;
 }
@@ -939,6 +941,7 @@
 - (BOOL) hasRoomName;
 - (BOOL) hasLocation;
 - (BOOL) hasUserLevel;
+- (BOOL) hasUser;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -953,6 +956,7 @@
 @property (readonly, retain) NSString* roomName;
 @property (readonly, retain) NSString* location;
 @property (readonly) int32_t userLevel;
+@property (readonly, retain) PBGameUser* user;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 - (NSArray*) snsUsersList;
@@ -1075,6 +1079,13 @@
 - (int32_t) userLevel;
 - (JoinGameRequest_Builder*) setUserLevel:(int32_t) value;
 - (JoinGameRequest_Builder*) clearUserLevel;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (JoinGameRequest_Builder*) setUser:(PBGameUser*) value;
+- (JoinGameRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (JoinGameRequest_Builder*) mergeUser:(PBGameUser*) value;
+- (JoinGameRequest_Builder*) clearUser;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {
