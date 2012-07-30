@@ -11,6 +11,7 @@
 #import "DiceRoomListCell.h"
 #import "CommonGameNetworkClient.h"
 #import "UserManager.h"
+#import "NotificationName.h"
 
 @interface DiceRoomListController ()
 
@@ -39,6 +40,11 @@
     [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
     
     [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(roomsDidUpdate:)
+                                                 name:ROOMS_DID_UPDATE
+                                               object:nil];
 }
 
 - (void)viewDidUnload
