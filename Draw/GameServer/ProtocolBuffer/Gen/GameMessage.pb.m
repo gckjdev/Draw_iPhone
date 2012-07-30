@@ -14,7 +14,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [self registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
     [DrawRoot registerAllExtensions:registry];
-    [LieDiceRoot registerAllExtensions:registry];
+    [DiceRoot registerAllExtensions:registry];
     [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
@@ -5860,7 +5860,7 @@ static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationRe
 @end
 
 @interface GameOverNotificationRequest ()
-@property (retain) LieDiceGameResult* gameResult;
+@property (retain) DiceGameResult* gameResult;
 @end
 
 @implementation GameOverNotificationRequest
@@ -5878,7 +5878,7 @@ static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationRe
 }
 - (id) init {
   if ((self = [super init])) {
-    self.gameResult = [LieDiceGameResult defaultInstance];
+    self.gameResult = [DiceGameResult defaultInstance];
   }
   return self;
 }
@@ -6018,7 +6018,7 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
         break;
       }
       case 10: {
-        LieDiceGameResult_Builder* subBuilder = [LieDiceGameResult builder];
+        DiceGameResult_Builder* subBuilder = [DiceGameResult builder];
         if (self.hasGameResult) {
           [subBuilder mergeFrom:self.gameResult];
         }
@@ -6032,22 +6032,22 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 - (BOOL) hasGameResult {
   return result.hasGameResult;
 }
-- (LieDiceGameResult*) gameResult {
+- (DiceGameResult*) gameResult {
   return result.gameResult;
 }
-- (GameOverNotificationRequest_Builder*) setGameResult:(LieDiceGameResult*) value {
+- (GameOverNotificationRequest_Builder*) setGameResult:(DiceGameResult*) value {
   result.hasGameResult = YES;
   result.gameResult = value;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(LieDiceGameResult_Builder*) builderForValue {
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(DiceGameResult_Builder*) builderForValue {
   return [self setGameResult:[builderForValue build]];
 }
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(LieDiceGameResult*) value {
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(DiceGameResult*) value {
   if (result.hasGameResult &&
-      result.gameResult != [LieDiceGameResult defaultInstance]) {
+      result.gameResult != [DiceGameResult defaultInstance]) {
     result.gameResult =
-      [[[LieDiceGameResult builderWithPrototype:result.gameResult] mergeFrom:value] buildPartial];
+      [[[DiceGameResult builderWithPrototype:result.gameResult] mergeFrom:value] buildPartial];
   } else {
     result.gameResult = value;
   }
@@ -6056,7 +6056,7 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 }
 - (GameOverNotificationRequest_Builder*) clearGameResult {
   result.hasGameResult = NO;
-  result.gameResult = [LieDiceGameResult defaultInstance];
+  result.gameResult = [DiceGameResult defaultInstance];
   return self;
 }
 @end

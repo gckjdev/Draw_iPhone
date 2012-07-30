@@ -16,5 +16,6 @@
 - (UIImage *)createRoomBtnBgImage;
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
+- (UIImage *)diceImageWithDice:(int)dice;
 
 @end

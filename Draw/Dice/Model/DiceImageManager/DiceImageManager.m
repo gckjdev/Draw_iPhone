@@ -42,4 +42,41 @@ static DiceImageManager *_defaultManager = nil;
     return nil;
 }
 
+- (UIImage *)diceImageWithDice:(int)dice
+{
+    UIImage *image;
+    
+    switch (dice) {
+        case 1:
+            image = [UIImage imageNamed:@"bell_1.png"];
+            break;
+            
+        case 2:
+            image = [UIImage imageNamed:@"bell_2.png"];
+            break;
+            
+        case 3:
+            image = [UIImage imageNamed:@"bell_3.png"];
+            break;
+            
+        case 4:
+            image = [UIImage imageNamed:@"bell_4.png"];
+            break;
+            
+        case 5:
+            image = [UIImage imageNamed:@"bell_5.png"];
+            break;
+            
+        case 6:
+            image = [UIImage imageNamed:@"bell_6.png"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return image;
+}
+
+
 @end
