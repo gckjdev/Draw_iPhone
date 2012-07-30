@@ -77,5 +77,6 @@ typedef enum{
 + (NSString*)getRecommendAppLink;
 
 + (BOOL)isShowRecommendApp;
++ (NSString*)getFacetimeServerListString;
 
 @end

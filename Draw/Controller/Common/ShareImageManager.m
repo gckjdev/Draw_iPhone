@@ -250,6 +250,14 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"eraser_popup.png"];    
 }
 
+- (UIImage *)backgroundColorPopupImage
+{
+    UIImage *image = [UIImage imageNamed:@"eraser_popup.png"];
+    CGFloat left = image.size.width * 0.8;
+    return [image stretchableImageWithLeftCapWidth:left topCapHeight:0];
+    
+}
+
 - (UIImage *)penPopupImage
 {
     UIImage *image = [UIImage imageNamed:@"pen_popup_bg.png"];

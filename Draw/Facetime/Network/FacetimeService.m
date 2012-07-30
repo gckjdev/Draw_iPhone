@@ -11,6 +11,23 @@
 #import "UserManager.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
+#import "ConfigManager.h"
+
+@interface Server : NSObject 
+@property (nonatomic, retain) NSString* address;
+@property (nonatomic, assign) int port;
+@end
+
+@implementation Server
+@synthesize address;
+@synthesize port;
+- (void)dealloc
+{
+    [address release];
+    [super dealloc];
+}
+
+@end
 
 @implementation FacetimeService
 @synthesize connectionDelegate = _connectionDelegate;
@@ -24,12 +41,14 @@ static FacetimeService *_defaultService;
 {
     if (_defaultService == nil) {
         _defaultService = [[FacetimeService alloc] init];
+        [_defaultService getFacetimeServerList];
     }
     return _defaultService;
 }
 
 - (void)dealloc
 {
+    [_serverAddress release];
     [_networkClient release];
     [super dealloc];
 }
@@ -44,6 +63,28 @@ static FacetimeService *_defaultService;
     return self;
 }
 
+- (void)getFacetimeServerList
+{
+    NSMutableArray* serverList = [[[NSMutableArray alloc] init] autorelease];
+    NSString* serverListString = [ConfigManager getFacetimeServerListString];
+    NSArray* serverStringArray = [serverListString componentsSeparatedByString:@"$"];
+    for (NSString* serverString in serverStringArray) {
+        NSArray* array = [serverString componentsSeparatedByString:@":"];
+        if (array.count == 2) {
+            Server* server = [[Server alloc] init];
+            server.address = [array objectAtIndex:0];
+            server.port = ((NSString*)[array objectAtIndex:1]).intValue;
+            [serverList addObject:server];
+            [server release];
+        }  
+    }
+    if (serverList.count > 0) {
+        Server* serv = [serverList objectAtIndex:rand()%serverList.count];
+        self.serverAddress = serv.address;
+        self.serverPort = serv.port;
+    }
+}
+
 - (BOOL)isConnected
 {
     return [_networkClient isConnected];
@@ -55,7 +96,7 @@ static FacetimeService *_defaultService;
     
 //    [self clearKeepAliveTimer];
 //    [self clearDisconnectTimer];
-    [_networkClient start:@"192.168.1.3" port:8191];    
+    [_networkClient start:self.serverAddress port:self.serverPort];    
     
 }
 - (void)disconnectServer
@@ -71,6 +112,7 @@ static FacetimeService *_defaultService;
     [builder setLocation:[UserManager defaultManager].location];
     [builder setUserId:[UserManager defaultManager].userId];
     [builder setGender:[[UserManager defaultManager].gender isEqualToString:@"m"]];
+    [builder setFacetimeId:[UserManager defaultManager].facetimeId];
     return [builder build];
 }
 
@@ -115,8 +157,8 @@ static FacetimeService *_defaultService;
                 && message.facetimeChatResponse.userList
                 && [message.facetimeChatResponse.userList count] > 0) {
                 PPDebug(@"<FacetimeService> Get facetimeChatResponse, user count = %d",message.facetimeChatResponse.userList.count);
-                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:)]) {
-                    [_matchDelegate didMatchUser:message.facetimeChatResponse.userList];
+                if (_matchDelegate && [_matchDelegate respondsToSelector:@selector(didMatchUser:isChosenToInit:)]) {
+                    [_matchDelegate didMatchUser:message.facetimeChatResponse.userList isChosenToInit:message.facetimeChatResponse.chosenToInitiate];
                 }                
             } else {
                 PPDebug(@"<FacetimeService> Get facetimeChatResponse failed, no user is responsed");

@@ -34,6 +34,7 @@
 #define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
 #define KEY_QQ_LOGINID                @"USER_KEY_QQ_LOGINID"
 #define KEY_FACEBOOK_LOGINID            @"USER_KEY_FACEBOOK_LOGINID"
+#define KEY_FACETIME_ID                 @"USER_KEY_FACETIME_ID"
 
 //#define KEY_SINA_ACCESS_TOKEN           @"USER_KEY_SINA_ACCESS_TOKEN"
 //#define KEY_SINA_ACCESS_TOKEN_SECRET    @"USER_KEY_SINA_ACCESS_TOKEN_SECRET"
@@ -112,6 +113,13 @@ static UserManager* _defaultManager;
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_EMAIL];
+    return value; 
+}
+
+- (NSString*)facetimeId
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* value = [userDefaults objectForKey:KEY_FACETIME_ID];
     return value; 
 }
 
@@ -276,6 +284,13 @@ static UserManager* _defaultManager;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:email forKey:KEY_EMAIL];    
     [userDefaults synchronize];    
+}
+
+- (void)setFacetimeId:(NSString *)facetimeId
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:facetimeId forKey:KEY_FACETIME_ID];    
+    [userDefaults synchronize];
 }
 
 - (void)setUserId:(NSString *)userId

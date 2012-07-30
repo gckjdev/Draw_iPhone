@@ -17,4 +17,5 @@
 - (void)resetWidth;
 - (NSInteger)currentWidth;
 - (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
+- (void)setLineWidthHidden:(BOOL)hidden;
 @end

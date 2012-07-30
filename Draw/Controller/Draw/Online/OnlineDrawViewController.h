@@ -32,6 +32,10 @@
     NSInteger penWidth;
     NSInteger eraserWidth;
     PenView *_willBuyPen;
+    
+    DrawColor *_bgColor;
+    DrawColor *_eraserColor;
+
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
@@ -39,6 +43,7 @@
 - (IBAction)clickEraserButton:(id)sender;
 - (IBAction)clickPenButton:(id)sender;
 - (IBAction)clickColorButton:(id)sender;
+- (IBAction)changeBackground:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIButton *eraserButton;
 @property (retain, nonatomic) IBOutlet UIButton *wordButton;
@@ -46,6 +51,9 @@
 @property (retain, nonatomic) IBOutlet PenView *penButton;
 @property (retain, nonatomic) IBOutlet ColorView *colorButton;
 @property (retain, nonatomic) GameMessage *gameCompleteMessage;
+@property (retain, nonatomic) DrawColor* eraserColor;
+@property (retain, nonatomic) DrawColor* bgColor;
+
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
 

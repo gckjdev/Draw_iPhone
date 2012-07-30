@@ -21,7 +21,8 @@ typedef enum {
 
 @optional
 //match user
-- (void)didMatchUser:(NSArray*)userList;
+- (void)didMatchUser:(NSArray*)userList 
+      isChosenToInit:(BOOL)isChosenToInit;
 - (void)didMatchUserFailed:(MatchUserFailedType)type;
 
 // server connection
@@ -43,7 +44,7 @@ typedef enum {
 - (BOOL)isConnected;
 - (void)connectServer:(id<FacetimeServiceDelegate>)connectionDelegate;
 - (void)disconnectServer;
-
+- (void)getFacetimeServerList;
 - (void)sendFacetimeRequest:(id<FacetimeServiceDelegate>)aDelegate;
 - (void)sendFacetimeRequestWithGender:(BOOL)gender 
                              delegate:(id<FacetimeServiceDelegate>)aDelegate;

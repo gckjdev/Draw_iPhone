@@ -20,7 +20,7 @@
 @protocol PickViewDelegate <NSObject>
 
 @optional
-- (void)didPickedColorView:(ColorView *)colorView;
+- (void)didPickedPickView:(PickView *)pickView colorView:(ColorView *)colorView;
 - (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width;
 - (void)didPickedMoreColor;
 - (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView;
@@ -37,6 +37,7 @@
 
 
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
+- (void)setHidden:(BOOL)hidden animated:(BOOL)animated withTag:(NSInteger)tag;
 - (void)startRunOutAnimation;
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
 - (void)startRunInAnimation;

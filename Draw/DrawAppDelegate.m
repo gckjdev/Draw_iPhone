@@ -40,7 +40,7 @@
 #import "NotificationManager.h"
 #import "LmWallService.h"
 #import "UserStatusService.h"
-
+#import "FacetimeService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -245,7 +245,7 @@ NSString* GlobalGetTrafficServerURL()
     [[MusicItemManager defaultManager] saveMusicItems];
     
     [[UserStatusService defaultService] stop];
-
+    [[FacetimeService defaultService] disconnectServer];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

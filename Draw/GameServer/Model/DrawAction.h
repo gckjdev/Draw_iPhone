@@ -10,6 +10,8 @@
 
 @class Paint;
 @class PBDrawAction;
+@class DrawColor;
+
 typedef enum {
     
     DRAW_ACTION_TYPE_DRAW,
@@ -25,7 +27,10 @@ typedef enum {
 - (NSInteger)pointCount;
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
+
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
++ (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color;
+
 + (BOOL)isDrawActionListBlank:(NSArray *)actionList;
 + (NSMutableArray *)getTheLastActionListWithoutClean:(NSArray *)actionList;
 + (DrawAction *)scaleAction:(DrawAction *)action 
@@ -42,4 +47,7 @@ typedef enum {
 
 + (NSInteger)pointCountForActions:(NSArray *)actionList;
 + (double)calculateSpeed:(NSArray *)actionList;
+
+
+
 @end
