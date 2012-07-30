@@ -53,6 +53,10 @@
 #define MAX_TOMATO_CAN_THROW 10
 #define MAX_FLOWER_CAN_THROW 10
 
+#define TOOLVIEW_TAG_TIPS   120120730
+#define TOOLVIEW_TAG_FLOWER 220120730
+#define TOOLVIEW_TAG_TOMATO 320120730
+
 
 @implementation OfflineGuessDrawController
 @synthesize showView;
@@ -403,8 +407,11 @@
     NSMutableArray *array = [NSMutableArray array];
     ItemManager *itemManager = [ItemManager defaultManager];
     ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    flower.tag = TOOLVIEW_TAG_FLOWER;
     ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
     [array addObject:tomato];
@@ -586,28 +593,54 @@
 #define SHOP_DIALOG_TAG 20120406
 #define QUIT_DIALOG_TAG 20120613
 #define ESCAPE_DEDUT_COIN 1
+#define ITEM_TAG_OFFSET 20120728
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    //run away
-    if (dialog.tag == SHOP_DIALOG_TAG) {
-        VendingController *itemShop = [VendingController instance];
-        [self.navigationController pushViewController:itemShop animated:YES];
-        _shopController = itemShop;
-    }else if(dialog.tag == QUIT_DIALOG_TAG){
-
-        //if have no words, don't send the action.
-        if ([_guessWords count] != 0) {
-            [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
-            [self updateFeed:NO];
-        }
-        UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
-        if (feedDetail) {
-            [self.navigationController popToViewController:feedDetail animated:YES];
-        }else{
-            [HomeController returnRoom:self];        
-        }
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        case QUIT_DIALOG_TAG:
+        default:
+            //if have no words, don't send the action.
+            if ([_guessWords count] != 0) {
+                [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
+                [self updateFeed:NO];
+            }
+            UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
+            if (feedDetail) {
+                [self.navigationController popToViewController:feedDetail animated:YES];
+            }else{
+                [HomeController returnRoom:self];        
+            }
+            break;
     }
+    //run away
+//    if (dialog.tag == SHOP_DIALOG_TAG) {
+//        VendingController *itemShop = [VendingController instance];
+//        [self.navigationController pushViewController:itemShop animated:YES];
+//        _shopController = itemShop;
+//    }else if(dialog.tag == QUIT_DIALOG_TAG){
+//
+//        //if have no words, don't send the action.
+//        if ([_guessWords count] != 0) {
+//            [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
+//            [self updateFeed:NO];
+//        }
+//        UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
+//        if (feedDetail) {
+//            [self.navigationController popToViewController:feedDetail animated:YES];
+//        }else{
+//            [HomeController returnRoom:self];        
+//        }
+//    }
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
@@ -711,7 +744,7 @@
     if(amout <= 0){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = SHOP_DIALOG_TAG;
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
         return;
     }
@@ -812,6 +845,30 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [DrawGameAnimationManager animation:anim didStopWithFlag:flag];
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview;
+        switch (anItem.type) {
+            case ItemTypeTips: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
+            } break;
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
+    }
 }
 
 
