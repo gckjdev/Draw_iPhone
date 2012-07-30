@@ -78,5 +78,9 @@ static DiceImageManager *_defaultManager = nil;
     return image;
 }
 
+- (UIImage *)toolBackground
+{
+    return [UIImage strectchableImageName:@"tools_bg.png" leftCapWidth:14 topCapHeight:14];    
+}
 
 @end
