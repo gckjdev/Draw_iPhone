@@ -303,6 +303,8 @@
 		C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */; };
 		C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */; };
 		C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */; };
+		C2F48C9B15C6819F005C4D72 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C9A15C6819F005C4D72 /* DiceAvatarView.m */; };
+		C2F48C9F15C681BA005C4D72 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1336,6 +1338,10 @@
 		C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeUserInfoView.m; sourceTree = "<group>"; };
 		C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeUserInfoView.xib; sourceTree = "<group>"; };
 		C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C9915C6819F005C4D72 /* DiceAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAvatarView.h; sourceTree = "<group>"; };
+		C2F48C9A15C6819F005C4D72 /* DiceAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAvatarView.m; sourceTree = "<group>"; };
+		C2F48C9D15C681BA005C4D72 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -2599,6 +2605,8 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C9915C6819F005C4D72 /* DiceAvatarView.h */,
+				C2F48C9A15C6819F005C4D72 /* DiceAvatarView.m */,
 				A44DDF3B15C64482005609F6 /* DiceSelectedView */,
 				A44DDF3C15C64482005609F6 /* DiceShowView */,
 				A44DDF3D15C64482005609F6 /* ItemView */,
@@ -2974,6 +2982,16 @@
 				C2F48BD015BE4484005C4D72 /* RecommendAppService.m */,
 			);
 			path = Recommend;
+			sourceTree = "<group>";
+		};
+		C2F48C9C15C681BA005C4D72 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				C2F48C9D15C681BA005C4D72 /* DACircularProgressView.h */,
+				C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */,
+			);
+			name = DACircularProgress;
+			path = "../../Common_iPhone_20/Components/Component-View/DACircularProgress";
 			sourceTree = "<group>";
 		};
 		C2F947BE1533D8BF0034C895 /* MobClick */ = {
@@ -4892,6 +4910,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
 				CAA9C43A159D3F7800398EC5 /* LmmobSDK */,
 				CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */,
@@ -6535,6 +6554,8 @@
 				A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */,
 				A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */,
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
+				C2F48C9B15C6819F005C4D72 /* DiceAvatarView.m in Sources */,
+				C2F48C9F15C681BA005C4D72 /* DACircularProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
