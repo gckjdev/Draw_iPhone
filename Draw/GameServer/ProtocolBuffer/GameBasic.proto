@@ -41,6 +41,8 @@ message PBGameSession {
 message PBGameSessionChanged {
   optional int64 sessionId = 1;
   optional int32 status = 2;
+  optional string currentPlayUserId = 3;  
+  
   repeated PBGameUser UsersAdded = 5;
   repeated int32 UserIdsDeleted = 6;
 }

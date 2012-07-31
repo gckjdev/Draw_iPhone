@@ -117,6 +117,9 @@ enum GameCommandType {
   LOCAL_WORD_PICKED = 308;
   LOCAL_ALL_USER_GUESS = 309;
   LOCAL_DRAW_USER_CHAT = 310;
+  LOCAL_PLAY_USER_QUIT = 311;
+  LOCAL_CALL_DICE = 312;
+  LOCAL_OPEN_DICE = 313;
   
   
   // For Dahuatou: service -------> client

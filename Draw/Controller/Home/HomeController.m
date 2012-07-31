@@ -56,6 +56,8 @@
 #import "DiceRoomListController.h"
 #import "DiceGamePlayController.h"
 
+#import "DiceGameService.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -806,6 +808,8 @@
 {
     FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    [[DiceGameService defaultService] joinGameRequest];
 }
 
 @end

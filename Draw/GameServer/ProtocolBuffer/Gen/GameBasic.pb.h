@@ -355,15 +355,19 @@
 @private
   BOOL hasSessionId_:1;
   BOOL hasStatus_:1;
+  BOOL hasCurrentPlayUserId_:1;
   int64_t sessionId;
   int32_t status;
+  NSString* currentPlayUserId;
   NSMutableArray* mutableUserIdsDeletedList;
   NSMutableArray* mutableUsersAddedList;
 }
 - (BOOL) hasSessionId;
 - (BOOL) hasStatus;
+- (BOOL) hasCurrentPlayUserId;
 @property (readonly) int64_t sessionId;
 @property (readonly) int32_t status;
+@property (readonly, retain) NSString* currentPlayUserId;
 - (NSArray*) usersAddedList;
 - (PBGameUser*) usersAddedAtIndex:(int32_t) index;
 - (NSArray*) userIdsDeletedList;
@@ -412,6 +416,11 @@
 - (int32_t) status;
 - (PBGameSessionChanged_Builder*) setStatus:(int32_t) value;
 - (PBGameSessionChanged_Builder*) clearStatus;
+
+- (BOOL) hasCurrentPlayUserId;
+- (NSString*) currentPlayUserId;
+- (PBGameSessionChanged_Builder*) setCurrentPlayUserId:(NSString*) value;
+- (PBGameSessionChanged_Builder*) clearCurrentPlayUserId;
 
 - (NSArray*) usersAddedList;
 - (PBGameUser*) usersAddedAtIndex:(int32_t) index;
