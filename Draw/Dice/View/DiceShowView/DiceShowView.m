@@ -7,11 +7,12 @@
 //
 
 #import "DiceShowView.h"
+#import "DiceView.h"
 #import "DiceImageManager.h"
 
+
 #define EDGE_WIDTH 3
-#define DICE_WIDTH 33
-#define DICE_HEIGHT 35
+
 
 @interface DiceShowView ()
 
@@ -43,30 +44,17 @@
         for (Dice *dice in dices) {
             CGRect rect = CGRectMake((EDGE_WIDTH + DICE_WIDTH) * i, 0, DICE_WIDTH, DICE_HEIGHT);     
 
-            UIView *view = [self DiceWithFrame:rect 
-                                          dice:dice.dice
-                               userInterAction:userInterAction];
+            UIButton *diceView = [[[DiceView alloc] initWithFrame:rect 
+                                                       dice:dice] autorelease];
+            [diceView addTarget:self 
+                       action:@selector(clickDiceButton:)
+             forControlEvents:UIControlEventTouchUpInside];
             
-            [self addSubview:view];
+            [self addSubview:diceView];
         }
     }
     
     return self;
-}
-
-- (UIView *)DiceWithFrame:(CGRect)frame
-                     dice:(Dice *)dice
-          userInterAction:(BOOL)userInterAction
-{
-
-    UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
-    button.tag = dice.diceId;
-    button.enabled = userInterAction;
-    [button setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(clickDiceButton:)forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
 }
 
 - (void)clickDiceButton:(id)sender

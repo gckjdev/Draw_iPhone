@@ -12,10 +12,11 @@
 
 + (DiceImageManager*)defaultManager;
 
-- (UIImage *)roomBgImage;
+- (UIImage *)roomListBgImage;
 - (UIImage *)createRoomBtnBgImage;
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
 - (UIImage *)diceImageWithDice:(int)dice;
+
 
 @end

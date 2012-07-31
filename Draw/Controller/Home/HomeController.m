@@ -54,6 +54,7 @@
 
 #import "FacetimeMainController.h"
 #import "DiceRoomListController.h"
+#import "DiceGamePlayController.h"
 
 @interface HomeController()
 
@@ -795,7 +796,9 @@
 
 - (IBAction)clickDice:(id)sender
 {
-    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
+//    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
+//    [self.navigationController pushViewController:controller animated:YES];
+    DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
