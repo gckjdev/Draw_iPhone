@@ -79,5 +79,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickFastEntryButton:(id)sender {
+    
+    
+}
 
 @end

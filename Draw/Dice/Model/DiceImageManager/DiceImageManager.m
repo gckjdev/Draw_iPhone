@@ -22,7 +22,7 @@ static DiceImageManager *_defaultManager = nil;
     return _defaultManager;
 }
 
-- (UIImage *)roomBgImage
+- (UIImage *)roomListBgImage
 {
     return [UIImage imageNamed:@"dice_room_background.png"];
 }

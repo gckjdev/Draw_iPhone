@@ -718,3 +718,6 @@
 "kChangeBackgroundMessage" = "改變背景顏色將會導致之前所畫的東西都消失，確定要這樣做嗎？";
 
 "kBuySuccess" = "購買成功";
+"kLoadingComments" = "加載評論中...";
+"kNotEnoughCoin" = "金幣不足";
+
