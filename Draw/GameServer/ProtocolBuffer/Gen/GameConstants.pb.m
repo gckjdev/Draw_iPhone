@@ -89,6 +89,9 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalWordPicked:
     case GameCommandTypeLocalAllUserGuess:
     case GameCommandTypeLocalDrawUserChat:
+    case GameCommandTypeLocalPlayUserQuit:
+    case GameCommandTypeLocalCallDice:
+    case GameCommandTypeLocalOpenDice:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
