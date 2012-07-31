@@ -10,6 +10,7 @@
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
 #import "DiceNetworkClient.h"
+#import "DiceGameSession.h"
 
 #define DICE_GAME_ID    @"LiarDice"
 
@@ -53,6 +54,11 @@ static DiceGameService* _defaultService;
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
     }
+}
+
+- (CommonGameSession*)createSession
+{    
+    return [[[DiceGameSession alloc] init] autorelease];
 }
 
 @end

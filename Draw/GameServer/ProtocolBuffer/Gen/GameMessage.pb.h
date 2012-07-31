@@ -2389,6 +2389,7 @@
   BOOL hasOnlineUserCount_:1;
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
+  BOOL hasRoomNotificationRequest_:1;
   BOOL hasEnterRoomResponse_:1;
   BOOL hasEnterRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
@@ -2415,6 +2416,7 @@
   int32_t onlineUserCount;
   NSString* userId;
   NSString* toUserId;
+  RoomNotificationRequest* roomNotificationRequest;
   EnterRoomResponse* enterRoomResponse;
   EnterRoomRequest* enterRoomRequest;
   CreateRoomResponse* createRoomResponse;
@@ -2462,6 +2464,7 @@
 - (BOOL) hasCreateRoomResponse;
 - (BOOL) hasEnterRoomRequest;
 - (BOOL) hasEnterRoomResponse;
+- (BOOL) hasRoomNotificationRequest;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
@@ -2488,6 +2491,7 @@
 @property (readonly, retain) CreateRoomResponse* createRoomResponse;
 @property (readonly, retain) EnterRoomRequest* enterRoomRequest;
 @property (readonly, retain) EnterRoomResponse* enterRoomResponse;
+@property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -2686,6 +2690,13 @@
 - (GameMessage_Builder*) setEnterRoomResponseBuilder:(EnterRoomResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeEnterRoomResponse:(EnterRoomResponse*) value;
 - (GameMessage_Builder*) clearEnterRoomResponse;
+
+- (BOOL) hasRoomNotificationRequest;
+- (RoomNotificationRequest*) roomNotificationRequest;
+- (GameMessage_Builder*) setRoomNotificationRequest:(RoomNotificationRequest*) value;
+- (GameMessage_Builder*) setRoomNotificationRequestBuilder:(RoomNotificationRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeRoomNotificationRequest:(RoomNotificationRequest*) value;
+- (GameMessage_Builder*) clearRoomNotificationRequest;
 @end
 
 @interface DataQueryResponse : PBGeneratedMessage {

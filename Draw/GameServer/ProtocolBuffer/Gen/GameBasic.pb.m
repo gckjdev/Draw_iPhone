@@ -1402,6 +1402,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 @interface PBGameSessionChanged ()
 @property int64_t sessionId;
 @property int32_t status;
+@property (retain) NSString* currentPlayUserId;
 @property (retain) NSMutableArray* mutableUsersAddedList;
 @property (retain) NSMutableArray* mutableUserIdsDeletedList;
 @end
@@ -1422,9 +1423,17 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
 @synthesize mutableUsersAddedList;
 @synthesize mutableUserIdsDeletedList;
 - (void) dealloc {
+  self.currentPlayUserId = nil;
   self.mutableUsersAddedList = nil;
   self.mutableUserIdsDeletedList = nil;
   [super dealloc];
@@ -1433,6 +1442,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if ((self = [super init])) {
     self.sessionId = 0L;
     self.status = 0;
+    self.currentPlayUserId = @"";
   }
   return self;
 }
@@ -1458,9 +1468,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 - (NSArray*) userIdsDeletedList {
   return mutableUserIdsDeletedList;
 }
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index {
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index {
   id value = [mutableUserIdsDeletedList objectAtIndex:index];
-  return [value intValue];
+  return value;
 }
 - (BOOL) isInitialized {
   for (PBGameUser* element in self.usersAddedList) {
@@ -1477,11 +1487,14 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   if (self.hasStatus) {
     [output writeInt32:2 value:self.status];
   }
+  if (self.hasCurrentPlayUserId) {
+    [output writeString:3 value:self.currentPlayUserId];
+  }
   for (PBGameUser* element in self.usersAddedList) {
     [output writeMessage:5 value:element];
   }
-  for (NSNumber* value in self.mutableUserIdsDeletedList) {
-    [output writeInt32:6 value:[value intValue]];
+  for (NSString* element in self.mutableUserIdsDeletedList) {
+    [output writeString:6 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1498,13 +1511,16 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   if (self.hasStatus) {
     size += computeInt32Size(2, self.status);
   }
+  if (self.hasCurrentPlayUserId) {
+    size += computeStringSize(3, self.currentPlayUserId);
+  }
   for (PBGameUser* element in self.usersAddedList) {
     size += computeMessageSize(5, element);
   }
   {
     int32_t dataSize = 0;
-    for (NSNumber* value in self.mutableUserIdsDeletedList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
+    for (NSString* element in self.mutableUserIdsDeletedList) {
+      dataSize += computeStringSizeNoTag(element);
     }
     size += dataSize;
     size += 1 * self.mutableUserIdsDeletedList.count;
@@ -1590,6 +1606,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   if (other.hasStatus) {
     [self setStatus:other.status];
   }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
   if (other.mutableUsersAddedList.count > 0) {
     if (result.mutableUsersAddedList == nil) {
       result.mutableUsersAddedList = [NSMutableArray array];
@@ -1631,14 +1650,18 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
         [self setStatus:[input readInt32]];
         break;
       }
+      case 26: {
+        [self setCurrentPlayUserId:[input readString]];
+        break;
+      }
       case 42: {
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addUsersAdded:[subBuilder buildPartial]];
         break;
       }
-      case 48: {
-        [self addUserIdsDeleted:[input readInt32]];
+      case 50: {
+        [self addUserIdsDeleted:[input readString]];
         break;
       }
     }
@@ -1676,6 +1699,22 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   result.status = 0;
   return self;
 }
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (NSString*) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (PBGameSessionChanged_Builder*) setCurrentPlayUserId:(NSString*) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (PBGameSessionChanged_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = @"";
+  return self;
+}
 - (NSArray*) usersAddedList {
   if (result.mutableUsersAddedList == nil) { return [NSArray array]; }
   return result.mutableUsersAddedList;
@@ -1711,18 +1750,18 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   }
   return result.mutableUserIdsDeletedList;
 }
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index {
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index {
   return [result userIdsDeletedAtIndex:index];
 }
-- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutableUserIdsDeletedList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableUserIdsDeletedList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(int32_t) value {
+- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(NSString*) value {
   if (result.mutableUserIdsDeletedList == nil) {
     result.mutableUserIdsDeletedList = [NSMutableArray array];
   }
-  [result.mutableUserIdsDeletedList addObject:[NSNumber numberWithInt:value]];
+  [result.mutableUserIdsDeletedList addObject:value];
   return self;
 }
 - (PBGameSessionChanged_Builder*) addAllUserIdsDeleted:(NSArray*) values {
