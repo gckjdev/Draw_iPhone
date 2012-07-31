@@ -726,3 +726,5 @@
 "kChangeBackgroundMessage" = "改变背景颜色将会导致之前所画的东西都消失，确定要这样做吗？";
 
 "kBuySuccess" = "购买成功";
+
+"kLoadingComments" = "加载评论中...";

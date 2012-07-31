@@ -725,3 +725,5 @@
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
 
 "kBuySuccess" = "Buy item successfully!";
+
+"kLoadingComments" = "Loading comments...";
