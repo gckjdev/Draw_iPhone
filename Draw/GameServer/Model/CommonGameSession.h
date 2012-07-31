@@ -10,6 +10,7 @@
 
 @class PBGameSession;
 @class PBGameUser;
+@class PBGameSessionChanged;
 
 @interface CommonGameSession : NSObject
 
@@ -23,7 +24,7 @@
 @property (nonatomic, assign) NSInteger roundNumber;
 @property (nonatomic, retain) NSString *currentPlayUserId;
 
-+ (CommonGameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
+- (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 
 - (BOOL)isCurrentPlayUser:(NSString*)userId;
 - (BOOL)isMe:(NSString*)userId;
@@ -32,6 +33,6 @@
 - (NSString *)getNickNameByUserId:(NSString *)userId;
 - (PBGameUser *)getUserByUserId:(NSString *)userId;
 
-
+- (void)updateSession:(PBGameSessionChanged*)changeData;
 
 @end

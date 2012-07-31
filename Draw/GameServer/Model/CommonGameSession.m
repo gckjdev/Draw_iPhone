@@ -63,19 +63,18 @@
     return [NSString stringWithFormat:@"[roomName=%@, userId=%@, sessionId=%d]", _roomName, _userId, _sessionId];
 }
 
-+ (CommonGameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId
+- (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId
 {
-    CommonGameSession* session = [[[CommonGameSession alloc] init] autorelease];
-    session.userId = userId;
-    session.sessionId = [pbSession sessionId];
-    session.hostUserId = [pbSession host]; 
-    session.status = [pbSession status];
-    session.roomName = [pbSession name];
+    self.userId = userId;
+    self.sessionId = [pbSession sessionId];
+    self.hostUserId = [pbSession host]; 
+    self.status = [pbSession status];
+    self.roomName = [pbSession name];
     
     // add all users
-    [session.userList removeAllObjects];
+    [self.userList removeAllObjects];
     for (PBGameUser* user in [pbSession usersList]){                
-        [session.userList addObject:user];
+        [self.userList addObject:user];
     }
     
     // set turn information
@@ -83,7 +82,7 @@
 //    [session.currentTurn setNextPlayUserId:[pbSession nextPlayUserId]];
 //    [session.currentTurn setCurrentPlayUserId:[pbSession currentPlayUserId]];
     
-    return session;
+    return;
 }
 
 //- (void)updateByStartGameResponse:(StartGameResponse*)response
@@ -234,6 +233,29 @@
     }    
     
     return [_deletedUserList objectForKey:userId];
+}
+
+- (void)updateSession:(PBGameSessionChanged*)changeData
+{
+    if ([[changeData currentPlayUserId] length] > 0){
+        [self setCurrentPlayUserId:[changeData currentPlayUserId]];
+    }
+    
+    if ([changeData hasStatus]){
+        [self setStatus:[changeData status]];
+    }
+    
+    if ([changeData usersAddedList]){
+        for (PBGameUser* user in [changeData usersAddedList]){
+            [self addNewUser:user];
+        }
+    }
+    
+    if ([changeData userIdsDeletedList]){
+        for (NSString* userId in [changeData userIdsDeletedList]){
+            [self removeUser:userId];
+        }
+    }
 }
 
 @end

@@ -43,8 +43,8 @@ message PBGameSessionChanged {
   optional int32 status = 2;
   optional string currentPlayUserId = 3;  
   
-  repeated PBGameUser UsersAdded = 5;
-  repeated int32 UserIdsDeleted = 6;
+  repeated PBGameUser usersAdded = 5;
+  repeated string userIdsDeleted = 6;
 }
 
 // internal usage, to store draw data

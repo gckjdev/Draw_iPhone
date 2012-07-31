@@ -230,6 +230,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_JOIN_GAME_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE");         
+     }];
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -255,7 +262,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_JOIN_GAME_RESPONSE object:nil];
+    
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
