@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @class HJManagedImageV;
 @class DACircularProgressView;
+@class DiceAvatarView;
 
 typedef enum {
     Square = 1,
@@ -19,6 +20,7 @@ typedef enum {
 
 @optional
 - (void)didClickOnAvatar:(NSString*)userId;
+- (void)reciprocalEnd:(DiceAvatarView*)view;
 
 @end
 
@@ -30,6 +32,10 @@ typedef enum {
     DACircularProgressView* progressView;
     NSString *_userId;
     UIImageView *bgView;
+    float _currentProgress;
+    NSTimer* _timer;
+    AvatarViewStyle _currentStyle;
+    CFTimeInterval _reciprocolTime;
 }
 
 - (void)setUrlString:(NSString *)urlString;
@@ -47,6 +53,7 @@ typedef enum {
 - (void)setProgress:(CGFloat)progress;
 - (void)setProgressHidden:(BOOL)hidden;
 - (void)setAvatarStyle:(AvatarViewStyle)style;
+- (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 //- (void)setAvatarSelected:(BOOL)selected;
 //- (void)setAvatarSelected:(BOOL)selected level:(int)level;
 
