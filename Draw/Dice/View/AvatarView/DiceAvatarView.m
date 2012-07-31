@@ -57,18 +57,24 @@
         self.backgroundColor = [UIColor clearColor];
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
+        
         float width = MIN(self.bounds.size.width, self.bounds.size.height);
         imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         [self addSubview:imageView];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
+        [imageView setImage:[[ShareImageManager defaultManager] 
+                             maleDefaultAvatarImage]];
+        
         progressView = [[DACircularProgressView alloc] initWithFrame:[self calAvatarFrame]];
 //        progressView.progress = 0.6f;
-//        progressView.progressBarWidth = 5.0f;
+        progressView.progressBarWidth = width*0.05;
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
+        progressView.hidden = YES;
         [self addSubview:progressView];
+        
         [self addTapGuesture];
     }
     return self;
@@ -85,62 +91,72 @@
 }
 
 - (void)setProgress:(CGFloat)progress{
+    progressView.hidden = NO;
     progressView.progress = progress;
 }
 
 - (void)setProgressHidden:(BOOL)hidden
 {
     if (hidden) {
+        progressView.hidden = YES;
+    } else {
+        progressView.hidden = NO;
+    }
+}
+
+- (void)setAvatarStyle:(AvatarViewStyle)style
+{
+    if (style == Square) {
         //
     } else {
         //
     }
 }
 
-- (id)initWithUrlString:(NSString *)urlString 
-                 gender:(BOOL)gender 
-                  level:(int)level;
-{
-    
-    self = [super init];
-    
-    if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-        [self addSubview:bgView];
-        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-        [self addSubview:imageView];
-        [self setAvatarUrl:urlString gender:gender];
-        [self addTapGuesture];
-        
-//        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [markButton retain];
-//        [self addSubview:markButton];
-//        markButton.userInteractionEnabled = NO;
-        [self setAvatarSelected:NO level:level];
-    }
-    
-    return self;
-}
-
-
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
-{
-    self = [super initWithFrame:frame];    
-    if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-        [self addSubview:bgView];
-        [self setAvatarSelected:NO];
-        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-        [self addSubview:imageView];
-        [self setAvatarUrl:urlString gender:gender];
-        [self addTapGuesture];
-        [self setAvatarSelected:NO level:level];
-    }
-    
-    return self;
-}
+//- (id)initWithUrlString:(NSString *)urlString 
+//                 gender:(BOOL)gender 
+//                  level:(int)level;
+//{
+//    
+//    self = [super init];
+//    
+//    if (self) {
+//        self.backgroundColor = [UIColor clearColor];
+//        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+//        [self addSubview:bgView];
+//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+//        [self addSubview:imageView];
+//        [self setAvatarUrl:urlString gender:gender];
+//        [self addTapGuesture];
+//        
+////        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
+////        [markButton retain];
+////        [self addSubview:markButton];
+////        markButton.userInteractionEnabled = NO;
+//        [self setAvatarSelected:NO level:level];
+//    }
+//    
+//    return self;
+//}
+//
+//
+//- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
+//{
+//    self = [super initWithFrame:frame];    
+//    if (self) {
+//        self.backgroundColor = [UIColor clearColor];
+//        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+//        [self addSubview:bgView];
+//        [self setAvatarSelected:NO];
+//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+//        [self addSubview:imageView];
+//        [self setAvatarUrl:urlString gender:gender];
+//        [self addTapGuesture];
+//        [self setAvatarSelected:NO level:level];
+//    }
+//    
+//    return self;
+//}
 
 
 - (void)setUrlString:(NSString *)urlString
@@ -202,14 +218,14 @@
         [GlobalGetImageCache() manage:imageView];
     }
 }
-- (void)setAvatarSelected:(BOOL)selected
-{
-    if (selected) {
-        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
-    }else{
-        [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
-    }
-}
+//- (void)setAvatarSelected:(BOOL)selected
+//{
+//    if (selected) {
+//        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
+//    }else{
+//        [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
+//    }
+//}
 //- (void)setHasPen:(BOOL)hasPen
 //{
 //    if (markButton == nil) {
@@ -224,29 +240,29 @@
 //    markButton.hidden = !hasPen;
 //}
 
-- (UIImage*)backgroundForLevel:(int)level
-{
-    if (level >=40 && level <= 50) {
-        return [[ShareImageManager defaultManager] purpleAvatarImage];
-    }
-    if (level >= 25 && level < 40) {
-        return [[ShareImageManager defaultManager] goldenAvatarImage];
-    }
-    if (level >= 10 && level < 25) {
-        return [[ShareImageManager defaultManager] greenAvatarImage];
-    }
-    return [[ShareImageManager defaultManager] avatarUnSelectImage];
-    
-}
-
-- (void)setAvatarSelected:(BOOL)selected level:(int)level
-{
-    if (selected) {
-        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
-    }else{
-        [bgView setImage:[self backgroundForLevel:level]];
-    }
-}
+//- (UIImage*)backgroundForLevel:(int)level
+//{
+//    if (level >=40 && level <= 50) {
+//        return [[ShareImageManager defaultManager] purpleAvatarImage];
+//    }
+//    if (level >= 25 && level < 40) {
+//        return [[ShareImageManager defaultManager] goldenAvatarImage];
+//    }
+//    if (level >= 10 && level < 25) {
+//        return [[ShareImageManager defaultManager] greenAvatarImage];
+//    }
+//    return [[ShareImageManager defaultManager] avatarUnSelectImage];
+//    
+//}
+//
+//- (void)setAvatarSelected:(BOOL)selected level:(int)level
+//{
+//    if (selected) {
+//        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
+//    }else{
+//        [bgView setImage:[self backgroundForLevel:level]];
+//    }
+//}
 
 
 /*
