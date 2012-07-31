@@ -1402,6 +1402,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 @interface PBGameSessionChanged ()
 @property int64_t sessionId;
 @property int32_t status;
+@property (retain) NSString* currentPlayUserId;
 @property (retain) NSMutableArray* mutableUsersAddedList;
 @property (retain) NSMutableArray* mutableUserIdsDeletedList;
 @end
@@ -1422,9 +1423,17 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
 @synthesize mutableUsersAddedList;
 @synthesize mutableUserIdsDeletedList;
 - (void) dealloc {
+  self.currentPlayUserId = nil;
   self.mutableUsersAddedList = nil;
   self.mutableUserIdsDeletedList = nil;
   [super dealloc];
@@ -1433,6 +1442,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if ((self = [super init])) {
     self.sessionId = 0L;
     self.status = 0;
+    self.currentPlayUserId = @"";
   }
   return self;
 }
@@ -1477,6 +1487,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   if (self.hasStatus) {
     [output writeInt32:2 value:self.status];
   }
+  if (self.hasCurrentPlayUserId) {
+    [output writeString:3 value:self.currentPlayUserId];
+  }
   for (PBGameUser* element in self.usersAddedList) {
     [output writeMessage:5 value:element];
   }
@@ -1497,6 +1510,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   }
   if (self.hasStatus) {
     size += computeInt32Size(2, self.status);
+  }
+  if (self.hasCurrentPlayUserId) {
+    size += computeStringSize(3, self.currentPlayUserId);
   }
   for (PBGameUser* element in self.usersAddedList) {
     size += computeMessageSize(5, element);
@@ -1590,6 +1606,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   if (other.hasStatus) {
     [self setStatus:other.status];
   }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
   if (other.mutableUsersAddedList.count > 0) {
     if (result.mutableUsersAddedList == nil) {
       result.mutableUsersAddedList = [NSMutableArray array];
@@ -1629,6 +1648,10 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
       }
       case 16: {
         [self setStatus:[input readInt32]];
+        break;
+      }
+      case 26: {
+        [self setCurrentPlayUserId:[input readString]];
         break;
       }
       case 42: {
@@ -1674,6 +1697,22 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 - (PBGameSessionChanged_Builder*) clearStatus {
   result.hasStatus = NO;
   result.status = 0;
+  return self;
+}
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (NSString*) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (PBGameSessionChanged_Builder*) setCurrentPlayUserId:(NSString*) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (PBGameSessionChanged_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = @"";
   return self;
 }
 - (NSArray*) usersAddedList {

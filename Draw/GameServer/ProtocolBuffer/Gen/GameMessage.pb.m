@@ -9213,6 +9213,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) CreateRoomResponse* createRoomResponse;
 @property (retain) EnterRoomRequest* enterRoomRequest;
 @property (retain) EnterRoomResponse* enterRoomResponse;
+@property (retain) RoomNotificationRequest* roomNotificationRequest;
 @end
 
 @implementation GameMessage
@@ -9399,6 +9400,13 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasEnterRoomResponse_ = !!value;
 }
 @synthesize enterRoomResponse;
+- (BOOL) hasRoomNotificationRequest {
+  return !!hasRoomNotificationRequest_;
+}
+- (void) setHasRoomNotificationRequest:(BOOL) value {
+  hasRoomNotificationRequest_ = !!value;
+}
+@synthesize roomNotificationRequest;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
@@ -9419,6 +9427,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.createRoomResponse = nil;
   self.enterRoomRequest = nil;
   self.enterRoomResponse = nil;
+  self.roomNotificationRequest = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9449,6 +9458,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.createRoomResponse = [CreateRoomResponse defaultInstance];
     self.enterRoomRequest = [EnterRoomRequest defaultInstance];
     self.enterRoomResponse = [EnterRoomResponse defaultInstance];
+    self.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
   }
   return self;
 }
@@ -9518,6 +9528,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasEnterRoomResponse) {
     if (!self.enterRoomResponse.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasRoomNotificationRequest) {
+    if (!self.roomNotificationRequest.isInitialized) {
       return NO;
     }
   }
@@ -9601,6 +9616,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasEnterRoomResponse) {
     [output writeMessage:106 value:self.enterRoomResponse];
+  }
+  if (self.hasRoomNotificationRequest) {
+    [output writeMessage:107 value:self.roomNotificationRequest];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -9688,6 +9706,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasEnterRoomResponse) {
     size += computeMessageSize(106, self.enterRoomResponse);
+  }
+  if (self.hasRoomNotificationRequest) {
+    size += computeMessageSize(107, self.roomNotificationRequest);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9841,6 +9862,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasEnterRoomResponse) {
     [self mergeEnterRoomResponse:other.enterRoomResponse];
+  }
+  if (other.hasRoomNotificationRequest) {
+    [self mergeRoomNotificationRequest:other.roomNotificationRequest];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -10065,6 +10089,15 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setEnterRoomResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 858: {
+        RoomNotificationRequest_Builder* subBuilder = [RoomNotificationRequest builder];
+        if (self.hasRoomNotificationRequest) {
+          [subBuilder mergeFrom:self.roomNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRoomNotificationRequest:[subBuilder buildPartial]];
         break;
       }
     }
@@ -10722,6 +10755,36 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearEnterRoomResponse {
   result.hasEnterRoomResponse = NO;
   result.enterRoomResponse = [EnterRoomResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasRoomNotificationRequest {
+  return result.hasRoomNotificationRequest;
+}
+- (RoomNotificationRequest*) roomNotificationRequest {
+  return result.roomNotificationRequest;
+}
+- (GameMessage_Builder*) setRoomNotificationRequest:(RoomNotificationRequest*) value {
+  result.hasRoomNotificationRequest = YES;
+  result.roomNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setRoomNotificationRequestBuilder:(RoomNotificationRequest_Builder*) builderForValue {
+  return [self setRoomNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeRoomNotificationRequest:(RoomNotificationRequest*) value {
+  if (result.hasRoomNotificationRequest &&
+      result.roomNotificationRequest != [RoomNotificationRequest defaultInstance]) {
+    result.roomNotificationRequest =
+      [[[RoomNotificationRequest builderWithPrototype:result.roomNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.roomNotificationRequest = value;
+  }
+  result.hasRoomNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearRoomNotificationRequest {
+  result.hasRoomNotificationRequest = NO;
+  result.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
   return self;
 }
 @end

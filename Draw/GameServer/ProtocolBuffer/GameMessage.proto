@@ -282,6 +282,9 @@ message GameMessage {
   
   optional EnterRoomRequest enterRoomRequest= 105;
   optional EnterRoomResponse enterRoomResponse= 106;
+  
+  optional RoomNotificationRequest roomNotificationRequest = 107;
+
 }
 
 message DataQueryResponse {
