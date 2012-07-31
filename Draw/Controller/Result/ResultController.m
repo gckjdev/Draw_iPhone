@@ -675,6 +675,10 @@
         }
         [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
+    if (result == ERROR_COINS_NOT_ENOUGH)
+    {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:YES];
+    }
 }
 
 
