@@ -58,6 +58,7 @@
 		A3C129E51563A70E00C021A7 /* Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129E41563A70E00C021A7 /* Draw.m */; };
 		A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */; };
 		A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */; };
+		A3CAFFF615C69F1A009DB4BC /* ToolSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */; };
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
 		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
@@ -83,10 +84,6 @@
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
-		A448EDCC15C6846B00527E66 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A448EDCB15C6846B00527E66 /* CMPopTipView.m */; };
-		A448EDCF15C684CA00527E66 /* CallDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A448EDCE15C684CA00527E66 /* CallDiceView.m */; };
-		A448EDD415C687A000527E66 /* DiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A448EDD315C687A000527E66 /* DiceView.m */; };
-		A448EDDB15C695B900527E66 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A448EDDA15C695B900527E66 /* PopupView.m */; };
 		A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44C91FB1564DFD300018D0D /* messagebg@2x.png */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -112,8 +109,13 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
-		A45E8CBC15C77D480089E240 /* dice_runaway@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CBA15C77D480089E240 /* dice_runaway@2x.png */; };
-		A45E8CBD15C77D480089E240 /* dice_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CBB15C77D480089E240 /* dice_setting@2x.png */; };
+		A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */; };
+		A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CCF15C77F480089E240 /* dice_setting@2x.png */; };
+		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
+		A45E8CD915C77F960089E240 /* DiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD815C77F960089E240 /* DiceView.m */; };
+		A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDB15C77FA90089E240 /* CallDiceView.m */; };
+		A45E8CDF15C77FA90089E240 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDD15C77FA90089E240 /* PopupView.m */; };
+		A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
@@ -307,6 +309,7 @@
 		C2F48C1D15C23E51005C4D72 /* FacetimeUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */; };
 		C2F48C1F15C23E6F005C4D72 /* FacetimeUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */; };
 		C2F48C2115C23E81005C4D72 /* FacetimeUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */; };
+		C2F48C9F15C681BA005C4D72 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */; };
 		C2F784CF157EF6CD00F42F08 /* gold_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */; };
 		C2F784D0157EF6CD00F42F08 /* green_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */; };
 		C2F784D1157EF6CD00F42F08 /* purple_user_picbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */; };
@@ -1019,6 +1022,8 @@
 		A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_button@2x.png"; sourceTree = "<group>"; };
 		A3CA09A9158A21DA009C7EB0 /* ChatMessageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageUtil.h; sourceTree = "<group>"; };
 		A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageUtil.m; sourceTree = "<group>"; };
+		A3CAFFF415C69F1A009DB4BC /* ToolSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSheetView.h; sourceTree = "<group>"; };
+		A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSheetView.m; sourceTree = "<group>"; };
 		A3D11BF11562306A00248B4C /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -1049,14 +1054,6 @@
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
-		A448EDCA15C6846B00527E66 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
-		A448EDCB15C6846B00527E66 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
-		A448EDCD15C684CA00527E66 /* CallDiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDiceView.h; sourceTree = "<group>"; };
-		A448EDCE15C684CA00527E66 /* CallDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDiceView.m; sourceTree = "<group>"; };
-		A448EDD215C687A000527E66 /* DiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceView.h; sourceTree = "<group>"; };
-		A448EDD315C687A000527E66 /* DiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceView.m; sourceTree = "<group>"; };
-		A448EDD915C695B800527E66 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
-		A448EDDA15C695B900527E66 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
 		A44C91FB1564DFD300018D0D /* messagebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messagebg@2x.png"; sourceTree = "<group>"; };
 		A44DDF2A15C62B18005609F6 /* NotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationName.h; sourceTree = "<group>"; };
 		A44DDF3F15C64528005609F6 /* DiceShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceShowView.h; sourceTree = "<group>"; };
@@ -1092,8 +1089,18 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		A45E8CBA15C77D480089E240 /* dice_runaway@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_runaway@2x.png"; sourceTree = "<group>"; };
-		A45E8CBB15C77D480089E240 /* dice_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_setting@2x.png"; sourceTree = "<group>"; };
+		A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_runaway@2x.png"; sourceTree = "<group>"; };
+		A45E8CCF15C77F480089E240 /* dice_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_setting@2x.png"; sourceTree = "<group>"; };
+		A45E8CD315C77F8E0089E240 /* DiceAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAvatarView.h; sourceTree = "<group>"; };
+		A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAvatarView.m; sourceTree = "<group>"; };
+		A45E8CD715C77F960089E240 /* DiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceView.h; sourceTree = "<group>"; };
+		A45E8CD815C77F960089E240 /* DiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceView.m; sourceTree = "<group>"; };
+		A45E8CDA15C77FA90089E240 /* CallDiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDiceView.h; sourceTree = "<group>"; };
+		A45E8CDB15C77FA90089E240 /* CallDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDiceView.m; sourceTree = "<group>"; };
+		A45E8CDC15C77FA90089E240 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		A45E8CDD15C77FA90089E240 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		A45E8CE115C780570089E240 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		A45E8CE215C780570089E240 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		A461C9261565E3700076FD9C /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
@@ -1348,6 +1355,8 @@
 		C2F48C1C15C23E50005C4D72 /* FacetimeUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeUserInfoView.m; sourceTree = "<group>"; };
 		C2F48C1E15C23E6E005C4D72 /* FacetimeUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeUserInfoView.xib; sourceTree = "<group>"; };
 		C2F48C2015C23E80005C4D72 /* FacetimeUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FacetimeUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C2F48C9D15C681BA005C4D72 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		C2F784CC157EF6CD00F42F08 /* gold_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gold_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CD157EF6CD00F42F08 /* green_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_user_picbg@2x.png"; sourceTree = "<group>"; };
 		C2F784CE157EF6CD00F42F08 /* purple_user_picbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_user_picbg@2x.png"; sourceTree = "<group>"; };
@@ -2451,31 +2460,6 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		A448EDC915C6846B00527E66 /* CMPopTipView */ = {
-			isa = PBXGroup;
-			children = (
-				A448EDCA15C6846B00527E66 /* CMPopTipView.h */,
-				A448EDCB15C6846B00527E66 /* CMPopTipView.m */,
-			);
-			path = CMPopTipView;
-			sourceTree = "<group>";
-		};
-		A448EDD015C6879100527E66 /* AvatarView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AvatarView;
-			sourceTree = "<group>";
-		};
-		A448EDD115C6879100527E66 /* CommonView */ = {
-			isa = PBXGroup;
-			children = (
-				A448EDD215C687A000527E66 /* DiceView.h */,
-				A448EDD315C687A000527E66 /* DiceView.m */,
-			);
-			path = CommonView;
-			sourceTree = "<group>";
-		};
 		A44DDF3B15C64482005609F6 /* DiceSelectedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2495,6 +2479,8 @@
 		A44DDF3D15C64482005609F6 /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
+				A3CAFFF415C69F1A009DB4BC /* ToolSheetView.h */,
+				A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */,
 			);
 			path = ItemView;
 			sourceTree = "<group>";
@@ -2502,10 +2488,10 @@
 		A44DDF3E15C64482005609F6 /* PopupView */ = {
 			isa = PBXGroup;
 			children = (
-				A448EDCD15C684CA00527E66 /* CallDiceView.h */,
-				A448EDCE15C684CA00527E66 /* CallDiceView.m */,
-				A448EDD915C695B800527E66 /* PopupView.h */,
-				A448EDDA15C695B900527E66 /* PopupView.m */,
+				A45E8CDA15C77FA90089E240 /* CallDiceView.h */,
+				A45E8CDB15C77FA90089E240 /* CallDiceView.m */,
+				A45E8CDC15C77FA90089E240 /* PopupView.h */,
+				A45E8CDD15C77FA90089E240 /* PopupView.m */,
 			);
 			path = PopupView;
 			sourceTree = "<group>";
@@ -2568,6 +2554,33 @@
 				A455F8C21585D21400CA5743 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A45E8CD215C77F8E0089E240 /* AvatarView */ = {
+			isa = PBXGroup;
+			children = (
+				A45E8CD315C77F8E0089E240 /* DiceAvatarView.h */,
+				A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */,
+			);
+			path = AvatarView;
+			sourceTree = "<group>";
+		};
+		A45E8CD615C77F960089E240 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				A45E8CD715C77F960089E240 /* DiceView.h */,
+				A45E8CD815C77F960089E240 /* DiceView.m */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		A45E8CE015C780570089E240 /* CMPopTipView */ = {
+			isa = PBXGroup;
+			children = (
+				A45E8CE115C780570089E240 /* CMPopTipView.h */,
+				A45E8CE215C780570089E240 /* CMPopTipView.m */,
+			);
+			path = CMPopTipView;
 			sourceTree = "<group>";
 		};
 		A461C9251565E3700076FD9C /* ChatMessageView */ = {
@@ -2640,8 +2653,8 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A448EDD015C6879100527E66 /* AvatarView */,
-				A448EDD115C6879100527E66 /* CommonView */,
+				A45E8CD615C77F960089E240 /* CommonView */,
+				A45E8CD215C77F8E0089E240 /* AvatarView */,
 				A44DDF3B15C64482005609F6 /* DiceSelectedView */,
 				A44DDF3C15C64482005609F6 /* DiceShowView */,
 				A44DDF3D15C64482005609F6 /* ItemView */,
@@ -2662,8 +2675,8 @@
 		A4B7641D15C37D93003B4E72 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				A45E8CBA15C77D480089E240 /* dice_runaway@2x.png */,
-				A45E8CBB15C77D480089E240 /* dice_setting@2x.png */,
+				A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */,
+				A45E8CCF15C77F480089E240 /* dice_setting@2x.png */,
 				A4B7641E15C37D93003B4E72 /* bell_1@2x.png */,
 				A4B7641F15C37D93003B4E72 /* bell_2@2x.png */,
 				A4B7642015C37D93003B4E72 /* bell_3@2x.png */,
@@ -3019,6 +3032,16 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
+		C2F48C9C15C681BA005C4D72 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				C2F48C9D15C681BA005C4D72 /* DACircularProgressView.h */,
+				C2F48C9E15C681BA005C4D72 /* DACircularProgressView.m */,
+			);
+			name = DACircularProgress;
+			path = "../../Common_iPhone_20/Components/Component-View/DACircularProgress";
+			sourceTree = "<group>";
+		};
 		C2F947BE1533D8BF0034C895 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
@@ -3349,7 +3372,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
-				A448EDC915C6846B00527E66 /* CMPopTipView */,
+				A45E8CE015C780570089E240 /* CMPopTipView */,
 				CA51816A15A2D79700AD5A78 /* CustomStatueBar */,
 				A455F8AE1585D21400CA5743 /* EGOTableViewPullRefresh */,
 				CA103D071509A56100F60C03 /* BackgroundView */,
@@ -4936,6 +4959,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
 				CAA9C43A159D3F7800398EC5 /* LmmobSDK */,
 				CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */,
@@ -6150,8 +6174,8 @@
 				A4B764AC15C38470003B4E72 /* dice_tabright_unselect@2x.png in Resources */,
 				A4B764AD15C38470003B4E72 /* dice_user_backgroung@2x.png in Resources */,
 				CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */,
-				A45E8CBC15C77D480089E240 /* dice_runaway@2x.png in Resources */,
-				A45E8CBD15C77D480089E240 /* dice_setting@2x.png in Resources */,
+				A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */,
+				A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6579,10 +6603,13 @@
 				A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */,
 				A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */,
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
-				A448EDCC15C6846B00527E66 /* CMPopTipView.m in Sources */,
-				A448EDCF15C684CA00527E66 /* CallDiceView.m in Sources */,
-				A448EDD415C687A000527E66 /* DiceView.m in Sources */,
-				A448EDDB15C695B900527E66 /* PopupView.m in Sources */,
+				C2F48C9F15C681BA005C4D72 /* DACircularProgressView.m in Sources */,
+				A3CAFFF615C69F1A009DB4BC /* ToolSheetView.m in Sources */,
+				A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */,
+				A45E8CD915C77F960089E240 /* DiceView.m in Sources */,
+				A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */,
+				A45E8CDF15C77FA90089E240 /* PopupView.m in Sources */,
+				A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

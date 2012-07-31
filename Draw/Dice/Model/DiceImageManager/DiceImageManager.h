@@ -17,6 +17,7 @@
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
 - (UIImage *)diceImageWithDice:(int)dice;
+- (UIImage *)toolBackground;
 
 
 @end

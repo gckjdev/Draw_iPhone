@@ -41,6 +41,7 @@
 #import "LmWallService.h"
 #import "UserStatusService.h"
 #import "FacetimeService.h"
+#import "DiceGameService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -183,7 +184,17 @@ NSString* GlobalGetTrafficServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] connectServer:self];
+    
     return YES;
+}
+
+- (void)didConnected
+{
+    [[DiceGameService defaultService] joinGameRequest];
+    
 }
 
 - (void)reviewDone

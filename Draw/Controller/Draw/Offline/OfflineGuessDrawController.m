@@ -778,8 +778,6 @@
     [self.view addSubview:dialog];
 }
 
-
-
 - (void)initTargetViews
 {
     NSInteger tag = TARGET_BASE_TAG;
@@ -869,6 +867,11 @@
         }
         [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
+    if (result == ERROR_COINS_NOT_ENOUGH)
+    {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+    }
+    //TODO : add other situation deal method
 }
 
 
