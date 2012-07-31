@@ -254,14 +254,14 @@
 #define COMMENT_COUNT 12
 - (void)updateCommentList
 {
-    [self showActivityWithText:NSLS(@"kLoading")];
+//    [self showActivityWithText:NSLS(@"kLoading")];
     [_feedService getOpusCommentList:_opusId offset:_startIndex limit:COMMENT_COUNT delegate:self];
 }
 
 - (void)updateNoCommentLabel
 {
-    self.noCommentTipsLabel.hidden = YES;
-    [self.noCommentTipsLabel setText:NSLS(@"kNoCommentTips")];
+    self.noCommentTipsLabel.hidden = NO;
+    [self.noCommentTipsLabel setText:NSLS(@"kLoadingComments")];
 }
 
 - (void)updateTitle
@@ -535,6 +535,7 @@
     }else{
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
+    [noCommentTipsLabel setText:NSLS(@"kNoCommentTips")];
 }
 
 

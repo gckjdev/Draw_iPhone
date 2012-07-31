@@ -7,6 +7,7 @@
 //
 
 #import "DiceGamePlayController.h"
+#import "DiceImageManager.h"
 
 @interface DiceGamePlayController ()
 
@@ -14,19 +15,15 @@
 
 @implementation DiceGamePlayController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)dealloc {
+    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
 }
 
 - (void)viewDidUnload
@@ -36,9 +33,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+#pragma mark- Buttons action
+- (IBAction)clickOpenDiceButton:(id)sender {
 }
 
 @end
