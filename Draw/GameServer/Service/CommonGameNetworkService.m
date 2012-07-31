@@ -11,18 +11,23 @@
 #import "PPDebug.h"
 #import "UIUtils.h"
 #import "UserManager.h"
+#import "CommonGameSession.h"
 
 @implementation CommonGameNetworkService
 
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
 @synthesize roomList = _roomList;
+@synthesize session = _session;
+@synthesize user = _user;
 
 - (void)dealloc
 {    
     [self clearDisconnectTimer];
     [_serverAddress release];
     
+    PPRelease(_user);
+    PPRelease(_session);
     PPRelease(_serverAddress);   
     PPRelease(_roomList);
     
@@ -151,18 +156,44 @@
         
         // create game session
         if ([message resultCode] == 0){
-//            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
-//            self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
-//            PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
+            PBGameSession* pbSession = [[message joinGameResponse] gameSession];
+            self.session = [self createSession];
+            [_session fromPBGameSession:pbSession userId:[self.user userId]];
+            PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
 
             // TODO update online user
             // [self updateOnlineUserCount:message];
             
         }
         
-        // [self notifyGameObserver:@selector(didJoinGame:) message:message];
+        [[NSNotificationCenter defaultCenter] 
+         postNotificationName:NOTIFICATION_JOIN_GAME_RESPONSE 
+         object:nil 
+         userInfo:[CommonGameNetworkService messageToUserInfo:message]];        
+    });
+}
+
+- (void)handleRoomNotification:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{ 
         
-        // TODO add notification here
+        // 
+        RoomNotificationRequest* notification = [message roomNotificationRequest];
+        
+        if ([notification sessionsChangedList]){
+            for (PBGameSessionChanged* sessionChanged in [notification sessionsChangedList]){
+                int sessionId = [sessionChanged sessionId];
+                if (sessionId == _session.sessionId){
+                    // current play session
+                    [_session updateSession:sessionChanged];                    
+                }
+            }
+        }
+        
+        [[NSNotificationCenter defaultCenter] 
+         postNotificationName:NOTIFICATION_JOIN_GAME_RESPONSE 
+         object:nil 
+         userInfo:[CommonGameNetworkService messageToUserInfo:message]];        
     });
 }
 
@@ -180,6 +211,10 @@
         
         case GameCommandTypeJoinGameResponse:
             [self handleJoinGameResponse:message];
+            break;
+            
+        case GameCommandTypeRoomNotificationRequest:
+            [self handleRoomNotification:message];
             break;
             
         default:
@@ -204,8 +239,29 @@
 - (void)joinGameRequest
 {
     PPDebug(@"[SEND] JoinGameRequest");
-    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
-    [_networkClient sendJoinGameRequest:user gameId:_gameId];
+    self.user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:_user gameId:_gameId];
+}
+
+- (CommonGameSession*)createSession
+{    
+    PPDebug(@"<createSession> NOT IMPLEMENTED YET");
+    return nil;
+}
+
+#define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
+
++ (NSDictionary*)messageToUserInfo:(GameMessage*)message
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:[message data]
+                                                         forKey:KEY_GAME_MESSAGE];
+    
+    return userInfo;                              
+}
+
++ (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo
+{
+    return [GameMessage parseFromData:[userInfo objectForKey:KEY_GAME_MESSAGE]];
 }
 
 @end
