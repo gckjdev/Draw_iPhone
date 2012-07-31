@@ -771,6 +771,8 @@
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
 		CA959895152F54700093FEDB /* InputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA959893152F54700093FEDB /* InputDialog.m */; };
 		CA959896152F54700093FEDB /* InputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA959894152F54700093FEDB /* InputDialog.xib */; };
+		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
+		CA963A5915C7C5D4007ACFB9 /* DiceGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
 		CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E275150DE8AA00292335 /* GameBasic.proto */; };
@@ -830,7 +832,6 @@
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */; };
 		CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */; };
-		CAAD127315C29715003D7327 /* CommonGameRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAD127215C29715003D7327 /* CommonGameRoom.m */; };
 		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
 		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
 		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
@@ -2114,6 +2115,10 @@
 		CA959892152F546F0093FEDB /* InputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDialog.h; sourceTree = "<group>"; };
 		CA959893152F54700093FEDB /* InputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDialog.m; sourceTree = "<group>"; };
 		CA959894152F54700093FEDB /* InputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputDialog.xib; sourceTree = "<group>"; };
+		CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameSession.h; sourceTree = "<group>"; };
+		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
+		CA963A5715C7C5D3007ACFB9 /* DiceGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameSession.h; sourceTree = "<group>"; };
+		CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameSession.m; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
 		CA96E26D150DE4FD00292335 /* GameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSession.m; sourceTree = "<group>"; };
 		CA96E26F150DE56400292335 /* GameSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionManager.h; sourceTree = "<group>"; };
@@ -2214,8 +2219,6 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lmmob.framework; sourceTree = "<group>"; };
 		CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReadMe.docx; sourceTree = "<group>"; };
-		CAAD127115C29715003D7327 /* CommonGameRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameRoom.h; sourceTree = "<group>"; };
-		CAAD127215C29715003D7327 /* CommonGameRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameRoom.m; sourceTree = "<group>"; };
 		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
 		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
@@ -2684,6 +2687,8 @@
 				A4B763FE15C28F8E003B4E72 /* DiceGameService.m */,
 				A4B763FF15C28F8E003B4E72 /* DiceNetworkClient.h */,
 				A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */,
+				CA963A5715C7C5D3007ACFB9 /* DiceGameSession.h */,
+				CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -5159,8 +5164,8 @@
 		CA96E267150DD63900292335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CAAD127115C29715003D7327 /* CommonGameRoom.h */,
-				CAAD127215C29715003D7327 /* CommonGameRoom.m */,
+				CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */,
+				CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */,
 				CA96E26C150DE4FD00292335 /* GameSession.h */,
 				CA96E26D150DE4FD00292335 /* GameSession.m */,
 				CA3B56DB1514C92800A93137 /* GameSessionUser.h */,
@@ -6647,7 +6652,6 @@
 				A4B7640815C28F8E003B4E72 /* DiceRoomListController.m in Sources */,
 				A4B7640A15C28F8E003B4E72 /* DiceGameService.m in Sources */,
 				A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */,
-				CAAD127315C29715003D7327 /* CommonGameRoom.m in Sources */,
 				A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */,
 				A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */,
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
@@ -6663,6 +6667,8 @@
 				A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */,
 				A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */,
 				A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */,
+				CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */,
+				CA963A5915C7C5D4007ACFB9 /* DiceGameSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

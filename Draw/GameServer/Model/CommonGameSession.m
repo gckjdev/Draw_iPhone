@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommonGameRoom.h"
+#import "CommonGameSession.h"
 
 #import "GameBasic.pb.h"
 #import "GameMessage.pb.h"
