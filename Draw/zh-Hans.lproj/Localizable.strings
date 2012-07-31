@@ -728,3 +728,5 @@
 "kBuySuccess" = "购买成功";
 
 "kLoadingComments" = "加载评论中...";
+"kNotEnoughCoin" = "金币不足";
+

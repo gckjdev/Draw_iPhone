@@ -727,3 +727,6 @@
 "kBuySuccess" = "Buy item successfully!";
 
 "kLoadingComments" = "Loading comments...";
+
+"kNotEnoughCoin" = "You don't have enough coin";
+
