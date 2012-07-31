@@ -114,11 +114,17 @@
 		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
 		A45E8CD915C77F960089E240 /* DiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD815C77F960089E240 /* DiceView.m */; };
 		A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDB15C77FA90089E240 /* CallDiceView.m */; };
-		A45E8CDF15C77FA90089E240 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDD15C77FA90089E240 /* PopupView.m */; };
+		A45E8CDF15C77FA90089E240 /* DicePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDD15C77FA90089E240 /* DicePopupView.m */; };
 		A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A4AC51B115C7BFA50041DC86 /* dice_font.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51B015C7BFA50041DC86 /* dice_font.ttc */; };
+		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
+		A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */; };
+		A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B815C7BFF10041DC86 /* FontManager.m */; };
+		A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */; };
+		A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BD15C7BFF10041DC86 /* ZFont.m */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -1097,14 +1103,26 @@
 		A45E8CD815C77F960089E240 /* DiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceView.m; sourceTree = "<group>"; };
 		A45E8CDA15C77FA90089E240 /* CallDiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDiceView.h; sourceTree = "<group>"; };
 		A45E8CDB15C77FA90089E240 /* CallDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDiceView.m; sourceTree = "<group>"; };
-		A45E8CDC15C77FA90089E240 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
-		A45E8CDD15C77FA90089E240 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		A45E8CDC15C77FA90089E240 /* DicePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicePopupView.h; sourceTree = "<group>"; };
+		A45E8CDD15C77FA90089E240 /* DicePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicePopupView.m; sourceTree = "<group>"; };
 		A45E8CE115C780570089E240 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
 		A45E8CE215C780570089E240 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		A461C9261565E3700076FD9C /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A4AC51B015C7BFA50041DC86 /* dice_font.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_font.ttc; sourceTree = "<group>"; };
+		A4AC51B315C7BFF10041DC86 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
+		A4AC51B415C7BFF10041DC86 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
+		A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
+		A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabelStringDrawing.m; sourceTree = "<group>"; };
+		A4AC51B715C7BFF10041DC86 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
+		A4AC51B815C7BFF10041DC86 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontManager.m; sourceTree = "<group>"; };
+		A4AC51B915C7BFF10041DC86 /* ZAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedString.h; sourceTree = "<group>"; };
+		A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAttributedString.m; sourceTree = "<group>"; };
+		A4AC51BB15C7BFF10041DC86 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
+		A4AC51BC15C7BFF10041DC86 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
+		A4AC51BD15C7BFF10041DC86 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -2490,8 +2508,8 @@
 			children = (
 				A45E8CDA15C77FA90089E240 /* CallDiceView.h */,
 				A45E8CDB15C77FA90089E240 /* CallDiceView.m */,
-				A45E8CDC15C77FA90089E240 /* PopupView.h */,
-				A45E8CDD15C77FA90089E240 /* PopupView.m */,
+				A45E8CDC15C77FA90089E240 /* DicePopupView.h */,
+				A45E8CDD15C77FA90089E240 /* DicePopupView.m */,
 			);
 			path = PopupView;
 			sourceTree = "<group>";
@@ -2592,6 +2610,33 @@
 			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
+		A4AC51AF15C7BFA50041DC86 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				A4AC51B015C7BFA50041DC86 /* dice_font.ttc */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		A4AC51B215C7BFF00041DC86 /* FontLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A4AC51B315C7BFF10041DC86 /* FontLabel.h */,
+				A4AC51B415C7BFF10041DC86 /* FontLabel.m */,
+				A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */,
+				A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */,
+				A4AC51B715C7BFF10041DC86 /* FontManager.h */,
+				A4AC51B815C7BFF10041DC86 /* FontManager.m */,
+				A4AC51B915C7BFF10041DC86 /* ZAttributedString.h */,
+				A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */,
+				A4AC51BB15C7BFF10041DC86 /* ZAttributedStringPrivate.h */,
+				A4AC51BC15C7BFF10041DC86 /* ZFont.h */,
+				A4AC51BD15C7BFF10041DC86 /* ZFont.m */,
+			);
+			name = FontLabel;
+			path = "../../Common_iPhone_20/Components/Component-View/FontLabel";
+			sourceTree = "<group>";
+		};
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2666,6 +2711,7 @@
 		A4B7641C15C37D93003B4E72 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A4AC51AF15C7BFA50041DC86 /* font */,
 				A4B7648D15C38470003B4E72 /* room */,
 				A4B7641D15C37D93003B4E72 /* game */,
 			);
@@ -4959,6 +5005,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
 				CAA9C43A159D3F7800398EC5 /* LmmobSDK */,
@@ -6176,6 +6223,7 @@
 				CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */,
 				A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */,
 				A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */,
+				A4AC51B115C7BFA50041DC86 /* dice_font.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6608,8 +6656,13 @@
 				A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */,
 				A45E8CD915C77F960089E240 /* DiceView.m in Sources */,
 				A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */,
-				A45E8CDF15C77FA90089E240 /* PopupView.m in Sources */,
+				A45E8CDF15C77FA90089E240 /* DicePopupView.m in Sources */,
 				A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */,
+				A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */,
+				A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */,
+				A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */,
+				A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */,
+				A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
