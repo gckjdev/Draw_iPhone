@@ -47,7 +47,7 @@
     CGFloat height = self.bounds.size.height;
     CGFloat wEdge = -5;//width / EDGE_WIDTH_TIMES;
     CGFloat hEdge = -5;//height / EDGE_HEIGHT_TIMES;
-    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 2 * hEdge);
+    return CGRectMake(wEdge, hEdge, width - 2 * wEdge+1, height - 2 * hEdge);
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -57,15 +57,17 @@
         self.backgroundColor = [UIColor clearColor];
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
-        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
+        float width = MIN(self.bounds.size.width, self.bounds.size.height);
+        imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         [self addSubview:imageView];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
         progressView = [[DACircularProgressView alloc] initWithFrame:[self calAvatarFrame]];
-        progressView.progress = 0.6f;
-        progressView.progressBarWidth = 5.0f;
-        progressView.trackTintColor = [UIColor redColor];
-        progressView.progressTintColor = [UIColor blueColor];
+//        progressView.progress = 0.6f;
+//        progressView.progressBarWidth = 5.0f;
+        progressView.trackTintColor = [UIColor clearColor];
+        progressView.progressTintColor = [UIColor greenColor];
         [self addSubview:progressView];
         [self addTapGuesture];
     }
@@ -84,6 +86,15 @@
 
 - (void)setProgress:(CGFloat)progress{
     progressView.progress = progress;
+}
+
+- (void)setProgressHidden:(BOOL)hidden
+{
+    if (hidden) {
+        //
+    } else {
+        //
+    }
 }
 
 - (id)initWithUrlString:(NSString *)urlString 
