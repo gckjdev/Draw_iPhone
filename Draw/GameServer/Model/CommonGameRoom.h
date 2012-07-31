@@ -8,6 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CommonGameRoom : NSObject
+@class PBGameSession;
+@class PBGameUser;
+
+@interface CommonGameSession : NSObject
+
+@property (nonatomic, retain) NSString *roomName;
+@property (nonatomic, retain) NSMutableArray *userList;
+@property (nonatomic, retain) NSMutableDictionary *deletedUserList;
+@property (nonatomic, assign) int sessionId;
+@property (nonatomic, retain) NSString *hostUserId;
+@property (nonatomic, retain) NSString *userId;
+@property (nonatomic, assign) int status;
+@property (nonatomic, assign) NSInteger roundNumber;
+@property (nonatomic, retain) NSString *currentPlayUserId;
+
++ (CommonGameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
+
+- (BOOL)isCurrentPlayUser:(NSString*)userId;
+- (BOOL)isMe:(NSString*)userId;
+- (BOOL)isHostUser:(NSString*)userId;
+
+- (NSString *)getNickNameByUserId:(NSString *)userId;
+- (PBGameUser *)getUserByUserId:(NSString *)userId;
+
+
 
 @end

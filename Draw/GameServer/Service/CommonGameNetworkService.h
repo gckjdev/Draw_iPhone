@@ -23,6 +23,8 @@
     id<CommonGameServiceDelegate>   _connectionDelegate;    
     
     NSString                        *_gameId;
+    
+    
 }
 
 @property (nonatomic, retain) NSString       *serverAddress;

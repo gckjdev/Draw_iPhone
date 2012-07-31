@@ -11,6 +11,7 @@
 #import "PPDebug.h"
 #import "UIUtils.h"
 #import "UserManager.h"
+#import "CommonGameRoom.h"
 
 @implementation CommonGameNetworkService
 
