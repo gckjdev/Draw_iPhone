@@ -677,8 +677,9 @@
     }
     if (result == ERROR_COINS_NOT_ENOUGH)
     {
-        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:YES];
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }
+    //TODO : add other situation deal method
 }
 
 
