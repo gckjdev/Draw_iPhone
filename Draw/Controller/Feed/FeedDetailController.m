@@ -43,6 +43,7 @@
 @synthesize inputBackgroundView = inputBackgroundView;
 @synthesize inputBackground = _inputBackground;
 @synthesize paperImage = _paperImage;
+@synthesize drawImageButton = _drawImageButton;
 @synthesize avatarView = _avatarView;
 
 
@@ -192,14 +193,13 @@
 - (void)updateDrawView:(Feed *)feed
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
+    self.drawView.tag = SHOW_VIEW_TAG_SMALL;
     self.drawView.playSpeed = 1.0/36.0;
     [self.drawView setShowPenHidden:YES];
     self.drawView.delegate = self;
     [self.drawView setBackgroundColor:[UIColor whiteColor]];
     [self.drawView cleanAllActions];
     [self.view addSubview:self.drawView];
-    self.drawView.tag = SHOW_VIEW_TAG_SMALL;
-    [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
 }
 
 #define INPUT_BG_TAG 2012061501
@@ -298,13 +298,15 @@
     [self updateUser:_feed];
     [self updateGuessDesc:_feed];
     [self updateActionButton:_feed];
-    [self updateDrawView:_feed];
+//    [self updateDrawView:_feed];
     [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
     [self updateInputView:_feed];
     [self updateCommentList];
+    [self.drawImageButton setBackgroundImage:self.feed.drawImage 
+                                    forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -334,6 +336,7 @@
     [self setDrawView:nil];
     [self setInputBackground:nil];
     [self setPaperImage:nil];
+    [self setDrawImageButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -345,13 +348,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)parseDrawData:(Feed *)feed
+{
+    if (feed.drawData) {
+        return;
+    }
+    feed.drawData = [[Draw alloc] initWithPBDraw:feed.pbDraw];
+    feed.pbDraw = nil;
+    
+}
+
 - (IBAction)clickActionButton:(id)sender {
 
     NSInteger tag = [(UIButton *)sender tag];
     if (tag == ACTION_TAG_GUESS) {
-        OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
-        controller.delegate = self;
         
+        [self showActivityWithText:NSLS(@"kParsingData")];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            [self parseDrawData:self.feed];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivity];
+                OfflineGuessDrawController *controller = [OfflineGuessDrawController 
+                                                          startOfflineGuess:self.feed 
+                                                          fromController:self];        
+                controller.delegate = self;                
+            });
+        });
+
     }else if(tag == ACTION_TAG_CHALLENGE){
         [self didClickOnAvatar:_author];
     
@@ -387,6 +411,7 @@
     PPRelease(_inputBackground);
     PPRelease(_paperImage);
     
+    [_drawImageButton release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
@@ -396,6 +421,7 @@
         [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];        
     }
 }
+
 
 #define WIDTH_SHARE_BUTTON      ([DeviceDetection isIPAD] ? 180.0 : 90.0)
 #define HEIGHT_SHARE_BUTTON     ([DeviceDetection isIPAD] ? 60.0 : 30.0)
@@ -445,6 +471,23 @@
     
     button.enabled = NO;
     button.selected = YES;
+}
+
+
+- (IBAction)clickDrawImage:(id)sender {
+    PPDebug(@"clicking draw image");
+    [self showActivityWithText:NSLS(@"kParsingData")];
+    if (self.drawView == nil) {
+        [self updateDrawView:self.feed];
+    }
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self parseDrawData:self.feed];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideActivity];
+            [self didClickShowDrawView:self.drawView];
+        });
+    });
 }
 
 
