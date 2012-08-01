@@ -7,25 +7,38 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "PickView.h"
 #import "PickEraserView.h"
 @class DrawColor;
 @class ColorView;
+
+typedef enum{
+    PickColorViewTypePen = 1,
+    PickColorViewTypeBackground = 2
+}PickColorViewType;
 
 
 @interface PickColorView : PickEraserView
 {
     NSMutableArray *colorViewArray;
-//    NSMutableArray *widthButtonArray;
-//    NSInteger _currentWidth;
-    
+    PickColorViewType _type;
+    UIButton *addColorButton;
 }
 
-//- (void)resetWidth;
-//- (NSInteger)currentWidth;
-//- (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
 - (void)setColorViews:(NSArray *)colorViews;
 - (NSArray *)colorViews;
+- (void)setType:(PickColorViewType)type;
+- (PickColorViewType)type;
 - (NSInteger)indexOfColorView:(ColorView *)colorView;
 - (void)updatePickColorView:(ColorView *)lastUsedColorView;
 @end
+
+
+//@interface PickBackgroundColorView : PickEraserView
+//{
+//    NSMutableArray *colorViewArray;
+//}
+//
+//- (void)setColorViews:(NSArray *)colorViews;
+//- (NSArray *)colorViews;
+//- (void)updatePickColorView;
+//@end

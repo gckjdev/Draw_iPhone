@@ -9,6 +9,7 @@
 #import "Draw.h"
 #import "DrawAction.h"
 #import "GameBasic.pb.h"
+#import "Draw.pb.h"
 #import "Word.h"
 #import "TimeUtils.h"
 

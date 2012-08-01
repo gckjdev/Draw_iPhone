@@ -96,5 +96,14 @@
     [self resetWidth];
 }
 
+- (void)setLineWidthHidden:(BOOL)hidden
+{
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[WidthView class]]) {
+            [view setHidden:hidden];
+        }
+    }
+}
+
 
 @end

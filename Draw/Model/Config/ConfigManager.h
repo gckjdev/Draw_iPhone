@@ -71,4 +71,12 @@ typedef enum{
 
 + (int)flowerAwardFordLevelUp;
 
++ (NSString*)getRecommendAppLinkZh;
++ (NSString*)getRecommendAppLinkZht;
++ (NSString*)getRecommendAppLinkEn;
++ (NSString*)getRecommendAppLink;
+
++ (BOOL)isShowRecommendApp;
++ (NSString*)getFacetimeServerListString;
+
 @end

@@ -18,7 +18,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
 @property (retain, nonatomic) IBOutlet UIImageView *outItem;
 
-+(VendingController *)instance;
++ (VendingController *)instance;
 - (UINavigationController *)topNavigationController;
 
 @end

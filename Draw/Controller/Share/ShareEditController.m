@@ -46,6 +46,7 @@
 @synthesize myImageBackground = _myImageBackground;
 @synthesize shareTitleLabel;
 @synthesize isDrawByMe = _isDrawByMe;
+@synthesize drawUserId = _drawUserId;
 
 - (void)dealloc
 {
@@ -63,6 +64,7 @@
     [_myImageBackground release];
 //    [_patternBar release];
     [_paperBackground release];
+    [_drawUserId release];
     [super dealloc];
 }
 
@@ -309,6 +311,22 @@ enum {
     return self;
 }
 
+- (id)initWithImageFile:(NSString*)imageFile
+                   text:(NSString*)text
+             drawUserId:(NSString*)drawUserId
+{
+    self = [super init];
+    if (self) {
+        self.imageFilePath = imageFile;
+        self.text = text;
+        NSData* data = [NSData dataWithContentsOfFile:imageFile];
+        self.myImage = [UIImage imageWithData:data];
+        self.drawUserId = drawUserId;
+        self.isDrawByMe = ([[UserManager defaultManager].userId isEqualToString:drawUserId]);
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -317,6 +335,15 @@ enum {
         // Custom initialization
     }
     return self;
+}
+
+- (void)initShareText
+{
+    if (!_isDrawByMe) {
+        [[UserService defaultService] getUserSimpleInfoByUserId:self.drawUserId delegate:self];
+        [self showActivityWithText:NSLS(@"kQueryingDrawer")];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -358,8 +385,8 @@ enum {
 //        [self.infuseImageView setNeedsDisplay];
         
     }        
-    
-    self.shareTextField.text = self.text;    
+    [self initShareText];
+        
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -385,5 +412,32 @@ enum {
     // e.g. self.myOutlet = nil;
 }
 
+
+#pragma user service delegate
+- (void)didGetUserNickName:(NSString *)nickName 
+                UserAvatar:(NSString *)avatar 
+                UserGender:(NSString *)gender 
+              UserLocation:(NSString *)location 
+                 UserLevel:(NSString *)level 
+                  SinaNick:(NSString *)sinaNick 
+                    QQNick:(NSString *)qqNick 
+                      qqId:(NSString*)qqId
+                FacebookId:(NSString *)facebookId
+{
+    [self hideActivity];
+    NSString* publishText = self.text;
+    if (qqNick && [[UserManager defaultManager] hasBindQQWeibo]){
+        publishText = [publishText stringByAppendingFormat:@" @%@",qqId];       
+    }
+    
+    if (sinaNick && [[UserManager defaultManager] hasBindSinaWeibo] && [[SinaSNSService defaultService] isAuthorizeExpired] == NO){
+        publishText = [publishText stringByAppendingFormat:@" @%@",sinaNick];
+    }
+    
+    if (facebookId && [[UserManager defaultManager] hasBindFacebook]){
+        //publishText = [publishText stringByAppendingString:facebookId];          
+    }
+    self.shareTextField.text = publishText;
+}
 
 @end

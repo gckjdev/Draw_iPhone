@@ -61,7 +61,7 @@
     self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:path
                                                              isGIF:_replayForCreateGif
                                                          drawWord:_paint.drawWord
-                                                             isMe:[_paint.drawByMe boolValue]] autorelease];
+                                                             drawUserId:_paint.drawUserId] autorelease];
     [_shareAction displayWithViewController:self];
 }
 

@@ -38,12 +38,17 @@
 #import "ItemService.h"
 #import "VendingController.h"
 
+
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
-#define MAX_TOMATO_CAN_THROW 200
-#define MAX_FLOWER_CAN_SEND 1000
+#define MAX_TOMATO_CAN_THROW 3
+#define MAX_FLOWER_CAN_SEND 10
+
+#define TOOLVIEW_TAG_TIPS   120120730
+#define TOOLVIEW_TAG_FLOWER 220120730
+#define TOOLVIEW_TAG_TOMATO 320120730
 
 
 @implementation OnlineGuessDrawController
@@ -338,8 +343,11 @@
     NSMutableArray *array = [NSMutableArray array];
     ItemManager *itemManager = [ItemManager defaultManager];
     ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    flower.tag = TOOLVIEW_TAG_FLOWER;
     ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
     [array addObject:tomato];
@@ -575,21 +583,30 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
+#define ITEM_TAG_OFFSET 20120728
 
 
 - (void)clickOk:(CommonDialog *)dialog
 {
     //run away
-    if (dialog.tag == SHOP_DIALOG_TAG) {
-        VendingController *itemShop = [VendingController instance];
-        [self.navigationController pushViewController:itemShop animated:YES];
-        _shopController = itemShop;
-    }else{
-        [drawGameService quitGame];
-        [HomeController returnRoom:self];
-        [self cleanData];
-        [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        default:
+            [drawGameService quitGame];
+            [HomeController returnRoom:self];
+            [self cleanData];
+            [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
+            break;
     }
+
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
@@ -674,7 +691,7 @@
     if(amout <= 0){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = SHOP_DIALOG_TAG;
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
         return;
     }
@@ -782,6 +799,35 @@
 - (void)levelDown:(int)level
 {
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview;
+        switch (anItem.type) {
+            case ItemTypeTips: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
+            } break;
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
+    }
+    if (result == ERROR_COINS_NOT_ENOUGH)
+    {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+    }
+    //TODO : add other situation deal method
 }
 
 @end

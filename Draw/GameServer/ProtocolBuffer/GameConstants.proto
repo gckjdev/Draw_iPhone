@@ -8,32 +8,34 @@ enum GameCommandType {
 
   // client --> server
 
-  JOIN_GAME_REQUEST = 1;
+  JOIN_GAME_REQUEST = 1;            // 加入游戏
   JOIN_GAME_RESPONSE = 2;
   
-  START_GAME_REQUEST = 3;
+  START_GAME_REQUEST = 3;           // 开始游戏
   START_GAME_RESPONSE = 4;
   
-  QUIT_GAME_REQUEST = 5;
+  QUIT_GAME_REQUEST = 5;            // 退出游戏
   QUIT_GAME_RESPONSE = 6;  
   
   // CHANGE_ROOM_REQUEST = 7;
   // CHANGE_ROOM_RESPONSE = 8;
-
+  
   SEND_DRAW_DATA_REQUEST = 11;
   SEND_DRAW_DATA_RESPONSE = 12;
   
   CLEAN_DRAW_REQUEST = 13;
   CLEAN_DRAW_RESPONSE = 14;
   
-  CHAT_REQUEST = 15;
+  CHAT_REQUEST = 15;                        // 聊天
   CHAT_RESPONSE = 16;
   
-  COMPLETE_GAME_REQUEST = 17;
+  COMPLETE_GAME_REQUEST = 17;               // 游戏结束
   COMPLETE_GAME_RESPONSE = 18;  
 
-  FORCE_USER_QUIT_REQUEST = 19;
+  FORCE_USER_QUIT_REQUEST = 19;             // 用户强制退出
   FORCE_USER_QUIT_RESPONSE = 20;
+  
+
   
   FACETIME_CHAT_REQUEST = 81;
   FACETIME_CHAT_RESPONSE = 82;
@@ -42,7 +44,31 @@ enum GameCommandType {
   KEEP_ALIVE_REQUEST = 91;
   KEEP_ALIVE_RESPONSE = 92;
   
-    
+  //　For Dahuatou: client ------> service
+  
+  GET_ROOMS_REQUEST = 601;                          // 获取房间列表
+  GET_ROOMS_RESPONSE = 602;         
+        
+  CREATE_ROOM_REQUEST = 603;                        // 创建房间
+  CREATE_ROOM_RESPONSE = 604;        
+  
+  ENTER_ROOM_REQUEST = 605;                         // 进入房间
+  ENTER_ROOM_RESPONSE = 606;                 
+
+  REGISTER_ROOMS_NOTIFICATION_REQUEST = 607;        // 注册通知
+  REGISTER_ROOMS_NOTIFICATION_RESPONSE = 608;      
+  
+  UNREGISTER_ROOMS_NOTIFICATION_REQUEST = 609;      // 取消通知
+  UNREGISTER_ROOMS_NOTIFICATION_RESPONSE = 610;
+  
+  CALL_DICE_REQUEST = 621;                          // 叫骰
+  CALL_DICE_RESPONSE = 622;
+  
+  OPEN_DICE_REQUEST = 623;                          // 开骰
+  OPEN_DICE_RESPONSE = 624;                   
+  
+  USE_ITEM_REQUEST = 631;                           // 使用道具
+  USE_ITEM_RESPONSE = 632;                   
   
   // server --> client
   
@@ -57,13 +83,9 @@ enum GameCommandType {
   GAME_START_NOTIFICATION_REQUEST = 55;
   GAME_START_NOTIFICATION_RESPONSE = 56;
   
-
-
   HOST_CHANGE_NOTIFICATION_REQUEST = 61;
   HOST_CHANGE_NOTIFICATION_RESPONSE = 62;
-  
-
-
+   
   
   NEW_DRAW_DATA_NOTIFICATION_REQUEST = 71;
   NEW_DRAW_DATA_NOTIFICATION_RESPONSE = 72;
@@ -95,6 +117,26 @@ enum GameCommandType {
   LOCAL_WORD_PICKED = 308;
   LOCAL_ALL_USER_GUESS = 309;
   LOCAL_DRAW_USER_CHAT = 310;
+  LOCAL_PLAY_USER_QUIT = 311;
+  LOCAL_CALL_DICE = 312;
+  LOCAL_OPEN_DICE = 313;
+  
+  
+  // For Dahuatou: service -------> client
+  ROOM_NOTIFICATION_REQUEST = 701;                      // 房间通知
+  ROOM_NOTIFICATION_RESPONSE = 702; 
+   
+  ROLL_DICE_BEGIN_NOTIFICATION_REQUEST = 711;           // 开始摇骰
+  ROLL_DICE_BEGIN_NOTIFICATION_RESPONSE = 712;
+  
+  ROLL_DICE_END_NOTIFICATION_REQUEST = 713;             // 摇骰结束
+  ROLL_DICE_END_NOTIFICATION_RESPONSE = 714;          
+  
+  NEXT_PLAYER_START_NOTIFICATION_REQUEST = 715;         // 下一个玩家开始
+  NEXT_PLAYER_START_NOTIFICATION_RESPONSE = 716; 
+  
+  GAME_OVER_NOTIFICATION_REQUEST = 731;                 // 游戏结束
+  GAME_OVER_NOTIFICATION_RESPONSE = 732;
 }
 
 enum GameResultCode {

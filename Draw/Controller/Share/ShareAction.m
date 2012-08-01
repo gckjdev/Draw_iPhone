@@ -33,11 +33,13 @@
 @synthesize isDrawByMe = _isDrawByMe;
 @synthesize superViewController = _superViewController;
 @synthesize isGIF = _isGIF;
+@synthesize drawUserId = _drawUserId;
 
 - (void)dealloc
 {
     [_drawWord release];
     [_imageFilePath release];
+    [_drawUserId release];
     [super dealloc];
 }
 
@@ -53,6 +55,23 @@
     self.isGIF = isGIF;
     
     return self;    
+}
+
+- (id)initWithDrawImageFile:(NSString*)imageFilePath 
+                      isGIF:(BOOL)isGIF 
+                   drawWord:(NSString*)drawWord 
+                 drawUserId:(NSString*)drawUserId
+{
+    self = [super init];
+    if (drawWord == nil)
+        self.drawWord = @"";
+    else 
+        self.drawWord = drawWord;
+    self.imageFilePath = imageFilePath;
+    self.isDrawByMe = ([[UserManager defaultManager].userId isEqualToString:drawUserId]);
+    self.isGIF = isGIF;
+    self.drawUserId = drawUserId;
+    return self; 
 }
 
 - (void)displayWithViewController:(UIViewController*)superViewController;
@@ -167,7 +186,7 @@
         }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:text isDrawByMe:_isDrawByMe];
+                                                                                text:text drawUserId:self.drawUserId];
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    
 }
@@ -191,6 +210,7 @@
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
         req.message = message;
+        req.scene = WXSceneTimeline;
         
         [WXApi sendReq:req];
         [req release];

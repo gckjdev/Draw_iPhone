@@ -31,14 +31,12 @@ static FeedService *_staticFeedService = nil;
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
     LanguageType lang = UnknowType;
-    if (feedListType == FeedListTypeHot) {
-        lang = [[UserManager defaultManager] getLanguageType];
-    }
+    lang = [[UserManager defaultManager] getLanguageType];
     
     dispatch_async(workingQueue, ^{
         
@@ -49,23 +47,25 @@ static FeedService *_staticFeedService = nil;
                                        offset:offset 
                                        limit:limit 
                                        lang:lang];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSMutableArray *list = nil;
-            NSInteger resultCode = output.resultCode;
-            if (resultCode == ERROR_SUCCESS){
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
-                if ([pbFeedList count] != 0) {
-                    list = [NSMutableArray array];    
-                    for (PBFeed *pbFeed in pbFeedList) {
-                        Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                        [list addObject:feed];
-                        [feed release];
-                    }
+        NSMutableArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            if ([pbFeedList count] != 0) {
+                list = [NSMutableArray array];    
+                for (PBFeed *pbFeed in pbFeedList) {
+                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
+                    [list addObject:feed];
+                    [feed release];
                 }
             }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:feedListType:resultCode:)]) {
                 [delegate didGetFeedList:list feedListType:feedListType resultCode:resultCode];
             }
@@ -78,7 +78,7 @@ static FeedService *_staticFeedService = nil;
 - (void)getUserFeedList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit 
-               delegate:(id<FeedServiceDelegate>)delegate
+               delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
     dispatch_async(workingQueue, ^{
         
@@ -89,23 +89,25 @@ static FeedService *_staticFeedService = nil;
                                        offset:offset 
                                        limit:limit 
                                        lang:UnknowType];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSMutableArray *list = nil;
-            NSInteger resultCode = output.resultCode;
-            if (resultCode == ERROR_SUCCESS){
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
-                if ([pbFeedList count] != 0) {
-                    list = [NSMutableArray array];    
-                    for (PBFeed *pbFeed in pbFeedList) {
-                        Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                        [list addObject:feed];
-                        [feed release];
-                    }
+        NSMutableArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            if ([pbFeedList count] != 0) {
+                list = [NSMutableArray array];    
+                for (PBFeed *pbFeed in pbFeedList) {
+                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
+                    [list addObject:feed];
+                    [feed release];
                 }
             }
+        }
+        PPDebug(@"<FeedService> parse data finish, start display the views.");        
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:resultCode:)]) {
                 [delegate didGetFeedList:list targetUser:userId resultCode:resultCode];
             }
@@ -122,23 +124,23 @@ static FeedService *_staticFeedService = nil;
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL opusId:opusId offset:offset limit:limit];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSMutableArray *list = nil;
-            NSInteger resultCode = output.resultCode;
-            if (resultCode == ERROR_SUCCESS){
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
-                if ([pbFeedList count] != 0) {
-                    list = [NSMutableArray array];    
-                    for (PBFeed *pbFeed in pbFeedList) {
-                        Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                        [list addObject:feed];
-                        [feed release];
-                    }
+        NSMutableArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            if ([pbFeedList count] != 0) {
+                list = [NSMutableArray array];    
+                for (PBFeed *pbFeed in pbFeedList) {
+                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
+                    [list addObject:feed];
+                    [feed release];
                 }
             }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedCommentList:opusId:resultCode:)]) {
                 [delegate didGetFeedCommentList:list opusId:opusId resultCode:resultCode];
             }            

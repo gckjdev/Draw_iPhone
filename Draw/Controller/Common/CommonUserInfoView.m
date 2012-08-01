@@ -98,10 +98,10 @@
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
-    AvatarView* view = [[AvatarView alloc] initWithUrlString:self.userAvatar
+    AvatarView* view = [[[AvatarView alloc] initWithUrlString:self.userAvatar
                                                        frame:rect
                                                       gender:[@"m" isEqualToString:self.userGender]
-                                                       level:self.userLevel];
+                                                       level:self.userLevel] autorelease];
     [self.contentView addSubview:view];
 }
 
@@ -390,6 +390,7 @@
                  UserLevel:(NSString*)level 
                   SinaNick:(NSString*)sinaNick 
                     QQNick:(NSString*)qqNick 
+                      qqId:(NSString*)qqId
                 FacebookId:(NSString*)facebookId
 {
     if (nickName != nil) {

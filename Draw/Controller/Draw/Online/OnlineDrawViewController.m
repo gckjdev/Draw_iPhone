@@ -51,6 +51,9 @@
 @synthesize penButton;
 @synthesize colorButton;
 @synthesize gameCompleteMessage = _gameCompleteMessage;
+@synthesize eraserColor = _eraserColor;
+@synthesize bgColor = _bgColor;
+
 
 #define PAPER_VIEW_TAG 20120403 
 
@@ -194,6 +197,8 @@
     
 }
 
+
+
 #pragma mark - Timer
 
 - (void)handleTimer:(NSTimer *)theTimer
@@ -254,12 +259,12 @@ enum{
 
 - (void)initDrawView
 {
-    
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     [self.view insertSubview:drawView aboveSubview:paperView];
+    self.eraserColor = self.bgColor = [DrawColor whiteColor];
 }
 
 - (void)initWordLabel
@@ -400,14 +405,38 @@ enum{
     
 }
 
+#define ESCAPE_DEDUT_COIN 1
+#define DIALOG_TAG_CLEAN_DRAW 201204081
+#define DIALOG_TAG_ESCAPE 201204082
+#define DIALOG_TAG_CHANGE_BACK 201207281
+
 #pragma mark - Pick view delegate
+- (void)didPickedPickView:(PickView *)pickView colorView:(ColorView *)colorView
+{
+    if (pickColorView.type == PickColorViewTypePen) {
+        [drawView setLineColor:colorView.drawColor];
+        [drawView setLineWidth:penWidth];
+        [colorButton setDrawColor:colorView.drawColor];
+        [pickColorView updatePickColorView:colorView];
+    }else if(pickColorView.type == PickColorViewTypeBackground)
+    {
+        self.bgColor = colorView.drawColor;
+        //show tips.
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog.tag = DIALOG_TAG_CHANGE_BACK;
+        [dialog showInView:self.view];
+    }
+}
+
 - (void)didPickedColorView:(ColorView *)colorView
 {
-    [drawView setLineColor:colorView.drawColor];
-    [drawView setLineWidth:penWidth];
-    [colorButton setDrawColor:colorView.drawColor];
-    [pickColorView updatePickColorView:colorView];
+    [self didPickedPickView:pickPenView colorView:colorView];
+//    [drawView setLineColor:colorView.drawColor];
+//    [drawView setLineWidth:penWidth];
+//    [colorButton setDrawColor:colorView.drawColor];
+//    [pickColorView updatePickColorView:colorView];
 }
+
 - (void)didPickedPickView:(PickView *)pickView lineWidth:(NSInteger)width
 {
     if (pickView.tag == PICK_COLOR_VIEW_TAG) {
@@ -426,6 +455,8 @@ enum{
     [colorShop showInView:self.view animated:YES];
     
 }
+
+
 
 #define NO_COIN_TAG 201204271
 #define BUY_CONFIRM_TAG 201204272
@@ -459,9 +490,6 @@ enum{
 }
 
 #pragma mark - Common Dialog Delegate
-#define ESCAPE_DEDUT_COIN 1
-#define DIALOG_TAG_CLEAN_DRAW 201204081
-#define DIALOG_TAG_ESCAPE 201204082
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
@@ -481,8 +509,17 @@ enum{
         [PenView savePenType:_willBuyPen.penType];
         [_willBuyPen setAlpha:1];
         [pickPenView updatePenViews];
+    }else if(dialog.tag == DIALOG_TAG_CHANGE_BACK)
+    {
+        DrawAction *action = [DrawAction 
+                              changeBackgroundActionWithColor:self.bgColor];
+        [drawView addAction:action];
+        self.eraserColor = self.bgColor = [DrawColor whiteColor];
+        if (drawView.penType == Eraser) {
+            drawView.lineColor = self.eraserColor;
+        }
     }
-    
+
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -530,6 +567,25 @@ enum{
 
 #pragma mark - Actions
 
+- (void)updatePickColorViewType:(PickColorViewType)type
+{
+    if (pickColorView.type == type) {
+        return;
+    }
+    
+    if (type == PickColorViewTypePen) {
+        [pickColorView setFrame:PICK_COLOR_VIEW];
+        [pickColorView setImage:[shareImageManager toolPopupImage]];
+    }else if(type == PickColorViewTypeBackground){
+        [pickColorView setFrame:PICK_BACKGROUND_COLOR_VIEW];        
+        [pickColorView setImage:[shareImageManager backgroundColorPopupImage]];
+    }else{
+        //use later.
+        return;
+    }
+    [pickColorView setType:type];
+}
+
 - (IBAction)clickChangeRoomButton:(id)sender {
     
     [pickColorView setHidden:YES animated:YES];
@@ -558,7 +614,7 @@ enum{
 - (IBAction)clickEraserButton:(id)sender {
     [pickEraserView setHidden:!pickEraserView.hidden animated:YES];
     [drawView setPenType:Eraser];
-    [drawView setLineColor:[DrawColor whiteColor]];
+    [drawView setLineColor:self.eraserColor];
     [drawView setLineWidth:eraserWidth];
     [pickPenView setHidden:YES];
     [pickColorView setHidden:YES];
@@ -574,12 +630,30 @@ enum{
 }
 
 - (IBAction)clickColorButton:(id)sender {
-    [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    if (pickColorView.type != PickColorViewTypePen) {
+        [self updatePickColorViewType:PickColorViewTypePen];
+        [pickColorView setHidden:NO animated:YES];    
+    }else{
+        [pickColorView setHidden:!pickColorView.hidden animated:YES];
+    }
+    
     [drawView setLineColor:colorButton.drawColor];
     [drawView setLineWidth:penWidth];
     [drawView setPenType:penButton.penType];
     [pickPenView setHidden:YES];
     [pickEraserView setHidden:YES];
+}
+
+- (IBAction)changeBackground:(id)sender {
+    if (pickColorView.type != PickColorViewTypeBackground) {
+        [self updatePickColorViewType:PickColorViewTypeBackground];
+        [pickColorView setHidden:NO animated:YES];    
+    }else{
+        [pickColorView setHidden:!pickColorView.hidden animated:YES];            
+    }    
+    [pickPenView setHidden:YES];
+    [pickEraserView setHidden:YES];
+
 }
 
 - (IBAction)clickGroupChatButton:(id)sender {

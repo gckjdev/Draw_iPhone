@@ -8,6 +8,8 @@
 
 #import "CommonService.h"
 #import "Feed.h"
+#import "ItemType.h"
+#import "PPViewController.h"
 
 #define DB_FIELD_ACTION_SAVE_TIMES      @"save_times"
 
@@ -53,13 +55,13 @@
 - (void)getUserFeedList:(NSString *)userId
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
 
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
 - (void)getOpusCommentList:(NSString *)opusId
              offset:(NSInteger)offset 
@@ -85,6 +87,10 @@
 
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
+
+- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
+           author:(NSString *)author   
+         delegate:(id<FeedServiceDelegate>)delegate;
 
 
 @end

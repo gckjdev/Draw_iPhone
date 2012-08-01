@@ -11,10 +11,11 @@
 #import "SNSServiceDelegate.h"
 #import "PPViewController.h"
 #import "CommonDialog.h"
+#import "UserService.h"
 
 //@class SynthesisView;
 
-@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate>
+@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate>
 
 @property (nonatomic, copy) NSString* imageFilePath;
 //@property (retain, nonatomic) IBOutlet UIImageView *patternBar;
@@ -31,8 +32,12 @@
 @property (retain, nonatomic) IBOutlet UITextView *shareTextField;
 @property (retain, nonatomic) IBOutlet UILabel *shareTitleLabel;
 @property (assign, nonatomic) BOOL isDrawByMe;
+@property (retain, nonatomic) NSString* drawUserId;
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 
              isDrawByMe:(BOOL)isDrawByMe;
+- (id)initWithImageFile:(NSString*)imageFile
+                   text:(NSString*)text
+             drawUserId:(NSString*)drawUserId;
 @end

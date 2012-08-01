@@ -23,6 +23,8 @@
     BOOL        _isTryJoinGame;    
     UserManager *_userManager;
 }
+@property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
+@property (retain, nonatomic) IBOutlet UIButton *diceButton;
 
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickPlayWithFriend:(id)sender;
@@ -61,6 +63,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *roomBadge;
 @property (retain, nonatomic) IBOutlet UIScrollView *homeScrollView;
 @property (retain, nonatomic) UIView  *adView;
+@property (retain, nonatomic) IBOutlet UIButton *recommendButton;
 
 // Ad View
 - (IBAction)clickDrawButton:(id)sender;

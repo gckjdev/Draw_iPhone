@@ -64,6 +64,7 @@
 - (UIImage *)toolPopupImage;
 - (UIImage *)penPopupImage;
 - (UIImage *)eraserPopupImage;
+- (UIImage *)backgroundColorPopupImage;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
@@ -114,6 +115,7 @@
 - (UIImage *)toolBoxImage;
 
 //for tool
+- (UIImage*)colorBuyedImage;
 - (UIImage *)buyedImage;
 - (UIImage *)brushPen;
 - (UIImage *)removeAd;
@@ -134,5 +136,13 @@
 - (UIImage *)pickToolBackground;
 
 - (UIImage*)backButtonImage;
+
+- (UIImage *)shareDrawButtonImage;
+
+- (void)saveImage:(UIImage *)image
+    withImageName:(NSString *)imageName 
+             asyn:(BOOL)asyn;
+
+- (UIImage *)getImageWithName:(NSString *)imageName;
 
 @end

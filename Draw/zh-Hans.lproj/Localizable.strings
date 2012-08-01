@@ -373,15 +373,15 @@
 
 
 "kPayAttentionToMe" = "关注我吧";
-"kDrawTillDawn" = "决战到天明";
+"kDrawTillDawn" = "我好聪明吧";
 "kHelloEveryone" = "Hi,大家好";
-"kDontLeave" = "别走啊";
-"kFunny" = "真有趣";
+"kDontLeave" = "你真聪明";
+"kFunny" = "画的好烂";
 "kDrawedWhat" = "画神马啊";
-"kHardToGuess" = "好难猜";
+"kHardToGuess" = "画的不错";
 "kSelfDefine" = "+";
-"kDontWriteAnswer" = "别给答案啊" ;
-"kGiveAPrompt" = "给点提示吧";
+"kDontWriteAnswer" = "我是大画家" ;
+"kGiveAPrompt" = "画的传神吧";
 "kWellDone" = "画的真好";
 
 "kFollowMe" = "关注";
@@ -616,7 +616,7 @@
 "kInputEmail" = "请输入电子邮件地址";
 "kUserBindSucc" = "成功绑定了用户帐号";
 "kUserBindFail" = "绑定用户帐号失败，请检查网络是否可用，稍候再试，或者联系我们的技术支持";
-"kWeiboExpired" = "微博授权已过期";
+"kWeiboExpired" = "授权已过期";
 "kSaveAndShare" = "保存分享";
 
 "kRebindQQ" = "你已经绑定过腾讯微博了，是否要重新尝试绑定？";
@@ -677,16 +677,16 @@
 "kPen" = "毛笔";
 "kIcePen" = "雪糕笔";
 "kQuill" = "鹅毛笔";
-"kWaterPen" = "水笔";
+"kWaterPen" = "麦克笔";
 
 "kFlowerDescription" = "看到好的作品就送些鲜花吧！赠人玫瑰，手有余香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄吧，还能让作者扣分扣经验哦。";
 "kRemoveAdDescription" = "买了它！从此远离广告！";
 "kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
-"kBrushPenDescription" = "好多毛的笔";
-"kIcePenDescription" = "看上去像雪糕的笔";
-"kQuillDescription" = "用鹅毛做的笔";  
-"kWaterPenDescription" = "好多水的笔";
+"kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
+"kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
+"kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
+"kWaterPenDescription" = "麦克笔，国外进口的一种高级画笔";
 
 "kPickToolTitle" = "使用道具";
 
@@ -705,4 +705,30 @@
 "kSendAFlower" = "给作者赠送了一朵鲜花!";
 "kThrowATomato" = "向作者丢了个番茄!";
 
-"kShareAwardCoinTips" = "分享你的作品可获%d金币!";
+"kShareAwardCoinTips" = "分享作品可获%d金币!";
+
+"kQueryingDrawer" = "查询作者信息中...";
+
+"kGhostGame" = "捉鬼游戏";
+"kGhostGameDescription" = "iPhone热门桌游,捉鬼游戏,现正50%折扣促销,仅售12元人民币,还不到一个麦当劳汉堡包的价格啊,比实体桌游牌便宜30元,赶快来和朋友一起玩捉鬼游戏吧!";
+"kShuriken" = "镖汉-你射我挡";
+"kShurikenDescription" = "「镖汉之你射我挡」游戏新上线,5折促销中,仅限两天,马上下载试用吧!";
+"kCountBean" = "数豆达人";
+"kCountBeanDescription" = "挑战自己的记忆极限,做数豆达人吧!";
+"kCrazyFinger" = "疯狂的手指";
+"kCrazyFingerDescription" = "这是一款益智休闲小游戏:根据掉下来的物品做相应的手势,如果物品消失了还没做出相应手势就算失误,出现三个失误就输掉了。";
+"kGroupBuy" = "甘橙团购";
+"kGroupBuyDescription" = "甘橙团购是一款团购导航和推荐应用,帮你快速找到你想要的团购商品!";
+"kRecommendApps" = "精彩应用推荐";
+"kRecommend" = "荐";
+
+"kChangeBackgroundTitle" = "改变背景颜色";
+"kChangeBackgroundMessage" = "改变背景颜色将会导致之前所画的东西都消失，确定要这样做吗？";
+
+"kBuySuccess" = "购买成功";
+
+"kLoadingComments" = "加载评论中...";
+"kNotEnoughCoin" = "金币不足";
+
+
+"kParsingData" = "解析数据中...";

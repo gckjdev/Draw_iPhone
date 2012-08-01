@@ -370,15 +370,15 @@
 
 
 "kPayAttentionToMe" = "關注我吧";
-"kDrawTillDawn" = "決戰到天明";
+"kDrawTillDawn" = "我好聰明吧";
 "kHelloEveryone" = "Hi,大家好";
-"kDontLeave" = "別走啊";
-"kFunny" = "真有趣";
+"kDontLeave" = "你真聰明";
+"kFunny" = "畫的好爛";
 "kDrawedWhat" = "畫神馬啊";
-"kHardToGuess" = "好難猜";
+"kHardToGuess" = "畫的不錯";
 "kSelfDefine" = "+";
-"kDontWriteAnswer" = "別給答案啊" ;
-"kGiveAPrompt" = "給點提示吧";
+"kDontWriteAnswer" = "我是大畫家" ;
+"kGiveAPrompt" = "畫的傳神吧";
 "kWellDone" = "畫的真好";
 
 "kFollowMe" = "關注";
@@ -610,7 +610,7 @@
 
 "kUserBindSucc" = "成功綁定了用​​戶帳號";
 "kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";
-"kWeiboExpired" = "微博授權已過期";
+"kWeiboExpired" = "授權已過期";
 "kSaveAndShare" = "保存分享";
 "kRebindQQ" = "你已經綁定過騰訊微博了，是否要重新嘗試綁​​定？"; 
 "kRebindSina" = "你已經綁定了新浪微博了，是否要重新嘗試綁​​定？"; 
@@ -664,19 +664,20 @@
 "kTomato" = "番茄";
 "kRemoveAd" = "移除廣告";
 "kTips" = "錦囊";
+
 "kPen" = "毛筆";
 "kIcePen" = "雪糕筆";
 "kQuill" = "鵝毛筆";
-"kWaterPen" = "水筆";
+"kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
 "kRemoveAdDescription" = "買了它！從此遠離廣告！";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
-"kBrushPenDescription" = "好多毛的筆";
-"kIcePenDescription" = "看上去像雪糕的筆";
-"kQuillDescription" = "用鵝毛做的筆";
-"kWaterPenDescription" = "好多水的筆";
+"kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
+"kIcePenDescription" = "看上去像雪糕的筆，畫起來更加甜蜜";
+"kQuillDescription" = "用鵝毛做的筆，畫起來更加輕便";
+"kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
 
 "kPickToolTitle" = "使用道具";
 
@@ -695,4 +696,29 @@
 "kSendAFlower" = "給作者贈送了一朵鮮花!";
 "kThrowATomato" = "向作者丟了個番茄!";
 
-"kShareAwardCoinTips" = "分享你的作品可獲%d金幣!";
+"kShareAwardCoinTips" = "分享作品可獲%d金幣!";
+
+"kQueryingDrawer" = "查詢作者信息中...";
+
+"kGhostGame" = "捉鬼遊戲";
+"kGhostGameDescription" = "iPhone熱門桌遊,捉鬼遊戲,現正50%折扣促銷,僅售12元人民幣,還不到一個麥當勞漢堡包的價格啊,比實體桌遊牌便宜30元,趕快來和朋友一起玩捉鬼遊戲吧!";
+"kShuriken" = "鏢漢-你射我擋";
+"kShurikenDescription" = "「鏢漢之你射我擋」遊戲新上線,5折促銷中,僅限兩天,馬上下載試用吧!";
+"kCountBean" = "數豆達人";
+"kCountBeanDescription" = "挑戰自己的記憶極限,做數豆達人吧!";
+"kCrazyFinger" = "瘋狂的手指";
+"kCrazyFingerDescription" = "這是一款益智休閒小遊戲:根據掉下來的物品做相應的手勢,如果物品消失了還沒做出相應手勢就算失誤,出現三個失誤就輸掉了。";
+"kGroupBuy" = "甘橙團購";
+"kGroupBuyDescription" = "甘橙團購是一款團購導航和推薦應用,幫你快速找到你想要的團購商品!";
+
+"kRecommendApps" = "精彩應用推薦";
+"kRecommend" = "薦";
+
+"kChangeBackgroundTitle" = "改變背景顏色";
+"kChangeBackgroundMessage" = "改變背景顏色將會導致之前所畫的東西都消失，確定要這樣做嗎？";
+
+"kBuySuccess" = "購買成功";
+"kLoadingComments" = "加載評論中...";
+"kNotEnoughCoin" = "金幣不足";
+
+"kParsingData" = "解析數據中...";

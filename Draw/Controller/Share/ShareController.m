@@ -45,10 +45,9 @@
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
 @synthesize awardCoinTips;
-@synthesize noDrawingLabel;
+
 
 - (void)dealloc {
-    [noDrawingLabel release];
     [_shareAction release];
     [clearButton release];
     [gallery release];
@@ -76,13 +75,11 @@
     }
     
     if ([self.paints count] > 0){
-        self.noDrawingLabel.text = NSLS(@"");
-        self.noDrawingLabel.hidden = YES;
+        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         [self.clearButton setHidden:NO];
     }
     else{
-        self.noDrawingLabel.text = NSLS(@"kNoDrawings");
-        self.noDrawingLabel.hidden = NO;   
+        self.awardCoinTips.text = NSLS(@"kNoDrawings");
         [self.clearButton setHidden:YES];
     }
 }
@@ -146,7 +143,7 @@
         self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:currentPaint.image 
                                                                  isGIF:NO
                                                              drawWord:currentPaint.drawWord
-                                                                 isMe:[currentPaint.drawByMe boolValue]] autorelease];
+                                                                 drawUserId:currentPaint.drawUserId] autorelease];
             
         [_shareAction displayWithViewController:self];                       
     }                            
@@ -369,7 +366,7 @@
 
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
-    self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
+    
 }
 
 - (void)viewDidUnload

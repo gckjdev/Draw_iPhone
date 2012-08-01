@@ -11,6 +11,7 @@
 #define DEFAULT_AVATAR          @"http://tp4.sinaimg.cn/2198792115/180/0/1"
 #define TEMP_AVATAR_LOCAL_PATH  @"temp"
 
+@class PBGameUser;
 
 typedef enum {
     UnknowType = 0,
@@ -56,6 +57,7 @@ typedef enum {
 - (NSString*)qqTokenSecret;
 - (NSString*)facebookId;
 - (NSString*)email;
+- (NSString*)facetimeId;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
@@ -68,6 +70,7 @@ typedef enum {
 - (void)setDeviceToken:(NSString*)deviceToken;
 - (void)setLocation:(NSString*)location;
 - (void)setEmail:(NSString *)email;
+- (void)setFacetimeId:(NSString*)facetimeId;
 
 
 - (BOOL)hasUser;
@@ -140,5 +143,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setQQId:(NSString*)qqId nickName:(NSString*)nickName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret;
 - (void)setSinaId:(NSString*)sinaId nickName:(NSString*)nickName;
 - (void)setFacebookId:(NSString*)facebookId nickName:(NSString*)nickName;
+
+- (PBGameUser*)toPBGameUser;
 
 @end

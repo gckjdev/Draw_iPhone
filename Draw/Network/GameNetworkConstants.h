@@ -101,6 +101,7 @@
 #define METHOD_NEW_JOIN_ROOM @"njr"
 
 #define METHOD_GET_STATISTICS @"gss"
+#define METHOD_REPORT_STATUS  @"rs" 
 
 //find draw
 #define METHOD_FINDDRAW @"fd"
@@ -139,6 +140,7 @@
 
 #define METHOD_GET_TARGET_USER_INFO    @"gtui"
 #define METHOD_DELETE_FEED @"delf"
+#define METHOD_GET_RECOMMEND_APP    @"gra"
 
 //game parameters
 
@@ -401,6 +403,13 @@
 #define PARA_LEVEL  @"lvl"
 #define PARA_LEVEL_INFO @"lif"
 #define PARA_SYNC_TYPE  @"st"
+
+//for recommend app
+#define PARA_RECOMMEND_APPS @"recommend_apps"
+#define PARA_APP_NAME   @"name"
+#define PARA_APP_DESCRIPTION    @"description"
+#define PARA_APP_ICON_URL   @"icon_url"
+#define PARA_APP_ULR        @"url"
 
 
 

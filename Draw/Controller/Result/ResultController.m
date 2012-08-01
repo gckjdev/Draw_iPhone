@@ -50,15 +50,15 @@
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
-#define MAX_TOMATO 1000
-#define MAX_FLOWER 1000
+#define MAX_TOMATO 10
+#define MAX_FLOWER 10
 
 
 @interface ResultController()
 
 //- (BOOL)fromFeedDetailController;
 //- (BOOL)fromFeedController;
-- (void)throwItem:(ToolView*)toolView;
+- (BOOL)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -363,10 +363,6 @@
 - (void)viewDidLoad
 {        
     
-    self.adView = [[AdService defaultService] createAdInView:self 
-                                                       frame:CGRectMake(0, 47, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 780, 320, 50)
-                                                     useLmAd:NO];    
     [super viewDidLoad];
     [self initResultType];
     [self initTitleLabel];
@@ -396,9 +392,9 @@
 
     if (self.adView == nil){
         self.adView = [[AdService defaultService] createAdInView:self 
-                                                           frame:CGRectMake(0, 0, 320, 50) 
-                                                       iPadFrame:CGRectMake(224, 755, 320, 50)
-                                                         useLmAd:NO];        
+                                                           frame:CGRectMake(0, 47, 320, 50) 
+                                                       iPadFrame:CGRectMake(224, 780, 320, 50)
+                                                         useLmAd:NO];   
     }        
 }
 
@@ -466,7 +462,8 @@
     ToolView* toolView = (ToolView*)sender;    
     
     // show animation
-    [self throwItem:toolView];
+    if (![self throwItem:toolView]) 
+        return;
         
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
@@ -488,7 +485,8 @@
     ToolView* toolView = (ToolView*)sender;    
     
     // throw item animation
-    [self throwItem:toolView];
+    if (![self throwItem:toolView]) 
+        return;
 
     // send request
     [[ItemService defaultService] sendItemAward:toolView.itemType
@@ -543,7 +541,7 @@
     if (viewController) {
         [self.navigationController popToViewController:viewController animated:YES];
     }else{
-        if ([self hasSuperViewControllerForClass:[OfflineGuessDrawController class]]) {
+        if ([[DrawGameService defaultService] session] != nil){
             [[DrawGameService defaultService] quitGame];
         }
         [HomeController returnRoom:self];
@@ -588,14 +586,15 @@
 }
 
 #pragma mark - throw item animation
-- (void)throwItem:(ToolView*)toolView
+#define ITEM_TAG_OFFSET 20120728
+- (BOOL)throwItem:(ToolView*)toolView
 {
     if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
         //TODO go the shopping page.
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        //dialog.tag = SHOP_DIALOG_TAG;
+        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
         [dialog showInView:self.view];
-        return;
+        return NO;
     }
     UIImageView* item = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:item];
@@ -606,7 +605,7 @@
     if (toolView.itemType == ItemTypeFlower) {
         [DrawGameAnimationManager showThrowFlower:item animInController:self];
     }
-    
+    return YES;
 }
 
 - (void)receiveFlower
@@ -637,16 +636,50 @@
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    //run away
-
-    VendingController *itemShop = [VendingController instance];
-    [self.navigationController pushViewController:itemShop animated:YES];
-    //_shopController = itemShop;
+    switch (dialog.tag) {
+        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+        } break;
+        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+        } break;
+        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+        } break;
+        default:
+            break;
+    }
 
 }
 - (void)clickBack:(CommonDialog *)dialog
 {
     
+}
+
+#pragma mark - commonItemInfoView delegate
+- (void)didBuyItem:(Item *)anItem 
+            result:(int)result
+{
+    if (result == 0) {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
+        ToolView* toolview;
+        switch (anItem.type) {
+            case ItemTypeFlower: {
+                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
+            } break;
+            case ItemTypeTomato: {
+                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+            } break;
+            default:
+                break;
+        }
+        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
+    }
+    if (result == ERROR_COINS_NOT_ENOUGH)
+    {
+        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+    }
+    //TODO : add other situation deal method
 }
 
 

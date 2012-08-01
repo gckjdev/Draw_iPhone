@@ -39,17 +39,21 @@
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
 #import "LmWallService.h"
+#import "UserStatusService.h"
+#import "FacetimeService.h"
+#import "DiceGameService.h"
+#import "FontManager.h"
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.198:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//      return @"http://192.168.1.198:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//  return [ConfigManager getTrafficAPIServerURL];
-  return @"http://192.168.1.198:8100/api/i?";    
+  return [ConfigManager getTrafficAPIServerURL];
+//  return @"http://192.168.1.198:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -80,6 +84,8 @@ NSString* GlobalGetTrafficServerURL()
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
+    
+    [[FontManager sharedManager] loadFont:@"diceFont"];
     
     application.applicationIconBadgeNumber = 0;
     
@@ -181,7 +187,15 @@ NSString* GlobalGetTrafficServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
+
+    
     return YES;
+}
+
+- (void)didConnected
+{
+    [[DiceGameService defaultService] joinGameRequest];
+    
 }
 
 - (void)reviewDone
@@ -241,7 +255,9 @@ NSString* GlobalGetTrafficServerURL()
     
     [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
-
+    
+    [[UserStatusService defaultService] stop];
+    [[FacetimeService defaultService] disconnectServer];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -268,7 +284,9 @@ NSString* GlobalGetTrafficServerURL()
     [[YoumiWallService defaultService] queryPoints];
     [[LmWallService defaultService] queryScore];
     [[DrawGameService defaultService] clearDisconnectTimer];
-    [self.networkDetector start];        
+    [self.networkDetector start];     
+    
+    [[UserStatusService defaultService] start];
     
 }
 

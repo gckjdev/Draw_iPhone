@@ -50,6 +50,13 @@
 #import "LmWallService.h"
 #import "AdService.h"
 #import "VendingController.h"
+#import "RecommendedAppsController.h"
+
+#import "FacetimeMainController.h"
+#import "DiceRoomListController.h"
+#import "DiceGamePlayController.h"
+
+#import "DiceGameService.h"
 
 @interface HomeController()
 
@@ -62,8 +69,11 @@
 @end
 
 @implementation HomeController
+@synthesize facetimeButton = _facetimeButton;
+@synthesize diceButton = _diceButton;
 
 @synthesize adView = _adView;
+@synthesize recommendButton = _recommendButton;
 @synthesize startButton = _startButton;
 @synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
@@ -116,8 +126,38 @@
 
 #pragma mark - View lifecycle
 
+- (void)initRecommendButton
+{
+    [self.recommendButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
+    [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
+    int fontSize = ([DeviceDetection isIPAD]?30:17);
+    CGSize size = [self.recommendButton.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+    if (size.width >= self.recommendButton.frame.size.width) {
+        [self.recommendButton setFrame:CGRectMake(self.recommendButton.frame.origin.x, 
+                                                  self.recommendButton.frame.origin.y, 
+                                                  self.recommendButton.frame.size.width*2, 
+                                                  self.recommendButton.frame.size.height)];
+    }
+    if (![[AdService defaultService] isShowAd]) {
+        if ([DeviceDetection isIPAD]){
+            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+        }
+    }
+}
+
 - (void)viewDidLoad
 {        
+    
+//    self.facetimeButton.hidden = YES;
+//    self.diceButton.hidden = YES;
+    if ([ConfigManager isShowRecommendApp]){
+        self.recommendButton.hidden = NO;
+    }
+    else{
+        self.recommendButton.hidden = YES;
+    }
+    
+    
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(65, 800, 320, 50)
@@ -139,6 +179,7 @@
     [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
+    [self initRecommendButton];
     
     self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
@@ -187,8 +228,42 @@
     [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
 }
 
+- (void)registerDiceGameNotification
+{
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_JOIN_GAME_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE"); 
+         DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+         [self.navigationController pushViewController:controller animated:YES];
+     }];
+
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ROOM
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<HomeController> NOTIFICATION_ROOM");         
+     }];
+    
+}
+
+- (void)unregisterDiceGameNotification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NOTIFICATION_JOIN_GAME_RESPONSE 
+                                                  object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NOTIFICATION_ROOM
+                                                  object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {    
+    [self registerDiceGameNotification];
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -204,13 +279,18 @@
     else{
         if ([[AdService defaultService] isShowAd] == NO){
             [_adView removeFromSuperview];
+            
+            if ([DeviceDetection isIPAD]){
+                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+            }
         }
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-
+    [self unregisterDiceGameNotification];
+    
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
@@ -248,6 +328,9 @@
     [self setMessageBadge:nil];
     [self setRoomBadge:nil];
     [self setHomeScrollView:nil];
+    [self setRecommendButton:nil];
+    [self setFacetimeButton:nil];
+    [self setDiceButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -348,6 +431,7 @@
 //        [self.navigationController pushViewController:ic animated:YES];
         VendingController* vc = [[VendingController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
     }
 }
 
@@ -423,13 +507,8 @@
     PPDebug(@"<didBroken>");
     [self hideActivity];
     
-    if ([[DrawGameService defaultService] session] != nil){
-        PPDebug(@"<Network Broken> but session is nil");
-    }
-    else{
-        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }
+    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
     //        // disable this policy at this moment...
 //    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable){
@@ -469,6 +548,8 @@
     
     _isTryJoinGame = NO;
     
+    [[DiceGameService defaultService] joinGameRequest];
+    
 }
 
 - (void)didServerListFetched:(int)result
@@ -488,12 +569,7 @@
     }
     
     
-    if (server != nil){
-//        [self hideActivity];
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") message:NSLS(@"kNoServerAvailable") style:CommonDialogStyleSingleButton delegate:nil];
-//        [dialog showInView:self.view];
-//        return;
-        
+    if (server != nil){        
         address = [server address];
         port = [server.port intValue];            
     }
@@ -505,7 +581,7 @@
 //    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.10"];
+//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
 //    [[DrawGameService defaultService] setServerPort:8080];   
 
 
@@ -605,6 +681,9 @@
     [_messageBadge release];
     [_roomBadge release];
     [_homeScrollView release];
+    [_recommendButton release];
+    [_facetimeButton release];
+    [_diceButton release];
     [super dealloc];
 }
 
@@ -650,6 +729,12 @@
     }
 }
 
+- (IBAction)clickRecommend:(id)sender
+{
+    RecommendedAppsController* vc = [[[RecommendedAppsController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (BOOL)isRegistered
 {
@@ -747,4 +832,25 @@
     [self updateBadge:self.roomBadge value:badge];
 
 }
+
+- (IBAction)clickDice:(id)sender
+{
+//    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] connectServer:self];
+}
+
+- (IBAction)clickFacetime:(id)sender
+{
+    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [[DiceGameService defaultService] joinGameRequest];
+}
+
+
 @end

@@ -1800,6 +1800,34 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)reportStatus:(NSString*)baseURL 
+                               appId:(NSString *)appId                                
+                              userId:(NSString *)userId
+                              status:(int)status
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_REPORT_STATUS];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];   
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];   
+        str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];           
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 + (CommonNetworkOutput*)deleteMessage:(NSString*)baseURL 
                                 appId:(NSString*)appId
                                userId:(NSString*)userId
@@ -1908,6 +1936,28 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_FEED_ID value:feedId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        return;
+    }; 
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)getRecommendApp:(NSString*)baseURL
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];               
         return str;
     };
     

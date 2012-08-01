@@ -200,6 +200,11 @@
 {
 //    [self.drawView cleanAllActions];
     [self.drawView removeFromSuperview];
+    
+    if (feed.drawImage == nil) {
+        feed.drawImage = [[ShareImageManager defaultManager] getImageWithName:feed.feedId];
+    }
+    
     if (feed.drawImage) {
         UIImageView* imageView = [[UIImageView alloc] initWithImage:feed.drawImage];
         self.drawView = imageView;
@@ -219,12 +224,12 @@
         [self addSubview:self.drawView];
         [view show];
         [view release];
-        feed.drawImage = [view createImage];
+        feed.drawImage = [view createImage];    
+        [[ShareImageManager defaultManager] saveImage:feed.drawImage 
+                                        withImageName:feed.feedId 
+                                                 asyn:YES];
+        
     }
-
-    
-//    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-//    [self.drawView show];
 }
 - (void)setCellInfo:(Feed *)feed
 {

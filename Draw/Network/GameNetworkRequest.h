@@ -342,4 +342,10 @@
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId;
 
++ (CommonNetworkOutput*)reportStatus:(NSString*)baseURL 
+                               appId:(NSString *)appId                                
+                              userId:(NSString *)userId
+                              status:(int)status;
+
++ (CommonNetworkOutput*)getRecommendApp:(NSString*)baseURL;
 @end

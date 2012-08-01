@@ -214,7 +214,7 @@
 "kAnswer" = "Answer: [%@]";
 "kNoWord" = "Maybe Painter Quit!";
 "kCleanDrawTitle" = "Clean Draw";
-"kCleanDrawMessage" = "Clean the draw? All the paint will dismiss.";
+"kCleanDrawMessage" = "Clean the draw? All the paints will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "Share";
@@ -362,7 +362,7 @@
 "kPayAttentionToMe" = "Follow me";
 "kDrawTillDawn" = "Awesome";
 "kHelloEveryone" = "Hello";
-"kDontLeave" = "Hi All";
+"kDontLeave" = "So smart";
 "kFunny" = "Funny";
 "kDrawedWhat" = "What ?!";
 "kHardToGuess" = "Unbelivable";
@@ -671,8 +671,8 @@
 "kTomato" = "Tomato";
 "kRemoveAd" = "No Ad!";
 "kTips" = "Tips";
-"kPen" = "Brush Pen";
-"kIcePen" = "Ice-cream Pen";
+"kPen" = "Mao Pen";
+"kIcePen" = "Ice Cream Pen";
 "kQuill" = "Quill Pen";
 "kWaterPen" = "Mike Pen";
 
@@ -680,10 +680,10 @@
 "kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
 "kRemoveAdDescription" = "Buy it and remove all the advertisements!";
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
-"kBrushPenDescription" = "Just look cool...";
-"kIcePenDescription" = "Just look cool...";
-"kQuillDescription" = "Just look cool..."; 
-"kWaterPenDescription" = "Just look cool...";
+"kBrushPenDescription" = "Mao pen from ancient China...";
+"kIcePenDescription" = "Ice cream pen to draw sweetly...";
+"kQuillDescription" = "Quill pen to draw much faster..."; 
+"kWaterPenDescription" = "Mike pen from United Kingdom...";
 
 
 "kPickToolTitle" = "Use Item";
@@ -703,4 +703,34 @@
 "kSendAFlower" = "Send a flower to painter!";
 "kThrowATomato" = "Throw a tomato to painter!";
 
-"kShareAwardCoinTips" = "Share you draws to SNS and get %d reward coins!";
+"kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
+
+"kQueryingDrawer" = "Querying painter info";
+
+"kGhostGame" = "GhostGame";
+"kGhostGameDescription" = "...";
+"kShuriken" = "Shuriken";
+"kShurikenDescription" = "shiu~shiu~shiu~";
+"kCountBean" = "Count Bean";
+"kCountBeanDescription" = "";
+"kCrazyFinger" = "Crazy Finger";
+"kCrazyFingerDescription" = "";
+"kGroupBuy" = "Groupbuy";
+"kGroupBuyDescription" = "";
+
+"kRecommendApps" = "App Recommend";
+"kRecommend" = "More";
+
+"kChangeBackgroundTitle" = "Change Background";
+"kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
+
+"kBuySuccess" = "Buy item successfully!";
+
+"kLoadingComments" = "Loading comments...";
+
+"kNotEnoughCoin" = "You don't have enough coin";
+
+
+"kParsingData" = "Parsing data...";
+
+

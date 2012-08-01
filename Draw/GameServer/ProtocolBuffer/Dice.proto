@@ -1,0 +1,31 @@
+
+import "GameBasic.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "DiceProtos";
+
+message Dice {
+  optional int32 diceId = 1;
+  required int32 dice = 2;           
+}
+
+message UserDice
+{
+  required int32 userId = 1;
+  repeated Dice dices = 2;
+}
+
+message UserResult {
+  required string userId = 1;
+  required bool win = 2;                    // 结果：false输，true赢
+  required int32 gainCoins = 5;             // 获得的金币
+}
+
+message DiceGameResult {
+  required UserResult openDiceUserResult = 1;
+  required UserResult callDiceUserResult = 2;  
+  optional int32 openType = 5[default=0];           // 开0，抢开1
+}
+

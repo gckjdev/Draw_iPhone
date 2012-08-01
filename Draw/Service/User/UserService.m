@@ -817,7 +817,8 @@ static UserService* _defaultUserService;
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
     NSString* userId = [[UserManager defaultManager] userId];
-
+    if ([userId length] == 0)
+        return;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];
@@ -865,6 +866,7 @@ static UserService* _defaultUserService;
             NSString* sinaNick = nil;
             NSString* qqNick = nil;
             NSString* facebookId = nil;
+            NSString* qqId = nil;
 
             if (output.resultCode == ERROR_SUCCESS) {
                 userNickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
@@ -875,9 +877,10 @@ static UserService* _defaultUserService;
                 sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
                 qqNick = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
                 facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID];
+                qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
 
             }            
-            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:FacebookId:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(didGetUserNickName:UserAvatar:UserGender:UserLocation:UserLevel:SinaNick:QQNick:qqId:FacebookId:)]) {
                 [delegate didGetUserNickName:userNickName
                                   UserAvatar:userAvatar
                                   UserGender:userGender
@@ -885,6 +888,7 @@ static UserService* _defaultUserService;
                                    UserLevel:userLevel 
                                     SinaNick:sinaNick 
                                       QQNick:qqNick 
+                                        qqId:qqId
                                   FacebookId:facebookId];
             }
         });
