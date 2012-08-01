@@ -476,10 +476,10 @@
 
 - (IBAction)clickDrawImage:(id)sender {
     PPDebug(@"clicking draw image");
-    [self showActivityWithText:NSLS(@"kParsingData")];
     if (self.drawView == nil) {
         [self updateDrawView:self.feed];
     }
+    [self showActivityWithText:NSLS(@"kParsingData")];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [self parseDrawData:self.feed];
