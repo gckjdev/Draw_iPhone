@@ -730,3 +730,7 @@
 
 "kNotEnoughCoin" = "You don't have enough coin";
 
+
+"kParsingData" = "Parsing data...";
+
+

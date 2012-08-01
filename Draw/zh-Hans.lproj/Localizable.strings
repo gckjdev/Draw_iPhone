@@ -730,3 +730,5 @@
 "kLoadingComments" = "加载评论中...";
 "kNotEnoughCoin" = "金币不足";
 
+
+"kParsingData" = "解析数据中...";
