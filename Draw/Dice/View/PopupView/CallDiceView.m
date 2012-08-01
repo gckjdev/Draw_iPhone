@@ -10,6 +10,7 @@
 #import "DiceView.h"
 #import "LocaleUtils.h"
 #import "UIViewUtils.h"
+#import "FontLabel.h"
 
 #define DICE_VIEW_TAG 101
 #define COUNT_LABEL_TAG 102
@@ -33,14 +34,14 @@
         diceView.tag = DICE_VIEW_TAG;
         diceView.userInteractionEnabled = NO;
         
-        
-        UILabel *countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, CALL_DICE_VIEW_HEIGHT)] autorelease];
+        FontLabel *countLabel = [[FontLabel alloc] initWithFrame:CGRectMake(0, 0, 35, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:27];
+//        FontLabel *countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, CALL_DICE_VIEW_HEIGHT)] autorelease];
         countLabel.tag = COUNT_LABEL_TAG;
         countLabel.backgroundColor = [UIColor clearColor];
         countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
-        countLabel.font = [UIFont systemFontOfSize:27];
         
-        UILabel *symbolLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 0, 12, CALL_DICE_VIEW_HEIGHT)] autorelease];
+        FontLabel *symbolLabel = [[FontLabel alloc] initWithFrame:CGRectMake(20, 0, 25, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20];
+//        FontLabel *symbolLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 0, 12, CALL_DICE_VIEW_HEIGHT)] autorelease];
         symbolLabel.backgroundColor = [UIColor clearColor];
         symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
         
