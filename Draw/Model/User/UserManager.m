@@ -781,7 +781,11 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
     [builder setUserId:[self userId]];
     [builder setNickName:[self nickName]];    
-    
+    [builder setAvatar:[self avatarURL]];
+
+    [builder setLocation:[self location]];
+    [builder setGender:[self.gender isEqualToString:@"m"]];
+    [builder setFacetimeId:[self facetimeId]];
     // TODO add other parameters
     
     return [builder build];

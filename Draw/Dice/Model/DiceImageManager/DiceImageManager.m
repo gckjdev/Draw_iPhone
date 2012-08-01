@@ -78,9 +78,16 @@ static DiceImageManager *_defaultManager = nil;
     return image;
 }
 
-- (UIImage *)toolBackground
+- (UIImage *)toolBackgroundImage
 {
     return [UIImage strectchableImageName:@"tools_bg.png" leftCapWidth:14 topCapHeight:14];    
 }
+
+- (UIImage *)diceCountSelectedBtnBgImage
+{
+    return [UIImage imageNamed:@"bell_amount@2x.png"];
+}
+
+
 
 @end
