@@ -31,7 +31,7 @@ static FeedService *_staticFeedService = nil;
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 {
     
     NSString *userId = [[UserManager defaultManager] userId];
@@ -50,6 +50,8 @@ static FeedService *_staticFeedService = nil;
         NSMutableArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
@@ -76,7 +78,7 @@ static FeedService *_staticFeedService = nil;
 - (void)getUserFeedList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit 
-               delegate:(id<FeedServiceDelegate>)delegate
+               delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
     dispatch_async(workingQueue, ^{
         
@@ -90,6 +92,8 @@ static FeedService *_staticFeedService = nil;
         NSMutableArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
@@ -102,7 +106,7 @@ static FeedService *_staticFeedService = nil;
                 }
             }
         }
-        
+        PPDebug(@"<FeedService> parse data finish, start display the views.");        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:resultCode:)]) {
                 [delegate didGetFeedList:list targetUser:userId resultCode:resultCode];

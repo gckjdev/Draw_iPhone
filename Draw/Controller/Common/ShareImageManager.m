@@ -10,6 +10,8 @@
 #import "UIImageUtil.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
+#import "PPDebug.h"
+#import "FileUtil.h"
 
 @implementation ShareImageManager
 
@@ -481,6 +483,87 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"draw_share.png"];
 }
+
+
+#pragma mark - save and get temp image.
+
+
+#define TEMP_FEED_IMAGE_DIR @"feed_image"
+//#define TEMP_IMAGE_PREFIX @"feed_data"
+
+//#define TEMP_IMAGE_PREFIX @"tmp_image"
+#define TEMP_IMAGE_SUFFIX @".png"
+
+- (NSString *)constructImagePath:(NSString *)imageName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if (!paths || [paths count] == 0) {
+        NSLog(@"Document directory not found!");
+        return nil;
+    }
+    NSString *imgName = [NSString stringWithFormat:@"%@%@", imageName, TEMP_IMAGE_SUFFIX];
+    NSString *dir = [paths objectAtIndex:0];
+    
+    dir = [dir stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];
+    BOOL flag = [FileUtil createDir:dir];
+    if (flag == NO) {
+        PPDebug(@"<ShareImageManager> create dir fail. dir = %@",dir);
+    }
+    NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
+    NSLog(@"construct path = %@",uniquePath);
+    return uniquePath;
+}
+
+
+- (void)saveImage:(UIImage *)image 
+    withImageName:(NSString *)imageName 
+             asyn:(BOOL)asyn
+{
+    if (image == nil || [imageName length] == 0) {
+        return;
+    }
+    
+    
+    
+    if (asyn) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (queue == NULL){
+            return;
+        }
+        dispatch_async(queue, ^{
+            NSString *uniquePath = [self constructImagePath:imageName];
+            if (uniquePath == nil) {
+                return;
+            }
+            NSData* imageData = UIImagePNGRepresentation(image);
+            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+            PPDebug(@"<ShareImageManager> asyn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+        });        
+    }else{
+        NSString *uniquePath = [self constructImagePath:imageName];
+        if (uniquePath == nil) {
+            return;
+        }
+        NSData* imageData = UIImagePNGRepresentation(image);
+        BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+        PPDebug(@"<ShareImageManager> syn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);        
+    }
+}
+- (UIImage *)getImageWithName:(NSString *)imageName
+{
+    PPDebug(@"<ShareImageManager> get image, image name = %@", imageName);
+    if ([imageName length] == 0) {
+        return nil;
+    }
+    NSString *uniquePath = [self constructImagePath:imageName];
+    if (uniquePath == nil) {
+        return nil;
+    }
+    UIImage *image = [UIImage imageWithContentsOfFile:uniquePath];
+    return image;
+}
+
 
 @end
 

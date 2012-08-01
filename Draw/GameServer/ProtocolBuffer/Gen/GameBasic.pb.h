@@ -371,7 +371,7 @@
 - (NSArray*) usersAddedList;
 - (PBGameUser*) usersAddedAtIndex:(int32_t) index;
 - (NSArray*) userIdsDeletedList;
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index;
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index;
 
 + (PBGameSessionChanged*) defaultInstance;
 - (PBGameSessionChanged*) defaultInstance;
@@ -430,9 +430,9 @@
 - (PBGameSessionChanged_Builder*) clearUsersAddedList;
 
 - (NSArray*) userIdsDeletedList;
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index;
-- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(int32_t) value;
-- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(int32_t) value;
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index;
+- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(NSString*) value;
+- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(NSString*) value;
 - (PBGameSessionChanged_Builder*) addAllUserIdsDeleted:(NSArray*) values;
 - (PBGameSessionChanged_Builder*) clearUserIdsDeletedList;
 @end

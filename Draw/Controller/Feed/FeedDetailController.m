@@ -531,7 +531,7 @@
         }
         NSInteger count = [feedList count];
         _startIndex += count;
-        self.noMoreData = (count < COMMENT_COUNT);        
+        self.noMoreData = (count < COMMENT_COUNT * 0.8);        
     }else{
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }

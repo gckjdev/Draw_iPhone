@@ -1468,9 +1468,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 - (NSArray*) userIdsDeletedList {
   return mutableUserIdsDeletedList;
 }
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index {
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index {
   id value = [mutableUserIdsDeletedList objectAtIndex:index];
-  return [value intValue];
+  return value;
 }
 - (BOOL) isInitialized {
   for (PBGameUser* element in self.usersAddedList) {
@@ -1493,8 +1493,8 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   for (PBGameUser* element in self.usersAddedList) {
     [output writeMessage:5 value:element];
   }
-  for (NSNumber* value in self.mutableUserIdsDeletedList) {
-    [output writeInt32:6 value:[value intValue]];
+  for (NSString* element in self.mutableUserIdsDeletedList) {
+    [output writeString:6 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1519,8 +1519,8 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   }
   {
     int32_t dataSize = 0;
-    for (NSNumber* value in self.mutableUserIdsDeletedList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
+    for (NSString* element in self.mutableUserIdsDeletedList) {
+      dataSize += computeStringSizeNoTag(element);
     }
     size += dataSize;
     size += 1 * self.mutableUserIdsDeletedList.count;
@@ -1660,8 +1660,8 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
         [self addUsersAdded:[subBuilder buildPartial]];
         break;
       }
-      case 48: {
-        [self addUserIdsDeleted:[input readInt32]];
+      case 50: {
+        [self addUserIdsDeleted:[input readString]];
         break;
       }
     }
@@ -1750,18 +1750,18 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   }
   return result.mutableUserIdsDeletedList;
 }
-- (int32_t) userIdsDeletedAtIndex:(int32_t) index {
+- (NSString*) userIdsDeletedAtIndex:(int32_t) index {
   return [result userIdsDeletedAtIndex:index];
 }
-- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutableUserIdsDeletedList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+- (PBGameSessionChanged_Builder*) replaceUserIdsDeletedAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableUserIdsDeletedList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(int32_t) value {
+- (PBGameSessionChanged_Builder*) addUserIdsDeleted:(NSString*) value {
   if (result.mutableUserIdsDeletedList == nil) {
     result.mutableUserIdsDeletedList = [NSMutableArray array];
   }
-  [result.mutableUserIdsDeletedList addObject:[NSNumber numberWithInt:value]];
+  [result.mutableUserIdsDeletedList addObject:value];
   return self;
 }
 - (PBGameSessionChanged_Builder*) addAllUserIdsDeleted:(NSArray*) values {

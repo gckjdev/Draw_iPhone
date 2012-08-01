@@ -15,6 +15,8 @@
 #import "DeviceDetection.h"
 #import "ShareImageManager.h"
 
+#define PROGRESS_UPDATE_TIME    0.01
+
 @implementation DiceAvatarView
 @synthesize score = _score;
 @synthesize userId = _userId;
@@ -28,6 +30,7 @@
     [_userId release];
     [progressView release];
     [bgView release];
+    [_timer release];
     [super dealloc];
 }
 
@@ -45,9 +48,18 @@
 {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-    CGFloat wEdge = -5;//width / EDGE_WIDTH_TIMES;
-    CGFloat hEdge = -5;//height / EDGE_HEIGHT_TIMES;
-    return CGRectMake(wEdge, hEdge, width - 2 * wEdge+1, height - 2 * hEdge);
+    CGFloat wEdge = -progressView.progressBarWidth;//width / EDGE_WIDTH_TIMES;
+    CGFloat hEdge = -progressView.progressBarWidth;//height / EDGE_HEIGHT_TIMES;
+    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 2 * hEdge);
+}
+
+- (CGRect)calSqureAvatarFrame
+{
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
+    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
+    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
+    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -55,21 +67,21 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+        bgView = [[UIImageView alloc] initWithFrame:[self calSqureAvatarFrame]];
         [self addSubview:bgView];
         
         float width = MIN(self.bounds.size.width, self.bounds.size.height);
         imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
-        [self addSubview:imageView];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
         [imageView setImage:[[ShareImageManager defaultManager] 
                              maleDefaultAvatarImage]];
+        [self addSubview:imageView];
         
-        progressView = [[DACircularProgressView alloc] initWithFrame:[self calAvatarFrame]];
-//        progressView.progress = 0.6f;
+        progressView = [[DACircularProgressView alloc] init];
         progressView.progressBarWidth = width*0.05;
+        [progressView setFrame:[self calAvatarFrame]];
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
@@ -97,47 +109,55 @@
 
 - (void)setProgressHidden:(BOOL)hidden
 {
+    [UIView beginAnimations:@"" context:nil];
+    [UIView setAnimationDuration:1];
     if (hidden) {
         progressView.hidden = YES;
     } else {
         progressView.hidden = NO;
     }
+    [UIView commitAnimations];
 }
 
 - (void)setAvatarStyle:(AvatarViewStyle)style
 {
     if (style == Square) {
-        //
+        progressView.hidden = YES;
+        imageView.layer.cornerRadius = 0;
+        _currentStyle = Square;
+        [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     } else {
-        //
+        progressView.hidden = NO;
+        imageView.layer.cornerRadius = imageView.frame.size.width/2;
+        _currentStyle = Round;
+        [bgView setImage:nil];
+    }
+    imageView.layer.masksToBounds = YES;
+}
+
+- (void)startReciprocol:(CFTimeInterval)reciprocolTime
+{
+    _currentProgress = 1.0f;
+    _reciprocolTime = reciprocolTime;
+    if (_timer != nil){
+        if ([_timer isValid]){
+            [_timer invalidate];
+        }
+        _timer = nil;
+    }
+    _timer = [NSTimer scheduledTimerWithTimeInterval:(reciprocolTime*PROGRESS_UPDATE_TIME) target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)stopReciprocol
+{
+    [_timer invalidate];
+    _timer = nil;
+    [self setProgressHidden:YES];
+    if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
+        [_delegate reciprocalEnd:self];
     }
 }
 
-//- (id)initWithUrlString:(NSString *)urlString 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
-//{
-//    
-//    self = [super init];
-//    
-//    if (self) {
-//        self.backgroundColor = [UIColor clearColor];
-//        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-//        [self addSubview:bgView];
-//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-//        [self addSubview:imageView];
-//        [self setAvatarUrl:urlString gender:gender];
-//        [self addTapGuesture];
-//        
-////        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
-////        [markButton retain];
-////        [self addSubview:markButton];
-////        markButton.userInteractionEnabled = NO;
-//        [self setAvatarSelected:NO level:level];
-//    }
-//    
-//    return self;
-//}
 //
 //
 //- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
@@ -159,12 +179,12 @@
 //}
 
 
-- (void)setUrlString:(NSString *)urlString
-{
-    [imageView clear];
-    [imageView setUrl:[NSURL URLWithString:urlString]];
-    [GlobalGetImageCache() manage:imageView];
-}
+//- (void)setUrlString:(NSString *)urlString
+//{
+//    [imageView clear];
+//    [imageView setUrl:[NSURL URLWithString:urlString]];
+//    [GlobalGetImageCache() manage:imageView];
+//}
 
 //
 //- (void)setScore:(NSInteger)score
@@ -189,20 +209,34 @@
     [GlobalGetImageCache() manage:imageView];
 }
 
+- (void)updateTimer:(id)sender
+{
+    _currentProgress -= PROGRESS_UPDATE_TIME;
+    if (_currentProgress <= 0) {
+        [self stopReciprocol];
+        return;
+    }
+    [self setProgress:_currentProgress];
+    
+}
+
 - (void)clickOnAvatar
 {
     //    PPDebug(@"clickOnAvatar");
+    [self startReciprocol:10];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:_userId];
     }
+    
+    
 }
-- (void)setAvatarFrame:(CGRect)frame
-{
-    self.frame = frame;
-    bgView.frame = [self calAvatarFrame];
-    imageView.frame = self.bounds;
-    //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
+//- (void)setAvatarFrame:(CGRect)frame
+//{
+//    self.frame = frame;
+//    bgView.frame = [self calAvatarFrame];
+//    imageView.frame = self.bounds;
+//    //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
+//}
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
 {
     [imageView clear];
@@ -218,6 +252,18 @@
         [GlobalGetImageCache() manage:imageView];
     }
 }
+
+- (void)setUrlString:(NSString *)urlString 
+              userId:(NSString*)userId
+              gender:(BOOL)gender 
+               level:(int)level 
+          drunkPoint:(int)drunkPint 
+              wealth:(int)wealth
+{
+    [self setAvatarUrl:urlString gender:gender];
+    [self setUserId:userId];
+}
+
 //- (void)setAvatarSelected:(BOOL)selected
 //{
 //    if (selected) {

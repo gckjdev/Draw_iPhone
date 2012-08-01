@@ -228,8 +228,40 @@
     [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
 }
 
+- (void)registerDiceGameNotification
+{
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_JOIN_GAME_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE");         
+     }];
+
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ROOM
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<HomeController> NOTIFICATION_ROOM");         
+     }];
+    
+}
+
+- (void)unregisterDiceGameNotification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NOTIFICATION_JOIN_GAME_RESPONSE 
+                                                  object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NOTIFICATION_ROOM
+                                                  object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {    
+    [self registerDiceGameNotification];
     
     [[UserService defaultService] getStatistic:self];   
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -255,7 +287,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-
+    [self unregisterDiceGameNotification];
+    
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
