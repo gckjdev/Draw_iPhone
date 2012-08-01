@@ -839,7 +839,7 @@
 //    [self.navigationController pushViewController:controller animated:YES];
     
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
 }

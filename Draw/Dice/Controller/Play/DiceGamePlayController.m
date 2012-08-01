@@ -61,8 +61,8 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds] autorelease];
-    [view setStart:1 end:9];
+    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    [view setStart:1 end:12];
     [diceCountSelectedHolderView addSubview:view];
 }
 
@@ -96,6 +96,7 @@
 
 
 - (IBAction)clickRunAwayButton:(id)sender {
+    [[DiceGameService defaultService] quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
