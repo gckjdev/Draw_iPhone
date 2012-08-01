@@ -1,0 +1,47 @@
+//
+//  FontButton.m
+//  Draw
+//
+//  Created by 小涛 王 on 12-8-1.
+//  Copyright (c) 2012年 甘橙软件. All rights reserved.
+//
+
+#import "FontButton.h"
+
+@implementation FontButton
+
+@synthesize fontLable = _fontLable;
+
+- (void)dealloc {
+    [_fontLable release];
+    [super dealloc];
+}
+
+- (id)initWithFrame:(CGRect)frame 
+           fontName:(NSString *)fontName 
+          pointSize:(CGFloat)pointSize
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.fontLable = [[[FontLabel alloc] initWithFrame:self.bounds
+                                                  fontName:fontName
+                                                 pointSize:pointSize] autorelease];;
+        _fontLable.backgroundColor = [UIColor clearColor];
+        _fontLable.textAlignment = UITextAlignmentCenter;
+        [self addSubview:_fontLable];
+    }
+    
+    return self;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

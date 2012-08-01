@@ -119,12 +119,17 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
-		A4AC51B115C7BFA50041DC86 /* dice_font.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51B015C7BFA50041DC86 /* dice_font.ttc */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
 		A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */; };
 		A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B815C7BFF10041DC86 /* FontManager.m */; };
 		A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */; };
 		A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BD15C7BFF10041DC86 /* ZFont.m */; };
+		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
+		A4AC51F315C911360041DC86 /* diceFont in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51EF15C911360041DC86 /* diceFont */; };
+		A4AC51F415C911360041DC86 /* diceFont_bak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F015C911360041DC86 /* diceFont_bak.ttf */; };
+		A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F115C911360041DC86 /* huakanwawa.ttc */; };
+		A4AC51F615C911360041DC86 /* newfan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F215C911360041DC86 /* newfan.ttf */; };
+		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
@@ -1112,7 +1117,6 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
-		A4AC51B015C7BFA50041DC86 /* dice_font.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_font.ttc; sourceTree = "<group>"; };
 		A4AC51B315C7BFF10041DC86 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
 		A4AC51B415C7BFF10041DC86 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
 		A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
@@ -1124,6 +1128,14 @@
 		A4AC51BB15C7BFF10041DC86 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
 		A4AC51BC15C7BFF10041DC86 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
 		A4AC51BD15C7BFF10041DC86 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
+		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
+		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
+		A4AC51EF15C911360041DC86 /* diceFont */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont; sourceTree = "<group>"; };
+		A4AC51F015C911360041DC86 /* diceFont_bak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont_bak.ttf; sourceTree = "<group>"; };
+		A4AC51F115C911360041DC86 /* huakanwawa.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = huakanwawa.ttc; sourceTree = "<group>"; };
+		A4AC51F215C911360041DC86 /* newfan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newfan.ttf; sourceTree = "<group>"; };
+		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
+		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
@@ -2484,6 +2496,8 @@
 		A44DDF3B15C64482005609F6 /* DiceSelectedView */ = {
 			isa = PBXGroup;
 			children = (
+				A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */,
+				A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */,
 			);
 			path = DiceSelectedView;
 			sourceTree = "<group>";
@@ -2589,6 +2603,8 @@
 		A45E8CD615C77F960089E240 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
+				A4AC51F715C911750041DC86 /* FontButton.h */,
+				A4AC51F815C911750041DC86 /* FontButton.m */,
 				A45E8CD715C77F960089E240 /* DiceView.h */,
 				A45E8CD815C77F960089E240 /* DiceView.m */,
 			);
@@ -2616,7 +2632,10 @@
 		A4AC51AF15C7BFA50041DC86 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				A4AC51B015C7BFA50041DC86 /* dice_font.ttc */,
+				A4AC51EF15C911360041DC86 /* diceFont */,
+				A4AC51F015C911360041DC86 /* diceFont_bak.ttf */,
+				A4AC51F115C911360041DC86 /* huakanwawa.ttc */,
+				A4AC51F215C911360041DC86 /* newfan.ttf */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -6228,7 +6247,10 @@
 				CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */,
 				A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */,
 				A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */,
-				A4AC51B115C7BFA50041DC86 /* dice_font.ttc in Resources */,
+				A4AC51F315C911360041DC86 /* diceFont in Resources */,
+				A4AC51F415C911360041DC86 /* diceFont_bak.ttf in Resources */,
+				A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */,
+				A4AC51F615C911360041DC86 /* newfan.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6669,6 +6691,8 @@
 				A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */,
 				CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */,
 				CA963A5915C7C5D4007ACFB9 /* DiceGameSession.m in Sources */,
+				A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */,
+				A4AC51F915C911750041DC86 /* FontButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
