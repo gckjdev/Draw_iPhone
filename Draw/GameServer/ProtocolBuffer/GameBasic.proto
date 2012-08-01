@@ -22,6 +22,10 @@ message PBGameUser {
      optional      string location = 6;
      optional int32 userLevel = 7;                 // 用户等级
      optional string facetimeId = 8;
+     
+     
+  optional bool isPlaying = 20 [default=true];                 // 用户是否参与当前游戏，默认为true
+  optional bool isTakenOver = 21 [default=false];               // 用户是否被系统接管，默认为false
 }
 
 message PBGameSession {
@@ -45,6 +49,7 @@ message PBGameSessionChanged {
   
   repeated PBGameUser usersAdded = 5;
   repeated string userIdsDeleted = 6;
+  repeated PBGameUser usersUpdated = 7;
 }
 
 // internal usage, to store draw data

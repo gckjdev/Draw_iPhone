@@ -12,6 +12,10 @@
 #import "DiceSelectedView.h"
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
+#import "DiceAvatarView.h"
+#import "UserManager.h"
+
+#define AVATAR_TAG_OFFSET   1000
 
 @interface DiceGamePlayController ()
 
@@ -100,6 +104,37 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (int)getSelfIndexFromUserList:(NSArray*)userList
+{
+    if (userList.count > 0) {
+        for (int i = 0; i < userList.count; i ++) {
+            PBGameUser* user = [userList objectAtIndex:i];
+            if ([user.userId isEqualToString:[UserManager defaultManager].userId]) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+- (void)updateAllPlayersAvatar
+{
+    NSArray* userList = [[DiceGameService defaultService].session userList];
+    int index = [self getSelfIndexFromUserList:userList];
+    if (index >= 0) {
+        for (int i = 1; i <=userList.count; i ++) {
+            
+            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+            int userIndex = (index+i-1)%userList.count;
+            PBGameUser* user = [userList objectAtIndex:userIndex];
+            [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
+            
+        }
+    }
+    
+}
+
+
 
 #pragma test server
 - (void)registerDiceGameNotification
@@ -117,7 +152,8 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");         
+         PPDebug(@"<HomeController> NOTIFICATION_ROOM");   
+         [self updateAllPlayersAvatar];
      }];
     
 }
@@ -134,14 +170,12 @@
 }
 
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self registerDiceGameNotification];
-    NSArray* array = [[DiceGameService defaultService].session userList];
-    for (PBGameUser* user in array) {
-        PPDebug(@"%@",user.nickName);
-    }
+    [self registerDiceGameNotification];    
+    [self updateAllPlayersAvatar];
 }
 
 @end

@@ -370,6 +370,8 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSString* location;
 @property int32_t userLevel;
 @property (retain) NSString* facetimeId;
+@property BOOL isPlaying;
+@property BOOL isTakenOver;
 @end
 
 @implementation PBGameUser
@@ -429,6 +431,30 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasFacetimeId_ = !!value;
 }
 @synthesize facetimeId;
+- (BOOL) hasIsPlaying {
+  return !!hasIsPlaying_;
+}
+- (void) setHasIsPlaying:(BOOL) value {
+  hasIsPlaying_ = !!value;
+}
+- (BOOL) isPlaying {
+  return !!isPlaying_;
+}
+- (void) setIsPlaying:(BOOL) value {
+  isPlaying_ = !!value;
+}
+- (BOOL) hasIsTakenOver {
+  return !!hasIsTakenOver_;
+}
+- (void) setHasIsTakenOver:(BOOL) value {
+  hasIsTakenOver_ = !!value;
+}
+- (BOOL) isTakenOver {
+  return !!isTakenOver_;
+}
+- (void) setIsTakenOver:(BOOL) value {
+  isTakenOver_ = !!value;
+}
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -447,6 +473,8 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.location = @"";
     self.userLevel = 0;
     self.facetimeId = @"";
+    self.isPlaying = YES;
+    self.isTakenOver = NO;
   }
   return self;
 }
@@ -508,6 +536,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFacetimeId) {
     [output writeString:8 value:self.facetimeId];
   }
+  if (self.hasIsPlaying) {
+    [output writeBool:20 value:self.isPlaying];
+  }
+  if (self.hasIsTakenOver) {
+    [output writeBool:21 value:self.isTakenOver];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -540,6 +574,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFacetimeId) {
     size += computeStringSize(8, self.facetimeId);
+  }
+  if (self.hasIsPlaying) {
+    size += computeBoolSize(20, self.isPlaying);
+  }
+  if (self.hasIsTakenOver) {
+    size += computeBoolSize(21, self.isTakenOver);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -643,6 +683,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFacetimeId) {
     [self setFacetimeId:other.facetimeId];
   }
+  if (other.hasIsPlaying) {
+    [self setIsPlaying:other.isPlaying];
+  }
+  if (other.hasIsTakenOver) {
+    [self setIsTakenOver:other.isTakenOver];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -696,6 +742,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 66: {
         [self setFacetimeId:[input readString]];
+        break;
+      }
+      case 160: {
+        [self setIsPlaying:[input readBool]];
+        break;
+      }
+      case 168: {
+        [self setIsTakenOver:[input readBool]];
         break;
       }
     }
@@ -840,6 +894,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFacetimeId {
   result.hasFacetimeId = NO;
   result.facetimeId = @"";
+  return self;
+}
+- (BOOL) hasIsPlaying {
+  return result.hasIsPlaying;
+}
+- (BOOL) isPlaying {
+  return result.isPlaying;
+}
+- (PBGameUser_Builder*) setIsPlaying:(BOOL) value {
+  result.hasIsPlaying = YES;
+  result.isPlaying = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearIsPlaying {
+  result.hasIsPlaying = NO;
+  result.isPlaying = YES;
+  return self;
+}
+- (BOOL) hasIsTakenOver {
+  return result.hasIsTakenOver;
+}
+- (BOOL) isTakenOver {
+  return result.isTakenOver;
+}
+- (PBGameUser_Builder*) setIsTakenOver:(BOOL) value {
+  result.hasIsTakenOver = YES;
+  result.isTakenOver = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearIsTakenOver {
+  result.hasIsTakenOver = NO;
+  result.isTakenOver = NO;
   return self;
 }
 @end
@@ -1405,6 +1491,7 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSMutableArray* mutableUsersAddedList;
 @property (retain) NSMutableArray* mutableUserIdsDeletedList;
+@property (retain) NSMutableArray* mutableUsersUpdatedList;
 @end
 
 @implementation PBGameSessionChanged
@@ -1432,10 +1519,12 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 @synthesize currentPlayUserId;
 @synthesize mutableUsersAddedList;
 @synthesize mutableUserIdsDeletedList;
+@synthesize mutableUsersUpdatedList;
 - (void) dealloc {
   self.currentPlayUserId = nil;
   self.mutableUsersAddedList = nil;
   self.mutableUserIdsDeletedList = nil;
+  self.mutableUsersUpdatedList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1472,8 +1561,20 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   id value = [mutableUserIdsDeletedList objectAtIndex:index];
   return value;
 }
+- (NSArray*) usersUpdatedList {
+  return mutableUsersUpdatedList;
+}
+- (PBGameUser*) usersUpdatedAtIndex:(int32_t) index {
+  id value = [mutableUsersUpdatedList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBGameUser* element in self.usersAddedList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGameUser* element in self.usersUpdatedList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -1495,6 +1596,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   }
   for (NSString* element in self.mutableUserIdsDeletedList) {
     [output writeString:6 value:element];
+  }
+  for (PBGameUser* element in self.usersUpdatedList) {
+    [output writeMessage:7 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1524,6 +1628,9 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
     }
     size += dataSize;
     size += 1 * self.mutableUserIdsDeletedList.count;
+  }
+  for (PBGameUser* element in self.usersUpdatedList) {
+    size += computeMessageSize(7, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1621,6 +1728,12 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
     }
     [result.mutableUserIdsDeletedList addObjectsFromArray:other.mutableUserIdsDeletedList];
   }
+  if (other.mutableUsersUpdatedList.count > 0) {
+    if (result.mutableUsersUpdatedList == nil) {
+      result.mutableUsersUpdatedList = [NSMutableArray array];
+    }
+    [result.mutableUsersUpdatedList addObjectsFromArray:other.mutableUsersUpdatedList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1662,6 +1775,12 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
       }
       case 50: {
         [self addUserIdsDeleted:[input readString]];
+        break;
+      }
+      case 58: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUsersUpdated:[subBuilder buildPartial]];
         break;
       }
     }
@@ -1773,6 +1892,35 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 }
 - (PBGameSessionChanged_Builder*) clearUserIdsDeletedList {
   result.mutableUserIdsDeletedList = nil;
+  return self;
+}
+- (NSArray*) usersUpdatedList {
+  if (result.mutableUsersUpdatedList == nil) { return [NSArray array]; }
+  return result.mutableUsersUpdatedList;
+}
+- (PBGameUser*) usersUpdatedAtIndex:(int32_t) index {
+  return [result usersUpdatedAtIndex:index];
+}
+- (PBGameSessionChanged_Builder*) replaceUsersUpdatedAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableUsersUpdatedList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameSessionChanged_Builder*) addAllUsersUpdated:(NSArray*) values {
+  if (result.mutableUsersUpdatedList == nil) {
+    result.mutableUsersUpdatedList = [NSMutableArray array];
+  }
+  [result.mutableUsersUpdatedList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameSessionChanged_Builder*) clearUsersUpdatedList {
+  result.mutableUsersUpdatedList = nil;
+  return self;
+}
+- (PBGameSessionChanged_Builder*) addUsersUpdated:(PBGameUser*) value {
+  if (result.mutableUsersUpdatedList == nil) {
+    result.mutableUsersUpdatedList = [NSMutableArray array];
+  }
+  [result.mutableUsersUpdatedList addObject:value];
   return self;
 }
 @end
