@@ -157,31 +157,7 @@
         [_delegate reciprocalEnd:self];
     }
 }
-//- (id)initWithUrlString:(NSString *)urlString 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
-//{
-//    
-//    self = [super init];
-//    
-//    if (self) {
-//        self.backgroundColor = [UIColor clearColor];
-//        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-//        [self addSubview:bgView];
-//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-//        [self addSubview:imageView];
-//        [self setAvatarUrl:urlString gender:gender];
-//        [self addTapGuesture];
-//        
-////        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
-////        [markButton retain];
-////        [self addSubview:markButton];
-////        markButton.userInteractionEnabled = NO;
-//        [self setAvatarSelected:NO level:level];
-//    }
-//    
-//    return self;
-//}
+
 //
 //
 //- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
@@ -203,12 +179,12 @@
 //}
 
 
-- (void)setUrlString:(NSString *)urlString
-{
-    [imageView clear];
-    [imageView setUrl:[NSURL URLWithString:urlString]];
-    [GlobalGetImageCache() manage:imageView];
-}
+//- (void)setUrlString:(NSString *)urlString
+//{
+//    [imageView clear];
+//    [imageView setUrl:[NSURL URLWithString:urlString]];
+//    [GlobalGetImageCache() manage:imageView];
+//}
 
 //
 //- (void)setScore:(NSInteger)score
@@ -254,13 +230,13 @@
     
     
 }
-- (void)setAvatarFrame:(CGRect)frame
-{
-    self.frame = frame;
-    bgView.frame = [self calAvatarFrame];
-    imageView.frame = self.bounds;
-    //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
+//- (void)setAvatarFrame:(CGRect)frame
+//{
+//    self.frame = frame;
+//    bgView.frame = [self calAvatarFrame];
+//    imageView.frame = self.bounds;
+//    //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
+//}
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
 {
     [imageView clear];
@@ -275,6 +251,17 @@
         [imageView setUrl:[NSURL URLWithString:url]];
         [GlobalGetImageCache() manage:imageView];
     }
+}
+
+- (void)setUrlString:(NSString *)urlString 
+              userId:(NSString*)userId
+              gender:(BOOL)gender 
+               level:(int)level 
+          drunkPoint:(int)drunkPint 
+              wealth:(int)wealth
+{
+    [self setAvatarUrl:urlString gender:gender];
+    [self setUserId:userId];
 }
 
 //- (void)setAvatarSelected:(BOOL)selected

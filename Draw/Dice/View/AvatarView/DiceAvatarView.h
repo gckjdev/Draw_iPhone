@@ -38,7 +38,7 @@ typedef enum {
     CFTimeInterval _reciprocolTime;
 }
 
-- (void)setUrlString:(NSString *)urlString;
+//- (void)setUrlString:(NSString *)urlString;
 //- (id)initWithUrlString:(NSString *)urlString 
 //                 gender:(BOOL)gender 
 //                  level:(int)level;
@@ -48,7 +48,7 @@ typedef enum {
 //                  level:(int)level;
 
 - (void)setImage:(UIImage *)image;
-- (void)setAvatarFrame:(CGRect)frame;
+//- (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setProgress:(CGFloat)progress;
 - (void)setProgressHidden:(BOOL)hidden;
@@ -56,6 +56,12 @@ typedef enum {
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 //- (void)setAvatarSelected:(BOOL)selected;
 //- (void)setAvatarSelected:(BOOL)selected level:(int)level;
+- (void)setUrlString:(NSString *)urlString 
+              userId:(NSString*)userId
+              gender:(BOOL)gender 
+               level:(int)level 
+          drunkPoint:(int)drunkPint 
+              wealth:(int)wealth;
 
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
