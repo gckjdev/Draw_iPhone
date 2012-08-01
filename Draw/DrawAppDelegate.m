@@ -42,6 +42,7 @@
 #import "UserStatusService.h"
 #import "FacetimeService.h"
 #import "DiceGameService.h"
+#import "FontManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -83,6 +84,8 @@ NSString* GlobalGetTrafficServerURL()
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
+    
+    [[FontManager sharedManager] loadFont:@"diceFont"];
     
     application.applicationIconBadgeNumber = 0;
     

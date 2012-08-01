@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "FontLabel.h"
+#import "FontButton.h"
 
 @interface DiceGamePlayController : PPViewController
+@property (retain, nonatomic) FontLabel *myLevelLabel;
+@property (retain, nonatomic) FontLabel *myCoinsLabel;
+//@property (retain, nonatomic) UILabel *myLevelLabel;
+//@property (retain, nonatomic) UILabel *myCoinsLabel;
+@property (retain, nonatomic) IBOutlet UIButton *openDiceButton;
 
+@property (retain, nonatomic) FontButton *fontButton;
+@property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
 @end

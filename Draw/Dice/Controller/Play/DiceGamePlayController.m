@@ -9,16 +9,29 @@
 #import "DiceGamePlayController.h"
 #import "DiceImageManager.h"
 #import "DicePopupView.h"
+<<<<<<< HEAD
+#import "DiceSelectedView.h"
+=======
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
+>>>>>>> 75655d515695ee513ceb82e6c356ce0d5bd908d2
 
 @interface DiceGamePlayController ()
 
 @end
 
 @implementation DiceGamePlayController
+@synthesize myLevelLabel;
+@synthesize myCoinsLabel;
+@synthesize openDiceButton;
+@synthesize fontButton;
+@synthesize diceCountSelectedHolderView;
 
 - (void)dealloc {
+    [myLevelLabel release];
+    [myCoinsLabel release];
+    [openDiceButton release];
+    [diceCountSelectedHolderView release];
     [super dealloc];
 }
 
@@ -26,11 +39,47 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.myLevelLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
+    self.myCoinsLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
+    
+    
+    self.fontButton = [[FontButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50) fontName:@"diceFont" pointSize:13];
+    self.fontButton.fontLable.text = @"开";
+    [self.fontButton addTarget:self action:@selector(clickFontButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.fontButton];
+//    self.myLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20)] autorelease];
+//    self.myCoinsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20)] autorelease];
+//    
+//    myLevelLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
+//    myCoinsLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
 
+    myLevelLabel.backgroundColor = [UIColor clearColor];
+    myCoinsLabel.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    myLevelLabel.text = @"LV:21";
+    myCoinsLabel.text = @"开骰";
+    
+    [self.view addSubview:myLevelLabel];
+    [self.view addSubview:myCoinsLabel];
+    
+    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds] autorelease];
+    [view setStart:1 end:9];
+    [diceCountSelectedHolderView addSubview:view];
+}
+
+- (void)clickFontButton
+{
+    PPDebug(@"clickFontButton");
 }
 
 - (void)viewDidUnload
 {
+    [self setMyLevelLabel:nil];
+    [self setMyCoinsLabel:nil];
+    [self setOpenDiceButton:nil];
+    [self setDiceCountSelectedHolderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,6 +97,11 @@
     
 }
 
+<<<<<<< HEAD
+- (IBAction)clickRunAwayButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+=======
 
 
 #pragma test server
@@ -93,4 +147,5 @@
     }
 }
 
+>>>>>>> 75655d515695ee513ceb82e6c356ce0d5bd908d2
 @end

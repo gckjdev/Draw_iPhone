@@ -46,7 +46,7 @@
 - (void)showInButton:(UIButton *)button
 {
     if (_backgroundImageView == nil) {
-        self.backgroundImageView = [[[UIImageView alloc] initWithImage:[[DiceImageManager defaultManager] toolBackground]] autorelease];
+        self.backgroundImageView = [[[UIImageView alloc] initWithImage:[[DiceImageManager defaultManager] toolBackgroundImage]] autorelease];
         [_backgroundImageView setAlpha:0.5];
     }
     [self addSubview:_backgroundImageView];
