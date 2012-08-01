@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "ToolSheetView.h"
 
-@interface DiceGamePlayController : PPViewController
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate>
 
 @end
