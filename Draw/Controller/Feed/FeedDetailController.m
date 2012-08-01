@@ -234,6 +234,13 @@
 
 - (void)updateInfo:(Feed *)feed
 {
+    if (feed.drawData == nil) {
+        if (feed.drawData == nil && feed.pbDraw) {
+            PPDebug(@"<FeedDetailController>init the draw data from the pbDraw,feedId = %@",feed.feedId);
+            feed.drawData = [[Draw alloc] initWithPBDraw:feed.pbDraw];
+            feed.pbDraw = nil;
+        }
+    }
     if ([feed isDrawType]) {
         _opusId = feed.feedId;
         _userNickName = feed.nickName;
@@ -269,7 +276,7 @@
     NSString *title = nil;
     if ([self.feed isMyOpus]) {
         title = [NSString stringWithFormat:NSLS(@"kMyDrawing"),
-                 self.feed.drawData.word.text];        
+                 self.feed.wordText];        
     }else{
         title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),[FeedManager opusCreatorForFeed:self.feed]];
     }
@@ -285,6 +292,7 @@
     [self setSupportRefreshHeader:YES];
     
     [super viewDidLoad];
+    
     [self updateInfo:_feed];
     [self updateTime:_feed];
     [self updateUser:_feed];
@@ -426,13 +434,13 @@
     [[ShareService defaultService] shareWithImage:[_drawView createImage] 
                                        drawUserId:_feed.userId 
                                        isDrawByMe:[_feed isMyOpus] 
-                                         drawWord:_feed.drawData.word.text];    
+                                         drawWord:_feed.wordText];    
     
     [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
                                               userId:_feed.userId 
                                             nickName:_feed.nickName 
                                            isMyPaint:[_feed isMyOpus] 
-                                                word:_feed.drawData.word.text 
+                                                word:_feed.wordText
                                                image:[_drawView createImage] viewController:self];
     
     button.enabled = NO;

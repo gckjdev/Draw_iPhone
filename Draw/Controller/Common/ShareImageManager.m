@@ -489,9 +489,6 @@ static UIImage* _whitePaperImage;
 
 
 #define TEMP_FEED_IMAGE_DIR @"feed_image"
-//#define TEMP_IMAGE_PREFIX @"feed_data"
-
-//#define TEMP_IMAGE_PREFIX @"tmp_image"
 #define TEMP_IMAGE_SUFFIX @".png"
 
 - (NSString *)constructImagePath:(NSString *)imageName
@@ -523,31 +520,24 @@ static UIImage* _whitePaperImage;
     if (image == nil || [imageName length] == 0) {
         return;
     }
-    
-    
-    
-    if (asyn) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (queue == NULL){
-            return;
-        }
-        dispatch_async(queue, ^{
-            NSString *uniquePath = [self constructImagePath:imageName];
-            if (uniquePath == nil) {
-                return;
-            }
-            NSData* imageData = UIImagePNGRepresentation(image);
-            BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-            PPDebug(@"<ShareImageManager> asyn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-        });        
-    }else{
+    void (^handleBlock)()= ^(){
         NSString *uniquePath = [self constructImagePath:imageName];
         if (uniquePath == nil) {
             return;
         }
         NSData* imageData = UIImagePNGRepresentation(image);
         BOOL result=[imageData writeToFile:uniquePath atomically:YES];
-        PPDebug(@"<ShareImageManager> syn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);        
+        PPDebug(@"<ShareImageManager> asyn save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+    };
+    
+    if (asyn) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (queue == NULL){
+            return;
+        }
+        dispatch_async(queue, handleBlock);        
+    }else{
+        handleBlock();
     }
 }
 - (UIImage *)getImageWithName:(NSString *)imageName

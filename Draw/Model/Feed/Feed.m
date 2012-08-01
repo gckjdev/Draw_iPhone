@@ -13,10 +13,15 @@
 #import "Draw.h"
 #import "PPDebug.h"
 #import "UserManager.h"
-
-
+#import "FeedManager.h"
+#import "ShareImageManager.h"
 
 @implementation Feed
+
+@synthesize pbDraw = _pbDraw;
+@synthesize wordText = _wordText;
+@synthesize authorId = _authorId;
+@synthesize authorNick = _authorNick;
 
 @synthesize feedId = _feedId;
 @synthesize userId = _userId;
@@ -69,7 +74,19 @@
     PPRelease(_targetUid);
     PPRelease(_targetNickName);
     PPRelease(_drawImage);
+    PPRelease(_pbDraw);
+    PPRelease(_wordText);
+    PPRelease(_authorNick);
+    PPRelease(_authorId);
     [super dealloc];
+}
+
+- (NSString *)saveKey
+{
+    if ([self.opusId length] != 0) {
+        return self.opusId;
+    }
+    return self.feedId;
 }
 
 
@@ -92,10 +109,22 @@
         self.opusId = [pbFeed opusId];
         self.opusStatus = [pbFeed opusStatus];
         
+        //if has image, show the image, or use the draw data.
         if ([pbFeed hasDrawData]) {
-            self.drawData = [[[Draw alloc] initWithPBDraw:
-                              [pbFeed drawData]] autorelease];
+            self.wordText = [[pbFeed drawData] word];
+            self.authorId = [[pbFeed drawData] userId];
+            self.authorNick = [[pbFeed drawData] nickName];
+            
+            self.drawImage = [[ShareImageManager defaultManager] getImageWithName:[self saveKey]];
+            if (self.drawImage == nil) {
+                self.drawData = [[[Draw alloc] initWithPBDraw:
+                                      [pbFeed drawData]] autorelease];       
+
+            }else{
+                self.pbDraw = [pbFeed drawData];
+            }            
         }
+        
         if (self.feedType == FeedTypeGuess) {
             self.correct = [pbFeed isCorrect];
             self.score = [pbFeed score];
@@ -142,9 +171,6 @@
 
 - (NSString *)author
 {
-    if ([self isDrawType]) {
-        return self.userId;
-    }
-    return self.drawData.userId;
+    return self.authorId;
 }
 @end
