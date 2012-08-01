@@ -191,7 +191,7 @@
         }
         
         [[NSNotificationCenter defaultCenter] 
-         postNotificationName:NOTIFICATION_JOIN_GAME_RESPONSE 
+         postNotificationName:NOTIFICATION_ROOM
          object:nil 
          userInfo:[CommonGameNetworkService messageToUserInfo:message]];        
     });
@@ -247,6 +247,11 @@
 {    
     PPDebug(@"<createSession> NOT IMPLEMENTED YET");
     return nil;
+}
+
+- (void)quitGame
+{
+    [self disconnectServer];
 }
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
