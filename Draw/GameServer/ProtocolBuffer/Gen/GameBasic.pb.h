@@ -112,6 +112,8 @@
 @interface PBGameUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasIsPlaying_:1;
+  BOOL hasIsTakenOver_:1;
   BOOL hasUserLevel_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
@@ -119,6 +121,8 @@
   BOOL hasLocation_:1;
   BOOL hasFacetimeId_:1;
   BOOL gender_:1;
+  BOOL isPlaying_:1;
+  BOOL isTakenOver_:1;
   int32_t userLevel;
   NSString* userId;
   NSString* nickName;
@@ -134,6 +138,8 @@
 - (BOOL) hasLocation;
 - (BOOL) hasUserLevel;
 - (BOOL) hasFacetimeId;
+- (BOOL) hasIsPlaying;
+- (BOOL) hasIsTakenOver;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
@@ -141,6 +147,8 @@
 @property (readonly, retain) NSString* location;
 @property (readonly) int32_t userLevel;
 @property (readonly, retain) NSString* facetimeId;
+- (BOOL) isPlaying;
+- (BOOL) isTakenOver;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 
@@ -219,6 +227,16 @@
 - (NSString*) facetimeId;
 - (PBGameUser_Builder*) setFacetimeId:(NSString*) value;
 - (PBGameUser_Builder*) clearFacetimeId;
+
+- (BOOL) hasIsPlaying;
+- (BOOL) isPlaying;
+- (PBGameUser_Builder*) setIsPlaying:(BOOL) value;
+- (PBGameUser_Builder*) clearIsPlaying;
+
+- (BOOL) hasIsTakenOver;
+- (BOOL) isTakenOver;
+- (PBGameUser_Builder*) setIsTakenOver:(BOOL) value;
+- (PBGameUser_Builder*) clearIsTakenOver;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
@@ -361,6 +379,7 @@
   NSString* currentPlayUserId;
   NSMutableArray* mutableUserIdsDeletedList;
   NSMutableArray* mutableUsersAddedList;
+  NSMutableArray* mutableUsersUpdatedList;
 }
 - (BOOL) hasSessionId;
 - (BOOL) hasStatus;
@@ -372,6 +391,8 @@
 - (PBGameUser*) usersAddedAtIndex:(int32_t) index;
 - (NSArray*) userIdsDeletedList;
 - (NSString*) userIdsDeletedAtIndex:(int32_t) index;
+- (NSArray*) usersUpdatedList;
+- (PBGameUser*) usersUpdatedAtIndex:(int32_t) index;
 
 + (PBGameSessionChanged*) defaultInstance;
 - (PBGameSessionChanged*) defaultInstance;
@@ -435,6 +456,13 @@
 - (PBGameSessionChanged_Builder*) addUserIdsDeleted:(NSString*) value;
 - (PBGameSessionChanged_Builder*) addAllUserIdsDeleted:(NSArray*) values;
 - (PBGameSessionChanged_Builder*) clearUserIdsDeletedList;
+
+- (NSArray*) usersUpdatedList;
+- (PBGameUser*) usersUpdatedAtIndex:(int32_t) index;
+- (PBGameSessionChanged_Builder*) replaceUsersUpdatedAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBGameSessionChanged_Builder*) addUsersUpdated:(PBGameUser*) value;
+- (PBGameSessionChanged_Builder*) addAllUsersUpdated:(NSArray*) values;
+- (PBGameSessionChanged_Builder*) clearUsersUpdatedList;
 @end
 
 @interface PBDrawAction : PBGeneratedMessage {
