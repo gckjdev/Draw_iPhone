@@ -184,9 +184,7 @@ NSString* GlobalGetTrafficServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
-    [[DiceGameService defaultService] setServerPort:8080];
-    [[DiceGameService defaultService] connectServer:self];
+
     
     return YES;
 }
