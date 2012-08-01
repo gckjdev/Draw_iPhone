@@ -10,6 +10,7 @@
 #import "CommonGameNetworkClient.h"
 
 #define NOTIFICATION_JOIN_GAME_RESPONSE @"NOTIFICATION_JOIN_GAME_RESPONSE"
+#define NOTIFICATION_ROOM               @"NOTIFICATION_ROOM"
 
 @protocol CommonGameServiceDelegate <NSObject>
 
@@ -47,6 +48,8 @@
 
 - (void)getRoomList;
 - (void)joinGameRequest;
+
+- (void)quitGame;
 
 - (CommonGameSession*)createSession;
 
