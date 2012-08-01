@@ -124,7 +124,7 @@ message GeneralNotification{
 
 message FacetimeChatRequest {    
   required PBGameUser user = 1;
-  optional bool chatGender = 2;
+  optional bool chatGender = 2; // true for male, false for female.
 }
 
 message FacetimeChatResponse {    
