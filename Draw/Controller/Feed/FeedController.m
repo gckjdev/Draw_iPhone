@@ -267,7 +267,7 @@
 
 //    FeedManager *feedManager = _feedManager;
     
-    if ([feedList count] < [FeedListState loadDataCount]) {
+    if ([feedList count] < [FeedListState loadDataCount] * 0.8) {
         self.noMoreData = YES;
     }else{
         self.noMoreData = NO;
