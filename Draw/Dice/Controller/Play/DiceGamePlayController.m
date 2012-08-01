@@ -9,12 +9,9 @@
 #import "DiceGamePlayController.h"
 #import "DiceImageManager.h"
 #import "DicePopupView.h"
-<<<<<<< HEAD
 #import "DiceSelectedView.h"
-=======
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
->>>>>>> 75655d515695ee513ceb82e6c356ce0d5bd908d2
 
 @interface DiceGamePlayController ()
 
@@ -97,11 +94,10 @@
     
 }
 
-<<<<<<< HEAD
+
 - (IBAction)clickRunAwayButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-=======
 
 
 #pragma test server
@@ -147,5 +143,4 @@
     }
 }
 
->>>>>>> 75655d515695ee513ceb82e6c356ce0d5bd908d2
 @end
