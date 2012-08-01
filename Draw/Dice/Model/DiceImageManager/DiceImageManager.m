@@ -129,4 +129,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"tools_disable.png"];
 }
 
+- (UIImage *)diceCountSelectedBtnBgImage
+{
+    return [UIImage imageNamed:@"bell_amount@2x.png"];
+}
+
 @end

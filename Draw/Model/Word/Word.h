@@ -15,7 +15,7 @@ typedef enum
     WordLevelHigh = 3
 }WordLevel;
 
-@interface Word : NSObject
+@interface Word : NSObject<NSCoding>
 {
     NSString *_text; 
     WordLevel _level;

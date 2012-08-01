@@ -21,5 +21,6 @@
 - (UIImage *)toolBackground;
 - (UIImage *)toolEnableCountBackground;
 - (UIImage *)toolDisableCountBackground;
-
+- (UIImage *)toolBackgroundImage;
+- (UIImage *)diceCountSelectedBtnBgImage;
 @end

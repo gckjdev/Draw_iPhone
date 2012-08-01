@@ -93,8 +93,8 @@
 {
     NSString *desc = @"";
     NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
-    NSString *word = feed.drawData.word.text;
-    NSString *creatorId = feed.drawData.userId;
+    NSString *word = feed.wordText;
+    NSString *creatorId = feed.authorId;
     
     NSString *targetNick= [FeedManager targetNameForFeed:feed];
     if (feed.drawData.languageType == ChineseType 
@@ -200,6 +200,11 @@
 {
 //    [self.drawView cleanAllActions];
     [self.drawView removeFromSuperview];
+    
+    if (feed.drawImage == nil) {
+        feed.drawImage = [[ShareImageManager defaultManager] getImageWithName:[feed saveKey]];
+    }
+    
     if (feed.drawImage) {
         UIImageView* imageView = [[UIImageView alloc] initWithImage:feed.drawImage];
         self.drawView = imageView;
@@ -219,12 +224,12 @@
         [self addSubview:self.drawView];
         [view show];
         [view release];
-        feed.drawImage = [view createImage];
+        feed.drawImage = [view createImage];    
+        [[ShareImageManager defaultManager] saveImage:feed.drawImage 
+                                        withImageName:[feed saveKey] 
+                                                 asyn:YES];
+        
     }
-
-    
-//    self.drawView.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-//    [self.drawView show];
 }
 - (void)setCellInfo:(Feed *)feed
 {

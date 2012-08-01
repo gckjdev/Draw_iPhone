@@ -114,7 +114,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="245060195">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
@@ -122,11 +122,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">back@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="807983280">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="424758585">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -254,7 +254,7 @@
 						<string key="NSFrame">{{518, 331}, {230, 45}}</string>
 						<reference key="NSSuperview" ref="141827972"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="400890904"/>
+						<reference key="NSNextKeyView" ref="25370878"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -455,6 +455,27 @@
 						<reference key="IBUIFontDescription" ref="842001426"/>
 						<reference key="IBUIFont" ref="375739483"/>
 					</object>
+					<object class="IBUIButton" id="25370878">
+						<reference key="NSNextResponder" ref="141827972"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{271, 158}, {228, 217}}</string>
+						<reference key="NSSuperview" ref="141827972"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="400890904"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">DrawImage</string>
+						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="245060195"/>
+						<reference key="IBUIFontDescription" ref="807983280"/>
+						<reference key="IBUIFont" ref="424758585"/>
+					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
@@ -575,6 +596,14 @@
 					<int key="connectionID">170</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">drawImageButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="25370878"/>
+					</object>
+					<int key="connectionID">174</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickActionButton:</string>
 						<reference key="source" ref="554680063"/>
@@ -625,6 +654,15 @@
 					</object>
 					<int key="connectionID">159</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickDrawImage:</string>
+						<reference key="source" ref="25370878"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">176</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -664,6 +702,7 @@
 							<reference ref="555051130"/>
 							<reference ref="819923111"/>
 							<reference ref="218208994"/>
+							<reference ref="25370878"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -768,6 +807,11 @@
 						<reference key="object" ref="218208994"/>
 						<reference key="parent" ref="141827972"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">173</int>
+						<reference key="object" ref="25370878"/>
+						<reference key="parent" ref="141827972"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -796,12 +840,13 @@
 				<string key="147.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="148.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="171.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="173.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">172</int>
+			<int key="maxID">176</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -811,6 +856,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickActionButton:">id</string>
 						<string key="clickBackButton:">id</string>
+						<string key="clickDrawImage:">id</string>
 						<string key="clickSendButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -822,6 +868,10 @@
 							<string key="name">clickBackButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="clickDrawImage:">
+							<string key="name">clickDrawImage:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clickSendButton:">
 							<string key="name">clickSendButton:</string>
 							<string key="candidateClassName">id</string>
@@ -831,6 +881,7 @@
 						<string key="actionButton">UIButton</string>
 						<string key="commentInput">UITextView</string>
 						<string key="commentLabel">UILabel</string>
+						<string key="drawImageButton">UIButton</string>
 						<string key="guessStatLabel">UILabel</string>
 						<string key="inputBackground">UIImageView</string>
 						<string key="inputBackgroundView">UIView</string>
@@ -853,6 +904,10 @@
 						<object class="IBToOneOutletInfo" key="commentLabel">
 							<string key="name">commentLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawImageButton">
+							<string key="name">drawImageButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="guessStatLabel">
 							<string key="name">guessStatLabel</string>

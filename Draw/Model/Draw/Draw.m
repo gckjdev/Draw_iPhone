@@ -84,4 +84,40 @@
 }
 
 
+
+#define USERID @"userId"
+#define NICKNAME @"nick"
+#define WORD @"word"
+#define DATE @"date"
+#define AVATAR @"avatar"
+#define DRAW_ACTION_LIST @"action_list"
+#define LANGUAGE @"language"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_userId forKey:USERID];
+    [aCoder encodeObject:_nickName forKey:NICKNAME];
+    [aCoder encodeObject:_avatar forKey:AVATAR];
+    [aCoder encodeObject:_date forKey:DATE];
+    [aCoder encodeInt:_languageType forKey:LANGUAGE];
+    [aCoder encodeObject:_word forKey:WORD];
+    [aCoder encodeObject:_drawActionList forKey:DRAW_ACTION_LIST];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.userId = [aDecoder decodeObjectForKey:USERID];
+        self.nickName = [aDecoder decodeObjectForKey:NICKNAME];
+        self.avatar = [aDecoder decodeObjectForKey:AVATAR];
+        self.languageType = [aDecoder decodeIntForKey:LANGUAGE];
+        self.word = [aDecoder decodeObjectForKey:WORD];
+        self.date = [aDecoder decodeObjectForKey:DATE];
+        self.drawActionList = [aDecoder decodeObjectForKey:DRAW_ACTION_LIST];
+    }
+    return self;
+}
+
+
+
 @end
