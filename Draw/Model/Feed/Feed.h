@@ -86,6 +86,8 @@ typedef enum {
     NSString *_wordText;
     NSString *_authorId;
     NSString *_authorNick;
+    
+    BOOL _isParsing;
 }
 
 @property (nonatomic, retain) NSString *feedId;
@@ -130,6 +132,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *authorId;
 @property (nonatomic, retain) NSString *authorNick;
 
+@property (nonatomic, assign) BOOL isParsing;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (BOOL)isMyOpus;

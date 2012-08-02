@@ -33,11 +33,19 @@ typedef enum{
 }FeedActionDescType;
 
 
+@protocol FeedManagerDelegate <NSObject>
+
+@optional
+- (void)didParseFeedDrawData:(Feed *)feed;
+
+@end
+
 @interface FeedManager : NSObject
 {
     NSMutableDictionary *_dataMap;
 }
 + (FeedManager *)defaultManager;
++ (void)releaseDefaultManager;
 - (NSMutableArray *)feedListForType:(FeedListType)type;
 - (void)setFeedList:(NSMutableArray *)feedList forType:(FeedListType)type;
 - (void)addFeedList:(NSArray *)feedList forType:(FeedListType)type;
@@ -55,4 +63,6 @@ typedef enum{
           withFeedId:(NSString *)feedId 
                 asyn:(BOOL)asyn;
 + (BOOL)isDrawDataExsit:(NSString *)feedId;
++ (void)parseDrawData:(Feed *)feed
+             delegate:(id<FeedManagerDelegate>)delegate;
 @end

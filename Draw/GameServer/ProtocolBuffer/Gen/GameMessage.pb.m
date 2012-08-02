@@ -731,15 +731,25 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
 @end
 
 @interface CreateRoomResponse ()
+@property (retain) PBGameSession* gameSession;
 @end
 
 @implementation CreateRoomResponse
 
+- (BOOL) hasGameSession {
+  return !!hasGameSession_;
+}
+- (void) setHasGameSession:(BOOL) value {
+  hasGameSession_ = !!value;
+}
+@synthesize gameSession;
 - (void) dealloc {
+  self.gameSession = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.gameSession = [PBGameSession defaultInstance];
   }
   return self;
 }
@@ -756,9 +766,18 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
   return defaultCreateRoomResponseInstance;
 }
 - (BOOL) isInitialized {
+  if (!self.hasGameSession) {
+    return NO;
+  }
+  if (!self.gameSession.isInitialized) {
+    return NO;
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameSession) {
+    [output writeMessage:1 value:self.gameSession];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -768,6 +787,9 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
   }
 
   size = 0;
+  if (self.hasGameSession) {
+    size += computeMessageSize(1, self.gameSession);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -843,6 +865,9 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
   if (other == [CreateRoomResponse defaultInstance]) {
     return self;
   }
+  if (other.hasGameSession) {
+    [self mergeGameSession:other.gameSession];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -864,8 +889,47 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
         }
         break;
       }
+      case 10: {
+        PBGameSession_Builder* subBuilder = [PBGameSession builder];
+        if (self.hasGameSession) {
+          [subBuilder mergeFrom:self.gameSession];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameSession:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasGameSession {
+  return result.hasGameSession;
+}
+- (PBGameSession*) gameSession {
+  return result.gameSession;
+}
+- (CreateRoomResponse_Builder*) setGameSession:(PBGameSession*) value {
+  result.hasGameSession = YES;
+  result.gameSession = value;
+  return self;
+}
+- (CreateRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue {
+  return [self setGameSession:[builderForValue build]];
+}
+- (CreateRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value {
+  if (result.hasGameSession &&
+      result.gameSession != [PBGameSession defaultInstance]) {
+    result.gameSession =
+      [[[PBGameSession builderWithPrototype:result.gameSession] mergeFrom:value] buildPartial];
+  } else {
+    result.gameSession = value;
+  }
+  result.hasGameSession = YES;
+  return self;
+}
+- (CreateRoomResponse_Builder*) clearGameSession {
+  result.hasGameSession = NO;
+  result.gameSession = [PBGameSession defaultInstance];
+  return self;
 }
 @end
 
@@ -9218,6 +9282,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) EnterRoomResponse* enterRoomResponse;
 @property (retain) RoomNotificationRequest* roomNotificationRequest;
 @property (retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
+@property (retain) CallDiceRequest* callDiceRequest;
+@property (retain) CallDiceResponse* callDiceResponse;
+@property (retain) OpenDiceRequest* openDiceRequest;
+@property (retain) OpenDiceResponse* openDiceResponse;
+@property (retain) GameOverNotificationRequest* gameOverNotificationRequest;
+@property (retain) GameOverNotificationResponse* gameOverNotificationResponse;
 @end
 
 @implementation GameMessage
@@ -9425,6 +9495,48 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasRollDiceEndNotificationRequest_ = !!value;
 }
 @synthesize rollDiceEndNotificationRequest;
+- (BOOL) hasCallDiceRequest {
+  return !!hasCallDiceRequest_;
+}
+- (void) setHasCallDiceRequest:(BOOL) value {
+  hasCallDiceRequest_ = !!value;
+}
+@synthesize callDiceRequest;
+- (BOOL) hasCallDiceResponse {
+  return !!hasCallDiceResponse_;
+}
+- (void) setHasCallDiceResponse:(BOOL) value {
+  hasCallDiceResponse_ = !!value;
+}
+@synthesize callDiceResponse;
+- (BOOL) hasOpenDiceRequest {
+  return !!hasOpenDiceRequest_;
+}
+- (void) setHasOpenDiceRequest:(BOOL) value {
+  hasOpenDiceRequest_ = !!value;
+}
+@synthesize openDiceRequest;
+- (BOOL) hasOpenDiceResponse {
+  return !!hasOpenDiceResponse_;
+}
+- (void) setHasOpenDiceResponse:(BOOL) value {
+  hasOpenDiceResponse_ = !!value;
+}
+@synthesize openDiceResponse;
+- (BOOL) hasGameOverNotificationRequest {
+  return !!hasGameOverNotificationRequest_;
+}
+- (void) setHasGameOverNotificationRequest:(BOOL) value {
+  hasGameOverNotificationRequest_ = !!value;
+}
+@synthesize gameOverNotificationRequest;
+- (BOOL) hasGameOverNotificationResponse {
+  return !!hasGameOverNotificationResponse_;
+}
+- (void) setHasGameOverNotificationResponse:(BOOL) value {
+  hasGameOverNotificationResponse_ = !!value;
+}
+@synthesize gameOverNotificationResponse;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
@@ -9448,6 +9560,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.enterRoomResponse = nil;
   self.roomNotificationRequest = nil;
   self.rollDiceEndNotificationRequest = nil;
+  self.callDiceRequest = nil;
+  self.callDiceResponse = nil;
+  self.openDiceRequest = nil;
+  self.openDiceResponse = nil;
+  self.gameOverNotificationRequest = nil;
+  self.gameOverNotificationResponse = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9481,6 +9599,12 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.enterRoomResponse = [EnterRoomResponse defaultInstance];
     self.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
     self.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
+    self.callDiceRequest = [CallDiceRequest defaultInstance];
+    self.callDiceResponse = [CallDiceResponse defaultInstance];
+    self.openDiceRequest = [OpenDiceRequest defaultInstance];
+    self.openDiceResponse = [OpenDiceResponse defaultInstance];
+    self.gameOverNotificationRequest = [GameOverNotificationRequest defaultInstance];
+    self.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
   }
   return self;
 }
@@ -9543,6 +9667,11 @@ static GameMessage* defaultGameMessageInstance = nil;
       return NO;
     }
   }
+  if (self.hasCreateRoomResponse) {
+    if (!self.createRoomResponse.isInitialized) {
+      return NO;
+    }
+  }
   if (self.hasEnterRoomRequest) {
     if (!self.enterRoomRequest.isInitialized) {
       return NO;
@@ -9560,6 +9689,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasRollDiceEndNotificationRequest) {
     if (!self.rollDiceEndNotificationRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGameOverNotificationRequest) {
+    if (!self.gameOverNotificationRequest.isInitialized) {
       return NO;
     }
   }
@@ -9652,6 +9786,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasRollDiceEndNotificationRequest) {
     [output writeMessage:109 value:self.rollDiceEndNotificationRequest];
+  }
+  if (self.hasCallDiceRequest) {
+    [output writeMessage:111 value:self.callDiceRequest];
+  }
+  if (self.hasCallDiceResponse) {
+    [output writeMessage:112 value:self.callDiceResponse];
+  }
+  if (self.hasOpenDiceRequest) {
+    [output writeMessage:113 value:self.openDiceRequest];
+  }
+  if (self.hasOpenDiceResponse) {
+    [output writeMessage:114 value:self.openDiceResponse];
+  }
+  if (self.hasGameOverNotificationRequest) {
+    [output writeMessage:115 value:self.gameOverNotificationRequest];
+  }
+  if (self.hasGameOverNotificationResponse) {
+    [output writeMessage:116 value:self.gameOverNotificationResponse];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -9748,6 +9900,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasRollDiceEndNotificationRequest) {
     size += computeMessageSize(109, self.rollDiceEndNotificationRequest);
+  }
+  if (self.hasCallDiceRequest) {
+    size += computeMessageSize(111, self.callDiceRequest);
+  }
+  if (self.hasCallDiceResponse) {
+    size += computeMessageSize(112, self.callDiceResponse);
+  }
+  if (self.hasOpenDiceRequest) {
+    size += computeMessageSize(113, self.openDiceRequest);
+  }
+  if (self.hasOpenDiceResponse) {
+    size += computeMessageSize(114, self.openDiceResponse);
+  }
+  if (self.hasGameOverNotificationRequest) {
+    size += computeMessageSize(115, self.gameOverNotificationRequest);
+  }
+  if (self.hasGameOverNotificationResponse) {
+    size += computeMessageSize(116, self.gameOverNotificationResponse);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9910,6 +10080,24 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasRollDiceEndNotificationRequest) {
     [self mergeRollDiceEndNotificationRequest:other.rollDiceEndNotificationRequest];
+  }
+  if (other.hasCallDiceRequest) {
+    [self mergeCallDiceRequest:other.callDiceRequest];
+  }
+  if (other.hasCallDiceResponse) {
+    [self mergeCallDiceResponse:other.callDiceResponse];
+  }
+  if (other.hasOpenDiceRequest) {
+    [self mergeOpenDiceRequest:other.openDiceRequest];
+  }
+  if (other.hasOpenDiceResponse) {
+    [self mergeOpenDiceResponse:other.openDiceResponse];
+  }
+  if (other.hasGameOverNotificationRequest) {
+    [self mergeGameOverNotificationRequest:other.gameOverNotificationRequest];
+  }
+  if (other.hasGameOverNotificationResponse) {
+    [self mergeGameOverNotificationResponse:other.gameOverNotificationResponse];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -10156,6 +10344,60 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setRollDiceEndNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 890: {
+        CallDiceRequest_Builder* subBuilder = [CallDiceRequest builder];
+        if (self.hasCallDiceRequest) {
+          [subBuilder mergeFrom:self.callDiceRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCallDiceRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 898: {
+        CallDiceResponse_Builder* subBuilder = [CallDiceResponse builder];
+        if (self.hasCallDiceResponse) {
+          [subBuilder mergeFrom:self.callDiceResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCallDiceResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 906: {
+        OpenDiceRequest_Builder* subBuilder = [OpenDiceRequest builder];
+        if (self.hasOpenDiceRequest) {
+          [subBuilder mergeFrom:self.openDiceRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setOpenDiceRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 914: {
+        OpenDiceResponse_Builder* subBuilder = [OpenDiceResponse builder];
+        if (self.hasOpenDiceResponse) {
+          [subBuilder mergeFrom:self.openDiceResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setOpenDiceResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 922: {
+        GameOverNotificationRequest_Builder* subBuilder = [GameOverNotificationRequest builder];
+        if (self.hasGameOverNotificationRequest) {
+          [subBuilder mergeFrom:self.gameOverNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameOverNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 930: {
+        GameOverNotificationResponse_Builder* subBuilder = [GameOverNotificationResponse builder];
+        if (self.hasGameOverNotificationResponse) {
+          [subBuilder mergeFrom:self.gameOverNotificationResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGameOverNotificationResponse:[subBuilder buildPartial]];
         break;
       }
     }
@@ -10889,6 +11131,186 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearRollDiceEndNotificationRequest {
   result.hasRollDiceEndNotificationRequest = NO;
   result.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasCallDiceRequest {
+  return result.hasCallDiceRequest;
+}
+- (CallDiceRequest*) callDiceRequest {
+  return result.callDiceRequest;
+}
+- (GameMessage_Builder*) setCallDiceRequest:(CallDiceRequest*) value {
+  result.hasCallDiceRequest = YES;
+  result.callDiceRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setCallDiceRequestBuilder:(CallDiceRequest_Builder*) builderForValue {
+  return [self setCallDiceRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCallDiceRequest:(CallDiceRequest*) value {
+  if (result.hasCallDiceRequest &&
+      result.callDiceRequest != [CallDiceRequest defaultInstance]) {
+    result.callDiceRequest =
+      [[[CallDiceRequest builderWithPrototype:result.callDiceRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.callDiceRequest = value;
+  }
+  result.hasCallDiceRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCallDiceRequest {
+  result.hasCallDiceRequest = NO;
+  result.callDiceRequest = [CallDiceRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasCallDiceResponse {
+  return result.hasCallDiceResponse;
+}
+- (CallDiceResponse*) callDiceResponse {
+  return result.callDiceResponse;
+}
+- (GameMessage_Builder*) setCallDiceResponse:(CallDiceResponse*) value {
+  result.hasCallDiceResponse = YES;
+  result.callDiceResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setCallDiceResponseBuilder:(CallDiceResponse_Builder*) builderForValue {
+  return [self setCallDiceResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeCallDiceResponse:(CallDiceResponse*) value {
+  if (result.hasCallDiceResponse &&
+      result.callDiceResponse != [CallDiceResponse defaultInstance]) {
+    result.callDiceResponse =
+      [[[CallDiceResponse builderWithPrototype:result.callDiceResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.callDiceResponse = value;
+  }
+  result.hasCallDiceResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearCallDiceResponse {
+  result.hasCallDiceResponse = NO;
+  result.callDiceResponse = [CallDiceResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasOpenDiceRequest {
+  return result.hasOpenDiceRequest;
+}
+- (OpenDiceRequest*) openDiceRequest {
+  return result.openDiceRequest;
+}
+- (GameMessage_Builder*) setOpenDiceRequest:(OpenDiceRequest*) value {
+  result.hasOpenDiceRequest = YES;
+  result.openDiceRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setOpenDiceRequestBuilder:(OpenDiceRequest_Builder*) builderForValue {
+  return [self setOpenDiceRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeOpenDiceRequest:(OpenDiceRequest*) value {
+  if (result.hasOpenDiceRequest &&
+      result.openDiceRequest != [OpenDiceRequest defaultInstance]) {
+    result.openDiceRequest =
+      [[[OpenDiceRequest builderWithPrototype:result.openDiceRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.openDiceRequest = value;
+  }
+  result.hasOpenDiceRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearOpenDiceRequest {
+  result.hasOpenDiceRequest = NO;
+  result.openDiceRequest = [OpenDiceRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasOpenDiceResponse {
+  return result.hasOpenDiceResponse;
+}
+- (OpenDiceResponse*) openDiceResponse {
+  return result.openDiceResponse;
+}
+- (GameMessage_Builder*) setOpenDiceResponse:(OpenDiceResponse*) value {
+  result.hasOpenDiceResponse = YES;
+  result.openDiceResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setOpenDiceResponseBuilder:(OpenDiceResponse_Builder*) builderForValue {
+  return [self setOpenDiceResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeOpenDiceResponse:(OpenDiceResponse*) value {
+  if (result.hasOpenDiceResponse &&
+      result.openDiceResponse != [OpenDiceResponse defaultInstance]) {
+    result.openDiceResponse =
+      [[[OpenDiceResponse builderWithPrototype:result.openDiceResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.openDiceResponse = value;
+  }
+  result.hasOpenDiceResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearOpenDiceResponse {
+  result.hasOpenDiceResponse = NO;
+  result.openDiceResponse = [OpenDiceResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasGameOverNotificationRequest {
+  return result.hasGameOverNotificationRequest;
+}
+- (GameOverNotificationRequest*) gameOverNotificationRequest {
+  return result.gameOverNotificationRequest;
+}
+- (GameMessage_Builder*) setGameOverNotificationRequest:(GameOverNotificationRequest*) value {
+  result.hasGameOverNotificationRequest = YES;
+  result.gameOverNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameOverNotificationRequestBuilder:(GameOverNotificationRequest_Builder*) builderForValue {
+  return [self setGameOverNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameOverNotificationRequest:(GameOverNotificationRequest*) value {
+  if (result.hasGameOverNotificationRequest &&
+      result.gameOverNotificationRequest != [GameOverNotificationRequest defaultInstance]) {
+    result.gameOverNotificationRequest =
+      [[[GameOverNotificationRequest builderWithPrototype:result.gameOverNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.gameOverNotificationRequest = value;
+  }
+  result.hasGameOverNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameOverNotificationRequest {
+  result.hasGameOverNotificationRequest = NO;
+  result.gameOverNotificationRequest = [GameOverNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasGameOverNotificationResponse {
+  return result.hasGameOverNotificationResponse;
+}
+- (GameOverNotificationResponse*) gameOverNotificationResponse {
+  return result.gameOverNotificationResponse;
+}
+- (GameMessage_Builder*) setGameOverNotificationResponse:(GameOverNotificationResponse*) value {
+  result.hasGameOverNotificationResponse = YES;
+  result.gameOverNotificationResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setGameOverNotificationResponseBuilder:(GameOverNotificationResponse_Builder*) builderForValue {
+  return [self setGameOverNotificationResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeGameOverNotificationResponse:(GameOverNotificationResponse*) value {
+  if (result.hasGameOverNotificationResponse &&
+      result.gameOverNotificationResponse != [GameOverNotificationResponse defaultInstance]) {
+    result.gameOverNotificationResponse =
+      [[[GameOverNotificationResponse builderWithPrototype:result.gameOverNotificationResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.gameOverNotificationResponse = value;
+  }
+  result.hasGameOverNotificationResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearGameOverNotificationResponse {
+  result.hasGameOverNotificationResponse = NO;
+  result.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
   return self;
 }
 @end

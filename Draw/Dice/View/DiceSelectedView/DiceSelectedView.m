@@ -10,7 +10,6 @@
 #import "UIViewUtils.h"
 #import "FontButton.h"
 #import "DiceImageManager.h"
-#import "CMPopTipView.h"
 #import "PPDebug.h"
 
 #define DEFAULT_HEIGHT_OF_PAGE_CONTROL 5
@@ -20,34 +19,42 @@
 
 @interface DiceSelectedView ()
 {
-    int _selectedCount;
     int _lastCallDice;
     int _start;
 }
 
+@property (retain, nonatomic) NSTimer *timer;
 @property (retain, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
 @property (retain, nonatomic) UIScrollView *scrollView;
 @property (retain, nonatomic) UICustomPageControl *pageControl;
 
+@property (retain, nonatomic) UIButton *curSelecetedDiceCountBtn;
+
 @end
 
 @implementation DiceSelectedView
 
+@synthesize delegate = _delegate;
+
+@synthesize timer = _timer;
 @synthesize superView = _superView;
 
 @synthesize popView = _popView;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
+@synthesize curSelecetedDiceCountBtn = _curSelecetedDiceCountBtn;
 
 
 - (void)dealloc
 {
+    [_timer release];
     [_superView release];
     [_popView release];
     [_scrollView release];
     [_pageControl release];
+    [_curSelecetedDiceCountBtn release]; 
     [super dealloc];
 }
 
@@ -125,6 +132,31 @@
     _pageControl.numberOfPages = count;
 }
 
+#pragma mark - Timer manage
+
+- (void)createTimer
+{
+    [self killTimer];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+                                                  target:self 
+                                                selector:@selector(handleTimer:)
+                                                userInfo:nil 
+                                                 repeats:NO];
+}
+
+- (void)killTimer
+{
+    if ([_timer isValid]) {
+        [_timer invalidate];        
+    }
+    self.timer = nil;
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    [self.popView dismissAnimated:YES];
+}
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate stuff
@@ -177,19 +209,22 @@
     [fontButton addTarget:self 
                    action:@selector(clickCountSelectedButton:)
          forControlEvents:UIControlEventTouchUpInside];
-    [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateNormal];
+    [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountBtnBgImage] forState:UIControlStateNormal];
+    [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
     
     return fontButton;
 }
 
 - (void)clickCountSelectedButton:(id)sender
 {    
+    [self createTimer];
     [self.popView dismissAnimated:YES];
     
-    UIButton *button = (UIButton *)sender;
-    _selectedCount = button.tag;
+    self.curSelecetedDiceCountBtn = (UIButton *)sender;
+    _curSelecetedDiceCountBtn.selected = YES;
+    
     NSArray *diceList;
-    if (button.tag == _start && _lastCallDice < 6) {
+    if (_curSelecetedDiceCountBtn.tag == _start && _lastCallDice < 6) {
         diceList = [self genDiceListStartWith:_lastCallDice end:6];
     }else {
         diceList = [self genDiceListStartWith:1 end:6];
@@ -199,10 +234,9 @@
     diceShowView.delegate = self;
     
     self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
+    self.popView.delegate = self;
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
-    
-    [self.popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3.0];
 }
 
 - (NSArray *)genDiceListStartWith:(int)start end:(int)end
@@ -224,9 +258,26 @@
 #pragma mark - DiceShowViewDelegate
 
 - (void)didSelectedDice:(PBDice *)dice
-{
+{    
     [self.popView dismissAnimated:YES];
-    PPDebug(@"Call %d * %d", _selectedCount, dice.dice);
+    _curSelecetedDiceCountBtn.selected = NO;
+    
+    PPDebug(@"Call %d * %d", _curSelecetedDiceCountBtn.tag, dice.dice);
+    if ([_delegate respondsToSelector:@selector(didSelectedDice:count:)]) {
+        [_delegate didSelectedDice:dice count:_curSelecetedDiceCountBtn.tag];
+    }
+}
+
+#pragma mark - CMPopTipViewDelegate
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    _curSelecetedDiceCountBtn.selected = NO;
+}
+
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    _curSelecetedDiceCountBtn.selected = NO;
 }
 
 @end

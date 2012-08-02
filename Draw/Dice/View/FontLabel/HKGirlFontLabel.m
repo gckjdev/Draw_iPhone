@@ -23,7 +23,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self = [super initWithFrame:self.frame fontName:@"diceFont" pointSize:self.font.pointSize];       
+        self = [super initWithFrame:self.frame fontName:@"diceFont" pointSize:self.font.pointSize];   
     }
     return self;
 }

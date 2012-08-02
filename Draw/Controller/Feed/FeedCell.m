@@ -14,7 +14,6 @@
 #import "ShareImageManager.h"
 #import "ShowDrawView.h"
 #import "DrawAction.h"
-#import "FeedManager.h"
 #import "WordManager.h"
 #import "Word.h"
 #import "DeviceDetection.h"
@@ -196,9 +195,40 @@
     }
 }
 
+
+- (void)updateDrawViewWithDrawData:(Feed *)feed
+{
+    CGRect normalFrame = DRAW_VIEW_FRAME;
+    CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
+    ShowDrawView *view = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];
+    [self.drawView removeFromSuperview];
+    self.drawView = view;
+    [self addSubview:self.drawView];
+    [view release];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^{
+        CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
+        CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
+        
+        view.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (feed == self.feed) {
+                [view show];
+                feed.drawImage = [view createImage];
+                [[ShareImageManager defaultManager] saveImage:feed.drawImage 
+                                                withImageName:[feed saveKey] 
+                                                         asyn:YES];               
+            }
+            
+        });
+    });
+    
+}
+
 - (void)updateDrawView:(Feed *)feed
 {
-//    [self.drawView cleanAllActions];
     [self.drawView removeFromSuperview];
     
     if (feed.drawImage == nil) {
@@ -206,39 +236,27 @@
     }
     
     if (feed.drawImage) {
-        UIImageView* imageView = [[UIImageView alloc] initWithImage:feed.drawImage];
+        UIImageView* imageView = [[UIImageView alloc] 
+                                  initWithImage:feed.drawImage];
         self.drawView = imageView;
         [imageView release];
         self.drawView.frame = SHOW_DRAW_VIEW_FRAME;
         [self addSubview:self.drawView];
+    }else if(feed.drawData){
+        PPDebug(@"<updateDrawView> feed = %@, image is nil, use draw data to show.", feed.feedId);
+        [self updateDrawViewWithDrawData:feed];
     }else{
-        PPDebug(@"<update draw view> create image for feed = %@", feed.feedId);
-        
-        CGRect normalFrame = DRAW_VIEW_FRAME;
-        CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
-        CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
-        CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
-        ShowDrawView *view = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];
-        view.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-        self.drawView = view;
-        [self addSubview:self.drawView];
-        [view show];
-        [view release];
-        feed.drawImage = [view createImage];    
-        [[ShareImageManager defaultManager] saveImage:feed.drawImage 
-                                        withImageName:[feed saveKey] 
-                                                 asyn:YES];
-        
+        [FeedManager parseDrawData:feed delegate:self];
     }
 }
 - (void)setCellInfo:(Feed *)feed
 {
     self.feed = feed;
+    [self updateDrawView:feed];
     [self updateDesc:feed];
     [self updateTime:feed];
     [self updateUser:feed];
     [self updateGuessDesc:feed];
-    [self updateDrawView:feed];
 }
 
 
@@ -263,6 +281,13 @@
                         nickName:self.feed.nickName 
                           gender:self.feed.gender 
                      atIndexPath:self.indexPath];
+    }
+}
+
+- (void)didParseFeedDrawData:(Feed *)feed
+{
+    if (self.feed.drawImage == nil) {
+        [self updateDrawViewWithDrawData:feed];
     }
 }
 

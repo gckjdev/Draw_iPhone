@@ -17,7 +17,11 @@
 
 @property (retain, nonatomic) UIImageView *seletedBgImageView;
 
+
 - (id)initWithFrame:(CGRect)frame 
                dice:(PBDice *)dice;
+
+- (void)setDice:(PBDice *)dice;
+- (PBDice *)dice;
 
 @end

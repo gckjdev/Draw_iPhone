@@ -1,5 +1,5 @@
 //
-//  DicePopupView.h
+//  DicePopupViewManager.h
 //  Draw
 //
 //  Created by 小涛 王 on 12-7-30.
@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
 
-@interface DicePopupView : NSObject
+@interface DicePopupViewManager : NSObject
 
-+ (void)popupCallDiceViewWithDice:(PBDice *)dice
++ (id)defaultManager;
+
+- (void)popupCallDiceViewWithDice:(PBDice *)dice
                             count:(int)count
                            atView:(UIView *)view
                            inView:(UIView *)inView
