@@ -19,6 +19,15 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self = [super initWithFrame:self.frame fontName:@"diceFont" pointSize:self.font.pointSize];       
+    }
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

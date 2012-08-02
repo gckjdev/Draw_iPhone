@@ -234,6 +234,8 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
+		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4A1565001000B9707D /* clickWord.mp3 */; };
@@ -1257,6 +1259,10 @@
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
+		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
+		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
+		C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HKGirlFontLabel.m; path = FontLabel/HKGirlFontLabel.m; sourceTree = "<group>"; };
 		C29B8A1E1563B02000B9707D /* CommonMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMessageCenter.h; sourceTree = "<group>"; };
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
@@ -2655,6 +2661,8 @@
 		A4AC51B215C7BFF00041DC86 /* FontLabel */ = {
 			isa = PBXGroup;
 			children = (
+				C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */,
+				C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */,
 				A4AC51B315C7BFF10041DC86 /* FontLabel.h */,
 				A4AC51B415C7BFF10041DC86 /* FontLabel.m */,
 				A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */,
@@ -2734,6 +2742,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C29A300815CA176400BD0B73 /* FontLabel */,
 				A45E8CD615C77F960089E240 /* CommonView */,
 				A45E8CD215C77F8E0089E240 /* AvatarView */,
 				A44DDF3B15C64482005609F6 /* DiceSelectedView */,
@@ -2916,6 +2925,15 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		C29A300815CA176400BD0B73 /* FontLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */,
+				C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */,
+			);
+			name = FontLabel;
 			sourceTree = "<group>";
 		};
 		C2A096FB152E979C006535F7 /* Component-Gif */ = {
@@ -6707,6 +6725,8 @@
 				A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */,
 				A4AC51F915C911750041DC86 /* FontButton.m in Sources */,
 				A41A665915C921DA00066E9B /* SlideImageView.m in Sources */,
+				C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */,
+				C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
