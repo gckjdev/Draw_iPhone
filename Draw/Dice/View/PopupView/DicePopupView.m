@@ -22,7 +22,7 @@
     [super dealloc];
 }
 
-+ (void)popupCallDiceViewWithDice:(Dice *)dice
++ (void)popupCallDiceViewWithDice:(PBDice *)dice
                             count:(int)count
                            atView:(UIView *)view
                            inView:(UIView *)inView

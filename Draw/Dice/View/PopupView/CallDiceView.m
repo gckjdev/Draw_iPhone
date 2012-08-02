@@ -24,7 +24,7 @@
 
 @implementation CallDiceView
 
-- (id)initWithDice:(Dice *)dice count:(int)count
+- (id)initWithDice:(PBDice *)dice count:(int)count
 {
     self = [super initWithFrame:CGRectMake(0, 0, 63, 32)];
     if (self) {
