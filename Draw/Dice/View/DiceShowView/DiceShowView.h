@@ -12,7 +12,7 @@
 @protocol DiceShowViewDelegate <NSObject>
 
 @optional
-- (void)didSelectedDice:(Dice *)dice;
+- (void)didSelectedDice:(PBDice *)dice;
 
 @end
 

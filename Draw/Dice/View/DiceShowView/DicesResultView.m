@@ -8,21 +8,18 @@
 
 #import "DicesResultView.h"
 #import "PPDebug.h"
-#import "Dice.pb.h"
 #import "DiceImageManager.h"
 
 @implementation DicesResultView
+@synthesize userId = _userId;
 
-- (id)initWithFrame:(CGRect)frame
+- (void)dealloc
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [_userId release];
+    [super dealloc];
 }
 
-+ (DicesResultView *)DicesResultView
++ (DicesResultView *)createDicesResultView
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DicesResultView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
@@ -35,10 +32,12 @@
 }
 
 #define TAB_START_DICE  10
-- (void)setDices:(NSArray *)dices
+- (void)setDices:(PBUserDice *)userDice
 {
+    self.userId = userDice.userId;
+    
     int index = 0;
-    for (Dice *dice in dices) {
+    for (PBDice *dice in userDice.dicesList) {
         UIImage *image = [[DiceImageManager defaultManager] openDiceImageWithDice:dice.dice];
         UIImageView *imageView = (UIImageView *)[self viewWithTag:TAB_START_DICE + index];
         [imageView setImage:image];

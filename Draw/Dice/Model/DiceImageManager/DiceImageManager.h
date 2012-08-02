@@ -16,11 +16,18 @@
 - (UIImage *)createRoomBtnBgImage;
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
+- (UIImage *)blueSafaImage;
 - (UIImage *)diceImageWithDice:(int)dice;
 - (UIImage *)openDiceImageWithDice:(int)dice;
 - (UIImage *)toolBackground;
 - (UIImage *)toolEnableCountBackground;
 - (UIImage *)toolDisableCountBackground;
 - (UIImage *)toolBackgroundImage;
+
+- (UIImage *)diceCountBtnBgImage;
 - (UIImage *)diceCountSelectedBtnBgImage;
+
+- (UIImage *)diceSeletedBgImage;
+
+
 @end

@@ -9,20 +9,44 @@
 #import "DiceView.h"
 #import "DiceImageManager.h"
 
+//#define DICE_WIDTH 33
+//#define DICE_HEIGHT 35
+
+@interface DiceView ()
+
+
+@end
+
 @implementation DiceView
 
+@synthesize seletedBgImageView = _seletedBgImageView;
+
+- (void)dealloc
+{
+    [_seletedBgImageView release];
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame 
-               dice:(Dice *)dice
+               dice:(PBDice *)dice
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.tag = dice.diceId;
+        
         [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
+        
+        self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+
+        [self addSubview:self.seletedBgImageView];
+        
+        self.tag = dice.diceId;
     }
     
     return self;
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

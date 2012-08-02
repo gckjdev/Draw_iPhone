@@ -17,10 +17,6 @@
 @class CreateRoomResponse_Builder;
 @class DataQueryResponse;
 @class DataQueryResponse_Builder;
-@class Dice;
-@class DiceGameResult;
-@class DiceGameResult_Builder;
-@class Dice_Builder;
 @class EnterRoomRequest;
 @class EnterRoomRequest_Builder;
 @class EnterRoomResponse;
@@ -57,6 +53,10 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
+@class PBDice;
+@class PBDiceGameResult;
+@class PBDiceGameResult_Builder;
+@class PBDice_Builder;
 @class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
@@ -77,6 +77,10 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBUserDice;
+@class PBUserDice_Builder;
+@class PBUserResult;
+@class PBUserResult_Builder;
 @class RegisterRoomsNotificationRequest;
 @class RegisterRoomsNotificationRequest_Builder;
 @class RegisterRoomsNotificationResponse;
@@ -107,12 +111,8 @@
 @class UnRegisterRoomsNotificationResponse_Builder;
 @class UseItemRequest;
 @class UseItemRequest_Builder;
-@class UserDice;
-@class UserDice_Builder;
 @class UserItemResponse;
 @class UserItemResponse_Builder;
-@class UserResult;
-@class UserResult_Builder;
 
 @interface GameMessageRoot : NSObject {
 }
@@ -1425,7 +1425,7 @@
   NSMutableArray* mutableUserDiceList;
 }
 - (NSArray*) userDiceList;
-- (UserDice*) userDiceAtIndex:(int32_t) index;
+- (PBUserDice*) userDiceAtIndex:(int32_t) index;
 
 + (RollDiceEndNotificationRequest*) defaultInstance;
 - (RollDiceEndNotificationRequest*) defaultInstance;
@@ -1462,9 +1462,9 @@
 - (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (NSArray*) userDiceList;
-- (UserDice*) userDiceAtIndex:(int32_t) index;
-- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(UserDice*) value;
-- (RollDiceEndNotificationRequest_Builder*) addUserDice:(UserDice*) value;
+- (PBUserDice*) userDiceAtIndex:(int32_t) index;
+- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value;
+- (RollDiceEndNotificationRequest_Builder*) addUserDice:(PBUserDice*) value;
 - (RollDiceEndNotificationRequest_Builder*) addAllUserDice:(NSArray*) values;
 - (RollDiceEndNotificationRequest_Builder*) clearUserDiceList;
 @end
@@ -1512,13 +1512,13 @@
 @private
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
-  int32_t currentPlayUserId;
-  int32_t nextPlayUserId;
+  NSString* currentPlayUserId;
+  NSString* nextPlayUserId;
 }
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
-@property (readonly) int32_t currentPlayUserId;
-@property (readonly) int32_t nextPlayUserId;
+@property (readonly, retain) NSString* currentPlayUserId;
+@property (readonly, retain) NSString* nextPlayUserId;
 
 + (NextPlayerStartNotificationRequest*) defaultInstance;
 - (NextPlayerStartNotificationRequest*) defaultInstance;
@@ -1555,13 +1555,13 @@
 - (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCurrentPlayUserId;
-- (int32_t) currentPlayUserId;
-- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(int32_t) value;
+- (NSString*) currentPlayUserId;
+- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(NSString*) value;
 - (NextPlayerStartNotificationRequest_Builder*) clearCurrentPlayUserId;
 
 - (BOOL) hasNextPlayUserId;
-- (int32_t) nextPlayUserId;
-- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(int32_t) value;
+- (NSString*) nextPlayUserId;
+- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(NSString*) value;
 - (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId;
 @end
 
@@ -1607,10 +1607,10 @@
 @interface GameOverNotificationRequest : PBGeneratedMessage {
 @private
   BOOL hasGameResult_:1;
-  DiceGameResult* gameResult;
+  PBDiceGameResult* gameResult;
 }
 - (BOOL) hasGameResult;
-@property (readonly, retain) DiceGameResult* gameResult;
+@property (readonly, retain) PBDiceGameResult* gameResult;
 
 + (GameOverNotificationRequest*) defaultInstance;
 - (GameOverNotificationRequest*) defaultInstance;
@@ -1647,10 +1647,10 @@
 - (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameResult;
-- (DiceGameResult*) gameResult;
-- (GameOverNotificationRequest_Builder*) setGameResult:(DiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(DiceGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(DiceGameResult*) value;
+- (PBDiceGameResult*) gameResult;
+- (GameOverNotificationRequest_Builder*) setGameResult:(PBDiceGameResult*) value;
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(PBDiceGameResult_Builder*) builderForValue;
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
 - (GameOverNotificationRequest_Builder*) clearGameResult;
 @end
 
@@ -2389,16 +2389,18 @@
   BOOL hasOnlineUserCount_:1;
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
-  BOOL hasRoomNotificationRequest_:1;
-  BOOL hasEnterRoomResponse_:1;
-  BOOL hasEnterRoomRequest_:1;
-  BOOL hasCreateRoomResponse_:1;
-  BOOL hasCreateRoomRequest_:1;
-  BOOL hasGetRoomsResponse_:1;
-  BOOL hasGetRoomsRequest_:1;
-  BOOL hasNotification_:1;
-  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasCurrentPlayUserId_:1;
   BOOL hasFacetimeChatRequest_:1;
+  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasNotification_:1;
+  BOOL hasGetRoomsRequest_:1;
+  BOOL hasGetRoomsResponse_:1;
+  BOOL hasCreateRoomRequest_:1;
+  BOOL hasCreateRoomResponse_:1;
+  BOOL hasEnterRoomRequest_:1;
+  BOOL hasEnterRoomResponse_:1;
+  BOOL hasRoomNotificationRequest_:1;
+  BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasChatResponse_:1;
   BOOL hasChatRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
@@ -2416,16 +2418,18 @@
   int32_t onlineUserCount;
   NSString* userId;
   NSString* toUserId;
-  RoomNotificationRequest* roomNotificationRequest;
-  EnterRoomResponse* enterRoomResponse;
-  EnterRoomRequest* enterRoomRequest;
-  CreateRoomResponse* createRoomResponse;
-  CreateRoomRequest* createRoomRequest;
-  GetRoomsResponse* getRoomsResponse;
-  GetRoomsRequest* getRoomsRequest;
-  GeneralNotification* notification;
-  FacetimeChatResponse* facetimeChatResponse;
+  NSString* currentPlayUserId;
   FacetimeChatRequest* facetimeChatRequest;
+  FacetimeChatResponse* facetimeChatResponse;
+  GeneralNotification* notification;
+  GetRoomsRequest* getRoomsRequest;
+  GetRoomsResponse* getRoomsResponse;
+  CreateRoomRequest* createRoomRequest;
+  CreateRoomResponse* createRoomResponse;
+  EnterRoomRequest* enterRoomRequest;
+  EnterRoomResponse* enterRoomResponse;
+  RoomNotificationRequest* roomNotificationRequest;
+  RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   GameChatResponse* chatResponse;
   GameChatRequest* chatRequest;
   SendDrawDataResponse* sendDrawDataResponse;
@@ -2447,6 +2451,7 @@
 - (BOOL) hasCompleteReason;
 - (BOOL) hasOnlineUserCount;
 - (BOOL) hasToUserId;
+- (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasJoinGameRequest;
 - (BOOL) hasJoinGameResponse;
 - (BOOL) hasStartGameRequest;
@@ -2465,6 +2470,7 @@
 - (BOOL) hasEnterRoomRequest;
 - (BOOL) hasEnterRoomResponse;
 - (BOOL) hasRoomNotificationRequest;
+- (BOOL) hasRollDiceEndNotificationRequest;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
@@ -2474,6 +2480,7 @@
 @property (readonly) GameCompleteReason completeReason;
 @property (readonly) int32_t onlineUserCount;
 @property (readonly, retain) NSString* toUserId;
+@property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) JoinGameRequest* joinGameRequest;
 @property (readonly, retain) JoinGameResponse* joinGameResponse;
 @property (readonly, retain) StartGameRequest* startGameRequest;
@@ -2492,6 +2499,7 @@
 @property (readonly, retain) EnterRoomRequest* enterRoomRequest;
 @property (readonly, retain) EnterRoomResponse* enterRoomResponse;
 @property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
+@property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -2571,6 +2579,11 @@
 - (NSString*) toUserId;
 - (GameMessage_Builder*) setToUserId:(NSString*) value;
 - (GameMessage_Builder*) clearToUserId;
+
+- (BOOL) hasCurrentPlayUserId;
+- (NSString*) currentPlayUserId;
+- (GameMessage_Builder*) setCurrentPlayUserId:(NSString*) value;
+- (GameMessage_Builder*) clearCurrentPlayUserId;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;
@@ -2697,6 +2710,13 @@
 - (GameMessage_Builder*) setRoomNotificationRequestBuilder:(RoomNotificationRequest_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeRoomNotificationRequest:(RoomNotificationRequest*) value;
 - (GameMessage_Builder*) clearRoomNotificationRequest;
+
+- (BOOL) hasRollDiceEndNotificationRequest;
+- (RollDiceEndNotificationRequest*) rollDiceEndNotificationRequest;
+- (GameMessage_Builder*) setRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
+- (GameMessage_Builder*) setRollDiceEndNotificationRequestBuilder:(RollDiceEndNotificationRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
+- (GameMessage_Builder*) clearRollDiceEndNotificationRequest;
 @end
 
 @interface DataQueryResponse : PBGeneratedMessage {

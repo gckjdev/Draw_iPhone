@@ -14,25 +14,43 @@
 #import "DiceGameSession.h"
 #import "DiceAvatarView.h"
 #import "UserManager.h"
+#import "DicesResultView.h"
+#import "Dice.pb.h"
 
 #define AVATAR_TAG_OFFSET   1000
 
+#define NICKNAME_TAG_OFFSET 1100
+
+#define RESULT_TAG_OFFSET   3000
+#define BELL_TAG_OFFSET     4000
+
+#define MAX_PLAYER_COUNT    6
+
+
 @interface DiceGamePlayController ()
+
+@property (retain, nonatomic) NSArray *playingUserList;
+@property (retain, nonatomic) NSArray *userDiceList;
 
 @end
 
 @implementation DiceGamePlayController
+
+@synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize openDiceButton;
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
+@synthesize userDiceList = _userDiceList;
 
 - (void)dealloc {
+    [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
     [openDiceButton release];
     [diceCountSelectedHolderView release];
+    [_userDiceList release];
     [super dealloc];
 }
 
@@ -66,7 +84,8 @@
     [self.view addSubview:myCoinsLabel];
     
     DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
-    [view setStart:1 end:12];
+    self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+    [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:view];
 }
 
@@ -88,10 +107,10 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder setDice:1];
     [diceBuilder setDiceId:1];
-    Dice *dice = [diceBuilder build];
+    PBDice *dice = [diceBuilder build];
     
     
     [DicePopupView popupCallDiceViewWithDice:dice count:2 atView:(UIView*)sender inView:self.view animated:YES];
@@ -128,6 +147,44 @@
 {
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = !button.selected;
+    
+    
+    //test code
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    for (int k = 0; k < 6 ; k++) {
+        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
+        [userDiceBuilder setUserId:@"TEST"];
+        for (int i = 0 ; i < 5 ; i++) {
+            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+            NSUInteger value =  (arc4random() % 6) + 1; 
+            [diceBuilder setDice:value];
+            [diceBuilder setDiceId:i];
+            PBDice *dice = [diceBuilder build];
+            
+            [userDiceBuilder addDices:dice];
+        }
+        PBUserDice *userDice = [userDiceBuilder build];
+        [mutableArray addObject:userDice];
+    }
+    self.userDiceList = mutableArray;
+    [self showAllDicesResult];
+}
+
+- (void)showAllDicesResult
+{
+    int i = 1;
+    for (PBUserDice *userDice in _userDiceList) {
+        
+        DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + i];
+        DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
+        
+        dicesResultView.center = oldDicesResultView.center;
+        dicesResultView.tag = oldDicesResultView.tag;
+        [dicesResultView setDices:userDice];
+        [oldDicesResultView removeFromSuperview];
+        [self.view addSubview:dicesResultView];
+        i++;
+    }
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
@@ -151,18 +208,40 @@
 - (void)updateAllPlayersAvatar
 {
     NSArray* userList = [[DiceGameService defaultService].session userList];
+    for (PBGameUser* user in userList) {
+        PPDebug(@"<test>get user--%@",user.nickName);
+    }
     int index = [self getSelfIndexFromUserList:userList];
     if (index >= 0) {
-        for (int i = 1; i <=userList.count; i ++) {
+        for (int i = 0; i < userList.count; i ++) {
             
-            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-            int userIndex = (index+i-1)%userList.count;
-            PBGameUser* user = [userList objectAtIndex:userIndex];
-            [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
-            
+            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
+            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
+            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
+            PBGameUser* user = [userList objectAtIndex:i];
+            [avatar setUrlString:user.avatar 
+                          userId:user.userId 
+                          gender:user.gender 
+                           level:user.userLevel 
+                      drunkPoint:0 
+                          wealth:0];
+            if (nameLabel) {
+                [nameLabel setText:user.nickName];
+            }
         }
     }
     
+}
+
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+{
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
 }
 
 
@@ -175,7 +254,7 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE");         
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_JOIN_GAME_RESPONSE");         
      }];
     
     [[NSNotificationCenter defaultCenter] 
@@ -183,10 +262,9 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");   
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");   
          [self updateAllPlayersAvatar];
      }];
-    
 }
 
 - (void)unregisterDiceGameNotification
@@ -207,6 +285,12 @@
     [super viewDidAppear:animated];
     [self registerDiceGameNotification];    
     [self updateAllPlayersAvatar];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self unregisterDiceGameNotification];
 }
 
 @end

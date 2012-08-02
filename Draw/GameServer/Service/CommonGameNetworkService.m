@@ -169,7 +169,8 @@
         [[NSNotificationCenter defaultCenter] 
          postNotificationName:NOTIFICATION_JOIN_GAME_RESPONSE 
          object:nil 
-         userInfo:[CommonGameNetworkService messageToUserInfo:message]];        
+         userInfo:[CommonGameNetworkService messageToUserInfo:message]];    
+        PPDebug(@"<CommonGameNetworkService> post notification NOTIFICATION_JOIN_GAME_RESPONSE");
     });
 }
 

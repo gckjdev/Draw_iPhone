@@ -138,7 +138,7 @@ message RollDiceBeginNotificationResponse {
 }
 
 message RollDiceEndNotificationRequest{
-  repeated UserDice userDice = 1;
+  repeated PBUserDice userDice = 1;
 } 
 
 message RollDiceEndNotificationResponse{
@@ -146,15 +146,15 @@ message RollDiceEndNotificationResponse{
 } 
 
 message NextPlayerStartNotificationRequest {
-  required int32 currentPlayUserId = 1;
-  required int32 nextPlayUserId = 2;
+  required string currentPlayUserId = 1;
+  required string nextPlayUserId = 2;
 }
 
 message NextPlayerStartNotificationResponse {
 }
 
 message GameOverNotificationRequest {
-  optional DiceGameResult gameResult = 1;
+  optional PBDiceGameResult gameResult = 1;
 } 
   
 message GameOverNotificationResponse{
@@ -256,6 +256,7 @@ message GameMessage {
   optional GameCompleteReason completeReason = 7;
   optional int32  onlineUserCount = 8;
   optional string toUserId = 9;                             // 消息要发给哪个用户
+  optional string currentPlayUserId = 10;                   // 当前游戏轮到的用户
   
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;
@@ -284,7 +285,8 @@ message GameMessage {
   optional EnterRoomResponse enterRoomResponse= 106;
   
   optional RoomNotificationRequest roomNotificationRequest = 107;
-
+  
+  optional RollDiceEndNotificationRequest rollDiceEndNotificationRequest = 109;
 }
 
 message DataQueryResponse {

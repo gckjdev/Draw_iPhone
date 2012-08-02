@@ -5253,12 +5253,12 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
 - (NSArray*) userDiceList {
   return mutableUserDiceList;
 }
-- (UserDice*) userDiceAtIndex:(int32_t) index {
+- (PBUserDice*) userDiceAtIndex:(int32_t) index {
   id value = [mutableUserDiceList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  for (UserDice* element in self.userDiceList) {
+  for (PBUserDice* element in self.userDiceList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -5266,7 +5266,7 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (UserDice* element in self.userDiceList) {
+  for (PBUserDice* element in self.userDiceList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -5278,7 +5278,7 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
   }
 
   size = 0;
-  for (UserDice* element in self.userDiceList) {
+  for (PBUserDice* element in self.userDiceList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
@@ -5384,7 +5384,7 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
         break;
       }
       case 10: {
-        UserDice_Builder* subBuilder = [UserDice builder];
+        PBUserDice_Builder* subBuilder = [PBUserDice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addUserDice:[subBuilder buildPartial]];
         break;
@@ -5396,10 +5396,10 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
   if (result.mutableUserDiceList == nil) { return [NSArray array]; }
   return result.mutableUserDiceList;
 }
-- (UserDice*) userDiceAtIndex:(int32_t) index {
+- (PBUserDice*) userDiceAtIndex:(int32_t) index {
   return [result userDiceAtIndex:index];
 }
-- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(UserDice*) value {
+- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value {
   [result.mutableUserDiceList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5414,7 +5414,7 @@ static RollDiceEndNotificationRequest* defaultRollDiceEndNotificationRequestInst
   result.mutableUserDiceList = nil;
   return self;
 }
-- (RollDiceEndNotificationRequest_Builder*) addUserDice:(UserDice*) value {
+- (RollDiceEndNotificationRequest_Builder*) addUserDice:(PBUserDice*) value {
   if (result.mutableUserDiceList == nil) {
     result.mutableUserDiceList = [NSMutableArray array];
   }
@@ -5563,8 +5563,8 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
 @end
 
 @interface NextPlayerStartNotificationRequest ()
-@property int32_t currentPlayUserId;
-@property int32_t nextPlayUserId;
+@property (retain) NSString* currentPlayUserId;
+@property (retain) NSString* nextPlayUserId;
 @end
 
 @implementation NextPlayerStartNotificationRequest
@@ -5584,12 +5584,14 @@ static RollDiceEndNotificationResponse* defaultRollDiceEndNotificationResponseIn
 }
 @synthesize nextPlayUserId;
 - (void) dealloc {
+  self.currentPlayUserId = nil;
+  self.nextPlayUserId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.currentPlayUserId = 0;
-    self.nextPlayUserId = 0;
+    self.currentPlayUserId = @"";
+    self.nextPlayUserId = @"";
   }
   return self;
 }
@@ -5616,10 +5618,10 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCurrentPlayUserId) {
-    [output writeInt32:1 value:self.currentPlayUserId];
+    [output writeString:1 value:self.currentPlayUserId];
   }
   if (self.hasNextPlayUserId) {
-    [output writeInt32:2 value:self.nextPlayUserId];
+    [output writeString:2 value:self.nextPlayUserId];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5631,10 +5633,10 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
 
   size = 0;
   if (self.hasCurrentPlayUserId) {
-    size += computeInt32Size(1, self.currentPlayUserId);
+    size += computeStringSize(1, self.currentPlayUserId);
   }
   if (self.hasNextPlayUserId) {
-    size += computeInt32Size(2, self.nextPlayUserId);
+    size += computeStringSize(2, self.nextPlayUserId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5738,12 +5740,12 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
         }
         break;
       }
-      case 8: {
-        [self setCurrentPlayUserId:[input readInt32]];
+      case 10: {
+        [self setCurrentPlayUserId:[input readString]];
         break;
       }
-      case 16: {
-        [self setNextPlayUserId:[input readInt32]];
+      case 18: {
+        [self setNextPlayUserId:[input readString]];
         break;
       }
     }
@@ -5752,33 +5754,33 @@ static NextPlayerStartNotificationRequest* defaultNextPlayerStartNotificationReq
 - (BOOL) hasCurrentPlayUserId {
   return result.hasCurrentPlayUserId;
 }
-- (int32_t) currentPlayUserId {
+- (NSString*) currentPlayUserId {
   return result.currentPlayUserId;
 }
-- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(int32_t) value {
+- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(NSString*) value {
   result.hasCurrentPlayUserId = YES;
   result.currentPlayUserId = value;
   return self;
 }
 - (NextPlayerStartNotificationRequest_Builder*) clearCurrentPlayUserId {
   result.hasCurrentPlayUserId = NO;
-  result.currentPlayUserId = 0;
+  result.currentPlayUserId = @"";
   return self;
 }
 - (BOOL) hasNextPlayUserId {
   return result.hasNextPlayUserId;
 }
-- (int32_t) nextPlayUserId {
+- (NSString*) nextPlayUserId {
   return result.nextPlayUserId;
 }
-- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(int32_t) value {
+- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(NSString*) value {
   result.hasNextPlayUserId = YES;
   result.nextPlayUserId = value;
   return self;
 }
 - (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId {
   result.hasNextPlayUserId = NO;
-  result.nextPlayUserId = 0;
+  result.nextPlayUserId = @"";
   return self;
 }
 @end
@@ -5923,7 +5925,7 @@ static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationRe
 @end
 
 @interface GameOverNotificationRequest ()
-@property (retain) DiceGameResult* gameResult;
+@property (retain) PBDiceGameResult* gameResult;
 @end
 
 @implementation GameOverNotificationRequest
@@ -5941,7 +5943,7 @@ static NextPlayerStartNotificationResponse* defaultNextPlayerStartNotificationRe
 }
 - (id) init {
   if ((self = [super init])) {
-    self.gameResult = [DiceGameResult defaultInstance];
+    self.gameResult = [PBDiceGameResult defaultInstance];
   }
   return self;
 }
@@ -6081,7 +6083,7 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
         break;
       }
       case 10: {
-        DiceGameResult_Builder* subBuilder = [DiceGameResult builder];
+        PBDiceGameResult_Builder* subBuilder = [PBDiceGameResult builder];
         if (self.hasGameResult) {
           [subBuilder mergeFrom:self.gameResult];
         }
@@ -6095,22 +6097,22 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 - (BOOL) hasGameResult {
   return result.hasGameResult;
 }
-- (DiceGameResult*) gameResult {
+- (PBDiceGameResult*) gameResult {
   return result.gameResult;
 }
-- (GameOverNotificationRequest_Builder*) setGameResult:(DiceGameResult*) value {
+- (GameOverNotificationRequest_Builder*) setGameResult:(PBDiceGameResult*) value {
   result.hasGameResult = YES;
   result.gameResult = value;
   return self;
 }
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(DiceGameResult_Builder*) builderForValue {
+- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(PBDiceGameResult_Builder*) builderForValue {
   return [self setGameResult:[builderForValue build]];
 }
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(DiceGameResult*) value {
+- (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value {
   if (result.hasGameResult &&
-      result.gameResult != [DiceGameResult defaultInstance]) {
+      result.gameResult != [PBDiceGameResult defaultInstance]) {
     result.gameResult =
-      [[[DiceGameResult builderWithPrototype:result.gameResult] mergeFrom:value] buildPartial];
+      [[[PBDiceGameResult builderWithPrototype:result.gameResult] mergeFrom:value] buildPartial];
   } else {
     result.gameResult = value;
   }
@@ -6119,7 +6121,7 @@ static GameOverNotificationRequest* defaultGameOverNotificationRequestInstance =
 }
 - (GameOverNotificationRequest_Builder*) clearGameResult {
   result.hasGameResult = NO;
-  result.gameResult = [DiceGameResult defaultInstance];
+  result.gameResult = [PBDiceGameResult defaultInstance];
   return self;
 }
 @end
@@ -9196,6 +9198,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property GameCompleteReason completeReason;
 @property int32_t onlineUserCount;
 @property (retain) NSString* toUserId;
+@property (retain) NSString* currentPlayUserId;
 @property (retain) JoinGameRequest* joinGameRequest;
 @property (retain) JoinGameResponse* joinGameResponse;
 @property (retain) StartGameRequest* startGameRequest;
@@ -9214,6 +9217,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) EnterRoomRequest* enterRoomRequest;
 @property (retain) EnterRoomResponse* enterRoomResponse;
 @property (retain) RoomNotificationRequest* roomNotificationRequest;
+@property (retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 @end
 
 @implementation GameMessage
@@ -9281,6 +9285,13 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasToUserId_ = !!value;
 }
 @synthesize toUserId;
+- (BOOL) hasCurrentPlayUserId {
+  return !!hasCurrentPlayUserId_;
+}
+- (void) setHasCurrentPlayUserId:(BOOL) value {
+  hasCurrentPlayUserId_ = !!value;
+}
+@synthesize currentPlayUserId;
 - (BOOL) hasJoinGameRequest {
   return !!hasJoinGameRequest_;
 }
@@ -9407,9 +9418,17 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasRoomNotificationRequest_ = !!value;
 }
 @synthesize roomNotificationRequest;
+- (BOOL) hasRollDiceEndNotificationRequest {
+  return !!hasRollDiceEndNotificationRequest_;
+}
+- (void) setHasRollDiceEndNotificationRequest:(BOOL) value {
+  hasRollDiceEndNotificationRequest_ = !!value;
+}
+@synthesize rollDiceEndNotificationRequest;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
+  self.currentPlayUserId = nil;
   self.joinGameRequest = nil;
   self.joinGameResponse = nil;
   self.startGameRequest = nil;
@@ -9428,6 +9447,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.enterRoomRequest = nil;
   self.enterRoomResponse = nil;
   self.roomNotificationRequest = nil;
+  self.rollDiceEndNotificationRequest = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9441,6 +9461,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.completeReason = GameCompleteReasonReasonNotComplete;
     self.onlineUserCount = 0;
     self.toUserId = @"";
+    self.currentPlayUserId = @"";
     self.joinGameRequest = [JoinGameRequest defaultInstance];
     self.joinGameResponse = [JoinGameResponse defaultInstance];
     self.startGameRequest = [StartGameRequest defaultInstance];
@@ -9459,6 +9480,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.enterRoomRequest = [EnterRoomRequest defaultInstance];
     self.enterRoomResponse = [EnterRoomResponse defaultInstance];
     self.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
+    self.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
   }
   return self;
 }
@@ -9536,6 +9558,11 @@ static GameMessage* defaultGameMessageInstance = nil;
       return NO;
     }
   }
+  if (self.hasRollDiceEndNotificationRequest) {
+    if (!self.rollDiceEndNotificationRequest.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -9565,6 +9592,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasToUserId) {
     [output writeString:9 value:self.toUserId];
+  }
+  if (self.hasCurrentPlayUserId) {
+    [output writeString:10 value:self.currentPlayUserId];
   }
   if (self.hasJoinGameRequest) {
     [output writeMessage:11 value:self.joinGameRequest];
@@ -9620,6 +9650,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasRoomNotificationRequest) {
     [output writeMessage:107 value:self.roomNotificationRequest];
   }
+  if (self.hasRollDiceEndNotificationRequest) {
+    [output writeMessage:109 value:self.rollDiceEndNotificationRequest];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -9655,6 +9688,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasToUserId) {
     size += computeStringSize(9, self.toUserId);
+  }
+  if (self.hasCurrentPlayUserId) {
+    size += computeStringSize(10, self.currentPlayUserId);
   }
   if (self.hasJoinGameRequest) {
     size += computeMessageSize(11, self.joinGameRequest);
@@ -9709,6 +9745,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasRoomNotificationRequest) {
     size += computeMessageSize(107, self.roomNotificationRequest);
+  }
+  if (self.hasRollDiceEndNotificationRequest) {
+    size += computeMessageSize(109, self.rollDiceEndNotificationRequest);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -9812,6 +9851,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (other.hasToUserId) {
     [self setToUserId:other.toUserId];
   }
+  if (other.hasCurrentPlayUserId) {
+    [self setCurrentPlayUserId:other.currentPlayUserId];
+  }
   if (other.hasJoinGameRequest) {
     [self mergeJoinGameRequest:other.joinGameRequest];
   }
@@ -9865,6 +9907,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasRoomNotificationRequest) {
     [self mergeRoomNotificationRequest:other.roomNotificationRequest];
+  }
+  if (other.hasRollDiceEndNotificationRequest) {
+    [self mergeRollDiceEndNotificationRequest:other.rollDiceEndNotificationRequest];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -9936,6 +9981,10 @@ static GameMessage* defaultGameMessageInstance = nil;
       }
       case 74: {
         [self setToUserId:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setCurrentPlayUserId:[input readString]];
         break;
       }
       case 90: {
@@ -10100,6 +10149,15 @@ static GameMessage* defaultGameMessageInstance = nil;
         [self setRoomNotificationRequest:[subBuilder buildPartial]];
         break;
       }
+      case 874: {
+        RollDiceEndNotificationRequest_Builder* subBuilder = [RollDiceEndNotificationRequest builder];
+        if (self.hasRollDiceEndNotificationRequest) {
+          [subBuilder mergeFrom:self.rollDiceEndNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRollDiceEndNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
 }
@@ -10245,6 +10303,22 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearToUserId {
   result.hasToUserId = NO;
   result.toUserId = @"";
+  return self;
+}
+- (BOOL) hasCurrentPlayUserId {
+  return result.hasCurrentPlayUserId;
+}
+- (NSString*) currentPlayUserId {
+  return result.currentPlayUserId;
+}
+- (GameMessage_Builder*) setCurrentPlayUserId:(NSString*) value {
+  result.hasCurrentPlayUserId = YES;
+  result.currentPlayUserId = value;
+  return self;
+}
+- (GameMessage_Builder*) clearCurrentPlayUserId {
+  result.hasCurrentPlayUserId = NO;
+  result.currentPlayUserId = @"";
   return self;
 }
 - (BOOL) hasJoinGameRequest {
@@ -10785,6 +10859,36 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearRoomNotificationRequest {
   result.hasRoomNotificationRequest = NO;
   result.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasRollDiceEndNotificationRequest {
+  return result.hasRollDiceEndNotificationRequest;
+}
+- (RollDiceEndNotificationRequest*) rollDiceEndNotificationRequest {
+  return result.rollDiceEndNotificationRequest;
+}
+- (GameMessage_Builder*) setRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value {
+  result.hasRollDiceEndNotificationRequest = YES;
+  result.rollDiceEndNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setRollDiceEndNotificationRequestBuilder:(RollDiceEndNotificationRequest_Builder*) builderForValue {
+  return [self setRollDiceEndNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value {
+  if (result.hasRollDiceEndNotificationRequest &&
+      result.rollDiceEndNotificationRequest != [RollDiceEndNotificationRequest defaultInstance]) {
+    result.rollDiceEndNotificationRequest =
+      [[[RollDiceEndNotificationRequest builderWithPrototype:result.rollDiceEndNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.rollDiceEndNotificationRequest = value;
+  }
+  result.hasRollDiceEndNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearRollDiceEndNotificationRequest {
+  result.hasRollDiceEndNotificationRequest = NO;
+  result.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
   return self;
 }
 @end
