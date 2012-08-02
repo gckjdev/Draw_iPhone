@@ -93,8 +93,8 @@
 {
     NSString *desc = @"";
     NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
-    NSString *word = feed.drawData.word.text;
-    NSString *creatorId = feed.drawData.userId;
+    NSString *word = feed.wordText;
+    NSString *creatorId = feed.authorId;
     
     NSString *targetNick= [FeedManager targetNameForFeed:feed];
     if (feed.drawData.languageType == ChineseType 
@@ -202,7 +202,7 @@
     [self.drawView removeFromSuperview];
     
     if (feed.drawImage == nil) {
-        feed.drawImage = [[ShareImageManager defaultManager] getImageWithName:feed.feedId];
+        feed.drawImage = [[ShareImageManager defaultManager] getImageWithName:[feed saveKey]];
     }
     
     if (feed.drawImage) {
@@ -226,7 +226,7 @@
         [view release];
         feed.drawImage = [view createImage];    
         [[ShareImageManager defaultManager] saveImage:feed.drawImage 
-                                        withImageName:feed.feedId 
+                                        withImageName:[feed saveKey] 
                                                  asyn:YES];
         
     }

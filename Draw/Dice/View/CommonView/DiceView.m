@@ -9,16 +9,39 @@
 #import "DiceView.h"
 #import "DiceImageManager.h"
 
+@interface DiceView ()
+
+@property (retain, nonatomic) UIImageView *seletedBgImageView;
+
+@end
+
 @implementation DiceView
 
+@synthesize seletedBgImageView = _seletedBgImageView;
+
+- (void)dealloc
+{
+    [_seletedBgImageView release];
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame 
-               dice:(Dice *)dice
+               dice:(PBDice *)dice
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.tag = dice.diceId;
         [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
+        
+        self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+        self.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
+        self.seletedBgImageView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
+        [self setImageEdgeInsets:UIEdgeInsetsMake(5, 1.5, 0, 0)];
+
+        [self addSubview:self.seletedBgImageView];
+        [self sendSubviewToBack:self.seletedBgImageView];
+        
+        self.tag = dice.diceId;
     }
     
     return self;

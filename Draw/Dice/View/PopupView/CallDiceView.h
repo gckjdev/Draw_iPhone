@@ -11,6 +11,6 @@
 
 @interface CallDiceView : UIView
 
-- (id)initWithDice:(Dice *)dice count:(int)count;
+- (id)initWithDice:(PBDice *)dice count:(int)count;
 
 @end

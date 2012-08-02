@@ -41,6 +41,7 @@ typedef enum {
 
 @class Draw;
 @class PBFeed;
+@class PBDraw;
 
 @interface Feed : NSObject
 {
@@ -78,6 +79,13 @@ typedef enum {
     NSInteger _correctTimes;
     
     UIImage *_drawImage;
+    
+    
+    //temp store
+    PBDraw *_pbDraw;
+    NSString *_wordText;
+    NSString *_authorId;
+    NSString *_authorNick;
 }
 
 @property (nonatomic, retain) NSString *feedId;
@@ -117,11 +125,18 @@ typedef enum {
 
 @property (nonatomic, assign) NSInteger opusStatus;
 
+@property (nonatomic, retain) PBDraw *pbDraw;
+@property (nonatomic, retain) NSString *wordText;
+@property (nonatomic, retain) NSString *authorId;
+@property (nonatomic, retain) NSString *authorNick;
+
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (BOOL)isMyOpus;
 - (BOOL) hasGuessed;
 - (BOOL) isDrawType;
 - (NSString *)author;
+- (NSString *)saveKey;
 
 
 @end
