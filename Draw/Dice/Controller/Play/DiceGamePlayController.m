@@ -15,11 +15,20 @@
 #import "DiceAvatarView.h"
 #import "UserManager.h"
 #import "DicesResultView.h"
+#import "Dice.pb.h"
 
 #define AVATAR_TAG_OFFSET   1000
+
 #define NICKNAME_TAG_OFFSET 1100
 
+#define NICKNAME_TAG_OFFSET 2000
+#define RESULT_TAG_OFFSET   3000
+#define BELL_TAG_OFFSET     4000
+
+
 @interface DiceGamePlayController ()
+
+@property (retain, nonatomic) NSArray *userDiceList;
 
 @end
 
@@ -29,12 +38,14 @@
 @synthesize openDiceButton;
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
+@synthesize userDiceList = _userDiceList;
 
 - (void)dealloc {
     [myLevelLabel release];
     [myCoinsLabel release];
     [openDiceButton release];
     [diceCountSelectedHolderView release];
+    [_userDiceList release];
     [super dealloc];
 }
 
@@ -133,18 +144,41 @@
     
     
     //test code
-//    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
-//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-//    for (int i = 0 ; i < 6 ; i++) {
-//        Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
-//        NSUInteger value =  (arc4random() % 6) + 1; 
-//        [diceBuilder setDice:value];
-//        [diceBuilder setDiceId:i];
-//        Dice *dice = [diceBuilder build];
-//        [mutableArray addObject:dice];
-//    }
-//    [dicesResultView setDices:mutableArray];
-//    [self.view addSubview:dicesResultView];
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    for (int k = 0; k < 6 ; k++) {
+        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
+        [userDiceBuilder setUserId:@"TEST"];
+        for (int i = 0 ; i < 5 ; i++) {
+            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+            NSUInteger value =  (arc4random() % 6) + 1; 
+            [diceBuilder setDice:value];
+            [diceBuilder setDiceId:i];
+            PBDice *dice = [diceBuilder build];
+            
+            [userDiceBuilder addDices:dice];
+        }
+        PBUserDice *userDice = [userDiceBuilder build];
+        [mutableArray addObject:userDice];
+    }
+    self.userDiceList = mutableArray;
+    [self showAllDicesResult];
+}
+
+- (void)showAllDicesResult
+{
+    int i = 1;
+    for (PBUserDice *userDice in _userDiceList) {
+        
+        DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + i];
+        DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
+        
+        dicesResultView.center = oldDicesResultView.center;
+        dicesResultView.tag = oldDicesResultView.tag;
+        [dicesResultView setDices:userDice];
+        [oldDicesResultView removeFromSuperview];
+        [self.view addSubview:dicesResultView];
+        i++;
+    }
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
