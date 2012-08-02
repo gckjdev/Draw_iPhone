@@ -10,23 +10,26 @@
 #import "UIViewUtils.h"
 #import "FontButton.h"
 #import "DiceImageManager.h"
-#import "DiceShowView.h"
 #import "CMPopTipView.h"
+#import "PPDebug.h"
 
-#define DEFAULT_HEIGHT_OF_PAGE_CONTROL 20
+#define DEFAULT_HEIGHT_OF_PAGE_CONTROL 5
 
 #define EACH_PAGE_BUTTON_COUNT 7
 #define EDGE_WIDTH 4
 
 @interface DiceSelectedView ()
+{
+    int _selectedCount;
+    int _lastCallDice;
+    int _start;
+}
 
 @property (retain, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
 @property (retain, nonatomic) UIScrollView *scrollView;
 @property (retain, nonatomic) UICustomPageControl *pageControl;
-
-@property (retain, nonatomic) NSArray *diceList;
 
 @end
 
@@ -37,7 +40,7 @@
 @synthesize popView = _popView;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
-@synthesize diceList = _diceList;
+
 
 - (void)dealloc
 {
@@ -45,7 +48,6 @@
     [_popView release];
     [_scrollView release];
     [_pageControl release];
-    [_diceList release];
     [super dealloc];
 }
 
@@ -55,6 +57,7 @@
     if (self) {
         // Initialization code
         self.superView = superView;
+        _lastCallDice = 6;
         
         self.scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
         self.scrollView.pagingEnabled = YES;
@@ -63,22 +66,23 @@
         self.scrollView.backgroundColor = [UIColor clearColor];
         self.scrollView.delegate = self;
         
-        self.pageControl = [[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)]; 
+        self.pageControl = [[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL - 3, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)]; 
         self.backgroundColor = [UIColor clearColor];
         self.pageControl.hidesForSinglePage = YES;
         self.pageControl.delegate = self;
         
         [self addSubview:self.scrollView];
         [self addSubview:self.pageControl];
-        
-        self.diceList = [self genDiceList];
     }
     
     return self;
 }
 
-- (void)setStart:(int)start end:(int)end
+- (void)setStart:(int)start end:(int)end lastCallDice:(int)lastCallDice
 {
+    _start = start;
+    _lastCallDice = lastCallDice;
+    
     int viewCount = (end - start + 1) / 7 + ((((end - start + 1) % 7) == 0) ? 0 : 1);
     if (viewCount <=  2) {
         viewCount = 1;
@@ -148,7 +152,7 @@
     UIView *view = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     
     CGRect frame;
-//    int width = (view.bounds.size.width - EDGE_WIDTH) / EACH_PAGE_BUTTON_COUNT - EDGE_WIDTH;
+
     int width = 30;
     int height = 32;
 
@@ -179,53 +183,50 @@
 }
 
 - (void)clickCountSelectedButton:(id)sender
-{
-    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:_diceList userInterAction:YES];
+{    
     [self.popView dismissAnimated:YES];
+    
+    UIButton *button = (UIButton *)sender;
+    _selectedCount = button.tag;
+    NSArray *diceList;
+    if (button.tag == _start && _lastCallDice < 6) {
+        diceList = [self genDiceListStartWith:_lastCallDice end:6];
+    }else {
+        diceList = [self genDiceListStartWith:1 end:6];
+    }
+    
+    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:diceList userInterAction:YES];
+    diceShowView.delegate = self;
+    
     self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
-    [self.popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+    
+    [self.popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3.0];
 }
 
-- (NSArray *)genDiceList
+- (NSArray *)genDiceListStartWith:(int)start end:(int)end
 {
-    PBDice_Builder *diceBuilder1 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder1 setDice:1];
-    [diceBuilder1 setDiceId:1];
-    PBDice *dice1 = [diceBuilder1 build];
-    
-    PBDice_Builder *diceBuilder2 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder2 setDice:2];
-    [diceBuilder2 setDiceId:2];
-    PBDice *dice2 = [diceBuilder2 build];
-    
-    PBDice_Builder *diceBuilder3 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder3 setDice:3];
-    [diceBuilder3 setDiceId:3];
-    PBDice *dice3 = [diceBuilder3 build];
-    
-    PBDice_Builder *diceBuilder4 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder4 setDice:4];
-    [diceBuilder4 setDiceId:4];
-    PBDice *dice4 = [diceBuilder4 build];
-    
-    PBDice_Builder *diceBuilder5 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder5 setDice:5];
-    [diceBuilder5 setDiceId:5];
-    PBDice *dice5 = [diceBuilder5 build];
-    
-    PBDice_Builder *diceBuilder6 = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder6 setDice:6];
-    [diceBuilder6 setDiceId:6];
-    PBDice *dice6 = [diceBuilder6 build];
-    
-    NSArray *dices = [NSArray arrayWithObjects:dice1, dice2, dice3, dice4, dice5, dice6, nil];
+    NSMutableArray *dices = [NSMutableArray array];
+
+    for (int i = start; i <= end; i ++) {
+        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+        [diceBuilder setDice:i];
+        [diceBuilder setDiceId:i];
+        PBDice *dice = [diceBuilder build];
+         
+        [dices addObject:dice];
+    }
     
     return dices;
 }
 
+#pragma mark - DiceShowViewDelegate
 
-
+- (void)didSelectedDice:(PBDice *)dice
+{
+    [self.popView dismissAnimated:YES];
+    PPDebug(@"Call %d * %d", _selectedCount, dice.dice);
+}
 
 @end
