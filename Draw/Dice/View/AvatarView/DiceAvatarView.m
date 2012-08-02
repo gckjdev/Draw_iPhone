@@ -75,8 +75,8 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             maleDefaultAvatarImage]];
+        [imageView setImage:[[DiceImageManager defaultManager] 
+                             greenSafaImage]];
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
