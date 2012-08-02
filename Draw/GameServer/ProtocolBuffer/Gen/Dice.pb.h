@@ -8,12 +8,8 @@
 @class PBDiceGameResult;
 @class PBDiceGameResult_Builder;
 @class PBDice_Builder;
-@class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
-@class PBDraw_Builder;
-@class PBFeed;
-@class PBFeed_Builder;
 @class PBGameItem;
 @class PBGameItem_Builder;
 @class PBGameSession;
@@ -223,18 +219,13 @@
 @interface PBDiceGameResult : PBGeneratedMessage {
 @private
   BOOL hasOpenType_:1;
-  BOOL hasOpenDiceUserResult_:1;
-  BOOL hasCallDiceUserResult_:1;
   int32_t openType;
-  PBUserResult* openDiceUserResult;
-  PBUserResult* callDiceUserResult;
+  NSMutableArray* mutableUserResultList;
 }
-- (BOOL) hasOpenDiceUserResult;
-- (BOOL) hasCallDiceUserResult;
 - (BOOL) hasOpenType;
-@property (readonly, retain) PBUserResult* openDiceUserResult;
-@property (readonly, retain) PBUserResult* callDiceUserResult;
 @property (readonly) int32_t openType;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
 
 + (PBDiceGameResult*) defaultInstance;
 - (PBDiceGameResult*) defaultInstance;
@@ -270,19 +261,12 @@
 - (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasOpenDiceUserResult;
-- (PBUserResult*) openDiceUserResult;
-- (PBDiceGameResult_Builder*) setOpenDiceUserResult:(PBUserResult*) value;
-- (PBDiceGameResult_Builder*) setOpenDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue;
-- (PBDiceGameResult_Builder*) mergeOpenDiceUserResult:(PBUserResult*) value;
-- (PBDiceGameResult_Builder*) clearOpenDiceUserResult;
-
-- (BOOL) hasCallDiceUserResult;
-- (PBUserResult*) callDiceUserResult;
-- (PBDiceGameResult_Builder*) setCallDiceUserResult:(PBUserResult*) value;
-- (PBDiceGameResult_Builder*) setCallDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue;
-- (PBDiceGameResult_Builder*) mergeCallDiceUserResult:(PBUserResult*) value;
-- (PBDiceGameResult_Builder*) clearCallDiceUserResult;
+- (NSArray*) userResultList;
+- (PBUserResult*) userResultAtIndex:(int32_t) index;
+- (PBDiceGameResult_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) addUserResult:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) addAllUserResult:(NSArray*) values;
+- (PBDiceGameResult_Builder*) clearUserResultList;
 
 - (BOOL) hasOpenType;
 - (int32_t) openType;

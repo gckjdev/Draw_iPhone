@@ -24,8 +24,7 @@ message PBUserResult {
 }
 
 message PBDiceGameResult {
-  required PBUserResult openDiceUserResult = 1;
-  required PBUserResult callDiceUserResult = 2;  
-  optional int32 openType = 5[default=0];           // 开0，抢开1
+  repeated PBUserResult userResult = 1;
+  optional int32 openType = 2[default=0];           // 开0，抢开1
 }
 
