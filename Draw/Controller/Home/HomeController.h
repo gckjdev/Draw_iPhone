@@ -20,7 +20,8 @@
 
 @interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, LmmobAdBannerViewDelegate>
 {
-    BOOL        _isTryJoinGame;    
+    BOOL        _isTryJoinGame;  
+    BOOL        _isJoiningDice;
     UserManager *_userManager;
 }
 @property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
