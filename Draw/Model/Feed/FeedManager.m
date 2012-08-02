@@ -22,7 +22,6 @@ FeedManager *_staticFeedManager = nil;
 
 
 
-
 + (NSString *)userNameForFeed:(Feed *)feed
 {
     if ([[UserManager defaultManager] isMe:feed.userId]) {
@@ -79,11 +78,6 @@ FeedManager *_staticFeedManager = nil;
             return ActionTypeGuess;
         }
         
-//        if ([userManager isMe:feed.drawData.userId]) {
-//            return ActionTypeOneMore;
-//        }else{
-//            return ActionTypeGuess;
-//        }
     }
     return ActionTypeHidden;
 }
@@ -200,6 +194,13 @@ FeedManager *_staticFeedManager = nil;
     return _staticFeedManager;
 }
 
++ (void)releaseDefaultManager
+{
+    [_staticFeedManager cleanData];
+    [_staticFeedManager release];
+    _staticFeedManager = nil;
+}
+
 - (NSMutableArray *)feedListForType:(FeedListType)type
 {
     NSString *key = [self keyForType:type];
@@ -310,4 +311,29 @@ FeedManager *_staticFeedManager = nil;
     return [[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
 }
 
++ (void)parseDrawData:(Feed *)feed delegate:(id<FeedManagerDelegate>)delegate
+{
+    
+    if (feed.isParsing) {
+        PPDebug(@"<parseDrawData> feed = %@, is parsing",feed.feedId);
+        return;
+    }
+    if (feed.drawData == nil && feed.pbDraw != nil) {
+        feed.isParsing = YES;
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        if (queue) {
+            dispatch_async(queue, ^{
+                feed.drawData = [[[Draw alloc] initWithPBDraw:feed.pbDraw] autorelease]; 
+                feed.pbDraw = nil;
+                feed.isParsing = NO;
+                PPDebug(@"<parseDrawData> feed = %@ has parsed",feed.feedId);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (delegate && [delegate respondsToSelector:@selector(didParseFeedDrawData:)]) {
+                        [delegate didParseFeedDrawData:feed];
+                    }
+                });
+            });
+        }
+    }
+}
 @end
