@@ -506,6 +506,7 @@ enum {
     UISlider* slider = (UISlider*)sender;
     float volume = slider.value;
     [[AudioManager defaultManager] setVolume:volume];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 
