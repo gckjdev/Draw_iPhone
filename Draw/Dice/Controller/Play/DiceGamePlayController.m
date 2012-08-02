@@ -17,7 +17,7 @@
 #import "DicesResultView.h"
 
 #define AVATAR_TAG_OFFSET   1000
-#define NICKNAME_TAG_OFFSET 2000
+#define NICKNAME_TAG_OFFSET 1100
 
 @interface DiceGamePlayController ()
 
@@ -234,6 +234,12 @@
     [super viewDidAppear:animated];
     [self registerDiceGameNotification];    
     [self updateAllPlayersAvatar];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self unregisterDiceGameNotification];
 }
 
 @end
