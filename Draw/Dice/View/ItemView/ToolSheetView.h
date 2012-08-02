@@ -20,7 +20,10 @@
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
 @property (retain, nonatomic) UIImageView *backgroundImageView;
 
-- (id)initWithImageNameList:(NSArray *)imageNameList delegate:(id<ToolSheetViewDelegate>)delegate;
-- (void)showInButton:(UIButton *)button;
+- (id)initWithImageNameList:(NSArray *)imageNameList 
+            countNumberList:(NSArray *)countNumberList 
+                   delegate:(id<ToolSheetViewDelegate>)delegate;
+
+- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint;
 
 @end

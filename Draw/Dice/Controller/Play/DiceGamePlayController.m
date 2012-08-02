@@ -12,6 +12,10 @@
 #import "DiceSelectedView.h"
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
+#import "DiceAvatarView.h"
+#import "UserManager.h"
+
+#define AVATAR_TAG_OFFSET   1000
 
 @interface DiceGamePlayController ()
 
@@ -61,8 +65,8 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds] autorelease];
-    [view setStart:1 end:9];
+    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    [view setStart:1 end:12];
     [diceCountSelectedHolderView addSubview:view];
 }
 
@@ -94,9 +98,73 @@
     
 }
 
+#define TAG_TOOL_BUTTON 12080101
+#define TAG_TOOL_SHEET  12080102
+- (IBAction)clickToolButton:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.tag = TAG_TOOL_BUTTON;
+    button.selected = !button.selected;
+    
+    ToolSheetView *toolSheetView = (ToolSheetView *)[self.view viewWithTag:TAG_TOOL_SHEET];
+    
+    if (toolSheetView == nil) {
+        CGPoint fromPoint  = CGPointMake(button.frame.origin.x + 0.5 * button.frame.size.width, button.frame.origin.y );
+        NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
+        NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
+                                    
+        ToolSheetView *toolSheetView = [[ToolSheetView alloc] initWithImageNameList:imageNameList 
+                                                                    countNumberList:countNumberList 
+                                                                           delegate:self];
+        
+        toolSheetView.tag = TAG_TOOL_SHEET;
+        [toolSheetView showInView:self.view fromFottomPoint:fromPoint];
+        [toolSheetView release];
+    } else {
+        [toolSheetView removeFromSuperview];
+    }
+}
+
+- (void)didSelectTool:(NSInteger)index
+{
+    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
+    button.selected = !button.selected;
+}
+
 - (IBAction)clickRunAwayButton:(id)sender {
+    [[DiceGameService defaultService] quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (int)getSelfIndexFromUserList:(NSArray*)userList
+{
+    if (userList.count > 0) {
+        for (int i = 0; i < userList.count; i ++) {
+            PBGameUser* user = [userList objectAtIndex:i];
+            if ([user.userId isEqualToString:[UserManager defaultManager].userId]) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+- (void)updateAllPlayersAvatar
+{
+    NSArray* userList = [[DiceGameService defaultService].session userList];
+    int index = [self getSelfIndexFromUserList:userList];
+    if (index >= 0) {
+        for (int i = 1; i <=userList.count; i ++) {
+            
+            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+            int userIndex = (index+i-1)%userList.count;
+            PBGameUser* user = [userList objectAtIndex:userIndex];
+            [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
+            
+        }
+    }
+    
+}
+
 
 
 #pragma test server
@@ -115,7 +183,8 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");         
+         PPDebug(@"<HomeController> NOTIFICATION_ROOM");   
+         [self updateAllPlayersAvatar];
      }];
     
 }
@@ -132,15 +201,12 @@
 }
 
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self registerDiceGameNotification];
-    NSArray* array = [[DiceGameService defaultService].session userList];
-    for (PBGameUser* user in array) {
-        PPDebug(@"%@",user.nickName);
-    }
+    [self registerDiceGameNotification];    
+    [self updateAllPlayersAvatar];
 }
-
 
 @end

@@ -17,7 +17,10 @@
 - (UIImage *)graySafaImage;
 - (UIImage *)greenSafaImage;
 - (UIImage *)diceImageWithDice:(int)dice;
+- (UIImage *)openDiceImageWithDice:(int)dice;
+- (UIImage *)toolBackground;
+- (UIImage *)toolEnableCountBackground;
+- (UIImage *)toolDisableCountBackground;
 - (UIImage *)toolBackgroundImage;
-
 - (UIImage *)diceCountSelectedBtnBgImage;
 @end

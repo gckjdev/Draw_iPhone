@@ -43,6 +43,7 @@
 @synthesize inputBackgroundView = inputBackgroundView;
 @synthesize inputBackground = _inputBackground;
 @synthesize paperImage = _paperImage;
+@synthesize drawImageButton = _drawImageButton;
 @synthesize avatarView = _avatarView;
 
 
@@ -192,14 +193,13 @@
 - (void)updateDrawView:(Feed *)feed
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
+    self.drawView.tag = SHOW_VIEW_TAG_SMALL;
     self.drawView.playSpeed = 1.0/36.0;
     [self.drawView setShowPenHidden:YES];
     self.drawView.delegate = self;
     [self.drawView setBackgroundColor:[UIColor whiteColor]];
     [self.drawView cleanAllActions];
     [self.view addSubview:self.drawView];
-    self.drawView.tag = SHOW_VIEW_TAG_SMALL;
-    [self setShowDrawView:SHOW_DRAW_VIEW_FRAME animated:NO];
 }
 
 #define INPUT_BG_TAG 2012061501
@@ -234,6 +234,13 @@
 
 - (void)updateInfo:(Feed *)feed
 {
+    if (feed.drawData == nil) {
+        if (feed.drawData == nil && feed.pbDraw) {
+            PPDebug(@"<FeedDetailController>init the draw data from the pbDraw,feedId = %@",feed.feedId);
+            feed.drawData = [[Draw alloc] initWithPBDraw:feed.pbDraw];
+            feed.pbDraw = nil;
+        }
+    }
     if ([feed isDrawType]) {
         _opusId = feed.feedId;
         _userNickName = feed.nickName;
@@ -269,7 +276,7 @@
     NSString *title = nil;
     if ([self.feed isMyOpus]) {
         title = [NSString stringWithFormat:NSLS(@"kMyDrawing"),
-                 self.feed.drawData.word.text];        
+                 self.feed.wordText];        
     }else{
         title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),[FeedManager opusCreatorForFeed:self.feed]];
     }
@@ -285,18 +292,21 @@
     [self setSupportRefreshHeader:YES];
     
     [super viewDidLoad];
+    
     [self updateInfo:_feed];
     [self updateTime:_feed];
     [self updateUser:_feed];
     [self updateGuessDesc:_feed];
     [self updateActionButton:_feed];
-    [self updateDrawView:_feed];
+//    [self updateDrawView:_feed];
     [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
     [self updateInputView:_feed];
     [self updateCommentList];
+    [self.drawImageButton setBackgroundImage:self.feed.drawImage 
+                                    forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -326,6 +336,7 @@
     [self setDrawView:nil];
     [self setInputBackground:nil];
     [self setPaperImage:nil];
+    [self setDrawImageButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -337,13 +348,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)parseDrawData:(Feed *)feed
+{
+    if (feed.drawData) {
+        return;
+    }
+    feed.drawData = [[Draw alloc] initWithPBDraw:feed.pbDraw];
+    feed.pbDraw = nil;
+    
+}
+
 - (IBAction)clickActionButton:(id)sender {
 
     NSInteger tag = [(UIButton *)sender tag];
     if (tag == ACTION_TAG_GUESS) {
-        OfflineGuessDrawController *controller = [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
-        controller.delegate = self;
         
+        [self showActivityWithText:NSLS(@"kParsingData")];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            [self parseDrawData:self.feed];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivity];
+                OfflineGuessDrawController *controller = [OfflineGuessDrawController 
+                                                          startOfflineGuess:self.feed 
+                                                          fromController:self];        
+                controller.delegate = self;                
+            });
+        });
+
     }else if(tag == ACTION_TAG_CHALLENGE){
         [self didClickOnAvatar:_author];
     
@@ -379,6 +411,7 @@
     PPRelease(_inputBackground);
     PPRelease(_paperImage);
     
+    [_drawImageButton release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
@@ -388,6 +421,7 @@
         [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];        
     }
 }
+
 
 #define WIDTH_SHARE_BUTTON      ([DeviceDetection isIPAD] ? 180.0 : 90.0)
 #define HEIGHT_SHARE_BUTTON     ([DeviceDetection isIPAD] ? 60.0 : 30.0)
@@ -426,17 +460,34 @@
     [[ShareService defaultService] shareWithImage:[_drawView createImage] 
                                        drawUserId:_feed.userId 
                                        isDrawByMe:[_feed isMyOpus] 
-                                         drawWord:_feed.drawData.word.text];    
+                                         drawWord:_feed.wordText];    
     
     [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
                                               userId:_feed.userId 
                                             nickName:_feed.nickName 
                                            isMyPaint:[_feed isMyOpus] 
-                                                word:_feed.drawData.word.text 
+                                                word:_feed.wordText
                                                image:[_drawView createImage] viewController:self];
     
     button.enabled = NO;
     button.selected = YES;
+}
+
+
+- (IBAction)clickDrawImage:(id)sender {
+    PPDebug(@"clicking draw image");
+    if (self.drawView == nil) {
+        [self updateDrawView:self.feed];
+    }
+    [self showActivityWithText:NSLS(@"kParsingData")];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self parseDrawData:self.feed];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideActivity];
+            [self didClickShowDrawView:self.drawView];
+        });
+    });
 }
 
 
