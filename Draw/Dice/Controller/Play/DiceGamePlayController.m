@@ -75,7 +75,7 @@
     [self.view addSubview:myCoinsLabel];
     
     DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
-    [view setStart:1 end:12];
+    [view setStart:6 end:30 lastCallDice:4];
     [diceCountSelectedHolderView addSubview:view];
 }
 

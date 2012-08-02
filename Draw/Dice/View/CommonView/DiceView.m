@@ -9,9 +9,11 @@
 #import "DiceView.h"
 #import "DiceImageManager.h"
 
+//#define DICE_WIDTH 33
+//#define DICE_HEIGHT 35
+
 @interface DiceView ()
 
-@property (retain, nonatomic) UIImageView *seletedBgImageView;
 
 @end
 
@@ -31,21 +33,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
         [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
         
         self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        self.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
-        self.seletedBgImageView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
-        [self setImageEdgeInsets:UIEdgeInsetsMake(5, 1.5, 0, 0)];
 
         [self addSubview:self.seletedBgImageView];
-        [self sendSubviewToBack:self.seletedBgImageView];
         
         self.tag = dice.diceId;
     }
     
     return self;
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
