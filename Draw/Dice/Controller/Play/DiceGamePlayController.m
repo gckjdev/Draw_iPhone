@@ -24,6 +24,8 @@
 #define RESULT_TAG_OFFSET   3000
 #define BELL_TAG_OFFSET     4000
 
+#define MAX_PLAYER_COUNT    6
+
 
 @interface DiceGamePlayController ()
 
@@ -213,7 +215,7 @@
     if (index >= 0) {
         for (int i = 0; i < userList.count; i ++) {
             
-            int avatarIndex = (6+i-index)%6+1;
+            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
             DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
             UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
             PBGameUser* user = [userList objectAtIndex:i];
@@ -229,6 +231,17 @@
         }
     }
     
+}
+
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+{
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
 }
 
 
