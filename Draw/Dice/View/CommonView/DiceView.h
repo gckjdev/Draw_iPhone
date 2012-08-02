@@ -16,6 +16,6 @@
 @interface DiceView : UIButton
 
 - (id)initWithFrame:(CGRect)frame 
-               dice:(Dice *)dice;
+               dice:(PBDice *)dice;
 
 @end

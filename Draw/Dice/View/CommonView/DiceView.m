@@ -26,8 +26,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame 
-               dice:(Dice *)dice
-
+               dice:(PBDice *)dice
 {
     self = [super initWithFrame:frame];
     if (self) {

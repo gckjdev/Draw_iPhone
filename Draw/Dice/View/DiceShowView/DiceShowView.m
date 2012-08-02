@@ -42,7 +42,8 @@
         self.dices = dices;
         
         int i = 0;
-        for (Dice *dice in dices) {
+  
+        for (PBDice *dice in dices) {
             CGRect rect = CGRectMake((EDGE_WIDTH + DICE_VIEW_WIDTH) * i++, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT);     
 
             UIButton *diceView = [[[DiceView alloc] initWithFrame:rect 
@@ -62,16 +63,16 @@
 {
     UIButton *button  = (UIButton *)sender;
     int diceId = button.tag;
-    Dice *dice = [self findDiceWithDiceId:diceId];
+    PBDice *dice = [self findDiceWithDiceId:diceId];
     
     if ([_delegate respondsToSelector:@selector(didSelectedDice:)]) {
         [_delegate didSelectedDice:dice];
     }
 }
 
-- (Dice *)findDiceWithDiceId:(int)diceId
+- (PBDice *)findDiceWithDiceId:(int)diceId
 {
-    for (Dice* dice in _dices) {
+    for (PBDice* dice in _dices) {
         if (diceId == dice.diceId) {
             return dice;
         }
