@@ -26,6 +26,7 @@ message CreateRoomRequest {
 }
 
 message CreateRoomResponse {
+  required PBGameSession gameSession = 1;
 }
 
 message EnterRoomRequest {
