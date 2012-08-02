@@ -34,12 +34,17 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)graySafaImage
 {
-    return [UIImage strectchableImageName:@"dice_gray_safa.png"];
+    return [UIImage strectchableImageName:@"dice_gray_safa@2x.png"];
 }
 
 - (UIImage *)greenSafaImage
 {
-    return nil;
+    return [UIImage strectchableImageName:@"dice_green_safa@2x.png"];
+}
+
+- (UIImage *)blueSafaImage
+{
+    return [UIImage strectchableImageName:@"dice_blue_safa@2x.png"];
 }
 
 - (UIImage *)diceImageWithDice:(int)dice
@@ -129,9 +134,15 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"tools_disable.png"];
 }
 
-- (UIImage *)diceCountSelectedBtnBgImage
+- (UIImage *)diceCountBtnBgImage
 {
     return [UIImage imageNamed:@"bell_amount@2x.png"];
+}
+
+- (UIImage *)diceCountSelectedBtnBgImage
+{
+    return [UIImage imageNamed:@"bell_amount_selected@2x.png"];
+
 }
 
 - (UIImage *)diceSeletedBgImage
