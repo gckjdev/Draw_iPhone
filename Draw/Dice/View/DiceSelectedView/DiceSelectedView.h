@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UICustomPageControl.h"
 
-@interface DiceSelectedView : UIScrollView <UIScrollViewDelegate, UICustomPageControlDelegate>
+@interface DiceSelectedView : UIView <UIScrollViewDelegate, UICustomPageControlDelegate>
 
-@property (nonatomic, retain) UICustomPageControl *pageControl;
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame superView:(UIView *)superView;
 - (void)setStart:(int)start end:(int)end;
 
 @end

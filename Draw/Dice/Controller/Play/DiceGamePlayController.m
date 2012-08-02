@@ -66,8 +66,8 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds] autorelease];
-    [view setStart:1 end:9];
+    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    [view setStart:1 end:12];
     [diceCountSelectedHolderView addSubview:view];
 }
 
@@ -99,8 +99,40 @@
     
 }
 
+#define TAG_TOOL_BUTTON 12080101
+#define TAG_TOOL_SHEET  12080102
+- (IBAction)clickToolButton:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.tag = TAG_TOOL_BUTTON;
+    button.selected = !button.selected;
+    
+    ToolSheetView *toolSheetView = (ToolSheetView *)[self.view viewWithTag:TAG_TOOL_SHEET];
+    
+    if (toolSheetView == nil) {
+        CGPoint fromPoint  = CGPointMake(button.frame.origin.x + 0.5 * button.frame.size.width, button.frame.origin.y );
+        NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
+        NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
+                                    
+        ToolSheetView *toolSheetView = [[ToolSheetView alloc] initWithImageNameList:imageNameList 
+                                                                    countNumberList:countNumberList 
+                                                                           delegate:self];
+        
+        toolSheetView.tag = TAG_TOOL_SHEET;
+        [toolSheetView showInView:self.view fromFottomPoint:fromPoint];
+        [toolSheetView release];
+    } else {
+        [toolSheetView removeFromSuperview];
+    }
+}
+
+- (void)didSelectTool:(NSInteger)index
+{
+    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
+    button.selected = !button.selected;
+}
 
 - (IBAction)clickRunAwayButton:(id)sender {
+    [[DiceGameService defaultService] quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
