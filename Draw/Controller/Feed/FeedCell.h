@@ -10,6 +10,7 @@
 #import "PPTableViewCell.h"
 #import "StableView.h"
 #import "PPDebug.h"
+#import "FeedManager.h"
 
 @class Feed;
 @class ShowDrawView;
@@ -30,7 +31,7 @@
 
 @end
 
-@interface FeedCell : PPTableViewCell<AvatarViewDelegate>
+@interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate>
 {
     AvatarView *_avatarView;
     UIView *_drawView;

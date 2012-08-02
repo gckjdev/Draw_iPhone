@@ -43,15 +43,15 @@
 @property (retain, nonatomic) ShowDrawView *drawView;
 
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
+//@property (retain, nonatomic) IBOutlet UIButton *followButton;
+//@property (retain, nonatomic) IBOutlet UIButton *replayButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIImageView *paperImage;
-@property (retain, nonatomic) IBOutlet UIButton *drawImageButton;
 
 
 - (IBAction)clickActionButton:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickSendButton:(id)sender;
-- (IBAction)clickDrawImage:(id)sender;
 
 - (id)initWithFeed:(Feed *)feed;
 @end

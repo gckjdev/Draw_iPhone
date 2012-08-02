@@ -117,7 +117,7 @@
     self.myFeedButton.tag = FeedListTypeMy;
     self.allFeedButton.tag = FeedListTypeAll;
     self.hotFeedButton.tag = FeedListTypeHot;
-    [self clickFeedButton:self.hotFeedButton];
+    [self clickFeedButton:self.allFeedButton];
     
 //    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
 }
@@ -197,7 +197,8 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
-    [_feedManager cleanData];
+//    [_feedManager cleanData];
+    [FeedManager releaseDefaultManager];
 }
 
 
