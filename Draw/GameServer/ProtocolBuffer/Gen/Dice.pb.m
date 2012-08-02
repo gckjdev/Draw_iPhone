@@ -750,27 +750,13 @@ static PBUserResult* defaultPBUserResultInstance = nil;
 @end
 
 @interface PBDiceGameResult ()
-@property (retain) PBUserResult* openDiceUserResult;
-@property (retain) PBUserResult* callDiceUserResult;
+@property (retain) NSMutableArray* mutableUserResultList;
 @property int32_t openType;
 @end
 
 @implementation PBDiceGameResult
 
-- (BOOL) hasOpenDiceUserResult {
-  return !!hasOpenDiceUserResult_;
-}
-- (void) setHasOpenDiceUserResult:(BOOL) value {
-  hasOpenDiceUserResult_ = !!value;
-}
-@synthesize openDiceUserResult;
-- (BOOL) hasCallDiceUserResult {
-  return !!hasCallDiceUserResult_;
-}
-- (void) setHasCallDiceUserResult:(BOOL) value {
-  hasCallDiceUserResult_ = !!value;
-}
-@synthesize callDiceUserResult;
+@synthesize mutableUserResultList;
 - (BOOL) hasOpenType {
   return !!hasOpenType_;
 }
@@ -779,14 +765,11 @@ static PBUserResult* defaultPBUserResultInstance = nil;
 }
 @synthesize openType;
 - (void) dealloc {
-  self.openDiceUserResult = nil;
-  self.callDiceUserResult = nil;
+  self.mutableUserResultList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.openDiceUserResult = [PBUserResult defaultInstance];
-    self.callDiceUserResult = [PBUserResult defaultInstance];
     self.openType = 0;
   }
   return self;
@@ -803,30 +786,27 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
 - (PBDiceGameResult*) defaultInstance {
   return defaultPBDiceGameResultInstance;
 }
+- (NSArray*) userResultList {
+  return mutableUserResultList;
+}
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  id value = [mutableUserResultList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
-  if (!self.hasOpenDiceUserResult) {
-    return NO;
-  }
-  if (!self.hasCallDiceUserResult) {
-    return NO;
-  }
-  if (!self.openDiceUserResult.isInitialized) {
-    return NO;
-  }
-  if (!self.callDiceUserResult.isInitialized) {
-    return NO;
+  for (PBUserResult* element in self.userResultList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasOpenDiceUserResult) {
-    [output writeMessage:1 value:self.openDiceUserResult];
-  }
-  if (self.hasCallDiceUserResult) {
-    [output writeMessage:2 value:self.callDiceUserResult];
+  for (PBUserResult* element in self.userResultList) {
+    [output writeMessage:1 value:element];
   }
   if (self.hasOpenType) {
-    [output writeInt32:5 value:self.openType];
+    [output writeInt32:2 value:self.openType];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -837,14 +817,11 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   }
 
   size = 0;
-  if (self.hasOpenDiceUserResult) {
-    size += computeMessageSize(1, self.openDiceUserResult);
-  }
-  if (self.hasCallDiceUserResult) {
-    size += computeMessageSize(2, self.callDiceUserResult);
+  for (PBUserResult* element in self.userResultList) {
+    size += computeMessageSize(1, element);
   }
   if (self.hasOpenType) {
-    size += computeInt32Size(5, self.openType);
+    size += computeInt32Size(2, self.openType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -921,11 +898,11 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
   if (other == [PBDiceGameResult defaultInstance]) {
     return self;
   }
-  if (other.hasOpenDiceUserResult) {
-    [self mergeOpenDiceUserResult:other.openDiceUserResult];
-  }
-  if (other.hasCallDiceUserResult) {
-    [self mergeCallDiceUserResult:other.callDiceUserResult];
+  if (other.mutableUserResultList.count > 0) {
+    if (result.mutableUserResultList == nil) {
+      result.mutableUserResultList = [NSMutableArray array];
+    }
+    [result.mutableUserResultList addObjectsFromArray:other.mutableUserResultList];
   }
   if (other.hasOpenType) {
     [self setOpenType:other.openType];
@@ -953,87 +930,44 @@ static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
       }
       case 10: {
         PBUserResult_Builder* subBuilder = [PBUserResult builder];
-        if (self.hasOpenDiceUserResult) {
-          [subBuilder mergeFrom:self.openDiceUserResult];
-        }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setOpenDiceUserResult:[subBuilder buildPartial]];
+        [self addUserResult:[subBuilder buildPartial]];
         break;
       }
-      case 18: {
-        PBUserResult_Builder* subBuilder = [PBUserResult builder];
-        if (self.hasCallDiceUserResult) {
-          [subBuilder mergeFrom:self.callDiceUserResult];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setCallDiceUserResult:[subBuilder buildPartial]];
-        break;
-      }
-      case 40: {
+      case 16: {
         [self setOpenType:[input readInt32]];
         break;
       }
     }
   }
 }
-- (BOOL) hasOpenDiceUserResult {
-  return result.hasOpenDiceUserResult;
+- (NSArray*) userResultList {
+  if (result.mutableUserResultList == nil) { return [NSArray array]; }
+  return result.mutableUserResultList;
 }
-- (PBUserResult*) openDiceUserResult {
-  return result.openDiceUserResult;
+- (PBUserResult*) userResultAtIndex:(int32_t) index {
+  return [result userResultAtIndex:index];
 }
-- (PBDiceGameResult_Builder*) setOpenDiceUserResult:(PBUserResult*) value {
-  result.hasOpenDiceUserResult = YES;
-  result.openDiceUserResult = value;
+- (PBDiceGameResult_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value {
+  [result.mutableUserResultList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBDiceGameResult_Builder*) setOpenDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue {
-  return [self setOpenDiceUserResult:[builderForValue build]];
-}
-- (PBDiceGameResult_Builder*) mergeOpenDiceUserResult:(PBUserResult*) value {
-  if (result.hasOpenDiceUserResult &&
-      result.openDiceUserResult != [PBUserResult defaultInstance]) {
-    result.openDiceUserResult =
-      [[[PBUserResult builderWithPrototype:result.openDiceUserResult] mergeFrom:value] buildPartial];
-  } else {
-    result.openDiceUserResult = value;
+- (PBDiceGameResult_Builder*) addAllUserResult:(NSArray*) values {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
   }
-  result.hasOpenDiceUserResult = YES;
+  [result.mutableUserResultList addObjectsFromArray:values];
   return self;
 }
-- (PBDiceGameResult_Builder*) clearOpenDiceUserResult {
-  result.hasOpenDiceUserResult = NO;
-  result.openDiceUserResult = [PBUserResult defaultInstance];
+- (PBDiceGameResult_Builder*) clearUserResultList {
+  result.mutableUserResultList = nil;
   return self;
 }
-- (BOOL) hasCallDiceUserResult {
-  return result.hasCallDiceUserResult;
-}
-- (PBUserResult*) callDiceUserResult {
-  return result.callDiceUserResult;
-}
-- (PBDiceGameResult_Builder*) setCallDiceUserResult:(PBUserResult*) value {
-  result.hasCallDiceUserResult = YES;
-  result.callDiceUserResult = value;
-  return self;
-}
-- (PBDiceGameResult_Builder*) setCallDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue {
-  return [self setCallDiceUserResult:[builderForValue build]];
-}
-- (PBDiceGameResult_Builder*) mergeCallDiceUserResult:(PBUserResult*) value {
-  if (result.hasCallDiceUserResult &&
-      result.callDiceUserResult != [PBUserResult defaultInstance]) {
-    result.callDiceUserResult =
-      [[[PBUserResult builderWithPrototype:result.callDiceUserResult] mergeFrom:value] buildPartial];
-  } else {
-    result.callDiceUserResult = value;
+- (PBDiceGameResult_Builder*) addUserResult:(PBUserResult*) value {
+  if (result.mutableUserResultList == nil) {
+    result.mutableUserResultList = [NSMutableArray array];
   }
-  result.hasCallDiceUserResult = YES;
-  return self;
-}
-- (PBDiceGameResult_Builder*) clearCallDiceUserResult {
-  result.hasCallDiceUserResult = NO;
-  result.callDiceUserResult = [PBUserResult defaultInstance];
+  [result.mutableUserResultList addObject:value];
   return self;
 }
 - (BOOL) hasOpenType {

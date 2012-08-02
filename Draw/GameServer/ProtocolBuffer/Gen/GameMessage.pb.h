@@ -296,7 +296,11 @@
 
 @interface CreateRoomResponse : PBGeneratedMessage {
 @private
+  BOOL hasGameSession_:1;
+  PBGameSession* gameSession;
 }
+- (BOOL) hasGameSession;
+@property (readonly, retain) PBGameSession* gameSession;
 
 + (CreateRoomResponse*) defaultInstance;
 - (CreateRoomResponse*) defaultInstance;
@@ -331,6 +335,13 @@
 - (CreateRoomResponse_Builder*) mergeFrom:(CreateRoomResponse*) other;
 - (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameSession;
+- (PBGameSession*) gameSession;
+- (CreateRoomResponse_Builder*) setGameSession:(PBGameSession*) value;
+- (CreateRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
+- (CreateRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
+- (CreateRoomResponse_Builder*) clearGameSession;
 @end
 
 @interface EnterRoomRequest : PBGeneratedMessage {
@@ -2390,9 +2401,6 @@
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
-  BOOL hasFacetimeChatRequest_:1;
-  BOOL hasFacetimeChatResponse_:1;
-  BOOL hasNotification_:1;
   BOOL hasGetRoomsRequest_:1;
   BOOL hasGetRoomsResponse_:1;
   BOOL hasCreateRoomRequest_:1;
@@ -2401,6 +2409,15 @@
   BOOL hasEnterRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
+  BOOL hasCallDiceRequest_:1;
+  BOOL hasCallDiceResponse_:1;
+  BOOL hasOpenDiceRequest_:1;
+  BOOL hasOpenDiceResponse_:1;
+  BOOL hasGameOverNotificationRequest_:1;
+  BOOL hasGameOverNotificationResponse_:1;
+  BOOL hasNotification_:1;
+  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasFacetimeChatRequest_:1;
   BOOL hasChatResponse_:1;
   BOOL hasChatRequest_:1;
   BOOL hasSendDrawDataResponse_:1;
@@ -2419,9 +2436,6 @@
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
-  FacetimeChatRequest* facetimeChatRequest;
-  FacetimeChatResponse* facetimeChatResponse;
-  GeneralNotification* notification;
   GetRoomsRequest* getRoomsRequest;
   GetRoomsResponse* getRoomsResponse;
   CreateRoomRequest* createRoomRequest;
@@ -2430,6 +2444,15 @@
   EnterRoomResponse* enterRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
+  CallDiceRequest* callDiceRequest;
+  CallDiceResponse* callDiceResponse;
+  OpenDiceRequest* openDiceRequest;
+  OpenDiceResponse* openDiceResponse;
+  GameOverNotificationRequest* gameOverNotificationRequest;
+  GameOverNotificationResponse* gameOverNotificationResponse;
+  GeneralNotification* notification;
+  FacetimeChatResponse* facetimeChatResponse;
+  FacetimeChatRequest* facetimeChatRequest;
   GameChatResponse* chatResponse;
   GameChatRequest* chatRequest;
   SendDrawDataResponse* sendDrawDataResponse;
@@ -2471,6 +2494,12 @@
 - (BOOL) hasEnterRoomResponse;
 - (BOOL) hasRoomNotificationRequest;
 - (BOOL) hasRollDiceEndNotificationRequest;
+- (BOOL) hasCallDiceRequest;
+- (BOOL) hasCallDiceResponse;
+- (BOOL) hasOpenDiceRequest;
+- (BOOL) hasOpenDiceResponse;
+- (BOOL) hasGameOverNotificationRequest;
+- (BOOL) hasGameOverNotificationResponse;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
@@ -2500,6 +2529,12 @@
 @property (readonly, retain) EnterRoomResponse* enterRoomResponse;
 @property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
 @property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
+@property (readonly, retain) CallDiceRequest* callDiceRequest;
+@property (readonly, retain) CallDiceResponse* callDiceResponse;
+@property (readonly, retain) OpenDiceRequest* openDiceRequest;
+@property (readonly, retain) OpenDiceResponse* openDiceResponse;
+@property (readonly, retain) GameOverNotificationRequest* gameOverNotificationRequest;
+@property (readonly, retain) GameOverNotificationResponse* gameOverNotificationResponse;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -2717,6 +2752,48 @@
 - (GameMessage_Builder*) setRollDiceEndNotificationRequestBuilder:(RollDiceEndNotificationRequest_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
 - (GameMessage_Builder*) clearRollDiceEndNotificationRequest;
+
+- (BOOL) hasCallDiceRequest;
+- (CallDiceRequest*) callDiceRequest;
+- (GameMessage_Builder*) setCallDiceRequest:(CallDiceRequest*) value;
+- (GameMessage_Builder*) setCallDiceRequestBuilder:(CallDiceRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCallDiceRequest:(CallDiceRequest*) value;
+- (GameMessage_Builder*) clearCallDiceRequest;
+
+- (BOOL) hasCallDiceResponse;
+- (CallDiceResponse*) callDiceResponse;
+- (GameMessage_Builder*) setCallDiceResponse:(CallDiceResponse*) value;
+- (GameMessage_Builder*) setCallDiceResponseBuilder:(CallDiceResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeCallDiceResponse:(CallDiceResponse*) value;
+- (GameMessage_Builder*) clearCallDiceResponse;
+
+- (BOOL) hasOpenDiceRequest;
+- (OpenDiceRequest*) openDiceRequest;
+- (GameMessage_Builder*) setOpenDiceRequest:(OpenDiceRequest*) value;
+- (GameMessage_Builder*) setOpenDiceRequestBuilder:(OpenDiceRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeOpenDiceRequest:(OpenDiceRequest*) value;
+- (GameMessage_Builder*) clearOpenDiceRequest;
+
+- (BOOL) hasOpenDiceResponse;
+- (OpenDiceResponse*) openDiceResponse;
+- (GameMessage_Builder*) setOpenDiceResponse:(OpenDiceResponse*) value;
+- (GameMessage_Builder*) setOpenDiceResponseBuilder:(OpenDiceResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeOpenDiceResponse:(OpenDiceResponse*) value;
+- (GameMessage_Builder*) clearOpenDiceResponse;
+
+- (BOOL) hasGameOverNotificationRequest;
+- (GameOverNotificationRequest*) gameOverNotificationRequest;
+- (GameMessage_Builder*) setGameOverNotificationRequest:(GameOverNotificationRequest*) value;
+- (GameMessage_Builder*) setGameOverNotificationRequestBuilder:(GameOverNotificationRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameOverNotificationRequest:(GameOverNotificationRequest*) value;
+- (GameMessage_Builder*) clearGameOverNotificationRequest;
+
+- (BOOL) hasGameOverNotificationResponse;
+- (GameOverNotificationResponse*) gameOverNotificationResponse;
+- (GameMessage_Builder*) setGameOverNotificationResponse:(GameOverNotificationResponse*) value;
+- (GameMessage_Builder*) setGameOverNotificationResponseBuilder:(GameOverNotificationResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeGameOverNotificationResponse:(GameOverNotificationResponse*) value;
+- (GameMessage_Builder*) clearGameOverNotificationResponse;
 @end
 
 @interface DataQueryResponse : PBGeneratedMessage {

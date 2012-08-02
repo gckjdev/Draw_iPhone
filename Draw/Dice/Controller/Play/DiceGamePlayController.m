@@ -23,6 +23,8 @@
 #define RESULT_TAG_OFFSET   3000
 #define BELL_TAG_OFFSET     4000
 
+#define MAX_PLAYER_COUNT    6
+
 
 @interface DiceGamePlayController ()
 
@@ -201,30 +203,39 @@
 {
     NSArray* userList = [[DiceGameService defaultService].session userList];
     for (PBGameUser* user in userList) {
-        PPDebug(@"get user--%@",user.nickName);
+        PPDebug(@"<test>get user--%@",user.nickName);
     }
     int index = [self getSelfIndexFromUserList:userList];
     if (index >= 0) {
-        for (int i = 1; i <=userList.count; i ++) {
+        for (int i = 0; i < userList.count; i ++) {
             
-            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
-            PPDebug(@"<test> tag = %d",(NICKNAME_TAG_OFFSET+i));
-            int userIndex = (index+i-1)%userList.count;
-            PBGameUser* user = [userList objectAtIndex:userIndex];
+            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
+            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
+            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
+            PBGameUser* user = [userList objectAtIndex:i];
             [avatar setUrlString:user.avatar 
                           userId:user.userId 
                           gender:user.gender 
                            level:user.userLevel 
                       drunkPoint:0 
                           wealth:0];
-            PPDebug(@"<test>update user <%@>", user.nickName);
             if (nameLabel) {
                 [nameLabel setText:user.nickName];
             }
         }
     }
     
+}
+
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+{
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
 }
 
 
