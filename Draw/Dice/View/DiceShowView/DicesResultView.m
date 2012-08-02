@@ -38,7 +38,7 @@
 - (void)setDices:(NSArray *)dices
 {
     int index = 0;
-    for (Dice *dice in dices) {
+    for (PBDice *dice in dices) {
         UIImage *image = [[DiceImageManager defaultManager] openDiceImageWithDice:dice.dice];
         UIImageView *imageView = (UIImageView *)[self viewWithTag:TAB_START_DICE + index];
         [imageView setImage:image];

@@ -898,6 +898,8 @@
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
 		EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */; };
 		EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */; };
+		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
+		EAA6A13215CA23550094B122 /* DicesResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA6A13015CA23550094B122 /* DicesResultView.xib */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
@@ -2334,6 +2336,9 @@
 		EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayGraffitiController.m; sourceTree = "<group>"; };
 		EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayGraffitiController.xib; sourceTree = "<group>"; };
 		EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayGraffitiController~ipad.xib"; sourceTree = "<group>"; };
+		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
+		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
+		EAA6A13015CA23550094B122 /* DicesResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DicesResultView.xib; sourceTree = "<group>"; };
 		EAE0D143155FB72400827DF9 /* no_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D144155FB72400827DF9 /* yes_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes_s@2x.png"; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
@@ -2523,6 +2528,9 @@
 		A44DDF3C15C64482005609F6 /* DiceShowView */ = {
 			isa = PBXGroup;
 			children = (
+				EAA6A12E15CA23550094B122 /* DicesResultView.h */,
+				EAA6A12F15CA23550094B122 /* DicesResultView.m */,
+				EAA6A13015CA23550094B122 /* DicesResultView.xib */,
 				A44DDF3F15C64528005609F6 /* DiceShowView.h */,
 				A44DDF4015C64528005609F6 /* DiceShowView.m */,
 			);
@@ -6282,6 +6290,7 @@
 				A4AC51F415C911360041DC86 /* diceFont_bak.ttf in Resources */,
 				A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */,
 				A4AC51F615C911360041DC86 /* newfan.ttf in Resources */,
+				EAA6A13215CA23550094B122 /* DicesResultView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6727,6 +6736,7 @@
 				A41A665915C921DA00066E9B /* SlideImageView.m in Sources */,
 				C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */,
 				C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */,
+				EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

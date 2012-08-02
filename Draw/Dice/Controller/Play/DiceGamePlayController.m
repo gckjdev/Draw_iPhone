@@ -133,18 +133,18 @@
     
     
     //test code
-    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
-    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-    for (int i = 0 ; i < 6 ; i++) {
-        Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
-        NSUInteger value =  (arc4random() % 6) + 1; 
-        [diceBuilder setDice:value];
-        [diceBuilder setDiceId:i];
-        Dice *dice = [diceBuilder build];
-        [mutableArray addObject:dice];
-    }
-    [dicesResultView setDices:mutableArray];
-    [self.view addSubview:dicesResultView];
+//    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
+//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+//    for (int i = 0 ; i < 6 ; i++) {
+//        Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
+//        NSUInteger value =  (arc4random() % 6) + 1; 
+//        [diceBuilder setDice:value];
+//        [diceBuilder setDiceId:i];
+//        Dice *dice = [diceBuilder build];
+//        [mutableArray addObject:dice];
+//    }
+//    [dicesResultView setDices:mutableArray];
+//    [self.view addSubview:dicesResultView];
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
