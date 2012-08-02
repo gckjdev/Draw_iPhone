@@ -20,4 +20,7 @@
 - (UIImage *)toolBackgroundImage;
 
 - (UIImage *)diceCountSelectedBtnBgImage;
+
+- (UIImage *)diceSeletedBgImage;
+
 @end

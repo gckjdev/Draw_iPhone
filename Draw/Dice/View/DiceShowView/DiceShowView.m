@@ -35,7 +35,7 @@
               dices:(NSArray *)dices
     userInterAction:(BOOL)userInterAction
 {
-    frame = CGRectMake(frame.origin.x, frame.origin.y, EDGE_WIDTH * ([dices count] - 1) + DICE_WIDTH * [dices count], DICE_HEIGHT);
+    frame = CGRectMake(frame.origin.x, frame.origin.y, EDGE_WIDTH * ([dices count] - 1) + DICE_VIEW_WIDTH * [dices count], DICE_VIEW_HEIGHT);
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -43,7 +43,7 @@
         
         int i = 0;
         for (Dice *dice in dices) {
-            CGRect rect = CGRectMake((EDGE_WIDTH + DICE_WIDTH) * i++, 0, DICE_WIDTH, DICE_HEIGHT);     
+            CGRect rect = CGRectMake((EDGE_WIDTH + DICE_VIEW_WIDTH) * i++, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT);     
 
             UIButton *diceView = [[[DiceView alloc] initWithFrame:rect 
                                                        dice:dice] autorelease];

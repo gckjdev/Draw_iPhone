@@ -23,8 +23,10 @@
 @property (retain, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
-@property (nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain) UICustomPageControl *pageControl;
+@property (retain, nonatomic) UIScrollView *scrollView;
+@property (retain, nonatomic) UICustomPageControl *pageControl;
+
+@property (retain, nonatomic) NSArray *diceList;
 
 @end
 
@@ -35,6 +37,7 @@
 @synthesize popView = _popView;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
+@synthesize diceList = _diceList;
 
 - (void)dealloc
 {
@@ -42,6 +45,7 @@
     [_popView release];
     [_scrollView release];
     [_pageControl release];
+    [_diceList release];
     [super dealloc];
 }
 
@@ -66,6 +70,8 @@
         
         [self addSubview:self.scrollView];
         [self addSubview:self.pageControl];
+        
+        self.diceList = [self genDiceList];
     }
     
     return self;
@@ -174,6 +180,16 @@
 
 - (void)clickCountSelectedButton:(id)sender
 {
+    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:_diceList userInterAction:YES];
+    [self.popView dismissAnimated:YES];
+    self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
+    self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
+    [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
+    [self.popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+}
+
+- (NSArray *)genDiceList
+{
     Dice_Builder *diceBuilder1 = [[[Dice_Builder alloc] init] autorelease];
     [diceBuilder1 setDice:1];
     [diceBuilder1 setDiceId:1];
@@ -206,12 +222,9 @@
     
     NSArray *dices = [NSArray arrayWithObjects:dice1, dice2, dice3, dice4, dice5, dice6, nil];
     
-    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:dices userInterAction:YES];
-    [self.popView dismissAnimated:YES];
-    self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
-    self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
-    [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
+    return dices;
 }
+
 
 
 
