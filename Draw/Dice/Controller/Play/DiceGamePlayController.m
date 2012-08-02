@@ -8,8 +8,7 @@
 
 #import "DiceGamePlayController.h"
 #import "DiceImageManager.h"
-#import "DicePopupView.h"
-#import "DiceSelectedView.h"
+#import "DicePopupViewManager.h"
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
 #import "DiceAvatarView.h"
@@ -29,6 +28,8 @@
 
 @property (retain, nonatomic) NSArray *playingUserList;
 @property (retain, nonatomic) NSArray *userDiceList;
+
+- (UIView *)selfAvatarView;
 
 @end
 
@@ -82,6 +83,7 @@
     [self.view addSubview:myCoinsLabel];
     
     DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    view.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
     [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:view];
@@ -105,14 +107,6 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder setDice:1];
-    [diceBuilder setDiceId:1];
-    PBDice *dice = [diceBuilder build];
-    
-    
-    [DicePopupView popupCallDiceViewWithDice:dice count:2 atView:(UIView*)sender inView:self.view animated:YES];
-    
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -280,6 +274,20 @@
 {
     [super viewDidDisappear:animated];
     [self unregisterDiceGameNotification];
+}
+
+#pragma mark - Praviete methods
+
+- (UIView *)selfAvatarView
+{
+    return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+}
+
+#pragma mark - DiceSelectedViewDelegate
+
+- (void)didSelectedDice:(PBDice *)dice count:(int)count
+{
+    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
 }
 
 @end

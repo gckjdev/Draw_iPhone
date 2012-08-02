@@ -118,7 +118,7 @@
 		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
 		A45E8CD915C77F960089E240 /* DiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD815C77F960089E240 /* DiceView.m */; };
 		A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDB15C77FA90089E240 /* CallDiceView.m */; };
-		A45E8CDF15C77FA90089E240 /* DicePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDD15C77FA90089E240 /* DicePopupView.m */; };
+		A45E8CDF15C77FA90089E240 /* DicePopupViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CDD15C77FA90089E240 /* DicePopupViewManager.m */; };
 		A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
@@ -1122,8 +1122,8 @@
 		A45E8CD815C77F960089E240 /* DiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceView.m; sourceTree = "<group>"; };
 		A45E8CDA15C77FA90089E240 /* CallDiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDiceView.h; sourceTree = "<group>"; };
 		A45E8CDB15C77FA90089E240 /* CallDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDiceView.m; sourceTree = "<group>"; };
-		A45E8CDC15C77FA90089E240 /* DicePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicePopupView.h; sourceTree = "<group>"; };
-		A45E8CDD15C77FA90089E240 /* DicePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicePopupView.m; sourceTree = "<group>"; };
+		A45E8CDC15C77FA90089E240 /* DicePopupViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DicePopupViewManager.h; sourceTree = "<group>"; };
+		A45E8CDD15C77FA90089E240 /* DicePopupViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicePopupViewManager.m; sourceTree = "<group>"; };
 		A45E8CE115C780570089E240 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
 		A45E8CE215C780570089E240 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		A461C9261565E3700076FD9C /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
@@ -2557,8 +2557,8 @@
 			children = (
 				A45E8CDA15C77FA90089E240 /* CallDiceView.h */,
 				A45E8CDB15C77FA90089E240 /* CallDiceView.m */,
-				A45E8CDC15C77FA90089E240 /* DicePopupView.h */,
-				A45E8CDD15C77FA90089E240 /* DicePopupView.m */,
+				A45E8CDC15C77FA90089E240 /* DicePopupViewManager.h */,
+				A45E8CDD15C77FA90089E240 /* DicePopupViewManager.m */,
 			);
 			path = PopupView;
 			sourceTree = "<group>";
@@ -6734,7 +6734,7 @@
 				A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */,
 				A45E8CD915C77F960089E240 /* DiceView.m in Sources */,
 				A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */,
-				A45E8CDF15C77FA90089E240 /* DicePopupView.m in Sources */,
+				A45E8CDF15C77FA90089E240 /* DicePopupViewManager.m in Sources */,
 				A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */,
 				A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */,
 				A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */,
