@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Dice.pb.h"
 
 @interface DicesResultView : UIView
 
+@property (retain, nonatomic) NSString *userId;
+
 + (DicesResultView *)createDicesResultView;
-- (void)setDices:(NSArray *)dices;
+- (void)setDices:(PBUserDice *)userDice;
 
 @end
