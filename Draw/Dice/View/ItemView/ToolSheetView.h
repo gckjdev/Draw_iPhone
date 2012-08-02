@@ -24,6 +24,12 @@
             countNumberList:(NSArray *)countNumberList 
                    delegate:(id<ToolSheetViewDelegate>)delegate;
 
-- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint;
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated;
+
+- (void)dismissAnimated:(BOOL)animated;
+
+//- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint;
 
 @end
