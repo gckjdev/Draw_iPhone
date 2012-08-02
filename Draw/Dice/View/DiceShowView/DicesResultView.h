@@ -10,7 +10,7 @@
 
 @interface DicesResultView : UIView
 
-+ (DicesResultView *)DicesResultView;
++ (DicesResultView *)createDicesResultView;
 - (void)setDices:(NSArray *)dices;
 
 @end
