@@ -4,12 +4,16 @@
 
 #import "GameBasic.pb.h"
 
-@class Dice;
-@class DiceGameResult;
-@class DiceGameResult_Builder;
-@class Dice_Builder;
+@class PBDice;
+@class PBDiceGameResult;
+@class PBDiceGameResult_Builder;
+@class PBDice_Builder;
+@class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
+@class PBDraw_Builder;
+@class PBFeed;
+@class PBFeed_Builder;
 @class PBGameItem;
 @class PBGameItem_Builder;
 @class PBGameSession;
@@ -24,10 +28,10 @@
 @class PBMessage_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class UserDice;
-@class UserDice_Builder;
-@class UserResult;
-@class UserResult_Builder;
+@class PBUserDice;
+@class PBUserDice_Builder;
+@class PBUserResult;
+@class PBUserResult_Builder;
 
 @interface DiceRoot : NSObject {
 }
@@ -35,7 +39,7 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface Dice : PBGeneratedMessage {
+@interface PBDice : PBGeneratedMessage {
 @private
   BOOL hasDiceId_:1;
   BOOL hasDice_:1;
@@ -47,110 +51,110 @@
 @property (readonly) int32_t diceId;
 @property (readonly) int32_t dice;
 
-+ (Dice*) defaultInstance;
-- (Dice*) defaultInstance;
++ (PBDice*) defaultInstance;
+- (PBDice*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (Dice_Builder*) builder;
-+ (Dice_Builder*) builder;
-+ (Dice_Builder*) builderWithPrototype:(Dice*) prototype;
+- (PBDice_Builder*) builder;
++ (PBDice_Builder*) builder;
++ (PBDice_Builder*) builderWithPrototype:(PBDice*) prototype;
 
-+ (Dice*) parseFromData:(NSData*) data;
-+ (Dice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (Dice*) parseFromInputStream:(NSInputStream*) input;
-+ (Dice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (Dice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (Dice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDice*) parseFromData:(NSData*) data;
++ (PBDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDice*) parseFromInputStream:(NSInputStream*) input;
++ (PBDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface Dice_Builder : PBGeneratedMessage_Builder {
+@interface PBDice_Builder : PBGeneratedMessage_Builder {
 @private
-  Dice* result;
+  PBDice* result;
 }
 
-- (Dice*) defaultInstance;
+- (PBDice*) defaultInstance;
 
-- (Dice_Builder*) clear;
-- (Dice_Builder*) clone;
+- (PBDice_Builder*) clear;
+- (PBDice_Builder*) clone;
 
-- (Dice*) build;
-- (Dice*) buildPartial;
+- (PBDice*) build;
+- (PBDice*) buildPartial;
 
-- (Dice_Builder*) mergeFrom:(Dice*) other;
-- (Dice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (Dice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDice_Builder*) mergeFrom:(PBDice*) other;
+- (PBDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasDiceId;
 - (int32_t) diceId;
-- (Dice_Builder*) setDiceId:(int32_t) value;
-- (Dice_Builder*) clearDiceId;
+- (PBDice_Builder*) setDiceId:(int32_t) value;
+- (PBDice_Builder*) clearDiceId;
 
 - (BOOL) hasDice;
 - (int32_t) dice;
-- (Dice_Builder*) setDice:(int32_t) value;
-- (Dice_Builder*) clearDice;
+- (PBDice_Builder*) setDice:(int32_t) value;
+- (PBDice_Builder*) clearDice;
 @end
 
-@interface UserDice : PBGeneratedMessage {
+@interface PBUserDice : PBGeneratedMessage {
 @private
   BOOL hasUserId_:1;
-  int32_t userId;
+  NSString* userId;
   NSMutableArray* mutableDicesList;
 }
 - (BOOL) hasUserId;
-@property (readonly) int32_t userId;
+@property (readonly, retain) NSString* userId;
 - (NSArray*) dicesList;
-- (Dice*) dicesAtIndex:(int32_t) index;
+- (PBDice*) dicesAtIndex:(int32_t) index;
 
-+ (UserDice*) defaultInstance;
-- (UserDice*) defaultInstance;
++ (PBUserDice*) defaultInstance;
+- (PBUserDice*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UserDice_Builder*) builder;
-+ (UserDice_Builder*) builder;
-+ (UserDice_Builder*) builderWithPrototype:(UserDice*) prototype;
+- (PBUserDice_Builder*) builder;
++ (PBUserDice_Builder*) builder;
++ (PBUserDice_Builder*) builderWithPrototype:(PBUserDice*) prototype;
 
-+ (UserDice*) parseFromData:(NSData*) data;
-+ (UserDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserDice*) parseFromInputStream:(NSInputStream*) input;
-+ (UserDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (UserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserDice*) parseFromData:(NSData*) data;
++ (PBUserDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserDice*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UserDice_Builder : PBGeneratedMessage_Builder {
+@interface PBUserDice_Builder : PBGeneratedMessage_Builder {
 @private
-  UserDice* result;
+  PBUserDice* result;
 }
 
-- (UserDice*) defaultInstance;
+- (PBUserDice*) defaultInstance;
 
-- (UserDice_Builder*) clear;
-- (UserDice_Builder*) clone;
+- (PBUserDice_Builder*) clear;
+- (PBUserDice_Builder*) clone;
 
-- (UserDice*) build;
-- (UserDice*) buildPartial;
+- (PBUserDice*) build;
+- (PBUserDice*) buildPartial;
 
-- (UserDice_Builder*) mergeFrom:(UserDice*) other;
-- (UserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserDice_Builder*) mergeFrom:(PBUserDice*) other;
+- (PBUserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
-- (int32_t) userId;
-- (UserDice_Builder*) setUserId:(int32_t) value;
-- (UserDice_Builder*) clearUserId;
+- (NSString*) userId;
+- (PBUserDice_Builder*) setUserId:(NSString*) value;
+- (PBUserDice_Builder*) clearUserId;
 
 - (NSArray*) dicesList;
-- (Dice*) dicesAtIndex:(int32_t) index;
-- (UserDice_Builder*) replaceDicesAtIndex:(int32_t) index with:(Dice*) value;
-- (UserDice_Builder*) addDices:(Dice*) value;
-- (UserDice_Builder*) addAllDices:(NSArray*) values;
-- (UserDice_Builder*) clearDicesList;
+- (PBDice*) dicesAtIndex:(int32_t) index;
+- (PBUserDice_Builder*) replaceDicesAtIndex:(int32_t) index with:(PBDice*) value;
+- (PBUserDice_Builder*) addDices:(PBDice*) value;
+- (PBUserDice_Builder*) addAllDices:(NSArray*) values;
+- (PBUserDice_Builder*) clearDicesList;
 @end
 
-@interface UserResult : PBGeneratedMessage {
+@interface PBUserResult : PBGeneratedMessage {
 @private
   BOOL hasWin_:1;
   BOOL hasGainCoins_:1;
@@ -166,123 +170,123 @@
 - (BOOL) win;
 @property (readonly) int32_t gainCoins;
 
-+ (UserResult*) defaultInstance;
-- (UserResult*) defaultInstance;
++ (PBUserResult*) defaultInstance;
+- (PBUserResult*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UserResult_Builder*) builder;
-+ (UserResult_Builder*) builder;
-+ (UserResult_Builder*) builderWithPrototype:(UserResult*) prototype;
+- (PBUserResult_Builder*) builder;
++ (PBUserResult_Builder*) builder;
++ (PBUserResult_Builder*) builderWithPrototype:(PBUserResult*) prototype;
 
-+ (UserResult*) parseFromData:(NSData*) data;
-+ (UserResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserResult*) parseFromInputStream:(NSInputStream*) input;
-+ (UserResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (UserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserResult*) parseFromData:(NSData*) data;
++ (PBUserResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UserResult_Builder : PBGeneratedMessage_Builder {
+@interface PBUserResult_Builder : PBGeneratedMessage_Builder {
 @private
-  UserResult* result;
+  PBUserResult* result;
 }
 
-- (UserResult*) defaultInstance;
+- (PBUserResult*) defaultInstance;
 
-- (UserResult_Builder*) clear;
-- (UserResult_Builder*) clone;
+- (PBUserResult_Builder*) clear;
+- (PBUserResult_Builder*) clone;
 
-- (UserResult*) build;
-- (UserResult*) buildPartial;
+- (PBUserResult*) build;
+- (PBUserResult*) buildPartial;
 
-- (UserResult_Builder*) mergeFrom:(UserResult*) other;
-- (UserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserResult_Builder*) mergeFrom:(PBUserResult*) other;
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (UserResult_Builder*) setUserId:(NSString*) value;
-- (UserResult_Builder*) clearUserId;
+- (PBUserResult_Builder*) setUserId:(NSString*) value;
+- (PBUserResult_Builder*) clearUserId;
 
 - (BOOL) hasWin;
 - (BOOL) win;
-- (UserResult_Builder*) setWin:(BOOL) value;
-- (UserResult_Builder*) clearWin;
+- (PBUserResult_Builder*) setWin:(BOOL) value;
+- (PBUserResult_Builder*) clearWin;
 
 - (BOOL) hasGainCoins;
 - (int32_t) gainCoins;
-- (UserResult_Builder*) setGainCoins:(int32_t) value;
-- (UserResult_Builder*) clearGainCoins;
+- (PBUserResult_Builder*) setGainCoins:(int32_t) value;
+- (PBUserResult_Builder*) clearGainCoins;
 @end
 
-@interface DiceGameResult : PBGeneratedMessage {
+@interface PBDiceGameResult : PBGeneratedMessage {
 @private
   BOOL hasOpenType_:1;
   BOOL hasOpenDiceUserResult_:1;
   BOOL hasCallDiceUserResult_:1;
   int32_t openType;
-  UserResult* openDiceUserResult;
-  UserResult* callDiceUserResult;
+  PBUserResult* openDiceUserResult;
+  PBUserResult* callDiceUserResult;
 }
 - (BOOL) hasOpenDiceUserResult;
 - (BOOL) hasCallDiceUserResult;
 - (BOOL) hasOpenType;
-@property (readonly, retain) UserResult* openDiceUserResult;
-@property (readonly, retain) UserResult* callDiceUserResult;
+@property (readonly, retain) PBUserResult* openDiceUserResult;
+@property (readonly, retain) PBUserResult* callDiceUserResult;
 @property (readonly) int32_t openType;
 
-+ (DiceGameResult*) defaultInstance;
-- (DiceGameResult*) defaultInstance;
++ (PBDiceGameResult*) defaultInstance;
+- (PBDiceGameResult*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (DiceGameResult_Builder*) builder;
-+ (DiceGameResult_Builder*) builder;
-+ (DiceGameResult_Builder*) builderWithPrototype:(DiceGameResult*) prototype;
+- (PBDiceGameResult_Builder*) builder;
++ (PBDiceGameResult_Builder*) builder;
++ (PBDiceGameResult_Builder*) builderWithPrototype:(PBDiceGameResult*) prototype;
 
-+ (DiceGameResult*) parseFromData:(NSData*) data;
-+ (DiceGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (DiceGameResult*) parseFromInputStream:(NSInputStream*) input;
-+ (DiceGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (DiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (DiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceGameResult*) parseFromData:(NSData*) data;
++ (PBDiceGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceGameResult*) parseFromInputStream:(NSInputStream*) input;
++ (PBDiceGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface DiceGameResult_Builder : PBGeneratedMessage_Builder {
+@interface PBDiceGameResult_Builder : PBGeneratedMessage_Builder {
 @private
-  DiceGameResult* result;
+  PBDiceGameResult* result;
 }
 
-- (DiceGameResult*) defaultInstance;
+- (PBDiceGameResult*) defaultInstance;
 
-- (DiceGameResult_Builder*) clear;
-- (DiceGameResult_Builder*) clone;
+- (PBDiceGameResult_Builder*) clear;
+- (PBDiceGameResult_Builder*) clone;
 
-- (DiceGameResult*) build;
-- (DiceGameResult*) buildPartial;
+- (PBDiceGameResult*) build;
+- (PBDiceGameResult*) buildPartial;
 
-- (DiceGameResult_Builder*) mergeFrom:(DiceGameResult*) other;
-- (DiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (DiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDiceGameResult_Builder*) mergeFrom:(PBDiceGameResult*) other;
+- (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOpenDiceUserResult;
-- (UserResult*) openDiceUserResult;
-- (DiceGameResult_Builder*) setOpenDiceUserResult:(UserResult*) value;
-- (DiceGameResult_Builder*) setOpenDiceUserResultBuilder:(UserResult_Builder*) builderForValue;
-- (DiceGameResult_Builder*) mergeOpenDiceUserResult:(UserResult*) value;
-- (DiceGameResult_Builder*) clearOpenDiceUserResult;
+- (PBUserResult*) openDiceUserResult;
+- (PBDiceGameResult_Builder*) setOpenDiceUserResult:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) setOpenDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue;
+- (PBDiceGameResult_Builder*) mergeOpenDiceUserResult:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) clearOpenDiceUserResult;
 
 - (BOOL) hasCallDiceUserResult;
-- (UserResult*) callDiceUserResult;
-- (DiceGameResult_Builder*) setCallDiceUserResult:(UserResult*) value;
-- (DiceGameResult_Builder*) setCallDiceUserResultBuilder:(UserResult_Builder*) builderForValue;
-- (DiceGameResult_Builder*) mergeCallDiceUserResult:(UserResult*) value;
-- (DiceGameResult_Builder*) clearCallDiceUserResult;
+- (PBUserResult*) callDiceUserResult;
+- (PBDiceGameResult_Builder*) setCallDiceUserResult:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) setCallDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue;
+- (PBDiceGameResult_Builder*) mergeCallDiceUserResult:(PBUserResult*) value;
+- (PBDiceGameResult_Builder*) clearCallDiceUserResult;
 
 - (BOOL) hasOpenType;
 - (int32_t) openType;
-- (DiceGameResult_Builder*) setOpenType:(int32_t) value;
-- (DiceGameResult_Builder*) clearOpenType;
+- (PBDiceGameResult_Builder*) setOpenType:(int32_t) value;
+- (PBDiceGameResult_Builder*) clearOpenType;
 @end
 

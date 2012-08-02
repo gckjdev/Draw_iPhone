@@ -20,12 +20,12 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-@interface Dice ()
+@interface PBDice ()
 @property int32_t diceId;
 @property int32_t dice;
 @end
 
-@implementation Dice
+@implementation PBDice
 
 - (BOOL) hasDiceId {
   return !!hasDiceId_;
@@ -51,17 +51,17 @@ static PBExtensionRegistry* extensionRegistry = nil;
   }
   return self;
 }
-static Dice* defaultDiceInstance = nil;
+static PBDice* defaultPBDiceInstance = nil;
 + (void) initialize {
-  if (self == [Dice class]) {
-    defaultDiceInstance = [[Dice alloc] init];
+  if (self == [PBDice class]) {
+    defaultPBDiceInstance = [[PBDice alloc] init];
   }
 }
-+ (Dice*) defaultInstance {
-  return defaultDiceInstance;
++ (PBDice*) defaultInstance {
+  return defaultPBDiceInstance;
 }
-- (Dice*) defaultInstance {
-  return defaultDiceInstance;
+- (PBDice*) defaultInstance {
+  return defaultPBDiceInstance;
 }
 - (BOOL) isInitialized {
   if (!self.hasDice) {
@@ -95,40 +95,40 @@ static Dice* defaultDiceInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (Dice*) parseFromData:(NSData*) data {
-  return (Dice*)[[[Dice builder] mergeFromData:data] build];
++ (PBDice*) parseFromData:(NSData*) data {
+  return (PBDice*)[[[PBDice builder] mergeFromData:data] build];
 }
-+ (Dice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Dice*)[[[Dice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDice*)[[[PBDice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (Dice*) parseFromInputStream:(NSInputStream*) input {
-  return (Dice*)[[[Dice builder] mergeFromInputStream:input] build];
++ (PBDice*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDice*)[[[PBDice builder] mergeFromInputStream:input] build];
 }
-+ (Dice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Dice*)[[[Dice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDice*)[[[PBDice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (Dice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Dice*)[[[Dice builder] mergeFromCodedInputStream:input] build];
++ (PBDice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDice*)[[[PBDice builder] mergeFromCodedInputStream:input] build];
 }
-+ (Dice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Dice*)[[[Dice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDice*)[[[PBDice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (Dice_Builder*) builder {
-  return [[[Dice_Builder alloc] init] autorelease];
++ (PBDice_Builder*) builder {
+  return [[[PBDice_Builder alloc] init] autorelease];
 }
-+ (Dice_Builder*) builderWithPrototype:(Dice*) prototype {
-  return [[Dice builder] mergeFrom:prototype];
++ (PBDice_Builder*) builderWithPrototype:(PBDice*) prototype {
+  return [[PBDice builder] mergeFrom:prototype];
 }
-- (Dice_Builder*) builder {
-  return [Dice builder];
+- (PBDice_Builder*) builder {
+  return [PBDice builder];
 }
 @end
 
-@interface Dice_Builder()
-@property (retain) Dice* result;
+@interface PBDice_Builder()
+@property (retain) PBDice* result;
 @end
 
-@implementation Dice_Builder
+@implementation PBDice_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -136,34 +136,34 @@ static Dice* defaultDiceInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[Dice alloc] init] autorelease];
+    self.result = [[[PBDice alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (Dice_Builder*) clear {
-  self.result = [[[Dice alloc] init] autorelease];
+- (PBDice_Builder*) clear {
+  self.result = [[[PBDice alloc] init] autorelease];
   return self;
 }
-- (Dice_Builder*) clone {
-  return [Dice builderWithPrototype:result];
+- (PBDice_Builder*) clone {
+  return [PBDice builderWithPrototype:result];
 }
-- (Dice*) defaultInstance {
-  return [Dice defaultInstance];
+- (PBDice*) defaultInstance {
+  return [PBDice defaultInstance];
 }
-- (Dice*) build {
+- (PBDice*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (Dice*) buildPartial {
-  Dice* returnMe = [[result retain] autorelease];
+- (PBDice*) buildPartial {
+  PBDice* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (Dice_Builder*) mergeFrom:(Dice*) other {
-  if (other == [Dice defaultInstance]) {
+- (PBDice_Builder*) mergeFrom:(PBDice*) other {
+  if (other == [PBDice defaultInstance]) {
     return self;
   }
   if (other.hasDiceId) {
@@ -175,10 +175,10 @@ static Dice* defaultDiceInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (Dice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (Dice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -210,12 +210,12 @@ static Dice* defaultDiceInstance = nil;
 - (int32_t) diceId {
   return result.diceId;
 }
-- (Dice_Builder*) setDiceId:(int32_t) value {
+- (PBDice_Builder*) setDiceId:(int32_t) value {
   result.hasDiceId = YES;
   result.diceId = value;
   return self;
 }
-- (Dice_Builder*) clearDiceId {
+- (PBDice_Builder*) clearDiceId {
   result.hasDiceId = NO;
   result.diceId = 0;
   return self;
@@ -226,24 +226,24 @@ static Dice* defaultDiceInstance = nil;
 - (int32_t) dice {
   return result.dice;
 }
-- (Dice_Builder*) setDice:(int32_t) value {
+- (PBDice_Builder*) setDice:(int32_t) value {
   result.hasDice = YES;
   result.dice = value;
   return self;
 }
-- (Dice_Builder*) clearDice {
+- (PBDice_Builder*) clearDice {
   result.hasDice = NO;
   result.dice = 0;
   return self;
 }
 @end
 
-@interface UserDice ()
-@property int32_t userId;
+@interface PBUserDice ()
+@property (retain) NSString* userId;
 @property (retain) NSMutableArray* mutableDicesList;
 @end
 
-@implementation UserDice
+@implementation PBUserDice
 
 - (BOOL) hasUserId {
   return !!hasUserId_;
@@ -254,31 +254,32 @@ static Dice* defaultDiceInstance = nil;
 @synthesize userId;
 @synthesize mutableDicesList;
 - (void) dealloc {
+  self.userId = nil;
   self.mutableDicesList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userId = 0;
+    self.userId = @"";
   }
   return self;
 }
-static UserDice* defaultUserDiceInstance = nil;
+static PBUserDice* defaultPBUserDiceInstance = nil;
 + (void) initialize {
-  if (self == [UserDice class]) {
-    defaultUserDiceInstance = [[UserDice alloc] init];
+  if (self == [PBUserDice class]) {
+    defaultPBUserDiceInstance = [[PBUserDice alloc] init];
   }
 }
-+ (UserDice*) defaultInstance {
-  return defaultUserDiceInstance;
++ (PBUserDice*) defaultInstance {
+  return defaultPBUserDiceInstance;
 }
-- (UserDice*) defaultInstance {
-  return defaultUserDiceInstance;
+- (PBUserDice*) defaultInstance {
+  return defaultPBUserDiceInstance;
 }
 - (NSArray*) dicesList {
   return mutableDicesList;
 }
-- (Dice*) dicesAtIndex:(int32_t) index {
+- (PBDice*) dicesAtIndex:(int32_t) index {
   id value = [mutableDicesList objectAtIndex:index];
   return value;
 }
@@ -286,7 +287,7 @@ static UserDice* defaultUserDiceInstance = nil;
   if (!self.hasUserId) {
     return NO;
   }
-  for (Dice* element in self.dicesList) {
+  for (PBDice* element in self.dicesList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -295,9 +296,9 @@ static UserDice* defaultUserDiceInstance = nil;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasUserId) {
-    [output writeInt32:1 value:self.userId];
+    [output writeString:1 value:self.userId];
   }
-  for (Dice* element in self.dicesList) {
+  for (PBDice* element in self.dicesList) {
     [output writeMessage:2 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -310,49 +311,49 @@ static UserDice* defaultUserDiceInstance = nil;
 
   size = 0;
   if (self.hasUserId) {
-    size += computeInt32Size(1, self.userId);
+    size += computeStringSize(1, self.userId);
   }
-  for (Dice* element in self.dicesList) {
+  for (PBDice* element in self.dicesList) {
     size += computeMessageSize(2, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (UserDice*) parseFromData:(NSData*) data {
-  return (UserDice*)[[[UserDice builder] mergeFromData:data] build];
++ (PBUserDice*) parseFromData:(NSData*) data {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromData:data] build];
 }
-+ (UserDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserDice*)[[[UserDice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBUserDice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (UserDice*) parseFromInputStream:(NSInputStream*) input {
-  return (UserDice*)[[[UserDice builder] mergeFromInputStream:input] build];
++ (PBUserDice*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromInputStream:input] build];
 }
-+ (UserDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserDice*)[[[UserDice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserDice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (UserDice*)[[[UserDice builder] mergeFromCodedInputStream:input] build];
++ (PBUserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromCodedInputStream:input] build];
 }
-+ (UserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserDice*)[[[UserDice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserDice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserDice*)[[[PBUserDice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserDice_Builder*) builder {
-  return [[[UserDice_Builder alloc] init] autorelease];
++ (PBUserDice_Builder*) builder {
+  return [[[PBUserDice_Builder alloc] init] autorelease];
 }
-+ (UserDice_Builder*) builderWithPrototype:(UserDice*) prototype {
-  return [[UserDice builder] mergeFrom:prototype];
++ (PBUserDice_Builder*) builderWithPrototype:(PBUserDice*) prototype {
+  return [[PBUserDice builder] mergeFrom:prototype];
 }
-- (UserDice_Builder*) builder {
-  return [UserDice builder];
+- (PBUserDice_Builder*) builder {
+  return [PBUserDice builder];
 }
 @end
 
-@interface UserDice_Builder()
-@property (retain) UserDice* result;
+@interface PBUserDice_Builder()
+@property (retain) PBUserDice* result;
 @end
 
-@implementation UserDice_Builder
+@implementation PBUserDice_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -360,34 +361,34 @@ static UserDice* defaultUserDiceInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[UserDice alloc] init] autorelease];
+    self.result = [[[PBUserDice alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (UserDice_Builder*) clear {
-  self.result = [[[UserDice alloc] init] autorelease];
+- (PBUserDice_Builder*) clear {
+  self.result = [[[PBUserDice alloc] init] autorelease];
   return self;
 }
-- (UserDice_Builder*) clone {
-  return [UserDice builderWithPrototype:result];
+- (PBUserDice_Builder*) clone {
+  return [PBUserDice builderWithPrototype:result];
 }
-- (UserDice*) defaultInstance {
-  return [UserDice defaultInstance];
+- (PBUserDice*) defaultInstance {
+  return [PBUserDice defaultInstance];
 }
-- (UserDice*) build {
+- (PBUserDice*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (UserDice*) buildPartial {
-  UserDice* returnMe = [[result retain] autorelease];
+- (PBUserDice*) buildPartial {
+  PBUserDice* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (UserDice_Builder*) mergeFrom:(UserDice*) other {
-  if (other == [UserDice defaultInstance]) {
+- (PBUserDice_Builder*) mergeFrom:(PBUserDice*) other {
+  if (other == [PBUserDice defaultInstance]) {
     return self;
   }
   if (other.hasUserId) {
@@ -402,10 +403,10 @@ static UserDice* defaultUserDiceInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (UserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBUserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (UserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBUserDice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -420,12 +421,12 @@ static UserDice* defaultUserDiceInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self setUserId:[input readInt32]];
+      case 10: {
+        [self setUserId:[input readString]];
         break;
       }
       case 18: {
-        Dice_Builder* subBuilder = [Dice builder];
+        PBDice_Builder* subBuilder = [PBDice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDices:[subBuilder buildPartial]];
         break;
@@ -436,42 +437,42 @@ static UserDice* defaultUserDiceInstance = nil;
 - (BOOL) hasUserId {
   return result.hasUserId;
 }
-- (int32_t) userId {
+- (NSString*) userId {
   return result.userId;
 }
-- (UserDice_Builder*) setUserId:(int32_t) value {
+- (PBUserDice_Builder*) setUserId:(NSString*) value {
   result.hasUserId = YES;
   result.userId = value;
   return self;
 }
-- (UserDice_Builder*) clearUserId {
+- (PBUserDice_Builder*) clearUserId {
   result.hasUserId = NO;
-  result.userId = 0;
+  result.userId = @"";
   return self;
 }
 - (NSArray*) dicesList {
   if (result.mutableDicesList == nil) { return [NSArray array]; }
   return result.mutableDicesList;
 }
-- (Dice*) dicesAtIndex:(int32_t) index {
+- (PBDice*) dicesAtIndex:(int32_t) index {
   return [result dicesAtIndex:index];
 }
-- (UserDice_Builder*) replaceDicesAtIndex:(int32_t) index with:(Dice*) value {
+- (PBUserDice_Builder*) replaceDicesAtIndex:(int32_t) index with:(PBDice*) value {
   [result.mutableDicesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (UserDice_Builder*) addAllDices:(NSArray*) values {
+- (PBUserDice_Builder*) addAllDices:(NSArray*) values {
   if (result.mutableDicesList == nil) {
     result.mutableDicesList = [NSMutableArray array];
   }
   [result.mutableDicesList addObjectsFromArray:values];
   return self;
 }
-- (UserDice_Builder*) clearDicesList {
+- (PBUserDice_Builder*) clearDicesList {
   result.mutableDicesList = nil;
   return self;
 }
-- (UserDice_Builder*) addDices:(Dice*) value {
+- (PBUserDice_Builder*) addDices:(PBDice*) value {
   if (result.mutableDicesList == nil) {
     result.mutableDicesList = [NSMutableArray array];
   }
@@ -480,13 +481,13 @@ static UserDice* defaultUserDiceInstance = nil;
 }
 @end
 
-@interface UserResult ()
+@interface PBUserResult ()
 @property (retain) NSString* userId;
 @property BOOL win;
 @property int32_t gainCoins;
 @end
 
-@implementation UserResult
+@implementation PBUserResult
 
 - (BOOL) hasUserId {
   return !!hasUserId_;
@@ -526,17 +527,17 @@ static UserDice* defaultUserDiceInstance = nil;
   }
   return self;
 }
-static UserResult* defaultUserResultInstance = nil;
+static PBUserResult* defaultPBUserResultInstance = nil;
 + (void) initialize {
-  if (self == [UserResult class]) {
-    defaultUserResultInstance = [[UserResult alloc] init];
+  if (self == [PBUserResult class]) {
+    defaultPBUserResultInstance = [[PBUserResult alloc] init];
   }
 }
-+ (UserResult*) defaultInstance {
-  return defaultUserResultInstance;
++ (PBUserResult*) defaultInstance {
+  return defaultPBUserResultInstance;
 }
-- (UserResult*) defaultInstance {
-  return defaultUserResultInstance;
+- (PBUserResult*) defaultInstance {
+  return defaultPBUserResultInstance;
 }
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
@@ -582,40 +583,40 @@ static UserResult* defaultUserResultInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (UserResult*) parseFromData:(NSData*) data {
-  return (UserResult*)[[[UserResult builder] mergeFromData:data] build];
++ (PBUserResult*) parseFromData:(NSData*) data {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromData:data] build];
 }
-+ (UserResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserResult*)[[[UserResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBUserResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (UserResult*) parseFromInputStream:(NSInputStream*) input {
-  return (UserResult*)[[[UserResult builder] mergeFromInputStream:input] build];
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromInputStream:input] build];
 }
-+ (UserResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserResult*)[[[UserResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (UserResult*)[[[UserResult builder] mergeFromCodedInputStream:input] build];
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromCodedInputStream:input] build];
 }
-+ (UserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserResult*)[[[UserResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserResult*)[[[PBUserResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserResult_Builder*) builder {
-  return [[[UserResult_Builder alloc] init] autorelease];
++ (PBUserResult_Builder*) builder {
+  return [[[PBUserResult_Builder alloc] init] autorelease];
 }
-+ (UserResult_Builder*) builderWithPrototype:(UserResult*) prototype {
-  return [[UserResult builder] mergeFrom:prototype];
++ (PBUserResult_Builder*) builderWithPrototype:(PBUserResult*) prototype {
+  return [[PBUserResult builder] mergeFrom:prototype];
 }
-- (UserResult_Builder*) builder {
-  return [UserResult builder];
+- (PBUserResult_Builder*) builder {
+  return [PBUserResult builder];
 }
 @end
 
-@interface UserResult_Builder()
-@property (retain) UserResult* result;
+@interface PBUserResult_Builder()
+@property (retain) PBUserResult* result;
 @end
 
-@implementation UserResult_Builder
+@implementation PBUserResult_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -623,34 +624,34 @@ static UserResult* defaultUserResultInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[UserResult alloc] init] autorelease];
+    self.result = [[[PBUserResult alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (UserResult_Builder*) clear {
-  self.result = [[[UserResult alloc] init] autorelease];
+- (PBUserResult_Builder*) clear {
+  self.result = [[[PBUserResult alloc] init] autorelease];
   return self;
 }
-- (UserResult_Builder*) clone {
-  return [UserResult builderWithPrototype:result];
+- (PBUserResult_Builder*) clone {
+  return [PBUserResult builderWithPrototype:result];
 }
-- (UserResult*) defaultInstance {
-  return [UserResult defaultInstance];
+- (PBUserResult*) defaultInstance {
+  return [PBUserResult defaultInstance];
 }
-- (UserResult*) build {
+- (PBUserResult*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (UserResult*) buildPartial {
-  UserResult* returnMe = [[result retain] autorelease];
+- (PBUserResult*) buildPartial {
+  PBUserResult* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (UserResult_Builder*) mergeFrom:(UserResult*) other {
-  if (other == [UserResult defaultInstance]) {
+- (PBUserResult_Builder*) mergeFrom:(PBUserResult*) other {
+  if (other == [PBUserResult defaultInstance]) {
     return self;
   }
   if (other.hasUserId) {
@@ -665,10 +666,10 @@ static UserResult* defaultUserResultInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (UserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (UserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBUserResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -704,12 +705,12 @@ static UserResult* defaultUserResultInstance = nil;
 - (NSString*) userId {
   return result.userId;
 }
-- (UserResult_Builder*) setUserId:(NSString*) value {
+- (PBUserResult_Builder*) setUserId:(NSString*) value {
   result.hasUserId = YES;
   result.userId = value;
   return self;
 }
-- (UserResult_Builder*) clearUserId {
+- (PBUserResult_Builder*) clearUserId {
   result.hasUserId = NO;
   result.userId = @"";
   return self;
@@ -720,12 +721,12 @@ static UserResult* defaultUserResultInstance = nil;
 - (BOOL) win {
   return result.win;
 }
-- (UserResult_Builder*) setWin:(BOOL) value {
+- (PBUserResult_Builder*) setWin:(BOOL) value {
   result.hasWin = YES;
   result.win = value;
   return self;
 }
-- (UserResult_Builder*) clearWin {
+- (PBUserResult_Builder*) clearWin {
   result.hasWin = NO;
   result.win = NO;
   return self;
@@ -736,25 +737,25 @@ static UserResult* defaultUserResultInstance = nil;
 - (int32_t) gainCoins {
   return result.gainCoins;
 }
-- (UserResult_Builder*) setGainCoins:(int32_t) value {
+- (PBUserResult_Builder*) setGainCoins:(int32_t) value {
   result.hasGainCoins = YES;
   result.gainCoins = value;
   return self;
 }
-- (UserResult_Builder*) clearGainCoins {
+- (PBUserResult_Builder*) clearGainCoins {
   result.hasGainCoins = NO;
   result.gainCoins = 0;
   return self;
 }
 @end
 
-@interface DiceGameResult ()
-@property (retain) UserResult* openDiceUserResult;
-@property (retain) UserResult* callDiceUserResult;
+@interface PBDiceGameResult ()
+@property (retain) PBUserResult* openDiceUserResult;
+@property (retain) PBUserResult* callDiceUserResult;
 @property int32_t openType;
 @end
 
-@implementation DiceGameResult
+@implementation PBDiceGameResult
 
 - (BOOL) hasOpenDiceUserResult {
   return !!hasOpenDiceUserResult_;
@@ -784,23 +785,23 @@ static UserResult* defaultUserResultInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.openDiceUserResult = [UserResult defaultInstance];
-    self.callDiceUserResult = [UserResult defaultInstance];
+    self.openDiceUserResult = [PBUserResult defaultInstance];
+    self.callDiceUserResult = [PBUserResult defaultInstance];
     self.openType = 0;
   }
   return self;
 }
-static DiceGameResult* defaultDiceGameResultInstance = nil;
+static PBDiceGameResult* defaultPBDiceGameResultInstance = nil;
 + (void) initialize {
-  if (self == [DiceGameResult class]) {
-    defaultDiceGameResultInstance = [[DiceGameResult alloc] init];
+  if (self == [PBDiceGameResult class]) {
+    defaultPBDiceGameResultInstance = [[PBDiceGameResult alloc] init];
   }
 }
-+ (DiceGameResult*) defaultInstance {
-  return defaultDiceGameResultInstance;
++ (PBDiceGameResult*) defaultInstance {
+  return defaultPBDiceGameResultInstance;
 }
-- (DiceGameResult*) defaultInstance {
-  return defaultDiceGameResultInstance;
+- (PBDiceGameResult*) defaultInstance {
+  return defaultPBDiceGameResultInstance;
 }
 - (BOOL) isInitialized {
   if (!self.hasOpenDiceUserResult) {
@@ -849,40 +850,40 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (DiceGameResult*) parseFromData:(NSData*) data {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromData:data] build];
++ (PBDiceGameResult*) parseFromData:(NSData*) data {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromData:data] build];
 }
-+ (DiceGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBDiceGameResult*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (DiceGameResult*) parseFromInputStream:(NSInputStream*) input {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromInputStream:input] build];
++ (PBDiceGameResult*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromInputStream:input] build];
 }
-+ (DiceGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDiceGameResult*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (DiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromCodedInputStream:input] build];
++ (PBDiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromCodedInputStream:input] build];
 }
-+ (DiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (DiceGameResult*)[[[DiceGameResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDiceGameResult*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDiceGameResult*)[[[PBDiceGameResult builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (DiceGameResult_Builder*) builder {
-  return [[[DiceGameResult_Builder alloc] init] autorelease];
++ (PBDiceGameResult_Builder*) builder {
+  return [[[PBDiceGameResult_Builder alloc] init] autorelease];
 }
-+ (DiceGameResult_Builder*) builderWithPrototype:(DiceGameResult*) prototype {
-  return [[DiceGameResult builder] mergeFrom:prototype];
++ (PBDiceGameResult_Builder*) builderWithPrototype:(PBDiceGameResult*) prototype {
+  return [[PBDiceGameResult builder] mergeFrom:prototype];
 }
-- (DiceGameResult_Builder*) builder {
-  return [DiceGameResult builder];
+- (PBDiceGameResult_Builder*) builder {
+  return [PBDiceGameResult builder];
 }
 @end
 
-@interface DiceGameResult_Builder()
-@property (retain) DiceGameResult* result;
+@interface PBDiceGameResult_Builder()
+@property (retain) PBDiceGameResult* result;
 @end
 
-@implementation DiceGameResult_Builder
+@implementation PBDiceGameResult_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -890,34 +891,34 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[DiceGameResult alloc] init] autorelease];
+    self.result = [[[PBDiceGameResult alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (DiceGameResult_Builder*) clear {
-  self.result = [[[DiceGameResult alloc] init] autorelease];
+- (PBDiceGameResult_Builder*) clear {
+  self.result = [[[PBDiceGameResult alloc] init] autorelease];
   return self;
 }
-- (DiceGameResult_Builder*) clone {
-  return [DiceGameResult builderWithPrototype:result];
+- (PBDiceGameResult_Builder*) clone {
+  return [PBDiceGameResult builderWithPrototype:result];
 }
-- (DiceGameResult*) defaultInstance {
-  return [DiceGameResult defaultInstance];
+- (PBDiceGameResult*) defaultInstance {
+  return [PBDiceGameResult defaultInstance];
 }
-- (DiceGameResult*) build {
+- (PBDiceGameResult*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (DiceGameResult*) buildPartial {
-  DiceGameResult* returnMe = [[result retain] autorelease];
+- (PBDiceGameResult*) buildPartial {
+  PBDiceGameResult* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (DiceGameResult_Builder*) mergeFrom:(DiceGameResult*) other {
-  if (other == [DiceGameResult defaultInstance]) {
+- (PBDiceGameResult_Builder*) mergeFrom:(PBDiceGameResult*) other {
+  if (other == [PBDiceGameResult defaultInstance]) {
     return self;
   }
   if (other.hasOpenDiceUserResult) {
@@ -932,10 +933,10 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (DiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (DiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBDiceGameResult_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -951,7 +952,7 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
         break;
       }
       case 10: {
-        UserResult_Builder* subBuilder = [UserResult builder];
+        PBUserResult_Builder* subBuilder = [PBUserResult builder];
         if (self.hasOpenDiceUserResult) {
           [subBuilder mergeFrom:self.openDiceUserResult];
         }
@@ -960,7 +961,7 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
         break;
       }
       case 18: {
-        UserResult_Builder* subBuilder = [UserResult builder];
+        PBUserResult_Builder* subBuilder = [PBUserResult builder];
         if (self.hasCallDiceUserResult) {
           [subBuilder mergeFrom:self.callDiceUserResult];
         }
@@ -978,61 +979,61 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
 - (BOOL) hasOpenDiceUserResult {
   return result.hasOpenDiceUserResult;
 }
-- (UserResult*) openDiceUserResult {
+- (PBUserResult*) openDiceUserResult {
   return result.openDiceUserResult;
 }
-- (DiceGameResult_Builder*) setOpenDiceUserResult:(UserResult*) value {
+- (PBDiceGameResult_Builder*) setOpenDiceUserResult:(PBUserResult*) value {
   result.hasOpenDiceUserResult = YES;
   result.openDiceUserResult = value;
   return self;
 }
-- (DiceGameResult_Builder*) setOpenDiceUserResultBuilder:(UserResult_Builder*) builderForValue {
+- (PBDiceGameResult_Builder*) setOpenDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue {
   return [self setOpenDiceUserResult:[builderForValue build]];
 }
-- (DiceGameResult_Builder*) mergeOpenDiceUserResult:(UserResult*) value {
+- (PBDiceGameResult_Builder*) mergeOpenDiceUserResult:(PBUserResult*) value {
   if (result.hasOpenDiceUserResult &&
-      result.openDiceUserResult != [UserResult defaultInstance]) {
+      result.openDiceUserResult != [PBUserResult defaultInstance]) {
     result.openDiceUserResult =
-      [[[UserResult builderWithPrototype:result.openDiceUserResult] mergeFrom:value] buildPartial];
+      [[[PBUserResult builderWithPrototype:result.openDiceUserResult] mergeFrom:value] buildPartial];
   } else {
     result.openDiceUserResult = value;
   }
   result.hasOpenDiceUserResult = YES;
   return self;
 }
-- (DiceGameResult_Builder*) clearOpenDiceUserResult {
+- (PBDiceGameResult_Builder*) clearOpenDiceUserResult {
   result.hasOpenDiceUserResult = NO;
-  result.openDiceUserResult = [UserResult defaultInstance];
+  result.openDiceUserResult = [PBUserResult defaultInstance];
   return self;
 }
 - (BOOL) hasCallDiceUserResult {
   return result.hasCallDiceUserResult;
 }
-- (UserResult*) callDiceUserResult {
+- (PBUserResult*) callDiceUserResult {
   return result.callDiceUserResult;
 }
-- (DiceGameResult_Builder*) setCallDiceUserResult:(UserResult*) value {
+- (PBDiceGameResult_Builder*) setCallDiceUserResult:(PBUserResult*) value {
   result.hasCallDiceUserResult = YES;
   result.callDiceUserResult = value;
   return self;
 }
-- (DiceGameResult_Builder*) setCallDiceUserResultBuilder:(UserResult_Builder*) builderForValue {
+- (PBDiceGameResult_Builder*) setCallDiceUserResultBuilder:(PBUserResult_Builder*) builderForValue {
   return [self setCallDiceUserResult:[builderForValue build]];
 }
-- (DiceGameResult_Builder*) mergeCallDiceUserResult:(UserResult*) value {
+- (PBDiceGameResult_Builder*) mergeCallDiceUserResult:(PBUserResult*) value {
   if (result.hasCallDiceUserResult &&
-      result.callDiceUserResult != [UserResult defaultInstance]) {
+      result.callDiceUserResult != [PBUserResult defaultInstance]) {
     result.callDiceUserResult =
-      [[[UserResult builderWithPrototype:result.callDiceUserResult] mergeFrom:value] buildPartial];
+      [[[PBUserResult builderWithPrototype:result.callDiceUserResult] mergeFrom:value] buildPartial];
   } else {
     result.callDiceUserResult = value;
   }
   result.hasCallDiceUserResult = YES;
   return self;
 }
-- (DiceGameResult_Builder*) clearCallDiceUserResult {
+- (PBDiceGameResult_Builder*) clearCallDiceUserResult {
   result.hasCallDiceUserResult = NO;
-  result.callDiceUserResult = [UserResult defaultInstance];
+  result.callDiceUserResult = [PBUserResult defaultInstance];
   return self;
 }
 - (BOOL) hasOpenType {
@@ -1041,12 +1042,12 @@ static DiceGameResult* defaultDiceGameResultInstance = nil;
 - (int32_t) openType {
   return result.openType;
 }
-- (DiceGameResult_Builder*) setOpenType:(int32_t) value {
+- (PBDiceGameResult_Builder*) setOpenType:(int32_t) value {
   result.hasOpenType = YES;
   result.openType = value;
   return self;
 }
-- (DiceGameResult_Builder*) clearOpenType {
+- (PBDiceGameResult_Builder*) clearOpenType {
   result.hasOpenType = NO;
   result.openType = 0;
   return self;

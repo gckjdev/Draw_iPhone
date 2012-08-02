@@ -89,10 +89,10 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder setDice:1];
     [diceBuilder setDiceId:1];
-    Dice *dice = [diceBuilder build];
+    PBDice *dice = [diceBuilder build];
     
     
     [DicePopupView popupCallDiceViewWithDice:dice count:2 atView:(UIView*)sender inView:self.view animated:YES];

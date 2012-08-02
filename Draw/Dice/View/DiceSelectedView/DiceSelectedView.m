@@ -174,35 +174,35 @@
 
 - (void)clickCountSelectedButton:(id)sender
 {
-    Dice_Builder *diceBuilder1 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder1 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder1 setDice:1];
     [diceBuilder1 setDiceId:1];
-    Dice *dice1 = [diceBuilder1 build];
+    PBDice *dice1 = [diceBuilder1 build];
     
-    Dice_Builder *diceBuilder2 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder2 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder2 setDice:2];
     [diceBuilder2 setDiceId:2];
-    Dice *dice2 = [diceBuilder2 build];
+    PBDice *dice2 = [diceBuilder2 build];
     
-    Dice_Builder *diceBuilder3 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder3 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder3 setDice:3];
     [diceBuilder3 setDiceId:3];
-    Dice *dice3 = [diceBuilder3 build];
+    PBDice *dice3 = [diceBuilder3 build];
     
-    Dice_Builder *diceBuilder4 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder4 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder4 setDice:4];
     [diceBuilder4 setDiceId:4];
-    Dice *dice4 = [diceBuilder4 build];
+    PBDice *dice4 = [diceBuilder4 build];
     
-    Dice_Builder *diceBuilder5 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder5 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder5 setDice:5];
     [diceBuilder5 setDiceId:5];
-    Dice *dice5 = [diceBuilder5 build];
+    PBDice *dice5 = [diceBuilder5 build];
     
-    Dice_Builder *diceBuilder6 = [[[Dice_Builder alloc] init] autorelease];
+    PBDice_Builder *diceBuilder6 = [[[PBDice_Builder alloc] init] autorelease];
     [diceBuilder6 setDice:6];
     [diceBuilder6 setDiceId:6];
-    Dice *dice6 = [diceBuilder6 build];
+    PBDice *dice6 = [diceBuilder6 build];
     
     NSArray *dices = [NSArray arrayWithObjects:dice1, dice2, dice3, dice4, dice5, dice6, nil];
     
