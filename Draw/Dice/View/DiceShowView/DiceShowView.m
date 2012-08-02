@@ -17,6 +17,7 @@
 @interface DiceShowView ()
 
 @property (retain, nonatomic) NSArray *dices;
+@property (retain, nonatomic) NSMutableArray *diceViews;
 
 @end
 
@@ -24,10 +25,12 @@
 
 @synthesize delegate = _delegate;
 @synthesize dices = _dices;
+@synthesize diceViews = _diceViews;
 
 - (void)dealloc
 {
     [_dices release];
+    [_diceViews release];
     [super dealloc];
 }
 
@@ -35,21 +38,27 @@
               dices:(NSArray *)dices
     userInterAction:(BOOL)userInterAction
 {
-    frame = CGRectMake(frame.origin.x, frame.origin.y, EDGE_WIDTH * ([dices count] - 1) + DICE_WIDTH * [dices count], DICE_HEIGHT);
+    frame = CGRectMake(frame.origin.x, frame.origin.y, EDGE_WIDTH * ([dices count] - 1) + DICE_VIEW_WIDTH * [dices count], DICE_VIEW_HEIGHT);
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.dices = dices;
+        self.diceViews = [NSMutableArray array];
         
         int i = 0;
+  
         for (PBDice *dice in dices) {
-            CGRect rect = CGRectMake((EDGE_WIDTH + DICE_WIDTH) * i++, 0, DICE_WIDTH, DICE_HEIGHT);     
+            CGRect rect = CGRectMake((EDGE_WIDTH + DICE_VIEW_WIDTH) * i++, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT);     
 
-            UIButton *diceView = [[[DiceView alloc] initWithFrame:rect 
+            DiceView *diceView = [[[DiceView alloc] initWithFrame:rect 
                                                        dice:dice] autorelease];
-            [diceView addTarget:self 
-                       action:@selector(clickDiceButton:)
-             forControlEvents:UIControlEventTouchUpInside];
+            [self.diceViews addObject:diceView];
+            
+            if (userInterAction) {
+                [diceView addTarget:self 
+                             action:@selector(clickDiceButton:)
+                   forControlEvents:UIControlEventTouchUpInside];
+            }
             
             [self addSubview:diceView];
         }
@@ -60,12 +69,22 @@
 
 - (void)clickDiceButton:(id)sender
 {
-    UIButton *button  = (UIButton *)sender;
-    int diceId = button.tag;
+    [self clearSelectedBgImage];
+    DiceView *diceView  = (DiceView *)sender;
+    diceView.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
+    
+    int diceId = diceView.tag;
     PBDice *dice = [self findDiceWithDiceId:diceId];
     
     if ([_delegate respondsToSelector:@selector(didSelectedDice:)]) {
         [_delegate didSelectedDice:dice];
+    }
+}
+
+- (void)clearSelectedBgImage
+{
+    for (DiceView *view in _diceViews) {
+        view.seletedBgImageView.image = nil;
     }
 }
 
