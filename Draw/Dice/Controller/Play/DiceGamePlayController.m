@@ -27,11 +27,14 @@
 
 @interface DiceGamePlayController ()
 
+@property (retain, nonatomic) NSArray *playingUserList;
 @property (retain, nonatomic) NSArray *userDiceList;
 
 @end
 
 @implementation DiceGamePlayController
+
+@synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize openDiceButton;
@@ -40,6 +43,7 @@
 @synthesize userDiceList = _userDiceList;
 
 - (void)dealloc {
+    [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
     [openDiceButton release];
@@ -78,7 +82,8 @@
     [self.view addSubview:myCoinsLabel];
     
     DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
-    [view setStart:6 end:30 lastCallDice:4];
+    self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+    [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:view];
 }
 
@@ -247,7 +252,6 @@
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");   
          [self updateAllPlayersAvatar];
      }];
-    
 }
 
 - (void)unregisterDiceGameNotification

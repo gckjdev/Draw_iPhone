@@ -258,4 +258,18 @@
     }
 }
 
+- (NSArray *)playingUserList
+{
+    NSMutableArray *userList = [NSMutableArray array];
+    
+    for (PBGameUser *user in _userList) {
+        if (user.isPlaying) {
+            [userList addObject:user];
+        }
+    }
+    
+    return userList;
+}
+
+
 @end

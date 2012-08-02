@@ -80,6 +80,9 @@
 		A3FAE0F11553712E008B5827 /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0EF1553712E008B5827 /* 50.png */; };
 		A3FAE0F21553712E008B5827 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0F01553712E008B5827 /* 72.png */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
+		A41A669815CA5D8700066E9B /* dice_blue_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41A669615CA5D8700066E9B /* dice_blue_safa@2x.png */; };
+		A41A669915CA5D8700066E9B /* dice_green_safa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41A669715CA5D8700066E9B /* dice_green_safa@2x.png */; };
+		A41A669B15CA5D9500066E9B /* bell_amount_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41A669A15CA5D9500066E9B /* bell_amount_selected@2x.png */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
@@ -1068,6 +1071,9 @@
 		A3FAE0F01553712E008B5827 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
 		A41A665815C921DA00066E9B /* SlideImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideImageView.m; sourceTree = "<group>"; };
+		A41A669615CA5D8700066E9B /* dice_blue_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_blue_safa@2x.png"; sourceTree = "<group>"; };
+		A41A669715CA5D8700066E9B /* dice_green_safa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_green_safa@2x.png"; sourceTree = "<group>"; };
+		A41A669A15CA5D9500066E9B /* bell_amount_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_amount_selected@2x.png"; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -2774,6 +2780,7 @@
 		A4B7641D15C37D93003B4E72 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A41A669A15CA5D9500066E9B /* bell_amount_selected@2x.png */,
 				A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */,
 				A45E8CCF15C77F480089E240 /* dice_setting@2x.png */,
 				A4B7641E15C37D93003B4E72 /* bell_1@2x.png */,
@@ -2827,6 +2834,8 @@
 		A4B7648D15C38470003B4E72 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A41A669615CA5D8700066E9B /* dice_blue_safa@2x.png */,
+				A41A669715CA5D8700066E9B /* dice_green_safa@2x.png */,
 				A4B7648E15C38470003B4E72 /* dice_back@2x.png */,
 				A4B7648F15C38470003B4E72 /* dice_create_room@2x.png */,
 				A4B7649015C38470003B4E72 /* dice_help@2x.png */,
@@ -6291,6 +6300,9 @@
 				A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */,
 				A4AC51F615C911360041DC86 /* newfan.ttf in Resources */,
 				EAA6A13215CA23550094B122 /* DicesResultView.xib in Resources */,
+				A41A669815CA5D8700066E9B /* dice_blue_safa@2x.png in Resources */,
+				A41A669915CA5D8700066E9B /* dice_green_safa@2x.png in Resources */,
+				A41A669B15CA5D9500066E9B /* bell_amount_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
