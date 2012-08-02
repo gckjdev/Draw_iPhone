@@ -22,7 +22,7 @@
     return self;
 }
 
-+ (DicesResultView *)DicesResultView
++ (DicesResultView *)createDicesResultView
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DicesResultView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
