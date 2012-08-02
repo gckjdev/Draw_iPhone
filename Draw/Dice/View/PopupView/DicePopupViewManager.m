@@ -12,6 +12,7 @@
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
+@property (retain, nonatomic) ToolSheetView *toolSheetView;
 
 @end
 
@@ -20,10 +21,12 @@ static DicePopupViewManager *_instance = nil;
 @implementation DicePopupViewManager
 
 @synthesize callDiceView = _callDiceView;
+@synthesize toolSheetView = _toolSheetView;
 
 - (void)dealloc
 {
-    [_callDiceView dealloc];
+    [_callDiceView release];
+    [_toolSheetView release];
     [super dealloc];
 }
 
@@ -40,6 +43,7 @@ static DicePopupViewManager *_instance = nil;
 {
     if (self = [super init]) {
         self.callDiceView = [[[CallDiceView alloc] initWithDice:nil count:0] autorelease];
+        self.toolSheetView = [[[ToolSheetView alloc] init] autorelease];
     }
     
     return self;
@@ -57,5 +61,22 @@ static DicePopupViewManager *_instance = nil;
 }
 
 
+- (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
+                            countNumberList:(NSArray *)countNumberList 
+                                   delegate:(id<ToolSheetViewDelegate>)delegate 
+                                     atView:(UIView *)view 
+                                     inView:(UIView *)inView  
+                                   animated:(BOOL)animated
+{
+    [_toolSheetView updateWithImageNameList:imageNameList 
+                            countNumberList:countNumberList
+                                   delegate:delegate];
+    [_toolSheetView popupAtView:view inView:inView animated:animated];
+}
+
+- (void)dismissToolSheetViewAnimated:(BOOL)animated
+{
+    [_toolSheetView dismissAnimated:animated];
+}
 
 @end

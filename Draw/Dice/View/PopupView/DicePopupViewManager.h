@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
+#import "ToolSheetView.h"
 
 @interface DicePopupViewManager : NSObject
 
@@ -18,5 +19,14 @@
                            atView:(UIView *)view
                            inView:(UIView *)inView
                          animated:(BOOL)animated;
+
+- (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
+                            countNumberList:(NSArray *)countNumberList 
+                                   delegate:(id<ToolSheetViewDelegate>)delegate 
+                                     atView:(UIView *)view 
+                                     inView:(UIView *)inView  
+                                   animated:(BOOL)animated;
+
+- (void)dismissToolSheetViewAnimated:(BOOL)animated;
 
 @end

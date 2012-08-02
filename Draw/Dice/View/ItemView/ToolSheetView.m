@@ -22,14 +22,12 @@
 @implementation ToolSheetView
 @synthesize buttonImageNameList = _buttonImageNameList;
 @synthesize delegate = _delegate;
-@synthesize backgroundImageView = _backgroundImageView;
 @synthesize countNumberList = _countNumberList;
 @synthesize popTipView = _popTipView;
 
 - (void)dealloc
 {
     [_buttonImageNameList release];
-    [_backgroundImageView release];
     [_countNumberList release];
     [_popTipView release];
     [super dealloc];
@@ -45,9 +43,21 @@
         self.buttonImageNameList = imageNameList;
         self.countNumberList = countNumberList;
         self.delegate = delegate;
-        [self createView];
+        [self clearContent];
+        [self showContent];
     }
     return self;
+}
+
+- (void)updateWithImageNameList:(NSArray *)imageNameList 
+                countNumberList:(NSArray *)countNumberList 
+                       delegate:(id<ToolSheetViewDelegate>)delegate
+{
+    self.buttonImageNameList = imageNameList;
+    self.countNumberList = countNumberList;
+    self.delegate = delegate;
+    [self clearContent];
+    [self showContent];
 }
 
 - (void)popupAtView:(UIView *)view
@@ -58,11 +68,8 @@
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
     
-    //UIView *offsetView = [[[UIView alloc] initWithFrame:view.frame] autorelease];
-    //offsetView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y +20, view.frame.size.width, view.frame.size.height);
-    
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
-    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+    //[_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
 
 - (void)dismissAnimated:(BOOL)animated 
@@ -114,8 +121,12 @@
 //    [UIImageView commitAnimations];
 //}
 
+- (void)clearContent
+{
+    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
 
-- (void)createView
+- (void)showContent
 {
     int index = 0;
     for (NSString *name in _buttonImageNameList) {
@@ -175,7 +186,6 @@
 
 - (void)clickToolButton:(id)sender
 {
-    //[self removeFromSuperview];
     [self dismissAnimated:YES];
     
     UIButton *button = (UIButton*)sender;

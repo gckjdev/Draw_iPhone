@@ -18,18 +18,19 @@
 @interface ToolSheetView : UIView
 
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
-@property (retain, nonatomic) UIImageView *backgroundImageView;
 
 - (id)initWithImageNameList:(NSArray *)imageNameList 
             countNumberList:(NSArray *)countNumberList 
                    delegate:(id<ToolSheetViewDelegate>)delegate;
+
+- (void)updateWithImageNameList:(NSArray *)imageNameList 
+                countNumberList:(NSArray *)countNumberList 
+                       delegate:(id<ToolSheetViewDelegate>)delegate;
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
            animated:(BOOL)animated;
 
 - (void)dismissAnimated:(BOOL)animated;
-
-//- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint;
 
 @end
