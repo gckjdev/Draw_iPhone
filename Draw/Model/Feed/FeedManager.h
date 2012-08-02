@@ -50,5 +50,9 @@ typedef enum{
 + (FeedActionDescType)feedActionDescFor:(Feed *)feed;
 + (NSString *)targetNameForFeed:(Feed *)feed;
 
-
++ (Draw *)localDrawDataForFeedId:(NSString *)feedId;
++ (void)saveDrawData:(Draw *)drawData 
+          withFeedId:(NSString *)feedId 
+                asyn:(BOOL)asyn;
++ (BOOL)isDrawDataExsit:(NSString *)feedId;
 @end

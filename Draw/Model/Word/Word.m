@@ -63,4 +63,24 @@
 {
     return self.text.length;
 }
+
+#define TEXT @"text"
+#define LEVEL @"level"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_text forKey:TEXT];
+    [aCoder encodeInt:_level forKey:LEVEL];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.text = [aDecoder decodeObjectForKey:TEXT];
+        self.level = [aDecoder decodeIntForKey:LEVEL];
+    }
+    return self;
+}
+
+
 @end

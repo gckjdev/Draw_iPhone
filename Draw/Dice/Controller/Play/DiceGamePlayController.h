@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "ToolSheetView.h"
 #import "FontLabel.h"
 #import "FontButton.h"
 
-@interface DiceGamePlayController : PPViewController
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate>
+
 @property (retain, nonatomic) FontLabel *myLevelLabel;
 @property (retain, nonatomic) FontLabel *myCoinsLabel;
 //@property (retain, nonatomic) UILabel *myLevelLabel;
@@ -20,4 +22,5 @@
 
 @property (retain, nonatomic) FontButton *fontButton;
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
+
 @end

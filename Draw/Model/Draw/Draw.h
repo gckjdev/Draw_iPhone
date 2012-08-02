@@ -15,7 +15,7 @@
 @class PBDraw;
 //@class LanguageType;
 
-@interface Draw : NSObject
+@interface Draw : NSObject<NSCoding>
 {
     NSString *_userId;
     NSString *_nickName;

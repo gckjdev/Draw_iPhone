@@ -10,6 +10,7 @@
 #import "PPDebug.h"
 #import "UserManager.h"
 #import "Draw.h"
+#import "FileUtil.h"
 
 FeedManager *_staticFeedManager = nil;
 
@@ -44,12 +45,11 @@ FeedManager *_staticFeedManager = nil;
 //get name
 + (NSString *)opusCreatorForFeed:(Feed *)feed
 {
-    NSString *userId = [[feed drawData] userId];
-    NSString *nick = [[feed drawData] nickName];
+    NSString *userId = feed.authorId;
     if ([[UserManager defaultManager] isMe:userId]) {
         return NSLS(@"Me");
     }else{
-        return nick;
+        return feed.authorNick;
     }
 }
 
@@ -232,6 +232,82 @@ FeedManager *_staticFeedManager = nil;
     }
 }
 
+#pragma mark - save and get local data.
 
+#define TEMP_FEED_DRAW_DIR @"feed_data"
+
+
++ (NSString *)constructDataPath:(NSString *)feedId
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if (!paths || [paths count] == 0) {
+        NSLog(@"Document directory not found!");
+        return nil;
+    }
+    NSString *dir = [paths objectAtIndex:0];
+    
+    dir = [dir stringByAppendingPathComponent:TEMP_FEED_DRAW_DIR];
+    BOOL flag = [FileUtil createDir:dir];
+    if (flag == NO) {
+        PPDebug(@"<FeedManager> create dir fail. dir = %@",dir);
+    }
+    NSString *uniquePath=[dir stringByAppendingPathComponent:feedId];
+    NSLog(@"construct path = %@",uniquePath);
+    return uniquePath;
+}
+
+
++ (Draw *)localDrawDataForFeedId:(NSString *)feedId
+{
+    PPDebug(@"<FeedManager> get data, data file name = %@", feedId);
+    if ([feedId length] == 0) {
+        return nil;
+    }
+    NSString *uniquePath = [FeedManager constructDataPath:feedId];
+    if (uniquePath == nil) {
+        return nil;
+    }
+    NSData *data = [NSData dataWithContentsOfFile:uniquePath];
+    if (data == nil) {
+        return nil;
+    }
+    Draw* draw = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return draw;
+
+}
++ (void)saveDrawData:(Draw *)drawData 
+          withFeedId:(NSString *)feedId 
+                asyn:(BOOL)asyn
+{
+    if (drawData == nil || [feedId length] == 0) {
+        return;
+    }
+    void (^handleBlock)()= ^(){
+        NSString *uniquePath = [FeedManager constructDataPath:feedId];
+        if (uniquePath == nil) {
+            return;
+        }
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:drawData];    
+        BOOL result=[data writeToFile:uniquePath atomically:YES];
+        PPDebug(@"<FeedManager> asyn save draw data to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+    };
+    
+    if (asyn) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        if (queue == NULL){
+            return;
+        }
+        dispatch_async(queue, handleBlock);        
+    }else{
+        handleBlock();
+    }
+}
+
++ (BOOL)isDrawDataExsit:(NSString *)feedId
+{
+    NSString *uniquePath = [FeedManager constructDataPath:feedId];    
+    return [[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+}
 
 @end

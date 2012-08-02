@@ -44,7 +44,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceImageWithDice:(int)dice
 {
-    UIImage *image;
+    UIImage *image = nil;
     
     switch (dice) {
         case 1:
@@ -78,21 +78,65 @@ static DiceImageManager *_defaultManager = nil;
     return image;
 }
 
-- (UIImage *)toolBackgroundImage
+- (UIImage *)openDiceImageWithDice:(int)dice
+{
+    UIImage *image = nil;
+    
+    switch (dice) {
+        case 1:
+            image = [UIImage imageNamed:@"open_bell_1.png"];
+            break;
+            
+        case 2:
+            image = [UIImage imageNamed:@"open_bell_2.png"];
+            break;
+            
+        case 3:
+            image = [UIImage imageNamed:@"open_bell_3.png"];
+            break;
+            
+        case 4:
+            image = [UIImage imageNamed:@"open_bell_4.png"];
+            break;
+            
+        case 5:
+            image = [UIImage imageNamed:@"open_bell_5.png"];
+            break;
+            
+        case 6:
+            image = [UIImage imageNamed:@"open_bell_6.png"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return image;
+}
+
+- (UIImage *)toolBackground
 {
     return [UIImage strectchableImageName:@"tools_bg.png" leftCapWidth:14 topCapHeight:14];    
 }
 
+- (UIImage *)toolEnableCountBackground
+{
+    return [UIImage imageNamed:@"tools_enable.png"];
+}
+
+- (UIImage *)toolDisableCountBackground
+{
+    return [UIImage imageNamed:@"tools_disable.png"];
+}
+
 - (UIImage *)diceCountSelectedBtnBgImage
 {
-    return [UIImage imageNamed:@"bell_amount.png"];
+    return [UIImage imageNamed:@"bell_amount@2x.png"];
 }
 
 - (UIImage *)diceSeletedBgImage
 {
-    return [UIImage imageNamed:@"bell_selectedbg.png"];
-
+    return [UIImage imageNamed:@"bell_selectedbg@2x.png"];
 }
-
 
 @end

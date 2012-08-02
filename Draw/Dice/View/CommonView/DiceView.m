@@ -35,7 +35,7 @@
         [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
         
         self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        self.seletedBgImageView.image = [[DiceImageManager defaultManager]diceSeletedBgImage];
+        self.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
         self.seletedBgImageView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
         [self setImageEdgeInsets:UIEdgeInsetsMake(5, 1.5, 0, 0)];
 
