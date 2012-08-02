@@ -16,6 +16,7 @@
 #import "UserManager.h"
 
 #define AVATAR_TAG_OFFSET   1000
+#define NICKNAME_TAG_OFFSET 2000
 
 @interface DiceGamePlayController ()
 
@@ -124,10 +125,20 @@
         for (int i = 1; i <=userList.count; i ++) {
             
             DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
+            PPDebug(@"<test> tag = %d",(NICKNAME_TAG_OFFSET+i));
             int userIndex = (index+i-1)%userList.count;
             PBGameUser* user = [userList objectAtIndex:userIndex];
-            [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
-            
+            [avatar setUrlString:user.avatar 
+                          userId:user.userId 
+                          gender:user.gender 
+                           level:user.userLevel 
+                      drunkPoint:0 
+                          wealth:0];
+            PPDebug(@"<test>update user <%@>", user.nickName);
+            if (nameLabel) {
+                [nameLabel setText:user.nickName];
+            }
         }
     }
     
