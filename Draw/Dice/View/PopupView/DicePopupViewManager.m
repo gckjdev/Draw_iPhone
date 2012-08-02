@@ -36,6 +36,15 @@ static DicePopupViewManager *_instance = nil;
     return _instance;
 }
 
+- (id)init
+{
+    if (self = [super init]) {
+        self.callDiceView = [[[CallDiceView alloc] initWithDice:nil count:0] autorelease];
+    }
+    
+    return self;
+}
+
 
 - (void)popupCallDiceViewWithDice:(PBDice *)dice
                             count:(int)count
@@ -43,13 +52,10 @@ static DicePopupViewManager *_instance = nil;
                            inView:(UIView *)inView
                          animated:(BOOL)animated
 {
-    if (_callDiceView == nil) {
-        self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count] autorelease];
-    }else {
-        [_callDiceView setDice:dice count:count];
-    }
-    
+    [_callDiceView setDice:dice count:count];
     [_callDiceView popupAtView:view inView:inView animated:animated];
 }
+
+
 
 @end
