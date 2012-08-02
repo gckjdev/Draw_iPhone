@@ -24,12 +24,12 @@
 
 @implementation CallDiceView
 
-- (id)initWithDice:(Dice *)dice count:(int)count
+- (id)initWithDice:(PBDice *)dice count:(int)count
 {
     self = [super initWithFrame:CGRectMake(0, 0, 63, 32)];
     if (self) {
         // Initialization code
-        UIView *diceView = [[[DiceView alloc] initWithFrame:CGRectMake(36, 0, DICE_WIDTH, DICE_HEIGHT)   
+        UIView *diceView = [[[DiceView alloc] initWithFrame:CGRectMake(36, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
                                                        dice:dice] autorelease];
         diceView.tag = DICE_VIEW_TAG;
         diceView.userInteractionEnabled = NO;

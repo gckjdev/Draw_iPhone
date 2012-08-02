@@ -23,8 +23,10 @@
 @property (retain, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
-@property (nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain) UICustomPageControl *pageControl;
+@property (retain, nonatomic) UIScrollView *scrollView;
+@property (retain, nonatomic) UICustomPageControl *pageControl;
+
+@property (retain, nonatomic) NSArray *diceList;
 
 @end
 
@@ -35,6 +37,7 @@
 @synthesize popView = _popView;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
+@synthesize diceList = _diceList;
 
 - (void)dealloc
 {
@@ -42,6 +45,7 @@
     [_popView release];
     [_scrollView release];
     [_pageControl release];
+    [_diceList release];
     [super dealloc];
 }
 
@@ -66,6 +70,8 @@
         
         [self addSubview:self.scrollView];
         [self addSubview:self.pageControl];
+        
+        self.diceList = [self genDiceList];
     }
     
     return self;
@@ -174,44 +180,51 @@
 
 - (void)clickCountSelectedButton:(id)sender
 {
-    Dice_Builder *diceBuilder1 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder1 setDice:1];
-    [diceBuilder1 setDiceId:1];
-    Dice *dice1 = [diceBuilder1 build];
-    
-    Dice_Builder *diceBuilder2 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder2 setDice:2];
-    [diceBuilder2 setDiceId:2];
-    Dice *dice2 = [diceBuilder2 build];
-    
-    Dice_Builder *diceBuilder3 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder3 setDice:3];
-    [diceBuilder3 setDiceId:3];
-    Dice *dice3 = [diceBuilder3 build];
-    
-    Dice_Builder *diceBuilder4 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder4 setDice:4];
-    [diceBuilder4 setDiceId:4];
-    Dice *dice4 = [diceBuilder4 build];
-    
-    Dice_Builder *diceBuilder5 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder5 setDice:5];
-    [diceBuilder5 setDiceId:5];
-    Dice *dice5 = [diceBuilder5 build];
-    
-    Dice_Builder *diceBuilder6 = [[[Dice_Builder alloc] init] autorelease];
-    [diceBuilder6 setDice:6];
-    [diceBuilder6 setDiceId:6];
-    Dice *dice6 = [diceBuilder6 build];
-    
-    NSArray *dices = [NSArray arrayWithObjects:dice1, dice2, dice3, dice4, dice5, dice6, nil];
-    
-    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:dices userInterAction:YES];
+    DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:_diceList userInterAction:YES];
     [self.popView dismissAnimated:YES];
     self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
+    [self.popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
+
+- (NSArray *)genDiceList
+{
+    PBDice_Builder *diceBuilder1 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder1 setDice:1];
+    [diceBuilder1 setDiceId:1];
+    PBDice *dice1 = [diceBuilder1 build];
+    
+    PBDice_Builder *diceBuilder2 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder2 setDice:2];
+    [diceBuilder2 setDiceId:2];
+    PBDice *dice2 = [diceBuilder2 build];
+    
+    PBDice_Builder *diceBuilder3 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder3 setDice:3];
+    [diceBuilder3 setDiceId:3];
+    PBDice *dice3 = [diceBuilder3 build];
+    
+    PBDice_Builder *diceBuilder4 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder4 setDice:4];
+    [diceBuilder4 setDiceId:4];
+    PBDice *dice4 = [diceBuilder4 build];
+    
+    PBDice_Builder *diceBuilder5 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder5 setDice:5];
+    [diceBuilder5 setDiceId:5];
+    PBDice *dice5 = [diceBuilder5 build];
+    
+    PBDice_Builder *diceBuilder6 = [[[PBDice_Builder alloc] init] autorelease];
+    [diceBuilder6 setDice:6];
+    [diceBuilder6 setDiceId:6];
+    PBDice *dice6 = [diceBuilder6 build];
+    
+    NSArray *dices = [NSArray arrayWithObjects:dice1, dice2, dice3, dice4, dice5, dice6, nil];
+    
+    return dices;
+}
+
 
 
 
