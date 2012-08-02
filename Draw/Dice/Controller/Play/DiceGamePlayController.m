@@ -201,6 +201,9 @@
 - (void)updateAllPlayersAvatar
 {
     NSArray* userList = [[DiceGameService defaultService].session userList];
+    for (PBGameUser* user in userList) {
+        PPDebug(@"get user--%@",user.nickName);
+    }
     int index = [self getSelfIndexFromUserList:userList];
     if (index >= 0) {
         for (int i = 1; i <=userList.count; i ++) {
@@ -235,7 +238,7 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE");         
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_JOIN_GAME_RESPONSE");         
      }];
     
     [[NSNotificationCenter defaultCenter] 
@@ -243,7 +246,7 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");   
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");   
          [self updateAllPlayersAvatar];
      }];
     
