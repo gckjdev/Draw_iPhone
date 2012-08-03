@@ -13,7 +13,9 @@
 #import "FontButton.h"
 #import "DiceSelectedView.h"
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate>
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate> {
+    DiceSelectedView* _diceSelectedView;
+}
 
 @property (retain, nonatomic) FontLabel *myLevelLabel;
 @property (retain, nonatomic) FontLabel *myCoinsLabel;
