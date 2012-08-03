@@ -19,6 +19,9 @@
 #define CALL_DICE_VIEW_WIDTH 63
 #define CALL_DICE_VIEW_HEIGHT 35
 
+#define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+
+
 @interface CallDiceView ()
 
 @property (retain, nonatomic) DiceView *diceView;
@@ -55,7 +58,7 @@
         _countLabel.backgroundColor = [UIColor clearColor];
         _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
         
-        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(20, 0, 25, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20] autorelease];
+        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(35, 0, 25, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20] autorelease];
         symbolLabel.backgroundColor = [UIColor clearColor];
         symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
         
@@ -79,8 +82,9 @@
 {
     [self.popTipView dismissAnimated:YES];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
-    _popTipView.backgroundColor = [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4];
-    
+    _popTipView.backgroundColor = CALL_DICE_POPUP_VIEW_BG_COLOR;
+    _popTipView.disableTapToDismiss = YES;
+
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
     [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:2];
 }

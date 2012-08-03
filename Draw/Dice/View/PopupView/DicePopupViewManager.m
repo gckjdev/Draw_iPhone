@@ -7,12 +7,17 @@
 //
 
 #import "DicePopupViewManager.h"
+#import "CMPopTipView.h"
 #import "CallDiceView.h"
+
 
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) ToolSheetView *toolSheetView;
+
+//- (CMPopTipView *)popTipViewWithCustomView:(UIView *)view
+//                          backagroundColor:(UIColor *)color;
 
 @end
 
@@ -27,6 +32,7 @@ static DicePopupViewManager *_instance = nil;
 {
     [_callDiceView release];
     [_toolSheetView release];
+
     [super dealloc];
 }
 
@@ -42,12 +48,19 @@ static DicePopupViewManager *_instance = nil;
 - (id)init
 {
     if (self = [super init]) {
-        self.callDiceView = [[[CallDiceView alloc] initWithDice:nil count:0] autorelease];
         self.toolSheetView = [[[ToolSheetView alloc] init] autorelease];
     }
     
     return self;
 }
+
+//- (CMPopTipView *)popTipViewWithCustomView:(UIView *)view
+//                          backagroundColor:(UIColor *)color
+//{
+//    CMPopTipView *popTipView = [[[CMPopTipView alloc] initWithCustomView:view] autorelease];
+//    popTipView.backgroundColor = color;
+//    return popTipView;
+//}
 
 
 - (void)popupCallDiceViewWithDice:(PBDice *)dice
@@ -56,10 +69,20 @@ static DicePopupViewManager *_instance = nil;
                            inView:(UIView *)inView
                          animated:(BOOL)animated
 {
-    [_callDiceView setDice:dice count:count];
-    [_callDiceView popupAtView:view inView:inView animated:animated];
+    [_callDiceView dismissAnimated:YES];
+    if (_callDiceView == nil) {
+        self.callDiceView = [[CallDiceView alloc] initWithDice:dice count:count];
+    }else {
+        [_callDiceView setDice:dice count:count];
+    }
+    
+    [_callDiceView popupAtView:view inView:inView animated:YES];
 }
 
+- (void)dismissCallDiceViewAnimated:(BOOL)animated
+{
+    [_callDiceView dismissAnimated:YES];
+}
 
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
