@@ -32,6 +32,7 @@ static DicePopupViewManager *_instance = nil;
 {
     [_callDiceView release];
     [_toolSheetView release];
+
     [super dealloc];
 }
 
