@@ -237,6 +237,7 @@
     self.popView.delegate = self;
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];
+//    [_popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
 
 - (NSArray *)genDiceListStartWith:(int)start end:(int)end

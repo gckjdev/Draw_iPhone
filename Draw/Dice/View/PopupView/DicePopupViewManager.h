@@ -20,6 +20,8 @@
                            inView:(UIView *)inView
                          animated:(BOOL)animated;
 
+- (void)dismissCallDiceViewAnimated:(BOOL)animated;
+
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
                                    delegate:(id<ToolSheetViewDelegate>)delegate 

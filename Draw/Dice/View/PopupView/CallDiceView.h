@@ -12,12 +12,5 @@
 @interface CallDiceView : UIView
 
 - (id)initWithDice:(PBDice *)dice count:(int)count;
-- (void)setDice:(PBDice *)dice count:(int)count;
-
-- (void)popupAtView:(UIView *)view
-             inView:(UIView *)inView
-           animated:(BOOL)animated;
-
-- (void)dismissAnimated:(BOOL)animated;
 
 @end

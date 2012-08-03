@@ -88,8 +88,9 @@
     _diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
     _diceSelectedView.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-    [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+    [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
+
 }
 
 - (void)clickFontButton
