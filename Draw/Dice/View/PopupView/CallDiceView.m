@@ -67,28 +67,4 @@
     return self;
 }
 
-- (void)setDice:(PBDice *)dice count:(int)count
-{
-    [_diceView setDice:dice];
-    _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
-}
-
-- (void)popupAtView:(UIView *)view
-             inView:(UIView *)inView
-           animated:(BOOL)animated
-{
-    [self.popTipView dismissAnimated:YES];
-    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
-    _popTipView.backgroundColor = [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4];
-    
-    [_popTipView presentPointingAtView:view inView:inView animated:animated];
-    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:2];
-}
-
-- (void)dismissAnimated:(BOOL)animated
-{
-    [_popTipView dismissAnimated:animated];
-}
-
-
 @end

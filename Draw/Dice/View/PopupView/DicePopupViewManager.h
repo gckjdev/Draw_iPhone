@@ -19,4 +19,7 @@
                            inView:(UIView *)inView
                          animated:(BOOL)animated;
 
+- (void)dismissCallDiceViewAnimated:(BOOL)animated;
+
+
 @end

@@ -87,7 +87,9 @@
     DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
     view.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-    [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+//    [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+    [view setStart:1 end:30  lastCallDice:6];
+
     [diceCountSelectedHolderView addSubview:view];
 }
 

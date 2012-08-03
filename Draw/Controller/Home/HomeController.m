@@ -840,8 +840,8 @@
 - (IBAction)clickDice:(id)sender
 {
 //    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
-//      DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-//    [self.navigationController pushViewController:controller animated:YES];
+      DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
     
     
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
