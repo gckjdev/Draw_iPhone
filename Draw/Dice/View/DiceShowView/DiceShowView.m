@@ -73,7 +73,7 @@
     DiceView *diceView  = (DiceView *)sender;
     diceView.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
     
-    int diceId = diceView.tag;
+    int diceId = diceView.dice.diceId;
     PBDice *dice = [self findDiceWithDiceId:diceId];
     
     if ([_delegate respondsToSelector:@selector(didSelectedDice:)]) {
