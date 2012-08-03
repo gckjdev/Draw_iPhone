@@ -370,6 +370,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSString* location;
 @property int32_t userLevel;
 @property (retain) NSString* facetimeId;
+@property int32_t seatId;
 @property BOOL isPlaying;
 @property BOOL isTakenOver;
 @end
@@ -431,6 +432,13 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasFacetimeId_ = !!value;
 }
 @synthesize facetimeId;
+- (BOOL) hasSeatId {
+  return !!hasSeatId_;
+}
+- (void) setHasSeatId:(BOOL) value {
+  hasSeatId_ = !!value;
+}
+@synthesize seatId;
 - (BOOL) hasIsPlaying {
   return !!hasIsPlaying_;
 }
@@ -473,6 +481,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.location = @"";
     self.userLevel = 0;
     self.facetimeId = @"";
+    self.seatId = 0;
     self.isPlaying = YES;
     self.isTakenOver = NO;
   }
@@ -536,6 +545,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFacetimeId) {
     [output writeString:8 value:self.facetimeId];
   }
+  if (self.hasSeatId) {
+    [output writeInt32:9 value:self.seatId];
+  }
   if (self.hasIsPlaying) {
     [output writeBool:20 value:self.isPlaying];
   }
@@ -574,6 +586,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFacetimeId) {
     size += computeStringSize(8, self.facetimeId);
+  }
+  if (self.hasSeatId) {
+    size += computeInt32Size(9, self.seatId);
   }
   if (self.hasIsPlaying) {
     size += computeBoolSize(20, self.isPlaying);
@@ -683,6 +698,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFacetimeId) {
     [self setFacetimeId:other.facetimeId];
   }
+  if (other.hasSeatId) {
+    [self setSeatId:other.seatId];
+  }
   if (other.hasIsPlaying) {
     [self setIsPlaying:other.isPlaying];
   }
@@ -742,6 +760,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 66: {
         [self setFacetimeId:[input readString]];
+        break;
+      }
+      case 72: {
+        [self setSeatId:[input readInt32]];
         break;
       }
       case 160: {
@@ -894,6 +916,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFacetimeId {
   result.hasFacetimeId = NO;
   result.facetimeId = @"";
+  return self;
+}
+- (BOOL) hasSeatId {
+  return result.hasSeatId;
+}
+- (int32_t) seatId {
+  return result.seatId;
+}
+- (PBGameUser_Builder*) setSeatId:(int32_t) value {
+  result.hasSeatId = YES;
+  result.seatId = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearSeatId {
+  result.hasSeatId = NO;
+  result.seatId = 0;
   return self;
 }
 - (BOOL) hasIsPlaying {
