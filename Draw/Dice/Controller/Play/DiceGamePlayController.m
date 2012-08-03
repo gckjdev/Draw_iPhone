@@ -120,22 +120,13 @@
     button.tag = TAG_TOOL_BUTTON;
     button.selected = !button.selected;
     
-    ToolSheetView *toolSheetView = (ToolSheetView *)[self.view viewWithTag:TAG_TOOL_SHEET];
-    
-    if (toolSheetView == nil) {
-        CGPoint fromPoint  = CGPointMake(button.frame.origin.x + 0.5 * button.frame.size.width, button.frame.origin.y );
+    if (button.selected) {
         NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
         NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
-                                    
-        ToolSheetView *toolSheetView = [[ToolSheetView alloc] initWithImageNameList:imageNameList 
-                                                                    countNumberList:countNumberList 
-                                                                           delegate:self];
         
-        toolSheetView.tag = TAG_TOOL_SHEET;
-        [toolSheetView showInView:self.view fromFottomPoint:fromPoint];
-        [toolSheetView release];
+        [[DicePopupViewManager defaultManager] popupToolSheetViewWithImageNameList:imageNameList countNumberList:countNumberList delegate:self atView:button inView:self.view animated:YES];
     } else {
-        [toolSheetView removeFromSuperview];
+        [[DicePopupViewManager defaultManager] dismissToolSheetViewAnimated:YES];
     }
 }
 
