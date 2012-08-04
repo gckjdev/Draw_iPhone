@@ -169,11 +169,6 @@
 //    [self showAllDicesResult];
 }
 
-- (void)didDismissToolSheet
-{
-    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
-    button.selected = NO;
-}
 
 - (void)showDicesResultByUserId:(NSString *)userId
 {
