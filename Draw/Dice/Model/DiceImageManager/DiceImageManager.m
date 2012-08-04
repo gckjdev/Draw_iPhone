@@ -150,4 +150,10 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"bell_selectedbg@2x.png"];
 }
 
+- (UIImage *)diceBottomImage
+{
+    return [UIImage imageNamed:@"dice_bottom.png"];
+}
+
+
 @end

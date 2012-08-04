@@ -11,6 +11,8 @@
 #import "PPDebug.h"
 #import "DiceNetworkClient.h"
 #import "DiceGameSession.h"
+#import "DiceNotification.h"
+
 
 #define DICE_GAME_ID    @"LiarDice"
 
@@ -43,9 +45,25 @@ static DiceGameService* _defaultService;
     // update game status and fire notification
 }
 
+- (void)handleRollDiceBegin:(GameMessage*)message
+{
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:NOTIFICATION_ROLL_DICE_BEGIN
+     object:self 
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]];            
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
+        case GameCommandTypeRollDiceBeginNotificationRequest:
+            [self handleRollDiceBegin:message];
+            break;
+
+        case GameCommandTypeRollDiceEndNotificationRequest:
+            // TODO
+            break;
+
         case GameCommandTypeNextPlayerStartNotificationRequest:
             [self handleNextPlayerStartNotification:message];
             break;
