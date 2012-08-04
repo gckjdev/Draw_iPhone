@@ -225,7 +225,7 @@
     //    PPDebug(@"clickOnAvatar");
     [self startReciprocol:10];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
-        [_delegate didClickOnAvatar:_userId];
+        [_delegate didClickOnAvatar:self];
     }
     
     

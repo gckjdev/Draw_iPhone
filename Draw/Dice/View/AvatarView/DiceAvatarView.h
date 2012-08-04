@@ -19,7 +19,7 @@ typedef enum {
 @protocol DiceAvatarViewDelegate <NSObject>
 
 @optional
-- (void)didClickOnAvatar:(NSString*)userId;
+- (void)didClickOnAvatar:(DiceAvatarView*)view;
 - (void)reciprocalEnd:(DiceAvatarView*)view;
 
 @end

@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonGameNetworkService.h"
+#import "DiceGameSession.h"
 
 @interface DiceGameService : CommonGameNetworkService
 
 + (DiceGameService*)defaultService;
+
+
+- (DiceGameSession*)diceSession;
+
+- (NSArray *)myDiceList;
 
 @end

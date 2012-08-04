@@ -9,12 +9,13 @@
 #import "DicePopupViewManager.h"
 #import "CMPopTipView.h"
 #import "CallDiceView.h"
-
+#import "HKGirlFontLabel.h"
 
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) ToolSheetView *toolSheetView;
+@property (retain, nonatomic) HKGirlFontLabel *openDiceView;
 
 //- (CMPopTipView *)popTipViewWithCustomView:(UIView *)view
 //                          backagroundColor:(UIColor *)color;
