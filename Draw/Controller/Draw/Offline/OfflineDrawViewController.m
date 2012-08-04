@@ -259,7 +259,8 @@ enum{
         self.wordButton.hidden = YES;
     }else {
         self.wordButton.hidden = NO;
-        NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+        NSString *wordText = self.word.text;
+        //= [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
         [self.wordButton setTitle:wordText forState:UIControlStateNormal];
     }
 }

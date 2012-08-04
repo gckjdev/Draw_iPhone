@@ -217,7 +217,8 @@ enum{
 
 - (void)initWordLabel
 {
-    NSString *wordText = [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
+    NSString *wordText = self.word.text;
+    //= [NSString stringWithFormat:NSLS(@"kDrawWord"),self.word.text];
     [self.wordButton setTitle:wordText forState:UIControlStateNormal];
 }
 
