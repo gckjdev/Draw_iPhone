@@ -53,6 +53,22 @@ static DiceGameService* _defaultService;
      userInfo:[CommonGameNetworkService messageToUserInfo:message]];            
 }
 
+- (void)handleRollDiceEnd:(GameMessage *)message
+{
+    NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
+    for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
+    {
+        [diceDic setObject:userDice.dicesList forKey:userDice.userId];
+    }
+    
+    [self diceSession].userDiceList = diceDic;
+    
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:NOTIFICATION_ROLL_DICE_END
+     object:self 
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]];     
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -62,11 +78,13 @@ static DiceGameService* _defaultService;
 
         case GameCommandTypeRollDiceEndNotificationRequest:
             // TODO
+            [self handleRollDiceEnd:message];
             break;
 
         case GameCommandTypeNextPlayerStartNotificationRequest:
             [self handleNextPlayerStartNotification:message];
             break;
+            
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
@@ -77,6 +95,16 @@ static DiceGameService* _defaultService;
 - (CommonGameSession*)createSession
 {    
     return [[[DiceGameSession alloc] init] autorelease];
+}
+
+- (DiceGameSession*)diceSession
+{
+    return (DiceGameSession*)(self.session);
+}
+
+- (NSArray *)myDiceList
+{
+    return [[[self diceSession] userDiceList] objectForKey:self.user.userId];
 }
 
 @end

@@ -14,8 +14,12 @@
 #import "DiceSelectedView.h"
 #import "DiceAvatarView.h"
 
+@class DiceGameService;
+
+
 @interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate> {
     DiceSelectedView* _diceSelectedView;
+    DiceGameService*  _diceService;
 }
 
 @property (retain, nonatomic) FontLabel *myLevelLabel;
