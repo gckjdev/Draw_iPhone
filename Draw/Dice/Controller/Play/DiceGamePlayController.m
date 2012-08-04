@@ -129,46 +129,79 @@
 }
 
 - (void)didSelectTool:(NSInteger)index
+{    
+    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
+    button.selected = NO;
+    
+    //test data
+//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+//    for (int k = 0; k < 6 ; k++) {
+//        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
+//        [userDiceBuilder setUserId:@"TEST"];
+//        for (int i = 0 ; i < 5 ; i++) {
+//            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+//            NSUInteger value =  (arc4random() % 6) + 1; 
+//            [diceBuilder setDice:value];
+//            [diceBuilder setDiceId:i];
+//            PBDice *dice = [diceBuilder build];
+//            
+//            [userDiceBuilder addDices:dice];
+//        }
+//        PBUserDice *userDice = [userDiceBuilder build];
+//        [mutableArray addObject:userDice];
+//    }
+//    self.userDiceList = mutableArray;
+//    [self showAllDicesResult];
+}
+
+- (void)didDismissToolSheet
 {
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
-    button.selected = !button.selected;
+    button.selected = NO;
+}
+
+- (void)showDicesResultByUserId:(NSString *)userId
+{
+    int resultIndex = 0;
     
-    
-    //test code
-    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-    for (int k = 0; k < 6 ; k++) {
-        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
-        [userDiceBuilder setUserId:@"TEST"];
-        for (int i = 0 ; i < 5 ; i++) {
-            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-            NSUInteger value =  (arc4random() % 6) + 1; 
-            [diceBuilder setDice:value];
-            [diceBuilder setDiceId:i];
-            PBDice *dice = [diceBuilder build];
-            
-            [userDiceBuilder addDices:dice];
+    for (int index = 1 ; index <= 6 ; index ++) {
+        int tag = AVATAR_TAG_OFFSET + index;
+        DiceAvatarView *tempAvatarView = (DiceAvatarView *)[self.view viewWithTag:tag];
+        if ([tempAvatarView.userId isEqualToString:userId]) {
+            resultIndex = index;
+            break;
         }
-        PBUserDice *userDice = [userDiceBuilder build];
-        [mutableArray addObject:userDice];
     }
-    self.userDiceList = mutableArray;
-    [self showAllDicesResult];
+    
+    PBUserDice *foundUserDice = nil;
+    for (PBUserDice *userDice in _userDiceList) {
+        if ([userDice.userId isEqualToString:userId]) {
+            foundUserDice = userDice;
+            break;
+        }
+    }
+    
+    DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + resultIndex];
+    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
+    dicesResultView.center = oldDicesResultView.center;
+    dicesResultView.tag = oldDicesResultView.tag;
+    [dicesResultView setUserDices:foundUserDice];
+    [oldDicesResultView removeFromSuperview];
+    [self.view addSubview:dicesResultView];
 }
 
 - (void)showAllDicesResult
 {
-    int i = 1;
-    for (PBUserDice *userDice in _userDiceList) {
-        
-        DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + i];
-        DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
-        
-        dicesResultView.center = oldDicesResultView.center;
-        dicesResultView.tag = oldDicesResultView.tag;
-        [dicesResultView setDices:userDice];
-        [oldDicesResultView removeFromSuperview];
-        [self.view addSubview:dicesResultView];
-        i++;
+    for (PBGameUser *user in self.playingUserList) {
+        [self showDicesResultByUserId:user.userId];
+    } 
+}
+
+- (void)clearAllDicesResult
+{
+    for (int index = 1 ; index <= 6; index ++) {
+        DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
+        [resultView clearUserDices];
     }
 }
 
@@ -228,7 +261,6 @@
     }
     return nil;
 }
-
 
 
 #pragma test server

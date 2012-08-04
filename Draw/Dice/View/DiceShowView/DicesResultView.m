@@ -31,21 +31,41 @@
     return view;
 }
 
-#define TAB_START_DICE  10
-- (void)setDices:(PBUserDice *)userDice
+#define TAG_BOTTOM 1
+#define TAG_START_DICE  10
+- (void)setUserDices:(PBUserDice *)userDice
 {
     self.userId = userDice.userId;
     
+    DiceImageManager *imageManage = [DiceImageManager defaultManager];
+    
+    UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
+    [bottomImageView setImage:[imageManage diceBottomImage]];
+    
     int index = 0;
     for (PBDice *dice in userDice.dicesList) {
-        UIImage *image = [[DiceImageManager defaultManager] openDiceImageWithDice:dice.dice];
-        UIImageView *imageView = (UIImageView *)[self viewWithTag:TAB_START_DICE + index];
+        UIImage *image = nil;
+        image = [imageManage openDiceImageWithDice:dice.dice];
+        UIImageView *imageView = (UIImageView *)[self viewWithTag:TAG_START_DICE + index];
         [imageView setImage:image];
         
         index ++;
         if (index > 5) {
             break;
         }
+    }
+}
+
+- (void)clearUserDices
+{
+    self.userId = nil;
+    
+    UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
+    [bottomImageView setImage:nil];
+    
+    for (int index = 0; index < 6 ; index ++) {
+        UIImageView *imageView = (UIImageView *)[self viewWithTag:TAG_START_DICE + index];
+        [imageView setImage:nil];
     }
 }
 
