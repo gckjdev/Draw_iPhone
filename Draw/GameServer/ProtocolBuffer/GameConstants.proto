@@ -162,9 +162,13 @@ enum GameResultCode {
   // draw errors
   ERROR_NO_DRAW_DATA = 301;
 
+  // dice error
+  ERROR_DICE_ALREADY_OPEN = 401;
+
   // system errors
   ERROR_SYSTEM_HANDLER_NOT_FOUND = 910;
   ERROR_SYSTEM_EXCEPTION = 911;
+  
 }
 
 enum GameCompleteReason {

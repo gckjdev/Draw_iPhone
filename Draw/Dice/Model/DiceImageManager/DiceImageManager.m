@@ -165,4 +165,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage strectchableImageName:@"open.png" leftCapWidth:15];
 }
 
+- (UIImage *)whiteSofaImage
+{
+    return [UIImage imageNamed:@"waiting_user.png"];
+}
+
 @end

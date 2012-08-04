@@ -9,14 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "CommonGameNetworkService.h"
 #import "DiceGameSession.h"
+#import "Dice.pb.h"
+#import "DiceNetworkClient.h"
 
 @interface DiceGameService : CommonGameNetworkService
 
 + (DiceGameService*)defaultService;
-
-
 - (DiceGameSession*)diceSession;
-
 - (NSArray *)myDiceList;
+
+- (void)callDice:(int)dice count:(int)count;
+
+- (NSString *)lastCallUserId;
+- (int)lastCallDice;
+- (int)lastCallDiceCount;
+
+- (void)openDice;
 
 @end

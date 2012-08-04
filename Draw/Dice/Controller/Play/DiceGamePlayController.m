@@ -37,6 +37,8 @@
 @property (retain, nonatomic) DiceShowView *diceShowView;
 
 - (UIView *)selfAvatarView;
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId;
+- (void)disableAllOperationButton;
 
 @end
 
@@ -143,26 +145,6 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
-    
-    //test data
-//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-//    for (int k = 0; k < 6 ; k++) {
-//        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
-//        [userDiceBuilder setUserId:@"TEST"];
-//        for (int i = 0 ; i < 5 ; i++) {
-//            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//            NSUInteger value =  (arc4random() % 6) + 1; 
-//            [diceBuilder setDice:value];
-//            [diceBuilder setDiceId:i];
-//            PBDice *dice = [diceBuilder build];
-//            
-//            [userDiceBuilder addDices:dice];
-//        }
-//        PBUserDice *userDice = [userDiceBuilder build];
-//        [mutableArray addObject:userDice];
-//    }
-//    self.userDiceList = mutableArray;
-//    [self showAllDicesResult];
 }
 
 
@@ -256,7 +238,8 @@
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
         [result setHidden:YES];
         avatar.delegate = self;
-        [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
+        [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
+        avatar.userId = nil;
         [nameLabel setText:nil];
         
     }
@@ -298,16 +281,7 @@
     }
 }
 
-- (DiceAvatarView*)avatarOfUser:(NSString*)userId
-{
-    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
-        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-        if ([avatar.userId isEqualToString:userId]) {
-            return avatar;
-        }
-    }
-    return nil;
-}
+
 
 - (void)clearAllReciprocol
 {
@@ -383,13 +357,53 @@
          [self clearAllReciprocol];
          
          NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
+         
+         PPDebug(@"currentPlayUser = %@", [[_diceService session] getNickNameByUserId:currentPlayUser]);
          [[self avatarOfUser:currentPlayUser] startReciprocol:USER_THINK_TIME_INTERVAL];
          
          
      }];
     
     
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_CALL_DICE_REQUEST
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_CALL_DICE_REQUEST"); 
+         // TODO: Popup view on call dice user.
+         if (![[UserManager defaultManager] isMe:[_diceService lastCallUserId]]) {
+            [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:[_diceService lastCallDice] 
+                                                                       count:[_diceService lastCallDiceCount] 
+                                                                      atView:[self avatarOfUser:[_diceService lastCallUserId]]
+                                                                      inView:self.view 
+                                                                    animated:YES];
+         }
+         
+     }];
     
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_OPEN_DICE_REQUEST
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_REQUEST"); 
+         //disable all operation button
+         [self disableAllOperationButton];
+         //pop open dice view (only if other player open)
+         
+     }];
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_OPEN_DICE_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_RESPONSE"); 
+         //pop open dice view on myself avatar
+         
+     }];
     
     
 }
@@ -399,22 +413,6 @@
     [[self selfBellView] setHidden:NO];
     self.diceShowView = nil;
 }
-
-//- (NSArray *)genDiceListStartWith:(int)start end:(int)end
-//{
-//    NSMutableArray *dices = [NSMutableArray array];
-//    
-//    for (int i = start; i <= end; i ++) {
-//        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//        [diceBuilder setDice:i];
-//        [diceBuilder setDiceId:i];
-//        PBDice *dice = [diceBuilder build];
-//        
-//        [dices addObject:dice];
-//    }
-//    
-//    return dices;
-//}
 
 - (void)unregisterDiceGameNotification
 {
@@ -444,6 +442,22 @@
 
 #pragma mark - Praviete methods
 
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+{
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
+}
+
+- (void)disableAllOperationButton
+{
+    //TODO: ...
+}
+
 - (UIView *)selfAvatarView
 {
     return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
@@ -458,7 +472,8 @@
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
 {
-    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+    [_diceService callDice:dice.dice count:count];
 }
 
 #pragma mark - DiceAvatarViewDelegate

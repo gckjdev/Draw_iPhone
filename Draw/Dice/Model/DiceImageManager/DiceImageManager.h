@@ -31,5 +31,7 @@
 - (UIImage *)diceBottomImage;
 - (UIImage *)wildsBgImage;
 - (UIImage *)openDiceButtonBgImage;
+- (UIImage *)whiteSofaImage;
+
 
 @end
