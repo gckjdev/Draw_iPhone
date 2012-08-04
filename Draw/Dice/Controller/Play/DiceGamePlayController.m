@@ -65,6 +65,16 @@
     [super dealloc];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _diceService = [DiceGameService defaultService];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
