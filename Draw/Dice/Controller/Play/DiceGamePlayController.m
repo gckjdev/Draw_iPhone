@@ -32,7 +32,7 @@
 
 @interface DiceGamePlayController ()
 
-@property (retain, nonatomic) NSArray *playingUserList;
+//@property (retain, nonatomic) NSArray *playingUserList;
 @property (retain, nonatomic) NSArray *userDiceList;
 @property (retain, nonatomic) DiceShowView *diceShowView;
 
@@ -44,7 +44,7 @@
 
 @implementation DiceGamePlayController
 
-@synthesize playingUserList;
+//@synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize myDiceListHolderView;
@@ -56,7 +56,7 @@
 @synthesize openDiceButton = _openDiceButton;
 
 - (void)dealloc {
-    [playingUserList release];
+//    [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
     [_statusButton release];
@@ -97,8 +97,6 @@
     
     _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
-    self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-    [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
     
 //    
@@ -181,7 +179,7 @@
 
 - (void)showAllDicesResult
 {
-    for (PBGameUser *user in self.playingUserList) {
+    for (PBGameUser *user in [[_diceService session] playingUserList]) {
         [self showDicesResultByUserId:user.userId];
     } 
 }
@@ -273,8 +271,8 @@
 
 - (void)shakeAllBell
 {
-    PBGameUser* selfUser = [self getSelfUserFromUserList:playingUserList];
-    for (PBGameUser* user in playingUserList) {
+    PBGameUser* selfUser = [self getSelfUserFromUserList:[[_diceService session] playingUserList]];
+    for (PBGameUser* user in [[_diceService session] playingUserList]) {
         int seat = user.seatId;
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
@@ -310,8 +308,7 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM"); 
-         self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-         [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+//         [_diceSelectedView setStart:[[_diceService session] playingUserCount] end:[[_diceService session] playingUserCount]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
      }];
     
@@ -323,6 +320,8 @@
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
          [self reset];
          [self shakeAllBell];
+         // Update 
+         [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
      }];
     
     
@@ -332,9 +331,9 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_END"); 
-         // Update dice selected view
-         self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-         [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+
+
+         
          [self updateAllPlayersAvatar];
          
          // Update my dices
@@ -358,6 +357,7 @@
          [self clearAllReciprocol];
          NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
          PPDebug(@"currentPlayUser = %@", [[_diceService session] getNickNameByUserId:currentPlayUser]);
+         
          if ([[UserManager defaultManager] isMe:currentPlayUser]) {
              [_diceSelectedView enableUserInteraction];
          }else {

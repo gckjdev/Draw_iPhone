@@ -233,48 +233,6 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:20];
 }
 
-- (UIImage *)selectedPointImage
-{
-    return [UIImage imageNamed:@"point_selected.png"];    
-}
-- (UIImage *)unSelectedPointImage
-{
-    return [UIImage imageNamed:@"point_unselect.png"];    
-}
-
-- (UIImage *)toolPopupImage
-{
-    return [UIImage imageNamed:@"tool_popup.png"];    
-}
-
-- (UIImage *)eraserPopupImage
-{
-    return [UIImage imageNamed:@"eraser_popup.png"];    
-}
-
-- (UIImage *)backgroundColorPopupImage
-{
-//    return [UIImage strectchableImageName:@"change_background_color.png"];
-    
-    UIImage *image = nil; 
-    if([DeviceDetection isIPAD]){
-        image = [UIImage imageNamed:@"change_background_color@2x.png"];    
-    }else{
-        image = [UIImage imageNamed:@"change_background_color.png"];            
-    }
-    
-    CGFloat left = image.size.width * 0.8;
-    return [image stretchableImageWithLeftCapWidth:left topCapHeight:0];
-    
-}
-
-- (UIImage *)penPopupImage
-{
-    UIImage *image = [UIImage imageNamed:@"pen_popup_bg.png"];
-    CGFloat left = image.size.width * 0.8;
-    return [image stretchableImageWithLeftCapWidth:left topCapHeight:0];
-}
-
 - (UIImage *)drawingMarkSmallImage
 {
     return [UIImage imageNamed:@"print_tip.png"];        
@@ -477,10 +435,6 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"mike_pen"];
 }
 
-- (UIImage *)pickToolBackground
-{
-    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
-}
 
 - (UIImage*)backButtonImage
 {
@@ -518,6 +472,12 @@ static UIImage* _whitePaperImage;
     NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
     NSLog(@"construct path = %@",uniquePath);
     return uniquePath;
+}
+
+
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
 }
 
 
