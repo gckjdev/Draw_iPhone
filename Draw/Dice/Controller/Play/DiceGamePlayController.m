@@ -140,26 +140,6 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
-    
-    //test data
-//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-//    for (int k = 0; k < 6 ; k++) {
-//        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
-//        [userDiceBuilder setUserId:@"TEST"];
-//        for (int i = 0 ; i < 5 ; i++) {
-//            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//            NSUInteger value =  (arc4random() % 6) + 1; 
-//            [diceBuilder setDice:value];
-//            [diceBuilder setDiceId:i];
-//            PBDice *dice = [diceBuilder build];
-//            
-//            [userDiceBuilder addDices:dice];
-//        }
-//        PBUserDice *userDice = [userDiceBuilder build];
-//        [mutableArray addObject:userDice];
-//    }
-//    self.userDiceList = mutableArray;
-//    [self showAllDicesResult];
 }
 
 
@@ -426,22 +406,6 @@
     [[self selfBellView] setHidden:NO];
     self.diceShowView = nil;
 }
-
-//- (NSArray *)genDiceListStartWith:(int)start end:(int)end
-//{
-//    NSMutableArray *dices = [NSMutableArray array];
-//    
-//    for (int i = start; i <= end; i ++) {
-//        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//        [diceBuilder setDice:i];
-//        [diceBuilder setDiceId:i];
-//        PBDice *dice = [diceBuilder build];
-//        
-//        [dices addObject:dice];
-//    }
-//    
-//    return dices;
-//}
 
 - (void)unregisterDiceGameNotification
 {
