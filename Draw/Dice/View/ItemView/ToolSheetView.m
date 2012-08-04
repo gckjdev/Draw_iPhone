@@ -70,7 +70,7 @@
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
     
-    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+    //[_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
 
 - (void)dismissAnimated:(BOOL)animated 
