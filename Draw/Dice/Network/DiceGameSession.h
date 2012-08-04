@@ -10,4 +10,6 @@
 
 @interface DiceGameSession : CommonGameSession
 
+@property (retain, nonatomic) NSDictionary *userDiceList;
+
 @end

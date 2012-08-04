@@ -31,6 +31,7 @@
 
 @property (retain, nonatomic) NSArray *playingUserList;
 @property (retain, nonatomic) NSArray *userDiceList;
+@property (retain, nonatomic) DiceShowView *diceShowView;
 
 - (UIView *)selfAvatarView;
 
@@ -45,6 +46,7 @@
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize userDiceList = _userDiceList;
+@synthesize diceShowView = _diceShowView;
 
 - (void)dealloc {
     [playingUserList release];
@@ -54,6 +56,7 @@
     [diceCountSelectedHolderView release];
     [_userDiceList release];
     [_diceSelectedView release];
+    [_diceShowView release];
     [super dealloc];
 }
 
@@ -91,6 +94,8 @@
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
     [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
+    
+    
 
 }
 
@@ -327,6 +332,24 @@
          // TODO show rolling dice animation here
      }];
     
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ROLL_DICE_END
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
+         // Update dice selected view
+         self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+         [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
+         [self updateAllPlayersAvatar];
+         
+         // Update user dices
+         
+         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
+
+         
+     }];
     
 }
 
