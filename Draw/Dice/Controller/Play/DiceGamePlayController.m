@@ -45,6 +45,7 @@
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize openDiceButton;
+@synthesize myDiceListHolderView;
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize userDiceList = _userDiceList;
@@ -60,6 +61,7 @@
     [_userDiceList release];
     [_diceSelectedView release];
     [_diceShowView release];
+    [myDiceListHolderView release];
     [super dealloc];
 }
 
@@ -101,6 +103,11 @@
     [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
     
+//    
+//    self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[self genDiceListStartWith:1 end:5] userInterAction:NO] autorelease];
+//    
+//    [myDiceListHolderView addSubview:_diceShowView];
+//    
     
 
 }
@@ -117,6 +124,7 @@
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
     _diceSelectedView = nil;
+    [self setMyDiceListHolderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -255,6 +263,10 @@
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
+        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+i];
+        [bell setHidden:YES];
+        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
+        [result setHidden:YES];
         avatar.delegate = self;
         [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
         [nameLabel setText:nil];
@@ -268,6 +280,10 @@
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
+        [bell setHidden:NO];
+        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
+        [result setHidden:NO];
         [avatar setUrlString:user.avatar 
                       userId:user.userId 
                       gender:user.gender 
@@ -280,6 +296,17 @@
         
     }
     
+}
+
+- (void)shakeAllBell
+{
+    PBGameUser* selfUser = [self getSelfUserFromUserList:playingUserList];
+    for (PBGameUser* user in playingUserList) {
+        int seat = user.seatId;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
+        [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
+    }
 }
 
 - (DiceAvatarView*)avatarOfUser:(NSString*)userId
@@ -322,8 +349,7 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
-         
-         // TODO show rolling dice animation here
+         [self shakeAllBell];
      }];
     
     
@@ -338,13 +364,31 @@
          [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
          
-         // Update user dices
+         // Update my dices
+    
+//         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
          
-         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
+         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[self genDiceListStartWith:1 end:5] userInterAction:NO] autorelease];
 
-         
+         [myDiceListHolderView addSubview:_diceShowView];
      }];
     
+}
+
+- (NSArray *)genDiceListStartWith:(int)start end:(int)end
+{
+    NSMutableArray *dices = [NSMutableArray array];
+    
+    for (int i = start; i <= end; i ++) {
+        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+        [diceBuilder setDice:i];
+        [diceBuilder setDiceId:i];
+        PBDice *dice = [diceBuilder build];
+        
+        [dices addObject:dice];
+    }
+    
+    return dices;
 }
 
 - (void)unregisterDiceGameNotification

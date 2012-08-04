@@ -27,6 +27,7 @@
 //@property (retain, nonatomic) UILabel *myLevelLabel;
 //@property (retain, nonatomic) UILabel *myCoinsLabel;
 @property (retain, nonatomic) IBOutlet UIButton *openDiceButton;
+@property (retain, nonatomic) IBOutlet UIView *myDiceListHolderView;
 
 @property (retain, nonatomic) FontButton *fontButton;
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
