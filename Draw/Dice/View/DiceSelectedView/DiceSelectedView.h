@@ -8,11 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "UICustomPageControl.h"
+#import "DiceShowView.h"
+#import "CMPopTipView.h"
 
-@interface DiceSelectedView : UIView <UIScrollViewDelegate, UICustomPageControlDelegate>
+@protocol DiceSelectedViewDelegate <NSObject>
 
+@required
+- (void)didSelectedDice:(PBDice *)dice count:(int)count;
+
+@end
+
+@interface DiceSelectedView : UIView <UIScrollViewDelegate, UICustomPageControlDelegate, DiceShowViewDelegate, CMPopTipViewDelegate>
+
+@property (assign, nonatomic) id<DiceSelectedViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame superView:(UIView *)superView;
-- (void)setStart:(int)start end:(int)end;
+
+- (void)setStart:(int)start 
+             end:(int)end 
+    lastCallDice:(int)lastCallDice;
 
 @end

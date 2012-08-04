@@ -9,9 +9,11 @@
 #import "DiceView.h"
 #import "DiceImageManager.h"
 
-@interface DiceView ()
 
-@property (retain, nonatomic) UIImageView *seletedBgImageView;
+@interface DiceView ()
+{
+    PBDice *_dice;
+}
 
 @end
 
@@ -21,6 +23,7 @@
 
 - (void)dealloc
 {
+    [_dice release];
     [_seletedBgImageView release];
     [super dealloc];
 }
@@ -31,20 +34,32 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
         [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
+        self.dice = dice;
         
         self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        self.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
-        self.seletedBgImageView.center = CGPointMake(frame.size.width/2, frame.size.height/2);
-        [self setImageEdgeInsets:UIEdgeInsetsMake(5, 1.5, 0, 0)];
-
         [self addSubview:self.seletedBgImageView];
-        [self sendSubviewToBack:self.seletedBgImageView];
-        
-        self.tag = dice.diceId;
     }
     
     return self;
+}
+
+- (void)setDice:(PBDice *)dice
+{
+    if (dice == _dice) {
+        return;
+    }
+    
+    [_dice release];
+    _dice = [dice retain];
+    [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
+    
+}
+
+- (PBDice *)dice
+{
+    return _dice;
 }
 
 /*

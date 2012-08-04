@@ -8,33 +8,51 @@
 
 #import "DiceGamePlayController.h"
 #import "DiceImageManager.h"
-#import "DicePopupView.h"
-#import "DiceSelectedView.h"
+#import "DicePopupViewManager.h"
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
 #import "DiceAvatarView.h"
 #import "UserManager.h"
 #import "DicesResultView.h"
+#import "Dice.pb.h"
 
 #define AVATAR_TAG_OFFSET   1000
-#define NICKNAME_TAG_OFFSET 2000
+
+#define NICKNAME_TAG_OFFSET 1100
+
+#define RESULT_TAG_OFFSET   3000
+#define BELL_TAG_OFFSET     4000
+
+#define MAX_PLAYER_COUNT    6
+
 
 @interface DiceGamePlayController ()
+
+@property (retain, nonatomic) NSArray *playingUserList;
+@property (retain, nonatomic) NSArray *userDiceList;
+
+- (UIView *)selfAvatarView;
 
 @end
 
 @implementation DiceGamePlayController
+
+@synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize openDiceButton;
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
+@synthesize userDiceList = _userDiceList;
 
 - (void)dealloc {
+    [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
     [openDiceButton release];
     [diceCountSelectedHolderView release];
+    [_userDiceList release];
+    [_diceSelectedView release];
     [super dealloc];
 }
 
@@ -67,9 +85,12 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
-    [view setStart:1 end:12];
-    [diceCountSelectedHolderView addSubview:view];
+    _diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    _diceSelectedView.delegate = self;
+    self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+    [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
+    [diceCountSelectedHolderView addSubview:_diceSelectedView];
+
 }
 
 - (void)clickFontButton
@@ -83,6 +104,7 @@
     [self setMyCoinsLabel:nil];
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
+    _diceSelectedView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -90,14 +112,6 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-    [diceBuilder setDice:1];
-    [diceBuilder setDiceId:1];
-    PBDice *dice = [diceBuilder build];
-    
-    
-    [DicePopupView popupCallDiceViewWithDice:dice count:2 atView:(UIView*)sender inView:self.view animated:YES];
-    
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -107,22 +121,13 @@
     button.tag = TAG_TOOL_BUTTON;
     button.selected = !button.selected;
     
-    ToolSheetView *toolSheetView = (ToolSheetView *)[self.view viewWithTag:TAG_TOOL_SHEET];
-    
-    if (toolSheetView == nil) {
-        CGPoint fromPoint  = CGPointMake(button.frame.origin.x + 0.5 * button.frame.size.width, button.frame.origin.y );
+    if (button.selected) {
         NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
         NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
-                                    
-        ToolSheetView *toolSheetView = [[ToolSheetView alloc] initWithImageNameList:imageNameList 
-                                                                    countNumberList:countNumberList 
-                                                                           delegate:self];
         
-        toolSheetView.tag = TAG_TOOL_SHEET;
-        [toolSheetView showInView:self.view fromFottomPoint:fromPoint];
-        [toolSheetView release];
+        [[DicePopupViewManager defaultManager] popupToolSheetViewWithImageNameList:imageNameList countNumberList:countNumberList delegate:self atView:button inView:self.view animated:YES];
     } else {
-        [toolSheetView removeFromSuperview];
+        [[DicePopupViewManager defaultManager] dismissToolSheetViewAnimated:YES];
     }
 }
 
@@ -133,18 +138,41 @@
     
     
     //test code
-//    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
-//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-//    for (int i = 0 ; i < 6 ; i++) {
-//        Dice_Builder *diceBuilder = [[[Dice_Builder alloc] init] autorelease];
-//        NSUInteger value =  (arc4random() % 6) + 1; 
-//        [diceBuilder setDice:value];
-//        [diceBuilder setDiceId:i];
-//        Dice *dice = [diceBuilder build];
-//        [mutableArray addObject:dice];
-//    }
-//    [dicesResultView setDices:mutableArray];
-//    [self.view addSubview:dicesResultView];
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    for (int k = 0; k < 6 ; k++) {
+        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
+        [userDiceBuilder setUserId:@"TEST"];
+        for (int i = 0 ; i < 5 ; i++) {
+            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+            NSUInteger value =  (arc4random() % 6) + 1; 
+            [diceBuilder setDice:value];
+            [diceBuilder setDiceId:i];
+            PBDice *dice = [diceBuilder build];
+            
+            [userDiceBuilder addDices:dice];
+        }
+        PBUserDice *userDice = [userDiceBuilder build];
+        [mutableArray addObject:userDice];
+    }
+    self.userDiceList = mutableArray;
+    [self showAllDicesResult];
+}
+
+- (void)showAllDicesResult
+{
+    int i = 1;
+    for (PBUserDice *userDice in _userDiceList) {
+        
+        DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + i];
+        DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
+        
+        dicesResultView.center = oldDicesResultView.center;
+        dicesResultView.tag = oldDicesResultView.tag;
+        [dicesResultView setDices:userDice];
+        [oldDicesResultView removeFromSuperview];
+        [self.view addSubview:dicesResultView];
+        i++;
+    }
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
@@ -165,31 +193,71 @@
     return -1;
 }
 
-- (void)updateAllPlayersAvatar
+- (PBGameUser*)getSelfUserFromUserList:(NSArray*)userList
 {
-    NSArray* userList = [[DiceGameService defaultService].session userList];
-    int index = [self getSelfIndexFromUserList:userList];
-    if (index >= 0) {
-        for (int i = 1; i <=userList.count; i ++) {
-            
-            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
-            PPDebug(@"<test> tag = %d",(NICKNAME_TAG_OFFSET+i));
-            int userIndex = (index+i-1)%userList.count;
-            PBGameUser* user = [userList objectAtIndex:userIndex];
-            [avatar setUrlString:user.avatar 
-                          userId:user.userId 
-                          gender:user.gender 
-                           level:user.userLevel 
-                      drunkPoint:0 
-                          wealth:0];
-            PPDebug(@"<test>update user <%@>", user.nickName);
-            if (nameLabel) {
-                [nameLabel setText:user.nickName];
+    if (userList.count > 0) {
+        for (int i = 0; i < userList.count; i ++) {
+            PBGameUser* user = [userList objectAtIndex:i];
+            if ([user.userId isEqualToString:[UserManager defaultManager].userId]) {
+                return user;
             }
         }
     }
+    return nil;
+}
+
+- (void)updateAllPlayersAvatar
+{
+    NSArray* userList = [[DiceGameService defaultService].session userList];
+    PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    for (PBGameUser* user in userList) {
+        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        int seat = user.seatId;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
+        UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        [avatar setUrlString:user.avatar 
+                      userId:user.userId 
+                      gender:user.gender 
+                       level:user.userLevel 
+                  drunkPoint:0 
+                      wealth:0];
+        if (nameLabel) {
+            [nameLabel setText:user.nickName];
+        }
+        
+    }
+//    int index = [self getSelfIndexFromUserList:userList];
+//    if (index >= 0) {
+//        for (int i = 0; i < userList.count; i ++) {
+//            
+//            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
+//            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
+//            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
+//            PBGameUser* user = [userList objectAtIndex:i];
+//            [avatar setUrlString:user.avatar 
+//                          userId:user.userId 
+//                          gender:user.gender 
+//                           level:user.userLevel 
+//                      drunkPoint:0 
+//                          wealth:0];
+//            if (nameLabel) {
+//                [nameLabel setText:user.nickName];
+//            }
+//        }
+//    }
     
+}
+
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+{
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
 }
 
 
@@ -202,7 +270,7 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE");         
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_JOIN_GAME_RESPONSE");         
      }];
     
     [[NSNotificationCenter defaultCenter] 
@@ -210,10 +278,11 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");   
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM"); 
+         self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+         [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
      }];
-    
 }
 
 - (void)unregisterDiceGameNotification
@@ -234,6 +303,26 @@
     [super viewDidAppear:animated];
     [self registerDiceGameNotification];    
     [self updateAllPlayersAvatar];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self unregisterDiceGameNotification];
+}
+
+#pragma mark - Praviete methods
+
+- (UIView *)selfAvatarView
+{
+    return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+}
+
+#pragma mark - DiceSelectedViewDelegate
+
+- (void)didSelectedDice:(PBDice *)dice count:(int)count
+{
+    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
 }
 
 @end

@@ -236,8 +236,12 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE"); 
-         DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-         [self.navigationController pushViewController:controller animated:YES];
+         if(_isJoiningDice) {
+             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+             [self.navigationController pushViewController:controller animated:YES];
+             _isJoiningDice = NO; 
+         }
+         
      }];
 
     [[NSNotificationCenter defaultCenter] 
@@ -840,9 +844,11 @@
     [self.navigationController pushViewController:controller animated:YES];
     
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
-//    [[DiceGameService defaultService] setServerPort:8080];
-//    [[DiceGameService defaultService] connectServer:self];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] connectServer:self];
+    _isJoiningDice = YES;
 }
 
 - (IBAction)clickFacetime:(id)sender

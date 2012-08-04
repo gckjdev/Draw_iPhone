@@ -59,7 +59,7 @@
 @synthesize guessTimes = _guessTimes;
 
 @synthesize opusStatus = _opusStatus;
-
+@synthesize isParsing = _isParsing;
 - (void)dealloc
 {
     PPRelease(_feedId);
@@ -108,8 +108,15 @@
         self.commentTimes = [pbFeed commentTimes];
         self.opusId = [pbFeed opusId];
         self.opusStatus = [pbFeed opusStatus];
-        
+        self.pbDraw = [pbFeed drawData];
+        self.isParsing = NO;
+        if ([pbFeed hasDrawData]) {
+            self.wordText = [[pbFeed drawData] word];
+            self.authorId = [[pbFeed drawData] userId];
+            self.authorNick = [[pbFeed drawData] nickName];
+        }
         //if has image, show the image, or use the draw data.
+        /*
         if ([pbFeed hasDrawData]) {
             self.wordText = [[pbFeed drawData] word];
             self.authorId = [[pbFeed drawData] userId];
@@ -124,7 +131,7 @@
                 self.pbDraw = [pbFeed drawData];
             }            
         }
-        
+        */
         if (self.feedType == FeedTypeGuess) {
             self.correct = [pbFeed isCorrect];
             self.score = [pbFeed score];

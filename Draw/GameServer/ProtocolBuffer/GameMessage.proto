@@ -288,6 +288,16 @@ message GameMessage {
   optional RoomNotificationRequest roomNotificationRequest = 107;
   
   optional RollDiceEndNotificationRequest rollDiceEndNotificationRequest = 109;
+  
+  optional CallDiceRequest callDiceRequest = 111;
+  optional CallDiceResponse callDiceResponse = 112;
+  
+  optional OpenDiceRequest openDiceRequest = 113;
+  optional OpenDiceResponse openDiceResponse = 114;
+  
+  optional GameOverNotificationRequest gameOverNotificationRequest = 115;
+  optional GameOverNotificationResponse gameOverNotificationResponse = 116;
+  
 }
 
 message DataQueryResponse {
