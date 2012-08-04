@@ -595,7 +595,6 @@
 		CA1377CF15259C1500B5790B /* topwood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13778E15259C1400B5790B /* topwood@2x.png */; };
 		CA1377D015259C1500B5790B /* round@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13778F15259C1400B5790B /* round@2x.png */; };
 		CA1377D115259C1500B5790B /* wordbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779015259C1400B5790B /* wordbg@2x.png */; };
-		CA1377D315259C1500B5790B /* guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779215259C1400B5790B /* guess@2x.png */; };
 		CA1377D415259C1500B5790B /* timeset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779315259C1400B5790B /* timeset@2x.png */; };
 		CA1377D515259C1500B5790B /* buybutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779415259C1400B5790B /* buybutton@2x.png */; };
 		CA1377D815259C1500B5790B /* weibo_selectedbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */; };
@@ -1858,7 +1857,6 @@
 		CA13778E15259C1400B5790B /* topwood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topwood@2x.png"; sourceTree = "<group>"; };
 		CA13778F15259C1400B5790B /* round@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round@2x.png"; sourceTree = "<group>"; };
 		CA13779015259C1400B5790B /* wordbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wordbg@2x.png"; sourceTree = "<group>"; };
-		CA13779215259C1400B5790B /* guess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess@2x.png"; sourceTree = "<group>"; };
 		CA13779315259C1400B5790B /* timeset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeset@2x.png"; sourceTree = "<group>"; };
 		CA13779415259C1400B5790B /* buybutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buybutton@2x.png"; sourceTree = "<group>"; };
 		CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_selectedbg@2x.png"; sourceTree = "<group>"; };
@@ -4754,7 +4752,6 @@
 				CA13778E15259C1400B5790B /* topwood@2x.png */,
 				CA13778F15259C1400B5790B /* round@2x.png */,
 				CA13779015259C1400B5790B /* wordbg@2x.png */,
-				CA13779215259C1400B5790B /* guess@2x.png */,
 				CA13779315259C1400B5790B /* timeset@2x.png */,
 				CA13779415259C1400B5790B /* buybutton@2x.png */,
 				CA13779715259C1400B5790B /* weibo_selectedbg@2x.png */,
@@ -5882,7 +5879,6 @@
 				CA1377CF15259C1500B5790B /* topwood@2x.png in Resources */,
 				CA1377D015259C1500B5790B /* round@2x.png in Resources */,
 				CA1377D115259C1500B5790B /* wordbg@2x.png in Resources */,
-				CA1377D315259C1500B5790B /* guess@2x.png in Resources */,
 				CA1377D415259C1500B5790B /* timeset@2x.png in Resources */,
 				CA1377D515259C1500B5790B /* buybutton@2x.png in Resources */,
 				CA1377D815259C1500B5790B /* weibo_selectedbg@2x.png in Resources */,
