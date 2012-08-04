@@ -843,7 +843,7 @@
 //    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
 //      DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
 //    [self.navigationController pushViewController:controller animated:YES];
-    
+//    
     _isTryJoinGame = YES;
     
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
