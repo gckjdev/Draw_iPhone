@@ -15,6 +15,7 @@
 #import "UserManager.h"
 #import "DicesResultView.h"
 #import "Dice.pb.h"
+#import "DiceNotification.h"
 
 #define AVATAR_TAG_OFFSET   1000
 
@@ -315,6 +316,18 @@
          [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
      }];
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ROLL_DICE_BEGIN
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
+         
+         // TODO show rolling dice animation here
+     }];
+    
+    
 }
 
 - (void)unregisterDiceGameNotification

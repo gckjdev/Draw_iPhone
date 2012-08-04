@@ -2148,6 +2148,7 @@
 		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
 		CA963A5715C7C5D3007ACFB9 /* DiceGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceGameSession.h; sourceTree = "<group>"; };
 		CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameSession.m; sourceTree = "<group>"; };
+		CA963AFA15CCBF30007ACFB9 /* DiceNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceNotification.h; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
 		CA96E26D150DE4FD00292335 /* GameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSession.m; sourceTree = "<group>"; };
 		CA96E26F150DE56400292335 /* GameSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionManager.h; sourceTree = "<group>"; };
@@ -2742,6 +2743,7 @@
 				A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */,
 				CA963A5715C7C5D3007ACFB9 /* DiceGameSession.h */,
 				CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */,
+				CA963AFA15CCBF30007ACFB9 /* DiceNotification.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
