@@ -55,7 +55,7 @@
     }else{
         CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
     }
-    
+
     CGFloat showWidth = self.width;
     if (showWidth < MIN_WIDTH) {
         showWidth = MIN_WIDTH;
@@ -63,6 +63,9 @@
     CGFloat x = (SIZE - showWidth) / 2;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);
+    
+//    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);    
+//    CGContextStrokeRectWithWidth(context, self.bounds, 1);
 }
 
 + (CGFloat)height
@@ -70,4 +73,8 @@
     return SIZE;
 }
 
++ (CGFloat)width
+{
+    return SIZE;
+}
 @end

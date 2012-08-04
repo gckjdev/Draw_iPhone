@@ -36,7 +36,8 @@ typedef enum{
 - (ColorViewScale)scale;
 - (BOOL)isEqual:(id)object;
 
-
++ (CGFloat)heightForScale:(ColorViewScale)scale;
++ (CGFloat)widthForScale:(ColorViewScale)scale;
 + (ColorView *)blueColorView;
 + (ColorView *)redColorView;
 + (ColorView *)blackColorView;

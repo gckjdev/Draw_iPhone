@@ -19,17 +19,15 @@ typedef enum{
 
 @interface PickColorView : PickEraserView
 {
-    NSMutableArray *colorViewArray;
-    PickColorViewType _type;
-    UIButton *addColorButton;
 }
 
-- (void)setColorViews:(NSArray *)colorViews;
-- (NSArray *)colorViews;
-- (void)setType:(PickColorViewType)type;
+- (id)initWithFrame:(CGRect)frame type:(PickColorViewType)type;
+- (void)setColorViews:(NSMutableArray *)colorViews;
+- (NSMutableArray *)colorViews;
 - (PickColorViewType)type;
 - (NSInteger)indexOfColorView:(ColorView *)colorView;
 - (void)updatePickColorView:(ColorView *)lastUsedColorView;
+- (void)updatePickColorView;
 @end
 
 
