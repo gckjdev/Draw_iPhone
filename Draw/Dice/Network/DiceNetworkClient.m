@@ -7,7 +7,10 @@
 //
 
 #import "DiceNetworkClient.h"
+#import "GameMessage.pb.h"
 
 @implementation DiceNetworkClient
+
+
 
 @end
