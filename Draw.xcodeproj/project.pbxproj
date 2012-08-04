@@ -340,6 +340,7 @@
 		C2FA6E6D1535262A00EEB530 /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E6B1535262A00EEB530 /* me@2x.png */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
+		C2FC052115CD185E00A46ADE /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC052015CD185E00A46ADE /* waiting_user@2x.png */; };
 		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
 		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
 		CA02B52315AC111800B2A3E2 /* flower_result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA02B52115AC111800B2A3E2 /* flower_result@2x.png */; };
@@ -1426,6 +1427,7 @@
 		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
+		C2FC052015CD185E00A46ADE /* waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waiting_user@2x.png"; sourceTree = "<group>"; };
 		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02B52115AC111800B2A3E2 /* flower_result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower_result@2x.png"; sourceTree = "<group>"; };
@@ -2787,6 +2789,7 @@
 		A4B7641D15C37D93003B4E72 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				C2FC052015CD185E00A46ADE /* waiting_user@2x.png */,
 				A41A669A15CA5D9500066E9B /* bell_amount_selected@2x.png */,
 				A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */,
 				A45E8CCF15C77F480089E240 /* dice_setting@2x.png */,
@@ -6310,6 +6313,7 @@
 				A41A669815CA5D8700066E9B /* dice_blue_safa@2x.png in Resources */,
 				A41A669915CA5D8700066E9B /* dice_green_safa@2x.png in Resources */,
 				A41A669B15CA5D9500066E9B /* bell_amount_selected@2x.png in Resources */,
+				C2FC052115CD185E00A46ADE /* waiting_user@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

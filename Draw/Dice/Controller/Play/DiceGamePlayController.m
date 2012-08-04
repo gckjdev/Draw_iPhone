@@ -233,7 +233,8 @@
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
         [result setHidden:YES];
         avatar.delegate = self;
-        [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
+        [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
+        avatar.userId = nil;
         [nameLabel setText:nil];
         
     }

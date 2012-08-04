@@ -160,4 +160,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"zhai_bg.png"];
 }
 
+- (UIImage *)whiteSofaImage
+{
+    return [UIImage imageNamed:@"waiting_user.png"];
+}
+
 @end
