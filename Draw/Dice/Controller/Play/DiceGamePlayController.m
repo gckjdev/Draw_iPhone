@@ -359,6 +359,7 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
+         [self reset];
          [self shakeAllBell];
      }];
     
@@ -375,6 +376,7 @@
          [self updateAllPlayersAvatar];
          
          // Update my dices
+         [[self selfBellView] setHidden:YES];
     
          self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
          
@@ -383,6 +385,12 @@
          [myDiceListHolderView addSubview:_diceShowView];
      }];
     
+}
+
+- (void)reset
+{
+    [[self selfBellView] setHidden:NO];
+    self.diceShowView = nil;
 }
 
 //- (NSArray *)genDiceListStartWith:(int)start end:(int)end
@@ -432,6 +440,11 @@
 - (UIView *)selfAvatarView
 {
     return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+}
+
+- (UIView *)selfBellView
+{
+    return [self.view viewWithTag:(BELL_TAG_OFFSET + 1)];
 }
 
 #pragma mark - DiceSelectedViewDelegate
