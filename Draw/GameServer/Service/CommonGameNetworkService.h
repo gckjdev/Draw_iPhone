@@ -56,4 +56,6 @@
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;
 
+- (void)postNotification:(NSString*)name message:(GameMessage*)message;
+
 @end

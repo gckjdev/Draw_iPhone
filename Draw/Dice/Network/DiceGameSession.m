@@ -7,7 +7,18 @@
 //
 
 #import "DiceGameSession.h"
+#import "PPDebug.h"
 
 @implementation DiceGameSession
+
+@synthesize userDiceList = _userDiceList;
+
+- (void)dealloc{
+    PPRelease(_userDiceList);
+    [super dealloc];
+}
+
+
+
 
 @end

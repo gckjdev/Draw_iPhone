@@ -166,11 +166,7 @@
             
         }
         
-        [[NSNotificationCenter defaultCenter] 
-         postNotificationName:NOTIFICATION_JOIN_GAME_RESPONSE 
-         object:nil 
-         userInfo:[CommonGameNetworkService messageToUserInfo:message]];    
-        PPDebug(@"<CommonGameNetworkService> post notification NOTIFICATION_JOIN_GAME_RESPONSE");
+        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
     });
 }
 
@@ -191,10 +187,7 @@
             }
         }
         
-        [[NSNotificationCenter defaultCenter] 
-         postNotificationName:NOTIFICATION_ROOM
-         object:nil 
-         userInfo:[CommonGameNetworkService messageToUserInfo:message]];        
+        [self postNotification:NOTIFICATION_ROOM message:message];
     });
 }
 
@@ -268,6 +261,16 @@
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo
 {
     return [GameMessage parseFromData:[userInfo objectForKey:KEY_GAME_MESSAGE]];
+}
+
+- (void)postNotification:(NSString*)name message:(GameMessage*)message
+{
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:name 
+     object:self
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]];    
+
+    PPDebug(@"<%@> post notification %@", [self description], name);    
 }
 
 @end

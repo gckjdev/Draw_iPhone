@@ -75,8 +75,8 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             maleDefaultAvatarImage]];
+        [imageView setImage:[[DiceImageManager defaultManager] 
+                             greenSafaImage]];
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -153,9 +153,6 @@
     [_timer invalidate];
     _timer = nil;
     [self setProgressHidden:YES];
-    if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
-        [_delegate reciprocalEnd:self];
-    }
 }
 
 //
@@ -214,6 +211,9 @@
     _currentProgress -= PROGRESS_UPDATE_TIME;
     if (_currentProgress <= 0) {
         [self stopReciprocol];
+        if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
+            [_delegate reciprocalEnd:self];
+        }
         return;
     }
     [self setProgress:_currentProgress];
@@ -225,7 +225,7 @@
     //    PPDebug(@"clickOnAvatar");
     [self startReciprocol:10];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
-        [_delegate didClickOnAvatar:_userId];
+        [_delegate didClickOnAvatar:self];
     }
     
     

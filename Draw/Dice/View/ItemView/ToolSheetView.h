@@ -7,23 +7,33 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CMPopTipView.h"
 
 @protocol ToolSheetViewDelegate <NSObject>
 
+@optional
 - (void)didSelectTool:(NSInteger)index;
+- (void)didDismissToolSheet;
 
 @end
 
 
-@interface ToolSheetView : UIView
+@interface ToolSheetView : UIView <CMPopTipViewDelegate>
 
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
-@property (retain, nonatomic) UIImageView *backgroundImageView;
 
 - (id)initWithImageNameList:(NSArray *)imageNameList 
             countNumberList:(NSArray *)countNumberList 
                    delegate:(id<ToolSheetViewDelegate>)delegate;
 
-- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint;
+- (void)updateWithImageNameList:(NSArray *)imageNameList 
+                countNumberList:(NSArray *)countNumberList 
+                       delegate:(id<ToolSheetViewDelegate>)delegate;
+
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated;
+
+- (void)dismissAnimated:(BOOL)animated;
 
 @end

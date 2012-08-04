@@ -9,11 +9,11 @@
 #import "ToolSheetView.h"
 #import "DeviceDetection.h"
 #import "DiceImageManager.h"
-#import "CMPopTipView.h"
 
 @interface ToolSheetView()
 @property (retain, nonatomic) NSArray *buttonImageNameList;
 @property (retain, nonatomic) NSArray *countNumberList;
+@property (retain, nonatomic) CMPopTipView *popTipView;
 @end
 
 
@@ -21,14 +21,14 @@
 @implementation ToolSheetView
 @synthesize buttonImageNameList = _buttonImageNameList;
 @synthesize delegate = _delegate;
-@synthesize backgroundImageView = _backgroundImageView;
 @synthesize countNumberList = _countNumberList;
+@synthesize popTipView = _popTipView;
 
 - (void)dealloc
 {
     [_buttonImageNameList release];
-    [_backgroundImageView release];
     [_countNumberList release];
+    [_popTipView release];
     [super dealloc];
 }
 
@@ -42,8 +42,40 @@
         self.buttonImageNameList = imageNameList;
         self.countNumberList = countNumberList;
         self.delegate = delegate;
+        [self clearContent];
+        [self showContent];
     }
     return self;
+}
+
+- (void)updateWithImageNameList:(NSArray *)imageNameList 
+                countNumberList:(NSArray *)countNumberList 
+                       delegate:(id<ToolSheetViewDelegate>)delegate
+{
+    self.buttonImageNameList = imageNameList;
+    self.countNumberList = countNumberList;
+    self.delegate = delegate;
+    [self clearContent];
+    [self showContent];
+}
+
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated
+{
+    [self.popTipView dismissAnimated:YES];
+    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
+    self.popTipView.delegate = self;
+    self.popTipView.disableTapToDismiss = YES;
+    _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
+    [_popTipView presentPointingAtView:view inView:inView animated:animated];
+    
+    //[_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+}
+
+- (void)dismissAnimated:(BOOL)animated 
+{
+    [_popTipView dismissAnimated:YES];
 }
 
 
@@ -51,19 +83,56 @@
 #define WIDTH_TOOL_BUTTON       (([DeviceDetection isIPAD]) ? 64 : 32 )
 #define HEIGHT_SHARP            (([DeviceDetection isIPAD]) ? 12 : 6 )
 #define OFFSET_ANIMATION        (([DeviceDetection isIPAD]) ? 24 : 12 )
+//- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint
+//{
+//    if (_backgroundImageView == nil) {
+//        self.backgroundImageView = [[[UIImageView alloc] initWithImage:[[DiceImageManager defaultManager] toolBackground]] autorelease];
+//        [_backgroundImageView setAlpha:1];
+//    }
+//    [self addSubview:_backgroundImageView];
+//    
+//    int index = 0;
+//    for (NSString *name in _buttonImageNameList) {
+//        CGFloat yStart = SPACE_BORDE_AND_BUTTON + (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * index;
+//        CGRect toolButtonFrame = CGRectMake(SPACE_BORDE_AND_BUTTON, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
+//        NSInteger toolButtonTag = index;
+//        
+//        UIButton *tooButton = [self createToolButton:toolButtonFrame 
+//                                                 tag:toolButtonTag 
+//                                           imageName:name 
+//                                               count:[_countNumberList objectAtIndex:index]];
+//        [self addSubview:tooButton];
+//        index ++;
+//    }
+//    
+//    CGFloat width = 2 * SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON;
+//    CGFloat height = index * (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON) + SPACE_BORDE_AND_BUTTON + HEIGHT_SHARP;
+//    CGFloat x = fromFottomPoint.x - 0.5 * width;
+//    CGFloat y = fromFottomPoint.y- height;
+//    
+//    self.frame = CGRectMake(x, y + OFFSET_ANIMATION , width, height);
+//    _backgroundImageView.frame = CGRectMake(0, 0, width, height);
+//    [superView addSubview:self];
+//    
+//    self.alpha = 0.5;
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.15];
+//    self.frame = CGRectMake(x, y, width, height);
+//    self.alpha = 1.0;
+//    [UIImageView commitAnimations];
+//}
 
-- (void)showInView:(UIView *)superView fromFottomPoint:(CGPoint)fromFottomPoint
+- (void)clearContent
 {
-    if (_backgroundImageView == nil) {
-        self.backgroundImageView = [[[UIImageView alloc] initWithImage:[[DiceImageManager defaultManager] toolBackground]] autorelease];
-        [_backgroundImageView setAlpha:1];
-    }
-    [self addSubview:_backgroundImageView];
-    
+    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+- (void)showContent
+{
     int index = 0;
     for (NSString *name in _buttonImageNameList) {
-        CGFloat yStart = SPACE_BORDE_AND_BUTTON + (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * index;
-        CGRect toolButtonFrame = CGRectMake(SPACE_BORDE_AND_BUTTON, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
+        CGFloat yStart = (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * index;
+        CGRect toolButtonFrame = CGRectMake(0, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
         NSInteger toolButtonTag = index;
         
         UIButton *tooButton = [self createToolButton:toolButtonFrame 
@@ -74,22 +143,12 @@
         index ++;
     }
     
-    CGFloat width = 2 * SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON;
-    CGFloat height = index * (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON) + SPACE_BORDE_AND_BUTTON + HEIGHT_SHARP;
-    CGFloat x = fromFottomPoint.x - 0.5 * width;
-    CGFloat y = fromFottomPoint.y- height;
+    CGFloat width = WIDTH_TOOL_BUTTON;
+    CGFloat height = index * (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON) - SPACE_BORDE_AND_BUTTON;
     
-    self.frame = CGRectMake(x, y + OFFSET_ANIMATION , width, height);
-    _backgroundImageView.frame = CGRectMake(0, 0, width, height);
-    [superView addSubview:self];
-    
-    self.alpha = 0.5;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.15];
-    self.frame = CGRectMake(x, y, width, height);
-    self.alpha = 1.0;
-    [UIImageView commitAnimations];
+    self.frame = CGRectMake(0, 0 , width, height);
 }
+
 
 #define WIDTH_COUNT_VIEW    (([DeviceDetection isIPAD]) ? 28 : 14 )
 #define FONT_COUNT_LABEL    (([DeviceDetection isIPAD]) ? 20 : 10 )
@@ -128,15 +187,23 @@
 
 - (void)clickToolButton:(id)sender
 {
-    [self removeFromSuperview];
-    
     UIButton *button = (UIButton*)sender;
     NSInteger selectedIndex = button.tag;
     
     if ([_delegate respondsToSelector:@selector(didSelectTool:)]) {
         [_delegate didSelectTool:selectedIndex];
     }
+    
+    [self dismissAnimated:YES];
 }
 
+
+#pragma mark - CMPopTipViewDelegate method
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView;
+{
+    if ([_delegate respondsToSelector:@selector(didDismissToolSheet)]) {
+        [_delegate didDismissToolSheet];
+    }
+}
 
 @end
