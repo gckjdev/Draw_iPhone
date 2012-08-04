@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CMPopTipView.h"
 
 @protocol ToolSheetViewDelegate <NSObject>
 
+@optional
 - (void)didSelectTool:(NSInteger)index;
+- (void)didDismissToolSheet;
 
 @end
 
 
-@interface ToolSheetView : UIView
+@interface ToolSheetView : UIView <CMPopTipViewDelegate>
 
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
 

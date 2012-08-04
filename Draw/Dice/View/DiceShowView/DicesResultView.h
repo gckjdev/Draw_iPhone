@@ -14,6 +14,7 @@
 @property (retain, nonatomic) NSString *userId;
 
 + (DicesResultView *)createDicesResultView;
-- (void)setDices:(PBUserDice *)userDice;
+- (void)setUserDices:(PBUserDice *)userDice;
+- (void)clearUserDices;
 
 @end

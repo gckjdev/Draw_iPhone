@@ -28,6 +28,6 @@
 - (UIImage *)diceCountSelectedBtnBgImage;
 
 - (UIImage *)diceSeletedBgImage;
-
+- (UIImage *)diceBottomImage;
 
 @end

@@ -12,6 +12,5 @@
 {
     NSMutableArray *_penArray;
 }
-- (void)setPens:(NSArray *)pens;
 - (void)updatePenViews;
 @end

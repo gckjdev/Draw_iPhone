@@ -27,6 +27,7 @@
 @interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,LevelServiceDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
+    PickColorView *pickBGColorView;
     PickEraserView *pickEraserView;
     PickPenView *pickPenView;
     NSInteger penWidth;

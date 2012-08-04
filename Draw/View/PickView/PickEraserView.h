@@ -10,12 +10,13 @@
 
 @interface PickEraserView : PickView
 {
-    NSMutableArray *widthButtonArray;
+    NSMutableArray *widthArray;
     NSInteger _currentWidth;
 }
 
-- (void)resetWidth;
+//- (void)resetWidth;
 - (NSInteger)currentWidth;
-- (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
+//- (void)setLineWidths:(NSArray *)widthArray; // the list should be NSNumber list
 - (void)setLineWidthHidden:(BOOL)hidden;
+- (void)updateLineViews;
 @end

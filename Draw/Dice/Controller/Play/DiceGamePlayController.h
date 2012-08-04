@@ -12,9 +12,14 @@
 #import "FontLabel.h"
 #import "FontButton.h"
 #import "DiceSelectedView.h"
+#import "DiceAvatarView.h"
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate> {
+@class DiceGameService;
+
+
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate> {
     DiceSelectedView* _diceSelectedView;
+    DiceGameService*  _diceService;
 }
 
 @property (retain, nonatomic) FontLabel *myLevelLabel;
@@ -22,6 +27,7 @@
 //@property (retain, nonatomic) UILabel *myLevelLabel;
 //@property (retain, nonatomic) UILabel *myCoinsLabel;
 @property (retain, nonatomic) IBOutlet UIButton *openDiceButton;
+@property (retain, nonatomic) IBOutlet UIView *myDiceListHolderView;
 
 @property (retain, nonatomic) FontButton *fontButton;
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;

@@ -9,7 +9,6 @@
 #import "ToolSheetView.h"
 #import "DeviceDetection.h"
 #import "DiceImageManager.h"
-#import "CMPopTipView.h"
 
 @interface ToolSheetView()
 @property (retain, nonatomic) NSArray *buttonImageNameList;
@@ -66,9 +65,11 @@
 {
     [self.popTipView dismissAnimated:YES];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
+    self.popTipView.delegate = self;
+    self.popTipView.disableTapToDismiss = YES;
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
-    
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
+    
     //[_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
 
@@ -186,15 +187,23 @@
 
 - (void)clickToolButton:(id)sender
 {
-    [self dismissAnimated:YES];
-    
     UIButton *button = (UIButton*)sender;
     NSInteger selectedIndex = button.tag;
     
     if ([_delegate respondsToSelector:@selector(didSelectTool:)]) {
         [_delegate didSelectTool:selectedIndex];
     }
+    
+    [self dismissAnimated:YES];
 }
 
+
+#pragma mark - CMPopTipViewDelegate method
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView;
+{
+    if ([_delegate respondsToSelector:@selector(didDismissToolSheet)]) {
+        [_delegate didDismissToolSheet];
+    }
+}
 
 @end

@@ -8,10 +8,12 @@
 
 #import "PickView.h"
 #import "AnimationManager.h"
+#import "CMPopTipView.h"
 
 @implementation PickView
 @synthesize delegate = _delegate;
-
+@synthesize popTipView = _popTipView;
+@synthesize dismiss = _dismiss;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -19,6 +21,7 @@
     if (self) {
         // Initialization code
         self.userInteractionEnabled = YES;
+        self.dismiss = YES;
     }
     return self;
 }
@@ -77,4 +80,38 @@
     [self setHidden:hidden animated:animated];
     self.tag = tag;
 }
+
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated
+{
+    [self.popTipView dismissAnimated:YES];
+    self.dismiss = NO;
+    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
+    _popTipView.backgroundColor = [UIColor colorWithRed:168./255. green:168./255. blue:168./255. alpha:0.4];
+//    _popTipView.backgroundColor = [UIColor clearColor];
+
+    _popTipView.delegate = self;
+    [_popTipView presentPointingAtView:view inView:inView animated:animated];
+//    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:2];
+}
+
+- (void)dismissAnimated:(BOOL)animated
+{
+    if (!self.dismiss) {
+        [_popTipView dismissAnimated:YES];        
+        self.dismiss = YES;
+    }
+}
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    self.dismiss = YES;
+}   
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    self.dismiss = YES;    
+}
+
+
 @end
