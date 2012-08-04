@@ -113,7 +113,6 @@
     [self setMyCoinsLabel:nil];
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
-    _diceSelectedView = nil;
     [self setMyDiceListHolderView:nil];
     [self setStatusButton:nil];
     [self setRoomNameLabel:nil];
@@ -355,13 +354,15 @@
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_NEXT_PLAYER_START"); 
          // TODO: clear all reciprocol.
          [self clearAllReciprocol];
-         
          NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
-         
          PPDebug(@"currentPlayUser = %@", [[_diceService session] getNickNameByUserId:currentPlayUser]);
+         if ([[UserManager defaultManager] isMe:currentPlayUser]) {
+             [_diceSelectedView enableUserInteraction];
+         }else {
+             [_diceSelectedView disableUserInteraction];
+         }
+         
          [[self avatarOfUser:currentPlayUser] startReciprocol:USER_THINK_TIME_INTERVAL];
-         
-         
      }];
     
     
@@ -373,13 +374,18 @@
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_CALL_DICE_REQUEST"); 
          // TODO: Popup view on call dice user.
          if (![[UserManager defaultManager] isMe:[_diceService lastCallUserId]]) {
+             
             [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:[_diceService lastCallDice] 
                                                                        count:[_diceService lastCallDiceCount] 
                                                                       atView:[self avatarOfUser:[_diceService lastCallUserId]]
                                                                       inView:self.view 
                                                                     animated:YES];
+             if ([_diceService lastCallDice] == 6) {
+                 [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
+             }else {
+                 [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:([_diceService lastCallDice] + 1)];
+             }
          }
-         
      }];
     
     
@@ -444,7 +450,7 @@
 
 - (DiceAvatarView*)avatarOfUser:(NSString*)userId
 {
-    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         if ([avatar.userId isEqualToString:userId]) {
             return avatar;
