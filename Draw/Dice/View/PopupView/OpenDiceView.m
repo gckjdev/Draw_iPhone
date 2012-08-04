@@ -30,11 +30,14 @@
 
 - (id)initWithOpenType:(int)openType
 {
-    CGRect rect = openType ? CGRectMake(0, 0, 25, 20) : CGRectMake(0, 0, 35, 20);
+    CGRect rect = openType ? CGRectMake(0, 0, 15, 20) : CGRectMake(0, 0, 25, 20);
     
     if (self = [self initWithFrame:rect]) {
         self.text = openType ? @"抢开" : @"开";
+        self.font = [UIFont systemFontOfSize:18];
+        self.textAlignment = UITextAlignmentCenter;
         self.backgroundColor = [UIColor clearColor];
+        
     }
     
     return self;
@@ -44,7 +47,7 @@
              inView:(UIView *)inView
            animated:(BOOL)animated
 {
-    [self.popTipView dismissAnimated:YES];
+    [_popTipView dismissAnimated:YES];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
     _popTipView.backgroundColor = CALL_DICE_POPUP_VIEW_BG_COLOR;
     _popTipView.disableTapToDismiss = YES;

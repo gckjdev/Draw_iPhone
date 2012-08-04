@@ -12,7 +12,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = self = [super initWithFrame:self.frame fontName:@"diceFont" pointSize:self.font.pointSize];
+    self = [super initWithFrame:frame fontName:@"diceFont" pointSize:15];
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];

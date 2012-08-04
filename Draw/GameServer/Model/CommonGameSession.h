@@ -36,5 +36,6 @@
 - (void)updateSession:(PBGameSessionChanged*)changeData;
 
 - (NSArray *)playingUserList;
+- (int)playingUserCount;
 
 @end
