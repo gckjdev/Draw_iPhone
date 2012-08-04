@@ -43,6 +43,8 @@ static DiceGameService* _defaultService;
 - (void)handleNextPlayerStartNotification:(GameMessage*)message
 {
     // update game status and fire notification
+    [self.diceSession setCurrentPlayUserId:message.currentPlayUserId];
+    [self postNotification:NOTIFICATION_NEXT_PLAYER_START message:message];
 }
 
 - (void)handleRollDiceBegin:(GameMessage*)message

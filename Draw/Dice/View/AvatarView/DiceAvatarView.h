@@ -62,7 +62,7 @@ typedef enum {
                level:(int)level 
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
-
+- (void)stopReciprocol;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<DiceAvatarViewDelegate> delegate;

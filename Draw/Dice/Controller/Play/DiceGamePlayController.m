@@ -28,6 +28,7 @@
 
 #define MAX_PLAYER_COUNT    6
 
+#define USER_THINK_TIME_INTERVAL 15
 
 @interface DiceGamePlayController ()
 
@@ -330,6 +331,14 @@
     return nil;
 }
 
+- (void)clearAllReciprocol
+{
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET + i];
+        [avatar stopReciprocol];
+    }
+}
+
 
 #pragma test server
 - (void)registerDiceGameNotification
@@ -369,7 +378,7 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_END"); 
          // Update dice selected view
          self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
          [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
@@ -384,6 +393,26 @@
 
          [myDiceListHolderView addSubview:_diceShowView];
      }];
+    
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_NEXT_PLAYER_START
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_NEXT_PLAYER_START"); 
+         // TODO: clear all reciprocol.
+         [self clearAllReciprocol];
+         
+         NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
+         [[self avatarOfUser:currentPlayUser] startReciprocol:USER_THINK_TIME_INTERVAL];
+         
+         
+     }];
+    
+    
+    
+    
     
 }
 
@@ -462,7 +491,10 @@
 }
 - (void)reciprocalEnd:(DiceAvatarView*)view
 {
-    
+    if([[[UserManager defaultManager] userId] isEqualToString:view.userId])
+    {
+        // TODO: auto +1 action.
+    }
 }
 
     
