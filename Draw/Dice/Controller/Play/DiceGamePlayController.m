@@ -465,8 +465,11 @@
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
 {
-    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+//    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+    [[DicePopupViewManager defaultManager] popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view animated:YES];
+    
     [_diceService callDice:dice.dice count:count];
+    
 }
 
 #pragma mark - DiceAvatarViewDelegate

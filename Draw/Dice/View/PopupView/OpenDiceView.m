@@ -7,25 +7,54 @@
 //
 
 #import "OpenDiceView.h"
+#import "CMPopTipView.h"
+
+#define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+
+
+@interface OpenDiceView ()
+
+@property (retain, nonatomic) CMPopTipView *popTipView;
+
+@end
 
 @implementation OpenDiceView
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize popTipView = _popTipView;
+
+- (void)dealloc
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    [_popTipView release];
+    [super dealloc];
+}
+
+- (id)initWithOpenType:(int)openType
+{
+    CGRect rect = openType ? CGRectMake(0, 0, 25, 20) : CGRectMake(0, 0, 35, 20);
+    
+    if (self = [self initWithFrame:rect]) {
+        self.text = openType ? @"抢开" : @"开";
+        self.backgroundColor = [UIColor clearColor];
     }
+    
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated
 {
-    // Drawing code
+    [self.popTipView dismissAnimated:YES];
+    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
+    _popTipView.backgroundColor = CALL_DICE_POPUP_VIEW_BG_COLOR;
+    _popTipView.disableTapToDismiss = YES;
+    
+    [_popTipView presentPointingAtView:view inView:inView animated:animated];
 }
-*/
+
+- (void)dismissAnimated:(BOOL)animated
+{
+    [_popTipView dismissAnimated:animated];
+}
 
 @end

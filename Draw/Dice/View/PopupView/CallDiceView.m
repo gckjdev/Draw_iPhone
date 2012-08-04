@@ -86,7 +86,6 @@
     _popTipView.disableTapToDismiss = YES;
 
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
-    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:2];
 }
 
 - (void)dismissAnimated:(BOOL)animated

@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HKGirlFontLabel.h"
 
-@interface OpenDiceView : UIView
+@interface OpenDiceView : HKGirlFontLabel
+
+- (id)initWithOpenType:(int)openType;
+
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated;
+
+- (void)dismissAnimated:(BOOL)animated;
 
 @end

@@ -31,4 +31,11 @@
 
 - (void)dismissToolSheetViewAnimated:(BOOL)animated;
 
+- (void)popupOpenDiceViewWithOpenType:(int)openType
+                               atView:(UIView *)atView
+                               inView:(UIView *)inView
+                             animated:(BOOL)animated;
+
+- (void)dismissOpenDiceViewAnimated:(BOOL)animated;
+
 @end
