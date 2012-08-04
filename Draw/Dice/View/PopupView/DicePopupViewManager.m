@@ -15,7 +15,6 @@
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) ToolSheetView *toolSheetView;
-@property (retain, nonatomic) HKGirlFontLabel *openDiceView;
 
 //- (CMPopTipView *)popTipViewWithCustomView:(UIView *)view
 //                          backagroundColor:(UIColor *)color;
@@ -33,7 +32,6 @@ static DicePopupViewManager *_instance = nil;
 {
     [_callDiceView release];
     [_toolSheetView release];
-
     [super dealloc];
 }
 
@@ -64,7 +62,7 @@ static DicePopupViewManager *_instance = nil;
 //}
 
 
-- (void)popupCallDiceViewWithDice:(PBDice *)dice
+- (void)popupCallDiceViewWithDice:(int)dice
                             count:(int)count
                            atView:(UIView *)view
                            inView:(UIView *)inView
