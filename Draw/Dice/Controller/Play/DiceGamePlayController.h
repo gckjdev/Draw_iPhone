@@ -12,10 +12,12 @@
 #import "FontLabel.h"
 #import "FontButton.h"
 #import "DiceSelectedView.h"
+#import "DiceAvatarView.h"
 
 @class DiceGameService;
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate> {
+
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate> {
     DiceSelectedView* _diceSelectedView;
     DiceGameService*  _diceService;
 }
