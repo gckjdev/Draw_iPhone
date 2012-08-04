@@ -175,14 +175,12 @@
     
     CGFloat x = 0, y = 0;
     int l = 0, r = 0;
-    int i = 0;
     for (ColorView *colorView in colorViewArray) {
         CGFloat width = colorView.frame.size.width;
         CGFloat height= colorView.frame.size.height;
         x = baseX + width / 2 + (width + spaceX) * r;
         y = baseY + height / 2 + (height + spaceY) * l ;
         colorView.center = CGPointMake(x, y);
-        PPDebug(@"index = %d, center = (%f,%f)",i++,x,y );
         r = (r+1) % BUTTON_COUNT_PER_ROW;
         if (r == 0) {
             l ++;
