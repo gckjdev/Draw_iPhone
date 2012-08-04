@@ -119,8 +119,8 @@
 {
     for (UIView *view in [self subviews]) {
         
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)view;
+        if ([view isKindOfClass:[FontButton class]]) {
+            FontButton *button = (FontButton *)view;
             button.enabled = NO;
         }
     }
@@ -129,8 +129,8 @@
 {
     for (UIView *view in [self subviews]) {
         
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)view;
+        if ([view isKindOfClass:[FontButton class]]) {
+            FontButton *button = (FontButton *)view;
             button.enabled = YES;
         }
     }

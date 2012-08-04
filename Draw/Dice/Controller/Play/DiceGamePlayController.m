@@ -356,6 +356,7 @@
          [self clearAllReciprocol];
          NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
          PPDebug(@"currentPlayUser = %@", [[_diceService session] getNickNameByUserId:currentPlayUser]);
+         
          if ([[UserManager defaultManager] isMe:currentPlayUser]) {
              [_diceSelectedView enableUserInteraction];
          }else {
