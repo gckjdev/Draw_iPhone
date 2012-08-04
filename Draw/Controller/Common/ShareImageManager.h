@@ -59,12 +59,6 @@
 - (UIImage *)addColorImage;
 
 
-- (UIImage *)selectedPointImage;
-- (UIImage *)unSelectedPointImage;
-- (UIImage *)toolPopupImage;
-- (UIImage *)penPopupImage;
-- (UIImage *)eraserPopupImage;
-- (UIImage *)backgroundColorPopupImage;
 - (UIImage *)drawingMarkSmallImage;
 - (UIImage *)drawingMarkLargeImage;
 - (UIImage *)scoreBackgroundImage;
@@ -132,7 +126,6 @@
 - (UIImage *)tomato;
 - (UIImage *)smallCoin;
 - (UIImage*)waterPen;
-
 - (UIImage *)pickToolBackground;
 
 - (UIImage*)backButtonImage;
