@@ -49,12 +49,25 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
+    NSMutableArray* newUserList = [NSMutableArray array];
+    
+    for (PBGameUser* user in [[self session] userList]){
+        PBGameUser* newUser = [[[PBGameUser builderWithPrototype:user] setIsPlaying:YES] build];
+        [newUserList addObject:newUser];
+    }
+    
+    [self.session.userList removeAllObjects];
+    [self.session.userList addObjectsFromArray:newUserList];
+    
     [self postNotification:NOTIFICATION_ROLL_DICE_BEGIN message:message];
+    
 }
 
 - (void)handleRollDiceEnd:(GameMessage *)message
 {
     NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
+    
+    
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
