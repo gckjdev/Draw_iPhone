@@ -36,7 +36,7 @@
 @property (retain, nonatomic) NSArray *userDiceList;
 @property (retain, nonatomic) DiceShowView *diceShowView;
 
-- (UIView *)selfAvatarView;
+- (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarOfUser:(NSString*)userId;
 - (void)disableAllOperationButton;
 
@@ -452,9 +452,9 @@
     //TODO: ...
 }
 
-- (UIView *)selfAvatarView
+- (DiceAvatarView *)selfAvatarView
 {
-    return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+    return (DiceAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
 }
 
 - (UIView *)selfBellView
@@ -468,6 +468,7 @@
 {
     [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
     [_diceService callDice:dice.dice count:count];
+    [[self selfAvatarView] stopReciprocol];
 }
 
 #pragma mark - DiceAvatarViewDelegate
