@@ -15,6 +15,7 @@
 #import "UserManager.h"
 #import "DicesResultView.h"
 #import "Dice.pb.h"
+#import "AnimationManager.h"
 
 #define AVATAR_TAG_OFFSET   1000
 
@@ -210,6 +211,18 @@
 {
     NSArray* userList = [[DiceGameService defaultService].session userList];
     PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    
+    //init seats
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
+        avatar.delegate = self;
+        [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
+        [nameLabel setText:nil];
+        
+    }
+    
+    // set user on seat
     for (PBGameUser* user in userList) {
         PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
         int seat = user.seatId;
@@ -227,25 +240,6 @@
         }
         
     }
-//    int index = [self getSelfIndexFromUserList:userList];
-//    if (index >= 0) {
-//        for (int i = 0; i < userList.count; i ++) {
-//            
-//            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
-//            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
-//            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
-//            PBGameUser* user = [userList objectAtIndex:i];
-//            [avatar setUrlString:user.avatar 
-//                          userId:user.userId 
-//                          gender:user.gender 
-//                           level:user.userLevel 
-//                      drunkPoint:0 
-//                          wealth:0];
-//            if (nameLabel) {
-//                [nameLabel setText:user.nickName];
-//            }
-//        }
-//    }
     
 }
 
@@ -324,5 +318,18 @@
 {
     [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
 }
+
+#pragma mark - DiceAvatarViewDelegate
+- (void)didClickOnAvatar:(DiceAvatarView*)view
+{
+    UIView* bell = [self.view viewWithTag:(view.tag-AVATAR_TAG_OFFSET+BELL_TAG_OFFSET)];
+    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
+}
+- (void)reciprocalEnd:(DiceAvatarView*)view
+{
+    
+}
+
+    
 
 @end
