@@ -117,21 +117,23 @@
 
 - (void)disableUserInteraction
 {
-    for (UIView *view in [self subviews]) {
-        
-        if ([view isKindOfClass:[FontButton class]]) {
-            FontButton *button = (FontButton *)view;
-            button.enabled = NO;
+    for (UIView *pageView in [self.scrollView subviews]) {
+        for (UIView *view in [pageView subviews]) {
+            if ([view isKindOfClass:[FontButton class]]) {
+                FontButton *button = (FontButton *)view;
+                button.enabled = NO;
+            }
         }
     }
 }
 - (void)enableUserInteraction
 {
-    for (UIView *view in [self subviews]) {
-        
-        if ([view isKindOfClass:[FontButton class]]) {
-            FontButton *button = (FontButton *)view;
-            button.enabled = YES;
+    for (UIView *pageView in [self.scrollView subviews]) {
+        for (UIView *view in [pageView subviews]) {
+            if ([view isKindOfClass:[FontButton class]]) {
+                FontButton *button = (FontButton *)view;
+                button.enabled = YES;
+            }
         }
     }
 }
