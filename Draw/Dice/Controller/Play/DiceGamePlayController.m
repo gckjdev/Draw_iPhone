@@ -88,6 +88,11 @@
     
     _roomNameLabel.text = @"1号房间";
     
+    myCoinsLabel.textColor = [UIColor whiteColor];
+    myLevelLabel.textColor = [UIColor whiteColor];
+    
+    [_openDiceButton setBackgroundImage:[[DiceImageManager defaultManager] openDiceButtonBgImage] forState:UIControlStateNormal];
+    
     _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
@@ -233,7 +238,8 @@
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
         [result setHidden:YES];
         avatar.delegate = self;
-        [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
+        [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
+        avatar.userId = nil;
         [nameLabel setText:nil];
         
     }
@@ -245,6 +251,7 @@
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        nameLabel.textColor = [UIColor whiteColor];
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
         [bell setHidden:NO];
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
