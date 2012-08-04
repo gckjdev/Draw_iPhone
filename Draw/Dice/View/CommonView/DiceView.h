@@ -19,9 +19,15 @@
 
 
 - (id)initWithFrame:(CGRect)frame 
-               dice:(PBDice *)dice;
+             pbDice:(PBDice *)pbDice;
 
-- (void)setDice:(PBDice *)dice;
-- (PBDice *)dice;
+- (id)initWithFrame:(CGRect)frame 
+               dice:(int)dice;
+
+- (void)setPBDice:(PBDice *)dice;
+
+- (void)setDice:(int)dice;
+- (int)dice;
+- (int)diceId;
 
 @end

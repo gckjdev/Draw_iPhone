@@ -45,13 +45,13 @@
     [super dealloc];
 }
 
-- (id)initWithDice:(PBDice *)dice count:(int)count
+- (id)initWithDice:(int)dice count:(int)count
 {
     self = [super initWithFrame:CGRectMake(0, 0, 63, 32)];
     if (self) {
         // Initialization code
         self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(36, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
-                                                       dice:dice] autorelease];
+                                                     dice:dice] autorelease];
         _diceView.userInteractionEnabled = NO;
         
         self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, 35, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:27] autorelease];
@@ -70,7 +70,7 @@
     return self;
 }
 
-- (void)setDice:(PBDice *)dice count:(int)count
+- (void)setDice:(int)dice count:(int)count
 {
     [_diceView setDice:dice];
     _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
@@ -86,7 +86,6 @@
     _popTipView.disableTapToDismiss = YES;
 
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
-    [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:2];
 }
 
 - (void)dismissAnimated:(BOOL)animated

@@ -72,6 +72,7 @@
 + (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
            fromController:(UIViewController *)fromController
 {
+    [feed parseDrawData];
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
                                             initWithFeed:feed];
     offGuess.superController = fromController;
@@ -499,7 +500,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        double speed = [DrawAction calculateSpeed:self.showView.drawActionList];
+        double speed = [DrawAction calculateSpeed:self.showView.drawActionList defaultSpeed:1.0/30.0 maxSecond:30];
         self.showView.playSpeed = speed;
         [self.showView play];
     }

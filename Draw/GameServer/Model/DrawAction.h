@@ -47,7 +47,7 @@ typedef enum {
 
 + (NSInteger)pointCountForActions:(NSArray *)actionList;
 + (double)calculateSpeed:(NSArray *)actionList;
-
++ (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second;
 
 
 @end

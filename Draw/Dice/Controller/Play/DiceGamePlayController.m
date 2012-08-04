@@ -36,7 +36,9 @@
 @property (retain, nonatomic) NSArray *userDiceList;
 @property (retain, nonatomic) DiceShowView *diceShowView;
 
-- (UIView *)selfAvatarView;
+- (DiceAvatarView *)selfAvatarView;
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId;
+- (void)disableAllOperationButton;
 
 @end
 
@@ -45,24 +47,26 @@
 @synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
-@synthesize openDiceButton;
 @synthesize myDiceListHolderView;
-@synthesize fontButton;
+@synthesize statusButton = _statusButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize userDiceList = _userDiceList;
 @synthesize diceShowView = _diceShowView;
+@synthesize roomNameLabel = _roomNameLabel;
+@synthesize openDiceButton = _openDiceButton;
 
 - (void)dealloc {
     [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
-    [openDiceButton release];
-    [fontButton release];
+    [_statusButton release];
     [diceCountSelectedHolderView release];
     [_userDiceList release];
     [_diceSelectedView release];
     [_diceShowView release];
     [myDiceListHolderView release];
+    [_roomNameLabel release];
+    [_openDiceButton release];
     [super dealloc];
 }
 
@@ -82,31 +86,12 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    // Do any additional setup after loading the view from its nib.
-    self.myLevelLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
-    self.myCoinsLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
+    _roomNameLabel.text = @"1号房间";
     
+    myCoinsLabel.textColor = [UIColor whiteColor];
+    myLevelLabel.textColor = [UIColor whiteColor];
     
-    self.fontButton = [[FontButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50) fontName:@"diceFont" pointSize:13];
-    self.fontButton.fontLable.text = @"开";
-    [self.fontButton addTarget:self action:@selector(clickFontButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.fontButton];
-//    self.myLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20)] autorelease];
-//    self.myCoinsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20)] autorelease];
-//    
-//    myLevelLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
-//    myCoinsLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
-
-    myLevelLabel.backgroundColor = [UIColor clearColor];
-    myCoinsLabel.backgroundColor = [UIColor clearColor];
-    
-    
-    
-    myLevelLabel.text = @"LV:21";
-    myCoinsLabel.text = @"开骰";
-    
-    [self.view addSubview:myLevelLabel];
-    [self.view addSubview:myCoinsLabel];
+    [_openDiceButton setBackgroundImage:[[DiceImageManager defaultManager] openDiceButtonBgImage] forState:UIControlStateNormal];
     
     _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
@@ -119,14 +104,8 @@
 //    
 //    [myDiceListHolderView addSubview:_diceShowView];
 //    
-    
-
 }
 
-- (void)clickFontButton
-{
-    PPDebug(@"clickFontButton");
-}
 
 - (void)viewDidUnload
 {
@@ -136,9 +115,9 @@
     [self setDiceCountSelectedHolderView:nil];
     _diceSelectedView = nil;
     [self setMyDiceListHolderView:nil];
+    [self setStatusButton:nil];
+    [self setRoomNameLabel:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma mark- Buttons action
@@ -166,26 +145,6 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
-    
-    //test data
-//    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-//    for (int k = 0; k < 6 ; k++) {
-//        PBUserDice_Builder *userDiceBuilder = [[[PBUserDice_Builder alloc] init] autorelease];
-//        [userDiceBuilder setUserId:@"TEST"];
-//        for (int i = 0 ; i < 5 ; i++) {
-//            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//            NSUInteger value =  (arc4random() % 6) + 1; 
-//            [diceBuilder setDice:value];
-//            [diceBuilder setDiceId:i];
-//            PBDice *dice = [diceBuilder build];
-//            
-//            [userDiceBuilder addDices:dice];
-//        }
-//        PBUserDice *userDice = [userDiceBuilder build];
-//        [mutableArray addObject:userDice];
-//    }
-//    self.userDiceList = mutableArray;
-//    [self showAllDicesResult];
 }
 
 
@@ -279,7 +238,8 @@
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
         [result setHidden:YES];
         avatar.delegate = self;
-        [avatar setImage:[[DiceImageManager defaultManager] greenSafaImage]];
+        [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
+        avatar.userId = nil;
         [nameLabel setText:nil];
         
     }
@@ -291,6 +251,7 @@
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        nameLabel.textColor = [UIColor whiteColor];
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
         [bell setHidden:NO];
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
@@ -320,16 +281,7 @@
     }
 }
 
-- (DiceAvatarView*)avatarOfUser:(NSString*)userId
-{
-    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
-        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
-        if ([avatar.userId isEqualToString:userId]) {
-            return avatar;
-        }
-    }
-    return nil;
-}
+
 
 - (void)clearAllReciprocol
 {
@@ -405,13 +357,53 @@
          [self clearAllReciprocol];
          
          NSString *currentPlayUser =  [[_diceService session] currentPlayUserId];
+         
+         PPDebug(@"currentPlayUser = %@", [[_diceService session] getNickNameByUserId:currentPlayUser]);
          [[self avatarOfUser:currentPlayUser] startReciprocol:USER_THINK_TIME_INTERVAL];
          
          
      }];
     
     
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_CALL_DICE_REQUEST
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_CALL_DICE_REQUEST"); 
+         // TODO: Popup view on call dice user.
+         if (![[UserManager defaultManager] isMe:[_diceService lastCallUserId]]) {
+            [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:[_diceService lastCallDice] 
+                                                                       count:[_diceService lastCallDiceCount] 
+                                                                      atView:[self avatarOfUser:[_diceService lastCallUserId]]
+                                                                      inView:self.view 
+                                                                    animated:YES];
+         }
+         
+     }];
     
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_OPEN_DICE_REQUEST
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_REQUEST"); 
+         //disable all operation button
+         [self disableAllOperationButton];
+         //pop open dice view (only if other player open)
+         
+     }];
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_OPEN_DICE_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_RESPONSE"); 
+         //pop open dice view on myself avatar
+         
+     }];
     
     
 }
@@ -421,22 +413,6 @@
     [[self selfBellView] setHidden:NO];
     self.diceShowView = nil;
 }
-
-//- (NSArray *)genDiceListStartWith:(int)start end:(int)end
-//{
-//    NSMutableArray *dices = [NSMutableArray array];
-//    
-//    for (int i = start; i <= end; i ++) {
-//        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
-//        [diceBuilder setDice:i];
-//        [diceBuilder setDiceId:i];
-//        PBDice *dice = [diceBuilder build];
-//        
-//        [dices addObject:dice];
-//    }
-//    
-//    return dices;
-//}
 
 - (void)unregisterDiceGameNotification
 {
@@ -466,9 +442,25 @@
 
 #pragma mark - Praviete methods
 
-- (UIView *)selfAvatarView
+- (DiceAvatarView*)avatarOfUser:(NSString*)userId
 {
-    return [self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+    for (int i = 1; i < MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        if ([avatar.userId isEqualToString:userId]) {
+            return avatar;
+        }
+    }
+    return nil;
+}
+
+- (void)disableAllOperationButton
+{
+    //TODO: ...
+}
+
+- (DiceAvatarView *)selfAvatarView
+{
+    return (DiceAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
 }
 
 - (UIView *)selfBellView
@@ -480,7 +472,13 @@
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
 {
-    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+//    [[DicePopupViewManager defaultManager] popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view animated:YES];
+    
+    [_diceService callDice:dice.dice count:count];
+
+    [[self selfAvatarView] stopReciprocol];
+
 }
 
 #pragma mark - DiceAvatarViewDelegate

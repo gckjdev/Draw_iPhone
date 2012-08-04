@@ -68,6 +68,38 @@ static DiceGameService* _defaultService;
      userInfo:[CommonGameNetworkService messageToUserInfo:message]];     
 }
 
+- (void)handleCallDiceRequest:(GameMessage *)message
+{
+    self.diceSession.lastCallDiceUserId = message.userId;
+    self.diceSession.lastCallDice = message.callDiceRequest.dice;
+    self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
+    
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:NOTIFICATION_CALL_DICE_REQUEST
+     object:self 
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]];      
+}
+
+- (void)handleOpenDiceRequest:(GameMessage*)message
+{
+    self.diceSession.openDiceUserId = message.userId;
+    
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:NOTIFICATION_OPEN_DICE_REQUEST
+     object:self 
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]]; 
+}
+
+- (void)handleOpenDiceResponse:(GameMessage*)message
+{
+    if (message.resultCode == 0) {
+        [[NSNotificationCenter defaultCenter] 
+         postNotificationName:NOTIFICATION_OPEN_DICE_RESPONSE
+         object:self 
+         userInfo:[CommonGameNetworkService messageToUserInfo:message]]; 
+    }    
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -84,7 +116,15 @@ static DiceGameService* _defaultService;
             [self handleNextPlayerStartNotification:message];
             break;
             
-            
+        case GameCommandTypeCallDiceRequest:
+            [self handleCallDiceRequest:message];
+            break;
+        case GameCommandTypeOpenDiceRequest: 
+            [self handleOpenDiceRequest];
+            break;
+        case GameCommandTypeOpenDiceResponse: 
+            [self handleOpenDiceResponse];
+            break;
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -104,6 +144,36 @@ static DiceGameService* _defaultService;
 - (NSArray *)myDiceList
 {
     return [[[self diceSession] userDiceList] objectForKey:self.user.userId];
+}
+
+- (void)callDice:(int)dice count:(int)count
+{
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
+                                                   sessionId:self.session.sessionId
+                                                        dice:dice
+                                                       count:count];
+}
+
+- (NSString *)lastCallUserId
+{
+    return [[self diceSession] lastCallDiceUserId];
+}
+
+- (int)lastCallDice
+{
+    return [[self diceSession] lastCallDice];
+}
+
+- (int)lastCallDiceCount
+{
+    return [[self diceSession] lastCallDiceCount];
+}
+
+- (void)openDice
+{
+    [_networkClient sendSimpleMessage:GameCommandTypeOpenDiceRequest
+                               userId:self.diceSession.userId
+                            sessionId:self.diceSession.sessionId];
 }
 
 @end

@@ -51,7 +51,7 @@
             CGRect rect = CGRectMake((EDGE_WIDTH + DICE_VIEW_WIDTH) * i++, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT);     
 
             DiceView *diceView = [[[DiceView alloc] initWithFrame:rect 
-                                                       dice:dice] autorelease];
+                                                           pbDice:dice] autorelease];
             [self.diceViews addObject:diceView];
             
             if (userInterAction) {
@@ -73,7 +73,7 @@
     DiceView *diceView  = (DiceView *)sender;
     diceView.seletedBgImageView.image = [[DiceImageManager defaultManager] diceSeletedBgImage];
     
-    int diceId = diceView.dice.diceId;
+    int diceId = diceView.diceId;
     PBDice *dice = [self findDiceWithDiceId:diceId];
     
     if ([_delegate respondsToSelector:@selector(didSelectedDice:)]) {

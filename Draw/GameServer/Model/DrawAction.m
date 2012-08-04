@@ -217,11 +217,17 @@
     if (count < MIN_POINT) {
         count = MIN_POINT;
     }
-//    else if (count > MAX_POINT) {
-//        count = MAX_POINT;
-//    }
     return SPEED_COEFFICIENT / count;
-    
 }
+
++ (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second
+{
+    NSInteger count = [DrawAction pointCountForActions:actionList];
+    if (defaultSpeed * count <= second) {
+        return defaultSpeed;
+    }
+    return (double)second / (double)count;
+}
+
 
 @end

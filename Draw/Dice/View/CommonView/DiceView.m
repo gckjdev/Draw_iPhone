@@ -12,7 +12,8 @@
 
 @interface DiceView ()
 {
-    PBDice *_dice;
+    int _diceId;
+    int _dice;
 }
 
 @end
@@ -23,20 +24,20 @@
 
 - (void)dealloc
 {
-    [_dice release];
     [_seletedBgImageView release];
     [super dealloc];
 }
 
 - (id)initWithFrame:(CGRect)frame 
-               dice:(PBDice *)dice
+             pbDice:(PBDice *)pbDice
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         
-        [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
-        self.dice = dice;
+        [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:pbDice.dice] forState:UIControlStateNormal];
+        _diceId = pbDice.diceId;
+        _dice = pbDice.dice;
         
         self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
         [self addSubview:self.seletedBgImageView];
@@ -45,21 +46,44 @@
     return self;
 }
 
-- (void)setDice:(PBDice *)dice
+- (id)initWithFrame:(CGRect)frame 
+               dice:(int)dice
 {
-    if (dice == _dice) {
-        return;
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice] forState:UIControlStateNormal];
+        _dice = dice;
+        
+        self.seletedBgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+        [self addSubview:self.seletedBgImageView];
     }
     
-    [_dice release];
-    _dice = [dice retain];
-    [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:dice.dice] forState:UIControlStateNormal];
+    return self;
+}
+
+- (void)setPBDice:(PBDice *)dice
+{
+    _dice = _dice;
+    _diceId = _diceId;
+}
+
+- (void)setDice:(int)dice
+{
+    _dice = dice;
+    [self setImage:[[DiceImageManager defaultManager] diceImageWithDice:_dice] forState:UIControlStateNormal];
     
 }
 
-- (PBDice *)dice
+- (int)dice
 {
     return _dice;
+}
+
+- (int)diceId
+{
+    return _diceId;
 }
 
 /*

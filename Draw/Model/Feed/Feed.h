@@ -140,6 +140,6 @@ typedef enum {
 - (BOOL) isDrawType;
 - (NSString *)author;
 - (NSString *)saveKey;
-
+- (void)parseDrawData;
 
 @end
