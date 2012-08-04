@@ -15,6 +15,7 @@
 - (id)initWithWidth:(CGFloat)width;
 + (id)viewWithWidth:(CGFloat)width;
 + (CGFloat)height;
++ (CGFloat)width;
 
 @property(nonatomic, assign) CGFloat width;
 @end

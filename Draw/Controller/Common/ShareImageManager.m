@@ -254,7 +254,15 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)backgroundColorPopupImage
 {
-    UIImage *image = [UIImage imageNamed:@"eraser_popup.png"];
+//    return [UIImage strectchableImageName:@"change_background_color.png"];
+    
+    UIImage *image = nil; 
+    if([DeviceDetection isIPAD]){
+        image = [UIImage imageNamed:@"change_background_color@2x.png"];    
+    }else{
+        image = [UIImage imageNamed:@"change_background_color.png"];            
+    }
+    
     CGFloat left = image.size.width * 0.8;
     return [image stretchableImageWithLeftCapWidth:left topCapHeight:0];
     

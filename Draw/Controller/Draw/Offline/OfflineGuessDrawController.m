@@ -72,6 +72,7 @@
 + (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
            fromController:(UIViewController *)fromController
 {
+    [feed parseDrawData];
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
                                             initWithFeed:feed];
     offGuess.superController = fromController;

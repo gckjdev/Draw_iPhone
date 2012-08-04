@@ -40,6 +40,7 @@
 @interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate,LevelServiceDelegate> {
     DrawView *drawView;
     PickColorView *pickColorView;
+    PickColorView *pickBGColorView;
     PickEraserView *pickEraserView;
     PickPenView *pickPenView;
     NSInteger penWidth;

@@ -180,4 +180,13 @@
 {
     return self.authorId;
 }
+
+- (void)parseDrawData
+{
+    if (self.drawData == nil && self.pbDraw != nil) {
+        self.drawData = [[[Draw alloc] initWithPBDraw:self.pbDraw] autorelease];
+        self.pbDraw = nil;
+    }
+}
+
 @end

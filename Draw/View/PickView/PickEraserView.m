@@ -11,13 +11,28 @@
 
 @implementation PickEraserView
 
+
+#define MIN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        widthButtonArray  = [[NSMutableArray alloc] init];
+        widthArray  = [[NSMutableArray alloc] init];
         self.userInteractionEnabled = YES;
+        
+        if ([DeviceDetection isIPAD]) {
+            [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
+            [widthArray addObject:[NSNumber numberWithInt:15 * 2]];
+            [widthArray addObject:[NSNumber numberWithInt:9 * 2]];
+        }else{
+            [widthArray addObject:[NSNumber numberWithInt:20]];
+            [widthArray addObject:[NSNumber numberWithInt:15]];
+            [widthArray addObject:[NSNumber numberWithInt:9]];
+        }
+        [widthArray addObject:[NSNumber numberWithInt:MIN_WIDTH]];
+        [self updateLineViews];
     }
     return self;
 }
@@ -27,23 +42,58 @@
     return _currentWidth;
 }
 
-
-
 - (void)selectWidthButton:(WidthView *)button
 {
     if (button == nil) {
         return;
     }
-    for (UIButton *button in widthButtonArray) {
-        [button setSelected:NO];
+    for (NSNumber *width in widthArray) {
+        WidthView *view = (WidthView *)[self viewWithTag:width.intValue];
+        view.selected = NO;
     }
     [button setSelected:YES];
     _currentWidth = button.width;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPickedPickView:lineWidth:)]) {
         [self.delegate didPickedPickView:self lineWidth:button.width];
     }
-    [self startRunOutAnimation];
 }
+
+
+- (void)updateLineViews
+{
+    CGFloat x = 0;
+    CGFloat count = [widthArray count];
+    
+    if (count == 0) {
+        return;
+    }else if(count == 1)
+    {
+        NSNumber *width = [widthArray objectAtIndex:0];
+        WidthView *widthView = [[WidthView alloc] initWithWidth:width.floatValue];
+        widthView.center = self.center;
+        [self addSubview:widthView];
+        [widthView release];
+        return;
+    }
+    
+    CGFloat space = (self.frame.size.height - (count * [WidthView height])) / (count - 1);
+    CGFloat y = 0;
+    
+    for (NSNumber *width in widthArray) {
+        WidthView *widthView = [[WidthView alloc] initWithWidth:width.floatValue];
+        widthView.frame = CGRectMake(x, y, [WidthView height], [WidthView height]);
+        widthView.tag = width.intValue;
+        [self addSubview:widthView];
+
+        [widthView release];
+        [widthView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        y += [WidthView height] + space;
+    }
+
+    WidthView *view = (WidthView *)[self viewWithTag:MIN_WIDTH];
+    [self selectWidthButton:view];
+}
+
 
 - (void)clickButton:(id)sender
 {
@@ -51,50 +101,7 @@
     [self selectWidthButton:button];
 }
 
-- (void)removeAllWidthButtons
-{
-    for (UIButton *button in widthButtonArray) {
-        [button removeFromSuperview];
-    }
-    [widthButtonArray removeAllObjects];
-}
 
-- (void)resetWidth
-{
-    WidthView *wView = nil;
-    CGFloat width = 999;
-    for (WidthView *view in widthButtonArray) {
-        if (view.width < width) {
-            width = view.width;
-            wView = view;
-        }
-    }
-    [self selectWidthButton:wView];
-}
-
-#define LINE_START_X ([DeviceDetection isIPAD] ? 12 * 3 : 12)
-#define LINE_START_Y ([DeviceDetection isIPAD] ? 6 * 2 : 5)
-
-- (void)setLineWidths:(NSArray *)widthArray
-{
-    [self removeAllWidthButtons];
-    CGFloat x = LINE_START_X;//self.frame.size.width / 10.0;
-    CGFloat count = [widthArray count];
-    CGFloat space = (self.frame.size.height - 10 - (count * [WidthView height])) / (count + 1);
-    CGFloat y = LINE_START_Y;
-    
-    for (NSNumber *width in widthArray) {
-        y +=  space;
-        WidthView *widthView = [[WidthView alloc] initWithWidth:width.floatValue];
-        widthView.frame = CGRectMake(x, y, [WidthView height], [WidthView height]);
-        [self addSubview:widthView];
-        [widthButtonArray addObject:widthView];
-        [widthView release];
-        [widthView addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-        y += [WidthView height];
-    }
-    [self resetWidth];
-}
 
 - (void)setLineWidthHidden:(BOOL)hidden
 {

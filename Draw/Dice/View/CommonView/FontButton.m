@@ -35,6 +35,23 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.fontLable = [[[FontLabel alloc] initWithFrame:self.bounds
+                                                  fontName:@"diceFont"
+                                                 pointSize:self.titleLabel.font.pointSize] autorelease];
+        _fontLable.backgroundColor = [UIColor clearColor];
+        _fontLable.textAlignment = UITextAlignmentCenter;
+        _fontLable.text = self.titleLabel.text;
+        _fontLable.textColor = self.titleLabel.textColor;
+        [self setTitle:nil forState:UIControlStateNormal];
+        [self addSubview:_fontLable];
+    }
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
