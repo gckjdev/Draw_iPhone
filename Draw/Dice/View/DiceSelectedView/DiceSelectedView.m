@@ -21,6 +21,7 @@
 {
     int _lastCallDice;
     int _start;
+    BOOL _userInteraction;
 }
 
 @property (retain, nonatomic) NSTimer *timer;
@@ -113,6 +114,30 @@
     
     [self setViews:views];
 }
+
+- (void)disableUserInteraction
+{
+    for (UIView *view in [self subviews]) {
+        
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)view;
+            button.enabled = NO;
+        }
+    }
+}
+- (void)enableUserInteraction
+{
+    for (UIView *view in [self subviews]) {
+        
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)view;
+            button.enabled = YES;
+        }
+    }
+}
+
+
+#pragma mark - Private methods
 
 - (void)setViews:(NSArray*)views
 {
@@ -211,6 +236,8 @@
          forControlEvents:UIControlEventTouchUpInside];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountBtnBgImage] forState:UIControlStateNormal];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
+    
+    fontButton.enabled = YES;
     
     return fontButton;
 }

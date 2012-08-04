@@ -22,6 +22,10 @@
 
 - (void)sendGetRoomsRequest:(NSString*)userId;
 - (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId;
+- (int)generateMessageId;
+- (void)sendSimpleMessage:(int)command
+                   userId:(NSString*)userId 
+                sessionId:(long)sessionId;
 
 
 @end

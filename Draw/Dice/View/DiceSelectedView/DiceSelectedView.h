@@ -28,4 +28,7 @@
              end:(int)end 
     lastCallDice:(int)lastCallDice;
 
+- (void)disableUserInteraction;
+- (void)enableUserInteraction;
+
 @end

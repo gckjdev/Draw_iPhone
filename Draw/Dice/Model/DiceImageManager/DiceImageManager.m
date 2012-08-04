@@ -155,5 +155,19 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"dice_bottom.png"];
 }
 
+- (UIImage *)wildsBgImage
+{
+    return [UIImage imageNamed:@"zhai_bg.png"];
+}
+
+- (UIImage *)openDiceButtonBgImage
+{
+    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15];
+}
+
+- (UIImage *)whiteSofaImage
+{
+    return [UIImage imageNamed:@"waiting_user.png"];
+}
 
 @end

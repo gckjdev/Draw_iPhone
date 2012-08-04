@@ -11,6 +11,9 @@
 
 @interface DiceNetworkClient : CommonGameNetworkClient
 
-
+- (void)sendCallDiceRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                       dice:(int)dice
+                      count:(int)count;
 
 @end
