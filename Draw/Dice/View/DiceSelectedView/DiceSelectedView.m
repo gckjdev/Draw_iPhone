@@ -237,7 +237,7 @@
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountBtnBgImage] forState:UIControlStateNormal];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
     
-    fontButton.enabled = YES;
+    fontButton.enabled = NO;
     
     return fontButton;
 }

@@ -372,6 +372,15 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_CALL_DICE_REQUEST"); 
+         
+         if ([_diceService lastCallDice] == 6) {
+             [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
+         }else if ([_diceService lastCallDice] == 5) {
+             [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:([_diceService lastCallDice])];
+         }else {
+             [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:([_diceService lastCallDice] + 1)];
+         }
+         
          // TODO: Popup view on call dice user.
          if (![[UserManager defaultManager] isMe:[_diceService lastCallUserId]]) {
              
@@ -380,11 +389,9 @@
                                                                       atView:[self avatarOfUser:[_diceService lastCallUserId]]
                                                                       inView:self.view 
                                                                     animated:YES];
-             if ([_diceService lastCallDice] == 6) {
-                 [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
-             }else {
-                 [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:([_diceService lastCallDice] + 1)];
-             }
+
+         }else {
+             [_diceSelectedView enableUserInteraction];
          }
      }];
     
