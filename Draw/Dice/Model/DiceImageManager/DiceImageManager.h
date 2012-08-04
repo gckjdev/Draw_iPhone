@@ -30,5 +30,6 @@
 - (UIImage *)diceSeletedBgImage;
 - (UIImage *)diceBottomImage;
 - (UIImage *)wildsBgImage;
+- (UIImage *)openDiceButtonBgImage;
 
 @end
