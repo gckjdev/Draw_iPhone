@@ -29,5 +29,6 @@
 
 - (UIImage *)diceSeletedBgImage;
 - (UIImage *)diceBottomImage;
+- (UIImage *)wildsBgImage;
 
 @end
