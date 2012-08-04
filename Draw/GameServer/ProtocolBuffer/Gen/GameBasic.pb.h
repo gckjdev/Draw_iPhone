@@ -115,6 +115,7 @@
   BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
   BOOL hasUserLevel_:1;
+  BOOL hasSeatId_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
@@ -124,6 +125,7 @@
   BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
   int32_t userLevel;
+  int32_t seatId;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -138,6 +140,7 @@
 - (BOOL) hasLocation;
 - (BOOL) hasUserLevel;
 - (BOOL) hasFacetimeId;
+- (BOOL) hasSeatId;
 - (BOOL) hasIsPlaying;
 - (BOOL) hasIsTakenOver;
 @property (readonly, retain) NSString* userId;
@@ -147,6 +150,7 @@
 @property (readonly, retain) NSString* location;
 @property (readonly) int32_t userLevel;
 @property (readonly, retain) NSString* facetimeId;
+@property (readonly) int32_t seatId;
 - (BOOL) isPlaying;
 - (BOOL) isTakenOver;
 - (NSArray*) snsUsersList;
@@ -227,6 +231,11 @@
 - (NSString*) facetimeId;
 - (PBGameUser_Builder*) setFacetimeId:(NSString*) value;
 - (PBGameUser_Builder*) clearFacetimeId;
+
+- (BOOL) hasSeatId;
+- (int32_t) seatId;
+- (PBGameUser_Builder*) setSeatId:(int32_t) value;
+- (PBGameUser_Builder*) clearSeatId;
 
 - (BOOL) hasIsPlaying;
 - (BOOL) isPlaying;

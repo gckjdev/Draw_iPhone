@@ -52,6 +52,7 @@
     [openDiceButton release];
     [diceCountSelectedHolderView release];
     [_userDiceList release];
+    [_diceSelectedView release];
     [super dealloc];
 }
 
@@ -84,11 +85,12 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    DiceSelectedView *view = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
-    view.delegate = self;
+    _diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    _diceSelectedView.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
-    [view setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
-    [diceCountSelectedHolderView addSubview:view];
+    [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
+    [diceCountSelectedHolderView addSubview:_diceSelectedView];
+
 }
 
 - (void)clickFontButton
@@ -102,6 +104,7 @@
     [self setMyCoinsLabel:nil];
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
+    _diceSelectedView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -223,31 +226,59 @@
     return -1;
 }
 
-- (void)updateAllPlayersAvatar
+- (PBGameUser*)getSelfUserFromUserList:(NSArray*)userList
 {
-    NSArray* userList = [[DiceGameService defaultService].session userList];
-    for (PBGameUser* user in userList) {
-        PPDebug(@"<test>get user--%@",user.nickName);
-    }
-    int index = [self getSelfIndexFromUserList:userList];
-    if (index >= 0) {
+    if (userList.count > 0) {
         for (int i = 0; i < userList.count; i ++) {
-            
-            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
-            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
-            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
             PBGameUser* user = [userList objectAtIndex:i];
-            [avatar setUrlString:user.avatar 
-                          userId:user.userId 
-                          gender:user.gender 
-                           level:user.userLevel 
-                      drunkPoint:0 
-                          wealth:0];
-            if (nameLabel) {
-                [nameLabel setText:user.nickName];
+            if ([user.userId isEqualToString:[UserManager defaultManager].userId]) {
+                return user;
             }
         }
     }
+    return nil;
+}
+
+- (void)updateAllPlayersAvatar
+{
+    NSArray* userList = [[DiceGameService defaultService].session userList];
+    PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
+    for (PBGameUser* user in userList) {
+        PPDebug(@"<test>get user--%@, sitting at %d",user.nickName, user.seatId);
+        int seat = user.seatId;
+        int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
+        UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        [avatar setUrlString:user.avatar 
+                      userId:user.userId 
+                      gender:user.gender 
+                       level:user.userLevel 
+                  drunkPoint:0 
+                      wealth:0];
+        if (nameLabel) {
+            [nameLabel setText:user.nickName];
+        }
+        
+    }
+//    int index = [self getSelfIndexFromUserList:userList];
+//    if (index >= 0) {
+//        for (int i = 0; i < userList.count; i ++) {
+//            
+//            int avatarIndex = (MAX_PLAYER_COUNT+i-index)%MAX_PLAYER_COUNT+1;
+//            DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+avatarIndex];
+//            UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+avatarIndex)];
+//            PBGameUser* user = [userList objectAtIndex:i];
+//            [avatar setUrlString:user.avatar 
+//                          userId:user.userId 
+//                          gender:user.gender 
+//                           level:user.userLevel 
+//                      drunkPoint:0 
+//                          wealth:0];
+//            if (nameLabel) {
+//                [nameLabel setText:user.nickName];
+//            }
+//        }
+//    }
     
 }
 
@@ -279,7 +310,9 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");   
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM"); 
+         self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
+         [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
      }];
 }
