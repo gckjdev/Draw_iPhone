@@ -509,9 +509,9 @@
     if([[[UserManager defaultManager] userId] isEqualToString:view.userId])
     {
         // TODO: auto +1 action.
+        [_diceService autoCallDice];
     }
 }
 
     
-
 @end

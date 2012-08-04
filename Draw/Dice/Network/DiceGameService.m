@@ -67,13 +67,17 @@ static DiceGameService* _defaultService;
 {
     NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
     
-    
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
     
     [self diceSession].userDiceList = diceDic;
+    
+    // Init lastCallDice when game begin.
+    self.diceSession.lastCallDice = 1;
+    self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
+
     
     [[NSNotificationCenter defaultCenter] 
      postNotificationName:NOTIFICATION_ROLL_DICE_END
@@ -166,6 +170,15 @@ static DiceGameService* _defaultService;
                                                         dice:dice
                                                        count:count];
 }
+
+- (void)autoCallDice
+{
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
+                                                   sessionId:self.session.sessionId
+                                                        dice:[self lastCallDice]
+                                                       count:([self lastCallDiceCount] + 1)]; 
+}
+
 
 - (NSString *)lastCallUserId
 {
