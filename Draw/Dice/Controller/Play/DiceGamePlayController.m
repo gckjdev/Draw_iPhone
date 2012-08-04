@@ -86,7 +86,8 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    _roomNameLabel.text = @"1号房间";
+    //_roomNameLabel.text = @"1号房间";
+    _roomNameLabel.text = [[[DiceGameService defaultService] session] roomName];
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];
