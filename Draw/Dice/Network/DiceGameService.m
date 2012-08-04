@@ -47,10 +47,7 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:NOTIFICATION_ROLL_DICE_BEGIN
-     object:self 
-     userInfo:[CommonGameNetworkService messageToUserInfo:message]];            
+    [self postNotification:NOTIFICATION_ROLL_DICE_BEGIN message:message];
 }
 
 - (void)handleRollDiceEnd:(GameMessage *)message
