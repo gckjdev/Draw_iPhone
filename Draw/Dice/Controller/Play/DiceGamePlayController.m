@@ -50,6 +50,7 @@
     [myLevelLabel release];
     [myCoinsLabel release];
     [openDiceButton release];
+    [fontButton release];
     [diceCountSelectedHolderView release];
     [_userDiceList release];
     [_diceSelectedView release];
@@ -59,6 +60,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] 
+     setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    
     // Do any additional setup after loading the view from its nib.
     self.myLevelLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
     self.myCoinsLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
@@ -85,7 +89,7 @@
     [self.view addSubview:myLevelLabel];
     [self.view addSubview:myCoinsLabel];
     
-    _diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
     [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
