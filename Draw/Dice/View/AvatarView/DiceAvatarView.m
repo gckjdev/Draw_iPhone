@@ -153,9 +153,6 @@
     [_timer invalidate];
     _timer = nil;
     [self setProgressHidden:YES];
-    if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
-        [_delegate reciprocalEnd:self];
-    }
 }
 
 //
@@ -214,6 +211,9 @@
     _currentProgress -= PROGRESS_UPDATE_TIME;
     if (_currentProgress <= 0) {
         [self stopReciprocol];
+        if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
+            [_delegate reciprocalEnd:self];
+        }
         return;
     }
     [self setProgress:_currentProgress];
