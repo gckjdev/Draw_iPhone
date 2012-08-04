@@ -88,6 +88,11 @@
     
     _roomNameLabel.text = @"1号房间";
     
+    myCoinsLabel.textColor = [UIColor whiteColor];
+    myLevelLabel.textColor = [UIColor whiteColor];
+    
+    [_openDiceButton setBackgroundImage:[[DiceImageManager defaultManager] openDiceButtonBgImage] forState:UIControlStateNormal];
+    
     _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
     self.playingUserList = [[[DiceGameService defaultService] session] playingUserList];
@@ -246,6 +251,7 @@
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
+        nameLabel.textColor = [UIColor whiteColor];
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
         [bell setHidden:NO];
         UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
@@ -467,8 +473,12 @@
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
 {
     [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
+//    [[DicePopupViewManager defaultManager] popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view animated:YES];
+    
     [_diceService callDice:dice.dice count:count];
+
     [[self selfAvatarView] stopReciprocol];
+
 }
 
 #pragma mark - DiceAvatarViewDelegate
