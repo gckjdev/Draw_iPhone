@@ -12,6 +12,9 @@
 #import "PPDebug.h"
 
 #define SCALE 1.3
+#define SCALE_SMALE_HEIGHT ([DeviceDetection isIPAD] ? 34 * 2 : 34)
+#define SCALE_SMALE_WIDTH ([DeviceDetection isIPAD] ? 32 * 2 : 32)
+
 #define SCALE_SMALL_FRAME_IPHONE CGRectMake(0,0,32,34)
 #define SCALE_SMALL_FRAME_IPAD CGRectMake(0,0,32*2,34*2)
 #define SCALE_SMALL_FRAME ([DeviceDetection isIPAD] ? (SCALE_SMALL_FRAME_IPAD) : (SCALE_SMALL_FRAME_IPHONE))
@@ -30,6 +33,22 @@
 
 @implementation ColorView
 @synthesize drawColor = _drawColor;
+
++ (CGFloat)heightForScale:(ColorViewScale)scale
+{
+    if (scale == ColorViewScaleLarge) {
+        return SCALE_SMALE_HEIGHT * SCALE;
+    }
+    return SCALE_SMALE_HEIGHT;
+}
+
++ (CGFloat)widthForScale:(ColorViewScale)scale
+{
+    if (scale == ColorViewScaleLarge) {
+        return SCALE_SMALE_WIDTH * SCALE;
+    }
+    return SCALE_SMALE_WIDTH;
+}
 
 
 - (void)initMaskImage

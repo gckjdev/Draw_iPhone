@@ -155,5 +155,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"dice_bottom.png"];
 }
 
+- (UIImage *)wildsBgImage
+{
+    return [UIImage imageNamed:@"zhai_bg.png"];
+}
 
 @end

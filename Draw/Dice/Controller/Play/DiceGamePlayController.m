@@ -47,24 +47,26 @@
 @synthesize playingUserList;
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
-@synthesize openDiceButton;
 @synthesize myDiceListHolderView;
-@synthesize fontButton;
+@synthesize statusButton = _statusButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize userDiceList = _userDiceList;
 @synthesize diceShowView = _diceShowView;
+@synthesize roomNameLabel = _roomNameLabel;
+@synthesize openDiceButton = _openDiceButton;
 
 - (void)dealloc {
     [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
-    [openDiceButton release];
-    [fontButton release];
+    [_statusButton release];
     [diceCountSelectedHolderView release];
     [_userDiceList release];
     [_diceSelectedView release];
     [_diceShowView release];
     [myDiceListHolderView release];
+    [_roomNameLabel release];
+    [_openDiceButton release];
     [super dealloc];
 }
 
@@ -84,31 +86,7 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    // Do any additional setup after loading the view from its nib.
-    self.myLevelLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
-    self.myCoinsLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20) fontName:@"diceFont" pointSize:13] autorelease];
-    
-    
-    self.fontButton = [[FontButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50) fontName:@"diceFont" pointSize:13];
-    self.fontButton.fontLable.text = @"开";
-    [self.fontButton addTarget:self action:@selector(clickFontButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.fontButton];
-//    self.myLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 366, 50, 20)] autorelease];
-//    self.myCoinsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(84, 386, 50, 20)] autorelease];
-//    
-//    myLevelLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
-//    myCoinsLabel.font = [UIFont fontWithName:@"Papyrus" size:13];
-
-    myLevelLabel.backgroundColor = [UIColor clearColor];
-    myCoinsLabel.backgroundColor = [UIColor clearColor];
-    
-    
-    
-    myLevelLabel.text = @"LV:21";
-    myCoinsLabel.text = @"开骰";
-    
-    [self.view addSubview:myLevelLabel];
-    [self.view addSubview:myCoinsLabel];
+    _roomNameLabel.text = @"1号房间";
     
     _diceSelectedView = [[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view];
     _diceSelectedView.delegate = self;
@@ -121,14 +99,8 @@
 //    
 //    [myDiceListHolderView addSubview:_diceShowView];
 //    
-    
-
 }
 
-- (void)clickFontButton
-{
-    PPDebug(@"clickFontButton");
-}
 
 - (void)viewDidUnload
 {
@@ -138,9 +110,9 @@
     [self setDiceCountSelectedHolderView:nil];
     _diceSelectedView = nil;
     [self setMyDiceListHolderView:nil];
+    [self setStatusButton:nil];
+    [self setRoomNameLabel:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma mark- Buttons action

@@ -9,6 +9,7 @@
 #import "PickPenView.h"
 #import "PenView.h"
 #import "AccountService.h"
+#import "ShoppingManager.h"
 
 @implementation PickPenView
 
@@ -17,7 +18,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         _penArray = [[NSMutableArray alloc] init];
-//        self.userInteractionEnabled = YES;
+        NSInteger price = [[ShoppingManager defaultManager] getPenPrice];
+        for (int i = PenStartType; i < PenCount; ++ i) {
+            PenView *pen = [PenView penViewWithType:i];
+            pen.price = price;
+            [_penArray addObject:pen];
+        }
+        [self updatePenViews];
     }
     return self;
 }
@@ -28,21 +35,12 @@
     [super dealloc];
 }
 
-- (void)removeAllPens
-{
-    for (PenView *penView in _penArray) {
-        [penView removeFromSuperview];
-    }
-    [_penArray removeAllObjects];
-}
-
 
 - (void)clickPenView:(PenView *)penView
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didPickedPickView:penView:)]) {
         [_delegate didPickedPickView:self penView:penView];
     }
-    [self setHidden:YES animated:YES];
 }
 
 - (void)sortPens
@@ -68,11 +66,18 @@
         return;
     }
     [self sortPens];
+    if ([_penArray count] == 1) {
+        PenView *pen = [_penArray objectAtIndex:0];
+        pen.center = self.center;
+        [self addSubview:pen];
+        return;
+    }
+    
     CGFloat height = self.frame.size.height;
     CGFloat width = self.frame.size.width;
-    CGFloat xSpace = (width - [PenView width] * count)/ (count + 1);
-    CGFloat ySpace = (height - [PenView height]) / 4 ;
-    CGFloat x = xSpace;
+    CGFloat xSpace = (width - [PenView width] * count)/ (count - 1);
+    CGFloat ySpace = (height - [PenView height]) / 2 ;
+    CGFloat x = 0;
     CGFloat y = ySpace;
     for (int i = 0; i < count; ++ i) {
         PenView *pen = [_penArray objectAtIndex:i];
@@ -81,17 +86,6 @@
         [self addSubview:pen];
         x += xSpace + [PenView width];
     }
-}
-
-
-
-- (void)setPens:(NSArray *)pens
-{
-    [self removeAllPens];
-    for (PenView *penView in pens) {
-        [_penArray  addObject:penView];
-    }
-    [self updatePenViews];
 }
 
 @end

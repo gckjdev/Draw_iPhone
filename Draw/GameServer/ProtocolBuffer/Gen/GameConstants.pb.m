@@ -122,6 +122,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorNoSessionAvailable:
     case GameResultCodeErrorSessionidFull:
     case GameResultCodeErrorNoDrawData:
+    case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
       return YES;

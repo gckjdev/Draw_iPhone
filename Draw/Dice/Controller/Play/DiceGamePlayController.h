@@ -22,14 +22,12 @@
     DiceGameService*  _diceService;
 }
 
-@property (retain, nonatomic) FontLabel *myLevelLabel;
-@property (retain, nonatomic) FontLabel *myCoinsLabel;
-//@property (retain, nonatomic) UILabel *myLevelLabel;
-//@property (retain, nonatomic) UILabel *myCoinsLabel;
-@property (retain, nonatomic) IBOutlet UIButton *openDiceButton;
+@property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
+@property (retain, nonatomic) IBOutlet FontLabel *myCoinsLabel;
 @property (retain, nonatomic) IBOutlet UIView *myDiceListHolderView;
-
-@property (retain, nonatomic) FontButton *fontButton;
+@property (retain, nonatomic) IBOutlet FontButton *statusButton;
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
+@property (retain, nonatomic) IBOutlet FontLabel *roomNameLabel;
+@property (retain, nonatomic) IBOutlet FontButton *openDiceButton;
 
 @end
