@@ -43,6 +43,7 @@
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize openDiceButton;
+@synthesize myDiceListHolderView;
 @synthesize fontButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize userDiceList = _userDiceList;
@@ -57,6 +58,7 @@
     [_userDiceList release];
     [_diceSelectedView release];
     [_diceShowView release];
+    [myDiceListHolderView release];
     [super dealloc];
 }
 
@@ -95,6 +97,11 @@
     [_diceSelectedView setStart:[playingUserList count] end:30  lastCallDice:6];
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
     
+//    
+//    self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[self genDiceListStartWith:1 end:5] userInterAction:NO] autorelease];
+//    
+//    [myDiceListHolderView addSubview:_diceShowView];
+//    
     
 
 }
@@ -111,6 +118,7 @@
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
     _diceSelectedView = nil;
+    [self setMyDiceListHolderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -344,13 +352,31 @@
          [_diceSelectedView setStart:[playingUserList count] end:[playingUserList count]*6  lastCallDice:6];
          [self updateAllPlayersAvatar];
          
-         // Update user dices
+         // Update my dices
+    
+//         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
          
-         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
+         self.diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[self genDiceListStartWith:1 end:5] userInterAction:NO] autorelease];
 
-         
+         [myDiceListHolderView addSubview:_diceShowView];
      }];
     
+}
+
+- (NSArray *)genDiceListStartWith:(int)start end:(int)end
+{
+    NSMutableArray *dices = [NSMutableArray array];
+    
+    for (int i = start; i <= end; i ++) {
+        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+        [diceBuilder setDice:i];
+        [diceBuilder setDiceId:i];
+        PBDice *dice = [diceBuilder build];
+        
+        [dices addObject:dice];
+    }
+    
+    return dices;
 }
 
 - (void)unregisterDiceGameNotification
