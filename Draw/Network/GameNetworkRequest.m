@@ -1232,7 +1232,7 @@
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
-    NSString *method = METHOD_CREATE_OPUS_IMAGE;
+    NSString *method = METHOD_CREATE_OPUS;
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
