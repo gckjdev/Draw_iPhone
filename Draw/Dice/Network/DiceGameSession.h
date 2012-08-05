@@ -15,5 +15,6 @@
 @property (assign, nonatomic) int lastCallDice;
 @property (assign, nonatomic) int lastCallDiceCount;
 @property (retain, nonatomic) NSString* openDiceUserId;
+@property (assign, nonatomic) int openType;
 
 @end

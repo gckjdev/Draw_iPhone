@@ -738,7 +738,11 @@
 
 @interface OpenDiceRequest : PBGeneratedMessage {
 @private
+  BOOL hasOpenType_:1;
+  int32_t openType;
 }
+- (BOOL) hasOpenType;
+@property (readonly) int32_t openType;
 
 + (OpenDiceRequest*) defaultInstance;
 - (OpenDiceRequest*) defaultInstance;
@@ -773,6 +777,11 @@
 - (OpenDiceRequest_Builder*) mergeFrom:(OpenDiceRequest*) other;
 - (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOpenType;
+- (int32_t) openType;
+- (OpenDiceRequest_Builder*) setOpenType:(int32_t) value;
+- (OpenDiceRequest_Builder*) clearOpenType;
 @end
 
 @interface OpenDiceResponse : PBGeneratedMessage {

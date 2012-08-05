@@ -19,6 +19,10 @@
 #define CALL_DICE_VIEW_WIDTH 63
 #define CALL_DICE_VIEW_HEIGHT 35
 
+#define COUNT_LABEL_WIDTH_1 16
+#define COUNT_LABEL_WIDTH_2 30
+#define SYMBOL_LABEL_WIDTH 12
+
 #define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
 
@@ -47,20 +51,24 @@
 
 - (id)initWithDice:(int)dice count:(int)count
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 63, 32)];
+    int countLableWidth = (count > 9) ? COUNT_LABEL_WIDTH_2 : COUNT_LABEL_WIDTH_1;
+    self = [super initWithFrame:CGRectMake(0, 0, DICE_VIEW_WIDTH + countLableWidth + SYMBOL_LABEL_WIDTH, 32)];
     if (self) {
         // Initialization code
-        self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(36, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
+
+        self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(countLableWidth + SYMBOL_LABEL_WIDTH, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
                                                      dice:dice] autorelease];
         _diceView.userInteractionEnabled = NO;
         
-        self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, 35, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:27] autorelease];
+        self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:27] autorelease];
         _countLabel.backgroundColor = [UIColor clearColor];
         _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
+        _countLabel.textAlignment = UITextAlignmentCenter;
         
-        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(35, 0, 25, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20] autorelease];
+        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20] autorelease];
         symbolLabel.backgroundColor = [UIColor clearColor];
         symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
+        symbolLabel.textAlignment = UITextAlignmentCenter;
         
         [self addSubview:_countLabel];
         [self addSubview:symbolLabel];

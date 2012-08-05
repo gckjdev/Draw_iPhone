@@ -16,18 +16,39 @@
                        dice:(int)dice
                       count:(int)count
 {
+    CallDiceRequest_Builder *callDiceRequestBuilder = [[[CallDiceRequest_Builder alloc] init] autorelease];
+    [callDiceRequestBuilder setDice:dice];
+    [callDiceRequestBuilder setNum:count];
+    CallDiceRequest *callDiceRequest = [callDiceRequestBuilder build];
+    
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeCallDiceRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
     
-    CallDiceRequest_Builder *callDiceRequestBuilder = [[[CallDiceRequest_Builder alloc] init] autorelease];
-    [callDiceRequestBuilder setDice:dice];
-    [callDiceRequestBuilder setNum:count];
-    CallDiceRequest *callDiceRequest = [callDiceRequestBuilder build];
-    
     [messageBuilder setCallDiceRequest:callDiceRequest];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    
+    [self sendData:[gameMessage data]];  
+}
+
+- (void)sendOpenDiceRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                   openType:(int)openType
+{
+    OpenDiceRequest_Builder *openDiceRequestBuilder = [[[OpenDiceRequest_Builder alloc] init] autorelease];
+    [openDiceRequestBuilder setOpenType:openType];
+    OpenDiceRequest *openDiceRequest = [openDiceRequestBuilder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeOpenDiceRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    [messageBuilder setOpenDiceRequest:openDiceRequest];
     
     GameMessage* gameMessage = [messageBuilder build];
     

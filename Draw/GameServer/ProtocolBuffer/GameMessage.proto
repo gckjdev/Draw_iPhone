@@ -65,6 +65,7 @@ message CallDiceResponse {
 }
 
 message OpenDiceRequest {
+  optional int32 openType = 1[default=0];           // 开0，抢开1
 }
 
 message OpenDiceResponse {
@@ -98,6 +99,7 @@ message JoinGameRequest {
   optional int32 userLevel = 16;
 
   optional PBGameUser user = 100;          // 统一协议接口
+  
 }
 
 message JoinGameResponse {
@@ -297,7 +299,6 @@ message GameMessage {
   
   optional GameOverNotificationRequest gameOverNotificationRequest = 115;
   optional GameOverNotificationResponse gameOverNotificationResponse = 116;
-  
 }
 
 message DataQueryResponse {

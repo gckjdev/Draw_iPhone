@@ -9,16 +9,17 @@
 #import "DicePopupViewManager.h"
 #import "CMPopTipView.h"
 #import "CallDiceView.h"
-#import "OpenDiceView.h"
+#import "MessageView.h"
+#import "LocaleUtils.h"
+
+#define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
+#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor yellowColor]
 
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) ToolSheetView *toolSheetView;
-@property (retain, nonatomic) OpenDiceView *openDiceView;
-
-//- (CMPopTipView *)popTipViewWithCustomView:(UIView *)view
-//                          backagroundColor:(UIColor *)color;
+@property (retain, nonatomic) MessageView *openDiceView;
 
 @end
 
@@ -58,55 +59,89 @@ static DicePopupViewManager *_instance = nil;
 
 - (void)popupCallDiceViewWithDice:(int)dice
                             count:(int)count
-                           atView:(UIView *)view
+                           atView:(UIView *)atView
                            inView:(UIView *)inView
-                         animated:(BOOL)animated
 {
-    [_callDiceView dismissAnimated:animated];
+    [_callDiceView dismissAnimated:YES];
     if (_callDiceView == nil) {
         self.callDiceView = [[CallDiceView alloc] initWithDice:dice count:count];
     }else {
         [_callDiceView setDice:dice count:count];
     }
     
-    [_callDiceView popupAtView:view inView:inView animated:animated];
+    [_callDiceView popupAtView:atView inView:inView animated:YES];
 }
 
-- (void)dismissCallDiceViewAnimated:(BOOL)animated
+- (void)dismissCallDiceView
 {
-    [_callDiceView dismissAnimated:animated];
+    [_callDiceView dismissAnimated:YES];
 }
 
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
                                    delegate:(id<ToolSheetViewDelegate>)delegate 
-                                     atView:(UIView *)view 
+                                     atView:(UIView *)atView 
                                      inView:(UIView *)inView  
-                                   animated:(BOOL)animated
 {
     [_toolSheetView updateWithImageNameList:imageNameList 
                             countNumberList:countNumberList
                                    delegate:delegate];
-    [_toolSheetView popupAtView:view inView:inView animated:animated];
+    [_toolSheetView popupAtView:atView inView:inView animated:YES];
 }
 
-- (void)dismissToolSheetViewAnimated:(BOOL)animated
+- (void)dismissToolSheetView
 {
-    [_toolSheetView dismissAnimated:animated];
+    [_toolSheetView dismissAnimated:YES];
+}
+
+- (void)popupMessage:(NSString *)message
+              atView:(UIView *)atView
+              inView:(UIView *)inView
+{
+    MessageView *messageView = [[MessageView alloc] initWithFrame:CGRectZero 
+                                                           message:message
+                                                          fontName:@"diceFont"
+                                                         pointSize:13];
+    [messageView popupAtView:atView
+                      inView:inView
+                    duration:3.0
+             backgroundColor:MESSAGE_BACKGROUND_COLOR
+                    animated:YES];
 }
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
-                             animated:(BOOL)animated
 {
-    self.openDiceView = [[[OpenDiceView alloc] initWithOpenType:openType] autorelease];
-    [_openDiceView popupAtView:atView inView:inView animated:animated];
+    NSString *message;
+    switch (openType) {
+        case 0:
+            message = NSLS(@"kOpenDice");
+            break;
+            
+        case 1:
+            message = NSLS(@"kScrambleToOpenDice");
+            break;
+            
+        default:
+            break;
+    }
+    self.openDiceView = [[MessageView alloc] initWithFrame:CGRectZero 
+                                                   message:message
+                                                  fontName:@"diceFont"
+                                                 pointSize:13];
+    
+    [_openDiceView popupAtView:atView
+                        inView:inView
+                      duration:0
+               backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
+                      animated:YES];
+
 }
 
-- (void)dismissOpenDiceViewAnimated:(BOOL)animated
+- (void)dismissOpenDiceView
 {
-    [_openDiceView dismissAnimated:animated];
+    [_openDiceView dismissAnimated:YES];
 }
 
 @end

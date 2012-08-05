@@ -100,7 +100,7 @@ static DiceGameService* _defaultService;
 - (void)handleOpenDiceRequest:(GameMessage*)message
 {
     self.diceSession.openDiceUserId = message.userId;
-    
+    self.diceSession.openType = message.openDiceRequest.openType;
     [[NSNotificationCenter defaultCenter] 
      postNotificationName:NOTIFICATION_OPEN_DICE_REQUEST
      object:self 
@@ -115,6 +115,11 @@ static DiceGameService* _defaultService;
          object:self 
          userInfo:[CommonGameNetworkService messageToUserInfo:message]]; 
     }    
+}
+
+- (void)handleGameOverNotificationRequest:(GameMessage *)message
+{
+    
 }
 
 - (void)handleCustomMessage:(GameMessage*)message
@@ -137,11 +142,18 @@ static DiceGameService* _defaultService;
             [self handleCallDiceRequest:message];
             break;
         case GameCommandTypeOpenDiceRequest: 
-            [self handleOpenDiceRequest];
+            [self handleOpenDiceRequest:message];
             break;
         case GameCommandTypeOpenDiceResponse: 
-            [self handleOpenDiceResponse];
+            [self handleOpenDiceResponse:message];
             break;
+            
+        case GameCommandTypeGameOverNotificationRequest:
+            [self handleGameOverNotificationRequest:message];
+            break;
+
+            
+            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -172,11 +184,11 @@ static DiceGameService* _defaultService;
 }
 
 - (void)autoCallDice
-{
+{    
     [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                         dice:[self lastCallDice]
-                                                       count:([self lastCallDiceCount] + 1)]; 
+                                                       count:[self lastCallDiceCount]]; 
 }
 
 
@@ -195,11 +207,11 @@ static DiceGameService* _defaultService;
     return [[self diceSession] lastCallDiceCount];
 }
 
-- (void)openDice
+- (void)openDiceWithOpenType:(int)openType
 {
-    [_networkClient sendSimpleMessage:GameCommandTypeOpenDiceRequest
-                               userId:self.diceSession.userId
-                            sessionId:self.diceSession.sessionId];
+    [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
+                                                   sessionId:self.session.sessionId
+                                                    openType:openType]; 
 }
 
 @end
