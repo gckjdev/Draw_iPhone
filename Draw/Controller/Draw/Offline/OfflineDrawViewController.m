@@ -659,7 +659,13 @@ enum{
     }else {
         [self showActivityWithText:NSLS(@"kSending")];
         self.submitButton.userInteractionEnabled = NO;
-        [[DrawDataService defaultService] createOfflineDraw:drawActionList drawWord:self.word language:languageType targetUid:self.targetUid delegate:self];
+        UIImage *image = [drawView createImage];
+        [[DrawDataService defaultService] createOfflineDraw:drawActionList 
+                                                      image:image 
+                                                   drawWord:self.word 
+                                                   language:languageType 
+                                                  targetUid:self.targetUid 
+                                                   delegate:self];
     }
 }
 - (void)clickBackButton:(id)sender

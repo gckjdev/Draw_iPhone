@@ -1227,16 +1227,19 @@
                              level:(NSInteger)level
                               lang:(NSInteger)lang
                               data:(NSData*)data 
-                              targetUid:(NSString *)targetUid
+                         imageData:(NSData *)imageData
+                         targetUid:(NSString *)targetUid
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    NSString *method = METHOD_CREATE_OPUS_IMAGE;
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
                 
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_CREATE_OPUS];
+        str = [str stringByAddQueryParameter:METHOD value:method];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
@@ -1259,14 +1262,30 @@
         output.jsonDataDict = [dict objectForKey:RET_DATA];                        
         return;
     }; 
-    
-    return [PPNetworkRequest sendPostRequest:baseURL
-                                        data:data
-                         constructURLHandler:constructURLHandler
-                             responseHandler:responseHandler
-                                outputFormat:FORMAT_JSON
-                                      output:output];
 
+    
+    if ([method isEqualToString:METHOD_CREATE_OPUS]) {
+        return [PPNetworkRequest sendPostRequest:baseURL
+                                            data:data
+                             constructURLHandler:constructURLHandler
+                                 responseHandler:responseHandler
+                                    outputFormat:FORMAT_JSON
+                                          output:output];        
+    }else{
+        NSMutableDictionary *dataDict = nil;
+        if (data) {
+            dataDict = [NSMutableDictionary dictionary];
+            [dataDict setObject:data forKey:PARA_DRAW_DATA];
+        }
+        
+        return [PPNetworkRequest uploadRequest:baseURL 
+                                     imageData:imageData 
+                                  postDataDict:dataDict 
+                           constructURLHandler:constructURLHandler 
+                               responseHandler:responseHandler 
+                                        output:output];
+        
+    }
 }
 
 

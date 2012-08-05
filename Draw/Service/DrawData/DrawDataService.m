@@ -21,6 +21,7 @@
 #import "Feed.h"
 #import "MyPaintManager.h"
 #import "ConfigManager.h"
+#import "UIImageExt.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -152,6 +153,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 - (void)createOfflineDraw:(NSArray*)drawActionList
+                    image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
                 targetUid:(NSString *)targetUid
@@ -170,6 +172,10 @@ static DrawDataService* _defaultDrawDataService = nil;
                             drawWord:drawWord 
                             language:language];
     
+    NSData *imageData = nil;
+    if (image) {
+        imageData = [image data];
+    }
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createOpus:TRAFFIC_SERVER_URL
@@ -180,8 +186,9 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                               gender:gender 
                                                                 word:drawWord.text 
                                                                level:drawWord.level 
-                                                                lang:language 
+                                                                lang:language                                      
                                                                 data:[draw data] 
+                                                           imageData:imageData 
                                                            targetUid:targetUid];
 
         dispatch_async(dispatch_get_main_queue(), ^{
