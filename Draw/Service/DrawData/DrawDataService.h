@@ -37,6 +37,7 @@
 - (void)findRecentDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)createOfflineDraw:(NSArray*)drawActionList
+                    image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
                   targetUid:(NSString *)targetUid

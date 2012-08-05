@@ -111,6 +111,7 @@
 
 //for Draw offline
 #define METHOD_CREATE_OPUS @"cop"
+#define METHOD_CREATE_OPUS_IMAGE @"coi"
 #define METHOD_MATCH_OPUS  @"mop"
 #define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
@@ -213,7 +214,7 @@
 #define PARA_LANGUAGE @"lang"
 #define PARA_APPID @"app"
 #define PARA_GAME_ID @"gid"
-
+#define PARA_DRAW_DATA @"dd"
 #define PARA_FEED_ID @"fid"
 
 #define PARA_COMMENT_CONTENT @"comc"
