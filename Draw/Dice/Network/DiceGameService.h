@@ -26,6 +26,6 @@
 - (int)lastCallDice;
 - (int)lastCallDiceCount;
 
-- (void)openDice;
+- (void)openDiceWithOpenType:(int)openType;
 
 @end

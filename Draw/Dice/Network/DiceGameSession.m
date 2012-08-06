@@ -17,11 +17,13 @@
 @synthesize lastCallDiceCount = _lastCallDiceCount;
 @synthesize openDiceUserId = _openDiceUserId;
 @synthesize openType = _openType;
+@synthesize gameResult = _gameResult;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
     PPRelease(_lastCallDiceUserId);
     PPRelease(_openDiceUserId);
+    PPRelease(_gameResult);
     [super dealloc];
 }
 

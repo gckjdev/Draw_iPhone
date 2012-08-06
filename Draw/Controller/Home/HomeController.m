@@ -57,6 +57,7 @@
 #import "DiceGamePlayController.h"
 
 #import "DiceGameService.h"
+#import "DiceNotification.h"
 
 @interface HomeController()
 
@@ -257,12 +258,12 @@
 - (void)unregisterDiceGameNotification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICATION_JOIN_GAME_RESPONSE 
-                                                  object:nil];
+                                                    name:NOTIFICATION_NEXT_PLAYER_START 
+                                                  object:[DiceGameService defaultService]];
 
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICATION_ROOM
-                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self 
+//                                                    name:NOTIFICATION_ROOM
+//                                                  object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -843,12 +844,17 @@
 //    DiceRoomListController *controller = [[[DiceRoomListController alloc] init] autorelease];
 //      DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
 //    [self.navigationController pushViewController:controller animated:YES];
-//    
+////    
     _isTryJoinGame = YES;
     
-    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
+
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
+//    [[DiceGameService defaultService] setServerPort:8018];
+    
+//    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
     [[DiceGameService defaultService] setServerPort:8080];
+
     [[DiceGameService defaultService] connectServer:self];
     _isJoiningDice = YES;
 }
