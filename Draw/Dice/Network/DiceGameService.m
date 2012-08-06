@@ -72,7 +72,7 @@ static DiceGameService* _defaultService;
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
     
-    [self diceSession].userDiceList = diceDic;
+    self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
@@ -105,7 +105,15 @@ static DiceGameService* _defaultService;
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
 {
+    NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
+    for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
+    {
+        [resultDic setObject:result forKey:result.userId];
+    }
+    self.diceSession.userResultList = resultDic;
     
+    
+
 }
 
 - (void)handleCustomMessage:(GameMessage*)message

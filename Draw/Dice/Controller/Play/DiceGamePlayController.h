@@ -14,6 +14,8 @@
 #import "DiceSelectedView.h"
 #import "DiceAvatarView.h"
 #import "UserManager.h"
+#import "DicePopupViewManager.h"
+#import "DiceImageManager.h"
 
 @class DiceGameService;
 
@@ -21,6 +23,8 @@
 @interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
+    DicePopupViewManager *_popupViewManager;
+    DiceImageManager *_imageManager;
 }
 
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
@@ -30,8 +34,8 @@
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
 @property (retain, nonatomic) IBOutlet FontLabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet FontButton *openDiceButton;
-@property (retain, nonatomic) IBOutlet FontButton *userWildsButton;
-@property (retain, nonatomic) IBOutlet FontButton *plusOneButton;
+@property (retain, nonatomic) IBOutlet UIButton *userWildsButton;
+@property (retain, nonatomic) IBOutlet UIButton *plusOneButton;
 @property (retain, nonatomic) IBOutlet UIButton *itemsBoxButton;
 
 @end
