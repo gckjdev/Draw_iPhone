@@ -547,6 +547,10 @@
 - (void)rollDiceBegin
 {
     [self clearGameResult];
+    
+    // Clear session data.
+    [_diceService resetSessionData];
+
 
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
 
@@ -574,9 +578,6 @@
 
     // Show view.
     [self showGameResult];
-
-    // Clear session data.
-    [_diceService resetSessionData];
 }
 
 - (void)nextPlayerStart
@@ -646,6 +647,11 @@
         
         [userAvatarView stopReciprocol];
     }
+}
+
+- (void)updateViews
+{
+    
 }
     
 @end
