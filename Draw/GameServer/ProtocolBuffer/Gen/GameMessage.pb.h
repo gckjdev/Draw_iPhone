@@ -62,6 +62,8 @@
 @class PBDrawAction_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
+@class PBFeedTimes;
+@class PBFeedTimes_Builder;
 @class PBFeed_Builder;
 @class PBGameItem;
 @class PBGameItem_Builder;
