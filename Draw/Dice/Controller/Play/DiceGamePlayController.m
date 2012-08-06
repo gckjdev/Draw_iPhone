@@ -50,6 +50,8 @@
 @synthesize userWildsButton = _userWildsButton;
 @synthesize plusOneButton = _plusOneButton;
 @synthesize itemsBoxButton = _itemsBoxButton;
+@synthesize wildsLabel = _wildsLabel;
+@synthesize plusOneLabel = _plusOneLabel;
 @synthesize diceSelectedView = _diceSelectedView;
 
 - (void)dealloc {
@@ -65,6 +67,8 @@
     [_userWildsButton release];
     [_plusOneButton release];
     [_itemsBoxButton release];
+    [_wildsLabel release];
+    [_plusOneLabel release];
     [super dealloc];
 }
 
@@ -85,6 +89,8 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
+    self.wildsLabel.textColor = [UIColor whiteColor];
+    self.plusOneLabel.textColor = [UIColor whiteColor];    
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
@@ -99,6 +105,8 @@
     self.diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
     _diceSelectedView.delegate = self;
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
+    
+    [self disableAllDiceOperationButton];
 }
 
 
@@ -114,6 +122,8 @@
     [self setUserWildsButton:nil];
     [self setPlusOneButton:nil];
     [self setItemsBoxButton:nil];
+    [self setWildsLabel:nil];
+    [self setPlusOneLabel:nil];
     [super viewDidUnload];
 }
 
@@ -537,10 +547,7 @@
 - (void)rollDiceBegin
 {
     [self clearGameResult];
-    [self dismissAllPopupView];
-    [_diceService resetSessionData];
 
-    self.myDiceListHolderView.hidden = YES;
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
 
     [self showBellOfPlayingUsers];
@@ -560,8 +567,16 @@
 
 - (void)gameOver;
 {
+    // Hidden views.
     [self hideAllBell];
+    [self dismissAllPopupView];
+    self.myDiceListHolderView.hidden = YES;
+
+    // Show view.
     [self showGameResult];
+
+    // Clear session data.
+    [_diceService resetSessionData];
 }
 
 - (void)nextPlayerStart
@@ -572,11 +587,14 @@
     
     [[self avatarOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
     
-    if ([_userManager isMe:currentPlayUserId] && _diceService.diceSession.lastCallDiceUserId == nil) {
-        [self enableAllDiceOperationButton];
-        self.openDiceButton.hidden = YES;
-    }else if ([_userManager isMe:currentPlayUserId] && _diceService.diceSession.lastCallDiceUserId != nil) {
-        [self enableAllDiceOperationButton];
+    if ([_userManager isMe:currentPlayUserId])
+    {
+        if (_diceService.diceSession.lastCallDiceUserId == nil) {
+            [self enableAllDiceOperationButton];
+            self.openDiceButton.enabled = NO;
+        }else {
+            [self enableAllDiceOperationButton];
+        }
     }else {
         [self disableAllDiceOperationButton];
     }
