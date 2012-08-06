@@ -129,15 +129,11 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    
     if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
         [_diceService openDiceWithOpenType:0];
     }else {
         [_diceService openDiceWithOpenType:1];
     }
-    
-    [[self selfAvatar] stopReciprocol];
-    
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -365,7 +361,6 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_REQUEST"); 
-         
          [self someoneOpenDice];
      }];
     
@@ -475,7 +470,7 @@
 
     [_diceService callDice:dice.dice count:count];
 
-    [_popupViewManager popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatar] inView:myDiceListHolderView];
+    [_popupViewManager popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatar] inView:self.view];
 }
 
 #pragma mark - DiceAvatarViewDelegate
@@ -516,7 +511,7 @@
     [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
                                            count:(_diceService.lastCallDiceCount + 1) 
                                           atView:[self selfAvatar] 
-                                          inView:myDiceListHolderView];
+                                          inView:self.view];
 }
 
 - (void)disableAllDiceOperationButton
@@ -547,10 +542,7 @@
 - (void)rollDiceBegin
 {
     [self clearGameResult];
-    
-    // Clear session data.
-    [_diceService resetSessionData];
-
+    [self dismissAllPopupView];
 
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
 
@@ -562,22 +554,11 @@
 {
     [[self selfBell] setHidden:YES];
     
-    self.myDiceListHolderView.hidden = NO;
     DiceShowView *diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
     [myDiceListHolderView addSubview:diceShowView];
+    self.myDiceListHolderView.hidden = NO;
 
     [self enableAllDiceOperationButton];
-}
-
-- (void)gameOver;
-{
-    // Hidden views.
-    [self hideAllBell];
-    [self dismissAllPopupView];
-    self.myDiceListHolderView.hidden = YES;
-
-    // Show view.
-    [self showGameResult];
 }
 
 - (void)nextPlayerStart
@@ -611,20 +592,21 @@
     
     // 如果最后叫骰的用户没有逃跑
     DiceAvatarView *userAvatar = [self avatarOfUser:[_diceService lastCallUserId]];
-    if (userAvatar != nil && ![_userManager isMe:[_diceService lastCallUserId]]) {
-        
+    if (userAvatar != nil && 
+        ![_userManager isMe:[_diceService lastCallUserId]]) {
         [_popupViewManager popupCallDiceViewWithDice:[_diceService lastCallDice] 
                                                count:[_diceService lastCallDiceCount] 
                                               atView:userAvatar                                              
                                               inView:self.view];
         
     }
-
 }
 
 
 - (void)openDiceSuccess
 {
+    [[self selfAvatar] stopReciprocol];
+
     [self disableAllDiceOperationButton];
     int openType = ![_userManager isMe:[[_diceService session] currentPlayUserId]];
     [_popupViewManager popupOpenDiceViewWithOpenType:openType 
@@ -637,10 +619,10 @@
 {
     [self disableAllDiceOperationButton];
 
-    NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
-    BOOL isMe = [_userManager isMe:currentPlayUserId];
+    NSString *openDiceUserId = _diceService.diceSession.openDiceUserId;
+    BOOL isMe = [_userManager isMe:openDiceUserId];
     if (!isMe) {
-        DiceAvatarView *userAvatarView = [self avatarOfUser:currentPlayUserId];
+        DiceAvatarView *userAvatarView = [self avatarOfUser:openDiceUserId];
         [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.diceSession.openType 
                                                   atView:userAvatarView 
                                                   inView:self.view];
@@ -649,9 +631,15 @@
     }
 }
 
-- (void)updateViews
+- (void)gameOver;
 {
+    // Hidden views.
+    [self hideAllBell];
     
+    self.myDiceListHolderView.hidden = YES;
+    
+    // Show view.
+    [self showGameResult];
 }
-    
+
 @end

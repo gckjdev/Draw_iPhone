@@ -30,8 +30,11 @@
 - (void)reset
 {
     self.userDiceList = nil;
-    self.lastCallDiceUserId = nil;
+    self.lastCallDiceUserId = nil;    
+    self.lastCallDice = 0;
+    self.lastCallDiceCount = 0;
     self.openDiceUserId = nil;
+    self.openType = 0;
     self.gameResult = nil;
 }
 

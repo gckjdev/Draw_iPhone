@@ -50,6 +50,8 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
+    [self.diceSession reset];
+
     NSMutableArray* newUserList = [NSMutableArray array];
     
     for (PBGameUser* user in [[self session] userList]){
@@ -67,17 +69,15 @@ static DiceGameService* _defaultService;
 - (void)handleRollDiceEnd:(GameMessage *)message
 {
     NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
-    
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
-    
     self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
-    self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
+    self.diceSession.lastCallDiceCount = [[self session] playingUserCount] - 1;
     
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }
@@ -219,11 +219,6 @@ static DiceGameService* _defaultService;
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
                                      name:@"" 
                                    gameId:[ConfigManager gameId]];
-}
-
-- (void)resetSessionData
-{
-    [self.diceSession reset];
 }
 
 
