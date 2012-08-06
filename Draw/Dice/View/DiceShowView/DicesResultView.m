@@ -12,7 +12,7 @@
 #import "DeviceDetection.h"
 
 
-#define TAG_BOTTOM 1
+#define TAG_BOTTOM      1
 #define TAG_START_DICE  10
 
 #define FRAME_SELF      (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 48, 48) : CGRectMake(0, 0, 96, 96))
@@ -34,6 +34,7 @@
     if (self) {
         self.frame = FRAME_SELF;
         UIImageView *bottomView = [[UIImageView alloc] initWithFrame:FRAME_BOTTOM];
+        bottomView.tag = TAG_BOTTOM;
         [self addSubview:bottomView];
         [bottomView release];
         
