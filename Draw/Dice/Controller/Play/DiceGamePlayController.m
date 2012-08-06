@@ -567,9 +567,13 @@
     [self clearAllReciprocol];
     
     NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
-    [_userManager isMe:currentPlayUserId] ? [_diceSelectedView enableUserInteraction] : [_diceSelectedView disableUserInteraction];
-    
     [[self avatarOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    
+    if ([_userManager isMe:currentPlayUserId]) {
+        [self enableAllDiceOperationButton];
+    }else {
+        [self disableAllDiceOperationButton];
+    }
 }
 
 - (void)someoneCallDice
