@@ -11,12 +11,17 @@
 #import "DiceImageManager.h"
 
 @implementation DicesResultView
-@synthesize userId = _userId;
+//@synthesize userId = _userId;
 
 - (void)dealloc
 {
-    [_userId release];
+//    [_userId release];
     [super dealloc];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [DicesResultView createDicesResultView];
 }
 
 + (DicesResultView *)createDicesResultView
@@ -33,17 +38,15 @@
 
 #define TAG_BOTTOM 1
 #define TAG_START_DICE  10
-- (void)setUserDices:(PBUserDice *)userDice
+- (void)setDices:(NSArray *)diceList
 {
-    self.userId = userDice.userId;
-    
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
     
     UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
     [bottomImageView setImage:[imageManage diceBottomImage]];
     
     int index = 0;
-    for (PBDice *dice in userDice.dicesList) {
+    for (PBDice *dice in diceList) {
         UIImage *image = nil;
         image = [imageManage openDiceImageWithDice:dice.dice];
         UIImageView *imageView = (UIImageView *)[self viewWithTag:TAG_START_DICE + index];
@@ -56,10 +59,8 @@
     }
 }
 
-- (void)clearUserDices
-{
-    self.userId = nil;
-    
+- (void)clearDices
+{    
     UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
     [bottomImageView setImage:nil];
     

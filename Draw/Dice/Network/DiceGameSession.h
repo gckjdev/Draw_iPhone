@@ -17,6 +17,6 @@
 @property (retain, nonatomic) NSString* openDiceUserId;
 @property (assign, nonatomic) int openType;
 
-@property (retain, nonatomic) NSDictionary *userResultList;
+@property (retain, nonatomic) NSDictionary *gameResult;
 
 @end
