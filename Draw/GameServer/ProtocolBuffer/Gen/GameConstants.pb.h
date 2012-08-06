@@ -94,6 +94,7 @@ typedef enum {
   GameResultCodeErrorUseridNull = 100,
   GameResultCodeErrorUserCannotStartGame = 101,
   GameResultCodeErrorUserNotInSession = 102,
+  GameResultCodeErrorUserNotCurrentPlayUser = 103,
   GameResultCodeErrorNoSessionId = 200,
   GameResultCodeErrorNextStateNotFound = 201,
   GameResultCodeErrorSessionidNull = 202,
