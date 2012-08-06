@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Dice/Controller/Play/DiceGamePlayController.m"
-         timestampString = "365954137.690161"
+         timestampString = "365957783.121105"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "373"
-         endingLineNumber = "373"
+         startingLineNumber = "371"
+         endingLineNumber = "371"
          landmarkName = "-registerDiceGameNotification"
          landmarkType = "5">
       </FileBreakpoint>
