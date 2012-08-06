@@ -585,6 +585,227 @@ static PBDraw* defaultPBDrawInstance = nil;
 }
 @end
 
+@interface PBFeedTimes ()
+@property int32_t type;
+@property int32_t value;
+@end
+
+@implementation PBFeedTimes
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasValue {
+  return !!hasValue_;
+}
+- (void) setHasValue:(BOOL) value {
+  hasValue_ = !!value;
+}
+@synthesize value;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.value = 0;
+  }
+  return self;
+}
+static PBFeedTimes* defaultPBFeedTimesInstance = nil;
++ (void) initialize {
+  if (self == [PBFeedTimes class]) {
+    defaultPBFeedTimesInstance = [[PBFeedTimes alloc] init];
+  }
+}
++ (PBFeedTimes*) defaultInstance {
+  return defaultPBFeedTimesInstance;
+}
+- (PBFeedTimes*) defaultInstance {
+  return defaultPBFeedTimesInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasValue) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasValue) {
+    [output writeInt32:2 value:self.value];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasValue) {
+    size += computeInt32Size(2, self.value);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBFeedTimes*) parseFromData:(NSData*) data {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromData:data] build];
+}
++ (PBFeedTimes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBFeedTimes*) parseFromInputStream:(NSInputStream*) input {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromInputStream:input] build];
+}
++ (PBFeedTimes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBFeedTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromCodedInputStream:input] build];
+}
++ (PBFeedTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFeedTimes*)[[[PBFeedTimes builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBFeedTimes_Builder*) builder {
+  return [[[PBFeedTimes_Builder alloc] init] autorelease];
+}
++ (PBFeedTimes_Builder*) builderWithPrototype:(PBFeedTimes*) prototype {
+  return [[PBFeedTimes builder] mergeFrom:prototype];
+}
+- (PBFeedTimes_Builder*) builder {
+  return [PBFeedTimes builder];
+}
+@end
+
+@interface PBFeedTimes_Builder()
+@property (retain) PBFeedTimes* result;
+@end
+
+@implementation PBFeedTimes_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBFeedTimes alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBFeedTimes_Builder*) clear {
+  self.result = [[[PBFeedTimes alloc] init] autorelease];
+  return self;
+}
+- (PBFeedTimes_Builder*) clone {
+  return [PBFeedTimes builderWithPrototype:result];
+}
+- (PBFeedTimes*) defaultInstance {
+  return [PBFeedTimes defaultInstance];
+}
+- (PBFeedTimes*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBFeedTimes*) buildPartial {
+  PBFeedTimes* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBFeedTimes_Builder*) mergeFrom:(PBFeedTimes*) other {
+  if (other == [PBFeedTimes defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasValue) {
+    [self setValue:other.value];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setValue:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBFeedTimes_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBFeedTimes_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasValue {
+  return result.hasValue;
+}
+- (int32_t) value {
+  return result.value;
+}
+- (PBFeedTimes_Builder*) setValue:(int32_t) value {
+  result.hasValue = YES;
+  result.value = value;
+  return self;
+}
+- (PBFeedTimes_Builder*) clearValue {
+  result.hasValue = NO;
+  result.value = 0;
+  return self;
+}
+@end
+
 @interface PBFeed ()
 @property (retain) NSString* feedId;
 @property (retain) NSString* userId;
@@ -606,6 +827,13 @@ static PBDraw* defaultPBDrawInstance = nil;
 @property int32_t correctTimes;
 @property int32_t guessTimes;
 @property int32_t commentTimes;
+@property (retain) NSMutableArray* mutableFeedTimesList;
+@property (retain) NSString* opusCreatorUserId;
+@property (retain) NSString* opusCreatorNickName;
+@property BOOL opusCreatorGender;
+@property (retain) NSString* opusCreatorAvatar;
+@property (retain) NSString* opusWord;
+@property (retain) NSString* opusImage;
 @end
 
 @implementation PBFeed
@@ -754,6 +982,54 @@ static PBDraw* defaultPBDrawInstance = nil;
   hasCommentTimes_ = !!value;
 }
 @synthesize commentTimes;
+@synthesize mutableFeedTimesList;
+- (BOOL) hasOpusCreatorUserId {
+  return !!hasOpusCreatorUserId_;
+}
+- (void) setHasOpusCreatorUserId:(BOOL) value {
+  hasOpusCreatorUserId_ = !!value;
+}
+@synthesize opusCreatorUserId;
+- (BOOL) hasOpusCreatorNickName {
+  return !!hasOpusCreatorNickName_;
+}
+- (void) setHasOpusCreatorNickName:(BOOL) value {
+  hasOpusCreatorNickName_ = !!value;
+}
+@synthesize opusCreatorNickName;
+- (BOOL) hasOpusCreatorGender {
+  return !!hasOpusCreatorGender_;
+}
+- (void) setHasOpusCreatorGender:(BOOL) value {
+  hasOpusCreatorGender_ = !!value;
+}
+- (BOOL) opusCreatorGender {
+  return !!opusCreatorGender_;
+}
+- (void) setOpusCreatorGender:(BOOL) value {
+  opusCreatorGender_ = !!value;
+}
+- (BOOL) hasOpusCreatorAvatar {
+  return !!hasOpusCreatorAvatar_;
+}
+- (void) setHasOpusCreatorAvatar:(BOOL) value {
+  hasOpusCreatorAvatar_ = !!value;
+}
+@synthesize opusCreatorAvatar;
+- (BOOL) hasOpusWord {
+  return !!hasOpusWord_;
+}
+- (void) setHasOpusWord:(BOOL) value {
+  hasOpusWord_ = !!value;
+}
+@synthesize opusWord;
+- (BOOL) hasOpusImage {
+  return !!hasOpusImage_;
+}
+- (void) setHasOpusImage:(BOOL) value {
+  hasOpusImage_ = !!value;
+}
+@synthesize opusImage;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -765,6 +1041,12 @@ static PBDraw* defaultPBDrawInstance = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
+  self.mutableFeedTimesList = nil;
+  self.opusCreatorUserId = nil;
+  self.opusCreatorNickName = nil;
+  self.opusCreatorAvatar = nil;
+  self.opusWord = nil;
+  self.opusImage = nil;
   [super dealloc];
 }
 - (id) init {
@@ -788,6 +1070,12 @@ static PBDraw* defaultPBDrawInstance = nil;
     self.correctTimes = 0;
     self.guessTimes = 0;
     self.commentTimes = 0;
+    self.opusCreatorUserId = @"";
+    self.opusCreatorNickName = @"";
+    self.opusCreatorGender = NO;
+    self.opusCreatorAvatar = @"";
+    self.opusWord = @"";
+    self.opusImage = @"";
   }
   return self;
 }
@@ -810,6 +1098,13 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableGuessWordsList objectAtIndex:index];
   return value;
 }
+- (NSArray*) feedTimesList {
+  return mutableFeedTimesList;
+}
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index {
+  id value = [mutableFeedTimesList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasFeedId) {
     return NO;
@@ -825,6 +1120,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDrawData) {
     if (!self.drawData.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBFeedTimes* element in self.feedTimesList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -890,6 +1190,27 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCommentTimes) {
     [output writeInt32:64 value:self.commentTimes];
+  }
+  for (PBFeedTimes* element in self.feedTimesList) {
+    [output writeMessage:65 value:element];
+  }
+  if (self.hasOpusCreatorUserId) {
+    [output writeString:71 value:self.opusCreatorUserId];
+  }
+  if (self.hasOpusCreatorNickName) {
+    [output writeString:72 value:self.opusCreatorNickName];
+  }
+  if (self.hasOpusCreatorGender) {
+    [output writeBool:73 value:self.opusCreatorGender];
+  }
+  if (self.hasOpusCreatorAvatar) {
+    [output writeString:74 value:self.opusCreatorAvatar];
+  }
+  if (self.hasOpusWord) {
+    [output writeString:81 value:self.opusWord];
+  }
+  if (self.hasOpusImage) {
+    [output writeString:82 value:self.opusImage];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -964,6 +1285,27 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCommentTimes) {
     size += computeInt32Size(64, self.commentTimes);
+  }
+  for (PBFeedTimes* element in self.feedTimesList) {
+    size += computeMessageSize(65, element);
+  }
+  if (self.hasOpusCreatorUserId) {
+    size += computeStringSize(71, self.opusCreatorUserId);
+  }
+  if (self.hasOpusCreatorNickName) {
+    size += computeStringSize(72, self.opusCreatorNickName);
+  }
+  if (self.hasOpusCreatorGender) {
+    size += computeBoolSize(73, self.opusCreatorGender);
+  }
+  if (self.hasOpusCreatorAvatar) {
+    size += computeStringSize(74, self.opusCreatorAvatar);
+  }
+  if (self.hasOpusWord) {
+    size += computeStringSize(81, self.opusWord);
+  }
+  if (self.hasOpusImage) {
+    size += computeStringSize(82, self.opusImage);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1103,6 +1445,30 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasCommentTimes) {
     [self setCommentTimes:other.commentTimes];
   }
+  if (other.mutableFeedTimesList.count > 0) {
+    if (result.mutableFeedTimesList == nil) {
+      result.mutableFeedTimesList = [NSMutableArray array];
+    }
+    [result.mutableFeedTimesList addObjectsFromArray:other.mutableFeedTimesList];
+  }
+  if (other.hasOpusCreatorUserId) {
+    [self setOpusCreatorUserId:other.opusCreatorUserId];
+  }
+  if (other.hasOpusCreatorNickName) {
+    [self setOpusCreatorNickName:other.opusCreatorNickName];
+  }
+  if (other.hasOpusCreatorGender) {
+    [self setOpusCreatorGender:other.opusCreatorGender];
+  }
+  if (other.hasOpusCreatorAvatar) {
+    [self setOpusCreatorAvatar:other.opusCreatorAvatar];
+  }
+  if (other.hasOpusWord) {
+    [self setOpusWord:other.opusWord];
+  }
+  if (other.hasOpusImage) {
+    [self setOpusImage:other.opusImage];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1207,6 +1573,36 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 512: {
         [self setCommentTimes:[input readInt32]];
+        break;
+      }
+      case 522: {
+        PBFeedTimes_Builder* subBuilder = [PBFeedTimes builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addFeedTimes:[subBuilder buildPartial]];
+        break;
+      }
+      case 570: {
+        [self setOpusCreatorUserId:[input readString]];
+        break;
+      }
+      case 578: {
+        [self setOpusCreatorNickName:[input readString]];
+        break;
+      }
+      case 584: {
+        [self setOpusCreatorGender:[input readBool]];
+        break;
+      }
+      case 594: {
+        [self setOpusCreatorAvatar:[input readString]];
+        break;
+      }
+      case 650: {
+        [self setOpusWord:[input readString]];
+        break;
+      }
+      case 658: {
+        [self setOpusImage:[input readString]];
         break;
       }
     }
@@ -1559,6 +1955,131 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCommentTimes {
   result.hasCommentTimes = NO;
   result.commentTimes = 0;
+  return self;
+}
+- (NSArray*) feedTimesList {
+  if (result.mutableFeedTimesList == nil) { return [NSArray array]; }
+  return result.mutableFeedTimesList;
+}
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index {
+  return [result feedTimesAtIndex:index];
+}
+- (PBFeed_Builder*) replaceFeedTimesAtIndex:(int32_t) index with:(PBFeedTimes*) value {
+  [result.mutableFeedTimesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllFeedTimes:(NSArray*) values {
+  if (result.mutableFeedTimesList == nil) {
+    result.mutableFeedTimesList = [NSMutableArray array];
+  }
+  [result.mutableFeedTimesList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearFeedTimesList {
+  result.mutableFeedTimesList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addFeedTimes:(PBFeedTimes*) value {
+  if (result.mutableFeedTimesList == nil) {
+    result.mutableFeedTimesList = [NSMutableArray array];
+  }
+  [result.mutableFeedTimesList addObject:value];
+  return self;
+}
+- (BOOL) hasOpusCreatorUserId {
+  return result.hasOpusCreatorUserId;
+}
+- (NSString*) opusCreatorUserId {
+  return result.opusCreatorUserId;
+}
+- (PBFeed_Builder*) setOpusCreatorUserId:(NSString*) value {
+  result.hasOpusCreatorUserId = YES;
+  result.opusCreatorUserId = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusCreatorUserId {
+  result.hasOpusCreatorUserId = NO;
+  result.opusCreatorUserId = @"";
+  return self;
+}
+- (BOOL) hasOpusCreatorNickName {
+  return result.hasOpusCreatorNickName;
+}
+- (NSString*) opusCreatorNickName {
+  return result.opusCreatorNickName;
+}
+- (PBFeed_Builder*) setOpusCreatorNickName:(NSString*) value {
+  result.hasOpusCreatorNickName = YES;
+  result.opusCreatorNickName = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusCreatorNickName {
+  result.hasOpusCreatorNickName = NO;
+  result.opusCreatorNickName = @"";
+  return self;
+}
+- (BOOL) hasOpusCreatorGender {
+  return result.hasOpusCreatorGender;
+}
+- (BOOL) opusCreatorGender {
+  return result.opusCreatorGender;
+}
+- (PBFeed_Builder*) setOpusCreatorGender:(BOOL) value {
+  result.hasOpusCreatorGender = YES;
+  result.opusCreatorGender = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusCreatorGender {
+  result.hasOpusCreatorGender = NO;
+  result.opusCreatorGender = NO;
+  return self;
+}
+- (BOOL) hasOpusCreatorAvatar {
+  return result.hasOpusCreatorAvatar;
+}
+- (NSString*) opusCreatorAvatar {
+  return result.opusCreatorAvatar;
+}
+- (PBFeed_Builder*) setOpusCreatorAvatar:(NSString*) value {
+  result.hasOpusCreatorAvatar = YES;
+  result.opusCreatorAvatar = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusCreatorAvatar {
+  result.hasOpusCreatorAvatar = NO;
+  result.opusCreatorAvatar = @"";
+  return self;
+}
+- (BOOL) hasOpusWord {
+  return result.hasOpusWord;
+}
+- (NSString*) opusWord {
+  return result.opusWord;
+}
+- (PBFeed_Builder*) setOpusWord:(NSString*) value {
+  result.hasOpusWord = YES;
+  result.opusWord = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusWord {
+  result.hasOpusWord = NO;
+  result.opusWord = @"";
+  return self;
+}
+- (BOOL) hasOpusImage {
+  return result.hasOpusImage;
+}
+- (NSString*) opusImage {
+  return result.opusImage;
+}
+- (PBFeed_Builder*) setOpusImage:(NSString*) value {
+  result.hasOpusImage = YES;
+  result.opusImage = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusImage {
+  result.hasOpusImage = NO;
+  result.opusImage = @"";
   return self;
 }
 @end

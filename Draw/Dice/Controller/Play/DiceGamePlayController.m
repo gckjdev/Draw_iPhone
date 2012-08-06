@@ -52,6 +52,9 @@
 @synthesize diceShowView = _diceShowView;
 @synthesize roomNameLabel = _roomNameLabel;
 @synthesize openDiceButton = _openDiceButton;
+@synthesize userWildsButton = _userWildsButton;
+@synthesize plusOneButton = _plusOneButton;
+@synthesize itemsBoxButton = _itemsBoxButton;
 @synthesize diceSelectedView = _diceSelectedView;
 
 - (void)dealloc {
@@ -66,6 +69,9 @@
     [myDiceListHolderView release];
     [_roomNameLabel release];
     [_openDiceButton release];
+    [_userWildsButton release];
+    [_plusOneButton release];
+    [_itemsBoxButton release];
     [super dealloc];
 }
 
@@ -110,12 +116,21 @@
     [self setMyDiceListHolderView:nil];
     [self setStatusButton:nil];
     [self setRoomNameLabel:nil];
+    [self setUserWildsButton:nil];
+    [self setPlusOneButton:nil];
+    [self setItemsBoxButton:nil];
     [super viewDidUnload];
 }
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    [_diceService openDice];
+    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
+        [_diceService openDiceWithOpenType:0];
+    }else {
+        [_diceService openDiceWithOpenType:1];
+    }
+    
+    [[self selfAvatarView] stopReciprocol];
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -391,12 +406,15 @@
          //disable all operation button
          [self disableAllOperationButton];
          //pop open dice view (only if other player open)
-         BOOL isMe = [_userManager isMe:[[_diceService session] currentPlayUserId]];
+         NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
+         BOOL isMe = [_userManager isMe:currentPlayUserId];
          if (!isMe) {
+             DiceAvatarView *userAvatarView = [self avatarOfUser:currentPlayUserId];
              [[DicePopupViewManager defaultManager] popupOpenDiceViewWithOpenType:_diceService.diceSession.openType 
-                                                                           atView:[self selfAvatarView] 
+                                                                           atView:userAvatarView 
                                                                            inView:self.view];
-
+             
+             [userAvatarView stopReciprocol];
          }
      }];
     
@@ -434,7 +452,6 @@
 }
 
 
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -448,7 +465,12 @@
     [self unregisterDiceGameNotification];
 }
 
-#pragma mark - Praviete methods
+#pragma mark - Private methods
+
+- (DiceAvatarView *)selfAvatarView
+{
+    return (DiceAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
+}
 
 - (DiceAvatarView*)avatarOfUser:(NSString*)userId
 {
@@ -461,56 +483,88 @@
     return nil;
 }
 
-- (void)disableAllOperationButton
-{
-    //TODO: ...
-}
-
-- (DiceAvatarView *)selfAvatarView
-{
-    return (DiceAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
-}
-
 - (UIView *)selfBellView
 {
     return [self.view viewWithTag:(BELL_TAG_OFFSET + 1)];
 }
 
+- (UIView *)bellViewOfUser:(NSString *)userId
+{
+    DiceAvatarView *userAvatarView = [self avatarOfUser:userId];
+    return [self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + BELL_TAG_OFFSET];
+}
+
+- (void)disableAllOperationButton
+{
+    //TODO: ...
+}
+
+
+
+
 #pragma mark - DiceSelectedViewDelegate
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
 {
+    [[self selfAvatarView] stopReciprocol];
+
     [_diceService callDice:dice.dice count:count];
 
-//    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:self.view animated:YES];
     [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatarView] inView:myDiceListHolderView];
-    
-    [[self selfAvatarView] stopReciprocol];
 }
 
 #pragma mark - DiceAvatarViewDelegate
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
-    UIView* bell = [self.view viewWithTag:(view.tag-AVATAR_TAG_OFFSET+BELL_TAG_OFFSET)];
-    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 
-                                                                  to:10 
-                                                         repeatCount:10
-                                                            duration:1] forKey:@"shake"];
+    // TODO: popup user info.
+
 }
 - (void)reciprocalEnd:(DiceAvatarView*)view
 {
-    if([[_userManager userId] isEqualToString:view.userId])
+    if([_userManager isMe:view.userId])
     {
-        // TODO: auto +1 action.
-        [_diceService autoCallDice];
-        
-        [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:[_diceService lastCallDice]
-                                                                   count:([_diceService lastCallDiceCount] + 1) 
-                                                                  atView:[self selfAvatarView] 
-                                                                  inView:myDiceListHolderView];
-
-        
+        [self plusOne];
     }
+}
+
+
+- (IBAction)clickUseWildsButton:(id)sender {
+    
+}
+
+- (IBAction)clickPlusOneButton:(id)sender {
+    [self plusOne];
+}
+
+
+#pragma mark - User actions.
+
+- (void)plusOne
+{
+    [_diceService autoCallDice];
+    
+    [[DicePopupViewManager defaultManager] popupCallDiceViewWithDice:[_diceService lastCallDice]
+                                                               count:([_diceService lastCallDiceCount] + 1) 
+                                                              atView:[self selfAvatarView] 
+                                                              inView:myDiceListHolderView];
+}
+
+- (void)disableAllDiceOperationButton
+{
+    self.openDiceButton.enabled = NO;
+    self.itemsBoxButton.enabled = NO;
+    self.userWildsButton.enabled = NO;
+    self.plusOneButton.enabled = NO;
+    [self.diceSelectedView disableUserInteraction];
+}
+
+- (void)enableAllDiceOperationButton
+{
+    self.openDiceButton.enabled = YES;
+    self.itemsBoxButton.enabled = YES;
+    self.userWildsButton.enabled = YES;
+    self.plusOneButton.enabled = YES;
+    [self.diceSelectedView enableUserInteraction];
 }
 
     

@@ -9,6 +9,8 @@
 @class PBDrawAction_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
+@class PBFeedTimes;
+@class PBFeedTimes_Builder;
 @class PBFeed_Builder;
 @class PBGameItem;
 @class PBGameItem_Builder;
@@ -161,18 +163,81 @@
 - (PBDraw_Builder*) clearOpusId;
 @end
 
+@interface PBFeedTimes : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasValue_:1;
+  int32_t type;
+  int32_t value;
+}
+- (BOOL) hasType;
+- (BOOL) hasValue;
+@property (readonly) int32_t type;
+@property (readonly) int32_t value;
+
++ (PBFeedTimes*) defaultInstance;
+- (PBFeedTimes*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBFeedTimes_Builder*) builder;
++ (PBFeedTimes_Builder*) builder;
++ (PBFeedTimes_Builder*) builderWithPrototype:(PBFeedTimes*) prototype;
+
++ (PBFeedTimes*) parseFromData:(NSData*) data;
++ (PBFeedTimes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFeedTimes*) parseFromInputStream:(NSInputStream*) input;
++ (PBFeedTimes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFeedTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBFeedTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBFeedTimes_Builder : PBGeneratedMessage_Builder {
+@private
+  PBFeedTimes* result;
+}
+
+- (PBFeedTimes*) defaultInstance;
+
+- (PBFeedTimes_Builder*) clear;
+- (PBFeedTimes_Builder*) clone;
+
+- (PBFeedTimes*) build;
+- (PBFeedTimes*) buildPartial;
+
+- (PBFeedTimes_Builder*) mergeFrom:(PBFeedTimes*) other;
+- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBFeedTimes_Builder*) setType:(int32_t) value;
+- (PBFeedTimes_Builder*) clearType;
+
+- (BOOL) hasValue;
+- (int32_t) value;
+- (PBFeedTimes_Builder*) setValue:(int32_t) value;
+- (PBFeedTimes_Builder*) clearValue;
+@end
+
 @interface PBFeed : PBGeneratedMessage {
 @private
+  BOOL hasOpusCreatorGender_:1;
   BOOL hasGender_:1;
   BOOL hasIsCorrect_:1;
-  BOOL hasCommentTimes_:1;
-  BOOL hasGuessTimes_:1;
   BOOL hasActionType_:1;
   BOOL hasCreateDate_:1;
-  BOOL hasCorrectTimes_:1;
-  BOOL hasMatchTimes_:1;
-  BOOL hasOpusStatus_:1;
+  BOOL hasCommentTimes_:1;
+  BOOL hasGuessTimes_:1;
   BOOL hasScore_:1;
+  BOOL hasCorrectTimes_:1;
+  BOOL hasOpusStatus_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasOpusImage_:1;
+  BOOL hasOpusWord_:1;
+  BOOL hasOpusCreatorAvatar_:1;
+  BOOL hasOpusCreatorNickName_:1;
+  BOOL hasOpusCreatorUserId_:1;
   BOOL hasComment_:1;
   BOOL hasOpusId_:1;
   BOOL hasTargetUserNickName_:1;
@@ -182,16 +247,22 @@
   BOOL hasUserId_:1;
   BOOL hasFeedId_:1;
   BOOL hasDrawData_:1;
+  BOOL opusCreatorGender_:1;
   BOOL gender_:1;
   BOOL isCorrect_:1;
-  int32_t commentTimes;
-  int32_t guessTimes;
   int32_t actionType;
   int32_t createDate;
-  int32_t correctTimes;
-  int32_t matchTimes;
-  int32_t opusStatus;
+  int32_t commentTimes;
+  int32_t guessTimes;
   int32_t score;
+  int32_t correctTimes;
+  int32_t opusStatus;
+  int32_t matchTimes;
+  NSString* opusImage;
+  NSString* opusWord;
+  NSString* opusCreatorAvatar;
+  NSString* opusCreatorNickName;
+  NSString* opusCreatorUserId;
   NSString* comment;
   NSString* opusId;
   NSString* targetUserNickName;
@@ -202,6 +273,7 @@
   NSString* feedId;
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
+  NSMutableArray* mutableFeedTimesList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -222,6 +294,12 @@
 - (BOOL) hasCorrectTimes;
 - (BOOL) hasGuessTimes;
 - (BOOL) hasCommentTimes;
+- (BOOL) hasOpusCreatorUserId;
+- (BOOL) hasOpusCreatorNickName;
+- (BOOL) hasOpusCreatorGender;
+- (BOOL) hasOpusCreatorAvatar;
+- (BOOL) hasOpusWord;
+- (BOOL) hasOpusImage;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -241,8 +319,16 @@
 @property (readonly) int32_t correctTimes;
 @property (readonly) int32_t guessTimes;
 @property (readonly) int32_t commentTimes;
+@property (readonly, retain) NSString* opusCreatorUserId;
+@property (readonly, retain) NSString* opusCreatorNickName;
+- (BOOL) opusCreatorGender;
+@property (readonly, retain) NSString* opusCreatorAvatar;
+@property (readonly, retain) NSString* opusWord;
+@property (readonly, retain) NSString* opusImage;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
+- (NSArray*) feedTimesList;
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
 
 + (PBFeed*) defaultInstance;
 - (PBFeed*) defaultInstance;
@@ -381,5 +467,42 @@
 - (int32_t) commentTimes;
 - (PBFeed_Builder*) setCommentTimes:(int32_t) value;
 - (PBFeed_Builder*) clearCommentTimes;
+
+- (NSArray*) feedTimesList;
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceFeedTimesAtIndex:(int32_t) index with:(PBFeedTimes*) value;
+- (PBFeed_Builder*) addFeedTimes:(PBFeedTimes*) value;
+- (PBFeed_Builder*) addAllFeedTimes:(NSArray*) values;
+- (PBFeed_Builder*) clearFeedTimesList;
+
+- (BOOL) hasOpusCreatorUserId;
+- (NSString*) opusCreatorUserId;
+- (PBFeed_Builder*) setOpusCreatorUserId:(NSString*) value;
+- (PBFeed_Builder*) clearOpusCreatorUserId;
+
+- (BOOL) hasOpusCreatorNickName;
+- (NSString*) opusCreatorNickName;
+- (PBFeed_Builder*) setOpusCreatorNickName:(NSString*) value;
+- (PBFeed_Builder*) clearOpusCreatorNickName;
+
+- (BOOL) hasOpusCreatorGender;
+- (BOOL) opusCreatorGender;
+- (PBFeed_Builder*) setOpusCreatorGender:(BOOL) value;
+- (PBFeed_Builder*) clearOpusCreatorGender;
+
+- (BOOL) hasOpusCreatorAvatar;
+- (NSString*) opusCreatorAvatar;
+- (PBFeed_Builder*) setOpusCreatorAvatar:(NSString*) value;
+- (PBFeed_Builder*) clearOpusCreatorAvatar;
+
+- (BOOL) hasOpusWord;
+- (NSString*) opusWord;
+- (PBFeed_Builder*) setOpusWord:(NSString*) value;
+- (PBFeed_Builder*) clearOpusWord;
+
+- (BOOL) hasOpusImage;
+- (NSString*) opusImage;
+- (PBFeed_Builder*) setOpusImage:(NSString*) value;
+- (PBFeed_Builder*) clearOpusImage;
 @end
 

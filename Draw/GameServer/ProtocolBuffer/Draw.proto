@@ -21,6 +21,11 @@ message PBDraw {
   optional string opusId = 11;
 }
 
+message PBFeedTimes{
+  required int32 type  = 1;
+  required int32 value = 2;
+}
+
 message PBFeed {
   required string feedId = 1;
   required string userId = 2;
@@ -46,12 +51,23 @@ message PBFeed {
   
   // for user comment
   optional string comment = 51;
-  
+    
   // common data
   optional int32  matchTimes = 61;
   optional int32  correctTimes = 62;
   optional int32  guessTimes = 63;
   optional int32  commentTimes = 64;
 
+  repeated PBFeedTimes feedTimes = 65;   // 记录各种次数类型，如用户番茄数目
+
+  // for creator user & opus info
+  optional string opusCreatorUserId = 71;
+  optional string opusCreatorNickName = 72;
+  optional bool   opusCreatorGender = 73;
+  optional string opusCreatorAvatar = 74;
+
+  // for creator user & opus info
+  optional string opusWord = 81;
+  optional string opusImage = 82;  
 }
 
