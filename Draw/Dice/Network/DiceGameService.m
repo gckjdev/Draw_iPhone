@@ -12,7 +12,8 @@
 #import "DiceNetworkClient.h"
 #import "DiceGameSession.h"
 #import "DiceNotification.h"
-
+#import "UserManager.h"
+#import "ConfigManager.h"
 
 #define DICE_GAME_ID    @"LiarDice"
 
@@ -122,6 +123,11 @@ static DiceGameService* _defaultService;
     
 }
 
+- (void)handleCreateRoomResponse:(GameMessage*)message
+{
+    [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -151,7 +157,8 @@ static DiceGameService* _defaultService;
         case GameCommandTypeGameOverNotificationRequest:
             [self handleGameOverNotificationRequest:message];
             break;
-
+        case GameCommandTypeCreateRoomResponse:
+            [self handleCreateRoomResponse:message];
             
             
         default:
@@ -212,6 +219,13 @@ static DiceGameService* _defaultService;
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                     openType:openType]; 
+}
+
+- (void)creatRoomWithName:(NSString*)name
+{
+    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
+                                     name:@"" 
+                                   gameId:[ConfigManager gameId]];
 }
 
 @end
