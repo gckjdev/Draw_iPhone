@@ -443,12 +443,12 @@
 - (void)unregisterDiceGameNotification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICATION_JOIN_GAME_RESPONSE 
-                                                  object:nil];
+                                                    name:nil
+                                                  object:_diceService];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICATION_ROOM
-                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self 
+//                                                    name:NOTIFICATION_ROOM
+//                                                  object:nil];
 }
 
 
