@@ -19,6 +19,8 @@
 - (NSArray *)myDiceList;
 
 - (void)callDice:(int)dice count:(int)count;
+- (void)autoCallDice;
+
 
 - (NSString *)lastCallUserId;
 - (int)lastCallDice;

@@ -117,21 +117,23 @@
 
 - (void)disableUserInteraction
 {
-    for (UIView *view in [self subviews]) {
-        
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)view;
-            button.enabled = NO;
+    for (UIView *pageView in [self.scrollView subviews]) {
+        for (UIView *view in [pageView subviews]) {
+            if ([view isKindOfClass:[FontButton class]]) {
+                FontButton *button = (FontButton *)view;
+                button.enabled = NO;
+            }
         }
     }
 }
 - (void)enableUserInteraction
 {
-    for (UIView *view in [self subviews]) {
-        
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)view;
-            button.enabled = YES;
+    for (UIView *pageView in [self.scrollView subviews]) {
+        for (UIView *view in [pageView subviews]) {
+            if ([view isKindOfClass:[FontButton class]]) {
+                FontButton *button = (FontButton *)view;
+                button.enabled = YES;
+            }
         }
     }
 }
@@ -237,7 +239,7 @@
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountBtnBgImage] forState:UIControlStateNormal];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
     
-    fontButton.enabled = YES;
+    fontButton.enabled = NO;
     
     return fontButton;
 }

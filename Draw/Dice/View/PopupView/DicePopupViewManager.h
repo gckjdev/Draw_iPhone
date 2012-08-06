@@ -16,26 +16,29 @@
 
 - (void)popupCallDiceViewWithDice:(int)dice
                             count:(int)count
-                           atView:(UIView *)view
-                           inView:(UIView *)inView
-                         animated:(BOOL)animated;
+                           atView:(UIView *)atView
+                           inView:(UIView *)inView;
 
-- (void)dismissCallDiceViewAnimated:(BOOL)animated;
+- (void)dismissCallDiceView;
 
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
                                    delegate:(id<ToolSheetViewDelegate>)delegate 
-                                     atView:(UIView *)view 
-                                     inView:(UIView *)inView  
-                                   animated:(BOOL)animated;
+                                     atView:(UIView *)atView 
+                                     inView:(UIView *)inView;
 
-- (void)dismissToolSheetViewAnimated:(BOOL)animated;
+- (void)dismissToolSheetView;
+
+
+- (void)popupMessage:(NSString *)message
+              atView:(UIView *)atView
+              inView:(UIView *)inView;
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
-                               inView:(UIView *)inView
-                             animated:(BOOL)animated;
+                               inView:(UIView *)inView;
 
-- (void)dismissOpenDiceViewAnimated:(BOOL)animated;
+- (void)dismissOpenDiceView;
+
 
 @end

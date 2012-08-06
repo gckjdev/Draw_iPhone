@@ -271,5 +271,11 @@
     return userList;
 }
 
+- (int)playingUserCount
+{
+    return [[self playingUserList] count];
+}
+
+
 
 @end

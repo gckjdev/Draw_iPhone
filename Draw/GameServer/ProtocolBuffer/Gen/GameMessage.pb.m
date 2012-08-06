@@ -2482,15 +2482,24 @@ static CallDiceResponse* defaultCallDiceResponseInstance = nil;
 @end
 
 @interface OpenDiceRequest ()
+@property int32_t openType;
 @end
 
 @implementation OpenDiceRequest
 
+- (BOOL) hasOpenType {
+  return !!hasOpenType_;
+}
+- (void) setHasOpenType:(BOOL) value {
+  hasOpenType_ = !!value;
+}
+@synthesize openType;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.openType = 0;
   }
   return self;
 }
@@ -2510,6 +2519,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasOpenType) {
+    [output writeInt32:1 value:self.openType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2519,6 +2531,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   }
 
   size = 0;
+  if (self.hasOpenType) {
+    size += computeInt32Size(1, self.openType);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -2594,6 +2609,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   if (other == [OpenDiceRequest defaultInstance]) {
     return self;
   }
+  if (other.hasOpenType) {
+    [self setOpenType:other.openType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2615,8 +2633,28 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
         }
         break;
       }
+      case 8: {
+        [self setOpenType:[input readInt32]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasOpenType {
+  return result.hasOpenType;
+}
+- (int32_t) openType {
+  return result.openType;
+}
+- (OpenDiceRequest_Builder*) setOpenType:(int32_t) value {
+  result.hasOpenType = YES;
+  result.openType = value;
+  return self;
+}
+- (OpenDiceRequest_Builder*) clearOpenType {
+  result.hasOpenType = NO;
+  result.openType = 0;
+  return self;
 }
 @end
 

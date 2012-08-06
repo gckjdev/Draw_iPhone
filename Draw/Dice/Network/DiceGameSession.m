@@ -16,6 +16,7 @@
 @synthesize lastCallDice = _lastCallDice;
 @synthesize lastCallDiceCount = _lastCallDiceCount;
 @synthesize openDiceUserId = _openDiceUserId;
+@synthesize openType = _openType;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
