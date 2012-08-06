@@ -11,9 +11,6 @@
 
 @interface DicesResultView : UIView
 
-//@property (retain, nonatomic) NSString *userId;
-
-//+ (DicesResultView *)createDicesResultView;
 - (void)setDices:(NSArray *)diceList;
 - (void)clearDices;
 
