@@ -111,10 +111,9 @@ static DiceGameService* _defaultService;
     {
         [resultDic setObject:result forKey:result.userId];
     }
-    self.diceSession.userResultList = resultDic;
+    self.diceSession.gameResult = resultDic;
     
-    
-
+    [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
 - (void)handleCreateRoomResponse:(GameMessage*)message
