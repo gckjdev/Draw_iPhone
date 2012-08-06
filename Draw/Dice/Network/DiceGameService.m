@@ -73,17 +73,13 @@ static DiceGameService* _defaultService;
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
     
-    [self diceSession].userDiceList = diceDic;
+    self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
     self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
-
     
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:NOTIFICATION_ROLL_DICE_END
-     object:self 
-     userInfo:[CommonGameNetworkService messageToUserInfo:message]];     
+    [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }
 
 - (void)handleCallDiceRequest:(GameMessage *)message
@@ -91,36 +87,34 @@ static DiceGameService* _defaultService;
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
-    
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:NOTIFICATION_CALL_DICE_REQUEST
-     object:self 
-     userInfo:[CommonGameNetworkService messageToUserInfo:message]];      
+        
+    [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
 
 - (void)handleOpenDiceRequest:(GameMessage*)message
 {
     self.diceSession.openDiceUserId = message.userId;
     self.diceSession.openType = message.openDiceRequest.openType;
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:NOTIFICATION_OPEN_DICE_REQUEST
-     object:self 
-     userInfo:[CommonGameNetworkService messageToUserInfo:message]]; 
+    
+    [self postNotification:NOTIFICATION_OPEN_DICE_REQUEST message:message];
 }
 
 - (void)handleOpenDiceResponse:(GameMessage*)message
 {
-    if (message.resultCode == 0) {
-        [[NSNotificationCenter defaultCenter] 
-         postNotificationName:NOTIFICATION_OPEN_DICE_RESPONSE
-         object:self 
-         userInfo:[CommonGameNetworkService messageToUserInfo:message]]; 
-    }    
+    [self postNotification:NOTIFICATION_OPEN_DICE_RESPONSE message:message];
 }
 
 - (void)handleGameOverNotificationRequest:(GameMessage *)message
 {
+    NSMutableDictionary *resultDic= [NSMutableDictionary dictionary];
+    for(PBUserResult *result in [[[message gameOverNotificationRequest] gameResult] userResultList])
+    {
+        [resultDic setObject:result forKey:result.userId];
+    }
+    self.diceSession.userResultList = resultDic;
     
+    
+
 }
 
 - (void)handleCreateRoomResponse:(GameMessage*)message
