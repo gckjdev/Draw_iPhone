@@ -221,4 +221,10 @@ static DiceGameService* _defaultService;
                                    gameId:[ConfigManager gameId]];
 }
 
+- (void)resetSessionData
+{
+    [self.diceSession reset];
+}
+
+
 @end

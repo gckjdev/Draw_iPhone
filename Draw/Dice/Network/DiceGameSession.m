@@ -27,6 +27,15 @@
     [super dealloc];
 }
 
+- (void)reset
+{
+    self.userDiceList = nil;
+    self.lastCallDiceUserId = nil;
+    self.openDiceUserId = nil;
+    self.gameResult = nil;
+}
+
+
 
 
 

@@ -538,6 +538,7 @@
 {
     [self clearGameResult];
     [self dismissAllPopupView];
+    [_diceService resetSessionData];
 
     self.myDiceListHolderView.hidden = YES;
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
@@ -568,9 +569,13 @@
     [self clearAllReciprocol];
     
     NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
+    
     [[self avatarOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
     
-    if ([_userManager isMe:currentPlayUserId]) {
+    if ([_userManager isMe:currentPlayUserId] && _diceService.diceSession.lastCallDiceUserId == nil) {
+        [self enableAllDiceOperationButton];
+        self.openDiceButton.hidden = YES;
+    }else if ([_userManager isMe:currentPlayUserId] && _diceService.diceSession.lastCallDiceUserId != nil) {
         [self enableAllDiceOperationButton];
     }else {
         [self disableAllDiceOperationButton];

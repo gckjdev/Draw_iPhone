@@ -28,4 +28,6 @@
 
 - (void)openDiceWithOpenType:(int)openType;
 
+- (void)resetSessionData;
+
 @end

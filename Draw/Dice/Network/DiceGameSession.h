@@ -19,4 +19,6 @@
 
 @property (retain, nonatomic) NSDictionary *gameResult;
 
+- (void)reset;
+
 @end
