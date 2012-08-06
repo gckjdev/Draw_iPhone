@@ -27,5 +27,5 @@
 - (int)lastCallDiceCount;
 
 - (void)openDiceWithOpenType:(int)openType;
-
+- (void)creatRoomWithName:(NSString*)name;
 @end
