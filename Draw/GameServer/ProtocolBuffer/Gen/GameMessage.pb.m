@@ -1340,19 +1340,11 @@ static EnterRoomResponse* defaultEnterRoomResponseInstance = nil;
 @end
 
 @interface RegisterRoomsNotificationRequest ()
-@property int32_t userId;
 @property (retain) NSMutableArray* mutableSessionIdsList;
 @end
 
 @implementation RegisterRoomsNotificationRequest
 
-- (BOOL) hasUserId {
-  return !!hasUserId_;
-}
-- (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
-}
-@synthesize userId;
 @synthesize mutableSessionIdsList;
 - (void) dealloc {
   self.mutableSessionIdsList = nil;
@@ -1360,7 +1352,6 @@ static EnterRoomResponse* defaultEnterRoomResponseInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userId = 0;
   }
   return self;
 }
@@ -1384,15 +1375,9 @@ static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequest
   return [value intValue];
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeInt32:1 value:self.userId];
-  }
   if (self.mutableSessionIdsList.count > 0) {
     [output writeRawVarint32:18];
     [output writeRawVarint32:sessionIdsMemoizedSerializedSize];
@@ -1409,9 +1394,6 @@ static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequest
   }
 
   size = 0;
-  if (self.hasUserId) {
-    size += computeInt32Size(1, self.userId);
-  }
   {
     int32_t dataSize = 0;
     for (NSNumber* value in self.mutableSessionIdsList) {
@@ -1499,9 +1481,6 @@ static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequest
   if (other == [RegisterRoomsNotificationRequest defaultInstance]) {
     return self;
   }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
   if (other.mutableSessionIdsList.count > 0) {
     if (result.mutableSessionIdsList == nil) {
       result.mutableSessionIdsList = [NSMutableArray array];
@@ -1529,10 +1508,6 @@ static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequest
         }
         break;
       }
-      case 8: {
-        [self setUserId:[input readInt32]];
-        break;
-      }
       case 18: {
         int32_t length = [input readRawVarint32];
         int32_t limit = [input pushLimit:length];
@@ -1544,22 +1519,6 @@ static RegisterRoomsNotificationRequest* defaultRegisterRoomsNotificationRequest
       }
     }
   }
-}
-- (BOOL) hasUserId {
-  return result.hasUserId;
-}
-- (int32_t) userId {
-  return result.userId;
-}
-- (RegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
-}
-- (RegisterRoomsNotificationRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
-  return self;
 }
 - (NSArray*) sessionIdsList {
   if (result.mutableSessionIdsList == nil) {
@@ -1734,19 +1693,11 @@ static RegisterRoomsNotificationResponse* defaultRegisterRoomsNotificationRespon
 @end
 
 @interface UnRegisterRoomsNotificationRequest ()
-@property int32_t userId;
 @property (retain) NSMutableArray* mutableSessionIdsList;
 @end
 
 @implementation UnRegisterRoomsNotificationRequest
 
-- (BOOL) hasUserId {
-  return !!hasUserId_;
-}
-- (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
-}
-@synthesize userId;
 @synthesize mutableSessionIdsList;
 - (void) dealloc {
   self.mutableSessionIdsList = nil;
@@ -1754,7 +1705,6 @@ static RegisterRoomsNotificationResponse* defaultRegisterRoomsNotificationRespon
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userId = 0;
   }
   return self;
 }
@@ -1778,15 +1728,9 @@ static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationReq
   return [value intValue];
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeInt32:1 value:self.userId];
-  }
   if (self.mutableSessionIdsList.count > 0) {
     [output writeRawVarint32:18];
     [output writeRawVarint32:sessionIdsMemoizedSerializedSize];
@@ -1803,9 +1747,6 @@ static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationReq
   }
 
   size = 0;
-  if (self.hasUserId) {
-    size += computeInt32Size(1, self.userId);
-  }
   {
     int32_t dataSize = 0;
     for (NSNumber* value in self.mutableSessionIdsList) {
@@ -1893,9 +1834,6 @@ static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationReq
   if (other == [UnRegisterRoomsNotificationRequest defaultInstance]) {
     return self;
   }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
   if (other.mutableSessionIdsList.count > 0) {
     if (result.mutableSessionIdsList == nil) {
       result.mutableSessionIdsList = [NSMutableArray array];
@@ -1923,10 +1861,6 @@ static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationReq
         }
         break;
       }
-      case 8: {
-        [self setUserId:[input readInt32]];
-        break;
-      }
       case 18: {
         int32_t length = [input readRawVarint32];
         int32_t limit = [input pushLimit:length];
@@ -1938,22 +1872,6 @@ static UnRegisterRoomsNotificationRequest* defaultUnRegisterRoomsNotificationReq
       }
     }
   }
-}
-- (BOOL) hasUserId {
-  return result.hasUserId;
-}
-- (int32_t) userId {
-  return result.userId;
-}
-- (UnRegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
-}
-- (UnRegisterRoomsNotificationRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
-  return self;
 }
 - (NSArray*) sessionIdsList {
   if (result.mutableSessionIdsList == nil) {
@@ -9326,6 +9244,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) OpenDiceResponse* openDiceResponse;
 @property (retain) GameOverNotificationRequest* gameOverNotificationRequest;
 @property (retain) GameOverNotificationResponse* gameOverNotificationResponse;
+@property int32_t startOffset;
+@property int32_t maxCount;
 @end
 
 @implementation GameMessage
@@ -9575,6 +9495,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasGameOverNotificationResponse_ = !!value;
 }
 @synthesize gameOverNotificationResponse;
+- (BOOL) hasStartOffset {
+  return !!hasStartOffset_;
+}
+- (void) setHasStartOffset:(BOOL) value {
+  hasStartOffset_ = !!value;
+}
+@synthesize startOffset;
+- (BOOL) hasMaxCount {
+  return !!hasMaxCount_;
+}
+- (void) setHasMaxCount:(BOOL) value {
+  hasMaxCount_ = !!value;
+}
+@synthesize maxCount;
 - (void) dealloc {
   self.userId = nil;
   self.toUserId = nil;
@@ -9643,6 +9577,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.openDiceResponse = [OpenDiceResponse defaultInstance];
     self.gameOverNotificationRequest = [GameOverNotificationRequest defaultInstance];
     self.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
+    self.startOffset = 0;
+    self.maxCount = 0;
   }
   return self;
 }
@@ -9843,6 +9779,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasGameOverNotificationResponse) {
     [output writeMessage:116 value:self.gameOverNotificationResponse];
   }
+  if (self.hasStartOffset) {
+    [output writeInt32:1000 value:self.startOffset];
+  }
+  if (self.hasMaxCount) {
+    [output writeInt32:1001 value:self.maxCount];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -9956,6 +9898,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasGameOverNotificationResponse) {
     size += computeMessageSize(116, self.gameOverNotificationResponse);
+  }
+  if (self.hasStartOffset) {
+    size += computeInt32Size(1000, self.startOffset);
+  }
+  if (self.hasMaxCount) {
+    size += computeInt32Size(1001, self.maxCount);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -10136,6 +10084,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasGameOverNotificationResponse) {
     [self mergeGameOverNotificationResponse:other.gameOverNotificationResponse];
+  }
+  if (other.hasStartOffset) {
+    [self setStartOffset:other.startOffset];
+  }
+  if (other.hasMaxCount) {
+    [self setMaxCount:other.maxCount];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -10436,6 +10390,14 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGameOverNotificationResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 8000: {
+        [self setStartOffset:[input readInt32]];
+        break;
+      }
+      case 8008: {
+        [self setMaxCount:[input readInt32]];
         break;
       }
     }
@@ -11349,6 +11311,38 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearGameOverNotificationResponse {
   result.hasGameOverNotificationResponse = NO;
   result.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasStartOffset {
+  return result.hasStartOffset;
+}
+- (int32_t) startOffset {
+  return result.startOffset;
+}
+- (GameMessage_Builder*) setStartOffset:(int32_t) value {
+  result.hasStartOffset = YES;
+  result.startOffset = value;
+  return self;
+}
+- (GameMessage_Builder*) clearStartOffset {
+  result.hasStartOffset = NO;
+  result.startOffset = 0;
+  return self;
+}
+- (BOOL) hasMaxCount {
+  return result.hasMaxCount;
+}
+- (int32_t) maxCount {
+  return result.maxCount;
+}
+- (GameMessage_Builder*) setMaxCount:(int32_t) value {
+  result.hasMaxCount = YES;
+  result.maxCount = value;
+  return self;
+}
+- (GameMessage_Builder*) clearMaxCount {
+  result.hasMaxCount = NO;
+  result.maxCount = 0;
   return self;
 }
 @end

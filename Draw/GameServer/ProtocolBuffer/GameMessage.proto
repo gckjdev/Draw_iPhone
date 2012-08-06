@@ -38,7 +38,6 @@ message EnterRoomResponse {
 }
 
 message RegisterRoomsNotificationRequest {
-  required int32 userId = 1;
   repeated int32 sessionIds = 2[packed=true];
 }
 
@@ -47,7 +46,6 @@ message RegisterRoomsNotificationResponse {
 }
 
 message UnRegisterRoomsNotificationRequest {
-  required int32 userId = 1;
   repeated int32 sessionIds = 2[packed=true];     //　数组为空表示取消所有注册
 }
 
@@ -261,6 +259,8 @@ message GameMessage {
   optional string toUserId = 9;                             // 消息要发给哪个用户
   optional string currentPlayUserId = 10;                   // 当前游戏轮到的用户
   
+  
+  
   optional JoinGameRequest joinGameRequest = 11;
   optional JoinGameResponse joinGameResponse = 12;
   
@@ -299,6 +299,10 @@ message GameMessage {
   
   optional GameOverNotificationRequest gameOverNotificationRequest = 115;
   optional GameOverNotificationResponse gameOverNotificationResponse = 116;
+  
+  optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
+  optional int32 maxCount = 1001;           // 返回记录的记录数目
+
 }
 
 message DataQueryResponse {
