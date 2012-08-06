@@ -187,8 +187,8 @@ static DiceGameService* _defaultService;
 {    
     [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
-                                                        dice:[self lastCallDice]
-                                                       count:[self lastCallDiceCount] + 1]; 
+                                                        dice:self.lastCallDice
+                                                       count:(self.lastCallDiceCount + 1)]; 
 }
 
 

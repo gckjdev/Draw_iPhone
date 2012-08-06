@@ -119,15 +119,15 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-//    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
-//        [_diceService openDiceWithOpenType:0];
-//    }else {
-//        [_diceService openDiceWithOpenType:1];
-//    }
-//    
-//    [[self selfAvatar] stopReciprocol];
     
-    [self showGameResult];
+    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
+        [_diceService openDiceWithOpenType:0];
+    }else {
+        [_diceService openDiceWithOpenType:1];
+    }
+    
+    [[self selfAvatar] stopReciprocol];
+    
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -158,6 +158,7 @@
     for (NSString *userId in [[[_diceService diceSession] userDiceList] allKeys])
     {     
         DicesResultView *resultView = [self resultViewOfUser:userId];
+        resultView.hidden = NO;
         [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId]];
     }
 
@@ -502,8 +503,8 @@
 {
     [_diceService autoCallDice];
     
-    [_popupViewManager popupCallDiceViewWithDice:[_diceService lastCallDice]
-                                           count:([_diceService lastCallDiceCount] + 1) 
+    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+                                           count:(_diceService.lastCallDiceCount + 1) 
                                           atView:[self selfAvatar] 
                                           inView:myDiceListHolderView];
 }
@@ -567,14 +568,17 @@
     [self clearAllReciprocol];
     
     NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
-    [_userManager isMe:currentPlayUserId] ? [_diceSelectedView enableUserInteraction] : [_diceSelectedView disableUserInteraction];
-    
     [[self avatarOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    
+    if ([_userManager isMe:currentPlayUserId]) {
+        [self enableAllDiceOperationButton];
+    }else {
+        [self disableAllDiceOperationButton];
+    }
 }
 
 - (void)someoneCallDice
 {
-    
     if ([_diceService lastCallDice] == 6) {
         [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
     }else {
@@ -597,6 +601,7 @@
 
 - (void)openDiceSuccess
 {
+    [self disableAllDiceOperationButton];
     int openType = ![_userManager isMe:[[_diceService session] currentPlayUserId]];
     [_popupViewManager popupOpenDiceViewWithOpenType:openType 
                                               atView:[self selfAvatar] 
