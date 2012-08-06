@@ -16,4 +16,8 @@
                        dice:(int)dice
                       count:(int)count;
 
+- (void)sendOpenDiceRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                   openType:(int)openType;
+
 @end
