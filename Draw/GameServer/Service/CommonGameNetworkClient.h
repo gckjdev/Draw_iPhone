@@ -26,6 +26,8 @@
 - (void)sendSimpleMessage:(int)command
                    userId:(NSString*)userId 
                 sessionId:(long)sessionId;
-
+- (void)sendCreateRoomRequest:(PBGameUser*)user
+                         name:(NSString*)roomName 
+                       gameId:(NSString*)gameId;
 
 @end

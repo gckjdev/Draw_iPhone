@@ -12,6 +12,7 @@
 #import "CommonGameNetworkClient.h"
 #import "UserManager.h"
 #import "NotificationName.h"
+#import "DiceGameService.h"
 
 @interface DiceRoomListController ()
 
@@ -81,6 +82,11 @@
 
 - (IBAction)clickFastEntryButton:(id)sender {
     
+    
+}
+
+- (IBAction)creatRoom:(id)sender
+{
     
 }
 
