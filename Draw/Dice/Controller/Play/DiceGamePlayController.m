@@ -158,48 +158,26 @@
 }
 
 
-- (void)showDicesResultByUserId:(NSString *)userId
+- (void)showUserResultByUserId:(NSString *)userId diceList:(NSArray *)diceList
 {
-    int resultIndex = 0;
-    
-    for (int index = 1 ; index <= 6 ; index ++) {
-        int tag = AVATAR_TAG_OFFSET + index;
-        DiceAvatarView *tempAvatarView = (DiceAvatarView *)[self.view viewWithTag:tag];
-        if ([tempAvatarView.userId isEqualToString:userId]) {
-            resultIndex = index;
-            break;
-        }
-    }
-    
-    PBUserDice *foundUserDice = nil;
-    for (PBUserDice *userDice in _userDiceList) {
-        if ([userDice.userId isEqualToString:userId]) {
-            foundUserDice = userDice;
-            break;
-        }
-    }
-    
-    DicesResultView *oldDicesResultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + resultIndex];
-    DicesResultView *dicesResultView = [DicesResultView createDicesResultView];
-    dicesResultView.center = oldDicesResultView.center;
-    dicesResultView.tag = oldDicesResultView.tag;
-    [dicesResultView setUserDices:foundUserDice];
-    [oldDicesResultView removeFromSuperview];
-    [self.view addSubview:dicesResultView];
+    DicesResultView *resultView = [self resultViewOfUser:userId];
+    [resultView setDices:diceList];
 }
 
-- (void)showAllDicesResult
+- (void)showGameResult
 {
-    for (PBGameUser *user in [[_diceService session] playingUserList]) {
-        [self showDicesResultByUserId:user.userId];
-    } 
+    for (NSString *userId in [[[_diceService diceSession] userDiceList] allKeys])
+    {
+        NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
+        [self showUserResultByUserId:userId diceList:diceList];
+    }
 }
 
-- (void)clearAllDicesResult
+- (void)clearGameResult
 {
     for (int index = 1 ; index <= 6; index ++) {
         DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
-        [resultView clearUserDices];
+        [resultView clearDices];
     }
 }
 
@@ -419,6 +397,18 @@
                                                   inView:self.view];
 
      }];
+    
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_GAME_OVER_REQUEST
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_GAME_OVER_REQUEST"); 
+         //pop open dice view on myself avatar
+         [self gameOver];         
+     }];
+
 }
 
 - (void)unregisterDiceGameNotification
@@ -489,6 +479,12 @@
         UIView *bell = [self.view viewWithTag:(BELL_TAG_OFFSET + i)];
         bell.hidden = YES;
     }
+}
+
+- (DicesResultView *)resultViewOfUser:(NSString *)userId
+{
+    DiceAvatarView *userAvatarView = [self avatarOfUser:userId];
+    return (DicesResultView *)[self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + RESULT_TAG_OFFSET];
 }
 
 #pragma mark - DiceSelectedViewDelegate
@@ -570,6 +566,7 @@
 
 - (void)rollDiceBegin
 {
+    [self clearGameResult];
     [self dismissAllPopupView];
 
     self.myDiceListHolderView.hidden = YES;
@@ -588,6 +585,13 @@
     [myDiceListHolderView addSubview:diceShowView];
 
     [self enableAllDiceOperationButton];
+}
+
+- (void)gameOver;
+{
+    [self hideAllBell];
+    [self showGameResult];
+    
 }
 
     
