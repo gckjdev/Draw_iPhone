@@ -30,5 +30,8 @@
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
 @property (retain, nonatomic) IBOutlet FontLabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet FontButton *openDiceButton;
+@property (retain, nonatomic) IBOutlet FontButton *userWildsButton;
+@property (retain, nonatomic) IBOutlet FontButton *plusOneButton;
+@property (retain, nonatomic) IBOutlet UIButton *itemsBoxButton;
 
 @end
