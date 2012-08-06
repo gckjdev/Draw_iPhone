@@ -119,6 +119,7 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
+    
     if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
         [_diceService openDiceWithOpenType:0];
     }else {
@@ -126,6 +127,7 @@
     }
     
     [[self selfAvatar] stopReciprocol];
+    
 }
 
 #define TAG_TOOL_BUTTON 12080101
@@ -500,8 +502,8 @@
 {
     [_diceService autoCallDice];
     
-    [_popupViewManager popupCallDiceViewWithDice:[_diceService lastCallDice]
-                                           count:([_diceService lastCallDiceCount] + 1) 
+    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+                                           count:(_diceService.lastCallDiceCount + 1) 
                                           atView:[self selfAvatar] 
                                           inView:myDiceListHolderView];
 }
@@ -576,7 +578,6 @@
 
 - (void)someoneCallDice
 {
-    
     if ([_diceService lastCallDice] == 6) {
         [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
     }else {
@@ -599,6 +600,7 @@
 
 - (void)openDiceSuccess
 {
+    [self disableAllDiceOperationButton];
     int openType = ![_userManager isMe:[[_diceService session] currentPlayUserId]];
     [_popupViewManager popupOpenDiceViewWithOpenType:openType 
                                               atView:[self selfAvatar] 
