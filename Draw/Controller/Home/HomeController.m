@@ -846,7 +846,7 @@
 ////    
     _isTryJoinGame = YES;
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.101"];
 
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
 //    [[DiceGameService defaultService] setServerPort:8018];

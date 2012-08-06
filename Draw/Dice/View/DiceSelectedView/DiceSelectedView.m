@@ -253,8 +253,9 @@
     _curSelecetedDiceCountBtn.selected = YES;
     
     NSArray *diceList;
+
     if (_curSelecetedDiceCountBtn.tag == _start && _lastCallDice < 6) {
-        diceList = [self genDiceListStartWith:_lastCallDice end:6];
+        diceList = [self genDiceListStartWith:(_lastCallDice + 1)  end:6];
     }else {
         diceList = [self genDiceListStartWith:1 end:6];
     }

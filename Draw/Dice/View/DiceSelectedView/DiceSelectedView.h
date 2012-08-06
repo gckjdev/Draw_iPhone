@@ -25,8 +25,9 @@
 - (id)initWithFrame:(CGRect)frame superView:(UIView *)superView;
 
 - (void)setStart:(int)start 
-             end:(int)end 
+             end:(int)end
     lastCallDice:(int)lastCallDice;
+
 
 - (void)disableUserInteraction;
 - (void)enableUserInteraction;
