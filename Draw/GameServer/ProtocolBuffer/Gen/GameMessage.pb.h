@@ -446,13 +446,9 @@
 
 @interface RegisterRoomsNotificationRequest : PBGeneratedMessage {
 @private
-  BOOL hasUserId_:1;
-  int32_t userId;
   NSMutableArray* mutableSessionIdsList;
   int32_t sessionIdsMemoizedSerializedSize;
 }
-- (BOOL) hasUserId;
-@property (readonly) int32_t userId;
 - (NSArray*) sessionIdsList;
 - (int32_t) sessionIdsAtIndex:(int32_t) index;
 
@@ -489,11 +485,6 @@
 - (RegisterRoomsNotificationRequest_Builder*) mergeFrom:(RegisterRoomsNotificationRequest*) other;
 - (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (int32_t) userId;
-- (RegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value;
-- (RegisterRoomsNotificationRequest_Builder*) clearUserId;
 
 - (NSArray*) sessionIdsList;
 - (int32_t) sessionIdsAtIndex:(int32_t) index;
@@ -544,13 +535,9 @@
 
 @interface UnRegisterRoomsNotificationRequest : PBGeneratedMessage {
 @private
-  BOOL hasUserId_:1;
-  int32_t userId;
   NSMutableArray* mutableSessionIdsList;
   int32_t sessionIdsMemoizedSerializedSize;
 }
-- (BOOL) hasUserId;
-@property (readonly) int32_t userId;
 - (NSArray*) sessionIdsList;
 - (int32_t) sessionIdsAtIndex:(int32_t) index;
 
@@ -587,11 +574,6 @@
 - (UnRegisterRoomsNotificationRequest_Builder*) mergeFrom:(UnRegisterRoomsNotificationRequest*) other;
 - (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (int32_t) userId;
-- (UnRegisterRoomsNotificationRequest_Builder*) setUserId:(int32_t) value;
-- (UnRegisterRoomsNotificationRequest_Builder*) clearUserId;
 
 - (NSArray*) sessionIdsList;
 - (int32_t) sessionIdsAtIndex:(int32_t) index;
@@ -2404,13 +2386,14 @@
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
+  BOOL hasMaxCount_:1;
   BOOL hasMessageId_:1;
+  BOOL hasStartOffset_:1;
   BOOL hasRound_:1;
   BOOL hasOnlineUserCount_:1;
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
-  BOOL hasGetRoomsRequest_:1;
   BOOL hasGetRoomsResponse_:1;
   BOOL hasCreateRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
@@ -2424,6 +2407,7 @@
   BOOL hasOpenDiceResponse_:1;
   BOOL hasGameOverNotificationRequest_:1;
   BOOL hasGameOverNotificationResponse_:1;
+  BOOL hasGetRoomsRequest_:1;
   BOOL hasNotification_:1;
   BOOL hasFacetimeChatResponse_:1;
   BOOL hasFacetimeChatRequest_:1;
@@ -2439,13 +2423,14 @@
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
   int64_t sessionId;
+  int32_t maxCount;
   int32_t messageId;
+  int32_t startOffset;
   int32_t round;
   int32_t onlineUserCount;
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
-  GetRoomsRequest* getRoomsRequest;
   GetRoomsResponse* getRoomsResponse;
   CreateRoomRequest* createRoomRequest;
   CreateRoomResponse* createRoomResponse;
@@ -2459,6 +2444,7 @@
   OpenDiceResponse* openDiceResponse;
   GameOverNotificationRequest* gameOverNotificationRequest;
   GameOverNotificationResponse* gameOverNotificationResponse;
+  GetRoomsRequest* getRoomsRequest;
   GeneralNotification* notification;
   FacetimeChatResponse* facetimeChatResponse;
   FacetimeChatRequest* facetimeChatRequest;
@@ -2509,6 +2495,8 @@
 - (BOOL) hasOpenDiceResponse;
 - (BOOL) hasGameOverNotificationRequest;
 - (BOOL) hasGameOverNotificationResponse;
+- (BOOL) hasStartOffset;
+- (BOOL) hasMaxCount;
 @property (readonly) GameCommandType command;
 @property (readonly) int32_t messageId;
 @property (readonly) GameResultCode resultCode;
@@ -2544,6 +2532,8 @@
 @property (readonly, retain) OpenDiceResponse* openDiceResponse;
 @property (readonly, retain) GameOverNotificationRequest* gameOverNotificationRequest;
 @property (readonly, retain) GameOverNotificationResponse* gameOverNotificationResponse;
+@property (readonly) int32_t startOffset;
+@property (readonly) int32_t maxCount;
 
 + (GameMessage*) defaultInstance;
 - (GameMessage*) defaultInstance;
@@ -2803,6 +2793,16 @@
 - (GameMessage_Builder*) setGameOverNotificationResponseBuilder:(GameOverNotificationResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeGameOverNotificationResponse:(GameOverNotificationResponse*) value;
 - (GameMessage_Builder*) clearGameOverNotificationResponse;
+
+- (BOOL) hasStartOffset;
+- (int32_t) startOffset;
+- (GameMessage_Builder*) setStartOffset:(int32_t) value;
+- (GameMessage_Builder*) clearStartOffset;
+
+- (BOOL) hasMaxCount;
+- (int32_t) maxCount;
+- (GameMessage_Builder*) setMaxCount:(int32_t) value;
+- (GameMessage_Builder*) clearMaxCount;
 @end
 
 @interface DataQueryResponse : PBGeneratedMessage {
