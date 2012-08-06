@@ -158,6 +158,7 @@
     for (NSString *userId in [[[_diceService diceSession] userDiceList] allKeys])
     {     
         DicesResultView *resultView = [self resultViewOfUser:userId];
+        resultView.hidden = NO;
         [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId]];
     }
 

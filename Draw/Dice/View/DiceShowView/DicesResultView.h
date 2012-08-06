@@ -12,6 +12,5 @@
 @interface DicesResultView : UIView
 
 - (void)setDices:(NSArray *)diceList;
-- (void)clearDices;
 
 @end
