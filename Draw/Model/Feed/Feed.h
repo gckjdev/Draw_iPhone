@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FeedClasses.h"
 
 typedef enum{
     
@@ -29,6 +29,7 @@ typedef enum{
     FeedListTypeHot = 3,
     FeedListTypeUser = 4,
     FeedListTypeUserOpus = 5,
+    FeedListTypeLatest = 6,
     
 }FeedListType;
 
@@ -45,10 +46,15 @@ typedef enum {
 
 @interface Feed : NSObject
 {
-    NSString *_feedId;
-    NSString *_userId;
-    FeedType _feedType;
+    
+    NSString *_feedId;    
+    FeedType _feedType;    
     NSDate *_createDate;
+    //
+
+    NSString *_userId;
+
+
     
     // for user info
     NSString *_nickName;

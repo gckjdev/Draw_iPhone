@@ -50,6 +50,8 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
+    [self.diceSession reset];
+
     NSMutableArray* newUserList = [NSMutableArray array];
     
     for (PBGameUser* user in [[self session] userList]){
@@ -67,17 +69,15 @@ static DiceGameService* _defaultService;
 - (void)handleRollDiceEnd:(GameMessage *)message
 {
     NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
-    
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
-    
     self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
-    self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
+    self.diceSession.lastCallDiceCount = [[self session] playingUserCount] - 1;
     
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }
@@ -111,10 +111,9 @@ static DiceGameService* _defaultService;
     {
         [resultDic setObject:result forKey:result.userId];
     }
-    self.diceSession.userResultList = resultDic;
+    self.diceSession.gameResult = resultDic;
     
-    
-
+    [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
 - (void)handleCreateRoomResponse:(GameMessage*)message
@@ -200,8 +199,8 @@ static DiceGameService* _defaultService;
 {    
     [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
-                                                        dice:[self lastCallDice]
-                                                       count:[self lastCallDiceCount] + 1]; 
+                                                        dice:self.lastCallDice
+                                                       count:(self.lastCallDiceCount + 1)]; 
 }
 
 
@@ -233,5 +232,6 @@ static DiceGameService* _defaultService;
                                      name:@"" 
                                    gameId:[ConfigManager gameId]];
 }
+
 
 @end

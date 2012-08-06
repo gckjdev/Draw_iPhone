@@ -619,6 +619,10 @@
 		CA1377EC15259C1500B5790B /* changeroom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1377AB15259C1400B5790B /* changeroom@2x.png */; };
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
 		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
+		CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
+		CA18D40215CFB230001B421A /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
+		CA18D40515CFB242001B421A /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
+		CA18D40815CFB25B001B421A /* CommentFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40715CFB25B001B421A /* CommentFeed.m */; };
 		CA1B80F61512E26F00A457BA /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1B80F51512E26F00A457BA /* DrawColor.m */; };
 		CA1FB7DF153078F900237D3F /* bottom2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7DA153078F900237D3F /* bottom2@2x.png */; };
 		CA1FB7E1153078F900237D3F /* wood_wall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7DC153078F900237D3F /* wood_wall@2x.png */; };
@@ -1887,6 +1891,14 @@
 		CA1377F11525A7CB00B5790B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA1377F31525A80200B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA18D3FD15CFACD3001B421A /* FeedClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedClasses.h; sourceTree = "<group>"; };
+		CA18D3FE15CFACD3001B421A /* FeedClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedClasses.m; sourceTree = "<group>"; };
+		CA18D40015CFB230001B421A /* DrawFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFeed.h; sourceTree = "<group>"; };
+		CA18D40115CFB230001B421A /* DrawFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFeed.m; sourceTree = "<group>"; };
+		CA18D40315CFB242001B421A /* GuessFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessFeed.h; sourceTree = "<group>"; };
+		CA18D40415CFB242001B421A /* GuessFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessFeed.m; sourceTree = "<group>"; };
+		CA18D40615CFB25B001B421A /* CommentFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentFeed.h; sourceTree = "<group>"; };
+		CA18D40715CFB25B001B421A /* CommentFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFeed.m; sourceTree = "<group>"; };
 		CA1B80F41512E26F00A457BA /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CA1B80F51512E26F00A457BA /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CA1FB7DA153078F900237D3F /* bottom2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom2@2x.png"; sourceTree = "<group>"; };
@@ -5131,6 +5143,14 @@
 				CA7C7E031587213100406BFB /* Feed.m */,
 				CA7C7E051587214300406BFB /* FeedManager.h */,
 				CA7C7E061587214300406BFB /* FeedManager.m */,
+				CA18D3FD15CFACD3001B421A /* FeedClasses.h */,
+				CA18D3FE15CFACD3001B421A /* FeedClasses.m */,
+				CA18D40015CFB230001B421A /* DrawFeed.h */,
+				CA18D40115CFB230001B421A /* DrawFeed.m */,
+				CA18D40315CFB242001B421A /* GuessFeed.h */,
+				CA18D40415CFB242001B421A /* GuessFeed.m */,
+				CA18D40615CFB25B001B421A /* CommentFeed.h */,
+				CA18D40715CFB25B001B421A /* CommentFeed.m */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -6721,6 +6741,10 @@
 				C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */,
 				EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */,
 				A44AD68D15CD149D001666AA /* MessageView.m in Sources */,
+				CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */,
+				CA18D40215CFB230001B421A /* DrawFeed.m in Sources */,
+				CA18D40515CFB242001B421A /* GuessFeed.m in Sources */,
+				CA18D40815CFB25B001B421A /* CommentFeed.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

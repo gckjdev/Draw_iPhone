@@ -68,7 +68,7 @@ enum GameCommandType {
   OPEN_DICE_RESPONSE = 624;                   
   
   USE_ITEM_REQUEST = 631;                           // 使用道具
-  USE_ITEM_RESPONSE = 632;                   
+  USE_ITEM_RESPONSE = 632;        
   
   // server --> client
   

@@ -62,7 +62,6 @@ static DicePopupViewManager *_instance = nil;
                            atView:(UIView *)atView
                            inView:(UIView *)inView
 {
-    [_callDiceView dismissAnimated:YES];
     if (_callDiceView == nil) {
         self.callDiceView = [[CallDiceView alloc] initWithDice:dice count:count];
     }else {

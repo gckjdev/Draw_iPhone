@@ -9,33 +9,70 @@
 #import "DicesResultView.h"
 #import "PPDebug.h"
 #import "DiceImageManager.h"
+#import "DeviceDetection.h"
+
+
+#define TAG_BOTTOM      1
+#define TAG_START_DICE  10
+
+#define FRAME_SELF      (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 96, 96) : CGRectMake(0, 0, 48, 48))
+#define FRAME_BOTTOM    (([DeviceDetection isIPAD]) ? CGRectMake(0, 24, 96, 72) : CGRectMake(0, 12, 48, 36))  
+
+#define WIDTH_DICE      (([DeviceDetection isIPAD]) ? 34 : 17 )
+#define HEIGHT_DICE     (([DeviceDetection isIPAD]) ? 40 : 20 )
+#define FRAME_DICE_1    (([DeviceDetection isIPAD]) ? CGRectMake(32, 10, WIDTH_DICE, WIDTH_DICE) : CGRectMake(16, 5, WIDTH_DICE, WIDTH_DICE) )
+#define FRAME_DICE_2    (([DeviceDetection isIPAD]) ? CGRectMake(8, 24, WIDTH_DICE, WIDTH_DICE) : CGRectMake(4, 12, WIDTH_DICE, WIDTH_DICE) )
+#define FRAME_DICE_3    (([DeviceDetection isIPAD]) ? CGRectMake(52, 22, WIDTH_DICE, WIDTH_DICE) : CGRectMake(28, 11, WIDTH_DICE, WIDTH_DICE) )
+#define FRAME_DICE_4    (([DeviceDetection isIPAD]) ? CGRectMake(18, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(9, 24, WIDTH_DICE, WIDTH_DICE) )
+#define FRAME_DICE_5    (([DeviceDetection isIPAD]) ? CGRectMake(48, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(24, 24, WIDTH_DICE, WIDTH_DICE) )
 
 @implementation DicesResultView
-@synthesize userId = _userId;
 
-- (void)dealloc
+- (id)initWithCoder:(NSCoder *)coder
 {
-    [_userId release];
-    [super dealloc];
-}
-
-+ (DicesResultView *)createDicesResultView
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DicesResultView" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        PPDebug(@"create <DicesResultView> but cannot find object from Nib");
-        return nil;
+    self = [super initWithCoder:coder];
+    if (self) {
+        //self.frame = FRAME_SELF;
+        UIImageView *bottomView = [[UIImageView alloc] initWithFrame:FRAME_BOTTOM];
+        bottomView.tag = TAG_BOTTOM;
+        [self addSubview:bottomView];
+        [bottomView release];
+        
+        for (int index = 0; index < 5; index++) {
+            CGRect diceFrame;
+            
+            switch (index) {
+                case 0:
+                    diceFrame = FRAME_DICE_1;
+                    break;
+                case 1:
+                    diceFrame = FRAME_DICE_2;
+                    break;
+                case 2:
+                    diceFrame = FRAME_DICE_3;
+                    break;
+                case 3:
+                    diceFrame = FRAME_DICE_4;
+                    break;
+                case 4:
+                    diceFrame = FRAME_DICE_5;
+                    break;
+                default:
+                    break;
+            }
+            
+            UIImageView *diceView = [[UIImageView alloc] initWithFrame:diceFrame];
+            diceView.tag = TAG_START_DICE + index;
+            [self addSubview:diceView];
+            [diceView release];
+        }
     }
-    DicesResultView* view =  (DicesResultView*)[topLevelObjects objectAtIndex:0];
-    
-    return view;
+    return self;
 }
 
-#define TAG_BOTTOM 1
-#define TAG_START_DICE  10
-- (void)setUserDices:(PBUserDice *)userDice
+- (void)setDices:(NSArray *)diceList
 {
-    self.userId = userDice.userId;
+    [self clearDices];
     
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
     
@@ -43,7 +80,7 @@
     [bottomImageView setImage:[imageManage diceBottomImage]];
     
     int index = 0;
-    for (PBDice *dice in userDice.dicesList) {
+    for (PBDice *dice in diceList) {
         UIImage *image = nil;
         image = [imageManage openDiceImageWithDice:dice.dice];
         UIImageView *imageView = (UIImageView *)[self viewWithTag:TAG_START_DICE + index];
@@ -56,10 +93,8 @@
     }
 }
 
-- (void)clearUserDices
-{
-    self.userId = nil;
-    
+- (void)clearDices
+{    
     UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
     [bottomImageView setImage:nil];
     
