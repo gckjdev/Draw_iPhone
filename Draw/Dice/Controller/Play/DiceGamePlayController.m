@@ -119,15 +119,13 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-//    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
-//        [_diceService openDiceWithOpenType:0];
-//    }else {
-//        [_diceService openDiceWithOpenType:1];
-//    }
-//    
-//    [[self selfAvatar] stopReciprocol];
+    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
+        [_diceService openDiceWithOpenType:0];
+    }else {
+        [_diceService openDiceWithOpenType:1];
+    }
     
-    [self showGameResult];
+    [[self selfAvatar] stopReciprocol];
 }
 
 #define TAG_TOOL_BUTTON 12080101
