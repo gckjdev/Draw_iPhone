@@ -16,6 +16,7 @@
 #import "UserManager.h"
 #import "DicePopupViewManager.h"
 #import "DiceImageManager.h"
+#import "HKGirlFontLabel.h"
 
 @class DiceGameService;
 
@@ -37,5 +38,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *userWildsButton;
 @property (retain, nonatomic) IBOutlet UIButton *plusOneButton;
 @property (retain, nonatomic) IBOutlet UIButton *itemsBoxButton;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *wildsLabel;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *plusOneLabel;
 
 @end
