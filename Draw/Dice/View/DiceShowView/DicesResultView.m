@@ -59,7 +59,7 @@
     }
 }
 
-- (void)clearDices
+- (void)clearUserDices
 {    
     UIImageView *bottomImageView = (UIImageView*)[self viewWithTag:TAG_BOTTOM];
     [bottomImageView setImage:nil];
