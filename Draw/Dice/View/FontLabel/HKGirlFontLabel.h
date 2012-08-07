@@ -10,4 +10,6 @@
 
 @interface HKGirlFontLabel : FontLabel
 
+- (id)initWithFrame:(CGRect)frame pointSize:(int)pointSize;
+
 @end

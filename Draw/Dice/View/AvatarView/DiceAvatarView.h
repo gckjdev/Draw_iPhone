@@ -10,6 +10,7 @@
 @class HJManagedImageV;
 @class DACircularProgressView;
 @class DiceAvatarView;
+@class HKGirlFontLabel;
 
 typedef enum {
     Square = 1,
@@ -36,6 +37,10 @@ typedef enum {
     NSTimer* _timer;
     AvatarViewStyle _currentStyle;
     CFTimeInterval _reciprocolTime;
+    UIView* _rewardView;
+    UIImageView* _rewardCoinView;
+    HKGirlFontLabel* _rewardCoinLabel;
+    
 }
 
 //- (void)setUrlString:(NSString *)urlString;
@@ -63,6 +68,8 @@ typedef enum {
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
 - (void)stopReciprocol;
+- (void)rewardCoins:(int)coinsCount 
+           duration:(float)duration;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<DiceAvatarViewDelegate> delegate;

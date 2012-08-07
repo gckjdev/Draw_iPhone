@@ -90,7 +90,7 @@
     
     [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
     
-    [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
+    
     
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.15"];
     [[DiceGameService defaultService] setServerPort:8080];
@@ -166,7 +166,7 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
-    [self hideActivity];
+    [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
 }
 
 - (void)didBroken
