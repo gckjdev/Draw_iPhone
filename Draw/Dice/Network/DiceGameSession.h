@@ -21,6 +21,8 @@
 
 @property (retain, nonatomic) NSDictionary *gameResult;
 
+@property (assign, nonatomic) BOOL wilds;
+
 - (void)reset;
 
 @end

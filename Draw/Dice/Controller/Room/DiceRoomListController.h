@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "DiceGameService.h"
 
-@interface DiceRoomListController : PPTableViewController
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;
