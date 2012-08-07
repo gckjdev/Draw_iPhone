@@ -235,8 +235,7 @@ message GeneralNotification{
   
   // game turn result points
   optional int32 turnGainCoins = 61;
-}
-
+} 
 message FacetimeChatRequest {    
   required PBGameUser user = 1;
   optional bool chatGender = 2; // true for male, false for female.
@@ -300,7 +299,13 @@ message GameMessage {
   
   optional GameOverNotificationRequest gameOverNotificationRequest = 115;
   optional GameOverNotificationResponse gameOverNotificationResponse = 116;
+
+  optional RegisterRoomsNotificationRequest registerRoomsNotificationRequest = 117;
+  optional RegisterRoomsNotificationResponse registerRoomsNotificationResponse = 118;
   
+  optional UnRegisterRoomsNotificationRequest unRegisterRoomsNotificationRequest = 119;
+  optional UnRegisterRoomsNotificationResponse unRegisterRoomsNotificationResponse = 120; 
+
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
   optional int32 maxCount = 1001;           // 返回记录的记录数目
 
