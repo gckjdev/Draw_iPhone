@@ -11,6 +11,11 @@
 #import "DiceImageManager.h"
 
 
+
+#define DICE_VIEW_WIDTH 34  
+#define DICE_VIEW_HEIGHT 35
+
+
 #define EDGE_WIDTH 3
 
 
