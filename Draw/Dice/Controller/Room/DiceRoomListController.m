@@ -63,6 +63,7 @@
          GetRoomsResponse* message = [GetRoomsResponse parseFromData:messageData];
          self.dataList = message.sessionsList;
          PPDebug(@"session count  = %d",self.dataList.count);
+         [self.dataTableView reloadData];
      }];
 }
 
@@ -91,7 +92,7 @@
     
     [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.15"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivity];
@@ -135,8 +136,14 @@
     if (cell == nil) {
         cell = [DiceRoomListCell createCell:[DiceRoomListCell getCellIdentifier]];
     }
-    
+    PBGameSession* session = [self.dataList objectAtIndex:indexPath.row];
+    [cell setCellInfo:session];
     return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataList.count;
 }
 
 #pragma mark - Button action

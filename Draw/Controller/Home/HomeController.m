@@ -858,6 +858,11 @@
     [[DiceGameService defaultService] connectServer:self];
     _isJoiningDice = YES;
 }
+- (IBAction)room:(id)sender
+{
+    DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (IBAction)clickFacetime:(id)sender
 {
