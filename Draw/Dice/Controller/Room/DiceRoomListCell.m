@@ -8,6 +8,7 @@
 
 #import "DiceRoomListCell.h"
 #import "GameBasic.pb.h"
+#import "DiceAvatarView.h"
 
 #define TAG_USER_VIEW 101
 
@@ -25,13 +26,17 @@
 
 + (CGFloat)getCellHeight
 {
-    return 205;
+    return 102;
 }
 
 - (void)setCellInfo:(PBGameSession *)session
 {
     roomNameLabel.text = session.name;
-    
+    for (int i = 0; i < session.usersList.count; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        PBGameUser* user = [session.usersList objectAtIndex:i];
+        [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
+    }
     
 }
 
