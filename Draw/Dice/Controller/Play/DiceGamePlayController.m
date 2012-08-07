@@ -17,9 +17,7 @@
 
 
 #define AVATAR_TAG_OFFSET   1000
-
 #define NICKNAME_TAG_OFFSET 1100
-
 #define RESULT_TAG_OFFSET   3000
 #define BELL_TAG_OFFSET     4000
 
@@ -31,8 +29,8 @@
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
 
-- (DiceAvatarView *)selfAvatar;
-- (DiceAvatarView*)avatarOfUser:(NSString*)userId;
+- (DiceAvatarView *)selfAvatarView;
+- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
 - (void)disableAllDiceOperationButton;
 
@@ -127,14 +125,6 @@
     [super viewDidUnload];
 }
 
-#pragma mark- Buttons action
-- (IBAction)clickOpenDiceButton:(id)sender {
-    if ([_userManager isMe:[[_diceService diceSession] currentPlayUserId]]) {
-        [_diceService openDiceWithOpenType:0];
-    }else {
-        [_diceService openDiceWithOpenType:1];
-    }
-}
 
 #define TAG_TOOL_BUTTON 12080101
 #define TAG_TOOL_SHEET  12080102
@@ -158,6 +148,7 @@
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
 }
+
 
 - (void)showAllUserDices
 {
@@ -413,14 +404,18 @@
 
 #pragma mark - Private methods
 
-- (DiceAvatarView *)selfAvatar
+- (DiceAvatarView *)selfAvatarView
 {
     return (DiceAvatarView*)[self.view viewWithTag:(AVATAR_TAG_OFFSET + 1)];
 }
 
-- (DiceAvatarView*)avatarOfUser:(NSString*)userId
+- (DiceAvatarView*)avatarViewOfUser:(NSString*)userId
 {
-    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+    if ([_userManager isMe:userId]) {
+        return [self selfAvatarView];
+    }
+    
+    for (int i = 2; i <= MAX_PLAYER_COUNT; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         if ([avatar.userId isEqualToString:userId]) {
             return avatar;
@@ -429,26 +424,26 @@
     return nil;
 }
 
-- (UIView *)selfBell
+- (UIView *)selfBellView
 {
     return [self.view viewWithTag:(BELL_TAG_OFFSET + 1)];
 }
 
-- (UIView *)bellOfUser:(NSString *)userId
+- (UIView *)bellViewOfUser:(NSString *)userId
 {
-    DiceAvatarView *userAvatarView = [self avatarOfUser:userId];
+    DiceAvatarView *userAvatarView = [self avatarViewOfUser:userId];
     return [self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + BELL_TAG_OFFSET];
 }
 
 - (void)showBellOfPlayingUsers
 {
     for (PBGameUser *user in [[_diceService diceSession] playingUserList]) {
-        UIView *bell = [self bellOfUser:user.userId];
+        UIView *bell = [self bellViewOfUser:user.userId];
         bell.hidden = NO;
     }
 }
 
-- (void)hideAllBell
+- (void)hideAllBellViews
 {
     for (int i = 1; i <= 6; i ++) {
         UIView *bell = [self.view viewWithTag:(BELL_TAG_OFFSET + i)];
@@ -458,33 +453,16 @@
 
 - (DicesResultView *)resultViewOfUser:(NSString *)userId
 {
-    DiceAvatarView *userAvatarView = [self avatarOfUser:userId];
+    DiceAvatarView *userAvatarView = [self avatarViewOfUser:userId];
     return (DicesResultView *)[self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + RESULT_TAG_OFFSET];
 }
 
-#pragma mark - DiceSelectedViewDelegate
-
-- (void)didSelectedDice:(PBDice *)dice count:(int)count
-{
-    [[self selfAvatar] stopReciprocol];
-
-    [_diceService callDice:dice.dice count:count];
-
-    [_popupViewManager popupCallDiceViewWithDice:dice.dice count:count atView:[self selfAvatar] inView:self.view];
-}
 
 #pragma mark - DiceAvatarViewDelegate
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     // TODO: popup user info.
 
-}
-- (void)reciprocalEnd:(DiceAvatarView*)view
-{
-    if([_userManager isMe:view.userId])
-    {
-        [self plusOne];
-    }
 }
 
 
@@ -497,23 +475,7 @@
     
 }
 
-- (IBAction)clickPlusOneButton:(id)sender {
-    [self plusOne];
-}
-
-
 #pragma mark - User actions.
-
-- (void)plusOne
-{
-    [_diceService autoCallDice];
-    
-    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
-                                           count:(_diceService.lastCallDiceCount + 1) 
-                                          atView:[self selfAvatar] 
-                                          inView:self.view];
-}
-
 - (void)disableAllDiceOperationButton
 {
     self.openDiceButton.enabled = NO;
@@ -552,7 +514,7 @@
 
 - (void)rollDiceEnd
 {
-    [[self selfBell] setHidden:YES];
+    [[self selfBellView] setHidden:YES];
     
     DiceShowView *diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
     [myDiceListHolderView addSubview:diceShowView];
@@ -567,7 +529,7 @@
     
     NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
     
-    [[self avatarOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
+    [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
     
     if ([_userManager isMe:currentPlayUserId])
     {
@@ -582,64 +544,92 @@
     }
 }
 
+#pragma mark - DiceSelectedViewDelegate
+
+- (void)didSelectedDice:(PBDice *)dice count:(int)count
+{    
+    [_diceService callDice:dice.dice count:count];
+    [self someoneCallDice];
+}
+
+- (IBAction)clickPlusOneButton:(id)sender {
+    [self plusOne];
+}
+
+- (void)reciprocalEnd:(DiceAvatarView*)view
+{
+    if([_userManager isMe:view.userId])
+    {
+        [self plusOne];
+    }
+}
+
+- (void)plusOne
+{
+    [_diceService autoCallDice];
+    [self someoneCallDice];
+}
+
 - (void)someoneCallDice
 {
-    if ([_diceService lastCallDice] == 6) {
+    if (_diceService.lastCallDice == 6) {
         [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
     }else {
         [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:[_diceService lastCallDice]];
     }
     
-    // 如果最后叫骰的用户没有逃跑
-    DiceAvatarView *userAvatar = [self avatarOfUser:[_diceService lastCallUserId]];
-    if (userAvatar != nil && 
-        ![_userManager isMe:[_diceService lastCallUserId]]) {
-        [_popupViewManager popupCallDiceViewWithDice:[_diceService lastCallDice] 
-                                               count:[_diceService lastCallDiceCount] 
-                                              atView:userAvatar                                              
-                                              inView:self.view];
-        
-    }
+    [[self avatarViewOfUser:_diceService.lastCallUserId] stopReciprocol];
+    [self popupCallDiceView];
 }
 
 
+#pragma mark- Buttons action
+- (IBAction)clickOpenDiceButton:(id)sender {
+    [_diceService openDice];
+}
+
 - (void)openDiceSuccess
 {
-    [[self selfAvatar] stopReciprocol];
-
-    [self disableAllDiceOperationButton];
-    int openType = ![_userManager isMe:[[_diceService session] currentPlayUserId]];
-    [_popupViewManager popupOpenDiceViewWithOpenType:openType 
-                                              atView:[self selfAvatar] 
-                                              inView:self.view];
-
+//    [[self avatarViewOfUser:_diceService.openDiceUserId] stopReciprocol];
+//    [self disableAllDiceOperationButton];
+//    [self popupOpenDiceView];
+    [self someoneOpenDice];
 }
 
 - (void)someoneOpenDice
 {
+    [[self avatarViewOfUser:_diceService.openDiceUserId] stopReciprocol];
     [self disableAllDiceOperationButton];
-
-    NSString *openDiceUserId = _diceService.diceSession.openDiceUserId;
-    BOOL isMe = [_userManager isMe:openDiceUserId];
-    if (!isMe) {
-        DiceAvatarView *userAvatarView = [self avatarOfUser:openDiceUserId];
-        [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.diceSession.openType 
-                                                  atView:userAvatarView 
-                                                  inView:self.view];
-        
-        [userAvatarView stopReciprocol];
-    }
+    [self popupOpenDiceView];    
 }
 
 - (void)gameOver;
 {
     // Hidden views.
-    [self hideAllBell];
-    
+    [self hideAllBellViews];
     self.myDiceListHolderView.hidden = YES;
     
     // Show view.
     [self showGameResult];
 }
+
+- (void)popupOpenDiceView
+{
+    DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.openDiceUserId];
+    [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
+                                              atView:userAvatarView 
+                                              inView:self.view];
+}
+
+- (void)popupCallDiceView
+{
+    DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.lastCallUserId];
+    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+                                           count:_diceService.lastCallDiceCount
+                                          atView:userAvatarView
+                                          inView:self.view];
+
+}
+
 
 @end

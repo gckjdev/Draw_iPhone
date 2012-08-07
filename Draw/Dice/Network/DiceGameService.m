@@ -184,47 +184,75 @@ static DiceGameService* _defaultService;
 
 - (NSArray *)myDiceList
 {
-    return [[[self diceSession] userDiceList] objectForKey:self.user.userId];
+    return [self.diceSession.userDiceList objectForKey:self.user.userId];
 }
 
 - (void)callDice:(int)dice count:(int)count
 {
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
+    // Update Model.
+    self.diceSession.lastCallDiceUserId = self.user.userId;
+    self.diceSession.lastCallDice = dice;
+    self.diceSession.lastCallDiceCount = count;
+    
+    // Send command.
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
                                                    sessionId:self.session.sessionId
-                                                        dice:dice
-                                                       count:count];
+                                                        dice:self.lastCallDice
+                                                       count:self.lastCallDiceCount]; 
 }
 
 - (void)autoCallDice
-{    
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
+{   
+    // Update Model.
+    self.diceSession.lastCallDiceUserId = self.user.userId;
+    self.diceSession.lastCallDice = self.lastCallDice;
+    self.diceSession.lastCallDiceCount ++;
+    
+    // Send Command.
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
                                                    sessionId:self.session.sessionId
                                                         dice:self.lastCallDice
-                                                       count:(self.lastCallDiceCount + 1)]; 
+                                                       count:self.lastCallDiceCount]; 
 }
 
 
 - (NSString *)lastCallUserId
 {
-    return [[self diceSession] lastCallDiceUserId];
+    return self.diceSession.lastCallDiceUserId;
 }
 
 - (int)lastCallDice
 {
-    return [[self diceSession] lastCallDice];
+    return self.diceSession.lastCallDice;
 }
 
 - (int)lastCallDiceCount
 {
-    return [[self diceSession] lastCallDiceCount];
+    return self.diceSession.lastCallDiceCount;
 }
 
-- (void)openDiceWithOpenType:(int)openType
+- (NSString *)openDiceUserId
 {
+    return self.diceSession.openDiceUserId;
+}
+
+- (int)openType
+{
+    return self.diceSession.openType;
+}
+
+- (void)openDice
+{
+    int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
+    
+    self.diceSession.openDiceUserId = self.user.userId;
+    self.diceSession.openType = openType;
+    
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                     openType:openType]; 
 }
+
 
 - (void)creatRoomWithName:(NSString*)name
 {
