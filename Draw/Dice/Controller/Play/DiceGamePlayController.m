@@ -112,6 +112,8 @@
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
     
     [self disableAllDiceOperationButton];
+    [self hideAllBellViews];
+    [[self selfBellView] setHidden:NO];
 }
 
 
@@ -170,7 +172,12 @@
 
 }
 
-- (void)clearAllUserDices
+- (void)clearUserResult:(NSString *)userId
+{
+    [[self resultViewOfUser:userId] setHidden:YES];
+}
+
+- (void)clearAllUserResult
 {
     for (int index = 1 ; index <= 6; index ++) {
         DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
@@ -191,6 +198,7 @@
     for (NSString *userId in [[_diceService gameResult] allKeys]) {
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
+        PPDebug(@"user[%@](user id = %@) %@, avatar center = (%f,%f)", [_diceService.diceSession getNickNameByUserId:userId],[avatar userId], result.win ? @"win" : @"loser", avatar.center.x, avatar.center.y);
         [self popResultViewOnAvatarView:avatar
                                duration:5
                              coinsCount:result.gainCoins];
@@ -199,7 +207,7 @@
 
 - (void)clearGameResult
 {
-    [self clearAllUserDices];
+    [self clearAllUserResult];
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
@@ -316,34 +324,34 @@
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM"); 
-
-//         GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
-//         RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
-//         
-//         if ([notification sessionsChangedList]){
-//             for (PBGameSessionChanged* sessionChanged in [roomNotification sessionsChangedList]){
-//                 int sessionId = [sessionChanged sessionId];
-//                 if (sessionId == _diceService.session.sessionId){
-//                     // split notification
-//                     PBGameSessionChanged* changeData = sessionChanged;
-//                     if ([changeData usersAddedList]){
-//                         for (PBGameUser* user in [changeData usersAddedList]){
-//                             // has new user
-//                             
-//                         }
-//                     }
-//                     
-//                     if ([changeData userIdsDeletedList]){
-//                         for (NSString* userId in [changeData userIdsDeletedList]){
-//                             // has deleted user
-//                             
-//                         }
-//                     }
-//                     
-//                 }
-//             }
-//         }         
+         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");      
+         GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
+         RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
+         
+         if ([roomNotification sessionsChangedList]){
+             for (PBGameSessionChanged* sessionChanged in [roomNotification sessionsChangedList]){
+                 int sessionId = [sessionChanged sessionId];
+                 if (sessionId == _diceService.session.sessionId){
+                     // split notification
+                     PBGameSessionChanged* changeData = sessionChanged;
+                     if ([changeData usersAddedList]){
+                         for (PBGameUser* user in [changeData usersAddedList]){
+                             // has new user
+                             
+                         }
+                     }
+                     
+                     if ([changeData userIdsDeletedList]){
+                         for (NSString* userId in [changeData userIdsDeletedList]){
+                             // has deleted user
+                             [self clearUserResult:userId];
+                         }
+                     }
+                     
+                 }
+             }
+         }
+         
          [self roomChanged];
      }];
     
@@ -678,6 +686,7 @@
                        coinsCount:(int)coinsCount
 {
     self.popResultView.hidden = NO;
+    [self.view bringSubviewToFront:self.popResultView];
     [self.rewardCoinLabel setText:[NSString stringWithFormat:@"%d",coinsCount]];
     CGPoint from = CGPointMake(view.center.x, view.center.y+view.frame.size.height/2);
     CGPoint to = CGPointMake(view.center.x, view.center.y-view.frame.size.height/2);
