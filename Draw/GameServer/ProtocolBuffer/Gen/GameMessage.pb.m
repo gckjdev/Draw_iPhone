@@ -2048,6 +2048,7 @@ static UnRegisterRoomsNotificationResponse* defaultUnRegisterRoomsNotificationRe
 @interface CallDiceRequest ()
 @property int32_t num;
 @property int32_t dice;
+@property BOOL wilds;
 @end
 
 @implementation CallDiceRequest
@@ -2066,6 +2067,18 @@ static UnRegisterRoomsNotificationResponse* defaultUnRegisterRoomsNotificationRe
   hasDice_ = !!value;
 }
 @synthesize dice;
+- (BOOL) hasWilds {
+  return !!hasWilds_;
+}
+- (void) setHasWilds:(BOOL) value {
+  hasWilds_ = !!value;
+}
+- (BOOL) wilds {
+  return !!wilds_;
+}
+- (void) setWilds:(BOOL) value {
+  wilds_ = !!value;
+}
 - (void) dealloc {
   [super dealloc];
 }
@@ -2073,6 +2086,7 @@ static UnRegisterRoomsNotificationResponse* defaultUnRegisterRoomsNotificationRe
   if ((self = [super init])) {
     self.num = 0;
     self.dice = 0;
+    self.wilds = NO;
   }
   return self;
 }
@@ -2098,6 +2112,9 @@ static CallDiceRequest* defaultCallDiceRequestInstance = nil;
   if (self.hasDice) {
     [output writeInt32:11 value:self.dice];
   }
+  if (self.hasWilds) {
+    [output writeBool:20 value:self.wilds];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2112,6 +2129,9 @@ static CallDiceRequest* defaultCallDiceRequestInstance = nil;
   }
   if (self.hasDice) {
     size += computeInt32Size(11, self.dice);
+  }
+  if (self.hasWilds) {
+    size += computeBoolSize(20, self.wilds);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2194,6 +2214,9 @@ static CallDiceRequest* defaultCallDiceRequestInstance = nil;
   if (other.hasDice) {
     [self setDice:other.dice];
   }
+  if (other.hasWilds) {
+    [self setWilds:other.wilds];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2221,6 +2244,10 @@ static CallDiceRequest* defaultCallDiceRequestInstance = nil;
       }
       case 88: {
         [self setDice:[input readInt32]];
+        break;
+      }
+      case 160: {
+        [self setWilds:[input readBool]];
         break;
       }
     }
@@ -2256,6 +2283,22 @@ static CallDiceRequest* defaultCallDiceRequestInstance = nil;
 - (CallDiceRequest_Builder*) clearDice {
   result.hasDice = NO;
   result.dice = 0;
+  return self;
+}
+- (BOOL) hasWilds {
+  return result.hasWilds;
+}
+- (BOOL) wilds {
+  return result.wilds;
+}
+- (CallDiceRequest_Builder*) setWilds:(BOOL) value {
+  result.hasWilds = YES;
+  result.wilds = value;
+  return self;
+}
+- (CallDiceRequest_Builder*) clearWilds {
+  result.hasWilds = NO;
+  result.wilds = NO;
   return self;
 }
 @end

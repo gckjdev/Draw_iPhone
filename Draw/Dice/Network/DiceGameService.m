@@ -87,6 +87,10 @@ static DiceGameService* _defaultService;
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
+    
+    if ([message.callDiceRequest hasWilds]) {
+        self.diceSession.wilds = message.callDiceRequest.wilds;
+    }
         
     [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
@@ -240,6 +244,13 @@ static DiceGameService* _defaultService;
 {
     return self.diceSession.openType;
 }
+
+- (NSDictionary *)gameResult
+{
+    return self.diceSession.gameResult;
+}
+
+
 
 - (void)openDice
 {
