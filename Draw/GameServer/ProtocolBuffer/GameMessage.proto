@@ -46,7 +46,7 @@ message RegisterRoomsNotificationResponse {
 }
 
 message UnRegisterRoomsNotificationRequest {
-  repeated int32 sessionIds = 2[packed=true];     //　数组为空表示取消所有注册
+  repeated int32 sessionIds = 2[packed=true];     // 数组为空表示取消所有注册
 }
 
 message UnRegisterRoomsNotificationResponse {
@@ -56,7 +56,7 @@ message UnRegisterRoomsNotificationResponse {
 
 message CallDiceRequest {
   optional int32 num = 10;                     
-  optional int32 dice = 11;                     
+  optional int32 dice = 11;
 }
 
 message CallDiceResponse {

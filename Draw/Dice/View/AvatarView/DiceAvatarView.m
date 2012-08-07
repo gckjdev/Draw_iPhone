@@ -223,7 +223,7 @@
 - (void)clickOnAvatar
 {
     //    PPDebug(@"clickOnAvatar");
-    [self startReciprocol:10];
+//    [self startReciprocol:10];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:self];
     }
