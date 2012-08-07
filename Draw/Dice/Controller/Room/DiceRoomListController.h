@@ -10,7 +10,9 @@
 #import "PPTableViewController.h"
 #import "DiceGameService.h"
 
-@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate>
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate> {
+    BOOL _isJoiningDice;
+}
 
 @property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;
