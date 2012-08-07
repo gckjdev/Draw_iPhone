@@ -230,7 +230,7 @@
 
 - (void)updateAllPlayersAvatar
 {
-    NSArray* userList = [[DiceGameService defaultService].session userList];
+    NSArray* userList = _diceService.session.userList;
     PBGameUser* selfUser = [self getSelfUserFromUserList:userList];
     
     //init seats
@@ -239,8 +239,8 @@
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+i];
         [bell setHidden:YES];
-        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
-        [result setHidden:YES];
+//        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
+//        [result setHidden:YES];
         avatar.delegate = self;
         [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
         avatar.userId = nil;
@@ -256,10 +256,10 @@
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
         nameLabel.textColor = [UIColor whiteColor];
-        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
-        [bell setHidden:NO];
-        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
-        [result setHidden:NO];
+//        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
+//        [bell setHidden:NO];
+//        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
+//        [result setHidden:NO];
         [avatar setUrlString:user.avatar 
                       userId:user.userId 
                       gender:user.gender 
@@ -281,11 +281,10 @@
         int seat = user.seatId;
         int seatIndex = (MAX_PLAYER_COUNT + selfUser.seatId - seat)%MAX_PLAYER_COUNT + 1;
         UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
+        bell.hidden = NO;
         [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
     }
 }
-
-
 
 - (void)clearAllReciprocol
 {
