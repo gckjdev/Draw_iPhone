@@ -28,6 +28,7 @@
 @interface DiceGamePlayController ()
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
+@property (retain, nonatomic) NSEnumerator *enumerator;
 
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
@@ -56,7 +57,7 @@
 @synthesize popResultView = _popResultView;
 @synthesize rewardCoinLabel = _rewardCoinLabel;
 @synthesize diceSelectedView = _diceSelectedView;
-
+@synthesize enumerator = _enumerator;
 - (void)dealloc {
 //    [playingUserList release];
     [myLevelLabel release];
@@ -74,6 +75,7 @@
     [_plusOneLabel release];
     [_popResultView release];
     [_rewardCoinLabel release];
+    [_enumerator release];
     [super dealloc];
 }
 
@@ -96,6 +98,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
     self.plusOneLabel.textColor = [UIColor whiteColor];    
+        
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
@@ -163,14 +166,37 @@
 
 - (void)showAllUserDices
 {
-    for (NSString *userId in [[[_diceService diceSession] userDiceList] allKeys])
-    {     
-        DicesResultView *resultView = [self resultViewOfUser:userId];
-        resultView.hidden = NO;
-        [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId]];
+    self.enumerator = [_diceService.diceSession.userDiceList keyEnumerator];
+ 
+    NSString *userId = [_enumerator nextObject];
+    if (userId == nil) {
+        [self clearGameResult];
+        return;
     }
-
+    
+    [self showUserDice:userId];
 }
+
+- (void)showUserDice:(NSString *)userId
+{
+    DicesResultView *resultView = [self resultViewOfUser:userId];
+    [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId]];
+    [resultView showAnimation:self.view.center delegate:self];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString *userId = [_enumerator nextObject];
+    if (userId == nil) {
+        [self clearGameResult];
+        return;
+    }
+    
+    [self showUserDice:userId];
+}
+
+
+
 
 - (void)clearUserResult:(NSString *)userId
 {
@@ -198,10 +224,10 @@
     for (NSString *userId in [[_diceService gameResult] allKeys]) {
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-        PPDebug(@"user[%@](user id = %@) %@, avatar center = (%f,%f)", [_diceService.diceSession getNickNameByUserId:userId],[avatar userId], result.win ? @"win" : @"loser", avatar.center.x, avatar.center.y);
-        [self popResultViewOnAvatarView:avatar
-                               duration:5
-                             coinsCount:result.gainCoins];
+//        PPDebug(@"user[%@](user id = %@) %@, avatar center = (%f,%f)", [_diceService.diceSession getNickNameByUserId:userId],[avatar userId], result.win ? @"win" : @"loser", avatar.center.x, avatar.center.y);
+//        [self popResultViewOnAvatarView:avatar
+//                               duration:5
+//                             coinsCount:result.gainCoins];
     }
 }
 
@@ -673,10 +699,10 @@
 
 - (void)popupCallDiceView
 {
-    DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.lastCallUserId];
+    UIView *atView = [_userManager isMe:_diceService.lastCallUserId] ? myDiceListHolderView : [self avatarViewOfUser:_diceService.lastCallUserId];
     [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
                                            count:_diceService.lastCallDiceCount
-                                          atView:userAvatarView
+                                          atView:atView
                                           inView:self.view];
 
 }
@@ -701,5 +727,28 @@
     [self updateAllPlayersAvatar];
 }
 
+- (IBAction)clickSettingButton:(id)sender {
+//    [[self selfBellView] setHidden:YES]; 
+//    DicesResultView *resultView = [self resultViewOfUser:_userManager.userId];
+//    [resultView setDices:[self genDiceListStartWith:1 end:5]];
+//    [resultView showAnimation:self.view.center];
+
+}
+
+//- (NSArray *)genDiceListStartWith:(int)start end:(int)end
+//{
+//    NSMutableArray *dices = [NSMutableArray array];
+//    
+//    for (int i = start; i <= end; i ++) {
+//        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+//        [diceBuilder setDice:i];
+//        [diceBuilder setDiceId:i];
+//        PBDice *dice = [diceBuilder build];
+//        
+//        [dices addObject:dice];
+//    }
+//    
+//    return dices;
+//}
 
 @end

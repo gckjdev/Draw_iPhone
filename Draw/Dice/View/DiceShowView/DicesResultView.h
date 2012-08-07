@@ -12,5 +12,6 @@
 @interface DicesResultView : UIView
 
 - (void)setDices:(NSArray *)diceList;
+- (void)showAnimation:(CGPoint)center delegate:(id)delegate;
 
 @end

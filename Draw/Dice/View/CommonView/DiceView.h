@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
 
-
-#define DICE_VIEW_WIDTH 34  
-#define DICE_VIEW_HEIGHT 35
-
 @interface DiceView : UIButton
 
 @property (retain, nonatomic) UIImageView *seletedBgImageView;

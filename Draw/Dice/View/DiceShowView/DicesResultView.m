@@ -10,6 +10,7 @@
 #import "PPDebug.h"
 #import "DiceImageManager.h"
 #import "DeviceDetection.h"
+#import "AnimationManager.h"
 
 
 #define TAG_BOTTOM      1
@@ -26,6 +27,22 @@
 #define FRAME_DICE_4    (([DeviceDetection isIPAD]) ? CGRectMake(18, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(9, 24, WIDTH_DICE, WIDTH_DICE) )
 #define FRAME_DICE_5    (([DeviceDetection isIPAD]) ? CGRectMake(48, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(24, 24, WIDTH_DICE, WIDTH_DICE) )
 
+#define MOVE_TO_CENTER_DURATION 1.5
+#define MOVE_TO_BACK_DURATION 1.0
+#define STAY_DURATION 1.5
+
+#define ZOOMIN_FACTOR 1.4
+
+
+
+
+@interface DicesResultView ()
+{
+    CGPoint _center;
+}
+
+@end
+
 @implementation DicesResultView
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -33,6 +50,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         //self.frame = FRAME_SELF;
+        _center = self.center;
         UIImageView *bottomView = [[UIImageView alloc] initWithFrame:FRAME_BOTTOM];
         bottomView.tag = TAG_BOTTOM;
         [self addSubview:bottomView];
@@ -73,6 +91,7 @@
 - (void)setDices:(NSArray *)diceList
 {
     [self clearDices];
+    self.hidden = NO;
     
     DiceImageManager *imageManage = [DiceImageManager defaultManager];
     
@@ -91,6 +110,51 @@
             break;
         }
     }
+}
+
+- (void)showAnimation:(CGPoint)center delegate:(id)delegate
+{
+    CAAnimation *moveToScreenCenter = [AnimationManager translationAnimationFrom:self.center to:center duration:MOVE_TO_CENTER_DURATION];
+    moveToScreenCenter.beginTime = 0;
+    moveToScreenCenter.removedOnCompletion = NO;
+    
+    CAAnimation *zoomIn = [AnimationManager scaleAnimationWithScale:ZOOMIN_FACTOR duration:MOVE_TO_CENTER_DURATION delegate:self removeCompeleted:NO];
+    zoomIn.beginTime = 0;
+    
+    CAAnimation *stayPoint = [AnimationManager translationAnimationFrom:center to:center duration:STAY_DURATION];
+    stayPoint.beginTime = moveToScreenCenter.beginTime + moveToScreenCenter.duration;
+    CAAnimation *stayScale = [AnimationManager scaleAnimationWithFromScale:ZOOMIN_FACTOR toScale:ZOOMIN_FACTOR duration:STAY_DURATION delegate:nil removeCompeleted:NO];
+    stayScale.beginTime = stayPoint.beginTime;
+    
+    
+    CAAnimation *moveBack = [AnimationManager translationAnimationFrom:center to:_center duration:MOVE_TO_BACK_DURATION];
+    moveBack.beginTime = stayPoint.beginTime + stayPoint.duration;
+    moveBack.removedOnCompletion = NO;
+    
+    CAAnimation *zoomOut = [AnimationManager scaleAnimationWithScale:1 duration:MOVE_TO_BACK_DURATION delegate:nil removeCompeleted:NO];
+    zoomOut.beginTime = moveBack.beginTime;
+    zoomOut.removedOnCompletion = NO;
+    
+    //method2:放入动画数组，统一处理！
+    CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
+    
+    //设置动画代理
+    animGroup.delegate = delegate;
+    
+    animGroup.removedOnCompletion = NO;
+    
+    animGroup.duration            = moveBack.beginTime+moveBack.duration;
+    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
+    animGroup.repeatCount         = 1;
+    animGroup.fillMode            = kCAFillModeForwards;
+    animGroup.animations          = [NSArray arrayWithObjects:moveToScreenCenter, zoomIn, stayPoint, stayScale, moveBack, zoomOut,nil];
+    //对视图自身的层添加组动画
+    [self.layer addAnimation:animGroup forKey:@""];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    
 }
 
 - (void)clearDices
