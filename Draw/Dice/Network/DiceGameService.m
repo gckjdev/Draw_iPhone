@@ -87,6 +87,10 @@ static DiceGameService* _defaultService;
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
+    
+    if ([message.callDiceRequest hasWilds]) {
+        self.diceSession.wilds = message.callDiceRequest.wilds;
+    }
         
     [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
@@ -121,6 +125,16 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
 }
 
+- (void)handleGetRoomsResponse:(GameMessage*)message
+{
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:NOTIFICAIION_GET_ROOMS_RESPONSE
+     object:self
+     userInfo:[NSDictionary dictionaryWithObject:[message.getRoomsResponse data] forKey:@"KEY_GAME_MESSAGE"]];    
+    
+    PPDebug(@"<%@> post notification NOTIFICAIION_GET_ROOMS_RESPONSE", [self description]); 
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     switch ([message command]){
@@ -152,8 +166,10 @@ static DiceGameService* _defaultService;
             break;
         case GameCommandTypeCreateRoomResponse:
             [self handleCreateRoomResponse:message];
-            
-            
+            break;
+        case GameCommandTypeGetRoomsResponse:    
+            [self handleGetRoomsResponse:message];
+            break;
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -228,6 +244,13 @@ static DiceGameService* _defaultService;
 {
     return self.diceSession.openType;
 }
+
+- (NSDictionary *)gameResult
+{
+    return self.diceSession.gameResult;
+}
+
+
 
 - (void)openDice
 {

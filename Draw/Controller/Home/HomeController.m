@@ -847,16 +847,21 @@
 ////    
     _isTryJoinGame = YES;
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
 //    [[DiceGameService defaultService] setServerPort:8018];
     
-    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
+//    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
     [[DiceGameService defaultService] setServerPort:8080];
 
     [[DiceGameService defaultService] connectServer:self];
     _isJoiningDice = YES;
+}
+- (IBAction)room:(id)sender
+{
+    DiceRoomListController* vc = [[[DiceRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickFacetime:(id)sender

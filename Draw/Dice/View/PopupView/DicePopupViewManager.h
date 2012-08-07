@@ -19,7 +19,7 @@
                            atView:(UIView *)atView
                            inView:(UIView *)inView;
 
-- (void)dismissCallDiceView;
+//- (void)dismissCallDiceView;
 
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
@@ -36,9 +36,10 @@
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
-                               inView:(UIView *)inView;
+                               inView:(UIView *)inView
+                             duration:(int)duration;
 
-- (void)dismissOpenDiceView;
+//- (void)dismissOpenDiceView;
 
 
 @end

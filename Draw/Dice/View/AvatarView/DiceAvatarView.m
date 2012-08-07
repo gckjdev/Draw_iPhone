@@ -76,7 +76,7 @@
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
         [imageView setImage:[[DiceImageManager defaultManager] 
-                             greenSafaImage]];
+                             whiteSofaImage]];
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];

@@ -63,7 +63,7 @@ static DicePopupViewManager *_instance = nil;
                            inView:(UIView *)inView
 {
     if (_callDiceView == nil) {
-        self.callDiceView = [[CallDiceView alloc] initWithDice:dice count:count];
+        self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count] autorelease];
     }else {
         [_callDiceView setDice:dice count:count];
     }
@@ -97,10 +97,10 @@ static DicePopupViewManager *_instance = nil;
               atView:(UIView *)atView
               inView:(UIView *)inView
 {
-    MessageView *messageView = [[MessageView alloc] initWithFrame:CGRectZero 
+    MessageView *messageView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                            message:message
                                                           fontName:@"diceFont"
-                                                         pointSize:13];
+                                                         pointSize:13] autorelease];
     [messageView popupAtView:atView
                       inView:inView
                     duration:3.0
@@ -111,6 +111,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
+                             duration:(int)duration
 {
     NSString *message;
     switch (openType) {
@@ -125,17 +126,19 @@ static DicePopupViewManager *_instance = nil;
         default:
             break;
     }
-    self.openDiceView = [[MessageView alloc] initWithFrame:CGRectZero 
+    self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
                                                   fontName:@"diceFont"
-                                                 pointSize:13];
+                                                 pointSize:13] autorelease];
     
     [_openDiceView popupAtView:atView
                         inView:inView
                       duration:0
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES];
-
+    
+    [_openDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
+    [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
 }
 
 - (void)dismissOpenDiceView

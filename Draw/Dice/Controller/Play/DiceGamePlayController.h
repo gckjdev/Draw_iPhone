@@ -40,5 +40,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *itemsBoxButton;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *wildsLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *plusOneLabel;
+@property (retain, nonatomic) IBOutlet UIView *popResultView;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *rewardCoinLabel;
 
 @end
