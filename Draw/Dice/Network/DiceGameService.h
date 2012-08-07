@@ -25,8 +25,13 @@
 - (NSString *)openDiceUserId;
 - (int)openType;
 
+
+- (void)openDiceWithOpenType:(int)openType;
+- (void)creatRoomWithName:(NSString*)name;
+
 - (void)callDice:(int)dice count:(int)count;
 - (void)autoCallDice;
 - (void)openDice;
+
 
 @end
