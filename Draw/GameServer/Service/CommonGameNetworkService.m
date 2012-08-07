@@ -182,7 +182,7 @@
                 int sessionId = [sessionChanged sessionId];
                 if (sessionId == _session.sessionId){
                     // current play session
-                    [_session updateSession:sessionChanged];                    
+                    [_session updateSession:sessionChanged];   
                 }
             }
         }

@@ -626,15 +626,19 @@
 
 @interface CallDiceRequest : PBGeneratedMessage {
 @private
+  BOOL hasWilds_:1;
   BOOL hasNum_:1;
   BOOL hasDice_:1;
+  BOOL wilds_:1;
   int32_t num;
   int32_t dice;
 }
 - (BOOL) hasNum;
 - (BOOL) hasDice;
+- (BOOL) hasWilds;
 @property (readonly) int32_t num;
 @property (readonly) int32_t dice;
+- (BOOL) wilds;
 
 + (CallDiceRequest*) defaultInstance;
 - (CallDiceRequest*) defaultInstance;
@@ -679,6 +683,11 @@
 - (int32_t) dice;
 - (CallDiceRequest_Builder*) setDice:(int32_t) value;
 - (CallDiceRequest_Builder*) clearDice;
+
+- (BOOL) hasWilds;
+- (BOOL) wilds;
+- (CallDiceRequest_Builder*) setWilds:(BOOL) value;
+- (CallDiceRequest_Builder*) clearWilds;
 @end
 
 @interface CallDiceResponse : PBGeneratedMessage {

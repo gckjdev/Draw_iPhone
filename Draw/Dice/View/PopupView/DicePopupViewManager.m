@@ -111,6 +111,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
+                             duration:(int)duration
 {
     NSString *message;
     switch (openType) {
@@ -135,7 +136,9 @@ static DicePopupViewManager *_instance = nil;
                       duration:0
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES];
-
+    
+    [_openDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
+    [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
 }
 
 - (void)dismissOpenDiceView

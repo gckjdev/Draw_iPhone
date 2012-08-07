@@ -14,7 +14,7 @@
 #import "Dice.pb.h"
 #import "AnimationManager.h"
 #import "DiceNotification.h"
-
+#import "GameMessage.pb.h"
 
 #define AVATAR_TAG_OFFSET   1000
 #define NICKNAME_TAG_OFFSET 1100
@@ -33,10 +33,9 @@
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
 - (void)disableAllDiceOperationButton;
-- (void)popResultViewFromPoint:(CGPoint)org 
-                            to:(CGPoint)toPoint 
-                      duration:(CFTimeInterval)duration 
-                    coinsCount:(int)coinsCount;
+- (void)popResultViewOnAvatarView:(UIView*)view
+                         duration:(CFTimeInterval)duration 
+                       coinsCount:(int)coinsCount;
 
 @end
 
@@ -189,7 +188,13 @@
 - (void)showUserResult
 {
     // TODO: show user gainCoins.
-
+    for (NSString *userId in [[_diceService gameResult] allKeys]) {
+        PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
+        DiceAvatarView *avatar = [self avatarViewOfUser:userId];
+        [self popResultViewOnAvatarView:avatar
+                               duration:5
+                             coinsCount:result.gainCoins];
+    }
 }
 
 - (void)clearGameResult
@@ -237,8 +242,8 @@
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
-        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+i];
-        [bell setHidden:YES];
+//        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+i];
+//        [bell setHidden:YES];
 //        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
 //        [result setHidden:YES];
         avatar.delegate = self;
@@ -312,7 +317,34 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM"); 
-         [self updateAllPlayersAvatar];
+
+//         GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
+//         RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
+//         
+//         if ([notification sessionsChangedList]){
+//             for (PBGameSessionChanged* sessionChanged in [roomNotification sessionsChangedList]){
+//                 int sessionId = [sessionChanged sessionId];
+//                 if (sessionId == _diceService.session.sessionId){
+//                     // split notification
+//                     PBGameSessionChanged* changeData = sessionChanged;
+//                     if ([changeData usersAddedList]){
+//                         for (PBGameUser* user in [changeData usersAddedList]){
+//                             // has new user
+//                             
+//                         }
+//                     }
+//                     
+//                     if ([changeData userIdsDeletedList]){
+//                         for (NSString* userId in [changeData userIdsDeletedList]){
+//                             // has deleted user
+//                             
+//                         }
+//                     }
+//                     
+//                 }
+//             }
+//         }         
+         [self roomChanged];
      }];
     
     [[NSNotificationCenter defaultCenter] 
@@ -471,7 +503,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     // TODO: popup user info.
-//    [self popResultViewFromPoint:CGPointMake(view.center.x, view.center.y+view.frame.size.height/2) to:CGPointMake(view.center.x, view.center.y-view.frame.size.height/2) duration:2 coinsCount:100];
+
 }
 
 
@@ -505,9 +537,9 @@
 
 - (void)dismissAllPopupView
 {
-    [_popupViewManager dismissCallDiceView];
-    [_popupViewManager dismissOpenDiceView];
-    [_popupViewManager dismissToolSheetView];
+//    [_popupViewManager dismissCallDiceView];
+//    [_popupViewManager dismissOpenDiceView];
+//    [_popupViewManager dismissToolSheetView];
 }
 
 - (void)rollDiceBegin
@@ -627,7 +659,8 @@
     DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.openDiceUserId];
     [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
                                               atView:userAvatarView 
-                                              inView:self.view];
+                                              inView:self.view
+                                            duration:10];
 }
 
 - (void)popupCallDiceView
@@ -640,15 +673,23 @@
 
 }
 
-- (void)popResultViewFromPoint:(CGPoint)org 
-                            to:(CGPoint)toPoint 
-                      duration:(CFTimeInterval)duration 
-                    coinsCount:(int)coinsCount
+- (void)popResultViewOnAvatarView:(UIView*)view
+                         duration:(CFTimeInterval)duration 
+                       coinsCount:(int)coinsCount
 {
     self.popResultView.hidden = NO;
-    [self.rewardCoinLabel setText:[NSString stringWithFormat:@"x%d",coinsCount]];
-    CAAnimationGroup* pop = [AnimationManager raiseAndDismissFrom:org to:toPoint duration:duration];
+    [self.rewardCoinLabel setText:[NSString stringWithFormat:@"%d",coinsCount]];
+    CGPoint from = CGPointMake(view.center.x, view.center.y+view.frame.size.height/2);
+    CGPoint to = CGPointMake(view.center.x, view.center.y-view.frame.size.height/2);
+    CAAnimationGroup* pop = [AnimationManager raiseAndDismissFrom:from
+                                                               to:to
+                                                         duration:duration];
     [self.popResultView.layer addAnimation:pop forKey:@"popResult"];
+}
+
+- (void)roomChanged
+{
+    [self updateAllPlayersAvatar];
 }
 
 

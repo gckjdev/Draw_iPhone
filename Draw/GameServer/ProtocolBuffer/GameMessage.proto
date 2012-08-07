@@ -57,6 +57,7 @@ message UnRegisterRoomsNotificationResponse {
 message CallDiceRequest {
   optional int32 num = 10;                     
   optional int32 dice = 11;
+  optional bool wilds = 20[default=false];           
 }
 
 message CallDiceResponse {
