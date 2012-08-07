@@ -33,6 +33,10 @@
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
 - (void)disableAllDiceOperationButton;
+- (void)popResultViewFromPoint:(CGPoint)org 
+                            to:(CGPoint)toPoint 
+                      duration:(CFTimeInterval)duration 
+                    coinsCount:(int)coinsCount;
 
 @end
 
@@ -50,6 +54,8 @@
 @synthesize itemsBoxButton = _itemsBoxButton;
 @synthesize wildsLabel = _wildsLabel;
 @synthesize plusOneLabel = _plusOneLabel;
+@synthesize popResultView = _popResultView;
+@synthesize rewardCoinLabel = _rewardCoinLabel;
 @synthesize diceSelectedView = _diceSelectedView;
 
 - (void)dealloc {
@@ -67,6 +73,8 @@
     [_itemsBoxButton release];
     [_wildsLabel release];
     [_plusOneLabel release];
+    [_popResultView release];
+    [_rewardCoinLabel release];
     [super dealloc];
 }
 
@@ -122,6 +130,8 @@
     [self setItemsBoxButton:nil];
     [self setWildsLabel:nil];
     [self setPlusOneLabel:nil];
+    [self setPopResultView:nil];
+    [self setRewardCoinLabel:nil];
     [super viewDidUnload];
 }
 
@@ -462,7 +472,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     // TODO: popup user info.
-
+//    [self popResultViewFromPoint:CGPointMake(view.center.x, view.center.y+view.frame.size.height/2) to:CGPointMake(view.center.x, view.center.y-view.frame.size.height/2) duration:2 coinsCount:100];
 }
 
 
@@ -629,6 +639,17 @@
                                           atView:userAvatarView
                                           inView:self.view];
 
+}
+
+- (void)popResultViewFromPoint:(CGPoint)org 
+                            to:(CGPoint)toPoint 
+                      duration:(CFTimeInterval)duration 
+                    coinsCount:(int)coinsCount
+{
+    self.popResultView.hidden = NO;
+    [self.rewardCoinLabel setText:[NSString stringWithFormat:@"x%d",coinsCount]];
+    CAAnimationGroup* pop = [AnimationManager raiseAndDismissFrom:org to:toPoint duration:duration];
+    [self.popResultView.layer addAnimation:pop forKey:@"popResult"];
 }
 
 
