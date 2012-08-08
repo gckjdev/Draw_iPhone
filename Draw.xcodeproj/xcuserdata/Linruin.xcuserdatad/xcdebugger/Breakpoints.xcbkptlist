@@ -16,5 +16,18 @@
          landmarkName = "-didReceiveGuessWord:guessUserId:guessCorrect:gainCoins:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Common_iPhone_20/Core/Core-Components-View/CMPopTipView/CMPopTipView.m"
+         timestampString = "366142109.418169"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "505"
+         endingLineNumber = "505"
+         landmarkName = "-getPointDirection"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

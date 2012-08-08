@@ -170,6 +170,7 @@ static DiceGameService* _defaultService;
 
 - (void)callDice:(int)dice count:(int)count
 {
+    
     // Update Model.
     self.diceSession.lastCallDiceUserId = self.user.userId;
     self.diceSession.lastCallDice = dice;
