@@ -14,6 +14,7 @@
 #import "MyPaintManager.h"
 #import "WXApi.h"
 #import "UIImageExt.h"
+#import "MyPaintManager.h"
 
 @interface ShareAction ()
 {
@@ -185,7 +186,7 @@
             text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
         }
     }
-    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
+    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:[MyPaintManager getMyPaintImagePathByCapacityPath:_imageFilePath]
                                                                                 text:text drawUserId:self.drawUserId];
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    

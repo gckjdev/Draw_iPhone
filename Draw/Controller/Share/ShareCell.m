@@ -13,7 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #include <ImageIO/ImageIO.h>
 #include "CoreDataUtil.h"
-#import "FileUtil.h"
+#import "MyPaintManager.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -86,9 +86,7 @@
             NSData* data = nil;
             
             if (paint.drawThumbnailData == nil){
-                NSString* homePath = [FileUtil getAppHomeDir];
-                NSString* imageName = [FileUtil getFileNameByFullPath:paint.image];
-                NSString* imagePath = [NSString stringWithFormat:@"%@/%@",homePath, imageName];
+                NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
                 data = [[[NSData alloc] initWithContentsOfFile:imagePath] autorelease];
                 paint.drawThumbnailData = data;
                 hasUpdateThumbnailData = YES;
@@ -98,9 +96,11 @@
             }
             
             CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
-//            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
+            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
             CFRelease(imageRef);
-            UIImage *image = [UIImage imageWithContentsOfFile:paint.image];
+
+//            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+            //UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
