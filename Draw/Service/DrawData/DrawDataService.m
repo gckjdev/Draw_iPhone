@@ -267,14 +267,9 @@ static DrawDataService* _defaultDrawDataService = nil;
         }
         
         dispatch_async(queue, ^{
-            //此处首先指定了图片存取路径（默认写到应用程序沙盒 中）
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-            if (!paths) {
-                PPDebug(@"Document directory not found!");
-            }
-            //并给文件起个文件名
-            NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
-            //此处的方法是将图片写到Documents文件中 如果写入成功会弹出一个警告框,提示图片保存成功
+
+            NSString *uniquePath=[MyPaintManager constructImagePath:imageName];
+
             NSData* imageData = UIImagePNGRepresentation(image);
             BOOL result=[imageData writeToFile:uniquePath atomically:YES];
             PPDebug(@"<DrawGameService> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
@@ -282,7 +277,7 @@ static DrawDataService* _defaultDrawDataService = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (result) {                    
                     NSData* drawActionListData = [NSKeyedArchiver archivedDataWithRootObject:actionList];
-                    [[MyPaintManager defaultManager ] createMyPaintWithImage:uniquePath 
+                    [[MyPaintManager defaultManager ] createMyPaintWithImage:imageName 
                                                                         data:drawActionListData 
                                                                   drawUserId:userId
                                                             drawUserNickName:nickName 
