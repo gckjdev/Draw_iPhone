@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
-#import "Feed.h"
+#import "FeedManager.h"
 #import "StableView.h"
 #import "PPViewController.h"
 
@@ -21,9 +21,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *commentLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
-
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
-+ (CGFloat)getCellHeight:(Feed *)feed;
-- (void)setCellInfo:(Feed *)feed;
+
++ (CGFloat)getCellHeight:(CommentFeed *)feed;
+- (void)setCellInfo:(CommentFeed *)feed;
 
 @end

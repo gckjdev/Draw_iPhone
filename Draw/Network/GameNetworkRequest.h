@@ -216,6 +216,11 @@
                                                lang:(int)lang
                                                type:(NSInteger)type;
 
++ (CommonNetworkOutput*)getFeedWithProtocolBuffer:(NSString*)baseURL 
+                                           userId:(NSString *)userId 
+                                           feedId:(NSString *)feedId;
+
+
 + (CommonNetworkOutput*)createOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId

@@ -16,15 +16,12 @@
 @class AvatarView;
 @class Feed;
 
-@interface FeedDetailController : PPTableViewController<FeedServiceDelegate, ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
+@interface FeedDetailController : PPTableViewController<FeedServiceDelegate, 
+ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
 {
-    Feed *_feed;
     AvatarView *_avatarView;
     ShowDrawView *_drawView;
-    NSString *_opusId;
-    NSString *_userNickName;
-    NSString *_avatar;
-    NSString *_author;
+    DrawFeed *_feed;
     FeedService *_feedService;
     NSInteger _startIndex;
     UIButton *_maskView;
@@ -38,13 +35,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
 @property (retain, nonatomic) IBOutlet UILabel *noCommentTipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) Feed *feed;
+@property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) ShowDrawView *drawView;
 
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
-//@property (retain, nonatomic) IBOutlet UIButton *followButton;
-//@property (retain, nonatomic) IBOutlet UIButton *replayButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIImageView *paperImage;
 
@@ -53,5 +48,5 @@
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickSendButton:(id)sender;
 
-- (id)initWithFeed:(Feed *)feed;
+- (id)initWithFeed:(DrawFeed *)feed;
 @end

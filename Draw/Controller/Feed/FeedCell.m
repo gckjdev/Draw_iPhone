@@ -17,18 +17,21 @@
 #import "WordManager.h"
 #import "Word.h"
 #import "DeviceDetection.h"
+#import "HJManagedImageV.h"
+#import "PPApplication.h"
 
 @implementation FeedCell
 @synthesize guessStatLabel;
 @synthesize descLabel;
 @synthesize userNameLabel;
 @synthesize timeLabel;
+@synthesize drawImageView;
 @synthesize avatarView = _avatarView;
-@synthesize drawView = _drawView;
+
 @synthesize feed = _feed;
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(12, 20, 83, 82) : CGRectMake(5, 9, 35, 36))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 9, 170, 170) :CGRectMake(222, 4, 70, 72))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 9, 175, 170) :CGRectMake(222, 4, 70, 72))
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 170)
 #define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:14 * 2] : [UIFont systemFontOfSize:14])
@@ -44,16 +47,6 @@
     FeedCell *cell = ((FeedCell*)[topLevelObjects objectAtIndex:0]);
     
     cell.delegate = delegate;
-    
-    if (cell) {
-
-        cell.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME]autorelease];
-        [cell addSubview:cell.drawView];
-        if ([cell.drawView isKindOfClass:[ShowDrawView class]]){
-            [(ShowDrawView*)cell.drawView setShowPenHidden:YES];
-        }
-        cell.drawView.backgroundColor = [UIColor clearColor];
-    }
     return cell;
 }
 
@@ -90,220 +83,145 @@
 
 - (void)updateDesc:(Feed *)feed
 {
-    NSString *desc = @"";
-    NSString *creatorNick = [FeedManager opusCreatorForFeed:feed];
-    NSString *word = feed.wordText;
-    NSString *creatorId = feed.authorId;
-    
-    NSString *targetNick= [FeedManager targetNameForFeed:feed];
-    if (feed.drawData.languageType == ChineseType 
-        && [LocaleUtils isTraditionalChinese]) {
-        word = [WordManager changeToTraditionalChinese:word];
-    }
-    
-    FeedActionDescType descType = [FeedManager feedActionDescFor:feed];
-    switch (descType) {
-        case FeedActionDescDrawed:
-            desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"), word];  
-            break;
-        case FeedActionDescDrawedNoWord:
-            desc = NSLS(@"kDrawDescNoWord");  
-            break;
-            
-        case FeedActionDescDrawedToUser:
-            desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), word, targetNick];  
-            break;
-            
-        case FeedActionDescDrawedToUserNoWord:
-            desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"),targetNick];  
-            break;
-            
-        case FeedActionDescGuessed:
-            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
-                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc_MyDraw"), word]; 
-            } else {
-                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"),creatorNick, word];
-            }
-            break;
-        case FeedActionDescGuessedNoWord:
-            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
-                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord_MyDraw")];
-            } else {
-                desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), creatorNick]; 
-            }
-            break;
-        case FeedActionDescTried:
-            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
-                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc_MyDraw"), word];
-            } else {
-                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"),creatorNick , word]; 
-            }
-              
-            break;
-        case FeedActionDescTriedNoWord:
-            if ([creatorId isEqualToString:[UserManager defaultManager].userId]) {
-                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord_MyDraw")];
-            } else {
-                desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), creatorNick]; 
-            }
-              
-            break;
-
-            
-        default:
-            break;
-    }
-    
-    
     CGPoint origin = self.descLabel.frame.origin;
     UIFont *font = DESC_FONT;
     CGSize maxSize = CGSizeMake(DESC_WIDTH, 1000000);
-    
-    CGSize labelSize = [desc sizeWithFont:font constrainedToSize:maxSize 
+    CGSize labelSize = [feed.desc sizeWithFont:font constrainedToSize:maxSize 
          lineBreakMode:UILineBreakModeWordWrap];
-
     CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;
-    
-    [self.descLabel setText:desc];
+    [self.descLabel setText:feed.desc];
 }
+
 
 - (void)updateUser:(Feed *)feed
 {
     //avatar
-    
+    NSString *avatar = [feed.feedUser avatar];
+    NSString *userId = [feed.feedUser userId];
+    BOOL gender = [feed.feedUser gender];
     [self.avatarView removeFromSuperview];
     [self.avatarView setDelegate:nil];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:feed.avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
-    self.avatarView.userId = feed.userId;
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar 
+                                                       frame:AVATAR_VIEW_FRAME 
+                                                      gender:gender 
+                                                       level:0] autorelease];
+    self.avatarView.userId = userId;
     self.avatarView.delegate = self;
     [self addSubview:self.avatarView];
     
     //name
-    [self.userNameLabel setText:[FeedManager userNameForFeed:feed]];
+    if ([feed isMyFeed]) {
+        [self.userNameLabel setText:NSLS(@"Me")];
+    }else{
+        [self.userNameLabel setText:feed.feedUser.nickName];
+    }
 }
 
 - (void)updateGuessDesc:(Feed *)feed
 {
-    if (feed.guessTimes == 0) {
+    NSInteger guessTimes = 0;
+    if (feed.isDrawType) {
+        guessTimes = [(DrawFeed *)feed guessTimes];
+    }else if(feed.feedType == FeedTypeGuess){
+        guessTimes = [[(GuessFeed *)feed drawFeed] guessTimes];
+    }
+    if (guessTimes == 0) {
         [self.guessStatLabel setText:NSLS(@"kNoGuess")];
     }else{
-        NSInteger guessTimes = feed.guessTimes;
-        NSInteger correctTimes = feed.correctTimes;
+        NSInteger correctTimes = 0;
+        if (feed.isDrawType) {
+            correctTimes = [(DrawFeed *)feed correctTimes];
+        }else if(feed.feedType == FeedTypeGuess){
+            correctTimes = [[(GuessFeed *)feed drawFeed] correctTimes];
+        }
         NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
         [self.guessStatLabel setText:desc];        
     }
 }
 
-
-- (void)updateDrawViewWithDrawData:(Feed *)feed
+- (NSString *)opusIdForFeed:(Feed *)feed
 {
-    CGRect normalFrame = DRAW_VIEW_FRAME;
-    CGRect currentFrame = SHOW_DRAW_VIEW_FRAME;
-    ShowDrawView *view = [[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME];
-    [self.drawView removeFromSuperview];
-    self.drawView = view;
-    [self addSubview:self.drawView];
-    [view release];
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    dispatch_async(queue, ^{
-        CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
-        CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
-        
-        view.drawActionList = [DrawAction scaleActionList:feed.drawData.drawActionList xScale:xScale yScale:yScale];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (feed == self.feed) {
-                [view show];
-                feed.drawImage = [view createImage];
-                [[ShareImageManager defaultManager] saveImage:feed.drawImage 
-                                                withImageName:[feed saveKey] 
-                                                         asyn:YES];               
-            }
-            
-        });
-    });
-    
+    if (feed.isDrawType) {
+        return feed.feedId;
+    }else if(feed.isGuessType){
+        return [[(GuessFeed *)feed drawFeed] feedId];
+    }
+    return nil;
 }
 
 - (void)updateDrawView:(Feed *)feed
 {
-    [self.drawView removeFromSuperview];
-    
-    if (feed.drawImage == nil) {
-        feed.drawImage = [[ShareImageManager defaultManager] getImageWithName:[feed saveKey]];
+    DrawFeed *drawFeed = nil;
+    if (feed.isDrawType) {
+        drawFeed = (DrawFeed *)feed;
+    }else if(feed.feedType == FeedTypeGuess)
+    {
+        drawFeed = [(GuessFeed *) feed drawFeed];
     }
-    
-    if (feed.drawImage) {
-        UIImageView* imageView = [[UIImageView alloc] 
-                                  initWithImage:feed.drawImage];
-        self.drawView = imageView;
-        [imageView release];
-        self.drawView.frame = SHOW_DRAW_VIEW_FRAME;
-        [self addSubview:self.drawView];
-    }else if(feed.drawData){
-        PPDebug(@"<updateDrawView> feed = %@, image is nil, use draw data to show.", feed.feedId);
-        [self updateDrawViewWithDrawData:feed];
-    }else{
-        [FeedManager parseDrawData:feed delegate:self];
+    [self.drawImageView clear];
+    if (drawFeed) {
+        NSString *imageUrl = drawFeed.drawImageUrl;
+        UIImage *image = drawFeed.drawImage;
+        if ([imageUrl length] != 0) {
+            [self.drawImageView setUrl:[NSURL URLWithString:imageUrl]];    
+        }else if(image){
+            [self.drawImageView setImage:image];
+        }else if(drawFeed.drawData){
+            Draw *draw = drawFeed.drawData;
+            CGRect normalFrame = DRAW_VIEW_FRAME;
+            CGRect currentFrame = self.drawImageView.frame;
+
+            CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
+            CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
+            ShowDrawView *showView = [[ShowDrawView alloc] initWithFrame:self.drawImageView.frame];
+            showView.drawActionList = [DrawAction scaleActionList:draw.drawActionList xScale:xScale yScale:yScale];
+            [self addSubview:showView];
+            [showView release];
+            drawFeed.drawImage = [showView createImage];
+            //save image.
+            [[ShareImageManager defaultManager] saveImage:drawFeed.drawImage withImageName:[self opusIdForFeed:feed] asyn:YES];
+            [self.drawImageView setImage:drawFeed.drawImage];
+            [showView removeFromSuperview];
+            drawFeed.drawData = nil;
+        }
+        [GlobalGetImageCache() manage:self.drawImageView];
     }
 }
+
+
 - (void)setCellInfo:(Feed *)feed
 {
     self.feed = feed;
-    [self updateDrawView:feed];
     [self updateDesc:feed];
     [self updateTime:feed];
     [self updateUser:feed];
     [self updateGuessDesc:feed];
+    [self updateDrawView:feed];
 }
 
 
-- (IBAction)clickActionButton:(id)sender {
-    //
-    ActionType type = [FeedManager actionTypeForFeed:self.feed];
-    if (type == ActionTypeGuess) {
-        if (delegate && [delegate respondsToSelector:@selector(didClickGuessButtonOnFeed:)]) {
-            [delegate didClickGuessButtonOnFeed:self.feed];
-        }
-    }else if(type == ActionTypeOneMore){
-        if (delegate && [delegate respondsToSelector:@selector(didClickDrawOneMoreButtonAtIndexPath:)]) {
-            [delegate didClickDrawOneMoreButtonAtIndexPath:self.indexPath];
-        }
-    }
-}
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
     if (delegate && [delegate respondsToSelector:@selector(didClickAvatar:nickName:gender:atIndexPath:)]) {
-        [delegate didClickAvatar:self.feed.userId 
-                        nickName:self.feed.nickName 
-                          gender:self.feed.gender 
+        FeedUser *author = self.feed.feedUser;
+        [delegate didClickAvatar:author.userId 
+                        nickName:author.nickName 
+                          gender:author.gender 
                      atIndexPath:self.indexPath];
-    }
-}
-
-- (void)didParseFeedDrawData:(Feed *)feed
-{
-    if (self.feed.drawImage == nil) {
-        [self updateDrawViewWithDrawData:feed];
     }
 }
 
 
 - (void)dealloc {
-    if ([_drawView respondsToSelector:@selector(cleanAllActions)]){
-        [_drawView performSelector:@selector(cleanAllActions)];
-    }
-
     PPRelease(timeLabel);
     PPRelease(descLabel);
     PPRelease(userNameLabel);
     PPRelease(guessStatLabel);
-    PPRelease(_drawView);
     PPRelease(_avatarView);
     PPRelease(_feed);
+    PPRelease(drawImageView);
     [super dealloc];
 }
 @end

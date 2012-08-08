@@ -8,29 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "Feed.h"
+#import "DrawFeed.h"
+#import "GuessFeed.h"
+#import "DrawToUserFeed.h"
+#import "CommentFeed.h"
+
+
 
 typedef enum{
-    ActionTypeHidden = 0,
-    ActionTypeOneMore = 1,
-    ActionTypeGuess = 2,
-    ActionTypeCorrect = 3,
-    ActionTypeChallenge = 4
-}ActionType;
-
-typedef enum{
-    FeedActionDescNo = 0,
-    FeedActionDescGuessed = 1,
-    FeedActionDescTried,
-    FeedActionDescDrawed,
-    FeedActionDescDrawedToUser,
     
-    FeedActionDescDrawedNoWord = 1001,
-    FeedActionDescGuessedNoWord,
-    FeedActionDescTriedNoWord,
-    FeedActionDescDrawedToUserNoWord,    
+    FeedListTypeUnknow = 0,
+    FeedListTypeMy = 1,
+    FeedListTypeAll = 2,
+    FeedListTypeHot = 3,
+    FeedListTypeUser = 4,
+    FeedListTypeUserOpus = 5,
+    FeedListTypeLatest = 6,
     
-    
-}FeedActionDescType;
+}FeedListType;
 
 
 @protocol FeedManagerDelegate <NSObject>
@@ -52,17 +47,6 @@ typedef enum{
 - (void)cleanData;
 
 
-+ (ActionType)actionTypeForFeed:(Feed *)feed;
-+ (NSString *)userNameForFeed:(Feed *)feed;
-+ (NSString *)opusCreatorForFeed:(Feed *)feed;
-+ (FeedActionDescType)feedActionDescFor:(Feed *)feed;
-+ (NSString *)targetNameForFeed:(Feed *)feed;
-
-+ (Draw *)localDrawDataForFeedId:(NSString *)feedId;
-+ (void)saveDrawData:(Draw *)drawData 
-          withFeedId:(NSString *)feedId 
-                asyn:(BOOL)asyn;
-+ (BOOL)isDrawDataExsit:(NSString *)feedId;
-+ (void)parseDrawData:(Feed *)feed
-             delegate:(id<FeedManagerDelegate>)delegate;
++ (NSArray *)parsePbFeedList:(NSArray *)pbFeedList;
++ (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList;
 @end

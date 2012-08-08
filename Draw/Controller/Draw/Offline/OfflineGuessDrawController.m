@@ -32,7 +32,6 @@
 #import "AudioManager.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
-#import "Feed.h"
 #import "Draw.h"
 #import "AccountManager.h"
 #import "CoinShopController.h"
@@ -69,10 +68,9 @@
 @synthesize delegate = _delegate;
 
 
-+ (OfflineGuessDrawController *)startOfflineGuess:(Feed *)feed 
++ (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
            fromController:(UIViewController *)fromController
 {
-    [feed parseDrawData];
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
                                             initWithFeed:feed];
     offGuess.superController = fromController;
@@ -135,17 +133,15 @@
     return self;
 }
 
-- (id)initWithFeed:(Feed *)feed
+- (id)initWithFeed:(DrawFeed *)feed
 {
     self = [super init];
     if (self) {
         shareImageManager = [ShareImageManager defaultManager];        
         self.feed = feed;
         _opusId = _feed.feedId;
-        if (_feed.feedType == FeedTypeGuess) {
-            _opusId = _feed.opusId;
-        }
         _draw = _feed.drawData;
+        _authorId = _feed.author.userId;
     }
     return self;
     
@@ -580,9 +576,9 @@
 - (void)updateFeed:(BOOL)isCorrect
 {
     if ([_guessWords count] != 0) {
-        self.feed.guessTimes ++;
+        [self.feed incGuessTimes];
         if (isCorrect) {
-            self.feed.correctTimes ++;
+            [self.feed incCorrectTimes];
         }
         if (_delegate && [_delegate respondsToSelector:@selector(didGuessFeed:isCorrect:words:)]) {
             [_delegate didGuessFeed:_feed isCorrect:isCorrect words:_guessWords];
@@ -612,7 +608,7 @@
         default:
             //if have no words, don't send the action.
             if ([_guessWords count] != 0) {
-                [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:NO score:0 delegate:nil];            
+                [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_authorId isCorrect:NO score:0 delegate:nil];            
                 [self updateFeed:NO];
             }
             UIViewController *feedDetail = [self superViewControllerForClass:[FeedDetailController class]];
@@ -708,8 +704,8 @@
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:_draw.userId 
                                       isOffline:YES
-                                     feedOpusId:[self.feed isDrawType] ? self.feed.feedId : self.feed.opusId
-                                     feedAuthor:self.feed.author];    
+                                     feedOpusId:_opusId
+                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxFlower <= 0) {
@@ -728,8 +724,8 @@
     [[ItemService defaultService] sendItemAward:toolView.itemType 
                                    targetUserId:_draw.userId 
                                       isOffline:YES
-                                     feedOpusId:[self.feed isDrawType] ? self.feed.feedId : self.feed.opusId
-                                     feedAuthor:self.feed.author];
+                                     feedOpusId:_opusId
+                                     feedAuthor:_authorId];    
     
     [toolView decreaseNumber];
     if (--_maxTomato <= 0) {
