@@ -9287,6 +9287,10 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) OpenDiceResponse* openDiceResponse;
 @property (retain) GameOverNotificationRequest* gameOverNotificationRequest;
 @property (retain) GameOverNotificationResponse* gameOverNotificationResponse;
+@property (retain) RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
+@property (retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
+@property (retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
+@property (retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
 @end
@@ -9538,6 +9542,34 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasGameOverNotificationResponse_ = !!value;
 }
 @synthesize gameOverNotificationResponse;
+- (BOOL) hasRegisterRoomsNotificationRequest {
+  return !!hasRegisterRoomsNotificationRequest_;
+}
+- (void) setHasRegisterRoomsNotificationRequest:(BOOL) value {
+  hasRegisterRoomsNotificationRequest_ = !!value;
+}
+@synthesize registerRoomsNotificationRequest;
+- (BOOL) hasRegisterRoomsNotificationResponse {
+  return !!hasRegisterRoomsNotificationResponse_;
+}
+- (void) setHasRegisterRoomsNotificationResponse:(BOOL) value {
+  hasRegisterRoomsNotificationResponse_ = !!value;
+}
+@synthesize registerRoomsNotificationResponse;
+- (BOOL) hasUnRegisterRoomsNotificationRequest {
+  return !!hasUnRegisterRoomsNotificationRequest_;
+}
+- (void) setHasUnRegisterRoomsNotificationRequest:(BOOL) value {
+  hasUnRegisterRoomsNotificationRequest_ = !!value;
+}
+@synthesize unRegisterRoomsNotificationRequest;
+- (BOOL) hasUnRegisterRoomsNotificationResponse {
+  return !!hasUnRegisterRoomsNotificationResponse_;
+}
+- (void) setHasUnRegisterRoomsNotificationResponse:(BOOL) value {
+  hasUnRegisterRoomsNotificationResponse_ = !!value;
+}
+@synthesize unRegisterRoomsNotificationResponse;
 - (BOOL) hasStartOffset {
   return !!hasStartOffset_;
 }
@@ -9581,6 +9613,10 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.openDiceResponse = nil;
   self.gameOverNotificationRequest = nil;
   self.gameOverNotificationResponse = nil;
+  self.registerRoomsNotificationRequest = nil;
+  self.registerRoomsNotificationResponse = nil;
+  self.unRegisterRoomsNotificationRequest = nil;
+  self.unRegisterRoomsNotificationResponse = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9620,6 +9656,10 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.openDiceResponse = [OpenDiceResponse defaultInstance];
     self.gameOverNotificationRequest = [GameOverNotificationRequest defaultInstance];
     self.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
+    self.registerRoomsNotificationRequest = [RegisterRoomsNotificationRequest defaultInstance];
+    self.registerRoomsNotificationResponse = [RegisterRoomsNotificationResponse defaultInstance];
+    self.unRegisterRoomsNotificationRequest = [UnRegisterRoomsNotificationRequest defaultInstance];
+    self.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
   }
@@ -9822,6 +9862,18 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasGameOverNotificationResponse) {
     [output writeMessage:116 value:self.gameOverNotificationResponse];
   }
+  if (self.hasRegisterRoomsNotificationRequest) {
+    [output writeMessage:117 value:self.registerRoomsNotificationRequest];
+  }
+  if (self.hasRegisterRoomsNotificationResponse) {
+    [output writeMessage:118 value:self.registerRoomsNotificationResponse];
+  }
+  if (self.hasUnRegisterRoomsNotificationRequest) {
+    [output writeMessage:119 value:self.unRegisterRoomsNotificationRequest];
+  }
+  if (self.hasUnRegisterRoomsNotificationResponse) {
+    [output writeMessage:120 value:self.unRegisterRoomsNotificationResponse];
+  }
   if (self.hasStartOffset) {
     [output writeInt32:1000 value:self.startOffset];
   }
@@ -9941,6 +9993,18 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasGameOverNotificationResponse) {
     size += computeMessageSize(116, self.gameOverNotificationResponse);
+  }
+  if (self.hasRegisterRoomsNotificationRequest) {
+    size += computeMessageSize(117, self.registerRoomsNotificationRequest);
+  }
+  if (self.hasRegisterRoomsNotificationResponse) {
+    size += computeMessageSize(118, self.registerRoomsNotificationResponse);
+  }
+  if (self.hasUnRegisterRoomsNotificationRequest) {
+    size += computeMessageSize(119, self.unRegisterRoomsNotificationRequest);
+  }
+  if (self.hasUnRegisterRoomsNotificationResponse) {
+    size += computeMessageSize(120, self.unRegisterRoomsNotificationResponse);
   }
   if (self.hasStartOffset) {
     size += computeInt32Size(1000, self.startOffset);
@@ -10127,6 +10191,18 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasGameOverNotificationResponse) {
     [self mergeGameOverNotificationResponse:other.gameOverNotificationResponse];
+  }
+  if (other.hasRegisterRoomsNotificationRequest) {
+    [self mergeRegisterRoomsNotificationRequest:other.registerRoomsNotificationRequest];
+  }
+  if (other.hasRegisterRoomsNotificationResponse) {
+    [self mergeRegisterRoomsNotificationResponse:other.registerRoomsNotificationResponse];
+  }
+  if (other.hasUnRegisterRoomsNotificationRequest) {
+    [self mergeUnRegisterRoomsNotificationRequest:other.unRegisterRoomsNotificationRequest];
+  }
+  if (other.hasUnRegisterRoomsNotificationResponse) {
+    [self mergeUnRegisterRoomsNotificationResponse:other.unRegisterRoomsNotificationResponse];
   }
   if (other.hasStartOffset) {
     [self setStartOffset:other.startOffset];
@@ -10433,6 +10509,42 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGameOverNotificationResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 938: {
+        RegisterRoomsNotificationRequest_Builder* subBuilder = [RegisterRoomsNotificationRequest builder];
+        if (self.hasRegisterRoomsNotificationRequest) {
+          [subBuilder mergeFrom:self.registerRoomsNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRegisterRoomsNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 946: {
+        RegisterRoomsNotificationResponse_Builder* subBuilder = [RegisterRoomsNotificationResponse builder];
+        if (self.hasRegisterRoomsNotificationResponse) {
+          [subBuilder mergeFrom:self.registerRoomsNotificationResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRegisterRoomsNotificationResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 954: {
+        UnRegisterRoomsNotificationRequest_Builder* subBuilder = [UnRegisterRoomsNotificationRequest builder];
+        if (self.hasUnRegisterRoomsNotificationRequest) {
+          [subBuilder mergeFrom:self.unRegisterRoomsNotificationRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUnRegisterRoomsNotificationRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 962: {
+        UnRegisterRoomsNotificationResponse_Builder* subBuilder = [UnRegisterRoomsNotificationResponse builder];
+        if (self.hasUnRegisterRoomsNotificationResponse) {
+          [subBuilder mergeFrom:self.unRegisterRoomsNotificationResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUnRegisterRoomsNotificationResponse:[subBuilder buildPartial]];
         break;
       }
       case 8000: {
@@ -11354,6 +11466,126 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearGameOverNotificationResponse {
   result.hasGameOverNotificationResponse = NO;
   result.gameOverNotificationResponse = [GameOverNotificationResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasRegisterRoomsNotificationRequest {
+  return result.hasRegisterRoomsNotificationRequest;
+}
+- (RegisterRoomsNotificationRequest*) registerRoomsNotificationRequest {
+  return result.registerRoomsNotificationRequest;
+}
+- (GameMessage_Builder*) setRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value {
+  result.hasRegisterRoomsNotificationRequest = YES;
+  result.registerRoomsNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setRegisterRoomsNotificationRequestBuilder:(RegisterRoomsNotificationRequest_Builder*) builderForValue {
+  return [self setRegisterRoomsNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value {
+  if (result.hasRegisterRoomsNotificationRequest &&
+      result.registerRoomsNotificationRequest != [RegisterRoomsNotificationRequest defaultInstance]) {
+    result.registerRoomsNotificationRequest =
+      [[[RegisterRoomsNotificationRequest builderWithPrototype:result.registerRoomsNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.registerRoomsNotificationRequest = value;
+  }
+  result.hasRegisterRoomsNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearRegisterRoomsNotificationRequest {
+  result.hasRegisterRoomsNotificationRequest = NO;
+  result.registerRoomsNotificationRequest = [RegisterRoomsNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasRegisterRoomsNotificationResponse {
+  return result.hasRegisterRoomsNotificationResponse;
+}
+- (RegisterRoomsNotificationResponse*) registerRoomsNotificationResponse {
+  return result.registerRoomsNotificationResponse;
+}
+- (GameMessage_Builder*) setRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value {
+  result.hasRegisterRoomsNotificationResponse = YES;
+  result.registerRoomsNotificationResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setRegisterRoomsNotificationResponseBuilder:(RegisterRoomsNotificationResponse_Builder*) builderForValue {
+  return [self setRegisterRoomsNotificationResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value {
+  if (result.hasRegisterRoomsNotificationResponse &&
+      result.registerRoomsNotificationResponse != [RegisterRoomsNotificationResponse defaultInstance]) {
+    result.registerRoomsNotificationResponse =
+      [[[RegisterRoomsNotificationResponse builderWithPrototype:result.registerRoomsNotificationResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.registerRoomsNotificationResponse = value;
+  }
+  result.hasRegisterRoomsNotificationResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearRegisterRoomsNotificationResponse {
+  result.hasRegisterRoomsNotificationResponse = NO;
+  result.registerRoomsNotificationResponse = [RegisterRoomsNotificationResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasUnRegisterRoomsNotificationRequest {
+  return result.hasUnRegisterRoomsNotificationRequest;
+}
+- (UnRegisterRoomsNotificationRequest*) unRegisterRoomsNotificationRequest {
+  return result.unRegisterRoomsNotificationRequest;
+}
+- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value {
+  result.hasUnRegisterRoomsNotificationRequest = YES;
+  result.unRegisterRoomsNotificationRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequestBuilder:(UnRegisterRoomsNotificationRequest_Builder*) builderForValue {
+  return [self setUnRegisterRoomsNotificationRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value {
+  if (result.hasUnRegisterRoomsNotificationRequest &&
+      result.unRegisterRoomsNotificationRequest != [UnRegisterRoomsNotificationRequest defaultInstance]) {
+    result.unRegisterRoomsNotificationRequest =
+      [[[UnRegisterRoomsNotificationRequest builderWithPrototype:result.unRegisterRoomsNotificationRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.unRegisterRoomsNotificationRequest = value;
+  }
+  result.hasUnRegisterRoomsNotificationRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearUnRegisterRoomsNotificationRequest {
+  result.hasUnRegisterRoomsNotificationRequest = NO;
+  result.unRegisterRoomsNotificationRequest = [UnRegisterRoomsNotificationRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasUnRegisterRoomsNotificationResponse {
+  return result.hasUnRegisterRoomsNotificationResponse;
+}
+- (UnRegisterRoomsNotificationResponse*) unRegisterRoomsNotificationResponse {
+  return result.unRegisterRoomsNotificationResponse;
+}
+- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value {
+  result.hasUnRegisterRoomsNotificationResponse = YES;
+  result.unRegisterRoomsNotificationResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponse_Builder*) builderForValue {
+  return [self setUnRegisterRoomsNotificationResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value {
+  if (result.hasUnRegisterRoomsNotificationResponse &&
+      result.unRegisterRoomsNotificationResponse != [UnRegisterRoomsNotificationResponse defaultInstance]) {
+    result.unRegisterRoomsNotificationResponse =
+      [[[UnRegisterRoomsNotificationResponse builderWithPrototype:result.unRegisterRoomsNotificationResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.unRegisterRoomsNotificationResponse = value;
+  }
+  result.hasUnRegisterRoomsNotificationResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse {
+  result.hasUnRegisterRoomsNotificationResponse = NO;
+  result.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
   return self;
 }
 - (BOOL) hasStartOffset {
