@@ -8,6 +8,9 @@
 
 #import "FeedClasses.h"
 #import "PPDebug.h"
+#import "GameMessage.pb.h"
+#import "GameBasic.pb.h"
+
 
 @implementation FeedUser
 @synthesize userId = _userId;
@@ -76,6 +79,21 @@
     return self;
 }
 
+- (id)initWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes
+{
+    self = [super init];
+    if (self) {
+        self.type = [pbFeedTimes type];
+        self.times = [pbFeedTimes value];
+    }
+    return self;
+    
+}
+
++ (FeedTimes *)feedTimesWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes
+{
+    return [[[FeedTimes alloc] initWithPbFeedTimes:pbFeedTimes]autorelease];
+}
 + (FeedTimes *)feedTimesWithType:(NSInteger)type times:(NSInteger)times
 {
     return [[[FeedTimes alloc] initWithType:type times:times] autorelease];

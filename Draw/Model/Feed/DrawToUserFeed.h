@@ -9,5 +9,8 @@
 #import "DrawFeed.h"
 
 @interface DrawToUserFeed : DrawFeed
-
+{
+    FeedUser *_targetUser;
+}
+@property(nonatomic, retain)FeedUser *targetUser;
 @end

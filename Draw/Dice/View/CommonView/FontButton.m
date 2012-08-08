@@ -7,6 +7,7 @@
 //
 
 #import "FontButton.h"
+#import "DiceFontManager.h"
 
 @implementation FontButton
 
@@ -40,7 +41,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.fontLable = [[[FontLabel alloc] initWithFrame:self.bounds
-                                                  fontName:@"diceFont"
+                                                  fontName:[[DiceFontManager defaultManager] fontName]
                                                  pointSize:self.titleLabel.font.pointSize] autorelease];
         _fontLable.backgroundColor = [UIColor clearColor];
         _fontLable.textAlignment = UITextAlignmentCenter;

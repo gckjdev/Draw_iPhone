@@ -34,16 +34,15 @@
 @interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate>
 {
     AvatarView *_avatarView;
-    UIView *_drawView;
+//    ShowDrawView *_drawView;
 }
 @property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet HJManagedImageV *drawImageView;
 
 @property (retain, nonatomic) AvatarView *avatarView;
-@property (retain, nonatomic) UIView *drawView;
 @property (retain, nonatomic) Feed *feed;
-- (IBAction)clickActionButton:(id)sender;
 - (void)setCellInfo:(Feed *)feed;
 @end

@@ -756,7 +756,7 @@
 
 
 #pragma mark - draw data service delegate
-- (void)didMatchDraw:(Feed *)feed result:(int)resultCode
+- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
     [self hideActivity];
     if (resultCode == 0 && feed) {

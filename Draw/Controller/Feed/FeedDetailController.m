@@ -22,7 +22,8 @@
 #import "CommonUserInfoView.h"
 #import "ShareService.h"
 #import "DrawDataService.h"
-//#import "OfflineGuessDrawController.h
+
+
 @interface FeedDetailController()
 - (void)textViewDidChange:(UITextView *)textView;
 - (void)changeTableSize:(BOOL)animated duration:(NSTimeInterval)duration;
@@ -67,7 +68,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (id)initWithFeed:(Feed *)feed
+- (id)initWithFeed:(DrawFeed *)feed
 {
     self = [super init];
     if (self) {
@@ -79,7 +80,7 @@
 }
 
 
-- (void)updateTime:(Feed *)feed
+- (void)updateTime:(DrawFeed *)feed
 {
     NSString *timeString = nil;
     if ([LocaleUtils isChinese]) {
@@ -98,20 +99,25 @@
 }
 
 
-- (void)updateUser:(Feed *)feed
+- (void)updateUser:(DrawFeed *)feed
 {
-    //avatar
-//    [self.avatarView removeFromSuperview];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:_avatar frame:AVATAR_VIEW_FRAME gender:feed.gender level:0] autorelease];
-    [self.avatarView setUserId:_author];
+    [self.avatarView removeFromSuperview];
+    NSString *userId = _feed.author.userId;
+    NSString *avatar = _feed.author.avatar;
+    NSString *nickName = _feed.author.nickName;
+    
+    BOOL gender =  _feed.author.gender;
+    
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar frame:AVATAR_VIEW_FRAME gender:gender level:0] autorelease];
+    [self.avatarView setUserId:userId];
     [self.view addSubview:self.avatarView];
     self.avatarView.delegate = self;
     
     //name
-    [self.nickNameLabel setText:[FeedManager opusCreatorForFeed:feed]];
+    [self.nickNameLabel setText:nickName];
 }
 
-- (void)updateGuessDesc:(Feed *)feed
+- (void)updateGuessDesc:(DrawFeed *)feed
 {
     if (feed.guessTimes == 0) {
         [self.guessStatLabel setText:NSLS(@"kNoGuess")];
@@ -126,7 +132,7 @@
 #define ACTION_TAG_GUESS 2012070201
 #define ACTION_TAG_CHALLENGE 2012070202
 
-- (void)updateActionButton:(Feed *)feed
+- (void)updateActionButton:(DrawFeed *)feed
 {
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
     self.actionButton.hidden = NO;
@@ -135,7 +141,7 @@
     self.actionButton.selected = NO;
     
     
-    ActionType type = [FeedManager actionTypeForFeed:feed];
+    ActionType type = feed.actionType;
     if (type == ActionTypeGuess) {
         [self.actionButton setTitle:NSLS(@"kIGuessAction") forState:UIControlStateNormal];
         self.actionButton.tag = ACTION_TAG_GUESS;
@@ -189,7 +195,7 @@
     
 }
 
-- (void)updateDrawView:(Feed *)feed
+- (void)updateDrawView:(DrawFeed *)feed
 {
     self.drawView = [[[ShowDrawView alloc] initWithFrame:SHOW_DRAW_VIEW_FRAME] autorelease];
     self.drawView.playSpeed = 1.0/36.0;
@@ -203,7 +209,7 @@
 }
 
 #define INPUT_BG_TAG 2012061501
-- (void)updateInputView:(Feed *)feed
+- (void)updateInputView:(DrawFeed *)feed
 {
     commentInput.layer.cornerRadius = 6;
     commentInput.layer.masksToBounds = YES;
@@ -217,12 +223,12 @@
     [self.inputBackground setImage:[ShareImageManager defaultManager].inputImage];
 }
 
-- (void)updateCommentTableView:(Feed *)feed
+- (void)updateCommentTableView:(DrawFeed *)feed
 {
     //load data.
 }
 
-- (void)updateSendButton:(Feed *)feed
+- (void)updateSendButton:(DrawFeed *)feed
 {
     //load data.
     [self.sendButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage]forState:UIControlStateNormal];
@@ -232,37 +238,14 @@
 
 
 
-- (void)updateInfo:(Feed *)feed
-{
-    if (feed.drawData == nil) {
-        if (feed.drawData == nil && feed.pbDraw) {
-            PPDebug(@"<FeedDetailController>init the draw data from the pbDraw,feedId = %@",feed.feedId);
-            feed.drawData = [[Draw alloc] initWithPBDraw:feed.pbDraw];
-            feed.pbDraw = nil;
-        }
-    }
-    if ([feed isDrawType]) {
-        _opusId = feed.feedId;
-        _userNickName = feed.nickName;
-        _avatar = feed.avatar;
-        _author = feed.userId;
-    }else if(feed.feedType == FeedTypeGuess)
-    {
-        _opusId = feed.opusId;
-        _userNickName = feed.drawData.nickName;
-        _avatar = feed.drawData.avatar;
-        _author = feed.drawData.userId;
-    }else{
-        PPDebug(@"<FeedDetailController>:warning feed type is error");
-    }
-}
+
 
 
 #define COMMENT_COUNT 12
 - (void)updateCommentList
 {
 //    [self showActivityWithText:NSLS(@"kLoading")];
-    [_feedService getOpusCommentList:_opusId offset:_startIndex limit:COMMENT_COUNT delegate:self];
+    [_feedService getOpusCommentList:_feed.feedId offset:_startIndex limit:COMMENT_COUNT delegate:self];
 }
 
 - (void)updateNoCommentLabel
@@ -278,10 +261,17 @@
         title = [NSString stringWithFormat:NSLS(@"kMyDrawing"),
                  self.feed.wordText];        
     }else{
-        title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),[FeedManager opusCreatorForFeed:self.feed]];
+        title = [NSString stringWithFormat:NSLS(@"kFeedDetail"),_feed.feedUser.nickName];
     }
     [self.titleLabel setText:title];
     [self.commentLabel setText:NSLS(@"kFeeds")];
+}
+
+- (void)loadDrawFeed
+{
+    self.actionButton.hidden = YES;
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_feedService getFeedByFeedId:self.feed.feedId delegate:self];
 }
 
 #pragma mark - View lifecycle
@@ -292,19 +282,15 @@
     [self setSupportRefreshHeader:YES];
     
     [super viewDidLoad];
-    
-    [self updateInfo:_feed];
     [self updateTime:_feed];
     [self updateUser:_feed];
     [self updateGuessDesc:_feed];
-    [self updateActionButton:_feed];
-    [self updateDrawView:_feed];
-    [self updateCommentTableView:_feed];
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];
     [self updateTitle];
     [self updateInputView:_feed];
     [self updateCommentList];
+    [self loadDrawFeed];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -353,7 +339,7 @@
         controller.delegate = self;
         
     }else if(tag == ACTION_TAG_CHALLENGE){
-        [self didClickOnAvatar:_author];
+        [self didClickOnAvatar:_feed.feedUser.userId];
     
     }
 }
@@ -366,12 +352,10 @@
     
     [_drawView cleanAllActions];
     _drawView.delegate = nil;
-    
+    self.feed.drawData = nil;
     PPRelease(_feed);
     PPRelease(_avatarView);
     PPRelease(_drawView);
-    
-    
     PPRelease(titleLabel);
     PPRelease(noCommentTipsLabel);
     PPRelease(timeLabel);
@@ -393,7 +377,7 @@
     NSString *msg = commentInput.text;
     if ([msg length] != 0) {
         [self showActivityWithText:NSLS(@"kSending")];
-        [_feedService commentOpus:_opusId author:_author comment:msg delegate:self];        
+        [_feedService commentOpus:_feed.feedId author:_feed.feedUser.userId comment:msg delegate:self];        
     }
 }
 
@@ -432,13 +416,13 @@
     UIButton *button = (UIButton *)sender;
     [self.drawView show]; 
     [[ShareService defaultService] shareWithImage:[_drawView createImage] 
-                                       drawUserId:_feed.userId 
+                                       drawUserId:_feed.feedUser.userId
                                        isDrawByMe:[_feed isMyOpus] 
                                          drawWord:_feed.wordText];    
     
     [[DrawDataService defaultService] saveActionList:_feed.drawData.drawActionList 
-                                              userId:_feed.userId 
-                                            nickName:_feed.nickName 
+                                              userId:_feed.feedUser.userId
+                                            nickName:_feed.feedUser.nickName
                                            isMyPaint:[_feed isMyOpus] 
                                                 word:_feed.wordText
                                                image:[_drawView createImage] viewController:self];
@@ -469,8 +453,9 @@
 
 #pragma mark - feed service delegate
 - (void)didCommentOpus:(NSString *)opusId
-               comment:(NSString *)comment
-            resultCode:(NSInteger)resultCode;
+         commentFeedId:(NSString *)commentFeedId
+               comment:(NSString *)comment 
+            resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
     
@@ -480,27 +465,47 @@
         [self textViewDidChange:self.commentInput];
         
         PPDebug(@"comment succ: opusId = %@, comment = %@", opusId, comment);
-        Feed *feed = [[Feed alloc] init];
+        
         UserManager *manager = [UserManager defaultManager];
-        feed.userId = [manager userId];
-        feed.nickName = [manager nickName];
-        feed.avatar = [manager avatarURL];
-        feed.gender = [manager isUserMale];
-        feed.createDate = [NSDate date];
-        feed.opusId = opusId;
-        feed.comment = comment;
+        
+        FeedUser *feedUser = [FeedUser feedUserWithUserId:[manager userId] nickName:[manager nickName] avatar:[manager avatarURL] gender:[manager isUserMale]];
+        CommentFeed *feed = [[CommentFeed alloc] initWithCommentFeedId:commentFeedId
+                                                            opusStatus:OPusStatusNormal 
+                                                            createData:[NSDate date] 
+                                                              feedUser:feedUser 
+                                                               comment:comment];
         NSMutableArray *array = [NSMutableArray arrayWithObject:feed];
         [feed release];
         
         if (self.dataList != nil) {
             [array addObjectsFromArray:self.dataList];
         }
+        
         self.dataList = array;
         [self.dataTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") delayTime:1 isHappy:NO];
         PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
+    }
+}
+
+
+- (void)didGetFeed:(DrawFeed *)feed
+        resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0 && feed != nil) {        
+        PPDebug(@"get draw feed succ: feedId = %@",feed.feedId);
+        self.feed.timesSet = feed.timesSet;
+        self.feed.drawData = feed.drawData;
+        [self updateGuessDesc:feed];
+        [self updateActionButton:feed];
+        [self updateTime:feed];
+        [self updateDrawView:feed];
+        [self hideActivity];
+    }else{
+        [self hideActivity];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGetFeedFail") delayTime:1 isHappy:NO];
     }
 }
 
@@ -512,10 +517,11 @@
     [self dataSourceDidFinishLoadingNewData];   
     [self dataSourceDidFinishLoadingMoreData];
     if (resultCode == 0) {
+        NSInteger count = [feedList count];
+        self.noMoreData = (count == 0);        
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
         if (_startIndex == 0) {
             self.dataList = feedList;
-            [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
         }else{
             NSMutableArray *array = [NSMutableArray array];
             if ([self.dataList count] != 0) {
@@ -523,23 +529,10 @@
             }
             if ([feedList count] != 0) {
                 [array addObjectsFromArray:feedList];
-            }
-            NSInteger start = [self.dataList count];
-            NSInteger end = [array count];
-            self.dataList = array;
-            NSMutableArray *indexPaths = [NSMutableArray array];
-            for (int i = start; i < end; ++ i) {
-                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                [indexPaths addObject:path];
-            }
-            if ([indexPaths count] != 0) {
-                [self.dataTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-            }
-            
+            }            
         }
-        NSInteger count = [feedList count];
+        [self.dataTableView reloadData];
         _startIndex += count;
-        self.noMoreData = (count < COMMENT_COUNT * 0.8);        
     }else{
         PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
     }
@@ -547,7 +540,7 @@
 }
 
 
-- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
+- (void)didDeleteFeed:(DrawFeed *)feed resultCode:(NSInteger)resultCode;
 
 {
     [self hideActivity];
@@ -567,7 +560,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
 	CGFloat height = [CommentCell getCellHeight:feed];
     return height;
 }
@@ -594,7 +587,7 @@
     }
     cell.indexPath = indexPath;
     cell.accessoryType = UITableViewCellAccessoryNone;
-    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:feed];
     return cell;
 }
@@ -603,15 +596,15 @@
 #pragma mark - delete feed.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
     [self showActivityWithText:NSLS(@"kDeleting")];
     [[FeedService defaultService] deleteFeed:feed delegate:self];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Feed *feed = [self.dataList objectAtIndex:indexPath.row];
-    return [[UserManager defaultManager] isMe:feed.userId] || [self.feed isMyOpus];
+    DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+    return [feed isMyFeed]|| [self.feed isMyOpus];
 }
 
 
@@ -628,12 +621,13 @@
 }
 
 #pragma offline guess delegate
-- (void)didGuessFeed:(Feed *)feed 
+/*
+- (void)didGuessFeed:(DrawFeed *)feed 
            isCorrect:(BOOL)isCorrect 
                words:(NSArray *)words
 {
     UserManager *userManager = [UserManager defaultManager];
-    Feed *comment = [[Feed alloc] init];
+    DrawFeed *comment = [[Feed alloc] init];
     [comment setCorrect:isCorrect];
     [comment setGuessWords:words];
     [comment setUserId:[userManager userId]];
@@ -650,7 +644,7 @@
     self.dataList = array;
     [comment release];
 }
-
+*/
 
 
 #define MAX_LENGTH 140
@@ -749,8 +743,6 @@
 {
     CGFloat newPaperHeight = self.inputBackgroundView.frame.origin.y - self.paperImage.frame.origin.y;
     CGRect newPaperFrame = CGRectMake(self.paperImage.frame.origin.x, self.paperImage.frame.origin.y, self.paperImage.frame.size.width, newPaperHeight);
-//    CGFloat newTableHeight = inputBackgroundView.frame.origin.y - dataTableView.frame.origin.y - TABLE_AND_INPUT_SPACE;
-//    CGRect newTableFrame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, newTableHeight);
     
     if (animated) {
         [UIView beginAnimations:nil context:nil];

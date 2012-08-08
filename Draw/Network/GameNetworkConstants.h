@@ -113,6 +113,7 @@
 #define METHOD_CREATE_OPUS @"cop"
 #define METHOD_CREATE_OPUS_IMAGE @"coi"
 #define METHOD_MATCH_OPUS  @"mop"
+#define METHOD_GET_OPUS_BY_ID @"goi"
 #define METHOD_GET_FEED_LIST  @"gfl"
 #define METHOD_ACTION_ON_OPUS  @"aoo"
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"

@@ -18,7 +18,7 @@
 #import "DeviceDetection.h"
 #import "Draw.h"
 #import "DrawManager.h"
-#import "Feed.h"
+#import "FeedManager.h"
 #import "MyPaintManager.h"
 #import "ConfigManager.h"
 #import "UIImageExt.h"
@@ -77,14 +77,14 @@ static DrawDataService* _defaultDrawDataService = nil;
                                        type:1];;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            Feed *feed = nil;
+            DrawFeed *feed = nil;
             NSInteger resultCode = [output resultCode];            
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed) {
-                    feed = [[[Feed alloc] initWithPBFeed:pbFeed] autorelease];
+                    feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 }
                 resultCode = [response resultCode];
             }
