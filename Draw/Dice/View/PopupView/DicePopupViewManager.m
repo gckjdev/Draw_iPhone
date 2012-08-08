@@ -13,7 +13,7 @@
 #import "LocaleUtils.h"
 
 #define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
-#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor yellowColor]
+#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
 @interface DicePopupViewManager ()
 
@@ -133,11 +133,11 @@ static DicePopupViewManager *_instance = nil;
     
     [_openDiceView popupAtView:atView
                         inView:inView
-                      duration:0
+                      duration:duration
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES];
     
-    [_openDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
+//    [_openDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
     [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
 }
 

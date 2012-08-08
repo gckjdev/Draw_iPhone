@@ -9,7 +9,6 @@
 #import "DiceView.h"
 #import "DiceImageManager.h"
 
-
 @interface DiceView ()
 {
     int _diceId;

@@ -15,6 +15,7 @@
 #import "DiceGameService.h"
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
+#import "DiceGamePlayController.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 
@@ -37,20 +38,16 @@
 - (void)registerDiceRoomNotification
 {
     [[NSNotificationCenter defaultCenter] 
-     addObserverForName:ROOMS_DID_UPDATE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> ROOMS_DID_UPDATE");         
-     }];
-    
-    [[NSNotificationCenter defaultCenter] 
      addObserverForName:NOTIFICAIION_CREATE_ROOM_RESPONSE
      object:nil     
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE");  
-         [[DiceGameService defaultService] getRoomList];
+         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
+         if(_isJoiningDice) {
+             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+             [self.navigationController pushViewController:controller animated:YES];
+             _isJoiningDice = NO; 
+         }
      }];
     
     [[NSNotificationCenter defaultCenter] 
@@ -64,6 +61,18 @@
          self.dataList = message.sessionsList;
          PPDebug(@"session count  = %d",self.dataList.count);
          [self.dataTableView reloadData];
+     }];
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ENTER_ROOM_RESPONSE
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceRoomListController> NOTIFICATION_ENTER_ROOM_RESPONSE"); 
+         if(_isJoiningDice) {
+             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+             [self.navigationController pushViewController:controller animated:YES];
+             _isJoiningDice = NO; 
+         }
      }];
 }
 
@@ -92,10 +101,10 @@
     
     
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.15"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
-    [self showActivity];
+
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
 //                                                 name:ROOMS_DID_UPDATE
@@ -146,6 +155,11 @@
     return self.dataList.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 #pragma mark - Button action
 
 - (IBAction)clickBack:(id)sender {
@@ -160,7 +174,7 @@
 - (IBAction)creatRoom:(id)sender
 {
     [[DiceGameService defaultService] creatRoomWithName:nil];
-
+    _isJoiningDice  = YES;
 }
 
 #pragma mark - CommonGameServiceDelegate

@@ -120,20 +120,6 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
-- (void)handleCreateRoomResponse:(GameMessage*)message
-{
-    [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
-}
-
-- (void)handleGetRoomsResponse:(GameMessage*)message
-{
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:NOTIFICAIION_GET_ROOMS_RESPONSE
-     object:self
-     userInfo:[NSDictionary dictionaryWithObject:[message.getRoomsResponse data] forKey:@"KEY_GAME_MESSAGE"]];    
-    
-    PPDebug(@"<%@> post notification NOTIFICAIION_GET_ROOMS_RESPONSE", [self description]); 
-}
 
 - (void)handleCustomMessage:(GameMessage*)message
 {
@@ -146,11 +132,9 @@ static DiceGameService* _defaultService;
             // TODO
             [self handleRollDiceEnd:message];
             break;
-
         case GameCommandTypeNextPlayerStartNotificationRequest:
             [self handleNextPlayerStartNotification:message];
             break;
-            
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
             break;
@@ -160,15 +144,8 @@ static DiceGameService* _defaultService;
         case GameCommandTypeOpenDiceResponse: 
             [self handleOpenDiceResponse:message];
             break;
-            
         case GameCommandTypeGameOverNotificationRequest:
             [self handleGameOverNotificationRequest:message];
-            break;
-        case GameCommandTypeCreateRoomResponse:
-            [self handleCreateRoomResponse:message];
-            break;
-        case GameCommandTypeGetRoomsResponse:    
-            [self handleGetRoomsResponse:message];
             break;
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
@@ -272,5 +249,9 @@ static DiceGameService* _defaultService;
                                    gameId:[ConfigManager gameId]];
 }
 
+- (void)enterRoom:(long)sessionId
+{
+    [_networkClient sendEnterRoomRequest:sessionId user:[[UserManager defaultManager] toPBGameUser]];
+}
 
 @end
