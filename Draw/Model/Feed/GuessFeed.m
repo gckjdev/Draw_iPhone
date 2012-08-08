@@ -28,6 +28,8 @@
 {
     NSString *nick = self.drawFeed.author.nickName;
     NSString *word = self.drawFeed.wordText;
+    
+//    PPDebug(@"***nick = %@, word = %@ ***", nick, word);
     if ([self correct]) {
         if ([self.drawFeed isMyOpus]) {
             self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc_MyDraw"), word];      
@@ -62,9 +64,9 @@
         self.correct = pbFeed.isCorrect;
         self.score = pbFeed.score;
         self.guessWords = pbFeed.guessWordsList;
-
         self.drawFeed = [[[DrawFeed alloc] 
-                          initWithUserId:pbFeed.opusCreatorUserId 
+                          initWithFeedId:pbFeed.opusId 
+                          userId:pbFeed.opusCreatorUserId 
                           nickName:pbFeed.opusCreatorNickName 
                           avatar:pbFeed.opusCreatorAvatar 
                           gender:pbFeed.opusCreatorGender 
@@ -75,10 +77,21 @@
         
         [self.drawFeed setFeedType:FeedTypeDraw];
         [self.drawFeed setFeedId:pbFeed.opusId];
+        [self updateDesc];
     }
     return self;
 }
 
+- (NSInteger)guessTimes
+{
+    PPDebug(@"warnning:<guessTimes> get guess times from guess feed, feedId = %@", self.feedId);
+    return _drawFeed.guessTimes;
+}
+- (NSInteger)correctTimes
+{
+    PPDebug(@"warnning:<correctTimes> get guess times from guess feed, feedId = %@", self.feedId);
+    return _drawFeed.correctTimes;
+}
 
 - (FeedUser *)author
 {
