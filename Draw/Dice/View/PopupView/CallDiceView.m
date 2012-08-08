@@ -12,6 +12,7 @@
 #import "UIViewUtils.h"
 #import "FontLabel.h"
 #import "CMPopTipView.h"
+#import "DiceFontManager.h"
 
 #define DICE_VIEW_WIDTH 24  
 #define DICE_VIEW_HEIGHT 25
@@ -62,12 +63,12 @@
                                                      dice:dice] autorelease];
         _diceView.userInteractionEnabled = NO;
         
-        self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:20] autorelease];
+        self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT) fontName:[[DiceFontManager defaultManager] fontName] pointSize:20] autorelease];
         _countLabel.backgroundColor = [UIColor clearColor];
         _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
         _countLabel.textAlignment = UITextAlignmentCenter;
         
-        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT) fontName:@"diceFont" pointSize:15] autorelease];
+        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT) fontName:[[DiceFontManager defaultManager] fontName] pointSize:15] autorelease];
         symbolLabel.backgroundColor = [UIColor clearColor];
         symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
         symbolLabel.textAlignment = UITextAlignmentCenter;

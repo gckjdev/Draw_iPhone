@@ -114,6 +114,7 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A45BF5B215D21B9400CDD5C2 /* DiceFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BF5B115D21B9400CDD5C2 /* DiceFontManager.m */; };
 		A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */; };
 		A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A45E8CCF15C77F480089E240 /* dice_setting@2x.png */; };
 		A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CD415C77F8E0089E240 /* DiceAvatarView.m */; };
@@ -1111,6 +1112,8 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A45BF5B015D21B9400CDD5C2 /* DiceFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceFontManager.h; sourceTree = "<group>"; };
+		A45BF5B115D21B9400CDD5C2 /* DiceFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceFontManager.m; sourceTree = "<group>"; };
 		A45E8CCE15C77F480089E240 /* dice_runaway@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_runaway@2x.png"; sourceTree = "<group>"; };
 		A45E8CCF15C77F480089E240 /* dice_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_setting@2x.png"; sourceTree = "<group>"; };
 		A45E8CD315C77F8E0089E240 /* DiceAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAvatarView.h; sourceTree = "<group>"; };
@@ -2620,6 +2623,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A45BF5AF15D21B9400CDD5C2 /* DiceFontManager */ = {
+			isa = PBXGroup;
+			children = (
+				A45BF5B015D21B9400CDD5C2 /* DiceFontManager.h */,
+				A45BF5B115D21B9400CDD5C2 /* DiceFontManager.m */,
+			);
+			path = DiceFontManager;
+			sourceTree = "<group>";
+		};
 		A45E8CD215C77F8E0089E240 /* AvatarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2725,6 +2737,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A45BF5AF15D21B9400CDD5C2 /* DiceFontManager */,
 				A4B7648915C382BD003B4E72 /* DiceImageManager */,
 			);
 			path = Model;
@@ -6741,6 +6754,7 @@
 				CA18D40215CFB230001B421A /* DrawFeed.m in Sources */,
 				CA18D40515CFB242001B421A /* GuessFeed.m in Sources */,
 				CA18D40815CFB25B001B421A /* CommentFeed.m in Sources */,
+				A45BF5B215D21B9400CDD5C2 /* DiceFontManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
