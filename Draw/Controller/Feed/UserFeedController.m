@@ -121,7 +121,7 @@
         return;
     }
     
-    if ([feedList count] < FEED_COUNT) {
+    if ([feedList count] == 0) {
         self.noMoreData = YES;
     }else{
         self.noMoreData = NO;
@@ -224,8 +224,19 @@
         return;
     }
 
+    DrawFeed *drawFeed = nil;
     
-    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:feed];
+    if (feed.isDrawType) {
+        drawFeed = (DrawFeed *)feed;
+    }else if(feed.isGuessType){
+        drawFeed = [(GuessFeed *)feed drawFeed];
+    }else{
+        PPDebug(@"warnning:<UserFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        return;
+    }
+    
+    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
+    
     [self.navigationController pushViewController:feedDetailController animated:YES];
     [feedDetailController release];
     //enter the detail feed contrller

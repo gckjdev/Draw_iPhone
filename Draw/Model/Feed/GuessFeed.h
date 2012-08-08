@@ -23,4 +23,7 @@
 
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
+- (NSInteger)guessTimes;
+- (NSInteger)correctTimes;
+
 @end

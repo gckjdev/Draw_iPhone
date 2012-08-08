@@ -23,9 +23,9 @@
 - (void)updateDesc
 {
     if ([self hasGuessed]) {
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText];      
+        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText,self.targetUser.nickName];      
     }else{
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.wordText];      
+        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.targetUser.nickName];      
     }
 
 }
