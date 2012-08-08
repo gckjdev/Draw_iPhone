@@ -147,7 +147,6 @@
     
     [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
     
-    
 }
 
 - (void)handleJoinGameResponse:(GameMessage*)message
@@ -167,6 +166,26 @@
         }
         
         [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
+    });
+}
+
+- (void)handleEnterRoomResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        
+        // create game session
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message enterRoomResponse] gameSession];
+            self.session = [self createSession];
+            [_session fromPBGameSession:pbSession userId:[self.user userId]];
+            PPDebug(@"<handleEnterRoomResponse> Create Session = %@", [self.session description]);
+            
+            // TODO update online user
+            // [self updateOnlineUserCount:message];
+            
+        }
+        
+        [self postNotification:NOTIFICATION_ENTER_ROOM_RESPONSE message:message];
     });
 }
 
@@ -191,6 +210,27 @@
     });
 }
 
+- (void)handleCreateRoomResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        
+        // create game session
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message createRoomResponse] gameSession];
+            self.session = [self createSession];
+            [_session fromPBGameSession:pbSession userId:[self.user userId]];
+            PPDebug(@"<handleCreateRoomResponse> Create Session = %@", [self.session description]);
+            
+            // TODO update online user
+            // [self updateOnlineUserCount:message];
+            
+        }
+        
+        [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
+    });
+    
+}
+
 - (void)handleCustomMessage:(GameMessage*)message
 {
     PPDebug(@"<handleCustomMessage> NO IMPLEMENTATION HERE... VERY STRANGE, ARE YOU KIDDING?");
@@ -201,8 +241,7 @@
     switch ([message command]){
         case GameCommandTypeGetRoomsResponse:
             [self handleGetRoomsResponse:message];
-            break;
-        
+            break;        
         case GameCommandTypeJoinGameResponse:
             [self handleJoinGameResponse:message];
             break;
@@ -210,7 +249,12 @@
         case GameCommandTypeRoomNotificationRequest:
             [self handleRoomNotification:message];
             break;
-            
+        case GameCommandTypeEnterRoomResponse:
+            [self handleEnterRoomResponse:message];
+            break;
+        case GameCommandTypeCreateRoomResponse:
+            [self handleCreateRoomResponse:message];
+            break;
         default:
             [self handleCustomMessage:message];
             break;
