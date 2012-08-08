@@ -114,7 +114,7 @@ static DicePopupViewManager *_instance = nil;
                                inView:(UIView *)inView
                              duration:(int)duration
 {
-    NSString *message;
+    NSString *message = @"";
     switch (openType) {
         case 0:
             message = NSLS(@"kOpenDice");
@@ -125,6 +125,7 @@ static DicePopupViewManager *_instance = nil;
             break;
             
         default:
+            message = NSLS(@"kOpenDice");
             break;
     }
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 

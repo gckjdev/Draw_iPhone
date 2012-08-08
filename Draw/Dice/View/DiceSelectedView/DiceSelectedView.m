@@ -75,7 +75,7 @@
         self.scrollView.backgroundColor = [UIColor clearColor];
         self.scrollView.delegate = self;
         
-        self.pageControl = [[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL - 3, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)]; 
+        self.pageControl = [[[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL - 3, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)] autorelease]; 
         self.backgroundColor = [UIColor clearColor];
         self.pageControl.hidesForSinglePage = YES;
         self.pageControl.delegate = self;
@@ -267,7 +267,7 @@
     DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:diceList userInterAction:YES];
     diceShowView.delegate = self;
     
-    self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
+    self.popView = [[[CMPopTipView alloc] initWithCustomView:diceShowView] autorelease];
     self.popView.delegate = self;
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];

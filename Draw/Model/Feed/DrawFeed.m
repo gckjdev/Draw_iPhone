@@ -43,7 +43,9 @@
                           getImageWithName:self.feedId];
         
         if (self.drawImage == nil && drawData) {
-            self.drawData = [[Draw alloc]initWithPBDraw:drawData];
+            Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
+            self.drawData = draw;
+            [draw release];
             PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local, feedID = %@",self.feedId);        
         }
     }else{
@@ -69,7 +71,9 @@
 - (void)parseDrawData:(PBFeed *)pbFeed
 {
     if (self.drawData == nil && pbFeed.drawData != nil) {
-        self.drawData = [[Draw alloc]initWithPBDraw:pbFeed.drawData];        
+        Draw* drawData = [[Draw alloc] initWithPBDraw:pbFeed.drawData];
+        self.drawData = drawData;        
+        [drawData release];
     }
 }
 

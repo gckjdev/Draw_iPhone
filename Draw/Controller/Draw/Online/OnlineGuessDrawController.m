@@ -807,7 +807,7 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-        ToolView* toolview;
+        ToolView* toolview = nil;
         switch (anItem.type) {
             case ItemTypeTips: {
                 toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
