@@ -640,6 +640,7 @@
     if([_userManager isMe:view.userId])
     {
         [self plusOne];
+        PPDebug(@"＊＊＊＊＊＊＊＊＊＊＊＊＊plusOne＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
     }
 }
 
@@ -662,21 +663,16 @@
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
-    [[self selfAvatarView] stopReciprocol];
+    [self clearAllReciprocol];
     [_diceService openDice];
     
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];    
 }
 
-//- (void)openDiceSuccess
-//{
-//    [self someoneOpenDice];
-//}
-
 - (void)someoneOpenDice
 {
-    [[self avatarViewOfUser:_diceService.openDiceUserId] stopReciprocol];
+    [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];    
 }

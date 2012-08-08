@@ -11,6 +11,7 @@
 #import "FontButton.h"
 #import "DiceImageManager.h"
 #import "PPDebug.h"
+#import "DiceFontManager.h"
 
 #define DEFAULT_HEIGHT_OF_PAGE_CONTROL 5
 
@@ -231,7 +232,7 @@
 - (UIButton *)diceCountSelectedButtonWithFrame:(CGRect)frame num:(int)num
 {
     FontButton *fontButton = [[[FontButton alloc] initWithFrame:frame 
-                                                       fontName:@"diceFont"
+                                                       fontName:[[DiceFontManager defaultManager] fontName]
                                                       pointSize:25] autorelease];
     fontButton.fontLable.text = [NSString stringWithFormat:@"%d", num];
     fontButton.tag = num;

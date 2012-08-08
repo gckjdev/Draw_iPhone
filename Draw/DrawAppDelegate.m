@@ -42,18 +42,18 @@
 #import "UserStatusService.h"
 #import "FacetimeService.h"
 #import "DiceGameService.h"
-#import "FontManager.h"
+#import "DiceFontManager.h"
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-      return @"http://192.168.1.111:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//    return @"http://192.168.1.111:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//  return [ConfigManager getTrafficAPIServerURL];
-  return @"http://192.168.1.111:8100/api/i?";    
+  return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.111:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -84,8 +84,6 @@ NSString* GlobalGetTrafficServerURL()
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
-    
-    [[FontManager sharedManager] loadFont:@"diceFont"];
     
     application.applicationIconBadgeNumber = 0;
     

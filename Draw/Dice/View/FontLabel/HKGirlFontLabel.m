@@ -7,12 +7,15 @@
 //
 
 #import "HKGirlFontLabel.h"
+#import "DiceFontManager.h"
 
 @implementation HKGirlFontLabel
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame fontName:@"diceFont" pointSize:15];
+    self = [super initWithFrame:frame
+                       fontName:[[DiceFontManager defaultManager] fontName]
+                      pointSize:15];
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];
@@ -22,7 +25,9 @@
 
 - (id)initWithFrame:(CGRect)frame pointSize:(int)pointSize
 {
-    self = [super initWithFrame:frame fontName:@"diceFont" pointSize:pointSize];
+    self = [super initWithFrame:frame 
+                       fontName:[[DiceFontManager defaultManager] fontName]
+                      pointSize:pointSize];
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];
@@ -34,7 +39,10 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self = [super initWithFrame:self.frame fontName:@"diceFont" pointSize:self.font.pointSize];  
+        self = [super initWithFrame:self.frame
+                           fontName:[[DiceFontManager defaultManager] fontName] 
+                          pointSize:self.font.pointSize];  
+        
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;

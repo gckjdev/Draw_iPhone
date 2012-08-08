@@ -11,6 +11,7 @@
 #import "CallDiceView.h"
 #import "MessageView.h"
 #import "LocaleUtils.h"
+#import "DiceFontManager.h"
 
 #define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
 #define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
@@ -99,7 +100,7 @@ static DicePopupViewManager *_instance = nil;
 {
     MessageView *messageView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                            message:message
-                                                          fontName:@"diceFont"
+                                                          fontName:[[DiceFontManager defaultManager] fontName]
                                                          pointSize:13] autorelease];
     [messageView popupAtView:atView
                       inView:inView
@@ -128,7 +129,7 @@ static DicePopupViewManager *_instance = nil;
     }
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
-                                                  fontName:@"diceFont"
+                                                  fontName:[[DiceFontManager defaultManager] fontName]
                                                  pointSize:13] autorelease];
     
     [_openDiceView popupAtView:atView
