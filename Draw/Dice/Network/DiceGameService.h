@@ -28,7 +28,7 @@
 - (NSDictionary *)gameResult;
 
 - (void)callDice:(int)dice count:(int)count;
-- (void)autoCallDice;
+//- (void)autoCallDice;
 - (void)openDice;
 
 - (void)creatRoomWithName:(NSString*)name;
