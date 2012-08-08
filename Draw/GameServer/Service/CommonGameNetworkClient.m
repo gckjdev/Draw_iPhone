@@ -125,6 +125,23 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [self sendData:[gameMessage data]];    
 }
 
-
+- (void)sendEnterRoomRequest:(long)sessionId 
+                        user:(PBGameUser *)user 
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeEnterRoomRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:user.userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    EnterRoomRequest* request;
+    EnterRoomRequest_Builder* builder;
+    [builder setUser:user];
+    request = [builder build];
+    
+    [messageBuilder setEnterRoomRequest:request];
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];   
+}
 
 @end

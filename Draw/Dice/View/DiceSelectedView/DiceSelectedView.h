@@ -26,7 +26,7 @@
 
 - (void)setStart:(int)start 
              end:(int)end
-    lastCallDice:(int)lastCallDice;
+       startDice:(int)startDice;
 
 
 - (void)disableUserInteraction;

@@ -14,6 +14,8 @@
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "ShareImageManager.h"
+#import "AnimationManager.h"
+#import "HKGirlFontLabel.h"
 
 #define PROGRESS_UPDATE_TIME    0.01
 
@@ -31,6 +33,9 @@
     [progressView release];
     [bgView release];
     [_timer release];
+    [_rewardCoinLabel release];
+    [_rewardCoinView release];
+    [_rewardView release];
     [super dealloc];
 }
 
@@ -76,7 +81,7 @@
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
         [imageView setImage:[[DiceImageManager defaultManager] 
-                             greenSafaImage]];
+                             whiteSofaImage]];
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -86,6 +91,18 @@
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
         [self addSubview:progressView];
+        
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
+        _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
+        [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
+        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width-_rewardView.frame.size.height, _rewardView.frame.size.height) pointSize:15];
+        [_rewardCoinLabel setTextColor:[UIColor blackColor]];
+        [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+        //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
+        [_rewardView addSubview:_rewardCoinView];
+        [_rewardView addSubview:_rewardCoinLabel];
+        _rewardView.hidden = YES;
+        [self addSubview:_rewardView];
         
         [self addTapGuesture];
     }
@@ -155,49 +172,7 @@
     [self setProgressHidden:YES];
 }
 
-//
-//
-//- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
-//{
-//    self = [super initWithFrame:frame];    
-//    if (self) {
-//        self.backgroundColor = [UIColor clearColor];
-//        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-//        [self addSubview:bgView];
-//        [self setAvatarSelected:NO];
-//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
-//        [self addSubview:imageView];
-//        [self setAvatarUrl:urlString gender:gender];
-//        [self addTapGuesture];
-//        [self setAvatarSelected:NO level:level];
-//    }
-//    
-//    return self;
-//}
 
-
-//- (void)setUrlString:(NSString *)urlString
-//{
-//    [imageView clear];
-//    [imageView setUrl:[NSURL URLWithString:urlString]];
-//    [GlobalGetImageCache() manage:imageView];
-//}
-
-//
-//- (void)setScore:(NSInteger)score
-//{
-//    _score = score;
-//    if (type == Drawer) {
-//        return;
-//    }
-//    if (score > 0) {
-//        markButton.hidden = NO;
-//        [markButton setTitle:[NSString stringWithFormat:@"%d",score] forState:UIControlStateNormal];
-//    }else{
-//        markButton.hidden = YES;   
-//        [markButton setTitle:nil forState:UIControlStateNormal];
-//    }
-//}
 
 - (void)setImage:(UIImage *)image
 {
@@ -222,21 +197,14 @@
 
 - (void)clickOnAvatar
 {
-    //    PPDebug(@"clickOnAvatar");
-    [self startReciprocol:10];
+
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:self];
     }
     
     
 }
-//- (void)setAvatarFrame:(CGRect)frame
-//{
-//    self.frame = frame;
-//    bgView.frame = [self calAvatarFrame];
-//    imageView.frame = self.bounds;
-//    //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
-//}
+
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
 {
     [imageView clear];
@@ -264,52 +232,13 @@
     [self setUserId:userId];
 }
 
-//- (void)setAvatarSelected:(BOOL)selected
-//{
-//    if (selected) {
-//        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
-//    }else{
-//        [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
-//    }
-//}
-//- (void)setHasPen:(BOOL)hasPen
-//{
-//    if (markButton == nil) {
-//        markButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [markButton retain];
-//        markButton.frame = CGRectMake(self.frame.size.width*0.6, self.frame.size.height*0.6, self.frame.size.width*0.4, self.frame.size.height*0.4);
-//        [self addSubview:markButton];
-//        markButton.userInteractionEnabled = NO;
-//        ShareImageManager *manager = [ShareImageManager defaultManager];
-//        [markButton setBackgroundImage:[manager drawingMarkLargeImage] forState:UIControlStateNormal];
-//    }
-//    markButton.hidden = !hasPen;
-//}
-
-//- (UIImage*)backgroundForLevel:(int)level
-//{
-//    if (level >=40 && level <= 50) {
-//        return [[ShareImageManager defaultManager] purpleAvatarImage];
-//    }
-//    if (level >= 25 && level < 40) {
-//        return [[ShareImageManager defaultManager] goldenAvatarImage];
-//    }
-//    if (level >= 10 && level < 25) {
-//        return [[ShareImageManager defaultManager] greenAvatarImage];
-//    }
-//    return [[ShareImageManager defaultManager] avatarUnSelectImage];
-//    
-//}
-//
-//- (void)setAvatarSelected:(BOOL)selected level:(int)level
-//{
-//    if (selected) {
-//        [bgView setImage:[[ShareImageManager defaultManager] avatarSelectImage]];
-//    }else{
-//        [bgView setImage:[self backgroundForLevel:level]];
-//    }
-//}
-
+- (void)rewardCoins:(int)coinsCount 
+           duration:(float)duration
+{
+    _rewardView.hidden = NO;
+    [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
+    [_rewardView.layer addAnimation:[AnimationManager raiseAndDismissFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -_rewardView.frame.size.height) duration:duration] forKey:@"popReward"];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

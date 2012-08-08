@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
+@class PBGameSession;
 
 @interface DiceRoomListCell : PPTableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
+- (void)setCellInfo:(PBGameSession *)session;
 
 @end

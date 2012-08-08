@@ -16,16 +16,21 @@
 
 + (DiceGameService*)defaultService;
 - (DiceGameSession*)diceSession;
+
 - (NSArray *)myDiceList;
-
-- (void)callDice:(int)dice count:(int)count;
-- (void)autoCallDice;
-
 
 - (NSString *)lastCallUserId;
 - (int)lastCallDice;
 - (int)lastCallDiceCount;
+- (NSString *)openDiceUserId;
+- (int)openType;
 
-- (void)openDiceWithOpenType:(int)openType;
+- (NSDictionary *)gameResult;
 
+- (void)callDice:(int)dice count:(int)count;
+//- (void)autoCallDice;
+- (void)openDice;
+
+- (void)creatRoomWithName:(NSString*)name;
+- (void)enterRoom:(long)sessionId;
 @end

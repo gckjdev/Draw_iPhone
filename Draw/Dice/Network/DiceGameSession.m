@@ -18,6 +18,7 @@
 @synthesize openDiceUserId = _openDiceUserId;
 @synthesize openType = _openType;
 @synthesize gameResult = _gameResult;
+@synthesize wilds = _wilds;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -26,6 +27,19 @@
     PPRelease(_gameResult);
     [super dealloc];
 }
+
+- (void)reset
+{
+    self.userDiceList = nil;
+    self.lastCallDiceUserId = nil;    
+    self.lastCallDice = 0;
+    self.lastCallDiceCount = 0;
+    self.openDiceUserId = nil;
+    self.openType = 0;
+    self.gameResult = nil;
+    self.wilds = false;
+}
+
 
 
 

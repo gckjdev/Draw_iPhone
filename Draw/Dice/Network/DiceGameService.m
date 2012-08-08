@@ -50,6 +50,8 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
+    [self.diceSession reset];
+
     NSMutableArray* newUserList = [NSMutableArray array];
     
     for (PBGameUser* user in [[self session] userList]){
@@ -67,17 +69,15 @@ static DiceGameService* _defaultService;
 - (void)handleRollDiceEnd:(GameMessage *)message
 {
     NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
-    
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
         [diceDic setObject:userDice.dicesList forKey:userDice.userId];
     }
-    
     self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
-    self.diceSession.lastCallDiceCount = [[self session] playingUserCount];
+    self.diceSession.lastCallDiceCount = [[self session] playingUserCount] - 1;
     
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
 }
@@ -87,6 +87,10 @@ static DiceGameService* _defaultService;
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
     self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
+    
+    if ([message.callDiceRequest hasWilds]) {
+        self.diceSession.wilds = message.callDiceRequest.wilds;
+    }
         
     [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
@@ -116,10 +120,6 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
-- (void)handleCreateRoomResponse:(GameMessage*)message
-{
-    [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
-}
 
 - (void)handleCustomMessage:(GameMessage*)message
 {
@@ -132,11 +132,9 @@ static DiceGameService* _defaultService;
             // TODO
             [self handleRollDiceEnd:message];
             break;
-
         case GameCommandTypeNextPlayerStartNotificationRequest:
             [self handleNextPlayerStartNotification:message];
             break;
-            
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
             break;
@@ -146,14 +144,9 @@ static DiceGameService* _defaultService;
         case GameCommandTypeOpenDiceResponse: 
             [self handleOpenDiceResponse:message];
             break;
-            
         case GameCommandTypeGameOverNotificationRequest:
             [self handleGameOverNotificationRequest:message];
             break;
-        case GameCommandTypeCreateRoomResponse:
-            [self handleCreateRoomResponse:message];
-            
-            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -172,53 +165,93 @@ static DiceGameService* _defaultService;
 
 - (NSArray *)myDiceList
 {
-    return [[[self diceSession] userDiceList] objectForKey:self.user.userId];
+    return [self.diceSession.userDiceList objectForKey:self.user.userId];
 }
 
 - (void)callDice:(int)dice count:(int)count
 {
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
+    // Update Model.
+    self.diceSession.lastCallDiceUserId = self.user.userId;
+    self.diceSession.lastCallDice = dice;
+    self.diceSession.lastCallDiceCount = count;
+    
+    // Send command.
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
                                                    sessionId:self.session.sessionId
-                                                        dice:dice
-                                                       count:count];
+                                                        dice:self.lastCallDice
+                                                       count:self.lastCallDiceCount]; 
 }
 
-- (void)autoCallDice
-{    
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.user.userId
-                                                   sessionId:self.session.sessionId
-                                                        dice:[self lastCallDice]
-                                                       count:[self lastCallDiceCount] + 1]; 
-}
+//- (void)autoCallDice
+//{   
+//    // Update Model.
+//    self.diceSession.lastCallDiceUserId = self.user.userId;
+//    self.diceSession.lastCallDice = self.lastCallDice;
+//    self.diceSession.lastCallDiceCount ++;
+//    
+//    // Send Command.
+//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+//                                                   sessionId:self.session.sessionId
+//                                                        dice:self.lastCallDice
+//                                                       count:self.lastCallDiceCount]; 
+//}
 
 
 - (NSString *)lastCallUserId
 {
-    return [[self diceSession] lastCallDiceUserId];
+    return self.diceSession.lastCallDiceUserId;
 }
 
 - (int)lastCallDice
 {
-    return [[self diceSession] lastCallDice];
+    return self.diceSession.lastCallDice;
 }
 
 - (int)lastCallDiceCount
 {
-    return [[self diceSession] lastCallDiceCount];
+    return self.diceSession.lastCallDiceCount;
 }
 
-- (void)openDiceWithOpenType:(int)openType
+- (NSString *)openDiceUserId
 {
+    return self.diceSession.openDiceUserId;
+}
+
+- (int)openType
+{
+    return self.diceSession.openType;
+}
+
+- (NSDictionary *)gameResult
+{
+    return self.diceSession.gameResult;
+}
+
+
+
+- (void)openDice
+{
+    int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
+    
+    self.diceSession.openDiceUserId = self.user.userId;
+    self.diceSession.openType = openType;
+    
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                     openType:openType]; 
 }
+
 
 - (void)creatRoomWithName:(NSString*)name
 {
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
                                      name:@"" 
                                    gameId:[ConfigManager gameId]];
+}
+
+- (void)enterRoom:(long)sessionId
+{
+    [_networkClient sendEnterRoomRequest:sessionId user:[[UserManager defaultManager] toPBGameUser]];
 }
 
 @end

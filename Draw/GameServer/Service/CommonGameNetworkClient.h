@@ -29,5 +29,7 @@
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
                        gameId:(NSString*)gameId;
+- (void)sendEnterRoomRequest:(long)sessionId 
+                        user:(PBGameUser*)user;
 
 @end

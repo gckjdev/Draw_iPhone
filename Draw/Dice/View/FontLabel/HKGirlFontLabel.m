@@ -20,6 +20,16 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame pointSize:(int)pointSize
+{
+    self = [super initWithFrame:frame fontName:@"diceFont" pointSize:pointSize];
+    if (self) {
+        // Initialization code
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
