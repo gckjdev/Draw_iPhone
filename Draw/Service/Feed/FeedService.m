@@ -144,7 +144,7 @@ static FeedService *_staticFeedService = nil;
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
-                if (pbFeed && pbFeed.actionType == FeedTypeDraw) {
+                if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser)) {
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                     [feed parseDrawData:pbFeed];
                 }

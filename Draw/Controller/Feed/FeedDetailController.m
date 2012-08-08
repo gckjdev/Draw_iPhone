@@ -284,6 +284,7 @@
     [super viewDidLoad];
     [self updateTime:_feed];
     [self updateUser:_feed];
+    
     [self updateGuessDesc:_feed];
     [self updateSendButton:_feed];
     [self updateNoCommentLabel];

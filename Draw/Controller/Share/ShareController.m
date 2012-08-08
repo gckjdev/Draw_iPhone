@@ -21,6 +21,7 @@
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
 #import "ConfigManager.h"
+#import "FileUtil.h"
 
 
 #define BUTTON_INDEX_OFFSET 20120229
@@ -251,9 +252,13 @@
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
-            MyPaint* paint  = [self.paints objectAtIndex:paintIndex];            
-            if ([[NSFileManager defaultManager] fileExistsAtPath:paint.image]) {
+            MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
+            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
                 [myPaintArray addObject:paint];
+                
+            } else {
+                PPDebug(@"<ShareController>image(%@) not found",imagePath);
             }
         }
     }

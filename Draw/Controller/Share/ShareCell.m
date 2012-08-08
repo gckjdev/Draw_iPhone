@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #include <ImageIO/ImageIO.h>
 #include "CoreDataUtil.h"
+#import "MyPaintManager.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -81,12 +82,12 @@
         
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < count) {
-            MyPaint *paint = [imageArray objectAtIndex:j];
-            
+            MyPaint *paint = [imageArray objectAtIndex:j];            
             NSData* data = nil;
             
             if (paint.drawThumbnailData == nil){
-                data = [[[NSData alloc] initWithContentsOfFile:paint.image] autorelease];
+                NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+                data = [[[NSData alloc] initWithContentsOfFile:imagePath] autorelease];
                 paint.drawThumbnailData = data;
                 hasUpdateThumbnailData = YES;
             }
@@ -97,6 +98,9 @@
             CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
             UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
             CFRelease(imageRef);
+
+//            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+            //UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
             [button.clickButton setImage:image forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
