@@ -9,5 +9,30 @@
 #import "DrawToUserFeed.h"
 
 @implementation DrawToUserFeed
+@synthesize targetUser = _targetUser;
 
+- (id)initWithPBFeed:(PBFeed *)pbFeed
+{
+    self = [super initWithPBFeed:pbFeed];
+    if (self) {
+        self.targetUser = [FeedUser feedUserWithUserId:pbFeed.targetUserId nickName:pbFeed.targetUserNickName avatar:nil gender:YES];
+    }
+    return self;
+}
+
+- (void)updateDesc
+{
+    if ([self hasGuessed]) {
+        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText];      
+    }else{
+        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.wordText];      
+    }
+
+}
+
+- (void)dealloc
+{
+    PPRelease(_targetUser);
+    [super dealloc];
+}
 @end

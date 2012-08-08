@@ -47,7 +47,7 @@ static FeedService *_staticFeedService = nil;
                                        offset:offset 
                                        limit:limit 
                                        lang:lang];
-        NSMutableArray *list = nil;
+        NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
@@ -55,14 +55,7 @@ static FeedService *_staticFeedService = nil;
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
-            if ([pbFeedList count] != 0) {
-                list = [NSMutableArray array];    
-                for (PBFeed *pbFeed in pbFeedList) {
-                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                    [list addObject:feed];
-                    [feed release];
-                }
-            }
+            list = [FeedManager parsePbFeedList:pbFeedList];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,7 +82,7 @@ static FeedService *_staticFeedService = nil;
                                        offset:offset 
                                        limit:limit 
                                        lang:UnknowType];
-        NSMutableArray *list = nil;
+        NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
@@ -97,14 +90,7 @@ static FeedService *_staticFeedService = nil;
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
-            if ([pbFeedList count] != 0) {
-                list = [NSMutableArray array];    
-                for (PBFeed *pbFeed in pbFeedList) {
-                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                    [list addObject:feed];
-                    [feed release];
-                }
-            }
+            list = [FeedManager parsePbFeedList:pbFeedList];
         }
         PPDebug(@"<FeedService> parse data finish, start display the views.");        
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -124,20 +110,13 @@ static FeedService *_staticFeedService = nil;
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL opusId:opusId offset:offset limit:limit];
-        NSMutableArray *list = nil;
+        NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
-            if ([pbFeedList count] != 0) {
-                list = [NSMutableArray array];    
-                for (PBFeed *pbFeed in pbFeedList) {
-                    Feed *feed = [[Feed alloc] initWithPBFeed:pbFeed];
-                    [list addObject:feed];
-                    [feed release];
-                }
-            }
+            list = [FeedManager parsePbCommentFeedList:pbFeedList];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -148,6 +127,39 @@ static FeedService *_staticFeedService = nil;
     });
 
 }
+
+- (void)getFeedByFeedId:(NSString *)feedId 
+               delegate:(id<FeedServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString* userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL 
+                                       userId:userId feedId:feedId];
+        
+            DrawFeed *feed = nil;
+            NSInteger resultCode = [output resultCode];            
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *list = [response feedList];
+                PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                if (pbFeed && pbFeed.actionType == FeedTypeDraw) {
+                    feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                    [feed parseDrawData:pbFeed];
+                }
+                resultCode = [response resultCode];
+            }
+        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:)]) {
+                    [delegate didGetFeed:feed resultCode:resultCode];
+                }           
+            });
+        });
+
+}
+
 
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
@@ -160,13 +172,18 @@ static FeedService *_staticFeedService = nil;
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
     
-    
+
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author comment:comment];
+        NSString *commentId = nil;
+        if (output.resultCode == 0) {
+            commentId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didCommentOpus:comment:resultCode:)]){
+            if (delegate && [delegate respondsToSelector:@selector(didCommentOpus:commentFeedId:comment:resultCode:)]){
                 [delegate didCommentOpus:opusId 
+                           commentFeedId:commentId
                                  comment:comment 
                               resultCode:output.resultCode];
             }

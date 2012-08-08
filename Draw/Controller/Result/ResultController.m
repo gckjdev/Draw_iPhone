@@ -42,6 +42,7 @@
 #import "ConfigManager.h"
 #import "ItemService.h"
 #import "VendingController.h"
+#import "Feed.h"
 
 #define CONTINUE_TIME 10
 
@@ -469,8 +470,8 @@
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
                                       isOffline:[self isOffline] 
-                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
-                                     feedAuthor:_feed.author];  
+                                     feedOpusId:_feed.feedId
+                                     feedAuthor:_feed.author.userId];  
 
     // update UI
     [self setUpAndDownButtonEnabled:NO];
@@ -492,8 +493,8 @@
     [[ItemService defaultService] sendItemAward:toolView.itemType
                                    targetUserId:_drawUserId
                                       isOffline:[self isOffline]
-                                     feedOpusId:[_feed isDrawType] ? _feed.feedId : _feed.opusId
-                                     feedAuthor:_feed.author];
+                                     feedOpusId:_feed.feedId
+                                     feedAuthor:_feed.author.userId];
     
     // update UI
     [self setUpAndDownButtonEnabled:NO];
@@ -523,7 +524,7 @@
 - (IBAction)clickSaveButton:(id)sender {
 
     if (_isMyPaint == NO){
-        [[FeedService defaultService] actionSaveOpus:[_feed isDrawType] ? _feed.feedId : _feed.opusId
+        [[FeedService defaultService] actionSaveOpus:_feed.feedId
                                           actionName:DB_FIELD_ACTION_SAVE_TIMES];
     }
     
@@ -574,7 +575,7 @@
 
 
 #pragma mark - draw data service delegate
-- (void)didMatchDraw:(Feed *)feed result:(int)resultCode
+- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
     [self hideActivity];
     if (resultCode == 0 && feed) {

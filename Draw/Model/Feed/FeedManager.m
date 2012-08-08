@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "Draw.h"
 #import "FileUtil.h"
+#import "ItemType.h"
 
 FeedManager *_staticFeedManager = nil;
 
@@ -19,126 +20,6 @@ FeedManager *_staticFeedManager = nil;
 #define FeedKeyHot @"FeedKeyHot"
 
 @implementation FeedManager
-
-
-
-+ (NSString *)userNameForFeed:(Feed *)feed
-{
-    if ([[UserManager defaultManager] isMe:feed.userId]) {
-        return NSLS(@"Me");
-    }else{
-        return [feed nickName];
-    }
-}
-+ (NSString *)targetNameForFeed:(Feed *)feed
-{
-    if ([[UserManager defaultManager] isMe:feed.targetUid]) {
-        return NSLS(@"Me");
-    }else if([[feed targetNickName] length] != 0){
-        return [feed targetNickName];
-    }
-    return NSLS(@"kHisFriend");
-}
-
-
-//get name
-+ (NSString *)opusCreatorForFeed:(Feed *)feed
-{
-    NSString *userId = feed.authorId;
-    if ([[UserManager defaultManager] isMe:userId]) {
-        return NSLS(@"Me");
-    }else{
-        return feed.authorNick;
-    }
-}
-
-
-+ (ActionType)actionTypeForFeed:(Feed *)feed
-{
-//    BOOL hasGuess = [feed hasGuessed];
-    BOOL isMyOpus = [feed isMyOpus];
-    
-    UserManager *userManager = [UserManager defaultManager];
-    if (isMyOpus) {
-        return ActionTypeHidden;
-    }
-    
-    if ([feed isDrawType]) {
-        if ([userManager hasGuessOpus:feed.feedId]) {
-//            return ActionTypeCorrect;
-            return ActionTypeChallenge;
-        }
-        return ActionTypeGuess;
-    }else if(feed.feedType == FeedTypeGuess)
-    {
-        if ([userManager hasGuessOpus:feed.opusId]) {
-//            return ActionTypeCorrect;
-            return ActionTypeChallenge;
-        }else{
-            return ActionTypeGuess;
-        }
-        
-    }
-    return ActionTypeHidden;
-}
-
-+ (FeedActionDescType)feedActionDescFor:(Feed *)feed
-{
-
-    BOOL hasGuessed = [feed hasGuessed];
-    hasGuessed |= [feed isMyOpus];
-    
-    
-    if (feed.feedType == FeedTypeDraw) {
-        if (hasGuessed) {
-            return FeedActionDescDrawed;
-        }
-        
-        //I draw
-        if ([[UserManager defaultManager] isMe:feed.userId]) {
-            return FeedActionDescDrawed;
-        }else{
-            return FeedActionDescDrawedNoWord;            
-        }
-        
-    }else if(feed.feedType == FeedTypeDrawToUser)
-    {
-        if (hasGuessed) {
-            return FeedActionDescDrawedToUser;
-        }
-        
-        //I draw
-        if ([[UserManager defaultManager] isMe:feed.userId]) {
-            return FeedActionDescDrawedToUser;
-        }else{
-            return FeedActionDescDrawedToUserNoWord;            
-        }
-        
-    }
-    else if (feed.feedType == FeedTypeGuess){
-        
-        if (hasGuessed) {
-            if (feed.isCorrect) {
-                return FeedActionDescGuessed;                
-            }else{
-                return FeedActionDescTried;
-            }
-
-        }
-        //Guess right
-        if (feed.isCorrect) {
-            //if I Guessed
-            if ([[UserManager defaultManager] isMe:feed.userId]) {
-                return FeedActionDescGuessed;
-            }else{
-                return FeedActionDescGuessedNoWord;            
-            }
-        }else{
-            return FeedActionDescTriedNoWord;
-        }
-    }
-    return FeedActionDescNo;
-}
 
 
 - (void)addListForKey:(NSString *)key
@@ -233,107 +114,47 @@ FeedManager *_staticFeedManager = nil;
     }
 }
 
-#pragma mark - save and get local data.
-
-#define TEMP_FEED_DRAW_DIR @"feed_data"
-
-
-+ (NSString *)constructDataPath:(NSString *)feedId
+#pragma mark - parse pbfeed list
++ (NSArray *)parsePbFeedList:(NSArray *)pbFeedList
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    if (!paths || [paths count] == 0) {
-        NSLog(@"Document directory not found!");
+    if ([pbFeedList count] == 0) {
         return nil;
     }
-    NSString *dir = [paths objectAtIndex:0];
-    
-    dir = [dir stringByAppendingPathComponent:TEMP_FEED_DRAW_DIR];
-    BOOL flag = [FileUtil createDir:dir];
-    if (flag == NO) {
-        PPDebug(@"<FeedManager> create dir fail. dir = %@",dir);
-    }
-    NSString *uniquePath=[dir stringByAppendingPathComponent:feedId];
-    NSLog(@"construct path = %@",uniquePath);
-    return uniquePath;
-}
-
-
-+ (Draw *)localDrawDataForFeedId:(NSString *)feedId
-{
-    PPDebug(@"<FeedManager> get data, data file name = %@", feedId);
-    if ([feedId length] == 0) {
-        return nil;
-    }
-    NSString *uniquePath = [FeedManager constructDataPath:feedId];
-    if (uniquePath == nil) {
-        return nil;
-    }
-    NSData *data = [NSData dataWithContentsOfFile:uniquePath];
-    if (data == nil) {
-        return nil;
-    }
-    Draw* draw = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    return draw;
-
-}
-+ (void)saveDrawData:(Draw *)drawData 
-          withFeedId:(NSString *)feedId 
-                asyn:(BOOL)asyn
-{
-    if (drawData == nil || [feedId length] == 0) {
-        return;
-    }
-    void (^handleBlock)()= ^(){
-        NSString *uniquePath = [FeedManager constructDataPath:feedId];
-        if (uniquePath == nil) {
-            return;
+    NSMutableArray *list = [NSMutableArray array];
+    for (PBFeed *pbFeed in pbFeedList) {
+        Feed *feed = nil;
+        switch (pbFeed.actionType) {
+            case FeedTypeDraw:
+                feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeGuess:
+                feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeDrawToUser:
+                feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;                
+            default:
+                break;
         }
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:drawData];    
-        BOOL result=[data writeToFile:uniquePath atomically:YES];
-        PPDebug(@"<FeedManager> asyn save draw data to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
-    };
-    
-    if (asyn) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-        if (queue == NULL){
-            return;
-        }
-        dispatch_async(queue, handleBlock);        
-    }else{
-        handleBlock();
-    }
-}
-
-+ (BOOL)isDrawDataExsit:(NSString *)feedId
-{
-    NSString *uniquePath = [FeedManager constructDataPath:feedId];    
-    return [[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
-}
-
-+ (void)parseDrawData:(Feed *)feed delegate:(id<FeedManagerDelegate>)delegate
-{
-    
-    if (feed.isParsing) {
-        PPDebug(@"<parseDrawData> feed = %@, is parsing",feed.feedId);
-        return;
-    }
-    if (feed.drawData == nil && feed.pbDraw != nil) {
-        feed.isParsing = YES;
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (queue) {
-            dispatch_async(queue, ^{
-                feed.drawData = [[[Draw alloc] initWithPBDraw:feed.pbDraw] autorelease]; 
-                feed.pbDraw = nil;
-                feed.isParsing = NO;
-                PPDebug(@"<parseDrawData> feed = %@ has parsed",feed.feedId);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (delegate && [delegate respondsToSelector:@selector(didParseFeedDrawData:)]) {
-                        [delegate didParseFeedDrawData:feed];
-                    }
-                });
-            });
+        if (feed) {
+            [list addObject:feed];
         }
     }
+    return list;
+}
+
++ (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList
+{
+    if ([pbFeedList count] == 0) {
+        return nil;
+    }
+    NSMutableArray *list = [NSMutableArray array];
+    for (PBFeed *pbFeed in pbFeedList) {
+        Feed *feed = [[CommentFeed alloc] initWithPBFeed:pbFeed];
+        if (feed && feed.isCommentType) {
+            [list addObject:feed];
+        }
+    }
+    return list;    
 }
 @end

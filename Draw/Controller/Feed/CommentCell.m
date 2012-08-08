@@ -7,7 +7,6 @@
 //
 
 #import "CommentCell.h"
-#import "FeedManager.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
 #import "DeviceDetection.h"
@@ -53,18 +52,12 @@
 #define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(11, 14, 71, 74) : CGRectMake(5, 9, 31, 32)
 
 
-
-+ (CGFloat)getCellHeight:(Feed *)feed
++ (CGFloat)getCellHeight:(CommentFeed *)feed
 {
     if (feed.feedType == ItemTypeFlower || feed.feedType == ItemTypeTomato) {
         return COMMENT_ITEM_HEIGHT;
     }
-    NSString *comment = feed.comment;
-    if (feed.feedType ==  FeedTypeGuess) {
-        comment = NSLS(@"kCorrect");
-    }else{
-        comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    }
+    NSString *comment = [feed comment];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     int height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
@@ -73,16 +66,17 @@
 
 #define SHOW_COMMENT_COUNT 3
 
-- (void)setCellInfo:(Feed *)feed
+- (void)setCellInfo:(CommentFeed *)feed;
 {
     //set avatar
+    FeedUser *author = feed.author;
     [_avatarView removeFromSuperview];
-    _avatarView = [[AvatarView alloc] initWithUrlString:feed.avatar 
+    _avatarView = [[AvatarView alloc] initWithUrlString:author.avatar 
                                                   frame:AVATAR_VIEW_FRAME 
-                                                 gender:feed.gender 
+                                                 gender:author.gender 
                                                   level:0];
     _avatarView.delegate = self;
-    _avatarView.userId = feed.userId;
+    _avatarView.userId = feed.author.userId;
     [self addSubview:_avatarView];
     [_avatarView release];
     
@@ -102,69 +96,24 @@
         [self.timeLabel setText:timeString];
     }
     
-     NSString *comment = feed.comment;
+     NSString *comment = [feed comment];
     //set user name
-    NSString *userName = [FeedManager userNameForFeed:feed];
-    [self.nickNameLabel setText:userName];
+    [self.nickNameLabel setText:author.nickName];
     
-    commentLabel.hidden = itemImage.hidden = YES;
+    itemImage.hidden = YES;
+    commentLabel.hidden = NO;
     if (feed.feedType == ItemTypeFlower) {
         itemImage.hidden = NO;
         [itemImage setImage:[[ShareImageManager defaultManager] flower]];
-        comment = NSLS(@"kSendAFlower");
         
     }else if(feed.feedType == ItemTypeTomato)
     {
         itemImage.hidden = NO;
         [itemImage setImage:[[ShareImageManager defaultManager] tomato]];
-        comment = NSLS(@"kThrowATomato");
+    }
         
-    }
-    
-    commentLabel.hidden = NO;
     //set comment
-   
-    if (feed.feedType ==  FeedTypeGuess) {
-        if (feed.isCorrect) {
-            comment = NSLS(@"kCorrect");            
-        }else{
-            NSString *guessWords = nil;
-            NSInteger wordCount = [feed.guessWords count];
-            if (wordCount != 0) {
-                NSArray *wordList = nil;
-                if (wordCount > SHOW_COMMENT_COUNT) {
-                    wordList = [feed.guessWords objectsAtIndexes:
-                                [NSIndexSet indexSetWithIndexesInRange:
-                                 NSMakeRange(0, SHOW_COMMENT_COUNT)]];
-                }else{
-                    wordList = feed.guessWords;
-                }
-                if ([LocaleUtils isChinese]) {
-                    guessWords = [wordList componentsJoinedByString:@"、"];    
-                }else{
-                    guessWords = [wordList componentsJoinedByString:@", "];
-                }
-                
-                if ([LocaleUtils isTraditionalChinese]) {
-                    guessWords = [WordManager changeToTraditionalChinese:guessWords];
-                }
-                if (wordCount > SHOW_COMMENT_COUNT) {
-                    guessWords = [NSString stringWithFormat:@"%@%@",guessWords,@"..."];
-                }
-                guessWords = [NSString stringWithFormat:NSLS(@"kGuessWords"),guessWords];
-            }
 
-            if (guessWords) {
-                comment = [NSString stringWithFormat:@"%@",guessWords];
-            }else{
-                comment = NSLS(@"kGuessWrong");                
-            }
-        }
-
-    }else{
-        comment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [self.commentLabel setTextColor:[UIColor darkGrayColor]];
-    }
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     

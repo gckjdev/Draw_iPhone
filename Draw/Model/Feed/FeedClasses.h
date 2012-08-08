@@ -34,6 +34,19 @@
 
 @end
 
+typedef enum{
+    FeedTimesTypeMatch = 1,
+    FeedTimesTypeGuess = 2,
+    FeedTimesTypeCorrect = 3,
+    FeedTimesTypeComment = 4,
+    FeedTimesTypeFlower = 5,
+    FeedTimesTypeTomato = 6,
+    FeedTimesTypeSave = 7
+}FeedTimesType;
+
+
+
+@class PBFeedTimes;
 @interface FeedTimes : NSObject
 {
     NSInteger _type;
@@ -42,7 +55,11 @@
 @property(nonatomic, assign)NSInteger type;
 @property(nonatomic, assign)NSInteger times;
 
+
+- (id)initWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes;
 - (id)initWithType:(NSInteger)type times:(NSInteger)times;
+
++ (FeedTimes *)feedTimesWithPbFeedTimes:(PBFeedTimes *)pbFeedTimes;
 + (FeedTimes *)feedTimesWithType:(NSInteger)type times:(NSInteger)times;
 
 @end

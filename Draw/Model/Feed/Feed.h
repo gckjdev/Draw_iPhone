@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "FeedClasses.h"
+#import "PPDebug.h"
+#import "GameMessage.pb.h"
+#import "GameBasic.pb.h"
+#import "LocaleUtils.h"
+#import "ItemType.h"
 
 typedef enum{
     
@@ -17,21 +22,13 @@ typedef enum{
 	FeedTypeComment = 3, 
 	FeedTypeRepost = 4,
     FeedTypeDrawToUser = 5,
+	FeedTypeFlower = ItemTypeFlower,
+	FeedTypeTomato = ItemTypeTomato,
+    
     
 }FeedType;
 
 
-typedef enum{
-    
-    FeedListTypeUnknow = 0,
-    FeedListTypeMy = 1,
-    FeedListTypeAll = 2,
-    FeedListTypeHot = 3,
-    FeedListTypeUser = 4,
-    FeedListTypeUserOpus = 5,
-    FeedListTypeLatest = 6,
-    
-}FeedListType;
 
 typedef enum {
     OPusStatusNormal = 0, 
@@ -50,102 +47,33 @@ typedef enum {
     NSString *_feedId;    
     FeedType _feedType;    
     NSDate *_createDate;
-    //
-
-    NSString *_userId;
-
-
-    
-    // for user info
-    NSString *_nickName;
-    NSString *_avatar;
-    BOOL _gender;
-    
-    
-    // for user draw
-    Draw *_drawData;
-    
-    // for user guess
-    NSString *_opusId;          // 猜作品的ID
-    BOOL _correct;
-    NSInteger _score;
-    NSArray *_guessWords;  
- 
-    // for draw to user guess
-    NSString *_targetUid;
-    NSString *_targetNickName;
-    
-    // for user comment
-    NSString *_comment;
-    
-    // common data
-    NSInteger _matchTimes;
-    NSInteger _guessTimes;
-    NSInteger _commentTimes;
-    NSInteger _correctTimes;
-    
-    UIImage *_drawImage;
-    
-    
-    //temp store
-    PBDraw *_pbDraw;
-    NSString *_wordText;
-    NSString *_authorId;
-    NSString *_authorNick;
-    
-    BOOL _isParsing;
+    FeedUser *_feedUser;
+    OpusStatus _opusStatus;
+    NSString *_desc;
 }
 
 @property (nonatomic, retain) NSString *feedId;
-@property (nonatomic, retain) NSString *userId;
+@property (nonatomic, retain) NSString *desc;
 @property (nonatomic, assign) FeedType feedType;
+@property (nonatomic, assign) OpusStatus opusStatus;
 @property (nonatomic, retain) NSDate *createDate;
-
-// for user info
-@property (nonatomic, retain) NSString *nickName;
-@property (nonatomic, retain) NSString *avatar;
-@property (nonatomic, assign) BOOL gender;
-
-
-// for user draw
-@property (nonatomic, retain) Draw *drawData;
-@property (nonatomic, retain) UIImage *drawImage;;
-
-// for user guess
-@property (nonatomic, retain) NSString *opusId;          // 猜作品的ID
-@property (nonatomic, assign, getter = isCorrect) BOOL correct;
-@property (nonatomic, assign) NSInteger score;
-@property (nonatomic, retain) NSArray *guessWords;  
-
-// for user comment
-@property (nonatomic, retain) NSString *comment;
-
-// for draw to user guess
-@property (nonatomic, retain) NSString *targetUid;
-@property (nonatomic, retain) NSString *targetNickName;
-
-
-// common data
-@property (nonatomic, assign) NSInteger matchTimes;
-@property (nonatomic, assign) NSInteger correctTimes;;
-@property (nonatomic, assign) NSInteger commentTimes;
-@property (nonatomic, assign) NSInteger guessTimes;;
-
-@property (nonatomic, assign) NSInteger opusStatus;
-
-@property (nonatomic, retain) PBDraw *pbDraw;
-@property (nonatomic, retain) NSString *wordText;
-@property (nonatomic, retain) NSString *authorId;
-@property (nonatomic, retain) NSString *authorNick;
-
-@property (nonatomic, assign) BOOL isParsing;
+@property (nonatomic, retain) FeedUser *feedUser;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
-- (BOOL)isMyOpus;
-- (BOOL) hasGuessed;
-- (BOOL) isDrawType;
-- (NSString *)author;
-- (NSString *)saveKey;
-- (void)parseDrawData;
 
+- (id)initWithFeedId:(NSString *)feedId 
+            feedType:(FeedType)feedType 
+          opusStatus:(OpusStatus)status 
+          createData:(NSDate *)createDate 
+            feedUser:(FeedUser*)feedUser;
+
+- (BOOL)isMyFeed;
+- (BOOL)isDrawType;
+- (BOOL)isGuessType;
+- (BOOL)isCommentType; 
+//- (void)parseDrawData;
+
+//should override
+- (void)updateDesc;
+- (FeedUser *)author;
 @end
