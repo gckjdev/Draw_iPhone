@@ -224,10 +224,7 @@
     for (NSString *userId in [[_diceService gameResult] allKeys]) {
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-//        PPDebug(@"user[%@](user id = %@) %@, avatar center = (%f,%f)", [_diceService.diceSession getNickNameByUserId:userId],[avatar userId], result.win ? @"win" : @"loser", avatar.center.x, avatar.center.y);
-//        [self popResultViewOnAvatarView:avatar
-//                               duration:5
-//                             coinsCount:result.gainCoins];
+        [avatar rewardCoins:result.gainCoins duration:5];
     }
 }
 
