@@ -33,7 +33,9 @@
 - (DiceAvatarView *)selfAvatarView;
 - (DiceAvatarView*)avatarViewOfUser:(NSString*)userId;
 
-- (void)disableAllDiceOperationButton;
+- (void)disableAllDiceOperationButtons;
+- (void)enableAllDiceOperationButtons;
+
 - (void)popResultViewOnAvatarView:(UIView*)view
                          duration:(CFTimeInterval)duration 
                        coinsCount:(int)coinsCount;
@@ -110,11 +112,14 @@
     
     [_openDiceButton setBackgroundImage:[[DiceImageManager defaultManager] openDiceButtonBgImage] forState:UIControlStateNormal];
     
+    // Init dice selected view
     self.diceSelectedView = [[[DiceSelectedView alloc] initWithFrame:diceCountSelectedHolderView.bounds superView:self.view] autorelease];
+    [_diceSelectedView setStart:1 end:7 startDice:1];
     _diceSelectedView.delegate = self;
     [diceCountSelectedHolderView addSubview:_diceSelectedView];
     
-    [self disableAllDiceOperationButton];
+    // Disable all dice operation buttons.
+    [self disableAllDiceOperationButtons];
     [self hideAllBellViews];
     [[self selfBellView] setHidden:NO];
 }
@@ -170,7 +175,8 @@
  
     NSString *userId = [_enumerator nextObject];
     if (userId == nil) {
-        [self clearGameResult];
+        [self showUserResult];
+        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:5];
         return;
     }
     
@@ -188,7 +194,8 @@
 {
     NSString *userId = [_enumerator nextObject];
     if (userId == nil) {
-        [self clearGameResult];
+        [self showUserResult];
+        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:5];
         return;
     }
     
@@ -214,8 +221,6 @@
 - (void)showGameResult
 {
     [self showAllUserDices];
-    
-    [self showUserResult];
 }
 
 - (void)showUserResult
@@ -433,7 +438,7 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_RESPONSE"); 
-        [self openDiceSuccess];
+//        [self openDiceSuccess];
      }];
     
     
@@ -548,7 +553,7 @@
 }
 
 #pragma mark - User actions.
-- (void)disableAllDiceOperationButton
+- (void)disableAllDiceOperationButtons
 {
     self.openDiceButton.enabled = NO;
     self.itemsBoxButton.enabled = NO;
@@ -557,7 +562,7 @@
     [self.diceSelectedView disableUserInteraction];
 }
 
-- (void)enableAllDiceOperationButton
+- (void)enableAllDiceOperationButtons
 {
     self.openDiceButton.enabled = YES;
     self.itemsBoxButton.enabled = YES;
@@ -578,7 +583,7 @@
     [self clearGameResult];
     [self dismissAllPopupView];
 
-    [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
+    [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  startDice:1];
 
     [self showBellOfPlayingUsers];
     [self shakeAllBell];
@@ -592,36 +597,38 @@
     [myDiceListHolderView addSubview:diceShowView];
     self.myDiceListHolderView.hidden = NO;
 
-    [self enableAllDiceOperationButton];
+    [self enableAllDiceOperationButtons];
 }
 
 - (void)nextPlayerStart
 {
     [self clearAllReciprocol];
-    
-    NSString *currentPlayUserId = [[_diceService session] currentPlayUserId];
-    
+    NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
     [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
     
     if ([_userManager isMe:currentPlayUserId])
-    {
+    {        
+        [self enableAllDiceOperationButtons];
+        
         if (_diceService.diceSession.lastCallDiceUserId == nil) {
-            [self enableAllDiceOperationButton];
             self.openDiceButton.enabled = NO;
-        }else {
-            [self enableAllDiceOperationButton];
         }
     }else {
-        [self disableAllDiceOperationButton];
+        [self disableAllDiceOperationButtons];
+        
+        if (_diceService.diceSession.lastCallDiceUserId != nil) {
+            self.openDiceButton.enabled = YES;
+        }
     }
 }
 
 #pragma mark - DiceSelectedViewDelegate
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
-{    
+{   
+    [[self selfAvatarView] stopReciprocol];
     [_diceService callDice:dice.dice count:count];
-    [self someoneCallDice];
+    [self popupCallDiceView];
 }
 
 - (IBAction)clickPlusOneButton:(id)sender {
@@ -633,45 +640,40 @@
     if([_userManager isMe:view.userId])
     {
         [self plusOne];
+        PPDebug(@"＊＊＊＊＊＊＊＊＊＊＊＊＊plusOne＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
     }
 }
 
 - (void)plusOne
 {
-    [_diceService autoCallDice];
-    [self someoneCallDice];
+    [[self selfAvatarView] stopReciprocol];
+    [_diceService callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
+    [self popupCallDiceView];
 }
 
 - (void)someoneCallDice
-{
-    if (_diceService.lastCallDice == 6) {
-        [_diceSelectedView setStart:([_diceService lastCallDiceCount] + 1)  end:[[_diceService session] playingUserCount]*5  lastCallDice:6];
-    }else {
-        [_diceSelectedView setStart:[_diceService lastCallDiceCount]  end:[[_diceService session] playingUserCount]*5  lastCallDice:[_diceService lastCallDice]];
-    }
-    
+{    
     [[self avatarViewOfUser:_diceService.lastCallUserId] stopReciprocol];
+        
+    [_diceSelectedView setStart:(_diceService.lastCallDiceCount + _diceService.lastCallDice/6)  end:_diceService.diceSession.playingUserCount*5  startDice:(_diceService.lastCallDice%6 + 1)];
+    
     [self popupCallDiceView];
 }
 
 
 #pragma mark- Buttons action
 - (IBAction)clickOpenDiceButton:(id)sender {
+    [self clearAllReciprocol];
     [_diceService openDice];
-}
-
-- (void)openDiceSuccess
-{
-//    [[self avatarViewOfUser:_diceService.openDiceUserId] stopReciprocol];
-//    [self disableAllDiceOperationButton];
-//    [self popupOpenDiceView];
-    [self someoneOpenDice];
+    
+    [self disableAllDiceOperationButtons];
+    [self popupOpenDiceView];    
 }
 
 - (void)someoneOpenDice
 {
-    [[self avatarViewOfUser:_diceService.openDiceUserId] stopReciprocol];
-    [self disableAllDiceOperationButton];
+    [self clearAllReciprocol];
+    [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];    
 }
 

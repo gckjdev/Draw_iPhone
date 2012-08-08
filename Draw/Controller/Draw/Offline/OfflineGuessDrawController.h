@@ -34,7 +34,7 @@
 //@class ToolView;
 @class VendingController;
 @class Draw;
-@class Feed;
+@class DrawFeed;
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate, CommonItemInfoViewDelegate>
 {
     ShowDrawView *showView;
@@ -49,10 +49,11 @@
 
     Word *_word;
     LanguageType languageType;
-    Feed *_feed;
+    DrawFeed *_feed;
     NSMutableArray *_guessWords;
     
     NSString *_opusId;
+    NSString *_authorId;
     Draw *_draw;
     UIViewController *_supperController;
     
@@ -66,7 +67,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 @property (retain, nonatomic) Word *word;
-@property (retain, nonatomic) Feed *feed;
+@property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (assign, nonatomic) id<OfflineGuessDelegate>delegate;

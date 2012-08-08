@@ -268,7 +268,7 @@
 
 //    FeedManager *feedManager = _feedManager;
     
-    if ([feedList count] < [FeedListState loadDataCount] * 0.8) {
+    if ([feedList count] == 0) {
         self.noMoreData = YES;
     }else{
         self.noMoreData = NO;
@@ -290,7 +290,9 @@
     NSInteger newIndex = [self startIndexForType:type] + [feedList count];
     [self setloadDataStartIndex:newIndex forType:type];
     self.dataList = [_feedManager feedListForType:type];
-    [self.dataTableView reloadData];
+    if ([self currentFeedListType] == type) {
+        [self.dataTableView reloadData];        
+    }
     if (isReload) {
         //scroll to top.
         [self.dataTableView setContentOffset:CGPointZero animated:YES];
@@ -346,6 +348,7 @@
     cell.indexPath = indexPath;
     cell.accessoryType = UITableViewCellAccessoryNone;
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [feed updateDesc];
     [cell setCellInfo:feed];
     return cell;
     
@@ -363,8 +366,16 @@
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
         return;
     }
-    
-    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:feed];
+    DrawFeed *drawFeed = nil;
+    if (feed.isDrawType) {
+        drawFeed = (DrawFeed *)feed;
+    }else if(feed.isGuessType){
+        drawFeed = [(GuessFeed *)feed drawFeed];
+    }else{
+        PPDebug(@"warnning:<FeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
+        return;
+    }
+    FeedDetailController *feedDetailController = [[FeedDetailController alloc] initWithFeed:drawFeed];
     [self.navigationController pushViewController:feedDetailController animated:YES];
     [feedDetailController release];
     //enter the detail feed contrller
@@ -382,7 +393,7 @@
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
-    return [[UserManager defaultManager] isMe:feed.userId];
+    return [feed isMyFeed];
 }
 
 #pragma mark - refresh header & footer delegate
@@ -418,11 +429,6 @@
            atIndexPath:(NSIndexPath *)indexPath
 {
     
-    //for test user feed controller
-//    PPDebug(@"<FeedCell delegate>: click avatar, userId = %@", userId);
-//    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:userId nickName:nickName];
-//    [self.navigationController pushViewController:userFeed animated:YES];
-//    [userFeed release];
     NSString* genderString = gender?@"m":@"f";
     [CommonUserInfoView showUser:userId 
                         nickName:nickName 

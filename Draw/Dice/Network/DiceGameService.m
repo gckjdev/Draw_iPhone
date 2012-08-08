@@ -182,19 +182,19 @@ static DiceGameService* _defaultService;
                                                        count:self.lastCallDiceCount]; 
 }
 
-- (void)autoCallDice
-{   
-    // Update Model.
-    self.diceSession.lastCallDiceUserId = self.user.userId;
-    self.diceSession.lastCallDice = self.lastCallDice;
-    self.diceSession.lastCallDiceCount ++;
-    
-    // Send Command.
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
-                                                   sessionId:self.session.sessionId
-                                                        dice:self.lastCallDice
-                                                       count:self.lastCallDiceCount]; 
-}
+//- (void)autoCallDice
+//{   
+//    // Update Model.
+//    self.diceSession.lastCallDiceUserId = self.user.userId;
+//    self.diceSession.lastCallDice = self.lastCallDice;
+//    self.diceSession.lastCallDiceCount ++;
+//    
+//    // Send Command.
+//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+//                                                   sessionId:self.session.sessionId
+//                                                        dice:self.lastCallDice
+//                                                       count:self.lastCallDiceCount]; 
+//}
 
 
 - (NSString *)lastCallUserId

@@ -11,6 +11,7 @@
 #import "FontButton.h"
 #import "DiceImageManager.h"
 #import "PPDebug.h"
+#import "DiceFontManager.h"
 
 #define DEFAULT_HEIGHT_OF_PAGE_CONTROL 5
 
@@ -19,7 +20,7 @@
 
 @interface DiceSelectedView ()
 {
-    int _lastCallDice;
+    int _startDice;
     int _start;
     BOOL _userInteraction;
 }
@@ -65,7 +66,7 @@
     if (self) {
         // Initialization code
         self.superView = superView;
-        _lastCallDice = 6;
+        _startDice = 1;
         
         self.scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
         self.scrollView.pagingEnabled = YES;
@@ -86,10 +87,13 @@
     return self;
 }
 
-- (void)setStart:(int)start end:(int)end lastCallDice:(int)lastCallDice
+- (void)setStart:(int)start end:(int)end startDice:(int)startDice
 {
+    start = (start < 1) ? 1 : start;
+    end = (end < 7) ? 7 : end;
+
     _start = start;
-    _lastCallDice = lastCallDice;
+    _startDice = startDice;
     
     int viewCount = (end - start + 1) / 7 + ((((end - start + 1) % 7) == 0) ? 0 : 1);
     if (viewCount <=  2) {
@@ -228,7 +232,7 @@
 - (UIButton *)diceCountSelectedButtonWithFrame:(CGRect)frame num:(int)num
 {
     FontButton *fontButton = [[[FontButton alloc] initWithFrame:frame 
-                                                       fontName:@"diceFont"
+                                                       fontName:[[DiceFontManager defaultManager] fontName]
                                                       pointSize:25] autorelease];
     fontButton.fontLable.text = [NSString stringWithFormat:@"%d", num];
     fontButton.tag = num;
@@ -254,8 +258,8 @@
     
     NSArray *diceList;
 
-    if (_curSelecetedDiceCountBtn.tag == _start && _lastCallDice < 6) {
-        diceList = [self genDiceListStartWith:(_lastCallDice + 1)  end:6];
+    if (_curSelecetedDiceCountBtn.tag == _start) {
+        diceList = [self genDiceListStartWith:_startDice  end:6];
     }else {
         diceList = [self genDiceListStartWith:1 end:6];
     }

@@ -7,7 +7,7 @@
 //
 
 #import "CommonService.h"
-#import "Feed.h"
+#import "FeedManager.h"
 #import "ItemType.h"
 #import "PPViewController.h"
 
@@ -30,6 +30,7 @@
                    resultCode:(NSInteger)resultCode;
 
 - (void)didCommentOpus:(NSString *)opusId
+         commentFeedId:(NSString *)commentFeedId
                comment:(NSString *)comment 
             resultCode:(NSInteger)resultCode;
 
@@ -42,6 +43,8 @@
 - (void)didThrowTomatoToOpus:(NSString *)opusId
                   resultCode:(NSInteger)resultCode;
 
+- (void)didGetFeed:(DrawFeed *)feed 
+        resultCode:(NSInteger)resultCode;
 
 @end
 
@@ -68,6 +71,8 @@
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate;
 
+- (void)getFeedByFeedId:(NSString *)feedId 
+               delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
