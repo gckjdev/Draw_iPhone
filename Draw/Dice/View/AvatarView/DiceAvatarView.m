@@ -95,9 +95,9 @@
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
-        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width-_rewardView.frame.size.height, _rewardView.frame.size.height) pointSize:15];
+        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:15];
         [_rewardCoinLabel setTextColor:[UIColor blackColor]];
-        [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+        [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
         [_rewardView addSubview:_rewardCoinView];
         [_rewardView addSubview:_rewardCoinLabel];
