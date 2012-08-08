@@ -77,17 +77,19 @@
     }
 }
 
-- (id)initWithUserId:(NSString *)userId 
+- (id)initWithFeedId:(NSString *)feedId
+              userId:(NSString *)userId 
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
               gender:(BOOL)gender 
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
             wordText:(NSString *)wordText 
-          timesArray:(NSArray *)timesArray
+          timesArray:(NSArray *)timesArray;
 {
     self = [super init];
     if (self) {
+        self.feedId = feedId;
         self.feedUser = [FeedUser feedUserWithUserId:userId 
                                             nickName:nickName 
                                               avatar:avatar 

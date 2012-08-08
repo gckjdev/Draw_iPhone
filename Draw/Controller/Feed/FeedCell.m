@@ -123,7 +123,7 @@
     NSInteger guessTimes = 0;
     if (feed.isDrawType) {
         guessTimes = [(DrawFeed *)feed guessTimes];
-    }else if(feed.feedType == FeedTypeGuess){
+    }else if(feed.isGuessType){
         guessTimes = [[(GuessFeed *)feed drawFeed] guessTimes];
     }
     if (guessTimes == 0) {

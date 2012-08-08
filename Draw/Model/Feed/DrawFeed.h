@@ -35,7 +35,8 @@ typedef enum{
 @property (nonatomic, retain) NSSet *timesSet;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
-- (id)initWithUserId:(NSString *)userId 
+- (id)initWithFeedId:(NSString *)feedId
+              userId:(NSString *)userId 
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
               gender:(BOOL)gender 
