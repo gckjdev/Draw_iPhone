@@ -253,9 +253,7 @@
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
-            NSString* homePath = [FileUtil getAppHomeDir];
-            NSString* imageName = [FileUtil getFileNameByFullPath:paint.image];
-            NSString* imagePath = [NSString stringWithFormat:@"%@/%@",homePath, imageName];
+            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
             if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
                 [myPaintArray addObject:paint];
                 

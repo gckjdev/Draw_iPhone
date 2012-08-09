@@ -60,6 +60,7 @@
 @synthesize rewardCoinLabel = _rewardCoinLabel;
 @synthesize diceSelectedView = _diceSelectedView;
 @synthesize enumerator = _enumerator;
+
 - (void)dealloc {
 //    [playingUserList release];
     [myLevelLabel release];
@@ -97,6 +98,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
     self.plusOneLabel.textColor = [UIColor whiteColor];    
@@ -122,6 +125,9 @@
     [self disableAllDiceOperationButtons];
     [self hideAllBellViews];
     [[self selfBellView] setHidden:NO];
+    
+    [self registerDiceGameNotifications];    
+
 }
 
 
@@ -142,6 +148,12 @@
     [self setPopResultView:nil];
     [self setRewardCoinLabel:nil];
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateAllPlayersAvatar];
 }
 
 
@@ -240,6 +252,7 @@
 
 - (IBAction)clickRunAwayButton:(id)sender {
     [[DiceGameService defaultService] quitGame];
+    [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -278,10 +291,6 @@
     for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
-//        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+i];
-//        [bell setHidden:YES];
-//        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+i];
-//        [result setHidden:YES];
         avatar.delegate = self;
         [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
         avatar.userId = nil;
@@ -297,12 +306,8 @@
         DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+seatIndex];
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+seatIndex)];
         nameLabel.textColor = [UIColor whiteColor];
-//        UIView* bell = [self.view viewWithTag:BELL_TAG_OFFSET+seatIndex];
-//        [bell setHidden:NO];
-//        UIView* result = [self.view viewWithTag:RESULT_TAG_OFFSET+seatIndex];
-//        [result setHidden:NO];
         [avatar setUrlString:user.avatar 
-                      userId:user.userId 
+                      userId:user.userId
                       gender:user.gender 
                        level:user.userLevel 
                   drunkPoint:0 
@@ -336,23 +341,29 @@
 }
 
 
-#pragma test server
-- (void)registerDiceGameNotification
+#pragma mark - Register notifications.
+
+- (void)registerDiceGameNotificationWithName:(NSString *)name 
+                                  usingBlock:(void (^)(NSNotification *note))block
 {
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_JOIN_GAME_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_JOIN_GAME_RESPONSE");         
-     }];
+    PPDebug(@"<%@> name", [self description]);         
+
+    [self registerNotificationWithName:name 
+                                object:nil 
+                                 queue:[NSOperationQueue mainQueue] 
+                            usingBlock:block];
+}
+
+- (void)registerDiceGameNotifications
+{    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE 
+                                    usingBlock:^(NSNotification *notification) {                       
+                                    }];
+
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ROOM
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROOM");      
+    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM 
+                            usingBlock:^(NSNotification *notification) {    
+                                
          GameMessage* message = [CommonGameNetworkService userInfoToMessage:[notification userInfo]];
          RoomNotificationRequest* roomNotification = [message roomNotificationRequest];
          
@@ -382,102 +393,47 @@
          
          [self roomChanged];
      }];
+        
+    [self registerDiceGameNotificationWithName:NOTIFICATION_ROLL_DICE_BEGIN
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self rollDiceBegin];         
+                                    }];
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ROLL_DICE_BEGIN
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_BEGIN"); 
-         [self rollDiceBegin];         
-     }];
+ 
+    [self registerDiceGameNotificationWithName:NOTIFICATION_ROLL_DICE_END
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self rollDiceEnd];         
+                                    }];
     
+    [self registerDiceGameNotificationWithName:NOTIFICATION_NEXT_PLAYER_START
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self nextPlayerStart];         
+                                    }];
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ROLL_DICE_END
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_ROLL_DICE_END"); 
-         [self rollDiceEnd];
-     }];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_REQUEST
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self someoneCallDice];         
+                                    }];
     
+    [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self someoneOpenDice];         
+                                    }];
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_NEXT_PLAYER_START
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_NEXT_PLAYER_START"); 
-         [self nextPlayerStart];
-    }];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_RESPONSE
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self openDiceSuccess];         
+                                    }];
     
-    
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_CALL_DICE_REQUEST
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_CALL_DICE_REQUEST"); 
-         [self someoneCallDice];
-     }];
-    
-    
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_OPEN_DICE_REQUEST
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_REQUEST"); 
-         [self someoneOpenDice];
-     }];
-    
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_OPEN_DICE_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_OPEN_DICE_RESPONSE"); 
-//        [self openDiceSuccess];
-     }];
-    
-    
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_GAME_OVER_REQUEST
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceGamePlayController> NOTIFICATION_GAME_OVER_REQUEST"); 
-         //pop open dice view on myself avatar
-         [self gameOver];         
-     }];
-
-}
-
-- (void)unregisterDiceGameNotification
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:nil
-                                                  object:_diceService];
-    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self 
-//                                                    name:NOTIFICATION_ROOM
-//                                                  object:nil];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_GAME_OVER_REQUEST
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self gameOver];         
+                                    }];
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self registerDiceGameNotification];    
-    [self updateAllPlayersAvatar];
-}
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self unregisterDiceGameNotification];
-}
+
 
 #pragma mark - Private methods
 
@@ -609,14 +565,21 @@
     if ([_userManager isMe:currentPlayUserId])
     {        
         [self enableAllDiceOperationButtons];
-        
+                
+        // 没人叫过骰子不能开。
         if (_diceService.diceSession.lastCallDiceUserId == nil) {
+            self.openDiceButton.enabled = NO;
+        }
+        
+        // 不能开自己叫的骰子。
+        if (_diceService.diceSession.lastCallDiceUserId != nil && [_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
             self.openDiceButton.enabled = NO;
         }
     }else {
         [self disableAllDiceOperationButtons];
         
-        if (_diceService.diceSession.lastCallDiceUserId != nil) {
+        // 有人叫过骰子，而且不是自己叫的骰子，才能开
+        if (_diceService.diceSession.lastCallDiceUserId != nil && ![_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
             self.openDiceButton.enabled = YES;
         }
     }
@@ -624,50 +587,54 @@
 
 #pragma mark - DiceSelectedViewDelegate
 
-- (void)didSelectedDice:(PBDice *)dice count:(int)count
-{   
-    [[self selfAvatarView] stopReciprocol];
-    [_diceService callDice:dice.dice count:count];
+-(void)callDice:(int)dice count:(int)count
+{
+    PPDebug(@"################  ME CALL DICE  #####################");
+    
+    [self clearAllReciprocol];
+    [self disableAllDiceOperationButtons]; 
+ 
+    [_diceService callDice:dice count:count];
     [self popupCallDiceView];
 }
 
+- (void)didSelectedDice:(PBDice *)dice count:(int)count
+{   
+    [self callDice:dice.dice count:count];
+}
+
 - (IBAction)clickPlusOneButton:(id)sender {
-    [self plusOne];
+    [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
 }
 
 - (void)reciprocalEnd:(DiceAvatarView*)view
 {
-    if([_userManager isMe:view.userId])
-    {
-        [self plusOne];
-        PPDebug(@"＊＊＊＊＊＊＊＊＊＊＊＊＊plusOne＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+    if ([_userManager isMe:view.userId]) {
+        PPDebug(@"&&&&&&&&&&&&&&&&&&&   reciprocalEnd   &&&&&&&&&&&&&&&&&&&&&&&&");
+        [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }
 }
 
-- (void)plusOne
-{
-    [[self selfAvatarView] stopReciprocol];
-    [_diceService callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
-    [self popupCallDiceView];
-}
-
 - (void)someoneCallDice
-{    
-    [[self avatarViewOfUser:_diceService.lastCallUserId] stopReciprocol];
-        
+{   
+    [self clearAllReciprocol];
+    
     [_diceSelectedView setStart:(_diceService.lastCallDiceCount + _diceService.lastCallDice/6)  end:_diceService.diceSession.playingUserCount*5  startDice:(_diceService.lastCallDice%6 + 1)];
     
     [self popupCallDiceView];
 }
 
-
 #pragma mark- Buttons action
+
+-(void)openDiceSuccess
+{
+    [self disableAllDiceOperationButtons];
+    [self popupOpenDiceView];  
+}
+
 - (IBAction)clickOpenDiceButton:(id)sender {
     [self clearAllReciprocol];
     [_diceService openDice];
-    
-    [self disableAllDiceOperationButtons];
-    [self popupOpenDiceView];    
 }
 
 - (void)someoneOpenDice
@@ -687,22 +654,55 @@
     [self showGameResult];
 }
 
+- (PointDirection)popupDirectionWithUserAvatarViewTag:(int)tag
+{
+    PointDirection pointDirection = PointDirectionAuto;
+
+    switch (tag - AVATAR_TAG_OFFSET) {
+        case 1:
+        case 2:
+        case 3:
+        case 5:
+        case 6:
+            pointDirection = PointDirectionDown;
+            break;
+            
+        case 4:
+            pointDirection = PointDirectionUp;
+            break;
+            
+        default:
+            pointDirection = PointDirectionAuto;
+            break;
+    }
+    
+    return pointDirection;
+}
+
 - (void)popupOpenDiceView
 {
     DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.openDiceUserId];
+    
+    PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:userAvatarView.tag];
+    
     [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
                                               atView:userAvatarView 
                                               inView:self.view
-                                            duration:10];
+                                            duration:10
+                                      pointDirection:pointDirection];
 }
 
 - (void)popupCallDiceView
 {
     UIView *atView = [_userManager isMe:_diceService.lastCallUserId] ? myDiceListHolderView : [self avatarViewOfUser:_diceService.lastCallUserId];
+    
+    PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:atView.tag];
+    
     [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
                                            count:_diceService.lastCallDiceCount
                                           atView:atView
-                                          inView:self.view];
+                                          inView:self.view
+                                  pointDirection:pointDirection];
 
 }
 
@@ -727,10 +727,11 @@
 }
 
 - (IBAction)clickSettingButton:(id)sender {
-//    [[self selfBellView] setHidden:YES]; 
-//    DicesResultView *resultView = [self resultViewOfUser:_userManager.userId];
-//    [resultView setDices:[self genDiceListStartWith:1 end:5]];
-//    [resultView showAnimation:self.view.center];
+    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+                                           count:_diceService.lastCallDiceCount
+                                          atView:[self selfAvatarView]
+                                          inView:self.view
+                                  pointDirection:PointDirectionUp];
 
 }
 
@@ -749,5 +750,7 @@
 //    
 //    return dices;
 //}
+
+
 
 @end

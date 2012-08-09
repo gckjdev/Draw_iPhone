@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
+#import "CMPopTipView.h"
 
 @interface CallDiceView : UIView
 
 - (id)initWithDice:(int)dice count:(int)count;
 
-- (void)setDice:(int)dice count:(int)count;
+//- (void)setDice:(int)dice count:(int)count;
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
-           animated:(BOOL)animated;
+           animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissAnimated:(BOOL)animated;
 

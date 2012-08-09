@@ -7,7 +7,6 @@
 //
 
 #import "MessageView.h"
-#import "CMPopTipView.h"
 
 #define DEFAULT_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
@@ -49,13 +48,17 @@
              inView:(UIView *)inView
            duration:(int)duration
     backgroundColor:(UIColor *)backgroundColor
-           animated:(BOOL)animated;
+           animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection
 {
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
     _popTipView.backgroundColor = backgroundColor;
     _popTipView.disableTapToDismiss = YES;
     
-    [_popTipView presentPointingAtView:atView inView:inView animated:animated];
+    [_popTipView presentPointingAtView:atView
+                                inView:inView 
+                              animated:animated 
+                        pointDirection:pointDirection];
     
     if (duration) {
         [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];
@@ -66,12 +69,14 @@
              inView:(UIView *)inView
     backgroundColor:(UIColor *)backgroundColor
            animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection
 {
     [self popupAtView:atView 
                inView:inView 
              duration:0 
       backgroundColor:backgroundColor 
-             animated:animated];
+             animated:animated
+       pointDirection:pointDirection];
 }
 
 

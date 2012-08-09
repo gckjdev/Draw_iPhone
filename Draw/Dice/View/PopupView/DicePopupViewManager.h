@@ -17,7 +17,8 @@
 - (void)popupCallDiceViewWithDice:(int)dice
                             count:(int)count
                            atView:(UIView *)atView
-                           inView:(UIView *)inView;
+                           inView:(UIView *)inView
+                   pointDirection:(PointDirection)pointDirection;
 
 //- (void)dismissCallDiceView;
 
@@ -32,12 +33,14 @@
 
 - (void)popupMessage:(NSString *)message
               atView:(UIView *)atView
-              inView:(UIView *)inView;
+              inView:(UIView *)inView
+      pointDirection:(PointDirection)pointDirection;
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
-                             duration:(int)duration;
+                             duration:(int)duration
+                       pointDirection:(PointDirection)pointDirection;
 
 //- (void)dismissOpenDiceView;
 

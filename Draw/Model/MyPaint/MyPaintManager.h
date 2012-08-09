@@ -11,6 +11,10 @@
 
 @interface MyPaintManager : NSObject
 
++ (NSString*)getMyPaintImagePathByCapacityPath:(NSString*)path;
++ (NSString*)getMyPaintImageDirection;
++ (NSString *)constructImagePath:(NSString *)imageName;
+
 + (MyPaintManager*)defaultManager;
 - (BOOL)createMyPaintWithImage:(NSString*)image
                           data:(NSData*)data

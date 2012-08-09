@@ -10,6 +10,9 @@
 #import "CoreDataUtil.h"
 #import "MyPaint.h"
 #import "PPDebug.h"
+#import "FileUtil.h"
+
+#define MY_PAINT_IMAGE_DIR @"Paints"
 
 @implementation MyPaintManager
 
@@ -160,6 +163,48 @@ static MyPaintManager* _defaultManager;
                                        nil);
         [image release];    
     });
+}
+
++ (NSString *)constructImagePath:(NSString *)imageName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if (!paths || [paths count] == 0) {
+        NSLog(@"Document directory not found!");
+        return nil;
+    }
+    NSString *imgName = imageName;
+    NSString *dir = [paths objectAtIndex:0];
+    
+    dir = [dir stringByAppendingPathComponent:MY_PAINT_IMAGE_DIR];
+    BOOL flag = [FileUtil createDir:dir];
+    if (flag == NO) {
+        PPDebug(@"<MyPaintManager> create dir fail. dir = %@",dir);
+    }
+    NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
+    NSLog(@"construct path = %@",uniquePath);
+    return uniquePath;
+}
+
+
++ (NSString*)getMyPaintImageDirection
+{
+    NSString* homePath = [FileUtil getAppHomeDir];
+    return [NSString stringWithFormat:@"%@/Paints",homePath];
+}
+
++ (NSString*)getMyPaintImagePathByCapacityPath:(NSString *)path
+{
+    NSString* homePath = [FileUtil getAppHomeDir];
+    NSString* imageName = [FileUtil getFileNameByFullPath:path];
+    NSString* imagePath = [NSString stringWithFormat:@"%@/%@",homePath, imageName];
+    NSString* newImagePath = [MyPaintManager constructImagePath:imageName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:newImagePath]) {
+        return newImagePath;
+    } else if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
+        return imagePath;
+    }
+    return nil;
 }
 
 @end
