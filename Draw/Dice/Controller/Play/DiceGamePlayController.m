@@ -127,7 +127,8 @@
     [[self selfBellView] setHidden:NO];
     
     [self registerDiceGameNotifications];    
-
+    
+    self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
 }
 
 
@@ -565,6 +566,8 @@
     if ([_userManager isMe:currentPlayUserId])
     {        
         [self enableAllDiceOperationButtons];
+ 
+        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
                 
         // 没人叫过骰子不能开。
         if (_diceService.diceSession.lastCallDiceUserId == nil) {
@@ -575,12 +578,14 @@
         if (_diceService.diceSession.lastCallDiceUserId != nil && [_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
             self.openDiceButton.enabled = NO;
         }
+        
     }else {
         [self disableAllDiceOperationButtons];
         
         // 有人叫过骰子，而且不是自己叫的骰子，才能开
         if (_diceService.diceSession.lastCallDiceUserId != nil && ![_userManager isMe:_diceService.diceSession.lastCallDiceUserId]) {
             self.openDiceButton.enabled = YES;
+            self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
         }
     }
 }
@@ -604,16 +609,27 @@
 }
 
 - (IBAction)clickPlusOneButton:(id)sender {
-    [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
+    [self takeOver];
 }
 
 - (void)reciprocalEnd:(DiceAvatarView*)view
 {
     if ([_userManager isMe:view.userId]) {
-        PPDebug(@"&&&&&&&&&&&&&&&&&&&   reciprocalEnd   &&&&&&&&&&&&&&&&&&&&&&&&");
+        [self takeOver];
+    }
+}
+
+- (void)takeOver
+{
+    [self clearAllReciprocol];
+
+    if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
+        [_diceService openDice];
+    }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }
 }
+
 
 - (void)someoneCallDice
 {   
@@ -646,6 +662,8 @@
 
 - (void)gameOver;
 {
+    [self clearAllReciprocol];
+    
     // Hidden views.
     [self hideAllBellViews];
     self.myDiceListHolderView.hidden = YES;
