@@ -109,6 +109,11 @@
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -187,6 +192,7 @@
     if (_currentProgress <= 0) {
         [self stopReciprocol];
         if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
+            PPDebug(@"<test>stop, delegate = %@ , avatar = %@",[_delegate description], [self description]);
             [_delegate reciprocalEnd:self];
         }
         return;
