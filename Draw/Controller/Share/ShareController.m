@@ -9,11 +9,9 @@
 #import "ShareController.h"
 #import "LocaleUtils.h"
 #import "ShareEditController.h"
-#import "MyPaintManager.h"
 #import "MyPaint.h"
 #import "DrawAction.h"
 #import "ShareCell.h"
-#import "ShareImageManager.h"
 #import "UserManager.h"
 #import "ReplayController.h"
 #import "GifView.h"
@@ -31,63 +29,126 @@
 #define SHARE_IMAGE_OPTION      120120407
 #define SHARE_AS_PHOTO_OPTION   220120407
 
+#define LOAD_PAINT_LIMIT 32
+
 @interface ShareController ()
+{
+    NSMutableArray *_allPaints;
+    NSMutableArray *_myPaints;
+    
+    MyPaint *_selectedPaint;
+    
+    NSMutableArray *_gifImages;
+    
+    NSInteger _allOffset;
+    NSInteger _myOffset;
+    
+    MyPaintManager *_myPaintManager;
+    
+    BOOL _allHasMoreData;
+    BOOL _myHasMoreData;
 
+}
+@property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine;
-
+- (NSArray *)paints;
+- (void)reloadView;
 @end
 
 @implementation ShareController
 @synthesize selectMineButton;
 @synthesize selectAllButton;
 @synthesize clearButton;
-@synthesize gallery;
-@synthesize paints = _paints;
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
 @synthesize awardCoinTips;
-
+@synthesize selectedPaint = _selectedPaint;
 
 - (void)dealloc {
-    [_shareAction release];
-    [clearButton release];
-    [gallery release];
-    [_paints release];
-    [titleLabel release];
-    [_gifImages release];
-    [selectAllButton release];
-    [selectMineButton release];
-    [awardCoinTips release];
+    PPRelease(_shareAction);
+    PPRelease(_myPaints);
+    PPRelease(_allPaints);
+    PPRelease(_gifImages);
+    PPRelease(_selectedPaint);
+    PPRelease(clearButton);
+    PPRelease(titleLabel);
+    PPRelease(selectAllButton);
+    PPRelease(selectMineButton);
+    PPRelease(awardCoinTips);
     [super dealloc];
 }
 
-- (void)refleshGallery
-{
-    [self loadPaintsOnlyMine:self.selectMineButton.isSelected];
-    [self.gallery reloadData];
-}
 
-- (void)loadPaintsOnlyMine:(BOOL)onlyMine
+- (void)reloadView
 {
-    if (onlyMine) {
-        self.paints = [[MyPaintManager defaultManager] findOnlyMyPaints];
-    } else {
-        self.paints = [[MyPaintManager defaultManager] findAllPaints];
-    }
-    
-    if ([self.paints count] > 0){
+    [self.dataTableView reloadData];
+    if ([self.paints count] != 0) {
         self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         [self.clearButton setHidden:NO];
-    }
-    else{
+    }else{
         self.awardCoinTips.text = NSLS(@"kNoDrawings");
         [self.clearButton setHidden:YES];
     }
 }
 
-- (void)selectImageAtIndex:(int)index
+#pragma mark - MyPaintManager Delegate
+- (void)didGetAllPaints:(NSArray *)paints
 {
-    _currentSelectedPaint = index;
+    [self hideActivity];
+    if ([paints count] > 0) {
+        
+        if (_allPaints == nil) {
+            _allPaints = [[NSMutableArray alloc] initWithArray:paints];
+        }else{
+            [_allPaints addObjectsFromArray:paints];
+        }        
+        _allOffset += [paints count];
+        if ([paints count] == LOAD_PAINT_LIMIT) {
+            _allHasMoreData = YES;
+        }else{
+            _allHasMoreData = NO;
+        }
+    }
+    if (self.selectAllButton.selected) {
+        [self reloadView];
+    }
+}
+- (void)didGetMyPaints:(NSArray *)paints
+{
+    [self hideActivity];
+    if ([paints count] > 0) {
+        if (_myPaints == nil) {
+            _myPaints = [[NSMutableArray alloc] initWithArray:paints];
+        }else{
+            [_myPaints addObjectsFromArray:paints];
+        }        
+        _myOffset += [paints count];
+        if ([paints count] == LOAD_PAINT_LIMIT) {
+            _myHasMoreData = YES;
+        }else{
+            _myHasMoreData = NO;
+        }
+    }
+    if (self.selectMineButton.selected) {
+        [self reloadView];
+    }
+}
+
+
+- (void)loadPaintsOnlyMine:(BOOL)onlyMine
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    if (onlyMine) {
+        [_myPaintManager findMyPaintsFrom:_myOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    } else {
+        [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
+    }    
+}
+
+#pragma mark - Share Cell Delegate
+- (void)didSelectPaint:(MyPaint *)paint
+{
+    self.selectedPaint = paint;
     UIActionSheet* tips = nil;
     
     if ([LocaleUtils isChina]){
@@ -125,7 +186,7 @@
 {
     [_gifImages removeAllObjects];
     
-    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+    MyPaint* currentPaint = _selectedPaint;
     ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
     [replayController setReplayForCreateGif:YES];    
     [self.navigationController pushViewController:replayController animated:YES];
@@ -138,7 +199,7 @@
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
-    MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
+    MyPaint* currentPaint = _selectedPaint;
     
     if (buttonIndex == SHARE_AS_PHOTO) {                        
         self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:currentPaint.image 
@@ -182,20 +243,41 @@
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
+    BOOL result = NO;
     if (dialog.tag == DELETE){
-        MyPaint* currentPaint = [self.paints objectAtIndex:_currentSelectedPaint];
-        [[MyPaintManager defaultManager] deleteMyPaints:currentPaint];
-        [self refleshGallery];
+        MyPaint* currentPaint = self.selectedPaint;
+        if (currentPaint == nil) {
+            return;
+        }
+
+        if (currentPaint.drawByMe.boolValue) {
+            _myOffset --;
+            [_myPaints removeObject:currentPaint];
+        }       
+        if ([_allPaints containsObject:currentPaint]) {
+            _allOffset --;
+            [_allPaints removeObject:currentPaint];
+        }
+        result = [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
+        self.selectedPaint = nil;
     }
     else if (dialog.tag == DELETE_ALL){
-        [[MyPaintManager defaultManager] deleteAllPaints:NO];
-        [self refleshGallery];
-        return;
+        _allOffset = 0;
+        _myOffset = 0;
+        [_allPaints removeAllObjects];
+        [_myPaints removeAllObjects];
+        result = [[MyPaintManager defaultManager] deleteAllPaints:NO];
+        [self loadPaintsOnlyMine:NO];
+        
     } else if (dialog.tag == DELETE_ALL_MINE) {
-        [[MyPaintManager defaultManager] deleteAllPaints:YES];
-        [self refleshGallery];
-        return;
+        _allOffset = 0;
+        _myOffset = 0;
+        [_allPaints removeAllObjects];
+        [_myPaints removeAllObjects];
+        result = [[MyPaintManager defaultManager] deleteAllPaints:YES];
+        [self loadPaintsOnlyMine:NO];
     }
+    [self reloadView];
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -224,6 +306,7 @@
         
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     PPDebug(@"total paints is %d", self.paints.count);
@@ -239,6 +322,15 @@
     return number;
 }
 
+- (NSArray *)paints
+{
+    if (self.selectAllButton.selected) {
+        return _allPaints;
+    }else{
+        return _myPaints;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ShareCell* cell = [tableView dequeueReusableCellWithIdentifier:[ShareCell getIdentifier]];
@@ -246,55 +338,59 @@
         cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSMutableArray* myPaintArray = [[NSMutableArray alloc] init];
+    NSMutableArray* myPaintArray = [NSMutableArray array];
 
     NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
         int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
-            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
-                [myPaintArray addObject:paint];
-                
-            } else {
-                PPDebug(@"<ShareController>image(%@) not found",imagePath);
-            }
+            [myPaintArray addObject:paint];                
         }
     }
     [loopPool release];
 
     cell.indexPath = indexPath;
-    [cell setImagesWithArray:myPaintArray];
-    [myPaintArray release];
+    [cell setPaints:myPaintArray];
     return cell;
 }
-//
-//- (IBAction)changeGalleryFielter:(id)sender
-//{
-//    if ([self.selectMineButton isSelected]) {
-//        [self.selectMineButton setSelected:NO]; 
-//    } else {
-//        [self.selectMineButton setSelected:YES];  
-//    }
-//    [self.selectAllButton setSelected:!self.selectMineButton.isSelected];
-//    [self refleshGallery];
-//}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+    if (row == number - 1) {
+        PPDebug(@"<ShareController> scroll to end");
+        if (self.selectAllButton.selected && _allHasMoreData) {
+            [self loadPaintsOnlyMine:NO];            
+        PPDebug(@"<ShareController> scroll to end, load more all data");
+        }else if(self.selectMineButton.selected && _myHasMoreData){
+            [self loadPaintsOnlyMine:YES];            
+        PPDebug(@"<ShareController> scroll to end, load more my data");
+        }
+    }
+}
 
 - (IBAction)selectAll:(id)sender
 {
     [self.selectAllButton setSelected:YES];
     [self.selectMineButton setSelected:NO];
-    [self loadPaintsOnlyMine:NO];
-    [self.gallery reloadData];
+    if (_allPaints) {
+        [self reloadView];
+    }else{
+        [self loadPaintsOnlyMine:NO];
+    }
 }
 
 - (IBAction)selectMine:(id)sender
 {
     [self.selectAllButton setSelected:NO];
     [self.selectMineButton setSelected:YES];
-    [self loadPaintsOnlyMine:YES];
-    [self.gallery reloadData];
+    if (_myPaints) {
+        [self reloadView];
+    }else{
+        [self loadPaintsOnlyMine:YES];
+    }
 }
 
 - (IBAction)deleteAll:(id)sender
@@ -321,7 +417,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _paints = [[NSMutableArray alloc] init];
         _gifImages = [[NSMutableArray alloc] init];
 
         if ([LocaleUtils isChina]){
@@ -345,6 +440,8 @@
         }
         
     }
+    _myPaintManager = [MyPaintManager defaultManager];
+    _allHasMoreData = _myHasMoreData = NO;
     return self;
 }
 
@@ -363,12 +460,8 @@
     [self.selectMineButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
     [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
     [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
-    self.selectAllButton.selected = YES;
-    
-    [self refleshGallery];
-    
-    PPDebug(@"get all paints, paints count is %d", _paints.count);
 
+    [self selectAll:self.selectAllButton];
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kShareTitle");
     
@@ -377,8 +470,6 @@
 - (void)viewDidUnload
 {
     [self setClearButton:nil];
-    [self setGallery:nil];
-    [self setPaints:nil];
     [self setTitleLabel:nil];
     [self setSelectAllButton:nil];
     [self setSelectMineButton:nil];

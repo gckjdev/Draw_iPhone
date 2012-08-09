@@ -14,13 +14,27 @@
 #import "MobClickUtils.h"
 
 @interface UserFeedController()
+{   NSInteger _opusStartIndex;
+    NSInteger _feedStartIndex;
+    NSString *_userId;
+    NSString *_nickName;
+    
+    NSMutableArray *_feedList;
+    NSMutableArray *_opusList;
+    BOOL _noMoreFeed;
+    BOOL _noMoreOpus;
+    
+}
+@property(nonatomic, retain) NSString *userId;
+@property(nonatomic, retain) NSString *nickName;
 
 - (void)updateFeedList;
 
 @end
 
 @implementation UserFeedController
-@synthesize startIndex = _startIndex;
+@synthesize opusButton = _opusButton;
+@synthesize feedButton = _feedButton;
 @synthesize noFeedTipsLabel = _noFeedTipsLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize userId = _userId;
@@ -49,6 +63,10 @@
     PPRelease(_titleLabel);
     PPRelease(_userId);
     PPRelease(_nickName);
+    PPRelease(_feedList);
+    PPRelease(_opusList);
+    PPRelease(_opusButton);
+    PPRelease(_feedButton);
     [super dealloc];
 }
 
@@ -59,10 +77,12 @@
     {
         self.userId = userId;
         self.nickName = nickName;
-        self.startIndex = 0;
+        _opusStartIndex = _feedStartIndex = 0;
+        _noMoreOpus = _noMoreFeed = NO;
     }
     return self;
 }
+
 
 #pragma mark - View lifecycle
 
@@ -79,16 +99,33 @@
     if ([[UserManager defaultManager] isMe:_userId]) {
         title = NSLS(@"kMyFeedList");
     }else{
-        title = [NSString stringWithFormat:NSLS(@"kUserFeedTitle"), self.nickName];
+//        title = [NSString stringWithFormat:NSLS(@"kUserFeedTitle"), self.nickName];
+        title = self.nickName;
     }
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
 
+    [self.opusButton setTitle:NSLS(@"kUserOpus") forState:UIControlStateNormal];
+    [self.feedButton setTitle:NSLS(@"kUserFeed") forState:UIControlStateNormal];
+
+    [self.opusButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
+    [self.opusButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+
+    [self.feedButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [self.feedButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+
+    self.opusButton.tag = FeedListTypeUserOpus;
+    self.feedButton.tag = FeedListTypeUserFeed;
+    
+    [self clickTabButton:self.opusButton];
 
     [self.titleLabel setText:title];
-    [self updateFeedList];
+//    [self updateFeedList];
 }
 
 - (void)viewDidUnload
 {
+    [self setOpusButton:nil];
+    [self setFeedButton:nil];
     [super viewDidUnload];
     [self setNoFeedTipsLabel:nil];
     [self setTitleLabel:nil];
@@ -96,18 +133,47 @@
 }
 
 #define FEED_COUNT [MobClickUtils getIntValueByKey:@"FEED_PER_PAGE" defaultValue:12]
+
 - (void)updateFeedList
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    [[FeedService defaultService] getUserFeedList:self.userId offset:_startIndex limit:FEED_COUNT delegate:self];
+    if (self.opusButton.selected) {
+        [[FeedService defaultService] getUserOpusList:self.userId
+                                               offset:_opusStartIndex 
+                                                limit:FEED_COUNT 
+                                             delegate:self];
+    }else{
+        [[FeedService defaultService] getUserFeedList:self.userId
+                                               offset:_feedStartIndex
+                                                limit:FEED_COUNT 
+                                             delegate:self];
+    }
 
 }
 
+- (FeedListType)currentType
+{
+    if (self.opusButton.selected) {
+        return FeedListTypeUserOpus;
+    }
+    return FeedListTypeUserFeed;
+}
+
+- (void)reloadView
+{
+    if ([self currentType] == FeedListTypeUserFeed) {
+        self.noMoreData = _noMoreFeed;
+    }else{
+        self.noMoreData = _noMoreOpus;
+    }
+    [self.dataTableView reloadData];
+}
 
 #pragma mark - feed service delegate
 
 - (void)didGetFeedList:(NSArray *)feedList 
-            targetUser:(NSString *)userId
+            targetUser:(NSString *)userId 
+                  type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
@@ -122,29 +188,32 @@
     }
     
     if ([feedList count] == 0) {
-        self.noMoreData = YES;
-    }else{
-        self.noMoreData = NO;
-    }
-    
-    BOOL isReload = _startIndex == 0;
-
-    if (isReload) {
-        self.dataList = feedList;
-    }else{
-        if ([feedList count] != 0) {
-            NSMutableArray *temp = [NSMutableArray arrayWithArray:self.dataList];
-            [temp addObjectsFromArray:feedList];
-            self.dataList = temp;            
+        if (type == FeedListTypeUserFeed) {
+            _noMoreFeed = YES;
+        }else{
+            _noMoreOpus = YES;
         }
-    }    
-    
-    _startIndex += [feedList count];
-    
-    [self.dataTableView reloadData];
-    if (isReload) {
-        //scroll to top.
-        [self.dataTableView setContentOffset:CGPointZero animated:YES];
+    }else{
+        if (type == FeedListTypeUserFeed) {
+            if (_feedList == nil) {
+                _feedList = [[NSMutableArray alloc] initWithArray:feedList];
+            }else{
+                [_feedList addObjectsFromArray:feedList];
+            }
+            _feedStartIndex += [feedList count];
+            _noMoreFeed = NO;
+        }else{
+            if (_opusList == nil) {
+                _opusList = [[NSMutableArray alloc] initWithArray:feedList];
+            }else{
+                [_opusList addObjectsFromArray:feedList];
+            }        
+            _opusStartIndex += [feedList count];
+            _noMoreOpus = NO;
+        }
+    }
+    if ([self currentType] == type) {
+        [self reloadView];
     }
 
 }
@@ -154,7 +223,12 @@
 
 - (void)reloadTableViewDataSource
 {
-    _startIndex = 0;
+    if ([self currentType] == FeedListTypeUserFeed) {
+        _feedStartIndex = 0;
+    }
+    if ([self currentType] == FeedListTypeUserOpus) {
+        _opusStartIndex = 0;
+    }
     [self updateFeedList];
 }
 
@@ -174,8 +248,37 @@
     [self reloadTableViewDataSource];
 }
 
+- (IBAction)clickTabButton:(id)sender {
+    self.opusButton.selected = self.feedButton.selected = NO;
+    UIButton *button = (UIButton *)sender;
+    button.selected = YES;
+    if (button.tag == FeedListTypeUserOpus) {
+        if (_opusList) {
+            [self reloadView];
+        }else{
+            [self updateFeedList];
+        }
+    }else{
+        if (_feedList) {
+            [self reloadView];
+        }else{
+            [self updateFeedList];
+        }        
+    }
+    
+    
+}
+
 #pragma mark - table view delegate
 
+- (NSArray *)dataList
+{
+    if ([self currentType] == FeedListTypeUserOpus) {
+        return _opusList;
+    }else{
+        return _feedList;
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -183,9 +286,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger count = [dataList count];
-    self.noFeedTipsLabel.hidden = (count != 0);
-    
+
+    NSInteger count = [self.dataList count];
     if (count != 0) {
         self.dataTableView.separatorColor = [UIColor lightGrayColor];
     }else{

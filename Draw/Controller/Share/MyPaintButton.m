@@ -7,22 +7,31 @@
 //
 
 #import "MyPaintButton.h"
+#import "MyPaint.h"
+#import "MyPaintManager.h"
+#import "PPDebug.h"
+#import <QuartzCore/QuartzCore.h>
+#include <ImageIO/ImageIO.h>
+#import "DrawUtils.h"
+#import "ShareCell.h"
 
 @implementation MyPaintButton
 
 @synthesize wordsBackground = _wordsBackground;
-@synthesize clickButton = _clickButton;
 @synthesize drawWord = _drawWord;
 @synthesize background = _background;
 @synthesize myPrintTag = _myPrintTag;
-@synthesize delegate = _delegate;
+@synthesize drawImage = _drawImage;
+@synthesize paint = _paint;
+
 - (void)dealloc
 {
     [_background release];
-    [_clickButton release];
     [_drawWord release];
     [_myPrintTag release];
     [_wordsBackground release];
+    [_paint release];
+    [_drawImage release];
     [super dealloc];
 }
 
@@ -36,7 +45,7 @@
     MyPaintButton* button =  (MyPaintButton*)[topLevelObjects objectAtIndex:0];
     return button;
 }
-
+/*
 + (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
                                  drawWord:(NSString*)drawWord 
                               isDrawnByMe:(BOOL)isDrawnByMe 
@@ -45,60 +54,36 @@
     MyPaintButton* button = [MyPaintButton creatMyPaintButton];
     [button.myPrintTag setHidden:!isDrawnByMe];
     [button.drawWord setText:drawWord];
-    [button.clickButton setImage:buttonImage forState:UIControlStateNormal];
     button.delegate = delegate;
     return button;
 }
-
-- (IBAction)clickImageButton:(id)sender
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(clickImage:)]) {
-        [_delegate clickImage:self];
-    }
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        _background = [[UIImageView alloc] init];
-        _wordsBackground = [[UIImageView alloc] init];
-        _myPrintTag = [[UIImageView alloc] init];
-        _clickButton = [[UIButton alloc] init];
-        _drawWord = [[UILabel alloc] init];
-        [self setBackgroundColor:[UIColor clearColor]];
-        [_background setImage:[UIImage imageNamed:@"user_picbg.png"]];
-        [_wordsBackground setImage:[UIImage imageNamed:@"easy.png"]];
-        [_myPrintTag setImage:[UIImage imageNamed:@"print_tip.png"]];
-        
-        [_background setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height*0.8)];
-        [_wordsBackground setFrame:CGRectMake(0, self.frame.size.height*0.8, self.frame.size.width, self.frame.size.height*0.2)];
-        [_myPrintTag setFrame:CGRectMake(_background.frame.size.width-16, _background.frame.size.height-17, 16, 17)];
-        [_drawWord setFrame:_wordsBackground.frame];
-        [_clickButton setFrame:CGRectMake(4, 4, self.frame.size.width-8, self.frame.size.height*0.8-8)];
-        [_clickButton addTarget:self action:@selector(clickImageButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_drawWord setTextAlignment:UITextAlignmentCenter];
-        [_drawWord setFont:[UIFont systemFontOfSize:10]];
-        [_drawWord setBackgroundColor:[UIColor clearColor]];
-        
-        [self addSubview:_background];
-        [self addSubview:_wordsBackground];
-        [self addSubview:_clickButton];
-        [self addSubview:_myPrintTag];
-        [self addSubview:_drawWord];
-        // Initialization code
-    }
-    return self;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
 */
+- (void)setInfo:(MyPaint *)paint
+{
+    self.paint = paint;
+    
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:DRAW_VIEW_WIDTH/IMAGES_PER_LINE] forKey:(NSString*)kCGImageSourceThumbnailMaxPixelSize];
 
+    UIImage *image = paint.thumbImage;
+    if (image == nil) {
+        if (paint.drawThumbnailData == nil){
+            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+            paint.thumbImage = [[[UIImage alloc] initWithContentsOfFile:imagePath] autorelease];
+            PPDebug(@"<MyPaintButton>: load image from path = %@", imagePath);
+        }
+        else{
+            NSData *data = paint.drawThumbnailData;
+            CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
+            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
+            paint.thumbImage = image;
+            CFRelease(imageRef);
+            PPDebug(@"<MyPaintButton>: load image from thumbnail data");
+        }
+    }
+    [self.drawImage setImage:paint.thumbImage];
+    [self.drawWord setText:paint.drawWord];
+    [self.myPrintTag setHidden:!paint.drawByMe.boolValue];
+    
+    self.hidden = NO;
+}
 @end

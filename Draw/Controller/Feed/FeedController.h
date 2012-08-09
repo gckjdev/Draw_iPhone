@@ -23,9 +23,11 @@
 @property (retain, nonatomic) IBOutlet UIButton *allFeedButton;
 @property (retain, nonatomic) IBOutlet UIButton *hotFeedButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *latestFeedButton;
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickFeedButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
+
 
 @end

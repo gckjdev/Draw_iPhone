@@ -8,23 +8,20 @@
 
 #import <UIKit/UIKit.h>
 @class MyPaintButton;
+@class MyPaint;
 
-@protocol MyPaintButtonDelegate <NSObject>
-- (void)clickImage:(MyPaintButton*)myPaintButton;
-@end
-
-@interface MyPaintButton : UIView
+@interface MyPaintButton : UIButton
+{
+    MyPaint *_paint;
+}
 @property (retain, nonatomic) IBOutlet UIImageView *wordsBackground;
-
-@property (retain, nonatomic) IBOutlet UIButton *clickButton;
 @property (retain, nonatomic) IBOutlet UILabel *drawWord;
 @property (nonatomic, retain) IBOutlet UIImageView* background;
 @property (retain, nonatomic) IBOutlet UIImageView *myPrintTag;
-@property (assign, nonatomic) id<MyPaintButtonDelegate>delegate;
+@property (retain, nonatomic) IBOutlet UIImageView *drawImage;
+@property (retain, nonatomic) IBOutlet MyPaint *paint;
+
 
 + (MyPaintButton*)creatMyPaintButton;
-+ (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
-                                 drawWord:(NSString*)drawWord 
-                              isDrawnByMe:(BOOL)isDrawnByMe 
-                                 delegate:(id<MyPaintButtonDelegate>)delegate;
+- (void)setInfo:(MyPaint *)paint;
 @end

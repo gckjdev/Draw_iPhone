@@ -7,6 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
+@protocol MyPaintManagerDelegate <NSObject>
+
+@optional
+- (void)didGetAllPaints:(NSArray *)paints;
+- (void)didGetMyPaints:(NSArray *)paints;
+
+@end
+
 @class MyPaint;
 
 @interface MyPaintManager : NSObject
@@ -26,10 +35,21 @@
 
 - (NSArray*)findOnlyMyPaints;
 - (NSArray*)findAllPaints;
-- (BOOL)deleteAllPaintsAtIndex:(NSInteger)index;
-- (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index;
-- (BOOL)deleteMyPaints:(MyPaint*)paint;
-- (void)deleteAllPaints:(BOOL)onlyDrawnByMe;
+
+- (void)findMyPaintsFrom:(NSInteger)offset 
+                       limit:(NSInteger)limit 
+                    delegate:(id<MyPaintManagerDelegate>)delegate;
+
+- (void)findAllPaintsFrom:(NSInteger)offset 
+                        limit:(NSInteger)limit 
+                     delegate:(id<MyPaintManagerDelegate>)delegate;
+
+
+//- (BOOL)deleteAllPaintsAtIndex:(NSInteger)index;
+//- (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index;
+
+- (BOOL)deleteMyPaint:(MyPaint*)paint;
+- (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe;
 - (void)savePhoto:(NSString*)filePath;
 
 @end
