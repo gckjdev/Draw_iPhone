@@ -20,4 +20,12 @@
 @dynamic drawWord;
 @dynamic drawThumbnailData;
 
+@synthesize thumbImage;
+
+- (void)dealloc
+{
+    [thumbImage release];
+    [super dealloc];
+}
+
 @end

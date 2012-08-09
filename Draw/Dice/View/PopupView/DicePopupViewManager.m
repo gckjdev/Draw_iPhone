@@ -131,7 +131,8 @@ static DicePopupViewManager *_instance = nil;
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
                                                   fontName:[[DiceFontManager defaultManager] fontName]
-                                                 pointSize:13] autorelease];
+                                                 pointSize:18
+                                              textAlignment:UITextAlignmentCenter] autorelease];
     
     [_openDiceView popupAtView:atView
                         inView:inView

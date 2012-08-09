@@ -149,15 +149,13 @@ static FeedService *_staticFeedService = nil;
                     [feed parseDrawData:pbFeed];
                 }
                 resultCode = [response resultCode];
-            }
-        
+            }        
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:)]) {
                     [delegate didGetFeed:feed resultCode:resultCode];
                 }           
             });
         });
-
 }
 
 

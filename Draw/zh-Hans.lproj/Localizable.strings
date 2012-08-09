@@ -732,3 +732,8 @@
 
 
 "kParsingData" = "解析数据中...";
+
+// Dice game
+
+"kOpenDice" = "开";
+"kScrambleToOpenDice" = "抢开";
