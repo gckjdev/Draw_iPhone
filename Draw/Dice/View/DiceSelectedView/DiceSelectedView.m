@@ -75,7 +75,7 @@
         self.scrollView.backgroundColor = [UIColor clearColor];
         self.scrollView.delegate = self;
         
-        self.pageControl = [[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL - 3, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)]; 
+        self.pageControl = [[[UICustomPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x/2, self.bounds.size.height-DEFAULT_HEIGHT_OF_PAGE_CONTROL - 3, self.bounds.size.width, DEFAULT_HEIGHT_OF_PAGE_CONTROL)] autorelease]; 
         self.backgroundColor = [UIColor clearColor];
         self.pageControl.hidesForSinglePage = YES;
         self.pageControl.delegate = self;
@@ -95,20 +95,20 @@
     _start = start;
     _startDice = startDice;
     
-    int viewCount = (end - start + 1) / 7 + ((((end - start + 1) % 7) == 0) ? 0 : 1);
-    if (viewCount <=  2) {
-        viewCount = 1;
+    int pageCount = (end - start + 1) / 7 + ((((end - start + 1) % 7) == 0) ? 0 : 1);
+    if (pageCount <=  2) {
+        pageCount = 1;
     }else {
-        viewCount = 2;
+        pageCount = 2;
     }
     
-    NSMutableArray *views = [NSMutableArray arrayWithCapacity:viewCount];
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:pageCount];
     UIView *view;
     
     int startNum = start;
     int endNum;
     
-    for (int i = 0; i < viewCount; i ++) {
+    for (int i = 0; i < pageCount; i ++) {
         endNum = (end - startNum + 1 > EACH_PAGE_BUTTON_COUNT) ? startNum + EACH_PAGE_BUTTON_COUNT - 1 : end;
         view = [self pageViewWithStart:startNum end:endNum];
         startNum = endNum + 1;
@@ -242,9 +242,7 @@
          forControlEvents:UIControlEventTouchUpInside];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountBtnBgImage] forState:UIControlStateNormal];
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
-    
-    fontButton.enabled = NO;
-    
+        
     return fontButton;
 }
 
@@ -267,7 +265,7 @@
     DiceShowView *diceShowView = [[DiceShowView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) dices:diceList userInterAction:YES];
     diceShowView.delegate = self;
     
-    self.popView = [[CMPopTipView alloc] initWithCustomView:diceShowView];
+    self.popView = [[[CMPopTipView alloc] initWithCustomView:diceShowView] autorelease];
     self.popView.delegate = self;
     self.popView.backgroundColor = [UIColor colorWithRed:233./255. green:235./255. blue:189./255. alpha:0.5];
     [self.popView presentPointingAtView:(UIButton *)sender inView:self.superView animated:YES];

@@ -64,8 +64,8 @@
 
 - (void)setPBDice:(PBDice *)dice
 {
-    _dice = _dice;
-    _diceId = _diceId;
+    _dice = dice.dice;
+    _diceId = dice.diceId;
 }
 
 - (void)setDice:(int)dice

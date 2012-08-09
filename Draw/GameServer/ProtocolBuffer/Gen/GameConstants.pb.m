@@ -124,6 +124,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorSessionidFull:
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorDiceAlreadyOpen:
+    case GameResultCodeErrorUserAlreadyCallDice:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
       return YES;

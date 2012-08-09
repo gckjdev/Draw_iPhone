@@ -30,13 +30,28 @@
 - (id)initWithFrame:(CGRect)frame
             message:(NSString *)message
            fontName:(NSString *)fontName 
-          pointSize:(CGFloat)pointSize 
+          pointSize:(CGFloat)pointSize  
+{
+    return [self initWithFrame:frame
+                       message:message
+                      fontName:fontName 
+                     pointSize:pointSize 
+                 textAlignment:UITextAlignmentLeft];
+}
+
+- (id)initWithFrame:(CGRect)frame
+            message:(NSString *)message
+           fontName:(NSString *)fontName 
+          pointSize:(CGFloat)pointSize  
+      textAlignment:(UITextAlignment)textAlignment
 {
     CGSize withSize = CGSizeMake(200, MAXFLOAT);
     CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:UILineBreakModeTailTruncation];
+    size.width = (size.width < 25) ? 25 : size.width;
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
     if (self = [self initWithFrame:rect fontName:fontName pointSize:pointSize]) {
         self.text = message;
+        self.textAlignment = textAlignment;
         self.numberOfLines = 0;
         self.backgroundColor = [UIColor clearColor];
     }
@@ -83,6 +98,7 @@
 - (void)dismissAnimated:(BOOL)animated
 {
     [_popTipView dismissAnimated:animated];
+    self.popTipView = nil;
 }
 
 @end

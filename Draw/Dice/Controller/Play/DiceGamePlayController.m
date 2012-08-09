@@ -15,6 +15,7 @@
 #import "AnimationManager.h"
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
+#import "LevelService.h"
 
 #define AVATAR_TAG_OFFSET   1000
 #define NICKNAME_TAG_OFFSET 1100
@@ -47,7 +48,6 @@
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
 @synthesize myDiceListHolderView;
-@synthesize statusButton = _statusButton;
 @synthesize diceCountSelectedHolderView;
 @synthesize roomNameLabel = _roomNameLabel;
 @synthesize openDiceButton = _openDiceButton;
@@ -58,6 +58,7 @@
 @synthesize plusOneLabel = _plusOneLabel;
 @synthesize popResultView = _popResultView;
 @synthesize rewardCoinLabel = _rewardCoinLabel;
+@synthesize wildsFlagButton = _wildsFlagButton;
 @synthesize diceSelectedView = _diceSelectedView;
 @synthesize enumerator = _enumerator;
 
@@ -65,7 +66,6 @@
 //    [playingUserList release];
     [myLevelLabel release];
     [myCoinsLabel release];
-    [_statusButton release];
     [diceCountSelectedHolderView release];
     [_diceSelectedView release];
     [myDiceListHolderView release];
@@ -79,6 +79,10 @@
     [_popResultView release];
     [_rewardCoinLabel release];
     [_enumerator release];
+    
+    
+    
+    [_wildsFlagButton release];
     [super dealloc];
 }
 
@@ -90,6 +94,8 @@
         _userManager = [UserManager defaultManager];
         _popupViewManager = [DicePopupViewManager defaultManager];
         _imageManager = [DiceImageManager defaultManager];
+        _levelService = [LevelService defaultService];
+        _accountManager = [AccountManager defaultManager];
     }
     
     return self;
@@ -98,7 +104,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.myLevelLabel.text = [NSString stringWithFormat:@"%d",_levelService.level];;
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"%d",[_accountManager getBalance]];
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
@@ -129,6 +136,7 @@
     [self registerDiceGameNotifications];    
     
     self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+    self.wildsFlagButton.hidden = YES;
 }
 
 
@@ -139,7 +147,6 @@
     [self setOpenDiceButton:nil];
     [self setDiceCountSelectedHolderView:nil];
     [self setMyDiceListHolderView:nil];
-    [self setStatusButton:nil];
     [self setRoomNameLabel:nil];
     [self setUserWildsButton:nil];
     [self setPlusOneButton:nil];
@@ -148,6 +155,7 @@
     [self setPlusOneLabel:nil];
     [self setPopResultView:nil];
     [self setRewardCoinLabel:nil];
+    [self setWildsFlagButton:nil];
     [super viewDidUnload];
 }
 
@@ -251,7 +259,16 @@
     [self clearAllUserResult];
 }
 
+- (void)dismissAllPopupViews
+{
+    [_popupViewManager dismissCallDiceView];
+    [_popupViewManager dismissOpenDiceView];
+    [_popupViewManager dismissToolSheetView];
+}
+
 - (IBAction)clickRunAwayButton:(id)sender {
+    [self clearAllReciprocol];
+    [self dismissAllPopupViews];
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
@@ -318,7 +335,6 @@
         }
         
     }
-    
 }
 
 - (void)shakeAllBell
@@ -503,10 +519,10 @@
 - (IBAction)clickUseWildsButton:(id)sender {
     UIButton *button =  (UIButton *)sender;
     button.selected = YES;
-    button.enabled = NO;
     
-    // TODO: Send user wilds command to server.
-    
+    // 自己叫过斋之后就不能再叫了
+    button.userInteractionEnabled = NO;
+    _usingWilds = YES;
 }
 
 #pragma mark - User actions.
@@ -528,19 +544,14 @@
     [self.diceSelectedView enableUserInteraction];
 }
 
-- (void)dismissAllPopupView
-{
-//    [_popupViewManager dismissCallDiceView];
-//    [_popupViewManager dismissOpenDiceView];
-//    [_popupViewManager dismissToolSheetView];
-}
-
 - (void)rollDiceBegin
 {
     [self clearGameResult];
-    [self dismissAllPopupView];
 
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  startDice:1];
+    
+    self.userWildsButton.userInteractionEnabled = YES;
+    self.wildsFlagButton.hidden = YES;
 
     [self showBellOfPlayingUsers];
     [self shakeAllBell];
@@ -599,7 +610,14 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons]; 
  
-    [_diceService callDice:dice count:count];
+    if (_usingWilds == YES) {
+        [_diceService callDice:dice count:count wilds:_usingWilds];
+        self.wildsFlagButton.hidden = NO;
+        _usingWilds = NO;
+    }else {
+        [_diceService callDice:dice count:count];
+    }
+    
     [self popupCallDiceView];
 }
 
@@ -636,6 +654,11 @@
     [self clearAllReciprocol];
     
     [_diceSelectedView setStart:(_diceService.lastCallDiceCount + _diceService.lastCallDice/6)  end:_diceService.diceSession.playingUserCount*5  startDice:(_diceService.lastCallDice%6 + 1)];
+    
+    if (_diceService.diceSession.wilds) {
+        self.userWildsButton.userInteractionEnabled = NO;
+        self.wildsFlagButton.hidden = NO;
+    }
     
     [self popupCallDiceView];
 }
@@ -750,6 +773,8 @@
                                           atView:[self selfAvatarView]
                                           inView:self.view
                                   pointDirection:PointDirectionUp];
+    
+    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
 
 }
 

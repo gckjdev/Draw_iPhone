@@ -136,6 +136,9 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     EnterRoomRequest* request;
     EnterRoomRequest_Builder* builder;
+    
+    // TODO no builder initialize here
+    
     [builder setUser:user];
     request = [builder build];
     
