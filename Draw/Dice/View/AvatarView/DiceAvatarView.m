@@ -90,6 +90,7 @@
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
+        progressView.clockwise = YES;
         [self addSubview:progressView];
         
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
