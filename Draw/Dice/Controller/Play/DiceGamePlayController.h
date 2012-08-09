@@ -26,12 +26,12 @@
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
     DiceImageManager *_imageManager;
+    BOOL _usingWilds;
 }
 
 @property (retain, nonatomic) IBOutlet FontLabel *myLevelLabel;
 @property (retain, nonatomic) IBOutlet FontLabel *myCoinsLabel;
 @property (retain, nonatomic) IBOutlet UIView *myDiceListHolderView;
-@property (retain, nonatomic) IBOutlet FontButton *statusButton;
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
 @property (retain, nonatomic) IBOutlet FontLabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet FontButton *openDiceButton;
@@ -42,5 +42,6 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *plusOneLabel;
 @property (retain, nonatomic) IBOutlet UIView *popResultView;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *rewardCoinLabel;
+@property (retain, nonatomic) IBOutlet FontButton *wildsFlagButton;
 
 @end

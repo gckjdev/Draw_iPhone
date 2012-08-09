@@ -76,6 +76,7 @@
 - (void)dismissAnimated:(BOOL)animated 
 {
     [_popTipView dismissAnimated:YES];
+    self.popTipView = nil;
 }
 
 
