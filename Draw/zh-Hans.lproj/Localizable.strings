@@ -29,7 +29,7 @@
 
 "kWaitABit" = "延时";
 
-"kQuickQuick" = "快快开始吧";
+"kQuickQuick" = "快快开始";
 
 "kWaitForMoreUsers" = "等待更多玩家";
 
@@ -92,7 +92,7 @@
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
 
-"kRegisterToEnter" = "马上注册\“猜猜画画\"进入游戏吧";
+"kRegisterToEnter" = "马上注册\“猜猜画画\"进入游戏";
 "kRegisterPromptLabel" = "使用微博账号玩";
 "kRegisterTitleLabel" = "猜猜画画";
 "kEnterEmail" = "请输入Email地址";
@@ -126,8 +126,8 @@
 "kChangeRoom" = "更换房间中...";
 "kNoItemTitle" = "消息";
 "kNoItemMessage" = "你的道具不够了，是不是现在购买一些？";
-"kQuickMessage" = "快点,快点啦!";
-"kWaitMessage" = "等等,等等吧!";
+"kQuickMessage" = "快点,快点!";
+"kWaitMessage" = "等等,等等!";
 "kClickTooFast" = "你的点击频率太快了，不妨休息一下。";
 
 "kEnglish" = "英语";
@@ -237,7 +237,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享给朋友";
 
-"kShare_message_body" = "你还在玩离线版的Draw Something游戏？太慢了！我们短暂的青春等不起！现在我用燃烧的生命发出内心的呐喊！隆重推荐一款在线版的猜画游戏——《%@》！不要再等待！不要再犹豫了！赶紧下载吧！\n%@";
+"kShare_message_body" = "你还在玩离线版的Draw Something游戏？太慢了！我们短暂的青春等不起！现在我用燃烧的生命发出内心的呐喊！隆重推荐一款在线版的猜画游戏——《%@》！不要再等待！不要再犹豫了！赶紧下载！\n%@";
 
 "kEmail_subject" = "分享［猜猜画画］移动版游戏";
 
@@ -281,7 +281,7 @@
 "kWordLengthTip" = "温馨小提示：当前猜词的字数为［%d］";
 "kContentNull" = "搜索条件不能为空";
 
-"kNoDrawings" = "你还没有任何作品呢";
+"kNoDrawings" = "你还没有任何作品";
 "kAll" = "  所有";
 "kMine" = "我的  ";
 "kNone" = "无";
@@ -314,7 +314,7 @@
 "guest" = "路人甲";
 "kOnlineUserCount" = "在线用户共%d人";
 "kContactNull" = "联系方式不能为空哦。";
-"kFailStartGame" = "房间已经开始玩了，请选择另一个房间吧。";
+"kFailStartGame" = "房间已经开始玩了，请选择另一个房间。";
 "kSound" = "音效";
 "kON" = "开 ";
 "kOFF" = " 关";
@@ -322,15 +322,15 @@
 "kMyFriends" = "我的好友";
 "kFollow" = "关注";
 "kFans" = "粉丝";
-"kNoFollow" = "还没有关注任何好友，点击下面的搜索用户按钮查找和关注你的好友吧。";
+"kNoFollow" = "还没有关注任何好友，点击下面的搜索用户按钮查找和关注你的好友。";
 "kNoFans" = "暂未有粉丝";
 "kEdit" = "编辑";
 "kSearchUser" = "搜索用户";
 "kSMSInvite" = "短信邀请";
 "kWeixinInvite" = "微信邀请";
 "kSelectInvitation" = "请选择邀请方式";
-"kInvitationInfo" = "我在玩猜猜画画，你也一起来玩吧，下载地址是%@";
-"kInvitationInfoInRoom" = "我正在玩猜猜画画，房间名是:%@，密码是:%@，你也一起来玩吧，下载地址是%@";
+"kInvitationInfo" = "我在玩猜猜画画，快来一起来玩，下载地址是%@";
+"kInvitationInfoInRoom" = "我正在玩猜猜画画，房间名是:%@，密码是:%@，快来一起来玩，下载地址是%@";
 "kSearch" = "搜索";
 "kAddAsFriend" = "关注";
 "kAlreadyBeFriend" = "已关注";
@@ -373,7 +373,7 @@
 
 
 "kPayAttentionToMe" = "关注我吧";
-"kDrawTillDawn" = "我好聪明吧";
+"kDrawTillDawn" = "我好聪明";
 "kHelloEveryone" = "Hi,大家好";
 "kDontLeave" = "你真聪明";
 "kFunny" = "画的好烂";
@@ -461,7 +461,7 @@
 "kNoRoomTips" = "暂无房间，请点击下面的［创建房间］建立自己的房间，或者［搜索房间］加入其它好友的房间";
 "kSearchNoResult" = "未搜索到符合条件的房间";
 
-"kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友猜猜画画吧!";
+"kPushMessage" = "%@ 新建了一个好友房间——\"%@\", 邀请你加入。赶紧加入好友房间，和好友一起猜猜画画!";
 "kGuessWhatIDraw" = "猜猜我画了什么？";
 "kGuessWhatTheyDraw" = "猜猜TA画了什么？";
 
@@ -582,7 +582,7 @@
 
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";
-"kBlankDrawMessage" = "不能提交空白的画哦，至少得画几笔吧？";
+"kBlankDrawMessage" = "不能提交空白的画，至少得画个几笔的";
 
 "kChat" = "聊天";
 "kFriend" = "好友";
@@ -679,8 +679,8 @@
 "kQuill" = "鹅毛笔";
 "kWaterPen" = "麦克笔";
 
-"kFlowerDescription" = "看到好的作品就送些鲜花吧！赠人玫瑰，手有余香。";
-"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄吧，还能让作者扣分扣经验哦。";
+"kFlowerDescription" = "看到好的作品就送些鲜花！赠人玫瑰，手有余香。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。";
 "kRemoveAdDescription" = "买了它！从此远离广告！";
 "kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";

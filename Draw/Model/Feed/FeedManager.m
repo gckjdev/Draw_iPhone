@@ -154,6 +154,7 @@ FeedManager *_staticFeedManager = nil;
         if (feed && feed.isCommentType) {
             [list addObject:feed];
         }
+        [feed release];
     }
     return list;    
 }
