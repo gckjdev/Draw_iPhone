@@ -21,4 +21,6 @@
 @property (nonatomic, retain) NSString * drawWord;
 @property (nonatomic, retain) NSData * drawThumbnailData;
 
+@property (nonatomic, retain) UIImage *thumbImage;
+
 @end

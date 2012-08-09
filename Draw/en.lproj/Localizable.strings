@@ -733,4 +733,7 @@
 
 "kParsingData" = "Parsing data...";
 
+// Dice game
 
+"kOpenDice" = "Challenge";
+"kScrambleToOpenDice" = "Challenge";

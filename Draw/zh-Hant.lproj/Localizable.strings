@@ -722,3 +722,9 @@
 "kNotEnoughCoin" = "金幣不足";
 
 "kParsingData" = "解析數據中...";
+
+// Dice game
+
+"kOpenDice" = "開";
+"kScrambleToOpenDice" = "搶";
+
