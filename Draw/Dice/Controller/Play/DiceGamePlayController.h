@@ -17,6 +17,8 @@
 #import "DicePopupViewManager.h"
 #import "DiceImageManager.h"
 #import "HKGirlFontLabel.h"
+#import "LevelService.h"
+#import "AccountManager.h"
 
 @class DiceGameService;
 
@@ -26,6 +28,8 @@
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
     DiceImageManager *_imageManager;
+    LevelService *_levelService;
+    AccountManager *_accountManager;
     BOOL _usingWilds;
 }
 

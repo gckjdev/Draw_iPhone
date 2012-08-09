@@ -15,6 +15,7 @@
 #import "AnimationManager.h"
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
+#import "LevelService.h"
 
 #define AVATAR_TAG_OFFSET   1000
 #define NICKNAME_TAG_OFFSET 1100
@@ -93,6 +94,8 @@
         _userManager = [UserManager defaultManager];
         _popupViewManager = [DicePopupViewManager defaultManager];
         _imageManager = [DiceImageManager defaultManager];
+        _levelService = [LevelService defaultService];
+        _accountManager = [AccountManager defaultManager];
     }
     
     return self;
@@ -101,6 +104,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.myLevelLabel.text = [NSString stringWithFormat:@"%d",_levelService.level];;
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"%d",[_accountManager getBalance]];
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
