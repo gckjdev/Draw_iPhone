@@ -594,13 +594,15 @@
 "kMyDrawing" = "My Drawing:[%@]";
 
 "kDrawToHim" = "Draw Something";
-"kExploreHim" = "View Timeline";
+"kExploreHim" = "View Opus";
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Talk something";
 
 "kFM" = "Someone has just followed you";
 
 "kUserFeedTitle" = "%@'s Timeline";
+"kUserFeed" = "Timeline";
+"kUserOpus" = "Opus";
 
 "kSetEmail" = "Email";
 "kEmailNotSet" = "";

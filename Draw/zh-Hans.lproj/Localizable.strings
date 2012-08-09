@@ -598,12 +598,15 @@
 "kMyDrawing" = "我的[%@]";
 
 "kDrawToHim" = "画幅画给TA";
-"kExploreHim" = "TA动态";
+"kExploreHim" = "TA的作品";
 "kPlayWithHim" = "和TA一起玩猜猜画画";
 "kChatToHim" = "搭个讪";
 
 "kFM" = "有个神秘人刚刚关注了你，快去看看TA是谁。";
 "kUserFeedTitle" = "%@的动态";
+
+"kUserFeed" = "动态";
+"kUserOpus" = "作品";
 
 // For Weibo Settings
 "kSetEmail" = "电子邮件";

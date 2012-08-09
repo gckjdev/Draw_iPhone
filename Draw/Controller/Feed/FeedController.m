@@ -105,6 +105,7 @@
     //init lable and button
     [self.noFeedTipsLabel setText:NSLS(@"kNoFeedTips")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
     [self.titleLabel setText:NSLS(@"kFeedTitle")];
     [self.allFeedButton setTitle:NSLS(@"kAllFeed") forState:UIControlStateNormal];
     [self.hotFeedButton setTitle:NSLS(@"kHotFeed") forState:UIControlStateNormal];
