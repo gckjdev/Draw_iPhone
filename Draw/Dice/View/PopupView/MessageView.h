@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FontLabel.h"
+#import "CMPopTipView.h"
 
 @interface MessageView:FontLabel
 
@@ -20,12 +21,14 @@
              inView:(UIView *)inView
            duration:(int)duration
     backgroundColor:(UIColor *)backgroundColor
-           animated:(BOOL)animated;
+           animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection;
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
     backgroundColor:(UIColor *)backgroundColor
-           animated:(BOOL)animated;
+           animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissAnimated:(BOOL)animated;
 

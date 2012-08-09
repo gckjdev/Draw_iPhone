@@ -11,19 +11,18 @@
 #import "LocaleUtils.h"
 #import "UIViewUtils.h"
 #import "FontLabel.h"
-#import "CMPopTipView.h"
 #import "DiceFontManager.h"
 
-#define DICE_VIEW_WIDTH 24  
-#define DICE_VIEW_HEIGHT 25
+#define DICE_VIEW_WIDTH 20  
+#define DICE_VIEW_HEIGHT 21
 
 #define DICE_VIEW_TAG 101
 #define COUNT_LABEL_TAG 102
 
 #define CALL_DICE_VIEW_HEIGHT DICE_VIEW_HEIGHT
 
-#define COUNT_LABEL_WIDTH_1 18
-#define COUNT_LABEL_WIDTH_2 32
+#define COUNT_LABEL_WIDTH_1 12
+#define COUNT_LABEL_WIDTH_2 20
 #define SYMBOL_LABEL_WIDTH 12
 
 #define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
@@ -81,22 +80,24 @@
     return self;
 }
 
-- (void)setDice:(int)dice count:(int)count
-{
-    [_diceView setDice:dice];
-    _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
-}
+//- (void)setDice:(int)dice count:(int)count
+//{
+//    [_diceView setDice:dice];
+//    _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
+//}
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
            animated:(BOOL)animated
+    pointDirection:(PointDirection)pointDirection
+
 {
     [self.popTipView dismissAnimated:YES];
     self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
     _popTipView.backgroundColor = CALL_DICE_POPUP_VIEW_BG_COLOR;
     _popTipView.disableTapToDismiss = YES;
 
-    [_popTipView presentPointingAtView:view inView:inView animated:animated];
+    [_popTipView presentPointingAtView:view inView:inView animated:animated pointDirection:pointDirection];
 }
 
 - (void)dismissAnimated:(BOOL)animated
