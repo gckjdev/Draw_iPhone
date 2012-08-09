@@ -14,6 +14,7 @@
 #include <ImageIO/ImageIO.h>
 #include "CoreDataUtil.h"
 #import "MyPaintManager.h"
+#import "PPDebug.h"
 
 @implementation ShareCell
 //@synthesize leftButton;
@@ -75,7 +76,6 @@
     NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:DRAW_VIEW_WIDTH/IMAGES_PER_LINE] forKey:(NSString*)kCGImageSourceThumbnailMaxPixelSize];
     
     int count = [imageArray count];
-    BOOL hasUpdateThumbnailData = NO;
     
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
         MyPaintButton *button = (MyPaintButton *)[self viewWithTag:i];
@@ -83,26 +83,24 @@
         int j = i - BASE_BUTTON_INDEX;
         if (button && j < count) {
             MyPaint *paint = [imageArray objectAtIndex:j];            
-            NSData* data = nil;
             
-            if (paint.drawThumbnailData == nil){
-                NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-                data = [[[NSData alloc] initWithContentsOfFile:imagePath] autorelease];
-                paint.drawThumbnailData = data;
-                hasUpdateThumbnailData = YES;
+            if (paint.thumbImage == nil) {
+                if (paint.drawThumbnailData == nil){
+                    NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+                    paint.thumbImage = [[[UIImage alloc] initWithContentsOfFile:imagePath] autorelease];
+                    PPDebug(@"load image from path = %@", imagePath);
+                }
+                else{
+                    NSData *data = paint.drawThumbnailData;
+                    CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
+                    UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
+                    paint.thumbImage = image;
+                    CFRelease(imageRef);
+                    PPDebug(@"load image from thumbnail data");
+                }
             }
-            else{
-                data = paint.drawThumbnailData;
-            }
-            
-            CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
-            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
-            CFRelease(imageRef);
 
-//            NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-            //UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-            
-            [button.clickButton setImage:image forState:UIControlStateNormal];
+            [button.clickButton setImage:paint.thumbImage forState:UIControlStateNormal];
             [button.drawWord setText:paint.drawWord];
             [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
             button.hidden = NO;
@@ -111,11 +109,6 @@
             button.hidden = YES;
         }
     }
-    
-    if (hasUpdateThumbnailData){
-        [[CoreDataManager dataManager] save];
-    }
-
 }
 
 - (void)clickImage:(MyPaintButton *)myPaintButton
