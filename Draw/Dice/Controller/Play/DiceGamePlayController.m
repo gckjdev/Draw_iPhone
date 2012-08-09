@@ -254,8 +254,16 @@
     [self clearAllUserResult];
 }
 
+- (void)dismissAllPopupViews
+{
+    [_popupViewManager dismissCallDiceView];
+    [_popupViewManager dismissOpenDiceView];
+    [_popupViewManager dismissToolSheetView];
+}
+
 - (IBAction)clickRunAwayButton:(id)sender {
     [self clearAllReciprocol];
+    [self dismissAllPopupViews];
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
