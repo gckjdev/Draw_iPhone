@@ -32,6 +32,7 @@
 - (UIImage *)wildsBgImage;
 - (UIImage *)openDiceButtonBgImage;
 - (UIImage *)whiteSofaImage;
+- (UIImage *)resultDiceBgImage;
 
 
 @end

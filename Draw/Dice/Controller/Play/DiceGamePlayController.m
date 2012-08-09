@@ -311,7 +311,7 @@
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
         avatar.delegate = self;
         [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
-        avatar.userId = nil;
+        avatar.userId = nil;   
         [nameLabel setText:nil];
         
     }
@@ -768,13 +768,15 @@
 }
 
 - (IBAction)clickSettingButton:(id)sender {
-    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
-                                           count:_diceService.lastCallDiceCount
-                                          atView:[self selfAvatarView]
-                                          inView:self.view
-                                  pointDirection:PointDirectionUp];
+//    [_popupViewManager popupCallDiceViewWithDice:_diceService.lastCallDice
+//                                           count:_diceService.lastCallDiceCount
+//                                          atView:[self selfAvatarView]
+//                                          inView:self.view
+//                                  pointDirection:PointDirectionUp];
+//    
+//    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
     
-    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
+    [self showGameResult];
 
 }
 
