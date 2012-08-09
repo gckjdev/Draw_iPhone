@@ -79,6 +79,9 @@
     [_popResultView release];
     [_rewardCoinLabel release];
     [_enumerator release];
+    
+    
+    
     [super dealloc];
 }
 
@@ -98,7 +101,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
@@ -252,6 +254,7 @@
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {
+    [self clearAllReciprocol];
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
@@ -318,7 +321,6 @@
         }
         
     }
-    
 }
 
 - (void)shakeAllBell
@@ -750,6 +752,8 @@
                                           atView:[self selfAvatarView]
                                           inView:self.view
                                   pointDirection:PointDirectionUp];
+    
+    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
 
 }
 

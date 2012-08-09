@@ -17,6 +17,12 @@
            fontName:(NSString *)fontName 
           pointSize:(CGFloat)pointSize;
 
+- (id)initWithFrame:(CGRect)frame
+            message:(NSString *)message
+           fontName:(NSString *)fontName 
+          pointSize:(CGFloat)pointSize  
+      textAlignment:(UITextAlignment)textAlignment;
+
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
            duration:(int)duration
