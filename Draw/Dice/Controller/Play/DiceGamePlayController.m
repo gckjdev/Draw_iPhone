@@ -104,8 +104,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.myLevelLabel.text = [NSString stringWithFormat:@"%d",_levelService.level];;
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"%d",[_accountManager getBalance]];
+    self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
