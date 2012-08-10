@@ -39,6 +39,18 @@
     [super dealloc];
 }
 
+- (void)removeFromSuperview
+{
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+        }
+    }
+    _timer = nil;
+    _delegate = nil;
+    [super removeFromSuperview];
+}
+
 - (void)addTapGuesture
 {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
