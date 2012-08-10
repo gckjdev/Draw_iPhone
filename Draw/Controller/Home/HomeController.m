@@ -507,6 +507,18 @@
     }
 }
 
+- (void)enterShareFromWeixin
+{
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+    } else {
+        ShareController* share = [[ShareController alloc] init ];
+        [share setFromWeiXin:YES];
+        [self.navigationController pushViewController:share animated:YES];
+        [share release];
+    }    
+}
+
 
 - (void)didBroken
 {

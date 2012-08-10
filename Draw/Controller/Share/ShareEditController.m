@@ -169,30 +169,36 @@ enum {
 
 - (void)clickOk:(CommonDialog *)dialog
 {
-    if ([[UserManager defaultManager] hasBindQQWeibo]){
+    if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        PPDebug(@"publish to qq!");
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:self.imageFilePath 
                                              delegate:nil];        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        
     }
     
-    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && _snsType == SINA_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
+        PPDebug(@"publish to sina!");
         [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:self.imageFilePath  
                                              delegate:nil];
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        
     }
     
-    if ([[UserManager defaultManager] hasBindFacebook]){
+    if ([[UserManager defaultManager] hasBindFacebook] && _snsType == FACEBOOK){
         [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
                                             imageFilePath:self.imageFilePath  
                                                  delegate:self];        
         
         //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
+        PPDebug(@"publish to facebook!");
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         [self.navigationController popViewControllerAnimated:YES];
+        
     }
 }
 
@@ -242,23 +248,25 @@ enum {
             return;
         }
     }
-    if ([[UserManager defaultManager] hasBindQQWeibo]){
+    if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:path 
                                              delegate:self];        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        PPDebug(@"publish to qq!");
     }
     
-    if ([[UserManager defaultManager] hasBindSinaWeibo]){
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && _snsType == SINA_WEIBO){
 //        [self showActivityWithText:NSLS(@"kSendingRequest")];
         [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
                                         imageFilePath:path 
                                              delegate:nil];
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+        PPDebug(@"publish to sina!");
     }
     
-    if ([[UserManager defaultManager] hasBindFacebook]){
+    if ([[UserManager defaultManager] hasBindFacebook] && _snsType == FACEBOOK){
         [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
                                             imageFilePath:path 
                                                  delegate:self];        
@@ -266,6 +274,7 @@ enum {
         //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
         [self.navigationController popViewControllerAnimated:YES];
+        PPDebug(@"publish to facebook!");
     }
 }
 
@@ -298,7 +307,8 @@ enum {
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 
-             isDrawByMe:(BOOL)isDrawByMe
+             isDrawByMe:(BOOL)isDrawByMe 
+                snsType:(SnsType)type
 {
     self = [super init];
     if (self) {
@@ -307,13 +317,15 @@ enum {
         NSData* data = [NSData dataWithContentsOfFile:imageFile];
         self.myImage = [UIImage imageWithData:data];
         self.isDrawByMe = isDrawByMe;
+        _snsType = type;
     }
     return self;
 }
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text
-             drawUserId:(NSString*)drawUserId
+             drawUserId:(NSString*)drawUserId 
+                snsType:(SnsType)type
 {
     self = [super init];
     if (self) {
@@ -323,6 +335,7 @@ enum {
         self.myImage = [UIImage imageWithData:data];
         self.drawUserId = drawUserId;
         self.isDrawByMe = ([[UserManager defaultManager].userId isEqualToString:drawUserId]);
+        _snsType = type;
     }
     return self;
 }

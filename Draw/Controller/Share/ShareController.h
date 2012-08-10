@@ -32,5 +32,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) ShareAction *shareAction;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;
-
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (assign, nonatomic, getter = isFromWeiXin) BOOL fromWeiXin;
 @end

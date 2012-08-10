@@ -517,7 +517,7 @@
 
 
 "kFeedTitle" = "Timeline";
-"kAllFeed" = "All";
+"kAllFeed" = "Focus";
 "kHotFeed" = "Hot";
 "kMyFeed" = "My";
 
@@ -741,3 +741,6 @@
 "kScrambleToOpenDice" = "Challenge";
 
 "kLatestFeed" = "Latest";
+
+"kShareToWeiXinTitle" = "Share to WeiXin";
+"kWXShareImageName" = "Drawlively Image";
