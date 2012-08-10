@@ -50,6 +50,8 @@
 - (void)clearDisconnectTimer;
 
 - (void)getRoomList;
+- (void)getRoomList:(int)startIndex 
+              count:(int)count;
 - (void)joinGameRequest;
 
 - (void)quitGame;

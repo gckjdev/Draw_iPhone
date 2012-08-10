@@ -100,7 +100,7 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)deleteMyPaints:(MyPaint*)paint
 {
-    NSString* image = [NSString stringWithString:paint.image];
+    NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paint.image]];
 
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [dataManager del:paint];

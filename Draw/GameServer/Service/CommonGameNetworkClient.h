@@ -21,6 +21,9 @@
 - (void)start:(NSString*)serverAddress port:(int)port;
 
 - (void)sendGetRoomsRequest:(NSString*)userId;
+- (void)sendGetRoomsRequest:(NSString*)userId 
+                 startIndex:(int)index 
+                      count:(int)count;
 - (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId;
 - (int)generateMessageId;
 - (void)sendSimpleMessage:(int)command

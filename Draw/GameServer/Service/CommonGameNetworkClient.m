@@ -83,6 +83,22 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [self sendSimpleMessage:GameCommandTypeGetRoomsRequest userId:userId sessionId:0];
 }
 
+- (void)sendGetRoomsRequest:(NSString*)userId 
+                 startIndex:(int)index 
+                      count:(int)count
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeGetRoomsRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:0];
+    [messageBuilder setStartOffset:index];
+    [messageBuilder setMaxCount:count];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]]; 
+}
+
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
                        gameId:(NSString*)gameId
@@ -135,7 +151,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setSessionId:sessionId];
     
     EnterRoomRequest* request;
-    EnterRoomRequest_Builder* builder;
+    EnterRoomRequest_Builder* builder = [[[EnterRoomRequest_Builder alloc] init] autorelease];
     [builder setUser:user];
     request = [builder build];
     

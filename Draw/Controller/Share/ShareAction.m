@@ -68,7 +68,12 @@
         self.drawWord = @"";
     else 
         self.drawWord = drawWord;
-    self.imageFilePath = imageFilePath;
+    if (isGIF) {
+        self.imageFilePath = imageFilePath;
+    } else {
+        self.imageFilePath = [MyPaintManager getMyPaintImagePathByCapacityPath:imageFilePath];
+    }
+    
     self.isDrawByMe = ([[UserManager defaultManager].userId isEqualToString:drawUserId]);
     self.isGIF = isGIF;
     self.drawUserId = drawUserId;
