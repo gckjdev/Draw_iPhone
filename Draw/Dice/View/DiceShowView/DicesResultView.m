@@ -16,16 +16,17 @@
 #define TAG_OFFSET_BOTTOM      110
 #define TAG_OFFSET_DICE  1001
 
-#define FRAME_SELF      (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 96, 96) : CGRectMake(0, 0, 48, 48))
-#define FRAME_BOTTOM    (([DeviceDetection isIPAD]) ? CGRectMake(0, 24, 96, 72) : CGRectMake(0, 12, 48, 36))  
+//#define FRAME_SELF      (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 96, 96) : CGRectMake(0, 0, 48, 48))
 
-#define WIDTH_DICE      (([DeviceDetection isIPAD]) ? 34 : 17 )
-#define HEIGHT_DICE     (([DeviceDetection isIPAD]) ? 40 : 20 )
-#define FRAME_DICE_1    (([DeviceDetection isIPAD]) ? CGRectMake(32, 10, WIDTH_DICE, WIDTH_DICE) : CGRectMake(16, 5, WIDTH_DICE, WIDTH_DICE) )
-#define FRAME_DICE_2    (([DeviceDetection isIPAD]) ? CGRectMake(8, 24, WIDTH_DICE, WIDTH_DICE) : CGRectMake(4, 12, WIDTH_DICE, WIDTH_DICE) )
-#define FRAME_DICE_3    (([DeviceDetection isIPAD]) ? CGRectMake(52, 22, WIDTH_DICE, WIDTH_DICE) : CGRectMake(28, 11, WIDTH_DICE, WIDTH_DICE) )
-#define FRAME_DICE_4    (([DeviceDetection isIPAD]) ? CGRectMake(18, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(9, 24, WIDTH_DICE, WIDTH_DICE) )
-#define FRAME_DICE_5    (([DeviceDetection isIPAD]) ? CGRectMake(48, 48, WIDTH_DICE, WIDTH_DICE) : CGRectMake(24, 24, WIDTH_DICE, WIDTH_DICE) )
+#define FRAME_BOTTOM(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(0, 24*scale, 96*scale, 72*scale) : CGRectMake(0, 12*scale, 48*scale, 36*scale))  
+
+#define WIDTH_DICE(scale)      (([DeviceDetection isIPAD]) ? 34*scale : 17*scale )
+#define HEIGHT_DICE(scale)     (([DeviceDetection isIPAD]) ? 40*scale : 20*scale )
+#define FRAME_DICE_1(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(32*scale, 10*scale, WIDTH_DICE(scale), HEIGHT_DICE(scale)) : CGRectMake(16*scale, 5*scale, WIDTH_DICE(scale), HEIGHT_DICE(scale)))
+#define FRAME_DICE_2(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(8, 24, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(4*scale, 12*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_3(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(52, 22, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(28*scale, 11*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_4(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(18, 48, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(9*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_5(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(48, 48, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(24*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
 
 #define MOVE_TO_CENTER_DURATION 1.5
 #define MOVE_TO_BACK_DURATION 1.0
@@ -49,9 +50,17 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        //self.frame = FRAME_SELF;
+        CGFloat scale;
+        if([DeviceDetection isIPAD])
+        {
+            scale = self.frame.size.width / 96.0;
+        }else {
+            scale = self.frame.size.width / 48.0;
+        }
+        
+        
         _center = self.center;
-        UIImageView *bottomView = [[UIImageView alloc] initWithFrame:FRAME_BOTTOM];
+        UIImageView *bottomView = [[UIImageView alloc] initWithFrame:FRAME_BOTTOM(scale)];
         bottomView.tag = TAG_OFFSET_BOTTOM;
         [self addSubview:bottomView];
         [bottomView release];
@@ -61,19 +70,19 @@
             
             switch (index) {
                 case 0:
-                    diceFrame = FRAME_DICE_1;
+                    diceFrame = FRAME_DICE_1(scale);
                     break;
                 case 1:
-                    diceFrame = FRAME_DICE_2;
+                    diceFrame = FRAME_DICE_2(scale);
                     break;
                 case 2:
-                    diceFrame = FRAME_DICE_3;
+                    diceFrame = FRAME_DICE_3(scale);
                     break;
                 case 3:
-                    diceFrame = FRAME_DICE_4;
+                    diceFrame = FRAME_DICE_4(scale);
                     break;
                 case 4:
-                    diceFrame = FRAME_DICE_5;
+                    diceFrame = FRAME_DICE_5(scale);
                     break;
                 default:
                     break;
@@ -188,17 +197,18 @@
 - (void)showResultDiceAnimation
 {
     for (UIButton *diceView in [self selectedDiceViews]) {
-        CAAnimation *zoomIn1 = [AnimationManager scaleAnimationWithScale:ZOOMIN_FACTOR duration:STAY_DURATION/4 delegate:self removeCompeleted:NO];
-        zoomIn1.beginTime = 0;
+        CAAnimation *zoomIn1 = [AnimationManager scaleAnimationWithScale:2 duration:STAY_DURATION/4.0 delegate:self removeCompeleted:NO];
+
+        zoomIn1.beginTime = MOVE_TO_CENTER_DURATION;
         
         CAAnimation *zoomOut1 = [AnimationManager scaleAnimationWithScale:1 duration:STAY_DURATION/4.0 delegate:nil removeCompeleted:NO];
-        zoomOut1.beginTime = STAY_DURATION/4.0;
+        zoomOut1.beginTime = MOVE_TO_CENTER_DURATION+STAY_DURATION/4.0;
         
-        CAAnimation *zoomIn2 = [AnimationManager scaleAnimationWithScale:ZOOMIN_FACTOR duration:STAY_DURATION/4.0 delegate:self removeCompeleted:NO];
-        zoomIn2.beginTime = STAY_DURATION/2.0;
+        CAAnimation *zoomIn2 = [AnimationManager scaleAnimationWithScale:2 duration:STAY_DURATION/4.0 delegate:self removeCompeleted:NO];
+        zoomIn2.beginTime = MOVE_TO_CENTER_DURATION+STAY_DURATION/2.0;
         
         CAAnimation *zoomOut2 = [AnimationManager scaleAnimationWithScale:1 duration:STAY_DURATION/4.0 delegate:nil removeCompeleted:NO];
-        zoomOut2.beginTime = STAY_DURATION*3.0/4.0;
+        zoomOut2.beginTime = MOVE_TO_CENTER_DURATION+STAY_DURATION*3.0/4.0;
 
         
         //method2:放入动画数组，统一处理！
@@ -208,8 +218,9 @@
         animGroup.delegate = nil;
         
         animGroup.removedOnCompletion = NO;
+//        animGroup.beginTime = MOVE_TO_CENTER_DURATION;
         
-        animGroup.duration            = STAY_DURATION;
+        animGroup.duration            = MOVE_TO_CENTER_DURATION + STAY_DURATION + MOVE_TO_BACK_DURATION;
         animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
         animGroup.repeatCount         = 1;
         animGroup.fillMode            = kCAFillModeForwards;
