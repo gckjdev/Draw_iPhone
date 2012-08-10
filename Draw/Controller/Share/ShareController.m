@@ -410,6 +410,7 @@
 
 -(IBAction)clickBackButton:(id)sender
 {
+    self.shareAction = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
