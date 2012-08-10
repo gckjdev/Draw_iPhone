@@ -439,9 +439,9 @@
             CANCEL = index++;            
         }
         
+        _myPaintManager = [MyPaintManager defaultManager];
+        _allHasMoreData = _myHasMoreData = NO;
     }
-    _myPaintManager = [MyPaintManager defaultManager];
-    _allHasMoreData = _myHasMoreData = NO;
     return self;
 }
 
