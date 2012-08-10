@@ -74,8 +74,10 @@
         else{
             NSData *data = paint.drawThumbnailData;
             CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
-            UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
+            CGImageRef imageIndexRef = CGImageSourceCreateImageAtIndex(imageRef, 0, NULL);
+            UIImage* image = [UIImage imageWithCGImage:imageIndexRef];
             paint.thumbImage = image;
+            CFRelease(imageIndexRef);
             CFRelease(imageRef);
             PPDebug(@"<MyPaintButton>: load image from thumbnail data");
         }

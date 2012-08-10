@@ -46,14 +46,14 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-    return @"http://192.168.1.111:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//    return @"http://192.168.1.111:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//  return [ConfigManager getTrafficAPIServerURL];
-    return @"http://192.168.1.111:8100/api/i?";    
+  return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://192.168.1.111:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate
@@ -393,7 +393,7 @@ NSString* GlobalGetTrafficServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    
+    [self.homeController clickShare:nil];
 }
 
 -(void) onResp:(BaseResp*)resp

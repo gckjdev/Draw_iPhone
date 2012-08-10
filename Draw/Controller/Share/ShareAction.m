@@ -15,6 +15,7 @@
 #import "WXApi.h"
 #import "UIImageExt.h"
 #import "MyPaintManager.h"
+#import "PPDebug.h"
 
 @interface ShareAction ()
 {
@@ -38,6 +39,8 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", [self description]);
+    PPRelease(_superViewController);
     [_drawWord release];
     [_imageFilePath release];
     [_drawUserId release];
