@@ -827,8 +827,7 @@
 //    
 //    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
     
-    [self showGameResult];
-
+    self.resultDiceCountLabel.text = @"22";
 }
 
 //- (NSArray *)genDiceListStartWith:(int)start end:(int)end
