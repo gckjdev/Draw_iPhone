@@ -198,6 +198,7 @@
 		A4B764AB15C38470003B4E72 /* dice_tabright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B7649B15C38470003B4E72 /* dice_tabright_selected@2x.png */; };
 		A4B764AC15C38470003B4E72 /* dice_tabright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B7649C15C38470003B4E72 /* dice_tabright_unselect@2x.png */; };
 		A4B764AD15C38470003B4E72 /* dice_user_backgroung@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B7649D15C38470003B4E72 /* dice_user_backgroung@2x.png */; };
+		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4DD361015CF724300D34248 /* left_bottom_circleon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DD360E15CF724300D34248 /* left_bottom_circleon@2x.png */; };
@@ -1219,6 +1220,8 @@
 		A4B7649B15C38470003B4E72 /* dice_tabright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_selected@2x.png"; sourceTree = "<group>"; };
 		A4B7649C15C38470003B4E72 /* dice_tabright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_unselect@2x.png"; sourceTree = "<group>"; };
 		A4B7649D15C38470003B4E72 /* dice_user_backgroung@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_user_backgroung@2x.png"; sourceTree = "<group>"; };
+		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
+		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -2741,6 +2744,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4C1123615D4B60F009B3E8D /* DiceAnimationManager */,
 				A45BF5DF15D231A000CDD5C2 /* DiceFontManager */,
 				A4B7648915C382BD003B4E72 /* DiceImageManager */,
 			);
@@ -2873,6 +2877,15 @@
 				A4B7649D15C38470003B4E72 /* dice_user_backgroung@2x.png */,
 			);
 			path = room;
+			sourceTree = "<group>";
+		};
+		A4C1123615D4B60F009B3E8D /* DiceAnimationManager */ = {
+			isa = PBXGroup;
+			children = (
+				A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */,
+				A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */,
+			);
+			path = DiceAnimationManager;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -6762,6 +6775,7 @@
 				CA18D40815CFB25B001B421A /* CommentFeed.m in Sources */,
 				CA18D40B15CFB31D001B421A /* DrawToUserFeed.m in Sources */,
 				A45BF5E215D231A000CDD5C2 /* DiceFontManager.m in Sources */,
+				A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

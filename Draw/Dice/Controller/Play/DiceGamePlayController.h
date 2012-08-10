@@ -19,11 +19,13 @@
 #import "HKGirlFontLabel.h"
 #import "LevelService.h"
 #import "AccountManager.h"
+#import "DicesResultView.h"
+
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate> {
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
@@ -47,5 +49,8 @@
 @property (retain, nonatomic) IBOutlet UIView *popResultView;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *rewardCoinLabel;
 @property (retain, nonatomic) IBOutlet FontButton *wildsFlagButton;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *resultDiceCountLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *resultDiceImageView;
+@property (retain, nonatomic) IBOutlet UIView *resultHolderView;
 
 @end
