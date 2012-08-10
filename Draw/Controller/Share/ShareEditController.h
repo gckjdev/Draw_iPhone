@@ -13,9 +13,17 @@
 #import "CommonDialog.h"
 #import "UserService.h"
 
+typedef enum {
+    SINA_WEIBO = 0,
+    QQ_WEIBO,
+    FACEBOOK,
+}SnsType;
+
 //@class SynthesisView;
 
-@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate>
+@interface ShareEditController : PPViewController <UIActionSheetDelegate, SNSServiceDelegate, MFMailComposeViewControllerDelegate, CommonDialogDelegate, UserServiceDelegate> {
+    SnsType _snsType;
+}
 
 @property (nonatomic, copy) NSString* imageFilePath;
 //@property (retain, nonatomic) IBOutlet UIImageView *patternBar;
@@ -36,8 +44,10 @@
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 
-             isDrawByMe:(BOOL)isDrawByMe;
+             isDrawByMe:(BOOL)isDrawByMe 
+                snsType:(SnsType)type;
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text
-             drawUserId:(NSString*)drawUserId;
+             drawUserId:(NSString*)drawUserId 
+                snsType:(SnsType)type;
 @end
