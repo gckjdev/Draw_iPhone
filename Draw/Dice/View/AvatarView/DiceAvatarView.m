@@ -39,6 +39,18 @@
     [super dealloc];
 }
 
+- (void)removeFromSuperview
+{
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+        }
+    }
+    _timer = nil;
+    _delegate = nil;
+    [super removeFromSuperview];
+}
+
 - (void)addTapGuesture
 {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
@@ -90,6 +102,7 @@
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
+        progressView.clockwise = YES;
         [self addSubview:progressView];
         
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
@@ -107,6 +120,11 @@
         [self addTapGuesture];
     }
     return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -187,6 +205,7 @@
     if (_currentProgress <= 0) {
         [self stopReciprocol];
         if (_delegate && [_delegate respondsToSelector:@selector(reciprocalEnd:)]) {
+            PPDebug(@"<test>stop, delegate = %@ , avatar = %@",[_delegate description], [self description]);
             [_delegate reciprocalEnd:self];
         }
         return;
