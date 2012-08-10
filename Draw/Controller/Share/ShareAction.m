@@ -172,7 +172,7 @@
     [compose release];
 }
 
-- (void)shareViaSNS
+- (void)shareViaSNS:(SnsType)type
 {
     NSString* text = nil;
     if (_isDrawByMe){
@@ -191,8 +191,8 @@
             text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), _drawWord];
         }
     }
-    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:[MyPaintManager getMyPaintImagePathByCapacityPath:_imageFilePath]
-                                                                                text:text drawUserId:self.drawUserId];
+    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
+                                                                                text:text drawUserId:self.drawUserId snsType:type];
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    
 }
@@ -242,11 +242,13 @@
         [self shareViaWeixin];
     }
     
-    else if (buttonIndex == buttonIndexSinaWeibo 
-             || buttonIndex == buttonIndexQQWeibo 
-             || buttonIndex == buttonIndexFacebook)
+    else if (buttonIndex == buttonIndexSinaWeibo)
     {
-        [self shareViaSNS];
+        [self shareViaSNS:SINA_WEIBO];
+    } else if (buttonIndex == buttonIndexQQWeibo) {
+        [self shareViaSNS:QQ_WEIBO];
+    } else if (buttonIndex == buttonIndexFacebook) {
+        [self shareViaSNS:FACEBOOK];
     }
 }
 
