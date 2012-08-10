@@ -20,7 +20,7 @@
                            inView:(UIView *)inView
                    pointDirection:(PointDirection)pointDirection;
 
-//- (void)dismissCallDiceView;
+- (void)dismissCallDiceView;
 
 - (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
                             countNumberList:(NSArray *)countNumberList 
@@ -42,7 +42,7 @@
                              duration:(int)duration
                        pointDirection:(PointDirection)pointDirection;
 
-//- (void)dismissOpenDiceView;
+- (void)dismissOpenDiceView;
 
 
 @end

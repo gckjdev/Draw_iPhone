@@ -170,4 +170,10 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"waiting_user.png"];
 }
 
+- (UIImage *)resultDiceBgImage
+{
+    return [UIImage imageNamed:@"open_bell_counton.png"];
+}
+
+
 @end

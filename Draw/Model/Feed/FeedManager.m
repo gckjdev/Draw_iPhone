@@ -18,6 +18,7 @@ FeedManager *_staticFeedManager = nil;
 #define FeedKeyMy @"FeedKeyMy"
 #define FeedKeyAll @"FeedKeyAll"
 #define FeedKeyHot @"FeedKeyHot"
+#define FeedKeyLatest @"FeedKeyLatest"
 
 @implementation FeedManager
 
@@ -39,6 +40,8 @@ FeedManager *_staticFeedManager = nil;
     }
     if (type == FeedListTypeHot) {
         return FeedKeyHot;
+    }else if(type == FeedListTypeLatest){
+        return FeedKeyLatest;
     }
     return nil;
 }
@@ -51,6 +54,7 @@ FeedManager *_staticFeedManager = nil;
         [self addListForKey:FeedKeyMy];
         [self addListForKey:FeedKeyAll];
         [self addListForKey:FeedKeyHot];
+        [self addListForKey:FeedKeyLatest];
     }
     return self;
 }
@@ -154,6 +158,7 @@ FeedManager *_staticFeedManager = nil;
         if (feed && feed.isCommentType) {
             [list addObject:feed];
         }
+        [feed release];
     }
     return list;    
 }

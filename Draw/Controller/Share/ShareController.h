@@ -12,11 +12,11 @@
 #import "ShowDrawView.h"
 #import "CommonDialog.h"
 #import "ShareAction.h"
+#import "MyPaintManager.h"
+#import "PPTableViewController.h"
 
-@interface ShareController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate> {
-    NSArray*_paints;
-    int _currentSelectedPaint;
-    NSMutableArray *_gifImages;
+@class MyPaint;
+@interface ShareController : PPTableViewController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
     
     int SHARE_AS_PHOTO;
     int SHARE_AS_GIF;
@@ -29,8 +29,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *selectMineButton;
 @property (retain, nonatomic) IBOutlet UIButton *selectAllButton;
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
-@property (retain, nonatomic) IBOutlet UITableView *gallery;
-@property (retain, nonatomic) NSArray* paints;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) ShareAction *shareAction;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;

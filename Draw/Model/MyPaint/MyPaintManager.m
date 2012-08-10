@@ -51,18 +51,50 @@ static MyPaintManager* _defaultManager;
     return result;
 }
 
-- (NSArray*)findOnlyMyPaints
+- (NSArray *)fetchFields
 {
-    CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    return [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
+    NSArray *array = [NSArray arrayWithObjects:@"createDate", @"image", @"drawByMe", @"drawUserNickName", @"drawUserId", @"drawWord", @"drawThumbnailData", nil];
+    return array;
 }
 
-- (NSArray*)findAllPaints
+- (void)findMyPaintsFrom:(NSInteger)offset 
+                       limit:(NSInteger)limit 
+                    delegate:(id<MyPaintManagerDelegate>)delegate
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
-    return [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue) {
+        dispatch_async(queue, ^{
+            NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:[self fetchFields] ascending:NO offset:offset limit:limit];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didGetMyPaints:)]) {
+                    [delegate didGetMyPaints:array];
+                } 
+            });
+        });        
+    }
+    
+}
+
+- (void)findAllPaintsFrom:(NSInteger)offset 
+                        limit:(NSInteger)limit 
+                     delegate:(id<MyPaintManagerDelegate>)delegate
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue) {
+        dispatch_async(queue, ^{
+            NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:[self fetchFields] ascending:NO offset:offset limit:limit];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
+                    [delegate didGetAllPaints:array];
+                } 
+            });
+        });        
+    }
 
 }
+/*
 
 - (BOOL)deleteAllPaintsAtIndex:(NSInteger)index
 {
@@ -81,8 +113,8 @@ static MyPaintManager* _defaultManager;
     [dataManager del:object];
     return [dataManager save];
 }
-
-- (void)deleteAllPaints:(BOOL)onlyDrawnByMe
+*/
+- (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     NSArray* array;
@@ -94,11 +126,11 @@ static MyPaintManager* _defaultManager;
     for (NSManagedObject* paint in array){
         [dataManager del:paint];       
     }
-    
     [dataManager save];    
+    return YES;
 }
 
-- (BOOL)deleteMyPaints:(MyPaint*)paint
+- (BOOL)deleteMyPaint:(MyPaint*)paint
 {
     NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paint.image]];
 

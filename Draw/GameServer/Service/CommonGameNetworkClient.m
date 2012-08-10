@@ -151,7 +151,9 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setSessionId:sessionId];
     
     EnterRoomRequest* request;
+
     EnterRoomRequest_Builder* builder = [[[EnterRoomRequest_Builder alloc] init] autorelease];
+
     [builder setUser:user];
     request = [builder build];
     

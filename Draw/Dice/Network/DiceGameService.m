@@ -86,8 +86,7 @@ static DiceGameService* _defaultService;
 {
     self.diceSession.lastCallDiceUserId = message.userId;
     self.diceSession.lastCallDice = message.callDiceRequest.dice;
-    self.diceSession.lastCallDiceCount = message.callDiceRequest.num;
-    
+    self.diceSession.lastCallDiceCount = message.callDiceRequest.num;    
     if ([message.callDiceRequest hasWilds]) {
         self.diceSession.wilds = message.callDiceRequest.wilds;
     }
@@ -168,8 +167,29 @@ static DiceGameService* _defaultService;
     return [self.diceSession.userDiceList objectForKey:self.user.userId];
 }
 
+- (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds
+{
+    // Update Model.
+    self.diceSession.lastCallDiceUserId = self.user.userId;
+    self.diceSession.lastCallDice = dice;
+    self.diceSession.lastCallDiceCount = count;
+    self.diceSession.wilds = wilds;
+    
+    // Send command.
+    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+                                                   sessionId:self.session.sessionId
+                                                        dice:self.lastCallDice
+                                                       count:self.lastCallDiceCount
+                                                       wilds:wilds]; 
+}
+
+
 - (void)callDice:(int)dice count:(int)count
 {
+    if (dice == 1) {
+        [self callDice:dice count:count wilds:YES];
+        return;
+    }
     
     // Update Model.
     self.diceSession.lastCallDiceUserId = self.user.userId;
@@ -182,21 +202,6 @@ static DiceGameService* _defaultService;
                                                         dice:self.lastCallDice
                                                        count:self.lastCallDiceCount]; 
 }
-
-//- (void)autoCallDice
-//{   
-//    // Update Model.
-//    self.diceSession.lastCallDiceUserId = self.user.userId;
-//    self.diceSession.lastCallDice = self.lastCallDice;
-//    self.diceSession.lastCallDiceCount ++;
-//    
-//    // Send Command.
-//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
-//                                                   sessionId:self.session.sessionId
-//                                                        dice:self.lastCallDice
-//                                                       count:self.lastCallDiceCount]; 
-//}
-
 
 - (NSString *)lastCallUserId
 {

@@ -14,6 +14,12 @@
 - (void)sendCallDiceRequest:(NSString*)userId
                   sessionId:(int)sessionId
                        dice:(int)dice
+                      count:(int)count
+                      wilds:(BOOL)wilds;
+
+- (void)sendCallDiceRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                       dice:(int)dice
                       count:(int)count;
 
 - (void)sendOpenDiceRequest:(NSString*)userId

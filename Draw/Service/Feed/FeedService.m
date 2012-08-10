@@ -78,7 +78,7 @@ static FeedService *_staticFeedService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
-                                       feedListType:FeedListTypeUser 
+                                       feedListType:FeedListTypeUserFeed 
                                        offset:offset 
                                        limit:limit 
                                        lang:UnknowType];
@@ -94,8 +94,41 @@ static FeedService *_staticFeedService = nil;
         }
         PPDebug(@"<FeedService> parse data finish, start display the views.");        
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:resultCode:)]) {
-                [delegate didGetFeedList:list targetUser:userId resultCode:resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
+                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)getUserOpusList:(NSString *)userId
+                 offset:(NSInteger)offset 
+                  limit:(NSInteger)limit 
+               delegate:(PPViewController<FeedServiceDelegate> *)delegate
+{
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest 
+                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
+                                       userId:userId 
+                                       feedListType:FeedListTypeUserOpus
+                                       offset:offset 
+                                       limit:limit 
+                                       lang:UnknowType];
+        NSArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
+            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            NSArray *pbFeedList = [response feedList];
+            list = [FeedManager parsePbFeedList:pbFeedList];
+        }
+        PPDebug(@"<FeedService> parse data finish, start display the views.");        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
+                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserOpus resultCode:resultCode];
             }
         });
     });

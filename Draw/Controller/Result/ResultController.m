@@ -663,7 +663,7 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-        ToolView* toolview;
+        ToolView* toolview = nil;
         switch (anItem.type) {
             case ItemTypeFlower: {
                 toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];

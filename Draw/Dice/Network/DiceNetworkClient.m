@@ -15,6 +15,32 @@
                   sessionId:(int)sessionId
                        dice:(int)dice
                       count:(int)count
+                      wilds:(BOOL)wilds
+{
+    CallDiceRequest_Builder *callDiceRequestBuilder = [[[CallDiceRequest_Builder alloc] init] autorelease];
+    [callDiceRequestBuilder setDice:dice];
+    [callDiceRequestBuilder setNum:count];
+    [callDiceRequestBuilder setWilds:wilds];
+    CallDiceRequest *callDiceRequest = [callDiceRequestBuilder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeCallDiceRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    
+    [messageBuilder setCallDiceRequest:callDiceRequest];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    
+    [self sendData:[gameMessage data]];  
+}
+
+
+- (void)sendCallDiceRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                       dice:(int)dice
+                      count:(int)count
 {
     CallDiceRequest_Builder *callDiceRequestBuilder = [[[CallDiceRequest_Builder alloc] init] autorelease];
     [callDiceRequestBuilder setDice:dice];

@@ -21,7 +21,8 @@
             resultCode:(NSInteger)resultCode;
 
 - (void)didGetFeedList:(NSArray *)feedList 
-          targetUser:(NSString *)userId
+            targetUser:(NSString *)userId 
+                  type:(FeedListType)type
             resultCode:(NSInteger)resultCode;
 
 
@@ -60,6 +61,10 @@
               limit:(NSInteger)limit 
            delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
+- (void)getUserOpusList:(NSString *)userId
+                 offset:(NSInteger)offset 
+                  limit:(NSInteger)limit 
+               delegate:(PPViewController<FeedServiceDelegate> *)delegate;
 
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 

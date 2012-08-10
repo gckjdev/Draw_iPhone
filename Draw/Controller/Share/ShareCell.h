@@ -10,24 +10,23 @@
 #import "MyPaintButton.h"
 #define IMAGES_PER_LINE 4
 
+@class MyPaint;
+
 @protocol ShareCellDelegate <NSObject>
 
-- (void)selectImageAtIndex:(int)index;
-
+@optional
+- (void)didSelectPaint:(MyPaint *)paint;
 @end
 
-@interface ShareCell : UITableViewCell <UIActionSheetDelegate, MyPaintButtonDelegate>
+@interface ShareCell : UITableViewCell
 {
-    
+
 }
-//@property (retain, nonatomic) IBOutlet UIButton *leftButton;
-//@property (retain, nonatomic) IBOutlet UIButton *middleButton;
-//@property (retain, nonatomic) IBOutlet UIButton *rightButton;
 @property (retain, nonatomic) NSIndexPath* indexPath;
 @property (assign, nonatomic) id<ShareCellDelegate> delegate;
-+ (ShareCell*)creatShareCell;
+
 + (ShareCell*)creatShareCellWithIndexPath:(NSIndexPath *)indexPath delegate:(id<ShareCellDelegate>)aDelegate;
 + (NSString*)getIdentifier;
-- (void)setImagesWithArray:(NSArray*)imageArray;
-- (IBAction)clickImageButton:(id)sender;
+- (void)setPaints:(NSArray *)paints;
+
 @end

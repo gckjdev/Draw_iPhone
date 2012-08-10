@@ -64,6 +64,7 @@
 #pragma mark - Class FeedController
 
 @implementation FeedController
+@synthesize latestFeedButton;
 @synthesize noFeedTipsLabel;
 @synthesize titleLabel;
 @synthesize myFeedButton;
@@ -77,6 +78,7 @@
         // Custom initialization
         _feedListStats = [[NSArray  alloc] initWithObjects:
                           [FeedListState feedListState],
+                          [FeedListState feedListState],           
                           [FeedListState feedListState],
                           [FeedListState feedListState], nil];
         _feedManager = [[FeedManager alloc] init];
@@ -103,20 +105,32 @@
     //init lable and button
     [self.noFeedTipsLabel setText:NSLS(@"kNoFeedTips")];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
     [self.titleLabel setText:NSLS(@"kFeedTitle")];
     [self.allFeedButton setTitle:NSLS(@"kAllFeed") forState:UIControlStateNormal];
     [self.hotFeedButton setTitle:NSLS(@"kHotFeed") forState:UIControlStateNormal];
     [self.myFeedButton setTitle:NSLS(@"kMyFeed") forState:UIControlStateNormal];
+    [self.latestFeedButton setTitle:NSLS(@"kLatestFeed") forState:UIControlStateNormal];
     
     [self.myFeedButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
     [self.myFeedButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-    [self.hotFeedButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
-    [self.hotFeedButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+
     [self.allFeedButton setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
     [self.allFeedButton setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
+
+    
+    [self.hotFeedButton setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
+    [self.hotFeedButton setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
+    
+
+    [self.latestFeedButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [self.latestFeedButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+
+    
     self.myFeedButton.tag = FeedListTypeMy;
     self.allFeedButton.tag = FeedListTypeAll;
     self.hotFeedButton.tag = FeedListTypeHot;
+    self.latestFeedButton.tag = FeedListTypeLatest;
     [self clickFeedButton:self.allFeedButton];
     
 //    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
@@ -129,6 +143,7 @@
     [self setAllFeedButton:nil];
     [self setHotFeedButton:nil];
     [self setNoFeedTipsLabel:nil];
+    [self setLatestFeedButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -149,6 +164,7 @@
     PPRelease(_feedListStats);
     PPRelease(noFeedTipsLabel);
     PPRelease(_feedManager);
+    PPRelease(latestFeedButton);
     [super dealloc];
 }
 
@@ -166,6 +182,8 @@
     }else if(type == FeedListTypeHot)
     {
         return [_feedListStats objectAtIndex:2];
+    }else if(type == FeedListTypeLatest){
+        return [_feedListStats objectAtIndex:3];
     }
     return nil;
 }
@@ -216,7 +234,7 @@
 
 - (IBAction)clickFeedButton:(id)sender {
     NSInteger tag = [(UIButton *)sender tag];
-    myFeedButton.selected = allFeedButton.selected = hotFeedButton.selected = NO;
+    myFeedButton.selected = allFeedButton.selected = hotFeedButton.selected = latestFeedButton.selected = NO;
     UIButton *button = (UIButton *)[self.view viewWithTag:tag];
     button.selected = YES;
 
@@ -242,6 +260,9 @@
     }
     if (hotFeedButton.selected == YES) {
         return hotFeedButton.tag;
+    }else if(latestFeedButton.selected)
+    {
+        return latestFeedButton.tag;
     }
     return FeedListTypeAll;
 }

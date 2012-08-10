@@ -10,16 +10,20 @@
 #import "MyPaint.h"
 #import "UIImageUtil.h"
 #import "DrawUtils.h"
-#import <QuartzCore/QuartzCore.h>
-#include <ImageIO/ImageIO.h>
 #include "CoreDataUtil.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"
 
+@interface ShareCell() {
+        NSArray *_paints;
+}
+
+- (IBAction)clickPaintButton:(id)sender;
++ (ShareCell*)creatShareCell;
+@end
+
+
 @implementation ShareCell
-//@synthesize leftButton;
-//@synthesize middleButton;
-//@synthesize rightButton;
 @synthesize indexPath = _indexPath;
 @synthesize delegate = _delegate;
 
@@ -55,13 +59,11 @@
     }
     
     for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
-       // MyPaintButton* button = [[MyPaintButton alloc] initWithFrame:CGRectMake((i-10)*79+4, 2, 75, 85)];
         MyPaintButton* button = [MyPaintButton creatMyPaintButton];
         [button setFrame:CGRectMake((i-BASE_BUTTON_INDEX)*(imageButtonWidth + seperator)+seperator, 2, imageButtonWidth, imageButtonHeight)];
-        button.delegate= cell;
         button.tag = i;
         [cell addSubview:button];
-        //[button release];
+        [button addTarget:cell action:@selector(clickPaintButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
 }
@@ -71,104 +73,45 @@
     return @"ShareCell";
 }
 
-- (void)setImagesWithArray:(NSArray*)imageArray
+- (void)setPaints:(NSArray *)paints
 {
-    NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:DRAW_VIEW_WIDTH/IMAGES_PER_LINE] forKey:(NSString*)kCGImageSourceThumbnailMaxPixelSize];
     
-    int count = [imageArray count];
+    if (paints != _paints) {
+        [_paints release];
+        _paints = [paints retain];
+    }
     
-    for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
-        MyPaintButton *button = (MyPaintButton *)[self viewWithTag:i];
-        
-        int j = i - BASE_BUTTON_INDEX;
-        if (button && j < count) {
-            MyPaint *paint = [imageArray objectAtIndex:j];            
-            
-            if (paint.thumbImage == nil) {
-                if (paint.drawThumbnailData == nil){
-                    NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-                    paint.thumbImage = [[[UIImage alloc] initWithContentsOfFile:imagePath] autorelease];
-                    PPDebug(@"load image from path = %@", imagePath);
-                }
-                else{
-                    NSData *data = paint.drawThumbnailData;
-                    CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
-                    UIImage* image = [UIImage imageWithCGImage:CGImageSourceCreateImageAtIndex(imageRef, 0, NULL)];
-                    paint.thumbImage = image;
-                    CFRelease(imageRef);
-                    PPDebug(@"load image from thumbnail data");
-                }
-            }
-
-            [button.clickButton setImage:paint.thumbImage forState:UIControlStateNormal];
-            [button.drawWord setText:paint.drawWord];
-            [button.myPrintTag setHidden:!paint.drawByMe.boolValue];
-            button.hidden = NO;
-            
+    
+    int count = [paints count];
+    
+    for (int i = 0; i < IMAGES_PER_LINE; ++i) {
+        MyPaintButton *button = (MyPaintButton *)[self viewWithTag:BASE_BUTTON_INDEX + i];
+        if (button && i < count) {
+            MyPaint *paint = [paints objectAtIndex:i];   
+            [button setInfo:paint];
         }else {
             button.hidden = YES;
         }
     }
+
 }
 
-- (void)clickImage:(MyPaintButton *)myPaintButton
-{
-    int j = myPaintButton.tag - BASE_BUTTON_INDEX;
-    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-        [_delegate selectImageAtIndex:self.indexPath.row*IMAGES_PER_LINE + j];
-    }
-}
 
-- (IBAction)clickImageButton:(id)sender {
+
+- (IBAction)clickPaintButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     int j = button.tag - BASE_BUTTON_INDEX;
-    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-        [_delegate selectImageAtIndex:self.indexPath.row*IMAGES_PER_LINE + j];
+    if (j >=0 && j < [_paints count]) {
+        MyPaint *paint = [_paints objectAtIndex:j];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectPaint:)]) {
+            [self.delegate didSelectPaint:paint];
+        }
     }
-
 }
 
-//- (IBAction)cliekLeftButton:(id)sender
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-//        [_delegate selectImageAtIndex:self.indexPath.row*3];
-//    }
-//}
-//
-//- (IBAction)cliekMiddleButton:(id)sender
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-//        [_delegate selectImageAtIndex:self.indexPath.row*3+1];
-//    }
-//}
-//
-//- (IBAction)cliekRightButton:(id)sender
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(selectImageAtIndex:)]) {
-//        [_delegate selectImageAtIndex:self.indexPath.row*3+2];
-//    }
-//}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (void)dealloc {
-//    [leftButton release];
-//    [middleButton release];
-//    [rightButton release];
+    [_paints release];
     [_indexPath release];
     [super dealloc];
 }
