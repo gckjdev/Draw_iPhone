@@ -56,10 +56,8 @@
      queue:[NSOperationQueue mainQueue]     
      usingBlock:^(NSNotification *notification) {                       
          PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE");  
-         NSData* messageData  = [notification.userInfo objectForKey:KEY_GAME_MESSAGE];
-         GetRoomsResponse* message = [GetRoomsResponse parseFromData:messageData];
-         self.dataList = message.sessionsList;
-         PPDebug(@"session count  = %d",self.dataList.count);
+         CommonGameNetworkService* service = [DiceGameService defaultService];
+         self.dataList = [NSArray arrayWithArray:service.roomList];
          [self.dataTableView reloadData];
      }];
     [[NSNotificationCenter defaultCenter] 
@@ -101,7 +99,7 @@
     
     
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
 
@@ -145,19 +143,20 @@
     if (cell == nil) {
         cell = [DiceRoomListCell createCell:[DiceRoomListCell getCellIdentifier]];
     }
-    PBGameSession* session = [self.dataList objectAtIndex:indexPath.row];
+    PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
     [cell setCellInfo:session];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataList.count;
+    return [DiceGameService defaultService].roomList.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
+    [[DiceGameService defaultService] enterRoom:session.sessionId];
 }
 
 #pragma mark - Button action
@@ -180,7 +179,10 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
-    [[CommonGameNetworkClient defaultInstance] sendGetRoomsRequest:[[UserManager defaultManager] userId]];
+    if ([DiceGameService defaultService].roomList.count <= 0) {
+        [[DiceGameService defaultService] getRoomList:0 count:10];
+    }
+    
 }
 
 - (void)didBroken

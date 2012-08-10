@@ -3,7 +3,7 @@
 //  Draw
 //
 //  Created by  on 12-3-9.
-//  Copyright (c) 2012å¹´ __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012å¹?__MyCompanyName__. All rights reserved.
 //
 
 #import "HomeController.h"
@@ -256,16 +256,18 @@
 }
 
 - (void)unregisterDiceGameNotification
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICATION_NEXT_PLAYER_START 
-                                                  object:[DiceGameService defaultService]];
+{        
+    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    
+        //        if ([obj isKindOfClass:[NSNotification class]]) {
+        NSNotification *notification = (NSNotification *)obj;
+        [[NSNotificationCenter defaultCenter] removeObserver:notification];
+        //        }
+    
+    }];    
 
-//    [[NSNotificationCenter defaultCenter] removeObserver:self 
-//                                                    name:NOTIFICATION_ROOM
-//                                                  object:nil];
+    [notifications removeAllObjects];
 }
-
 - (void)viewDidAppear:(BOOL)animated
 {    
     [self registerDiceGameNotification];
