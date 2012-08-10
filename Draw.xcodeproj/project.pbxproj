@@ -2741,7 +2741,6 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4C1123215D4AFBF009B3E8D /* DiceAnimationManager */,
 				A45BF5DF15D231A000CDD5C2 /* DiceFontManager */,
 				A4B7648915C382BD003B4E72 /* DiceImageManager */,
 			);
@@ -2874,13 +2873,6 @@
 				A4B7649D15C38470003B4E72 /* dice_user_backgroung@2x.png */,
 			);
 			path = room;
-			sourceTree = "<group>";
-		};
-		A4C1123215D4AFBF009B3E8D /* DiceAnimationManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DiceAnimationManager;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
