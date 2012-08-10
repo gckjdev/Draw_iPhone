@@ -521,7 +521,7 @@
 "kGuessUserDraw" = "正在猜%@的畫";
 
 "kFeedTitle" = "動態";
-"kAllFeed" = "全部";
+"kAllFeed" = "關注";
 "kHotFeed" = "熱榜";
 "kMyFeed" = "我的";
 "kMyFeedList" = "我的動態";
@@ -730,3 +730,6 @@
 "kOpenDice" = "開";
 "kScrambleToOpenDice" = "搶";
 "kLatestFeed" = "最新";
+
+"kShareToWeiXinTitle" = "分享到微信";
+"kWXShareImageName" = "猜猜畫畫美圖";
