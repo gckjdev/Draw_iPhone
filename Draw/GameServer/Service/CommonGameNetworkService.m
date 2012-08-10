@@ -141,12 +141,13 @@
 - (void)handleGetRoomsResponse:(GameMessage*)message
 {
     // save room into _roomList and fire the notification
-    if ([message resultCode] != 0){
-        return;
-    }
+    
+//    if ([message resultCode] != 0){
+//        return;
+//    }
     
     [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
-    
+    [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
 - (void)handleJoinGameResponse:(GameMessage*)message
@@ -272,6 +273,17 @@
     }
     
     [_networkClient sendGetRoomsRequest:userId];
+}
+
+- (void)getRoomList:(int)startIndex count:(int)count
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    [_networkClient sendGetRoomsRequest:userId 
+                             startIndex:startIndex 
+                                  count:count];
 }
 
 - (void)joinGameRequest

@@ -17,7 +17,7 @@
 #import "GameMessage.pb.h"
 #import "LevelService.h"
 
-#define AVATAR_TAG_OFFSET   1000
+#define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
 #define RESULT_TAG_OFFSET   3000
 #define BELL_TAG_OFFSET     4000
@@ -207,7 +207,7 @@
 - (void)showUserDice:(NSString *)userId
 {
     DicesResultView *resultView = [self resultViewOfUser:userId];
-    [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId]];
+    [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice];
     [resultView showAnimation:self.view.center delegate:self];
 }
 
@@ -239,8 +239,23 @@
     }
 }
 
+- (void)moveWildsFlagButton
+{
+    CGPoint center = CGPointMake(self.wildsFlagButton.center.x - 30, self.wildsFlagButton.center.y);
+    CAAnimation *moveToLeft = [AnimationManager translationAnimationFrom:self.wildsFlagButton.center to:center duration:1.5];
+    moveToLeft.beginTime = 0;
+    moveToLeft.removedOnCompletion = NO;
+    
+    CAAnimation *stay = [AnimationManager translationAnimationFrom:center to:center duration:7];
+    stay.beginTime = 0;
+    moveToLeft.removedOnCompletion = NO;
+    
+    [self.wildsFlagButton.layer addAnimation:moveToLeft forKey:nil];
+}
+
 - (void)showGameResult
 {
+    [self moveWildsFlagButton];
     [self showAllUserDices];
 }
 
@@ -311,7 +326,7 @@
         UILabel* nameLabel = (UILabel*)[self.view viewWithTag:(NICKNAME_TAG_OFFSET+i)];
         avatar.delegate = self;
         [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
-        avatar.userId = nil;   
+        avatar.userId = nil;
         [nameLabel setText:nil];
         
     }

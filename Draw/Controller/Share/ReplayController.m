@@ -19,6 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DrawAction.h"
 #import "UIImageExt.h"
+#import "MyPaintManager.h"
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
@@ -56,7 +57,7 @@
     if (_replayForCreateGif)
         path = _tempGIFFilePath;
     else
-        path = _paint.image;
+        path = [MyPaintManager getMyPaintImagePathByCapacityPath:_paint.image];
     
     self.shareAction = [[[ShareAction alloc] initWithDrawImageFile:path
                                                              isGIF:_replayForCreateGif
