@@ -393,7 +393,7 @@ NSString* GlobalGetTrafficServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    
+    [self.homeController clickShare:nil];
 }
 
 -(void) onResp:(BaseResp*)resp
