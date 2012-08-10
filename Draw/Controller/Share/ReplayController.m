@@ -72,6 +72,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_shareAction);
     [_gifImages release];
     [_tempGIFFilePath release];
     [_paint release];

@@ -107,7 +107,7 @@
 
 - (void)nextFrame:(NSTimer *)theTimer;
 {       
-    PPDebug(@"<Debug> Show Draw View For Next Frame");
+//    PPDebug(@"<Debug> Show Draw View For Next Frame");
     DrawAction *currentAction = [self playingAction];
     if (!_showPenHidden) {
         if (currentAction.type == DRAW_ACTION_TYPE_CLEAN) {
