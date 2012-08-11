@@ -134,6 +134,11 @@
 
 - (void)updateActionButton:(DrawFeed *)feed
 {
+    if (feed.drawData == nil) {
+        self.actionButton.hidden = YES;
+        return;
+    }
+    
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
     self.actionButton.hidden = NO;
     [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];

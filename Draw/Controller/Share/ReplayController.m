@@ -36,10 +36,17 @@
 @synthesize backButton = _backButton;
 @synthesize showHolderView = _showHolderView;
 @synthesize wordLabel = _wordLabel;
+@synthesize playEndButton = _playEndButton;
 @synthesize replayForCreateGif = _replayForCreateGif;
 @synthesize shareAction = _shareAction;
 @synthesize tempGIFFilePath = _tempGIFFilePath;
 @synthesize gifImages = _gifImages;
+@synthesize replayView = _replayView;
+
+- (IBAction)clickPlayEndButton:(id)sender {
+    [self.replayView show];
+    self.playEndButton.hidden = YES;
+}
 
 - (id)initWithPaint:(MyPaint*)paint
 {
@@ -73,14 +80,16 @@
 - (void)dealloc
 {
     PPRelease(_shareAction);
-    [_gifImages release];
-    [_tempGIFFilePath release];
-    [_paint release];
-    [_titleLabel release];
-    [_shareButton release];
-    [_backButton release];
-    [_showHolderView release];
-    [_wordLabel release];
+    PPRelease(_gifImages);
+    PPRelease(_tempGIFFilePath);
+    PPRelease(_paint);
+    PPRelease(_titleLabel);
+    PPRelease(_shareButton);
+    PPRelease(_backButton);
+    PPRelease(_showHolderView);
+    PPRelease(_wordLabel);
+    PPRelease(_playEndButton);
+    PPRelease(_replayView);
     [super dealloc];
 }
 
@@ -114,29 +123,27 @@
     CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
     CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
     
-    ShowDrawView* replayView = [[ShowDrawView alloc]initWithFrame:
+    self.replayView = [[ShowDrawView alloc]initWithFrame:
                                 self.showHolderView.frame];
     if (self.replayForCreateGif) {
-        [replayView setShowPenHidden:YES];
+        [_replayView setShowPenHidden:YES];
     }
     
     NSMutableArray *actionList = [DrawAction scaleActionList:drawActionList 
                                                       xScale:xScale 
                                                       yScale:yScale];
-    [replayView setDrawActionList:actionList];
-    replayView.backgroundColor = [UIColor whiteColor];
-    replayView.tag = REPLAY_TAG;
+    [_replayView setDrawActionList:actionList];
+    _replayView.backgroundColor = [UIColor whiteColor];
+    _replayView.tag = REPLAY_TAG;
     if (_replayForCreateGif){
-        replayView.delegate = self;
-        replayView.playSpeed = 0.01;
+        _replayView.delegate = self;
+        _replayView.playSpeed = 0.01;
         [self.shareButton setHidden:YES];
         [self.backButton setHidden:YES];
     }
 
-    [self.view addSubview:replayView];
-    [replayView release];       
-
-    [replayView play];
+    [self.view addSubview:_replayView];
+    [_replayView play];
     
     
     self.titleLabel.text = NSLS(@"kReplayTitle");
@@ -153,8 +160,12 @@
     
     if (_replayForCreateGif){
         [self showActivityWithText:NSLS(@"kCreating_gif")];
+        self.playEndButton.hidden = YES;
+    }else{
+        self.playEndButton.hidden = NO;
+        [self.playEndButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
+        [self.playEndButton setTitle:NSLS(@"kPlayEnd") forState:UIControlStateNormal];
     }
-
 }
 
 
@@ -166,6 +177,7 @@
     [self setBackButton:nil];
     [self setShowHolderView:nil];
     [self setWordLabel:nil];
+    [self setPlayEndButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
