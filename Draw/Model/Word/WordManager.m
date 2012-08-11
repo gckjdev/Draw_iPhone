@@ -9,11 +9,23 @@
 #import "WordManager.h"
 #import "Word.h"
 #import "PPDebug.h"
+#import "SSZipArchive.h"
+#import "FileUtil.h"
 
-#define CN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"CN_Words_Dict" ofType:@"plist"]
-#define EN_WORD_DICT [[NSBundle mainBundle] pathForResource:@"EN_Words_Dict" ofType:@"plist"]
+@interface WordManager() {
+    
+}
 
-#define WORD_BASE [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]
++ (NSString *)wordDir;
++ (NSString *)cnWordDictPath;
++ (NSString *)enWordDictPath;
++ (NSString *)wordBaseDictPath;
+
+@end
+
+#define CN_WORD_DICT [WordManager cnWordDictPath]
+#define EN_WORD_DICT [WordManager enWordDictPath]
+#define WORD_BASE [WordManager wordBaseDictPath]
 
 #define TSLS(X) NSLocalizedStringFromTable(X, @"TraditionalChineseWord", nil)
 
@@ -45,6 +57,96 @@ WordManager *GlobalGetWordManager()
     [manager loadDictByWithLanguage:[[UserManager defaultManager] getLanguageType]];
     return manager;
 }
+
+#define WORD_BASE_KEY @"CFWordBaseVersion"
+#define WORD_DIR @"word"
+#define WORD_BASE_ZIP_NAME @"wordbase.zip"
+
++ (BOOL)needUnZip
+{
+    NSNumber *plistVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
+    NSInteger currentVersion = [[NSUserDefaults standardUserDefaults] integerForKey:WORD_BASE_KEY];
+    return plistVersion.integerValue > currentVersion;
+}
+
++ (void)updateWordBaseVersion
+{
+    NSNumber *plistVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
+    [[NSUserDefaults standardUserDefaults] setInteger:plistVersion.integerValue forKey:WORD_BASE_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (NSString *)wordDir
+{
+    return [FileUtil getFileFullPath:WORD_DIR];
+}
++ (NSString *)cnWordDictPath
+{
+    NSString *fileName = @"CN_Words_Dict.plist"; 
+    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];
+}
++ (NSString *)enWordDictPath
+{
+    NSString *fileName = @"EN_Words_Dict.plist"; 
+    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];    
+}
++ (NSString *)wordBaseDictPath
+{
+    NSString *fileName = @"words.plist"; 
+    return [[WordManager wordDir] stringByAppendingPathComponent:fileName];        
+}
+
++ (void)unZipFiles
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue == NULL) {
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    }
+                                          
+    if (queue == NULL) {
+        PPDebug(@"error:<WordManager> fail to get queue to unzip the word base file");
+        return;
+    }
+    
+    dispatch_async(queue, ^{
+        if ([WordManager needUnZip]) {
+            //get zip path
+            
+            PPDebug(@"start to unzip the word package");
+            //creat dir
+            NSString *dir = [WordManager wordDir];
+            BOOL flag = [FileUtil createDir:dir];
+            
+            if (!flag) {
+                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to creating dir");
+                return;
+            }
+            
+            PPDebug(@"word dir = %@", dir);
+            
+            //copy the zip file to the dir
+            
+            flag = [FileUtil copyFileFromBundleToAppDir:WORD_BASE_ZIP_NAME appDir:dir overwrite:YES];
+            if (!flag) {
+                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to copy word zip package to distination dir");
+            }
+            
+            //unzip to dir
+            NSString *zipPath = [dir stringByAppendingPathComponent:WORD_BASE_ZIP_NAME];
+            PPDebug(@"distination path = %@", zipPath);
+            flag = [SSZipArchive unzipFileAtPath:zipPath toDestination:dir];
+            
+            if (!flag) {
+                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to unzip package to distination dir");
+                return;            
+            }
+            [FileUtil removeFile:zipPath];
+            [WordManager updateWordBaseVersion];
+            
+        }
+    });
+    
+}
+
 
 - (NSDictionary *)getWordBaseDictionary
 {

@@ -40,6 +40,8 @@ typedef enum {
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
     HKGirlFontLabel* _rewardCoinLabel;
+    UIImage* _originAvatar;
+    BOOL _isBlackAndWhite;
     
 }
 
@@ -67,6 +69,7 @@ typedef enum {
                level:(int)level 
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
+- (void)setGrayAvatar:(BOOL)isGray;
 - (void)stopReciprocol;
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration;

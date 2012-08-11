@@ -745,3 +745,10 @@
 
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "猜猜画画美图";
+
+"kFeedbackTips" = "欢迎加入猜猜画画玩家QQ群:228119679, 关注官方微博 @猜猜画画手机版";
+
+"kPlayEnd" = "结束播放";
+
+"kCommitOpusTitle" = "提交作品";
+"kCommitOpusMessage" = "你确定要提交作品吗？";

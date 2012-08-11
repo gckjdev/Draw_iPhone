@@ -73,6 +73,7 @@
 - (void)show
 {
     _showDraw = YES;
+    self.status = Stop;
     [self setNeedsDisplay];
 }
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play

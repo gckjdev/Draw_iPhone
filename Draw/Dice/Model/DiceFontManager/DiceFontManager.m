@@ -42,7 +42,7 @@ static DiceFontManager *_defaultManager = nil;
 - (id)init
 {
     if (self = [super init]) {
-        if ([DeviceDetection isRetinaDisplay]) {
+        if ([DeviceDetection isOS5]) {
             self.fontName = HKGIRL_FONT;
             [[FontManager sharedManager] loadFont:_fontName];
         }else {

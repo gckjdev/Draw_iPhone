@@ -16,6 +16,7 @@
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "HKGirlFontLabel.h"
+#import "UIImage+FiltrrCompositions.h"
 
 #define PROGRESS_UPDATE_TIME    0.01
 
@@ -108,8 +109,8 @@
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
-        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:15];
-        [_rewardCoinLabel setTextColor:[UIColor blackColor]];
+        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:13];
+        [_rewardCoinLabel setTextColor:[UIColor whiteColor]];
         [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
         [_rewardView addSubview:_rewardCoinView];
@@ -211,7 +212,6 @@
         return;
     }
     [self setProgress:_currentProgress];
-    
 }
 
 - (void)clickOnAvatar
@@ -238,6 +238,8 @@
         [imageView setUrl:[NSURL URLWithString:url]];
         [GlobalGetImageCache() manage:imageView];
     }
+    _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)setUrlString:(NSString *)urlString 
@@ -249,6 +251,8 @@
 {
     [self setAvatarUrl:urlString gender:gender];
     [self setUserId:userId];
+    _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)rewardCoins:(int)coinsCount 
@@ -256,7 +260,34 @@
 {
     _rewardView.hidden = NO;
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
-    [_rewardView.layer addAnimation:[AnimationManager raiseAndDismissFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -_rewardView.frame.size.height) duration:duration] forKey:@"popReward"];
+    
+    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
+    CAAnimation* raise = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -3*_rewardView.frame.size.height) duration:duration*2];
+    CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:duration];
+    disMiss.beginTime = duration;
+    animGroup.animations = [NSArray arrayWithObjects:raise, disMiss, nil];
+    animGroup.removedOnCompletion = NO;
+    animGroup.duration = duration*2;
+    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
+    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
+    animGroup.fillMode             = kCAFillModeForwards;
+    
+    [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
+}
+
+- (void)setGrayAvatar:(BOOL)isGray
+{
+    if (isGray != _isBlackAndWhite) {
+        if (isGray) {
+            _originAvatar = imageView.imageView.image;
+            [self  setImage:[imageView.imageView.image blackAndWhite]];
+        } else {
+            if (_originAvatar) {
+                [self setImage:_originAvatar];
+            }
+        }
+    }
+    _isBlackAndWhite = isGray;
 }
 
 /*
