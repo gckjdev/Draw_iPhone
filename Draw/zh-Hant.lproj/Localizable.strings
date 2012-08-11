@@ -756,8 +756,8 @@
 /*********************** 大话骰子国际化字符串开始 *************************/
 
 "kOpenDice" = "開";
-"kScrambleToOpenDice" = "搶";
-"kWaittingForNextTurn" = "等待下一輪...";
+"kScrambleToOpenDice" = "搶開";
+"kWaittingForNextTurn" = "等待下輪...";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/

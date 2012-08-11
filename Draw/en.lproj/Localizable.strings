@@ -763,7 +763,7 @@
 "kOpenDice" = "Challenge";
 "kScrambleToOpenDice" = "Challenge";
 
-"kWaittingForNextTurn" = "Watting for next turn...";
+"kWaittingForNextTurn" = "Watting...";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/
