@@ -43,6 +43,7 @@
 #import "FacetimeService.h"
 #import "DiceGameService.h"
 #import "DiceFontManager.h"
+#import "WordManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -186,6 +187,7 @@ NSString* GlobalGetTrafficServerURL()
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
 
+    [WordManager unZipFiles];
     
     return YES;
 }

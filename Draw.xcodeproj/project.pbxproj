@@ -777,6 +777,11 @@
 		CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E1A1587242300406BFB /* FeedDetailController.m */; };
 		CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1B1587242300406BFB /* FeedDetailController.xib */; };
 		CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */; };
+		CA82847215D637930016CD43 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846815D637930016CD43 /* ioapi.c */; };
+		CA82847315D637930016CD43 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846A15D637930016CD43 /* mztools.c */; };
+		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
+		CA82847515D637930016CD43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846E15D637930016CD43 /* zip.c */; };
+		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
 		CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA8B3569153D348C00B15CBF /* TraditionalChineseWord.strings */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
@@ -2146,6 +2151,17 @@
 		CA7C7E1A1587242300406BFB /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
 		CA7C7E1B1587242300406BFB /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
 		CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
+		CA82846715D637930016CD43 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		CA82846815D637930016CD43 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		CA82846915D637930016CD43 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		CA82846A15D637930016CD43 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		CA82846B15D637930016CD43 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		CA82846C15D637930016CD43 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		CA82846D15D637930016CD43 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		CA82846E15D637930016CD43 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		CA82846F15D637930016CD43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		CA82847015D637930016CD43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		CA82847115D637930016CD43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		CA8B356A153D348C00B15CBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TraditionalChineseWord.strings; sourceTree = "<group>"; };
 		CA8D602B1531C98400E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CA8D602E1531C99300E016ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default@2x.png"; sourceTree = "<group>"; };
@@ -5119,6 +5135,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA82846515D6378E0016CD43 /* ssziparchive */,
 				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
@@ -5241,6 +5258,33 @@
 				CA04B165159AE4D900D7ACD1 /* UserFeedController~ipad.xib */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA82846515D6378E0016CD43 /* ssziparchive */ = {
+			isa = PBXGroup;
+			children = (
+				CA82846615D637930016CD43 /* minizip */,
+				CA82847015D637930016CD43 /* SSZipArchive.h */,
+				CA82847115D637930016CD43 /* SSZipArchive.m */,
+			);
+			name = ssziparchive;
+			path = "../../Common_iPhone_20/Components/Component-Service/ssziparchive";
+			sourceTree = "<group>";
+		};
+		CA82846615D637930016CD43 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				CA82846715D637930016CD43 /* crypt.h */,
+				CA82846815D637930016CD43 /* ioapi.c */,
+				CA82846915D637930016CD43 /* ioapi.h */,
+				CA82846A15D637930016CD43 /* mztools.c */,
+				CA82846B15D637930016CD43 /* mztools.h */,
+				CA82846C15D637930016CD43 /* unzip.c */,
+				CA82846D15D637930016CD43 /* unzip.h */,
+				CA82846E15D637930016CD43 /* zip.c */,
+				CA82846F15D637930016CD43 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		CA96E264150DD55400292335 /* GameServer */ = {
@@ -6802,6 +6846,11 @@
 				C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */,
 				C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */,
 				C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */,
+				CA82847215D637930016CD43 /* ioapi.c in Sources */,
+				CA82847315D637930016CD43 /* mztools.c in Sources */,
+				CA82847415D637930016CD43 /* unzip.c in Sources */,
+				CA82847515D637930016CD43 /* zip.c in Sources */,
+				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
