@@ -10,7 +10,6 @@
 #import "DiceGameService.h"
 #import "DiceGameSession.h"
 #import "DiceAvatarView.h"
-#import "DicesResultView.h"
 #import "Dice.pb.h"
 #import "AnimationManager.h"
 #import "DiceNotification.h"
@@ -44,6 +43,8 @@
 @end
 
 @implementation DiceGamePlayController
+@synthesize resultDiceImageView = _resultDiceImageView;
+@synthesize resultHolderView = _resultHolderView;
 
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
@@ -59,6 +60,7 @@
 @synthesize popResultView = _popResultView;
 @synthesize rewardCoinLabel = _rewardCoinLabel;
 @synthesize wildsFlagButton = _wildsFlagButton;
+@synthesize resultDiceCountLabel = _resultDiceCountLabel;
 @synthesize diceSelectedView = _diceSelectedView;
 @synthesize enumerator = _enumerator;
 
@@ -83,6 +85,9 @@
     
     
     [_wildsFlagButton release];
+    [_resultDiceCountLabel release];
+    [_resultDiceImageView release];
+    [_resultHolderView release];
     [super dealloc];
 }
 
@@ -106,6 +111,8 @@
     [super viewDidLoad];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
+    
+    self.resultHolderView.hidden = YES;
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
@@ -137,6 +144,7 @@
     
     self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
     self.wildsFlagButton.hidden = YES;
+    
 }
 
 
@@ -156,6 +164,9 @@
     [self setPopResultView:nil];
     [self setRewardCoinLabel:nil];
     [self setWildsFlagButton:nil];
+    [self setResultDiceCountLabel:nil];
+    [self setResultDiceImageView:nil];
+    [self setResultHolderView:nil];
     [super viewDidUnload];
 }
 
@@ -208,11 +219,19 @@
 {
     DicesResultView *resultView = [self resultViewOfUser:userId];
     [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice];
-    [resultView showAnimation:self.view.center delegate:self];
+    [resultView showAnimation:self.view.center];
+    resultView.delegate = self;
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+- (void)stayDidStart:(int)resultDiceCount
 {
+    int totalCount = [self.resultDiceCountLabel.text intValue] + resultDiceCount;
+    self.resultDiceCountLabel.text = [NSString stringWithFormat:@"%d", totalCount];
+}
+
+- (void)moveBackDidStop:(int)resultDiceCount
+{
+    
     NSString *userId = [_enumerator nextObject];
     if (userId == nil) {
         [self showUserResult];
@@ -222,9 +241,6 @@
     
     [self showUserDice:userId];
 }
-
-
-
 
 - (void)clearUserResult:(NSString *)userId
 {
@@ -249,13 +265,28 @@
     CAAnimation *stay = [AnimationManager translationAnimationFrom:center to:center duration:7];
     stay.beginTime = 0;
     moveToLeft.removedOnCompletion = NO;
+        
+    //method2:放入动画数组，统一处理！
+    CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
     
-    [self.wildsFlagButton.layer addAnimation:moveToLeft forKey:nil];
+    //设置动画代理
+    animGroup.delegate = nil;
+    
+    animGroup.removedOnCompletion = NO;
+    //        animGroup.beginTime = MOVE_TO_CENTER_DURATION;
+    
+    animGroup.duration            = 10;
+    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
+    animGroup.repeatCount         = 1;
+    animGroup.fillMode            = kCAFillModeForwards;
+    animGroup.animations          = [NSArray arrayWithObjects:moveToLeft, stay, nil];
+    //对视图自身的层添加组动画
+    [self.wildsFlagButton.layer addAnimation:animGroup forKey:@""];
 }
 
 - (void)showGameResult
 {
-    [self moveWildsFlagButton];
+//    [self moveWildsFlagButton];
     [self showAllUserDices];
 }
 
@@ -561,6 +592,7 @@
 
 - (void)rollDiceBegin
 {
+    self.resultHolderView.hidden = YES;
     [self clearGameResult];
 
     [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  startDice:1];
@@ -706,6 +738,10 @@
     [self hideAllBellViews];
     self.myDiceListHolderView.hidden = YES;
     
+    self.resultDiceCountLabel.text = @"0";
+    self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
+    self.resultHolderView.hidden = NO;
+    
     // Show view.
     [self showGameResult];
 }
@@ -791,8 +827,7 @@
 //    
 //    [_popupViewManager popupOpenDiceViewWithOpenType:0 atView:[self selfAvatarView] inView:self.view duration:5 pointDirection:PointDirectionAuto];
     
-    [self showGameResult];
-
+    self.resultDiceCountLabel.text = @"22";
 }
 
 //- (NSArray *)genDiceListStartWith:(int)start end:(int)end

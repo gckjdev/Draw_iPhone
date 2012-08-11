@@ -393,7 +393,7 @@ NSString* GlobalGetTrafficServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    [self.homeController clickShare:nil];
+    [self.homeController enterShareFromWeixin];
 }
 
 -(void) onResp:(BaseResp*)resp

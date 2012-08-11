@@ -20,7 +20,8 @@
 #import "CommonDialog.h"
 #import "ConfigManager.h"
 #import "FileUtil.h"
-
+#import "WXApi.h"
+#import "WXApiObject.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -62,7 +63,9 @@
 @synthesize titleLabel;
 @synthesize shareAction = _shareAction;
 @synthesize awardCoinTips;
+@synthesize backButton;
 @synthesize selectedPaint = _selectedPaint;
+@synthesize fromWeiXin = _fromWeiXin;
 
 - (void)dealloc {
     PPRelease(_shareAction);
@@ -75,6 +78,7 @@
     PPRelease(selectAllButton);
     PPRelease(selectMineButton);
     PPRelease(awardCoinTips);
+    [backButton release];
     [super dealloc];
 }
 
@@ -148,6 +152,25 @@
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
 {
+    
+    if (self.isFromWeiXin) {
+        WXMediaMessage *message = [WXMediaMessage message];
+        [message setThumbImage:paint.thumbImage];
+        WXImageObject *ext = [WXImageObject object];
+        message.title = NSLS(@"kWXShareImageName");
+        NSString* filePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
+        ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
+        message.mediaObject = ext;
+        
+        GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
+        resp.message = message;
+        resp.bText = NO;
+        BOOL flag = [WXApi sendResp:resp];
+        if (flag) {
+            [self.navigationController popViewControllerAnimated:NO];
+        }
+        return;
+    }
     self.selectedPaint = paint;
     UIActionSheet* tips = nil;
     
@@ -309,8 +332,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    PPDebug(@"total paints is %d", self.paints.count);
-    
     int number = 0;
     if (self.paints.count % IMAGES_PER_LINE == 0){
         number = self.paints.count / IMAGES_PER_LINE;
@@ -395,6 +416,13 @@
 
 - (IBAction)deleteAll:(id)sender
 {
+    if (self.isFromWeiXin) {
+        
+        ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
+        [WXApi sendResp:resp];
+        [self.navigationController popViewControllerAnimated:NO];
+        return;
+    }
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention") 
                                                        message:NSLS(@"kDeleteAllWarning") 
                                                          style:CommonDialogStyleDoubleButton 
@@ -418,6 +446,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        [self setFromWeiXin:NO];
+        
         _gifImages = [[NSMutableArray alloc] init];
 
         if ([LocaleUtils isChina]){
@@ -459,13 +490,32 @@
     [self.selectAllButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
     [self.selectMineButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
     [self.selectMineButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
-    [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
-    [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
+
+    if (self.isFromWeiXin) {
+        [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
+        [self.clearButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+        self.backButton.hidden = YES;
+        self.awardCoinTips.hidden = YES;
+        self.titleLabel.text = NSLS(@"kShareToWeiXinTitle");
+        
+        //update the table view frame
+        CGFloat x = self.dataTableView.frame.origin.x;
+        CGFloat y = self.dataTableView.frame.origin.y;
+        CGFloat width = self.dataTableView.frame.size.width;
+        CGFloat height = self.dataTableView.frame.size.height;
+        CGFloat ny = self.selectAllButton.frame.origin.y  + selectAllButton.frame.size.height * 1.2 ;
+        CGFloat nHeight = height + (y - ny);
+        
+        [self.dataTableView setFrame:CGRectMake(x, ny, width, nHeight)];
+        
+        
+    }else{
+        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+        [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
+        self.titleLabel.text = NSLS(@"kShareTitle");
+    }
 
     [self selectAll:self.selectAllButton];
-    // Do any additional setup after loading the view from its nib.
-    self.titleLabel.text = NSLS(@"kShareTitle");
-    
 }
 
 - (void)viewDidUnload
@@ -475,6 +525,7 @@
     [self setSelectAllButton:nil];
     [self setSelectMineButton:nil];
     [self setAwardCoinTips:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
