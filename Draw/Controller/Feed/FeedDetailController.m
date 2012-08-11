@@ -193,7 +193,7 @@
     if (self.drawView.tag == SHOW_VIEW_TAG_SMALL) {
         [self.drawView show];        
     }else{
-        double speed = [DrawAction calculateSpeed:self.drawView.drawActionList defaultSpeed:1.0/30.0 maxSecond:30];
+        double speed = [DrawAction calculateSpeed:self.drawView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
         self.drawView.playSpeed = speed;
         [self.drawView play];
     }

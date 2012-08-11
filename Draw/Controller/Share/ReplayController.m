@@ -45,6 +45,7 @@
 
 - (IBAction)clickPlayEndButton:(id)sender {
     [self.replayView show];
+    [self.replayView setShowPenHidden:YES];
     self.playEndButton.hidden = YES;
 }
 
@@ -135,9 +136,13 @@
     [_replayView setDrawActionList:actionList];
     _replayView.backgroundColor = [UIColor whiteColor];
     _replayView.tag = REPLAY_TAG;
+    
+    double speed = [DrawAction calculateSpeed:self.replayView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
+    self.replayView.playSpeed = speed;
+
+    
     if (_replayForCreateGif){
         _replayView.delegate = self;
-        _replayView.playSpeed = 0.01;
         [self.shareButton setHidden:YES];
         [self.backButton setHidden:YES];
     }
