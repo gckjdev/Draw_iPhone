@@ -514,7 +514,6 @@
                        opusId:(NSString *)opusId 
                    resultCode:(NSInteger)resultCode
 {
-    [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];   
     [self dataSourceDidFinishLoadingMoreData];
     if (resultCode == 0) {
@@ -530,7 +529,8 @@
             }
             if ([feedList count] != 0) {
                 [array addObjectsFromArray:feedList];
-            }            
+            }      
+            self.dataList = array;
         }
         [self.dataTableView reloadData];
         _startIndex += count;

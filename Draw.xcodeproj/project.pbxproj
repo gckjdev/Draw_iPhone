@@ -218,6 +218,9 @@
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
 		C24D34A715AE86EA00CFC5A0 /* mike_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */; };
 		C24D34A915AEA95400CFC5A0 /* wood_shop_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24D34A815AEA95400CFC5A0 /* wood_shop_bg@2x.png */; };
+		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
+		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
+		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
 		C2615A831591C17B00CEEC66 /* h_chat@@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A751591C17B00CEEC66 /* h_chat@@2x.png */; };
 		C2615A841591C17B00CEEC66 /* h_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A761591C17B00CEEC66 /* h_coin@2x.png */; };
 		C2615A851591C17B00CEEC66 /* h_draw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2615A771591C17B00CEEC66 /* h_draw@2x.png */; };
@@ -1246,6 +1249,12 @@
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
 		C24D34A615AE86EA00CFC5A0 /* mike_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mike_pen@2x.png"; sourceTree = "<group>"; };
 		C24D34A815AEA95400CFC5A0 /* wood_shop_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_shop_bg@2x.png"; sourceTree = "<group>"; };
+		C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtrr.h"; sourceTree = "<group>"; };
+		C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtrr.m"; sourceTree = "<group>"; };
+		C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FiltrrCompositions.h"; sourceTree = "<group>"; };
+		C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FiltrrCompositions.m"; sourceTree = "<group>"; };
+		C25C079C15D5F11700E8DD8D /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		C2615A751591C17B00CEEC66 /* h_chat@@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_chat@@2x.png"; path = "Images/h_chat@@2x.png"; sourceTree = "<group>"; };
 		C2615A761591C17B00CEEC66 /* h_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_coin@2x.png"; path = "Images/h_coin@2x.png"; sourceTree = "<group>"; };
 		C2615A771591C17B00CEEC66 /* h_draw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_draw@2x.png"; path = "Images/h_draw@2x.png"; sourceTree = "<group>"; };
@@ -2942,6 +2951,19 @@
 			name = pic_template;
 			sourceTree = "<group>";
 		};
+		C25C079715D5F11700E8DD8D /* Filtrr */ = {
+			isa = PBXGroup;
+			children = (
+				C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */,
+				C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */,
+				C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */,
+				C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */,
+				C25C079C15D5F11700E8DD8D /* UIImage+Scale.h */,
+				C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */,
+			);
+			path = Filtrr;
+			sourceTree = "<group>";
+		};
 		C2615A741591C13100CEEC66 /* frontpage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3768,6 +3790,7 @@
 		CA103D691509A56100F60C03 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				C25C079715D5F11700E8DD8D /* Filtrr */,
 				CA103D6A1509A56100F60C03 /* UIImageExt.h */,
 				CA103D6B1509A56100F60C03 /* UIImageExt.m */,
 				CA103D6C1509A56100F60C03 /* UIImageUtil.h */,
@@ -6776,6 +6799,9 @@
 				CA18D40B15CFB31D001B421A /* DrawToUserFeed.m in Sources */,
 				A45BF5E215D231A000CDD5C2 /* DiceFontManager.m in Sources */,
 				A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */,
+				C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */,
+				C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */,
+				C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
