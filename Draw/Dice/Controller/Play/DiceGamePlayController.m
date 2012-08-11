@@ -261,7 +261,10 @@
 
 - (void)clearGameResult
 {
+    _usingWilds = NO;
+    self.userWildsButton.selected = NO;
     [self dismissAllPopupViews];
+
     
     for (int index = 1 ; index <= 6; index ++) {
         DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
@@ -778,8 +781,6 @@
     // Hidden views.
     [self hideAllBellViews];
     self.myDiceListHolderView.hidden = YES;
-    
-    _usingWilds = NO;
     
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];

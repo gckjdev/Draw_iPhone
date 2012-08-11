@@ -92,15 +92,14 @@
       lastCallDiceCount:(int)lastCallDiceCount
        playingUserCount:(int)playingUserCount;
 {
-    _lastCallDice = lastCallDice;
-
-    if (lastCallDice == 1) {
-        _start = lastCallDiceCount ++;
-    }else {
-        _start = lastCallDiceCount;
-    }
+    _lastCallDice = (lastCallDice < 1 || lastCallDice > 6) ? 1 : lastCallDice;
     
+    _start = (lastCallDice == 1) ? (lastCallDiceCount + 1) : lastCallDiceCount;
     _end = playingUserCount * 5;
+    
+    // For protest
+    _start = (_start < 1) ? 1 : _start;
+    _end = (_end < 7) ? 7 : _end;
     
     [self setStart];
 }
@@ -108,9 +107,6 @@
 
 - (void)setStart
 {
-    _start = (_start < 1) ? 1 : _start;
-    _end = (_end < 7) ? 7 : _end;
-    
     int pageCount = (_end - _start + 1) / 7 + ((((_end - _start + 1) % 7) == 0) ? 0 : 1);
     if (pageCount <=  2) {
         pageCount = 1;
@@ -281,7 +277,11 @@
         if (_lastCallDice == 1) {
             diceList = [self genDiceListStartWith:1 end:6];
         }else {
-            NSArray *array1 = [NSArray arrayWithObjects:[NSNumber numberWithInt:1], nil];
+            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+            [diceBuilder setDice:1];
+            [diceBuilder setDiceId:1];
+            PBDice *dice = [diceBuilder build];
+            NSArray *array1 = [NSArray arrayWithObjects:dice, nil];
             NSArray *array2 = [self genDiceListStartWith:(_lastCallDice + 1) end:6];
             diceList = [array1 arrayByAddingObjectsFromArray:array2];
         }
