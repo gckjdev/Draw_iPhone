@@ -693,6 +693,8 @@
 "kReceiveFlowerMessage" = "瘋狂的粉絲給你送了朵鮮花，你額外得到%d點經驗，%d個金幣";
 
 "kCoinsForShareToFriends" = "+%d金幣";
+"kAddCoins" = "+%d金幣";
+"kFollowWeibo" = "關注官方微博";
 "kGetCoinsByShareToFriends" = "分享微博成功，獲得了%d個金幣!";
 
 "kSendAFlower" = "給作者贈送了一朵鮮花!";

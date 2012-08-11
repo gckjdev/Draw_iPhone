@@ -791,4 +791,15 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [builder build];
 }
 
+#define FOLLOW_WEIBO @"FOLLOW_WEIBO"
+- (BOOL)hasFollowWeibo
+{
+   return [[NSUserDefaults standardUserDefaults] boolForKey:FOLLOW_WEIBO];
+}
+- (void)followWeibo
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FOLLOW_WEIBO];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

@@ -146,4 +146,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (PBGameUser*)toPBGameUser;
 
+- (BOOL)hasFollowWeibo;
+- (void)followWeibo;
+
 @end

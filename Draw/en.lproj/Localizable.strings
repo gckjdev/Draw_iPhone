@@ -701,6 +701,8 @@
 "kReceiveFlowerMessage" = "Someone have sent you a flower, your experience increase by %d, your coins decrease by %d";
 
 "kCoinsForShareToFriends" = "+%d coins";
+"kAddCoins" = "+%d coins";
+"kFollowWeibo" = "Follow Weibo";
 "kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
 
 "kSendAFlower" = "Send a flower to painter!";
