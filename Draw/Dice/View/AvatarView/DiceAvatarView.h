@@ -56,7 +56,7 @@ typedef enum {
 
 - (void)setImage:(UIImage *)image;
 //- (void)setAvatarFrame:(CGRect)frame;
-//- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setProgress:(CGFloat)progress;
 - (void)setProgressHidden:(BOOL)hidden;
 - (void)setAvatarStyle:(AvatarViewStyle)style;
@@ -69,8 +69,7 @@ typedef enum {
                level:(int)level 
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
-- (void)setIsBlackAndWhite:(BOOL)isBlackAndWhite;
-- (BOOL)isBlackAndWhite;
+- (void)setGrayAvatar:(BOOL)isGray;
 - (void)stopReciprocol;
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration;

@@ -37,7 +37,6 @@
     [_rewardCoinLabel release];
     [_rewardCoinView release];
     [_rewardView release];
-    [_originAvatar release];
     [super dealloc];
 }
 
@@ -239,6 +238,8 @@
         [imageView setUrl:[NSURL URLWithString:url]];
         [GlobalGetImageCache() manage:imageView];
     }
+    _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)setUrlString:(NSString *)urlString 
@@ -251,6 +252,7 @@
     [self setAvatarUrl:urlString gender:gender];
     [self setUserId:userId];
     _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)rewardCoins:(int)coinsCount 
@@ -273,10 +275,10 @@
     [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
 }
 
-- (void)setIsBlackAndWhite:(BOOL)isBlackAndWhite
+- (void)setGrayAvatar:(BOOL)isGray
 {
-    if (isBlackAndWhite != _isBlackAndWhite) {
-        if (isBlackAndWhite) {
+    if (isGray != _isBlackAndWhite) {
+        if (isGray) {
             _originAvatar = imageView.imageView.image;
             [self  setImage:[imageView.imageView.image blackAndWhite]];
         } else {
@@ -285,12 +287,7 @@
             }
         }
     }
-    _isBlackAndWhite = isBlackAndWhite;
-}
-
-- (BOOL)isBlackAndWhite
-{
-    return _isBlackAndWhite;
+    _isBlackAndWhite = isGray;
 }
 
 /*
