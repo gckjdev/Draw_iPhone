@@ -210,6 +210,10 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
 }
 
++ (int)getFollowWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:100];
+}
 + (int)flowerAwardFordLevelUp
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
