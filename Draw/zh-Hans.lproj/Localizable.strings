@@ -709,6 +709,9 @@
 "kReceiveFlowerMessage" = "疯狂的粉丝给你送了朵鲜花，你额外得到%d点经验，%d个金币";
 
 "kCoinsForShareToFriends" = "+%d金币";
+"kAddCoins" = "+%d金币";
+"kFollowWeibo" = "关注官方微博";
+
 "kGetCoinsByShareToFriends" = "分享微博成功，获得了%d个金币!";
 
 "kSendAFlower" = "给作者赠送了一朵鲜花!";
