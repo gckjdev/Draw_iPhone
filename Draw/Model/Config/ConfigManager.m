@@ -43,19 +43,16 @@
 + (NSString*)getTrafficAPIServerURL
 {
     if ([LocaleUtils isChina]){
-        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_CN" defaultValue:@"http://58.215.189.146:8100/api/i?"];    
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_CN" defaultValue:@"http://www.place100.com:8100/api/i?"];    
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_EN" defaultValue:@"http://58.215.189.146:8100/api/i?"];    
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_EN" defaultValue:@"http://www.place100.com:8100/api/i?"];    
     }
 }
 
 + (NSString*)getAPIServerURL
 {
-    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://58.215.189.146:8001/api/i?"];    
-    
-//    NSString* url = [MobClick getConfigParams:@"API_SERVER_URL"];
-//    return (url == nil) ? @"http://58.215.189.146:8001/api/i?" : url;
+    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://www.you100.me:8001/api/i?"];        
 }
 
 
@@ -86,7 +83,7 @@
 
 + (NSString*)defaultChineseServer
 {
-    return [MobClickUtils getStringValueByKey:@"CHINESE_SERVER_ADDRESS" defaultValue:@"58.215.190.75"];
+    return [MobClickUtils getStringValueByKey:@"CHINESE_SERVER_ADDRESS" defaultValue:@"www.place100.com"];
 }
 
 + (int)defaultEnglishPort
@@ -220,15 +217,15 @@
 
 + (NSString*)getRecommendAppLinkZh
 {
-    return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_zh.txt"];
+    return [MobClickUtils getStringValueByKey:@"ENGLISH_RECOMMEND_APP" defaultValue:@"http://you100.me:8080/dat/app_zh.txt"];
 }
 + (NSString*)getRecommendAppLinkZht
 {
-    return [MobClickUtils getStringValueByKey:@"CHINESE_SIMPLIFY_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_zht.txt"];
+    return [MobClickUtils getStringValueByKey:@"CHINESE_SIMPLIFY_APP" defaultValue:@"http://you100.me:8080/dat/app_zht.txt"];
 }
 + (NSString*)getRecommendAppLinkEn
 {
-    return [MobClickUtils getStringValueByKey:@"CHINESE_TRADITIONAL_APP" defaultValue:@"http://58.215.189.146:8080/dat/app_en.txt"];
+    return [MobClickUtils getStringValueByKey:@"CHINESE_TRADITIONAL_APP" defaultValue:@"http://you100.me:8080/dat/app_en.txt"];
 }
 
 + (NSString*)getRecommendAppLink

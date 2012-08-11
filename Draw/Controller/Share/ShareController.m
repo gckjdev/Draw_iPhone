@@ -360,13 +360,13 @@
     int row = indexPath.row;
     int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (row == number - 1) {
-        PPDebug(@"<ShareController> scroll to end");
+//        PPDebug(@"<ShareController> scroll to end");
         if (self.selectAllButton.selected && _allHasMoreData) {
             [self loadPaintsOnlyMine:NO];            
-        PPDebug(@"<ShareController> scroll to end, load more all data");
+//        PPDebug(@"<ShareController> scroll to end, load more all data");
         }else if(self.selectMineButton.selected && _myHasMoreData){
             [self loadPaintsOnlyMine:YES];            
-        PPDebug(@"<ShareController> scroll to end, load more my data");
+//        PPDebug(@"<ShareController> scroll to end, load more my data");
         }
     }
 }
