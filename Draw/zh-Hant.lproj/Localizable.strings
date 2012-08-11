@@ -725,12 +725,6 @@
 
 "kParsingData" = "解析數據中...";
 
-// Dice game
-
-"kOpenDice" = "開";
-"kScrambleToOpenDice" = "搶";
-"kLatestFeed" = "最新";
-
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "猜猜畫畫美圖";
 
@@ -739,3 +733,12 @@
 
 "kCommitOpusTitle" = "提交作品";
 "kCommitOpusMessage" = "你確定要提交作品嗎？";
+"kGuessDetailStat" = "猜過:%d | 猜對:%d | 鮮花:%d | 番茄:%d";
+"kLatestFeed" = "最新";
+
+// Dice game
+
+"kOpenDice" = "開";
+"kScrambleToOpenDice" = "搶";
+
+

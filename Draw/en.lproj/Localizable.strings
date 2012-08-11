@@ -540,7 +540,8 @@
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
 
 "kNoGuess" = "Guess 0";
-"kGuessStat" = "Guess %d, Correct %d";
+"kGuessStat" = "Guess: %d, Correct %d";
+"kGuessDetailStat" = "Guess:%d | Correct:%d | Flower:%d | Tomato:%d";
 
 "kGetFeedListFail" = "Fetch timeline fail. Please try it again later.";
 
@@ -735,11 +736,6 @@
 
 "kParsingData" = "Parsing data...";
 
-// Dice game
-
-"kOpenDice" = "Challenge";
-"kScrambleToOpenDice" = "Challenge";
-
 "kLatestFeed" = "Latest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
@@ -751,3 +747,10 @@
 
 "kCommitOpusTitle"  = "Submit drawing";
 "kCommitOpusMessage"  = "Are you sure to submit the drawing?";
+
+
+// Dice game
+
+"kOpenDice" = "Challenge";
+"kScrambleToOpenDice" = "Challenge";
+
