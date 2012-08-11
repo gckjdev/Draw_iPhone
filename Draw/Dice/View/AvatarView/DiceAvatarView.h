@@ -67,6 +67,7 @@ typedef enum {
                level:(int)level 
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
+- (void)setIsColorful:(BOOL)isColorful;
 - (void)stopReciprocol;
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration;
