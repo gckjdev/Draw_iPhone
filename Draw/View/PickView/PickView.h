@@ -47,6 +47,7 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
 - (void)startRunInAnimation;
 */
+- (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
            animated:(BOOL)animated;

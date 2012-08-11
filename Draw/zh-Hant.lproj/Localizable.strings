@@ -9,6 +9,8 @@
  
  */
 
+/*********************** 猜猜画画国际化字符串开始 *************************/
+
 "kStart" = "開始遊戲";
 
 "kShop" = "商店";
@@ -725,11 +727,10 @@
 
 "kParsingData" = "解析數據中...";
 
-// Dice game
-
-"kOpenDice" = "開";
-"kScrambleToOpenDice" = "搶";
 "kLatestFeed" = "最新";
+
+"kShareToWeiXinTitle" = "分享到微信";
+"kWXShareImageName" = "猜猜畫畫美圖";
 
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "猜猜畫畫美圖";
@@ -739,3 +740,26 @@
 
 "kCommitOpusTitle" = "提交作品";
 "kCommitOpusMessage" = "你確定要提交作品嗎？";
+"kGuessDetailStat" = "猜過:%d | 猜對:%d | 鮮花:%d | 番茄:%d";
+"kLatestFeed" = "最新";
+
+
+/*********************** 猜猜画画国际化字符串结束 *************************/
+
+
+
+
+
+
+
+
+/*********************** 大话骰子国际化字符串开始 *************************/
+
+"kOpenDice" = "開";
+"kScrambleToOpenDice" = "搶";
+"kWaittingForNextTurn" = "等待下一輪...";
+
+
+/*********************** 大话骰子国际化字符串结束 *************************/
+
+

@@ -9,6 +9,8 @@
  
  */
 
+/*********************** 猜猜画画国际化字符串开始 *************************/
+
 "kStart" = "在线猜画";
 
 "kShop" = "商店";
@@ -545,6 +547,10 @@
 
 "kNoGuess" = "没有人猜";
 
+//"kGuessDetailStat" = "猜过:%d | 猜对:%d | 评论:%d | 鲜花:%d | 番茄:%d | 保存:%d";
+
+"kGuessDetailStat" = "猜过:%d | 猜对:%d | 鲜花:%d | 番茄:%d";
+
 "kGuessStat" = "%d人猜过，%d人猜中";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
@@ -736,12 +742,11 @@
 
 "kParsingData" = "解析数据中...";
 
-// Dice game
-
-"kOpenDice" = "开";
-"kScrambleToOpenDice" = "抢开";
-
 "kLatestFeed" = "最新";
+
+"kShareToWeiXinTitle" = "分享到微信";
+"kWXShareImageName" = "猜猜画画美图";
+
 
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "猜猜画画美图";
@@ -752,3 +757,24 @@
 
 "kCommitOpusTitle" = "提交作品";
 "kCommitOpusMessage" = "你确定要提交作品吗？";
+
+"kLatestFeed" = "最新";
+
+/*********************** 猜猜画画国际化字符串结束 *************************/
+
+
+
+
+
+
+
+
+/*********************** 大话骰子国际化字符串开始 *************************/
+
+"kOpenDice" = "开";
+"kScrambleToOpenDice" = "抢开";
+"kWaittingForNextTurn" = "等待下一轮...";
+
+
+/*********************** 大话骰子国际化字符串结束 *************************/
+

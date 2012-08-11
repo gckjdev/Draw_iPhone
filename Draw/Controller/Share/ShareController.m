@@ -281,7 +281,7 @@
             _allOffset --;
             [_allPaints removeObject:currentPaint];
         }
-        result = [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
+        [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
         self.selectedPaint = nil;
     }
     else if (dialog.tag == DELETE_ALL){
@@ -289,7 +289,7 @@
         _myOffset = 0;
         [_allPaints removeAllObjects];
         [_myPaints removeAllObjects];
-        result = [[MyPaintManager defaultManager] deleteAllPaints:NO];
+        [[MyPaintManager defaultManager] deleteAllPaints:NO];
         [self loadPaintsOnlyMine:NO];
         
     } else if (dialog.tag == DELETE_ALL_MINE) {
@@ -297,7 +297,7 @@
         _myOffset = 0;
         [_allPaints removeAllObjects];
         [_myPaints removeAllObjects];
-        result = [[MyPaintManager defaultManager] deleteAllPaints:YES];
+        [[MyPaintManager defaultManager] deleteAllPaints:YES];
         [self loadPaintsOnlyMine:NO];
     }
     [self reloadView];

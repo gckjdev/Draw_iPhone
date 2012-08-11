@@ -51,6 +51,7 @@ static DiceGameService* _defaultService;
 - (void)handleRollDiceBegin:(GameMessage*)message
 {
     [self.diceSession reset];
+    self.diceSession.isMeAByStander = NO;
 
     NSMutableArray* newUserList = [NSMutableArray array];
     
@@ -184,24 +185,24 @@ static DiceGameService* _defaultService;
 }
 
 
-- (void)callDice:(int)dice count:(int)count
-{
-    if (dice == 1) {
-        [self callDice:dice count:count wilds:YES];
-        return;
-    }
-    
-    // Update Model.
-    self.diceSession.lastCallDiceUserId = self.user.userId;
-    self.diceSession.lastCallDice = dice;
-    self.diceSession.lastCallDiceCount = count;
-    
-    // Send command.
-    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
-                                                   sessionId:self.session.sessionId
-                                                        dice:self.lastCallDice
-                                                       count:self.lastCallDiceCount]; 
-}
+//- (void)callDice:(int)dice count:(int)count
+//{
+//    if (dice == 1) {
+//        [self callDice:dice count:count wilds:YES];
+//        return;
+//    }
+//    
+//    // Update Model.
+//    self.diceSession.lastCallDiceUserId = self.user.userId;
+//    self.diceSession.lastCallDice = dice;
+//    self.diceSession.lastCallDiceCount = count;
+//    
+//    // Send command.
+//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
+//                                                   sessionId:self.session.sessionId
+//                                                        dice:self.lastCallDice
+//                                                       count:self.lastCallDiceCount]; 
+//}
 
 - (NSString *)lastCallUserId
 {

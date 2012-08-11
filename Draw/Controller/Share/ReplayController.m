@@ -124,8 +124,8 @@
     CGFloat xScale = self.showHolderView.frame.size.width/DRAW_VIEW_FRAME.size.width;
     CGFloat yScale = self.showHolderView.frame.size.height/DRAW_VIEW_FRAME.size.height;
     
-    self.replayView = [[ShowDrawView alloc]initWithFrame:
-                                self.showHolderView.frame];
+    self.replayView = [[[ShowDrawView alloc]initWithFrame:
+                                self.showHolderView.frame] autorelease];
     if (self.replayForCreateGif) {
         [_replayView setShowPenHidden:YES];
     }
