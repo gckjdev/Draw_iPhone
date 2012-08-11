@@ -542,7 +542,8 @@
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
 
 "kNoGuess" = "Guess 0";
-"kGuessStat" = "Guess %d, Correct %d";
+"kGuessStat" = "Guess: %d, Correct %d";
+"kGuessDetailStat" = "Guess:%d | Correct:%d | Flower:%d | Tomato:%d";
 
 "kGetFeedListFail" = "Fetch timeline fail. Please try it again later.";
 
@@ -742,6 +743,13 @@
 "kShareToWeiXinTitle" = "Share to WeiXin";
 "kWXShareImageName" = "Drawlively Image";
 
+"kFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @猜猜画画手机版";
+
+"kPlayEnd" = "End";
+
+"kCommitOpusTitle"  = "Submit drawing";
+"kCommitOpusMessage"  = "Are you sure to submit the drawing?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -756,9 +764,6 @@
 "kScrambleToOpenDice" = "Challenge";
 
 "kWaittingForNextTurn" = "Watting for next turn...";
-
-
-
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/

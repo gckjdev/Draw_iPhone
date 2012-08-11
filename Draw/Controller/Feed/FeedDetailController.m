@@ -119,14 +119,21 @@
 
 - (void)updateGuessDesc:(DrawFeed *)feed
 {
-    if (feed.guessTimes == 0) {
-        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
-    }else{
-        NSInteger guessTimes = feed.guessTimes;
-        NSInteger correctTimes = feed.correctTimes;
-        NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
-        [self.guessStatLabel setText:desc];        
-    }
+//    if (feed.guessTimes == 0) {
+//        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
+//    }else{
+//    猜画:3 | 猜对:2 | 评论:2 | 鲜花:2 | 番茄:1 | 保存:1
+    NSInteger guessTimes = feed.guessTimes;
+    NSInteger correctTimes = feed.correctTimes;
+//    NSInteger commentTimes = feed.correctTimes;
+    NSInteger flowerTimes = feed.flowerTimes;
+    NSInteger tomatoTimes = feed.tomatoTimes;
+//    NSInteger saveTimes = feed.saveTimes;
+    
+
+    NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessDetailStat"),guessTimes, correctTimes,flowerTimes,tomatoTimes];
+    [self.guessStatLabel setText:desc];        
+//    }
 }
 
 #define ACTION_TAG_GUESS 2012070201
@@ -134,6 +141,11 @@
 
 - (void)updateActionButton:(DrawFeed *)feed
 {
+    if (feed.drawData == nil) {
+        self.actionButton.hidden = YES;
+        return;
+    }
+    
     ShareImageManager* imageManager = [ShareImageManager defaultManager];
     self.actionButton.hidden = NO;
     [self.actionButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
@@ -188,7 +200,7 @@
     if (self.drawView.tag == SHOW_VIEW_TAG_SMALL) {
         [self.drawView show];        
     }else{
-        double speed = [DrawAction calculateSpeed:self.drawView.drawActionList defaultSpeed:1.0/30.0 maxSecond:30];
+        double speed = [DrawAction calculateSpeed:self.drawView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
         self.drawView.playSpeed = speed;
         [self.drawView play];
     }

@@ -93,6 +93,23 @@
     return _drawFeed.correctTimes;
 }
 
+- (NSInteger)matchTimes
+{
+    return _drawFeed.matchTimes;
+}
+- (NSInteger)saveTimes
+{
+    return _drawFeed.saveTimes;
+}
+- (NSInteger)flowerTimes
+{
+    return _drawFeed.flowerTimes;
+}
+- (NSInteger)tomatoTimes
+{
+    return _drawFeed.tomatoTimes;
+}
+
 - (FeedUser *)author
 {
     return self.drawFeed.author;

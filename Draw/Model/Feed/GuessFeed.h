@@ -26,4 +26,9 @@
 - (NSInteger)guessTimes;
 - (NSInteger)correctTimes;
 
+- (NSInteger)matchTimes;
+- (NSInteger)saveTimes;
+- (NSInteger)flowerTimes;
+- (NSInteger)tomatoTimes;
+
 @end

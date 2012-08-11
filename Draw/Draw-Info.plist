@@ -64,5 +64,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>CFWordBaseVersion</key>
+	<integer>1</integer>
 </dict>
 </plist>

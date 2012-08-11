@@ -238,6 +238,8 @@
         [imageView setUrl:[NSURL URLWithString:url]];
         [GlobalGetImageCache() manage:imageView];
     }
+    _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)setUrlString:(NSString *)urlString 
@@ -249,6 +251,8 @@
 {
     [self setAvatarUrl:urlString gender:gender];
     [self setUserId:userId];
+    _isBlackAndWhite = NO;
+    _originAvatar = nil;
 }
 
 - (void)rewardCoins:(int)coinsCount 
@@ -271,13 +275,19 @@
     [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
 }
 
-- (void)setIsColorful:(BOOL)isColorful
+- (void)setGrayAvatar:(BOOL)isGray
 {
-    if (isColorful) {
-        
-    } else {
-        [self setImage:[imageView.imageView.image blackAndWhite]];
+    if (isGray != _isBlackAndWhite) {
+        if (isGray) {
+            _originAvatar = imageView.imageView.image;
+            [self  setImage:[imageView.imageView.image blackAndWhite]];
+        } else {
+            if (_originAvatar) {
+                [self setImage:_originAvatar];
+            }
+        }
     }
+    _isBlackAndWhite = isGray;
 }
 
 /*
