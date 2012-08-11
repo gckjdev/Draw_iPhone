@@ -37,6 +37,7 @@
     [_rewardCoinLabel release];
     [_rewardCoinView release];
     [_rewardView release];
+    [_originAvatar release];
     [super dealloc];
 }
 
@@ -249,6 +250,7 @@
 {
     [self setAvatarUrl:urlString gender:gender];
     [self setUserId:userId];
+    _isBlackAndWhite = NO;
 }
 
 - (void)rewardCoins:(int)coinsCount 
@@ -271,13 +273,24 @@
     [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
 }
 
-- (void)setIsColorful:(BOOL)isColorful
+- (void)setIsBlackAndWhite:(BOOL)isBlackAndWhite
 {
-    if (isColorful) {
-        
-    } else {
-        [self setImage:[imageView.imageView.image blackAndWhite]];
+    if (isBlackAndWhite != _isBlackAndWhite) {
+        if (isBlackAndWhite) {
+            _originAvatar = imageView.imageView.image;
+            [self  setImage:[imageView.imageView.image blackAndWhite]];
+        } else {
+            if (_originAvatar) {
+                [self setImage:_originAvatar];
+            }
+        }
     }
+    _isBlackAndWhite = isBlackAndWhite;
+}
+
+- (BOOL)isBlackAndWhite
+{
+    return _isBlackAndWhite;
 }
 
 /*
