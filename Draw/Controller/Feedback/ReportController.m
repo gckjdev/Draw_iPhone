@@ -30,6 +30,7 @@
 @synthesize contentText;
 @synthesize contactText;
 @synthesize doneButton;
+@synthesize tips;
 @synthesize lastReport = _lastReport;
 
 #define BUTTON_TAG_NEXT 201204101
@@ -75,7 +76,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self fitKeyboardComeOut];
+//    [self fitKeyboardComeOut];
     
     [doneButton setTag:BUTTON_TAG_NEXT];
     return YES;
@@ -83,7 +84,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self fitKeyboardComeOut];
+//    [self fitKeyboardComeOut];
     [self.doneButton setTag:BUTTON_TAG_DONE];
 }
 
@@ -176,7 +177,7 @@
 - (IBAction)endEditingContact:(id)sender
 {    
     [self.contactText resignFirstResponder];
-    [self resetFrame];
+//    [self resetFrame];
     [self submit:nil];
     
 }
@@ -213,25 +214,38 @@
     [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
-    
+    [self.contentText becomeFirstResponder];
     
     [self.contactText setPlaceholder:NSLS(@"kInput_your_contact")];
+    [self.tips setBackgroundImage:[[ShareImageManager defaultManager] messageImage] forState:UIControlStateNormal];
+    [self.tips.titleLabel setNumberOfLines:2];
+    [self.contentText becomeFirstResponder];
     
     switch (_reportType) {
         case SUBMIT_BUG: {
             [self.reporterTitle setText:NSLS(@"kReport_bug")];
             [self.contentText setText:NSLS(@"kHave_problems?")];
-            
+            [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
         } break;
         case SUBMIT_FEEDBACK: {
             [self.reporterTitle setText:NSLS(@"kAdvices")];
             [self.contentText setText:NSLS(@"kSay something...")];
+            [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
         } break;
         case ADD_WORD: {
             [self.reporterTitle setText:NSLS(@"kAddWords")];
             [self.contactBackground setHidden:YES];
             [self.contactText setHidden:YES];
-            [self.contentText becomeFirstResponder];
+            [self.tips setTitle:NSLS(@"kAddWordsTips") forState:UIControlStateNormal];   
+            
+            CGPoint origin = self.contentText.frame.origin;
+            CGSize size = self.contentText.frame.size;
+            CGFloat height = self.contactText.frame.size.height + self.contactText.frame.origin.y - origin.y;
+            self.contentText.frame = CGRectMake(origin.x, origin.y, size.width, height);
+            self.contentBackground.frame = self.contentText.frame;
+            
+//            [self.tips.titleLabel setFont:[UIFont systemFontOfSize:13]];
+/*  
             
             UILabel* tips = [[UILabel alloc] init ];
             [tips setBackgroundColor:[UIColor clearColor]];
@@ -257,7 +271,7 @@
                 [tipsBackground setFrame:CGRectMake(96, 160, 576, 100)];
             }
             
-            
+       */     
             
         } break;
         default:
@@ -293,6 +307,7 @@
     [self setDoneButton:nil];
     [self setReporterTitle:nil];
     [self setContactBackground:nil];
+    [self setTips:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -309,6 +324,7 @@
     [reporterTitle release];
     [contactBackground release];
     [_lastReport release];
+    [tips release];
     [super dealloc];
 }
 @end
