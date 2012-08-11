@@ -31,6 +31,7 @@
 
 @property(nonatomic,retain)NSMutableDictionary *wordDict;
 @property(nonatomic, assign)LanguageType languageType;
+
 + (WordManager *)defaultManager;
 - (void)addWord:(Word *)word; //when need to update the words, call the method
 - (NSArray *)randDrawWordList; //will return a word list, and the list size is 3
@@ -42,6 +43,7 @@
 + (NSString *)changeToTraditionalChinese:(NSString *)text; 
 + (NSString *)removeSpaceFromString:(NSString *)string;
 - (void)clearWordBaseDictionary;
++ (void)unZipFiles;
 @end
 
 extern WordManager *GlobalGetWordManager();

@@ -347,8 +347,6 @@
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		C2FC052115CD185E00A46ADE /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC052015CD185E00A46ADE /* waiting_user@2x.png */; };
-		CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364415255AE100F29743 /* CN_Words_Dict.plist */; };
-		CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA02364515255AE100F29743 /* EN_Words_Dict.plist */; };
 		CA02B52315AC111800B2A3E2 /* flower_result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA02B52115AC111800B2A3E2 /* flower_result@2x.png */; };
 		CA02B52415AC111800B2A3E2 /* tomato_result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */; };
 		CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
@@ -635,7 +633,6 @@
 		CA1FB7E415307DCB00237D3F /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7E215307DCB00237D3F /* bottom@2x.png */; };
 		CA1FB7E515307DCB00237D3F /* room_mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB7E315307DCB00237D3F /* room_mumber@2x.png */; };
 		CA1FB82B153193D200237D3F /* mumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1FB82A153193D200237D3F /* mumber@2x.png */; };
-		CA202C9C1521C57200B78539 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA202C9B1521C57200B78539 /* words.plist */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
 		CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCD0157CAFFD009C95CB /* ResultController.xib */; };
 		CA22DCED157CB00A009C95CB /* OnlineDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCE0157CB00A009C95CB /* OnlineDrawViewController.m */; };
@@ -777,6 +774,12 @@
 		CA7C7E1C1587242400406BFB /* FeedDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C7E1A1587242300406BFB /* FeedDetailController.m */; };
 		CA7C7E1D1587242400406BFB /* FeedDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1B1587242300406BFB /* FeedDetailController.xib */; };
 		CA7C7E1F1587245100406BFB /* FeedDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */; };
+		CA82847215D637930016CD43 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846815D637930016CD43 /* ioapi.c */; };
+		CA82847315D637930016CD43 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846A15D637930016CD43 /* mztools.c */; };
+		CA82847415D637930016CD43 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846C15D637930016CD43 /* unzip.c */; };
+		CA82847515D637930016CD43 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CA82846E15D637930016CD43 /* zip.c */; };
+		CA82847615D637930016CD43 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CA82847115D637930016CD43 /* SSZipArchive.m */; };
+		CA82849E15D649C10016CD43 /* wordbase.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA82849D15D649C10016CD43 /* wordbase.zip */; };
 		CA8B356B153D348C00B15CBF /* TraditionalChineseWord.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA8B3569153D348C00B15CBF /* TraditionalChineseWord.strings */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D602F1531C9AB00E016ED /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60311531C9AB00E016ED /* name@2x.png */; };
@@ -1438,8 +1441,6 @@
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		C2FC052015CD185E00A46ADE /* waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waiting_user@2x.png"; sourceTree = "<group>"; };
-		CA02364415255AE100F29743 /* CN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CN_Words_Dict.plist; sourceTree = "<group>"; };
-		CA02364515255AE100F29743 /* EN_Words_Dict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EN_Words_Dict.plist; sourceTree = "<group>"; };
 		CA02B52115AC111800B2A3E2 /* flower_result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower_result@2x.png"; sourceTree = "<group>"; };
 		CA02B52215AC111800B2A3E2 /* tomato_result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tomato_result@2x.png"; sourceTree = "<group>"; };
 		CA02B52615AC241800B2A3E2 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
@@ -1923,7 +1924,6 @@
 		CA1FB7E215307DCB00237D3F /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
 		CA1FB7E315307DCB00237D3F /* room_mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_mumber@2x.png"; sourceTree = "<group>"; };
 		CA1FB82A153193D200237D3F /* mumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mumber@2x.png"; sourceTree = "<group>"; };
-		CA202C9B1521C57200B78539 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA22DCD0157CAFFD009C95CB /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
@@ -2146,6 +2146,18 @@
 		CA7C7E1A1587242300406BFB /* FeedDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailController.m; sourceTree = "<group>"; };
 		CA7C7E1B1587242300406BFB /* FeedDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedDetailController.xib; sourceTree = "<group>"; };
 		CA7C7E1E1587245100406BFB /* FeedDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedDetailController~ipad.xib"; sourceTree = "<group>"; };
+		CA82846715D637930016CD43 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		CA82846815D637930016CD43 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		CA82846915D637930016CD43 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		CA82846A15D637930016CD43 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		CA82846B15D637930016CD43 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		CA82846C15D637930016CD43 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		CA82846D15D637930016CD43 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		CA82846E15D637930016CD43 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		CA82846F15D637930016CD43 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		CA82847015D637930016CD43 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		CA82847115D637930016CD43 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		CA82849D15D649C10016CD43 /* wordbase.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = wordbase.zip; sourceTree = "<group>"; };
 		CA8B356A153D348C00B15CBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TraditionalChineseWord.strings; sourceTree = "<group>"; };
 		CA8D602B1531C98400E016ED /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CA8D602E1531C99300E016ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/Default@2x.png"; sourceTree = "<group>"; };
@@ -4849,9 +4861,7 @@
 		CA322140151E0FC00039A384 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CA02364415255AE100F29743 /* CN_Words_Dict.plist */,
-				CA02364515255AE100F29743 /* EN_Words_Dict.plist */,
-				CA202C9B1521C57200B78539 /* words.plist */,
+				CA82849D15D649C10016CD43 /* wordbase.zip */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -5119,6 +5129,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA82846515D6378E0016CD43 /* ssziparchive */,
 				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
@@ -5241,6 +5252,33 @@
 				CA04B165159AE4D900D7ACD1 /* UserFeedController~ipad.xib */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		CA82846515D6378E0016CD43 /* ssziparchive */ = {
+			isa = PBXGroup;
+			children = (
+				CA82846615D637930016CD43 /* minizip */,
+				CA82847015D637930016CD43 /* SSZipArchive.h */,
+				CA82847115D637930016CD43 /* SSZipArchive.m */,
+			);
+			name = ssziparchive;
+			path = "../../Common_iPhone_20/Components/Component-Service/ssziparchive";
+			sourceTree = "<group>";
+		};
+		CA82846615D637930016CD43 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				CA82846715D637930016CD43 /* crypt.h */,
+				CA82846815D637930016CD43 /* ioapi.c */,
+				CA82846915D637930016CD43 /* ioapi.h */,
+				CA82846A15D637930016CD43 /* mztools.c */,
+				CA82846B15D637930016CD43 /* mztools.h */,
+				CA82846C15D637930016CD43 /* unzip.c */,
+				CA82846D15D637930016CD43 /* unzip.h */,
+				CA82846E15D637930016CD43 /* zip.c */,
+				CA82846F15D637930016CD43 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		CA96E264150DD55400292335 /* GameServer */ = {
@@ -5929,11 +5967,8 @@
 				CA4215FC1521915300FAA008 /* 57@2x.png in Resources */,
 				CA4215FD1521915300FAA008 /* 57.png in Resources */,
 				C2E662621521B91900487601 /* ReportController.xib in Resources */,
-				CA202C9C1521C57200B78539 /* words.plist in Resources */,
 				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
 				C2E662A0152463B900487601 /* ShareEditController.xib in Resources */,
-				CA02364615255AE100F29743 /* CN_Words_Dict.plist in Resources */,
-				CA02364715255AE100F29743 /* EN_Words_Dict.plist in Resources */,
 				CA1377AC15259C1400B5790B /* inputbg@2x.png in Resources */,
 				CA1377AF15259C1400B5790B /* print_tipbig@2x.png in Resources */,
 				CA1377B015259C1400B5790B /* guess_popup@2x.png in Resources */,
@@ -6345,6 +6380,7 @@
 				A4DD361115CF724300D34248 /* right_bottom_circleon@2x.png in Resources */,
 				A4DD361415CF756C00D34248 /* left_bottom_circle@2x.png in Resources */,
 				A4DD361515CF756C00D34248 /* right_bottom_circle@2x.png in Resources */,
+				CA82849E15D649C10016CD43 /* wordbase.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6802,6 +6838,11 @@
 				C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */,
 				C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */,
 				C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */,
+				CA82847215D637930016CD43 /* ioapi.c in Sources */,
+				CA82847315D637930016CD43 /* mztools.c in Sources */,
+				CA82847415D637930016CD43 /* unzip.c in Sources */,
+				CA82847515D637930016CD43 /* zip.c in Sources */,
+				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
