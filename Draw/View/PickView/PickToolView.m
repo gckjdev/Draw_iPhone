@@ -66,7 +66,6 @@
     [super dealloc];
 }
 
-
 - (void)clickToolView:(ToolView *)toolView
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didPickedPickView:toolView:)]) {
