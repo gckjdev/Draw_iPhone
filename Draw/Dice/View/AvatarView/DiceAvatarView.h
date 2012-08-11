@@ -40,6 +40,8 @@ typedef enum {
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
     HKGirlFontLabel* _rewardCoinLabel;
+    UIImage* _originAvatar;
+    BOOL _isBlackAndWhite;
     
 }
 
@@ -54,7 +56,7 @@ typedef enum {
 
 - (void)setImage:(UIImage *)image;
 //- (void)setAvatarFrame:(CGRect)frame;
-- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+//- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setProgress:(CGFloat)progress;
 - (void)setProgressHidden:(BOOL)hidden;
 - (void)setAvatarStyle:(AvatarViewStyle)style;
@@ -67,7 +69,8 @@ typedef enum {
                level:(int)level 
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth;
-- (void)setIsColorful:(BOOL)isColorful;
+- (void)setIsBlackAndWhite:(BOOL)isBlackAndWhite;
+- (BOOL)isBlackAndWhite;
 - (void)stopReciprocol;
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration;
