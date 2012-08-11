@@ -20,19 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../Common_iPhone_20/Core/Core-Components-View/CMPopTipView/CMPopTipView.m"
-         timestampString = "366170012.61786"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "504"
-         endingLineNumber = "504"
-         landmarkName = "-getPointDirection"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Draw/Dice/View/AvatarView/DiceAvatarView.m"
          timestampString = "366196371.715538"
          startingColumnNumber = "9223372036854775807"
