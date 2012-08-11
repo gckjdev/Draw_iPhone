@@ -111,7 +111,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
-                             duration:(int)duration
+//                             duration:(int)duration
                        pointDirection:(PointDirection)pointDirection
 {
     NSString *message = @"";
@@ -125,7 +125,6 @@ static DicePopupViewManager *_instance = nil;
             break;
             
         default:
-            message = NSLS(@"kOpenDice");
             break;
     }
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
@@ -136,12 +135,12 @@ static DicePopupViewManager *_instance = nil;
     
     [_openDiceView popupAtView:atView
                         inView:inView
-                      duration:duration
+//                      duration:duration
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES
                 pointDirection:pointDirection];
     
-    [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
+//    [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
 }
 
 - (void)dismissOpenDiceView

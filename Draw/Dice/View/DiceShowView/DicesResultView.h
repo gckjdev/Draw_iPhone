@@ -29,7 +29,10 @@
 
 @property (assign, nonatomic) id<DicesResultViewAnimationDelegate> delegate;
 
-- (void)setDices:(NSArray *)diceList resultDice:(int)resultDice;
+- (void)setDices:(NSArray *)diceList
+      resultDice:(int)resultDice
+           wilds:(BOOL)wilds;
+
 - (void)showAnimation:(CGPoint)center;
 
 @end

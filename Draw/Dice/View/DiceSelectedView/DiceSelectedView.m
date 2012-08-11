@@ -20,8 +20,9 @@
 
 @interface DiceSelectedView ()
 {
-    int _startDice;
+    int _lastCallDice;
     int _start;
+    int _end;
     BOOL _userInteraction;
 }
 
@@ -66,7 +67,7 @@
     if (self) {
         // Initialization code
         self.superView = superView;
-        _startDice = 1;
+        _lastCallDice = 1;
         
         self.scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
         self.scrollView.pagingEnabled = YES;
@@ -87,15 +88,26 @@
     return self;
 }
 
-- (void)setStart:(int)start end:(int)end startDice:(int)startDice
+- (void)setLastCallDice:(int)lastCallDice
+      lastCallDiceCount:(int)lastCallDiceCount
+       playingUserCount:(int)playingUserCount;
 {
-    start = (start < 1) ? 1 : start;
-    end = (end < 7) ? 7 : end;
-
-    _start = start;
-    _startDice = startDice;
+    _lastCallDice = (lastCallDice < 1 || lastCallDice > 6) ? 1 : lastCallDice;
     
-    int pageCount = (end - start + 1) / 7 + ((((end - start + 1) % 7) == 0) ? 0 : 1);
+    _start = (lastCallDice == 1) ? (lastCallDiceCount + 1) : lastCallDiceCount;
+    _end = playingUserCount * 5;
+    
+    // For protest
+    _start = (_start < 1) ? 1 : _start;
+    _end = (_end < 7) ? 7 : _end;
+    
+    [self setStart];
+}
+
+
+- (void)setStart
+{
+    int pageCount = (_end - _start + 1) / 7 + ((((_end - _start + 1) % 7) == 0) ? 0 : 1);
     if (pageCount <=  2) {
         pageCount = 1;
     }else {
@@ -105,11 +117,11 @@
     NSMutableArray *views = [NSMutableArray arrayWithCapacity:pageCount];
     UIView *view;
     
-    int startNum = start;
+    int startNum = _start;
     int endNum;
     
     for (int i = 0; i < pageCount; i ++) {
-        endNum = (end - startNum + 1 > EACH_PAGE_BUTTON_COUNT) ? startNum + EACH_PAGE_BUTTON_COUNT - 1 : end;
+        endNum = (_end - startNum + 1 > EACH_PAGE_BUTTON_COUNT) ? startNum + EACH_PAGE_BUTTON_COUNT - 1 : _end;
         view = [self pageViewWithStart:startNum end:endNum];
         startNum = endNum + 1;
         
@@ -126,6 +138,8 @@
             if ([view isKindOfClass:[FontButton class]]) {
                 FontButton *button = (FontButton *)view;
                 button.enabled = NO;
+                button.fontLable.textColor = [UIColor grayColor];
+
             }
         }
     }
@@ -137,11 +151,11 @@
             if ([view isKindOfClass:[FontButton class]]) {
                 FontButton *button = (FontButton *)view;
                 button.enabled = YES;
+                button.fontLable.textColor = [UIColor blackColor];
             }
         }
     }
 }
-
 
 #pragma mark - Private methods
 
@@ -244,6 +258,7 @@
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
     
     fontButton.enabled = NO;
+    fontButton.fontLable.textColor = [UIColor grayColor];
         
     return fontButton;
 }
@@ -259,7 +274,17 @@
     NSArray *diceList;
 
     if (_curSelecetedDiceCountBtn.tag == _start) {
-        diceList = [self genDiceListStartWith:_startDice  end:6];
+        if (_lastCallDice == 1) {
+            diceList = [self genDiceListStartWith:1 end:6];
+        }else {
+            PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+            [diceBuilder setDice:1];
+            [diceBuilder setDiceId:1];
+            PBDice *dice = [diceBuilder build];
+            NSArray *array1 = [NSArray arrayWithObjects:dice, nil];
+            NSArray *array2 = [self genDiceListStartWith:(_lastCallDice + 1) end:6];
+            diceList = [array1 arrayByAddingObjectsFromArray:array2];
+        }
     }else {
         diceList = [self genDiceListStartWith:1 end:6];
     }
@@ -274,10 +299,26 @@
 //    [_popView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
 }
 
+- (NSArray *)genDiceListWithDiceArray:(NSArray *)array
+{
+    NSMutableArray *dices = [NSMutableArray array];
+    
+    for (NSNumber *number in array) {
+        PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
+        [diceBuilder setDice:[number intValue]];
+        [diceBuilder setDiceId:[number intValue]];
+        PBDice *dice = [diceBuilder build];
+        
+        [dices addObject:dice];
+    }
+    
+    return dices;
+}
+
 - (NSArray *)genDiceListStartWith:(int)start end:(int)end
 {
     NSMutableArray *dices = [NSMutableArray array];
-
+    
     for (int i = start; i <= end; i ++) {
         PBDice_Builder *diceBuilder = [[[PBDice_Builder alloc] init] autorelease];
         [diceBuilder setDice:i];

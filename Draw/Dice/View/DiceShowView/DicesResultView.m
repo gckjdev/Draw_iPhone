@@ -113,7 +113,9 @@
     return (UIButton *)[self viewWithTag:TAG_OFFSET_DICE + index];
 }
 
-- (void)setDices:(NSArray *)diceList resultDice:(int)resultDice
+- (void)setDices:(NSArray *)diceList
+      resultDice:(int)resultDice
+           wilds:(BOOL)wilds
 {
     [self clearDices];
     self.hidden = NO;
@@ -134,6 +136,14 @@
         }else {
             [[self diceViewOfIndex:index] setSelected:NO];
         }
+        
+        if (!wilds) {
+            if (dice.dice == 1) {
+                [[self diceViewOfIndex:index] setSelected:YES];
+            }else {
+                [[self diceViewOfIndex:index] setSelected:NO];
+            }
+        }
                 
         index ++;
         if (index > 5) {
@@ -149,7 +159,7 @@
         UIButton *diceView = [self diceViewOfIndex:index];
         if (diceView.selected == YES) {
             [array addObject:diceView];
-        } 
+        }
     }
     
     return array;
