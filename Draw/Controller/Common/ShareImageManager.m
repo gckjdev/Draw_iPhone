@@ -108,15 +108,15 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)pickEasyWordCellImage
 {
-    return [UIImage imageNamed:WORD_EASY_CELL_BACKGROUND];
+    return [UIImage strectchableImageName:WORD_EASY_CELL_BACKGROUND];
 }
 - (UIImage *)pickNormakWordCellImage
 {
-    return [UIImage imageNamed:WORD_NORMAL_CELL_BACKGROUND];    
+    return [UIImage strectchableImageName:WORD_NORMAL_CELL_BACKGROUND];    
 }
 - (UIImage *)pickHardWordCellImage
 {
-    return [UIImage imageNamed:WORD_HARD_CELL_BACKGROUND];
+    return [UIImage strectchableImageName:WORD_HARD_CELL_BACKGROUND];
 }
 
 - (UIImage *)avatarSelectImage

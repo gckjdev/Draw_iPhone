@@ -26,7 +26,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIView *showHolderView;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
-
+@property (retain, nonatomic) ShowDrawView *replayView;
+@property (retain, nonatomic) IBOutlet UIButton *playEndButton;
+- (IBAction)clickPlayEndButton:(id)sender;
 
 - (id)initWithPaint:(MyPaint*)paint;
 - (IBAction)clickShareButton:(id)sender;

@@ -333,6 +333,7 @@ enum{
 #define DIALOG_TAG_ESCAPE 201204082
 #define DIALOG_TAG_SUBMIT 201206071
 #define DIALOG_TAG_CHANGE_BACK 201207281
+#define DIALOG_TAG_COMMIT_OPUS 201208111
 
 
 - (void)disMissAllPickViews:(BOOL)animated
@@ -475,7 +476,20 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawView addCleanAction];
         self.bgColor = self.eraserColor = [DrawColor whiteColor];
-    }else if (dialog.tag == DIALOG_TAG_ESCAPE ){
+    }else if(dialog.tag == DIALOG_TAG_COMMIT_OPUS)
+    {
+        [self showActivityWithText:NSLS(@"kSending")];
+        self.submitButton.userInteractionEnabled = NO;
+        UIImage *image = [drawView createImage];
+        [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
+                                                      image:image 
+                                                   drawWord:self.word 
+                                                   language:languageType 
+                                                  targetUid:self.targetUid 
+                                                   delegate:self];
+
+    }
+    else if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
     }else if(dialog.tag == BUY_CONFIRM_TAG){
         [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
@@ -657,15 +671,11 @@ enum{
             [delegate didClickSubmit:drawActionList];
         }
     }else {
-        [self showActivityWithText:NSLS(@"kSending")];
-        self.submitButton.userInteractionEnabled = NO;
-        UIImage *image = [drawView createImage];
-        [[DrawDataService defaultService] createOfflineDraw:drawActionList 
-                                                      image:image 
-                                                   drawWord:self.word 
-                                                   language:languageType 
-                                                  targetUid:self.targetUid 
-                                                   delegate:self];
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCommitOpusTitle") message:NSLS(@"kCommitOpusMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        [dialog showInView:self.view];
+        dialog.tag = DIALOG_TAG_COMMIT_OPUS;
+        
     }
 }
 - (void)clickBackButton:(id)sender

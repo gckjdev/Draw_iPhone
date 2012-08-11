@@ -94,6 +94,7 @@
     [self initRoundNumber];
     [self initAvatars];
     [self initPopButton];
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
 }
 
 - (void)viewDidUnload

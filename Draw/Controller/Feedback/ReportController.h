@@ -29,6 +29,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UITextView *contentText;
 @property (retain, nonatomic) IBOutlet UITextField *contactText;
 @property (retain, nonatomic) IBOutlet UIButton *doneButton;
+@property (retain, nonatomic) IBOutlet UIButton *tips;
 @property (retain, nonatomic) NSString* lastReport;
 
 - (id)initWithType:(ReportType)aType;
