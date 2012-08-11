@@ -736,3 +736,6 @@
 
 "kFeedbackTips" = "歡迎加入猜猜畫畫玩家QQ群:228119679, 關注官方微博@猜猜畫畫手機版";
 "kPlayEnd" = "結束播放";
+
+"kCommitOpusTitle" = "提交作品";
+"kCommitOpusMessage" = "你確定要提交作品嗎？";

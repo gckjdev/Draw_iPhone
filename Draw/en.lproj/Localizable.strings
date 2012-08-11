@@ -748,3 +748,6 @@
 "kFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @猜猜画画手机版";
 
 "kPlayEnd" = "End";
+
+"kCommitOpusTitle"  = "Submit drawing";
+"kCommitOpusMessage"  = "Are you sure to submit the drawing?";
