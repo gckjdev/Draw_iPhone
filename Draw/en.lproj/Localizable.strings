@@ -6,6 +6,8 @@
  Copyright (c) 2012年 orange. All rights reserved.
  */
 
+/*********************** 猜猜画画国际化字符串开始 *************************/
+
 "kStart" = "Online";
 
 "kShop" = "Shop";
@@ -735,12 +737,29 @@
 
 "kParsingData" = "Parsing data...";
 
-// Dice game
-
-"kOpenDice" = "Challenge";
-"kScrambleToOpenDice" = "Challenge";
-
 "kLatestFeed" = "Latest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
 "kWXShareImageName" = "Drawlively Image";
+
+/*********************** 猜猜画画国际化字符串结束 *************************/
+
+
+
+
+
+
+
+/*********************** 大话骰子国际化字符串开始 *************************/
+
+"kOpenDice" = "Challenge";
+"kScrambleToOpenDice" = "Challenge";
+
+"kWaittingForNextTurn" = "Watting for next turn...";
+
+
+
+
+
+/*********************** 大话骰子国际化字符串结束 *************************/
+

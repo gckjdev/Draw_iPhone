@@ -19,6 +19,7 @@
 @synthesize openType = _openType;
 @synthesize gameResult = _gameResult;
 @synthesize wilds = _wilds;
+@synthesize isMeAByStander = _isMeAByStander;
 
 - (void)dealloc{
     PPRelease(_userDiceList);
@@ -26,6 +27,15 @@
     PPRelease(_openDiceUserId);
     PPRelease(_gameResult);
     [super dealloc];
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        [self reset];
+    }
+    
+    return self;
 }
 
 - (void)reset
@@ -38,10 +48,7 @@
     self.openType = 0;
     self.gameResult = nil;
     self.wilds = false;
+    self.isMeAByStander = YES;
 }
-
-
-
-
 
 @end

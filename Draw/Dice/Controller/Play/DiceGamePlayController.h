@@ -52,5 +52,6 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *resultDiceCountLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *resultDiceImageView;
 @property (retain, nonatomic) IBOutlet UIView *resultHolderView;
+@property (retain, nonatomic) IBOutlet HKGirlFontLabel *waittingForNextTurnNoteLabel;
 
 @end

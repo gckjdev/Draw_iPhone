@@ -24,10 +24,9 @@
 
 - (id)initWithFrame:(CGRect)frame superView:(UIView *)superView;
 
-- (void)setStart:(int)start 
-             end:(int)end
-       startDice:(int)startDice;
-
+- (void)setLastCallDice:(int)lastCallDice
+      lastCallDiceCount:(int)lastCallDiceCount
+       playingUserCount:(int)playingUserCount;
 
 - (void)disableUserInteraction;
 - (void)enableUserInteraction;
