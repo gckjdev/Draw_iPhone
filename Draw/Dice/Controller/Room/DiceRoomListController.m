@@ -99,9 +99,7 @@
     
     
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
-    [[DiceGameService defaultService] setServerPort:8080];
-    [[DiceGameService defaultService] connectServer:self];
+    
 
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
@@ -122,6 +120,9 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] connectServer:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -155,6 +156,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    _isJoiningDice = YES;
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
     [[DiceGameService defaultService] enterRoom:session.sessionId];
 }
