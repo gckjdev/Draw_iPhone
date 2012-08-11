@@ -131,8 +131,8 @@
 		A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */; };
 		A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BD15C7BFF10041DC86 /* ZFont.m */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		A4AC51F315C911360041DC86 /* diceFont in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51EF15C911360041DC86 /* diceFont */; };
-		A4AC51F415C911360041DC86 /* diceFont_bak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F015C911360041DC86 /* diceFont_bak.ttf */; };
+		A4AC51F315C911360041DC86 /* diceFont_Simplified.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */; };
+		A4AC51F415C911360041DC86 /* diceFont in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F015C911360041DC86 /* diceFont */; };
 		A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F115C911360041DC86 /* huakanwawa.ttc */; };
 		A4AC51F615C911360041DC86 /* newfan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F215C911360041DC86 /* newfan.ttf */; };
 		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
@@ -1148,8 +1148,8 @@
 		A4AC51BD15C7BFF10041DC86 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
-		A4AC51EF15C911360041DC86 /* diceFont */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont; sourceTree = "<group>"; };
-		A4AC51F015C911360041DC86 /* diceFont_bak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont_bak.ttf; sourceTree = "<group>"; };
+		A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont_Simplified.ttf; sourceTree = "<group>"; };
+		A4AC51F015C911360041DC86 /* diceFont */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont; sourceTree = "<group>"; };
 		A4AC51F115C911360041DC86 /* huakanwawa.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = huakanwawa.ttc; sourceTree = "<group>"; };
 		A4AC51F215C911360041DC86 /* newfan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newfan.ttf; sourceTree = "<group>"; };
 		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
@@ -2689,8 +2689,8 @@
 		A4AC51AF15C7BFA50041DC86 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				A4AC51EF15C911360041DC86 /* diceFont */,
-				A4AC51F015C911360041DC86 /* diceFont_bak.ttf */,
+				A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */,
+				A4AC51F015C911360041DC86 /* diceFont */,
 				A4AC51F115C911360041DC86 /* huakanwawa.ttc */,
 				A4AC51F215C911360041DC86 /* newfan.ttf */,
 			);
@@ -6333,8 +6333,8 @@
 				CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */,
 				A45E8CD015C77F480089E240 /* dice_runaway@2x.png in Resources */,
 				A45E8CD115C77F480089E240 /* dice_setting@2x.png in Resources */,
-				A4AC51F315C911360041DC86 /* diceFont in Resources */,
-				A4AC51F415C911360041DC86 /* diceFont_bak.ttf in Resources */,
+				A4AC51F315C911360041DC86 /* diceFont_Simplified.ttf in Resources */,
+				A4AC51F415C911360041DC86 /* diceFont in Resources */,
 				A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */,
 				A4AC51F615C911360041DC86 /* newfan.ttf in Resources */,
 				A41A669815CA5D8700066E9B /* dice_blue_safa@2x.png in Resources */,
