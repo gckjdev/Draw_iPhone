@@ -131,20 +131,20 @@
         [[self diceViewOfIndex:index] setImage:defaultImage forState:UIControlStateNormal];
         [[self diceViewOfIndex:index] setImage:selectedImage forState:UIControlStateSelected];
         
-        if (dice.dice == resultDice) {
-            [[self diceViewOfIndex:index] setSelected:YES];
-        }else {
+        // 叫斋之后，1就不能当其他骰子用了。
+        if (wilds && dice.dice == 1) {
             [[self diceViewOfIndex:index] setSelected:NO];
         }
         
-        if (!wilds) {
-            if (dice.dice == 1) {
-                [[self diceViewOfIndex:index] setSelected:YES];
-            }else {
-                [[self diceViewOfIndex:index] setSelected:NO];
-            }
+        // 没有叫斋，则1可以当作任何骰子用
+        if (!wilds && dice.dice == 1) {
+            [[self diceViewOfIndex:index] setSelected:YES];
         }
-                
+        
+        if (dice.dice == resultDice) {
+            [[self diceViewOfIndex:index] setSelected:YES];
+        }
+
         index ++;
         if (index > 5) {
             break;

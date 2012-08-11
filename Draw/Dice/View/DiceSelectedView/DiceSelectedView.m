@@ -98,7 +98,7 @@
     _end = playingUserCount * 5;
     
     // For protest
-    _start = (_start < 1) ? 1 : _start;
+    _start = (_start < playingUserCount) ? playingUserCount : _start;
     _end = (_end < 7) ? 7 : _end;
     
     [self setStart];

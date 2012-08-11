@@ -25,6 +25,8 @@
 
 #define USER_THINK_TIME_INTERVAL 15
 
+#define DURATION_SHOW_GAIN_COINS 3
+
 @interface DiceGamePlayController ()
 
 @property (retain, nonatomic) DiceSelectedView *diceSelectedView;
@@ -216,7 +218,7 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:5];
+        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
@@ -242,7 +244,7 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:5];
+        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
@@ -254,7 +256,7 @@
     for (NSString *userId in [[_diceService gameResult] allKeys]) {
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
-        [avatar rewardCoins:result.gainCoins duration:5];
+        [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
     }
 
 }
