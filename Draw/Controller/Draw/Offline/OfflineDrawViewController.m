@@ -483,16 +483,9 @@ enum{
         [self showActivityWithText:NSLS(@"kSending")];
         self.submitButton.userInteractionEnabled = NO;
         UIImage *image = [drawView createImage];
-        NSData *data = nil;
         if ([DeviceDetection isIPAD]) {
-            data = UIImageJPEGRepresentation(image, 0.5);
-            image = [UIImage imageWithData:data];
             image = [image imageByScalingAndCroppingForSize:DRAW_VIEW_FRAME_IPHONE.size];
-        }else{
-            data = UIImageJPEGRepresentation(image, 0.6);
-            image = [UIImage imageWithData:data];
-        }
-            
+        }            
         [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList 
                                                       image:image 
                                                    drawWord:self.word 
