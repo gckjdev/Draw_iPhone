@@ -163,8 +163,9 @@
     if (drawFeed) {
         NSString *imageUrl = drawFeed.drawImageUrl;
         UIImage *image = drawFeed.drawImage;
-        if ([imageUrl length] != 0) {
+        if ([imageUrl length] != 0) {            
             [self.drawImageView setUrl:[NSURL URLWithString:imageUrl]];    
+            [self.drawImageView showLoadingWheel];
         }else if(image){
             [self.drawImageView setImage:image];
         }else if(drawFeed.drawData){
