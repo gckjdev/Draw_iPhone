@@ -209,6 +209,24 @@
     [[DiceGameService defaultService] creatRoomWithName:nil];
     _isJoiningDice  = YES;
 }
+- (IBAction)clickAll:(id)sender
+{
+    [self.allRoomButton setSelected:YES];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:NO];
+}
+- (IBAction)clickFriendRoom:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:YES];
+    [self.nearByRoomButton setSelected:NO];
+}
+- (IBAction)clickNearBy:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:YES];
+}
 
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
