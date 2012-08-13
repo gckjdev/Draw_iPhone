@@ -42,12 +42,13 @@ static DiceFontManager *_defaultManager = nil;
 - (id)init
 {
     if (self = [super init]) {
-        if ([DeviceDetection isOS5]) {
-            self.fontName = HKGIRL_FONT;
-            [[FontManager sharedManager] loadFont:_fontName];
-        }else {
-            self.fontName = @"Arial";
-        }
+//        if ([DeviceDetection isOS5]) {
+//            self.fontName = HKGIRL_FONT;
+//            [[FontManager sharedManager] loadFont:_fontName];
+//        }else {
+//            self.fontName = @"";
+//        }
+        self.fontName = HKGIRL_FONT;
     }
     
     return self;
