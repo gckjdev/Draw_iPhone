@@ -94,7 +94,7 @@ NSString* GlobalGetTrafficServerURL()
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-                                               @"ding.wav", 
+                                               @"ding.m4a", 
                                                @"dingding.mp3", 
                                                @"correct.mp3", 
                                                @"oowrong.mp3", 
