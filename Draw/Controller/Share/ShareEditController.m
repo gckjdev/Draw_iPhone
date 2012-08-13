@@ -352,11 +352,11 @@ enum {
 
 - (void)initShareText
 {
+    self.shareTextField.text = self.text;
     if (!_isDrawByMe) {
         [[UserService defaultService] getUserSimpleInfoByUserId:self.drawUserId delegate:self];
         [self showActivityWithText:NSLS(@"kQueryingDrawer")];
-    }
-    
+    } 
 }
 
 - (void)viewDidLoad
