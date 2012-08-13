@@ -25,7 +25,9 @@ typedef enum  {
     AwardCoinType = 10001,
     DirectAwardCoinType = 10002,
     
-    RefundForVerifyReceiptFailure = 21
+    RefundForVerifyReceiptFailure = 21,
+    
+    LiarDiceWinType = 200
     
 }BalanceSourceType;
 

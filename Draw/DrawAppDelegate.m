@@ -94,11 +94,13 @@ NSString* GlobalGetTrafficServerURL()
     
     //init sounds
     [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-                                               @"ding.wav", 
+                                               @"ding.m4a", 
                                                @"dingding.mp3", 
                                                @"correct.mp3", 
                                                @"oowrong.mp3", 
-                                               @"congratulations.mp3", nil]];
+                                               @"congratulations.mp3", 
+                                               @"rolling.mp3",
+                                               @"open.aiff", nil]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 

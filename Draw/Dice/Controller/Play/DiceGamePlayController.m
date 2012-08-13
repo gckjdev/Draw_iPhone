@@ -105,6 +105,7 @@
         _imageManager = [DiceImageManager defaultManager];
         _levelService = [LevelService defaultService];
         _accountManager = [AccountManager defaultManager];
+        _audioManager = [AudioManager defaultManager];
     }
     
     return self;
@@ -218,6 +219,7 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
+        
 //        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
@@ -257,8 +259,9 @@
         PBUserResult *result = [[_diceService gameResult] objectForKey:userId];
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
+        
+        [_accountManager increaseBalance:result.gainCoins sourceType:LiarDiceWinType];
     }
-
 }
 
 - (void)clearGameResult
@@ -618,6 +621,7 @@
     [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self shakeAllBell];
+    [_audioManager playSoundById:5];
     
     [self updateDiceSelecetedView];
 
@@ -762,13 +766,15 @@
 - (IBAction)clickOpenDiceButton:(id)sender {
     [self clearAllReciprocol];
     [_diceService openDice];
+//    [_audioManager playSoundById:6];
 }
 
 - (void)someoneOpenDice
 {
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
-    [self popupOpenDiceView];    
+    [self popupOpenDiceView];  
+//    [_audioManager playSoundById:6];
 }
 
 - (void)gameOver;

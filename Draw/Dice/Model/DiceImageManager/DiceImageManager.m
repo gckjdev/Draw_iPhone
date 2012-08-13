@@ -94,27 +94,27 @@ static DiceImageManager *_defaultManager = nil;
     
     switch (dice) {
         case 1:
-            image = [UIImage imageNamed:@"open_bell_1.png"];
+            image = [UIImage imageNamed:@"open_bell_1bigx2.png"];
             break;
             
         case 2:
-            image = [UIImage imageNamed:@"open_bell_2.png"];
+            image = [UIImage imageNamed:@"open_bell_2bigx2.png"];
             break;
             
         case 3:
-            image = [UIImage imageNamed:@"open_bell_3.png"];
+            image = [UIImage imageNamed:@"open_bell_3bigx2.png"];
             break;
             
         case 4:
-            image = [UIImage imageNamed:@"open_bell_4.png"];
+            image = [UIImage imageNamed:@"open_bell_4bigx2.png"];
             break;
             
         case 5:
-            image = [UIImage imageNamed:@"open_bell_5.png"];
+            image = [UIImage imageNamed:@"open_bell_5bigx2.png"];
             break;
             
         case 6:
-            image = [UIImage imageNamed:@"open_bell_6.png"];
+            image = [UIImage imageNamed:@"open_bell_6bigx2.png"];
             break;
             
         default:
@@ -152,12 +152,12 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)diceSeletedBgImage
 {
-    return [UIImage imageNamed:@"bell_selectedbg@2x.png"];
+    return [UIImage imageNamed:@"bell_selectedbg.png"];
 }
 
 - (UIImage *)diceBottomImage
 {
-    return [UIImage imageNamed:@"dice_bottom.png"];
+    return [UIImage imageNamed:@"dice_bottombig.png"];
 }
 
 - (UIImage *)wildsBgImage
