@@ -305,7 +305,7 @@ WordManager *GlobalGetWordManager()
     for (int i = length - 1 ; i >= 0; -- i) {
         NSString *value = [word.text substringWithRange:NSMakeRange(i, 1)];
         [retArray insertObject:value atIndex:k];
-        NSInteger t = count / 3 + (rand() % (count / 4));
+        NSInteger t = count / 4 + (rand() % (count / 4));
         k = (k + t) % retArray.count;
     }
     NSString* retString = [retArray componentsJoinedByString:@""];
