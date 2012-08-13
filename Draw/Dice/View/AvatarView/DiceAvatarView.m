@@ -212,6 +212,13 @@
         return;
     }
     [self setProgress:_currentProgress];
+    if (_currentProgress < 0.5 && _currentProgress > 0.16) {
+        progressView.progressTintColor = [UIColor yellowColor];
+    } else if (_currentProgress >= 0.5) {
+        progressView.progressTintColor = [UIColor greenColor];
+    } else {
+        progressView.progressTintColor = [UIColor redColor];
+    }
 }
 
 - (void)clickOnAvatar

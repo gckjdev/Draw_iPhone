@@ -12,11 +12,16 @@
 #import "MatchingFacetimeUserView.h"
 #import "FacetimeUserInfoView.h"
 #import "InputDialog.h"
+#import "DiceAvatarView.h"
+@class HKGirlFontLabel;
+@class TestView;
 
-@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate,MatchingFacetimeUserViewDelegate,FacetimeUserInfoViewDelegate,InputDialogDelegate> {
+@interface FacetimeMainController : PPViewController<FacetimeServiceDelegate,MatchingFacetimeUserViewDelegate,FacetimeUserInfoViewDelegate,InputDialogDelegate, DiceAvatarViewDelegate> {
     MatchingFacetimeUserView* _matchingFacetimeView;
     FacetimeUserInfoView* _facetimeUserInfoView;
     int _requestType;
 }
+@property (retain, nonatomic) IBOutlet DiceAvatarView *testDiceAvatar;
+@property (retain, nonatomic) IBOutlet TestView* test;
 
 @end
