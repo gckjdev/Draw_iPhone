@@ -263,6 +263,7 @@
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
+		C296869A15D8E03C006968BA /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C296869915D8E03C006968BA /* ding.m4a */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
@@ -1321,6 +1322,7 @@
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		C296869915D8E03C006968BA /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -3007,6 +3009,7 @@
 		C231639F15577B8E00AC132B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C296869915D8E03C006968BA /* ding.m4a */,
 				C29B8A8F156653CB00B9707D /* congratulations.mp3 */,
 				C29B8A90156653CB00B9707D /* dingding.mp3 */,
 				C29B8A91156653CB00B9707D /* oowrong.mp3 */,
@@ -6469,6 +6472,7 @@
 				A4A01C0815D8D4F9002FE86D /* open_bell_4bigx2@2x.png in Resources */,
 				A4A01C0915D8D4F9002FE86D /* open_bell_5bigx2@2x.png in Resources */,
 				A4A01C0A15D8D4F9002FE86D /* open_bell_6bigx2@2x.png in Resources */,
+				C296869A15D8E03C006968BA /* ding.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
