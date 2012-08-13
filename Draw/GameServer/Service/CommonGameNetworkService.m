@@ -170,26 +170,6 @@
     });
 }
 
-- (void)handleEnterRoomResponse:(GameMessage*)message
-{
-    dispatch_async(dispatch_get_main_queue(), ^{ 
-        
-        // create game session
-        if ([message resultCode] == 0){
-            PBGameSession* pbSession = [[message enterRoomResponse] gameSession];
-            self.session = [self createSession];
-            [_session fromPBGameSession:pbSession userId:[self.user userId]];
-            PPDebug(@"<handleEnterRoomResponse> Create Session = %@", [self.session description]);
-            
-            // TODO update online user
-            // [self updateOnlineUserCount:message];
-            
-        }
-        
-        [self postNotification:NOTIFICATION_ENTER_ROOM_RESPONSE message:message];
-    });
-}
-
 - (void)handleRoomNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
@@ -249,9 +229,6 @@
             
         case GameCommandTypeRoomNotificationRequest:
             [self handleRoomNotification:message];
-            break;
-        case GameCommandTypeEnterRoomResponse:
-            [self handleEnterRoomResponse:message];
             break;
         case GameCommandTypeCreateRoomResponse:
             [self handleCreateRoomResponse:message];
