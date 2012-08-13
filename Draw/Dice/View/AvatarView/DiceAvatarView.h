@@ -22,6 +22,7 @@ typedef enum {
 @optional
 - (void)didClickOnAvatar:(DiceAvatarView*)view;
 - (void)reciprocalEnd:(DiceAvatarView*)view;
+- (void)coinDidRaiseUp:(DiceAvatarView*)view;
 
 @end
 

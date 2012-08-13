@@ -258,21 +258,62 @@
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration
 {
-    _rewardView.hidden = NO;
+   
+//    
+//    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
+//    CAAnimation* raise = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -3*_rewardView.frame.size.height) duration:duration*2];
+//    CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:duration];
+//    disMiss.beginTime = duration;
+//    disMiss.delegate = self;
+//    [disMiss setValue:@"dismiss" forKey:@"avatarAnim"];
+    
+//    animGroup.animations = [NSArray arrayWithObjects:raise, disMiss, nil];
+//    animGroup.removedOnCompletion = NO;
+//    animGroup.duration = duration*2;
+//    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
+//    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
+//    animGroup.fillMode             = kCAFillModeForwards;
+//    
+//    animGroup.delegate = self;
+//    [animGroup setValue:@"group" forKey:@"avatarAnim"];
+//    [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
+//    [_rewardView.layer addAnimation:disMiss forKey:@"disMiss"];
+//    [_rewardView.layer addAnimation:raise forKey:@"raise"];
+    
     [_rewardCoinLabel setText:[NSString stringWithFormat:@"%+d",coinsCount]];
+    _rewardView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height);
+    _rewardView.alpha = 1;
+     _rewardView.hidden = NO;
+    [UIView animateWithDuration: duration 
+                          delay: 0
+                        options: UIViewAnimationOptionCurveLinear 
+                     animations: ^{
+                         _rewardView.center = CGPointMake(self.frame.size.width/2                                                            , -1*_rewardView.frame.size.height);
+                     }
+                     completion: ^(BOOL finished){
+                         if (_delegate && [_delegate respondsToSelector:@selector(coinDidRaiseUp:)]) {
+                             [_delegate coinDidRaiseUp:self];
+                         }
+                         //PPDebug(@"raise finish");
+                         //code that runs when this animation finishes
+                     }
+     ];
     
-    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
-    CAAnimation* raise = [AnimationManager translationAnimationFrom:CGPointMake(self.frame.size.width/2, self.frame.size.height + _rewardView.frame.size.height) to:CGPointMake(self.frame.size.width/2                                                            , -3*_rewardView.frame.size.height) duration:duration*2];
-    CAAnimation* disMiss = [AnimationManager missingAnimationWithDuration:duration];
-    disMiss.beginTime = duration;
-    animGroup.animations = [NSArray arrayWithObjects:raise, disMiss, nil];
-    animGroup.removedOnCompletion = NO;
-    animGroup.duration = duration*2;
-    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
-    animGroup.repeatCount         = 1;//FLT_MAX;  //"forever";
-    animGroup.fillMode             = kCAFillModeForwards;
-    
-    [_rewardView.layer addAnimation:animGroup forKey:@"popReward"];
+    [UIView animateWithDuration: duration 
+                          delay: duration
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         //view2.center = CGPointMake(x2, y2);
+                         _rewardView.alpha = 0;
+                     }
+                     completion: ^(BOOL finished){
+                         //PPDebug(@"dismiss finish");
+                         _rewardView.hidden = YES;
+                         //code that runs when this animation finishes
+                     }
+     ];
+
+
 }
 
 - (void)setGrayAvatar:(BOOL)isGray

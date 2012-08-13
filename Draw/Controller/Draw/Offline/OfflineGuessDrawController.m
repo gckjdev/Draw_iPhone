@@ -665,7 +665,7 @@
         NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
         
         UIImage *image = [showView createImage];
-        NSData *data = UIImageJPEGRepresentation(image, 0.4);
+        NSData *data = UIImageJPEGRepresentation(image, 0.6);
         image = [UIImage imageWithData:data];
         
         ResultController *result = [[ResultController alloc] initWithImage:image drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];

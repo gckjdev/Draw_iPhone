@@ -29,6 +29,11 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)createRoomBtnBgImage
 {
+    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15];
+}
+
+- (UIImage *)fastGameBtnBgImage
+{
     return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15];
 }
 
@@ -175,5 +180,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"open_bell_counton.png"];
 }
 
+- (UIImage *)roomCellBackgroundImage
+{
+    return [UIImage strectchableImageName:@"dice_room_item.png"];
+}
 
 @end
