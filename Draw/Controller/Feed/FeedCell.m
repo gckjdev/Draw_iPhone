@@ -47,6 +47,8 @@
     FeedCell *cell = ((FeedCell*)[topLevelObjects objectAtIndex:0]);
     
     cell.delegate = delegate;
+    cell.drawImageView.callbackOnSetImage = cell;
+    cell.drawImageView.callbackOnCancel = cell;
     return cell;
 }
 
@@ -150,6 +152,16 @@
     return nil;
 }
 
+-(void) managedImageSet:(HJManagedImageV*)mi
+{
+    [mi.loadingWheel stopAnimating];
+}
+-(void) managedImageCancelled:(HJManagedImageV*)mi
+{
+    [mi.loadingWheel stopAnimating];    
+}
+
+
 - (void)updateDrawView:(Feed *)feed
 {
     DrawFeed *drawFeed = nil;
@@ -164,8 +176,10 @@
         NSString *imageUrl = drawFeed.drawImageUrl;
         UIImage *image = drawFeed.drawImage;
         if ([imageUrl length] != 0) {
+            [self.drawImageView showLoadingWheel];
             [self.drawImageView setUrl:[NSURL URLWithString:imageUrl]];    
         }else if(image){
+            [self.drawImageView showLoadingWheel];
             [self.drawImageView setImage:image];
         }else if(drawFeed.drawData){
             Draw *draw = drawFeed.drawData;
