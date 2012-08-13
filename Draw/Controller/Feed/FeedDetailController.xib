@@ -427,7 +427,7 @@
 						<string key="NSFrame">{{15, 99}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="438341389"/>
+						<reference key="NSNextKeyView" ref="836959563"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -444,7 +444,7 @@
 						<reference key="IBUIFontDescription" ref="60323609"/>
 						<reference key="IBUIFont" ref="88901876"/>
 					</object>
-					<object class="IBUIImageView" id="438341389">
+					<object class="IBUIImageView" id="836959563">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{113, 73}, {95, 100}}</string>
@@ -579,6 +579,14 @@
 					<int key="connectionID">98</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">feedImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="836959563"/>
+					</object>
+					<int key="connectionID">101</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBackButton:</string>
 						<reference key="source" ref="858883006"/>
@@ -657,7 +665,7 @@
 							<reference ref="394963628"/>
 							<reference ref="106281494"/>
 							<reference ref="573333784"/>
-							<reference ref="438341389"/>
+							<reference ref="836959563"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -776,7 +784,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">99</int>
-						<reference key="object" ref="438341389"/>
+						<reference key="object" ref="836959563"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -813,7 +821,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100</int>
+			<int key="maxID">101</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -843,6 +851,7 @@
 						<string key="actionButton">UIButton</string>
 						<string key="commentInput">UITextView</string>
 						<string key="commentLabel">UILabel</string>
+						<string key="feedImage">UIImageView</string>
 						<string key="guessStatLabel">UILabel</string>
 						<string key="inputBackground">UIImageView</string>
 						<string key="inputBackgroundView">UIView</string>
@@ -865,6 +874,10 @@
 						<object class="IBToOneOutletInfo" key="commentLabel">
 							<string key="name">commentLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="feedImage">
+							<string key="name">feedImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="guessStatLabel">
 							<string key="name">guessStatLabel</string>
