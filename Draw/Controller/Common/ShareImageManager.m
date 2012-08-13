@@ -522,6 +522,9 @@ static UIImage* _whitePaperImage;
     return image;
 }
 
-
+- (UIImage *)unloadBg
+{
+    return [UIImage imageNamed:@"unloadbg.png"];
+}
 @end
 
