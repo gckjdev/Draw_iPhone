@@ -11,6 +11,7 @@
 #import "StableView.h"
 #import "PPDebug.h"
 #import "FeedManager.h"
+#import "HJManagedImageV.h"
 
 @class Feed;
 @class ShowDrawView;
@@ -31,7 +32,7 @@
 
 @end
 
-@interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate>
+@interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate, HJManagedImageVDelegate>
 {
     AvatarView *_avatarView;
 //    ShowDrawView *_drawView;
