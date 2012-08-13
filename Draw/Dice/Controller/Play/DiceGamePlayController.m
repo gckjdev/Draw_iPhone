@@ -218,7 +218,7 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
+//        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
@@ -244,7 +244,7 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
+//        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
@@ -265,8 +265,7 @@
 {
     _usingWilds = NO;
     self.userWildsButton.selected = NO;
-    [self dismissAllPopupViews];
-
+//    [self dismissAllPopupViews];
     
     for (int index = 1 ; index <= 6; index ++) {
         DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
@@ -320,11 +319,6 @@
 //    //对视图自身的层添加组动画
 //    [self.wildsFlagButton.layer addAnimation:animGroup forKey:@""];
 //}
-
-
-
-
-
 
 
 
@@ -620,10 +614,11 @@
 
 - (void)rollDiceBegin
 {
+    [self clearGameResult];
+    [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self shakeAllBell];
     
-//    [_diceSelectedView setStart:[[_diceService session] playingUserCount]  end:[[_diceService session] playingUserCount]*5  startDice:1];
     [self updateDiceSelecetedView];
 
 }
@@ -826,7 +821,7 @@
     [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
                                               atView:userAvatarView 
                                               inView:self.view
-//                                            duration:10
+//                                            duration:(_diceService.diceSession.playingUserCount*4+3)
                                       pointDirection:pointDirection];
 }
 

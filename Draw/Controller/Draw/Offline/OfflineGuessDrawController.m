@@ -42,6 +42,7 @@
 #import "DrawGameAnimationManager.h"
 #import "ItemService.h"
 #import "VendingController.h"
+#import "UIImageExt.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -663,8 +664,12 @@
     
         NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
         
-        ResultController *result = [[ResultController alloc] initWithImage:showView.createImage drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
-    
+        UIImage *image = [showView createImage];
+        NSData *data = UIImageJPEGRepresentation(image, 0.4);
+        image = [UIImage imageWithData:data];
+        
+        ResultController *result = [[ResultController alloc] initWithImage:image drawUserId:_draw.userId drawUserNickName:_draw.nickName wordText:_draw.word.text score:score correct:YES isMyPaint:NO drawActionList:_draw.drawActionList feed:self.feed];
+        
         //send http request.
         [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
         [self updateFeed:YES];

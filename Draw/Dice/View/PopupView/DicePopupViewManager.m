@@ -114,6 +114,8 @@ static DicePopupViewManager *_instance = nil;
 //                             duration:(int)duration
                        pointDirection:(PointDirection)pointDirection
 {
+    [_openDiceView dismissAnimated:YES];
+    
     NSString *message = @"";
     switch (openType) {
         case 0:
