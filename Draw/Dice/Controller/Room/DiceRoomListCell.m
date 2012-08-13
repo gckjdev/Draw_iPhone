@@ -9,6 +9,7 @@
 #import "DiceRoomListCell.h"
 #import "GameBasic.pb.h"
 #import "DiceAvatarView.h"
+#import "DiceImageManager.h"
 
 #define TAG_USER_VIEW 101
 
@@ -17,6 +18,7 @@
 @end
 
 @implementation DiceRoomListCell
+@synthesize backgroundImageView;
 @synthesize roomNameLabel;
 
 + (NSString *)getCellIdentifier
@@ -32,6 +34,7 @@
 - (void)setCellInfo:(PBGameSession *)session
 {
     roomNameLabel.text = session.name;
+    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
     for (int i = 0; i < session.usersList.count; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         PBGameUser* user = [session.usersList objectAtIndex:i];
@@ -42,6 +45,7 @@
 
 - (void)dealloc {
     [roomNameLabel release];
+    [backgroundImageView release];
     [super dealloc];
 }
 @end
