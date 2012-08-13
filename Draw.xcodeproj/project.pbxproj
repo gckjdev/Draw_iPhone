@@ -269,7 +269,6 @@
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
 		C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A201563B02000B9707D /* CommonMessageView.xib */; };
 		C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4A1565001000B9707D /* clickWord.mp3 */; };
-		C29B8A501565001000B9707D /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A4C1565001000B9707D /* ding.wav */; };
 		C29B8A771565EACD00B9707D /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A711565EACD00B9707D /* dialogue@2x.png */; };
 		C29B8A7A1565EACD00B9707D /* receive_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A741565EACD00B9707D /* receive_message@2x.png */; };
 		C29B8A7B1565EACD00B9707D /* register_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29B8A751565EACD00B9707D /* register_bg@2x.png */; };
@@ -1331,7 +1330,6 @@
 		C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMessageCenter.m; sourceTree = "<group>"; };
 		C29B8A201563B02000B9707D /* CommonMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonMessageView.xib; sourceTree = "<group>"; };
 		C29B8A4A1565001000B9707D /* clickWord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickWord.mp3; sourceTree = "<group>"; };
-		C29B8A4C1565001000B9707D /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		C29B8A711565EACD00B9707D /* dialogue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialogue@2x.png"; sourceTree = "<group>"; };
 		C29B8A741565EACD00B9707D /* receive_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_message@2x.png"; sourceTree = "<group>"; };
 		C29B8A751565EACD00B9707D /* register_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register_bg@2x.png"; sourceTree = "<group>"; };
@@ -3016,7 +3014,6 @@
 				C29B8A92156653CC00B9707D /* pushMessage.mp3 */,
 				C29B8A8D156639B200B9707D /* cannon.mp3 */,
 				C29B8A4A1565001000B9707D /* clickWord.mp3 */,
-				C29B8A4C1565001000B9707D /* ding.wav */,
 				C23163A115577B8E00AC132B /* correct.mp3 */,
 			);
 			path = sounds;
@@ -6214,7 +6211,6 @@
 				C29B8A221563B02000B9707D /* CommonMessageView.xib in Resources */,
 				A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */,
 				C29B8A4E1565001000B9707D /* clickWord.mp3 in Resources */,
-				C29B8A501565001000B9707D /* ding.wav in Resources */,
 				A318FD0015650F680075860F /* ShowRemoteDrawController.xib in Resources */,
 				A318FD0115650F680075860F /* ShowRemoteDrawController~ipad.xib in Resources */,
 				C29B8A771565EACD00B9707D /* dialogue@2x.png in Resources */,
