@@ -540,7 +540,7 @@
 "kNTGD" = "%@嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
 
 "kNoGuess" = "猜0";
-"kGuessStat" = "(%d人猜過/%d人猜中)";
+"kGuessStat" = "猜過:%d 猜中:%d";
 
 "kGetFeedListFail" = "獲取動態清單失敗，請稍後再試。";
 "kNoFeedTips" = "沒有動態";
