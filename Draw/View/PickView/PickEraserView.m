@@ -12,7 +12,7 @@
 @implementation PickEraserView
 
 
-#define MIN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
+#define MIN_WIDTH ([DeviceDetection isIPAD] ? 3 * 2 : 3)
 
 - (id)initWithFrame:(CGRect)frame
 {
