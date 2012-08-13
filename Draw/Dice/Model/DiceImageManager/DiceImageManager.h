@@ -33,6 +33,7 @@
 - (UIImage *)openDiceButtonBgImage;
 - (UIImage *)whiteSofaImage;
 - (UIImage *)resultDiceBgImage;
-
+- (UIImage *)roomCellBackgroundImage;
+- (UIImage *)fastGameBtnBgImage;
 
 @end
