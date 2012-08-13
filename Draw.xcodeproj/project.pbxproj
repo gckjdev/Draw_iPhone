@@ -196,6 +196,7 @@
 		A4A01C0815D8D4F9002FE86D /* open_bell_4bigx2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C0215D8D4F9002FE86D /* open_bell_4bigx2@2x.png */; };
 		A4A01C0915D8D4F9002FE86D /* open_bell_5bigx2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C0315D8D4F9002FE86D /* open_bell_5bigx2@2x.png */; };
 		A4A01C0A15D8D4F9002FE86D /* open_bell_6bigx2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C0415D8D4F9002FE86D /* open_bell_6bigx2@2x.png */; };
+		A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C3315D8EBFD002FE86D /* dice.m4a */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
 		A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */; };
 		A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B815C7BFF10041DC86 /* FontManager.m */; };
@@ -1227,6 +1228,7 @@
 		A4A01C0215D8D4F9002FE86D /* open_bell_4bigx2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "open_bell_4bigx2@2x.png"; sourceTree = "<group>"; };
 		A4A01C0315D8D4F9002FE86D /* open_bell_5bigx2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "open_bell_5bigx2@2x.png"; sourceTree = "<group>"; };
 		A4A01C0415D8D4F9002FE86D /* open_bell_6bigx2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "open_bell_6bigx2@2x.png"; sourceTree = "<group>"; };
+		A4A01C3315D8EBFD002FE86D /* dice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.m4a; sourceTree = "<group>"; };
 		A4AC51B315C7BFF10041DC86 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
 		A4AC51B415C7BFF10041DC86 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
 		A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
@@ -2833,6 +2835,7 @@
 		A4A01BAE15D8AF67002FE86D /* music */ = {
 			isa = PBXGroup;
 			children = (
+				A4A01C3315D8EBFD002FE86D /* dice.m4a */,
 				A4A01BAF15D8AF67002FE86D /* item.aiff */,
 				A4A01BB015D8AF67002FE86D /* open.aiff */,
 				A4A01BB115D8AF67002FE86D /* rolling.mp3 */,
@@ -6469,6 +6472,7 @@
 				A4A01C0915D8D4F9002FE86D /* open_bell_5bigx2@2x.png in Resources */,
 				A4A01C0A15D8D4F9002FE86D /* open_bell_6bigx2@2x.png in Resources */,
 				C296869A15D8E03C006968BA /* ding.m4a in Resources */,
+				A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
