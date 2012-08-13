@@ -20,7 +20,7 @@
 #import "LevelService.h"
 #import "AccountManager.h"
 #import "DicesResultView.h"
-
+#import "AudioManager.h"
 
 @class DiceGameService;
 
@@ -32,6 +32,7 @@
     DiceImageManager *_imageManager;
     LevelService *_levelService;
     AccountManager *_accountManager;
+    AudioManager *_audioManager;
     BOOL _usingWilds;
 }
 
