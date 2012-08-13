@@ -29,14 +29,6 @@ message CreateRoomResponse {
   required PBGameSession gameSession = 1;
 }
 
-message EnterRoomRequest {
-  required PBGameUser user = 1;
-}
-
-message EnterRoomResponse {
-  required PBGameSession gameSession = 1;
-}
-
 message RegisterRoomsNotificationRequest {
   repeated int32 sessionIds = 2[packed=true];
 }
@@ -283,9 +275,6 @@ message GameMessage {
   
   optional CreateRoomRequest createRoomRequest= 103;
   optional CreateRoomResponse createRoomResponse= 104;
-  
-  optional EnterRoomRequest enterRoomRequest= 105;
-  optional EnterRoomResponse enterRoomResponse= 106;
   
   optional RoomNotificationRequest roomNotificationRequest = 107;
   
