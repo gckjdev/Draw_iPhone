@@ -25,7 +25,7 @@
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate> {
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
