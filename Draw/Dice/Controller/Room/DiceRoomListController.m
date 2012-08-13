@@ -16,6 +16,7 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "DiceGamePlayController.h"
+#import "FontButton.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 
@@ -26,12 +27,20 @@
 @implementation DiceRoomListController
 
 #pragma mark - Life cycle
+@synthesize titleFontButton;
 @synthesize createRoomButton;
 @synthesize fastEntryButton;
+@synthesize allRoomButton;
+@synthesize friendRoomButton;
+@synthesize nearByRoomButton;
 
 - (void)dealloc {
     [createRoomButton release];
     [fastEntryButton release];
+    [titleFontButton release];
+    [allRoomButton release];
+    [friendRoomButton release];
+    [nearByRoomButton release];
     [super dealloc];
 }
 
@@ -72,19 +81,31 @@
              _isJoiningDice = NO; 
          }
      }];
+    
+    [[NSNotificationCenter defaultCenter] 
+     addObserverForName:NOTIFICATION_ROOM
+     object:nil     
+     queue:[NSOperationQueue mainQueue]     
+     usingBlock:^(NSNotification *notification) {                       
+         PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
+         if ([DiceGameService defaultService].roomList.count <= 0) {
+             [[DiceGameService defaultService] getRoomList:0 count:10];
+         }
+     }];
 }
 
 - (void)unregisterDiceRoomNotification
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:ROOMS_DID_UPDATE
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NOTIFICAIION_CREATE_ROOM_RESPONSE
-                                                  object:nil];
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self 
-    //                                                    name:NOTIFICATION_ROOM
-    //                                                  object:nil];
+    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        //        if ([obj isKindOfClass:[NSNotification class]]) {
+        NSNotification *notification = (NSNotification *)obj;
+        [[NSNotificationCenter defaultCenter] removeObserver:notification];
+        //        }
+        
+    }];    
+    
+    [notifications removeAllObjects];                                                
 }
 
 - (void)viewDidLoad
@@ -95,9 +116,16 @@
     
     [createRoomButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
     
-    [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
+    [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] fastGameBtnBgImage] forState:UIControlStateNormal];
     
+    [self.titleFontButton.fontLable setTextColor:[UIColor whiteColor]]; 
+    [self.allRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
+    [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
+    [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     
+    [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
+    [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
+    [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
     
     
 
@@ -111,6 +139,10 @@
 {
     [self setCreateRoomButton:nil];
     [self setFastEntryButton:nil];
+    [self setTitleFontButton:nil];
+    [self setAllRoomButton:nil];
+    [self setFriendRoomButton:nil];
+    [self setNearByRoomButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -120,7 +152,7 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.4"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
 }
@@ -176,6 +208,24 @@
 {
     [[DiceGameService defaultService] creatRoomWithName:nil];
     _isJoiningDice  = YES;
+}
+- (IBAction)clickAll:(id)sender
+{
+    [self.allRoomButton setSelected:YES];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:NO];
+}
+- (IBAction)clickFriendRoom:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:YES];
+    [self.nearByRoomButton setSelected:NO];
+}
+- (IBAction)clickNearBy:(id)sender
+{
+    [self.allRoomButton setSelected:NO];
+    [self.friendRoomButton setSelected:NO];
+    [self.nearByRoomButton setSelected:YES];
 }
 
 #pragma mark - CommonGameServiceDelegate
