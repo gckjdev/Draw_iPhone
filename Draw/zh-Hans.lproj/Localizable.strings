@@ -551,7 +551,7 @@
 
 "kGuessDetailStat" = "猜过:%d | 猜对:%d | 鲜花:%d | 番茄:%d";
 
-"kGuessStat" = "%d人猜过，%d人猜中";
+"kGuessStat" = "猜过:%d 猜中:%d";
 "kGetFeedListFail" = "获取动态列表失败，请稍后再试。";
 "kNoFeedTips" = "暂时没有相关动态";
 

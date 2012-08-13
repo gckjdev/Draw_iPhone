@@ -114,6 +114,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
+    [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
     
@@ -219,8 +221,6 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-        
-//        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
@@ -246,10 +246,22 @@
     
     if (userId == nil) {
         [self showUserGainCoins];
-//        [self performSelector:@selector(clearGameResult) withObject:nil afterDelay:DURATION_SHOW_GAIN_COINS];
     }else {
         [self showUserDice:userId];
     }
+}
+
+- (void)levelUp:(int)level
+{
+    // TODO: Show level up animation.
+}
+
+- (void)coinDidRaiseUp:(DiceAvatarView *)view
+{
+    [_levelService addExp:LIAR_DICE_EXP delegate:self];
+    [self clearGameResult];
+//    [self dismissAllPopupViews];
+    
 }
 
 - (void)showUserGainCoins
@@ -268,7 +280,7 @@
 {
     _usingWilds = NO;
     self.userWildsButton.selected = NO;
-//    [self dismissAllPopupViews];
+    [self dismissAllPopupViews];
     
     for (int index = 1 ; index <= 6; index ++) {
         DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
@@ -331,6 +343,7 @@
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
     [self.navigationController popViewControllerAnimated:YES];
+    [_audioManager backgroundMusicStop];
 }
 
 - (int)getSelfIndexFromUserList:(NSArray*)userList
@@ -392,7 +405,6 @@
         if (nameLabel) {
             [nameLabel setText:user.nickName];
         }
-        
     }
 }
 
@@ -618,7 +630,7 @@
 - (void)rollDiceBegin
 {
     [self clearGameResult];
-    [self dismissAllPopupViews];
+//    [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self shakeAllBell];
     [_audioManager playSoundById:5];
