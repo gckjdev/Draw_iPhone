@@ -199,7 +199,7 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    [[DiceGameService defaultService] creatRoomWithName:nil];
+    [[DiceGameService defaultService] creatRoomWithName:[[UserManager defaultManager] defaultUserRoomName]];
     _isJoiningDice  = YES;
 }
 - (IBAction)clickAll:(id)sender
