@@ -268,10 +268,8 @@
 
 - (void)coinDidRaiseUp:(DiceAvatarView *)view
 {
-    [_levelService addExp:LIAR_DICE_EXP delegate:self];
     [self clearGameResult];
 //    [self dismissAllPopupViews];
-    
 }
 
 - (void)showUserGainCoins
@@ -288,6 +286,8 @@
             [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
         }
         self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+        
+        [_levelService addExp:LIAR_DICE_EXP delegate:self];
     }
 }
 
@@ -980,5 +980,7 @@
 //    
 //    return dices;
 //}
+
+
 
 @end
