@@ -53,10 +53,12 @@
 - (void)getRoomList:(int)startIndex 
               count:(int)count;
 - (void)joinGameRequest;
+- (void)joinGameRequest:(long)sessionId;
 
 - (void)quitGame;
 
 - (CommonGameSession*)createSession;
+- (void)creatRoomWithName:(NSString*)name;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;

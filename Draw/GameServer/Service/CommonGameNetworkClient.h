@@ -25,6 +25,9 @@
                  startIndex:(int)index 
                       count:(int)count;
 - (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId;
+- (void)sendJoinGameRequest:(PBGameUser*)user 
+                     gameId:(NSString*)gameId 
+                  sessionId:(long)sessionId;
 - (int)generateMessageId;
 - (void)sendSimpleMessage:(int)command
                    userId:(NSString*)userId 
@@ -32,7 +35,5 @@
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
                        gameId:(NSString*)gameId;
-- (void)sendEnterRoomRequest:(long)sessionId 
-                        user:(PBGameUser*)user;
 
 @end

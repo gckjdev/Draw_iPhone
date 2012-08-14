@@ -44,54 +44,50 @@
     [super dealloc];
 }
 
+- (void)registerDiceGameNotificationWithName:(NSString *)name 
+                                  usingBlock:(void (^)(NSNotification *note))block
+{
+    PPDebug(@"<%@> name", [self description]);         
+    
+    [self registerNotificationWithName:name 
+                                object:nil 
+                                 queue:[NSOperationQueue mainQueue] 
+                            usingBlock:block];
+}
+
 - (void)registerDiceRoomNotification
 {
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICAIION_CREATE_ROOM_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
-         if(_isJoiningDice) {
-             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-             [self.navigationController pushViewController:controller animated:YES];
-             _isJoiningDice = NO; 
-         }
-     }];
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICAIION_GET_ROOMS_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE");  
-         CommonGameNetworkService* service = [DiceGameService defaultService];
-         self.dataList = [NSArray arrayWithArray:service.roomList];
-         [self.dataTableView reloadData];
-     }];
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ENTER_ROOM_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> NOTIFICATION_ENTER_ROOM_RESPONSE"); 
-         if(_isJoiningDice) {
-             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-             [self.navigationController pushViewController:controller animated:YES];
-             _isJoiningDice = NO; 
-         }
-     }];
+    [self registerDiceGameNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
+        if(_isJoiningDice) {
+            DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+            _isJoiningDice = NO; 
+        }
+    }];
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ROOM
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-         if ([DiceGameService defaultService].roomList.count <= 0) {
-             [[DiceGameService defaultService] getRoomList:0 count:10];
-         }
-     }];
+    [self registerDiceGameNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE"); 
+        CommonGameNetworkService* service = [DiceGameService defaultService];
+        self.dataList = [NSArray arrayWithArray:service.roomList];
+        [self.dataTableView reloadData];
+    }];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
+        if(_isJoiningDice) {
+            DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+            _isJoiningDice = NO; 
+        }
+    }];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
+        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
+        if ([DiceGameService defaultService].roomList.count <= 0) {
+            [[DiceGameService defaultService] getRoomList:0 count:10];
+        }
+    }];
+
 }
 
 - (void)unregisterDiceRoomNotification
@@ -152,7 +148,7 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
 }
@@ -190,7 +186,7 @@
 {
     _isJoiningDice = YES;
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
-    [[DiceGameService defaultService] enterRoom:session.sessionId];
+    [[DiceGameService defaultService] joinGameRequest:session.sessionId];
 }
 
 #pragma mark - Button action

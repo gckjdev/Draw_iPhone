@@ -48,6 +48,7 @@
 @synthesize resultDiceImageView = _resultDiceImageView;
 @synthesize resultHolderView = _resultHolderView;
 @synthesize waittingForNextTurnNoteLabel = _waittingForNextTurnNoteLabel;
+@synthesize gameBeginNoteLabel = _gameBeginNoteLabel;
 
 @synthesize myLevelLabel;
 @synthesize myCoinsLabel;
@@ -92,6 +93,7 @@
     [_resultDiceImageView release];
     [_resultHolderView release];
     [_waittingForNextTurnNoteLabel release];
+    [_gameBeginNoteLabel release];
     [super dealloc];
 }
 
@@ -114,6 +116,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.gameBeginNoteLabel.hidden = YES;
+    self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
+//    self.gameBeginNoteLabel.textColor = [UIColor colorWithRed:1.0 green:69.0/255.0 blue:246.0/255.0 alpha:1.0];
+    
+    self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
+
+    
     [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
     [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
@@ -177,6 +186,7 @@
     [self setResultDiceImageView:nil];
     [self setResultHolderView:nil];
     [self setWaittingForNextTurnNoteLabel:nil];
+    [self setGameBeginNoteLabel:nil];
     [super viewDidUnload];
 }
 
@@ -627,11 +637,26 @@
     [self.diceSelectedView enableUserInteraction];
 }
 
+- (void)showBeginNoteAnimation
+{
+    self.gameBeginNoteLabel.hidden = NO;
+    self.gameBeginNoteLabel.alpha = 1;
+    self.gameBeginNoteLabel.center = CGPointMake(160, 265);
+    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationCurveLinear animations:^{
+        self.gameBeginNoteLabel.alpha = 0;
+        self.gameBeginNoteLabel.center = CGPointMake(160, 185);
+    } completion:^(BOOL finished) {
+        self.gameBeginNoteLabel.hidden = YES;
+
+    }];
+}
+
 - (void)rollDiceBegin
 {
     [self clearGameResult];
 //    [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
+    [self showBeginNoteAnimation];
     [self shakeAllBell];
     [_audioManager playSoundById:5];
     

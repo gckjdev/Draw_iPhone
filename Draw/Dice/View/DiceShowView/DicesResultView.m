@@ -168,8 +168,34 @@
 - (void)showAnimation:(CGPoint)center
 {
     _targetCenter = center;
+            
+    [UIView animateWithDuration:DURATION_MOVE_TO_CENTER delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.center = center;
+        self.transform = CGAffineTransformMakeScale(FACTOR_RESULT_ZOOMIN, FACTOR_RESULT_ZOOMIN);
+    } completion:^(BOOL finished) {
+        [_delegate stayDidStart:[[self selectedDiceViews] count]];
+
+        [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
+            [self showResultDiceAnimation];
+            
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:DURATION_MOVE_TO_BACK delay:DURATION_STAY options:UIViewAnimationCurveEaseInOut animations:^{
+                self.center = _originCenter;
+                self.transform = CGAffineTransformMakeScale(1, 1);
+            } completion:^(BOOL finished) {
+                [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
+            }];
+            
+        }];
+
+    }];
     
-    [self moveToPoint:_targetCenter];
+
+    
+
+    
+    
+//    [self moveToPoint:_targetCenter];
 }
 
 - (void)animationDidStart:(CAAnimation *)anim
@@ -295,6 +321,7 @@
 - (void)showResultDiceAnimation
 {
     for (UIButton *diceView in [self selectedDiceViews]) {
+        
         CAAnimation *zoomIn1 = [AnimationManager scaleAnimationWithScale:FACTOR_DICE_ZOOMIN duration:DURATION_STAY/4.0 delegate:self removeCompeleted:NO];
         zoomIn1.beginTime = 0;
         

@@ -760,6 +760,7 @@
 "kOpenDice" = "開";
 "kScrambleToOpenDice" = "搶開";
 "kWaittingForNextTurn" = "等待下輪...";
+"kGameBegin" = "遊戲開始了...";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/
