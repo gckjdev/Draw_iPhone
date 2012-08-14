@@ -64,5 +64,7 @@
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;
 
 - (void)postNotification:(NSString*)name message:(GameMessage*)message;
+- (void)registerRoomsNotification:(NSArray*)sessionIdList;
+- (void)unRegisterRoomsNotification:(NSArray*)sessionIdList;
 
 @end

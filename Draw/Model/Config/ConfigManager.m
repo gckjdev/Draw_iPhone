@@ -136,14 +136,15 @@
 + (ChatVoiceEnable)getChatVoiceEnable
 {
     //2012-6-22 update: default without voice
-    return EnableNot;
+//    return EnableNot;
+    return EnableAlways;
     
-    //    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    //    NSNumber *number = [userDefault objectForKey:KEY_CHAT_VOICE_ENABLE];
-    //    if (number == nil) {
-    //        return EnableWifi;
-    //    }
-    //    return [number intValue];
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSNumber *number = [userDefault objectForKey:KEY_CHAT_VOICE_ENABLE];
+//    if (number == nil) {
+//        return EnableWifi;
+//    }
+//    return [number intValue];
 }
 
 + (void)setChatVoiceEnable:(ChatVoiceEnable)enable

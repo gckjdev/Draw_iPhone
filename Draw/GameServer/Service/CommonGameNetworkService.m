@@ -129,7 +129,7 @@
     
     dispatch_sync(dispatch_get_main_queue(), ^{                
                 
-        if ([_connectionDelegate respondsToSelector:@selector(didBroken)]){
+        if (_connectionDelegate && [_connectionDelegate respondsToSelector:@selector(didBroken)]){
             [_connectionDelegate didBroken];
         }
     });
@@ -148,6 +148,7 @@
     
     [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
+    
 }
 
 - (void)handleJoinGameResponse:(GameMessage*)message
@@ -174,7 +175,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
         
-        // 
+        PPDebug(@"<handleRoomNotification> handle room nitification");
         RoomNotificationRequest* notification = [message roomNotificationRequest];
         
         if ([notification sessionsChangedList]){
@@ -290,6 +291,20 @@
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
                                      name:@"" 
                                    gameId:_gameId];
+}
+
+- (void)registerRoomsNotification:(NSArray*)sessionIdList
+{
+    PPDebug(@"[SEND] registerRoomsNotificationRequest");
+    NSString* userId = [[UserManager defaultManager] userId];
+    [_networkClient sendRegisterRoomsNotificationRequest:sessionIdList userId:userId];
+}
+
+- (void)unRegisterRoomsNotification:(NSArray*)sessionIdList
+{
+    PPDebug(@"[SEND] unRegisterRoomsNotificationRequest");
+    NSString* userId = [[UserManager defaultManager] userId];
+    [_networkClient sendUnRegisterRoomsNotificationRequest:sessionIdList userId:userId];
 }
 
 - (void)quitGame
