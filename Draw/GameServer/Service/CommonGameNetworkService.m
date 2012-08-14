@@ -129,7 +129,7 @@
     
     dispatch_sync(dispatch_get_main_queue(), ^{                
                 
-        if ([_connectionDelegate respondsToSelector:@selector(didBroken)]){
+        if (_connectionDelegate && [_connectionDelegate respondsToSelector:@selector(didBroken)]){
             [_connectionDelegate didBroken];
         }
     });

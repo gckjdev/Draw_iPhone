@@ -36,6 +36,10 @@
 {
     roomNameLabel.text = session.name;
     [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
+    for (int i = 0; i < 6; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        [avatar setUrlString:nil userId:nil gender:NO level:0 drunkPoint:0 wealth:0];
+    }
     for (int i = 0; i < session.usersList.count; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         PBGameUser* user = [session.usersList objectAtIndex:i];

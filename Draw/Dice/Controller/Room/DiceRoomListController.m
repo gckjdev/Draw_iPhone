@@ -84,9 +84,9 @@
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-        if ([DiceGameService defaultService].roomList.count <= 0) {
-            [[DiceGameService defaultService] getRoomList:0 count:10];
-        }
+        [[DiceGameService defaultService].roomList removeAllObjects];
+        [[DiceGameService defaultService] getRoomList:0 count:10];
+
     }];
 
 }
@@ -152,6 +152,7 @@
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
+    _isJoiningDice = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -187,12 +188,16 @@
 {
     _isJoiningDice = YES;
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
+    
     [[DiceGameService defaultService] joinGameRequest:session.sessionId];
+
+    
 }
 
 #pragma mark - Button action
 
 - (IBAction)clickBack:(id)sender {
+    [[DiceGameService defaultService] quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -228,10 +233,8 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
-    if ([DiceGameService defaultService].roomList.count <= 0) {
-        [[DiceGameService defaultService] getRoomList:0 count:10];
-    }
-    
+    [[DiceGameService defaultService].roomList removeAllObjects];
+    [[DiceGameService defaultService] getRoomList:0 count:10];
 }
 
 - (void)didBroken
