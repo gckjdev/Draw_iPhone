@@ -32,5 +32,4 @@
 
 - (void)openDice;
 
-- (void)creatRoomWithName:(NSString*)name;
 @end

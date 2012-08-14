@@ -249,12 +249,7 @@ static DiceGameService* _defaultService;
 }
 
 
-- (void)creatRoomWithName:(NSString*)name
-{
-    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-                                     name:@"" 
-                                   gameId:[ConfigManager gameId]];
-}
+
 
 
 

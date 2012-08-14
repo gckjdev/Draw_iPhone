@@ -285,6 +285,13 @@
     return nil;
 }
 
+- (void)creatRoomWithName:(NSString*)name
+{
+    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
+                                     name:@"" 
+                                   gameId:_gameId];
+}
+
 - (void)quitGame
 {
     [self disconnectServer];
