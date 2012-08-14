@@ -229,29 +229,31 @@
     [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
 }
 
+- (void)registerDiceGameNotificationWithName:(NSString *)name 
+                                  usingBlock:(void (^)(NSNotification *note))block
+{
+    PPDebug(@"<%@> name", [self description]);         
+    
+    [self registerNotificationWithName:name 
+                                object:nil 
+                                 queue:[NSOperationQueue mainQueue] 
+                            usingBlock:block];
+}
+
 - (void)registerDiceGameNotification
 {
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_JOIN_GAME_RESPONSE
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE"); 
-         if(_isJoiningDice) {
-             DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-             [self.navigationController pushViewController:controller animated:YES];
-             _isJoiningDice = NO; 
-         }
-         
-     }];
-
-    [[NSNotificationCenter defaultCenter] 
-     addObserverForName:NOTIFICATION_ROOM
-     object:nil     
-     queue:[NSOperationQueue mainQueue]     
-     usingBlock:^(NSNotification *notification) {                       
-         PPDebug(@"<HomeController> NOTIFICATION_ROOM");         
-     }];
+    [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
+        PPDebug(@"<HomeController> NOTIFICATION_JOIN_GAME_RESPONSE"); 
+        if(_isJoiningDice) {
+            DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+            _isJoiningDice = NO; 
+        }
+    }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
+        PPDebug(@"<HomeController> NOTIFICATION_ROOM");
+    }];
     
 }
 

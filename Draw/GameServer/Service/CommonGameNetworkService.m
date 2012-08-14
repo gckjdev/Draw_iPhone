@@ -270,10 +270,26 @@
     [_networkClient sendJoinGameRequest:_user gameId:_gameId];
 }
 
+- (void)joinGameRequest:(long)sessionId 
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    self.user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:[[UserManager defaultManager] toPBGameUser] 
+                                 gameId:_gameId 
+                              sessionId:sessionId];
+}
+
 - (CommonGameSession*)createSession
 {    
     PPDebug(@"<createSession> NOT IMPLEMENTED YET");
     return nil;
+}
+
+- (void)creatRoomWithName:(NSString*)name
+{
+    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
+                                     name:@"" 
+                                   gameId:_gameId];
 }
 
 - (void)quitGame
