@@ -98,7 +98,7 @@
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
-        progressView.progressBarWidth = width*0.1;
+        progressView.progressBarWidth = width*0.10;
         [progressView setFrame:[self calAvatarFrame]];
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
