@@ -74,6 +74,7 @@ typedef enum {
 - (void)stopReciprocol;
 - (void)rewardCoins:(int)coinsCount 
            duration:(float)duration;
+- (void)setGestureRecognizerEnable:(BOOL)enable;
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<DiceAvatarViewDelegate> delegate;
