@@ -139,9 +139,10 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.11"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.163"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
+    [self showActivityWithText:NSLS(@"kConnecting")];
     _isJoiningDice = NO;
 }
 
@@ -223,12 +224,13 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
+    [self hideActivity];
     [[DiceGameService defaultService] getRoomList:0 count:10 shouldReloadData:YES];
 }
 
 - (void)didBroken
 {
-    
+    //TODO: handle network broken here
 }
 
 @end

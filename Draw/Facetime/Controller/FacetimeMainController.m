@@ -13,6 +13,9 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "UIUtils.h"
+#import "DiceAvatarView.h"
+#import "HKGirlFontLabel.h"
+#import "AnimationManager.h"
 
 typedef enum {
     FacetimeChatRequestTypeOnlyMale = 0,
@@ -20,12 +23,29 @@ typedef enum {
     FacetimeChatRequestTypeRandom = 2
 }FacetimeChatRequestType;
 
+@interface TestView : UIView   
+
+@end
+
+@implementation TestView
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+@end
+
 @implementation FacetimeMainController
+@synthesize testDiceAvatar = _testDiceAvatar;
+@synthesize test;
 
 - (void)dealloc
 {
     [_matchingFacetimeView release];
     [_facetimeUserInfoView release];
+    [_testDiceAvatar release];
+    [test release];
     [super dealloc];
 }
 
@@ -53,11 +73,16 @@ typedef enum {
     _matchingFacetimeView = nil;
     _facetimeUserInfoView = nil;
     [super viewDidLoad];
+    [self.testDiceAvatar setUrlString:[UserManager defaultManager].avatarURL userId:nil gender:NO level:0 drunkPoint:0 wealth:0];
+    [self.testDiceAvatar setProgress:0.4];
+    self.testDiceAvatar.delegate = self;
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setTestDiceAvatar:nil];
+
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -207,4 +232,31 @@ typedef enum {
 {
     
 }
+
+- (void)didClickOnAvatar:(DiceAvatarView *)view
+{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        view.center = CGPointMake(50, 50);
+        view.center = self.view.center;
+    } completion:^(BOOL finished) {
+        
+    }];
+    [UIView animateWithDuration:1 delay:2 options:UIViewAnimationOptionCurveLinear animations:^{
+        view.center = CGPointMake(10, 200);
+    } completion:^(BOOL finished) {
+        
+    }];
+
+    //[view setIsBlackAndWhite:NO];
+    
+}
+
+- (void)reciprocalEnd:(DiceAvatarView *)view
+{
+    
+
+    
+}
+
+
 @end
