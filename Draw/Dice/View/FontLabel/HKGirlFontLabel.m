@@ -8,6 +8,7 @@
 
 #import "HKGirlFontLabel.h"
 #import "DiceFontManager.h"
+#import "PPDebug.h"
 
 @implementation HKGirlFontLabel
 
@@ -39,6 +40,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        PPDebug(@"font size = %f", self.font.pointSize);
         self = [super initWithFrame:self.frame
                            fontName:[[DiceFontManager defaultManager] fontName] 
                           pointSize:self.font.pointSize];  
