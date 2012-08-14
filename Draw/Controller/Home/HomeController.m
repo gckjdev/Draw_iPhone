@@ -557,7 +557,7 @@
                                     guessDiffLevel:[ConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
 
-//        [[DiceGameService defaultService] joinGameRequest];    
+        [[DiceGameService defaultService] joinGameRequest];    
     }
     
     _isTryJoinGame = NO;

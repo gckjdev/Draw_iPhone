@@ -350,8 +350,11 @@
 
 
 
+
 - (IBAction)clickRunAwayButton:(id)sender {
     [self clearAllReciprocol];
+    [self clearAllPlayersAvatar];
+    [self clearAllResultViews];
     [self dismissAllPopupViews];
     [[DiceGameService defaultService] quitGame];
     [self unregisterAllNotifications];
@@ -384,6 +387,23 @@
     }
     return nil;
 }
+
+- (void)clearAllPlayersAvatar
+{
+    for (int i = 1; i <= MAX_PLAYER_COUNT; i ++) {
+        DiceAvatarView* avatar = (DiceAvatarView*)[self.view viewWithTag:AVATAR_TAG_OFFSET+i];
+        avatar.delegate = nil;
+    }
+}
+
+- (void)clearAllResultViews
+{
+    for (int index = 1 ; index <= MAX_PLAYER_COUNT; index ++) {
+        DicesResultView *resultView = (DicesResultView *)[self.view viewWithTag:RESULT_TAG_OFFSET + index];
+        resultView.delegate = nil;
+    }
+}
+
 
 - (void)updateAllPlayersAvatar
 {
