@@ -87,8 +87,6 @@
     [_rewardCoinLabel release];
     [_enumerator release];
     
-    
-    
     [_wildsFlagButton release];
     [_resultDiceCountLabel release];
     [_resultDiceImageView release];
@@ -107,7 +105,7 @@
         _popupViewManager = [DicePopupViewManager defaultManager];
         _imageManager = [DiceImageManager defaultManager];
         _levelService = [LevelService defaultService];
-        _accountManager = [AccountManager defaultManager];
+        _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
     }
     
@@ -127,7 +125,7 @@
     [_audioManager setBackGroundMusicWithName:@"dice.m4a"];
     [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     
     
     
@@ -270,7 +268,6 @@
 
 - (void)coinDidRaiseUp:(DiceAvatarView *)view
 {
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
     [_levelService addExp:LIAR_DICE_EXP delegate:self];
     [self clearGameResult];
 //    [self dismissAllPopupViews];
@@ -285,7 +282,12 @@
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
         
-        [_accountManager increaseBalance:result.gainCoins sourceType:LiarDiceWinType];
+        if (result.gainCoins > 0) {
+            [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
+        }else{
+            [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
+        }
+        self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
     }
 }
 

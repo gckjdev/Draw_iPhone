@@ -18,7 +18,7 @@
 #import "DiceImageManager.h"
 #import "HKGirlFontLabel.h"
 #import "LevelService.h"
-#import "AccountManager.h"
+#import "AccountService.h"
 #import "DicesResultView.h"
 #import "AudioManager.h"
 
@@ -31,7 +31,7 @@
     DicePopupViewManager *_popupViewManager;
     DiceImageManager *_imageManager;
     LevelService *_levelService;
-    AccountManager *_accountManager;
+    AccountService *_accountService;
     AudioManager *_audioManager;
     BOOL _usingWilds;
 }

@@ -572,6 +572,11 @@ static AccountService* _defaultAccountService;
 
 #define DEFAULT_DEVIATION       (5000)
 
+- (int)getBalance
+{
+    return [_accountManager getBalance];
+}
+
 - (void)syncAccountAndItem
 {    
     NSString* userId = [[UserManager defaultManager] userId];
