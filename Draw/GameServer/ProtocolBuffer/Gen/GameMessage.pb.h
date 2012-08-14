@@ -17,10 +17,6 @@
 @class CreateRoomResponse_Builder;
 @class DataQueryResponse;
 @class DataQueryResponse_Builder;
-@class EnterRoomRequest;
-@class EnterRoomRequest_Builder;
-@class EnterRoomResponse;
-@class EnterRoomResponse_Builder;
 @class FacetimeChatRequest;
 @class FacetimeChatRequest_Builder;
 @class FacetimeChatResponse;
@@ -344,106 +340,6 @@
 - (CreateRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
 - (CreateRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
 - (CreateRoomResponse_Builder*) clearGameSession;
-@end
-
-@interface EnterRoomRequest : PBGeneratedMessage {
-@private
-  BOOL hasUser_:1;
-  PBGameUser* user;
-}
-- (BOOL) hasUser;
-@property (readonly, retain) PBGameUser* user;
-
-+ (EnterRoomRequest*) defaultInstance;
-- (EnterRoomRequest*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (EnterRoomRequest_Builder*) builder;
-+ (EnterRoomRequest_Builder*) builder;
-+ (EnterRoomRequest_Builder*) builderWithPrototype:(EnterRoomRequest*) prototype;
-
-+ (EnterRoomRequest*) parseFromData:(NSData*) data;
-+ (EnterRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input;
-+ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface EnterRoomRequest_Builder : PBGeneratedMessage_Builder {
-@private
-  EnterRoomRequest* result;
-}
-
-- (EnterRoomRequest*) defaultInstance;
-
-- (EnterRoomRequest_Builder*) clear;
-- (EnterRoomRequest_Builder*) clone;
-
-- (EnterRoomRequest*) build;
-- (EnterRoomRequest*) buildPartial;
-
-- (EnterRoomRequest_Builder*) mergeFrom:(EnterRoomRequest*) other;
-- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUser;
-- (PBGameUser*) user;
-- (EnterRoomRequest_Builder*) setUser:(PBGameUser*) value;
-- (EnterRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (EnterRoomRequest_Builder*) mergeUser:(PBGameUser*) value;
-- (EnterRoomRequest_Builder*) clearUser;
-@end
-
-@interface EnterRoomResponse : PBGeneratedMessage {
-@private
-  BOOL hasGameSession_:1;
-  PBGameSession* gameSession;
-}
-- (BOOL) hasGameSession;
-@property (readonly, retain) PBGameSession* gameSession;
-
-+ (EnterRoomResponse*) defaultInstance;
-- (EnterRoomResponse*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (EnterRoomResponse_Builder*) builder;
-+ (EnterRoomResponse_Builder*) builder;
-+ (EnterRoomResponse_Builder*) builderWithPrototype:(EnterRoomResponse*) prototype;
-
-+ (EnterRoomResponse*) parseFromData:(NSData*) data;
-+ (EnterRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input;
-+ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface EnterRoomResponse_Builder : PBGeneratedMessage_Builder {
-@private
-  EnterRoomResponse* result;
-}
-
-- (EnterRoomResponse*) defaultInstance;
-
-- (EnterRoomResponse_Builder*) clear;
-- (EnterRoomResponse_Builder*) clone;
-
-- (EnterRoomResponse*) build;
-- (EnterRoomResponse*) buildPartial;
-
-- (EnterRoomResponse_Builder*) mergeFrom:(EnterRoomResponse*) other;
-- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasGameSession;
-- (PBGameSession*) gameSession;
-- (EnterRoomResponse_Builder*) setGameSession:(PBGameSession*) value;
-- (EnterRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
-- (EnterRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
-- (EnterRoomResponse_Builder*) clearGameSession;
 @end
 
 @interface RegisterRoomsNotificationRequest : PBGeneratedMessage {
@@ -2405,9 +2301,8 @@
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
+  BOOL hasCreateRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
-  BOOL hasEnterRoomRequest_:1;
-  BOOL hasEnterRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasCallDiceRequest_:1;
@@ -2420,20 +2315,19 @@
   BOOL hasRegisterRoomsNotificationResponse_:1;
   BOOL hasUnRegisterRoomsNotificationRequest_:1;
   BOOL hasUnRegisterRoomsNotificationResponse_:1;
-  BOOL hasJoinGameRequest_:1;
-  BOOL hasJoinGameResponse_:1;
-  BOOL hasStartGameRequest_:1;
-  BOOL hasStartGameResponse_:1;
-  BOOL hasSendDrawDataRequest_:1;
-  BOOL hasSendDrawDataResponse_:1;
-  BOOL hasChatRequest_:1;
-  BOOL hasChatResponse_:1;
-  BOOL hasFacetimeChatRequest_:1;
-  BOOL hasFacetimeChatResponse_:1;
-  BOOL hasNotification_:1;
-  BOOL hasGetRoomsRequest_:1;
   BOOL hasGetRoomsResponse_:1;
-  BOOL hasCreateRoomRequest_:1;
+  BOOL hasGetRoomsRequest_:1;
+  BOOL hasNotification_:1;
+  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasFacetimeChatRequest_:1;
+  BOOL hasChatResponse_:1;
+  BOOL hasChatRequest_:1;
+  BOOL hasSendDrawDataResponse_:1;
+  BOOL hasSendDrawDataRequest_:1;
+  BOOL hasStartGameResponse_:1;
+  BOOL hasStartGameRequest_:1;
+  BOOL hasJoinGameResponse_:1;
+  BOOL hasJoinGameRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -2446,9 +2340,8 @@
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
+  CreateRoomRequest* createRoomRequest;
   CreateRoomResponse* createRoomResponse;
-  EnterRoomRequest* enterRoomRequest;
-  EnterRoomResponse* enterRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   CallDiceRequest* callDiceRequest;
@@ -2461,20 +2354,19 @@
   RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
   UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
   UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-  JoinGameRequest* joinGameRequest;
-  JoinGameResponse* joinGameResponse;
-  StartGameRequest* startGameRequest;
-  StartGameResponse* startGameResponse;
-  SendDrawDataRequest* sendDrawDataRequest;
-  SendDrawDataResponse* sendDrawDataResponse;
-  GameChatRequest* chatRequest;
-  GameChatResponse* chatResponse;
-  FacetimeChatRequest* facetimeChatRequest;
-  FacetimeChatResponse* facetimeChatResponse;
-  GeneralNotification* notification;
-  GetRoomsRequest* getRoomsRequest;
   GetRoomsResponse* getRoomsResponse;
-  CreateRoomRequest* createRoomRequest;
+  GetRoomsRequest* getRoomsRequest;
+  GeneralNotification* notification;
+  FacetimeChatResponse* facetimeChatResponse;
+  FacetimeChatRequest* facetimeChatRequest;
+  GameChatResponse* chatResponse;
+  GameChatRequest* chatRequest;
+  SendDrawDataResponse* sendDrawDataResponse;
+  SendDrawDataRequest* sendDrawDataRequest;
+  StartGameResponse* startGameResponse;
+  StartGameRequest* startGameRequest;
+  JoinGameResponse* joinGameResponse;
+  JoinGameRequest* joinGameRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2504,8 +2396,6 @@
 - (BOOL) hasGetRoomsResponse;
 - (BOOL) hasCreateRoomRequest;
 - (BOOL) hasCreateRoomResponse;
-- (BOOL) hasEnterRoomRequest;
-- (BOOL) hasEnterRoomResponse;
 - (BOOL) hasRoomNotificationRequest;
 - (BOOL) hasRollDiceEndNotificationRequest;
 - (BOOL) hasCallDiceRequest;
@@ -2545,8 +2435,6 @@
 @property (readonly, retain) GetRoomsResponse* getRoomsResponse;
 @property (readonly, retain) CreateRoomRequest* createRoomRequest;
 @property (readonly, retain) CreateRoomResponse* createRoomResponse;
-@property (readonly, retain) EnterRoomRequest* enterRoomRequest;
-@property (readonly, retain) EnterRoomResponse* enterRoomResponse;
 @property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
 @property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 @property (readonly, retain) CallDiceRequest* callDiceRequest;
@@ -2750,20 +2638,6 @@
 - (GameMessage_Builder*) setCreateRoomResponseBuilder:(CreateRoomResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeCreateRoomResponse:(CreateRoomResponse*) value;
 - (GameMessage_Builder*) clearCreateRoomResponse;
-
-- (BOOL) hasEnterRoomRequest;
-- (EnterRoomRequest*) enterRoomRequest;
-- (GameMessage_Builder*) setEnterRoomRequest:(EnterRoomRequest*) value;
-- (GameMessage_Builder*) setEnterRoomRequestBuilder:(EnterRoomRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeEnterRoomRequest:(EnterRoomRequest*) value;
-- (GameMessage_Builder*) clearEnterRoomRequest;
-
-- (BOOL) hasEnterRoomResponse;
-- (EnterRoomResponse*) enterRoomResponse;
-- (GameMessage_Builder*) setEnterRoomResponse:(EnterRoomResponse*) value;
-- (GameMessage_Builder*) setEnterRoomResponseBuilder:(EnterRoomResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeEnterRoomResponse:(EnterRoomResponse*) value;
-- (GameMessage_Builder*) clearEnterRoomResponse;
 
 - (BOOL) hasRoomNotificationRequest;
 - (RoomNotificationRequest*) roomNotificationRequest;

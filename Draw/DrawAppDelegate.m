@@ -41,8 +41,8 @@
 #import "LmWallService.h"
 #import "UserStatusService.h"
 #import "FacetimeService.h"
-#import "DiceGameService.h"
-#import "DiceFontManager.h"
+//#import "DiceGameService.h"
+//#import "DiceFontManager.h"
 #import "WordManager.h"
 
 NSString* GlobalGetServerURL()
@@ -194,11 +194,11 @@ NSString* GlobalGetTrafficServerURL()
     return YES;
 }
 
-- (void)didConnected
-{
-    [[DiceGameService defaultService] joinGameRequest];
-    
-}
+//- (void)didConnected
+//{
+//    [[DiceGameService defaultService] joinGameRequest];
+//    
+//}
 
 - (void)reviewDone
 {
