@@ -933,412 +933,6 @@ static CreateRoomResponse* defaultCreateRoomResponseInstance = nil;
 }
 @end
 
-@interface EnterRoomRequest ()
-@property (retain) PBGameUser* user;
-@end
-
-@implementation EnterRoomRequest
-
-- (BOOL) hasUser {
-  return !!hasUser_;
-}
-- (void) setHasUser:(BOOL) value {
-  hasUser_ = !!value;
-}
-@synthesize user;
-- (void) dealloc {
-  self.user = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.user = [PBGameUser defaultInstance];
-  }
-  return self;
-}
-static EnterRoomRequest* defaultEnterRoomRequestInstance = nil;
-+ (void) initialize {
-  if (self == [EnterRoomRequest class]) {
-    defaultEnterRoomRequestInstance = [[EnterRoomRequest alloc] init];
-  }
-}
-+ (EnterRoomRequest*) defaultInstance {
-  return defaultEnterRoomRequestInstance;
-}
-- (EnterRoomRequest*) defaultInstance {
-  return defaultEnterRoomRequestInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasUser) {
-    return NO;
-  }
-  if (!self.user.isInitialized) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUser) {
-    [output writeMessage:1 value:self.user];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasUser) {
-    size += computeMessageSize(1, self.user);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (EnterRoomRequest*) parseFromData:(NSData*) data {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromData:data] build];
-}
-+ (EnterRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromInputStream:input] build];
-}
-+ (EnterRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromCodedInputStream:input] build];
-}
-+ (EnterRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomRequest*)[[[EnterRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomRequest_Builder*) builder {
-  return [[[EnterRoomRequest_Builder alloc] init] autorelease];
-}
-+ (EnterRoomRequest_Builder*) builderWithPrototype:(EnterRoomRequest*) prototype {
-  return [[EnterRoomRequest builder] mergeFrom:prototype];
-}
-- (EnterRoomRequest_Builder*) builder {
-  return [EnterRoomRequest builder];
-}
-@end
-
-@interface EnterRoomRequest_Builder()
-@property (retain) EnterRoomRequest* result;
-@end
-
-@implementation EnterRoomRequest_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[EnterRoomRequest alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (EnterRoomRequest_Builder*) clear {
-  self.result = [[[EnterRoomRequest alloc] init] autorelease];
-  return self;
-}
-- (EnterRoomRequest_Builder*) clone {
-  return [EnterRoomRequest builderWithPrototype:result];
-}
-- (EnterRoomRequest*) defaultInstance {
-  return [EnterRoomRequest defaultInstance];
-}
-- (EnterRoomRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (EnterRoomRequest*) buildPartial {
-  EnterRoomRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (EnterRoomRequest_Builder*) mergeFrom:(EnterRoomRequest*) other {
-  if (other == [EnterRoomRequest defaultInstance]) {
-    return self;
-  }
-  if (other.hasUser) {
-    [self mergeUser:other.user];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (EnterRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        PBGameUser_Builder* subBuilder = [PBGameUser builder];
-        if (self.hasUser) {
-          [subBuilder mergeFrom:self.user];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUser:[subBuilder buildPartial]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasUser {
-  return result.hasUser;
-}
-- (PBGameUser*) user {
-  return result.user;
-}
-- (EnterRoomRequest_Builder*) setUser:(PBGameUser*) value {
-  result.hasUser = YES;
-  result.user = value;
-  return self;
-}
-- (EnterRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
-  return [self setUser:[builderForValue build]];
-}
-- (EnterRoomRequest_Builder*) mergeUser:(PBGameUser*) value {
-  if (result.hasUser &&
-      result.user != [PBGameUser defaultInstance]) {
-    result.user =
-      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
-  } else {
-    result.user = value;
-  }
-  result.hasUser = YES;
-  return self;
-}
-- (EnterRoomRequest_Builder*) clearUser {
-  result.hasUser = NO;
-  result.user = [PBGameUser defaultInstance];
-  return self;
-}
-@end
-
-@interface EnterRoomResponse ()
-@property (retain) PBGameSession* gameSession;
-@end
-
-@implementation EnterRoomResponse
-
-- (BOOL) hasGameSession {
-  return !!hasGameSession_;
-}
-- (void) setHasGameSession:(BOOL) value {
-  hasGameSession_ = !!value;
-}
-@synthesize gameSession;
-- (void) dealloc {
-  self.gameSession = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.gameSession = [PBGameSession defaultInstance];
-  }
-  return self;
-}
-static EnterRoomResponse* defaultEnterRoomResponseInstance = nil;
-+ (void) initialize {
-  if (self == [EnterRoomResponse class]) {
-    defaultEnterRoomResponseInstance = [[EnterRoomResponse alloc] init];
-  }
-}
-+ (EnterRoomResponse*) defaultInstance {
-  return defaultEnterRoomResponseInstance;
-}
-- (EnterRoomResponse*) defaultInstance {
-  return defaultEnterRoomResponseInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasGameSession) {
-    return NO;
-  }
-  if (!self.gameSession.isInitialized) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasGameSession) {
-    [output writeMessage:1 value:self.gameSession];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasGameSession) {
-    size += computeMessageSize(1, self.gameSession);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (EnterRoomResponse*) parseFromData:(NSData*) data {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromData:data] build];
-}
-+ (EnterRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromInputStream:input] build];
-}
-+ (EnterRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromCodedInputStream:input] build];
-}
-+ (EnterRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (EnterRoomResponse*)[[[EnterRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (EnterRoomResponse_Builder*) builder {
-  return [[[EnterRoomResponse_Builder alloc] init] autorelease];
-}
-+ (EnterRoomResponse_Builder*) builderWithPrototype:(EnterRoomResponse*) prototype {
-  return [[EnterRoomResponse builder] mergeFrom:prototype];
-}
-- (EnterRoomResponse_Builder*) builder {
-  return [EnterRoomResponse builder];
-}
-@end
-
-@interface EnterRoomResponse_Builder()
-@property (retain) EnterRoomResponse* result;
-@end
-
-@implementation EnterRoomResponse_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[EnterRoomResponse alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (EnterRoomResponse_Builder*) clear {
-  self.result = [[[EnterRoomResponse alloc] init] autorelease];
-  return self;
-}
-- (EnterRoomResponse_Builder*) clone {
-  return [EnterRoomResponse builderWithPrototype:result];
-}
-- (EnterRoomResponse*) defaultInstance {
-  return [EnterRoomResponse defaultInstance];
-}
-- (EnterRoomResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (EnterRoomResponse*) buildPartial {
-  EnterRoomResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (EnterRoomResponse_Builder*) mergeFrom:(EnterRoomResponse*) other {
-  if (other == [EnterRoomResponse defaultInstance]) {
-    return self;
-  }
-  if (other.hasGameSession) {
-    [self mergeGameSession:other.gameSession];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (EnterRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        PBGameSession_Builder* subBuilder = [PBGameSession builder];
-        if (self.hasGameSession) {
-          [subBuilder mergeFrom:self.gameSession];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setGameSession:[subBuilder buildPartial]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasGameSession {
-  return result.hasGameSession;
-}
-- (PBGameSession*) gameSession {
-  return result.gameSession;
-}
-- (EnterRoomResponse_Builder*) setGameSession:(PBGameSession*) value {
-  result.hasGameSession = YES;
-  result.gameSession = value;
-  return self;
-}
-- (EnterRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue {
-  return [self setGameSession:[builderForValue build]];
-}
-- (EnterRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value {
-  if (result.hasGameSession &&
-      result.gameSession != [PBGameSession defaultInstance]) {
-    result.gameSession =
-      [[[PBGameSession builderWithPrototype:result.gameSession] mergeFrom:value] buildPartial];
-  } else {
-    result.gameSession = value;
-  }
-  result.hasGameSession = YES;
-  return self;
-}
-- (EnterRoomResponse_Builder*) clearGameSession {
-  result.hasGameSession = NO;
-  result.gameSession = [PBGameSession defaultInstance];
-  return self;
-}
-@end
-
 @interface RegisterRoomsNotificationRequest ()
 @property (retain) NSMutableArray* mutableSessionIdsList;
 @end
@@ -9277,8 +8871,6 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) GetRoomsResponse* getRoomsResponse;
 @property (retain) CreateRoomRequest* createRoomRequest;
 @property (retain) CreateRoomResponse* createRoomResponse;
-@property (retain) EnterRoomRequest* enterRoomRequest;
-@property (retain) EnterRoomResponse* enterRoomResponse;
 @property (retain) RoomNotificationRequest* roomNotificationRequest;
 @property (retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
 @property (retain) CallDiceRequest* callDiceRequest;
@@ -9472,20 +9064,6 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasCreateRoomResponse_ = !!value;
 }
 @synthesize createRoomResponse;
-- (BOOL) hasEnterRoomRequest {
-  return !!hasEnterRoomRequest_;
-}
-- (void) setHasEnterRoomRequest:(BOOL) value {
-  hasEnterRoomRequest_ = !!value;
-}
-@synthesize enterRoomRequest;
-- (BOOL) hasEnterRoomResponse {
-  return !!hasEnterRoomResponse_;
-}
-- (void) setHasEnterRoomResponse:(BOOL) value {
-  hasEnterRoomResponse_ = !!value;
-}
-@synthesize enterRoomResponse;
 - (BOOL) hasRoomNotificationRequest {
   return !!hasRoomNotificationRequest_;
 }
@@ -9603,8 +9181,6 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.getRoomsResponse = nil;
   self.createRoomRequest = nil;
   self.createRoomResponse = nil;
-  self.enterRoomRequest = nil;
-  self.enterRoomResponse = nil;
   self.roomNotificationRequest = nil;
   self.rollDiceEndNotificationRequest = nil;
   self.callDiceRequest = nil;
@@ -9646,8 +9222,6 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.getRoomsResponse = [GetRoomsResponse defaultInstance];
     self.createRoomRequest = [CreateRoomRequest defaultInstance];
     self.createRoomResponse = [CreateRoomResponse defaultInstance];
-    self.enterRoomRequest = [EnterRoomRequest defaultInstance];
-    self.enterRoomResponse = [EnterRoomResponse defaultInstance];
     self.roomNotificationRequest = [RoomNotificationRequest defaultInstance];
     self.rollDiceEndNotificationRequest = [RollDiceEndNotificationRequest defaultInstance];
     self.callDiceRequest = [CallDiceRequest defaultInstance];
@@ -9726,16 +9300,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     if (!self.createRoomResponse.isInitialized) {
-      return NO;
-    }
-  }
-  if (self.hasEnterRoomRequest) {
-    if (!self.enterRoomRequest.isInitialized) {
-      return NO;
-    }
-  }
-  if (self.hasEnterRoomResponse) {
-    if (!self.enterRoomResponse.isInitialized) {
       return NO;
     }
   }
@@ -9831,12 +9395,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     [output writeMessage:104 value:self.createRoomResponse];
-  }
-  if (self.hasEnterRoomRequest) {
-    [output writeMessage:105 value:self.enterRoomRequest];
-  }
-  if (self.hasEnterRoomResponse) {
-    [output writeMessage:106 value:self.enterRoomResponse];
   }
   if (self.hasRoomNotificationRequest) {
     [output writeMessage:107 value:self.roomNotificationRequest];
@@ -9963,12 +9521,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasCreateRoomResponse) {
     size += computeMessageSize(104, self.createRoomResponse);
-  }
-  if (self.hasEnterRoomRequest) {
-    size += computeMessageSize(105, self.enterRoomRequest);
-  }
-  if (self.hasEnterRoomResponse) {
-    size += computeMessageSize(106, self.enterRoomResponse);
   }
   if (self.hasRoomNotificationRequest) {
     size += computeMessageSize(107, self.roomNotificationRequest);
@@ -10161,12 +9713,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasCreateRoomResponse) {
     [self mergeCreateRoomResponse:other.createRoomResponse];
-  }
-  if (other.hasEnterRoomRequest) {
-    [self mergeEnterRoomRequest:other.enterRoomRequest];
-  }
-  if (other.hasEnterRoomResponse) {
-    [self mergeEnterRoomResponse:other.enterRoomResponse];
   }
   if (other.hasRoomNotificationRequest) {
     [self mergeRoomNotificationRequest:other.roomNotificationRequest];
@@ -10419,24 +9965,6 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCreateRoomResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 842: {
-        EnterRoomRequest_Builder* subBuilder = [EnterRoomRequest builder];
-        if (self.hasEnterRoomRequest) {
-          [subBuilder mergeFrom:self.enterRoomRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setEnterRoomRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 850: {
-        EnterRoomResponse_Builder* subBuilder = [EnterRoomResponse builder];
-        if (self.hasEnterRoomResponse) {
-          [subBuilder mergeFrom:self.enterRoomResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setEnterRoomResponse:[subBuilder buildPartial]];
         break;
       }
       case 858: {
@@ -11166,66 +10694,6 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearCreateRoomResponse {
   result.hasCreateRoomResponse = NO;
   result.createRoomResponse = [CreateRoomResponse defaultInstance];
-  return self;
-}
-- (BOOL) hasEnterRoomRequest {
-  return result.hasEnterRoomRequest;
-}
-- (EnterRoomRequest*) enterRoomRequest {
-  return result.enterRoomRequest;
-}
-- (GameMessage_Builder*) setEnterRoomRequest:(EnterRoomRequest*) value {
-  result.hasEnterRoomRequest = YES;
-  result.enterRoomRequest = value;
-  return self;
-}
-- (GameMessage_Builder*) setEnterRoomRequestBuilder:(EnterRoomRequest_Builder*) builderForValue {
-  return [self setEnterRoomRequest:[builderForValue build]];
-}
-- (GameMessage_Builder*) mergeEnterRoomRequest:(EnterRoomRequest*) value {
-  if (result.hasEnterRoomRequest &&
-      result.enterRoomRequest != [EnterRoomRequest defaultInstance]) {
-    result.enterRoomRequest =
-      [[[EnterRoomRequest builderWithPrototype:result.enterRoomRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.enterRoomRequest = value;
-  }
-  result.hasEnterRoomRequest = YES;
-  return self;
-}
-- (GameMessage_Builder*) clearEnterRoomRequest {
-  result.hasEnterRoomRequest = NO;
-  result.enterRoomRequest = [EnterRoomRequest defaultInstance];
-  return self;
-}
-- (BOOL) hasEnterRoomResponse {
-  return result.hasEnterRoomResponse;
-}
-- (EnterRoomResponse*) enterRoomResponse {
-  return result.enterRoomResponse;
-}
-- (GameMessage_Builder*) setEnterRoomResponse:(EnterRoomResponse*) value {
-  result.hasEnterRoomResponse = YES;
-  result.enterRoomResponse = value;
-  return self;
-}
-- (GameMessage_Builder*) setEnterRoomResponseBuilder:(EnterRoomResponse_Builder*) builderForValue {
-  return [self setEnterRoomResponse:[builderForValue build]];
-}
-- (GameMessage_Builder*) mergeEnterRoomResponse:(EnterRoomResponse*) value {
-  if (result.hasEnterRoomResponse &&
-      result.enterRoomResponse != [EnterRoomResponse defaultInstance]) {
-    result.enterRoomResponse =
-      [[[EnterRoomResponse builderWithPrototype:result.enterRoomResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.enterRoomResponse = value;
-  }
-  result.hasEnterRoomResponse = YES;
-  return self;
-}
-- (GameMessage_Builder*) clearEnterRoomResponse {
-  result.hasEnterRoomResponse = NO;
-  result.enterRoomResponse = [EnterRoomResponse defaultInstance];
   return self;
 }
 - (BOOL) hasRoomNotificationRequest {

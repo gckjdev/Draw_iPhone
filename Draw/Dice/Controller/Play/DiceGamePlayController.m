@@ -15,6 +15,7 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "LevelService.h"
+#import "SpeechService.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -264,10 +265,12 @@
 - (void)levelUp:(int)level
 {
     // TODO: Show level up animation.
+    
 }
 
 - (void)coinDidRaiseUp:(DiceAvatarView *)view
 {
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountManager getBalance]];
     [_levelService addExp:LIAR_DICE_EXP delegate:self];
     [self clearGameResult];
 //    [self dismissAllPopupViews];
@@ -513,14 +516,25 @@
                                         [self someoneCallDice];         
                                     }];
     
+    [self registerDiceGameNotificationWithName:NOTIFICATION_CALL_DICE_RESPONSE
+                                    usingBlock:^(NSNotification *notification) {
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        if (message.resultCode == 0) {
+                                            [self callDiceSuccess];
+                                        }
+                                    }];
+    
     [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self someoneOpenDice];         
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_RESPONSE
-                                    usingBlock:^(NSNotification *notification) {                       
-                                        [self openDiceSuccess];         
+                                    usingBlock:^(NSNotification *notification) { 
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        if (message.resultCode == 0) {
+                                            [self openDiceSuccess];
+                                        }
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_GAME_OVER_REQUEST
@@ -722,6 +736,34 @@
     }
 }
 
+#pragma mark- Buttons action
+
+-(void)openDiceSuccess
+{
+    NSString *str = (_diceService.diceSession.openType == 0) ? NSLS(@"kOpenDice") : NSLS(@"kScrambleToOpenDice") ;
+    [[SpeechService defaultService] play:str gender:YES];
+
+    [self disableAllDiceOperationButtons];
+    [self popupOpenDiceView];  
+}
+
+- (IBAction)clickOpenDiceButton:(id)sender {
+    [self clearAllReciprocol];
+    [_diceService openDice];
+}
+
+- (void)someoneOpenDice
+{
+    [self clearAllReciprocol];
+    [self disableAllDiceOperationButtons];
+    
+    NSString *str = (_diceService.diceSession.openType == 0) ? NSLS(@"kOpenDice") : NSLS(@"kScrambleToOpenDice") ;
+    [[SpeechService defaultService] play:str gender:YES];
+    
+    [self popupOpenDiceView];  
+}
+
+
 #pragma mark - DiceSelectedViewDelegate
 
 - (void)userUseWilds
@@ -736,10 +778,18 @@
     [self userUseWilds];
 }
 
--(void)callDice:(int)dice count:(int)count
-{    
-    [self clearAllReciprocol];
+- (void)callDiceSuccess
+{
     [self disableAllDiceOperationButtons]; 
+    [self popupCallDiceView];
+}
+
+-(void)callDice:(int)dice count:(int)count
+{
+     [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d个%d", count, dice] gender:YES];
+    
+    [self clearAllReciprocol];
+//    [self disableAllDiceOperationButtons]; 
     
     if (dice == 1) {
         [self userUseWilds];
@@ -747,7 +797,7 @@
     
     [_diceService callDice:dice count:count wilds:_usingWilds];
     
-    [self popupCallDiceView];
+//    [self popupCallDiceView];
 }
 
 - (void)didSelectedDice:(PBDice *)dice count:(int)count
@@ -781,38 +831,17 @@
 {   
     [self clearAllReciprocol];
     
+    [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d个%d", _diceService.lastCallDiceCount , _diceService.lastCallDice] gender:YES];
+
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     }
 
     [self updateDiceSelecetedView];
-    
-//    [_diceSelectedView setStart:(_diceService.lastCallDiceCount + _diceService.lastCallDice/6)  end:_diceService.diceSession.playingUserCount*5  startDice:(_diceService.lastCallDice%6 + 1)];
-        
+            
     [self popupCallDiceView];
 }
 
-#pragma mark- Buttons action
-
--(void)openDiceSuccess
-{
-    [self disableAllDiceOperationButtons];
-    [self popupOpenDiceView];  
-}
-
-- (IBAction)clickOpenDiceButton:(id)sender {
-    [self clearAllReciprocol];
-    [_diceService openDice];
-//    [_audioManager playSoundById:6];
-}
-
-- (void)someoneOpenDice
-{
-    [self clearAllReciprocol];
-    [self disableAllDiceOperationButtons];
-    [self popupOpenDiceView];  
-//    [_audioManager playSoundById:6];
-}
 
 - (void)gameOver;
 {
