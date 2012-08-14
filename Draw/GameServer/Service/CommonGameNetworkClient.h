@@ -35,5 +35,9 @@
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
                        gameId:(NSString*)gameId;
+- (void)sendRegisterRoomsNotificationRequest:(NSArray*)sessionList 
+                                      userId:(NSString*)userId;
+- (void)sendUnRegisterRoomsNotificationRequest:(NSArray*)sessionList 
+                                        userId:(NSString*)userId;
 
 @end

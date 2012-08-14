@@ -36,6 +36,8 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [self connect:serverAddress port:port autoReconnect:NO];
 }
 
+
+
 #pragma mark - Data Handler
 
 - (void)handleData:(NSData*)data
@@ -81,6 +83,43 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 - (void)sendGetRoomsRequest:(NSString*)userId
 {
     [self sendSimpleMessage:GameCommandTypeGetRoomsRequest userId:userId sessionId:0];
+}
+
+- (void)sendRegisterRoomsNotificationRequest:(NSArray*)sessionList 
+                                      userId:(NSString*)userId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeRegisterRoomsNotificationRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+
+    RegisterRoomsNotificationRequest_Builder* request_builder = [[[RegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+    for (PBGameSession* session in sessionList) {
+        [request_builder addSessionIds:session.sessionId];
+    }
+    
+    [messageBuilder setRegisterRoomsNotificationRequest:[request_builder build]];
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];   
+}
+
+- (void)sendUnRegisterRoomsNotificationRequest:(NSArray*)sessionList 
+                                        userId:(NSString*)userId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeUnregisterRoomsNotificationRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    
+    UnRegisterRoomsNotificationRequest_Builder* request_builder = [[[UnRegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+    for (PBGameSession* session in sessionList) {
+        [request_builder addSessionIds:session.sessionId];
+    }
+    
+    [messageBuilder setUnRegisterRoomsNotificationRequest:[request_builder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];   
 }
 
 - (void)sendGetRoomsRequest:(NSString*)userId 

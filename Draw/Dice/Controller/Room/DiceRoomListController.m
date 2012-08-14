@@ -72,6 +72,7 @@
         CommonGameNetworkService* service = [DiceGameService defaultService];
         self.dataList = [NSArray arrayWithArray:service.roomList];
         [self.dataTableView reloadData];
+        [[DiceGameService defaultService] registerRoomsNotification:service.roomList];
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
