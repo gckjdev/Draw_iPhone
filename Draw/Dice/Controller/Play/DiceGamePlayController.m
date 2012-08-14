@@ -15,6 +15,7 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "LevelService.h"
+#import "SpeechService.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -737,7 +738,9 @@
 }
 
 -(void)callDice:(int)dice count:(int)count
-{    
+{
+     [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d", count] gender:YES];
+    
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons]; 
     
@@ -780,6 +783,8 @@
 - (void)someoneCallDice
 {   
     [self clearAllReciprocol];
+    
+    [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d", _diceService.lastCallDiceCount] gender:YES];
     
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
