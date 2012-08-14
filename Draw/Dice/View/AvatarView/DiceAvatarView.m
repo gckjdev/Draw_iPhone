@@ -256,8 +256,11 @@
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth
 {
-    [self setAvatarUrl:urlString gender:gender];
+    [imageView setImage:[DiceImageManager defaultManager].whiteSofaImage];
     [self setUserId:userId];
+    if (userId) {
+        [self setAvatarUrl:urlString gender:gender];
+    }
     _isBlackAndWhite = NO;
     _originAvatar = nil;
 }
