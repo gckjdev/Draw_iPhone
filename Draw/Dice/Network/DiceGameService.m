@@ -95,6 +95,11 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_CALL_DICE_REQUEST message:message];
 }
 
+- (void)handleCallDiceResponse:(GameMessage *)message
+{
+    [self postNotification:NOTIFICATION_CALL_DICE_RESPONSE message:message];
+}
+
 - (void)handleOpenDiceRequest:(GameMessage*)message
 {
     self.diceSession.openDiceUserId = message.userId;
@@ -138,6 +143,11 @@ static DiceGameService* _defaultService;
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
             break;
+        case GameCommandTypeCallDiceResponse:
+            [self handleCallDiceResponse:message];
+            break;
+
+            
         case GameCommandTypeOpenDiceRequest: 
             [self handleOpenDiceRequest:message];
             break;
