@@ -127,7 +127,7 @@
 - (UIImage *)smallCoin;
 - (UIImage*)waterPen;
 - (UIImage *)pickToolBackground;
-
+- (UIImage *)unloadBg;
 - (UIImage*)backButtonImage;
 
 - (UIImage *)shareDrawButtonImage;

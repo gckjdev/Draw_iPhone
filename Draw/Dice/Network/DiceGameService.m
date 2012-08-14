@@ -258,7 +258,7 @@ static DiceGameService* _defaultService;
 
 - (void)enterRoom:(long)sessionId
 {
-    [_networkClient sendEnterRoomRequest:sessionId user:[[UserManager defaultManager] toPBGameUser]];
+    [_networkClient sendJoinGameRequest:[[UserManager defaultManager] toPBGameUser] gameId:[ConfigManager gameId]];
 }
 
 @end

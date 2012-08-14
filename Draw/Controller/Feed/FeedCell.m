@@ -175,6 +175,8 @@
     if (drawFeed) {
         NSString *imageUrl = drawFeed.drawImageUrl;
         UIImage *image = drawFeed.drawImage;
+        [self.drawImageView setImage:[[ShareImageManager defaultManager] 
+                                      unloadBg]];
         if ([imageUrl length] != 0) {
             [self.drawImageView showLoadingWheel];
             [self.drawImageView setUrl:[NSURL URLWithString:imageUrl]];    

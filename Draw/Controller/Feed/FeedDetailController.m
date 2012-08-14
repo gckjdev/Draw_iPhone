@@ -44,6 +44,7 @@
 @synthesize inputBackgroundView = inputBackgroundView;
 @synthesize inputBackground = _inputBackground;
 @synthesize paperImage = _paperImage;
+@synthesize feedImage;
 @synthesize avatarView = _avatarView;
 
 
@@ -198,7 +199,7 @@
         self.drawView.drawActionList = [DrawAction scaleActionList:_feed.drawData.drawActionList xScale:xScale yScale:yScale];
     }
     if (self.drawView.tag == SHOW_VIEW_TAG_SMALL) {
-        [self.drawView show];        
+        [self.drawView show];      
     }else{
         double speed = [DrawAction calculateSpeed:self.drawView.drawActionList defaultSpeed:1.0/40.0 maxSecond:30];
         self.drawView.playSpeed = speed;
@@ -333,6 +334,7 @@
     [self setDrawView:nil];
     [self setInputBackground:nil];
     [self setPaperImage:nil];
+    [self setFeedImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -384,6 +386,7 @@
     PPRelease(_inputBackground);
     PPRelease(_paperImage);
     
+    [feedImage release];
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
@@ -515,6 +518,7 @@
         [self updateActionButton:feed];
         [self updateTime:feed];
         [self updateDrawView:feed];
+        self.feedImage.hidden = YES;
         [self hideActivity];
     }else{
         [self hideActivity];

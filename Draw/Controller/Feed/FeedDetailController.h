@@ -42,6 +42,7 @@ ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIImageView *paperImage;
+@property (retain, nonatomic) IBOutlet UIImageView *feedImage;
 
 
 - (IBAction)clickActionButton:(id)sender;
