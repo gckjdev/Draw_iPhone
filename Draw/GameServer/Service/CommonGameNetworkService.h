@@ -51,7 +51,8 @@
 
 - (void)getRoomList;
 - (void)getRoomList:(int)startIndex 
-              count:(int)count;
+              count:(int)count 
+   shouldReloadData:(BOOL)shouldReloadData;
 - (void)joinGameRequest;
 - (void)joinGameRequest:(long)sessionId;
 

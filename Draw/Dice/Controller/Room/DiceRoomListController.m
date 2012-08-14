@@ -84,8 +84,7 @@
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-        [[DiceGameService defaultService].roomList removeAllObjects];
-        [[DiceGameService defaultService] getRoomList:0 count:10];
+        [[DiceGameService defaultService] getRoomList:0 count:10 shouldReloadData:YES];
 
     }];
 
@@ -93,16 +92,7 @@
 
 - (void)unregisterDiceRoomNotification
 {
-    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        
-        //        if ([obj isKindOfClass:[NSNotification class]]) {
-        NSNotification *notification = (NSNotification *)obj;
-        [[NSNotificationCenter defaultCenter] removeObserver:notification];
-        //        }
-        
-    }];    
-    
-    [notifications removeAllObjects];                                                
+    [self unregisterAllNotifications];                                               
 }
 
 - (void)viewDidLoad
@@ -233,8 +223,7 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
-    [[DiceGameService defaultService].roomList removeAllObjects];
-    [[DiceGameService defaultService] getRoomList:0 count:10];
+    [[DiceGameService defaultService] getRoomList:0 count:10 shouldReloadData:YES];
 }
 
 - (void)didBroken
