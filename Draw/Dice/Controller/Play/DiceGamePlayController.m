@@ -740,6 +740,9 @@
 
 -(void)openDiceSuccess
 {
+    NSString *str = (_diceService.diceSession.openType == 0) ? NSLS(@"kOpenDice") : NSLS(@"kScrambleToOpenDice") ;
+    [[SpeechService defaultService] play:str gender:YES];
+
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
 }
@@ -753,6 +756,10 @@
 {
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
+    
+    NSString *str = (_diceService.diceSession.openType == 0) ? NSLS(@"kOpenDice") : NSLS(@"kScrambleToOpenDice") ;
+    [[SpeechService defaultService] play:str gender:YES];
+    
     [self popupOpenDiceView];  
 }
 
@@ -779,7 +786,7 @@
 
 -(void)callDice:(int)dice count:(int)count
 {
-     [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d", count] gender:YES];
+     [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d个%d", count, dice] gender:YES];
     
     [self clearAllReciprocol];
 //    [self disableAllDiceOperationButtons]; 
@@ -824,8 +831,8 @@
 {   
     [self clearAllReciprocol];
     
-    [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d", _diceService.lastCallDiceCount] gender:YES];
-    
+    [[SpeechService defaultService] play:[NSString stringWithFormat:@"%d个%d", _diceService.lastCallDiceCount , _diceService.lastCallDice] gender:YES];
+
     if (_diceService.diceSession.wilds) {
         [self userUseWilds];
     }
