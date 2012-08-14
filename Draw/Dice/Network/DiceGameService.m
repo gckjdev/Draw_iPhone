@@ -170,6 +170,8 @@ static DiceGameService* _defaultService;
 
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds
 {
+    PPDebug(@"****************** ME CALL DICE: %d * %d %@ **********************", count, dice, wilds?@"斋":@"");
+    
     // Update Model.
     self.diceSession.lastCallDiceUserId = self.user.userId;
     self.diceSession.lastCallDice = dice;
@@ -238,6 +240,8 @@ static DiceGameService* _defaultService;
 
 - (void)openDice
 {
+    PPDebug(@"****************** ME OPEN DICE **********************");
+    
     int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
     
     self.diceSession.openDiceUserId = self.user.userId;

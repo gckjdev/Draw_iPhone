@@ -173,7 +173,7 @@
         self.center = center;
         self.transform = CGAffineTransformMakeScale(FACTOR_RESULT_ZOOMIN, FACTOR_RESULT_ZOOMIN);
     } completion:^(BOOL finished) {
-        [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
+        [_delegate stayDidStart:[[self selectedDiceViews] count]];
 
         [UIView animateWithDuration:DURATION_STAY delay:DURATION_MOVE_TO_CENTER options:UIViewAnimationCurveEaseInOut animations:^{
             [self showResultDiceAnimation];
@@ -183,6 +183,7 @@
                 self.center = _originCenter;
                 self.transform = CGAffineTransformMakeScale(1, 1);
             } completion:^(BOOL finished) {
+                [_delegate moveBackDidStop:[[self selectedDiceViews] count]];
             }];
             
         }];

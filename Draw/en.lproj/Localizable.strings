@@ -766,7 +766,7 @@
 "kScrambleToOpenDice" = "Challenge";
 
 "kWaittingForNextTurn" = "Watting...";
-
+"kGameBegin" = "Game begin...";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
