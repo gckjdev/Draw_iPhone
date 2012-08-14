@@ -139,7 +139,7 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.11"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     _isJoiningDice = NO;
