@@ -53,6 +53,7 @@
 - (void)getRoomList:(int)startIndex 
               count:(int)count;
 - (void)joinGameRequest;
+- (void)joinGameRequest:(long)sessionId;
 
 - (void)quitGame;
 

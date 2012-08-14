@@ -33,5 +33,4 @@
 - (void)openDice;
 
 - (void)creatRoomWithName:(NSString*)name;
-- (void)enterRoom:(long)sessionId;
 @end
