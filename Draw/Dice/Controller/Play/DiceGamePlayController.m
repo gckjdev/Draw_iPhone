@@ -220,11 +220,50 @@
 }
 
 
-#pragma mark - Show game result.
+- (NSArray *)getSortedUserIdListBeginWithOpenUser
+{
+    NSArray *sortedPlayingUserList = [_diceService.diceSession.playingUserList sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        PBGameUser* user1 = (PBGameUser *)obj1;
+        PBGameUser* user2 = (PBGameUser *)obj2;
+        if (user1.seatId > user2.seatId) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (user1.seatId < user2.seatId) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    BOOL found = NO;
+    int index = 0;
+    for (PBGameUser *user in sortedPlayingUserList) {
+        if ([user.userId isEqualToString:_diceService.diceSession.openDiceUserId]) {
+            found = YES;
+            break;
+        }
+        index ++;
+    }
+    
+    if (found) {
+        NSMutableArray *resultIdList = [[[NSMutableArray alloc] init] autorelease];
+        for (int i = index; i < [sortedPlayingUserList count]; i++) {
+            PBGameUser *user = [sortedPlayingUserList objectAtIndex:i];
+            [resultIdList addObject:user.userId];
+        }
+        for (int i = 0; i < index ; i++) {
+            PBGameUser *user = [sortedPlayingUserList objectAtIndex:i];
+            [resultIdList addObject:user.userId];
+        }
+        return resultIdList;
+    } else {
+        return [_diceService.diceSession.userDiceList allKeys];
+    }
+}
 
+#pragma mark - Show game result.
 - (void)showGameResult
 {
-    self.enumerator = [_diceService.diceSession.userDiceList keyEnumerator];
+    self.enumerator = [[self getSortedUserIdListBeginWithOpenUser] objectEnumerator];
     
     NSString *userId = [_enumerator nextObject];
     
