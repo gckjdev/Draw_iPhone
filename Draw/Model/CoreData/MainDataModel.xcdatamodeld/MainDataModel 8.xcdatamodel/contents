@@ -59,13 +59,15 @@
     <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="draft" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="drawByMe" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
         <attribute name="drawThumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isDraft" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="PriceModel" representedClassName="PriceModel" syncable="YES">
         <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -102,6 +104,7 @@
         <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <fetchRequest name="findAllDeletedFriends" entity="Friend" predicateString="deleteFlag == 1"/>
+    <fetchRequest name="findAllDrafts" entity="MyPaint" predicateString="draft == 1"/>
     <fetchRequest name="findAllFanFriends" entity="Friend" predicateString="type == 2 AND deleteFlag == 0"/>
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
@@ -123,7 +126,7 @@
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
         <element name="MessageTotal" positionX="160" positionY="192" width="128" height="225"/>
-        <element name="MyPaint" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="210"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>
