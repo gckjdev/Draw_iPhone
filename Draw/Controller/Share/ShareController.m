@@ -36,18 +36,21 @@
 {
     NSMutableArray *_allPaints;
     NSMutableArray *_myPaints;
+    NSMutableArray *_drafts;
     
-    MyPaint *_selectedPaint;
-    
-    NSMutableArray *_gifImages;
     
     NSInteger _allOffset;
     NSInteger _myOffset;
-    
-    MyPaintManager *_myPaintManager;
+    NSInteger _draftOffset;
     
     BOOL _allHasMoreData;
     BOOL _myHasMoreData;
+    BOOL _drafHaseMoreData;
+    
+    MyPaintManager *_myPaintManager;
+    MyPaint *_selectedPaint;
+    NSMutableArray *_gifImages;
+
 
 }
 @property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
@@ -57,6 +60,7 @@
 @end
 
 @implementation ShareController
+@synthesize selectDraftButton;
 @synthesize selectMineButton;
 @synthesize selectAllButton;
 @synthesize clearButton;
@@ -77,8 +81,10 @@
     PPRelease(titleLabel);
     PPRelease(selectAllButton);
     PPRelease(selectMineButton);
+    PPRelease(selectDraftButton);
     PPRelease(awardCoinTips);
-    [backButton release];
+    PPRelease(backButton);
+
     [super dealloc];
 }
 
@@ -138,6 +144,27 @@
     }
 }
 
+- (void)didGetAllDrafts:(NSArray *)paints
+{
+    [self hideActivity];
+    if ([paints count] > 0) {
+        if (_drafts == nil) {
+            _drafts = [[NSMutableArray alloc] initWithArray:paints];
+        }else{
+            [_drafts addObjectsFromArray:paints];
+        }        
+        _draftOffset += [paints count];
+        if ([paints count] == LOAD_PAINT_LIMIT) {
+            _drafHaseMoreData = YES;
+        }else{
+            _drafHaseMoreData = NO;
+        }
+    }
+    if (self.selectDraftButton.selected) {
+        [self reloadView];
+    }
+    
+}
 
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
@@ -148,6 +175,13 @@
         [_myPaintManager findAllPaintsFrom:_allOffset limit:LOAD_PAINT_LIMIT delegate:self];
     }    
 }
+
+- (void)loadDrafts
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
+}
+
 
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
@@ -266,7 +300,6 @@
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    BOOL result = NO;
     if (dialog.tag == DELETE){
         MyPaint* currentPaint = self.selectedPaint;
         if (currentPaint == nil) {
@@ -347,8 +380,10 @@
 {
     if (self.selectAllButton.selected) {
         return _allPaints;
-    }else{
+    }else if(self.selectMineButton.selected){
         return _myPaints;
+    }else{
+        return _drafts;
     }
 }
 
@@ -381,21 +416,21 @@
     int row = indexPath.row;
     int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (row == number - 1) {
-//        PPDebug(@"<ShareController> scroll to end");
         if (self.selectAllButton.selected && _allHasMoreData) {
             [self loadPaintsOnlyMine:NO];            
-//        PPDebug(@"<ShareController> scroll to end, load more all data");
         }else if(self.selectMineButton.selected && _myHasMoreData){
             [self loadPaintsOnlyMine:YES];            
-//        PPDebug(@"<ShareController> scroll to end, load more my data");
+        }else if(self.selectDraftButton.selected && _drafHaseMoreData){
+            [self loadDrafts];
         }
     }
 }
 
 - (IBAction)selectAll:(id)sender
 {
-    [self.selectAllButton setSelected:YES];
+    [self.selectDraftButton setSelected:NO];
     [self.selectMineButton setSelected:NO];
+    [self.selectAllButton setSelected:YES];
     if (_allPaints) {
         [self reloadView];
     }else{
@@ -406,6 +441,7 @@
 - (IBAction)selectMine:(id)sender
 {
     [self.selectAllButton setSelected:NO];
+    [self.selectDraftButton setSelected:NO];
     [self.selectMineButton setSelected:YES];
     if (_myPaints) {
         [self reloadView];
@@ -413,6 +449,18 @@
         [self loadPaintsOnlyMine:YES];
     }
 }
+
+- (IBAction)selectDraft:(id)sender {
+    [self.selectAllButton setSelected:NO];
+    [self.selectMineButton setSelected:NO];
+    [self.selectDraftButton setSelected:YES];
+    if (_drafts) {
+        [self reloadView];
+    }else{
+        [self loadDrafts];
+    }
+}
+
 
 - (IBAction)deleteAll:(id)sender
 {
@@ -472,7 +520,7 @@
         }
         
         _myPaintManager = [MyPaintManager defaultManager];
-        _allHasMoreData = _myHasMoreData = NO;
+        _allHasMoreData = _myHasMoreData = _drafHaseMoreData = NO;
     }
     return self;
 }
@@ -483,13 +531,23 @@
     
     NSString *allTitle = NSLS(@"kAll");
     NSString *mineTitle = NSLS(@"kMine") ;
-    ShareImageManager* imageManager = [ShareImageManager defaultManager];
+    NSString *draftTitle = NSLS(@"kDraft") ;
+    
     [self.selectAllButton setTitle:allTitle forState:UIControlStateNormal];
     [self.selectMineButton setTitle:mineTitle forState:UIControlStateNormal];
-    [self.selectAllButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
-    [self.selectAllButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-    [self.selectMineButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
-    [self.selectMineButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    [self.selectDraftButton setTitle:draftTitle forState:UIControlStateNormal];
+    
+    ShareImageManager* imageManager = [ShareImageManager defaultManager];
+    
+    [self.selectAllButton setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
+    [self.selectAllButton setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
+    
+    [self.selectMineButton setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
+    [self.selectMineButton setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+
+    [self.selectDraftButton setBackgroundImage:[imageManager foucsMeImage] forState:UIControlStateNormal];
+    [self.selectDraftButton setBackgroundImage:[imageManager foucsMeSelectedImage] forState:UIControlStateSelected];
+    
 
     if (self.isFromWeiXin) {
         [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
@@ -526,6 +584,7 @@
     [self setSelectMineButton:nil];
     [self setAwardCoinTips:nil];
     [self setBackButton:nil];
+    [self setSelectDraftButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
