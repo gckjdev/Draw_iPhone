@@ -25,6 +25,7 @@
     int DELETE;
     int DELETE_ALL;
     int DELETE_ALL_MINE;
+    int DELETE_ALL_DRAFT;
     int CANCEL;    
 }
 - (IBAction)selectDraft:(id)sender;

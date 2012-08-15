@@ -358,6 +358,12 @@
         [_myPaints removeAllObjects];
         [[MyPaintManager defaultManager] deleteAllPaints:YES];
         [self loadPaintsOnlyMine:NO];
+    }else if(dialog.tag == DELETE_ALL_DRAFT)
+    {
+        _draftOffset = 0;
+        [_drafts removeAllObjects];
+        [[MyPaintManager defaultManager] deleteAllDrafts];
+        [self loadDrafts];
     }
     [self reloadView];
 }
@@ -507,7 +513,9 @@
                                                       delegate:self];
     if ([self.selectMineButton isSelected]) {
         dialog.tag = DELETE_ALL_MINE;
-    } else {
+    } else if([self.selectDraftButton isSelected]){
+        dialog.tag = DELETE_ALL_DRAFT;
+    }else{
         dialog.tag = DELETE_ALL;
     }
     [dialog showInView:self.view];
@@ -536,6 +544,7 @@
         DELETE = index++;
         DELETE_ALL = index++;
         DELETE_ALL_MINE = index++;
+        DELETE_ALL_DRAFT = index++;
         CANCEL = index++;
     }
     else{
@@ -551,6 +560,7 @@
         DELETE = index++;
         DELETE_ALL = index++;
         DELETE_ALL_MINE = index++;
+        DELETE_ALL_DRAFT = index++;
         CANCEL = index++;            
     }
     
