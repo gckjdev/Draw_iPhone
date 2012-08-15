@@ -185,4 +185,9 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage strectchableImageName:@"dice_room_item.png"];
 }
 
+- (UIImage *)toolsItemBgImage
+{
+    return [UIImage imageNamed:@"tools_bell_bg.png"];
+}
+
 @end

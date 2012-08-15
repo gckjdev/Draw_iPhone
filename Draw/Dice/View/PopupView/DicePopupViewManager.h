@@ -22,13 +22,13 @@
 
 - (void)dismissCallDiceView;
 
-- (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
-                            countNumberList:(NSArray *)countNumberList 
-                                   delegate:(id<ToolSheetViewDelegate>)delegate 
-                                     atView:(UIView *)atView 
-                                     inView:(UIView *)inView;
+- (void)popupToolSheetViewWithTitleList:(NSArray *)titleList 
+                        countNumberList:(NSArray *)countNumberList 
+                               delegate:(id<ToolSheetViewDelegate>)delegate 
+                                 atView:(UIView *)atView 
+                                 inView:(UIView *)inView;
 
-- (void)dismissToolSheetView;
+- (void)dismissToolSheetView;   
 
 
 - (void)popupMessage:(NSString *)message

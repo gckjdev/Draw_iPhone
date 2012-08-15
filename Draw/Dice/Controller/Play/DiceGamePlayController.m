@@ -197,17 +197,20 @@
 
 
 #define TAG_TOOL_BUTTON 12080101
-#define TAG_TOOL_SHEET  12080102
 - (IBAction)clickToolButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     button.tag = TAG_TOOL_BUTTON;
     button.selected = !button.selected;
     
     if (button.selected) {
-        NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
+        NSArray *titleList = [NSArray arrayWithObjects:@"劈", @"改", @"摇",nil];
         NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
         
-        [_popupViewManager popupToolSheetViewWithImageNameList:imageNameList countNumberList:countNumberList delegate:self atView:button inView:self.view];
+        [_popupViewManager popupToolSheetViewWithTitleList:titleList 
+                                           countNumberList:countNumberList 
+                                                  delegate:self 
+                                                    atView:button 
+                                                    inView:self.view];
     } else {
         [_popupViewManager dismissToolSheetView];
     }
