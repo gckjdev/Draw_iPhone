@@ -292,7 +292,7 @@
 - (void)creatRoomWithName:(NSString*)name
 {
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-                                     name:@"" 
+                                     name:name 
                                    gameId:_gameId];
 }
 

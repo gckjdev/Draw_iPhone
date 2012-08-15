@@ -705,9 +705,18 @@
     if ([self isRegistered] == NO) {
         [self toRegister];
     } else {
-        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-        [self.navigationController pushViewController:sc animated:YES];
-        [sc release];
+/*
+ MyPaint *draft =[[MyPaintManager defaultManager] latestDraft];
+        if (draft) {
+            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:draft];
+            [self.navigationController pushViewController:od animated:YES];
+            [od release];
+        }else{
+ */
+            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];
+//        }
     }
 }
 

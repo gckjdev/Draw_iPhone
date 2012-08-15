@@ -48,7 +48,6 @@
         [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
         [avatar setGestureRecognizerEnable:YES];
     }
-    PPDebug(@"<test>get a room, name=%@, user count = %d",session.name, session.usersList.count);
 }
 
 - (void)dealloc {
