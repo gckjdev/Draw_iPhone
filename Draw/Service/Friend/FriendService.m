@@ -58,10 +58,7 @@ FriendService* globalGetFriendService()
                     [[FriendManager defaultManager] deleteAllFriends:type];
                 }
                 
-                for (NSDictionary* user in userList){
-                    [[FriendManager defaultManager] createFriendByDictionary:user];
-                    
-                }
+                [[FriendManager defaultManager] createFriendsByJsonArray:userList];
             }else {
                 PPDebug(@"<FriendService> findFriends Failed!");
             }
@@ -126,10 +123,8 @@ FriendService* globalGetFriendService()
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> followUser success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
-                for (NSDictionary* user in userList){
-                    [[FriendManager defaultManager] createFriendByDictionary:user];
-                    
-                }
+                
+                [[FriendManager defaultManager] createFriendsByJsonArray:userList];
             }else {
                 if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {
                     PPDebug(@"<FriendService> followUser Failed: user not found");
@@ -192,10 +187,7 @@ FriendService* globalGetFriendService()
             if (output.resultCode == ERROR_SUCCESS){
                 PPDebug(@"<FriendService> followUser success!");
                 NSArray* userList = [output.jsonDataDict objectForKey:PARA_USERS];
-                for (NSDictionary* user in userList){
-                    [[FriendManager defaultManager] createFriendByDictionary:user];
-                    
-                }
+                [[FriendManager defaultManager] createFriendsByJsonArray:userList];
             }else {
                 if (output.resultCode == ERROR_FOLLOW_USER_NOT_FOUND) {
                     PPDebug(@"<FriendService> followUser Failed: user not found");

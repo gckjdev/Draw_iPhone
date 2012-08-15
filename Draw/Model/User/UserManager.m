@@ -791,6 +791,11 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [builder build];
 }
 
+- (NSString*)defaultUserRoomName
+{
+    return [NSString stringWithFormat:NSLS(@"kWhoseRoom"),self.nickName];
+}
+
 #define FOLLOW_WEIBO @"FOLLOW_WEIBO"
 - (BOOL)hasFollowWeibo
 {

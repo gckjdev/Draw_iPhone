@@ -341,6 +341,11 @@
     _isBlackAndWhite = isGray;
 }
 
+- (void)setGestureRecognizerEnable:(BOOL)enable
+{
+    self.userInteractionEnabled = enable;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

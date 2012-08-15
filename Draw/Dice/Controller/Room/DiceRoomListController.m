@@ -142,6 +142,7 @@
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
+    [self showActivityWithText:NSLS(@"kConnecting")];
     _isJoiningDice = NO;
 }
 
@@ -198,7 +199,7 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    [[DiceGameService defaultService] creatRoomWithName:nil];
+    [[DiceGameService defaultService] creatRoomWithName:[[UserManager defaultManager] defaultUserRoomName]];
     _isJoiningDice  = YES;
 }
 - (IBAction)clickAll:(id)sender
@@ -223,12 +224,14 @@
 #pragma mark - CommonGameServiceDelegate
 - (void)didConnected
 {
+    [self hideActivity];
     [[DiceGameService defaultService] getRoomList:0 count:10 shouldReloadData:YES];
 }
 
 - (void)didBroken
 {
-    
+    //TODO: handle network broken here
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

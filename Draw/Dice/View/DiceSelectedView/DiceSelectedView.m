@@ -27,7 +27,7 @@
 }
 
 @property (retain, nonatomic) NSTimer *timer;
-@property (retain, nonatomic) UIView *superView;
+@property (assign, nonatomic) UIView *superView;
 
 @property (retain, nonatomic) CMPopTipView *popView;
 @property (retain, nonatomic) UIScrollView *scrollView;
@@ -53,7 +53,7 @@
 - (void)dealloc
 {
     [_timer release];
-    [_superView release];
+//    [_superView release];
     [_popView release];
     [_scrollView release];
     [_pageControl release];

@@ -261,6 +261,7 @@
 {        
     [self unregisterAllNotifications];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {    
     [self registerDiceGameNotification];

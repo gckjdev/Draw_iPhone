@@ -778,7 +778,8 @@
 "kScrambleToOpenDice" = "抢开";
 "kWaittingForNextTurn" = "等待下轮...";
 "kGameBegin" = "游戏开始了...";
-
+"kNearBy" = "附近";
+"kWhoseRoom" = "%@ 的房间";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

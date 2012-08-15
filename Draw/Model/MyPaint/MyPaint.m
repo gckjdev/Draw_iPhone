@@ -19,6 +19,7 @@
 @dynamic drawUserId;
 @dynamic drawWord;
 @dynamic drawThumbnailData;
+@dynamic isDraft;
 
 @synthesize thumbImage;
 

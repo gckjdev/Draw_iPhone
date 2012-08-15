@@ -149,4 +149,5 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)hasFollowWeibo;
 - (void)followWeibo;
 
+- (NSString*)defaultUserRoomName;
 @end
