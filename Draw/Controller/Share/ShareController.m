@@ -643,7 +643,7 @@
     if (self.selectDraftButton.selected) {
         _draftOffset = 0;
         [_drafts removeAllObjects];
-        [self loadDrafts];
+        [_myPaintManager findAllDraftsFrom:_draftOffset limit:LOAD_PAINT_LIMIT delegate:self];
     }
     [super viewDidAppear:animated];
 }
