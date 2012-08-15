@@ -628,7 +628,10 @@ enum{
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-     
+        if (self.draft) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft = nil;
+        }
         
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];

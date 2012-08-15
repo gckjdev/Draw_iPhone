@@ -284,8 +284,9 @@
 "kContentNull" = "搜索条件不能为空";
 
 "kNoDrawings" = "你还没有任何作品";
-"kAll" = "  所有";
-"kMine" = "我的  ";
+"kAll" = "所有";
+"kMine" = "我的";
+"kDraft" = "草稿";
 "kNone" = "无";
 "kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片。";
 "kGifTips" = "温馨提示";

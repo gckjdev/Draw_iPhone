@@ -26,6 +26,8 @@
     int DELETE_ALL_MINE;
     int CANCEL;    
 }
+- (IBAction)selectDraft:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *selectDraftButton;
 @property (retain, nonatomic) IBOutlet UIButton *selectMineButton;
 @property (retain, nonatomic) IBOutlet UIButton *selectAllButton;
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
