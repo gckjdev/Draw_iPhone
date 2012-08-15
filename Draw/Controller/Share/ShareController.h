@@ -18,6 +18,7 @@
 @class MyPaint;
 @interface ShareController : PPTableViewController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
     
+    int EDIT;
     int SHARE_AS_PHOTO;
     int SHARE_AS_GIF;
     int REPLAY;

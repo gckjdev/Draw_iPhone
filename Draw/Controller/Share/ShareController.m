@@ -22,6 +22,8 @@
 #import "FileUtil.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import "OfflineDrawViewController.h"
+
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -57,6 +59,7 @@
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine;
 - (NSArray *)paints;
 - (void)reloadView;
+- (void)updateActionSheetIndexs;
 @end
 
 @implementation ShareController
@@ -209,19 +212,38 @@
     UIActionSheet* tips = nil;
     
     if ([LocaleUtils isChina]){
-        tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                                      delegate:self 
-                                             cancelButtonTitle:NSLS(@"kCancel") 
-                                        destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
-                                             otherButtonTitles:NSLS(@"kShareAsGif"),
-                                                    NSLS(@"kReplay"), NSLS(@"kDelete"), NSLS(@"kDeleteAll"), nil];
+        
+        if (self.selectDraftButton.selected) {
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+                                               delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                 destructiveButtonTitle:NSLS(@"kEdit") 
+                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),
+                    NSLS(@"kShareAsGif"),NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+        }else{        
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+                                                          delegate:self 
+                                                 cancelButtonTitle:NSLS(@"kCancel") 
+                                            destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                                 otherButtonTitles:NSLS(@"kShareAsGif"),
+                                                        NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        }
     }
     else{
-        tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                           delegate:self 
-                                  cancelButtonTitle:NSLS(@"kCancel") 
-                             destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
-                                  otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        if (self.selectDraftButton.selected) {
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+                                               delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                 destructiveButtonTitle:NSLS(@"kEdit") 
+                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),
+                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+        }else{           
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+                                               delegate:self 
+                                      cancelButtonTitle:NSLS(@"kCancel") 
+                                 destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        }
         
     }
     tips.tag = IMAGE_OPTION;
@@ -292,6 +314,10 @@
                                                          delegate:self];            
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];        
+    }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
+        OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+        [self.navigationController pushViewController:od animated:YES];
+        [od release];
     }
     
 }
@@ -436,6 +462,8 @@
     }else{
         [self loadPaintsOnlyMine:NO];
     }
+    [self updateActionSheetIndexs];
+    
 }
 
 - (IBAction)selectMine:(id)sender
@@ -448,6 +476,7 @@
     }else{
         [self loadPaintsOnlyMine:YES];
     }
+    [self updateActionSheetIndexs];
 }
 
 - (IBAction)selectDraft:(id)sender {
@@ -459,6 +488,7 @@
     }else{
         [self loadDrafts];
     }
+    [self updateActionSheetIndexs];
 }
 
 
@@ -490,6 +520,42 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (void)updateActionSheetIndexs
+{
+    if ([LocaleUtils isChina]){
+        int index = 0;
+        if (self.selectDraftButton.selected) {
+            EDIT  = index++;
+        }else{
+            EDIT = -1;
+        }
+        SHARE_AS_PHOTO = index++;
+        SHARE_AS_GIF = index++;
+        REPLAY = index++;
+        DELETE = index++;
+        DELETE_ALL = index++;
+        DELETE_ALL_MINE = index++;
+        CANCEL = index++;
+    }
+    else{
+        
+        int index = 0;
+        if (self.selectDraftButton.selected) {
+            EDIT  = index++;
+        }else{
+            EDIT = -1;
+        }
+        SHARE_AS_PHOTO = index++;
+        REPLAY = index++;
+        DELETE = index++;
+        DELETE_ALL = index++;
+        DELETE_ALL_MINE = index++;
+        CANCEL = index++;            
+    }
+    
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -499,25 +565,6 @@
         
         _gifImages = [[NSMutableArray alloc] init];
 
-        if ([LocaleUtils isChina]){
-            int index = 0;
-            SHARE_AS_PHOTO = index++;
-            SHARE_AS_GIF = index++;
-            REPLAY = index++;
-            DELETE = index++;
-            DELETE_ALL = index++;
-            DELETE_ALL_MINE = index++;
-            CANCEL = index++;
-        }
-        else{
-            int index = 0;
-            SHARE_AS_PHOTO = index++;
-            REPLAY = index++;
-            DELETE = index++;
-            DELETE_ALL = index++;
-            DELETE_ALL_MINE = index++;
-            CANCEL = index++;            
-        }
         
         _myPaintManager = [MyPaintManager defaultManager];
         _allHasMoreData = _myHasMoreData = _drafHaseMoreData = NO;
@@ -591,5 +638,14 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.selectDraftButton.selected) {
+        _draftOffset = 0;
+        [_drafts removeAllObjects];
+        [self loadDrafts];
+    }
+    [super viewDidAppear:animated];
+}
 
 @end
