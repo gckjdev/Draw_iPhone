@@ -29,6 +29,8 @@ enum deleteFlag {
 
 - (BOOL)createFriendByDictionary:(NSDictionary *)userDic;
 
+- (void)createFriendsByJsonArray:(NSArray *)jsonArray;
+
 - (BOOL)createFriendWithUserId:(NSString *)friendUserId 
                           type:(NSNumber *)type
                       nickName:(NSString *)nickName 
