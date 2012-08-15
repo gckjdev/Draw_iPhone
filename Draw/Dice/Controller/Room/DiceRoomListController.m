@@ -139,7 +139,7 @@
 {
     [super viewDidAppear:animated];
     [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.163"];
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
     [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];
@@ -231,6 +231,7 @@
 - (void)didBroken
 {
     //TODO: handle network broken here
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

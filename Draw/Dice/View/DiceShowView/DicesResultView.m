@@ -50,6 +50,11 @@
 
 @synthesize delegate = _delegate;
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
