@@ -16,11 +16,13 @@
 @property (nonatomic, retain) NSString * image;
 @property (nonatomic, retain) NSData * data;
 @property (nonatomic, retain) NSNumber * drawByMe;
-@property (nonatomic, retain) NSNumber * isDraft;
+@property (nonatomic, retain) NSNumber * draft;
 @property (nonatomic, retain) NSString * drawUserNickName;
 @property (nonatomic, retain) NSString * drawUserId;
 @property (nonatomic, retain) NSString * drawWord;
 @property (nonatomic, retain) NSData * drawThumbnailData;
+@property (nonatomic, assign) NSInteger language;
+@property (nonatomic, assign) NSInteger level;
 
 @property (nonatomic, retain) UIImage *thumbImage;
 
