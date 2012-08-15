@@ -18,6 +18,7 @@
 #import "DiceGamePlayController.h"
 #import "FontButton.h"
 
+
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 
 @interface DiceRoomListController ()
@@ -98,6 +99,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _diceGameService = [DiceGameService defaultService];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[[DiceImageManager defaultManager] roomListBgImage]];
     
@@ -199,8 +201,11 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    [[DiceGameService defaultService] creatRoomWithName:[[UserManager defaultManager] defaultUserRoomName]];
-    _isJoiningDice  = YES;
+    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
+    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
+    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    [inputDialog showInView:self.view];
+    
 }
 - (IBAction)clickAll:(id)sender
 {
@@ -232,6 +237,18 @@
 {
     //TODO: handle network broken here
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma makr - inputDialog delegate
+- (void)didClickOk:(InputDialog *)dialog 
+        targetText:(NSString *)targetText
+{
+    [_diceGameService creatRoomWithName:targetText];
+    _isJoiningDice = YES;
+}
+- (void)didClickCancel:(InputDialog *)dialog
+{
+    
 }
 
 @end
