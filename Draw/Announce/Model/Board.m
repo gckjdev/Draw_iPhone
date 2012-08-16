@@ -1,20 +1,20 @@
 //
-//  Announce.m
+//  Board.m
 //  Draw
 //
 //  Created by  on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "Announce.h"
+#import "Board.h"
 #import "PPDebug.h"
 
-@implementation Announce
+@implementation Board
 @synthesize type = _type;
 @synthesize url = _url;
 @synthesize version = _version;
 
-- (id)initWithType:(AnnounceType)type 
+- (id)initWithType:(BoardType)type 
            version:(NSString *)version 
                url:(NSString *)url
 {
@@ -34,11 +34,11 @@
     [super dealloc];
 }
 
-- (Announce *)announceWithType:(AnnounceType)type 
+- (Board *)BoardWithType:(BoardType)type 
                        version:(NSString *)version 
                            url:(NSString *)url
 {
-    return [[[Announce alloc] initWithType:type 
+    return [[[Board alloc] initWithType:type 
                                    version:version 
                                        url:url] autorelease];
 }

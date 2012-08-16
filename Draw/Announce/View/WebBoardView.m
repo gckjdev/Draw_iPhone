@@ -1,24 +1,24 @@
 //
-//  WebAnnounceView.m
+//  WebBoardView.m
 //  Draw
 //
 //  Created by  on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "WebAnnounceView.h"
+#import "WebBoardView.h"
 
-@interface WebAnnounceView()
+@interface WebBoardView()
 {
     UIWebView *_webView;
 }
 @end
 
-@implementation WebAnnounceView
+@implementation WebBoardView
 
-- (id)initWithAnnounce:(Announce *)anounce
+- (id)initWithBoard:(Board *)board
 {
-    self = [super initWithAnnounce:anounce];
+    self = [super initWithBoard:board];
     if (self) {
         
     }
@@ -48,16 +48,16 @@
 - (void)loadView
 {
     [super loadView];
-    if ([self.announce.url length] == 0) {
+    if ([self.Board.url length] == 0) {
         return;
     }
-    if (self.announce.type == AnnounceTypeLocal) 
+    if (self.Board.type == BoardTypeLocal) 
     {
-        [self loadLocalWebPage:self.announce.url];
+        [self loadLocalWebPage:self.Board.url];
     }
-    else if(self.announce.type == AnnounceTypeRemote)
+    else if(self.Board.type == BoardTypeRemote)
     {
-        [self loadRemoteWebPage:self.announce.url];
+        [self loadRemoteWebPage:self.Board.url];
     }
 }
 

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AnnounceNetwork : NSObject
+@interface BoardNetwork : NSObject
 
 @end
