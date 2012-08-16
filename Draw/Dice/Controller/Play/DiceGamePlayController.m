@@ -242,10 +242,6 @@
         default:
             break;
     }
-
-    
-    
-    
 }
 
 - (void)didSelectTool:(NSInteger)index
