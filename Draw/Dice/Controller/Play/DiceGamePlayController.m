@@ -662,7 +662,7 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
                                     usingBlock:^(NSNotification *notification) {                       
-                                        [self someoneUseItem];         
+//                                        [self someoneUseItem];         
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
