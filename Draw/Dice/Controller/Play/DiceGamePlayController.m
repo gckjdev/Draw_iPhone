@@ -289,6 +289,10 @@
 
 - (void)showUserDice:(NSString *)userId
 {
+    if ([_userManager isMe:userId]) {
+        self.myDiceListHolderView.hidden = YES;
+    }
+    
     DicesResultView *resultView = [self resultViewOfUser:userId];
     [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
     [resultView showAnimation:self.view.center];
@@ -933,7 +937,7 @@
     
     // Hidden views.
     [self hideAllBellViews];
-    self.myDiceListHolderView.hidden = YES;
+    //self.myDiceListHolderView.hidden = YES;
     
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
