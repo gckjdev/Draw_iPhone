@@ -109,6 +109,8 @@
 @class UseItemRequest_Builder;
 @class UseItemResponse;
 @class UseItemResponse_Builder;
+@class UserDiceNotification;
+@class UserDiceNotification_Builder;
 
 @interface GameMessageRoot : NSObject {
 }
@@ -626,10 +628,14 @@
 @interface OpenDiceRequest : PBGeneratedMessage {
 @private
   BOOL hasOpenType_:1;
+  BOOL hasMultiple_:1;
   int32_t openType;
+  int32_t multiple;
 }
 - (BOOL) hasOpenType;
+- (BOOL) hasMultiple;
 @property (readonly) int32_t openType;
+@property (readonly) int32_t multiple;
 
 + (OpenDiceRequest*) defaultInstance;
 - (OpenDiceRequest*) defaultInstance;
@@ -669,6 +675,11 @@
 - (int32_t) openType;
 - (OpenDiceRequest_Builder*) setOpenType:(int32_t) value;
 - (OpenDiceRequest_Builder*) clearOpenType;
+
+- (BOOL) hasMultiple;
+- (int32_t) multiple;
+- (OpenDiceRequest_Builder*) setMultiple:(int32_t) value;
+- (OpenDiceRequest_Builder*) clearMultiple;
 @end
 
 @interface OpenDiceResponse : PBGeneratedMessage {
@@ -814,6 +825,64 @@
 - (UseItemResponse_Builder*) addDices:(PBDice*) value;
 - (UseItemResponse_Builder*) addAllDices:(NSArray*) values;
 - (UseItemResponse_Builder*) clearDicesList;
+@end
+
+@interface UserDiceNotification : PBGeneratedMessage {
+@private
+  BOOL hasCleanAll_:1;
+  BOOL cleanAll_:1;
+  NSMutableArray* mutableUserDiceList;
+}
+- (BOOL) hasCleanAll;
+- (BOOL) cleanAll;
+- (NSArray*) userDiceList;
+- (PBUserDice*) userDiceAtIndex:(int32_t) index;
+
++ (UserDiceNotification*) defaultInstance;
+- (UserDiceNotification*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (UserDiceNotification_Builder*) builder;
++ (UserDiceNotification_Builder*) builder;
++ (UserDiceNotification_Builder*) builderWithPrototype:(UserDiceNotification*) prototype;
+
++ (UserDiceNotification*) parseFromData:(NSData*) data;
++ (UserDiceNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UserDiceNotification*) parseFromInputStream:(NSInputStream*) input;
++ (UserDiceNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UserDiceNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UserDiceNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface UserDiceNotification_Builder : PBGeneratedMessage_Builder {
+@private
+  UserDiceNotification* result;
+}
+
+- (UserDiceNotification*) defaultInstance;
+
+- (UserDiceNotification_Builder*) clear;
+- (UserDiceNotification_Builder*) clone;
+
+- (UserDiceNotification*) build;
+- (UserDiceNotification*) buildPartial;
+
+- (UserDiceNotification_Builder*) mergeFrom:(UserDiceNotification*) other;
+- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) userDiceList;
+- (PBUserDice*) userDiceAtIndex:(int32_t) index;
+- (UserDiceNotification_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value;
+- (UserDiceNotification_Builder*) addUserDice:(PBUserDice*) value;
+- (UserDiceNotification_Builder*) addAllUserDice:(NSArray*) values;
+- (UserDiceNotification_Builder*) clearUserDiceList;
+
+- (BOOL) hasCleanAll;
+- (BOOL) cleanAll;
+- (UserDiceNotification_Builder*) setCleanAll:(BOOL) value;
+- (UserDiceNotification_Builder*) clearCleanAll;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
@@ -2316,7 +2385,6 @@
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
-  BOOL hasCreateRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
   BOOL hasCallDiceRequest_:1;
@@ -2329,6 +2397,7 @@
   BOOL hasRegisterRoomsNotificationResponse_:1;
   BOOL hasUnRegisterRoomsNotificationRequest_:1;
   BOOL hasUnRegisterRoomsNotificationResponse_:1;
+  BOOL hasUserDiceNotification_:1;
   BOOL hasUseItemRequest_:1;
   BOOL hasUseItemResponse_:1;
   BOOL hasJoinGameRequest_:1;
@@ -2345,6 +2414,7 @@
   BOOL hasGetRoomsRequest_:1;
   BOOL hasGetRoomsResponse_:1;
   BOOL hasCreateRoomRequest_:1;
+  BOOL hasCreateRoomResponse_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -2357,7 +2427,6 @@
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
-  CreateRoomResponse* createRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
   CallDiceRequest* callDiceRequest;
@@ -2370,6 +2439,7 @@
   RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
   UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
   UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+  UserDiceNotification* userDiceNotification;
   UseItemRequest* useItemRequest;
   UseItemResponse* useItemResponse;
   JoinGameRequest* joinGameRequest;
@@ -2386,6 +2456,7 @@
   GetRoomsRequest* getRoomsRequest;
   GetRoomsResponse* getRoomsResponse;
   CreateRoomRequest* createRoomRequest;
+  CreateRoomResponse* createRoomResponse;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2427,6 +2498,7 @@
 - (BOOL) hasRegisterRoomsNotificationResponse;
 - (BOOL) hasUnRegisterRoomsNotificationRequest;
 - (BOOL) hasUnRegisterRoomsNotificationResponse;
+- (BOOL) hasUserDiceNotification;
 - (BOOL) hasUseItemRequest;
 - (BOOL) hasUseItemResponse;
 - (BOOL) hasStartOffset;
@@ -2468,6 +2540,7 @@
 @property (readonly, retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
 @property (readonly, retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (readonly, retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+@property (readonly, retain) UserDiceNotification* userDiceNotification;
 @property (readonly, retain) UseItemRequest* useItemRequest;
 @property (readonly, retain) UseItemResponse* useItemResponse;
 @property (readonly) int32_t startOffset;
@@ -2745,6 +2818,13 @@
 - (GameMessage_Builder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
 - (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse;
+
+- (BOOL) hasUserDiceNotification;
+- (UserDiceNotification*) userDiceNotification;
+- (GameMessage_Builder*) setUserDiceNotification:(UserDiceNotification*) value;
+- (GameMessage_Builder*) setUserDiceNotificationBuilder:(UserDiceNotification_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeUserDiceNotification:(UserDiceNotification*) value;
+- (GameMessage_Builder*) clearUserDiceNotification;
 
 - (BOOL) hasUseItemRequest;
 - (UseItemRequest*) useItemRequest;
