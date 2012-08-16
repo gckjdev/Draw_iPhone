@@ -922,6 +922,12 @@
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
+		CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2915DCCFB900FA5A2A /* Announce.m */; };
+		CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */; };
+		CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */; };
+		CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */; };
+		CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */; };
+		CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -2407,6 +2413,18 @@
 		CAEA700F1527017D00B3D206 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
+		CAEECD2815DCCFB900FA5A2A /* Announce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Announce.h; sourceTree = "<group>"; };
+		CAEECD2915DCCFB900FA5A2A /* Announce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Announce.m; sourceTree = "<group>"; };
+		CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceNetwork.h; sourceTree = "<group>"; };
+		CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceNetwork.m; sourceTree = "<group>"; };
+		CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceView.h; sourceTree = "<group>"; };
+		CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdAnnounceView.h; sourceTree = "<group>"; };
+		CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdAnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAnnounceView.h; sourceTree = "<group>"; };
+		CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceService.h; sourceTree = "<group>"; };
+		CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceService.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -5238,6 +5256,7 @@
 				CAECE0291503B25500BC2404 /* Model */,
 				CA3220FF151B6A490039A384 /* Network */,
 				CA2F81D915C0D62D002038A6 /* Facetime */,
+				CAEECD2115DCCF9400FA5A2A /* Announce */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
@@ -5879,6 +5898,73 @@
 				CA1041EB1509B99A00F60C03 /* User */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CAEECD2115DCCF9400FA5A2A /* Announce */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2215DCCF9400FA5A2A /* Controller */,
+				CAEECD2315DCCF9400FA5A2A /* Model */,
+				CAEECD2415DCCF9400FA5A2A /* Network */,
+				CAEECD2515DCCF9400FA5A2A /* Resource */,
+				CAEECD2615DCCF9400FA5A2A /* Service */,
+				CAEECD2715DCCF9400FA5A2A /* View */,
+			);
+			path = Announce;
+			sourceTree = "<group>";
+		};
+		CAEECD2215DCCF9400FA5A2A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAEECD2315DCCF9400FA5A2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2815DCCFB900FA5A2A /* Announce.h */,
+				CAEECD2915DCCFB900FA5A2A /* Announce.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAEECD2415DCCF9400FA5A2A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */,
+				CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CAEECD2515DCCF9400FA5A2A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CAEECD2615DCCF9400FA5A2A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */,
+				CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CAEECD2715DCCF9400FA5A2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */,
+				CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */,
+				CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */,
+				CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */,
+				CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */,
+				CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
@@ -6947,6 +7033,12 @@
 				CA82847515D637930016CD43 /* zip.c in Sources */,
 				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
 				A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */,
+				CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */,
+				CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */,
+				CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */,
+				CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */,
+				CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */,
+				CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
