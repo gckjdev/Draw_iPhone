@@ -11,7 +11,8 @@
 #import "WebBoardView.h"
 
 @implementation BoardView
-@synthesize Board = _board;
+@synthesize board = _board;
+@synthesize delegate = _delegate;
 
 #define Board_FRAME ([DeviceDetection isIPAD]?CGRectMake(0, 0, 300 * 2, 200 * 2):CGRectMake(0, 0, 300, 200))
 

@@ -40,26 +40,49 @@
 {
     if (_webView == nil) {
         _webView = [[UIWebView alloc] initWithFrame:self.frame];
+        [_webView setDelegate:self];
+        [self addSubview:_webView];
     }
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [_webView loadRequest:request];
+
 }
 
 - (void)loadView
 {
     [super loadView];
-    if ([self.Board.url length] == 0) {
+    if ([self.board.url length] == 0) {
         return;
     }
-    if (self.Board.type == BoardTypeLocal) 
+    if (self.board.type == BoardTypeLocal) 
     {
-        [self loadLocalWebPage:self.Board.url];
+        [self loadLocalWebPage:self.board.url];
     }
-    else if(self.Board.type == BoardTypeRemote)
+    else if(self.board.type == BoardTypeRemote)
     {
-        [self loadRemoteWebPage:self.Board.url];
+        [self loadRemoteWebPage:self.board.url];
     }
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(boardView:didCaptureRequest:)]) {
+        [self.delegate boardView:self didCaptureRequest:request];
+    }
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    PPDebug(@"did start load webview");
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    PPDebug(@"did finish load webview");    
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    PPDebug(@"load webview fail");        
+}
 
 @end

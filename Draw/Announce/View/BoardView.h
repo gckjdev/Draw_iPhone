@@ -13,7 +13,7 @@
 @protocol BoardViewDelegate <NSObject>
 
 @optional 
-- (void)BoardView:(BoardView *)BoardView 
+- (void)boardView:(BoardView *)BoardView 
    didCaptureRequest:(NSURLRequest *)request;
 
 @end
@@ -21,9 +21,11 @@
 @interface BoardView : UIView
 {
     Board *_board;
+    id<BoardViewDelegate> _delegate;
 }
 
-@property(nonatomic, retain)Board *Board;
+@property(nonatomic, retain)Board *board;
+@property(nonatomic, assign)id<BoardViewDelegate>delegate;
 - (id)initWithBoard:(Board *)board;
 + (BoardView *)creatBoardView:(Board *)board;
 - (void)loadView;

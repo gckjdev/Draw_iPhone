@@ -8,11 +8,12 @@
 
 #import "BoardView.h"
 
-@interface WebBoardView : BoardView
+@interface WebBoardView : BoardView<UIWebViewDelegate>
 {
     
 }
 
 - (id)initWithBoard:(Board *)board;
 - (void)loadView;
+
 @end
