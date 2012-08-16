@@ -1,19 +1,19 @@
 //
-//  AdAnnounceView.m
+//  AdBoardView.m
 //  Draw
 //
 //  Created by  on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "AdAnnounceView.h"
+#import "AdBoardView.h"
 
-@implementation AdAnnounceView
+@implementation AdBoardView
 
 
-- (id)initWithAnnounce:(Announce *)anounce
+- (id)initWithBoard:(Board *)board
 {
-    self = [super initWithAnnounce:anounce];
+    self = [super initWithBoard:board];
     if (self) {
         
     }

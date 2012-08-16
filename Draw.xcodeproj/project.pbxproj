@@ -928,16 +928,16 @@
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
-		CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2915DCCFB900FA5A2A /* Announce.m */; };
-		CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */; };
-		CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */; };
-		CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */; };
-		CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */; };
-		CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */; };
+		CAEECD2A15DCCFB900FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2915DCCFB900FA5A2A /* Board.m */; };
+		CAEECD2D15DCCFF300FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2C15DCCFF300FA5A2A /* BoardNetwork.m */; };
+		CAEECD3015DCD01A00FA5A2A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2F15DCD01A00FA5A2A /* BoardView.m */; };
+		CAEECD3315DCD03900FA5A2A /* AdBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3215DCD03900FA5A2A /* AdBoardView.m */; };
+		CAEECD3615DCD04D00FA5A2A /* WebBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3515DCD04D00FA5A2A /* WebBoardView.m */; };
+		CAEECD3915DCD06D00FA5A2A /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3815DCD06D00FA5A2A /* BoardService.m */; };
 		CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD4415DCD26A00FA5A2A /* EntryController.m */; };
 		CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4515DCD26A00FA5A2A /* EntryController.xib */; };
 		CAEECD4915DCD8F100FA5A2A /* draft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4815DCD8F100FA5A2A /* draft@2x.png */; };
-		CAEECD6F15DCE1C700FA5A2A /* AnnounceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */; };
+		CAEECD6F15DCE1C700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD6E15DCE1C700FA5A2A /* BoardManager.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -2433,24 +2433,24 @@
 		CAEA700F1527017D00B3D206 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
-		CAEECD2815DCCFB900FA5A2A /* Announce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Announce.h; sourceTree = "<group>"; };
-		CAEECD2915DCCFB900FA5A2A /* Announce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Announce.m; sourceTree = "<group>"; };
-		CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceNetwork.h; sourceTree = "<group>"; };
-		CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceNetwork.m; sourceTree = "<group>"; };
-		CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceView.h; sourceTree = "<group>"; };
-		CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceView.m; sourceTree = "<group>"; };
-		CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdAnnounceView.h; sourceTree = "<group>"; };
-		CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdAnnounceView.m; sourceTree = "<group>"; };
-		CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAnnounceView.h; sourceTree = "<group>"; };
-		CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAnnounceView.m; sourceTree = "<group>"; };
-		CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceService.h; sourceTree = "<group>"; };
-		CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceService.m; sourceTree = "<group>"; };
+		CAEECD2815DCCFB900FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Board.h; sourceTree = "<group>"; };
+		CAEECD2915DCCFB900FA5A2A /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		CAEECD2B15DCCFF300FA5A2A /* BoardNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BoardNetwork.h; sourceTree = "<group>"; };
+		CAEECD2C15DCCFF300FA5A2A /* BoardNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardNetwork.m; sourceTree = "<group>"; };
+		CAEECD2E15DCD01A00FA5A2A /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BoardView.h; sourceTree = "<group>"; };
+		CAEECD2F15DCD01A00FA5A2A /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		CAEECD3115DCD03900FA5A2A /* AdBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AdBoardView.h; sourceTree = "<group>"; };
+		CAEECD3215DCD03900FA5A2A /* AdBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBoardView.m; sourceTree = "<group>"; };
+		CAEECD3415DCD04D00FA5A2A /* WebBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = WebBoardView.h; sourceTree = "<group>"; };
+		CAEECD3515DCD04D00FA5A2A /* WebBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBoardView.m; sourceTree = "<group>"; };
+		CAEECD3715DCD06D00FA5A2A /* BoardService.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BoardService.h; sourceTree = "<group>"; };
+		CAEECD3815DCD06D00FA5A2A /* BoardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardService.m; sourceTree = "<group>"; };
 		CAEECD4315DCD26A00FA5A2A /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
 		CAEECD4415DCD26A00FA5A2A /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
 		CAEECD4515DCD26A00FA5A2A /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		CAEECD4815DCD8F100FA5A2A /* draft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draft@2x.png"; sourceTree = "<group>"; };
-		CAEECD6D15DCE1C700FA5A2A /* AnnounceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceManager.h; sourceTree = "<group>"; };
-		CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceManager.m; sourceTree = "<group>"; };
+		CAEECD6D15DCE1C700FA5A2A /* BoardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BoardManager.h; sourceTree = "<group>"; };
+		CAEECD6E15DCE1C700FA5A2A /* BoardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardManager.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -5985,10 +5985,10 @@
 		CAEECD2315DCCF9400FA5A2A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD6D15DCE1C700FA5A2A /* AnnounceManager.h */,
-				CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */,
-				CAEECD2815DCCFB900FA5A2A /* Announce.h */,
-				CAEECD2915DCCFB900FA5A2A /* Announce.m */,
+				CAEECD6D15DCE1C700FA5A2A /* BoardManager.h */,
+				CAEECD6E15DCE1C700FA5A2A /* BoardManager.m */,
+				CAEECD2815DCCFB900FA5A2A /* Board.h */,
+				CAEECD2915DCCFB900FA5A2A /* Board.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5996,8 +5996,8 @@
 		CAEECD2415DCCF9400FA5A2A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */,
-				CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */,
+				CAEECD2B15DCCFF300FA5A2A /* BoardNetwork.h */,
+				CAEECD2C15DCCFF300FA5A2A /* BoardNetwork.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -6012,8 +6012,8 @@
 		CAEECD2615DCCF9400FA5A2A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */,
-				CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */,
+				CAEECD3715DCD06D00FA5A2A /* BoardService.h */,
+				CAEECD3815DCD06D00FA5A2A /* BoardService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -6021,12 +6021,12 @@
 		CAEECD2715DCCF9400FA5A2A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */,
-				CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */,
-				CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */,
-				CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */,
-				CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */,
-				CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */,
+				CAEECD2E15DCD01A00FA5A2A /* BoardView.h */,
+				CAEECD2F15DCD01A00FA5A2A /* BoardView.m */,
+				CAEECD3115DCD03900FA5A2A /* AdBoardView.h */,
+				CAEECD3215DCD03900FA5A2A /* AdBoardView.m */,
+				CAEECD3415DCD04D00FA5A2A /* WebBoardView.h */,
+				CAEECD3515DCD04D00FA5A2A /* WebBoardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7111,18 +7111,18 @@
 				CA82847515D637930016CD43 /* zip.c in Sources */,
 				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
 				A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */,
-				CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */,
-				CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */,
-				CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */,
-				CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */,
-				CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */,
-				CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */,
+				CAEECD2A15DCCFB900FA5A2A /* Board.m in Sources */,
+				CAEECD2D15DCCFF300FA5A2A /* BoardNetwork.m in Sources */,
+				CAEECD3015DCD01A00FA5A2A /* BoardView.m in Sources */,
+				CAEECD3315DCD03900FA5A2A /* AdBoardView.m in Sources */,
+				CAEECD3615DCD04D00FA5A2A /* WebBoardView.m in Sources */,
+				CAEECD3915DCD06D00FA5A2A /* BoardService.m in Sources */,
 				CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */,
 				C296872715DCE03F006968BA /* DiceCommonDialog.m in Sources */,
 				C296872915DCE03F006968BA /* DiceInputDialog.m in Sources */,
 				C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */,
 				C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */,
-				CAEECD6F15DCE1C700FA5A2A /* AnnounceManager.m in Sources */,
+				CAEECD6F15DCE1C700FA5A2A /* BoardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

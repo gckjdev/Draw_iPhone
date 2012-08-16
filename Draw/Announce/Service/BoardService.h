@@ -8,6 +8,6 @@
 
 #import "CommonService.h"
 
-@interface AnnounceService : CommonService
+@interface BoardService : CommonService
 
 @end

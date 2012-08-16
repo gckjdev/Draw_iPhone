@@ -1,17 +1,19 @@
 //
-//  AdAnnounceView.h
+//  WebBoardView.h
 //  Draw
 //
 //  Created by  on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "AnnounceView.h"
+#import "BoardView.h"
 
-@interface AdAnnounceView : AnnounceView
+@interface WebBoardView : BoardView<UIWebViewDelegate>
 {
     
 }
-- (id)initWithAnnounce:(Announce *)anounce;
+
+- (id)initWithBoard:(Board *)board;
 - (void)loadView;
+
 @end
