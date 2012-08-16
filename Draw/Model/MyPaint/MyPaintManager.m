@@ -8,9 +8,10 @@
 
 #import "MyPaintManager.h"
 #import "CoreDataUtil.h"
-#import "MyPaint.h"
+//#import "MyPaint.h"
 #import "PPDebug.h"
 #import "FileUtil.h"
+#import "UserManager.h"
 
 #define MY_PAINT_IMAGE_DIR @"Paints"
 
@@ -51,6 +52,61 @@ static MyPaintManager* _defaultManager;
     return result;
 }
 
+
+- (MyPaint *)createDraft:(UIImage *)image
+                    data:(NSMutableArray*)drawActionList 
+                language:(LanguageType)language
+                drawWord:(NSString*)drawWord 
+                   level:(WordLevel)level
+{
+    
+    time_t aTime = time(0);
+    NSString* imageName = [NSString stringWithFormat:@"%d.png", aTime];
+    NSString *uniquePath=[MyPaintManager constructImagePath:imageName];
+    NSData* imageData = UIImagePNGRepresentation(image);
+
+    //save image
+    BOOL result=[imageData writeToFile:uniquePath atomically:YES];
+    PPDebug(@"<createDraft> save image to path:%@ result:%d , canRead:%d", uniquePath, result, [[NSFileManager defaultManager] fileExistsAtPath:uniquePath]);
+    
+    //create the drawlist data.
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:drawActionList];
+
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    
+    [newMyPaint setData:data];
+    [newMyPaint setImage:imageName];
+    [newMyPaint setDrawByMe:[NSNumber numberWithBool:YES]];
+    [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
+    [newMyPaint setDrawUserId:[[UserManager defaultManager] userId]];
+    [newMyPaint setDrawUserNickName:[[UserManager defaultManager] nickName]];
+    [newMyPaint setCreateDate:[NSDate date]];
+    [newMyPaint setDrawWord:drawWord];
+    [newMyPaint setLanguage:language];
+    [newMyPaint setLevel:level];
+    
+    PPDebug(@"<createDraftWithImage> %@", [newMyPaint description]);
+    result = [dataManager save];
+    if (result) {
+        return newMyPaint;
+    }else{
+        PPDebug(@"<createDraft>:fail to create draft, word = %@", drawWord);
+        return nil;
+    }
+}
+
+- (MyPaint *)latestDraft
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:1];
+    if ([array count] == 0) {
+        return nil;
+    }
+    return [array objectAtIndex:0];
+}
+
+
 - (NSArray *)fetchFields
 {
     NSArray *array = [NSArray arrayWithObjects:@"createDate", @"image", @"drawByMe", @"drawUserNickName", @"drawUserId", @"drawWord", @"drawThumbnailData", nil];
@@ -65,7 +121,7 @@ static MyPaintManager* _defaultManager;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue) {
         dispatch_async(queue, ^{
-            NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:[self fetchFields] ascending:NO offset:offset limit:limit];
+            NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetMyPaints:)]) {
                     [delegate didGetMyPaints:array];
@@ -84,7 +140,7 @@ static MyPaintManager* _defaultManager;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue) {
         dispatch_async(queue, ^{
-            NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:[self fetchFields] ascending:NO offset:offset limit:limit];
+            NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didGetAllPaints:)]) {
                     [delegate didGetAllPaints:array];
@@ -94,26 +150,25 @@ static MyPaintManager* _defaultManager;
     }
 
 }
-/*
 
-- (BOOL)deleteAllPaintsAtIndex:(NSInteger)index
+- (void)findAllDraftsFrom:(NSInteger)offset 
+                    limit:(NSInteger)limit 
+                 delegate:(id<MyPaintManagerDelegate>)delegate
 {
-    CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
-    NSManagedObject* object = [array objectAtIndex:index];
-    [dataManager del:object];
-    return [dataManager save];
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue) {
+        dispatch_async(queue, ^{
+            NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:offset limit:limit];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didGetAllDrafts:)]) {
+                    [delegate didGetAllDrafts:array];
+                } 
+            });
+        });        
+    }
 }
 
-- (BOOL)deleteOnlyMyPaintsAtIndex:(NSInteger)index
-{
-    CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
-    NSManagedObject* object = [array objectAtIndex:index];
-    [dataManager del:object];
-    return [dataManager save];
-}
-*/
 - (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
@@ -128,6 +183,17 @@ static MyPaintManager* _defaultManager;
     }
     [dataManager save];    
     return YES;
+}
+
+- (BOOL)deleteAllDrafts
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray* array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" ascending:NO];
+    for (NSManagedObject* paint in array){
+        [dataManager del:paint];       
+    }
+    [dataManager save];    
+    return YES;    
 }
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
@@ -170,25 +236,6 @@ static MyPaintManager* _defaultManager;
     
     dispatch_async(queue, ^{
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
-//        UIImage* image2 = [UIImage imageNamed:@"share.png"];
-//        UIGraphicsBeginImageContext(image2.size);  
-//        
-//          
-//        
-//        // Draw image2  
-//        [image2 drawInRect:CGRectMake(0, 0, image2.size.width, image2.size.height)];
-//        // Draw image1  
-//        [image drawInRect:CGRectMake(32, 136, 256, 245)];
-//        
-//        UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext(); 
-//        NSData* imageData = UIImagePNGRepresentation(resultingImage);
-//        NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), @"temp"];
-//        BOOL result=[imageData writeToFile:path atomically:YES];
-//        NSDictionary * attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
-//        float size = ((NSNumber*)[attributes objectForKey:NSFileSize]).floatValue/1024.0/1024.0;
-//        NSLog(@"siiiiiiiiiize = %.2f", size);
-        
-        UIGraphicsEndImageContext();  
         UIImageWriteToSavedPhotosAlbum(image, 
                                        self, 
                                        @selector(image:didFinishSavingWithError:contextInfo:), 
@@ -238,5 +285,9 @@ static MyPaintManager* _defaultManager;
     }
     return nil;
 }
-
+- (BOOL)save
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    return [dataManager save];    
+}
 @end

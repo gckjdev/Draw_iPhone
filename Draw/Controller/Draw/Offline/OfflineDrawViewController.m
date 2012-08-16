@@ -39,11 +39,38 @@
 #import "MyPaintManager.h"
 #import "UserManager.h"
 #import "DrawDataService.h"
-
+#import "MyPaintManager.h"
 #import "UIImageExt.h"
+#import "ShareController.h"
+
+@interface OfflineDrawViewController()
+{
+    DrawView *drawView;
+    PickColorView *pickColorView;
+    PickColorView *pickBGColorView;
+    PickEraserView *pickEraserView;
+    PickPenView *pickPenView;
+    
+    NSInteger penWidth;
+    NSInteger eraserWidth;
+    PenView *_willBuyPen;
+    ShareImageManager *shareImageManager;
+    MyPaint *_draft;
+
+}
+
+@property(nonatomic, retain)MyPaint *draft;
+
+- (void)initEraser;
+- (void)initPens;
+- (void)initDrawView;
+
+@end
+
 
 @implementation OfflineDrawViewController
 
+@synthesize draft = _draft;
 @synthesize submitButton;
 @synthesize eraserButton;
 @synthesize wordButton;
@@ -104,6 +131,7 @@
     PPRelease(_bgColor);
     PPRelease(_eraserColor);
     PPRelease(pickBGColorView);
+    PPRelease(_draft);
     //    [autoReleasePool drain];
     //    autoReleasePool = nil;
     
@@ -133,7 +161,17 @@
     return self;
 }
 
-
+- (id)initWithDraft:(MyPaint *)draft
+{
+    self = [super init];
+    if (self) {
+        self.draft = draft;
+        self.word = [Word wordWithText:draft.drawWord level:draft.level];
+        shareImageManager = [ShareImageManager defaultManager];
+        languageType = draft.language;
+    }
+    return self;
+}
 
 - (id)initWithWord:(Word *)word
               lang:(LanguageType)lang 
@@ -246,11 +284,14 @@ enum{
 
 - (void)initDrawView
 {
-    
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
+    if (self.draft) {
+        NSArray* drawActionList = [NSKeyedUnarchiver unarchiveObjectWithData:self.draft.data];
+        [drawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
+    }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.bgColor = self.eraserColor = [DrawColor whiteColor];
 }
@@ -460,15 +501,29 @@ enum{
     return nil;
 }
 
+- (ShareController *)superShareController
+{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ShareController class]]) {
+            return (ShareController *)controller;
+        }
+    }
+    return nil;
+}
+
+
 - (void)quit
 {
     UIViewController *superController = [self superFeedDetailController];
     if (superController == nil) {
         superController = [self superFeedController];
     }
+    if (superController == nil) {
+        superController = [self superShareController];
+    }
     if (superController) {
         [self.navigationController popToViewController:superController animated:YES];
-    }else{
+    }else {
         [HomeController returnRoom:self];
     }
 }
@@ -588,7 +643,10 @@ enum{
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-     
+        if (self.draft) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft = nil;
+        }
         
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1 isSuccessful:NO];
@@ -598,6 +656,17 @@ enum{
 
 
 #pragma mark - Actions
+
+- (IBAction)clickDraftButton:(id)sender {
+    
+    if (self.draft) {
+        //delete the old draft.
+        [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+    }    
+    UIImage *image = [drawView createImage];
+    self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveSucc") delayTime:1.5 isSuccessful:YES];
+}
 
 - (IBAction)changeBackground:(id)sender {
     BOOL show = pickBGColorView.dismiss;
