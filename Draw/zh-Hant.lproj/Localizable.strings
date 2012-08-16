@@ -292,6 +292,8 @@
 
 /*the new words below without Japanese*/
 
+
+"kSaveSucc" = "保存成功！在作品頁面可以查看以往保存的草稿。";
 "kNetworkErrorTitle" = "網絡連接失效";
 "kNetworkErrorMessage" = "無法訪問互聯網，請檢查手機是否正確連接到網絡或者WIFI。";
 //4月23新增

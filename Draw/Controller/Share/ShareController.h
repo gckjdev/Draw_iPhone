@@ -18,12 +18,14 @@
 @class MyPaint;
 @interface ShareController : PPTableViewController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
     
+    int EDIT;
     int SHARE_AS_PHOTO;
     int SHARE_AS_GIF;
     int REPLAY;
     int DELETE;
     int DELETE_ALL;
     int DELETE_ALL_MINE;
+    int DELETE_ALL_DRAFT;
     int CANCEL;    
 }
 - (IBAction)selectDraft:(id)sender;

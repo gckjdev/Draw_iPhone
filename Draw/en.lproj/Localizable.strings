@@ -283,10 +283,9 @@
 "kContentRepeat" = "You have submited it just now!";
 
 
-
-
 /*the new words below without Japanese*/
 
+"kSaveSucc" = "Save draft sucessfully!";
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
 

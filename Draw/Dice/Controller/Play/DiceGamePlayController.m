@@ -42,7 +42,7 @@
 - (void)popResultViewOnAvatarView:(UIView*)view
                          duration:(CFTimeInterval)duration 
                        coinsCount:(int)coinsCount;
-
+- (void)quitDiceGame;
 @end
 
 @implementation DiceGamePlayController
@@ -400,14 +400,13 @@
 
 
 - (IBAction)clickRunAwayButton:(id)sender {
-    [self clearAllReciprocol];
-    [self clearAllPlayersAvatar];
-    [self clearAllResultViews];
-    [self dismissAllPopupViews];
-    [[DiceGameService defaultService] quitGame];
-    [self unregisterAllNotifications];
-    [self.navigationController popViewControllerAnimated:YES];
-    [_audioManager backgroundMusicStop];
+    if (![_diceService.diceSession isMeAByStander]) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        [self.view addSubview:dialog];
+    } else {
+        [self quitDiceGame];
+    }
+    
 }
 
 - (int)getSelfIndexFromUserList:(NSArray*)userList
@@ -662,6 +661,17 @@
     return (DicesResultView *)[self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + RESULT_TAG_OFFSET];
 }
 
+- (void)quitDiceGame
+{
+    [self clearAllReciprocol];
+    [self clearAllPlayersAvatar];
+    [self clearAllResultViews];
+    [self dismissAllPopupViews];
+    [[DiceGameService defaultService] quitGame];
+    [self unregisterAllNotifications];
+    [self.navigationController popViewControllerAnimated:YES];
+    [_audioManager backgroundMusicStop];
+}
 
 #pragma mark - DiceAvatarViewDelegate
 - (void)didClickOnAvatar:(DiceAvatarView*)view
@@ -1026,7 +1036,16 @@
 //    
 //    return dices;
 //}
+#pragma mark - common dialog delegate
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [self quitDiceGame];
+    [[AccountService defaultService] deductAccount:200 source:LiarDiceFleeType];
+}
 
-
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
+}
 
 @end

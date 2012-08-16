@@ -41,6 +41,7 @@
 #import "DrawDataService.h"
 #import "MyPaintManager.h"
 #import "UIImageExt.h"
+#import "ShareController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -500,15 +501,29 @@ enum{
     return nil;
 }
 
+- (ShareController *)superShareController
+{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ShareController class]]) {
+            return (ShareController *)controller;
+        }
+    }
+    return nil;
+}
+
+
 - (void)quit
 {
     UIViewController *superController = [self superFeedDetailController];
     if (superController == nil) {
         superController = [self superFeedController];
     }
+    if (superController == nil) {
+        superController = [self superShareController];
+    }
     if (superController) {
         [self.navigationController popToViewController:superController animated:YES];
-    }else{
+    }else {
         [HomeController returnRoom:self];
     }
 }
@@ -650,6 +665,7 @@ enum{
     }    
     UIImage *image = [drawView createImage];
     self.draft = [[MyPaintManager defaultManager] createDraft:image data:drawView.drawActionList language:languageType drawWord:self.word.text level:self.word.level];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveSucc") delayTime:1.5 isSuccessful:YES];
 }
 
 - (IBAction)changeBackground:(id)sender {
