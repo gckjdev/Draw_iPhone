@@ -16,8 +16,12 @@
 #import "GameMessage.pb.h"
 #import "LevelService.h"
 #import "SpeechService.h"
+
 #import "AdService.h"
 #import "CommonUserInfoView.h"
+
+#import "ItemType.h"
+
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -29,6 +33,8 @@
 #define USER_THINK_TIME_INTERVAL 15
 
 #define DURATION_SHOW_GAIN_COINS 3
+
+#define DURATION_ROLL_BELL 1
 
 @interface DiceGamePlayController ()
 
@@ -227,10 +233,41 @@
     }
 }
 
+- (void)rollDiceAgain
+{
+    // TODO: Reduce item and sync to server.
+    
+    
+    // TODO: Show animations.
+    [self rollUserBell:_userManager.userId];
+    
+    // TODO: Update myDiceList view.
+    [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
+}
+
+
+- (void)useItemSuccess:(int)itemId
+{
+    switch (itemId) {
+        case ItemTypeRollAgain:
+            [self rollDiceAgain];
+            break;
+            
+        default:
+            break;
+    }
+
+    
+    
+    
+}
+
 - (void)didSelectTool:(NSInteger)index
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
+    
+    [_diceService userItem:ItemTypeRollAgain];
 }
 
 
@@ -499,7 +536,7 @@
     }
 }
 
-- (void)shakeAllBell
+- (void)rollAllBell
 {
     PBGameUser* selfUser = [self getSelfUserFromUserList:[[_diceService session] playingUserList]];
     for (PBGameUser* user in [[_diceService session] playingUserList]) {
@@ -509,6 +546,13 @@
         bell.hidden = NO;
         [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
     }
+}
+
+- (void)rollUserBell:(NSString *)userId
+{
+    UIView *bell = [self bellViewOfUser:userId];
+    bell.hidden = NO;
+    [bell.layer addAnimation:[AnimationManager shakeLeftAndRightFrom:10 to:10 repeatCount:10 duration:1] forKey:@"shake"];
 }
 
 - (void)clearAllReciprocol
@@ -619,6 +663,19 @@
                                     usingBlock:^(NSNotification *notification) {                       
                                         [self gameOver];         
                                     }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
+                                    usingBlock:^(NSNotification *notification) {                       
+                                        [self someoneUseItem];         
+                                    }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
+                                    usingBlock:^(NSNotification *notification) {    
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        if (message.resultCode == 0) {
+                                            [self useItemSuccess:message.useItemResponse.itemId];         
+                                        }
+                                    }];
 }
 
 
@@ -724,7 +781,7 @@
 {
 //    self.openDiceButton.enabled = NO;
     self.openDiceButton.hidden = YES;
-    self.itemsBoxButton.enabled = NO;
+//    self.itemsBoxButton.enabled = NO;
     self.userWildsButton.enabled = NO;
     self.plusOneButton.enabled = NO;
     [self.diceSelectedView disableUserInteraction];
@@ -734,7 +791,7 @@
 {
 //    self.openDiceButton.enabled = YES;
     self.openDiceButton.hidden = NO;
-    self.itemsBoxButton.enabled = YES;
+//    self.itemsBoxButton.enabled = YES;
     self.userWildsButton.enabled = YES;
     self.plusOneButton.enabled = YES;
     [self.diceSelectedView enableUserInteraction];
@@ -760,7 +817,7 @@
 //    [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
-    [self shakeAllBell];
+    [self rollAllBell];
     [_audioManager playSoundById:5];
     
     [self updateDiceSelecetedView];

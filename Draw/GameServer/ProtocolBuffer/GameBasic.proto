@@ -112,9 +112,9 @@ message PBMessageStat {
   
 }
 
-message PBGameItem {
-  required int32 itemId = 2;                    // 道具Id
-}
+//message PBGameItem {
+//  required int32 itemId = 2;                    // 道具Id
+//}
 
 //message PBFeed {
 //  required string feedId = 1;

@@ -2353,25 +2353,24 @@ static OpenDiceResponse* defaultOpenDiceResponseInstance = nil;
 @end
 
 @interface UseItemRequest ()
-@property (retain) PBGameItem* item;
+@property int32_t itemId;
 @end
 
 @implementation UseItemRequest
 
-- (BOOL) hasItem {
-  return !!hasItem_;
+- (BOOL) hasItemId {
+  return !!hasItemId_;
 }
-- (void) setHasItem:(BOOL) value {
-  hasItem_ = !!value;
+- (void) setHasItemId:(BOOL) value {
+  hasItemId_ = !!value;
 }
-@synthesize item;
+@synthesize itemId;
 - (void) dealloc {
-  self.item = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.item = [PBGameItem defaultInstance];
+    self.itemId = 0;
   }
   return self;
 }
@@ -2388,17 +2387,14 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   return defaultUseItemRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasItem) {
-    return NO;
-  }
-  if (!self.item.isInitialized) {
+  if (!self.hasItemId) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasItem) {
-    [output writeMessage:10 value:self.item];
+  if (self.hasItemId) {
+    [output writeInt32:1 value:self.itemId];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2409,8 +2405,8 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   }
 
   size = 0;
-  if (self.hasItem) {
-    size += computeMessageSize(10, self.item);
+  if (self.hasItemId) {
+    size += computeInt32Size(1, self.itemId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2487,8 +2483,8 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
   if (other == [UseItemRequest defaultInstance]) {
     return self;
   }
-  if (other.hasItem) {
-    [self mergeItem:other.item];
+  if (other.hasItemId) {
+    [self setItemId:other.itemId];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2511,79 +2507,93 @@ static UseItemRequest* defaultUseItemRequestInstance = nil;
         }
         break;
       }
-      case 82: {
-        PBGameItem_Builder* subBuilder = [PBGameItem builder];
-        if (self.hasItem) {
-          [subBuilder mergeFrom:self.item];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setItem:[subBuilder buildPartial]];
+      case 8: {
+        [self setItemId:[input readInt32]];
         break;
       }
     }
   }
 }
-- (BOOL) hasItem {
-  return result.hasItem;
+- (BOOL) hasItemId {
+  return result.hasItemId;
 }
-- (PBGameItem*) item {
-  return result.item;
+- (int32_t) itemId {
+  return result.itemId;
 }
-- (UseItemRequest_Builder*) setItem:(PBGameItem*) value {
-  result.hasItem = YES;
-  result.item = value;
+- (UseItemRequest_Builder*) setItemId:(int32_t) value {
+  result.hasItemId = YES;
+  result.itemId = value;
   return self;
 }
-- (UseItemRequest_Builder*) setItemBuilder:(PBGameItem_Builder*) builderForValue {
-  return [self setItem:[builderForValue build]];
-}
-- (UseItemRequest_Builder*) mergeItem:(PBGameItem*) value {
-  if (result.hasItem &&
-      result.item != [PBGameItem defaultInstance]) {
-    result.item =
-      [[[PBGameItem builderWithPrototype:result.item] mergeFrom:value] buildPartial];
-  } else {
-    result.item = value;
-  }
-  result.hasItem = YES;
-  return self;
-}
-- (UseItemRequest_Builder*) clearItem {
-  result.hasItem = NO;
-  result.item = [PBGameItem defaultInstance];
+- (UseItemRequest_Builder*) clearItemId {
+  result.hasItemId = NO;
+  result.itemId = 0;
   return self;
 }
 @end
 
-@interface UserItemResponse ()
+@interface UseItemResponse ()
+@property int32_t itemId;
+@property (retain) NSMutableArray* mutableDicesList;
 @end
 
-@implementation UserItemResponse
+@implementation UseItemResponse
 
+- (BOOL) hasItemId {
+  return !!hasItemId_;
+}
+- (void) setHasItemId:(BOOL) value {
+  hasItemId_ = !!value;
+}
+@synthesize itemId;
+@synthesize mutableDicesList;
 - (void) dealloc {
+  self.mutableDicesList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.itemId = 0;
   }
   return self;
 }
-static UserItemResponse* defaultUserItemResponseInstance = nil;
+static UseItemResponse* defaultUseItemResponseInstance = nil;
 + (void) initialize {
-  if (self == [UserItemResponse class]) {
-    defaultUserItemResponseInstance = [[UserItemResponse alloc] init];
+  if (self == [UseItemResponse class]) {
+    defaultUseItemResponseInstance = [[UseItemResponse alloc] init];
   }
 }
-+ (UserItemResponse*) defaultInstance {
-  return defaultUserItemResponseInstance;
++ (UseItemResponse*) defaultInstance {
+  return defaultUseItemResponseInstance;
 }
-- (UserItemResponse*) defaultInstance {
-  return defaultUserItemResponseInstance;
+- (UseItemResponse*) defaultInstance {
+  return defaultUseItemResponseInstance;
+}
+- (NSArray*) dicesList {
+  return mutableDicesList;
+}
+- (PBDice*) dicesAtIndex:(int32_t) index {
+  id value = [mutableDicesList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
+  if (!self.hasItemId) {
+    return NO;
+  }
+  for (PBDice* element in self.dicesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasItemId) {
+    [output writeInt32:1 value:self.itemId];
+  }
+  for (PBDice* element in self.dicesList) {
+    [output writeMessage:20 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2593,44 +2603,50 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
   }
 
   size = 0;
+  if (self.hasItemId) {
+    size += computeInt32Size(1, self.itemId);
+  }
+  for (PBDice* element in self.dicesList) {
+    size += computeMessageSize(20, element);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (UserItemResponse*) parseFromData:(NSData*) data {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromData:data] build];
++ (UseItemResponse*) parseFromData:(NSData*) data {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromData:data] build];
 }
-+ (UserItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (UseItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromInputStream:input] build];
++ (UseItemResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromInputStream:input] build];
 }
-+ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (UseItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromCodedInputStream:input] build];
++ (UseItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromCodedInputStream:input] build];
 }
-+ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (UserItemResponse*)[[[UserItemResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (UseItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UseItemResponse*)[[[UseItemResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (UserItemResponse_Builder*) builder {
-  return [[[UserItemResponse_Builder alloc] init] autorelease];
++ (UseItemResponse_Builder*) builder {
+  return [[[UseItemResponse_Builder alloc] init] autorelease];
 }
-+ (UserItemResponse_Builder*) builderWithPrototype:(UserItemResponse*) prototype {
-  return [[UserItemResponse builder] mergeFrom:prototype];
++ (UseItemResponse_Builder*) builderWithPrototype:(UseItemResponse*) prototype {
+  return [[UseItemResponse builder] mergeFrom:prototype];
 }
-- (UserItemResponse_Builder*) builder {
-  return [UserItemResponse builder];
+- (UseItemResponse_Builder*) builder {
+  return [UseItemResponse builder];
 }
 @end
 
-@interface UserItemResponse_Builder()
-@property (retain) UserItemResponse* result;
+@interface UseItemResponse_Builder()
+@property (retain) UseItemResponse* result;
 @end
 
-@implementation UserItemResponse_Builder
+@implementation UseItemResponse_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -2638,43 +2654,52 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[UserItemResponse alloc] init] autorelease];
+    self.result = [[[UseItemResponse alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (UserItemResponse_Builder*) clear {
-  self.result = [[[UserItemResponse alloc] init] autorelease];
+- (UseItemResponse_Builder*) clear {
+  self.result = [[[UseItemResponse alloc] init] autorelease];
   return self;
 }
-- (UserItemResponse_Builder*) clone {
-  return [UserItemResponse builderWithPrototype:result];
+- (UseItemResponse_Builder*) clone {
+  return [UseItemResponse builderWithPrototype:result];
 }
-- (UserItemResponse*) defaultInstance {
-  return [UserItemResponse defaultInstance];
+- (UseItemResponse*) defaultInstance {
+  return [UseItemResponse defaultInstance];
 }
-- (UserItemResponse*) build {
+- (UseItemResponse*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (UserItemResponse*) buildPartial {
-  UserItemResponse* returnMe = [[result retain] autorelease];
+- (UseItemResponse*) buildPartial {
+  UseItemResponse* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (UserItemResponse_Builder*) mergeFrom:(UserItemResponse*) other {
-  if (other == [UserItemResponse defaultInstance]) {
+- (UseItemResponse_Builder*) mergeFrom:(UseItemResponse*) other {
+  if (other == [UseItemResponse defaultInstance]) {
     return self;
+  }
+  if (other.hasItemId) {
+    [self setItemId:other.itemId];
+  }
+  if (other.mutableDicesList.count > 0) {
+    if (result.mutableDicesList == nil) {
+      result.mutableDicesList = [NSMutableArray array];
+    }
+    [result.mutableDicesList addObjectsFromArray:other.mutableDicesList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -2689,8 +2714,63 @@ static UserItemResponse* defaultUserItemResponseInstance = nil;
         }
         break;
       }
+      case 8: {
+        [self setItemId:[input readInt32]];
+        break;
+      }
+      case 162: {
+        PBDice_Builder* subBuilder = [PBDice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDices:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasItemId {
+  return result.hasItemId;
+}
+- (int32_t) itemId {
+  return result.itemId;
+}
+- (UseItemResponse_Builder*) setItemId:(int32_t) value {
+  result.hasItemId = YES;
+  result.itemId = value;
+  return self;
+}
+- (UseItemResponse_Builder*) clearItemId {
+  result.hasItemId = NO;
+  result.itemId = 0;
+  return self;
+}
+- (NSArray*) dicesList {
+  if (result.mutableDicesList == nil) { return [NSArray array]; }
+  return result.mutableDicesList;
+}
+- (PBDice*) dicesAtIndex:(int32_t) index {
+  return [result dicesAtIndex:index];
+}
+- (UseItemResponse_Builder*) replaceDicesAtIndex:(int32_t) index with:(PBDice*) value {
+  [result.mutableDicesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (UseItemResponse_Builder*) addAllDices:(NSArray*) values {
+  if (result.mutableDicesList == nil) {
+    result.mutableDicesList = [NSMutableArray array];
+  }
+  [result.mutableDicesList addObjectsFromArray:values];
+  return self;
+}
+- (UseItemResponse_Builder*) clearDicesList {
+  result.mutableDicesList = nil;
+  return self;
+}
+- (UseItemResponse_Builder*) addDices:(PBDice*) value {
+  if (result.mutableDicesList == nil) {
+    result.mutableDicesList = [NSMutableArray array];
+  }
+  [result.mutableDicesList addObject:value];
+  return self;
 }
 @end
 
@@ -8883,6 +8963,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
 @property (retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+@property (retain) UseItemRequest* useItemRequest;
+@property (retain) UseItemResponse* useItemResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
 @end
@@ -9148,6 +9230,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasUnRegisterRoomsNotificationResponse_ = !!value;
 }
 @synthesize unRegisterRoomsNotificationResponse;
+- (BOOL) hasUseItemRequest {
+  return !!hasUseItemRequest_;
+}
+- (void) setHasUseItemRequest:(BOOL) value {
+  hasUseItemRequest_ = !!value;
+}
+@synthesize useItemRequest;
+- (BOOL) hasUseItemResponse {
+  return !!hasUseItemResponse_;
+}
+- (void) setHasUseItemResponse:(BOOL) value {
+  hasUseItemResponse_ = !!value;
+}
+@synthesize useItemResponse;
 - (BOOL) hasStartOffset {
   return !!hasStartOffset_;
 }
@@ -9193,6 +9289,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.registerRoomsNotificationResponse = nil;
   self.unRegisterRoomsNotificationRequest = nil;
   self.unRegisterRoomsNotificationResponse = nil;
+  self.useItemRequest = nil;
+  self.useItemResponse = nil;
   [super dealloc];
 }
 - (id) init {
@@ -9234,6 +9332,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.registerRoomsNotificationResponse = [RegisterRoomsNotificationResponse defaultInstance];
     self.unRegisterRoomsNotificationRequest = [UnRegisterRoomsNotificationRequest defaultInstance];
     self.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
+    self.useItemRequest = [UseItemRequest defaultInstance];
+    self.useItemResponse = [UseItemResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
   }
@@ -9315,6 +9415,16 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasGameOverNotificationRequest) {
     if (!self.gameOverNotificationRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasUseItemRequest) {
+    if (!self.useItemRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasUseItemResponse) {
+    if (!self.useItemResponse.isInitialized) {
       return NO;
     }
   }
@@ -9431,6 +9541,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUnRegisterRoomsNotificationResponse) {
     [output writeMessage:120 value:self.unRegisterRoomsNotificationResponse];
+  }
+  if (self.hasUseItemRequest) {
+    [output writeMessage:131 value:self.useItemRequest];
+  }
+  if (self.hasUseItemResponse) {
+    [output writeMessage:132 value:self.useItemResponse];
   }
   if (self.hasStartOffset) {
     [output writeInt32:1000 value:self.startOffset];
@@ -9557,6 +9673,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUnRegisterRoomsNotificationResponse) {
     size += computeMessageSize(120, self.unRegisterRoomsNotificationResponse);
+  }
+  if (self.hasUseItemRequest) {
+    size += computeMessageSize(131, self.useItemRequest);
+  }
+  if (self.hasUseItemResponse) {
+    size += computeMessageSize(132, self.useItemResponse);
   }
   if (self.hasStartOffset) {
     size += computeInt32Size(1000, self.startOffset);
@@ -9749,6 +9871,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasUnRegisterRoomsNotificationResponse) {
     [self mergeUnRegisterRoomsNotificationResponse:other.unRegisterRoomsNotificationResponse];
+  }
+  if (other.hasUseItemRequest) {
+    [self mergeUseItemRequest:other.useItemRequest];
+  }
+  if (other.hasUseItemResponse) {
+    [self mergeUseItemResponse:other.useItemResponse];
   }
   if (other.hasStartOffset) {
     [self setStartOffset:other.startOffset];
@@ -10073,6 +10201,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUnRegisterRoomsNotificationResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1050: {
+        UseItemRequest_Builder* subBuilder = [UseItemRequest builder];
+        if (self.hasUseItemRequest) {
+          [subBuilder mergeFrom:self.useItemRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUseItemRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1058: {
+        UseItemResponse_Builder* subBuilder = [UseItemResponse builder];
+        if (self.hasUseItemResponse) {
+          [subBuilder mergeFrom:self.useItemResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUseItemResponse:[subBuilder buildPartial]];
         break;
       }
       case 8000: {
@@ -11054,6 +11200,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse {
   result.hasUnRegisterRoomsNotificationResponse = NO;
   result.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasUseItemRequest {
+  return result.hasUseItemRequest;
+}
+- (UseItemRequest*) useItemRequest {
+  return result.useItemRequest;
+}
+- (GameMessage_Builder*) setUseItemRequest:(UseItemRequest*) value {
+  result.hasUseItemRequest = YES;
+  result.useItemRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setUseItemRequestBuilder:(UseItemRequest_Builder*) builderForValue {
+  return [self setUseItemRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeUseItemRequest:(UseItemRequest*) value {
+  if (result.hasUseItemRequest &&
+      result.useItemRequest != [UseItemRequest defaultInstance]) {
+    result.useItemRequest =
+      [[[UseItemRequest builderWithPrototype:result.useItemRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.useItemRequest = value;
+  }
+  result.hasUseItemRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearUseItemRequest {
+  result.hasUseItemRequest = NO;
+  result.useItemRequest = [UseItemRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasUseItemResponse {
+  return result.hasUseItemResponse;
+}
+- (UseItemResponse*) useItemResponse {
+  return result.useItemResponse;
+}
+- (GameMessage_Builder*) setUseItemResponse:(UseItemResponse*) value {
+  result.hasUseItemResponse = YES;
+  result.useItemResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setUseItemResponseBuilder:(UseItemResponse_Builder*) builderForValue {
+  return [self setUseItemResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeUseItemResponse:(UseItemResponse*) value {
+  if (result.hasUseItemResponse &&
+      result.useItemResponse != [UseItemResponse defaultInstance]) {
+    result.useItemResponse =
+      [[[UseItemResponse builderWithPrototype:result.useItemResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.useItemResponse = value;
+  }
+  result.hasUseItemResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearUseItemResponse {
+  result.hasUseItemResponse = NO;
+  result.useItemResponse = [UseItemResponse defaultInstance];
   return self;
 }
 - (BOOL) hasStartOffset {

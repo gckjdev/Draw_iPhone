@@ -7,13 +7,13 @@
 //
 
 #import "DiceGameService.h"
-#import "GameMessage.pb.h"
 #import "PPDebug.h"
 #import "DiceNetworkClient.h"
 #import "DiceGameSession.h"
 #import "DiceNotification.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
+#import "GameMessage.pb.h"
 
 #define DICE_GAME_ID    @"LiarDice"
 
@@ -69,12 +69,10 @@ static DiceGameService* _defaultService;
 
 - (void)handleRollDiceEnd:(GameMessage *)message
 {
-    NSMutableDictionary *diceDic= [NSMutableDictionary dictionary];
     for(PBUserDice *userDice in [[message rollDiceEndNotificationRequest] userDiceList])
     {
-        [diceDic setObject:userDice.dicesList forKey:userDice.userId];
+        [self.diceSession.userDiceList setObject:userDice.dicesList forKey:userDice.userId];
     }
-    self.diceSession.userDiceList = diceDic;
     
     // Init lastCallDice when game begin.
     self.diceSession.lastCallDice = 1;
@@ -125,6 +123,19 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
+- (void)handleUseItemRequest:(GameMessage *)message
+{
+    [self postNotification:NOTIFICATION_USE_ITEM_REQUEST message:message];
+}
+
+- (void)handleUseItemResponse:(GameMessage *)message
+{
+    if (message.resultCode != 0) {
+        [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
+        [self postNotification:NOTIFICATION_USE_ITEM_RESPONSE message:message];
+    }
+}
+
 
 - (void)handleCustomMessage:(GameMessage*)message
 {
@@ -146,7 +157,6 @@ static DiceGameService* _defaultService;
         case GameCommandTypeCallDiceResponse:
             [self handleCallDiceResponse:message];
             break;
-
             
         case GameCommandTypeOpenDiceRequest: 
             [self handleOpenDiceRequest:message];
@@ -157,6 +167,15 @@ static DiceGameService* _defaultService;
         case GameCommandTypeGameOverNotificationRequest:
             [self handleGameOverNotificationRequest:message];
             break;
+            
+        case GameCommandTypeUseItemRequest:
+            [self handleUseItemRequest:message];
+            break;
+            
+        case GameCommandTypeUseItemResponse:
+            [self handleUseItemResponse:message];
+            break;
+            
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
             break;
@@ -194,6 +213,24 @@ static DiceGameService* _defaultService;
                                                         dice:self.lastCallDice
                                                        count:self.lastCallDiceCount
                                                        wilds:wilds]; 
+}
+
+- (void)userItem:(int)itemId
+{
+    // Send command.
+    [(DiceNetworkClient *)_networkClient sendUserItemRequest:self.user.userId 
+                                                   sessionId:self.session.sessionId
+                                                      itemId:itemId]; 
+}
+
+- (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList
+{
+    if (![[self.diceSession.userDiceList allKeys] containsObject:userId]) {
+        return;
+    }
+    
+    [self.diceSession.userDiceList removeObjectForKey:userId];
+    [self.diceSession.userDiceList setObject:diceList forKey:userId];
 }
 
 
@@ -261,10 +298,5 @@ static DiceGameService* _defaultService;
                                                    sessionId:self.session.sessionId
                                                     openType:openType]; 
 }
-
-
-
-
-
 
 @end

@@ -120,6 +120,7 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7115D8AF67002FE86D /* bell_1@2x.png */; };
 		A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7215D8AF67002FE86D /* bell_2@2x.png */; };
 		A4A01BB415D8AF67002FE86D /* bell_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7315D8AF67002FE86D /* bell_3@2x.png */; };
@@ -921,6 +922,14 @@
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
 		CAEA70101527017F00B3D206 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700F1527017D00B3D206 /* back@2x.png */; };
+		CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2915DCCFB900FA5A2A /* Announce.m */; };
+		CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */; };
+		CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */; };
+		CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */; };
+		CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */; };
+		CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */; };
+		CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD4415DCD26A00FA5A2A /* EntryController.m */; };
+		CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4515DCD26A00FA5A2A /* EntryController.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -1153,6 +1162,8 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
+		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
 		A4A01B7115D8AF67002FE86D /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
 		A4A01B7215D8AF67002FE86D /* bell_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_2@2x.png"; sourceTree = "<group>"; };
 		A4A01B7315D8AF67002FE86D /* bell_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_3@2x.png"; sourceTree = "<group>"; };
@@ -2404,6 +2415,21 @@
 		CAEA700F1527017D00B3D206 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
+		CAEECD2815DCCFB900FA5A2A /* Announce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Announce.h; sourceTree = "<group>"; };
+		CAEECD2915DCCFB900FA5A2A /* Announce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Announce.m; sourceTree = "<group>"; };
+		CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceNetwork.h; sourceTree = "<group>"; };
+		CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceNetwork.m; sourceTree = "<group>"; };
+		CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceView.h; sourceTree = "<group>"; };
+		CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdAnnounceView.h; sourceTree = "<group>"; };
+		CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdAnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAnnounceView.h; sourceTree = "<group>"; };
+		CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAnnounceView.m; sourceTree = "<group>"; };
+		CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceService.h; sourceTree = "<group>"; };
+		CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceService.m; sourceTree = "<group>"; };
+		CAEECD4315DCD26A00FA5A2A /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		CAEECD4415DCD26A00FA5A2A /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
+		CAEECD4515DCD26A00FA5A2A /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -2938,6 +2964,8 @@
 		A4B7640215C28F8E003B4E72 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */,
+				A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -5233,6 +5261,7 @@
 				CAECE0291503B25500BC2404 /* Model */,
 				CA3220FF151B6A490039A384 /* Network */,
 				CA2F81D915C0D62D002038A6 /* Facetime */,
+				CAEECD2115DCCF9400FA5A2A /* Announce */,
 				CA2F81E015C0D62E002038A6 /* Dice */,
 				CA745D311503B1B500600024 /* DrawAppDelegate.h */,
 				CA745D321503B1B500600024 /* DrawAppDelegate.m */,
@@ -5876,6 +5905,76 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CAEECD2115DCCF9400FA5A2A /* Announce */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD4215DCD25400FA5A2A /* Controller */,
+				CAEECD2315DCCF9400FA5A2A /* Model */,
+				CAEECD2415DCCF9400FA5A2A /* Network */,
+				CAEECD2515DCCF9400FA5A2A /* Resource */,
+				CAEECD2615DCCF9400FA5A2A /* Service */,
+				CAEECD2715DCCF9400FA5A2A /* View */,
+			);
+			path = Announce;
+			sourceTree = "<group>";
+		};
+		CAEECD2315DCCF9400FA5A2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2815DCCFB900FA5A2A /* Announce.h */,
+				CAEECD2915DCCFB900FA5A2A /* Announce.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAEECD2415DCCF9400FA5A2A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2B15DCCFF300FA5A2A /* AnnounceNetwork.h */,
+				CAEECD2C15DCCFF300FA5A2A /* AnnounceNetwork.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CAEECD2515DCCF9400FA5A2A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CAEECD2615DCCF9400FA5A2A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */,
+				CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CAEECD2715DCCF9400FA5A2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD2E15DCD01A00FA5A2A /* AnnounceView.h */,
+				CAEECD2F15DCD01A00FA5A2A /* AnnounceView.m */,
+				CAEECD3115DCD03900FA5A2A /* AdAnnounceView.h */,
+				CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */,
+				CAEECD3415DCD04D00FA5A2A /* WebAnnounceView.h */,
+				CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAEECD4215DCD25400FA5A2A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD4315DCD26A00FA5A2A /* EntryController.h */,
+				CAEECD4415DCD26A00FA5A2A /* EntryController.m */,
+				CAEECD4515DCD26A00FA5A2A /* EntryController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -6479,6 +6578,7 @@
 				C296869A15D8E03C006968BA /* ding.m4a in Resources */,
 				A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */,
 				CA54822215D8F5650059A550 /* unloadbg.png in Resources */,
+				CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6941,6 +7041,14 @@
 				CA82847415D637930016CD43 /* unzip.c in Sources */,
 				CA82847515D637930016CD43 /* zip.c in Sources */,
 				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
+				A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */,
+				CAEECD2A15DCCFB900FA5A2A /* Announce.m in Sources */,
+				CAEECD2D15DCCFF300FA5A2A /* AnnounceNetwork.m in Sources */,
+				CAEECD3015DCD01A00FA5A2A /* AnnounceView.m in Sources */,
+				CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */,
+				CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */,
+				CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */,
+				CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

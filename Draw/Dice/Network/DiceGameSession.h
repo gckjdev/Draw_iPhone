@@ -10,7 +10,7 @@
 
 @interface DiceGameSession : CommonGameSession
 
-@property (retain, nonatomic) NSDictionary *userDiceList;
+@property (retain, nonatomic) NSMutableDictionary *userDiceList;
 
 @property (retain, nonatomic) NSString *lastCallDiceUserId;
 @property (assign, nonatomic) int lastCallDice;
