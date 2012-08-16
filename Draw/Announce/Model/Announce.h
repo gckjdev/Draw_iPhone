@@ -8,6 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Announce : NSObject
 
+typedef enum{
+    
+    AnnounceTypeAd = 1,
+    AnnounceTypeLocal = 2,
+    AnnounceTypeRemote = 3
+    
+}AnnounceType;
+@interface Announce : NSObject
+{
+    AnnounceType _type;
+    NSString *_version;
+    NSString *_url;
+}
+
+@property(nonatomic, assign)AnnounceType type;
+@property(nonatomic, retain)NSString *version;
+@property(nonatomic, retain)NSString *url;
+
+- (id)initWithType:(AnnounceType)type 
+           version:(NSString *)version 
+               url:(NSString *)url;
+- (Announce *)announceWithType:(AnnounceType)type 
+                     version:(NSString *)version 
+                         url:(NSString *)url;
 @end

@@ -59,6 +59,8 @@
 #import "DiceGameService.h"
 #import "DiceNotification.h"
 
+#import "EntryController.h"
+
 @interface HomeController()
 
 - (void)playBackgroundMusic;
@@ -854,6 +856,12 @@
     badge = [NotificationManager roomBadge:userInfo];
     [self updateBadge:self.roomBadge value:badge];
 
+}
+
+- (IBAction)clickAnnounce:(id)sender {
+    EntryController  *ec = [[EntryController alloc] init];
+    [self.navigationController pushViewController:ec animated:YES];
+    [ec release];
 }
 
 - (IBAction)clickDice:(id)sender
