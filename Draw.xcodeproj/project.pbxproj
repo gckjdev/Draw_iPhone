@@ -928,6 +928,8 @@
 		CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3215DCD03900FA5A2A /* AdAnnounceView.m */; };
 		CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */; };
 		CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */; };
+		CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD4415DCD26A00FA5A2A /* EntryController.m */; };
+		CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4515DCD26A00FA5A2A /* EntryController.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -2425,6 +2427,9 @@
 		CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAnnounceView.m; sourceTree = "<group>"; };
 		CAEECD3715DCD06D00FA5A2A /* AnnounceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceService.h; sourceTree = "<group>"; };
 		CAEECD3815DCD06D00FA5A2A /* AnnounceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceService.m; sourceTree = "<group>"; };
+		CAEECD4315DCD26A00FA5A2A /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		CAEECD4415DCD26A00FA5A2A /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
+		CAEECD4515DCD26A00FA5A2A /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -5903,7 +5908,7 @@
 		CAEECD2115DCCF9400FA5A2A /* Announce */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECD2215DCCF9400FA5A2A /* Controller */,
+				CAEECD4215DCD25400FA5A2A /* Controller */,
 				CAEECD2315DCCF9400FA5A2A /* Model */,
 				CAEECD2415DCCF9400FA5A2A /* Network */,
 				CAEECD2515DCCF9400FA5A2A /* Resource */,
@@ -5911,13 +5916,6 @@
 				CAEECD2715DCCF9400FA5A2A /* View */,
 			);
 			path = Announce;
-			sourceTree = "<group>";
-		};
-		CAEECD2215DCCF9400FA5A2A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		CAEECD2315DCCF9400FA5A2A /* Model */ = {
@@ -5965,6 +5963,16 @@
 				CAEECD3515DCD04D00FA5A2A /* WebAnnounceView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAEECD4215DCD25400FA5A2A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAEECD4315DCD26A00FA5A2A /* EntryController.h */,
+				CAEECD4415DCD26A00FA5A2A /* EntryController.m */,
+				CAEECD4515DCD26A00FA5A2A /* EntryController.xib */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
@@ -6570,6 +6578,7 @@
 				C296869A15D8E03C006968BA /* ding.m4a in Resources */,
 				A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */,
 				CA54822215D8F5650059A550 /* unloadbg.png in Resources */,
+				CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7039,6 +7048,7 @@
 				CAEECD3315DCD03900FA5A2A /* AdAnnounceView.m in Sources */,
 				CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */,
 				CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */,
+				CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
