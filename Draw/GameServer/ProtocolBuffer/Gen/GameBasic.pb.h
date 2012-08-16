@@ -4,8 +4,6 @@
 
 @class PBDrawAction;
 @class PBDrawAction_Builder;
-@class PBGameItem;
-@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -827,53 +825,5 @@
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
-@end
-
-@interface PBGameItem : PBGeneratedMessage {
-@private
-  BOOL hasItemId_:1;
-  int32_t itemId;
-}
-- (BOOL) hasItemId;
-@property (readonly) int32_t itemId;
-
-+ (PBGameItem*) defaultInstance;
-- (PBGameItem*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBGameItem_Builder*) builder;
-+ (PBGameItem_Builder*) builder;
-+ (PBGameItem_Builder*) builderWithPrototype:(PBGameItem*) prototype;
-
-+ (PBGameItem*) parseFromData:(NSData*) data;
-+ (PBGameItem*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBGameItem*) parseFromInputStream:(NSInputStream*) input;
-+ (PBGameItem*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBGameItem*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBGameItem*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBGameItem_Builder : PBGeneratedMessage_Builder {
-@private
-  PBGameItem* result;
-}
-
-- (PBGameItem*) defaultInstance;
-
-- (PBGameItem_Builder*) clear;
-- (PBGameItem_Builder*) clone;
-
-- (PBGameItem*) build;
-- (PBGameItem*) buildPartial;
-
-- (PBGameItem_Builder*) mergeFrom:(PBGameItem*) other;
-- (PBGameItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBGameItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasItemId;
-- (int32_t) itemId;
-- (PBGameItem_Builder*) setItemId:(int32_t) value;
-- (PBGameItem_Builder*) clearItemId;
 @end
 

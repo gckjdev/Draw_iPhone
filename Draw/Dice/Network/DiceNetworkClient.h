@@ -17,13 +17,18 @@
                       count:(int)count
                       wilds:(BOOL)wilds;
 
-- (void)sendCallDiceRequest:(NSString*)userId
-                  sessionId:(int)sessionId
-                       dice:(int)dice
-                      count:(int)count;
+
+//- (void)sendCallDiceRequest:(NSString*)userId
+//                  sessionId:(int)sessionId
+//                       dice:(int)dice
+//                      count:(int)count;
 
 - (void)sendOpenDiceRequest:(NSString*)userId
                   sessionId:(int)sessionId
                    openType:(int)openType;
 
+
+- (void)sendUserItemRequest:(NSString*)userId
+                  sessionId:(int)sessionId
+                     itemId:(int)itemId;
 @end

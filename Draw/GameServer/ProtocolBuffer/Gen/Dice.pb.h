@@ -10,8 +10,6 @@
 @class PBDice_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
-@class PBGameItem;
-@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;

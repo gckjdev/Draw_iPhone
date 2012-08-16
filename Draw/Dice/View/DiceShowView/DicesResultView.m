@@ -108,11 +108,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
 - (UIImageView *)buttonView
 {
     return (UIImageView*)[self viewWithTag:TAG_OFFSET_BOTTOM];

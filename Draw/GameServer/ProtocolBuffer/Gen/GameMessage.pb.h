@@ -61,8 +61,6 @@
 @class PBFeedTimes;
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
-@class PBGameItem;
-@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -109,8 +107,8 @@
 @class UnRegisterRoomsNotificationResponse_Builder;
 @class UseItemRequest;
 @class UseItemRequest_Builder;
-@class UserItemResponse;
-@class UserItemResponse_Builder;
+@class UseItemResponse;
+@class UseItemResponse_Builder;
 
 @interface GameMessageRoot : NSObject {
 }
@@ -714,11 +712,11 @@
 
 @interface UseItemRequest : PBGeneratedMessage {
 @private
-  BOOL hasItem_:1;
-  PBGameItem* item;
+  BOOL hasItemId_:1;
+  int32_t itemId;
 }
-- (BOOL) hasItem;
-@property (readonly, retain) PBGameItem* item;
+- (BOOL) hasItemId;
+@property (readonly) int32_t itemId;
 
 + (UseItemRequest*) defaultInstance;
 - (UseItemRequest*) defaultInstance;
@@ -754,51 +752,68 @@
 - (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasItem;
-- (PBGameItem*) item;
-- (UseItemRequest_Builder*) setItem:(PBGameItem*) value;
-- (UseItemRequest_Builder*) setItemBuilder:(PBGameItem_Builder*) builderForValue;
-- (UseItemRequest_Builder*) mergeItem:(PBGameItem*) value;
-- (UseItemRequest_Builder*) clearItem;
+- (BOOL) hasItemId;
+- (int32_t) itemId;
+- (UseItemRequest_Builder*) setItemId:(int32_t) value;
+- (UseItemRequest_Builder*) clearItemId;
 @end
 
-@interface UserItemResponse : PBGeneratedMessage {
+@interface UseItemResponse : PBGeneratedMessage {
 @private
+  BOOL hasItemId_:1;
+  int32_t itemId;
+  NSMutableArray* mutableDicesList;
 }
+- (BOOL) hasItemId;
+@property (readonly) int32_t itemId;
+- (NSArray*) dicesList;
+- (PBDice*) dicesAtIndex:(int32_t) index;
 
-+ (UserItemResponse*) defaultInstance;
-- (UserItemResponse*) defaultInstance;
++ (UseItemResponse*) defaultInstance;
+- (UseItemResponse*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UserItemResponse_Builder*) builder;
-+ (UserItemResponse_Builder*) builder;
-+ (UserItemResponse_Builder*) builderWithPrototype:(UserItemResponse*) prototype;
+- (UseItemResponse_Builder*) builder;
++ (UseItemResponse_Builder*) builder;
++ (UseItemResponse_Builder*) builderWithPrototype:(UseItemResponse*) prototype;
 
-+ (UserItemResponse*) parseFromData:(NSData*) data;
-+ (UserItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input;
-+ (UserItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (UserItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UseItemResponse*) parseFromData:(NSData*) data;
++ (UseItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UseItemResponse*) parseFromInputStream:(NSInputStream*) input;
++ (UseItemResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (UseItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (UseItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UserItemResponse_Builder : PBGeneratedMessage_Builder {
+@interface UseItemResponse_Builder : PBGeneratedMessage_Builder {
 @private
-  UserItemResponse* result;
+  UseItemResponse* result;
 }
 
-- (UserItemResponse*) defaultInstance;
+- (UseItemResponse*) defaultInstance;
 
-- (UserItemResponse_Builder*) clear;
-- (UserItemResponse_Builder*) clone;
+- (UseItemResponse_Builder*) clear;
+- (UseItemResponse_Builder*) clone;
 
-- (UserItemResponse*) build;
-- (UserItemResponse*) buildPartial;
+- (UseItemResponse*) build;
+- (UseItemResponse*) buildPartial;
 
-- (UserItemResponse_Builder*) mergeFrom:(UserItemResponse*) other;
-- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UserItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UseItemResponse_Builder*) mergeFrom:(UseItemResponse*) other;
+- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasItemId;
+- (int32_t) itemId;
+- (UseItemResponse_Builder*) setItemId:(int32_t) value;
+- (UseItemResponse_Builder*) clearItemId;
+
+- (NSArray*) dicesList;
+- (PBDice*) dicesAtIndex:(int32_t) index;
+- (UseItemResponse_Builder*) replaceDicesAtIndex:(int32_t) index with:(PBDice*) value;
+- (UseItemResponse_Builder*) addDices:(PBDice*) value;
+- (UseItemResponse_Builder*) addAllDices:(NSArray*) values;
+- (UseItemResponse_Builder*) clearDicesList;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
@@ -2301,7 +2316,6 @@
   BOOL hasUserId_:1;
   BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
-  BOOL hasCreateRoomRequest_:1;
   BOOL hasCreateRoomResponse_:1;
   BOOL hasRoomNotificationRequest_:1;
   BOOL hasRollDiceEndNotificationRequest_:1;
@@ -2315,19 +2329,22 @@
   BOOL hasRegisterRoomsNotificationResponse_:1;
   BOOL hasUnRegisterRoomsNotificationRequest_:1;
   BOOL hasUnRegisterRoomsNotificationResponse_:1;
-  BOOL hasGetRoomsResponse_:1;
-  BOOL hasGetRoomsRequest_:1;
-  BOOL hasNotification_:1;
-  BOOL hasFacetimeChatResponse_:1;
-  BOOL hasFacetimeChatRequest_:1;
-  BOOL hasChatResponse_:1;
-  BOOL hasChatRequest_:1;
-  BOOL hasSendDrawDataResponse_:1;
-  BOOL hasSendDrawDataRequest_:1;
-  BOOL hasStartGameResponse_:1;
-  BOOL hasStartGameRequest_:1;
-  BOOL hasJoinGameResponse_:1;
+  BOOL hasUseItemRequest_:1;
+  BOOL hasUseItemResponse_:1;
   BOOL hasJoinGameRequest_:1;
+  BOOL hasJoinGameResponse_:1;
+  BOOL hasStartGameRequest_:1;
+  BOOL hasStartGameResponse_:1;
+  BOOL hasSendDrawDataRequest_:1;
+  BOOL hasSendDrawDataResponse_:1;
+  BOOL hasChatRequest_:1;
+  BOOL hasChatResponse_:1;
+  BOOL hasFacetimeChatRequest_:1;
+  BOOL hasFacetimeChatResponse_:1;
+  BOOL hasNotification_:1;
+  BOOL hasGetRoomsRequest_:1;
+  BOOL hasGetRoomsResponse_:1;
+  BOOL hasCreateRoomRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
@@ -2340,7 +2357,6 @@
   NSString* userId;
   NSString* toUserId;
   NSString* currentPlayUserId;
-  CreateRoomRequest* createRoomRequest;
   CreateRoomResponse* createRoomResponse;
   RoomNotificationRequest* roomNotificationRequest;
   RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
@@ -2354,19 +2370,22 @@
   RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
   UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
   UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-  GetRoomsResponse* getRoomsResponse;
-  GetRoomsRequest* getRoomsRequest;
-  GeneralNotification* notification;
-  FacetimeChatResponse* facetimeChatResponse;
-  FacetimeChatRequest* facetimeChatRequest;
-  GameChatResponse* chatResponse;
-  GameChatRequest* chatRequest;
-  SendDrawDataResponse* sendDrawDataResponse;
-  SendDrawDataRequest* sendDrawDataRequest;
-  StartGameResponse* startGameResponse;
-  StartGameRequest* startGameRequest;
-  JoinGameResponse* joinGameResponse;
+  UseItemRequest* useItemRequest;
+  UseItemResponse* useItemResponse;
   JoinGameRequest* joinGameRequest;
+  JoinGameResponse* joinGameResponse;
+  StartGameRequest* startGameRequest;
+  StartGameResponse* startGameResponse;
+  SendDrawDataRequest* sendDrawDataRequest;
+  SendDrawDataResponse* sendDrawDataResponse;
+  GameChatRequest* chatRequest;
+  GameChatResponse* chatResponse;
+  FacetimeChatRequest* facetimeChatRequest;
+  FacetimeChatResponse* facetimeChatResponse;
+  GeneralNotification* notification;
+  GetRoomsRequest* getRoomsRequest;
+  GetRoomsResponse* getRoomsResponse;
+  CreateRoomRequest* createRoomRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -2408,6 +2427,8 @@
 - (BOOL) hasRegisterRoomsNotificationResponse;
 - (BOOL) hasUnRegisterRoomsNotificationRequest;
 - (BOOL) hasUnRegisterRoomsNotificationResponse;
+- (BOOL) hasUseItemRequest;
+- (BOOL) hasUseItemResponse;
 - (BOOL) hasStartOffset;
 - (BOOL) hasMaxCount;
 @property (readonly) GameCommandType command;
@@ -2447,6 +2468,8 @@
 @property (readonly, retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
 @property (readonly, retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (readonly, retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+@property (readonly, retain) UseItemRequest* useItemRequest;
+@property (readonly, retain) UseItemResponse* useItemResponse;
 @property (readonly) int32_t startOffset;
 @property (readonly) int32_t maxCount;
 
@@ -2722,6 +2745,20 @@
 - (GameMessage_Builder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
 - (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse;
+
+- (BOOL) hasUseItemRequest;
+- (UseItemRequest*) useItemRequest;
+- (GameMessage_Builder*) setUseItemRequest:(UseItemRequest*) value;
+- (GameMessage_Builder*) setUseItemRequestBuilder:(UseItemRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeUseItemRequest:(UseItemRequest*) value;
+- (GameMessage_Builder*) clearUseItemRequest;
+
+- (BOOL) hasUseItemResponse;
+- (UseItemResponse*) useItemResponse;
+- (GameMessage_Builder*) setUseItemResponse:(UseItemResponse*) value;
+- (GameMessage_Builder*) setUseItemResponseBuilder:(UseItemResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeUseItemResponse:(UseItemResponse*) value;
+- (GameMessage_Builder*) clearUseItemResponse;
 
 - (BOOL) hasStartOffset;
 - (int32_t) startOffset;

@@ -12,8 +12,6 @@
 @class PBFeedTimes;
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
-@class PBGameItem;
-@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
