@@ -212,7 +212,7 @@
 						<string key="NSFrame">{{284, 133}, {200, 60}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1066454510"/>
+						<reference key="NSNextKeyView" ref="485252190"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -231,7 +231,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="1066454510">
+					<object class="IBUIButton" id="485252190">
 						<reference key="NSNextResponder" ref="320383738"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{484, 133}, {200, 60}}</string>
@@ -375,7 +375,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">selectDraftButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1066454510"/>
+						<reference key="destination" ref="485252190"/>
 					</object>
 					<int key="connectionID">39</int>
 				</object>
@@ -434,7 +434,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">selectDraft:</string>
-						<reference key="source" ref="1066454510"/>
+						<reference key="source" ref="485252190"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -474,7 +474,7 @@
 							<reference ref="372283332"/>
 							<reference ref="66482057"/>
 							<reference ref="380333629"/>
-							<reference ref="1066454510"/>
+							<reference ref="485252190"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -530,7 +530,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="1066454510"/>
+						<reference key="object" ref="485252190"/>
 						<reference key="parent" ref="320383738"/>
 					</object>
 				</array>
