@@ -59,6 +59,7 @@
 
 - (void)joinGame
 {
+    [self hideActivity];
     if(_isJoiningDice) {
         DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
@@ -195,7 +196,7 @@
     PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
     
     [[DiceGameService defaultService] joinGameRequest:session.sessionId];
-
+    [self showActivityWithText:NSLS(@"kJoining")];
     
 }
 
