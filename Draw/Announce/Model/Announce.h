@@ -30,6 +30,7 @@ typedef enum{
 - (id)initWithType:(AnnounceType)type 
            version:(NSString *)version 
                url:(NSString *)url;
+
 - (Announce *)announceWithType:(AnnounceType)type 
                      version:(NSString *)version 
                          url:(NSString *)url;
