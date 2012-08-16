@@ -266,6 +266,14 @@
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C296869A15D8E03C006968BA /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C296869915D8E03C006968BA /* ding.m4a */; };
+		C296872715DCE03F006968BA /* DiceCommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C296871915DCE03F006968BA /* DiceCommonDialog.m */; };
+		C296872815DCE03F006968BA /* DiceCommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296871A15DCE03F006968BA /* DiceCommonDialog.xib */; };
+		C296872915DCE03F006968BA /* DiceInputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C296871D15DCE03F006968BA /* DiceInputDialog.m */; };
+		C296872A15DCE03F006968BA /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296871E15DCE03F006968BA /* DiceInputDialog.xib */; };
+		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
+		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
+		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
+		C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872615DCE03F006968BA /* DiceUserInfoView.xib */; };
 		C29A300715CA16AC00BD0B73 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */; };
 		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B8A211563B02000B9707D /* CommonMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B8A1F1563B02000B9707D /* CommonMessageCenter.m */; };
@@ -929,7 +937,7 @@
 		CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD4415DCD26A00FA5A2A /* EntryController.m */; };
 		CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4515DCD26A00FA5A2A /* EntryController.xib */; };
 		CAEECD4915DCD8F100FA5A2A /* draft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEECD4815DCD8F100FA5A2A /* draft@2x.png */; };
-		CAEECD4C15DCE13E00FA5A2A /* AnnounceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD4B15DCE13E00FA5A2A /* AnnounceManager.m */; };
+		CAEECD6F15DCE1C700FA5A2A /* AnnounceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -1336,6 +1344,18 @@
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		C296869915D8E03C006968BA /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
+		C296871815DCE03F006968BA /* DiceCommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceCommonDialog.h; sourceTree = "<group>"; };
+		C296871915DCE03F006968BA /* DiceCommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceCommonDialog.m; sourceTree = "<group>"; };
+		C296871A15DCE03F006968BA /* DiceCommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceCommonDialog.xib; sourceTree = "<group>"; };
+		C296871C15DCE03F006968BA /* DiceInputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceInputDialog.h; sourceTree = "<group>"; };
+		C296871D15DCE03F006968BA /* DiceInputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceInputDialog.m; sourceTree = "<group>"; };
+		C296871E15DCE03F006968BA /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
+		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
+		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
+		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
+		C296872415DCE03F006968BA /* DiceUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUserInfoView.h; sourceTree = "<group>"; };
+		C296872515DCE03F006968BA /* DiceUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceUserInfoView.m; sourceTree = "<group>"; };
+		C296872615DCE03F006968BA /* DiceUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceUserInfoView.xib; sourceTree = "<group>"; };
 		C29A300515CA16AC00BD0B73 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
 		C29A300615CA16AC00BD0B73 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
 		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
@@ -2429,8 +2449,8 @@
 		CAEECD4415DCD26A00FA5A2A /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
 		CAEECD4515DCD26A00FA5A2A /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		CAEECD4815DCD8F100FA5A2A /* draft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draft@2x.png"; sourceTree = "<group>"; };
-		CAEECD4A15DCE13E00FA5A2A /* AnnounceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceManager.h; sourceTree = "<group>"; };
-		CAEECD4B15DCE13E00FA5A2A /* AnnounceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceManager.m; sourceTree = "<group>"; };
+		CAEECD6D15DCE1C700FA5A2A /* AnnounceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceManager.h; sourceTree = "<group>"; };
+		CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceManager.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -2974,6 +2994,10 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C296871715DCE03F006968BA /* DiceCommonDialog */,
+				C296871B15DCE03F006968BA /* DiceInputDialog */,
+				C296871F15DCE03F006968BA /* DiceItemInfoView */,
+				C296872315DCE03F006968BA /* DiceUserInfoView */,
 				C29A300815CA176400BD0B73 /* FontLabel */,
 				A45E8CD615C77F960089E240 /* CommonView */,
 				A45E8CD215C77F8E0089E240 /* AvatarView */,
@@ -3112,6 +3136,46 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		C296871715DCE03F006968BA /* DiceCommonDialog */ = {
+			isa = PBXGroup;
+			children = (
+				C296871815DCE03F006968BA /* DiceCommonDialog.h */,
+				C296871915DCE03F006968BA /* DiceCommonDialog.m */,
+				C296871A15DCE03F006968BA /* DiceCommonDialog.xib */,
+			);
+			path = DiceCommonDialog;
+			sourceTree = "<group>";
+		};
+		C296871B15DCE03F006968BA /* DiceInputDialog */ = {
+			isa = PBXGroup;
+			children = (
+				C296871C15DCE03F006968BA /* DiceInputDialog.h */,
+				C296871D15DCE03F006968BA /* DiceInputDialog.m */,
+				C296871E15DCE03F006968BA /* DiceInputDialog.xib */,
+			);
+			path = DiceInputDialog;
+			sourceTree = "<group>";
+		};
+		C296871F15DCE03F006968BA /* DiceItemInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				C296872015DCE03F006968BA /* DiceItemInfoView.h */,
+				C296872115DCE03F006968BA /* DiceItemInfoView.m */,
+				C296872215DCE03F006968BA /* DiceItemInfoView.xib */,
+			);
+			path = DiceItemInfoView;
+			sourceTree = "<group>";
+		};
+		C296872315DCE03F006968BA /* DiceUserInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				C296872415DCE03F006968BA /* DiceUserInfoView.h */,
+				C296872515DCE03F006968BA /* DiceUserInfoView.m */,
+				C296872615DCE03F006968BA /* DiceUserInfoView.xib */,
+			);
+			path = DiceUserInfoView;
 			sourceTree = "<group>";
 		};
 		C29A300815CA176400BD0B73 /* FontLabel */ = {
@@ -5921,10 +5985,10 @@
 		CAEECD2315DCCF9400FA5A2A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAEECD6D15DCE1C700FA5A2A /* AnnounceManager.h */,
+				CAEECD6E15DCE1C700FA5A2A /* AnnounceManager.m */,
 				CAEECD2815DCCFB900FA5A2A /* Announce.h */,
 				CAEECD2915DCCFB900FA5A2A /* Announce.m */,
-				CAEECD4A15DCE13E00FA5A2A /* AnnounceManager.h */,
-				CAEECD4B15DCE13E00FA5A2A /* AnnounceManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6580,6 +6644,10 @@
 				CA54822215D8F5650059A550 /* unloadbg.png in Resources */,
 				CAEECD4715DCD26A00FA5A2A /* EntryController.xib in Resources */,
 				CAEECD4915DCD8F100FA5A2A /* draft@2x.png in Resources */,
+				C296872815DCE03F006968BA /* DiceCommonDialog.xib in Resources */,
+				C296872A15DCE03F006968BA /* DiceInputDialog.xib in Resources */,
+				C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */,
+				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7050,7 +7118,11 @@
 				CAEECD3615DCD04D00FA5A2A /* WebAnnounceView.m in Sources */,
 				CAEECD3915DCD06D00FA5A2A /* AnnounceService.m in Sources */,
 				CAEECD4615DCD26A00FA5A2A /* EntryController.m in Sources */,
-				CAEECD4C15DCE13E00FA5A2A /* AnnounceManager.m in Sources */,
+				C296872715DCE03F006968BA /* DiceCommonDialog.m in Sources */,
+				C296872915DCE03F006968BA /* DiceInputDialog.m in Sources */,
+				C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */,
+				C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */,
+				CAEECD6F15DCE1C700FA5A2A /* AnnounceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
