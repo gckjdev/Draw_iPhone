@@ -22,13 +22,13 @@
 
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
 
-- (id)initWithImageNameList:(NSArray *)imageNameList 
+//- (id)initWithTitleList:(NSArray *)titleList 
+//        countNumberList:(NSArray *)countNumberList 
+//               delegate:(id<ToolSheetViewDelegate>)delegate;
+
+- (void)updateWithTitleList:(NSArray *)titleList 
             countNumberList:(NSArray *)countNumberList 
                    delegate:(id<ToolSheetViewDelegate>)delegate;
-
-- (void)updateWithImageNameList:(NSArray *)imageNameList 
-                countNumberList:(NSArray *)countNumberList 
-                       delegate:(id<ToolSheetViewDelegate>)delegate;
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView

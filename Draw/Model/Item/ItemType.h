@@ -24,7 +24,12 @@ typedef enum
     Quill,
     PenCount,
     
-    Eraser = 1100
+    Eraser = 1100,
+    
+    //Liar dice.
+//    ItemTypeChangeDice = 2000,
+    ItemTypeRollAgain = 2001,
+    ItemTypeDoubleCoin = 2002
 
     
 }ItemType;

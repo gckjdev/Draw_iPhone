@@ -18,14 +18,18 @@
 @class MyPaint;
 @interface ShareController : PPTableViewController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
     
+    int EDIT;
     int SHARE_AS_PHOTO;
     int SHARE_AS_GIF;
     int REPLAY;
     int DELETE;
     int DELETE_ALL;
     int DELETE_ALL_MINE;
+    int DELETE_ALL_DRAFT;
     int CANCEL;    
 }
+- (IBAction)selectDraft:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *selectDraftButton;
 @property (retain, nonatomic) IBOutlet UIButton *selectMineButton;
 @property (retain, nonatomic) IBOutlet UIButton *selectAllButton;
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;

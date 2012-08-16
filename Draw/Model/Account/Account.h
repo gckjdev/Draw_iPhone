@@ -27,7 +27,8 @@ typedef enum  {
     
     RefundForVerifyReceiptFailure = 21,
     
-    LiarDiceWinType = 200
+    LiarDiceWinType = 200,
+    LiarDiceFleeType = 201
     
 }BalanceSourceType;
 

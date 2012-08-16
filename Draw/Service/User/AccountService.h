@@ -40,6 +40,8 @@
 
 + (AccountService *)defaultService;
 
+- (int)getBalance;
+
 - (void)syncAccountAndItem;
 
 - (void)buyCoin:(PriceModel*)price;

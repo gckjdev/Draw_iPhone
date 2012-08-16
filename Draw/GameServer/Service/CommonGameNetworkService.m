@@ -253,11 +253,14 @@
     [_networkClient sendGetRoomsRequest:userId];
 }
 
-- (void)getRoomList:(int)startIndex count:(int)count
+- (void)getRoomList:(int)startIndex count:(int)count shouldReloadData:(BOOL)shouldReloadData
 {
     NSString* userId = [[UserManager defaultManager] userId];
     if (userId == nil){
         return;
+    }
+    if (shouldReloadData) {
+        [self.roomList removeAllObjects];
     }
     [_networkClient sendGetRoomsRequest:userId 
                              startIndex:startIndex 
@@ -289,7 +292,7 @@
 - (void)creatRoomWithName:(NSString*)name
 {
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
-                                     name:@"" 
+                                     name:name 
                                    gameId:_gameId];
 }
 

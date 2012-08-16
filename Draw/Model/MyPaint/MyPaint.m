@@ -19,6 +19,10 @@
 @dynamic drawUserId;
 @dynamic drawWord;
 @dynamic drawThumbnailData;
+@dynamic draft;
+@dynamic language;
+@dynamic level;
+
 
 @synthesize thumbImage;
 

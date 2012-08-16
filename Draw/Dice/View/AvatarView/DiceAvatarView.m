@@ -98,7 +98,7 @@
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
-        progressView.progressBarWidth = width*0.05;
+        progressView.progressBarWidth = width*0.10;
         [progressView setFrame:[self calAvatarFrame]];
         progressView.trackTintColor = [UIColor clearColor];
         progressView.progressTintColor = [UIColor greenColor];
@@ -339,6 +339,11 @@
         }
     }
     _isBlackAndWhite = isGray;
+}
+
+- (void)setGestureRecognizerEnable:(BOOL)enable
+{
+    self.userInteractionEnabled = enable;
 }
 
 /*

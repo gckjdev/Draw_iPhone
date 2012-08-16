@@ -32,6 +32,7 @@
 - (id)init
 {
     if (self = [super init]) {
+        self.userDiceList = [NSMutableDictionary dictionary];
         [self reset];
     }
     
@@ -40,7 +41,7 @@
 
 - (void)reset
 {
-    self.userDiceList = nil;
+    [self.userDiceList removeAllObjects];
     self.lastCallDiceUserId = nil;    
     self.lastCallDice = 0;
     self.lastCallDiceCount = 0;

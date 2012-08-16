@@ -259,17 +259,9 @@
 
 - (void)unregisterDiceGameNotification
 {        
-    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-    
-        //        if ([obj isKindOfClass:[NSNotification class]]) {
-        NSNotification *notification = (NSNotification *)obj;
-        [[NSNotificationCenter defaultCenter] removeObserver:notification];
-        //        }
-    
-    }];    
-
-    [notifications removeAllObjects];
+    [self unregisterAllNotifications];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {    
     [self registerDiceGameNotification];
@@ -713,9 +705,18 @@
     if ([self isRegistered] == NO) {
         [self toRegister];
     } else {
-        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-        [self.navigationController pushViewController:sc animated:YES];
-        [sc release];
+/*
+ MyPaint *draft =[[MyPaintManager defaultManager] latestDraft];
+        if (draft) {
+            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:draft];
+            [self.navigationController pushViewController:od animated:YES];
+            [od release];
+        }else{
+ */
+            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];
+//        }
     }
 }
 
@@ -863,14 +864,14 @@
     
     _isTryJoinGame = YES;
     
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
 
 //    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
 //    [[DiceGameService defaultService] setServerPort:8018];
     
-//    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
-    [[DiceGameService defaultService] setServerPort:8080];
-//    [[DiceGameService defaultService] setServerPort:8018];
+    [[DiceGameService defaultService] setServerAddress:@"58.215.188.215"];
+//    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] setServerPort:8018];
     
     [[DiceGameService defaultService] connectServer:self];
     _isJoiningDice = YES;

@@ -35,5 +35,6 @@
 - (UIImage *)resultDiceBgImage;
 - (UIImage *)roomCellBackgroundImage;
 - (UIImage *)fastGameBtnBgImage;
+- (UIImage *)toolsItemBgImage;
 
 @end

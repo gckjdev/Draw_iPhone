@@ -63,10 +63,13 @@ message OpenDiceResponse {
 }
 
 message UseItemRequest {
-  required PBGameItem item = 10;                // 使用的道具
+//  required PBGameItem item = 10;                // 使用的道具
+  required int32 itemId = 1;
 }
 
-message UserItemResponse {
+message UseItemResponse {
+  required int32 itemId = 1;
+  repeated PBDice dices = 20;
 }
 
 
@@ -294,6 +297,9 @@ message GameMessage {
   
   optional UnRegisterRoomsNotificationRequest unRegisterRoomsNotificationRequest = 119;
   optional UnRegisterRoomsNotificationResponse unRegisterRoomsNotificationResponse = 120; 
+  
+  optional UseItemRequest useItemRequest = 131;
+  optional UseItemResponse useItemResponse = 132;
 
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
   optional int32 maxCount = 1001;           // 返回记录的记录数目

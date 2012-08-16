@@ -281,8 +281,9 @@
 "kContentNull" = "搜索條件不能為空";
 
 "kNoDrawings" = "你還沒有任何作品呢";
-"kAll" = " 所有";
-"kMine" = "我的 ";
+"kAll" = "所有";
+"kMine" = "我的";
+"kDraft" = "草稿";
 "kNone" = "無";
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
@@ -291,6 +292,8 @@
 
 /*the new words below without Japanese*/
 
+
+"kSaveSucc" = "保存成功！在作品頁面可以查看以往保存的草稿。";
 "kNetworkErrorTitle" = "網絡連接失效";
 "kNetworkErrorMessage" = "無法訪問互聯網，請檢查手機是否正確連接到網絡或者WIFI。";
 //4月23新增
@@ -761,7 +764,8 @@
 "kScrambleToOpenDice" = "搶開";
 "kWaittingForNextTurn" = "等待下輪...";
 "kGameBegin" = "遊戲開始了...";
-
+"kNearBy" = "附近";
+"kWhoseRoom" = "%@ 的房間";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

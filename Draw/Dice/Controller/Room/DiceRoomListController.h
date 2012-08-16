@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "DiceGameService.h"
+#import "InputDialog.h"
 @class FontButton;
 
-@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate> {
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate> {
     BOOL _isJoiningDice;
+    DiceGameService* _diceGameService;
 }
 @property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
 

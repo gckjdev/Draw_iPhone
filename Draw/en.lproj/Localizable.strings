@@ -275,17 +275,17 @@
 
 "kNoDrawings" = "No Drawing";
 "kAll" = "  All";
-"kMine" = "Mine  ";
+"kMine" = "Mine";
+"kDraft" = "Draft";
 "kNone" = "None";
 "kGifNotice" = "The size of GIF is %.2fMB,it may cost some time for publishing";
 "kGifTips" = "Tips";
 "kContentRepeat" = "You have submited it just now!";
 
 
-
-
 /*the new words below without Japanese*/
 
+"kSaveSucc" = "Save draft sucessfully!";
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
 
@@ -752,6 +752,8 @@
 "kCommitOpusTitle"  = "Submit drawing";
 "kCommitOpusMessage"  = "Are you sure to submit the drawing?";
 
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -767,6 +769,8 @@
 
 "kWaittingForNextTurn" = "Watting...";
 "kGameBegin" = "Game begin...";
+"kNearBy" = "NearBy";
+"kWhoseRoom" = "%@'s room";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

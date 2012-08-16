@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
+#import "DiceAvatarView.h"
 @class PBGameSession;
 
-@interface DiceRoomListCell : PPTableViewCell
+@interface DiceRoomListCell : PPTableViewCell <DiceAvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 - (void)setCellInfo:(PBGameSession *)session;
