@@ -90,7 +90,7 @@
     UseItemRequest *useItemRequest = [useItemRequestBuilder build];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeOpenDiceRequest];
+    [messageBuilder setCommand:GameCommandTypeUseItemRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];
