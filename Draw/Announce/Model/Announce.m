@@ -7,6 +7,7 @@
 //
 
 #import "Announce.h"
+#import "PPDebug.h"
 
 @implementation Announce
 @synthesize type = _type;
@@ -25,6 +26,14 @@
     }
     return self;
 }
+
+- (void)dealloc
+{
+    PPRelease(_version);
+    PPRelease(_url);
+    [super dealloc];
+}
+
 - (Announce *)announceWithType:(AnnounceType)type 
                        version:(NSString *)version 
                            url:(NSString *)url
@@ -33,6 +42,7 @@
                                    version:version 
                                        url:url] autorelease];
 }
+
 
 
 @end

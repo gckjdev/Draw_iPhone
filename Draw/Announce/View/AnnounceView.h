@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Announce.h"
+
+@class AnnounceView;
+@protocol AnnounceViewDelegate <NSObject>
+
+@optional 
+- (void)announceView:(AnnounceView *)announceView 
+   didCaptureRequest:(NSURLRequest *)request;
+
+@end
 
 @interface AnnounceView : UIView
+{
+    Announce *_announce;
+}
+
+@property(nonatomic, retain)Announce *announce;
+- (id)initWithAnnounce:(Announce *)anounce;
++ (AnnounceView *)creatAnnounceView:(Announce *)annnouce;
+- (void)loadView;
 
 @end
