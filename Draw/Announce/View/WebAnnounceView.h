@@ -9,5 +9,10 @@
 #import "AnnounceView.h"
 
 @interface WebAnnounceView : AnnounceView
+{
+    
+}
 
+- (id)initWithAnnounce:(Announce *)anounce;
+- (void)loadView;
 @end

@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface AnnounceManager : NSObject
+{
+    
+}
++ (AnnounceManager *)defaultManager;
+
+- (NSArray *)announceList;
 
 @end

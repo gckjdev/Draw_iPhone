@@ -10,4 +10,19 @@
 
 @implementation AdAnnounceView
 
+
+- (id)initWithAnnounce:(Announce *)anounce
+{
+    self = [super initWithAnnounce:anounce];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+}
+
 @end

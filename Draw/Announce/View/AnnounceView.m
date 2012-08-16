@@ -7,25 +7,48 @@
 //
 
 #import "AnnounceView.h"
+#import "AdAnnounceView.h"
+#import "WebAnnounceView.h"
 
 @implementation AnnounceView
+@synthesize announce = _announce;
 
-- (id)initWithFrame:(CGRect)frame
+#define ANNOUNCE_FRAME ([DeviceDetection isIPAD]?CGRectMake(0, 0, 300 * 2, 200 * 2):CGRectMake(0, 0, 300, 200))
+
+- (id)initWithAnnounce:(Announce *)anounce
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:ANNOUNCE_FRAME];
     if (self) {
-        // Initialization code
+        self.announce = anounce;
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)dealloc
 {
-    // Drawing code
+    PPRelease(_announce);
+    [super dealloc];
+    
 }
-*/
++ (AnnounceView *)creatAnnounceView:(Announce *)annnouce
+{
+    if (annnouce == nil) {
+        return nil;
+    }
+    switch (annnouce.type) {
+        case AnnounceTypeAd:
+            return [[[AdAnnounceView alloc] initWithAnnounce:annnouce] autorelease];
+        case AnnounceTypeLocal:
+        case AnnounceTypeRemote:
+            return [[[WebAnnounceView alloc] initWithAnnounce:annnouce] autorelease];
+        default:
+            return nil;
+    }
+}
+
+- (void)loadView
+{
+    //should be override by the sub classes.
+}
 
 @end

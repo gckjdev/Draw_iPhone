@@ -8,13 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef enum{
-    
+typedef enum{    
     AnnounceTypeAd = 1,
     AnnounceTypeLocal = 2,
-    AnnounceTypeRemote = 3
-    
+    AnnounceTypeRemote = 3    
 }AnnounceType;
 @interface Announce : NSObject
 {
