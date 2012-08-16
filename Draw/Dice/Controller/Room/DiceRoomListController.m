@@ -93,16 +93,7 @@
 
 - (void)unregisterDiceRoomNotification
 {
-    [notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        
-        //        if ([obj isKindOfClass:[NSNotification class]]) {
-        NSNotification *notification = (NSNotification *)obj;
-        [[NSNotificationCenter defaultCenter] removeObserver:notification];
-        //        }
-        
-    }];    
-    
-    [notifications removeAllObjects];                                                
+    [self unregisterAllNotifications];
 }
 
 - (void)viewDidLoad
