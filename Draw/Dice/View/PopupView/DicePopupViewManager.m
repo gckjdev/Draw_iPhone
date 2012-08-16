@@ -74,15 +74,15 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
 }
 
-- (void)popupToolSheetViewWithImageNameList:(NSArray *)imageNameList 
-                            countNumberList:(NSArray *)countNumberList 
-                                   delegate:(id<ToolSheetViewDelegate>)delegate 
-                                     atView:(UIView *)atView 
-                                     inView:(UIView *)inView  
+- (void)popupToolSheetViewWithTitleList:(NSArray *)titleList 
+                        countNumberList:(NSArray *)countNumberList 
+                               delegate:(id<ToolSheetViewDelegate>)delegate 
+                                 atView:(UIView *)atView 
+                                 inView:(UIView *)inView  
 {
-    [_toolSheetView updateWithImageNameList:imageNameList 
-                            countNumberList:countNumberList
-                                   delegate:delegate];
+    [_toolSheetView updateWithTitleList:titleList 
+                        countNumberList:countNumberList
+                               delegate:delegate];
     [_toolSheetView popupAtView:atView inView:inView animated:YES];
 }
 

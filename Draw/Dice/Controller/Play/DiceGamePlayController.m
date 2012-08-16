@@ -45,7 +45,7 @@
 - (void)popResultViewOnAvatarView:(UIView*)view
                          duration:(CFTimeInterval)duration 
                        coinsCount:(int)coinsCount;
-
+- (void)quitDiceGame;
 @end
 
 @implementation DiceGamePlayController
@@ -200,17 +200,20 @@
 
 
 #define TAG_TOOL_BUTTON 12080101
-#define TAG_TOOL_SHEET  12080102
 - (IBAction)clickToolButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     button.tag = TAG_TOOL_BUTTON;
     button.selected = !button.selected;
     
     if (button.selected) {
-        NSArray *imageNameList = [NSArray arrayWithObjects:@"tools_bell_bg.png", @"tools_bell_bg.png", @"tools_bell_bg.png",nil];
+        NSArray *titleList = [NSArray arrayWithObjects:@"劈", @"改", @"摇",nil];
         NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
         
-        [_popupViewManager popupToolSheetViewWithImageNameList:imageNameList countNumberList:countNumberList delegate:self atView:button inView:self.view];
+        [_popupViewManager popupToolSheetViewWithTitleList:titleList 
+                                           countNumberList:countNumberList 
+                                                  delegate:self 
+                                                    atView:button 
+                                                    inView:self.view];
     } else {
         [_popupViewManager dismissToolSheetView];
     }
@@ -254,11 +257,50 @@
 }
 
 
-#pragma mark - Show game result.
+- (NSArray *)getSortedUserIdListBeginWithOpenUser
+{
+    NSArray *sortedPlayingUserList = [_diceService.diceSession.playingUserList sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        PBGameUser* user1 = (PBGameUser *)obj1;
+        PBGameUser* user2 = (PBGameUser *)obj2;
+        if (user1.seatId > user2.seatId) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (user1.seatId < user2.seatId) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    BOOL found = NO;
+    int index = 0;
+    for (PBGameUser *user in sortedPlayingUserList) {
+        if ([user.userId isEqualToString:_diceService.diceSession.openDiceUserId]) {
+            found = YES;
+            break;
+        }
+        index ++;
+    }
+    
+    if (found) {
+        NSMutableArray *resultIdList = [[[NSMutableArray alloc] init] autorelease];
+        for (int i = index; i < [sortedPlayingUserList count]; i++) {
+            PBGameUser *user = [sortedPlayingUserList objectAtIndex:i];
+            [resultIdList addObject:user.userId];
+        }
+        for (int i = 0; i < index ; i++) {
+            PBGameUser *user = [sortedPlayingUserList objectAtIndex:i];
+            [resultIdList addObject:user.userId];
+        }
+        return resultIdList;
+    } else {
+        return [_diceService.diceSession.userDiceList allKeys];
+    }
+}
 
+#pragma mark - Show game result.
 - (void)showGameResult
 {
-    self.enumerator = [_diceService.diceSession.userDiceList keyEnumerator];
+    self.enumerator = [[self getSortedUserIdListBeginWithOpenUser] objectEnumerator];
     
     NSString *userId = [_enumerator nextObject];
     
@@ -271,6 +313,10 @@
 
 - (void)showUserDice:(NSString *)userId
 {
+    if ([_userManager isMe:userId]) {
+        self.myDiceListHolderView.hidden = YES;
+    }
+    
     DicesResultView *resultView = [self resultViewOfUser:userId];
     [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
     [resultView showAnimation:self.view.center];
@@ -388,14 +434,13 @@
 
 
 - (IBAction)clickRunAwayButton:(id)sender {
-    [self clearAllReciprocol];
-    [self clearAllPlayersAvatar];
-    [self clearAllResultViews];
-    [self dismissAllPopupViews];
-    [[DiceGameService defaultService] quitGame];
-    [self unregisterAllNotifications];
-    [self.navigationController popViewControllerAnimated:YES];
-    [_audioManager backgroundMusicStop];
+    if (![_diceService.diceSession isMeAByStander]) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        [self.view addSubview:dialog];
+    } else {
+        [self quitDiceGame];
+    }
+    
 }
 
 - (int)getSelfIndexFromUserList:(NSArray*)userList
@@ -670,6 +715,17 @@
     return (DicesResultView *)[self.view viewWithTag:userAvatarView.tag - AVATAR_TAG_OFFSET + RESULT_TAG_OFFSET];
 }
 
+- (void)quitDiceGame
+{
+    [self clearAllReciprocol];
+    [self clearAllPlayersAvatar];
+    [self clearAllResultViews];
+    [self dismissAllPopupViews];
+    [[DiceGameService defaultService] quitGame];
+    [self unregisterAllNotifications];
+    [self.navigationController popViewControllerAnimated:YES];
+    [_audioManager backgroundMusicStop];
+}
 
 #pragma mark - DiceAvatarViewDelegate
 - (void)didClickOnAvatar:(DiceAvatarView*)view
@@ -925,7 +981,7 @@
     
     // Hidden views.
     [self hideAllBellViews];
-    self.myDiceListHolderView.hidden = YES;
+    //self.myDiceListHolderView.hidden = YES;
     
     self.resultDiceCountLabel.text = @"0";
     self.resultDiceImageView.image = [_imageManager diceImageWithDice:_diceService.lastCallDice];
@@ -1034,7 +1090,16 @@
 //    
 //    return dices;
 //}
+#pragma mark - common dialog delegate
+- (void)clickOk:(CommonDialog *)dialog
+{
+    [self quitDiceGame];
+    [[AccountService defaultService] deductAccount:200 source:LiarDiceFleeType];
+}
 
-
+- (void)clickBack:(CommonDialog *)dialog
+{
+    
+}
 
 @end

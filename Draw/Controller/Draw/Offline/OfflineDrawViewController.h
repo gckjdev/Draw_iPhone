@@ -27,6 +27,7 @@
 @class PickEraserView;
 @class PickColorView;
 @class PickBackgroundColorView;
+@class MyPaint;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -38,20 +39,9 @@
 
 
 @interface OfflineDrawViewController : PPViewController<DrawViewDelegate,PickViewDelegate,CommonDialogDelegate,ColorShopViewDelegate,DrawDataServiceDelegate,LevelServiceDelegate> {
-    DrawView *drawView;
-    PickColorView *pickColorView;
-    PickColorView *pickBGColorView;
-    PickEraserView *pickEraserView;
-    PickPenView *pickPenView;
-    NSInteger penWidth;
-    NSInteger eraserWidth;
-    PenView *_willBuyPen;
     
     Word *_word;
     LanguageType languageType;
-    
-    ShareImageManager *shareImageManager;
-    
     TargetType targetType;
     
     NSString*_targetUid;
@@ -77,6 +67,7 @@
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* bgColor;
+- (IBAction)clickDraftButton:(id)sender;
 
 - (IBAction)changeBackground:(id)sender;
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
@@ -87,6 +78,8 @@
 - (id)initWithWord:(Word *)word 
               lang:(LanguageType)lang;
 
+- (id)initWithDraft:(MyPaint *)draft;
+
 + (void)startDraw:(Word *)word 
    fromController:(UIViewController*)fromController 
         targetUid:(NSString *)targetUid;
@@ -95,9 +88,6 @@
               lang:(LanguageType)lang 
          targetUid:(NSString *)targetUid;
 
-- (void)initEraser;
-- (void)initPens;
-- (void)initDrawView;
 
 @end
 

@@ -21,11 +21,12 @@
 #import "AccountService.h"
 #import "DicesResultView.h"
 #import "AudioManager.h"
+#import "CommonDialog.h"
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate> {
+@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;

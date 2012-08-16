@@ -61,7 +61,7 @@
 						<string key="NSFrame">{{-5, 42}, {330, 338}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="47539283"/>
+						<reference key="NSNextKeyView" ref="658471810"/>
 						<int key="IBUITag">20120403</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -90,7 +90,7 @@
 						<string key="NSFrameSize">{320, 50}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="76228336"/>
+						<reference key="NSNextKeyView" ref="47539283"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage" id="863999974">
@@ -354,7 +354,7 @@
 						<string key="NSFrame">{{162, 376}, {31, 34}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="70881159"/>
+						<reference key="NSNextKeyView" ref="172150538"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -373,11 +373,33 @@
 						<reference key="IBUIFontDescription" ref="300407582"/>
 						<reference key="IBUIFont" ref="812508533"/>
 					</object>
+					<object class="IBUIButton" id="172150538">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{203, 373}, {45, 37}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="70881159"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">Draft</string>
+						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
+						<reference key="IBUINormalTitleColor" ref="373991744"/>
+						<reference key="IBUINormalTitleShadowColor" ref="309240068"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">red_button@2x.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="300407582"/>
+						<reference key="IBUIFont" ref="812508533"/>
+					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="658471810"/>
+				<reference key="NSNextKeyView" ref="76228336"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MC43NQA</bytes>
@@ -520,6 +542,15 @@
 					</object>
 					<int key="connectionID">137</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickDraftButton:</string>
+						<reference key="source" ref="172150538"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -563,6 +594,7 @@
 							<reference ref="76228336"/>
 							<reference ref="587339147"/>
 							<reference ref="276991159"/>
+							<reference ref="172150538"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -641,6 +673,11 @@
 						<reference key="object" ref="276991159"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">138</int>
+						<reference key="object" ref="172150538"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -659,6 +696,7 @@
 					<string>129.IBPluginDependency</string>
 					<string>131.IBPluginDependency</string>
 					<string>136.IBPluginDependency</string>
+					<string>138.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>41.CustomClassName</string>
@@ -680,6 +718,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ColorView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -708,7 +747,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">137</int>
+			<int key="maxID">139</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -820,12 +859,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>allFeedButton</string>
 							<string>hotFeedButton</string>
+							<string>latestFeedButton</string>
 							<string>myFeedButton</string>
 							<string>noFeedTipsLabel</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -839,6 +880,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>allFeedButton</string>
 							<string>hotFeedButton</string>
+							<string>latestFeedButton</string>
 							<string>myFeedButton</string>
 							<string>noFeedTipsLabel</string>
 							<string>titleLabel</string>
@@ -851,6 +893,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">hotFeedButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">latestFeedButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -881,12 +927,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickActionButton:</string>
 							<string>clickBackButton:</string>
-							<string>clickDrawImage:</string>
 							<string>clickSendButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -898,7 +942,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickActionButton:</string>
 							<string>clickBackButton:</string>
-							<string>clickDrawImage:</string>
 							<string>clickSendButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -909,10 +952,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickBackButton:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">clickDrawImage:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -928,7 +967,7 @@
 							<string>actionButton</string>
 							<string>commentInput</string>
 							<string>commentLabel</string>
-							<string>drawImageButton</string>
+							<string>feedImage</string>
 							<string>guessStatLabel</string>
 							<string>inputBackground</string>
 							<string>inputBackgroundView</string>
@@ -944,7 +983,7 @@
 							<string>UIButton</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
-							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
 							<string>UIView</string>
@@ -963,7 +1002,7 @@
 							<string>actionButton</string>
 							<string>commentInput</string>
 							<string>commentLabel</string>
-							<string>drawImageButton</string>
+							<string>feedImage</string>
 							<string>guessStatLabel</string>
 							<string>inputBackground</string>
 							<string>inputBackgroundView</string>
@@ -989,8 +1028,8 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">drawImageButton</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="name">feedImage</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">guessStatLabel</string>
@@ -1166,6 +1205,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changeBackground:</string>
 							<string>clickColorButton:</string>
+							<string>clickDraftButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
 							<string>clickRedraw:</string>
@@ -1173,6 +1213,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1187,6 +1228,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changeBackground:</string>
 							<string>clickColorButton:</string>
+							<string>clickDraftButton:</string>
 							<string>clickEraserButton:</string>
 							<string>clickPenButton:</string>
 							<string>clickRedraw:</string>
@@ -1200,6 +1242,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clickColorButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickDraftButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1335,10 +1381,12 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
+							<string>clickPlayEndButton:</string>
 							<string>clickShareButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1348,12 +1396,17 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
+							<string>clickPlayEndButton:</string>
 							<string>clickShareButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">clickBackButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickPlayEndButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1367,6 +1420,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backButton</string>
+							<string>playEndButton</string>
 							<string>shareButton</string>
 							<string>showHolderView</string>
 							<string>titleLabel</string>
@@ -1374,6 +1428,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIView</string>
@@ -1386,6 +1441,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backButton</string>
+							<string>playEndButton</string>
 							<string>shareButton</string>
 							<string>showHolderView</string>
 							<string>titleLabel</string>
@@ -1395,6 +1451,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">backButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">playEndButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -1494,9 +1554,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickRefreshButton:</string>
+							<string>clickTabButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1507,6 +1569,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clickBackButton:</string>
 							<string>clickRefreshButton:</string>
+							<string>clickTabButton:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1518,18 +1581,26 @@
 								<string key="name">clickRefreshButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickTabButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>feedButton</string>
 							<string>noFeedTipsLabel</string>
+							<string>opusButton</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -1537,14 +1608,24 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>feedButton</string>
 							<string>noFeedTipsLabel</string>
+							<string>opusButton</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
+								<string key="name">feedButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">noFeedTipsLabel</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">opusButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">titleLabel</string>
@@ -1690,6 +1771,7 @@
 				<string>orange_button@2x.png</string>
 				<string>paper@2x.png</string>
 				<string>paperclip@2x.png</string>
+				<string>red_button@2x.png</string>
 				<string>topwood@2x.png</string>
 				<string>wood_bg@2x.png</string>
 			</object>
@@ -1703,6 +1785,7 @@
 				<string>{71, 84}</string>
 				<string>{640, 960}</string>
 				<string>{388, 79}</string>
+				<string>{71, 84}</string>
 				<string>{640, 99}</string>
 				<string>{640, 960}</string>
 			</object>
