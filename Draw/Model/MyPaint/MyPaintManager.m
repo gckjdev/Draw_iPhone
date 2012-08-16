@@ -15,6 +15,13 @@
 
 #define MY_PAINT_IMAGE_DIR @"Paints"
 
+@interface MyPaintManager()
+
+- (void)deletePaintImage:(NSString *)paintImage;
+
+@end
+
+
 @implementation MyPaintManager
 
 static MyPaintManager* _defaultManager;
@@ -169,55 +176,62 @@ static MyPaintManager* _defaultManager;
     }
 }
 
-- (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe
+
+- (BOOL)deletePaintsByRquestName:(NSString *)requestName
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* array;
-    if (onlyDrawnByMe) {
-         array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" ascending:NO];
-    } else {
-        array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" ascending:NO];
-    }
-    for (NSManagedObject* paint in array){
-        [dataManager del:paint];       
+    NSArray* array = [dataManager execute:requestName];
+    for (MyPaint* paint in array){
+        NSString *imagePath = paint.image;
+        BOOL flag = [dataManager del:paint];     
+        if (flag) {
+            [self deletePaintImage:imagePath];
+        }
     }
     [dataManager save];    
     return YES;
+
+}
+
+- (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe
+{
+    if (onlyDrawnByMe) {
+        return [self deletePaintsByRquestName:@"findOnlyMyPaints"];
+    } else {
+        return [self deletePaintsByRquestName:@"findAllMyPaints"];
+    }
 }
 
 - (BOOL)deleteAllDrafts
 {
-    CoreDataManager* dataManager =[CoreDataManager defaultManager];
-    NSArray* array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" ascending:NO];
-    for (NSManagedObject* paint in array){
-        [dataManager del:paint];       
+       return [self deletePaintsByRquestName:@"findAllDrafts"];
+}
+
+
+- (void)deletePaintImage:(NSString *)paintImage
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue != NULL){
+        dispatch_async(queue, ^{
+            NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paintImage]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:image]) {
+            [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
+            PPDebug(@"<deleteMyPaints> remove image at %@", image);
+            }
+        });
     }
-    [dataManager save];    
-    return YES;    
 }
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
 {
-    NSString* image = [NSString stringWithString:[MyPaintManager getMyPaintImagePathByCapacityPath:paint.image]];
 
+    NSString *paintImage = paint.image;
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [dataManager del:paint];
     BOOL result = [dataManager save];
-
-    if (result && [[NSFileManager defaultManager] fileExistsAtPath:image]) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        if (queue == NULL){
-            queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-        }
-
-        if (queue != NULL){
-            dispatch_async(queue, ^{
-                [[NSFileManager defaultManager] removeItemAtPath:image error:nil];
-                PPDebug(@"<deleteMyPaints> remove image at %@", image);
-            });
-        }
+    if (result) {
+        [self deletePaintImage:paintImage];
     }
-    
     return result;
 }
 

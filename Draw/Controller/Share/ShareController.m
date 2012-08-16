@@ -332,13 +332,18 @@
             return;
         }
 
-        if (currentPaint.drawByMe.boolValue) {
-            _myOffset --;
-            [_myPaints removeObject:currentPaint];
-        }       
-        if ([_allPaints containsObject:currentPaint]) {
-            _allOffset --;
-            [_allPaints removeObject:currentPaint];
+        if (currentPaint.draft) {
+            _draftOffset --;
+            [_drafts removeObject:currentPaint];
+        }else{        
+            if (currentPaint.drawByMe.boolValue) {
+                _myOffset --;
+                [_myPaints removeObject:currentPaint];
+            }       
+            if ([_allPaints containsObject:currentPaint]) {
+                _allOffset --;
+                [_allPaints removeObject:currentPaint];
+            }
         }
         [[MyPaintManager defaultManager] deleteMyPaint:currentPaint];
         self.selectedPaint = nil;
