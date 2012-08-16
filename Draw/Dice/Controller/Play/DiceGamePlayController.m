@@ -17,6 +17,7 @@
 #import "LevelService.h"
 #import "SpeechService.h"
 #import "AdService.h"
+#import "CommonUserInfoView.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -687,7 +688,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     // TODO: popup user info.
-
+    [CommonUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
 }
 
 
