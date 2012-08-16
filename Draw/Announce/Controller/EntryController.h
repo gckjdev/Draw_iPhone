@@ -9,5 +9,6 @@
 #import "PPViewController.h"
 
 @interface EntryController : PPViewController
+- (IBAction)clickBackButton:(id)sender;
 
 @end

@@ -85,6 +85,7 @@
                          from:(UIViewController *)viewController;
 
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
+- (IBAction)clickAnnounce:(id)sender;
 
 - (void)enterShareFromWeixin;
 @end
