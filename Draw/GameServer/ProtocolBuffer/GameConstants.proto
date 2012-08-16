@@ -135,6 +135,8 @@ enum GameCommandType {
   NEXT_PLAYER_START_NOTIFICATION_REQUEST = 715;         // 下一个玩家开始
   NEXT_PLAYER_START_NOTIFICATION_RESPONSE = 716; 
   
+  USER_DICE_NOTIFICATION = 717;
+  
   GAME_OVER_NOTIFICATION_REQUEST = 731;                 // 游戏结束
   GAME_OVER_NOTIFICATION_RESPONSE = 732;
 }
@@ -159,6 +161,7 @@ enum GameResultCode {
   ERROR_SESSION_NOT_START = 204;
   ERROR_NO_SESSION_AVAILABLE = 205;
   ERROR_SESSIONID_FULL = 206;
+
   
   // draw errors
   ERROR_NO_DRAW_DATA = 301;
@@ -166,6 +169,10 @@ enum GameResultCode {
   // dice error
   ERROR_DICE_ALREADY_OPEN = 401;
   ERROR_USER_ALREADY_CALL_DICE = 402;
+    
+  // item erros
+  ERROR_UNKNOWN_ITEM = 501;
+    
 
 
   // system errors

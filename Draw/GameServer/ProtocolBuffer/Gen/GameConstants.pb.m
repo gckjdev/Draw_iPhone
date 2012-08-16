@@ -100,6 +100,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeRollDiceEndNotificationResponse:
     case GameCommandTypeNextPlayerStartNotificationRequest:
     case GameCommandTypeNextPlayerStartNotificationResponse:
+    case GameCommandTypeUserDiceNotification:
     case GameCommandTypeGameOverNotificationRequest:
     case GameCommandTypeGameOverNotificationResponse:
       return YES;
@@ -125,6 +126,7 @@ BOOL GameResultCodeIsValidValue(GameResultCode value) {
     case GameResultCodeErrorNoDrawData:
     case GameResultCodeErrorDiceAlreadyOpen:
     case GameResultCodeErrorUserAlreadyCallDice:
+    case GameResultCodeErrorUnknownItem:
     case GameResultCodeErrorSystemHandlerNotFound:
     case GameResultCodeErrorSystemException:
       return YES;
