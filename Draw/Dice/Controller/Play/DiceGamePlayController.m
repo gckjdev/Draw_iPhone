@@ -16,6 +16,7 @@
 #import "GameMessage.pb.h"
 #import "LevelService.h"
 #import "SpeechService.h"
+#import "AdService.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -68,9 +69,11 @@
 @synthesize resultDiceCountLabel = _resultDiceCountLabel;
 @synthesize diceSelectedView = _diceSelectedView;
 @synthesize enumerator = _enumerator;
+@synthesize adView = _adView;
 
 - (void)dealloc {
 //    [playingUserList release];
+    [_adView release];
     [myLevelLabel release];
     [myCoinsLabel release];
     [diceCountSelectedHolderView release];
@@ -162,11 +165,18 @@
     
     [self registerDiceGameNotifications];    
     self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+    
+    self.adView = [[AdService defaultService] createAdInView:self                  
+                                                       frame:CGRectMake(0, 0, 320, 50) 
+                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                     useLmAd:YES];
 }
 
 
 - (void)viewDidUnload
 {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
     [self setMyLevelLabel:nil];
     [self setMyCoinsLabel:nil];
     [self setOpenDiceButton:nil];
