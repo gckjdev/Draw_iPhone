@@ -56,5 +56,5 @@
 @property (retain, nonatomic) IBOutlet UIView *resultHolderView;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *waittingForNextTurnNoteLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *gameBeginNoteLabel;
-
+@property (retain, nonatomic) UIView  *adView;
 @end
