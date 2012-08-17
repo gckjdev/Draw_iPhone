@@ -68,7 +68,6 @@
     [chatToUserButton release];
     [followUserButton release];
     [statusLabel release];
-    [_superViewController release];
     [userAvatar release];
     [userNickName release];
     [userGender release];

@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://www.baidu.com"];
+    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://localhost"];
     BoardView *boardView = [BoardView creatBoardView:board];
     [self.view addSubview:boardView];
     [boardView loadView];

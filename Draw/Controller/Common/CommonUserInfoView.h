@@ -51,6 +51,6 @@
 @property (assign, nonatomic) BOOL hasFacebook;
 @property (assign, nonatomic) int userLevel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
-@property (retain, nonatomic) PPViewController* superViewController;
+@property (assign, nonatomic) PPViewController* superViewController;
 
 @end
