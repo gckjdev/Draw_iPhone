@@ -11,8 +11,9 @@
 
 @implementation Board
 @synthesize type = _type;
-@synthesize url = _url;
-@synthesize number = _number;
+@synthesize status = _status;
+@synthesize index = _index;
+@synthesize version = _version;
 
 - (id)initWithType:(BoardType)type 
            number:(NSInteger)number 
