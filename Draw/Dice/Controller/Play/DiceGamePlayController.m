@@ -226,7 +226,7 @@
     if (button.selected) {
         [_popupViewManager popupItemListViewAtView:button 
                                             inView:self.view
-                                          duration:3 
+                                          duration:0 
                                           delegate:self];
     } else {
         [_popupViewManager dismissItemListView];
