@@ -92,6 +92,7 @@
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
+        [self hideActivity];
         [self joinGame];
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
@@ -208,8 +209,9 @@
 }
 
 - (IBAction)clickFastEntryButton:(id)sender {
-    
-    
+    _isJoiningDice = YES;
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+    [_diceGameService joinGameRequest];
 }
 
 - (IBAction)creatRoom:(id)sender
