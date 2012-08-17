@@ -126,14 +126,26 @@ static DiceGameService* _defaultService;
 - (void)handleUserDiceNotification:(GameMessage *)message
 {
     if (message.userDiceNotification.cleanAll) {
+        // clean all exist data
         [self.diceSession.userDiceList removeAllObjects];
+        for(PBUserDice *userDice in message.userDiceNotification.userDiceList)
+        {
+            [self.diceSession.userDiceList setObject:userDice.dicesList forKey:userDice.userId];
+        }
+    }
+    else{
+        // update exist data
+        for (PBUserDice *userDice in message.userDiceNotification.userDiceList) {
+            [self changeDiceList:userDice.userId diceList:userDice.dicesList];
+        }
     }
     
-    for (PBUserDice *userDice in message.userDiceNotification.userDiceList) {
-        [self changeDiceList:userDice.userId diceList:userDice.dicesList];
+    if ([message.userDiceNotification hasIsWild]){
+        [self.diceSession setWilds:message.userDiceNotification.isWild];
     }
-    
-//    [self postNotification:NOTIFICATION_USER_DICE message:message];
+  
+    // TODO handle dice notification to update wild display?
+    [self postNotification:NOTIFICATION_USER_DICE message:message];
 }
 
 - (void)handleUseItemResponse:(GameMessage *)message
