@@ -145,10 +145,13 @@
 //    if ([message resultCode] != 0){
 //        return;
 //    }
+
+    if (message.resultCode == 0){    
+        [self.roomList removeAllObjects];
+        [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
+    }
     
-    [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
-    
 }
 
 - (void)handleJoinGameResponse:(GameMessage*)message
@@ -259,9 +262,9 @@
     if (userId == nil){
         return;
     }
-    if (shouldReloadData) {
-        [self.roomList removeAllObjects];
-    }
+//    if (shouldReloadData) {
+//        [self.roomList removeAllObjects];
+//    }
     [_networkClient sendGetRoomsRequest:userId 
                              startIndex:startIndex 
                                   count:count];
@@ -315,6 +318,8 @@
     [self disconnectServer];
 }
 
+#pragma mark - notification methods
+
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message
@@ -339,5 +344,16 @@
 
     PPDebug(@"<%@> post notification %@", [self description], name);    
 }
+
+#pragma mark - room management
+
+- (PBGameSession*)sessionInRoom:(int)index
+{
+    if (index >= 0 && index < self.roomList.count) {
+        return [self.roomList objectAtIndex:index];
+    }
+    return nil;
+}
+
 
 @end

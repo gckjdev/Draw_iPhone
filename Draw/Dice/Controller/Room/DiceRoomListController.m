@@ -245,7 +245,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _isJoiningDice = YES;
-    PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
+    PBGameSession* session = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
     
     [[DiceGameService defaultService] joinGameRequest:session.sessionId];
     [self showActivityWithText:NSLS(@"kJoining")];
