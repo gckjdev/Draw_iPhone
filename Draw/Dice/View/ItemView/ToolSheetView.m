@@ -13,7 +13,6 @@
 #import "DiceFontManager.h"
 
 @interface ToolSheetView()
-//@property (retain, nonatomic) NSArray *buttonImageNameList;
 @property (retain, nonatomic) NSArray *titleList;
 @property (retain, nonatomic) NSArray *countNumberList;
 @property (retain, nonatomic) CMPopTipView *popTipView;
@@ -34,22 +33,6 @@
     [_popTipView release];
     [super dealloc];
 }
-
-
-//- (id)initWithTitleList:(NSArray *)titleList 
-//        countNumberList:(NSArray *)countNumberList 
-//               delegate:(id<ToolSheetViewDelegate>)delegate
-//{
-//    self  = [super init];
-//    if (self) {
-//        self.titleList = titleList;
-//        self.countNumberList = countNumberList;
-//        self.delegate = delegate;
-//        [self clearContent];
-//        [self showContent];
-//    }
-//    return self;
-//}
 
 - (void)updateWithTitleList:(NSArray *)titleList 
             countNumberList:(NSArray *)countNumberList 

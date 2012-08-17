@@ -22,10 +22,6 @@
 
 @property (assign, nonatomic) id<ToolSheetViewDelegate> delegate;
 
-//- (id)initWithTitleList:(NSArray *)titleList 
-//        countNumberList:(NSArray *)countNumberList 
-//               delegate:(id<ToolSheetViewDelegate>)delegate;
-
 - (void)updateWithTitleList:(NSArray *)titleList 
             countNumberList:(NSArray *)countNumberList 
                    delegate:(id<ToolSheetViewDelegate>)delegate;

@@ -435,6 +435,10 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"mike_pen"];
 }
 
+- (UIImage*)dice
+{
+    return [UIImage imageNamed:@"mike_pen"];
+}
 
 - (UIImage*)backButtonImage
 {
