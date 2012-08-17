@@ -75,8 +75,8 @@
                               animated:animated 
                         pointDirection:pointDirection];
     
-    if (duration) {
-        [_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];
+    if (duration != 0) {
+        [self performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];
     }
 }
 

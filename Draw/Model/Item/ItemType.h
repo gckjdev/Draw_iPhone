@@ -29,7 +29,7 @@ typedef enum
     //Liar dice.
 //    ItemTypeChangeDice = 2000,
     ItemTypeRollAgain = 2001,
-    ItemTypeDoubleCoin = 2002
+    ItemTypeCut = 2002
 
     
 }ItemType;

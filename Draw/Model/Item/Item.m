@@ -177,7 +177,7 @@
 
 + (BOOL)isItemCountable:(ItemType)type
 {
-    if(type == ItemTypeTomato || type == ItemTypeFlower || type == ItemTypeTips)
+    if(type == ItemTypeTomato || type == ItemTypeFlower || type == ItemTypeTips || type == ItemTypeRollAgain || type == ItemTypeCut)
         return YES;
     return NO;
 }
@@ -294,5 +294,7 @@
                                  price:[[ShoppingManager defaultManager] getPenPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
+
+
 
 @end

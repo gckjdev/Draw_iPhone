@@ -772,5 +772,15 @@
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
 
+"kSessionFull" = "Room is full";
+
+
+"kRollAgain" = "reroll";
+"kCut" = "cut";
+
+"kMoreRoom" = "More...";
+"kMoreRoomLoading" = "Loading...";
+
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

@@ -17,3 +17,5 @@
 #define PARA_LOCAL_URL @"lu"
 #define PARA_REMOTE_URL @"ru"
 #define PARA_IMAGE_CLICK_URL @"icu"
+
+#define METHOD_GETBOARDLIST @"gbl"

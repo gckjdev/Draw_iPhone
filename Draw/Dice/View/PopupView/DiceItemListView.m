@@ -1,62 +1,53 @@
 //
-//  ToolSheetView.m
+//  DiceItemListView.m
 //  Draw
 //
 //  Created by haodong qiu on 12年7月30日.
 //  Copyright (c) 2012年 orange. All rights reserved.
 //
 
-#import "ToolSheetView.h"
+#import "DiceItemListView.h"
 #import "DeviceDetection.h"
 #import "DiceImageManager.h"
 #import "FontButton.h"
 #import "DiceFontManager.h"
+#import "ItemManager.h"
 
-@interface ToolSheetView()
-//@property (retain, nonatomic) NSArray *buttonImageNameList;
-@property (retain, nonatomic) NSArray *titleList;
-@property (retain, nonatomic) NSArray *countNumberList;
+@interface DiceItemListView()
+{
+    ItemManager *_itemManager;
+}
+@property (retain, nonatomic) NSArray *itemList;
 @property (retain, nonatomic) CMPopTipView *popTipView;
 @end
 
 
 
-@implementation ToolSheetView
+@implementation DiceItemListView
+@synthesize itemList = _itemList;
 @synthesize delegate = _delegate;
-@synthesize titleList = _titleList;
-@synthesize countNumberList = _countNumberList;
+
 @synthesize popTipView = _popTipView;
 
 - (void)dealloc
 {
-    [_titleList release];
-    [_countNumberList release];
     [_popTipView release];
     [super dealloc];
 }
 
 
-//- (id)initWithTitleList:(NSArray *)titleList 
-//        countNumberList:(NSArray *)countNumberList 
-//               delegate:(id<ToolSheetViewDelegate>)delegate
-//{
-//    self  = [super init];
-//    if (self) {
-//        self.titleList = titleList;
-//        self.countNumberList = countNumberList;
-//        self.delegate = delegate;
-//        [self clearContent];
-//        [self showContent];
-//    }
-//    return self;
-//}
-
-- (void)updateWithTitleList:(NSArray *)titleList 
-            countNumberList:(NSArray *)countNumberList 
-                   delegate:(id<ToolSheetViewDelegate>)delegate
+- (id)init
 {
-    self.titleList = titleList;
-    self.countNumberList = countNumberList;
+    if (self = [super init]) {
+        self.itemList = [NSArray arrayWithObjects:[Item rollAgain], [Item cut], nil];
+        _itemManager = [ItemManager defaultManager];
+    }
+
+    return self;
+}
+
+- (void)updateWithDelegate:(id<DiceItemListViewDelegate>)delegate
+{
     self.delegate = delegate;
     [self clearContent];
     [self showContent];
@@ -64,6 +55,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+           duration:(int)duration
            animated:(BOOL)animated
 {
     [self.popTipView dismissAnimated:YES];
@@ -73,7 +65,9 @@
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
     
-    //[_popTipView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:3];
+    if (duration != 0) {
+        [self performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];
+    }
 }
 
 - (void)dismissAnimated:(BOOL)animated 
@@ -95,15 +89,15 @@
 - (void)showContent
 {
     int index = 0;
-    for (NSString *title in _titleList) {
+    for (Item *item in _itemList) {
         CGFloat yStart = (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * index;
         CGRect toolButtonFrame = CGRectMake(0, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
         NSInteger toolButtonTag = index;
         
-        UIButton *tooButton = [self createToolButton:toolButtonFrame 
-                                                 tag:toolButtonTag 
-                                               title:title 
-                                               count:[_countNumberList objectAtIndex:index]];
+        UIButton *tooButton = [self itemButton:toolButtonFrame 
+                                           tag:toolButtonTag 
+                                         title:item.itemName 
+                                         count:[NSNumber numberWithInt:[_itemManager amountForItem:item.type]]];
         [self addSubview:tooButton];
         index ++;
     }
@@ -119,10 +113,10 @@
 #define FONT_SIZE_BUTTON        (([DeviceDetection isIPAD]) ? 36 : 18 )
 #define FONT_SIZE_COUNT_LABEL   (([DeviceDetection isIPAD]) ? 20 : 10 )
 #define Y_OFFSET_TITLE          (([DeviceDetection isIPAD]) ? -8 : -4 )
-- (UIButton *)createToolButton:(CGRect)frame 
-                           tag:(NSInteger)tag 
-                         title:(NSString *)title 
-                         count:(NSNumber *)count
+- (UIButton *)itemButton:(CGRect)frame 
+                     tag:(NSInteger)tag 
+                   title:(NSString *)title 
+                   count:(NSNumber *)count
 {
     FontButton *buttonTemp = [[FontButton alloc] initWithFrame:frame fontName:[[DiceFontManager defaultManager] fontName] pointSize:FONT_SIZE_BUTTON];
     [buttonTemp setBackgroundImage:[[DiceImageManager defaultManager] toolsItemBgImage] forState:UIControlStateNormal];
@@ -148,6 +142,11 @@
     [buttonTemp addSubview:countLabel];
     
     buttonTemp.tag = tag;
+    
+    if ([count intValue] <= 0) {
+        buttonTemp.enabled = NO;
+    }
+    
     return buttonTemp;
 }
 
@@ -157,8 +156,10 @@
     UIButton *button = (UIButton*)sender;
     NSInteger selectedIndex = button.tag;
     
-    if ([_delegate respondsToSelector:@selector(didSelectTool:)]) {
-        [_delegate didSelectTool:selectedIndex];
+    Item *item = [_itemList objectAtIndex:selectedIndex];
+    
+    if ([_delegate respondsToSelector:@selector(didSelectItem:)]) {
+        [_delegate didSelectItem:item];
     }
     
     [self dismissAnimated:YES];
@@ -168,8 +169,8 @@
 #pragma mark - CMPopTipViewDelegate method
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView;
 {
-    if ([_delegate respondsToSelector:@selector(didDismissToolSheet)]) {
-        [_delegate didDismissToolSheet];
+    if ([_delegate respondsToSelector:@selector(didDismissItemListView)]) {
+        [_delegate didDismissItemListView];
     }
 }
 

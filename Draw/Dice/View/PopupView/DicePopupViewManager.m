@@ -19,7 +19,7 @@
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
-@property (retain, nonatomic) ToolSheetView *toolSheetView;
+@property (retain, nonatomic) DiceItemListView *diceItemListView;
 @property (retain, nonatomic) MessageView *openDiceView;
 
 @end
@@ -29,13 +29,13 @@ static DicePopupViewManager *_instance = nil;
 @implementation DicePopupViewManager
 
 @synthesize callDiceView = _callDiceView;
-@synthesize toolSheetView = _toolSheetView;
+@synthesize diceItemListView = _diceItemListView;
 @synthesize openDiceView = _openDiceView;
 
 - (void)dealloc
 {
     [_callDiceView release];
-    [_toolSheetView release];
+    [_diceItemListView release];
     [_openDiceView release];
     [super dealloc];
 }
@@ -52,7 +52,7 @@ static DicePopupViewManager *_instance = nil;
 - (id)init
 {
     if (self = [super init]) {
-        self.toolSheetView = [[[ToolSheetView alloc] init] autorelease];
+        self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
     }
     
     return self;
@@ -74,21 +74,22 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
 }
 
-- (void)popupToolSheetViewWithTitleList:(NSArray *)titleList 
-                        countNumberList:(NSArray *)countNumberList 
-                               delegate:(id<ToolSheetViewDelegate>)delegate 
-                                 atView:(UIView *)atView 
-                                 inView:(UIView *)inView  
+- (void)popupItemListViewAtView:(UIView *)atView 
+                         inView:(UIView *)inView 
+                       duration:(int)duration
+                       delegate:(id<DiceItemListViewDelegate>)delegate 
+ 
 {
-    [_toolSheetView updateWithTitleList:titleList 
-                        countNumberList:countNumberList
-                               delegate:delegate];
-    [_toolSheetView popupAtView:atView inView:inView animated:YES];
+    [_diceItemListView updateWithDelegate:delegate];
+    [_diceItemListView popupAtView:atView
+                            inView:inView 
+                          duration:duration
+                          animated:YES];
 }
 
-- (void)dismissToolSheetView
+- (void)dismissItemListView
 {
-    [_toolSheetView dismissAnimated:YES];
+    [_diceItemListView dismissAnimated:YES];
 }
 
 - (void)popupMessage:(NSString *)message

@@ -20,6 +20,7 @@
 #import "ConfigManager.h"
 #import "YoumiWallController.h"
 #import "LmWallService.h"
+#import "DiceItem.h"
 
 #define ITEM_COUNT_PER_LINE 3
 #define LINE_PER_PAGE       3
@@ -368,10 +369,10 @@ static VendingController* staticVendingController = nil;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         if ([ConfigManager isProVersion]){
-            _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];            
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item rollAgain], [Item cut], nil];            
         }
         else{
-            _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+            _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item rollAgain], [Item cut], nil];
         }
     }
     return self;
