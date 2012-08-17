@@ -13,6 +13,11 @@ typedef enum {
     CommonDialogStyleDoubleButton
 }CommonDialogStyle;
 
+typedef enum {
+    CommonDialogThemeDraw = 0,
+    CommonDialogThemeDice = 1
+}CommonDialogTheme;
+
 @protocol CommonDialogDelegate <NSObject>
  @optional
 - (void)clickOk:(CommonDialog *)dialog;
