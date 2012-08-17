@@ -8,6 +8,19 @@
 
 #import "CommonService.h"
 
+@protocol BoardServiceDelegate <NSObject>
+
+@optional
+- (void)didGetBoards:(NSArray *)boards 
+          resultCode:(NSInteger)resultCode;
+
+@end
+
 @interface BoardService : CommonService
+{
+    
+}
+
++ (BoardService *)defaultService;
 
 @end
