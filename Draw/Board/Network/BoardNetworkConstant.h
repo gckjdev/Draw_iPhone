@@ -6,8 +6,14 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GameNetworkConstants.h"
 
-@interface BoardNetworkConstant : NSObject
-
-@end
+#define PARA_INDEX @"idx"
+#define PARA_ADLIST @"adl"
+#define PARA_AD_NUMBER @"adn"
+#define PARA_AD_PLATFORM @"adp"
+#define PARA_AD_PUBLISH_ID @"adpid"
+#define PARA_WEB_TYPE @"wt"
+#define PARA_LOCAL_URL @"lu"
+#define PARA_REMOTE_URL @"ru"
+#define PARA_IMAGE_CLICK_URL @"icu"
