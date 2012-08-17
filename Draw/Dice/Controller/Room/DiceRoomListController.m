@@ -109,7 +109,12 @@
 
 - (void)viewDidLoad
 {
-     self.supportRefreshFooter = YES;
+    self.supportRefreshFooter = YES;
+    self.footerRefreshType = LiftAndAddMore;
+    self.footerLoadMoreLabel = [[[HKGirlFontLabel alloc] init] autorelease];
+    self.footerLoadMoreTitle = NSLS(@"kMoreRoom");
+    self.footerLoadMoreLoadingTitle = NSLS(@"kMoreRoomLoading");
+    
     [super viewDidLoad];
    
     _diceGameService = [DiceGameService defaultService];
