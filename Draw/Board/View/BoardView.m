@@ -36,15 +36,6 @@
     if (board == nil) {
         return nil;
     }
-    switch (board.type) {
-        case BoardTypeAd:
-            return [[[AdBoardView alloc] initWithBoard:board] autorelease];
-        case BoardTypeLocal:
-        case BoardTypeRemote:
-            return [[[WebBoardView alloc] initWithBoard:board] autorelease];
-        default:
-            return nil;
-    }
 }
 
 - (void)loadView
