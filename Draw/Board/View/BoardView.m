@@ -9,6 +9,7 @@
 #import "BoardView.h"
 #import "AdBoardView.h"
 #import "WebBoardView.h"
+#import "ImageBoardView.h"
 
 @implementation BoardView
 @synthesize board = _board;
@@ -35,6 +36,16 @@
 {
     if (board == nil) {
         return nil;
+    }
+    switch (board.type) {
+        case BoardTypeAd:
+            return [[[AdBoardView alloc] initWithBoard:board] autorelease];
+        case BoardTypeWeb:
+            return [[[WebBoardView alloc] initWithBoard:board] autorelease];
+        case BoardTypeImage:
+            return [[[ImageBoardView alloc] initWithBoard:board] autorelease];
+        default:
+            return nil;
     }
 }
 

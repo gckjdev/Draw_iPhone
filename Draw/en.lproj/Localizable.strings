@@ -771,8 +771,12 @@
 "kGameBegin" = "Game begin...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
+
 "kRollAgain" = "reroll";
 "kCut" = "cut";
+
+"kMoreRoom" = "More...";
+"kMoreRoomLoading" = "Loading...";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

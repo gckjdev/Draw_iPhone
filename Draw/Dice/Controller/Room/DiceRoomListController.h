@@ -15,6 +15,8 @@
 @interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate> {
     BOOL _isJoiningDice;
     DiceGameService* _diceGameService;
+    NSTimer* _refreshRoomTimer;
+    BOOL firstLoad;
 }
 @property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
 

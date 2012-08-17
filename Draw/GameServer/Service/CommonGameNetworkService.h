@@ -15,6 +15,8 @@
 #define NOTIFICAIION_GET_ROOMS_RESPONSE         @"NOTIFICAIION_GET_ROOMS_RESPONSE"
 #define NOTIFICATION_ROOM               @"NOTIFICATION_ROOM"
 
+@class PBGameSession;
+
 @protocol CommonGameServiceDelegate <NSObject>
 
 - (void)didConnected;
@@ -67,5 +69,7 @@
 - (void)postNotification:(NSString*)name message:(GameMessage*)message;
 - (void)registerRoomsNotification:(NSArray*)sessionIdList;
 - (void)unRegisterRoomsNotification:(NSArray*)sessionIdList;
+
+- (PBGameSession*)sessionInRoom:(int)index;
 
 @end

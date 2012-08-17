@@ -20,7 +20,9 @@
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
-#define ROOMS_COUNT_PER_PAGE  10
+#define ROOMS_COUNT_PER_PAGE  20
+
+#define REFRESH_ROOMS_TIME_INTERVAL 1
 
 @interface DiceRoomListController ()
 
@@ -36,7 +38,15 @@
 @synthesize friendRoomButton;
 @synthesize nearByRoomButton;
 
+- (id)init
+{
+    self = [super init];
+    firstLoad = YES;
+    return self;
+}
+
 - (void)dealloc {
+    [self clearRefreshRoomsTimer];
     [createRoomButton release];
     [fastEntryButton release];
     [titleFontButton release];
@@ -46,15 +56,45 @@
     [super dealloc];
 }
 
+- (void)refreshRooms:(id)sender
+{
+    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+}
+
+- (void)clearRefreshRoomsTimer
+{
+    if (_refreshRoomTimer) {
+        if ([_refreshRoomTimer isValid]) {
+            [_refreshRoomTimer invalidate];
+        }
+        [_refreshRoomTimer release];
+        _refreshRoomTimer = nil;
+    }
+}
+
+- (void)startRefreshRoomsTimer
+{
+    [self clearRefreshRoomsTimer];
+    _refreshRoomTimer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_ROOMS_TIME_INTERVAL 
+                                                         target:self 
+                                                       selector:@selector(refreshRooms:) 
+                                                       userInfo:nil 
+                                                        repeats:NO];
+    [_refreshRoomTimer retain];
+}
+
+
+
 - (void)getRoomsFinished
 {
-    
+    [self hideActivity];
     CommonGameNetworkService* service = [DiceGameService defaultService];
     self.dataList = [NSArray arrayWithArray:service.roomList];
     [self.dataTableView reloadData];
-    [[DiceGameService defaultService] registerRoomsNotification:service.roomList];
+    //[[DiceGameService defaultService] registerRoomsNotification:service.roomList]; //don register room notification here
     //self.noMoreData = YES;
-    [self dataSourceDidFinishLoadingMoreData];
+    //[self dataSourceDidFinishLoadingMoreData];
+    [self startRefreshRoomsTimer];
 }
 
 - (void)joinGame
@@ -65,6 +105,17 @@
         [self.navigationController pushViewController:controller animated:YES];
         _isJoiningDice = NO; 
     }
+}
+
+- (void)connectServer
+{
+    
+    //TODO: set server address from config manager
+    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+    [[DiceGameService defaultService] setServerPort:8080];
+    [[DiceGameService defaultService] connectServer:self];
+    [self showActivityWithText:NSLS(@"kConnecting")];
+    _isJoiningDice = NO;    
 }
 
 - (void)registerDiceGameNotificationWithName:(NSString *)name 
@@ -92,13 +143,18 @@
     }];
     [self registerDiceGameNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
-        [self joinGame];
+        [self hideActivity];
+        GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
+        if (message.resultCode == 0) {
+            [self joinGame];
+        }
+        //TODO: handle other result code ERROR_FULL:notice full, other error:juset notice join error
     }];
-    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
-        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
-        [[DiceGameService defaultService] getRoomList:0 count:_diceGameService.roomList.count shouldReloadData:YES];
-
-    }];
+//    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
+//        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 
+//        [[DiceGameService defaultService] getRoomList:0 count:_diceGameService.roomList.count shouldReloadData:YES];
+//
+//    }];
 
 }
 
@@ -109,7 +165,6 @@
 
 - (void)viewDidLoad
 {
-     self.supportRefreshFooter = YES;
     [super viewDidLoad];
    
     _diceGameService = [DiceGameService defaultService];
@@ -128,9 +183,7 @@
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
-    
-    
-
+        
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)
 //                                                 name:ROOMS_DID_UPDATE
@@ -153,18 +206,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self registerDiceRoomNotification];
-    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
-    [[DiceGameService defaultService] setServerPort:8080];
-    [[DiceGameService defaultService] connectServer:self];
-    [self showActivityWithText:NSLS(@"kConnecting")];
-    _isJoiningDice = NO;
+    [self registerDiceRoomNotification];    
+    
+    [self connectServer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
     [self unregisterDiceRoomNotification];
+    [self clearRefreshRoomsTimer];
+    [super viewDidDisappear:animated];
 }
 
 #pragma mark - TableView delegate methods
@@ -193,7 +244,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _isJoiningDice = YES;
-    PBGameSession* session = [[DiceGameService defaultService].roomList objectAtIndex:indexPath.row];
+    PBGameSession* session = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
     
     [[DiceGameService defaultService] joinGameRequest:session.sessionId];
     [self showActivityWithText:NSLS(@"kJoining")];
@@ -207,9 +258,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)clickFastEntryButton:(id)sender {
-    
-    
+- (IBAction)clickFastEntryButton:(id)sender {    
+    _isJoiningDice = YES;
+    [self showActivityWithText:NSLS(@"kJoiningGame")];
+    [_diceGameService joinGameRequest];
 }
 
 - (IBAction)creatRoom:(id)sender
@@ -244,6 +296,9 @@
 {
     [self hideActivity];
     [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE shouldReloadData:YES];
+    [self.createRoomButton setEnabled:YES];
+    [self.fastEntryButton setEnabled:YES];
+    firstLoad = NO;
 }
 
 - (void)didBroken
