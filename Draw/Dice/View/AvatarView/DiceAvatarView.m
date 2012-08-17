@@ -68,7 +68,7 @@
     CGFloat height = self.bounds.size.height;
     CGFloat wEdge = -progressView.progressBarWidth;//width / EDGE_WIDTH_TIMES;
     CGFloat hEdge = -progressView.progressBarWidth;//height / EDGE_HEIGHT_TIMES;
-    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 2 * hEdge);
+    return CGRectMake(wEdge*2, hEdge*2, width - 4 * wEdge, height - 4 * hEdge);
 }
 
 - (CGRect)calSqureAvatarFrame
@@ -100,7 +100,7 @@
         progressView = [[DACircularProgressView alloc] init];
         progressView.progressBarWidth = width*0.10;
         [progressView setFrame:[self calAvatarFrame]];
-        progressView.trackTintColor = [UIColor clearColor];
+        progressView.trackTintColor = [UIColor blackColor];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
         progressView.clockwise = YES;
@@ -212,9 +212,9 @@
         return;
     }
     [self setProgress:_currentProgress];
-    if (_currentProgress < 0.5 && _currentProgress > 0.16) {
+    if (_currentProgress < 0.382 && _currentProgress > 0.146) {
         progressView.progressTintColor = [UIColor yellowColor];
-    } else if (_currentProgress >= 0.5) {
+    } else if (_currentProgress >= 0.382) {
         progressView.progressTintColor = [UIColor greenColor];
     } else {
         progressView.progressTintColor = [UIColor redColor];
