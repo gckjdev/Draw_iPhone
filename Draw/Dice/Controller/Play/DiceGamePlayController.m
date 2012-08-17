@@ -224,16 +224,12 @@
     button.selected = !button.selected;
     
     if (button.selected) {
-        NSArray *titleList = [NSArray arrayWithObjects:@"劈", @"改", @"摇",nil];
-        NSArray *countNumberList = [NSArray arrayWithObjects:[NSNumber numberWithInt:8], [NSNumber numberWithInt:2], [NSNumber numberWithInt:5], nil];
-        
-        [_popupViewManager popupToolSheetViewWithTitleList:titleList 
-                                           countNumberList:countNumberList 
-                                                  delegate:self 
-                                                    atView:button 
-                                                    inView:self.view];
+        [_popupViewManager popupItemListViewAtView:button 
+                                            inView:self.view
+                                          duration:3 
+                                          delegate:self];
     } else {
-        [_popupViewManager dismissToolSheetView];
+        [_popupViewManager dismissItemListView];
     }
 }
 
@@ -264,13 +260,11 @@
         default:
             break;
     }
-
 }
 
 
 - (void)useItemSuccess:(int)itemId
 {
-    [_accountService consumeItem:itemId amount:1]; 
     switch (itemId) {
         case ItemTypeRollAgain:
             [self rollDiceAgain];
@@ -281,11 +275,17 @@
     }
 }
 
+- (void)didDismissItemListView
+{
+    UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
+    button.selected = NO;
+}
+
 - (void)didSelectItem:(Item *)item
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
-    
+
     switch (item.type) {
         case ItemTypeRollAgain:
             [_diceService userItem:ItemTypeRollAgain];
@@ -298,8 +298,9 @@
         default:
             break;
     }
+    
+    [_accountService consumeItem:item.type amount:1]; 
 }
-
 
 - (NSArray *)getSortedUserIdListBeginWithOpenUser
 {
@@ -433,7 +434,7 @@
 {
     [_popupViewManager dismissCallDiceView];
     [_popupViewManager dismissOpenDiceView];
-    [_popupViewManager dismissToolSheetView];
+    [_popupViewManager dismissItemListView];
 }
 
 - (IBAction)clickRunAwayButton:(id)sender {

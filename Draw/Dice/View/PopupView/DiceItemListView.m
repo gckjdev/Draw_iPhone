@@ -55,6 +55,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+           duration:(int)duration
            animated:(BOOL)animated
 {
     [self.popTipView dismissAnimated:YES];
@@ -63,6 +64,10 @@
     self.popTipView.disableTapToDismiss = YES;
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
     [_popTipView presentPointingAtView:view inView:inView animated:animated];
+    
+    if (duration != 0) {
+        [self performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];
+    }
 }
 
 - (void)dismissAnimated:(BOOL)animated 
@@ -138,8 +143,8 @@
     
     buttonTemp.tag = tag;
     
-    if (count <= 0) {
-        buttonTemp.userInteractionEnabled = NO;
+    if ([count intValue] <= 0) {
+        buttonTemp.enabled = NO;
     }
     
     return buttonTemp;
