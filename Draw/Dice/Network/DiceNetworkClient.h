@@ -25,7 +25,8 @@
 
 - (void)sendOpenDiceRequest:(NSString*)userId
                   sessionId:(int)sessionId
-                   openType:(int)openType;
+                   openType:(int)openType
+                   multiple:(int)multiple;     
 
 
 - (void)sendUserItemRequest:(NSString*)userId
