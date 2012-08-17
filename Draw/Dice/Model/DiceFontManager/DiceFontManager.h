@@ -11,6 +11,12 @@
 
 @interface DiceFontManager : NSObject
 
++ (NSString *)fontDir;
++ (NSString *)fontPath;
++ (BOOL)isExistsFontFile;
++ (void)unZipFiles;
+
+
 + (DiceFontManager*)defaultManager;
 
 - (NSString *)fontName;

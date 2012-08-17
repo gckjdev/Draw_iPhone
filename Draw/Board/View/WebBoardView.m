@@ -51,6 +51,7 @@
 - (void)loadView
 {
     [super loadView];
+    /*
     if ([self.board.url length] == 0) {
         return;
     }
@@ -62,6 +63,7 @@
     {
         [self loadRemoteWebPage:self.board.url];
     }
+     */
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

@@ -34,10 +34,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://localhost"];
-    BoardView *boardView = [BoardView creatBoardView:board];
-    [self.view addSubview:boardView];
-    [boardView loadView];
+//    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://localhost"];
+//    BoardView *boardView = [BoardView creatBoardView:board];
+//    [self.view addSubview:boardView];
+//    [boardView loadView];
 
 
     // Do any additional setup after loading the view from its nib.
