@@ -934,6 +934,7 @@
 		CAEECDAE15DDEEF700FA5A2A /* AdBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */; };
 		CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA515DDEEF700FA5A2A /* BoardView.m */; };
 		CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */; };
+		CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -2444,6 +2445,9 @@
 		CAEECDA515DDEEF700FA5A2A /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBoardView.h; sourceTree = "<group>"; };
 		CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBoardView.m; sourceTree = "<group>"; };
+		CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardNetworkConstant.h; sourceTree = "<group>"; };
+		CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBoardView.h; sourceTree = "<group>"; };
+		CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBoardView.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -6000,6 +6004,7 @@
 			children = (
 				CAEECD9B15DDEEF700FA5A2A /* BoardNetwork.h */,
 				CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */,
+				CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -6029,6 +6034,8 @@
 				CAEECDA515DDEEF700FA5A2A /* BoardView.m */,
 				CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */,
 				CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */,
+				CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */,
+				CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7112,6 +7119,7 @@
 				CAEECDAE15DDEEF700FA5A2A /* AdBoardView.m in Sources */,
 				CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */,
 				CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */,
+				CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
