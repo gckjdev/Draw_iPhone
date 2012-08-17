@@ -79,6 +79,9 @@
 @synthesize adView = _adView;
 
 - (void)dealloc {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+    
 //    [playingUserList release];
     [_adView release];
     [myLevelLabel release];
