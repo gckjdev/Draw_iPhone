@@ -328,6 +328,10 @@ static DiceGameService* _defaultService;
     
     int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
     
+    if (multiple >= 2) {
+        openType = 2;
+    }
+    
     self.diceSession.openDiceUserId = self.user.userId;
     self.diceSession.openType = openType;
     

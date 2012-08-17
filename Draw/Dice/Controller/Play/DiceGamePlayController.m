@@ -129,6 +129,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.itemsBoxButton.enabled = NO;
+
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
 //    self.gameBeginNoteLabel.textColor = [UIColor colorWithRed:1.0 green:69.0/255.0 blue:246.0/255.0 alpha:1.0];
@@ -239,7 +241,6 @@
     
     // TODO: Reduce item and sync to server.
     
-    
     // TODO: Show animations.
     [self rollUserBell:_userManager.userId];
     
@@ -292,7 +293,8 @@
             break;
             
         case ItemTypeCut:
-            [_diceService userItem:ItemTypeCut];
+            [self clearAllReciprocol];
+            [_diceService openDice:2];
             break;
             
         default:
@@ -404,14 +406,17 @@
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
         
-        if (result.gainCoins > 0) {
-            [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
-        }else{
-            [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
+        if ([_userManager isMe:userId]) {
+            
+            [_levelService addExp:LIAR_DICE_EXP delegate:self];
+
+            if (result.gainCoins > 0) {
+                [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
+            }else{
+                [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
+            }
+            self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
         }
-        self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-        
-        [_levelService addExp:LIAR_DICE_EXP delegate:self];
     }
 }
 
@@ -823,6 +828,7 @@
 
 - (void)rollDiceEnd
 {
+    self.itemsBoxButton.enabled = YES;
     [[self selfBellView] setHidden:YES];
     
     DiceShowView *diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
@@ -988,6 +994,7 @@
 
 - (void)gameOver;
 {
+    self.itemsBoxButton.enabled = NO;
     [self clearAllReciprocol];
     
     // Hidden views.

@@ -133,7 +133,7 @@
     UIImageView *countImageView = [[[UIImageView alloc] initWithImage:countImage] autorelease];
     countImageView.frame = CGRectMake(WIDTH_TOOL_BUTTON - 0.6 * WIDTH_COUNT_VIEW, WIDTH_TOOL_BUTTON - WIDTH_COUNT_VIEW, WIDTH_COUNT_VIEW, WIDTH_COUNT_VIEW);
     UILabel *countLabel = [[[UILabel alloc] initWithFrame:countImageView.frame] autorelease];
-    countLabel.text = [count stringValue];
+    countLabel.text = ([count intValue] >= 100) ? @"N" : [count stringValue];
     countLabel.textColor = [UIColor whiteColor];
     countLabel.font = [UIFont systemFontOfSize:FONT_SIZE_COUNT_LABEL];
     countLabel.backgroundColor = [UIColor clearColor];
