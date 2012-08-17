@@ -1,13 +1,13 @@
 //
-//  AnnounceManager.h
+//  AnnounceService.h
 //  Draw
 //
 //  Created by  on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CommonService.h"
 
-@interface AnnounceManager : NSObject
+@interface BoardService : CommonService
 
 @end

@@ -82,6 +82,7 @@ typedef enum {
   GameCommandTypeRollDiceEndNotificationResponse = 714,
   GameCommandTypeNextPlayerStartNotificationRequest = 715,
   GameCommandTypeNextPlayerStartNotificationResponse = 716,
+  GameCommandTypeUserDiceNotification = 717,
   GameCommandTypeGameOverNotificationRequest = 731,
   GameCommandTypeGameOverNotificationResponse = 732,
 } GameCommandType;
@@ -105,6 +106,7 @@ typedef enum {
   GameResultCodeErrorNoDrawData = 301,
   GameResultCodeErrorDiceAlreadyOpen = 401,
   GameResultCodeErrorUserAlreadyCallDice = 402,
+  GameResultCodeErrorUnknownItem = 501,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
 } GameResultCode;

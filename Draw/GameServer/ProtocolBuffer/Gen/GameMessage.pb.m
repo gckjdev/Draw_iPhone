@@ -2038,6 +2038,7 @@ static CallDiceResponse* defaultCallDiceResponseInstance = nil;
 
 @interface OpenDiceRequest ()
 @property int32_t openType;
+@property int32_t multiple;
 @end
 
 @implementation OpenDiceRequest
@@ -2049,12 +2050,20 @@ static CallDiceResponse* defaultCallDiceResponseInstance = nil;
   hasOpenType_ = !!value;
 }
 @synthesize openType;
+- (BOOL) hasMultiple {
+  return !!hasMultiple_;
+}
+- (void) setHasMultiple:(BOOL) value {
+  hasMultiple_ = !!value;
+}
+@synthesize multiple;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.openType = 0;
+    self.multiple = 1;
   }
   return self;
 }
@@ -2077,6 +2086,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   if (self.hasOpenType) {
     [output writeInt32:1 value:self.openType];
   }
+  if (self.hasMultiple) {
+    [output writeInt32:2 value:self.multiple];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2088,6 +2100,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   size = 0;
   if (self.hasOpenType) {
     size += computeInt32Size(1, self.openType);
+  }
+  if (self.hasMultiple) {
+    size += computeInt32Size(2, self.multiple);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2167,6 +2182,9 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
   if (other.hasOpenType) {
     [self setOpenType:other.openType];
   }
+  if (other.hasMultiple) {
+    [self setMultiple:other.multiple];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2192,6 +2210,10 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
         [self setOpenType:[input readInt32]];
         break;
       }
+      case 16: {
+        [self setMultiple:[input readInt32]];
+        break;
+      }
     }
   }
 }
@@ -2209,6 +2231,22 @@ static OpenDiceRequest* defaultOpenDiceRequestInstance = nil;
 - (OpenDiceRequest_Builder*) clearOpenType {
   result.hasOpenType = NO;
   result.openType = 0;
+  return self;
+}
+- (BOOL) hasMultiple {
+  return result.hasMultiple;
+}
+- (int32_t) multiple {
+  return result.multiple;
+}
+- (OpenDiceRequest_Builder*) setMultiple:(int32_t) value {
+  result.hasMultiple = YES;
+  result.multiple = value;
+  return self;
+}
+- (OpenDiceRequest_Builder*) clearMultiple {
+  result.hasMultiple = NO;
+  result.multiple = 1;
   return self;
 }
 @end
@@ -2770,6 +2808,250 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
     result.mutableDicesList = [NSMutableArray array];
   }
   [result.mutableDicesList addObject:value];
+  return self;
+}
+@end
+
+@interface UserDiceNotification ()
+@property (retain) NSMutableArray* mutableUserDiceList;
+@property BOOL cleanAll;
+@end
+
+@implementation UserDiceNotification
+
+@synthesize mutableUserDiceList;
+- (BOOL) hasCleanAll {
+  return !!hasCleanAll_;
+}
+- (void) setHasCleanAll:(BOOL) value {
+  hasCleanAll_ = !!value;
+}
+- (BOOL) cleanAll {
+  return !!cleanAll_;
+}
+- (void) setCleanAll:(BOOL) value {
+  cleanAll_ = !!value;
+}
+- (void) dealloc {
+  self.mutableUserDiceList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.cleanAll = NO;
+  }
+  return self;
+}
+static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
++ (void) initialize {
+  if (self == [UserDiceNotification class]) {
+    defaultUserDiceNotificationInstance = [[UserDiceNotification alloc] init];
+  }
+}
++ (UserDiceNotification*) defaultInstance {
+  return defaultUserDiceNotificationInstance;
+}
+- (UserDiceNotification*) defaultInstance {
+  return defaultUserDiceNotificationInstance;
+}
+- (NSArray*) userDiceList {
+  return mutableUserDiceList;
+}
+- (PBUserDice*) userDiceAtIndex:(int32_t) index {
+  id value = [mutableUserDiceList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBUserDice* element in self.userDiceList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBUserDice* element in self.userDiceList) {
+    [output writeMessage:1 value:element];
+  }
+  if (self.hasCleanAll) {
+    [output writeBool:2 value:self.cleanAll];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBUserDice* element in self.userDiceList) {
+    size += computeMessageSize(1, element);
+  }
+  if (self.hasCleanAll) {
+    size += computeBoolSize(2, self.cleanAll);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (UserDiceNotification*) parseFromData:(NSData*) data {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromData:data] build];
+}
++ (UserDiceNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (UserDiceNotification*) parseFromInputStream:(NSInputStream*) input {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromInputStream:input] build];
+}
++ (UserDiceNotification*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UserDiceNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromCodedInputStream:input] build];
+}
++ (UserDiceNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (UserDiceNotification*)[[[UserDiceNotification builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (UserDiceNotification_Builder*) builder {
+  return [[[UserDiceNotification_Builder alloc] init] autorelease];
+}
++ (UserDiceNotification_Builder*) builderWithPrototype:(UserDiceNotification*) prototype {
+  return [[UserDiceNotification builder] mergeFrom:prototype];
+}
+- (UserDiceNotification_Builder*) builder {
+  return [UserDiceNotification builder];
+}
+@end
+
+@interface UserDiceNotification_Builder()
+@property (retain) UserDiceNotification* result;
+@end
+
+@implementation UserDiceNotification_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[UserDiceNotification alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (UserDiceNotification_Builder*) clear {
+  self.result = [[[UserDiceNotification alloc] init] autorelease];
+  return self;
+}
+- (UserDiceNotification_Builder*) clone {
+  return [UserDiceNotification builderWithPrototype:result];
+}
+- (UserDiceNotification*) defaultInstance {
+  return [UserDiceNotification defaultInstance];
+}
+- (UserDiceNotification*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (UserDiceNotification*) buildPartial {
+  UserDiceNotification* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (UserDiceNotification_Builder*) mergeFrom:(UserDiceNotification*) other {
+  if (other == [UserDiceNotification defaultInstance]) {
+    return self;
+  }
+  if (other.mutableUserDiceList.count > 0) {
+    if (result.mutableUserDiceList == nil) {
+      result.mutableUserDiceList = [NSMutableArray array];
+    }
+    [result.mutableUserDiceList addObjectsFromArray:other.mutableUserDiceList];
+  }
+  if (other.hasCleanAll) {
+    [self setCleanAll:other.cleanAll];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBUserDice_Builder* subBuilder = [PBUserDice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserDice:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setCleanAll:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) userDiceList {
+  if (result.mutableUserDiceList == nil) { return [NSArray array]; }
+  return result.mutableUserDiceList;
+}
+- (PBUserDice*) userDiceAtIndex:(int32_t) index {
+  return [result userDiceAtIndex:index];
+}
+- (UserDiceNotification_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value {
+  [result.mutableUserDiceList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (UserDiceNotification_Builder*) addAllUserDice:(NSArray*) values {
+  if (result.mutableUserDiceList == nil) {
+    result.mutableUserDiceList = [NSMutableArray array];
+  }
+  [result.mutableUserDiceList addObjectsFromArray:values];
+  return self;
+}
+- (UserDiceNotification_Builder*) clearUserDiceList {
+  result.mutableUserDiceList = nil;
+  return self;
+}
+- (UserDiceNotification_Builder*) addUserDice:(PBUserDice*) value {
+  if (result.mutableUserDiceList == nil) {
+    result.mutableUserDiceList = [NSMutableArray array];
+  }
+  [result.mutableUserDiceList addObject:value];
+  return self;
+}
+- (BOOL) hasCleanAll {
+  return result.hasCleanAll;
+}
+- (BOOL) cleanAll {
+  return result.cleanAll;
+}
+- (UserDiceNotification_Builder*) setCleanAll:(BOOL) value {
+  result.hasCleanAll = YES;
+  result.cleanAll = value;
+  return self;
+}
+- (UserDiceNotification_Builder*) clearCleanAll {
+  result.hasCleanAll = NO;
+  result.cleanAll = NO;
   return self;
 }
 @end
@@ -8963,6 +9245,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
 @property (retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
 @property (retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+@property (retain) UserDiceNotification* userDiceNotification;
 @property (retain) UseItemRequest* useItemRequest;
 @property (retain) UseItemResponse* useItemResponse;
 @property int32_t startOffset;
@@ -9230,6 +9513,13 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasUnRegisterRoomsNotificationResponse_ = !!value;
 }
 @synthesize unRegisterRoomsNotificationResponse;
+- (BOOL) hasUserDiceNotification {
+  return !!hasUserDiceNotification_;
+}
+- (void) setHasUserDiceNotification:(BOOL) value {
+  hasUserDiceNotification_ = !!value;
+}
+@synthesize userDiceNotification;
 - (BOOL) hasUseItemRequest {
   return !!hasUseItemRequest_;
 }
@@ -9289,6 +9579,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.registerRoomsNotificationResponse = nil;
   self.unRegisterRoomsNotificationRequest = nil;
   self.unRegisterRoomsNotificationResponse = nil;
+  self.userDiceNotification = nil;
   self.useItemRequest = nil;
   self.useItemResponse = nil;
   [super dealloc];
@@ -9332,6 +9623,7 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.registerRoomsNotificationResponse = [RegisterRoomsNotificationResponse defaultInstance];
     self.unRegisterRoomsNotificationRequest = [UnRegisterRoomsNotificationRequest defaultInstance];
     self.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
+    self.userDiceNotification = [UserDiceNotification defaultInstance];
     self.useItemRequest = [UseItemRequest defaultInstance];
     self.useItemResponse = [UseItemResponse defaultInstance];
     self.startOffset = 0;
@@ -9415,6 +9707,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasGameOverNotificationRequest) {
     if (!self.gameOverNotificationRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasUserDiceNotification) {
+    if (!self.userDiceNotification.isInitialized) {
       return NO;
     }
   }
@@ -9541,6 +9838,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUnRegisterRoomsNotificationResponse) {
     [output writeMessage:120 value:self.unRegisterRoomsNotificationResponse];
+  }
+  if (self.hasUserDiceNotification) {
+    [output writeMessage:121 value:self.userDiceNotification];
   }
   if (self.hasUseItemRequest) {
     [output writeMessage:131 value:self.useItemRequest];
@@ -9673,6 +9973,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasUnRegisterRoomsNotificationResponse) {
     size += computeMessageSize(120, self.unRegisterRoomsNotificationResponse);
+  }
+  if (self.hasUserDiceNotification) {
+    size += computeMessageSize(121, self.userDiceNotification);
   }
   if (self.hasUseItemRequest) {
     size += computeMessageSize(131, self.useItemRequest);
@@ -9871,6 +10174,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasUnRegisterRoomsNotificationResponse) {
     [self mergeUnRegisterRoomsNotificationResponse:other.unRegisterRoomsNotificationResponse];
+  }
+  if (other.hasUserDiceNotification) {
+    [self mergeUserDiceNotification:other.userDiceNotification];
   }
   if (other.hasUseItemRequest) {
     [self mergeUseItemRequest:other.useItemRequest];
@@ -10201,6 +10507,15 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUnRegisterRoomsNotificationResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 970: {
+        UserDiceNotification_Builder* subBuilder = [UserDiceNotification builder];
+        if (self.hasUserDiceNotification) {
+          [subBuilder mergeFrom:self.userDiceNotification];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUserDiceNotification:[subBuilder buildPartial]];
         break;
       }
       case 1050: {
@@ -11200,6 +11515,36 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse {
   result.hasUnRegisterRoomsNotificationResponse = NO;
   result.unRegisterRoomsNotificationResponse = [UnRegisterRoomsNotificationResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasUserDiceNotification {
+  return result.hasUserDiceNotification;
+}
+- (UserDiceNotification*) userDiceNotification {
+  return result.userDiceNotification;
+}
+- (GameMessage_Builder*) setUserDiceNotification:(UserDiceNotification*) value {
+  result.hasUserDiceNotification = YES;
+  result.userDiceNotification = value;
+  return self;
+}
+- (GameMessage_Builder*) setUserDiceNotificationBuilder:(UserDiceNotification_Builder*) builderForValue {
+  return [self setUserDiceNotification:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeUserDiceNotification:(UserDiceNotification*) value {
+  if (result.hasUserDiceNotification &&
+      result.userDiceNotification != [UserDiceNotification defaultInstance]) {
+    result.userDiceNotification =
+      [[[UserDiceNotification builderWithPrototype:result.userDiceNotification] mergeFrom:value] buildPartial];
+  } else {
+    result.userDiceNotification = value;
+  }
+  result.hasUserDiceNotification = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearUserDiceNotification {
+  result.hasUserDiceNotification = NO;
+  result.userDiceNotification = [UserDiceNotification defaultInstance];
   return self;
 }
 - (BOOL) hasUseItemRequest {

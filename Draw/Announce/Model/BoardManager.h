@@ -1,5 +1,5 @@
 //
-//  AnnounceNetwork.h
+//  BoardManager.h
 //  Draw
 //
 //  Created by  on 12-8-16.
@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AnnounceNetwork : NSObject
+@interface BoardManager : NSObject
+{
+    
+}
++ (BoardManager *)defaultManager;
+
+- (NSArray *)BoardList;
 
 @end

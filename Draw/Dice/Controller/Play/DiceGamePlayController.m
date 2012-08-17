@@ -259,10 +259,6 @@
         default:
             break;
     }
-
-    
-    
-    
 }
 
 - (void)didSelectTool:(NSInteger)index
@@ -667,9 +663,9 @@
                                         [self gameOver];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
+    [self registerDiceGameNotificationWithName:NOTIFICATION_USER_DICE
                                     usingBlock:^(NSNotification *notification) {                       
-                                        [self someoneUseItem];         
+//                                        [self someoneUseItem];         
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE

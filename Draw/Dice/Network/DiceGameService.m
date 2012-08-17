@@ -123,9 +123,9 @@ static DiceGameService* _defaultService;
     [self postNotification:NOTIFICATION_GAME_OVER_REQUEST message:message];
 }
 
-- (void)handleUseItemRequest:(GameMessage *)message
+- (void)handleUserDiceNotification:(GameMessage *)message
 {
-    [self postNotification:NOTIFICATION_USE_ITEM_REQUEST message:message];
+    [self postNotification:NOTIFICATION_USER_DICE message:message];
 }
 
 - (void)handleUseItemResponse:(GameMessage *)message
@@ -168,8 +168,8 @@ static DiceGameService* _defaultService;
             [self handleGameOverNotificationRequest:message];
             break;
             
-        case GameCommandTypeUseItemRequest:
-            [self handleUseItemRequest:message];
+        case GameCommandTypeUserDiceNotification:
+            [self handleUserDiceNotification:message];
             break;
             
         case GameCommandTypeUseItemResponse:
