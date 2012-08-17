@@ -125,17 +125,35 @@ static DiceGameService* _defaultService;
 
 - (void)handleUserDiceNotification:(GameMessage *)message
 {
-    [self postNotification:NOTIFICATION_USER_DICE message:message];
+    if (message.userDiceNotification.cleanAll) {
+        [self.diceSession.userDiceList removeAllObjects];
+    }
+    
+    for (PBUserDice *userDice in message.userDiceNotification.userDiceList) {
+        [self changeDiceList:userDice.userId diceList:userDice.dicesList];
+    }
+    
+//    [self postNotification:NOTIFICATION_USER_DICE message:message];
 }
 
 - (void)handleUseItemResponse:(GameMessage *)message
 {
-    if (message.resultCode != 0) {
+    if (message.resultCode == 0) {
+        PPDebug(@"[改]userId = %@", message.userId);
+        PPDebug(@"[改]myId = %@", self.session.userId);
+
         [self changeDiceList:message.userId diceList:message.useItemResponse.dicesList];
+        for (PBDice *dice in message.useItemResponse.dicesList) {
+            PPDebug(@"[改]dices = %d", dice.dice);
+        }
         [self postNotification:NOTIFICATION_USE_ITEM_RESPONSE message:message];
     }
 }
 
+- (void)handleUseItemRequest:(GameMessage *)message
+{
+    [self postNotification:NOTIFICATION_USE_ITEM_REQUEST message:message];
+}
 
 - (void)handleCustomMessage:(GameMessage*)message
 {
@@ -175,6 +193,11 @@ static DiceGameService* _defaultService;
         case GameCommandTypeUseItemResponse:
             [self handleUseItemResponse:message];
             break;
+            
+        case GameCommandTypeUseItemRequest:
+            [self handleUseItemRequest:message];
+            break;
+
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
@@ -222,6 +245,8 @@ static DiceGameService* _defaultService;
                                                    sessionId:self.session.sessionId
                                                       itemId:itemId]; 
 }
+
+
 
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList
 {
@@ -285,7 +310,7 @@ static DiceGameService* _defaultService;
 
 
 
-- (void)openDice
+- (void)openDice:(int)multiple
 {
     PPDebug(@"****************** ME OPEN DICE **********************");
     
@@ -296,7 +321,8 @@ static DiceGameService* _defaultService;
     
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
-                                                    openType:openType]; 
+                                                    openType:openType
+                                                    multiple:multiple]; 
 }
 
 @end

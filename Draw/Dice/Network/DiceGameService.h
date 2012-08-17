@@ -28,7 +28,7 @@
 - (NSDictionary *)gameResult;
 
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds;
-- (void)openDice;
+- (void)openDice:(int)multiple;
 
 - (void)userItem:(int)itemId;
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;

@@ -63,9 +63,11 @@
 - (void)sendOpenDiceRequest:(NSString*)userId
                   sessionId:(int)sessionId
                    openType:(int)openType
+                   multiple:(int)multiple
 {
     OpenDiceRequest_Builder *openDiceRequestBuilder = [[[OpenDiceRequest_Builder alloc] init] autorelease];
     [openDiceRequestBuilder setOpenType:openType];
+    [openDiceRequestBuilder setMultiple:multiple];
     OpenDiceRequest *openDiceRequest = [openDiceRequestBuilder build];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
