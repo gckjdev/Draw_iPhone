@@ -17,6 +17,8 @@
 #import "GameMessage.pb.h"
 #import "DiceGamePlayController.h"
 #import "FontButton.h"
+#import "GameConstants.pb.h"
+#import "CommonMessageCenter.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -147,8 +149,11 @@
         GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
         if (message.resultCode == 0) {
             [self joinGame];
+        } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
+        } else {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
-        //TODO: handle other result code ERROR_FULL:notice full, other error:juset notice join error
     }];
 //    [self registerDiceGameNotificationWithName:NOTIFICATION_ROOM usingBlock:^(NSNotification *note) {
 //        PPDebug(@"<DiceRoomListController> NOTIFICATION_ROOM"); 

@@ -771,6 +771,6 @@
 "kGameBegin" = "Game begin...";
 "kNearBy" = "NearBy";
 "kWhoseRoom" = "%@'s room";
-
+"kSessionFull" = "Room is full";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
