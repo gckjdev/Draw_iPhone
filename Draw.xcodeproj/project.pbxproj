@@ -58,7 +58,6 @@
 		A3C129E51563A70E00C021A7 /* Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C129E41563A70E00C021A7 /* Draw.m */; };
 		A3C7D8F0155ABF0D00A1D783 /* normal_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */; };
 		A3CA09AB158A21DA009C7EB0 /* ChatMessageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */; };
-		A3CAFFF615C69F1A009DB4BC /* ToolSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */; };
 		A3D11BF51562306A00248B4C /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D11BF21562306A00248B4C /* FriendCell.m */; };
 		A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF31562306A00248B4C /* FriendCell.xib */; };
 		A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */; };
@@ -218,6 +217,9 @@
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
 		A4C1123915D4B621009B3E8D /* DiceAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */; };
+		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
+		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
+		A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AE15DE40F100E4F735 /* DiceItemManager.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
@@ -1081,8 +1083,6 @@
 		A3C7D8EF155ABF0D00A1D783 /* normal_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_button@2x.png"; sourceTree = "<group>"; };
 		A3CA09A9158A21DA009C7EB0 /* ChatMessageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageUtil.h; sourceTree = "<group>"; };
 		A3CA09AA158A21DA009C7EB0 /* ChatMessageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageUtil.m; sourceTree = "<group>"; };
-		A3CAFFF415C69F1A009DB4BC /* ToolSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSheetView.h; sourceTree = "<group>"; };
-		A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSheetView.m; sourceTree = "<group>"; };
 		A3D11BF11562306A00248B4C /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		A3D11BF21562306A00248B4C /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		A3D11BF31562306A00248B4C /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -1283,6 +1283,12 @@
 		A4B7648B15C382D6003B4E72 /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
 		A4C1123715D4B621009B3E8D /* DiceAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAnimationManager.h; sourceTree = "<group>"; };
 		A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAnimationManager.m; sourceTree = "<group>"; };
+		A4C516A715DE40A800E4F735 /* DiceItemListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemListView.h; sourceTree = "<group>"; };
+		A4C516A815DE40A800E4F735 /* DiceItemListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemListView.m; sourceTree = "<group>"; };
+		A4C516AB15DE40F100E4F735 /* DiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItem.h; sourceTree = "<group>"; };
+		A4C516AC15DE40F100E4F735 /* DiceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItem.m; sourceTree = "<group>"; };
+		A4C516AD15DE40F100E4F735 /* DiceItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemManager.h; sourceTree = "<group>"; };
+		A4C516AE15DE40F100E4F735 /* DiceItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemManager.m; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -2656,18 +2662,11 @@
 			path = DiceShowView;
 			sourceTree = "<group>";
 		};
-		A44DDF3D15C64482005609F6 /* ItemView */ = {
-			isa = PBXGroup;
-			children = (
-				A3CAFFF415C69F1A009DB4BC /* ToolSheetView.h */,
-				A3CAFFF515C69F1A009DB4BC /* ToolSheetView.m */,
-			);
-			path = ItemView;
-			sourceTree = "<group>";
-		};
 		A44DDF3E15C64482005609F6 /* PopupView */ = {
 			isa = PBXGroup;
 			children = (
+				A4C516A715DE40A800E4F735 /* DiceItemListView.h */,
+				A4C516A815DE40A800E4F735 /* DiceItemListView.m */,
 				A45E8CDA15C77FA90089E240 /* CallDiceView.h */,
 				A45E8CDB15C77FA90089E240 /* CallDiceView.m */,
 				A45E8CDC15C77FA90089E240 /* DicePopupViewManager.h */,
@@ -2956,6 +2955,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4C516AA15DE40F100E4F735 /* DiceItemManager */,
 				A4C1123615D4B60F009B3E8D /* DiceAnimationManager */,
 				A45BF5DF15D231A000CDD5C2 /* DiceFontManager */,
 				A4B7648915C382BD003B4E72 /* DiceImageManager */,
@@ -2998,7 +2998,6 @@
 				A45E8CD215C77F8E0089E240 /* AvatarView */,
 				A44DDF3B15C64482005609F6 /* DiceSelectedView */,
 				A44DDF3C15C64482005609F6 /* DiceShowView */,
-				A44DDF3D15C64482005609F6 /* ItemView */,
 				A44DDF3E15C64482005609F6 /* PopupView */,
 			);
 			path = View;
@@ -3030,6 +3029,17 @@
 				A4C1123815D4B621009B3E8D /* DiceAnimationManager.m */,
 			);
 			path = DiceAnimationManager;
+			sourceTree = "<group>";
+		};
+		A4C516AA15DE40F100E4F735 /* DiceItemManager */ = {
+			isa = PBXGroup;
+			children = (
+				A4C516AB15DE40F100E4F735 /* DiceItem.h */,
+				A4C516AC15DE40F100E4F735 /* DiceItem.m */,
+				A4C516AD15DE40F100E4F735 /* DiceItemManager.h */,
+				A4C516AE15DE40F100E4F735 /* DiceItemManager.m */,
+			);
+			path = DiceItemManager;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -7071,7 +7081,6 @@
 				A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */,
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
 				C2F48C9F15C681BA005C4D72 /* DACircularProgressView.m in Sources */,
-				A3CAFFF615C69F1A009DB4BC /* ToolSheetView.m in Sources */,
 				A45E8CD515C77F8E0089E240 /* DiceAvatarView.m in Sources */,
 				A45E8CD915C77F960089E240 /* DiceView.m in Sources */,
 				A45E8CDE15C77FA90089E240 /* CallDiceView.m in Sources */,
@@ -7120,6 +7129,9 @@
 				CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */,
 				CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */,
 				CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */,
+				A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */,
+				A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */,
+				A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
