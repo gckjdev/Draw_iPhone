@@ -2450,6 +2450,7 @@
 		CAEECDA515DDEEF700FA5A2A /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBoardView.h; sourceTree = "<group>"; };
 		CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBoardView.m; sourceTree = "<group>"; };
+		CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardNetworkConstant.h; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -6018,6 +6019,7 @@
 			children = (
 				CAEECD9B15DDEEF700FA5A2A /* BoardNetwork.h */,
 				CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */,
+				CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
