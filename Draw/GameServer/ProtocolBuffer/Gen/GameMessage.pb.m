@@ -2815,6 +2815,7 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
 @interface UserDiceNotification ()
 @property (retain) NSMutableArray* mutableUserDiceList;
 @property BOOL cleanAll;
+@property BOOL isWild;
 @end
 
 @implementation UserDiceNotification
@@ -2832,6 +2833,18 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
 - (void) setCleanAll:(BOOL) value {
   cleanAll_ = !!value;
 }
+- (BOOL) hasIsWild {
+  return !!hasIsWild_;
+}
+- (void) setHasIsWild:(BOOL) value {
+  hasIsWild_ = !!value;
+}
+- (BOOL) isWild {
+  return !!isWild_;
+}
+- (void) setIsWild:(BOOL) value {
+  isWild_ = !!value;
+}
 - (void) dealloc {
   self.mutableUserDiceList = nil;
   [super dealloc];
@@ -2839,6 +2852,7 @@ static UseItemResponse* defaultUseItemResponseInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.cleanAll = NO;
+    self.isWild = NO;
   }
   return self;
 }
@@ -2876,6 +2890,9 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   if (self.hasCleanAll) {
     [output writeBool:2 value:self.cleanAll];
   }
+  if (self.hasIsWild) {
+    [output writeBool:3 value:self.isWild];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2890,6 +2907,9 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   }
   if (self.hasCleanAll) {
     size += computeBoolSize(2, self.cleanAll);
+  }
+  if (self.hasIsWild) {
+    size += computeBoolSize(3, self.isWild);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2975,6 +2995,9 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
   if (other.hasCleanAll) {
     [self setCleanAll:other.cleanAll];
   }
+  if (other.hasIsWild) {
+    [self setIsWild:other.isWild];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3004,6 +3027,10 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
       }
       case 16: {
         [self setCleanAll:[input readBool]];
+        break;
+      }
+      case 24: {
+        [self setIsWild:[input readBool]];
         break;
       }
     }
@@ -3052,6 +3079,22 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
 - (UserDiceNotification_Builder*) clearCleanAll {
   result.hasCleanAll = NO;
   result.cleanAll = NO;
+  return self;
+}
+- (BOOL) hasIsWild {
+  return result.hasIsWild;
+}
+- (BOOL) isWild {
+  return result.isWild;
+}
+- (UserDiceNotification_Builder*) setIsWild:(BOOL) value {
+  result.hasIsWild = YES;
+  result.isWild = value;
+  return self;
+}
+- (UserDiceNotification_Builder*) clearIsWild {
+  result.hasIsWild = NO;
+  result.isWild = NO;
   return self;
 }
 @end

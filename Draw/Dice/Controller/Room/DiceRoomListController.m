@@ -22,7 +22,7 @@
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
-#define REFRESH_ROOMS_TIME_INTERVAL 1
+#define REFRESH_ROOMS_TIME_INTERVAL 2
 
 @interface DiceRoomListController ()
 
