@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class CommonNetworkOutput;
+
 @interface BoardNetwork : NSObject
++ (CommonNetworkOutput*)getBoards:(NSString*)baseURL
+                            appId:(NSString*)appId
+                       deviceType:(int)deviceType;
 
 @end

@@ -170,7 +170,6 @@
 
 - (void)viewDidLoad
 {
-    // self.supportRefreshFooter = YES;
     [super viewDidLoad];
    
     _diceGameService = [DiceGameService defaultService];

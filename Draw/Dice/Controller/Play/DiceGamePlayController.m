@@ -120,6 +120,7 @@
         _levelService = [LevelService defaultService];
         _accountService = [AccountService defaultService];
         _audioManager = [AudioManager defaultManager];
+//        _itemService = [ItemService defaultService];
     }
     
     return self;
@@ -269,6 +270,7 @@
 
 - (void)useItemSuccess:(int)itemId
 {
+    [_accountService consumeItem:itemId amount:1]; 
     switch (itemId) {
         case ItemTypeRollAgain:
             [self rollDiceAgain];
@@ -279,12 +281,23 @@
     }
 }
 
-- (void)didSelectTool:(NSInteger)index
+- (void)didSelectItem:(Item *)item
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
     
-    [_diceService userItem:ItemTypeRollAgain];
+    switch (item.type) {
+        case ItemTypeRollAgain:
+            [_diceService userItem:ItemTypeRollAgain];
+            break;
+            
+        case ItemTypeCut:
+            [_diceService userItem:ItemTypeCut];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

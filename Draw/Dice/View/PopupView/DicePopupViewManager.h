@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
-#import "ToolSheetView.h"
+#import "DiceItemListView.h"
 
 @interface DicePopupViewManager : NSObject
 
@@ -24,7 +24,7 @@
 
 - (void)popupToolSheetViewWithTitleList:(NSArray *)titleList 
                         countNumberList:(NSArray *)countNumberList 
-                               delegate:(id<ToolSheetViewDelegate>)delegate 
+                               delegate:(id<DiceItemListViewDelegate>)delegate 
                                  atView:(UIView *)atView 
                                  inView:(UIView *)inView;
 
