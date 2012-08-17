@@ -1,14 +1,14 @@
 //
-//  AnnounceView.m
+//  DiceInputDialog.m
 //  Draw
 //
-//  Created by  on 12-8-16.
+//  Created by Orange on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "AnnounceView.h"
+#import "DiceInputDialog.h"
 
-@implementation AnnounceView
+@implementation DiceInputDialog
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -126,6 +126,10 @@ static DicePopupViewManager *_instance = nil;
             message = NSLS(@"kScrambleToOpenDice");
             break;
             
+//        case 2:
+//            message = NSLS(@"kCut");
+//            break;
+            
         default:
             break;
     }

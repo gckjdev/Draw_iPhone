@@ -1,31 +1,31 @@
 //
-//  CommonUserInfoView.m
+//  DiceUserInfoView.m
 //  Draw
 //
-//  Created by Orange on 12-6-25.
+//  Created by Orange on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommonUserInfoView.h"
-#import "ShareImageManager.h"
-#import "AnimationManager.h"
+#import "DiceUserInfoView.h"
 #import "LocaleUtils.h"
-#import "Friend.h"
-#import "StableView.h"
+#import "DiceAvatarView.h"
 #import "DeviceDetection.h"
-#import "FriendManager.h"
-#import "CommonMessageCenter.h"
-#import "UserFeedController.h"
-#import "ChatDetailController.h"
-#import "SelectWordController.h"
-#import "LocaleUtils.h"
+#import "PPDebug.h"
 #import "WordManager.h"
 #import "CommonSnsInfoView.h"
+#import "ShareImageManager.h"
+#import "FriendManager.h"
+#import "GameBasic.pb.h"
+#import "Friend.h"
+#import "StringUtil.h"
+#import "AnimationManager.h"
+#import "UserService.h"
+#import "CommonMessageCenter.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
-@implementation CommonUserInfoView
+@implementation DiceUserInfoView
 @synthesize backgroundImageView;
 @synthesize mask;
 @synthesize contentView;
@@ -33,11 +33,6 @@
 @synthesize snsTagImageView;
 @synthesize genderLabel;
 @synthesize locationLabel;
-@synthesize playWithUserLabel;
-@synthesize chatToUserLabel;
-@synthesize drawToUserButton;
-@synthesize exploreUserFeedButton;
-@synthesize chatToUserButton;
 @synthesize followUserButton;
 @synthesize statusLabel;
 @synthesize targetFriend = _targetFriend;
@@ -61,11 +56,6 @@
     [snsTagImageView release];
     [genderLabel release];
     [locationLabel release];
-    [playWithUserLabel release];
-    [chatToUserLabel release];
-    [drawToUserButton release];
-    [exploreUserFeedButton release];
-    [chatToUserButton release];
     [followUserButton release];
     [statusLabel release];
     [userAvatar release];
@@ -77,19 +67,9 @@
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)initTitle
 {
-    [self.playWithUserLabel setText:NSLS(@"kPlayWithHim")];
-    [self.chatToUserLabel setText:NSLS(@"kChatToHim")];
+    
 }
 
 #define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
@@ -97,21 +77,16 @@
 - (void)initAvatar
 {
     CGRect rect = AVATAR_FRAME;
-    AvatarView* view = [[[AvatarView alloc] initWithUrlString:self.userAvatar
-                                                       frame:rect
-                                                      gender:[@"m" isEqualToString:self.userGender]
-                                                       level:self.userLevel] autorelease];
+    DiceAvatarView* view = [[[DiceAvatarView alloc] initWithUrlString:self.userAvatar
+                                                        frame:rect
+                                                       gender:[@"m" isEqualToString:self.userGender]
+                                                        level:self.userLevel] autorelease];
     [self.contentView addSubview:view];
 }
 
 - (void)initButton
 {
-    [self.chatToUserButton setTitle:NSLS(@"kChat") forState:UIControlStateNormal];
-    [self.chatToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.drawToUserButton setTitle:NSLS(@"kDrawToHim") forState:UIControlStateNormal];
-    [self.drawToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.exploreUserFeedButton setTitle:NSLS(@"kExploreHim") forState:UIControlStateNormal];
-    [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+
 }
 
 - (void)initLevelAndName
@@ -135,7 +110,7 @@
                                                  self.levelLabel.frame.size.height)];
         }
     }
-
+    
 }
 
 - (void)initLocation
@@ -199,31 +174,32 @@
     
 }
 
-- (void)initViewWithFriend:(Friend*)aFriend
+- (void)initViewWithPBGameUser:(PBGameUser*)aUser
 {  
-    NSString* nickName = nil;
-    if (aFriend.nickName && [aFriend.nickName length] != 0) {
-        nickName = aFriend.nickName;
-    }
-    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
-        nickName = aFriend.sinaNick;
-    }
-    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
-        nickName = aFriend.qqNick;
-    }
-    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
-        nickName = aFriend.facebookNick;
-    }
+//    NSString* nickName = nil;
+//    aUser.snsUsersList
+//    if (aUser.nickName && [aUser.nickName length] != 0) {
+//        nickName = aUser.nickName;
+//    }
+//    else if (aFriend.sinaNick && [aFriend.sinaNick length] != 0){
+//        nickName = aFriend.sinaNick;
+//    }
+//    else if (aFriend.qqNick && [aFriend.qqNick length] != 0){
+//        nickName = aFriend.qqNick;
+//    }
+//    else if (aFriend.facebookNick && [aFriend.facebookNick length] != 0){
+//        nickName = aFriend.facebookNick;
+//    }
     
-    [self initViewWithUserId:aFriend.friendUserId 
-                    nickName:nickName 
-                      avatar:aFriend.avatar 
-                      gender:aFriend.gender 
-                    location:aFriend.location 
-                       level:aFriend.level.intValue
-                     hasSina:(aFriend.sinaNick != nil) 
-                       hasQQ:(aFriend.qqNick != nil) 
-                 hasFacebook:(aFriend.facebookNick != nil) 
+    [self initViewWithUserId:aUser.userId 
+                    nickName:aUser.nickName 
+                      avatar:aUser.avatar 
+                      gender:aUser.gender 
+                    location:aUser.location 
+                       level:aUser.userLevel
+                     hasSina:NO
+                       hasQQ:NO
+                 hasFacebook:NO 
      ];
 }
 
@@ -252,14 +228,14 @@
     [self initView];
 }
 
-+ (CommonUserInfoView*)createUserInfoView
++ (DiceUserInfoView*)createUserInfoView
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonUserInfoView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceUserInfoView" owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <CommonUserInfoView> but cannot find cell object from Nib");
+        NSLog(@"create <DiceUserInfoView> but cannot find cell object from Nib");
         return nil;
     }
-    CommonUserInfoView* view =  (CommonUserInfoView*)[topLevelObjects objectAtIndex:0];
+    DiceUserInfoView* view =  (DiceUserInfoView*)[topLevelObjects objectAtIndex:0];
     
     CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
     [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
@@ -270,7 +246,7 @@
 + (void)showUser:(Friend*)afriend 
       infoInView:(PPViewController<FriendServiceDelegate>*)superController
 {
-    CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+    DiceUserInfoView* view = [DiceUserInfoView createUserInfoView];
     [view initViewWithFriend:afriend];
     view.superViewController = superController;
     [superController.view addSubview:view];
@@ -288,7 +264,7 @@
       infoInView:(PPViewController*)superController
 {
     if (![[[UserManager defaultManager] userId] isEqualToString:userId]) {
-        CommonUserInfoView* view = [CommonUserInfoView createUserInfoView];
+        DiceUserInfoView* view = [DiceUserInfoView createUserInfoView];
         [view initViewWithUserId:userId 
                         nickName:nickName 
                           avatar:avatar 
@@ -350,36 +326,6 @@
     }
 }
 
-- (IBAction)drawToHim:(id)sender
-{
-    [SelectWordController startSelectWordFrom:self.superViewController targetUid:self.userId];
-}
-
-- (IBAction)talkToHim:(id)sender
-{
-    if ([self.superViewController isKindOfClass:[ChatDetailController class]]) {
-        ChatDetailController *currentController = (ChatDetailController *)self.superViewController;
-        if ([currentController.friendUserId isEqualToString:self.userId])
-        {
-            [self clickMask:mask];
-        }
-    }
-    else {
-        ChatDetailController *controller = [[ChatDetailController alloc] initWithFriendUserId:self.userId
-                                                                               friendNickname:self.userNickName
-                                                                                 friendAvatar:self.userAvatar
-                                                                                 friendGender:self.userGender];
-        [self.superViewController.navigationController pushViewController:controller animated:YES];
-        [controller release];
-    }
-}
-
-- (IBAction)seeHisFeed:(id)sender
-{
-    UserFeedController *userFeed = [[UserFeedController alloc] initWithUserId:self.userId nickName:self.userNickName];
-    [self.superViewController.navigationController pushViewController:userFeed animated:YES];
-    [userFeed release];
-}
 
 #pragma mark - user service delegate
 - (void)didGetUserNickName:(NSString*)nickName
@@ -428,6 +374,16 @@
     [self.superViewController.view addSubview:self];
 }
 
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -436,6 +392,5 @@
     // Drawing code
 }
 */
-
 
 @end

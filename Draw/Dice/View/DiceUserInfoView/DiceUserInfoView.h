@@ -1,20 +1,19 @@
 //
-//  CommonUserInfoView.h
+//  DiceUserInfoView.h
 //  Draw
 //
-//  Created by Orange on 12-6-25.
+//  Created by Orange on 12-8-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
-#import "UserService.h"
+@class PBGameUser;
 @class PPViewController;
-@class Friend;
 
-@interface CommonUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
+@interface DiceUserInfoView : UIView<FriendServiceDelegate>
 
-+ (void)showUser:(Friend*)afriend 
++ (void)showUser:(PBGameUser*)afriend 
       infoInView:(UIViewController*)superController;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 + (void)showUser:(NSString*)userId 
@@ -33,14 +32,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *snsTagImageView;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
-@property (retain, nonatomic) IBOutlet UILabel *playWithUserLabel;
-@property (retain, nonatomic) IBOutlet UILabel *chatToUserLabel;
-@property (retain, nonatomic) IBOutlet UIButton *drawToUserButton;
-@property (retain, nonatomic) IBOutlet UIButton *exploreUserFeedButton;
-@property (retain, nonatomic) IBOutlet UIButton *chatToUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *followUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
-@property (retain, nonatomic) Friend* targetFriend;
+@property (retain, nonatomic) PBGameUser* targetFriend;
 @property (retain, nonatomic) NSString* userId;
 @property (retain, nonatomic) NSString* userAvatar;
 @property (retain, nonatomic) NSString* userNickName;

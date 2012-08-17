@@ -79,6 +79,9 @@
 @synthesize adView = _adView;
 
 - (void)dealloc {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+    
 //    [playingUserList release];
     [_adView release];
     [myLevelLabel release];
@@ -235,6 +238,8 @@
 
 - (void)rollDiceAgain
 {
+    self.myDiceListHolderView.hidden = YES;
+    
     // TODO: Reduce item and sync to server.
     
     
@@ -243,6 +248,22 @@
     
     // TODO: Update myDiceList view.
     [self performSelector:@selector(rollDiceEnd) withObject:nil afterDelay:1];
+}
+
+
+- (void)someoneUseItem:(NSString *)userId
+                itemId:(int)itemId;
+{
+    switch (itemId) {
+        case ItemTypeRollAgain:
+            // TODO: Show item animation here;
+            [self rollUserBell:userId];
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 
@@ -256,10 +277,6 @@
         default:
             break;
     }
-
-    
-    
-    
 }
 
 - (void)didSelectTool:(NSInteger)index
@@ -363,7 +380,6 @@
 - (void)coinDidRaiseUp:(DiceAvatarView *)view
 {
     [self clearGameResult];
-//    [self dismissAllPopupViews];
 }
 
 - (void)showUserGainCoins
@@ -407,46 +423,6 @@
     [_popupViewManager dismissToolSheetView];
 }
 
-
-
-//- (void)clearUserResult:(NSString *)userId
-//{
-//    [[self resultViewOfUser:userId] setHidden:YES];
-//}
-
-
-//- (void)moveWildsFlagButton
-//{
-//    CGPoint center = CGPointMake(self.wildsFlagButton.center.x - 30, self.wildsFlagButton.center.y);
-//    CAAnimation *moveToLeft = [AnimationManager translationAnimationFrom:self.wildsFlagButton.center to:center duration:1.5];
-//    moveToLeft.beginTime = 0;
-//    moveToLeft.removedOnCompletion = NO;
-//    
-//    CAAnimation *stay = [AnimationManager translationAnimationFrom:center to:center duration:7];
-//    stay.beginTime = 0;
-//    moveToLeft.removedOnCompletion = NO;
-//        
-//    //method2:放入动画数组，统一处理！
-//    CAAnimationGroup* animGroup    = [CAAnimationGroup animation];
-//    
-//    //设置动画代理
-//    animGroup.delegate = nil;
-//    
-//    animGroup.removedOnCompletion = NO;
-//    //        animGroup.beginTime = MOVE_TO_CENTER_DURATION;
-//    
-//    animGroup.duration            = 10;
-//    animGroup.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];    
-//    animGroup.repeatCount         = 1;
-//    animGroup.fillMode            = kCAFillModeForwards;
-//    animGroup.animations          = [NSArray arrayWithObjects:moveToLeft, stay, nil];
-//    //对视图自身的层添加组动画
-//    [self.wildsFlagButton.layer addAnimation:animGroup forKey:@""];
-//}
-
-
-
-
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
@@ -454,7 +430,6 @@
     } else {
         [self quitDiceGame];
     }
-    
 }
 
 - (int)getSelfIndexFromUserList:(NSArray*)userList
@@ -647,7 +622,7 @@
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_OPEN_DICE_REQUEST
-                                    usingBlock:^(NSNotification *notification) {                       
+                                    usingBlock:^(NSNotification *notification) {       
                                         [self someoneOpenDice];         
                                     }];
     
@@ -664,10 +639,19 @@
                                         [self gameOver];         
                                     }];
     
-    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
-                                    usingBlock:^(NSNotification *notification) {                       
-                                        [self someoneUseItem];         
+    [self registerDiceGameNotificationWithName:NOTIFICATION_USER_DICE
+                                    usingBlock:^(NSNotification *notification) { 
+//                                        [self someoneChangeDices];
                                     }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
+                                    usingBlock:^(NSNotification *notification) {  
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        PPDebug(@"[改]user:%@ use item %d.", message.userId, message.useItemRequest.itemId);
+                                        [self someoneUseItem:message.userId 
+                                                      itemId:message.useItemRequest.itemId];         
+                                    }];
+
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_RESPONSE
                                     usingBlock:^(NSNotification *notification) {    
@@ -814,7 +798,6 @@
 - (void)rollDiceBegin
 {
     [self clearGameResult];
-//    [self dismissAllPopupViews];
     self.waittingForNextTurnNoteLabel.hidden = YES;
     [self showBeginNoteAnimation];
     [self rollAllBell];
@@ -895,7 +878,7 @@
 
 - (IBAction)clickOpenDiceButton:(id)sender {
     [self clearAllReciprocol];
-    [_diceService openDice];
+    [_diceService openDice:1];
 }
 
 - (void)someoneOpenDice
@@ -967,7 +950,7 @@
     [self clearAllReciprocol];
 
     if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
-        [_diceService openDice];
+        [_diceService openDice:1];
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }

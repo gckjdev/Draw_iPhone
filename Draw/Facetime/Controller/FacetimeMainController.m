@@ -235,19 +235,7 @@ typedef enum {
 
 - (void)didClickOnAvatar:(DiceAvatarView *)view
 {
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        view.center = CGPointMake(50, 50);
-        view.center = self.view.center;
-    } completion:^(BOOL finished) {
-        
-    }];
-    [UIView animateWithDuration:1 delay:2 options:UIViewAnimationOptionCurveLinear animations:^{
-        view.center = CGPointMake(10, 200);
-    } completion:^(BOOL finished) {
-        
-    }];
-
-    //[view setIsBlackAndWhite:NO];
+    [view startReciprocol:15];
     
 }
 

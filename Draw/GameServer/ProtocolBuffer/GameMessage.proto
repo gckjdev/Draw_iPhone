@@ -56,7 +56,8 @@ message CallDiceResponse {
 }
 
 message OpenDiceRequest {
-  optional int32 openType = 1[default=0];           // 开0，抢开1
+  optional int32 openType = 1[default=0];         // 开0，抢开1
+  optional int32 multiple = 2[default=1];         // 开的倍数
 }
 
 message OpenDiceResponse {
@@ -72,6 +73,10 @@ message UseItemResponse {
   repeated PBDice dices = 20;
 }
 
+message UserDiceNotification {
+  repeated PBUserDice userDice = 1;
+  optional bool cleanAll = 2 [default=false];   // 是否清除之前的所有骰子
+}
 
 message JoinGameRequest {
   required string userId = 1;                    // 用户ID
@@ -298,8 +303,10 @@ message GameMessage {
   optional UnRegisterRoomsNotificationRequest unRegisterRoomsNotificationRequest = 119;
   optional UnRegisterRoomsNotificationResponse unRegisterRoomsNotificationResponse = 120; 
   
+  optional UserDiceNotification userDiceNotification = 121;
+
   optional UseItemRequest useItemRequest = 131;
-  optional UseItemResponse useItemResponse = 132;
+  optional UseItemResponse useItemResponse = 132;  
 
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
   optional int32 maxCount = 1001;           // 返回记录的记录数目
