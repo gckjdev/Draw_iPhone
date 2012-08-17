@@ -206,10 +206,6 @@
 		A4AC51C115C7BFF10041DC86 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BA15C7BFF10041DC86 /* ZAttributedString.m */; };
 		A4AC51C215C7BFF10041DC86 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51BD15C7BFF10041DC86 /* ZFont.m */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		A4AC51F315C911360041DC86 /* diceFont_Simplified.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */; };
-		A4AC51F415C911360041DC86 /* diceFont in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F015C911360041DC86 /* diceFont */; };
-		A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F115C911360041DC86 /* huakanwawa.ttc */; };
-		A4AC51F615C911360041DC86 /* newfan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4AC51F215C911360041DC86 /* newfan.ttf */; };
 		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
@@ -945,6 +941,7 @@
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
 		EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */; };
 		EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */; };
+		EA1700F715DE195D00534891 /* diceFont.zip in Resources */ = {isa = PBXBuildFile; fileRef = EA1700F615DE195D00534891 /* diceFont.zip */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
@@ -1268,10 +1265,6 @@
 		A4AC51BD15C7BFF10041DC86 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
-		A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont_Simplified.ttf; sourceTree = "<group>"; };
-		A4AC51F015C911360041DC86 /* diceFont */ = {isa = PBXFileReference; lastKnownFileType = file; path = diceFont; sourceTree = "<group>"; };
-		A4AC51F115C911360041DC86 /* huakanwawa.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = huakanwawa.ttc; sourceTree = "<group>"; };
-		A4AC51F215C911360041DC86 /* newfan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newfan.ttf; sourceTree = "<group>"; };
 		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
 		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
 		A4B763A015C25208003B4E72 /* Draw.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Draw.proto; sourceTree = "<group>"; };
@@ -2465,6 +2458,7 @@
 		EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayGraffitiController.m; sourceTree = "<group>"; };
 		EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayGraffitiController.xib; sourceTree = "<group>"; };
 		EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayGraffitiController~ipad.xib"; sourceTree = "<group>"; };
+		EA1700F615DE195D00534891 /* diceFont.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = diceFont.zip; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
 		EAE0D143155FB72400827DF9 /* no_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_s@2x.png"; sourceTree = "<group>"; };
@@ -2914,10 +2908,7 @@
 		A4AC51AF15C7BFA50041DC86 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				A4AC51EF15C911360041DC86 /* diceFont_Simplified.ttf */,
-				A4AC51F015C911360041DC86 /* diceFont */,
-				A4AC51F115C911360041DC86 /* huakanwawa.ttc */,
-				A4AC51F215C911360041DC86 /* newfan.ttf */,
+				EA1700F615DE195D00534891 /* diceFont.zip */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -6577,10 +6568,6 @@
 				A4B7640715C28F8E003B4E72 /* DiceRoomListCell.xib in Resources */,
 				A4B7640915C28F8E003B4E72 /* DiceRoomListController.xib in Resources */,
 				CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */,
-				A4AC51F315C911360041DC86 /* diceFont_Simplified.ttf in Resources */,
-				A4AC51F415C911360041DC86 /* diceFont in Resources */,
-				A4AC51F515C911360041DC86 /* huakanwawa.ttc in Resources */,
-				A4AC51F615C911360041DC86 /* newfan.ttf in Resources */,
 				CA82849E15D649C10016CD43 /* wordbase.zip in Resources */,
 				A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */,
 				A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */,
@@ -6667,6 +6654,7 @@
 				C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */,
 				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
 				CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */,
+				EA1700F715DE195D00534891 /* diceFont.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

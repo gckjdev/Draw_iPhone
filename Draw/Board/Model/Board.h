@@ -23,6 +23,13 @@ typedef enum{
     
 }BoardStatus;
 
+typedef enum{    
+    
+    WebTypeLocal = 1,//进行中
+    WebTypeRemote = 2,
+    
+}WebType;
+
 
 @interface Board : NSObject
 {
@@ -37,9 +44,46 @@ typedef enum{
 @property(nonatomic, assign)NSInteger index;
 @property(nonatomic, retain)NSString *version; 
 
-- (id)initWithType:(BoardType)type 
-            status:(BoardStatus)status  
-             index:(NSInteger)index
-            version:(NSString *)version;
+
++(Board *)createBoardWithDictionary:(NSDictionary *)dict;
+- (id)initWithDictionary:(NSDictionary *)dict;
+- (BOOL)isRunning;
+//- (id)initWithType:(BoardType)type 
+//            status:(BoardStatus)status  
+//             index:(NSInteger)index
+//            version:(NSString *)version;
 
 @end
+
+
+
+@interface AdBoard : Board {
+    NSInteger _number;
+    NSArray *_addList;
+}
+@property(nonatomic, retain)NSArray *addList;
+@property(nonatomic, assign)NSInteger number;
+
+@end
+
+@interface WebBoard : Board {
+    WebType _webType;
+    NSString * _localUrl;
+    NSString *_remoteUrl;
+}
+
+@property(nonatomic, assign)WebType webType;
+@property(nonatomic, retain)NSString *localUrl;
+@property(nonatomic, retain)NSString *remoteUrl;
+
+@end
+
+@interface ImageBoard : Board {
+    NSString * _imageUrl;
+    NSString *_clickUrl;
+}
+@property(nonatomic, retain)NSString *imageUrl;
+@property(nonatomic, retain)NSString *clickUrl;
+
+@end
+

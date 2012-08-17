@@ -15,34 +15,117 @@
 @synthesize index = _index;
 @synthesize version = _version;
 
++(Board *)createBoardWithDictionary:(NSDictionary *)dict
+{
+    
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (id)initWithType:(BoardType)type 
-           number:(NSInteger)number 
-               url:(NSString *)url
+            status:(BoardStatus)status  
+             index:(NSInteger)index
+           version:(NSString *)version
 {
     self = [super init];
     if (self) {
         self.type = type;
-        self.number = number;
-        self.url = url;
+        self.status = status;
+        self.index = index;
+        self.version= version;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    PPRelease(_url);
+    PPRelease(_version);
+    [super dealloc];
+}
+- (BOOL)isRunning
+{
+    return self.status == BoardStatusRun;
+}
+
+@end
+
+
+
+@implementation AdBoard
+@synthesize addList = _addList;
+@synthesize number = _number;
+
+- (id)initWithDictionary:(NSDictionary *)dict
+{
+    self = [super initWithDictionary:dict];
+    if (self) {
+    
+    }
+    return self;
+}
+
+
+- (void)dealloc
+{
+    PPRelease(_addList);
     [super dealloc];
 }
 
-+ (Board *)boardWithType:(BoardType)type 
-                 number:(NSInteger)number 
-                     url:(NSString *)url;
+@end
+
+
+@implementation WebBoard
+@synthesize remoteUrl = _remoteUrl;
+@synthesize localUrl = _localUrl;
+@synthesize webType = _webType;
+
+- (id)initWithDictionary:(NSDictionary *)dict
 {
-    return [[[Board alloc] initWithType:type 
-                                   number:number 
-                                       url:url] autorelease];
+    self = [super initWithDictionary:dict];
+    if (self) {
+        
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    PPRelease(_remoteUrl);
+    PPRelease(_localUrl);
+    [super dealloc];
+}
+
+@end
+
+
+@implementation ImageBoard
+@synthesize imageUrl = _imageUrl;
+@synthesize clickUrl = _clickUrl;
+
+- (id)initWithDictionary:(NSDictionary *)dict
+{
+    self = [super initWithDictionary:dict];
+    if (self) {
+        
+    }
+    return self;
 }
 
 
+- (void)dealloc
+{
+    PPRelease(_imageUrl);
+    PPRelease(_clickUrl);
+    [super dealloc];
+}
 
 @end
+
+

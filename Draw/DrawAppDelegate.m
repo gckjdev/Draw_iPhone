@@ -44,6 +44,7 @@
 //#import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
+#import "DiceFontManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -190,6 +191,7 @@ NSString* GlobalGetTrafficServerURL()
     
 
     [WordManager unZipFiles];
+    [DiceFontManager unZipFiles];
     
     return YES;
 }
