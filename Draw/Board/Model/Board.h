@@ -48,10 +48,6 @@ typedef enum{
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict;
 - (id)initWithDictionary:(NSDictionary *)dict;
 - (BOOL)isRunning;
-//- (id)initWithType:(BoardType)type 
-//            status:(BoardStatus)status  
-//             index:(NSInteger)index
-//            version:(NSString *)version;
 
 @end
 
@@ -85,5 +81,14 @@ typedef enum{
 @property(nonatomic, retain)NSString *imageUrl;
 @property(nonatomic, retain)NSString *clickUrl;
 
+@end
+
+
+
+#pragma mark - an inner class used for AdBoard
+
+@interface AdObject{
+    
+}
 @end
 
