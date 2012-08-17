@@ -7,50 +7,36 @@
 //
 
 #import "DiceItem.h"
+#import "ShoppingManager.h"
+#import "ItemManager.h"
+#import "DiceImageManager.h"
+#import "LocaleUtils.h"
 
-@interface DiceItem()
+@implementation Item (DiceItem)
+
++ (Item*)rollAgain
 {
-    int _itemId;
-    NSString *_itemName;
-    int _count;
+    return [[[Item alloc] initWithType:ItemTypeRollAgain 
+                                 image:nil
+                                  name:NSLS(@"kRollAgain")
+                           description:NSLS(@"kRollAgainDescription") 
+                      buyAmountForOnce:1 
+                                 price:[[ShoppingManager defaultManager] getRollAgainPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeRollAgain]] autorelease];
 }
 
-@end
 
-@implementation DiceItem
-
-- (void)dealloc
++ (Item*)cut
 {
-    [_itemName release];
-    [super dealloc];
+    return [[[Item alloc] initWithType:ItemTypeCut 
+                                 image:nil
+                                  name:NSLS(@"kCut")
+                           description:NSLS(@"kCutDescription") 
+                      buyAmountForOnce:1 
+                                 price:[[ShoppingManager defaultManager] getCutPrice] 
+                                amount:[[ItemManager defaultManager] amountForItem:ItemTypeCut]] autorelease];
 }
 
-- (DiceItem *)diceItemWithItemId:(int)itemId
-                        itemName:(NSString *)itemName
-                           count:(int)count
-{
-    if (self = [super init]) {
-        _itemId = itemId;
-        _itemName = [itemName copy];
-        _count = count;
-    }
-    
-    return self;
-}
 
-- (int)itemId
-{
-    return _itemId;
-}
-
-- (NSString *)itemName
-{
-    return _itemName; 
-}
-
-- (int)count
-{
-    return _count;
-}
 
 @end

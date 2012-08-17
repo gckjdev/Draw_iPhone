@@ -37,4 +37,7 @@
 - (NSInteger)getRemoveAdPrice;
 - (SKProduct*)productWithId:(NSString*)product;
 
+- (NSInteger)getRollAgainPrice;
+- (NSInteger)getCutPrice;
+
 @end

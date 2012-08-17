@@ -179,6 +179,9 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_FLOWER_PRICE    400
 #define DEFAULT_REMOVE_AD_PRICE 400
 #define DEFAULT_TIPS_PRICE      400
+#define DEFAULT_ROLL_AGAIN_PRICE 100
+#define DEFAULT_CUT_PRICE       100
+
 - (NSInteger)getColorPrice
 {
     NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
@@ -202,6 +205,31 @@ static ShoppingManager *staticShoppingManager = nil;
     PPDebug(@"<getPenPrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
+
+- (NSInteger)getRollAgainPrice
+{
+    NSString* price = [MobClick getConfigParams:@"ROLL_AGAIN_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getRollAgainPrice>: price is nil, return default price = %d",DEFAULT_ROLL_AGAIN_PRICE);
+        return DEFAULT_ROLL_AGAIN_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getRollAgainPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getCutPrice
+{
+    NSString* price = [MobClick getConfigParams:@"CUT_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getCutPrice>: price is nil, return default price = %d",DEFAULT_CUT_PRICE);
+        return DEFAULT_CUT_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getCutPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
 
 - (NSInteger)getTomatoPrice
 {

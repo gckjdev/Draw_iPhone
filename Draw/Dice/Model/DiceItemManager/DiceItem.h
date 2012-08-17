@@ -7,15 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Item.h"
 
-@interface DiceItem : NSObject
+@interface Item (DiceItem)
 
-- (DiceItem *)diceItemWithItemId:(int)itemId
-                        itemName:(NSString *)itemName
-                           count:(int)count;
-
-- (int)itemId;
-- (NSString *)itemName;
-- (int)count;
++ (Item*)rollAgain;
++ (Item*)cut;
 
 @end

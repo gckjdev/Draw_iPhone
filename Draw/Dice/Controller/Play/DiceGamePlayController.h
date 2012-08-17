@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
-#import "ToolSheetView.h"
+#import "DiceItemListView.h"
 #import "FontLabel.h"
 #import "FontButton.h"
 #import "DiceSelectedView.h"
@@ -22,11 +22,12 @@
 #import "DicesResultView.h"
 #import "AudioManager.h"
 #import "CommonDialog.h"
+#import "ItemService.h"
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <ToolSheetViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate> {
+@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
@@ -34,6 +35,7 @@
     LevelService *_levelService;
     AccountService *_accountService;
     AudioManager *_audioManager;
+//    ItemService *_itemService;
     BOOL _usingWilds;
 }
 
