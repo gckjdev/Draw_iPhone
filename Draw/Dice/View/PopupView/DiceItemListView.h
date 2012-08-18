@@ -29,6 +29,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+           duration:(int)duration
            animated:(BOOL)animated;
 
 - (void)dismissAnimated:(BOOL)animated;

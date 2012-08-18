@@ -20,7 +20,7 @@
                                  image:nil
                                   name:NSLS(@"kRollAgain")
                            description:NSLS(@"kRollAgainDescription") 
-                      buyAmountForOnce:1 
+                      buyAmountForOnce:10 
                                  price:[[ShoppingManager defaultManager] getRollAgainPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeRollAgain]] autorelease];
 }
@@ -32,7 +32,7 @@
                                  image:nil
                                   name:NSLS(@"kCut")
                            description:NSLS(@"kCutDescription") 
-                      buyAmountForOnce:1 
+                      buyAmountForOnce:10
                                  price:[[ShoppingManager defaultManager] getCutPrice] 
                                 amount:[[ItemManager defaultManager] amountForItem:ItemTypeCut]] autorelease];
 }

@@ -76,6 +76,7 @@ message UseItemResponse {
 message UserDiceNotification {
   repeated PBUserDice userDice = 1;
   optional bool cleanAll = 2 [default=false];   // 是否清除之前的所有骰子
+  optional bool isWild = 3 [default=false];     // 是否是斋
 }
 
 message JoinGameRequest {

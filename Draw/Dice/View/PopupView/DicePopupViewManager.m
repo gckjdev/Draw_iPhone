@@ -74,17 +74,20 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
 }
 
-- (void)popupToolSheetViewWithTitleList:(NSArray *)titleList 
-                        countNumberList:(NSArray *)countNumberList 
-                               delegate:(id<DiceItemListViewDelegate>)delegate 
-                                 atView:(UIView *)atView 
-                                 inView:(UIView *)inView  
+- (void)popupItemListViewAtView:(UIView *)atView 
+                         inView:(UIView *)inView 
+                       duration:(int)duration
+                       delegate:(id<DiceItemListViewDelegate>)delegate 
+ 
 {
     [_diceItemListView updateWithDelegate:delegate];
-    [_diceItemListView popupAtView:atView inView:inView animated:YES];
+    [_diceItemListView popupAtView:atView
+                            inView:inView 
+                          duration:duration
+                          animated:YES];
 }
 
-- (void)dismissToolSheetView
+- (void)dismissItemListView
 {
     [_diceItemListView dismissAnimated:YES];
 }

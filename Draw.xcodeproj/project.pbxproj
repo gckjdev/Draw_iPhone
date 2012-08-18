@@ -224,6 +224,7 @@
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4EBF02E1575CB0700B088A0 /* message_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */; };
 		C20118F115B69312001C56A6 /* shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20118F015B69312001C56A6 /* shop@2x.png */; };
+		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1295,6 +1296,7 @@
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		A4EBF02D1575CB0700B088A0 /* message_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_popup@2x.png"; sourceTree = "<group>"; };
 		C20118F015B69312001C56A6 /* shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shop@2x.png"; path = "Images/shop@2x.png"; sourceTree = "<group>"; };
+		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -4456,6 +4458,7 @@
 				CA322191151F64F90039A384 /* CommonDialog.h */,
 				CA322192151F64F90039A384 /* CommonDialog.m */,
 				CA322193151F64F90039A384 /* CommonDialog.xib */,
+				C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */,
 				A3FAE0DD15536EF0008B5827 /* CommonDialog~ipad.xib */,
 				CA1377ED1525A2D700B5790B /* ShareImageManager.h */,
 				CA1377EE1525A2D700B5790B /* ShareImageManager.m */,
@@ -6654,6 +6657,7 @@
 				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
 				CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */,
 				EA1700F715DE195D00534891 /* diceFont.zip in Resources */,
+				C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

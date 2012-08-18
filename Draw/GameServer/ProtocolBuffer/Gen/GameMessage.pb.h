@@ -830,11 +830,15 @@
 @interface UserDiceNotification : PBGeneratedMessage {
 @private
   BOOL hasCleanAll_:1;
+  BOOL hasIsWild_:1;
   BOOL cleanAll_:1;
+  BOOL isWild_:1;
   NSMutableArray* mutableUserDiceList;
 }
 - (BOOL) hasCleanAll;
+- (BOOL) hasIsWild;
 - (BOOL) cleanAll;
+- (BOOL) isWild;
 - (NSArray*) userDiceList;
 - (PBUserDice*) userDiceAtIndex:(int32_t) index;
 
@@ -883,6 +887,11 @@
 - (BOOL) cleanAll;
 - (UserDiceNotification_Builder*) setCleanAll:(BOOL) value;
 - (UserDiceNotification_Builder*) clearCleanAll;
+
+- (BOOL) hasIsWild;
+- (BOOL) isWild;
+- (UserDiceNotification_Builder*) setIsWild:(BOOL) value;
+- (UserDiceNotification_Builder*) clearIsWild;
 @end
 
 @interface JoinGameRequest : PBGeneratedMessage {
