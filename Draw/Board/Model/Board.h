@@ -55,9 +55,9 @@ typedef enum{
 
 @interface AdBoard : Board {
     NSInteger _number;
-    NSArray *_addList;
+    NSArray *_adList;
 }
-@property(nonatomic, retain)NSArray *addList;
+@property(nonatomic, retain)NSArray *adList;
 @property(nonatomic, assign)NSInteger number;
 
 @end
@@ -87,8 +87,13 @@ typedef enum{
 
 #pragma mark - an inner class used for AdBoard
 
-@interface AdObject{
-    
+@interface AdObject : NSObject{
+    NSString *_platform;
+    NSString *_publishId;
 }
+@property(nonatomic, retain)NSString *platform;
+@property(nonatomic, retain)NSString *publishId;
+
+- (id)initWithDict:(NSDictionary *)dict;
 @end
 

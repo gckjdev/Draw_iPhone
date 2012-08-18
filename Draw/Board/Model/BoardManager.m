@@ -47,4 +47,15 @@ BoardManager *_staticBoardManager = nil;
     [super dealloc];
 }
 
+- (NSArray *)getLastBoardList
+{
+    //get the local board and the resource.
+    return nil;
+}
+- (void)saveBoardList:(NSArray *)boardList
+{
+    //TODO save the boardList and the related resource.
+}
+
+
 @end

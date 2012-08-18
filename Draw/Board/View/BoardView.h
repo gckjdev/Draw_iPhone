@@ -27,7 +27,7 @@
 @property(nonatomic, retain)Board *board;
 @property(nonatomic, assign)id<BoardViewDelegate>delegate;
 
-+ (BoardView *)creatBoardView:(Board *)board;
++ (BoardView *)createBoardView:(Board *)board;
 - (id)initWithBoard:(Board *)board;
 - (void)loadView;
 

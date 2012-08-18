@@ -8,7 +8,7 @@
 
 #import "BoardView.h"
 
-@interface ImageBoardView : BoardView
+@interface ImageBoardView : BoardView<UIGestureRecognizerDelegate>
 {
     
 }

@@ -7,8 +7,7 @@
 //
 
 #import "EntryController.h"
-#import "Board.h"
-#import "BoardView.h"
+//#import "Board.h"
 
 @implementation EntryController
 
@@ -29,11 +28,27 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)didGetBoards:(NSArray *)boards 
+          resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        for (Board *board in boards) {
+            if (board.type == BoardTypeWeb) {
+                BoardView *boardView = [BoardView createBoardView:board];
+                [self.view addSubview:boardView];
+                [boardView loadView];
+            }
+        }
+    }
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[BoardService defaultService] getBoardsWithDelegate:self];
 //    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://localhost"];
 //    BoardView *boardView = [BoardView creatBoardView:board];
 //    [self.view addSubview:boardView];
