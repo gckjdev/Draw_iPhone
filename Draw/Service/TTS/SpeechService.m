@@ -61,6 +61,11 @@ static SpeechService *_defaultSpeechService = nil;
 
 - (void)play:(NSString *)text gender:(BOOL)isMale
 {
+    [self play:text gender:isMale speed:5];
+}
+
+- (void)play:(NSString *)text gender:(BOOL)isMale speed:(unsigned int)speed
+{
     if ([ConfigManager getChatVoiceEnable] == EnableNot) {
         return;
     } 
@@ -80,7 +85,7 @@ static SpeechService *_defaultSpeechService = nil;
         }
         
         //speed 0至10
-        [_iFlySynthesizerControl setSpeed:5];
+        [_iFlySynthesizerControl setSpeed:speed];
         [_iFlySynthesizerControl start];
     }
 }
