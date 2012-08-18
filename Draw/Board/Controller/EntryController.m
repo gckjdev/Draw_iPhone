@@ -7,6 +7,7 @@
 //
 
 #import "EntryController.h"
+#import "BoardPanel.h"
 //#import "Board.h"
 
 @implementation EntryController
@@ -32,13 +33,9 @@
           resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-        for (Board *board in boards) {
-            if (board.type == BoardTypeWeb) {
-                BoardView *boardView = [BoardView createBoardView:board];
-                [self.view addSubview:boardView];
-                [boardView loadView];
-            }
-        }
+        BoardPanel *boardPanel = [BoardPanel boardPanel];
+        [boardPanel setBoardList:boards];
+        [self.view addSubview:boardPanel];
     }
 }
 

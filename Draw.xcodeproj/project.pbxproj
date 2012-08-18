@@ -938,6 +938,8 @@
 		CAEECDAF15DDEEF700FA5A2A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA515DDEEF700FA5A2A /* BoardView.m */; };
 		CAEECDB015DDEEF700FA5A2A /* WebBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */; };
 		CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */; };
+		CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */; };
+		CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		EA01D156158BAB1600920A64 /* ReplayGraffitiController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01D153158BAB1600920A64 /* ReplayGraffitiController.m */; };
@@ -2456,6 +2458,9 @@
 		CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardNetworkConstant.h; sourceTree = "<group>"; };
 		CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBoardView.h; sourceTree = "<group>"; };
 		CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBoardView.m; sourceTree = "<group>"; };
+		CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardPanel.h; sourceTree = "<group>"; };
+		CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardPanel.m; sourceTree = "<group>"; };
+		CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardPanel.xib; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -5997,6 +6002,9 @@
 				CAEECD9215DDEEF700FA5A2A /* EntryController.h */,
 				CAEECD9315DDEEF700FA5A2A /* EntryController.m */,
 				CAEECD9415DDEEF700FA5A2A /* EntryController.xib */,
+				CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */,
+				CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */,
+				CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6658,6 +6666,7 @@
 				CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */,
 				EA1700F715DE195D00534891 /* diceFont.zip in Resources */,
 				C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */,
+				CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7136,6 +7145,7 @@
 				A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */,
 				A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */,
 				A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */,
+				CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
