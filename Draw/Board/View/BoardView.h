@@ -13,8 +13,8 @@
 @protocol BoardViewDelegate <NSObject>
 
 @optional 
-- (void)boardView:(BoardView *)BoardView 
-   didCaptureRequest:(NSURLRequest *)request;
+- (void)boardView:(BoardView *)boardView 
+didCaptureRequest:(NSURL *)URL;
 
 @end
 

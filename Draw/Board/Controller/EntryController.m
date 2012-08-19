@@ -33,7 +33,7 @@
           resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-        BoardPanel *boardPanel = [BoardPanel boardPanel];
+        BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
         [boardPanel setBoardList:boards];
         [self.view addSubview:boardPanel];
     }
@@ -46,13 +46,6 @@
 {
     [super viewDidLoad];
     [[BoardService defaultService] getBoardsWithDelegate:self];
-//    Board *board = [Board boardWithType:BoardTypeRemote number:0 url:@"http://localhost"];
-//    BoardView *boardView = [BoardView creatBoardView:board];
-//    [self.view addSubview:boardView];
-//    [boardView loadView];
-
-
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload

@@ -51,7 +51,7 @@ JumpManager *_staticJumpManager = nil;
     return ([URL.host isEqualToString:BOARD_HOST]);
 }
 
-- (void)JumpBoardView:(BoardView *)boardView 
+- (void)jumpBoardView:(BoardView *)boardView 
            controller:(UIViewController *)controller 
               request:(NSURL *)URL
 {

@@ -15,7 +15,7 @@
 
 + (JumpManager *)defaultManager;
 
-- (void)JumpBoardView:(BoardView *)boardView 
+- (void)jumpBoardView:(BoardView *)boardView 
        controller:(UIViewController *)controller 
           request:(NSURL *)URL;
 

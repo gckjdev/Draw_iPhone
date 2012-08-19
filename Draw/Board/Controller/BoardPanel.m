@@ -7,18 +7,22 @@
 //
 
 #import "BoardPanel.h"
+#import "JumpManager.h"
 
 @implementation BoardPanel
 @synthesize scrollView;
+@synthesize controller = _controller;
 
-+ (BoardPanel *)boardPanel
++ (BoardPanel *)boardPanelWithController:(UIViewController *)controller;
 {
     static NSString *identifier = @"BoardPanel";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
     }
-    return  [topLevelObjects objectAtIndex:0];
+    BoardPanel *panel = [topLevelObjects objectAtIndex:0];
+    panel.controller = controller;
+    return  panel;
 }
 
 #define PAGE_WIDTH 320
@@ -42,8 +46,7 @@
 - (void)setBoardList:(NSArray *)boardList
 {
     [scrollView setContentSize:CGSizeMake([boardList count] * PAGE_WIDTH, PAGE_HEIGHT)];
-    
-    
+        
     int i = 0;
     for (Board *board in boardList) {
         BoardView *boardView = [BoardView createBoardView:board];
@@ -54,8 +57,16 @@
         }
     }
 }
+- (void)boardView:(BoardView *)boardView 
+didCaptureRequest:(NSURL *)URL
+{
+    [[JumpManager defaultManager] jumpBoardView:boardView controller:self.controller request:URL];
+}
+
+
 - (void)dealloc {
     PPRelease(scrollView);
+    PPRelease(_controller);
     [super dealloc];
 }
 @end
