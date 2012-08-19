@@ -831,6 +831,8 @@
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
 		CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CAD15E09150006E447B /* JumpManager.m */; };
+		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
+		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
 		CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA02C1615C3D85C00273637 /* change_bg@2x.png */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
@@ -2274,6 +2276,10 @@
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		CA9C8CAC15E09150006E447B /* JumpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpManager.h; sourceTree = "<group>"; };
 		CA9C8CAD15E09150006E447B /* JumpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpManager.m; sourceTree = "<group>"; };
+		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
+		CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQueryComponents.m; sourceTree = "<group>"; };
+		CA9C8CBE15E0DE88006E447B /* JumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpHandler.h; sourceTree = "<group>"; };
+		CA9C8CBF15E0DE88006E447B /* JumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpHandler.m; sourceTree = "<group>"; };
 		CAA02C1615C3D85C00273637 /* change_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "change_bg@2x.png"; sourceTree = "<group>"; };
 		CAA0E6A415147DFF00FD8C3E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
@@ -3891,6 +3897,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				CA9C8CBA15E0D94A006E447B /* URL */,
 				C28207E01552D974006FBB0F /* Audio */,
 				CA4216251522A0E800FAA008 /* StoreKit */,
 				CA103D4D1509A56100F60C03 /* AddressBook */,
@@ -5598,6 +5605,15 @@
 			path = Draw_Common;
 			sourceTree = "<group>";
 		};
+		CA9C8CBA15E0D94A006E447B /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */,
+				CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */,
+			);
+			path = URL;
+			sourceTree = "<group>";
+		};
 		CA9DB929154E75070031DBBD /* Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -6018,6 +6034,8 @@
 				CAEECD9915DDEEF700FA5A2A /* BoardManager.m */,
 				CA9C8CAC15E09150006E447B /* JumpManager.h */,
 				CA9C8CAD15E09150006E447B /* JumpManager.m */,
+				CA9C8CBE15E0DE88006E447B /* JumpHandler.h */,
+				CA9C8CBF15E0DE88006E447B /* JumpHandler.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7152,6 +7170,8 @@
 				A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */,
 				CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */,
 				CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */,
+				CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */,
+				CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

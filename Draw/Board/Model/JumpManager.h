@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JumpHandler.h"
 
+
+@class BoardView;
 @interface JumpManager : NSObject
+
++ (JumpManager *)defaultManager;
+
+- (void)JumpBoardView:(BoardView *)boardView 
+       controller:(UIViewController *)controller 
+          request:(NSURL *)URL;
+
+//is handled by the board view self?
+- (BOOL)innerJump:(NSURL *)URL;
+
 
 @end
