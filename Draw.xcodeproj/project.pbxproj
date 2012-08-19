@@ -830,6 +830,7 @@
 		CA985EB715A53C6B00CAF51A /* new_icon_ipad2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB315A53C6B00CAF51A /* new_icon_ipad2.png */; };
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
+		CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CAD15E09150006E447B /* JumpManager.m */; };
 		CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA02C1615C3D85C00273637 /* change_bg@2x.png */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
@@ -2271,6 +2272,8 @@
 		CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QAdditions.h"; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CA9C8CAC15E09150006E447B /* JumpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpManager.h; sourceTree = "<group>"; };
+		CA9C8CAD15E09150006E447B /* JumpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpManager.m; sourceTree = "<group>"; };
 		CAA02C1615C3D85C00273637 /* change_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "change_bg@2x.png"; sourceTree = "<group>"; };
 		CAA0E6A415147DFF00FD8C3E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
@@ -2458,9 +2461,9 @@
 		CAEECDD115DE1DDE00FA5A2A /* BoardNetworkConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardNetworkConstant.h; sourceTree = "<group>"; };
 		CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBoardView.h; sourceTree = "<group>"; };
 		CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBoardView.m; sourceTree = "<group>"; };
-		CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardPanel.h; sourceTree = "<group>"; };
-		CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardPanel.m; sourceTree = "<group>"; };
-		CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardPanel.xib; sourceTree = "<group>"; };
+		CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardPanel.h; path = ../Controller/BoardPanel.h; sourceTree = "<group>"; };
+		CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardPanel.m; path = ../Controller/BoardPanel.m; sourceTree = "<group>"; };
+		CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BoardPanel.xib; path = ../Controller/BoardPanel.xib; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -6002,9 +6005,6 @@
 				CAEECD9215DDEEF700FA5A2A /* EntryController.h */,
 				CAEECD9315DDEEF700FA5A2A /* EntryController.m */,
 				CAEECD9415DDEEF700FA5A2A /* EntryController.xib */,
-				CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */,
-				CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */,
-				CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6016,6 +6016,8 @@
 				CAEECD9715DDEEF700FA5A2A /* Board.m */,
 				CAEECD9815DDEEF700FA5A2A /* BoardManager.h */,
 				CAEECD9915DDEEF700FA5A2A /* BoardManager.m */,
+				CA9C8CAC15E09150006E447B /* JumpManager.h */,
+				CA9C8CAD15E09150006E447B /* JumpManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6049,10 +6051,13 @@
 		CAEECDA115DDEEF700FA5A2A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */,
-				CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */,
+				CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */,
+				CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */,
+				CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */,
 				CAEECDA415DDEEF700FA5A2A /* BoardView.h */,
 				CAEECDA515DDEEF700FA5A2A /* BoardView.m */,
+				CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */,
+				CAEECDA315DDEEF700FA5A2A /* AdBoardView.m */,
 				CAEECDA615DDEEF700FA5A2A /* WebBoardView.h */,
 				CAEECDA715DDEEF700FA5A2A /* WebBoardView.m */,
 				CAEECDDE15DE28A600FA5A2A /* ImageBoardView.h */,
@@ -7146,6 +7151,7 @@
 				A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */,
 				A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */,
 				CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */,
+				CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
