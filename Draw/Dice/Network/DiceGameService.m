@@ -178,12 +178,15 @@ static DiceGameService* _defaultService;
             // TODO
             [self handleRollDiceEnd:message];
             break;
+            
         case GameCommandTypeNextPlayerStartNotificationRequest:
             [self handleNextPlayerStartNotification:message];
             break;
+            
         case GameCommandTypeCallDiceRequest:
             [self handleCallDiceRequest:message];
             break;
+            
         case GameCommandTypeCallDiceResponse:
             [self handleCallDiceResponse:message];
             break;
@@ -191,9 +194,11 @@ static DiceGameService* _defaultService;
         case GameCommandTypeOpenDiceRequest: 
             [self handleOpenDiceRequest:message];
             break;
+            
         case GameCommandTypeOpenDiceResponse: 
             [self handleOpenDiceResponse:message];
             break;
+            
         case GameCommandTypeGameOverNotificationRequest:
             [self handleGameOverNotificationRequest:message];
             break;
@@ -209,7 +214,20 @@ static DiceGameService* _defaultService;
         case GameCommandTypeUseItemRequest:
             [self handleUseItemRequest:message];
             break;
+            
+        case GameCommandTypeChatRequest:
+            break;
 
+        case GameCommandTypeChatResponse:
+            break;
+            
+        case GameCommandTypeChatNotificationRequest:
+            
+            break;
+            
+        case GameCommandTypeChatNotificationResponse:
+            
+            break;
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);

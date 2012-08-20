@@ -256,6 +256,7 @@
         case ItemTypeRollAgain:
             // TODO: Show item animation here;
             [self rollUserBell:userId];
+            [self showItemAnimationOnUser:userId itemName:NSLS(@"kRollAgain")];
             break;
             
         default:
@@ -290,6 +291,7 @@
     switch (item.type) {
         case ItemTypeRollAgain:
             [_diceService userItem:ItemTypeRollAgain];
+            [self showItemAnimationOnUser:_userManager.userId itemName:item.itemName];
             break;
             
         case ItemTypeCut:
@@ -1118,6 +1120,23 @@
 - (void)clickBack:(CommonDialog *)dialog
 {
     
+}
+
+#pragma mark - Item animations.
+- (void)showItemAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
+{
+    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
+    label.text = itemName;
+    label.center = self.view.center;
+    
+    [self.view addSubview:label];
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        label.center = [[self bellViewOfUser:userId] center];
+        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
+    } completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
 }
 
 @end
