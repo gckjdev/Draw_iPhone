@@ -7,8 +7,10 @@
 //
 
 #import "PPViewController.h"
+#import "BoardService.h"
+#import "BoardView.h"
 
-@interface EntryController : PPViewController
+@interface EntryController : PPViewController<BoardServiceDelegate>
 - (IBAction)clickBackButton:(id)sender;
 
 @end

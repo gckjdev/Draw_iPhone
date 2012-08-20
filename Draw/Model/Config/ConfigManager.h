@@ -53,6 +53,7 @@ typedef enum{
 
 + (BOOL)wallEnabled;
 
++ (BOOL)isLiarDice;
 + (BOOL)isProVersion;
 + (NSString*)appId;
 

@@ -15,11 +15,13 @@
 @synthesize board = _board;
 @synthesize delegate = _delegate;
 
-#define Board_FRAME ([DeviceDetection isIPAD]?CGRectMake(0, 0, 300 * 2, 200 * 2):CGRectMake(0, 0, 300, 200))
+#define BOARD_WIDTH ([DeviceDetection isIPAD]? 650.0 : 280.0)
+#define SCREEN_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
+#define BOARD_FRAME CGRectMake((SCREEN_WIDTH - BOARD_WIDTH)/2.0, 0, BOARD_WIDTH, BOARD_WIDTH*0.618)
 
 - (id)initWithBoard:(Board *)board
 {
-    self = [super initWithFrame:Board_FRAME];
+    self = [super initWithFrame:BOARD_FRAME];
     if (self) {
         self.board = board;
     }
@@ -32,7 +34,7 @@
     [super dealloc];
     
 }
-+ (BoardView *)creatBoardView:(Board *)board
++ (BoardView *)createBoardView:(Board *)board
 {
     if (board == nil) {
         return nil;
@@ -52,6 +54,29 @@
 - (void)loadView
 {
     //should be override by the sub classes.
+}
+
+
+- (void)innerJump:(NSURL *)URL
+{
+    //should be override by the sub classes.   
+}
+
+//a handle method, used by sub classes.
+- (BOOL)handleTap:(NSURL *)URL
+{
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(boardView:WillHandleJumpURL:)]) {
+        if ([_delegate boardView:self WillHandleJumpURL:URL]) {
+            if (_delegate && [_delegate respondsToSelector:@selector(boardView:HandleJumpURL:)]) {
+                [_delegate boardView:self HandleJumpURL:URL];
+            }
+        }else{
+            [self innerJump:URL];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

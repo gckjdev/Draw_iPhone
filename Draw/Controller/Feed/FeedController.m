@@ -214,7 +214,7 @@
 
 
 - (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 //    [_feedManager cleanData];
     [FeedManager releaseDefaultManager];
 }

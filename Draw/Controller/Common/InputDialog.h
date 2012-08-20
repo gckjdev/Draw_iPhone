@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonInfoView.h"
+
+#define INPUT_DIALOG_THEME_DRAW @"InputDialog"
+#define INPUT_DIALOG_THEME_DICE @"DiceInputDialog"
+
+typedef enum {
+    CommonInputDialogThemeDraw = 0,
+    CommonInputDialogThemeDice = 1
+}CommonInputDialogTheme;
 
 @class InputDialog;
 @protocol InputDialogDelegate <NSObject>
@@ -22,7 +31,7 @@
 - (void)twoInputDifferent;
 @end
 
-@interface InputDialog : UIView<UITextFieldDelegate>
+@interface InputDialog : CommonInfoView<UITextFieldDelegate>
 {
     
 }
@@ -30,7 +39,6 @@
 - (void)setDialogTitle:(NSString *)title;
 - (void)setTargetText:(NSString *)text;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
-@property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UIButton *titleLabel;
@@ -40,8 +48,11 @@
 - (IBAction)clickCancelButton:(id)sender;
 - (IBAction)clickOkButton:(id)sender;
 
-+ (InputDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate;
-- (void)showInView:(UIView *)view;
-- (void)startRunOutAnimation;
++ (InputDialog *)dialogWith:(NSString *)title 
+                   delegate:(id<InputDialogDelegate>)delegate;
++ (InputDialog *)dialogWith:(NSString *)title 
+                   delegate:(id<InputDialogDelegate>)delegate 
+                      theme:(CommonInputDialogTheme)theme;
+
 
 @end

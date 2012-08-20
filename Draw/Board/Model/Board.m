@@ -15,9 +15,15 @@
 @synthesize status = _status;
 @synthesize index = _index;
 @synthesize version = _version;
+@synthesize boardId = _boardId;
+
 
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict
 {
+    if (![dict respondsToSelector:@selector(objectForKey:)]) {
+        return nil;
+    }
+    
     BoardType type = [(NSNumber *)[dict objectForKey:PARA_TYPE] intValue];
     switch (type) {
         case BoardTypeAd:
@@ -35,11 +41,11 @@
 {
     self = [super init];
     if (self) {
-        
         self.type = [(NSNumber *)[dict objectForKey:PARA_TYPE] intValue];
         self.index = [(NSNumber *)[dict objectForKey:PARA_INDEX] intValue];
         self.status = [(NSNumber *)[dict objectForKey:PARA_STATUS] intValue];
         self.version = [dict objectForKey:PARA_VERSION];
+        self.boardId = [dict objectForKey:PARA_BOARDID];
     }
     return self;
 }
@@ -62,6 +68,7 @@
 - (void)dealloc
 {
     PPRelease(_version);
+    PPRelease(_boardId);
     [super dealloc];
 }
 - (BOOL)isRunning
@@ -74,7 +81,7 @@
 
 
 @implementation AdBoard
-@synthesize addList = _addList;
+@synthesize adList = _adList;
 @synthesize number = _number;
 
 - (id)initWithDictionary:(NSDictionary *)dict
@@ -83,10 +90,17 @@
     if (self) {
     
         self.number = [(NSNumber *)[dict objectForKey:PARA_AD_NUMBER] intValue];
-        self.addList = [dict objectForKey:PARA_ADLIST];
-
-//#define PARA_AD_PLATFORM @"adp"
-//#define PARA_AD_PUBLISH_ID @"adpid"        
+        NSArray *adList = [dict objectForKey:PARA_ADLIST];
+        NSMutableArray *temp = [NSMutableArray array];
+        for (NSDictionary *subDict in adList) {
+            
+            //sure it is a dict
+            if ([subDict respondsToSelector:@selector(objectForKey:)]) {
+                AdObject *ad= [[AdObject alloc] initWithDict:subDict];
+                [temp addObject:ad];
+            }
+        }
+        self.adList = temp;
     }
     return self;
 }
@@ -94,7 +108,7 @@
 
 - (void)dealloc
 {
-    PPRelease(_addList);
+    PPRelease(_adList);
     [super dealloc];
 }
 
@@ -150,4 +164,28 @@
 
 @end
 
+
+@implementation AdObject
+
+@synthesize platform = _platform;
+@synthesize publishId = _publishId;
+
+- (id)initWithDict:(NSDictionary *)dict
+{
+    self = [super init];
+    if (self) {
+        self.platform = [dict objectForKey:PARA_AD_PLATFORM];
+        self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(_platform);
+    PPRelease(_publishId);
+    [super dealloc];
+}
+
+@end
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "commonInfoView.h"
 @class CommonDialog;
 typedef enum {
     CommonDialogStyleSingleButton = 0,
@@ -24,19 +25,27 @@ typedef enum {
 - (void)clickBack:(CommonDialog *)dialog;
 @end
 
-@interface CommonDialog : UIView {
+@interface CommonDialog : CommonInfoView {
     
 }
-@property (retain, nonatomic) IBOutlet UIView *contentView;
+
 @property (retain, nonatomic) IBOutlet UIButton *oKButton;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) CommonDialogStyle style;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle delegate:(id<CommonDialogDelegate>)aDelegate;
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate;
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate 
+                                  theme:(CommonDialogTheme)theme;
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
-- (void)showInView:(UIView*)view;
+
 
 @end

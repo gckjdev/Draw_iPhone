@@ -15,6 +15,8 @@
 
 - (void)play:(NSString *)text gender:(BOOL)isMale;
 
+- (void)play:(NSString *)text gender:(BOOL)isMale speed:(unsigned int)speed;
+
 - (void)cancel;
 
 @end

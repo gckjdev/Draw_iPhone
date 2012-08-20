@@ -16,4 +16,7 @@
 
 - (NSArray *)BoardList;
 
+- (NSArray *)getLastBoardList;
+- (void)saveBoardList:(NSArray *)boardList;
+
 @end

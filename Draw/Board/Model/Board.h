@@ -37,12 +37,14 @@ typedef enum{
     BoardType _type;
     BoardStatus _status; //stop or running
     NSString *_version; //if the version is new? or load the local data.
+    NSString *_boardId; //the boardId
 }
 
 @property(nonatomic, assign)BoardType type;
 @property(nonatomic, assign)BoardStatus status;
 @property(nonatomic, assign)NSInteger index;
-@property(nonatomic, retain)NSString *version; 
+@property(nonatomic, retain)NSString *version;
+@property(nonatomic, retain)NSString *boardId; 
 
 
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict;
@@ -55,9 +57,9 @@ typedef enum{
 
 @interface AdBoard : Board {
     NSInteger _number;
-    NSArray *_addList;
+    NSArray *_adList;
 }
-@property(nonatomic, retain)NSArray *addList;
+@property(nonatomic, retain)NSArray *adList;
 @property(nonatomic, assign)NSInteger number;
 
 @end
@@ -87,8 +89,13 @@ typedef enum{
 
 #pragma mark - an inner class used for AdBoard
 
-@interface AdObject{
-    
+@interface AdObject : NSObject{
+    NSString *_platform;
+    NSString *_publishId;
 }
+@property(nonatomic, retain)NSString *platform;
+@property(nonatomic, retain)NSString *publishId;
+
+- (id)initWithDict:(NSDictionary *)dict;
 @end
 

@@ -22,5 +22,5 @@
 }
 
 + (BoardService *)defaultService;
-
+- (void)getBoardsWithDelegate:(id<BoardServiceDelegate>)delegate;
 @end

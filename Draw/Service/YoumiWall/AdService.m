@@ -399,7 +399,7 @@ static AdService* _defaultService;
         ((LmmobAdBannerView*)adView).rootViewController = nil;  
     }
     
-    [AderSDK stopAdService];
+//    [AderSDK stopAdService];
 }
 
 - (void)pauseAdView:(UIView*)adView
@@ -426,27 +426,110 @@ static AdService* _defaultService;
     [AderSDK pauseAdService:NO];
 }
 
-- (UIView*)createAderAdInView:(UIViewController*)superViewContoller
-                    frame:(CGRect)frame 
-                iPadFrame:(CGRect)iPadFrame
+- (UIView*)createAderAdInView:(UIView*)superView
+                        appId:(NSString*)appId
+                        frame:(CGRect)frame 
+                    iPadFrame:(CGRect)iPadFrame
 {
     PPDebug(@"<createAderAdInView>");
-    [AderSDK stopAdService];
+    //    [AderSDK stopAdService];
+    [AderSDK setDelegate:self];    
     if ([DeviceDetection isIPAD]){
-        [AderSDK startAdService:superViewContoller.view 
+        [AderSDK startAdService:superView
+                          appID:appId
+                        adFrame:iPadFrame 
+                          model:MODEL_RELEASE];
+    }
+    else{
+        [AderSDK startAdService:superView
+                          appID:appId
+                        adFrame:frame 
+                          model:MODEL_RELEASE];
+    }
+    
+    return nil;
+}
+
+
+- (UIView*)createAderAdInView:(UIView*)superView
+                        frame:(CGRect)frame 
+                    iPadFrame:(CGRect)iPadFrame
+{
+    PPDebug(@"<createAderAdInView>");
+//    [AderSDK stopAdService];
+    [AderSDK setDelegate:self];    
+    if ([DeviceDetection isIPAD]){
+        [AderSDK startAdService:superView
                           appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:iPadFrame 
                           model:MODEL_RELEASE];
     }
     else{
-        [AderSDK startAdService:superViewContoller.view 
+        [AderSDK startAdService:superView
                           appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:frame 
                           model:MODEL_RELEASE];
     }
     
-    [AderSDK setDelegate:self];    
     return nil;
+}
+
+//
+//- (UIView*)createAderAdInView:(UIViewController*)superViewContoller
+//                    frame:(CGRect)frame 
+//                iPadFrame:(CGRect)iPadFrame
+//{
+//    PPDebug(@"<createAderAdInView>");
+//    [AderSDK stopAdService];
+//    if ([DeviceDetection isIPAD]){
+//        [AderSDK startAdService:superViewContoller.view 
+//                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:iPadFrame 
+//                          model:MODEL_RELEASE];
+//    }
+//    else{
+//        [AderSDK startAdService:superViewContoller.view 
+//                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:frame 
+//                          model:MODEL_RELEASE];
+//    }
+//    
+//    [AderSDK setDelegate:self];    
+//    return nil;
+//}
+
+- (UIView*)createAdInView:(UIView*)superView
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+{
+    return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
+}
+
+- (UIView*)createLmAdInView:(UIView*)superView
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame
+{
+    // Create LM Ad View
+    LmmobAdBannerView* adView = nil;
+    adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
+    adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+    adView.specId = 0;
+    adView.rootViewController = [HomeController defaultInstance];
+    
+    if ([DeviceDetection isIPAD]){
+        [adView setFrame:iPadFrame];
+    }
+    else{
+        [adView setFrame:frame];
+    }
+    
+    adView.tag = AD_VIEW_TAG;
+    adView.appVersionString = [UIUtils getAppVersion];
+    adView.delegate = self;
+    adView.autoRefreshAdTimeOfSeconds = 30;
+    [superView addSubview:adView];    
+    [adView requestBannerAd];        
+    return adView;    
 }
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
@@ -461,7 +544,7 @@ static AdService* _defaultService;
     }
 
     if ([self isShowAderAd] == YES){
-        return [self createAderAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
+        return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
     
     if (useLmAd == NO || [self isShowLmAd] == NO){

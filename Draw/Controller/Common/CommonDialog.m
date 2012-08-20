@@ -7,14 +7,13 @@
 //
 
 #import "CommonDialog.h"
-#import "AnimationManager.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
-#define RUN_OUT_TIME 0.2
-#define RUN_IN_TIME 0.4
+
+#define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
+#define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
 
 @implementation CommonDialog
-@synthesize contentView = _contentView;
 @synthesize oKButton = _OKButton;
 @synthesize backButton = _backButton;
 @synthesize messageLabel = _messageLabel;
@@ -24,8 +23,6 @@
 - (void)dealloc
 {
     _delegate = nil;
-    
-    [_contentView release];
     [_OKButton release];
     [_backButton release];
     [_messageLabel release];
@@ -61,16 +58,10 @@
 
 + (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CommonDialog" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <CommonDialog> but cannot find cell object from Nib");
-        return nil;
-    }
-    CommonDialog* view =  (CommonDialog*)[topLevelObjects objectAtIndex:0];
+    CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
     [view initButtonsWithStyle:aStyle];
     [view initTitles];
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:view removeCompeleted:NO];
-    [view.contentView.layer addAnimation:runIn forKey:@"runIn"];
+    [view appear];
     
     //init the button
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -82,12 +73,48 @@
     
 }
 
-- (void)showInView:(UIView*)view
++ (CommonDialog *)createDialogWithTheme:(CommonDialogTheme)theme
 {
-    [view addSubview:self];
+    CommonDialog* view;
+    switch (theme) {
+        case CommonDialogThemeDice: {
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE]; 
+        } break;
+        case CommonDialogThemeDraw: {
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
+        } break;
+        default:
+            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
+            view = nil;
+    }   
+    return view;
 }
 
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle delegate:(id<CommonDialogDelegate>)aDelegate
++ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle 
+                                  theme:(CommonDialogTheme)theme
+{
+
+    CommonDialog* view = [self createDialogWithTheme:theme];
+    if (view) {
+        [view initButtonsWithStyle:aStyle];
+        [view initTitles];
+        
+        //init the button
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+        view.tag = 0; 
+    }
+    return view;
+    
+}
+
+
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate
 {
     CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
     view.delegate = aDelegate;
@@ -95,6 +122,19 @@
     [view setMessage:message];
     return view;
     
+}
+
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate 
+                                  theme:(CommonDialogTheme)theme
+{
+    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:theme];
+    view.delegate = aDelegate;
+    [view setTitle:title];
+    [view setMessage:message];
+    return view;
 }
 
 - (void)setTitle:(NSString *)title
@@ -112,30 +152,12 @@
     [self.messageLabel setText:message];
 }
 
-
-- (void)startRunOutAnimation
-{
-    CAAnimation *runOut = [AnimationManager scaleAnimationWithFromScale:1 toScale:0.1 duration:RUN_OUT_TIME delegate:self removeCompeleted:NO];
-    [runOut setValue:@"runOut" forKey:@"AnimationKey"];
-    [_contentView.layer addAnimation:runOut forKey:@"runOut"];
-    
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    NSString* value = [anim valueForKey:@"AnimationKey"];
-    if ([value isEqualToString:@"runOut"]) {
-        [self setHidden:YES];
-        [self removeFromSuperview];
-    }
-}
-
 - (IBAction)clickOk:(id)sender
 {
     if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
         [_delegate clickOk:self];
     }
-    [self startRunOutAnimation];
+    [self disappear];
 }
 
 - (IBAction)clickBack:(id)sender
@@ -143,11 +165,8 @@
     if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
         [_delegate clickBack:self];
     }
-        [self startRunOutAnimation];
+    [self disappear];
 }
-
-
-
 
 - (id)initWithFrame:(CGRect)frame
 {
