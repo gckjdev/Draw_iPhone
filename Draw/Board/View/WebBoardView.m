@@ -61,10 +61,11 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(boardView:didCaptureRequest:)]) {
-        [self.delegate boardView:self didCaptureRequest:request];
+    if ([self handleTap:request.URL]) {
+        return NO;
+    }else{
+        return YES;
     }
-    return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

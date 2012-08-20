@@ -43,11 +43,14 @@
     return touch.view == _imageView;
 }
 
+
+
 - (void)didTapImageView:(UITapGestureRecognizer *)tap
 {
     if (tap.state == UIGestureRecognizerStateEnded) {
-        //respons to the delegate
-        PPDebug(@"did tap the image, url = %@", [(ImageBoard *)self.board clickUrl]);
+        NSString *url = [(ImageBoard *)self.board clickUrl];
+        NSURL *URL = [NSURL URLWithString:url];
+        [self handleTap:URL];
     }
 }
 
@@ -64,6 +67,13 @@
 }
 
 
+//override.
+- (void)innerJump:(NSURL *)URL
+{
+    //open a web view.
+}
+
+//override.
 - (void)loadView
 {
     [_imageView clear];

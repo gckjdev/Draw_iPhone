@@ -8,6 +8,7 @@
 
 #import "JumpHandler.h"
 #import "FeedController.h"
+#import "LmWallService.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -68,7 +69,7 @@
     NSString *gameId = [URL.queryComponents objectForKey:BOARD_PARA_GAME];
     UIViewController *gameController = [self controllerForGameId:gameId];
     if (gameController) {
-        [controller.navigationController pushViewController:controller animated:YES];
+        [controller.navigationController pushViewController:gameController animated:YES];
     }
     //push the game controller
 }
@@ -98,7 +99,7 @@
                URL:(NSURL *)URL
 {
     [super handleJump:boardView controller:controller URL:URL];
-    //push the intergral controller
+    [[LmWallService defaultService] show:controller];
 }
 @end
 

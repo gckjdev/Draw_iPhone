@@ -9,6 +9,7 @@
 #import "BoardPanel.h"
 #import "JumpManager.h"
 
+
 @implementation BoardPanel
 @synthesize scrollView;
 @synthesize controller = _controller;
@@ -51,17 +52,29 @@
     for (Board *board in boardList) {
         BoardView *boardView = [BoardView createBoardView:board];
         if (boardView) {
+            boardView.delegate = self;
             boardView.frame = [self frameForIndex:i ++ boardView:boardView];
             [boardView loadView];
             [self.scrollView addSubview:boardView];
         }
     }
 }
+
+#pragma mark - BoardView Delegate
 - (void)boardView:(BoardView *)boardView 
-didCaptureRequest:(NSURL *)URL
+    HandleJumpURL:(NSURL *)URL
 {
-    [[JumpManager defaultManager] jumpBoardView:boardView controller:self.controller request:URL];
+    JumpManager *jumpManager = [JumpManager defaultManager];
+    [jumpManager jumpBoardView:boardView controller:self.controller request:URL];
 }
+
+- (BOOL)boardView:(BoardView *)boardView 
+WillHandleJumpURL:(NSURL *)URL
+{
+    JumpManager *jumpManager = [JumpManager defaultManager];
+    return ![jumpManager innerJump:URL];
+}
+
 
 
 - (void)dealloc {
