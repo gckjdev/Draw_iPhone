@@ -226,6 +226,9 @@
 		C20118F115B69312001C56A6 /* shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20118F015B69312001C56A6 /* shop@2x.png */; };
 		C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
+		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
+		C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */; };
+		C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -266,10 +269,6 @@
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C296869A15D8E03C006968BA /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C296869915D8E03C006968BA /* ding.m4a */; };
-		C296872715DCE03F006968BA /* DiceCommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C296871915DCE03F006968BA /* DiceCommonDialog.m */; };
-		C296872815DCE03F006968BA /* DiceCommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296871A15DCE03F006968BA /* DiceCommonDialog.xib */; };
-		C296872915DCE03F006968BA /* DiceInputDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C296871D15DCE03F006968BA /* DiceInputDialog.m */; };
-		C296872A15DCE03F006968BA /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296871E15DCE03F006968BA /* DiceInputDialog.xib */; };
 		C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872115DCE03F006968BA /* DiceItemInfoView.m */; };
 		C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C296872215DCE03F006968BA /* DiceItemInfoView.xib */; };
 		C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C296872515DCE03F006968BA /* DiceUserInfoView.m */; };
@@ -1305,6 +1304,9 @@
 		C20D4B1015DE45B100074885 /* CommonDiceDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonDiceDialog.xib; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
+		C20D4B2615E21C0200074885 /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
+		C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DicePassWordDialog.xib; sourceTree = "<group>"; };
+		C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -1354,12 +1356,6 @@
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		C296869915D8E03C006968BA /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
-		C296871815DCE03F006968BA /* DiceCommonDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceCommonDialog.h; sourceTree = "<group>"; };
-		C296871915DCE03F006968BA /* DiceCommonDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceCommonDialog.m; sourceTree = "<group>"; };
-		C296871A15DCE03F006968BA /* DiceCommonDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceCommonDialog.xib; sourceTree = "<group>"; };
-		C296871C15DCE03F006968BA /* DiceInputDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceInputDialog.h; sourceTree = "<group>"; };
-		C296871D15DCE03F006968BA /* DiceInputDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceInputDialog.m; sourceTree = "<group>"; };
-		C296871E15DCE03F006968BA /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
 		C296872015DCE03F006968BA /* DiceItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemInfoView.h; sourceTree = "<group>"; };
 		C296872115DCE03F006968BA /* DiceItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemInfoView.m; sourceTree = "<group>"; };
 		C296872215DCE03F006968BA /* DiceItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceItemInfoView.xib; sourceTree = "<group>"; };
@@ -3008,8 +3004,6 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C296871715DCE03F006968BA /* DiceCommonDialog */,
-				C296871B15DCE03F006968BA /* DiceInputDialog */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
 				C296872315DCE03F006968BA /* DiceUserInfoView */,
 				C29A300815CA176400BD0B73 /* FontLabel */,
@@ -3169,26 +3163,6 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
-			sourceTree = "<group>";
-		};
-		C296871715DCE03F006968BA /* DiceCommonDialog */ = {
-			isa = PBXGroup;
-			children = (
-				C296871815DCE03F006968BA /* DiceCommonDialog.h */,
-				C296871915DCE03F006968BA /* DiceCommonDialog.m */,
-				C296871A15DCE03F006968BA /* DiceCommonDialog.xib */,
-			);
-			path = DiceCommonDialog;
-			sourceTree = "<group>";
-		};
-		C296871B15DCE03F006968BA /* DiceInputDialog */ = {
-			isa = PBXGroup;
-			children = (
-				C296871C15DCE03F006968BA /* DiceInputDialog.h */,
-				C296871D15DCE03F006968BA /* DiceInputDialog.m */,
-				C296871E15DCE03F006968BA /* DiceInputDialog.xib */,
-			);
-			path = DiceInputDialog;
 			sourceTree = "<group>";
 		};
 		C296871F15DCE03F006968BA /* DiceItemInfoView */ = {
@@ -4493,15 +4467,18 @@
 				CA959892152F546F0093FEDB /* InputDialog.h */,
 				CA959893152F54700093FEDB /* InputDialog.m */,
 				CA959894152F54700093FEDB /* InputDialog.xib */,
+				C20D4B2615E21C0200074885 /* DiceInputDialog.xib */,
 				A3FAE0DF15536F43008B5827 /* InputDialog~ipad.xib */,
 				CAA47812152FF70D005EDB24 /* PassWordDialog.h */,
 				CAA47813152FF70D005EDB24 /* PassWordDialog.m */,
 				CAA47814152FF70D005EDB24 /* PassWordDialog.xib */,
+				C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */,
 				A3FAE0E315536FE3008B5827 /* PassWordDialog~ipad.xib */,
 				C2B3E9931555175B00CCF52C /* DrawConstants.h */,
 				CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */,
 				CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */,
 				CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */,
+				C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */,
 				CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */,
 				C2615A9B1597FBB700CEEC66 /* CommonUserInfoView.h */,
 				C2615A9C1597FBB800CEEC66 /* CommonUserInfoView.m */,
@@ -6695,14 +6672,15 @@
 				A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */,
 				CA54822215D8F5650059A550 /* unloadbg.png in Resources */,
 				CAEECD4915DCD8F100FA5A2A /* draft@2x.png in Resources */,
-				C296872815DCE03F006968BA /* DiceCommonDialog.xib in Resources */,
-				C296872A15DCE03F006968BA /* DiceInputDialog.xib in Resources */,
 				C296872C15DCE03F006968BA /* DiceItemInfoView.xib in Resources */,
 				C296872E15DCE03F006968BA /* DiceUserInfoView.xib in Resources */,
 				CAEECDA915DDEEF700FA5A2A /* EntryController.xib in Resources */,
 				EA1700F715DE195D00534891 /* diceFont.zip in Resources */,
 				C20D4B1115DE45B100074885 /* CommonDiceDialog.xib in Resources */,
 				CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */,
+				C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */,
+				C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */,
+				C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7165,8 +7143,6 @@
 				CA82847515D637930016CD43 /* zip.c in Sources */,
 				CA82847615D637930016CD43 /* SSZipArchive.m in Sources */,
 				A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */,
-				C296872715DCE03F006968BA /* DiceCommonDialog.m in Sources */,
-				C296872915DCE03F006968BA /* DiceInputDialog.m in Sources */,
 				C296872B15DCE03F006968BA /* DiceItemInfoView.m in Sources */,
 				C296872D15DCE03F006968BA /* DiceUserInfoView.m in Sources */,
 				CAEECDA815DDEEF700FA5A2A /* EntryController.m in Sources */,
