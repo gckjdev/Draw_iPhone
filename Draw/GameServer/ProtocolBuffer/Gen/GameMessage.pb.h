@@ -1698,15 +1698,27 @@
 @interface GameChatRequest : PBGeneratedMessage {
 @private
   BOOL hasChatType_:1;
+  BOOL hasContentType_:1;
+  BOOL hasExpressionId_:1;
+  BOOL hasContentVoiceId_:1;
   BOOL hasContent_:1;
   int32_t chatType;
+  int32_t contentType;
+  int32_t expressionId;
+  int32_t contentVoiceId;
   NSString* content;
   NSMutableArray* mutableToUserIdList;
 }
 - (BOOL) hasContent;
 - (BOOL) hasChatType;
+- (BOOL) hasContentType;
+- (BOOL) hasExpressionId;
+- (BOOL) hasContentVoiceId;
 @property (readonly, retain) NSString* content;
 @property (readonly) int32_t chatType;
+@property (readonly) int32_t contentType;
+@property (readonly) int32_t expressionId;
+@property (readonly) int32_t contentVoiceId;
 - (NSArray*) toUserIdList;
 - (NSString*) toUserIdAtIndex:(int32_t) index;
 
@@ -1760,6 +1772,21 @@
 - (int32_t) chatType;
 - (GameChatRequest_Builder*) setChatType:(int32_t) value;
 - (GameChatRequest_Builder*) clearChatType;
+
+- (BOOL) hasContentType;
+- (int32_t) contentType;
+- (GameChatRequest_Builder*) setContentType:(int32_t) value;
+- (GameChatRequest_Builder*) clearContentType;
+
+- (BOOL) hasExpressionId;
+- (int32_t) expressionId;
+- (GameChatRequest_Builder*) setExpressionId:(int32_t) value;
+- (GameChatRequest_Builder*) clearExpressionId;
+
+- (BOOL) hasContentVoiceId;
+- (int32_t) contentVoiceId;
+- (GameChatRequest_Builder*) setContentVoiceId:(int32_t) value;
+- (GameChatRequest_Builder*) clearContentVoiceId;
 @end
 
 @interface GameChatResponse : PBGeneratedMessage {
