@@ -949,6 +949,8 @@
 		EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */; };
 		EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */; };
 		EA1700F715DE195D00534891 /* diceFont.zip in Resources */ = {isa = PBXBuildFile; fileRef = EA1700F615DE195D00534891 /* diceFont.zip */; };
+		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
+		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAE0D145155FB72400827DF9 /* no_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D143155FB72400827DF9 /* no_s@2x.png */; };
 		EAE0D146155FB72400827DF9 /* yes_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE0D144155FB72400827DF9 /* yes_s@2x.png */; };
@@ -2478,6 +2480,8 @@
 		EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayGraffitiController.xib; sourceTree = "<group>"; };
 		EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayGraffitiController~ipad.xib"; sourceTree = "<group>"; };
 		EA1700F615DE195D00534891 /* diceFont.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = diceFont.zip; sourceTree = "<group>"; };
+		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
 		EAE0D143155FB72400827DF9 /* no_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_s@2x.png"; sourceTree = "<group>"; };
@@ -2960,9 +2964,11 @@
 				A4B763F515C28F8E003B4E72 /* DiceRoomListCell.h */,
 				A4B763F615C28F8E003B4E72 /* DiceRoomListCell.m */,
 				A4B763F715C28F8E003B4E72 /* DiceRoomListCell.xib */,
+				EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */,
 				A4B763F815C28F8E003B4E72 /* DiceRoomListController.h */,
 				A4B763F915C28F8E003B4E72 /* DiceRoomListController.m */,
 				A4B763FA15C28F8E003B4E72 /* DiceRoomListController.xib */,
+				EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -6681,6 +6687,8 @@
 				C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */,
 				C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */,
 				C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */,
+				EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */,
+				EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
