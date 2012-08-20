@@ -24,6 +24,7 @@ typedef enum{
 #define BOARD_HTTP_SCHEME @"http"
 #define BOARD_PARA_TYPE @"type"
 #define BOARD_PARA_GAME @"game"
+#define BOARD_PARA_FUNC @"func"
 #define BOARD_PARA_URL @"url"
 
 

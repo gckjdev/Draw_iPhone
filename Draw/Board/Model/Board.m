@@ -15,6 +15,8 @@
 @synthesize status = _status;
 @synthesize index = _index;
 @synthesize version = _version;
+@synthesize boardId = _boardId;
+
 
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict
 {
@@ -43,6 +45,7 @@
         self.index = [(NSNumber *)[dict objectForKey:PARA_INDEX] intValue];
         self.status = [(NSNumber *)[dict objectForKey:PARA_STATUS] intValue];
         self.version = [dict objectForKey:PARA_VERSION];
+        self.boardId = [dict objectForKey:PARA_BOARDID];
     }
     return self;
 }
@@ -65,6 +68,7 @@
 - (void)dealloc
 {
     PPRelease(_version);
+    PPRelease(_boardId);
     [super dealloc];
 }
 - (BOOL)isRunning
