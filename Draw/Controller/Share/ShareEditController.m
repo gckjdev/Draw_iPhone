@@ -439,15 +439,22 @@ enum {
 {
     [self hideActivity];
     NSString* publishText = self.text;
-    if (qqNick && [[UserManager defaultManager] hasBindQQWeibo]){
+    if (qqNick 
+        && [[UserManager defaultManager] hasBindQQWeibo] 
+        && _snsType == QQ_WEIBO){
         publishText = [publishText stringByAppendingFormat:@" @%@",qqId];       
     }
     
-    if (sinaNick && [[UserManager defaultManager] hasBindSinaWeibo] && [[SinaSNSService defaultService] isAuthorizeExpired] == NO){
+    if (sinaNick 
+        && [[UserManager defaultManager] hasBindSinaWeibo]
+        && [[SinaSNSService defaultService] isAuthorizeExpired] == NO 
+        && _snsType == SINA_WEIBO){
         publishText = [publishText stringByAppendingFormat:@" @%@",sinaNick];
     }
     
-    if (facebookId && [[UserManager defaultManager] hasBindFacebook]){
+    if (facebookId 
+        && [[UserManager defaultManager] hasBindFacebook] 
+        && _snsType == FACEBOOK){
         //publishText = [publishText stringByAppendingString:facebookId];          
     }
     self.shareTextField.text = publishText;
