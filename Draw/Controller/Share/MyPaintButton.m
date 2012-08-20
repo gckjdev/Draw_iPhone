@@ -68,18 +68,22 @@
     if (image == nil) {
         if (paint.drawThumbnailData == nil){
             NSString* imagePath = [MyPaintManager getMyPaintImagePathByCapacityPath:paint.image];
-            paint.thumbImage = [[[UIImage alloc] initWithContentsOfFile:imagePath] autorelease];
-            PPDebug(@"<MyPaintButton>: load image from path = %@", imagePath);
+            if (imagePath) {
+                PPDebug(@"<MyPaintButton>: load image from path = %@", imagePath);
+                paint.thumbImage = [[[UIImage alloc] initWithContentsOfFile:imagePath] autorelease];                
+            }
         }
         else{
             NSData *data = paint.drawThumbnailData;
-            CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
-            CGImageRef imageIndexRef = CGImageSourceCreateImageAtIndex(imageRef, 0, NULL);
-            UIImage* image = [UIImage imageWithCGImage:imageIndexRef];
-            paint.thumbImage = image;
-            CFRelease(imageIndexRef);
-            CFRelease(imageRef);
-            PPDebug(@"<MyPaintButton>: load image from thumbnail data");
+            if (data) {
+                CGImageSourceRef imageRef = CGImageSourceCreateWithData((CFDataRef)data, (CFDictionaryRef)dict);            
+                CGImageRef imageIndexRef = CGImageSourceCreateImageAtIndex(imageRef, 0, NULL);
+                UIImage* image = [UIImage imageWithCGImage:imageIndexRef];
+                paint.thumbImage = image;
+                CFRelease(imageIndexRef);
+                CFRelease(imageRef);
+                PPDebug(@"<MyPaintButton>: load image from thumbnail data");                
+            }
         }
     }
     [self.drawImage setImage:paint.thumbImage];

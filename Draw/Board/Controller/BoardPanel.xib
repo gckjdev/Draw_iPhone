@@ -39,7 +39,7 @@
 					<object class="IBUIScrollView" id="1059163907">
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 173}</string>
+						<string key="NSFrameSize">{320, 198}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="144810561"/>
@@ -68,7 +68,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 173}</string>
+				<string key="NSFrameSize">{320, 198}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1059163907"/>
@@ -155,6 +155,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">BoardPanel</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">scrollView</string>
+						<string key="NS.object.0">UIScrollView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">scrollView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/BoardPanel.h</string>
