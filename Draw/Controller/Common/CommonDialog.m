@@ -73,10 +73,8 @@
     
 }
 
-+ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle 
-                                  theme:(CommonDialogTheme)theme
++ (CommonDialog *)createDialogWithTheme:(CommonDialogTheme)theme
 {
-
     CommonDialog* view;
     switch (theme) {
         case CommonDialogThemeDice: {
@@ -86,24 +84,37 @@
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
         } break;
         default:
-            break;
+            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
+            view = nil;
+    }   
+    return view;
+}
+
++ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle 
+                                  theme:(CommonDialogTheme)theme
+{
+
+    CommonDialog* view = [self createDialogWithTheme:theme];
+    if (view) {
+        [view initButtonsWithStyle:aStyle];
+        [view initTitles];
+        
+        //init the button
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+        view.tag = 0; 
     }
-    [view initButtonsWithStyle:aStyle];
-    [view initTitles];
-    [view appear];
-    
-    //init the button
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    view.tag = 0;
     return view;
     
 }
 
 
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title message:(NSString *)message style:(CommonDialogStyle)aStyle delegate:(id<CommonDialogDelegate>)aDelegate
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate
 {
     CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
     view.delegate = aDelegate;

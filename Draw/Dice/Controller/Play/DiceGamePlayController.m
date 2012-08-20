@@ -129,6 +129,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.itemsBoxButton.enabled = NO;
+
     self.gameBeginNoteLabel.hidden = YES;
     self.gameBeginNoteLabel.text = NSLS(@"kGameBegin");
 //    self.gameBeginNoteLabel.textColor = [UIColor colorWithRed:1.0 green:69.0/255.0 blue:246.0/255.0 alpha:1.0];
@@ -239,7 +241,6 @@
     
     // TODO: Reduce item and sync to server.
     
-    
     // TODO: Show animations.
     [self rollUserBell:_userManager.userId];
     
@@ -255,6 +256,7 @@
         case ItemTypeRollAgain:
             // TODO: Show item animation here;
             [self rollUserBell:userId];
+            [self showItemAnimationOnUser:userId itemName:NSLS(@"kRollAgain")];
             break;
             
         default:
@@ -289,10 +291,12 @@
     switch (item.type) {
         case ItemTypeRollAgain:
             [_diceService userItem:ItemTypeRollAgain];
+            [self showItemAnimationOnUser:_userManager.userId itemName:item.itemName];
             break;
             
         case ItemTypeCut:
-            [_diceService userItem:ItemTypeCut];
+            [self clearAllReciprocol];
+            [_diceService openDice:2];
             break;
             
         default:
@@ -404,14 +408,17 @@
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
         
-        if (result.gainCoins > 0) {
-            [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
-        }else{
-            [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
+        if ([_userManager isMe:userId]) {
+            
+            [_levelService addExp:LIAR_DICE_EXP delegate:self];
+
+            if (result.gainCoins > 0) {
+                [_accountService chargeAccount:result.gainCoins source:LiarDiceWinType];
+            }else{
+                [_accountService deductAccount:abs(result.gainCoins) source:LiarDiceWinType];
+            }
+            self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
         }
-        self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-        
-        [_levelService addExp:LIAR_DICE_EXP delegate:self];
     }
 }
 
@@ -440,7 +447,7 @@
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
-        [self.view addSubview:dialog];
+        [dialog showInView:self.view];
     } else {
         [self quitDiceGame];
     }
@@ -823,6 +830,7 @@
 
 - (void)rollDiceEnd
 {
+    self.itemsBoxButton.enabled = YES;
     [[self selfBellView] setHidden:YES];
     
     DiceShowView *diceShowView = [[[DiceShowView alloc] initWithFrame:CGRectZero dices:[_diceService myDiceList] userInterAction:NO] autorelease];
@@ -988,6 +996,7 @@
 
 - (void)gameOver;
 {
+    self.itemsBoxButton.enabled = NO;
     [self clearAllReciprocol];
     
     // Hidden views.
@@ -1111,6 +1120,23 @@
 - (void)clickBack:(CommonDialog *)dialog
 {
     
+}
+
+#pragma mark - Item animations.
+- (void)showItemAnimationOnUser:(NSString*)userId itemName:(NSString *)itemName
+{
+    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
+    label.text = itemName;
+    label.center = self.view.center;
+    
+    [self.view addSubview:label];
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        label.center = [[self bellViewOfUser:userId] center];
+        label.transform = CGAffineTransformMakeScale(0.3, 0.3);
+    } completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
 }
 
 @end

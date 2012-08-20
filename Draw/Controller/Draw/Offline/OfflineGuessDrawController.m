@@ -777,7 +777,7 @@
 - (IBAction)clickRunAway:(id)sender {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
     dialog.tag = QUIT_DIALOG_TAG;
-    [self.view addSubview:dialog];
+    [dialog showInView:self.view];
 }
 
 - (void)initTargetViews

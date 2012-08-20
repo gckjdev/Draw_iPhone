@@ -69,7 +69,9 @@ JumpManager *_staticJumpManager = nil;
 //is handled by the board view self?
 - (BOOL)innerJump:(NSURL *)URL
 {
-    return ([URL.scheme isEqualToString:BOARD_HTTP_SCHEME]);
+    NSString *scheme = URL.scheme;
+    PPDebug(@"scheme = %@", scheme);
+    return ([URL.scheme isEqualToString:BOARD_HTTP_SCHEME] || [URL.scheme isEqualToString:BOARD_FILE_SCHEME]);
 }
 
 @end
