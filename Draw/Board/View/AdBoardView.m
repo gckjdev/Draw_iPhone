@@ -25,7 +25,7 @@
     [super loadView];
     
 //    AdBoard *abBoard = (AdBoard *)self.board;
-    [[AdService defaultService] createAdInView:self frame:CGRectMake(0, 0, 280, 50) iPadFrame:CGRectMake(0, 0, 0, 0)];
+//    [[AdService defaultService] createAdInView:self frame:CGRectMake(0, 0, 280, 50) iPadFrame:CGRectMake(0, 0, 0, 0)];
 //    [[AdService defaultService] createAdInView:self frame:CGRectMake(0, 100, 280, 50) iPadFrame:CGRectMake(0, 0, 0, 0)];
 //    [[AdService defaultService] createAdInView:self frame:CGRectMake(0, 0, 280, 50) iPadFrame:CGRectMake(0, 0, 0, 0)];
 }
