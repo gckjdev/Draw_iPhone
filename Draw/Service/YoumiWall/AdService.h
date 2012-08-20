@@ -44,6 +44,14 @@
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame;
 
+- (UIView*)createAderAdInView:(UIView*)superView
+                        appId:(NSString*)appId
+                        frame:(CGRect)frame 
+                    iPadFrame:(CGRect)iPadFrame;
+
+- (UIView*)createLmAdInView:(UIView*)superView
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame;
 
 
 @property (nonatomic, retain) PPViewController* viewController;

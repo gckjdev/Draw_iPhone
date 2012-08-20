@@ -53,6 +53,48 @@
     return view;
 }
 
++ (RoomPasswordDialog *)createDialogWithTheme:(CommonInputDialogTheme)theme
+{
+    RoomPasswordDialog* view;
+    switch (theme) {
+        case CommonInputDialogThemeDice: {
+            view = (RoomPasswordDialog*)[self createInfoViewByXibName:DICE_ROOM_PASSWORD_DIALOG]; 
+        } break;
+        case CommonInputDialogThemeDraw: {
+            view = (RoomPasswordDialog*)[self createInfoViewByXibName:ROOM_PASSWORD_DIALOG];
+        } break;
+        default:
+            PPDebug(@"<RoomPasswordDialog> theme %d do not exist",theme);
+            view = nil;
+    }   
+    return view;
+}
+
+
++ (RoomPasswordDialog *)dialogWith:(NSString *)title 
+                          delegate:(id<InputDialogDelegate>)delegate 
+                             theme:(CommonInputDialogTheme)theme
+{
+    RoomPasswordDialog* view = [self createDialogWithTheme:theme];
+    if (view) {
+        //init the button
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        
+        [view updateTextFields];
+        
+        [view setDialogTitle:title];
+        
+        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+        view.delegate = delegate;
+        view.roomNameLabel.text = NSLS(@"kRoomNameLabel");
+        view.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
+    }
+    return view;
+}
+
 - (void)decreaseView:(UIView *)view height:(CGFloat)height
 {
     CGFloat x = view.frame.origin.x;
@@ -127,7 +169,7 @@
     {
         [self handlePasswordIllegal];
     }else{
-        [self startRunOutAnimation];
+        [self disappear];
         [self textFieldsResignFirstResponder];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOk:targetText:)])
         {

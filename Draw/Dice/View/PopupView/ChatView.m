@@ -1,14 +1,14 @@
 //
-//  DiceInputDialog.m
+//  ChatView.m
 //  Draw
 //
-//  Created by Orange on 12-8-16.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by 小涛 王 on 12-8-20.
+//  Copyright (c) 2012年 甘橙软件. All rights reserved.
 //
 
-#import "DiceInputDialog.h"
+#import "ChatView.h"
 
-@implementation DiceInputDialog
+@implementation ChatView
 
 - (id)initWithFrame:(CGRect)frame
 {

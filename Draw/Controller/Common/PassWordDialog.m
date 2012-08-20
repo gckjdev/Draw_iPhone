@@ -59,6 +59,49 @@
     return view;
 }
 
++ (PassWordDialog *)createDialogWithTheme:(CommonInputDialogTheme)theme
+{
+    PassWordDialog* view;
+    switch (theme) {
+        case CommonInputDialogThemeDice: {
+            view = (PassWordDialog*)[self createInfoViewByXibName:DICE_PASSWORD_DIALOG]; 
+        } break;
+        case CommonInputDialogThemeDraw: {
+            view = (PassWordDialog*)[self createInfoViewByXibName:PASSWORD_DIALOG];
+        } break;
+        default:
+            PPDebug(@"<PassWordDialog> theme %d do not exist",theme);
+            view = nil;
+    }   
+    return view;
+}
+
++ (PassWordDialog *)dialogWith:(NSString *)title 
+                      delegate:(id<InputDialogDelegate>)delegate 
+                         theme:(CommonInputDialogTheme)theme
+{
+    PassWordDialog* view = [self createDialogWithTheme:theme];
+    if (view) {
+        //init the button
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        
+        [view updateTextFields];
+        
+        [view setDialogTitle:title];
+        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+        view.delegate = delegate;
+        
+        UserManager *userManager = [UserManager defaultManager];
+        if ([userManager isPasswordEmpty]) {
+            [view hideOldPasswordTextField];
+        }
+    }
+    return  view;
+}
+
 - (void)decreaseView:(UIView *)view height:(CGFloat)height
 {
     CGFloat x = view.frame.origin.x;
@@ -165,7 +208,7 @@
 
 - (IBAction)clickOkButton:(id)sender {
 
-    [self startRunOutAnimation];
+    [self disappear];
     if ([self isPasswordWrong]) 
     {
         [self handlePasswordWrong];

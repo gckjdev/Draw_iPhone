@@ -427,6 +427,31 @@ static AdService* _defaultService;
 }
 
 - (UIView*)createAderAdInView:(UIView*)superView
+                        appId:(NSString*)appId
+                        frame:(CGRect)frame 
+                    iPadFrame:(CGRect)iPadFrame
+{
+    PPDebug(@"<createAderAdInView>");
+    //    [AderSDK stopAdService];
+    [AderSDK setDelegate:self];    
+    if ([DeviceDetection isIPAD]){
+        [AderSDK startAdService:superView
+                          appID:appId
+                        adFrame:iPadFrame 
+                          model:MODEL_RELEASE];
+    }
+    else{
+        [AderSDK startAdService:superView
+                          appID:appId
+                        adFrame:frame 
+                          model:MODEL_RELEASE];
+    }
+    
+    return nil;
+}
+
+
+- (UIView*)createAderAdInView:(UIView*)superView
                         frame:(CGRect)frame 
                     iPadFrame:(CGRect)iPadFrame
 {
@@ -478,6 +503,33 @@ static AdService* _defaultService;
                 iPadFrame:(CGRect)iPadFrame
 {
     return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
+}
+
+- (UIView*)createLmAdInView:(UIView*)superView
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame
+{
+    // Create LM Ad View
+    LmmobAdBannerView* adView = nil;
+    adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
+    adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+    adView.specId = 0;
+    adView.rootViewController = [HomeController defaultInstance];
+    
+    if ([DeviceDetection isIPAD]){
+        [adView setFrame:iPadFrame];
+    }
+    else{
+        [adView setFrame:frame];
+    }
+    
+    adView.tag = AD_VIEW_TAG;
+    adView.appVersionString = [UIUtils getAppVersion];
+    adView.delegate = self;
+    adView.autoRefreshAdTimeOfSeconds = 30;
+    [superView addSubview:adView];    
+    [adView requestBannerAd];        
+    return adView;    
 }
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
