@@ -8,6 +8,8 @@
 
 #import "JumpHandler.h"
 #import "FeedController.h"
+#import "LmWallService.h"
+#import "HomeController.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -50,10 +52,15 @@
 #pragma mark - GameJumpHandler
 @implementation GameJumpHandler
 
-- (UIViewController *)controllerForGameId:(NSString *)gameId
+- (UIViewController *)controllerForGameId:(NSString *)gameId func:(NSString *)func
 {
-    if ([gameId isEqualToString:@"feed"]) {
-        return [[[FeedController alloc] init] autorelease];
+    
+    if ([gameId isEqualToString:@"draw"]) {
+        if ([func isEqualToString:@"feed"]) {
+            return [[[FeedController alloc] init] autorelease];            
+        }else{
+            return [[[HomeController alloc] init] autorelease];            
+        }
     }
     return nil;
 }
@@ -66,9 +73,10 @@
     [super handleJump:boardView controller:controller URL:URL];
 
     NSString *gameId = [URL.queryComponents objectForKey:BOARD_PARA_GAME];
-    UIViewController *gameController = [self controllerForGameId:gameId];
+    NSString *func = [URL.queryComponents objectForKey:BOARD_PARA_FUNC];
+    UIViewController *gameController = [self controllerForGameId:gameId func:func];
     if (gameController) {
-        [controller.navigationController pushViewController:controller animated:YES];
+        [controller.navigationController pushViewController:gameController animated:YES];
     }
     //push the game controller
 }
@@ -98,7 +106,7 @@
                URL:(NSURL *)URL
 {
     [super handleJump:boardView controller:controller URL:URL];
-    //push the intergral controller
+    [[LmWallService defaultService] show:controller];
 }
 @end
 

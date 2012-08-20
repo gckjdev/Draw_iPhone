@@ -37,12 +37,14 @@ typedef enum{
     BoardType _type;
     BoardStatus _status; //stop or running
     NSString *_version; //if the version is new? or load the local data.
+    NSString *_boardId; //the boardId
 }
 
 @property(nonatomic, assign)BoardType type;
 @property(nonatomic, assign)BoardStatus status;
 @property(nonatomic, assign)NSInteger index;
-@property(nonatomic, retain)NSString *version; 
+@property(nonatomic, retain)NSString *version;
+@property(nonatomic, retain)NSString *boardId; 
 
 
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict;

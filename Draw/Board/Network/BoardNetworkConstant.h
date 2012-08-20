@@ -9,6 +9,7 @@
 #import "GameNetworkConstants.h"
 
 #define PARA_INDEX @"idx"
+#define PARA_BOARDID @"bid"
 #define PARA_ADLIST @"adl"
 #define PARA_AD_NUMBER @"adn"
 #define PARA_AD_PLATFORM @"adp"

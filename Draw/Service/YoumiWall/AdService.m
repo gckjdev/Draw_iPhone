@@ -399,7 +399,7 @@ static AdService* _defaultService;
         ((LmmobAdBannerView*)adView).rootViewController = nil;  
     }
     
-    [AderSDK stopAdService];
+//    [AderSDK stopAdService];
 }
 
 - (void)pauseAdView:(UIView*)adView
@@ -426,27 +426,58 @@ static AdService* _defaultService;
     [AderSDK pauseAdService:NO];
 }
 
-- (UIView*)createAderAdInView:(UIViewController*)superViewContoller
-                    frame:(CGRect)frame 
-                iPadFrame:(CGRect)iPadFrame
+- (UIView*)createAderAdInView:(UIView*)superView
+                        frame:(CGRect)frame 
+                    iPadFrame:(CGRect)iPadFrame
 {
     PPDebug(@"<createAderAdInView>");
-    [AderSDK stopAdService];
+//    [AderSDK stopAdService];
+    [AderSDK setDelegate:self];    
     if ([DeviceDetection isIPAD]){
-        [AderSDK startAdService:superViewContoller.view 
+        [AderSDK startAdService:superView
                           appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:iPadFrame 
                           model:MODEL_RELEASE];
     }
     else{
-        [AderSDK startAdService:superViewContoller.view 
+        [AderSDK startAdService:superView
                           appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
                         adFrame:frame 
                           model:MODEL_RELEASE];
     }
     
-    [AderSDK setDelegate:self];    
     return nil;
+}
+
+//
+//- (UIView*)createAderAdInView:(UIViewController*)superViewContoller
+//                    frame:(CGRect)frame 
+//                iPadFrame:(CGRect)iPadFrame
+//{
+//    PPDebug(@"<createAderAdInView>");
+//    [AderSDK stopAdService];
+//    if ([DeviceDetection isIPAD]){
+//        [AderSDK startAdService:superViewContoller.view 
+//                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:iPadFrame 
+//                          model:MODEL_RELEASE];
+//    }
+//    else{
+//        [AderSDK startAdService:superViewContoller.view 
+//                          appID:@"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:frame 
+//                          model:MODEL_RELEASE];
+//    }
+//    
+//    [AderSDK setDelegate:self];    
+//    return nil;
+//}
+
+- (UIView*)createAdInView:(UIView*)superView
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame
+{
+    return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
 }
 
 - (UIView*)createAdInView:(UIViewController*)superViewContoller
@@ -461,7 +492,7 @@ static AdService* _defaultService;
     }
 
     if ([self isShowAderAd] == YES){
-        return [self createAderAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
+        return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
     
     if (useLmAd == NO || [self isShowLmAd] == NO){

@@ -56,4 +56,27 @@
     //should be override by the sub classes.
 }
 
+
+- (void)innerJump:(NSURL *)URL
+{
+    //should be override by the sub classes.   
+}
+
+//a handle method, used by sub classes.
+- (BOOL)handleTap:(NSURL *)URL
+{
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(boardView:WillHandleJumpURL:)]) {
+        if ([_delegate boardView:self WillHandleJumpURL:URL]) {
+            if (_delegate && [_delegate respondsToSelector:@selector(boardView:HandleJumpURL:)]) {
+                [_delegate boardView:self HandleJumpURL:URL];
+            }
+        }else{
+            [self innerJump:URL];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 @end

@@ -51,6 +51,9 @@ JumpManager *_staticJumpManager = nil;
     return ([URL.host isEqualToString:BOARD_HOST]);
 }
 
+
+
+#pragma mark public method.
 - (void)jumpBoardView:(BoardView *)boardView 
            controller:(UIViewController *)controller 
               request:(NSURL *)URL

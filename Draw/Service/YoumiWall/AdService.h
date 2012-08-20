@@ -40,6 +40,11 @@
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
 
+- (UIView*)createAdInView:(UIView*)superView
+                    frame:(CGRect)frame 
+                iPadFrame:(CGRect)iPadFrame;
+
+
 
 @property (nonatomic, retain) PPViewController* viewController;
 //@property (nonatomic, retain) UIViewController* adSuperViewController;

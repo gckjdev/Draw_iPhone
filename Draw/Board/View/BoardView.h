@@ -13,8 +13,12 @@
 @protocol BoardViewDelegate <NSObject>
 
 @optional 
+
 - (void)boardView:(BoardView *)boardView 
-didCaptureRequest:(NSURL *)URL;
+HandleJumpURL:(NSURL *)URL;
+
+- (BOOL)boardView:(BoardView *)boardView 
+WillHandleJumpURL:(NSURL *)URL;
 
 @end
 
@@ -29,6 +33,15 @@ didCaptureRequest:(NSURL *)URL;
 
 + (BoardView *)createBoardView:(Board *)board;
 - (id)initWithBoard:(Board *)board;
+
+
+//override by subclass;
 - (void)loadView;
+- (void)innerJump:(NSURL *)URL;
+
+//a handle method, used by sub classes.
+
+- (BOOL)handleTap:(NSURL *)URL; //if inner Jump return NO.
+
 
 @end
