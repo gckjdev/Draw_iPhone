@@ -439,7 +439,7 @@
 
 - (IBAction)clickRunAwayButton:(id)sender {
     if (![_diceService.diceSession isMeAByStander]) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self theme:CommonDialogThemeDice];
         [self.view addSubview:dialog];
     } else {
         [self quitDiceGame];
