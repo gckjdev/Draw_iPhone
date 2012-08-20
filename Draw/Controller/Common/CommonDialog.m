@@ -97,6 +97,19 @@
     
 }
 
++ (CommonDialog *)createDialogWithTitle:(NSString *)title 
+                                message:(NSString *)message 
+                                  style:(CommonDialogStyle)aStyle 
+                               delegate:(id<CommonDialogDelegate>)aDelegate 
+                                  theme:(CommonDialogTheme)theme
+{
+    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
+    view.delegate = aDelegate;
+    [view setTitle:title];
+    [view setMessage:message];
+    return view;
+}
+
 - (void)setTitle:(NSString *)title
 {
     [self.titleLabel setText:title];
