@@ -26,8 +26,8 @@
     return  panel;
 }
 
-#define PAGE_WIDTH 320
-#define PAGE_HEIGHT 173
+#define PAGE_WIDTH  self.frame.size.width
+#define PAGE_HEIGHT self.frame.size.height
 
 - (CGRect)frameForIndex:(NSInteger)index boardView:(BoardView *)boardView
 {

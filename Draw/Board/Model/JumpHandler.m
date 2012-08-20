@@ -92,7 +92,7 @@
 {
     [super handleJump:boardView controller:controller URL:URL];
     
-    NSString *url = [URL.queryComponents objectForKey:BOARD_PARA_URL];
+//    NSString *url = [URL.queryComponents objectForKey:BOARD_PARA_URL];
     //load the web view handler
     
 }
