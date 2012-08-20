@@ -15,6 +15,11 @@
 
 @implementation ConfigManager
 
++ (BOOL)isLiarDice
+{
+    return YES;
+}
+
 + (BOOL)isProVersion
 {
     return NO;

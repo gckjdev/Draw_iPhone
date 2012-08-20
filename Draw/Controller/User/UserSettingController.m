@@ -72,6 +72,7 @@ enum {
 
 @implementation UserSettingController
 
+@synthesize backgroundImage;
 @synthesize expAndLevelLabel;
 @synthesize saveButton;
 @synthesize titleLabel;
@@ -93,6 +94,7 @@ enum {
     PPRelease(nicknameLabel);
     PPRelease(_gender);
     [expAndLevelLabel release];
+    [backgroundImage release];
     [super dealloc];
 }
 
@@ -200,6 +202,13 @@ enum {
 
 
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
+    
+//    [self.backgroundImage setImage:[UIImage imageNamed:@"gameroom_bg.png"]];
+    if ([ConfigManager isLiarDice]){
+        [self.backgroundImage setImage:[UIImage imageNamed:@"dice_room_background.png"]];
+    }
+    
     [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
     [saveButton setBackgroundImage:[imageManager orangeImage] 
@@ -230,6 +239,7 @@ enum {
     [self setSaveButton:nil];
     [self setNicknameLabel:nil];
     [self setExpAndLevelLabel:nil];
+    [self setBackgroundImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
