@@ -16,6 +16,8 @@
 #define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
 #define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
+#define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 36 : 18 )
+
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
@@ -137,7 +139,7 @@ static DicePopupViewManager *_instance = nil;
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
                                                   fontName:[[DiceFontManager defaultManager] fontName]
-                                                 pointSize:18
+                                                 pointSize:SIZE_FONT_OPEN_DICE
                                               textAlignment:UITextAlignmentCenter] autorelease];
     
     [_openDiceView popupAtView:atView

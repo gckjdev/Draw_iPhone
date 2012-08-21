@@ -23,10 +23,10 @@
 #define WIDTH_DICE(scale)      (([DeviceDetection isIPAD]) ? 34*scale : 17*scale )
 #define HEIGHT_DICE(scale)     (([DeviceDetection isIPAD]) ? 40*scale : 20*scale )
 #define FRAME_DICE_1(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(32*scale, 10*scale, WIDTH_DICE(scale), HEIGHT_DICE(scale)) : CGRectMake(16*scale, 5*scale, WIDTH_DICE(scale), HEIGHT_DICE(scale)))
-#define FRAME_DICE_2(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(8, 24, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(4*scale, 12*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
-#define FRAME_DICE_3(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(52, 22, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(28*scale, 11*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
-#define FRAME_DICE_4(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(18, 48, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(9*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
-#define FRAME_DICE_5(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(48, 48, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(24*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_2(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(8*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(4*scale, 12*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_3(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(56*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(28*scale, 12*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_4(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(18*scale, 48*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(9*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
+#define FRAME_DICE_5(scale)    (([DeviceDetection isIPAD]) ? CGRectMake(48*scale, 48*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) : CGRectMake(24*scale, 24*scale, WIDTH_DICE(scale), WIDTH_DICE(scale)) )
 
 #define DURATION_MOVE_TO_CENTER 1.0
 #define DURATION_MOVE_TO_BACK 1.0
