@@ -10,6 +10,7 @@
 #import "AdBoardView.h"
 #import "WebBoardView.h"
 #import "ImageBoardView.h"
+#import "JumpHandler.h"
 
 @implementation BoardView
 @synthesize board = _board;
@@ -60,6 +61,10 @@
 - (void)innerJump:(NSURL *)URL
 {
     //should be override by the sub classes.   
+    if ([URL.scheme isEqualToString:BOARD_TEL_SCHEME] || [URL.scheme isEqualToString:BOARD_SMS_SCHEME]) {
+        PPDebug(@"share application open URL = %@", URL);
+        [[UIApplication sharedApplication] openURL:URL];
+    }
 }
 
 //a handle method, used by sub classes.
