@@ -27,9 +27,11 @@
     return @"DiceRoomListCell";
 }
 
+#define HEIGHT_DICE_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+
 + (CGFloat)getCellHeight
 {
-    return 102;
+    return HEIGHT_DICE_ROOM_LIST_CELL;
 }
 
 - (void)setCellInfo:(PBGameSession *)session

@@ -158,6 +158,7 @@
 
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
+
     NSString *roomName = targetText;
     NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
     [self showActivityWithText:NSLS(@"kRoomCreating")];
