@@ -252,21 +252,12 @@
     self.opusButton.selected = self.feedButton.selected = NO;
     UIButton *button = (UIButton *)sender;
     button.selected = YES;
-    if (button.tag == FeedListTypeUserOpus) {
-        if (_opusList) {
-            [self reloadView];
-        }else{
-            [self updateFeedList];
-        }
-    }else{
-        if (_feedList) {
-            [self reloadView];
-        }else{
-            [self updateFeedList];
-        }        
+    [self reloadView];
+    if (button.tag == FeedListTypeUserOpus && _opusList == nil) {
+        [self updateFeedList];
+    }else if (_feedList == nil) {
+        [self updateFeedList];
     }
-    
-    
 }
 
 #pragma mark - table view delegate
@@ -308,6 +299,7 @@
     cell.indexPath = indexPath;
     cell.accessoryType = UITableViewCellAccessoryNone;
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [feed updateDesc];
     [cell setCellInfo:feed];
     return cell;
     

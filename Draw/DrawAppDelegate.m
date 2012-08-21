@@ -55,7 +55,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
   return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.11:8100/api/i?";    
+//    return @"http://192.167.1.123:8100/api/i?";    
 }
 
 @implementation DrawAppDelegate

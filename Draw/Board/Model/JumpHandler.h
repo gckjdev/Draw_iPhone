@@ -23,6 +23,9 @@ typedef enum{
 #define BOARD_HOST @"board"
 #define BOARD_HTTP_SCHEME @"http"
 #define BOARD_FILE_SCHEME @"file"
+#define BOARD_TEL_SCHEME @"tel"
+#define BOARD_SMS_SCHEME @"sms"
+
 #define BOARD_PARA_TYPE @"type"
 #define BOARD_PARA_GAME @"game"
 #define BOARD_PARA_FUNC @"func"

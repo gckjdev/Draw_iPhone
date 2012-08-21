@@ -71,7 +71,10 @@ JumpManager *_staticJumpManager = nil;
 {
     NSString *scheme = URL.scheme;
     PPDebug(@"scheme = %@", scheme);
-    return ([URL.scheme isEqualToString:BOARD_HTTP_SCHEME] || [URL.scheme isEqualToString:BOARD_FILE_SCHEME]);
+    return ([URL.scheme isEqualToString:BOARD_HTTP_SCHEME] 
+            || [URL.scheme isEqualToString:BOARD_FILE_SCHEME]
+            || [URL.scheme isEqualToString:BOARD_TEL_SCHEME] 
+            || [URL.scheme isEqualToString:BOARD_SMS_SCHEME]);
 }
 
 @end

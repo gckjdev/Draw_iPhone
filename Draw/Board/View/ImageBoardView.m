@@ -68,10 +68,12 @@
 
 
 //override.
+/*
 - (void)innerJump:(NSURL *)URL
 {
     //open a web view.
 }
+*/
 
 //override.
 - (void)loadView
