@@ -7,13 +7,14 @@
 //
 
 #import "BoardView.h"
-@interface BoardPanel : UIView<BoardViewDelegate>
+@interface BoardPanel : UIView<BoardViewDelegate, UIScrollViewDelegate>
 {
     UIViewController *_controller;
 }
 + (BoardPanel *)boardPanelWithController:(UIViewController *)controller;
 - (void)setBoardList:(NSArray *)boardList;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+- (IBAction)changePage:(id)sender;
 @property (retain, nonatomic) UIViewController *controller;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @end
