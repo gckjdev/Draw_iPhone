@@ -15,4 +15,5 @@
 - (void)setBoardList:(NSArray *)boardList;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) UIViewController *controller;
+@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @end

@@ -37,4 +37,12 @@
 - (UIImage *)fastGameBtnBgImage;
 - (UIImage *)toolsItemBgImage;
 
+- (UIImage *)closeButtonBackgroundImage;
+- (UIImage *)faceBackgroundImage;
+- (UIImage *)helpBackgroundImage;
+- (UIImage *)inputBackgroundImage;
+- (UIImage *)messageTipBackgroundImage;
+- (UIImage *)popupBackgroundImage;
+
+
 @end

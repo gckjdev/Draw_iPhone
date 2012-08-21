@@ -18,7 +18,7 @@
 #import "SpeechService.h"
 
 #import "AdService.h"
-#import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 #import "ItemType.h"
 
@@ -750,7 +750,7 @@
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
     if (view.userId) {
-        [CommonUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
     }
     
 }
@@ -1139,6 +1139,17 @@
     } completion:^(BOOL finished) {
         [label removeFromSuperview];
     }];
+}
+
+- (IBAction)clickChatButton:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.selected = !button.selected;
+    
+    if (button.selected) {
+        [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
+    }else {
+        [_popupViewManager dismissChatView];
+    }
 }
 
 @end
