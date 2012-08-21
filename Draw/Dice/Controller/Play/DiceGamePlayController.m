@@ -18,7 +18,7 @@
 #import "SpeechService.h"
 
 #import "AdService.h"
-#import "CommonUserInfoView.h"
+#import "DiceUserInfoView.h"
 
 #import "ItemType.h"
 
@@ -749,8 +749,10 @@
 #pragma mark - DiceAvatarViewDelegate
 - (void)didClickOnAvatar:(DiceAvatarView*)view
 {
-    // TODO: popup user info.
-    [CommonUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+    if (view.userId) {
+        [DiceUserInfoView showUser:view.userId nickName:nil avatar:nil gender:nil location:nil level:0 hasSina:NO hasQQ:NO hasFacebook:NO infoInView:self];
+    }
+    
 }
 
 

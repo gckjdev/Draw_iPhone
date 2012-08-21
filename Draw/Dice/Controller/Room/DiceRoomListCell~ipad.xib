@@ -44,7 +44,7 @@
 							<object class="IBUIImageView" id="132911993">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{146, 1}, {582, 202}}</string>
+								<string key="NSFrame">{{120, 1}, {602, 202}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -54,7 +54,7 @@
 							<object class="IBUIImageView" id="294178947">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{170, 70}, {530, 1}}</string>
+								<string key="NSFrame">{{148, 70}, {542, 1}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -68,7 +68,7 @@
 							<object class="IBUILabel" id="715735448">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{176, 10}, {523, 50}}</string>
+								<string key="NSFrame">{{158, 11}, {523, 50}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -101,7 +101,7 @@
 							<object class="IBUIView" id="447358239">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{8, 10}, {84, 88}}</string>
+								<string key="NSFrame">{{26, 10}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -118,7 +118,7 @@
 							<object class="IBUIView" id="710531720">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{171, 88}, {84, 88}}</string>
+								<string key="NSFrame">{{149, 88}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -133,7 +133,7 @@
 							<object class="IBUIView" id="233843061">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{283, 88}, {84, 88}}</string>
+								<string key="NSFrame">{{263, 88}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -148,7 +148,7 @@
 							<object class="IBUIView" id="954888800">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{395, 88}, {84, 88}}</string>
+								<string key="NSFrame">{{377, 88}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -163,7 +163,7 @@
 							<object class="IBUIView" id="803803940">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{507, 88}, {84, 88}}</string>
+								<string key="NSFrame">{{491, 88}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -178,7 +178,7 @@
 							<object class="IBUIView" id="988978832">
 								<reference key="NSNextResponder" ref="195118358"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{617, 88}, {84, 88}}</string>
+								<string key="NSFrame">{{605, 88}, {84, 88}}</string>
 								<reference key="NSSuperview" ref="195118358"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -219,19 +219,19 @@
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">backgroundImageView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="132911993"/>
+						<string key="label">roomNameLabel</string>
+						<reference key="source" ref="958483678"/>
+						<reference key="destination" ref="715735448"/>
 					</object>
-					<int key="connectionID">13</int>
+					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">roomNameLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="715735448"/>
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="958483678"/>
+						<reference key="destination" ref="132911993"/>
 					</object>
-					<int key="connectionID">14</int>
+					<int key="connectionID">16</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -258,14 +258,14 @@
 						<reference key="object" ref="958483678"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="294178947"/>
-							<reference ref="447358239"/>
 							<reference ref="132911993"/>
 							<reference ref="988978832"/>
-							<reference ref="803803940"/>
 							<reference ref="233843061"/>
 							<reference ref="710531720"/>
 							<reference ref="715735448"/>
 							<reference ref="954888800"/>
+							<reference ref="447358239"/>
+							<reference ref="803803940"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -344,7 +344,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

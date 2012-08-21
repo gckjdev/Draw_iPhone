@@ -13,8 +13,8 @@
 @class HKGirlFontLabel;
 
 typedef enum {
-    Square = 1,
-    Round = 2,
+    AvatarViewStyle_Square = 1,
+    AvatarViewStyle_Round = 2,
 }AvatarViewStyle;
 
 @protocol DiceAvatarViewDelegate <NSObject>

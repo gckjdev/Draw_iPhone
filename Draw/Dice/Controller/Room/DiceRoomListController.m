@@ -271,7 +271,9 @@
 
 - (IBAction)creatRoom:(id)sender
 {
-    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kCreateRoom") delegate:self];
+    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
+                                                            delegate:self 
+                                                               theme:CommonDialogThemeDice];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     [inputDialog showInView:self.view];
