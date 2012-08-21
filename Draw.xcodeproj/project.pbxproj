@@ -230,6 +230,7 @@
 		C20D4B2715E21C0400074885 /* DiceInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2615E21C0200074885 /* DiceInputDialog.xib */; };
 		C20D4B2915E21CC600074885 /* DicePassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */; };
 		C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */; };
+		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1312,6 +1313,7 @@
 		C20D4B2615E21C0200074885 /* DiceInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceInputDialog.xib; sourceTree = "<group>"; };
 		C20D4B2815E21CC000074885 /* DicePassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DicePassWordDialog.xib; sourceTree = "<group>"; };
 		C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceRoomPasswordDialog.xib; sourceTree = "<group>"; };
+		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -2956,6 +2958,7 @@
 		A4B763F015C28F8E003B4E72 /* Play */ = {
 			isa = PBXGroup;
 			children = (
+				C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */,
 				A4B763F115C28F8E003B4E72 /* DiceGamePlayController.h */,
 				A4B763F215C28F8E003B4E72 /* DiceGamePlayController.m */,
 				A4B763F315C28F8E003B4E72 /* DiceGamePlayController.xib */,
@@ -6694,6 +6697,7 @@
 				C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */,
 				EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */,
 				EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */,
+				C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

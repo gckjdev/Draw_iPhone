@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "DiceGameService.h"
-#import "InputDialog.h"
+#import "RoomPasswordDialog.h"
 @class FontButton;
 
 @interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate> {
