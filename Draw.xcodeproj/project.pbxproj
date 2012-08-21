@@ -833,7 +833,6 @@
 		CA985EB715A53C6B00CAF51A /* new_icon_ipad2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA985EB315A53C6B00CAF51A /* new_icon_ipad2.png */; };
 		CA99D3E815332A2D00477383 /* NSURL+QAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA99D3E615332A2D00477383 /* NSURL+QAdditions.m */; };
 		CA9AA976150F423C009D1CB6 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AA975150F423C009D1CB6 /* DrawUtils.m */; };
-		CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CAD15E09150006E447B /* JumpManager.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
 		CAA02C1715C3D85C00273637 /* change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA02C1615C3D85C00273637 /* change_bg@2x.png */; };
@@ -2282,8 +2281,6 @@
 		CA99D3E715332A2D00477383 /* NSURL+QAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QAdditions.h"; sourceTree = "<group>"; };
 		CA9AA974150F423C009D1CB6 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CA9AA975150F423C009D1CB6 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
-		CA9C8CAC15E09150006E447B /* JumpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpManager.h; sourceTree = "<group>"; };
-		CA9C8CAD15E09150006E447B /* JumpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpManager.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
 		CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQueryComponents.m; sourceTree = "<group>"; };
 		CA9C8CBE15E0DE88006E447B /* JumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpHandler.h; sourceTree = "<group>"; };
@@ -6039,8 +6036,6 @@
 				CAEECD9715DDEEF700FA5A2A /* Board.m */,
 				CAEECD9815DDEEF700FA5A2A /* BoardManager.h */,
 				CAEECD9915DDEEF700FA5A2A /* BoardManager.m */,
-				CA9C8CAC15E09150006E447B /* JumpManager.h */,
-				CA9C8CAD15E09150006E447B /* JumpManager.m */,
 				CA9C8CBE15E0DE88006E447B /* JumpHandler.h */,
 				CA9C8CBF15E0DE88006E447B /* JumpHandler.m */,
 			);
@@ -7179,7 +7174,6 @@
 				A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */,
 				A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */,
 				CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */,
-				CA9C8CAE15E09150006E447B /* JumpManager.m in Sources */,
 				CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */,
 				CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */,
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,

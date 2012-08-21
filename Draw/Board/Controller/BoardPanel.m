@@ -7,12 +7,14 @@
 //
 
 #import "BoardPanel.h"
-#import "JumpManager.h"
+#import "JumpHandler.h"
+//#import "JumpManager.h"
 
 
 @implementation BoardPanel
 @synthesize scrollView;
 @synthesize controller = _controller;
+@synthesize pageControl;
 
 + (BoardPanel *)boardPanelWithController:(UIViewController *)controller;
 {
@@ -64,22 +66,29 @@
 - (void)boardView:(BoardView *)boardView 
     HandleJumpURL:(NSURL *)URL
 {
-    JumpManager *jumpManager = [JumpManager defaultManager];
-    [jumpManager jumpBoardView:boardView controller:self.controller request:URL];
+    if (![URL.host isEqualToString:BOARD_HOST]) {
+        return;
+    }
+    NSDictionary *dict = [URL queryComponents];
+    NSString *typeString = [dict objectForKey:BOARD_PARA_TYPE];
+    JumpType type = [typeString integerValue];
+    JumpHandler *jumpHandler = [JumpHandler createJumpHandlerWithType:type];
+    [jumpHandler handleJump:boardView controller:self.controller URL:URL];    
+    
 }
 
 - (BOOL)boardView:(BoardView *)boardView 
 WillHandleJumpURL:(NSURL *)URL
 {
-    JumpManager *jumpManager = [JumpManager defaultManager];
-    return ![jumpManager innerJump:URL];
+    PPDebug(@"scheme = %@", URL.scheme);
+    return [URL.scheme isEqualToString:BOARD_SCHEME_BOARD];
 }
-
 
 
 - (void)dealloc {
     PPRelease(scrollView);
     PPRelease(_controller);
+    [pageControl release];
     [super dealloc];
 }
 @end
