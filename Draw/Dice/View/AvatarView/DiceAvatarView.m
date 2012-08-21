@@ -157,15 +157,15 @@
 
 - (void)setAvatarStyle:(AvatarViewStyle)style
 {
-    if (style == Square) {
+    if (style == AvatarViewStyle_Square) {
         progressView.hidden = YES;
         imageView.layer.cornerRadius = 0;
-        _currentStyle = Square;
+        _currentStyle = AvatarViewStyle_Square;
         [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     } else {
         progressView.hidden = NO;
         imageView.layer.cornerRadius = imageView.frame.size.width/2;
-        _currentStyle = Round;
+        _currentStyle = AvatarViewStyle_Round;
         [bgView setImage:nil];
     }
     imageView.layer.masksToBounds = YES;

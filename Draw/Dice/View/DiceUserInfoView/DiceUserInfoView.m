@@ -37,6 +37,7 @@
 @synthesize statusLabel;
 @synthesize targetFriend = _targetFriend;
 @synthesize superViewController = _superViewController;
+@synthesize avatar;
 @synthesize userId;
 @synthesize userAvatar;
 @synthesize userNickName;
@@ -64,6 +65,7 @@
     [userLocation release];
     [userId release];
     [levelLabel release];
+    [avatar release];
     [super dealloc];
 }
 
@@ -76,12 +78,9 @@
 #define LEVEL_LABEL_FRAME [DeviceDetection isIPAD]?CGRectMake(0, 0, 30, 21):CGRectMake(0, 0, 60, 45)
 - (void)initAvatar
 {
-    CGRect rect = AVATAR_FRAME;
-    DiceAvatarView* view = [[[DiceAvatarView alloc] initWithUrlString:self.userAvatar
-                                                        frame:rect
-                                                       gender:[@"m" isEqualToString:self.userGender]
-                                                        level:self.userLevel] autorelease];
-    [self.contentView addSubview:view];
+
+    [self.avatar setUrlString:self.userAvatar userId:self.userId gender:[@"m" isEqualToString:self.userGender] level:self.userLevel drunkPoint:0 wealth:0];
+    [self.avatar setAvatarStyle:AvatarViewStyle_Square];
 }
 
 - (void)initButton
@@ -194,7 +193,7 @@
     [self initViewWithUserId:aUser.userId 
                     nickName:aUser.nickName 
                       avatar:aUser.avatar 
-                      gender:aUser.gender 
+                      gender:(aUser.gender?@"m":@"f")
                     location:aUser.location 
                        level:aUser.userLevel
                      hasSina:NO
@@ -205,7 +204,7 @@
 
 - (void)initViewWithUserId:(NSString*)aUserId 
                   nickName:(NSString*)nickName 
-                    avatar:(NSString*)avatar 
+                    avatar:(NSString*)anAvatar 
                     gender:(NSString*)aGender 
                   location:(NSString*)location 
                      level:(int)level
@@ -217,7 +216,7 @@
     
     self.userId = aUserId;
     self.userNickName = nickName;
-    self.userAvatar = avatar;
+    self.userAvatar = anAvatar;
     self.userGender = aGender;
     self.hasQQ = didHasQQ;
     self.hasSina = didHasSina;
@@ -243,14 +242,6 @@
     return view;
 }
 
-+ (void)showUser:(Friend*)afriend 
-      infoInView:(PPViewController<FriendServiceDelegate>*)superController
-{
-    DiceUserInfoView* view = [DiceUserInfoView createUserInfoView];
-    [view initViewWithFriend:afriend];
-    view.superViewController = superController;
-    [superController.view addSubview:view];
-}
 
 + (void)showUser:(NSString*)userId 
         nickName:(NSString*)nickName 
@@ -329,7 +320,7 @@
 
 #pragma mark - user service delegate
 - (void)didGetUserNickName:(NSString*)nickName
-                UserAvatar:(NSString*)avatar
+                UserAvatar:(NSString*)anAvatar
                 UserGender:(NSString*)gender
               UserLocation:(NSString*)location 
                  UserLevel:(NSString*)level 
@@ -343,7 +334,7 @@
     }
     
     if (avatar != nil) {
-        self.userAvatar = avatar;
+        self.userAvatar = anAvatar;
     }
     
     if (gender != nil) {
