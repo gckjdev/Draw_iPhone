@@ -41,16 +41,38 @@ typedef enum{
                                                         appId:appId 
                                                    deviceType:deviceType]; 
         NSInteger errorCode = output.resultCode;
-        NSMutableArray *boardList = nil;
+        NSArray *boardList = nil;
         if (errorCode == ERROR_SUCCESS && [output.jsonDataArray count] != 0) {
-            boardList = [NSMutableArray array];
+            NSMutableArray * unSortedBoardList = [NSMutableArray array];
             for (NSDictionary *dict in output.jsonDataArray) {
                 Board *board = [Board createBoardWithDictionary:dict];
                 if (board) {
-                    [boardList addObject:board];
+                    [unSortedBoardList addObject:board];
                 }
             }
+            
+            for(Board *board in unSortedBoardList){
+                PPDebug(@"befor index : %d", board.index);
+            }
+
+            //sort the boardList by the index
+            boardList = [unSortedBoardList sortedArrayUsingComparator:^(id obj1,id obj2){
+                Board *board1 = (Board *)obj1;
+                Board *board2 = (Board *)obj2;
+                if (board1.index < board2.index) {
+                    return NSOrderedAscending;
+                }else if(board1.index > board2.index){
+                    return NSOrderedDescending;
+                }
+                return NSOrderedSame;
+            }];
+            
+            for(Board *board in boardList){
+                PPDebug(@"after index : %d", board.index);
+            }
+            
         }
+        
         if (delegate && [delegate respondsToSelector:@selector(didGetBoards:resultCode:)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [delegate didGetBoards:boardList resultCode:errorCode]; 

@@ -13,7 +13,8 @@
 //
 //
 //@end
-
+#define PASSWORD_DIALOG @"PassWordDialog"
+#define DICE_PASSWORD_DIALOG    @"DicePassWordDialog"
 
 
 @interface PassWordDialog : InputDialog
@@ -22,6 +23,10 @@
 }
 @property (retain, nonatomic) IBOutlet UITextField *oldPasswordTextField;
 @property (retain, nonatomic) IBOutlet UITextField *anotherPasswordTextField;
-+ (PassWordDialog *)dialogWith:(NSString *)title delegate:(id<InputDialogDelegate>)delegate;
++ (PassWordDialog *)dialogWith:(NSString *)title 
+                      delegate:(id<InputDialogDelegate>)delegate;
++ (PassWordDialog *)dialogWith:(NSString *)title 
+                      delegate:(id<InputDialogDelegate>)delegate 
+                         theme:(CommonInputDialogTheme)theme;
 - (void)hideOldPasswordTextField;
 @end

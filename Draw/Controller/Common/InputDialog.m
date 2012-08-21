@@ -12,7 +12,6 @@
 #import "LocaleUtils.h"
 
 
-
 @implementation InputDialog
 @synthesize cancelButton;
 @synthesize okButton;

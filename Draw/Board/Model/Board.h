@@ -73,7 +73,11 @@ typedef enum{
 @property(nonatomic, assign)WebType webType;
 @property(nonatomic, retain)NSString *localUrl;
 @property(nonatomic, retain)NSString *remoteUrl;
-
+- (NSString *)boardLocalHtmlDir;
+- (NSString *)saveKey;
+- (void)saveLocalURL:(NSURL *)URL;
+- (NSURL *)localURL;
+- (NSURL *)remoteURL;
 @end
 
 @interface ImageBoard : Board {

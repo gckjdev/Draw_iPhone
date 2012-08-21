@@ -9,6 +9,7 @@
 #import "Board.h"
 #import "PPDebug.h"
 #import "BoardNetworkConstant.h"
+#import "FileUtil.h"
 
 @implementation Board
 @synthesize type = _type;
@@ -136,6 +137,48 @@
     PPRelease(_remoteUrl);
     PPRelease(_localUrl);
     [super dealloc];
+}
+
+#define LOCAL_HTML_DIR @"localHtml"
+#define LOCAL_URL_KEY_PREFIX @"lu_"
+
+- (NSString *)boardLocalHtmlDir
+{
+    NSString *path = [FileUtil getAppHomeDir];
+    path = [path stringByAppendingPathComponent:LOCAL_HTML_DIR];
+    path = [path stringByAppendingPathComponent:self.boardId];
+    BOOL flag = [FileUtil createDir:path];
+    if (flag) {
+        return path;        
+    }
+    return nil;
+}
+
+
+- (NSString *)saveKey
+{
+    return [NSString stringWithFormat:@"%@%@_%@",LOCAL_URL_KEY_PREFIX,self.boardId,self.version];
+}
+
+- (void)saveLocalURL:(NSURL *)URL
+{
+    if (URL) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setURL:URL forKey:[self saveKey]];
+        [defaults synchronize];
+    }
+}
+
+- (NSURL *)localURL
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *key = [self saveKey];
+    return  [defaults URLForKey:key];
+}
+
+- (NSURL *)remoteURL
+{
+    return [NSURL URLWithString:self.remoteUrl];
 }
 
 @end
