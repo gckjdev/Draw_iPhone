@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Dice.pb.h"
 #import "DiceItemListView.h"
+#import "ChatView.h"
 
 @interface DicePopupViewManager : NSObject
 
@@ -42,6 +43,12 @@
                        pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissOpenDiceView;
+
+- (void)popupChatViewAtView:(UIView *)atView
+                     inView:(UIView *)inView
+                  deleagate:(id<ChatViewDelegate>)delegate;
+
+- (void)dismissChatView;
 
 
 @end

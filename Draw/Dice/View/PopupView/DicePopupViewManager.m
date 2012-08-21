@@ -21,6 +21,7 @@
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) DiceItemListView *diceItemListView;
 @property (retain, nonatomic) MessageView *openDiceView;
+@property (retain, nonatomic) ChatView *chatView;
 
 @end
 
@@ -31,12 +32,14 @@ static DicePopupViewManager *_instance = nil;
 @synthesize callDiceView = _callDiceView;
 @synthesize diceItemListView = _diceItemListView;
 @synthesize openDiceView = _openDiceView;
+@synthesize chatView = _chatView;
 
 - (void)dealloc
 {
     [_callDiceView release];
     [_diceItemListView release];
     [_openDiceView release];
+    [_chatView release];
     [super dealloc];
 }
 
@@ -53,6 +56,7 @@ static DicePopupViewManager *_instance = nil;
 {
     if (self = [super init]) {
         self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
+        self.chatView = [[[ChatView alloc] init] autorelease];
     }
     
     return self;
@@ -153,6 +157,24 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissOpenDiceView
 {
     [_openDiceView dismissAnimated:YES];
+}
+
+- (void)popupChatViewAtView:(UIView *)atView
+                     inView:(UIView *)inView   
+                  deleagate:(id<ChatViewDelegate>)delegate;
+
+
+{
+    _chatView.delegate = delegate;
+    [_chatView popupAtView:atView 
+                    inView:inView
+                  animated:YES 
+            pointDirection:PointDirectionAuto];
+}
+
+- (void)dismissChatView
+{
+    [_chatView dismissAnimated:YES];
 }
 
 @end

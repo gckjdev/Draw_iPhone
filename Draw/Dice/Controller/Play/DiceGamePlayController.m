@@ -1139,4 +1139,15 @@
     }];
 }
 
+- (IBAction)clickChatButton:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.selected = !button.selected;
+    
+    if (button.selected) {
+        [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
+    }else {
+        [_popupViewManager dismissChatView];
+    }
+}
+
 @end
