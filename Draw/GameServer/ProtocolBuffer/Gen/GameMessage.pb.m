@@ -6332,8 +6332,8 @@ static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance
 @property (retain) NSString* content;
 @property int32_t chatType;
 @property int32_t contentType;
-@property int32_t expressionId;
-@property int32_t contentVoiceId;
+@property (retain) NSString* expressionId;
+@property (retain) NSString* contentVoiceId;
 @end
 
 @implementation GameChatRequest
@@ -6377,6 +6377,8 @@ static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance
 - (void) dealloc {
   self.mutableToUserIdList = nil;
   self.content = nil;
+  self.expressionId = nil;
+  self.contentVoiceId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -6384,8 +6386,8 @@ static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance
     self.content = @"";
     self.chatType = 0;
     self.contentType = 1;
-    self.expressionId = 0;
-    self.contentVoiceId = 0;
+    self.expressionId = @"";
+    self.contentVoiceId = @"";
   }
   return self;
 }
@@ -6425,10 +6427,10 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
     [output writeInt32:4 value:self.contentType];
   }
   if (self.hasExpressionId) {
-    [output writeInt32:5 value:self.expressionId];
+    [output writeString:5 value:self.expressionId];
   }
   if (self.hasContentVoiceId) {
-    [output writeInt32:6 value:self.contentVoiceId];
+    [output writeString:6 value:self.contentVoiceId];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -6457,10 +6459,10 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
     size += computeInt32Size(4, self.contentType);
   }
   if (self.hasExpressionId) {
-    size += computeInt32Size(5, self.expressionId);
+    size += computeStringSize(5, self.expressionId);
   }
   if (self.hasContentVoiceId) {
-    size += computeInt32Size(6, self.contentVoiceId);
+    size += computeStringSize(6, self.contentVoiceId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6595,12 +6597,12 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
         [self setContentType:[input readInt32]];
         break;
       }
-      case 40: {
-        [self setExpressionId:[input readInt32]];
+      case 42: {
+        [self setExpressionId:[input readString]];
         break;
       }
-      case 48: {
-        [self setContentVoiceId:[input readInt32]];
+      case 50: {
+        [self setContentVoiceId:[input readString]];
         break;
       }
     }
@@ -6688,33 +6690,33 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
 - (BOOL) hasExpressionId {
   return result.hasExpressionId;
 }
-- (int32_t) expressionId {
+- (NSString*) expressionId {
   return result.expressionId;
 }
-- (GameChatRequest_Builder*) setExpressionId:(int32_t) value {
+- (GameChatRequest_Builder*) setExpressionId:(NSString*) value {
   result.hasExpressionId = YES;
   result.expressionId = value;
   return self;
 }
 - (GameChatRequest_Builder*) clearExpressionId {
   result.hasExpressionId = NO;
-  result.expressionId = 0;
+  result.expressionId = @"";
   return self;
 }
 - (BOOL) hasContentVoiceId {
   return result.hasContentVoiceId;
 }
-- (int32_t) contentVoiceId {
+- (NSString*) contentVoiceId {
   return result.contentVoiceId;
 }
-- (GameChatRequest_Builder*) setContentVoiceId:(int32_t) value {
+- (GameChatRequest_Builder*) setContentVoiceId:(NSString*) value {
   result.hasContentVoiceId = YES;
   result.contentVoiceId = value;
   return self;
 }
 - (GameChatRequest_Builder*) clearContentVoiceId {
   result.hasContentVoiceId = NO;
-  result.contentVoiceId = 0;
+  result.contentVoiceId = @"";
   return self;
 }
 @end
