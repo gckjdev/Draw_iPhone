@@ -78,6 +78,7 @@
 		A3FAE0E815537040008B5827 /* CompleteUserInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */; };
 		A3FAE0F11553712E008B5827 /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0EF1553712E008B5827 /* 50.png */; };
 		A3FAE0F21553712E008B5827 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0F01553712E008B5827 /* 72.png */; };
+		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -1114,6 +1115,8 @@
 		A3FAE0E715537040008B5827 /* CompleteUserInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CompleteUserInfoController~ipad.xib"; sourceTree = "<group>"; };
 		A3FAE0EF1553712E008B5827 /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
 		A3FAE0F01553712E008B5827 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
+		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
+		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
 		A41A665815C921DA00066E9B /* SlideImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideImageView.m; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -2680,6 +2683,8 @@
 		A44DDF3E15C64482005609F6 /* PopupView */ = {
 			isa = PBXGroup;
 			children = (
+				A40FEEDC15E22E1300A88C57 /* ChatView.h */,
+				A40FEEDD15E22E1300A88C57 /* ChatView.m */,
 				A4C516A715DE40A800E4F735 /* DiceItemListView.h */,
 				A4C516A815DE40A800E4F735 /* DiceItemListView.m */,
 				A45E8CDA15C77FA90089E240 /* CallDiceView.h */,
@@ -7162,6 +7167,7 @@
 				CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */,
 				CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */,
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
+				A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
