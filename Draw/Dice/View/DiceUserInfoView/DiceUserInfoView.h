@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
+#import "UserService.h"
+@class DiceAvatarView;
 @class PBGameUser;
 @class PPViewController;
 
-@interface DiceUserInfoView : UIView<FriendServiceDelegate>
+@interface DiceUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
 
 + (void)showUser:(PBGameUser*)afriend 
       infoInView:(UIViewController*)superController;
@@ -46,5 +48,6 @@
 @property (assign, nonatomic) int userLevel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (assign, nonatomic) PPViewController* superViewController;
+@property (retain, nonatomic) IBOutlet DiceAvatarView *avatar;
 
 @end
