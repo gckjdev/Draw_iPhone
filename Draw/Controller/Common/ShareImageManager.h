@@ -132,11 +132,11 @@
 
 - (UIImage *)shareDrawButtonImage;
 
-- (void)saveImage:(UIImage *)image
+- (void)saveFeedImage:(UIImage *)image
     withImageName:(NSString *)imageName 
              asyn:(BOOL)asyn;
 
-- (UIImage *)getImageWithName:(NSString *)imageName;
-
+- (UIImage *)getImageWithFeedId:(NSString *)feedId;
+- (void)clearFeedCache;
 
 @end

@@ -28,6 +28,7 @@ static UIImage* _whitePaperImage;
 {
     if (_defaultManager == nil){
         _defaultManager = [[ShareImageManager alloc] init];
+        [_defaultManager clearFeedCache];
     }
     
     return _defaultManager;
@@ -457,25 +458,26 @@ static UIImage* _whitePaperImage;
 #define TEMP_FEED_IMAGE_DIR @"feed_image"
 #define TEMP_IMAGE_SUFFIX @".png"
 
+- (NSString *)feedImageDir
+{
+    NSString *dir = [[FileUtil getAppHomeDir] stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];    
+    BOOL flag = [FileUtil createDir:dir];
+    if (flag) {
+        return dir;
+    }
+    return nil;
+}
+
 - (NSString *)constructImagePath:(NSString *)imageName
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    if (!paths || [paths count] == 0) {
-        NSLog(@"Document directory not found!");
-        return nil;
+    NSString *dir = [self feedImageDir];
+    if (dir) {
+        NSString *imgName = [NSString stringWithFormat:@"%@%@", imageName, TEMP_IMAGE_SUFFIX];
+        NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
+        NSLog(@"construct path = %@",uniquePath);
+        return uniquePath;        
     }
-    NSString *imgName = [NSString stringWithFormat:@"%@%@", imageName, TEMP_IMAGE_SUFFIX];
-    NSString *dir = [paths objectAtIndex:0];
-    
-    dir = [dir stringByAppendingPathComponent:TEMP_FEED_IMAGE_DIR];
-    BOOL flag = [FileUtil createDir:dir];
-    if (flag == NO) {
-        PPDebug(@"<ShareImageManager> create dir fail. dir = %@",dir);
-    }
-    NSString *uniquePath=[dir stringByAppendingPathComponent:imgName];
-    NSLog(@"construct path = %@",uniquePath);
-    return uniquePath;
+    return nil;
 }
 
 
@@ -485,7 +487,7 @@ static UIImage* _whitePaperImage;
 }
 
 
-- (void)saveImage:(UIImage *)image 
+- (void)saveFeedImage:(UIImage *)image 
     withImageName:(NSString *)imageName 
              asyn:(BOOL)asyn
 {
@@ -512,13 +514,13 @@ static UIImage* _whitePaperImage;
         handleBlock();
     }
 }
-- (UIImage *)getImageWithName:(NSString *)imageName
+- (UIImage *)getImageWithFeedId:(NSString *)feedId
 {
-    PPDebug(@"<ShareImageManager> get image, image name = %@", imageName);
-    if ([imageName length] == 0) {
+    PPDebug(@"<ShareImageManager> get image, image name = %@", feedId);
+    if ([feedId length] == 0) {
         return nil;
     }
-    NSString *uniquePath = [self constructImagePath:imageName];
+    NSString *uniquePath = [self constructImagePath:feedId];
     if (uniquePath == nil) {
         return nil;
     }
@@ -526,9 +528,40 @@ static UIImage* _whitePaperImage;
     return image;
 }
 
+
+#define CLEAR_CACHE_INTERVAL 3600 * 24 * 10
+#define LAST_CLEAR_CACHE_KEY @"last_clear"
+
+- (void)clearFeedCache
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //back ground run
+    if (queue) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSDate *lastClearDate = [userDefaults objectForKey:LAST_CLEAR_CACHE_KEY];
+        NSDate *date = [NSDate date];
+        if (lastClearDate != nil) {
+
+            NSTimeInterval interval = [date timeIntervalSinceDate:lastClearDate];
+            PPDebug(@"<clearFeedCache>: interval = %f", interval);
+            if (interval < CLEAR_CACHE_INTERVAL) {
+                PPDebug(@"interval = %f, < %d. need not clear date", interval, CLEAR_CACHE_INTERVAL);
+                return;
+            }
+        }
+        PPDebug(@"<clearFeedCache> start to clear the feed cache");
+        [FileUtil removeFilesBelowDir:[self feedImageDir] timeIntervalSinceNow:CLEAR_CACHE_INTERVAL];    
+        [userDefaults setObject:date forKey:LAST_CLEAR_CACHE_KEY];
+        [userDefaults synchronize];
+        
+    }
+}
+
 - (UIImage *)unloadBg
 {
     return [UIImage imageNamed:@"unloadbg.png"];
 }
+
+
 @end
 

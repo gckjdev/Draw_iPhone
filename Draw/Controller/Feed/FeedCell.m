@@ -196,7 +196,7 @@
             [showView release];
             drawFeed.drawImage = [showView createImage];
             //save image.
-            [[ShareImageManager defaultManager] saveImage:drawFeed.drawImage withImageName:[self opusIdForFeed:feed] asyn:YES];
+            [[ShareImageManager defaultManager] saveFeedImage:drawFeed.drawImage withImageName:[self opusIdForFeed:feed] asyn:YES];
             [self.drawImageView setImage:drawFeed.drawImage];
             [showView removeFromSuperview];
             drawFeed.drawData = nil;
