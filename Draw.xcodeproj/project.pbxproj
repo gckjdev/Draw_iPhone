@@ -234,6 +234,12 @@
 		C20D4B2B15E220B600074885 /* DiceRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
+		C213093715E37BA80072A18E /* dice_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093115E37BA80072A18E /* dice_close_btn@2x.png */; };
+		C213093815E37BA80072A18E /* dice_face_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093215E37BA80072A18E /* dice_face_bg@2x.png */; };
+		C213093915E37BA80072A18E /* dice_help_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093315E37BA80072A18E /* dice_help_bg@2x.png */; };
+		C213093A15E37BA80072A18E /* dice_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093415E37BA80072A18E /* dice_input_bg@2x.png */; };
+		C213093B15E37BA80072A18E /* dice_message_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093515E37BA80072A18E /* dice_message_tip@2x.png */; };
+		C213093C15E37BA80072A18E /* dice_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213093615E37BA80072A18E /* dice_popup_bg@2x.png */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1320,6 +1326,12 @@
 		C20D4B2A15E220B400074885 /* DiceRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
+		C213093115E37BA80072A18E /* dice_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_close_btn@2x.png"; sourceTree = "<group>"; };
+		C213093215E37BA80072A18E /* dice_face_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_face_bg@2x.png"; sourceTree = "<group>"; };
+		C213093315E37BA80072A18E /* dice_help_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_help_bg@2x.png"; sourceTree = "<group>"; };
+		C213093415E37BA80072A18E /* dice_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_input_bg@2x.png"; sourceTree = "<group>"; };
+		C213093515E37BA80072A18E /* dice_message_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_message_tip@2x.png"; sourceTree = "<group>"; };
+		C213093615E37BA80072A18E /* dice_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_popup_bg@2x.png"; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -2820,6 +2832,7 @@
 		A4A01B6F15D8AF67002FE86D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				C213093015E37BA80072A18E /* common */,
 				A4A01B7015D8AF67002FE86D /* game */,
 				A4A01B9B15D8AF67002FE86D /* room */,
 			);
@@ -3110,6 +3123,19 @@
 				C20D4B2415E1D78800074885 /* CommonInfoView.m */,
 			);
 			path = CommonInfoView;
+			sourceTree = "<group>";
+		};
+		C213093015E37BA80072A18E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				C213093115E37BA80072A18E /* dice_close_btn@2x.png */,
+				C213093215E37BA80072A18E /* dice_face_bg@2x.png */,
+				C213093315E37BA80072A18E /* dice_help_bg@2x.png */,
+				C213093415E37BA80072A18E /* dice_input_bg@2x.png */,
+				C213093515E37BA80072A18E /* dice_message_tip@2x.png */,
+				C213093615E37BA80072A18E /* dice_popup_bg@2x.png */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -6706,6 +6732,12 @@
 				C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */,
 				C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */,
 				A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */,
+				C213093715E37BA80072A18E /* dice_close_btn@2x.png in Resources */,
+				C213093815E37BA80072A18E /* dice_face_bg@2x.png in Resources */,
+				C213093915E37BA80072A18E /* dice_help_bg@2x.png in Resources */,
+				C213093A15E37BA80072A18E /* dice_input_bg@2x.png in Resources */,
+				C213093B15E37BA80072A18E /* dice_message_tip@2x.png in Resources */,
+				C213093C15E37BA80072A18E /* dice_popup_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

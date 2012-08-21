@@ -190,4 +190,29 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"tools_bell_bg.png"];
 }
 
+- (UIImage *)closeButtonBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_close_btn.png"];
+}
+- (UIImage *)faceBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_face_bg.png"];
+}
+- (UIImage *)helpBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_help_bg.png"];
+}
+- (UIImage *)inputBackgroundImage
+{
+    return [UIImage strectchableImageName:@"dice_input_bg.png"];
+}
+- (UIImage *)messageTipBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_input_bg.png"];
+}
+- (UIImage *)popupBackgroundImage
+{
+    return [UIImage strectchableImageName:@"dice_popup_bg.png"];
+}
+
 @end
