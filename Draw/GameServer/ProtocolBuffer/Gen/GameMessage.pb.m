@@ -6331,6 +6331,9 @@ static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance
 @property (retain) NSMutableArray* mutableToUserIdList;
 @property (retain) NSString* content;
 @property int32_t chatType;
+@property int32_t contentType;
+@property (retain) NSString* expressionId;
+@property (retain) NSString* contentVoiceId;
 @end
 
 @implementation GameChatRequest
@@ -6350,15 +6353,41 @@ static GameOverNotificationResponse* defaultGameOverNotificationResponseInstance
   hasChatType_ = !!value;
 }
 @synthesize chatType;
+- (BOOL) hasContentType {
+  return !!hasContentType_;
+}
+- (void) setHasContentType:(BOOL) value {
+  hasContentType_ = !!value;
+}
+@synthesize contentType;
+- (BOOL) hasExpressionId {
+  return !!hasExpressionId_;
+}
+- (void) setHasExpressionId:(BOOL) value {
+  hasExpressionId_ = !!value;
+}
+@synthesize expressionId;
+- (BOOL) hasContentVoiceId {
+  return !!hasContentVoiceId_;
+}
+- (void) setHasContentVoiceId:(BOOL) value {
+  hasContentVoiceId_ = !!value;
+}
+@synthesize contentVoiceId;
 - (void) dealloc {
   self.mutableToUserIdList = nil;
   self.content = nil;
+  self.expressionId = nil;
+  self.contentVoiceId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.content = @"";
     self.chatType = 0;
+    self.contentType = 1;
+    self.expressionId = @"";
+    self.contentVoiceId = @"";
   }
   return self;
 }
@@ -6394,6 +6423,15 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
   if (self.hasChatType) {
     [output writeInt32:3 value:self.chatType];
   }
+  if (self.hasContentType) {
+    [output writeInt32:4 value:self.contentType];
+  }
+  if (self.hasExpressionId) {
+    [output writeString:5 value:self.expressionId];
+  }
+  if (self.hasContentVoiceId) {
+    [output writeString:6 value:self.contentVoiceId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6416,6 +6454,15 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
   }
   if (self.hasChatType) {
     size += computeInt32Size(3, self.chatType);
+  }
+  if (self.hasContentType) {
+    size += computeInt32Size(4, self.contentType);
+  }
+  if (self.hasExpressionId) {
+    size += computeStringSize(5, self.expressionId);
+  }
+  if (self.hasContentVoiceId) {
+    size += computeStringSize(6, self.contentVoiceId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6504,6 +6551,15 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
   if (other.hasChatType) {
     [self setChatType:other.chatType];
   }
+  if (other.hasContentType) {
+    [self setContentType:other.contentType];
+  }
+  if (other.hasExpressionId) {
+    [self setExpressionId:other.expressionId];
+  }
+  if (other.hasContentVoiceId) {
+    [self setContentVoiceId:other.contentVoiceId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6535,6 +6591,18 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
       }
       case 24: {
         [self setChatType:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setContentType:[input readInt32]];
+        break;
+      }
+      case 42: {
+        [self setExpressionId:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setContentVoiceId:[input readString]];
         break;
       }
     }
@@ -6601,6 +6669,54 @@ static GameChatRequest* defaultGameChatRequestInstance = nil;
 - (GameChatRequest_Builder*) clearChatType {
   result.hasChatType = NO;
   result.chatType = 0;
+  return self;
+}
+- (BOOL) hasContentType {
+  return result.hasContentType;
+}
+- (int32_t) contentType {
+  return result.contentType;
+}
+- (GameChatRequest_Builder*) setContentType:(int32_t) value {
+  result.hasContentType = YES;
+  result.contentType = value;
+  return self;
+}
+- (GameChatRequest_Builder*) clearContentType {
+  result.hasContentType = NO;
+  result.contentType = 1;
+  return self;
+}
+- (BOOL) hasExpressionId {
+  return result.hasExpressionId;
+}
+- (NSString*) expressionId {
+  return result.expressionId;
+}
+- (GameChatRequest_Builder*) setExpressionId:(NSString*) value {
+  result.hasExpressionId = YES;
+  result.expressionId = value;
+  return self;
+}
+- (GameChatRequest_Builder*) clearExpressionId {
+  result.hasExpressionId = NO;
+  result.expressionId = @"";
+  return self;
+}
+- (BOOL) hasContentVoiceId {
+  return result.hasContentVoiceId;
+}
+- (NSString*) contentVoiceId {
+  return result.contentVoiceId;
+}
+- (GameChatRequest_Builder*) setContentVoiceId:(NSString*) value {
+  result.hasContentVoiceId = YES;
+  result.contentVoiceId = value;
+  return self;
+}
+- (GameChatRequest_Builder*) clearContentVoiceId {
+  result.hasContentVoiceId = NO;
+  result.contentVoiceId = @"";
   return self;
 }
 @end

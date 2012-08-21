@@ -167,6 +167,9 @@ message GameChatRequest{
   repeated string toUserId = 1;                 // 对谁说，默认对所有
   optional string content = 2;                  // 说的内容  
   optional int32  chatType = 3 [default=0];     // 聊天类型：0：群聊；1：私聊
+  optional int32  contentType = 4 [default=1];  // 内容类型：1：文本；2：表情符号
+    optional string expressionId = 5;                     // 表情符号ID
+    optional string contentVoiceId = 6;                    // 内容对应播放的语音ID
 }
 
 message GameChatResponse{
