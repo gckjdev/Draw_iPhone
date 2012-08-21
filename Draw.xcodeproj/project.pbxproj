@@ -79,6 +79,8 @@
 		A3FAE0F11553712E008B5827 /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0EF1553712E008B5827 /* 50.png */; };
 		A3FAE0F21553712E008B5827 /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FAE0F01553712E008B5827 /* 72.png */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
+		A40FEF0715E34CA000A88C57 /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEF0515E34CA000A88C57 /* ChatViewCell.m */; };
+		A40FEF0815E34CA000A88C57 /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40FEF0615E34CA000A88C57 /* ChatViewCell.xib */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -1120,6 +1122,9 @@
 		A3FAE0F01553712E008B5827 /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
+		A40FEF0415E34CA000A88C57 /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
+		A40FEF0515E34CA000A88C57 /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
+		A40FEF0615E34CA000A88C57 /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
 		A41A665815C921DA00066E9B /* SlideImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideImageView.m; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -2689,6 +2694,9 @@
 		A44DDF3E15C64482005609F6 /* PopupView */ = {
 			isa = PBXGroup;
 			children = (
+				A40FEF0415E34CA000A88C57 /* ChatViewCell.h */,
+				A40FEF0515E34CA000A88C57 /* ChatViewCell.m */,
+				A40FEF0615E34CA000A88C57 /* ChatViewCell.xib */,
 				A40FEEDC15E22E1300A88C57 /* ChatView.h */,
 				A40FEEDD15E22E1300A88C57 /* ChatView.m */,
 				A4C516A715DE40A800E4F735 /* DiceItemListView.h */,
@@ -6698,6 +6706,7 @@
 				EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */,
 				EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */,
 				C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */,
+				A40FEF0815E34CA000A88C57 /* ChatViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7180,6 +7189,7 @@
 				CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */,
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
 				A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */,
+				A40FEF0715E34CA000A88C57 /* ChatViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
