@@ -67,25 +67,12 @@
 									<string key="NSResourceName">logout.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="407872152">
-								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{32, 56}, {240, 136}}</string>
-								<reference key="NSSuperview" ref="613159573"/>
-								<reference key="NSNextKeyView" ref="417008969"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">white_paper@2x.png</string>
-								</object>
-							</object>
 							<object class="IBUILabel" id="140913823">
 								<reference key="NSNextResponder" ref="613159573"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 32}, {304, 30}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
-								<reference key="NSNextKeyView" ref="407872152"/>
+								<reference key="NSNextKeyView" ref="417008969"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -151,7 +138,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{185, 200}, {99, 37}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -253,6 +239,14 @@
 					<int key="connectionID">16</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">contentBackground</string>
+						<reference key="source" ref="123595793"/>
+						<reference key="destination" ref="892798174"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOk:</string>
 						<reference key="source" ref="523235243"/>
@@ -306,7 +300,6 @@
 							<reference ref="417008969"/>
 							<reference ref="140913823"/>
 							<reference ref="523235243"/>
-							<reference ref="407872152"/>
 							<reference ref="892863268"/>
 							<reference ref="892798174"/>
 						</array>
@@ -333,11 +326,6 @@
 						<reference key="parent" ref="613159573"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="407872152"/>
-						<reference key="parent" ref="613159573"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
 						<reference key="object" ref="892863268"/>
 						<reference key="parent" ref="613159573"/>
@@ -359,16 +347,17 @@
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="6.CustomClassName">HKGirlFontLabel</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="7.CustomClassName">HKGirlFontLabel</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -379,10 +368,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="logout.png">{16, 16}</string>
-			<string key="white_paper@2x.png">{480, 168}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">logout.png</string>
+			<string key="NS.object.0">{16, 16}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1179</string>
 	</data>
 </archive>
