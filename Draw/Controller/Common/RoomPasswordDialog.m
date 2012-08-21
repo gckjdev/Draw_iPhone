@@ -128,7 +128,8 @@
 
 - (BOOL)isPasswordIllegal
 {
-    return [self.passwordField.text length] < 1;
+    return NO;
+    //return [self.passwordField.text length] < 1;
 }
 
 - (BOOL)isRoomNameIllegal

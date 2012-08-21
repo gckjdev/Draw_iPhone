@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatView : UIView
+@protocol ChatViewDelegate <NSObject>
+
+@optional
+- (void)didClickExepression:(UIImage *)image;
+- (void)didClickMessage:(NSString *)message;
+
+@end
+
+
+@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate>
+
+@property (assign, nonatomic) id<ChatViewDelegate> delegate;
+
+- (id)init;
+
 
 @end
