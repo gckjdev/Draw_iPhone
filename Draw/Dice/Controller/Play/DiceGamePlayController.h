@@ -60,4 +60,5 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *waittingForNextTurnNoteLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *gameBeginNoteLabel;
 @property (retain, nonatomic) UIView  *adView;
+@property (retain, nonatomic) IBOutlet UIButton *chatButton;
 @end

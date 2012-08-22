@@ -13,7 +13,7 @@
 #import "LocaleUtils.h"
 #import "DiceFontManager.h"
 
-#define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
+#define MESSAGE_BACKGROUND_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
 #define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
 #define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 36 : 18 )

@@ -47,9 +47,9 @@
 - (void)disableAllDiceOperationButtons;
 - (void)enableAllDiceOperationButtons;
 
-- (void)popResultViewOnAvatarView:(UIView*)view
-                         duration:(CFTimeInterval)duration 
-                       coinsCount:(int)coinsCount;
+//- (void)popResultViewOnAvatarView:(UIView*)view
+//                         duration:(CFTimeInterval)duration 
+//                       coinsCount:(int)coinsCount;
 - (void)quitDiceGame;
 @end
 
@@ -77,6 +77,7 @@
 @synthesize diceSelectedView = _diceSelectedView;
 @synthesize enumerator = _enumerator;
 @synthesize adView = _adView;
+@synthesize chatButton = _chatButton;
 
 - (void)dealloc {
     [[AdService defaultService] clearAdView:_adView];
@@ -106,6 +107,7 @@
     [_resultHolderView release];
     [_waittingForNextTurnNoteLabel release];
     [_gameBeginNoteLabel release];
+    [_chatButton release];
     [super dealloc];
 }
 
@@ -142,8 +144,6 @@
     [_audioManager backgroundMusicStart];
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-    
-    
     
     self.view.backgroundColor = [UIColor blackColor];
     self.wildsLabel.textColor = [UIColor whiteColor];
@@ -183,6 +183,11 @@
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(65, 800, 320, 50)
                                                      useLmAd:YES];
+    
+//    NSArray* userList = _diceService.session.userList;
+//    for (PBGameUser *user in userList) {
+//        
+//    }
 }
 
 
@@ -209,6 +214,7 @@
     [self setResultHolderView:nil];
     [self setWaittingForNextTurnNoteLabel:nil];
     [self setGameBeginNoteLabel:nil];
+    [self setChatButton:nil];
     [super viewDidUnload];
 }
 
@@ -681,6 +687,19 @@
                                             [self useItemSuccess:message.useItemResponse.itemId];         
                                         }
                                     }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICAIION_CHAT_REQUEST
+                                    usingBlock:^(NSNotification *notification) {    
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        
+                                        if (message.chatRequest.chatType == 1) {
+                                            [self someoneSendMessage:message.chatRequest.content 
+                                                      contentVoiceId:message.chatRequest.contentVoiceId 
+                                                              userId:message.userId];
+                                        }else if (message.chatRequest.chatType == 2) {
+                                            [self someoneSendExpression:message.chatRequest.expressionId];
+                                        }
+                                    }];
 }
 
 
@@ -1065,19 +1084,28 @@
 
 }
 
-- (void)popResultViewOnAvatarView:(UIView*)view
-                         duration:(CFTimeInterval)duration 
-                       coinsCount:(int)coinsCount
+//- (void)popResultViewOnAvatarView:(UIView*)view
+//                         duration:(CFTimeInterval)duration 
+//                       coinsCount:(int)coinsCount
+//{
+//    self.popResultView.hidden = NO;
+//    [self.view bringSubviewToFront:self.popResultView];
+//    [self.rewardCoinLabel setText:[NSString stringWithFormat:@"%d",coinsCount]];
+//    CGPoint from = CGPointMake(view.center.x, view.center.y+view.frame.size.height/2);
+//    CGPoint to = CGPointMake(view.center.x, view.center.y-view.frame.size.height/2);
+//    CAAnimationGroup* pop = [AnimationManager raiseAndDismissFrom:from
+//                                                               to:to
+//                                                         duration:duration];
+//    [self.popResultView.layer addAnimation:pop forKey:@"popResult"];
+//}
+
+- (void)popupMessageView:(NSString *)message onUser:(NSString *)userId 
 {
-    self.popResultView.hidden = NO;
-    [self.view bringSubviewToFront:self.popResultView];
-    [self.rewardCoinLabel setText:[NSString stringWithFormat:@"%d",coinsCount]];
-    CGPoint from = CGPointMake(view.center.x, view.center.y+view.frame.size.height/2);
-    CGPoint to = CGPointMake(view.center.x, view.center.y-view.frame.size.height/2);
-    CAAnimationGroup* pop = [AnimationManager raiseAndDismissFrom:from
-                                                               to:to
-                                                         duration:duration];
-    [self.popResultView.layer addAnimation:pop forKey:@"popResult"];
+    DiceAvatarView *view = [self avatarViewOfUser:userId];
+    [_popupViewManager popupMessage:message 
+                             atView:view
+                             inView:self.view
+                     pointDirection:[self popupDirectionWithUserAvatarViewTag:view.tag]];
 }
 
 - (void)roomChanged
@@ -1142,14 +1170,46 @@
 }
 
 - (IBAction)clickChatButton:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
-    
-    if (button.selected) {
+    self.chatButton.selected = !self.chatButton.selected;
+    if (self.chatButton.selected) {
         [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
     }else {
         [_popupViewManager dismissChatView];
     }
+}
+
+- (void)someoneSendMessage:(NSString *)content 
+            contentVoiceId:(NSString *)contentVoiceId
+                    userId:(NSString *)userId
+{
+    [self popupMessageView:content onUser:userId];
+    
+    // TODO: Play voice here;
+}
+
+- (void)someoneSendExpression:(NSString *)expressionId
+{
+    
+}
+
+- (void)didClickMessage:(NSString *)message
+{
+    self.chatButton.selected = NO;
+    [_popupViewManager dismissChatView];
+    
+    [self popupMessageView:message onUser:[_userManager userId]];
+    [_diceService chatWithContent:message contentVoiceId:nil];
+    
+    // TODO: Play voice here;
+
+}
+
+- (void)didClickExepression:(NSString *)key
+{
+    self.chatButton.selected = NO;
+    [_popupViewManager dismissChatView];
+    
+    // TODO: Popup image for expression.
 }
 
 @end

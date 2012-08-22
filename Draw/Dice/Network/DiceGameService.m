@@ -215,19 +215,6 @@ static DiceGameService* _defaultService;
             [self handleUseItemRequest:message];
             break;
             
-        case GameCommandTypeChatRequest:
-            break;
-
-        case GameCommandTypeChatResponse:
-            break;
-            
-        case GameCommandTypeChatNotificationRequest:
-            
-            break;
-            
-        case GameCommandTypeChatNotificationResponse:
-            
-            break;
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
