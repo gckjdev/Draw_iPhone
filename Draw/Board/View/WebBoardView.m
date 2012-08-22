@@ -66,6 +66,7 @@
         if ([dir length] == 0) {
             return;
         }
+//        [FileUtil removeFile:dir];
         
         NSString *destinationPath = [dir stringByAppendingPathComponent:DOWN_LOAD_FILE_NAME];
         
