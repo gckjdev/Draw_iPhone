@@ -39,7 +39,7 @@
 					<object class="IBUIScrollView" id="1059163907">
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 193}</string>
+						<string key="NSFrameSize">{768, 447}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="144810561"/>
@@ -54,7 +54,7 @@
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{0, 162}, {320, 36}}</string>
+						<string key="NSFrame">{{0, 400}, {768, 36}}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -66,7 +66,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 193}</string>
+				<string key="NSFrameSize">{768, 447}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1059163907"/>

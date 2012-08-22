@@ -942,6 +942,8 @@
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
 		CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14815E47D570098A565 /* main_menubg@2x.png */; };
 		CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */; };
+		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
+		CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */; };
 		CAEA70071526D85800B3D206 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70051526D85700B3D206 /* number@2x.png */; };
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
@@ -2474,6 +2476,8 @@
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B14815E47D570098A565 /* main_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_menubg@2x.png"; sourceTree = "<group>"; };
 		CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
+		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
+		CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "EntryController~ipad.xib"; sourceTree = "<group>"; };
 		CAEA70051526D85700B3D206 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number@2x.png"; sourceTree = "<group>"; };
 		CAEA70061526D85700B3D206 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
 		CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
@@ -6077,6 +6081,7 @@
 				CAEECD9215DDEEF700FA5A2A /* EntryController.h */,
 				CAEECD9315DDEEF700FA5A2A /* EntryController.m */,
 				CAEECD9415DDEEF700FA5A2A /* EntryController.xib */,
+				CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6126,6 +6131,7 @@
 				CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */,
 				CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */,
 				CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */,
+				CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */,
 				CAEECDA415DDEEF700FA5A2A /* BoardView.h */,
 				CAEECDA515DDEEF700FA5A2A /* BoardView.m */,
 				CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */,
@@ -6762,6 +6768,8 @@
 				C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */,
 				CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */,
 				CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */,
+				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
+				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
