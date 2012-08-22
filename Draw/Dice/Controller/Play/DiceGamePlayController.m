@@ -1187,7 +1187,7 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    // TODO: Play voice here;
+    [[AudioManager defaultManager] playSoundByName:contentVoiceId];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId
@@ -1204,7 +1204,7 @@
     [_diceService chatWithContent:message contentVoiceId:nil];
     
     // TODO: Play voice here;
-
+    
 }
 
 - (void)didClickExepression:(NSString *)key
