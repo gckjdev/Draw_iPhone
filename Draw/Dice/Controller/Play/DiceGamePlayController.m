@@ -804,14 +804,17 @@
     [self.diceSelectedView enableUserInteraction];
 }
 
+#define CENTER_GAME_BEGIN_NOTE_START  ([DeviceDetection isIPAD] ? CGPointMake(384, 578): CGPointMake(160, 265))
+#define CENTER_GAME_BEGIN_NOTE_END  ([DeviceDetection isIPAD] ? CGPointMake(384, 618): CGPointMake(160, 185))
+
 - (void)showBeginNoteAnimation
 {
     self.gameBeginNoteLabel.hidden = NO;
     self.gameBeginNoteLabel.alpha = 1;
-    self.gameBeginNoteLabel.center = CGPointMake(160, 265);
+    self.gameBeginNoteLabel.center = CENTER_GAME_BEGIN_NOTE_START;
     [UIView animateWithDuration:3 delay:0 options:UIViewAnimationCurveLinear animations:^{
         self.gameBeginNoteLabel.alpha = 0;
-        self.gameBeginNoteLabel.center = CGPointMake(160, 185);
+        self.gameBeginNoteLabel.center = CENTER_GAME_BEGIN_NOTE_END;
     } completion:^(BOOL finished) {
         self.gameBeginNoteLabel.hidden = YES;
 
