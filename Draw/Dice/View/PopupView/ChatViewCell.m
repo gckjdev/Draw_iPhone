@@ -45,7 +45,8 @@
     
     messageButton.frame = CGRectMake(0, 0, size.width, messageButton.frame.size.height);
     
-    [messageButton setTitle:message forState:UIControlStateNormal];
+    messageButton.fontLable.text = message;
+    messageButton.fontLable.textAlignment = UITextAlignmentLeft;
     [messageButton setImage:nil forState:UIControlStateNormal];
 }
 

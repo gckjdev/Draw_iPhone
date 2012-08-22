@@ -14,7 +14,7 @@
 @protocol ChatViewDelegate <NSObject>
 
 @optional
-- (void)didClickExepression:(UIImage *)image;
+- (void)didClickExepression:(NSString *)key;
 - (void)didClickMessage:(NSString *)message;
 
 @end

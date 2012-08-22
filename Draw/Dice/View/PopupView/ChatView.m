@@ -11,19 +11,21 @@
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
 
-#define POPTIPVIEW_BG_COLOR [UIColor yellowColor]
+#define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
 
 #define WIDTH_CHAT_VIEW 200
-#define HEIGHT_CHAT_VIEW 300
+#define HEIGHT_CHAT_VIEW 200
 
 #define WIDTH_EXPRESSION_HOLDER_VIEW 200
 #define HEIGHT_EXPRESSION_HOLDER_VIEW 30
 
 #define WIDTH_MESSAGE_HOLDER_VIEW 200
-#define HEIGHT_MESSAGE_HOLDER_VIEW 270
+#define HEIGHT_MESSAGE_HOLDER_VIEW 170
 
 #define WIDTH_EXPRESSION_VIEW 30
-#define HEIGHT_EXPRESSION_VIEW 30
+#define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
+#define EDGE_BETWEEN_EXPRESSIONS 8
+
 
 #define EXPRESSION_COUNT_PER_PAGE 5
 
@@ -82,12 +84,16 @@
         [self addSubview:_pageControl];
         
         CGRect msgsHolderViewFrame = CGRectMake(0, HEIGHT_EXPRESSION_HOLDER_VIEW, WIDTH_MESSAGE_HOLDER_VIEW, HEIGHT_MESSAGE_HOLDER_VIEW);
-        self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame] autorelease];
+        self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame style:UITableViewStylePlain] autorelease];
         _messagesHolderView.dataSource = self;
         _messagesHolderView.delegate = self;
+        _messagesHolderView.backgroundColor = [UIColor clearColor];
+        _messagesHolderView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self addSubview:_messagesHolderView];
         
         _expressionManager = [ExpressionManager defaultManager];
         self.messages = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), nil];
+        
         [self addExpressions];
     }
     
@@ -118,7 +124,7 @@
     CGRect frame;
     for (int i = start; i < end; i++)
     {
-        frame = CGRectMake(WIDTH_EXPRESSION_VIEW * (i % EXPRESSION_COUNT_PER_PAGE), 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
+        frame = CGRectMake((WIDTH_EXPRESSION_VIEW + EDGE_BETWEEN_EXPRESSIONS) * (i % EXPRESSION_COUNT_PER_PAGE), 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
         UIButton *expression = [self expressionWithFrame:frame key:[allKeys objectAtIndex:i]];
         [view addSubview:expression];
     }
@@ -135,7 +141,10 @@
     _popTipView.backgroundColor = POPTIPVIEW_BG_COLOR;
     _popTipView.disableTapToDismiss = YES;
     
-    [_popTipView presentPointingAtView:view inView:inView animated:animated pointDirection:pointDirection];
+    [_popTipView presentPointingAtView:view 
+                                inView:inView
+                              animated:animated
+                        pointDirection:pointDirection];
 }
 
 - (void)dismissAnimated:(BOOL)animated
@@ -157,11 +166,11 @@
 - (void)clickExpression:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-//    NSString *key = [button titleForState:UIControlStateNormal];
-    UIImage *image = [button imageForState:UIControlStateNormal];
+    NSString *key = [button titleForState:UIControlStateNormal];
+//    UIImage *image = [button imageForState:UIControlStateNormal];
     
     if ([_delegate respondsToSelector:@selector(didClickExepression:)]) {
-        [_delegate didClickExepression:image];
+        [_delegate didClickExepression:key];
     }
 }
 
