@@ -9,12 +9,59 @@
 #import "RoomPasswordDialog.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
+#import "FontButton.h"
+#import "DiceImageManager.h"
 
 @implementation RoomPasswordDialog
 @synthesize passwordField;
 @synthesize roomNameLabel;
 @synthesize passwordLabel;
 
+- (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
+{
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    switch (theme) {
+        case CommonInputDialogThemeDice:{ 
+            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.titleLabel.fontLable setText:title];
+            
+            [self.cancelButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] 
+                                         forState:UIControlStateNormal];
+            [self.okButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] 
+                                     forState:UIControlStateNormal];
+            
+            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
+            [self.okButton.fontLable setText:NSLS(@"kOK")];
+            self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
+            
+        } break;
+        case CommonInputDialogThemeDraw: 
+        default: {
+            [self.targetTextField setBackground:[imageManager inputImage]];
+            [self setDialogTitle:title];
+            [self.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+            [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+            [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+            [self.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+            self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+            [self.targetTextField setBackground:[imageManager inputImage]];
+            [self.passwordField setBackground:[imageManager inputImage]];
+        }break;
+    }
+    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+    [self.passwordField setPlaceholder:NSLS(@"kRoomPasswordHolder")];
+    [self.targetTextField setPlaceholder:NSLS(@"kRoomNameHolder")];
+    self.roomNameLabel.text = NSLS(@"kRoomNameLabel");
+    self.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
+}
 
 - (void)updateTextFields
 {
@@ -78,19 +125,19 @@
     RoomPasswordDialog* view = [self createDialogWithTheme:theme];
     if (view) {
         //init the button
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        
-        [view updateTextFields];
-        
-        [view setDialogTitle:title];
-        
-        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+        [view initWithTheme:theme title:title];
+//        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//        
+//        [view updateTextFields];
+//        
+//        [view setDialogTitle:title];
+//        
+//        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+//        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+//        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         view.delegate = delegate;
-        view.roomNameLabel.text = NSLS(@"kRoomNameLabel");
-        view.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
+        
     }
     return view;
 }

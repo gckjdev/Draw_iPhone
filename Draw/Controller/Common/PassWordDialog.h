@@ -16,7 +16,6 @@
 #define PASSWORD_DIALOG @"PassWordDialog"
 #define DICE_PASSWORD_DIALOG    @"DicePassWordDialog"
 
-
 @interface PassWordDialog : InputDialog
 {
     

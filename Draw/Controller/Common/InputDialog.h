@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonInfoView.h"
+@class FontButton;
 
 #define INPUT_DIALOG_THEME_DRAW @"InputDialog"
 #define INPUT_DIALOG_THEME_DICE @"DiceInputDialog"
@@ -38,10 +39,10 @@ typedef enum {
 
 - (void)setDialogTitle:(NSString *)title;
 - (void)setTargetText:(NSString *)text;
-@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
-@property (retain, nonatomic) IBOutlet UIButton *okButton;
+@property (retain, nonatomic) IBOutlet FontButton *cancelButton;
+@property (retain, nonatomic) IBOutlet FontButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
-@property (retain, nonatomic) IBOutlet UIButton *titleLabel;
+@property (retain, nonatomic) IBOutlet FontButton *titleLabel;
 @property (retain, nonatomic) IBOutlet UITextField *targetTextField;
 @property (assign, nonatomic) id<InputDialogDelegate> delegate;
 
