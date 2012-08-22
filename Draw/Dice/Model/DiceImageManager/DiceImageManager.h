@@ -43,6 +43,6 @@
 - (UIImage *)inputBackgroundImage;
 - (UIImage *)messageTipBackgroundImage;
 - (UIImage *)popupBackgroundImage;
-
+- (UIImage *)diceQuitBtnImage;
 
 @end
