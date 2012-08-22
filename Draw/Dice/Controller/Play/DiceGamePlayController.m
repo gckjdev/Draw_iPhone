@@ -181,7 +181,7 @@
     
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                   iPadFrame:CGRectMake(0, 0, 320, 50)
                                                      useLmAd:YES];
     
 //    NSArray* userList = _diceService.session.userList;
