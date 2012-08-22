@@ -27,9 +27,9 @@
             [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
             [self.titleLabel.fontLable setText:title];
             
-            [self.cancelButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] 
+            [self.cancelButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] 
                                          forState:UIControlStateNormal];
-            [self.okButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] 
+            [self.okButton setBackgroundImage:[diceImgManager diceQuitBtnImage] 
                                      forState:UIControlStateNormal];
             
             [self.cancelButton.fontLable setText:NSLS(@"kCancel")];

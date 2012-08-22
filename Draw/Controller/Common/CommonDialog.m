@@ -50,8 +50,8 @@
             [self.oKButton.fontLable setText:NSLS(@"kOK")];
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-            [self.oKButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] forState:UIControlStateNormal];
-            [self.backButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] forState:UIControlStateNormal];
+            [self.oKButton setBackgroundImage:[diceImgManager diceQuitBtnImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] forState:UIControlStateNormal];
         } break;
         case CommonDialogThemeDraw:
             [self.oKButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
