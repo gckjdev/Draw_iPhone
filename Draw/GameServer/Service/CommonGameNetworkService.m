@@ -221,6 +221,11 @@
     PPDebug(@"<handleCustomMessage> NO IMPLEMENTATION HERE... VERY STRANGE, ARE YOU KIDDING?");
 }
 
+- (void)handleChatRequest:(GameMessage*)message
+{
+    [self postNotification:NOTIFICAIION_CHAT_REQUEST message:message];
+}
+
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]){
@@ -236,6 +241,10 @@
             break;
         case GameCommandTypeCreateRoomResponse:
             [self handleCreateRoomResponse:message];
+            break;
+            
+        case GameCommandTypeChatRequest:
+            [self handleChatRequest:message];
             break;
         default:
             [self handleCustomMessage:message];
@@ -353,6 +362,25 @@
         return [self.roomList objectAtIndex:index];
     }
     return nil;
+}
+
+
+- (void)chatWithContent:(NSString *)chatMsg contentVoiceId:(NSString *)contentVoiceId
+{
+    [_networkClient sendChatMessageRequest:chatMsg
+                            contentVoiceId:contentVoiceId 
+                              expressionId:nil 
+                                 sessionId:self.session.sessionId 
+                                    userId:self.user.userId];
+}
+
+- (void)chatWithExpression:(NSString *)expression
+{
+    [_networkClient sendChatMessageRequest:nil 
+                            contentVoiceId:nil 
+                              expressionId:expression 
+                                 sessionId:self.session.sessionId 
+                                    userId:self.user.userId];
 }
 
 

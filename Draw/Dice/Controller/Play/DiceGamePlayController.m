@@ -681,6 +681,19 @@
                                             [self useItemSuccess:message.useItemResponse.itemId];         
                                         }
                                     }];
+    
+    [self registerDiceGameNotificationWithName:NOTIFICAIION_CHAT_REQUEST
+                                    usingBlock:^(NSNotification *notification) {    
+                                        GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
+                                        
+                                        if (message.chatRequest.chatType == 1) {
+                                            [self someoneSendMessage:message.chatRequest.content 
+                                                      contentVoiceId:message.chatRequest.contentVoiceId 
+                                                              userId:message.userId];
+                                        }else if (message.chatRequest.chatType == 2) {
+                                            [self someoneSendExpression:message.chatRequest.expressionId];
+                                        }
+                                    }];
 }
 
 
@@ -1142,14 +1155,23 @@
 }
 
 - (IBAction)clickChatButton:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
+    [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
+}
+
+- (void)someoneSendMessage:(NSString *)content 
+            contentVoiceId:(NSString *)contentVoiceId
+                    userId:(NSString *)userId
+{
+    DiceAvatarView *avatar = [self avatarViewOfUser:userId];
+    [_popupViewManager popupMessage:content
+                             atView:avatar
+                             inView:self.view 
+                     pointDirection:[self popupDirectionWithUserAvatarViewTag:avatar.tag]];
+}
+
+- (void)someoneSendExpression:(NSString *)expressionId
+{
     
-    if (button.selected) {
-        [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
-    }else {
-        [_popupViewManager dismissChatView];
-    }
 }
 
 @end

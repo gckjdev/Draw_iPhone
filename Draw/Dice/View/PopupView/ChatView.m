@@ -82,12 +82,14 @@
         [self addSubview:_pageControl];
         
         CGRect msgsHolderViewFrame = CGRectMake(0, HEIGHT_EXPRESSION_HOLDER_VIEW, WIDTH_MESSAGE_HOLDER_VIEW, HEIGHT_MESSAGE_HOLDER_VIEW);
-        self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame] autorelease];
+        self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame style:UITableViewStylePlain] autorelease];
         _messagesHolderView.dataSource = self;
         _messagesHolderView.delegate = self;
+        [self addSubview:_messagesHolderView];
         
         _expressionManager = [ExpressionManager defaultManager];
         self.messages = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), nil];
+        
         [self addExpressions];
     }
     
@@ -163,6 +165,8 @@
     if ([_delegate respondsToSelector:@selector(didClickExepression:)]) {
         [_delegate didClickExepression:image];
     }
+    
+    [self dismissAnimated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -216,6 +220,7 @@
     if ([_delegate respondsToSelector:@selector(didClickMessage:)]) {
         [_delegate didClickMessage:message];
     }
+    [self dismissAnimated:YES];
 }
 
 @end
