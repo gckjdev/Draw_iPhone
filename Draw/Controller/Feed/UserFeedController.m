@@ -198,6 +198,9 @@
             if (_feedList == nil) {
                 _feedList = [[NSMutableArray alloc] initWithArray:feedList];
             }else{
+                if (_feedStartIndex == 0) {
+                    [_feedList removeAllObjects];
+                }
                 [_feedList addObjectsFromArray:feedList];
             }
             _feedStartIndex += [feedList count];
@@ -206,6 +209,9 @@
             if (_opusList == nil) {
                 _opusList = [[NSMutableArray alloc] initWithArray:feedList];
             }else{
+                if (_opusStartIndex == 0) {
+                    [_opusList removeAllObjects];
+                }
                 [_opusList addObjectsFromArray:feedList];
             }        
             _opusStartIndex += [feedList count];

@@ -50,11 +50,6 @@ typedef enum{
                     [unSortedBoardList addObject:board];
                 }
             }
-            
-            for(Board *board in unSortedBoardList){
-                PPDebug(@"befor index : %d", board.index);
-            }
-
             //sort the boardList by the index
             boardList = [unSortedBoardList sortedArrayUsingComparator:^(id obj1,id obj2){
                 Board *board1 = (Board *)obj1;
@@ -66,11 +61,6 @@ typedef enum{
                 }
                 return NSOrderedSame;
             }];
-            
-            for(Board *board in boardList){
-                PPDebug(@"after index : %d", board.index);
-            }
-            
         }
         
         if (delegate && [delegate respondsToSelector:@selector(didGetBoards:resultCode:)]) {

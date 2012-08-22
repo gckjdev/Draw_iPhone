@@ -9,6 +9,7 @@
 #import "CommonDialog.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "DiceImageManager.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -19,6 +20,7 @@
 @synthesize messageLabel = _messageLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize delegate = _delegate;
+@synthesize contentBackground = _contentBackground;
 @synthesize style = _style;
 - (void)dealloc
 {
@@ -27,12 +29,31 @@
     [_backButton release];
     [_messageLabel release];
     [_titleLabel release];
+    [_contentBackground release];
     [super dealloc];
 }
 
-- (void)initTitles
+- (void)initTitlesWithTheme:(CommonDialogTheme)theme
 {
 
+}
+
+- (void)initButtonsWithTheme:(CommonDialogTheme)theme
+{
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    ShareImageManager* imgManager = [ShareImageManager defaultManager];
+    switch (theme) {
+        case CommonDialogThemeDice: {
+            [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
+            [self.oKButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[diceImgManager createRoomBtnBgImage] forState:UIControlStateNormal];
+        } break;
+        case CommonDialogThemeDraw:
+            [self.oKButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
+        default:
+            break;
+    }
 }
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
@@ -60,7 +81,7 @@
 {
     CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
     [view initButtonsWithStyle:aStyle];
-    [view initTitles];
+    [view initTitlesWithTheme:CommonDialogThemeDraw];
     [view appear];
     
     //init the button
@@ -97,11 +118,10 @@
     CommonDialog* view = [self createDialogWithTheme:theme];
     if (view) {
         [view initButtonsWithStyle:aStyle];
-        [view initTitles];
+        [view initButtonsWithTheme:theme];
+        [view initTitlesWithTheme:theme];
         
         //init the button
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
         [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
         [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
         view.tag = 0; 

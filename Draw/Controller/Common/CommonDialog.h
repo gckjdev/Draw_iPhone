@@ -35,6 +35,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) CommonDialogStyle style;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 
                                   style:(CommonDialogStyle)aStyle 

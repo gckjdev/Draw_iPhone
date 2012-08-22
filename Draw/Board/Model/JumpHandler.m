@@ -26,13 +26,13 @@
             
         case JumpTypeSafari:
             return [[[SafariJumpHandler alloc] init]autorelease];
-            
+/*            
         case JumpTypeTel:
             return [[[TelJumpHandler alloc] init]autorelease];
             
         case JumpTypeMsg:
             return [[[MessageJumpHandler alloc] init]autorelease];
-            
+*/          
         default:
             return nil;
     }
@@ -123,6 +123,7 @@
 }
 @end
 
+/*
 #pragma mark - TelJumpHandler
 @implementation TelJumpHandler
 //override by sub classes
@@ -149,3 +150,4 @@
 }
 @end
 
+*/
