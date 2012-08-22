@@ -940,6 +940,8 @@
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
+		CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14815E47D570098A565 /* main_menubg@2x.png */; };
+		CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */; };
 		CAEA70071526D85800B3D206 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70051526D85700B3D206 /* number@2x.png */; };
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
@@ -2470,6 +2472,8 @@
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CAE8B14815E47D570098A565 /* main_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_menubg@2x.png"; sourceTree = "<group>"; };
+		CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
 		CAEA70051526D85700B3D206 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number@2x.png"; sourceTree = "<group>"; };
 		CAEA70061526D85700B3D206 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
 		CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
@@ -4983,6 +4987,8 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAE8B14815E47D570098A565 /* main_menubg@2x.png */,
+				CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */,
 				CAEECD4815DCD8F100FA5A2A /* draft@2x.png */,
 				CA54822115D8F5650059A550 /* unloadbg.png */,
 				CAA02C1615C3D85C00273637 /* change_bg@2x.png */,
@@ -6754,6 +6760,8 @@
 				C213094015E3931F0072A18E /* DiceInputDialog~ipad.xib in Resources */,
 				C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */,
 				C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */,
+				CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */,
+				CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

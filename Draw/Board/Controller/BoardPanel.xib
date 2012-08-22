@@ -39,14 +39,10 @@
 					<object class="IBUIScrollView" id="1059163907">
 						<reference key="NSNextResponder" ref="74285547"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 198}</string>
+						<string key="NSFrameSize">{320, 193}</string>
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="144810561"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAwIDAAA</bytes>
-						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -61,10 +57,6 @@
 						<reference key="NSSuperview" ref="74285547"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -73,7 +65,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 198}</string>
+				<string key="NSFrameSize">{320, 193}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1059163907"/>

@@ -60,6 +60,8 @@
 #import "DiceNotification.h"
 
 #import "EntryController.h"
+#import "BoardView.h"
+#import "BoardPanel.h"
 
 @interface HomeController()
 
@@ -148,8 +150,10 @@
     }
 }
 
+
 - (void)viewDidLoad
 {        
+    [[BoardService defaultService] getBoardsWithDelegate:self];
     
 //    self.facetimeButton.hidden = YES;
 //    self.diceButton.hidden = YES;
@@ -896,6 +900,17 @@
     [self.navigationController pushViewController:vc animated:YES];
     
     [[DiceGameService defaultService] joinGameRequest];
+}
+
+#pragma mark - board service delegate
+- (void)didGetBoards:(NSArray *)boards 
+          resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
+        [boardPanel setBoardList:boards];
+        [self.view addSubview:boardPanel];
+    }
 }
 
 
