@@ -244,6 +244,7 @@
 		C213094015E3931F0072A18E /* DiceInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */; };
 		C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */; };
 		C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */; };
+		C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213096715E4BD830072A18E /* dice_quit_btn@2x.png */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -940,6 +941,10 @@
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
+		CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14815E47D570098A565 /* main_menubg@2x.png */; };
+		CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */; };
+		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
+		CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */; };
 		CAEA70071526D85800B3D206 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70051526D85700B3D206 /* number@2x.png */; };
 		CAEA70081526D85800B3D206 /* tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA70061526D85700B3D206 /* tool@2x.png */; };
 		CAEA700E1526F30200B3D206 /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */; };
@@ -1340,6 +1345,7 @@
 		C213093F15E3931F0072A18E /* DiceInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceInputDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DicePassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C213096715E4BD830072A18E /* dice_quit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_quit_btn@2x.png"; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -2470,6 +2476,10 @@
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CAE8B14815E47D570098A565 /* main_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_menubg@2x.png"; sourceTree = "<group>"; };
+		CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
+		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
+		CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "EntryController~ipad.xib"; sourceTree = "<group>"; };
 		CAEA70051526D85700B3D206 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number@2x.png"; sourceTree = "<group>"; };
 		CAEA70061526D85700B3D206 /* tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool@2x.png"; sourceTree = "<group>"; };
 		CAEA700B1526F30100B3D206 /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
@@ -3136,6 +3146,7 @@
 		C213093015E37BA80072A18E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				C213096715E4BD830072A18E /* dice_quit_btn@2x.png */,
 				C213093115E37BA80072A18E /* dice_close_btn@2x.png */,
 				C213093215E37BA80072A18E /* dice_face_bg@2x.png */,
 				C213093315E37BA80072A18E /* dice_help_bg@2x.png */,
@@ -4983,6 +4994,8 @@
 		CA32213F151E0FC00039A384 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CAE8B14815E47D570098A565 /* main_menubg@2x.png */,
+				CAE8B14915E47D570098A565 /* bottom_menubg@2x.png */,
 				CAEECD4815DCD8F100FA5A2A /* draft@2x.png */,
 				CA54822115D8F5650059A550 /* unloadbg.png */,
 				CAA02C1615C3D85C00273637 /* change_bg@2x.png */,
@@ -6071,6 +6084,7 @@
 				CAEECD9215DDEEF700FA5A2A /* EntryController.h */,
 				CAEECD9315DDEEF700FA5A2A /* EntryController.m */,
 				CAEECD9415DDEEF700FA5A2A /* EntryController.xib */,
+				CAE8B15215E4A2560098A565 /* EntryController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6120,6 +6134,7 @@
 				CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */,
 				CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */,
 				CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */,
+				CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */,
 				CAEECDA415DDEEF700FA5A2A /* BoardView.h */,
 				CAEECDA515DDEEF700FA5A2A /* BoardView.m */,
 				CAEECDA215DDEEF700FA5A2A /* AdBoardView.h */,
@@ -6754,6 +6769,11 @@
 				C213094015E3931F0072A18E /* DiceInputDialog~ipad.xib in Resources */,
 				C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */,
 				C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */,
+				CAE8B14A15E47D570098A565 /* main_menubg@2x.png in Resources */,
+				CAE8B14B15E47D570098A565 /* bottom_menubg@2x.png in Resources */,
+				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
+				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
+				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

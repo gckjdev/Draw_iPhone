@@ -56,8 +56,8 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="892798174">
 								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{304, 257}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrameSize">{304, 206}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSNextKeyView" ref="140913823"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -69,8 +69,8 @@
 							</object>
 							<object class="IBUILabel" id="140913823">
 								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 32}, {304, 30}}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrame">{{0, 9}, {304, 30}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSNextKeyView" ref="417008969"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -104,8 +104,8 @@
 							</object>
 							<object class="IBUIButton" id="892863268">
 								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{24, 200}, {99, 37}}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrame">{{20, 154}, {99, 37}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSNextKeyView" ref="523235243"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -135,8 +135,8 @@
 							</object>
 							<object class="IBUIButton" id="523235243">
 								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{185, 200}, {99, 37}}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrame">{{185, 154}, {99, 37}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -152,8 +152,8 @@
 							</object>
 							<object class="IBUILabel" id="417008969">
 								<reference key="NSNextResponder" ref="613159573"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{53, 56}, {198, 136}}</string>
+								<int key="NSvFlags">319</int>
+								<string key="NSFrame">{{53, 60}, {198, 76}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSNextKeyView" ref="892863268"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -297,11 +297,11 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="613159573"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="417008969"/>
-							<reference ref="140913823"/>
-							<reference ref="523235243"/>
-							<reference ref="892863268"/>
 							<reference ref="892798174"/>
+							<reference ref="892863268"/>
+							<reference ref="523235243"/>
+							<reference ref="140913823"/>
+							<reference ref="417008969"/>
 						</array>
 						<reference key="parent" ref="123595793"/>
 					</object>
@@ -341,6 +341,7 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="10.CustomClassName">FontButton</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">CommonDialog</string>
@@ -351,6 +352,7 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.CustomClassName">HKGirlFontLabel</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="8.CustomClassName">FontButton</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>

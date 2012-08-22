@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
+#import "FontButton.h"
 
 @protocol ChatViewCellDelegate <NSObject>
 
@@ -19,7 +20,7 @@
 @interface ChatViewCell : PPTableViewCell
 
 @property (assign, nonatomic) id<ChatViewCellDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIButton *messageButton;
+@property (retain, nonatomic) IBOutlet FontButton *messageButton;
 
 - (void)setCellData:(NSString *)message;
 

@@ -214,5 +214,8 @@ static DiceImageManager *_defaultManager = nil;
 {
     return [UIImage strectchableImageName:@"dice_popup_bg.png"];
 }
-
+- (UIImage *)diceQuitBtnImage
+{
+    return [UIImage strectchableImageName:@"dice_quit_btn.png"  leftCapWidth:15];
+}
 @end

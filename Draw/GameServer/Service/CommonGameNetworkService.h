@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "CommonGameNetworkClient.h"
 
-#define NOTIFICATION_JOIN_GAME_RESPONSE @"NOTIFICATION_JOIN_GAME_RESPONSE"
-#define NOTIFICATION_ENTER_ROOM_RESPONSE @"NOTIFICATION_ENTER_ROOM_RESPONSE"
+#define NOTIFICATION_JOIN_GAME_RESPONSE         @"NOTIFICATION_JOIN_GAME_RESPONSE"
+#define NOTIFICATION_ENTER_ROOM_RESPONSE        @"NOTIFICATION_ENTER_ROOM_RESPONSE"
 #define NOTIFICAIION_CREATE_ROOM_RESPONSE       @"NOTIFICAIION_CREATE_ROOM_RESPONSE"
 #define NOTIFICAIION_GET_ROOMS_RESPONSE         @"NOTIFICAIION_GET_ROOMS_RESPONSE"
-#define NOTIFICATION_ROOM               @"NOTIFICATION_ROOM"
+#define NOTIFICATION_ROOM                       @"NOTIFICATION_ROOM"
+#define NOTIFICAIION_CHAT_REQUEST               @"NOTIFICAIION_CHAT_REQUEST"
+
 
 @class PBGameSession;
 
@@ -71,5 +73,8 @@
 - (void)unRegisterRoomsNotification:(NSArray*)sessionIdList;
 
 - (PBGameSession*)sessionInRoom:(int)index;
+
+- (void)chatWithContent:(NSString *)chatMsg contentVoiceId:(NSString *)contentVoiceId;
+- (void)chatWithExpression:(NSString *)expression;
 
 @end

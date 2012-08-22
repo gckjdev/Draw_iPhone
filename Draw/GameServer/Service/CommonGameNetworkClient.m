@@ -122,6 +122,41 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [self sendData:[gameMessage data]];   
 }
 
+- (void)sendChatMessageRequest:(NSString *)content
+                contentVoiceId:(NSString *)contentVoiceId
+                  expressionId:(NSString *)expressionId
+                     sessionId:(int)sessionId
+                        userId:(NSString *)userId
+{      
+    GameChatRequest_Builder *builder = [[[GameChatRequest_Builder alloc] init] autorelease];
+    
+    if (content != nil && expressionId == nil) {
+        [builder setContent:content];
+        [builder setContentVoiceId:contentVoiceId];
+        [builder setContentType:1];
+    }
+    
+    if (content == nil && expressionId != nil) {
+        [builder setExpressionId:expressionId];
+        [builder setContentType:2];
+    }
+
+    GameChatRequest *chatRequest = [builder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeChatRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+
+    [messageBuilder setChatRequest:chatRequest];
+    
+    GameMessage *gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];
+}
+
+
+
 - (void)sendGetRoomsRequest:(NSString*)userId 
                  startIndex:(int)index 
                       count:(int)count
