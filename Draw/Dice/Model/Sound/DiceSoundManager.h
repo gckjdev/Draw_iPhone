@@ -10,4 +10,13 @@
 
 @interface DiceSoundManager : NSObject
 
++ (DiceSoundManager*)defaultManager;
+- (NSArray*)diceSoundNameArray;
+- (void)callNumber:(int)number 
+              dice:(int)dice 
+            gender:(BOOL)gender;
+- (void)openDice:(BOOL)gender;
+- (void)scrambleOpen:(BOOL)gender;
+
+
 @end
