@@ -246,6 +246,7 @@
         case GameCommandTypeChatRequest:
             [self handleChatRequest:message];
             break;
+            
         default:
             [self handleCustomMessage:message];
             break;
