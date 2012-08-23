@@ -698,6 +698,12 @@
 		CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */; };
 		CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */; };
 		CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */; };
+		CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949715E5D5950083A7A3 /* MenuButton.m */; };
+		CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949815E5D5960083A7A3 /* MenuButton.xib */; };
+		CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949C15E5D5C60083A7A3 /* MenuPanel.m */; };
+		CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */; };
+		CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */; };
+		CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */; };
 		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
 		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
 		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
@@ -2071,6 +2077,14 @@
 		CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeMainController.h; sourceTree = "<group>"; };
 		CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeMainController.m; sourceTree = "<group>"; };
 		CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeMainController.xib; sourceTree = "<group>"; };
+		CA30949615E5D5950083A7A3 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		CA30949715E5D5950083A7A3 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		CA30949815E5D5960083A7A3 /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
+		CA30949B15E5D5C60083A7A3 /* MenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPanel.h; sourceTree = "<group>"; };
+		CA30949C15E5D5C60083A7A3 /* MenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPanel.m; sourceTree = "<group>"; };
+		CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPanel.xib; sourceTree = "<group>"; };
+		CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
+		CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
 		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
@@ -4794,6 +4808,14 @@
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
 				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
+				CA30949615E5D5950083A7A3 /* MenuButton.h */,
+				CA30949715E5D5950083A7A3 /* MenuButton.m */,
+				CA30949815E5D5960083A7A3 /* MenuButton.xib */,
+				CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */,
+				CA30949B15E5D5C60083A7A3 /* MenuPanel.h */,
+				CA30949C15E5D5C60083A7A3 /* MenuPanel.m */,
+				CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */,
+				CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -6787,6 +6809,10 @@
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
 				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
+				CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */,
+				CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */,
+				CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */,
+				CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7270,6 +7296,8 @@
 				A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */,
 				A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */,
 				C213096C15E4D0BC0072A18E /* DiceSoundManager.m in Sources */,
+				CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */,
+				CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
