@@ -244,7 +244,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="634139745"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_guess@2x(1).png</string>
+									<string key="NSResourceName">h_play@2x.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -375,7 +375,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="75302023"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">h_chat@@2x.png</string>
+									<string key="NSResourceName">h_feed@@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="143101871"/>
 								<reference key="IBUIFont" ref="646173143"/>
@@ -401,7 +401,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="634139745"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">shop@2x.png</string>
+									<string key="NSResourceName">h_shop@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="143101871"/>
 								<reference key="IBUIFont" ref="646173143"/>
@@ -1886,15 +1886,15 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bottom_menubg@2x.png">{640, 86}</string>
-			<string key="draw_guess@2x(1).png">{134, 134}</string>
 			<string key="green_button@2x.png">{71, 84}</string>
-			<string key="h_chat@@2x.png">{134, 134}</string>
 			<string key="h_draw@2x.png">{134, 134}</string>
+			<string key="h_feed@@2x.png">{134, 134}</string>
 			<string key="h_friends@2x.png">{134, 134}</string>
 			<string key="h_guess@2x.png">{134, 134}</string>
+			<string key="h_play@2x.png">{134, 134}</string>
+			<string key="h_shop@2x.png">{122, 122}</string>
 			<string key="main_menubg@2x.png">{640, 447}</string>
 			<string key="number@2x.png">{50, 45}</string>
-			<string key="shop@2x.png">{122, 122}</string>
 			<string key="small_chat@2x.png">{59, 59}</string>
 			<string key="small_feedback@2x.png">{59, 59}</string>
 			<string key="small_friend_manager@2x.png">{59, 59}</string>

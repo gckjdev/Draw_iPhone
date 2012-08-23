@@ -9,43 +9,47 @@
 #import "MenuPanel.h"
 
 @implementation MenuPanel
+@synthesize versionLabel = _versionLabel;
+@synthesize scrollView = _scrollView;
+@synthesize pageControl = _pageControl;
+@synthesize controller = _controller;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (MenuPanel *)menuPanelWithController:(UIViewController *)controller
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    static NSString *identifier = @"MenuPanel";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
+    MenuPanel *panel = [topLevelObjects objectAtIndex:0];
+    panel.controller = controller;
+    [panel loadMenu];
+    return  panel;
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark load menu
+- (void)loadMenu
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
 
-- (void)viewDidLoad
+#pragma mark resource for button
+
+#pragma mark page control
+- (IBAction)changePage:(id)sender {
+    
+}
+
+
+- (void)dealloc
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    PPRelease(_versionLabel);
+    PPRelease(_scrollView);
+    PPRelease(_pageControl);
+    PPRelease(_controller);
+    [super dealloc];
 }
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 @end
+
