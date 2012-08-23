@@ -11,6 +11,7 @@
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
 #import "DiceChatMsgManager.h"
+#import "GifView.h"
 
 #define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
 
@@ -158,8 +159,20 @@
                         key:(NSString *)key
 {
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
-    [button setImage:[_expressionManager expressionForKey:key] forState:UIControlStateNormal];
-    [button setTitle:key forState:UIControlStateNormal];
+//    [button setImage:[_expressionManager expressionForKey:key] forState:UIControlStateNormal];
+
+    NSString *filePath = [_expressionManager gifPathForExpression:key];
+    GifView *view;
+    if (filePath != nil) {
+        view = [[[GifView alloc] initWithFrame:button.bounds
+                                      filePath:filePath
+                              playTimeInterval:0.2] autorelease];
+        view.userInteractionEnabled = NO;
+        [button addSubview:view];
+    }
+    
+    [button setTitle:key forState:UIControlStateSelected];
+    button.titleLabel.textColor = [UIColor clearColor];
     [button addTarget:self action:@selector(clickExpression:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
@@ -167,7 +180,7 @@
 - (void)clickExpression:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    NSString *key = [button titleForState:UIControlStateNormal];
+    NSString *key = [button titleForState:UIControlStateSelected];
 //    UIImage *image = [button imageForState:UIControlStateNormal];
     
     if ([_delegate respondsToSelector:@selector(didClickExepression:)]) {
