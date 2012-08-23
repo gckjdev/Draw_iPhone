@@ -167,7 +167,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)openDiceButtonBgImage
 {
-    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)whiteSofaImage
