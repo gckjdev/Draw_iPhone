@@ -26,7 +26,6 @@
 #import "ItemShopController.h"
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"
-#import "DeviceDetection.h"
 #import "ConfigManager.h"
 #import "ChatController.h"
 #import "FriendRoomController.h"
@@ -40,10 +39,10 @@
 #import "MyFriendsController.h"
 #import "RegisterUserController.h"
 
-#import "OfflineDrawViewController.h"
+
 #import "OfflineGuessDrawController.h"
 #import "SelectWordController.h"
-#import "FeedController.h"
+
 
 #import "ChatListController.h"
 #import "LevelService.h"
@@ -60,7 +59,7 @@
 #import "DiceNotification.h"
 
 #import "EntryController.h"
-#import "BoardView.h"
+//#import "BoardView.h"
 #import "BoardPanel.h"
 #import "MenuPanel.h"
 
