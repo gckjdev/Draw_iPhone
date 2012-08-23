@@ -975,6 +975,15 @@
 		EA01D157158BAB1600920A64 /* ReplayGraffitiController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */; };
 		EA01D158158BAB1600920A64 /* ReplayGraffitiController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */; };
 		EA1700F715DE195D00534891 /* diceFont.zip in Resources */ = {isa = PBXBuildFile; fileRef = EA1700F615DE195D00534891 /* diceFont.zip */; };
+		EA177C3D15E62AA10083E4B9 /* message_1_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3415E62AA10083E4B9 /* message_1_F.m4a */; };
+		EA177C3E15E62AA10083E4B9 /* message_2_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3515E62AA10083E4B9 /* message_2_F.m4a */; };
+		EA177C3F15E62AA10083E4B9 /* message_3_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3615E62AA10083E4B9 /* message_3_F.m4a */; };
+		EA177C4015E62AA10083E4B9 /* message_4_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3715E62AA10083E4B9 /* message_4_F.m4a */; };
+		EA177C4115E62AA10083E4B9 /* message_5_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3815E62AA10083E4B9 /* message_5_F.m4a */; };
+		EA177C4215E62AA10083E4B9 /* message_6_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3915E62AA10083E4B9 /* message_6_F.m4a */; };
+		EA177C4315E62AA10083E4B9 /* message_7_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3A15E62AA10083E4B9 /* message_7_F.m4a */; };
+		EA177C4415E62AA10083E4B9 /* message_8_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3B15E62AA10083E4B9 /* message_8_F.m4a */; };
+		EA177C4515E62AA10083E4B9 /* message_9_F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA177C3C15E62AA10083E4B9 /* message_9_F.m4a */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
@@ -2538,6 +2547,15 @@
 		EA01D154158BAB1600920A64 /* ReplayGraffitiController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayGraffitiController.xib; sourceTree = "<group>"; };
 		EA01D155158BAB1600920A64 /* ReplayGraffitiController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayGraffitiController~ipad.xib"; sourceTree = "<group>"; };
 		EA1700F615DE195D00534891 /* diceFont.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = diceFont.zip; sourceTree = "<group>"; };
+		EA177C3415E62AA10083E4B9 /* message_1_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_1_F.m4a; sourceTree = "<group>"; };
+		EA177C3515E62AA10083E4B9 /* message_2_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_2_F.m4a; sourceTree = "<group>"; };
+		EA177C3615E62AA10083E4B9 /* message_3_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_3_F.m4a; sourceTree = "<group>"; };
+		EA177C3715E62AA10083E4B9 /* message_4_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_4_F.m4a; sourceTree = "<group>"; };
+		EA177C3815E62AA10083E4B9 /* message_5_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_5_F.m4a; sourceTree = "<group>"; };
+		EA177C3915E62AA10083E4B9 /* message_6_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_6_F.m4a; sourceTree = "<group>"; };
+		EA177C3A15E62AA10083E4B9 /* message_7_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_7_F.m4a; sourceTree = "<group>"; };
+		EA177C3B15E62AA10083E4B9 /* message_8_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_8_F.m4a; sourceTree = "<group>"; };
+		EA177C3C15E62AA10083E4B9 /* message_9_F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = message_9_F.m4a; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
@@ -3116,6 +3134,7 @@
 		A4B7641C15C37D93003B4E72 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EA177C3315E62AA10083E4B9 /* voice */,
 				A4A01B6F15D8AF67002FE86D /* image */,
 				A4A01BAE15D8AF67002FE86D /* music */,
 				A4AC51AF15C7BFA50041DC86 /* font */,
@@ -6194,6 +6213,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		EA177C3315E62AA10083E4B9 /* voice */ = {
+			isa = PBXGroup;
+			children = (
+				EA177C3415E62AA10083E4B9 /* message_1_F.m4a */,
+				EA177C3515E62AA10083E4B9 /* message_2_F.m4a */,
+				EA177C3615E62AA10083E4B9 /* message_3_F.m4a */,
+				EA177C3715E62AA10083E4B9 /* message_4_F.m4a */,
+				EA177C3815E62AA10083E4B9 /* message_5_F.m4a */,
+				EA177C3915E62AA10083E4B9 /* message_6_F.m4a */,
+				EA177C3A15E62AA10083E4B9 /* message_7_F.m4a */,
+				EA177C3B15E62AA10083E4B9 /* message_8_F.m4a */,
+				EA177C3C15E62AA10083E4B9 /* message_9_F.m4a */,
+			);
+			path = voice;
+			sourceTree = "<group>";
+		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -6823,6 +6858,15 @@
 				A42C522115E6215F001D8208 /* face_proud.gif in Resources */,
 				A42C522215E6215F001D8208 /* face_smile.gif in Resources */,
 				A42C522315E6215F001D8208 /* face_wry.gif in Resources */,
+				EA177C3D15E62AA10083E4B9 /* message_1_F.m4a in Resources */,
+				EA177C3E15E62AA10083E4B9 /* message_2_F.m4a in Resources */,
+				EA177C3F15E62AA10083E4B9 /* message_3_F.m4a in Resources */,
+				EA177C4015E62AA10083E4B9 /* message_4_F.m4a in Resources */,
+				EA177C4115E62AA10083E4B9 /* message_5_F.m4a in Resources */,
+				EA177C4215E62AA10083E4B9 /* message_6_F.m4a in Resources */,
+				EA177C4315E62AA10083E4B9 /* message_7_F.m4a in Resources */,
+				EA177C4415E62AA10083E4B9 /* message_8_F.m4a in Resources */,
+				EA177C4515E62AA10083E4B9 /* message_9_F.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
