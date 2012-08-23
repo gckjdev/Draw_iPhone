@@ -1140,13 +1140,13 @@
     [self playExpression:expressionId userId:userId];
 }
 
-- (void)didClickMessage:(NSString *)message
+- (void)didClickMessage:(DiceChatMessage *)message
 {
     self.chatButton.selected = NO;
     [_popupViewManager dismissChatView];
     
-    [self popupMessageView:message onUser:[_userManager userId]];
-    [_diceService chatWithContent:message contentVoiceId:nil];
+    [self popupMessageView:message.content onUser:[_userManager userId]];
+    [_diceService chatWithContent:message.content contentVoiceId:nil];
     
     // TODO: Play voice here;
     

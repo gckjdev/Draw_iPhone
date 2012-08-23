@@ -46,7 +46,15 @@
     return _content;
 }
 
+- (int)messageId
+{
+    return _messageId;
+}
 
 
+- (int)voiceId
+{
+    return _voiceId;
+}
 
 @end

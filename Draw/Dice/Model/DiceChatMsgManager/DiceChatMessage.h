@@ -15,5 +15,7 @@
                 voiceId:(int)voiceId;
 
 - (NSString *)content;
+- (int)messageId;
+- (int)voiceId;
 
 @end

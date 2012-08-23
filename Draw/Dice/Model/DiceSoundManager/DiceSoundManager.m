@@ -87,8 +87,8 @@ static DiceSoundManager* shareManager;
     return [NSString stringWithFormat:@"%@_%d",MESSAGE_BASE_NAME, messageId];
 }
 
-- (void)playMessageById:(int)messageId 
-                 gender:(BOOL)gender
+- (void)playVoiceById:(int)messageId 
+               gender:(BOOL)gender
 {
     NSString* name = [self getMessageSoundNameById:messageId];
     if (gender) {

@@ -15,18 +15,18 @@ static DiceChatMsgManager *_defaultManager = nil;
 @interface DiceChatMsgManager()
 
 @property (retain, nonatomic) NSArray *messages;
-@property (retain, nonatomic) NSArray *contentList;
+//@property (retain, nonatomic) NSArray *contentList;
 
 @end
 
 @implementation DiceChatMsgManager
 @synthesize messages = _messages;
-@synthesize contentList = _contentList;
+//@synthesize contentList = _contentList;
 
 - (void)dealloc
 {
     [_messages release];
-    [_contentList release];
+//    [_contentList release];
     [super dealloc];
 }
 
@@ -81,19 +81,46 @@ static DiceChatMsgManager *_defaultManager = nil;
 
         self.messages = [NSArray arrayWithObjects:message1, message2, message3, message4, message5, message6, message7, message8, message9, nil];
         
-        NSMutableArray *array = [NSMutableArray array];
-        for (DiceChatMessage *message in _messages) {
-            [array addObject:message.content];
-        }
-        self.contentList = array;
+//        NSMutableArray *array = [NSMutableArray array];
+//        for (DiceChatMessage *message in _messages) {
+//            [array addObject:message.content];
+//        }
+//        self.contentList = array;
     }
     
     return self;
 }
 
-- (NSArray *)contentList
+//- (NSArray *)contentList
+//{
+//    return _contentList;
+//}
+
+- (int)voiceIdForMessageId:(int)messageId
 {
-    return _contentList;
+    for (DiceChatMessage *message in _messages) {
+        if (messageId == message.messageId) {
+            return message.voiceId;
+        }
+    }
+    
+    return 0;
+}
+
+- (NSString *)contentForMessageId:(int)messageId
+{
+    for (DiceChatMessage *message in _messages) {
+        if (messageId == message.messageId) {
+            return message.content;
+        }
+    }
+    
+    return nil;
+}
+
+- (NSArray *)messages
+{
+    return _messages;
 }
 
 @end

@@ -11,6 +11,10 @@
 @interface DiceChatMsgManager : NSObject
 
 + (DiceChatMsgManager*)defaultManager;
-- (NSArray *)contentList;
+//- (NSArray *)contentList;
+- (NSArray *)messages;
+
+- (int)voiceIdForMessageId:(int)messageId;
+- (NSString *)contentForMessageId:(int)messageId;
 
 @end
