@@ -198,6 +198,9 @@
             if (_feedList == nil) {
                 _feedList = [[NSMutableArray alloc] initWithArray:feedList];
             }else{
+                if (_feedStartIndex == 0) {
+                    [_feedList removeAllObjects];
+                }
                 [_feedList addObjectsFromArray:feedList];
             }
             _feedStartIndex += [feedList count];
@@ -206,6 +209,9 @@
             if (_opusList == nil) {
                 _opusList = [[NSMutableArray alloc] initWithArray:feedList];
             }else{
+                if (_opusStartIndex == 0) {
+                    [_opusList removeAllObjects];
+                }
                 [_opusList addObjectsFromArray:feedList];
             }        
             _opusStartIndex += [feedList count];
@@ -252,21 +258,12 @@
     self.opusButton.selected = self.feedButton.selected = NO;
     UIButton *button = (UIButton *)sender;
     button.selected = YES;
-    if (button.tag == FeedListTypeUserOpus) {
-        if (_opusList) {
-            [self reloadView];
-        }else{
-            [self updateFeedList];
-        }
-    }else{
-        if (_feedList) {
-            [self reloadView];
-        }else{
-            [self updateFeedList];
-        }        
+    [self reloadView];
+    if (button.tag == FeedListTypeUserOpus && _opusList == nil) {
+        [self updateFeedList];
+    }else if (_feedList == nil) {
+        [self updateFeedList];
     }
-    
-    
 }
 
 #pragma mark - table view delegate
@@ -308,6 +305,7 @@
     cell.indexPath = indexPath;
     cell.accessoryType = UITableViewCellAccessoryNone;
     Feed *feed = [self.dataList objectAtIndex:indexPath.row];
+    [feed updateDesc];
     [cell setCellInfo:feed];
     return cell;
     

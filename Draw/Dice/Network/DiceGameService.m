@@ -75,7 +75,7 @@ static DiceGameService* _defaultService;
     }
     
     // Init lastCallDice when game begin.
-    self.diceSession.lastCallDice = 1;
+    self.diceSession.lastCallDice = 2;
     self.diceSession.lastCallDiceCount = [[self session] playingUserCount] - 1;
     
     [self postNotification:NOTIFICATION_ROLL_DICE_END message:message];
@@ -215,19 +215,6 @@ static DiceGameService* _defaultService;
             [self handleUseItemRequest:message];
             break;
             
-        case GameCommandTypeChatRequest:
-            break;
-
-        case GameCommandTypeChatResponse:
-            break;
-            
-        case GameCommandTypeChatNotificationRequest:
-            
-            break;
-            
-        case GameCommandTypeChatNotificationResponse:
-            
-            break;
             
         default:
             PPDebug(@"<handleCustomMessage> unknown command=%d", [message command]);
@@ -287,26 +274,6 @@ static DiceGameService* _defaultService;
     [self.diceSession.userDiceList removeObjectForKey:userId];
     [self.diceSession.userDiceList setObject:diceList forKey:userId];
 }
-
-
-//- (void)callDice:(int)dice count:(int)count
-//{
-//    if (dice == 1) {
-//        [self callDice:dice count:count wilds:YES];
-//        return;
-//    }
-//    
-//    // Update Model.
-//    self.diceSession.lastCallDiceUserId = self.user.userId;
-//    self.diceSession.lastCallDice = dice;
-//    self.diceSession.lastCallDiceCount = count;
-//    
-//    // Send command.
-//    [(DiceNetworkClient *)_networkClient sendCallDiceRequest:self.lastCallUserId
-//                                                   sessionId:self.session.sessionId
-//                                                        dice:self.lastCallDice
-//                                                       count:self.lastCallDiceCount]; 
-//}
 
 - (NSString *)lastCallUserId
 {

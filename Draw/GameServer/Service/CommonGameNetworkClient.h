@@ -40,4 +40,9 @@
 - (void)sendUnRegisterRoomsNotificationRequest:(NSArray*)sessionList 
                                         userId:(NSString*)userId;
 
+- (void)sendChatMessageRequest:(NSString *)content
+                contentVoiceId:(NSString *)contentVoiceId
+                  expressionId:(NSString *)expressionId
+                     sessionId:(int)sessionId
+                        userId:(NSString *)userId;
 @end

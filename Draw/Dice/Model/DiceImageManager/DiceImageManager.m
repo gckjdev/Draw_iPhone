@@ -29,12 +29,12 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)createRoomBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)fastGameBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)graySafaImage
@@ -167,7 +167,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)openDiceButtonBgImage
 {
-    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)whiteSofaImage
@@ -190,4 +190,32 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"tools_bell_bg.png"];
 }
 
+- (UIImage *)closeButtonBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_close_btn.png"];
+}
+- (UIImage *)faceBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_face_bg.png"];
+}
+- (UIImage *)helpBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_help_bg.png"];
+}
+- (UIImage *)inputBackgroundImage
+{
+    return [UIImage strectchableImageName:@"dice_input_bg.png"];
+}
+- (UIImage *)messageTipBackgroundImage
+{
+    return [UIImage imageNamed:@"dice_input_bg.png"];
+}
+- (UIImage *)popupBackgroundImage
+{
+    return [UIImage strectchableImageName:@"dice_popup_bg.png"];
+}
+- (UIImage *)diceQuitBtnImage
+{
+    return [UIImage strectchableImageName:@"dice_quit_btn.png"  leftCapWidth:15 topCapHeight:15];
+}
 @end

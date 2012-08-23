@@ -10,14 +10,17 @@
 #import "AdBoardView.h"
 #import "WebBoardView.h"
 #import "ImageBoardView.h"
+#import "JumpHandler.h"
 
 @implementation BoardView
 @synthesize board = _board;
 @synthesize delegate = _delegate;
 
-#define BOARD_WIDTH ([DeviceDetection isIPAD]? 650.0 : 320.0)
+#define BOARD_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
 #define SCREEN_WIDTH ([DeviceDetection isIPAD]? 768.0 : 320.0)
-#define BOARD_FRAME CGRectMake((SCREEN_WIDTH - BOARD_WIDTH)/2.0, 0, BOARD_WIDTH, BOARD_WIDTH*0.618)
+
+#define BOARD_HEIGHT ([DeviceDetection isIPAD]? 447.0 : 193.0)
+#define BOARD_FRAME CGRectMake((SCREEN_WIDTH - BOARD_WIDTH)/2.0, 0, BOARD_WIDTH, BOARD_HEIGHT)
 
 - (id)initWithBoard:(Board *)board
 {
@@ -60,6 +63,10 @@
 - (void)innerJump:(NSURL *)URL
 {
     //should be override by the sub classes.   
+    if ([URL.scheme isEqualToString:BOARD_SCHEME_TEL] || [URL.scheme isEqualToString:BOARD_SCHEME_SMS]) {
+        PPDebug(@"share application open URL = %@", URL);
+        [[UIApplication sharedApplication] openURL:URL];
+    }
 }
 
 //a handle method, used by sub classes.

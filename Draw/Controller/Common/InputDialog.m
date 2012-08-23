@@ -10,7 +10,14 @@
 #import "AnimationManager.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "FontButton.h"
+#import "DiceImageManager.h"
 
+@interface InputDialog ()
+
+- (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title;
+
+@end
 
 @implementation InputDialog
 @synthesize cancelButton;
@@ -20,13 +27,62 @@
 @synthesize targetTextField;
 @synthesize delegate;
 
+- (void)setDialogTitle:(NSString *)title
+{
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
+}
 
-- (void)updateTextFields
+- (void)setTargetText:(NSString *)text
+{
+    [self.targetTextField setText:text];
+}
+
+- (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [self.targetTextField setBackground:[imageManager inputImage]];
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    switch (theme) {
+        case CommonInputDialogThemeDice:{ 
+            [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
+            [self.titleLabel.fontLable setText:title];
+            
+            [self.cancelButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] 
+                                         forState:UIControlStateNormal];
+            [self.okButton setBackgroundImage:[diceImgManager diceQuitBtnImage] 
+                                     forState:UIControlStateNormal];
+            
+            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
+            [self.okButton.fontLable setText:NSLS(@"kOK")];
+            self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+            
+        } break;
+        case CommonInputDialogThemeDraw: 
+        default: {
+            [self.targetTextField setBackground:[imageManager inputImage]];
+            [self setDialogTitle:title];
+            [self.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+            [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+            [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+            [self.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+            self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+        }break;
+    }
     [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+    
+    
 }
+
+//- (void)updateTextFields
+//{
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    [self.targetTextField setBackground:[imageManager inputImage]];
+//    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
+//}
 
 
 - (IBAction)clickCancelButton:(id)sender {
@@ -49,13 +105,7 @@
     InputDialog* view =  (InputDialog*)[self createInfoViewByXibName:INPUT_DIALOG_THEME_DRAW];
     
     //init the button
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view updateTextFields];
-    [view setDialogTitle:title];
-    [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+    [view initWithTheme:CommonInputDialogThemeDraw title:title]; 
     view.delegate = delegate;
     view.tag = 0;
     return view;
@@ -85,13 +135,7 @@
 {
     InputDialog* view = [self createDialogWithTheme:theme];
     if (view) {
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [view updateTextFields];
-        [view setDialogTitle:title];
-        [view.cancelButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-        [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-        [view.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-        [view.okButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+        [view initWithTheme:theme title:title];  
         view.delegate = delegate;
         view.tag = 0;
     }
@@ -99,15 +143,7 @@
 
 }
 
-- (void)setDialogTitle:(NSString *)title
-{
-    [self.titleLabel setTitle:title forState:UIControlStateNormal];
-}
 
-- (void)setTargetText:(NSString *)text
-{
-    [self.targetTextField setText:text];
-}
 
 //- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 //{

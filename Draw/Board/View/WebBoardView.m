@@ -66,6 +66,7 @@
         if ([dir length] == 0) {
             return;
         }
+//        [FileUtil removeFile:dir];
         
         NSString *destinationPath = [dir stringByAppendingPathComponent:DOWN_LOAD_FILE_NAME];
         
@@ -111,7 +112,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 
-    
     if ([self handleTap:request.URL]) {
         PPDebug(@"should NOT load request = %@", request.URL);
         return NO;

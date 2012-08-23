@@ -12,11 +12,11 @@
 
 
 
-#define DICE_VIEW_WIDTH 34  
-#define DICE_VIEW_HEIGHT 35
+#define DICE_VIEW_WIDTH     ([DeviceDetection isIPAD] ? 68 : 34)
+#define DICE_VIEW_HEIGHT    ([DeviceDetection isIPAD] ? 70 : 35)
 
 
-#define EDGE_WIDTH 3
+#define EDGE_WIDTH  ([DeviceDetection isIPAD] ? 6 : 3)
 
 
 @interface DiceShowView ()

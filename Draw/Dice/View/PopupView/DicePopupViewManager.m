@@ -13,14 +13,17 @@
 #import "LocaleUtils.h"
 #import "DiceFontManager.h"
 
-#define MESSAGE_BACKGROUND_COLOR [UIColor yellowColor]
+#define MESSAGE_BACKGROUND_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
 #define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+
+#define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 36 : 18 )
 
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
 @property (retain, nonatomic) DiceItemListView *diceItemListView;
 @property (retain, nonatomic) MessageView *openDiceView;
+@property (retain, nonatomic) ChatView *chatView;
 
 @end
 
@@ -31,12 +34,14 @@ static DicePopupViewManager *_instance = nil;
 @synthesize callDiceView = _callDiceView;
 @synthesize diceItemListView = _diceItemListView;
 @synthesize openDiceView = _openDiceView;
+@synthesize chatView = _chatView;
 
 - (void)dealloc
 {
     [_callDiceView release];
     [_diceItemListView release];
     [_openDiceView release];
+    [_chatView release];
     [super dealloc];
 }
 
@@ -52,6 +57,7 @@ static DicePopupViewManager *_instance = nil;
 - (id)init
 {
     if (self = [super init]) {
+        self.chatView = [[[ChatView alloc] init] autorelease];
         self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
     }
     
@@ -74,17 +80,28 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
 }
 
-- (void)popupItemListViewAtView:(UIView *)atView 
-                         inView:(UIView *)inView 
-                       duration:(int)duration
-                       delegate:(id<DiceItemListViewDelegate>)delegate 
- 
+- (void)popupItemListAtView:(UIView *)atView 
+               inView:(UIView *)inView
+             duration:(int)duration
+             delegate:(id<DiceItemListViewDelegate>)delegate 
 {
-    [_diceItemListView updateWithDelegate:delegate];
+    _diceItemListView.delegate = delegate;
+    
+    [_diceItemListView update];
     [_diceItemListView popupAtView:atView
                             inView:inView 
                           duration:duration
                           animated:YES];
+}
+
+- (void)enableCutItem
+{
+    [_diceItemListView enableCutItem];
+}
+
+- (void)disableCutItem
+{
+    [_diceItemListView disableCutItem];
 }
 
 - (void)dismissItemListView
@@ -137,7 +154,7 @@ static DicePopupViewManager *_instance = nil;
     self.openDiceView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                    message:message
                                                   fontName:[[DiceFontManager defaultManager] fontName]
-                                                 pointSize:18
+                                                 pointSize:SIZE_FONT_OPEN_DICE
                                               textAlignment:UITextAlignmentCenter] autorelease];
     
     [_openDiceView popupAtView:atView
@@ -153,6 +170,24 @@ static DicePopupViewManager *_instance = nil;
 - (void)dismissOpenDiceView
 {
     [_openDiceView dismissAnimated:YES];
+}
+
+- (void)popupChatViewAtView:(UIView *)atView
+                     inView:(UIView *)inView   
+                  deleagate:(id<ChatViewDelegate>)delegate;
+
+
+{
+    _chatView.delegate = delegate;
+    [_chatView popupAtView:atView 
+                    inView:inView
+                  animated:YES 
+            pointDirection:PointDirectionAuto];
+}
+
+- (void)dismissChatView
+{
+    [_chatView dismissAnimated:YES];
 }
 
 @end

@@ -331,10 +331,6 @@
 {
     NSString *title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), [self getUserNickName:_chatType userId:_selectedUserId]];
     self.inputDialog = [InputDialog dialogWith:title delegate:self];
-    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
-    _inputDialog.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
-    _inputDialog.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
-    _inputDialog.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     _inputDialog.targetTextField.placeholder = NSLS(@"kInputWhatYouWantToSay");
     [_inputDialog showInView:self.view];
 }

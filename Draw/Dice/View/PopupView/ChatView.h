@@ -7,21 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UICustomPageControl.h"
+#import "ChatViewCell.h"
+#import "CMPopTipView.h"
 
 @protocol ChatViewDelegate <NSObject>
 
 @optional
-- (void)didClickExepression:(UIImage *)image;
+- (void)didClickExepression:(NSString *)key;
 - (void)didClickMessage:(NSString *)message;
 
 @end
 
 
-@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate>
+@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, UICustomPageControlDelegate, ChatViewCellDelegate>
 
 @property (assign, nonatomic) id<ChatViewDelegate> delegate;
 
-- (id)init;
+- (void)popupAtView:(UIView *)view
+             inView:(UIView *)inView
+           animated:(BOOL)animated
+     pointDirection:(PointDirection)pointDirection;
 
+- (void)dismissAnimated:(BOOL)animated;
 
 @end

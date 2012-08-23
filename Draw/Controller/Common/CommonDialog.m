@@ -9,6 +9,8 @@
 #import "CommonDialog.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
+#import "DiceImageManager.h"
+#import "FontButton.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -19,6 +21,7 @@
 @synthesize messageLabel = _messageLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize delegate = _delegate;
+@synthesize contentBackground = _contentBackground;
 @synthesize style = _style;
 - (void)dealloc
 {
@@ -27,12 +30,37 @@
     [_backButton release];
     [_messageLabel release];
     [_titleLabel release];
+    [_contentBackground release];
     [super dealloc];
 }
 
-- (void)initTitles
+- (void)initTitlesWithTheme:(CommonDialogTheme)theme
 {
 
+}
+
+- (void)initButtonsWithTheme:(CommonDialogTheme)theme
+{
+    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+    ShareImageManager* imgManager = [ShareImageManager defaultManager];
+    switch (theme) {
+        case CommonDialogThemeDice: {
+            //init the button
+            [self.backButton.fontLable setText:NSLS(@"kCancel")];
+            [self.oKButton.fontLable setText:NSLS(@"kOK")];
+
+            [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
+            [self.oKButton setBackgroundImage:[diceImgManager diceQuitBtnImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] forState:UIControlStateNormal];
+        } break;
+        case CommonDialogThemeDraw:
+            [self.oKButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
+            [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+            [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        default:
+            break;
+    }
 }
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
@@ -60,7 +88,7 @@
 {
     CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
     [view initButtonsWithStyle:aStyle];
-    [view initTitles];
+    [view initTitlesWithTheme:CommonDialogThemeDraw];
     [view appear];
     
     //init the button
@@ -97,14 +125,9 @@
     CommonDialog* view = [self createDialogWithTheme:theme];
     if (view) {
         [view initButtonsWithStyle:aStyle];
-        [view initTitles];
-        
-        //init the button
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
-        [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-        [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-        view.tag = 0; 
+        [view initButtonsWithTheme:theme];
+        [view initTitlesWithTheme:theme];
+        view.tag = 0;
     }
     return view;
     

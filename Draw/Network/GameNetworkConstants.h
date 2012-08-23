@@ -9,6 +9,7 @@
 
 #define SERVER_URL                  (GlobalGetServerURL())
 #define TRAFFIC_SERVER_URL                  (GlobalGetTrafficServerURL())
+#define BOARD_SERVER_URL                  (GlobalGetBoardServerURL())
 //#define APP_ID                      @"Game"
 
 #define STRING_SEPERATOR @"$"
@@ -465,3 +466,4 @@
 
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();
+extern NSString* GlobalGetBoardServerURL();

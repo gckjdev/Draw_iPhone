@@ -40,7 +40,7 @@
         
         //load draw data from local
         self.drawImage = [[ShareImageManager defaultManager] 
-                          getImageWithName:self.feedId];
+                          getImageWithFeedId:self.feedId];
         
         if (self.drawImage == nil && drawData) {
             Draw* draw = [[Draw alloc]initWithPBDraw:drawData];

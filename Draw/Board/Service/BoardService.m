@@ -37,7 +37,7 @@ typedef enum{
     dispatch_async(workingQueue, ^{
         DeviceType deviceType = [DeviceDetection isIPAD] ? DeviceTypeIPad :  DeviceTypeIPhone;
         NSString *appId = [ConfigManager appId];
-        CommonNetworkOutput *output = [BoardNetwork getBoards:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput *output = [BoardNetwork getBoards:BOARD_SERVER_URL 
                                                         appId:appId 
                                                    deviceType:deviceType]; 
         NSInteger errorCode = output.resultCode;
@@ -50,11 +50,6 @@ typedef enum{
                     [unSortedBoardList addObject:board];
                 }
             }
-            
-            for(Board *board in unSortedBoardList){
-                PPDebug(@"befor index : %d", board.index);
-            }
-
             //sort the boardList by the index
             boardList = [unSortedBoardList sortedArrayUsingComparator:^(id obj1,id obj2){
                 Board *board1 = (Board *)obj1;
@@ -66,11 +61,6 @@ typedef enum{
                 }
                 return NSOrderedSame;
             }];
-            
-            for(Board *board in boardList){
-                PPDebug(@"after index : %d", board.index);
-            }
-            
         }
         
         if (delegate && [delegate respondsToSelector:@selector(didGetBoards:resultCode:)]) {

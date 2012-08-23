@@ -45,6 +45,7 @@
 //#import "DiceFontManager.h"
 #import "WordManager.h"
 #import "DiceFontManager.h"
+#import "DiceSoundManager.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -55,8 +56,16 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
   return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.11:8100/api/i?";    
+//    return @"http://192.167.1.123:8100/api/i?";    
 }
+
+NSString* GlobalGetBoardServerURL()
+{
+//    return [ConfigManager getTrafficAPIServerURL];
+    return @"http://192.167.1.123:8100/api/i?";    
+}
+
+
 
 @implementation DrawAppDelegate
 
@@ -94,14 +103,17 @@ NSString* GlobalGetTrafficServerURL()
     [WXApi registerApp:@"wx427a2f57bc4456d1"];
     
     //init sounds
-    [[AudioManager defaultManager] initSounds:[NSArray arrayWithObjects:
-                                               @"ding.m4a", 
-                                               @"dingding.mp3", 
-                                               @"correct.mp3", 
-                                               @"oowrong.mp3", 
-                                               @"congratulations.mp3", 
-                                               @"rolling.mp3",
-                                               @"open.aiff", nil]];
+    NSArray* drawSoundArray = [NSArray arrayWithObjects:
+                                @"ding.m4a", 
+                                @"dingding.mp3", 
+                                @"correct.mp3", 
+                                @"oowrong.mp3", 
+                                @"congratulations.mp3", 
+                                @"rolling.mp3",
+                               @"open.aiff", nil];
+    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
+    
+    [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];
         
     // init mob click 
     [MobClick startWithAppkey:@"4f83980852701565c500003a" 

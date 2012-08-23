@@ -13,10 +13,14 @@
 #import "PPDebug.h"
 #import "DiceFontManager.h"
 
-#define DEFAULT_HEIGHT_OF_PAGE_CONTROL 5
+#define DEFAULT_HEIGHT_OF_PAGE_CONTROL ([DeviceDetection isIPAD] ? 10 : 5)
 
 #define EACH_PAGE_BUTTON_COUNT 7
-#define EDGE_WIDTH 4
+#define EDGE_WIDTH ([DeviceDetection isIPAD] ? 11 : 4)
+
+#define WIDTH_COUNT_BUTTON  ([DeviceDetection isIPAD] ? 68 : 30)
+#define HEIGHT_COUNT_BUTTON ([DeviceDetection isIPAD] ? 72 : 32)
+#define SIZE_FONT_COUNT_BUTTON  ([DeviceDetection isIPAD] ? 50 : 25)
 
 @interface DiceSelectedView ()
 {
@@ -230,8 +234,8 @@
     
     CGRect frame;
 
-    int width = 30;
-    int height = 32;
+    int width = WIDTH_COUNT_BUTTON;
+    int height = HEIGHT_COUNT_BUTTON;
 
     int j = 0;
     for (int i = start; i <= end; i ++) {
@@ -247,7 +251,7 @@
 {
     FontButton *fontButton = [[[FontButton alloc] initWithFrame:frame 
                                                        fontName:[[DiceFontManager defaultManager] fontName]
-                                                      pointSize:25] autorelease];
+                                                      pointSize:SIZE_FONT_COUNT_BUTTON] autorelease];
     fontButton.fontLable.text = [NSString stringWithFormat:@"%d", num];
     fontButton.tag = num;
     
@@ -339,8 +343,8 @@
     _curSelecetedDiceCountBtn.selected = NO;
     
     PPDebug(@"Call %d * %d", _curSelecetedDiceCountBtn.tag, dice.dice);
-    if ([_delegate respondsToSelector:@selector(didSelectedDice:count:)]) {
-        [_delegate didSelectedDice:dice count:_curSelecetedDiceCountBtn.tag];
+    if ([_delegate respondsToSelector:@selector(didSelectDice:count:)]) {
+        [_delegate didSelectDice:dice count:_curSelecetedDiceCountBtn.tag];
     }
 }
 

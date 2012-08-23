@@ -23,11 +23,13 @@
 #import "AudioManager.h"
 #import "CommonDialog.h"
 #import "ItemService.h"
+#import "ChatView.h"
+#import "ExpressionManager.h"
 
 @class DiceGameService;
 
 
-@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate> {
+@interface DiceGamePlayController : PPViewController <DiceItemListViewDelegate, DiceSelectedViewDelegate, DiceAvatarViewDelegate, DicesResultViewAnimationDelegate, LevelServiceDelegate, CommonDialogDelegate, ChatViewDelegate> {
     DiceGameService*  _diceService;
     UserManager *_userManager;
     DicePopupViewManager *_popupViewManager;
@@ -36,6 +38,7 @@
     AccountService *_accountService;
     AudioManager *_audioManager;
 //    ItemService *_itemService;
+    ExpressionManager *_expressionManager;
     BOOL _usingWilds;
 }
 
@@ -59,4 +62,5 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *waittingForNextTurnNoteLabel;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *gameBeginNoteLabel;
 @property (retain, nonatomic) UIView  *adView;
+@property (retain, nonatomic) IBOutlet UIButton *chatButton;
 @end
