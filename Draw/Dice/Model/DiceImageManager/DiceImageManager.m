@@ -29,12 +29,12 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)createRoomBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"dice_play.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)fastGameBtnBgImage
 {
-    return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"dice_create_room.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)graySafaImage
@@ -167,7 +167,7 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)openDiceButtonBgImage
 {
-    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15];
+    return [UIImage strectchableImageName:@"open.png" leftCapWidth:15 topCapHeight:15];
 }
 
 - (UIImage *)whiteSofaImage
@@ -216,6 +216,6 @@ static DiceImageManager *_defaultManager = nil;
 }
 - (UIImage *)diceQuitBtnImage
 {
-    return [UIImage strectchableImageName:@"dice_quit_btn.png"  leftCapWidth:15];
+    return [UIImage strectchableImageName:@"dice_quit_btn.png"  leftCapWidth:15 topCapHeight:15];
 }
 @end

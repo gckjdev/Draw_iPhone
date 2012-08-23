@@ -200,7 +200,6 @@
 		A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C3315D8EBFD002FE86D /* dice.m4a */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
-		A4AB191815E5D6CB0097CC7A /* face_embarrass.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
 		A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */; };
 		A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B815C7BFF10041DC86 /* FontManager.m */; };
@@ -246,6 +245,7 @@
 		C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */; };
 		C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */; };
 		C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213096715E4BD830072A18E /* dice_quit_btn@2x.png */; };
+		C213096C15E4D0BC0072A18E /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C213096B15E4D0BC0072A18E /* DiceSoundManager.m */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -698,6 +698,12 @@
 		CA2F81EC15C0D995002038A6 /* FacetimeNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EB15C0D995002038A6 /* FacetimeNetworkClient.m */; };
 		CA2F81F015C0D9B8002038A6 /* FacetimeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */; };
 		CA2F81F115C0D9B8002038A6 /* FacetimeMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */; };
+		CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949715E5D5950083A7A3 /* MenuButton.m */; };
+		CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949815E5D5960083A7A3 /* MenuButton.xib */; };
+		CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA30949C15E5D5C60083A7A3 /* MenuPanel.m */; };
+		CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */; };
+		CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */; };
+		CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */; };
 		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
 		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
 		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
@@ -1280,7 +1286,6 @@
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
-		A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_embarrass.gif; sourceTree = "<group>"; };
 		A4AC51B315C7BFF10041DC86 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
 		A4AC51B415C7BFF10041DC86 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
 		A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
@@ -1348,6 +1353,8 @@
 		C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DicePassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213096715E4BD830072A18E /* dice_quit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_quit_btn@2x.png"; sourceTree = "<group>"; };
+		C213096A15E4D0BC0072A18E /* DiceSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSoundManager.h; sourceTree = "<group>"; };
+		C213096B15E4D0BC0072A18E /* DiceSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSoundManager.m; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -2070,6 +2077,14 @@
 		CA2F81ED15C0D9B8002038A6 /* FacetimeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacetimeMainController.h; sourceTree = "<group>"; };
 		CA2F81EE15C0D9B8002038A6 /* FacetimeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacetimeMainController.m; sourceTree = "<group>"; };
 		CA2F81EF15C0D9B8002038A6 /* FacetimeMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacetimeMainController.xib; sourceTree = "<group>"; };
+		CA30949615E5D5950083A7A3 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		CA30949715E5D5950083A7A3 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		CA30949815E5D5960083A7A3 /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
+		CA30949B15E5D5C60083A7A3 /* MenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPanel.h; sourceTree = "<group>"; };
+		CA30949C15E5D5C60083A7A3 /* MenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPanel.m; sourceTree = "<group>"; };
+		CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPanel.xib; sourceTree = "<group>"; };
+		CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
+		CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
 		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
@@ -2862,7 +2877,6 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
-				A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */,
 				A4A01BFF15D8D4F9002FE86D /* open_bell_1bigx2@2x.png */,
 				A4A01C0015D8D4F9002FE86D /* open_bell_2bigx2@2x.png */,
 				A4A01C0115D8D4F9002FE86D /* open_bell_3bigx2@2x.png */,
@@ -3025,6 +3039,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C213096915E4D0980072A18E /* Sound */,
 				A4C516AA15DE40F100E4F735 /* DiceItemManager */,
 				A4C1123615D4B60F009B3E8D /* DiceAnimationManager */,
 				A45BF5DF15D231A000CDD5C2 /* DiceFontManager */,
@@ -3158,6 +3173,15 @@
 				C213093615E37BA80072A18E /* dice_popup_bg@2x.png */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		C213096915E4D0980072A18E /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				C213096A15E4D0BC0072A18E /* DiceSoundManager.h */,
+				C213096B15E4D0BC0072A18E /* DiceSoundManager.m */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -4784,6 +4808,14 @@
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
 				CAA361DA15529F530081D3EB /* HomeController~ipad.xib */,
+				CA30949615E5D5950083A7A3 /* MenuButton.h */,
+				CA30949715E5D5950083A7A3 /* MenuButton.m */,
+				CA30949815E5D5960083A7A3 /* MenuButton.xib */,
+				CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */,
+				CA30949B15E5D5C60083A7A3 /* MenuPanel.h */,
+				CA30949C15E5D5C60083A7A3 /* MenuPanel.m */,
+				CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */,
+				CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -6777,7 +6809,10 @@
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
 				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
-				A4AB191815E5D6CB0097CC7A /* face_embarrass.gif in Resources */,
+				CA30949A15E5D5960083A7A3 /* MenuButton.xib in Resources */,
+				CA30949F15E5D5C60083A7A3 /* MenuPanel.xib in Resources */,
+				CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */,
+				CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7260,6 +7295,9 @@
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
 				A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */,
 				A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */,
+				C213096C15E4D0BC0072A18E /* DiceSoundManager.m in Sources */,
+				CA30949915E5D5960083A7A3 /* MenuButton.m in Sources */,
+				CA30949E15E5D5C60083A7A3 /* MenuPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
