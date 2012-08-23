@@ -181,7 +181,7 @@
     
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                   iPadFrame:CGRectMake(0, 0, 320, 50)
                                                      useLmAd:YES];
     
 //    NSArray* userList = _diceService.session.userList;
@@ -1187,7 +1187,7 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    // TODO: Play voice here;
+    [[AudioManager defaultManager] playSoundByName:contentVoiceId];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId
@@ -1204,7 +1204,7 @@
     [_diceService chatWithContent:message contentVoiceId:nil];
     
     // TODO: Play voice here;
-
+    
 }
 
 - (void)didClickExepression:(NSString *)key
