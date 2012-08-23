@@ -9,13 +9,22 @@
 #import <UIKit/UIKit.h>
 
 typedef enum{
+    
     MenuButtonTypeOnlinePlay = 100,   
     MenuButtonTypeOfflineDraw,   
     MenuButtonTypeOfflineGuess,   
     MenuButtonTypeFriendPlay,   
     MenuButtonTypeTimeline,   
-    MenuButtonTypeShop   
+    MenuButtonTypeShop,   
+    
+    MenuButtonTypeCount
+    
 }MenuButtonType;
+
+#define MenuButtonTypeBase MenuButtonTypeOnlinePlay
+
+#define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 134 : 71)
+#define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 134 : 87)
 
 @interface MenuButton : UIView
 {
