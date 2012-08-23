@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuPanel : UIView
+@interface MenuPanel : UIView<UIScrollViewDelegate>
+{
+    
+}
 @property (retain, nonatomic) IBOutlet UILabel *versionLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) UIViewController *controller;
 
-- (MenuPanel *)menuPanelWithController:(UIViewController *)controller;
++ (MenuPanel *)menuPanelWithController:(UIViewController *)controller;
 - (IBAction)changePage:(id)sender;
 - (void)loadMenu;
 
