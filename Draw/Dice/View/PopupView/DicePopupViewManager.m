@@ -179,6 +179,7 @@ static DicePopupViewManager *_instance = nil;
 
 {
     _chatView.delegate = delegate;
+
     [_chatView popupAtView:atView 
                     inView:inView
                   animated:YES 
