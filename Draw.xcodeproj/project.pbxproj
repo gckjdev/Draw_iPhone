@@ -200,6 +200,7 @@
 		A4A01C3415D8EBFD002FE86D /* dice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4A01C3315D8EBFD002FE86D /* dice.m4a */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
+		A4AB191815E5D6CB0097CC7A /* face_embarrass.gif in Resources */ = {isa = PBXBuildFile; fileRef = A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */; };
 		A4AC51BE15C7BFF10041DC86 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B415C7BFF10041DC86 /* FontLabel.m */; };
 		A4AC51BF15C7BFF10041DC86 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B615C7BFF10041DC86 /* FontLabelStringDrawing.m */; };
 		A4AC51C015C7BFF10041DC86 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51B815C7BFF10041DC86 /* FontManager.m */; };
@@ -1279,6 +1280,7 @@
 		A4AB18F015E359B90097CC7A /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		A4AB18F115E359B90097CC7A /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
+		A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_embarrass.gif; sourceTree = "<group>"; };
 		A4AC51B315C7BFF10041DC86 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
 		A4AC51B415C7BFF10041DC86 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
 		A4AC51B515C7BFF10041DC86 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
@@ -2860,6 +2862,7 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A4AB191715E5D6CB0097CC7A /* face_embarrass.gif */,
 				A4A01BFF15D8D4F9002FE86D /* open_bell_1bigx2@2x.png */,
 				A4A01C0015D8D4F9002FE86D /* open_bell_2bigx2@2x.png */,
 				A4A01C0115D8D4F9002FE86D /* open_bell_3bigx2@2x.png */,
@@ -6774,6 +6777,7 @@
 				CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */,
 				CAE8B15315E4A2570098A565 /* EntryController~ipad.xib in Resources */,
 				C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */,
+				A4AB191815E5D6CB0097CC7A /* face_embarrass.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

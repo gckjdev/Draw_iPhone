@@ -82,12 +82,6 @@
     return self;
 }
 
-//- (void)setDice:(int)dice count:(int)count
-//{
-//    [_diceView setDice:dice];
-//    _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
-//}
-
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
            animated:(BOOL)animated

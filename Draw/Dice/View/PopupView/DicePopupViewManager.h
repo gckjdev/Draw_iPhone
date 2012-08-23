@@ -23,11 +23,12 @@
 
 - (void)dismissCallDiceView;
 
-- (void)popupItemListViewAtView:(UIView *)atView 
-                         inView:(UIView *)inView 
-                       duration:(int)duration
-                       delegate:(id<DiceItemListViewDelegate>)delegate;
-
+- (void)popupItemListAtView:(UIView *)atView 
+                     inView:(UIView *)inView
+                   duration:(int)duration
+                   delegate:(id<DiceItemListViewDelegate>)delegate;
+- (void)enableCutItem;
+- (void)disableCutItem;
 - (void)dismissItemListView;   
 
 

@@ -71,6 +71,13 @@ static ExpressionManager *_instance = nil;
     return [_expressionDictionary allKeys];
 }
 
+
+- (NSString *)gifPathForExpression:(NSString *)key
+{
+    NSString *value = [_expressionDictionary valueForKey:key];
+    NSArray *subStr = [value componentsSeparatedByString:@"."];
+    return [[NSBundle mainBundle] pathForResource:[subStr objectAtIndex:0] ofType:@"gif"];
+}
 //- (NSArray *)allValues
 //{
 //    return [_expressionDictionary allValues];

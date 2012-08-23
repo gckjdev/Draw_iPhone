@@ -14,7 +14,7 @@
 @protocol DiceSelectedViewDelegate <NSObject>
 
 @required
-- (void)didSelectedDice:(PBDice *)dice count:(int)count;
+- (void)didSelectDice:(PBDice *)dice count:(int)count;
 
 @end
 

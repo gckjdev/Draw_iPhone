@@ -23,9 +23,10 @@
 
 @property (assign, nonatomic) id<DiceItemListViewDelegate> delegate;
 
+- (void)disableCutItem;
+- (void)enableCutItem;
 
-- (id)init;
-- (void)updateWithDelegate:(id<DiceItemListViewDelegate>)delegate;
+- (void)update;
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
