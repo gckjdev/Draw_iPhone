@@ -350,7 +350,7 @@ static AdService* _defaultService;
 //    }
 }
 
-- (UIView*)createMangoAdInView:(UIViewController*)superViewContoller
+- (UIView*)createMangoAdInView:(UIView*)superView
                          frame:(CGRect)frame 
                      iPadFrame:(CGRect)iPadFrame
 {
@@ -359,7 +359,7 @@ static AdService* _defaultService;
     }
         
 //    self.adSuperViewController = superViewContoller;        
-    UIView* superView = superViewContoller.view;
+//    UIView* superView = superViewContoller.view;
     AdMoGoView* adView = nil;
     
     // create view
@@ -506,13 +506,14 @@ static AdService* _defaultService;
 }
 
 - (UIView*)createLmAdInView:(UIView*)superView
+                      appId:(NSString*)appId
                       frame:(CGRect)frame 
                   iPadFrame:(CGRect)iPadFrame
 {
     // Create LM Ad View
     LmmobAdBannerView* adView = nil;
     adView = [[[LmmobAdBannerView alloc] initWithFrame:frame] autorelease];
-    adView.adPositionIdString = @"eb4ce4f0a0f1f49b6b29bf4c838a5147";
+    adView.adPositionIdString = appId;
     adView.specId = 0;
     adView.rootViewController = [HomeController defaultInstance];
     
@@ -548,7 +549,7 @@ static AdService* _defaultService;
     }
     
     if (useLmAd == NO || [self isShowLmAd] == NO){
-        return [self createMangoAdInView:superViewContoller frame:frame iPadFrame:iPadFrame];
+        return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
             
     // Create LM Ad View
@@ -574,6 +575,28 @@ static AdService* _defaultService;
     [adView requestBannerAd];        
     return adView;
 }
+
+- (UIView*)createAdInView:(UIView*)superView
+             adPlatformType:(AdPlatformType)adPlatformType
+              adPublisherId:(NSString*)adPublisherId
+                      frame:(CGRect)frame 
+                  iPadFrame:(CGRect)iPadFrame
+{
+    switch (adPlatformType) {
+        case AdPlatformAder:
+            return [self createAderAdInView:superView appId:adPublisherId frame:frame iPadFrame:iPadFrame];
+            
+        case AdPlatformLm:
+            return [self createLmAdInView:superView appId:adPublisherId frame:frame iPadFrame:iPadFrame];
+
+        case AdPlatformMango:
+            return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
+            
+        default:
+            break;
+    }
+}
+
 
 
 

@@ -141,7 +141,7 @@
 + (ChatVoiceEnable)getChatVoiceEnable
 {
     //2012-6-22 update: default without voice
-//    return EnableNot;
+    return EnableNot;
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSNumber *number = [userDefault objectForKey:KEY_CHAT_VOICE_ENABLE];
