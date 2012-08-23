@@ -686,11 +686,11 @@
                                     usingBlock:^(NSNotification *notification) {    
                                         GameMessage *message = [CommonGameNetworkService userInfoToMessage:notification.userInfo];
                                         
-                                        if (message.chatRequest.chatType == 1) {
+                                        if (message.chatRequest.contentType == 1) {
                                             [self someoneSendMessage:message.chatRequest.content 
                                                       contentVoiceId:message.chatRequest.contentVoiceId 
                                                               userId:message.userId];
-                                        }else if (message.chatRequest.chatType == 2) {
+                                        }else if (message.chatRequest.contentType == 2) {
                                             [self someoneSendExpression:message.chatRequest.expressionId
                                                                  userId:message.userId];
                                         }
@@ -1158,6 +1158,8 @@
     self.chatButton.selected = NO;
     [_popupViewManager dismissChatView];
     
+    [_diceService chatWithExpression:key];
+    
     // TODO: Popup image for expression.
     [self playExpression:key userId:_userManager.userId];
 }
@@ -1171,9 +1173,16 @@
     }
     GifView* view = [[[GifView alloc] initWithFrame:avatar.frame
                                            filePath:filePath
-                                   playTimeInterval:0.5] autorelease];
+                                   playTimeInterval:0.2] autorelease];
+    
     [self.view addSubview:view];
-    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:6.0];
+//    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:6.0];
+    
+    [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
 
 

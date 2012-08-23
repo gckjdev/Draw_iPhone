@@ -67,7 +67,6 @@ static DiceSoundManager* shareManager;
     } else {
         [[AudioManager defaultManager] playSoundByName:@"openDice_F.m4a"];
     }
-    
 }
 - (void)scrambleOpen:(BOOL)gender
 {

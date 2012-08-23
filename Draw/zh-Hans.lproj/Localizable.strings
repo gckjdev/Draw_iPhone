@@ -793,5 +793,14 @@
 "kMoreRoom" = "更多...";
 "kMoreRoomLoading" = "加载中...";
 
+"kNoMatterWhatYouCallIWillOpen" = "无论你叫什么，我都开";
+"kDoYouDareToOpen" = "有本事你开啊";
+"kBelieveItOrNotAnywayIBelieved" = "不管你信不信，反正我是信了";
+"kAttentionWilds" = "大家注意，已经叫斋了";
+"kDontGoAndPlayMore" = "别走啊，再来两局";
+"kCheatMeNotSoEasy" = "想阴我，没那么容易";
+"kYouAreFooled" = "哈哈，你上当了";
+"kIWantToGoSeeUNextTime" = "我要走啦，下次再玩";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 
