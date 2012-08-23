@@ -3,7 +3,7 @@
 //  Draw
 //
 //  Created by  on 12-3-9.
-//  Copyright (c) 2012�?__MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012Âπ?__MyCompanyName__. All rights reserved.
 //
 
 #import "HomeController.h"
@@ -62,6 +62,7 @@
 #import "EntryController.h"
 #import "BoardView.h"
 #import "BoardPanel.h"
+#import "MenuPanel.h"
 
 @interface HomeController()
 
@@ -79,16 +80,10 @@
 
 @synthesize adView = _adView;
 @synthesize recommendButton = _recommendButton;
-@synthesize startButton = _startButton;
-@synthesize shopButton = _shopButton;
 @synthesize shareButton = _shareButton;
 @synthesize checkinButton = _checkinButton;
 @synthesize settingButton = _settingButton;
 @synthesize feedbackButton = _feedbackButton;
-@synthesize playWithFriendButton = _playWithFriendButton;
-//@synthesize hasRemoveNotification = _hasRemoveNotification;
-@synthesize guessButton = _guessButton;
-@synthesize drawButton = _drawButton;
 @synthesize notificationType = _notificationType;
 @synthesize settingLabel = _settingLabel;
 @synthesize shareLabel = _shareLabel;
@@ -96,18 +91,9 @@
 @synthesize friendLabel = _friendLabel;
 @synthesize chatLabel = _chatLabel;
 @synthesize feedbackLabel = _feedbackLabel;
-@synthesize startLabel = _startLabel;
-@synthesize guessLabel = _guessLabel;
-@synthesize drawLabel = _drawLabel;
-@synthesize friendPlayLabel = _friendPlayLabel;
-@synthesize freeCoinLabel = _freeCoinLabel;
-@synthesize feedLabel = _feedLabel;
-@synthesize versionLabel = _versionLabel;
-@synthesize feedBadge = _feedBadge;
 @synthesize fanBadge = _fanBadge;
 @synthesize messageBadge = _messageBadge;
-@synthesize roomBadge = _roomBadge;
-@synthesize homeScrollView = _homeScrollView;
+@synthesize menuPanel = _menuPanel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -153,6 +139,9 @@
 
 - (void)viewDidLoad
 {        
+    
+    
+    
     [[BoardService defaultService] getBoardsWithDelegate:self];
     
 //    self.facetimeButton.hidden = YES;
@@ -171,32 +160,31 @@
                                                      useLmAd:YES];
     
     [super viewDidLoad];    
+    
+    self.menuPanel = [MenuPanel menuPanelWithController:self];
+    
+    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 661) : CGPointMake(160, 298);
+    
+//    [self.view addSubview:panel];
+    [self.view insertSubview:self.menuPanel atIndex:0];
+    
     [self playBackgroundMusic];
     
     // set text
-    [self.startLabel setText:NSLS(@"kStart")];
+
     [self.shareLabel setText:NSLS(@"kHomeShare")];
-    [self.freeCoinLabel  setText:NSLS(@"kShop")];
     [self.signLabel setText:NSLS(@"kCheckin")];
-    [self.friendPlayLabel setText:NSLS(@"kPlayWithFriend")];
     [self.friendLabel setText:NSLS(@"kFriend")];
     [self.chatLabel setText:NSLS(@"kChat")];
-    [self.drawLabel setText:NSLS(@"kDrawOnly")];
-    [self.guessLabel setText:NSLS(@"kGuessOnly")];
-    [self.feedLabel setText:NSLS(@"kFeed")];
     [self.settingLabel setText:NSLS(@"kSettings")];
     [self.feedbackLabel setText:NSLS(@"kFeedback")];
     [self initRecommendButton];
     
-    self.homeScrollView.contentSize = CGSizeMake(self.homeScrollView.frame.size.width, self.homeScrollView.frame.size.height+1);
     
-    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
-    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
-    [self.versionLabel setText:[NSString stringWithFormat:@"Ver %@", currentVersion]];
-
     
     int size;
-    if ([[LocaleUtils getLanguageCode] isEqualToString:@"zh-Hans"]){
+    
+    if ([LocaleUtils isChinese]){
         size = 15;
     }
     else{
@@ -229,10 +217,9 @@
     [self enterNextControllerWityType:self.notificationType];
     
     UIImage *badgeImage = [[ShareImageManager defaultManager] toolNumberImage];
-    [self.feedBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.messageBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
     [self.fanBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
-    [self.roomBadge setBackgroundImage:badgeImage forState:UIControlStateNormal]; 
+
 }
 
 - (void)registerDiceGameNotificationWithName:(NSString *)name 
@@ -308,36 +295,22 @@
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];    
     
-    [self setStartButton:nil];
-    [self setShopButton:nil];
     [self setShareButton:nil];
     [self setCheckinButton:nil];
     [self setSettingButton:nil];
     [self setFeedbackButton:nil];
-    [self setPlayWithFriendButton:nil];
-    [self setGuessButton:nil];
-    [self setDrawButton:nil];
     [self setSettingLabel:nil];
     [self setShareLabel:nil];
     [self setSignLabel:nil];
     [self setFriendLabel:nil];
     [self setChatLabel:nil];
     [self setFeedbackLabel:nil];
-    [self setStartLabel:nil];
-    [self setGuessLabel:nil];
-    [self setDrawLabel:nil];
-    [self setFriendPlayLabel:nil];
-    [self setFreeCoinLabel:nil];
-    [self setFeedLabel:nil];
-    [self setVersionLabel:nil];
-    [self setFeedBadge:nil];
     [self setFanBadge:nil];
     [self setMessageBadge:nil];
-    [self setRoomBadge:nil];
-    [self setHomeScrollView:nil];
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setDiceButton:nil];
+    [self setMenuPanel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -354,10 +327,10 @@
 {
     switch (type) {
         case NotificationTypeFeed:
-            [self clickFeedButton:nil];
+            [self.menuPanel didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeTimeline]];
             break;
         case NotificationTypeRoom:
-            [self clickPlayWithFriend:nil];
+            [self.menuPanel didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
             break;
         case NotificationTypeMessage:
             [self clickChatButton:nil];
@@ -377,70 +350,7 @@
     [audioManager backgroundMusicStart];
 
 }
-- (IBAction)clickStart:(id)sender
-{
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        
-        [self showActivityWithText:NSLS(@"kJoiningGame")];
-        
-        NSString* userId = [_userManager userId];
-        NSString* nickName = [_userManager nickName];
-        
-        if (userId == nil){
-            userId = [NSString GetUUID];
-        }
-        
-        if (nickName == nil){
-            nickName = NSLS(@"guest");
-        }
-        
-        if ([[DrawGameService defaultService] isConnected]){        
-            [[DrawGameService defaultService] joinGame:userId
-                                              nickName:nickName
-                                                avatar:[_userManager avatarURL]
-                                                gender:[_userManager isUserMale]
-                                              location:[_userManager location]  
-                                             userLevel:[[LevelService defaultService] level]
-                                        guessDiffLevel:[ConfigManager guessDifficultLevel]
-                                           snsUserData:[_userManager snsUserData]];    
-        }
-        else{
-            
-            [self showActivityWithText:NSLS(@"kConnectingServer")];        
-            [[RouterService defaultService] tryFetchServerList:self];        
-        }
-    }
-    
-}
 
-- (IBAction)clickPlayWithFriend:(id)sender {
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        FriendRoomController *frc = [[FriendRoomController alloc] init];
-        [self.navigationController pushViewController:frc animated:YES];
-        [frc release];
-        [self updateBadge:self.roomBadge value:0];
-    }
-}
-
-- (IBAction)clickShop:(id)sender {
-//    ShopMainController *sc = [[ShopMainController alloc] init];
-//    [self.navigationController pushViewController:sc animated:YES];
-//    [sc release];
-    
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-//        ItemShopController *ic = [ItemShopController instance];
-//        [self.navigationController pushViewController:ic animated:YES];
-        VendingController* vc = [[VendingController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc release];
-    }
-}
 
 - (void)didJoinGame:(GameMessage *)message
 {
@@ -674,77 +584,25 @@
 
 }
 - (void)dealloc {
-    [_startButton release];
-    [_shopButton release];
     [_shareButton release];
     [_checkinButton release];
     [_settingButton release];
     [_feedbackButton release];
-    [_playWithFriendButton release];
-    [_guessButton release];
-    [_drawButton release];
     [_settingLabel release];
     [_shareLabel release];
     [_signLabel release];
     [_friendLabel release];
     [_chatLabel release];
     [_feedbackLabel release];
-    [_startLabel release];
-    [_guessLabel release];
-    [_drawLabel release];
-    [_friendPlayLabel release];
-    [_freeCoinLabel release];
-    [_feedLabel release];
-    [_versionLabel release];
-    [_feedBadge release];
     [_fanBadge release];
     [_messageBadge release];
-    [_roomBadge release];
-    [_homeScrollView release];
     [_recommendButton release];
     [_facetimeButton release];
     [_diceButton release];
+    PPRelease(_menuPanel);
     [super dealloc];
 }
 
-- (IBAction)clickDrawButton:(id)sender {
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-/*
- MyPaint *draft =[[MyPaintManager defaultManager] latestDraft];
-        if (draft) {
-            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:draft];
-            [self.navigationController pushViewController:od animated:YES];
-            [od release];
-        }else{
- */
-            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-            [self.navigationController pushViewController:sc animated:YES];
-            [sc release];
-//        }
-    }
-}
-
-- (IBAction)clickGuessButton:(id)sender {
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        [self showActivityWithText:NSLS(@"kLoading")];
-        [[DrawDataService defaultService] matchDraw:self];
-    }
-}
-
-- (IBAction)clickFeedButton:(id)sender {
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        FeedController *fc = [[FeedController alloc] init];
-        [self.navigationController pushViewController:fc animated:YES];
-        [fc release];
-        [self updateBadge:_feedBadge value:0];
-    }
-}
 
 - (IBAction)clickFriendsButton:(id)sender
 {
@@ -837,10 +695,13 @@
     if (resultCode == 0) {
         PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
         //update badge
-        [self updateBadge:self.feedBadge value:feedCount];
+
         [self updateBadge:self.messageBadge value:messageCount];
         [self updateBadge:self.fanBadge value:fanCount];
-        [self updateBadge:self.roomBadge value:roomCount];
+        [self.menuPanel setMenuBadge:feedCount 
+                         forMenuType:MenuButtonTypeTimeline];
+        [self.menuPanel setMenuBadge:feedCount
+                         forMenuType:MenuButtonTypeFriendPlay];
     }
 }
 
@@ -849,7 +710,15 @@
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
 {
     int badge = [NotificationManager feedBadge:userInfo];
-    [self updateBadge:self.feedBadge value:badge];
+    
+    [self.menuPanel setMenuBadge:badge 
+                     forMenuType:MenuButtonTypeTimeline];
+    badge = [NotificationManager roomBadge:userInfo];    
+    
+    [self.menuPanel setMenuBadge:badge
+                     forMenuType:MenuButtonTypeFriendPlay];
+
+    badge = [NotificationManager roomBadge:userInfo];    
     
     badge = [NotificationManager fanBadge:userInfo];
     [self updateBadge:self.fanBadge value:badge];
@@ -857,8 +726,8 @@
     badge = [NotificationManager messageBadge:userInfo];
     [self updateBadge:self.messageBadge value:badge];
     
-    badge = [NotificationManager roomBadge:userInfo];
-    [self updateBadge:self.roomBadge value:badge];
+
+
 
 }
 

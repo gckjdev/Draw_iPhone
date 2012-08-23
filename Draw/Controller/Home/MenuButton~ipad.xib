@@ -61,7 +61,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">h_feed@@2x.png</string>
+							<string key="NSResourceName">h_feed@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -107,7 +107,7 @@
 					<object class="IBUIButton" id="271388425">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 6}, {50, 50}}</string>
+						<string key="NSFrame">{{119, 9}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="158890679"/>
@@ -135,16 +135,13 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{170, 191}</string>
+				<string key="NSFrameSize">{169, 191}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="8335921"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<bytes key="NSWhite">MCAwAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -275,7 +272,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="h_feed@@2x.png">{134, 134}</string>
+			<string key="h_feed@2x.png">{134, 134}</string>
 			<string key="number@2x.png">{50, 45}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

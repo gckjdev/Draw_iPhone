@@ -23,8 +23,16 @@ typedef enum{
 
 #define MenuButtonTypeBase MenuButtonTypeOnlinePlay
 
-#define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 134 : 71)
-#define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 134 : 87)
+#define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 169 : 71)
+#define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 191 : 87)
+
+@class MenuButton;
+@protocol MenuButtonDelegate <NSObject>
+
+@optional
+- (void)didClickMenuButton:(MenuButton *)menuButton;
+
+@end
 
 @interface MenuButton : UIView
 {
@@ -34,6 +42,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *button;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (assign, nonatomic) MenuButtonType type;
+@property (assign, nonatomic) id<MenuButtonDelegate> delegate;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title

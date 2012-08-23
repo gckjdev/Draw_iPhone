@@ -49,7 +49,7 @@
     [super viewDidLoad];
 //    [[BoardService defaultService] getBoardsWithDelegate:self];
     MenuPanel *panel = [MenuPanel menuPanelWithController:self];
-    [panel loadMenu];
+//    [panel loadMenu];
     [self.view addSubview:panel];
 }
 

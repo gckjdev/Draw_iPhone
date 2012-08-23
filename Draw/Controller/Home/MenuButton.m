@@ -14,7 +14,7 @@
 @synthesize button = _button;
 @synthesize title = _title;
 @synthesize type = _type;
-
+@synthesize delegate = _delegate;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
@@ -87,6 +87,12 @@
 
 }
 
+- (void)handleClick:(UIButton *)button
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMenuButton:)]) {
+        [self.delegate didClickMenuButton:self];
+    }
+}
 
 + (MenuButton *)menuButtonWithType:(MenuButtonType)type
 {
@@ -96,6 +102,9 @@
                                                  title:title 
                                                  badge:0];
     [menu setType:type];
+    menu.button.tag = type;
+    [menu.button addTarget:menu action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     return menu;
 }
 
@@ -105,7 +114,9 @@
         _badge.hidden = YES;
     }else{
         _badge.hidden = NO;
-        [_badge setTitle:[NSString stringWithFormat:@"%d", badge] forState:UIControlStateNormal];
+        NSString *badgeString = (badge > 99) ? @"N" : 
+        [NSString stringWithFormat:@"%d", badge];
+        [_badge setTitle:badgeString forState:UIControlStateNormal];
     }
 }
 

@@ -80,5 +80,5 @@ typedef enum{
 
 + (BOOL)isShowRecommendApp;
 + (NSString*)getFacetimeServerListString;
-
++ (NSString *)currentVersion;
 @end
