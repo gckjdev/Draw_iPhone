@@ -10,6 +10,7 @@
 #import "AudioManager.h"
 
 #define CALL_DICE_BASE_NAME     @"callDice"
+#define MESSAGE_BASE_NAME       @"message"
 #define SOUND_SUFFIX            @"m4a"
 
 static DiceSoundManager* shareManager;
@@ -46,6 +47,10 @@ static DiceSoundManager* shareManager;
                                                    gender:NO]];
         }
     }
+    for (int i = 1; i <= 9; i ++) {
+        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_M.m4a", MESSAGE_BASE_NAME, i ]];
+        [soundNames addObject:[NSString stringWithFormat:@"%@_%d_F.m4a", MESSAGE_BASE_NAME, i ]];
+    }
     [soundNames addObject:@"openDice_M.m4a"];
     [soundNames addObject:@"openDice_F.m4a"];
     [soundNames addObject:@"scrambleToOpenDice_M.m4a"];
@@ -75,6 +80,22 @@ static DiceSoundManager* shareManager;
         [[AudioManager defaultManager] playSoundByName:@"scrambleToOpenDice_M.m4a"];
     } else {
         [[AudioManager defaultManager] playSoundByName:@"scrambleToOpenDice_F.m4a"];
+    }
+}
+
+- (NSString*)getMessageSoundNameById:(int)messageId
+{
+    return [NSString stringWithFormat:@"%@_%d",MESSAGE_BASE_NAME, messageId];
+}
+
+- (void)playMessageById:(int)messageId 
+                 gender:(BOOL)gender
+{
+    NSString* name = [self getMessageSoundNameById:messageId];
+    if (gender) {
+        [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_M.m4a", name]];
+    } else {
+        [[AudioManager defaultManager] playSoundByName:[NSString stringWithFormat:@"%@_F.m4a", name]];
     }
 }
 
