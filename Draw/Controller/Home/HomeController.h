@@ -18,6 +18,7 @@
 #import "BoardService.h"
 @class UserManager;
 @class MenuPanel;
+@class BottomMenuPanel;
 
 @interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, LmmobAdBannerViewDelegate,BoardServiceDelegate>
 {
@@ -25,34 +26,19 @@
     BOOL        _isJoiningDice;
     UserManager *_userManager;
 }
-@property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
+
 @property (retain, nonatomic) IBOutlet UIButton *diceButton;
 @property (retain, nonatomic) MenuPanel *menuPanel;
+@property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
 
-- (IBAction)clickCheckIn:(id)sender;
-- (IBAction)clickFeedback:(id)sender;
-- (IBAction)clickSettings:(id)sender;
-- (IBAction)clickShare:(id)sender;
-@property (retain, nonatomic) IBOutlet UIButton *shareButton;
-@property (retain, nonatomic) IBOutlet UIButton *checkinButton;
-@property (retain, nonatomic) IBOutlet UIButton *settingButton;
-@property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
-//@property (nonatomic, assign) BOOL hasRemoveNotification; 
-@property (nonatomic, assign) NotificationType notificationType; 
-@property (retain, nonatomic) IBOutlet UILabel *settingLabel;
-@property (retain, nonatomic) IBOutlet UILabel *shareLabel;
-@property (retain, nonatomic) IBOutlet UILabel *signLabel;
-@property (retain, nonatomic) IBOutlet UILabel *friendLabel;
-@property (retain, nonatomic) IBOutlet UILabel *chatLabel;
-@property (retain, nonatomic) IBOutlet UILabel *feedbackLabel;
-@property (retain, nonatomic) IBOutlet UIButton *fanBadge;
-@property (retain, nonatomic) IBOutlet UIButton *messageBadge;
-@property (retain, nonatomic) UIView  *adView;
 @property (retain, nonatomic) IBOutlet UIButton *recommendButton;
+@property (retain, nonatomic) IBOutlet UIButton *facetimeButton;
+@property (retain, nonatomic) UIView  *adView;
+@property (nonatomic, assign) NotificationType notificationType; 
+
+
 
 // Ad View
-- (IBAction)clickChatButton:(id)sender;
-- (IBAction)clickFriendsButton:(id)sender;
 
 + (HomeController *)defaultInstance;
 + (void)returnRoom:(UIViewController*)superController;

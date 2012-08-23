@@ -478,6 +478,32 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"h_shop"];
 }
 
+//for bottom menu image.
+- (UIImage *)settingsMenuImage
+{
+    return [self fixedImageNamed:@"small_setting"];
+}
+- (UIImage *)opusMenuImage
+{
+    return [self fixedImageNamed:@"small_share"];    
+}
+- (UIImage*)friendMenuImage
+{
+    return [self fixedImageNamed:@"small_friend_manager"];
+}
+- (UIImage *)chatMenuImage
+{
+    return [self fixedImageNamed:@"small_chat"];
+}
+- (UIImage *)feedbackMenuImage
+{
+    return [self fixedImageNamed:@"small_feedback"];
+}
+- (UIImage*)checkInMenuImage
+{
+    return [self fixedImageNamed:@"small_sign"];
+}
+
 
 #pragma mark - save and get temp image.
 

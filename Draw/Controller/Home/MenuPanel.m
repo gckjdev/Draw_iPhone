@@ -75,7 +75,7 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
-    for (int i = MenuButtonTypeBase; i < MenuButtonTypeCount; ++ i, ++ number) {
+    for (int i = MenuButtonTypeBase; i < MenuButtonTypeEnd; ++ i, ++ number) {
         MenuButton *menu = [MenuButton menuButtonWithType:i];
         menu.frame = [self frameForMenuIndex:number];
         [self.scrollView addSubview:menu];

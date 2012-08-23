@@ -1,19 +1,14 @@
 //
-//  EntryController.m
+//  BottomMenuPanel.m
 //  Draw
 //
-//  Created by  on 12-8-16.
+//  Created by  on 12-8-23.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "EntryController.h"
-#import "BoardPanel.h"
-#import "MenuPanel.h"
 #import "BottomMenuPanel.h"
 
-//#import "Board.h"
-
-@implementation EntryController
+@implementation BottomMenuPanel
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,32 +27,12 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)didGetBoards:(NSArray *)boards 
-          resultCode:(NSInteger)resultCode
-{
-    if (resultCode == 0) {
-        BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
-        [boardPanel setBoardList:boards];
-        [self.view addSubview:boardPanel];
-//        [boardPanel setBoardList:boards];
-//        [self.view addSubview:boardPanel];
-
-    }
-}
-
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [[BoardService defaultService] getBoardsWithDelegate:self];
-//    MenuPanel *panel = [MenuPanel menuPanelWithController:self];
-//    [self.view addSubview:panel];
-    
-    BottomMenuPanel *panel = [BottomMenuPanel panelWithController:self];
-    [self.view addSubview:panel];
-
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -73,7 +48,4 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

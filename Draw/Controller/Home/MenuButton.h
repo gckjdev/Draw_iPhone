@@ -10,27 +10,46 @@
 
 typedef enum{
     
+    //for main menu
     MenuButtonTypeOnlinePlay = 100,   
     MenuButtonTypeOfflineDraw,   
     MenuButtonTypeOfflineGuess,   
     MenuButtonTypeFriendPlay,   
     MenuButtonTypeTimeline,   
     MenuButtonTypeShop,   
+    MenuButtonTypeEnd,
     
-    MenuButtonTypeCount
+    
+    //for bottom menu
+    
+    MenuButtonTypeSettings = 200,   
+    MenuButtonTypeOpus,   
+    MenuButtonTypeFriend,   
+    MenuButtonTypeChat,   
+    MenuButtonTypeFeedback,   
+
+    BottomMenuTypeEnd,
+
+    //unuse
+    MenuButtonTypeCheckIn
+    
     
 }MenuButtonType;
 
 #define MenuButtonTypeBase MenuButtonTypeOnlinePlay
+#define BottomMenuTypeBase MenuButtonTypeSettings
 
 #define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 169 : 71)
 #define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 191 : 87)
 
 @class MenuButton;
+//@class BottomMenu;
+
 @protocol MenuButtonDelegate <NSObject>
 
 @optional
 - (void)didClickMenuButton:(MenuButton *)menuButton;
+//- (void)didClickBottomMenu:(MenuButton *)menuButton;
 
 @end
 
@@ -54,5 +73,7 @@ typedef enum{
 
 + (MenuButton *)menuButtonWithType:(MenuButtonType)type;
 - (void)setBadgeNumber:(NSInteger)badge;
+
+
 
 @end

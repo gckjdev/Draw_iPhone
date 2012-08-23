@@ -62,12 +62,12 @@
 //#import "BoardView.h"
 #import "BoardPanel.h"
 #import "MenuPanel.h"
+#import "BottomMenuPanel.h"
 
 @interface HomeController()
 
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-- (void)updateBadge:(UIButton *)badgeButton value:(int )value;
 - (BOOL)isRegistered;
 - (void)toRegister;
 
@@ -79,20 +79,9 @@
 
 @synthesize adView = _adView;
 @synthesize recommendButton = _recommendButton;
-@synthesize shareButton = _shareButton;
-@synthesize checkinButton = _checkinButton;
-@synthesize settingButton = _settingButton;
-@synthesize feedbackButton = _feedbackButton;
 @synthesize notificationType = _notificationType;
-@synthesize settingLabel = _settingLabel;
-@synthesize shareLabel = _shareLabel;
-@synthesize signLabel = _signLabel;
-@synthesize friendLabel = _friendLabel;
-@synthesize chatLabel = _chatLabel;
-@synthesize feedbackLabel = _feedbackLabel;
-@synthesize fanBadge = _fanBadge;
-@synthesize messageBadge = _messageBadge;
 @synthesize menuPanel = _menuPanel;
+@synthesize bottomMenuPanel = _bottomMenuPanel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -158,47 +147,32 @@
                                                    iPadFrame:CGRectMake(65, 800, 320, 50)
                                                      useLmAd:YES];
     
+    
+    
     [super viewDidLoad];    
     
     self.menuPanel = [MenuPanel menuPanelWithController:self];
     
     self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 661) : CGPointMake(160, 298);
     
-//    [self.view addSubview:panel];
     [self.view insertSubview:self.menuPanel atIndex:0];
+
+    
+    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self];
+    
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 949) : CGPointMake(160, 435);
+    
+    [self.view addSubview:_bottomMenuPanel];
+
     
     [self playBackgroundMusic];
     
     // set text
 
-    [self.shareLabel setText:NSLS(@"kHomeShare")];
-    [self.signLabel setText:NSLS(@"kCheckin")];
-    [self.friendLabel setText:NSLS(@"kFriend")];
-    [self.chatLabel setText:NSLS(@"kChat")];
-    [self.settingLabel setText:NSLS(@"kSettings")];
-    [self.feedbackLabel setText:NSLS(@"kFeedback")];
     [self initRecommendButton];
     
     
     
-    int size;
-    
-    if ([LocaleUtils isChinese]){
-        size = 15;
-    }
-    else{
-        size = 12;
-    }
-
-    if ([DeviceDetection isIPAD]){
-        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:size*2];
-    }
-    else{
-        self.checkinButton.titleLabel.font = [UIFont boldSystemFontOfSize:size];        
-    }
-    
-    self.feedbackLabel.text = NSLS(@"kFeedback");
-    self.settingLabel.text = NSLS(@"kSettings");
 
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -215,9 +189,6 @@
     }
     [self enterNextControllerWityType:self.notificationType];
     
-    UIImage *badgeImage = [[ShareImageManager defaultManager] toolNumberImage];
-    [self.messageBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
-    [self.fanBadge setBackgroundImage:badgeImage forState:UIControlStateNormal];
 
 }
 
@@ -294,18 +265,6 @@
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];    
     
-    [self setShareButton:nil];
-    [self setCheckinButton:nil];
-    [self setSettingButton:nil];
-    [self setFeedbackButton:nil];
-    [self setSettingLabel:nil];
-    [self setShareLabel:nil];
-    [self setSignLabel:nil];
-    [self setFriendLabel:nil];
-    [self setChatLabel:nil];
-    [self setFeedbackLabel:nil];
-    [self setFanBadge:nil];
-    [self setMessageBadge:nil];
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setDiceButton:nil];
@@ -332,7 +291,8 @@
             [self.menuPanel didClickMenuButton:[self.menuPanel getMenuButtonByType:MenuButtonTypeFriendPlay]];
             break;
         case NotificationTypeMessage:
-            [self clickChatButton:nil];
+            [self.bottomMenuPanel didClickMenuButton:[self.bottomMenuPanel getMenuButtonByType:MenuButtonTypeChat]];
+            
             break;
         default:
             break;
@@ -367,53 +327,6 @@
     }
 
     [RoomController enterRoom:self isFriendRoom:NO];
-}
-
-- (IBAction)clickFeedback:(id)sender
-{
-    FeedbackController* feedBack = [[FeedbackController alloc] init];
-    [self.navigationController pushViewController:feedBack animated:YES];
-    [feedBack release];
-}
-
-- (IBAction)clickCheckIn:(id)sender
-{
-    int coins = [[AccountService defaultService] checkIn];
-    NSString* message = nil;
-    if (coins > 0){        
-        message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
-    }
-    else{
-        message = NSLS(@"kCheckInAlreadyToday");
-    }
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
-                                                       message:message
-                                                         style:CommonDialogStyleSingleButton 
-                                                     delegate:self];    
-    
-    [dialog showInView:self.view];
-}
-
-- (IBAction)clickSettings:(id)sender
-{
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        UserSettingController *settings = [[UserSettingController alloc] init];
-        [self.navigationController pushViewController:settings animated:YES];
-        [settings release];
-    }
-}
-
-- (IBAction)clickShare:(id)sender
-{
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        ShareController* share = [[ShareController alloc] init ];
-        [self.navigationController pushViewController:share animated:YES];
-        [share release];
-    }
 }
 
 - (void)enterShareFromWeixin
@@ -583,37 +496,16 @@
 
 }
 - (void)dealloc {
-    [_shareButton release];
-    [_checkinButton release];
-    [_settingButton release];
-    [_feedbackButton release];
-    [_settingLabel release];
-    [_shareLabel release];
-    [_signLabel release];
-    [_friendLabel release];
-    [_chatLabel release];
-    [_feedbackLabel release];
-    [_fanBadge release];
-    [_messageBadge release];
-    [_recommendButton release];
-    [_facetimeButton release];
-    [_diceButton release];
+    PPRelease(_recommendButton);
+    PPRelease(_facetimeButton);
+    PPRelease(_diceButton);
     PPRelease(_menuPanel);
+    PPRelease(_bottomMenuPanel);
+    PPRelease(_adView);
     [super dealloc];
 }
 
 
-- (IBAction)clickFriendsButton:(id)sender
-{
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        MyFriendsController *mfc = [[MyFriendsController alloc] init];
-        [self.navigationController pushViewController:mfc animated:YES];
-        [mfc release];
-        [self updateBadge:_fanBadge value:0];
-    }
-}
 
 - (IBAction)clickRecommend:(id)sender
 {
@@ -658,32 +550,7 @@
 
 }
 
-- (IBAction)clickChatButton:(id)sender {
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-    } else {
-        ChatListController *controller = [[ChatListController alloc] init];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
-        
-        [self updateBadge:_messageBadge value:0];
-    }
-}
 
-
-- (void)updateBadge:(UIButton *)badgeButton value:(int )value
-{
-    if (value <= 0) {
-        badgeButton.hidden = YES;
-    }else{
-        badgeButton.hidden = NO;
-        if (value > 99) {
-            [badgeButton setTitle:@"N" forState:UIControlStateNormal];
-        }else{
-            [badgeButton setTitle:[NSString stringWithInt:value] forState:UIControlStateNormal];
-        }
-    }
-}
 
 - (void)didGetStatistic:(int)resultCode 
               feedCount:(long)feedCount 
@@ -695,11 +562,15 @@
         PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);     
         //update badge
 
-        [self updateBadge:self.messageBadge value:messageCount];
-        [self updateBadge:self.fanBadge value:fanCount];
+        
+        [self.bottomMenuPanel setMenuBadge:messageCount forMenuType:MenuButtonTypeChat];
+        [self.bottomMenuPanel setMenuBadge:fanCount 
+                               forMenuType:MenuButtonTypeFriend];
+
+    
         [self.menuPanel setMenuBadge:feedCount 
                          forMenuType:MenuButtonTypeTimeline];
-        [self.menuPanel setMenuBadge:feedCount
+        [self.menuPanel setMenuBadge:roomCount
                          forMenuType:MenuButtonTypeFriendPlay];
     }
 }
@@ -709,23 +580,22 @@
 - (void)updateBadgeWithUserInfo:(NSDictionary *)userInfo;
 {
     int badge = [NotificationManager feedBadge:userInfo];
-    
     [self.menuPanel setMenuBadge:badge 
                      forMenuType:MenuButtonTypeTimeline];
-    badge = [NotificationManager roomBadge:userInfo];    
     
+    badge = [NotificationManager roomBadge:userInfo];    
     [self.menuPanel setMenuBadge:badge
                      forMenuType:MenuButtonTypeFriendPlay];
-
-    badge = [NotificationManager roomBadge:userInfo];    
     
     badge = [NotificationManager fanBadge:userInfo];
-    [self updateBadge:self.fanBadge value:badge];
+    [self.bottomMenuPanel setMenuBadge:badge 
+                           forMenuType:MenuButtonTypeFriend];
+    
     
     badge = [NotificationManager messageBadge:userInfo];
-    [self updateBadge:self.messageBadge value:badge];
+    [self.bottomMenuPanel setMenuBadge:badge
+                           forMenuType:MenuButtonTypeChat];
     
-
 
 
 }
