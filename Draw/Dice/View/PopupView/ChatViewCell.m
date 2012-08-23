@@ -10,7 +10,7 @@
 
 @interface ChatViewCell ()
 
-@property (copy, nonatomic) NSString *message;
+@property (retain, nonatomic) DiceChatMessage *message;
 
 @end
 
@@ -36,16 +36,16 @@
     return @"ChatViewCell";
 }
 
-- (void)setCellData:(NSString *)message
+- (void)setCellData:(DiceChatMessage *)message
 {
     self.message = message;
     
     CGSize withinSize = CGSizeMake(300, 30);
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [message.content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
     messageButton.frame = CGRectMake(0, 0, size.width, messageButton.frame.size.height);
     
-    messageButton.fontLable.text = message;
+    messageButton.fontLable.text = message.content;
     messageButton.fontLable.textAlignment = UITextAlignmentLeft;
     [messageButton setImage:nil forState:UIControlStateNormal];
 }

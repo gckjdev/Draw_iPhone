@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
 #import "FontButton.h"
+#import "DiceChatMessage.h"
 
 @protocol ChatViewCellDelegate <NSObject>
 
 @optional
-- (void)didClickMessage:(NSString *)message;
+- (void)didClickMessage:(DiceChatMessage *)message;
 
 @end
 
@@ -22,6 +23,6 @@
 @property (assign, nonatomic) id<ChatViewCellDelegate> delegate;
 @property (retain, nonatomic) IBOutlet FontButton *messageButton;
 
-- (void)setCellData:(NSString *)message;
+- (void)setCellData:(DiceChatMessage *)message;
 
 @end

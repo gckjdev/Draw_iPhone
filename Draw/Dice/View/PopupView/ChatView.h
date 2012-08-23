@@ -11,11 +11,12 @@
 #import "ChatViewCell.h"
 #import "CMPopTipView.h"
 
+
 @protocol ChatViewDelegate <NSObject>
 
 @optional
 - (void)didClickExepression:(NSString *)key;
-- (void)didClickMessage:(NSString *)message;
+- (void)didClickMessage:(DiceChatMessage *)message;
 
 @end
 

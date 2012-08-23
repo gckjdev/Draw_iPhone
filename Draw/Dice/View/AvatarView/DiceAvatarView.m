@@ -106,10 +106,11 @@
         progressView.clockwise = YES;
         [self addSubview:progressView];
         
+        int pointSize = [DeviceDetection isIPAD]?26:13;
         _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/3)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
-        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:13];
+        _rewardCoinLabel = [[HKGirlFontLabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height) pointSize:pointSize];
         [_rewardCoinLabel setTextColor:[UIColor whiteColor]];
         [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];

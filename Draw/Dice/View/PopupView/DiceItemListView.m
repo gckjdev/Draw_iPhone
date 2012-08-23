@@ -54,11 +54,20 @@
 - (void)disableCutItem
 {
     _cutItemEabled = NO;
+    
+    [[self cutItemButton] setEnabled:NO];
 }
 
 - (void)enableCutItem
 {
     _cutItemEabled = YES;
+    
+    [[self cutItemButton] setEnabled:YES];
+}
+
+- (UIButton *)cutItemButton
+{
+    return (UIButton *)[self viewWithTag:TAG_OFFSET_ITEM_BUTTON];
 }
 
 - (void)update

@@ -22,6 +22,7 @@
 
 #import "ItemType.h"
 #import "GifView.h"
+#import "DiceSoundManager.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -1132,7 +1133,7 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    [[AudioManager defaultManager] playSoundByName:contentVoiceId];
+    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:NO];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
@@ -1140,15 +1141,16 @@
     [self playExpression:expressionId userId:userId];
 }
 
-- (void)didClickMessage:(NSString *)message
+- (void)didClickMessage:(DiceChatMessage *)message
 {
     self.chatButton.selected = NO;
     [_popupViewManager dismissChatView];
     
-    [self popupMessageView:message onUser:[_userManager userId]];
-    [_diceService chatWithContent:message contentVoiceId:nil];
+    [self popupMessageView:message.content onUser:[_userManager userId]];
+    [_diceService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
     
     // TODO: Play voice here;
+    [[DiceSoundManager defaultManager] playVoiceById:message.voiceId gender:NO];
     
 }
 
