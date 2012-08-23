@@ -13,6 +13,8 @@
 + (ExpressionManager *)defaultManager;
 - (UIImage *)expressionForKey:(NSString*)key;
 - (NSArray *)allKeys;
+- (NSString *)gifPathForExpression:(NSString *)key;
+
 //- (NSArray *)allValues;
 
 @end

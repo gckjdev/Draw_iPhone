@@ -343,8 +343,8 @@
     _curSelecetedDiceCountBtn.selected = NO;
     
     PPDebug(@"Call %d * %d", _curSelecetedDiceCountBtn.tag, dice.dice);
-    if ([_delegate respondsToSelector:@selector(didSelectedDice:count:)]) {
-        [_delegate didSelectedDice:dice count:_curSelecetedDiceCountBtn.tag];
+    if ([_delegate respondsToSelector:@selector(didSelectDice:count:)]) {
+        [_delegate didSelectDice:dice count:_curSelecetedDiceCountBtn.tag];
     }
 }
 

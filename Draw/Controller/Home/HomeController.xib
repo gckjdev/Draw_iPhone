@@ -267,7 +267,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="700530203"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_guess@2x(1).png</string>
+									<string key="NSResourceName">h_play@2x.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -402,7 +402,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="493617894"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">h_chat@@2x.png</string>
+									<string key="NSResourceName">h_feed@@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="741897843"/>
 								<reference key="IBUIFont" ref="178138115"/>
@@ -429,7 +429,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="700530203"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">shop@2x.png</string>
+									<string key="NSResourceName">h_shop@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="741897843"/>
 								<reference key="IBUIFont" ref="178138115"/>
@@ -1228,14 +1228,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">startButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="932893619"/>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">drawButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="51690627"/>
@@ -1321,6 +1313,14 @@
 						<reference key="destination" ref="322962711"/>
 					</object>
 					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">startButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="932893619"/>
+					</object>
+					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1647,11 +1647,6 @@
 						<reference key="parent" ref="104542062"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="932893619"/>
-						<reference key="parent" ref="104542062"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
 						<reference key="object" ref="51690627"/>
 						<reference key="parent" ref="104542062"/>
@@ -1725,6 +1720,11 @@
 						<int key="objectID">94</int>
 						<reference key="object" ref="322962711"/>
 						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="932893619"/>
+						<reference key="parent" ref="104542062"/>
 					</object>
 				</array>
 			</object>
@@ -2037,15 +2037,15 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bottom_menubg@2x.png">{640, 86}</string>
-			<string key="draw_guess@2x(1).png">{134, 134}</string>
 			<string key="green_button@2x.png">{71, 84}</string>
-			<string key="h_chat@@2x.png">{134, 134}</string>
 			<string key="h_draw@2x.png">{134, 134}</string>
+			<string key="h_feed@@2x.png">{134, 134}</string>
 			<string key="h_friends@2x.png">{134, 134}</string>
 			<string key="h_guess@2x.png">{134, 134}</string>
+			<string key="h_play@2x.png">{134, 134}</string>
+			<string key="h_shop@2x.png">{122, 122}</string>
 			<string key="main_menubg.png">{16, 16}</string>
 			<string key="number@2x.png">{50, 45}</string>
-			<string key="shop@2x.png">{122, 122}</string>
 			<string key="small_chat@2x.png">{59, 59}</string>
 			<string key="small_feedback@2x.png">{59, 59}</string>
 			<string key="small_friend_manager@2x.png">{59, 59}</string>
