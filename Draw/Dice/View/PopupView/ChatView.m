@@ -93,7 +93,7 @@
         [self addSubview:_messagesHolderView];
         
         _expressionManager = [ExpressionManager defaultManager];
-        self.messages = [[DiceChatMsgManager defaultManager] contentList];
+        self.messages = [[DiceChatMsgManager defaultManager] messages];
         
         [self addExpressions];
     }
@@ -221,7 +221,7 @@
 }
 
 #pragma mark - ChatViewCellDelegate
-- (void)didClickMessage:(NSString *)message
+- (void)didClickMessage:(DiceChatMessage *)message
 {
     if ([_delegate respondsToSelector:@selector(didClickMessage:)]) {
         [_delegate didClickMessage:message];
