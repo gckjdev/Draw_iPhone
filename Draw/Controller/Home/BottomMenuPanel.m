@@ -7,45 +7,172 @@
 //
 
 #import "BottomMenuPanel.h"
+#import "RegisterUserController.h"
+#import "UserSettingController.h"
+#import "MyFriendsController.h"
+#import "ChatListController.h"
+#import "ShareController.h"
+#import "FeedbackController.h"
+#import "AccountService.h"
 
 @implementation BottomMenuPanel
+@synthesize controller = _controller;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (BottomMenuPanel *)panelWithController:(UIViewController *)controller
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    static NSString *identifier = @"BottomMenuPanel";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
+    BottomMenuPanel *panel = [topLevelObjects objectAtIndex:0];
+    panel.controller = controller;
+    [panel loadMenu];
+    return  panel;
+
 }
 
-- (void)didReceiveMemoryWarning
+- (void)dealloc
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+    PPRelease(_controller);
+    [super dealloc];
+}
+
+#define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
+#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 120 : 50)
+static const NSInteger ROW_NUMBER = 5;
+
+
+- (CGRect)frameForMenuIndex:(NSInteger)index
+{
+    BOOL isIPAD = [DeviceDetection isIPAD];
+    CGFloat xStart = isIPAD ? 12 : 6;
+    CGFloat y = isIPAD ? 4 : 2;
+    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * BOTTOM_MENU_WIDTH)/ (ROW_NUMBER - 1);   
+    CGFloat x = index *(xSpace + BOTTOM_MENU_WIDTH) + xStart;
     
-    // Release any cached data, images, etc that aren't in use.
+    return CGRectMake(x, y, BOTTOM_MENU_WIDTH, BOTTOM_MENU_HEIGHT);
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void)loadMenu
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    int number = 0;
+    for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i, ++ number) {
+        BottomMenu *menu = [BottomMenu bottomMenuWithType:i];
+        menu.frame = [self frameForMenuIndex:number];
+//        [menu setBadgeNumber:number];
+        [self addSubview:menu];
+        menu.delegate = self;
+    }
+}
+- (BottomMenu *)getMenuButtonByType:(MenuButtonType)type
+{
+    for (BottomMenu *view in self.subviews) {
+        if ([view isKindOfClass:[BottomMenu class]] && view.type == type) {
+            return view;
+        }
+    }
+    return nil;
+
+}
+- (void)setMenuBadge:(NSInteger)badge forMenuType:(MenuButtonType)type
+{
+    [[self getMenuButtonByType:type] setBadgeNumber:badge];
 }
 
-- (void)viewDidUnload
+
+#pragma mark handle the register
+
+- (BOOL)isRegistered
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    return [[UserManager defaultManager] hasUser];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)toRegister
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [_controller.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
 }
+
+
+#pragma menu button delegate
+
+- (void)didClickMenuButton:(MenuButton *)menuButton
+{
+    PPDebug(@"menu button type = %d", menuButton.type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
+    MenuButtonType type = menuButton.type;
+    switch (type) {
+        case MenuButtonTypeSettings:
+        {
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [_controller.navigationController pushViewController:settings animated:YES];
+            [settings release];
+        }
+            
+            break;
+        case MenuButtonTypeOpus:
+        {   
+            ShareController* share = [[ShareController alloc] init ];
+            [_controller.navigationController pushViewController:share animated:YES];
+            [share release];
+
+        }
+            break;
+        case MenuButtonTypeFriend:
+        {
+            MyFriendsController *mfc = [[MyFriendsController alloc] init];
+            [_controller.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+            [self setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
+        }
+            break;
+        case MenuButtonTypeChat:
+        {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [_controller.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            
+            [self setMenuBadge:0 forMenuType:type];
+
+        }
+            break;
+        case MenuButtonTypeFeedback:
+        {
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [_controller.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+
+        }
+            break;
+        case MenuButtonTypeCheckIn:
+        {
+//            int coins = [[AccountService defaultService] checkIn];
+//            NSString* message = nil;
+//            if (coins > 0){        
+//                message = [NSString stringWithFormat:NSLS(@"kCheckInMessage"), coins];
+//            }
+//            else{
+//                message = NSLS(@"kCheckInAlreadyToday");
+//            }
+//            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCheckInTitle") 
+//                                                               message:message
+//                                                                 style:CommonDialogStyleSingleButton 
+//                                                              delegate:_controller];    
+//            
+//            [dialog showInView:_controller.view];
+
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

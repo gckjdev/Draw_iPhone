@@ -7,45 +7,94 @@
 //
 
 #import "BottomMenu.h"
+#import "ShareImageManager.h"
 
 @implementation BottomMenu
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)didReceiveMemoryWarning
++ (BottomMenu *)bottomMenuWithImage:(UIImage *)image 
+                              title:(NSString *)title
+                              badge:(NSInteger)badge
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
+    static NSString *identifier = @"BottomMenu";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
+    }
+    BottomMenu *menuButton = [topLevelObjects objectAtIndex:0];
+    [menuButton updateImage:image tilte:title badge:badge];
+    return  menuButton;
+    
 }
 
-#pragma mark - View lifecycle
 
-- (void)viewDidLoad
+
++ (NSString *)titleForMenuButtonType:(MenuButtonType)type
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    switch (type) {
+            
+        case MenuButtonTypeSettings:
+            return NSLS(@"kSettings");
+        case MenuButtonTypeOpus:
+            return NSLS(@"kHomeShare");
+        case MenuButtonTypeFriend:
+            return NSLS(@"kFriend");
+        case MenuButtonTypeChat:
+            return NSLS(@"kChat");
+        case MenuButtonTypeFeedback:
+            return NSLS(@"kFeedback");
+        case MenuButtonTypeCheckIn:
+            return NSLS(@"kCheckin");            
+        default:
+            return nil;
+    }
+    
 }
 
-- (void)viewDidUnload
+            
++ (UIImage *)imageForMenuButtonType:(MenuButtonType)type
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    switch (type) {
+        case MenuButtonTypeSettings:
+            return [imageManager settingsMenuImage];
+        case MenuButtonTypeOpus:
+            return [imageManager opusMenuImage];
+        case MenuButtonTypeFriend:
+            return [imageManager friendMenuImage];
+        case MenuButtonTypeChat:
+            return [imageManager chatMenuImage];
+        case MenuButtonTypeFeedback:
+            return [imageManager feedbackMenuImage];
+        case MenuButtonTypeCheckIn:
+            return [imageManager checkInMenuImage];
+        default:
+            return nil;
+    }
+    
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
++ (BottomMenu *)bottomMenuWithType:(MenuButtonType)type
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    UIImage *image = [BottomMenu imageForMenuButtonType:type];
+    NSString *title = [BottomMenu titleForMenuButtonType:type];
+    
+    BottomMenu *menu = [BottomMenu bottomMenuWithImage:image 
+                                                 title:title 
+                                                 badge:0];
+    [menu setType:type];
+    menu.button.tag = type;
+    [menu.button addTarget:menu action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
+    return menu;
+}
+
+
+- (void)dealloc
+{
+    [super dealloc];
 }
 
 @end

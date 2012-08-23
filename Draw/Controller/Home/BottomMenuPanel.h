@@ -6,8 +6,16 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MenuPanel.h"
+//#import "MenuPanel.h"
+#import "BottomMenu.h"
+@interface BottomMenuPanel : UIView<MenuButtonDelegate>
 
-@interface BottomMenuPanel : MenuPanel
+
+@property (retain, nonatomic) UIViewController *controller;
+
++ (BottomMenuPanel *)panelWithController:(UIViewController *)controller;
+- (void)loadMenu;
+- (BottomMenu *)getMenuButtonByType:(MenuButtonType)type;
+- (void)setMenuBadge:(NSInteger)badge forMenuType:(MenuButtonType)type;
 
 @end
