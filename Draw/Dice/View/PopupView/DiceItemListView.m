@@ -13,9 +13,12 @@
 #import "DiceFontManager.h"
 #import "ItemManager.h"
 
+#define TAG_OFFSET_ITEM_BUTTON 20120822
+
 @interface DiceItemListView()
 {
     ItemManager *_itemManager;
+    BOOL _cutItemEabled;
 }
 @property (retain, nonatomic) NSArray *itemList;
 @property (retain, nonatomic) CMPopTipView *popTipView;
@@ -24,13 +27,15 @@
 
 
 @implementation DiceItemListView
-@synthesize itemList = _itemList;
 @synthesize delegate = _delegate;
+
+@synthesize itemList = _itemList;
 
 @synthesize popTipView = _popTipView;
 
 - (void)dealloc
 {
+    [_itemList release];
     [_popTipView release];
     [super dealloc];
 }
@@ -39,16 +44,25 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.itemList = [NSArray arrayWithObjects:[Item rollAgain], [Item cut], nil];
+        self.itemList = [NSArray arrayWithObjects:[Item cut], [Item rollAgain], nil];
         _itemManager = [ItemManager defaultManager];
     }
 
     return self;
 }
 
-- (void)updateWithDelegate:(id<DiceItemListViewDelegate>)delegate
+- (void)disableCutItem
 {
-    self.delegate = delegate;
+    _cutItemEabled = NO;
+}
+
+- (void)enableCutItem
+{
+    _cutItemEabled = YES;
+}
+
+- (void)update
+{    
     [self clearContent];
     [self showContent];
 }
@@ -88,24 +102,25 @@
 
 - (void)showContent
 {
-    int index = 0;
-    for (Item *item in _itemList) {
-        CGFloat yStart = (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * index;
-        CGRect toolButtonFrame = CGRectMake(0, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
-        NSInteger toolButtonTag = index;
-        
-        UIButton *tooButton = [self itemButton:toolButtonFrame 
-                                           tag:toolButtonTag 
-                                         title:item.itemName 
-                                         count:[NSNumber numberWithInt:[_itemManager amountForItem:item.type]]];
-        [self addSubview:tooButton];
-        index ++;
-    }
-    
     CGFloat width = WIDTH_TOOL_BUTTON;
-    CGFloat height = index * (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON) - SPACE_BORDE_AND_BUTTON;
+    CGFloat height = [_itemList count] * (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON) - SPACE_BORDE_AND_BUTTON;
     
     self.frame = CGRectMake(0, 0 , width, height);
+    
+    for (int index = 0; index < [_itemList count]; index ++) {
+        Item *item = [_itemList objectAtIndex:index];
+        
+        CGFloat yStart = height - (SPACE_BORDE_AND_BUTTON + WIDTH_TOOL_BUTTON ) * (index + 1) + SPACE_BORDE_AND_BUTTON;
+        
+        CGRect toolButtonFrame = CGRectMake(0, yStart, WIDTH_TOOL_BUTTON, WIDTH_TOOL_BUTTON);
+        NSInteger toolButtonTag = index + TAG_OFFSET_ITEM_BUTTON;
+        
+        UIButton *tooButton = [self itemButton:toolButtonFrame 
+                                           tag:toolButtonTag
+                                         title:item.itemName 
+                                         count:[NSNumber numberWithInt:[_itemManager amountForItem:item.type]]];        
+        [self addSubview:tooButton];
+    }
 }
 
 
@@ -143,10 +158,15 @@
     
     buttonTemp.tag = tag;
     
+    
+    if (tag == TAG_OFFSET_ITEM_BUTTON) {
+        buttonTemp.enabled = _cutItemEabled;
+    }
+        
     if ([count intValue] <= 0) {
         buttonTemp.enabled = NO;
     }
-    
+
     return buttonTemp;
 }
 
@@ -154,7 +174,7 @@
 - (void)clickToolButton:(id)sender
 {
     UIButton *button = (UIButton*)sender;
-    NSInteger selectedIndex = button.tag;
+    NSInteger selectedIndex = button.tag - TAG_OFFSET_ITEM_BUTTON;
     
     Item *item = [_itemList objectAtIndex:selectedIndex];
     

@@ -57,8 +57,8 @@ static DicePopupViewManager *_instance = nil;
 - (id)init
 {
     if (self = [super init]) {
-        self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
         self.chatView = [[[ChatView alloc] init] autorelease];
+        self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
     }
     
     return self;
@@ -80,17 +80,28 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
 }
 
-- (void)popupItemListViewAtView:(UIView *)atView 
-                         inView:(UIView *)inView 
-                       duration:(int)duration
-                       delegate:(id<DiceItemListViewDelegate>)delegate 
- 
+- (void)popupItemListAtView:(UIView *)atView 
+               inView:(UIView *)inView
+             duration:(int)duration
+             delegate:(id<DiceItemListViewDelegate>)delegate 
 {
-    [_diceItemListView updateWithDelegate:delegate];
+    _diceItemListView.delegate = delegate;
+    
+    [_diceItemListView update];
     [_diceItemListView popupAtView:atView
                             inView:inView 
                           duration:duration
                           animated:YES];
+}
+
+- (void)enableCutItem
+{
+    [_diceItemListView enableCutItem];
+}
+
+- (void)disableCutItem
+{
+    [_diceItemListView disableCutItem];
 }
 
 - (void)dismissItemListView
