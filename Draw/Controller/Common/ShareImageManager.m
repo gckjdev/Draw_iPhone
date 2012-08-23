@@ -452,6 +452,34 @@ static UIImage* _whitePaperImage;
 }
 
 
+#pragma mark - menu button image
+- (UIImage *)onlinePlayImage
+{
+    return [UIImage imageNamed:@"h_play.png"];
+}
+- (UIImage *)offlineDrawImage
+{
+    return [UIImage imageNamed:@"h_draw.png"];    
+}
+- (UIImage*)offlineGuessImage
+{
+    return [UIImage imageNamed:@"h_guess.png"];
+}
+- (UIImage *)friendPlayImage
+{
+    return [UIImage imageNamed:@"h_friends.png"];
+}
+- (UIImage *)timelineImage
+{
+    return [UIImage imageNamed:@"h_feed.png"];
+}
+- (UIImage*)shopImage
+{
+    return [UIImage imageNamed:@"h_shop.png"];
+}
+
+
+
 #pragma mark - save and get temp image.
 
 
