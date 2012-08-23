@@ -7,45 +7,109 @@
 //
 
 #import "MenuPanel.h"
+#import "MenuButton.h"
 
 @implementation MenuPanel
+@synthesize versionLabel = _versionLabel;
+@synthesize scrollView = _scrollView;
+@synthesize pageControl = _pageControl;
+@synthesize controller = _controller;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (MenuPanel *)menuPanelWithController:(UIViewController *)controller
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    static NSString *identifier = @"MenuPanel";
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
-    return self;
+    MenuPanel *panel = [topLevelObjects objectAtIndex:0];
+    panel.controller = controller;
+    panel.scrollView.delegate = panel;
+    [panel loadMenu];
+    return  panel;
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark load menu
+
+#define MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
+#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 467 : 224)
+static const NSInteger MENU_NUMBER_PER_PAGE = 6;
+
+- (CGRect)frameForMenuIndex:(NSInteger)index
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+
+    static const NSInteger ROW_NUMBER = 3;
+    CGFloat xStart = [DeviceDetection isIPAD] ? 32 : 15;
+    CGFloat yStart = [DeviceDetection isIPAD] ? 30 : 22;
+    int page = index / MENU_NUMBER_PER_PAGE;   
     
-    // Release any cached data, images, etc that aren't in use.
+    NSInteger row = (index % MENU_NUMBER_PER_PAGE) / ROW_NUMBER;
+    NSInteger numberInRow = index % ROW_NUMBER;
+    
+    CGFloat xSpace = ((MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * MENU_BUTTON_WIDTH)/ (ROW_NUMBER - 1);
+    CGFloat ySpace = (MENU_PANEL_HEIGHT - 2 *yStart - 2 * MENU_BUTTON_HEIGHT);
+
+    CGFloat y = row * (ySpace + MENU_BUTTON_HEIGHT) + yStart;
+    CGFloat x = page * self.frame.size.width;
+    x += numberInRow *(xSpace + MENU_BUTTON_WIDTH) + xStart;
+    
+    return CGRectMake(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void)loadMenu
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    int number = 0;
+    for (int i = MenuButtonTypeBase; i < MenuButtonTypeCount; ++ i, ++ number) {
+        MenuButton *menu = [MenuButton menuButtonWithType:i];
+        menu.frame = [self frameForMenuIndex:number];
+        [self.scrollView addSubview:menu];
+        [menu setBadgeNumber:number];
+    }
+    for (int i = MenuButtonTypeBase; i < MenuButtonTypeCount; ++ i, ++ number) {
+        MenuButton *menu = [MenuButton menuButtonWithType:i];
+        menu.frame = [self frameForMenuIndex:number];
+        [self.scrollView addSubview:menu];
+        [menu setBadgeNumber:number];
+    }
+    [self.scrollView setContentSize:CGSizeMake((number / MENU_NUMBER_PER_PAGE)  * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
+
 }
 
-- (void)viewDidUnload
+
+
+
+#pragma mark scrollView Delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+        PPDebug(@"<BoardPanel>scrollViewWillBeginDragging");
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    PPDebug(@"scrollViewDidEndDecelerating, page = %d", self.pageControl.currentPage);    
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    PPDebug(@"<BoardPanel>scrollViewDidEndScrollingAnimation");
+}
+
+
+#pragma mark page control
+- (IBAction)changePage:(id)sender {
+    
+}
+
+
+- (void)dealloc
+{
+    PPRelease(_versionLabel);
+    PPRelease(_scrollView);
+    PPRelease(_pageControl);
+    PPRelease(_controller);
+    [super dealloc];
+}
 @end
+

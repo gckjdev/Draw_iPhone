@@ -427,7 +427,7 @@
 					<object class="IBUIButton" id="759136446">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{484, 331}, {84, 93}}</string>
+						<string key="NSFrame">{{490, 331}, {84, 93}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="308789600"/>
@@ -598,7 +598,7 @@
 					<object class="IBUIView" id="308789600">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{582, 329}, {96, 96}}</string>
+						<string key="NSFrame">{{588, 329}, {96, 96}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="741808051"/>
@@ -930,7 +930,7 @@
 							<object class="IBUIImageView" id="1044653598">
 								<reference key="NSNextResponder" ref="812422611"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{110, 0}, {76, 76}}</string>
+								<string key="NSFrame">{{103, 0}, {76, 76}}</string>
 								<reference key="NSSuperview" ref="812422611"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="974192618"/>
@@ -941,7 +941,7 @@
 							<object class="IBUILabel" id="934378036">
 								<reference key="NSNextResponder" ref="812422611"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{76, 0}, {31, 76}}</string>
+								<string key="NSFrame">{{73, 0}, {31, 76}}</string>
 								<reference key="NSSuperview" ref="812422611"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1044653598"/>
@@ -1006,7 +1006,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
-						<string key="NSFrame">{{290, 362}, {189, 76}}</string>
+						<string key="NSFrame">{{289, 362}, {189, 76}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1055362"/>
@@ -1686,6 +1686,7 @@
 					<string key="className">DiceGamePlayController</string>
 					<string key="superclassName">PPViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="chatButton">UIButton</string>
 						<string key="diceCountSelectedHolderView">UIView</string>
 						<string key="gameBeginNoteLabel">HKGirlFontLabel</string>
 						<string key="itemsBoxButton">UIButton</string>
@@ -1707,6 +1708,10 @@
 						<string key="wildsLabel">HKGirlFontLabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="chatButton">
+							<string key="name">chatButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="diceCountSelectedHolderView">
 							<string key="name">diceCountSelectedHolderView</string>
 							<string key="candidateClassName">UIView</string>

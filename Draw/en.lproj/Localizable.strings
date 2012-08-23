@@ -781,6 +781,13 @@
 "kMoreRoom" = "More...";
 "kMoreRoomLoading" = "Loading...";
 
-
+"kNoMatterWhatYouCallIWillOpen" = "No matter what you call, I will open";
+"kDoYouDareToOpen" = "Do you dare to open";
+"kBelieveItOrNotAnywayIBelieved" = "Believe it or not, anyway, I believed";
+"kAttentionWilds" = "Attention for wilds";
+"kDontGoAndPlayMore" = "Don't go, stay and play for a while";
+"kCheatMeNotSoEasy" = "Cheat Me? Not so easy";
+"kYouAreFooled" = "Ha ha, you are fooled";
+"kIWantToGoSeeUNextTime" = "I want to go, see you next time";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

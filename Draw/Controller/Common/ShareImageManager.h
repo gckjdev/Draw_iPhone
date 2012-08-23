@@ -130,6 +130,15 @@
 - (UIImage *)unloadBg;
 - (UIImage*)backButtonImage;
 
+//menu button
+- (UIImage *)onlinePlayImage;
+- (UIImage *)offlineDrawImage;
+- (UIImage*)offlineGuessImage;
+- (UIImage *)friendPlayImage;
+- (UIImage *)timelineImage;
+- (UIImage*)shopImage;
+
+
 - (UIImage *)shareDrawButtonImage;
 
 - (void)saveFeedImage:(UIImage *)image
