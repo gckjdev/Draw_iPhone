@@ -10,6 +10,7 @@
 #import "ExpressionManager.h"
 #import "ChatViewCell.h"
 #import "LocaleUtils.h"
+#import "DiceChatMsgManager.h"
 
 #define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
 
@@ -92,7 +93,7 @@
         [self addSubview:_messagesHolderView];
         
         _expressionManager = [ExpressionManager defaultManager];
-        self.messages = [NSArray arrayWithObjects:NSLS(@"kPayAttentionToMe"), nil];
+        self.messages = [[DiceChatMsgManager defaultManager] contentList];
         
         [self addExpressions];
     }

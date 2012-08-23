@@ -8,6 +8,8 @@
 
 #import "EntryController.h"
 #import "BoardPanel.h"
+#import "MenuPanel.h"
+
 //#import "Board.h"
 
 @implementation EntryController
@@ -45,7 +47,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[BoardService defaultService] getBoardsWithDelegate:self];
+//    [[BoardService defaultService] getBoardsWithDelegate:self];
+    MenuPanel *panel = [MenuPanel menuPanelWithController:self];
+    [panel loadMenu];
+    [self.view addSubview:panel];
 }
 
 - (void)viewDidUnload

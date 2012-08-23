@@ -70,17 +70,17 @@
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (type) {
         case MenuButtonTypeOnlinePlay:
-            return NSLS(@"kStart");
+            return [imageManager onlinePlayImage];
         case MenuButtonTypeOfflineDraw:
-            return NSLS(@"kDrawOnly");
+            return [imageManager offlineDrawImage];
         case MenuButtonTypeOfflineGuess:
-            return NSLS(@"kGuessOnly");
+            return [imageManager offlineGuessImage];
         case MenuButtonTypeFriendPlay:
-            return NSLS(@"kPlayWithFriend");
+            return [imageManager friendPlayImage];
         case MenuButtonTypeTimeline:
-            return NSLS(@"kFeed");
+            return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return NSLS(@"kShop");            
+            return [imageManager shopImage];
         default:
             return nil;
     }
