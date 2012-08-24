@@ -50,8 +50,9 @@
             [self.oKButton.fontLable setText:NSLS(@"kOK")];
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-            [self.oKButton setBackgroundImage:[diceImgManager diceQuitBtnImage] forState:UIControlStateNormal];
-            [self.backButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] forState:UIControlStateNormal];
+//            [self.oKButton setBackgroundImage:[diceImgManager diceQuitBtnImage] forState:UIControlStateNormal];
+            [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
+            [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
         } break;
         case CommonDialogThemeDraw:
             [self.oKButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
@@ -65,18 +66,18 @@
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
 {
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     self.style = aStyle;
     switch (aStyle) {
         case CommonDialogStyleSingleButton: {
             [self.oKButton setFrame:CGRectMake(self.oKButton.frame.origin.x, self.oKButton.frame.origin.y, self.oKButton.frame.size.width*2, self.oKButton.frame.size.height)];
             [self.oKButton setCenter:CGPointMake(self.contentView.frame.size.width/2, self.oKButton.frame.origin.y)];
-            [self.oKButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//            [self.oKButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [self.backButton setHidden:YES];
         }
             break;
         case CommonDialogStyleDoubleButton: {
-            [self.oKButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+//            [self.oKButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         }
             break;
         default:
