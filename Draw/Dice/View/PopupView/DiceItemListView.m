@@ -86,7 +86,10 @@
     self.popTipView.delegate = self;
     self.popTipView.disableTapToDismiss = YES;
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
-    [_popTipView presentPointingAtView:view inView:inView animated:animated];
+    [_popTipView presentPointingAtView:view
+                                inView:inView 
+                          aboveSubView:view
+                              animated:animated];
     
     if (duration != 0) {
         [self performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:animated] afterDelay:duration];

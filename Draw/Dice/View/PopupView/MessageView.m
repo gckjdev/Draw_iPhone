@@ -74,6 +74,7 @@
     
     [_popTipView presentPointingAtView:atView
                                 inView:inView 
+                          aboveSubView:atView
                               animated:animated 
                         pointDirection:pointDirection];
     

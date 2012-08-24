@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiceHelpView : UIViewController
+@interface DiceHelpView : UIView
+
++ (id)createDiceHelpView;
+
 
 @end

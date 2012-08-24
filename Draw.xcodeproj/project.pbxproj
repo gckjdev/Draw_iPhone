@@ -257,6 +257,7 @@
 		C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213096715E4BD830072A18E /* dice_quit_btn@2x.png */; };
 		C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D315E73A590072A18E /* UIGlossyButton.m */; };
 		C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D515E73A590072A18E /* UIView+LayerEffects.m */; };
+		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1393,6 +1394,8 @@
 		C21309D315E73A590072A18E /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		C21309D415E73A590072A18E /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
 		C21309D515E73A590072A18E /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
+		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
+		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -3125,6 +3128,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C21309F815E774000072A18E /* DiceColorManager */,
 				A42C520815E614E5001D8208 /* DiceSoundManager */,
 				A42C520115E614D2001D8208 /* DiceChatMsgManager */,
 				A4C516AA15DE40F100E4F735 /* DiceItemManager */,
@@ -3274,6 +3278,15 @@
 			);
 			name = UIGlossyButton;
 			path = "../../Common_iPhone_20/Components/Component-View/UIGlossyButton";
+			sourceTree = "<group>";
+		};
+		C21309F815E774000072A18E /* DiceColorManager */ = {
+			isa = PBXGroup;
+			children = (
+				C21309F915E774390072A18E /* DiceColorManager.h */,
+				C21309FA15E774390072A18E /* DiceColorManager.m */,
+			);
+			path = DiceColorManager;
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -7433,6 +7446,7 @@
 				C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */,
 				C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */,
 				A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */,
+				C21309FB15E774390072A18E /* DiceColorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

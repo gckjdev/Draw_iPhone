@@ -1082,6 +1082,7 @@
 }
 
 - (IBAction)clickSettingButton:(id)sender {
+
 }
 
 #pragma mark - common dialog delegate

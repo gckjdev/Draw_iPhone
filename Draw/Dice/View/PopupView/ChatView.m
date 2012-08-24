@@ -154,13 +154,9 @@
     
     [_popTipView presentPointingAtView:view 
                                 inView:inView
+                          aboveSubView:view
                               animated:animated
                         pointDirection:pointDirection];
-}
-
-- (CMPopTipView *)popTipView
-{
-    return _popTipView;
 }
 
 - (void)dismissAnimated:(BOOL)animated

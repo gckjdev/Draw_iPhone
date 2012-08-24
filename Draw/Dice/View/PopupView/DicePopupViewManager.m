@@ -75,7 +75,6 @@ static DicePopupViewManager *_instance = nil;
     [_callDiceView dismissAnimated:YES];
     self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count] autorelease];
     [_callDiceView popupAtView:atView inView:inView animated:YES pointDirection:pointDirection];
-    [inView bringSubviewToFront:[_chatView popTipView]];
 }
 
 - (void)dismissCallDiceView
@@ -127,14 +126,11 @@ static DicePopupViewManager *_instance = nil;
              backgroundColor:MESSAGE_BACKGROUND_COLOR
                     animated:YES
               pointDirection:pointDirection];
-    
-    [inView bringSubviewToFront:[_chatView popTipView]];
 }
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
-//                             duration:(int)duration
                        pointDirection:(PointDirection)pointDirection
 {
     [_openDiceView dismissAnimated:YES];
@@ -164,14 +160,9 @@ static DicePopupViewManager *_instance = nil;
     
     [_openDiceView popupAtView:atView
                         inView:inView
-//                      duration:duration
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES
                 pointDirection:pointDirection];
-    
-    [inView bringSubviewToFront:[_chatView popTipView]];
-    
-//    [_callDiceView performSelector:@selector(dismissAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:duration];
 }
 
 - (void)dismissOpenDiceView

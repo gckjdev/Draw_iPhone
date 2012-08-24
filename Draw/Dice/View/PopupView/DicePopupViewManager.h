@@ -40,7 +40,6 @@
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
-//                             duration:(int)duration
                        pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissOpenDiceView;
