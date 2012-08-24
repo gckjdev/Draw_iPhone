@@ -63,7 +63,8 @@
 - (void)quitGame;
 
 - (CommonGameSession*)createSession;
-- (void)creatRoomWithName:(NSString*)name;
+- (void)createRoomWithName:(NSString*)name 
+                  password:(NSString*)password;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;

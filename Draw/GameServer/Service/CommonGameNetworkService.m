@@ -302,11 +302,13 @@
     return nil;
 }
 
-- (void)creatRoomWithName:(NSString*)name
+- (void)createRoomWithName:(NSString*)name 
+                  password:(NSString *)password
 {
     [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser] 
                                      name:name 
-                                   gameId:_gameId];
+                                   gameId:_gameId 
+                                 password:password];
 }
 
 - (void)registerRoomsNotification:(NSArray*)sessionIdList

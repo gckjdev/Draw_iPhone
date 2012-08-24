@@ -11,10 +11,12 @@
 #import "DiceGameService.h"
 #import "RoomPasswordDialog.h"
 @class FontButton;
+@class PBGameSession;
 
 @interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate> {
     BOOL _isJoiningDice;
     DiceGameService* _diceGameService;
+    PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;
     BOOL firstLoad;
 }
@@ -25,4 +27,6 @@
 @property (retain, nonatomic) IBOutlet FontButton *allRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *friendRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *nearByRoomButton;
+
+@property (retain, nonatomic) PBGameSession* currentSession;
 @end

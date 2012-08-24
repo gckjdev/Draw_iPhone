@@ -88,8 +88,8 @@
 		A42C522215E6215F001D8208 /* face_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = A42C521E15E6215F001D8208 /* face_smile.gif */; };
 		A42C522315E6215F001D8208 /* face_wry.gif in Resources */ = {isa = PBXBuildFile; fileRef = A42C521F15E6215F001D8208 /* face_wry.gif */; };
 		A42C523715E62B82001D8208 /* face_anger.gif in Resources */ = {isa = PBXBuildFile; fileRef = A42C523615E62B82001D8208 /* face_anger.gif */; };
-		A42C527015E7552E001D8208 /* DiceHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C526E15E7552E001D8208 /* DiceHelpView.m */; };
-		A42C527115E7552E001D8208 /* DiceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42C526F15E7552E001D8208 /* DiceHelpView.xib */; };
+		A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C528415E756CF001D8208 /* DiceHelpView.m */; };
+		A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42C528515E756CF001D8208 /* DiceHelpView.xib */; };
 		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
 		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
 		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
@@ -255,6 +255,8 @@
 		C213094215E393320072A18E /* DicePassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */; };
 		C213094415E393410072A18E /* DiceRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */; };
 		C213096815E4BD830072A18E /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C213096715E4BD830072A18E /* dice_quit_btn@2x.png */; };
+		C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D315E73A590072A18E /* UIGlossyButton.m */; };
+		C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D515E73A590072A18E /* UIView+LayerEffects.m */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1177,9 +1179,9 @@
 		A42C521E15E6215F001D8208 /* face_smile.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_smile.gif; sourceTree = "<group>"; };
 		A42C521F15E6215F001D8208 /* face_wry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_wry.gif; sourceTree = "<group>"; };
 		A42C523615E62B82001D8208 /* face_anger.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face_anger.gif; sourceTree = "<group>"; };
-		A42C526D15E7552E001D8208 /* DiceHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpView.h; sourceTree = "<group>"; };
-		A42C526E15E7552E001D8208 /* DiceHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpView.m; sourceTree = "<group>"; };
-		A42C526F15E7552E001D8208 /* DiceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHelpView.xib; sourceTree = "<group>"; };
+		A42C528315E756CF001D8208 /* DiceHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpView.h; sourceTree = "<group>"; };
+		A42C528415E756CF001D8208 /* DiceHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpView.m; sourceTree = "<group>"; };
+		A42C528515E756CF001D8208 /* DiceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHelpView.xib; sourceTree = "<group>"; };
 		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
@@ -1387,6 +1389,10 @@
 		C213094115E393320072A18E /* DicePassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DicePassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213094315E393400072A18E /* DiceRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C213096715E4BD830072A18E /* dice_quit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_quit_btn@2x.png"; sourceTree = "<group>"; };
+		C21309D215E73A590072A18E /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
+		C21309D315E73A590072A18E /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
+		C21309D415E73A590072A18E /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
+		C21309D515E73A590072A18E /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -2782,12 +2788,12 @@
 			path = DiceSoundManager;
 			sourceTree = "<group>";
 		};
-		A42C526C15E7551D001D8208 /* DiceHelpView */ = {
+		A42C528215E756CF001D8208 /* DiceHelpView */ = {
 			isa = PBXGroup;
 			children = (
-				A42C526D15E7552E001D8208 /* DiceHelpView.h */,
-				A42C526E15E7552E001D8208 /* DiceHelpView.m */,
-				A42C526F15E7552E001D8208 /* DiceHelpView.xib */,
+				A42C528315E756CF001D8208 /* DiceHelpView.h */,
+				A42C528415E756CF001D8208 /* DiceHelpView.m */,
+				A42C528515E756CF001D8208 /* DiceHelpView.xib */,
 			);
 			path = DiceHelpView;
 			sourceTree = "<group>";
@@ -3155,7 +3161,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A42C526C15E7551D001D8208 /* DiceHelpView */,
+				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
 				C296872315DCE03F006968BA /* DiceUserInfoView */,
 				C29A300815CA176400BD0B73 /* FontLabel */,
@@ -3256,6 +3262,18 @@
 				C213093615E37BA80072A18E /* dice_popup_bg@2x.png */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		C21309D115E73A590072A18E /* UIGlossyButton */ = {
+			isa = PBXGroup;
+			children = (
+				C21309D215E73A590072A18E /* UIGlossyButton.h */,
+				C21309D315E73A590072A18E /* UIGlossyButton.m */,
+				C21309D415E73A590072A18E /* UIView+LayerEffects.h */,
+				C21309D515E73A590072A18E /* UIView+LayerEffects.m */,
+			);
+			name = UIGlossyButton;
+			path = "../../Common_iPhone_20/Components/Component-View/UIGlossyButton";
 			sourceTree = "<group>";
 		};
 		C231639F15577B8E00AC132B /* sounds */ = {
@@ -5498,6 +5516,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				C21309D115E73A590072A18E /* UIGlossyButton */,
 				CA82846515D6378E0016CD43 /* ssziparchive */,
 				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
@@ -6921,7 +6940,7 @@
 				CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */,
 				CADBE28815E7335800FDAA38 /* default_board@2x.png in Resources */,
 				CADBE28A15E735D100FDAA38 /* main_top@2x.png in Resources */,
-				A42C527115E7552E001D8208 /* DiceHelpView.xib in Resources */,
+				A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7411,7 +7430,9 @@
 				A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */,
 				CA3094E915E64B3B0083A7A3 /* BottomMenu.m in Sources */,
 				CA3094EE15E653B90083A7A3 /* BottomMenuPanel.m in Sources */,
-				A42C527015E7552E001D8208 /* DiceHelpView.m in Sources */,
+				C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */,
+				C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */,
+				A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
