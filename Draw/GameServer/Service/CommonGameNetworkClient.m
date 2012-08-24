@@ -175,7 +175,8 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 
 - (void)sendCreateRoomRequest:(PBGameUser*)user
                          name:(NSString*)roomName 
-                       gameId:(NSString*)gameId
+                       gameId:(NSString*)gameId 
+                     password:(NSString *)password
 {
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeCreateRoomRequest];
@@ -186,6 +187,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setUser:user];
     [requestBuilder setRoomName:roomName];
     [requestBuilder setGameId:gameId];
+    [requestBuilder setPassword:password];
     CreateRoomRequest* request = [requestBuilder build];
     [messageBuilder setCreateRoomRequest:request];
     

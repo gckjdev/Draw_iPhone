@@ -26,6 +26,9 @@
 
 #define REFRESH_ROOMS_TIME_INTERVAL 2
 
+#define CREATE_ROOM_DIALOG_TAG  120120824
+#define ENTER_ROOM_DIALOG_TAG   220120824
+
 @interface DiceRoomListController ()
 
 @end
@@ -39,6 +42,7 @@
 @synthesize allRoomButton;
 @synthesize friendRoomButton;
 @synthesize nearByRoomButton;
+@synthesize currentSession = _currentSession;
 
 - (id)init
 {
@@ -55,6 +59,7 @@
     [allRoomButton release];
     [friendRoomButton release];
     [nearByRoomButton release];
+    PPRelease(_currentSession);
     [super dealloc];
 }
 
@@ -113,8 +118,8 @@
 {
     
     //TODO: set server address from config manager
-    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
-    [[DiceGameService defaultService] setServerPort:8018];
+//    [[DiceGameService defaultService] setServerAddress:@"106.187.89.232"];
+//    [[DiceGameService defaultService] setServerPort:8018];
     
     
     [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
@@ -252,11 +257,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _isJoiningDice = YES;
-    PBGameSession* session = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
     
-    [[DiceGameService defaultService] joinGameRequest:session.sessionId];
-    [self showActivityWithText:NSLS(@"kJoining")];
+    self.currentSession = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
+    if (self.currentSession.password == nil || self.currentSession.password.length <= 0) {
+        _isJoiningDice = YES;
+        [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId];
+        [self showActivityWithText:NSLS(@"kJoining")];
+    } else {
+        InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword") 
+                                                  delegate:self 
+                                                     theme:CommonDialogThemeDice];
+        inputDialog.targetTextField.text = nil;
+        inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
+        [inputDialog showInView:self.view]; 
+        inputDialog.tag = ENTER_ROOM_DIALOG_TAG;
+    }
+    
     
 }
 
@@ -280,7 +296,9 @@
                                                                theme:CommonDialogThemeDice];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    inputDialog.passwordField.placeholder = NSLS(@"kEnterPassword");
     [inputDialog showInView:self.view];
+    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
     
 }
 - (IBAction)clickAll:(id)sender
@@ -322,8 +340,22 @@
 - (void)didClickOk:(InputDialog *)dialog 
         targetText:(NSString *)targetText
 {
-    [_diceGameService creatRoomWithName:targetText];
-    _isJoiningDice = YES;
+    if (dialog.tag == CREATE_ROOM_DIALOG_TAG) {
+        NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
+        [_diceGameService createRoomWithName:targetText password:password];
+        _isJoiningDice = YES;
+    }
+    
+    if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
+        if ([self.currentSession.password isEqualToString:targetText]) {
+            _isJoiningDice = YES;
+            [[DiceGameService defaultService] joinGameRequest:_currentSession.sessionId];
+            [self showActivityWithText:NSLS(@"kJoining")];
+        } else {
+            [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
+        }
+    }
+    
 }
 - (void)didClickCancel:(InputDialog *)dialog
 {
