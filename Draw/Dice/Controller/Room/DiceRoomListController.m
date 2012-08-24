@@ -19,6 +19,7 @@
 #import "FontButton.h"
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
+#import "DiceColorManager.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -185,9 +186,9 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[[DiceImageManager defaultManager] roomListBgImage]];
     
-    [createRoomButton setBackgroundImage:[[DiceImageManager defaultManager] createRoomBtnBgImage] forState:UIControlStateNormal];
+    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
     
-    [fastEntryButton setBackgroundImage:[[DiceImageManager defaultManager] fastGameBtnBgImage] forState:UIControlStateNormal];
+    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
     
     [self.titleFontButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.allRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
@@ -197,6 +198,8 @@
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
+    [self.createRoomButton.fontLable setText:NSLS(@"kCreateRoom")];
+    [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
         
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(roomsDidUpdate:)

@@ -10,4 +10,8 @@
 
 @interface DiceColorManager : NSObject
 
++ (UIColor*)dialogRedColor;
++ (UIColor*)dialoggreenColor;
++ (UIColor*)dialogYellowColor;
+
 @end
