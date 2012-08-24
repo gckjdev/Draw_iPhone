@@ -298,7 +298,8 @@
 {
     self = [super init];
     if (self) {
-        self.platform = [dict objectForKey:PARA_AD_PLATFORM];
+        
+        self.platform = [(NSNumber *)[dict objectForKey:PARA_AD_PLATFORM] integerValue];
         self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
     }
     return self;
@@ -309,15 +310,14 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-//    [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:_platform forKey:CODE_KEY_PLATFORM];
+    [aCoder encodeInteger:_platform forKey:CODE_KEY_PLATFORM];
     [aCoder encodeObject:_publishId forKey:CODE_KEY_PUBLIC_ID];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
     if (self) {
-        self.platform = [aDecoder decodeObjectForKey:CODE_KEY_PLATFORM];
+        self.platform = [aDecoder decodeIntegerForKey:CODE_KEY_PLATFORM];
         self.publishId = [aDecoder decodeObjectForKey:CODE_KEY_PUBLIC_ID];
     }
     return self;
@@ -325,7 +325,6 @@
 
 - (void)dealloc
 {
-    PPRelease(_platform);
     PPRelease(_publishId);
     [super dealloc];
 }

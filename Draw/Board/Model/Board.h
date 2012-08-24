@@ -94,10 +94,10 @@ typedef enum{
 #pragma mark - an inner class used for AdBoard
 
 @interface AdObject : NSObject{
-    NSString *_platform;
+    NSInteger _platform;
     NSString *_publishId;
 }
-@property(nonatomic, retain)NSString *platform;
+@property(nonatomic, assign)NSInteger platform;
 @property(nonatomic, retain)NSString *publishId;
 
 - (id)initWithDict:(NSDictionary *)dict;

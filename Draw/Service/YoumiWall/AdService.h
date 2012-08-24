@@ -15,7 +15,7 @@
 
 typedef enum
 {
-    AdPlatformLm,
+    AdPlatformLm = 1,
     AdPlatformAder,
     AdPlatformMango
 } AdPlatformType;
