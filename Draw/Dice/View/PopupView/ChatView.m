@@ -12,22 +12,31 @@
 #import "LocaleUtils.h"
 #import "DiceChatMsgManager.h"
 #import "GifView.h"
+#import "DiceImageManager.h"
 
-#define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
+#define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.9]
 
-#define WIDTH_CHAT_VIEW 200
-#define HEIGHT_CHAT_VIEW 200
+#define WIDTH_CHAT_VIEW 230
+#define HEIGHT_CHAT_VIEW 225
 
-#define WIDTH_EXPRESSION_HOLDER_VIEW 200
-#define HEIGHT_EXPRESSION_HOLDER_VIEW 30
+#define WIDTH_EXPRESSION_HOLDER_VIEW WIDTH_CHAT_VIEW
+#define HEIGHT_EXPRESSION_HOLDER_VIEW 34
 
-#define WIDTH_MESSAGE_HOLDER_VIEW 200
-#define HEIGHT_MESSAGE_HOLDER_VIEW 170
+#define WIDTH_MESSAGE_HOLDER_VIEW WIDTH_CHAT_VIEW
+#define HEIGHT_MESSAGE_HOLDER_VIEW 188
 
-#define WIDTH_EXPRESSION_VIEW 30
+#define WIDTH_EXPRESSION_VIEW 34
 #define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
+
+#define WIDTH_EXPRESSION 30
+#define HEIGHT_EXPRESSION WIDTH_EXPRESSION
+
 #define EDGE_BETWEEN_EXPRESSIONS 8
 
+#define EDGE_BETWEEN_EXPREESIONS_HOLDER_VIEW_AND_MESSAGES_HOLDER_VIEW 8
+
+#define ORIGIN_X_EXPRESSIONS_HOLDER_VIEW 10
+#define ORIGIN_X_MESSAGES_HOLDER_VIEW ORIGIN_X_EXPRESSIONS_HOLDER_VIEW
 
 #define EXPRESSION_COUNT_PER_PAGE 5
 
@@ -69,7 +78,7 @@
 {
     CGRect frame = CGRectMake(0, 0, WIDTH_CHAT_VIEW, HEIGHT_CHAT_VIEW);
     if (self = [super initWithFrame:frame]) {
-        CGRect expsHolderViewFrame = CGRectMake(0, 0, WIDTH_EXPRESSION_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW);
+        CGRect expsHolderViewFrame = CGRectMake(ORIGIN_X_EXPRESSIONS_HOLDER_VIEW, 0, WIDTH_EXPRESSION_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW);
         self.expressionsHolderView = [[[UIScrollView alloc] initWithFrame:expsHolderViewFrame] autorelease];
         _expressionsHolderView.pagingEnabled = YES;
         _expressionsHolderView.showsVerticalScrollIndicator = NO;
@@ -85,7 +94,7 @@
         [self addSubview:_expressionsHolderView];
         [self addSubview:_pageControl];
         
-        CGRect msgsHolderViewFrame = CGRectMake(0, HEIGHT_EXPRESSION_HOLDER_VIEW, WIDTH_MESSAGE_HOLDER_VIEW, HEIGHT_MESSAGE_HOLDER_VIEW);
+        CGRect msgsHolderViewFrame = CGRectMake(ORIGIN_X_MESSAGES_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW + EDGE_BETWEEN_EXPREESIONS_HOLDER_VIEW_AND_MESSAGES_HOLDER_VIEW, WIDTH_MESSAGE_HOLDER_VIEW, HEIGHT_MESSAGE_HOLDER_VIEW);
         self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame style:UITableViewStylePlain] autorelease];
         _messagesHolderView.dataSource = self;
         _messagesHolderView.delegate = self;
@@ -164,15 +173,19 @@
                         key:(NSString *)key
 {
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
-//    [button setImage:[_expressionManager expressionForKey:key] forState:UIControlStateNormal];
 
     NSString *filePath = [_expressionManager gifPathForExpression:key];
     GifView *view;
     if (filePath != nil) {
-        view = [[[GifView alloc] initWithFrame:button.bounds
+        [button setBackgroundImage:[[DiceImageManager defaultManager] diceExpressionBgImage] forState:UIControlStateNormal];
+        
+        CGRect expframe = CGRectMake(0, 0, WIDTH_EXPRESSION, HEIGHT_EXPRESSION);
+        view = [[[GifView alloc] initWithFrame:expframe
                                       filePath:filePath
                               playTimeInterval:0.2] autorelease];
         view.userInteractionEnabled = NO;
+        view.center = CGPointMake(button.frame.size.width/2, button.frame.size.height/2);
+        
         [button addSubview:view];
     }
     

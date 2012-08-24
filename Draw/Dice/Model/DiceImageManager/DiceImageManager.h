@@ -44,5 +44,8 @@
 - (UIImage *)messageTipBackgroundImage;
 - (UIImage *)popupBackgroundImage;
 - (UIImage *)diceQuitBtnImage;
+- (UIImage *)diceChatMsgBgImage;
+- (UIImage *)diceChatViewBgImage;
+- (UIImage *)diceExpressionBgImage;
 
 @end

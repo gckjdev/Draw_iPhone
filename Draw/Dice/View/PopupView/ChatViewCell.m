@@ -7,6 +7,7 @@
 //
 
 #import "ChatViewCell.h"
+#import "DiceImageManager.h"
 
 @interface ChatViewCell ()
 
@@ -28,7 +29,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 36;
+    return 38;
 }
 
 + (NSString *)getCellIdentifier
@@ -40,12 +41,16 @@
 {
     self.message = message;
     
-    CGSize withinSize = CGSizeMake(300, 30);
-    CGSize size = [message.content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize withinSize = CGSizeMake(230, 36);
+    CGSize size = [message.content sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
-    messageButton.frame = CGRectMake(0, 0, size.width, messageButton.frame.size.height);
+    messageButton.frame = CGRectMake(0, 0, size.width + 30, messageButton.frame.size.height);
+    [messageButton setBackgroundImage:[[DiceImageManager defaultManager] diceChatMsgBgImage] forState:UIControlStateNormal];
     
     messageButton.fontLable.text = message.content;
+    
+    CGRect fontLabelFrame = messageButton.fontLable.frame;
+    messageButton.fontLable.frame = CGRectMake(13, 3, fontLabelFrame.size.width, fontLabelFrame.size.height);
     messageButton.fontLable.textAlignment = UITextAlignmentLeft;
     [messageButton setImage:nil forState:UIControlStateNormal];
 }
