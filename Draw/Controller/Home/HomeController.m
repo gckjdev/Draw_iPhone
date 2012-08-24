@@ -63,6 +63,7 @@
 #import "BoardPanel.h"
 #import "MenuPanel.h"
 #import "BottomMenuPanel.h"
+#import "BoardManager.h"
 
 @interface HomeController()
 
@@ -640,14 +641,51 @@
     [[DiceGameService defaultService] joinGameRequest];
 }
 
+
+#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate
+
+NSTimeInterval interval = 1;
+BOOL hasGetLocalBoardList = NO;
+- (void)updateBoardList:(NSTimer *)theTimer
+{
+    interval *= 2;
+    if (interval < NSTimeIntervalSince1970) {
+        PPDebug(@"<updateBoardList> timeinterval = %f", interval);
+        [[BoardService defaultService] getBoardsWithDelegate:self];        
+    }
+}
+
 - (void)didGetBoards:(NSArray *)boards 
           resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-        BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
-        [boardPanel setBoardList:boards];
-        [self.view addSubview:boardPanel];
+        if ([boards count] != 0) {
+            [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
+            BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
+            [boardPanel setBoardList:boards];
+            boardPanel.tag = BOARD_PANEL_TAG;
+            [self.view addSubview:boardPanel];
+            [[BoardManager defaultManager] saveBoardList:boards];
+        }
+    }else {
+        //start timer to fetch. use the local
+        if(!hasGetLocalBoardList){
+            NSArray * boardList = [[BoardManager defaultManager] getLocalBoardList];
+            hasGetLocalBoardList = YES;
+            if ([boardList count] != 0) {
+                [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
+                BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
+                boardPanel.tag = BOARD_PANEL_TAG;
+                [boardPanel setBoardList:boardList];
+                [self.view addSubview:boardPanel];            
+            }
+        }
+        [NSTimer scheduledTimerWithTimeInterval:interval target:self 
+                                       selector:@selector(updateBoardList:)
+                                       userInfo:nil
+                                        repeats:NO];
+        //start timer to fetch. use the local
     }
 }
 

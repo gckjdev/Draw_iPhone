@@ -10,6 +10,8 @@
 
 #define DEFAULT_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
 
+#define MESSAGE_MAX_WIDTH   ([DeviceDetection isIPAD] ? 400 : 200 )
+#define MESSAGE_MIN_WIDTH   ([DeviceDetection isIPAD] ? 50 : 25 )
 
 @interface MessageView ()
 
@@ -45,9 +47,9 @@
           pointSize:(CGFloat)pointSize  
       textAlignment:(UITextAlignment)textAlignment
 {
-    CGSize withSize = CGSizeMake(200, MAXFLOAT);
+    CGSize withSize = CGSizeMake(MESSAGE_MAX_WIDTH, MAXFLOAT);
     CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:UILineBreakModeTailTruncation];
-    size.width = (size.width < 25) ? 25 : size.width;
+    size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
     if (self = [self initWithFrame:rect fontName:fontName pointSize:pointSize]) {
         self.text = message;
