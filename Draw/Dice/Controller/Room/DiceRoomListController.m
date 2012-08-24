@@ -19,6 +19,7 @@
 #import "FontButton.h"
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
+#import "DiceHelpView.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
@@ -368,4 +369,8 @@
     [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE shouldReloadData:NO];
 }
 
+- (IBAction)clickHelpButton:(id)sender {
+    DiceHelpView *view = [DiceHelpView createDiceHelpView];
+    [self.view addSubview:view];
+}
 @end

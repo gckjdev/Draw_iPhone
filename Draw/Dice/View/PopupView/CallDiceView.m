@@ -93,7 +93,11 @@
     _popTipView.backgroundColor = CALL_DICE_POPUP_VIEW_BG_COLOR;
     _popTipView.disableTapToDismiss = YES;
 
-    [_popTipView presentPointingAtView:view inView:inView animated:animated pointDirection:pointDirection];
+    [_popTipView presentPointingAtView:view
+                                inView:inView
+                          aboveSubView:view
+                              animated:animated
+                        pointDirection:pointDirection];
 }
 
 - (void)dismissAnimated:(BOOL)animated
