@@ -978,6 +978,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 @property int32_t status;
 @property (retain) NSString* currentPlayUserId;
 @property (retain) NSString* nextPlayUserId;
+@property (retain) NSString* password;
 @property (retain) NSMutableArray* mutableUsersList;
 @end
 
@@ -1046,6 +1047,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   hasNextPlayUserId_ = !!value;
 }
 @synthesize nextPlayUserId;
+- (BOOL) hasPassword {
+  return !!hasPassword_;
+}
+- (void) setHasPassword:(BOOL) value {
+  hasPassword_ = !!value;
+}
+@synthesize password;
 @synthesize mutableUsersList;
 - (void) dealloc {
   self.gameId = nil;
@@ -1054,6 +1062,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   self.host = nil;
   self.currentPlayUserId = nil;
   self.nextPlayUserId = nil;
+  self.password = nil;
   self.mutableUsersList = nil;
   [super dealloc];
 }
@@ -1068,6 +1077,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     self.status = 0;
     self.currentPlayUserId = @"";
     self.nextPlayUserId = @"";
+    self.password = @"";
   }
   return self;
 }
@@ -1132,6 +1142,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if (self.hasNextPlayUserId) {
     [output writeString:9 value:self.nextPlayUserId];
   }
+  if (self.hasPassword) {
+    [output writeString:10 value:self.password];
+  }
   for (PBGameUser* element in self.usersList) {
     [output writeMessage:50 value:element];
   }
@@ -1170,6 +1183,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   }
   if (self.hasNextPlayUserId) {
     size += computeStringSize(9, self.nextPlayUserId);
+  }
+  if (self.hasPassword) {
+    size += computeStringSize(10, self.password);
   }
   for (PBGameUser* element in self.usersList) {
     size += computeMessageSize(50, element);
@@ -1276,6 +1292,9 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
   if (other.hasNextPlayUserId) {
     [self setNextPlayUserId:other.nextPlayUserId];
   }
+  if (other.hasPassword) {
+    [self setPassword:other.password];
+  }
   if (other.mutableUsersList.count > 0) {
     if (result.mutableUsersList == nil) {
       result.mutableUsersList = [NSMutableArray array];
@@ -1337,6 +1356,10 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
       }
       case 74: {
         [self setNextPlayUserId:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setPassword:[input readString]];
         break;
       }
       case 402: {
@@ -1490,6 +1513,22 @@ static PBGameSession* defaultPBGameSessionInstance = nil;
 - (PBGameSession_Builder*) clearNextPlayUserId {
   result.hasNextPlayUserId = NO;
   result.nextPlayUserId = @"";
+  return self;
+}
+- (BOOL) hasPassword {
+  return result.hasPassword;
+}
+- (NSString*) password {
+  return result.password;
+}
+- (PBGameSession_Builder*) setPassword:(NSString*) value {
+  result.hasPassword = YES;
+  result.password = value;
+  return self;
+}
+- (PBGameSession_Builder*) clearPassword {
+  result.hasPassword = NO;
+  result.password = @"";
   return self;
 }
 - (NSArray*) usersList {

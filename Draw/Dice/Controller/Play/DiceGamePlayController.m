@@ -1178,6 +1178,7 @@
                                    playTimeInterval:0.2] autorelease];
     
     [self.view addSubview:view];
+
 //    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:6.0];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{

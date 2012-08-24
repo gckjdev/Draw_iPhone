@@ -23,6 +23,7 @@ message CreateRoomRequest {
   required string gameId = 1;                   // 游戏ID，比如你画我猜为：draw
   required PBGameUser user = 2;
   required string roomName = 3;                 // 房间名
+    optional string password = 4;                         // 房间密码
 }
 
 message CreateRoomResponse {

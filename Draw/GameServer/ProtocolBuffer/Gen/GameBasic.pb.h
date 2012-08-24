@@ -257,6 +257,7 @@
   BOOL hasHost_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
+  BOOL hasPassword_:1;
   int64_t sessionId;
   int32_t createTime;
   int32_t status;
@@ -266,6 +267,7 @@
   NSString* host;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
+  NSString* password;
   NSMutableArray* mutableUsersList;
 }
 - (BOOL) hasGameId;
@@ -277,6 +279,7 @@
 - (BOOL) hasStatus;
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
+- (BOOL) hasPassword;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int64_t sessionId;
 @property (readonly, retain) NSString* name;
@@ -286,6 +289,7 @@
 @property (readonly) int32_t status;
 @property (readonly, retain) NSString* currentPlayUserId;
 @property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly, retain) NSString* password;
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;
 
@@ -367,6 +371,11 @@
 - (NSString*) nextPlayUserId;
 - (PBGameSession_Builder*) setNextPlayUserId:(NSString*) value;
 - (PBGameSession_Builder*) clearNextPlayUserId;
+
+- (BOOL) hasPassword;
+- (NSString*) password;
+- (PBGameSession_Builder*) setPassword:(NSString*) value;
+- (PBGameSession_Builder*) clearPassword;
 
 - (NSArray*) usersList;
 - (PBGameUser*) usersAtIndex:(int32_t) index;
