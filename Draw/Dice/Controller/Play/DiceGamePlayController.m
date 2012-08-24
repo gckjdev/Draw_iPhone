@@ -846,7 +846,7 @@
     
     NSString *currentPlayUserId = _diceService.session.currentPlayUserId;
     [[self avatarViewOfUser:currentPlayUserId] startReciprocol:USER_THINK_TIME_INTERVAL];
-    
+        
     if ([_userManager isMe:currentPlayUserId])
     {        
         [self enableAllDiceOperationButtons];
@@ -920,10 +920,6 @@
 {
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
-    
-//    NSString *str = (_diceService.diceSession.openType == 0) ? NSLS(@"kOpenDice") : NSLS(@"kScrambleToOpenDice") ;
-//    [[SpeechService defaultService] play:str gender:YES];
-    
     [self popupOpenDiceView];  
 }
 
@@ -1188,5 +1184,9 @@
     }];
 }
 
+- (void)updateUIState
+{
+    
+}
 
 @end
