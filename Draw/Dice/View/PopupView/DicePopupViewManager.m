@@ -18,6 +18,8 @@
 
 #define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 36 : 18 )
 
+#define SIZE_FONT_CHAT_MESSAGE  ([DeviceDetection isIPAD] ? 26 : 13 )
+
 @interface DicePopupViewManager ()
 
 @property (retain, nonatomic) CallDiceView *callDiceView;
@@ -118,7 +120,7 @@ static DicePopupViewManager *_instance = nil;
     MessageView *messageView = [[[MessageView alloc] initWithFrame:CGRectZero 
                                                            message:message
                                                           fontName:[[DiceFontManager defaultManager] fontName]
-                                                         pointSize:13] autorelease];
+                                                         pointSize:SIZE_FONT_CHAT_MESSAGE] autorelease];
     [messageView popupAtView:atView
                       inView:inView
                     duration:3.0

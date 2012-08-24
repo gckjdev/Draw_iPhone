@@ -14,9 +14,9 @@
 }
 + (BoardManager *)defaultManager;
 
-- (NSArray *)BoardList;
+//- (NSArray *)BoardList;
 
-- (NSArray *)getLastBoardList;
+- (NSArray *)getLocalBoardList;
 - (void)saveBoardList:(NSArray *)boardList;
 
 @end

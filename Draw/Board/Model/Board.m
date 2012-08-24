@@ -50,22 +50,34 @@
     }
     return self;
 }
-/*
-- (id)initWithType:(BoardType)type 
-            status:(BoardStatus)status  
-             index:(NSInteger)index
-           version:(NSString *)version
+
+#define CODE_KEY_TYPE @"type"
+#define CODE_KEY_INDEX @"index"
+#define CODE_KEY_STATUS @"status"
+#define CODE_KEY_VERSION @"version"
+#define CODE_KEY_BOARDID @"boardId"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInteger:_type forKey:CODE_KEY_TYPE];
+    [aCoder encodeInteger:_index forKey:CODE_KEY_INDEX];
+    [aCoder encodeInteger:_status forKey:CODE_KEY_STATUS];
+    [aCoder encodeObject:_version forKey:CODE_KEY_VERSION];
+    [aCoder encodeObject:_boardId forKey:CODE_KEY_BOARDID];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
     if (self) {
-        self.type = type;
-        self.status = status;
-        self.index = index;
-        self.version= version;
+        self.type = [aDecoder decodeIntegerForKey:CODE_KEY_TYPE];
+        self.index = [aDecoder decodeIntegerForKey:CODE_KEY_INDEX];
+        self.status = [aDecoder decodeIntegerForKey:CODE_KEY_STATUS];
+        self.version = [aDecoder decodeObjectForKey:CODE_KEY_VERSION];
+        self.boardId = [aDecoder decodeObjectForKey:CODE_KEY_BOARDID];
     }
     return self;
 }
-*/
+
 - (void)dealloc
 {
     PPRelease(_version);
@@ -106,6 +118,28 @@
     return self;
 }
 
+#define CODE_KEY_NUMBER @"number"
+#define CODE_KEY_AD_LIST @"adList"
+
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInteger:_number forKey:CODE_KEY_NUMBER];
+    [aCoder encodeObject:_adList forKey:CODE_KEY_AD_LIST];
+
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.number = [aDecoder decodeIntegerForKey:CODE_KEY_NUMBER];
+        self.adList = [aDecoder decodeObjectForKey:CODE_KEY_AD_LIST];
+    }
+    return self;
+}
+
+
 
 - (void)dealloc
 {
@@ -131,6 +165,31 @@
     }
     return self;
 }
+
+
+#define CODE_KEY_WEBTYPE @"webType"
+#define CODE_KEY_REMOTE_URL @"remoteURL"
+#define CODE_KEY_LOCAL_URL @"localURL"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInteger:_webType forKey:CODE_KEY_WEBTYPE];
+    [aCoder encodeObject:_remoteUrl forKey:CODE_KEY_REMOTE_URL];
+    [aCoder encodeObject:_localUrl forKey:CODE_KEY_LOCAL_URL];
+    
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.webType = [aDecoder decodeIntegerForKey:CODE_KEY_WEBTYPE];
+        self.remoteUrl = [aDecoder decodeObjectForKey:CODE_KEY_REMOTE_URL];
+        self.localUrl = [aDecoder decodeObjectForKey:CODE_KEY_LOCAL_URL];
+    }
+    return self;
+}
+
 
 -(void)dealloc
 {
@@ -198,6 +257,28 @@
     return self;
 }
 
+
+#define CODE_KEY_IMAGE_URL @"imageURL"
+#define CODE_KEY_CLICK_URL @"clickURL"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:_imageUrl forKey:CODE_KEY_IMAGE_URL];
+    [aCoder encodeObject:_clickUrl forKey:CODE_KEY_CLICK_URL];
+    
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.imageUrl = [aDecoder decodeObjectForKey:CODE_KEY_IMAGE_URL];
+        self.clickUrl = [aDecoder decodeObjectForKey:CODE_KEY_CLICK_URL];
+    }
+    return self;
+}
+
+
 - (void)dealloc
 {
     PPRelease(_imageUrl);
@@ -217,15 +298,33 @@
 {
     self = [super init];
     if (self) {
-        self.platform = [dict objectForKey:PARA_AD_PLATFORM];
+        
+        self.platform = [(NSNumber *)[dict objectForKey:PARA_AD_PLATFORM] integerValue];
         self.publishId = [dict objectForKey:PARA_AD_PUBLISH_ID];
+    }
+    return self;
+}
+
+#define CODE_KEY_PLATFORM @"platform"
+#define CODE_KEY_PUBLIC_ID @"publicId"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInteger:_platform forKey:CODE_KEY_PLATFORM];
+    [aCoder encodeObject:_publishId forKey:CODE_KEY_PUBLIC_ID];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.platform = [aDecoder decodeIntegerForKey:CODE_KEY_PLATFORM];
+        self.publishId = [aDecoder decodeObjectForKey:CODE_KEY_PUBLIC_ID];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    PPRelease(_platform);
     PPRelease(_publishId);
     [super dealloc];
 }
