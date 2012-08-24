@@ -31,19 +31,19 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
-			<object class="IBUITableViewCell" id="459657108">
+			<object class="IBUITableViewCell" id="508157930">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="1072998371">
-						<reference key="NSNextResponder" ref="459657108"/>
+					<object class="IBUIView" id="980764677">
+						<reference key="NSNextResponder" ref="508157930"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIButton" id="114546977">
-								<reference key="NSNextResponder" ref="1072998371"/>
+							<object class="IBUIButton" id="767750571">
+								<reference key="NSNextResponder" ref="980764677"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 4}, {584, 70}}</string>
-								<reference key="NSSuperview" ref="1072998371"/>
+								<string key="NSFrame">{{14, 0}, {584, 70}}</string>
+								<reference key="NSSuperview" ref="980764677"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -73,7 +73,7 @@
 							</object>
 						</array>
 						<string key="NSFrameSize">{640, 77}</string>
-						<reference key="NSSuperview" ref="459657108"/>
+						<reference key="NSSuperview" ref="508157930"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
@@ -91,10 +91,10 @@
 				<string key="NSFrameSize">{640, 78}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1072998371"/>
+				<reference key="NSNextKeyView" ref="980764677"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-				<reference key="IBUIContentView" ref="1072998371"/>
+				<reference key="IBUIContentView" ref="980764677"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -102,16 +102,16 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">messageButton</string>
-						<reference key="source" ref="459657108"/>
-						<reference key="destination" ref="114546977"/>
+						<reference key="source" ref="508157930"/>
+						<reference key="destination" ref="767750571"/>
 					</object>
 					<int key="connectionID">5</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickMessageButton:</string>
-						<reference key="source" ref="114546977"/>
-						<reference key="destination" ref="459657108"/>
+						<reference key="source" ref="767750571"/>
+						<reference key="destination" ref="508157930"/>
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">6</int>
@@ -138,16 +138,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="459657108"/>
+						<reference key="object" ref="508157930"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="114546977"/>
+							<reference ref="767750571"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="114546977"/>
-						<reference key="parent" ref="459657108"/>
+						<reference key="object" ref="767750571"/>
+						<reference key="parent" ref="508157930"/>
 					</object>
 				</array>
 			</object>
@@ -171,28 +171,9 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ChatViewCell</string>
 					<string key="superclassName">PPTableViewCell</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">messageButton</string>
-						<string key="NS.object.0">FontButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">messageButton</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">messageButton</string>
-							<string key="candidateClassName">FontButton</string>
-						</object>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ChatViewCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FontButton</string>
-					<string key="superclassName">UIButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FontButton.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
