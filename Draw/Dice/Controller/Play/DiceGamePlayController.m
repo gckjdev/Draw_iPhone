@@ -789,7 +789,6 @@
     self.plusOneButton.enabled = NO;
     [_popupViewManager disableCutItem];
     [self.diceSelectedView disableUserInteraction];
-    self.wildsFlagButton.hidden = !_diceService.diceSession.wilds;
 }
 
 - (void)enableAllDiceOperationButtons
@@ -1185,5 +1184,9 @@
     }];
 }
 
+- (void)updateUIState
+{
+    
+}
 
 @end
