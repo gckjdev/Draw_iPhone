@@ -17,7 +17,7 @@
 #define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.9]
 
 #define WIDTH_CHAT_VIEW 230
-#define HEIGHT_CHAT_VIEW 225
+#define HEIGHT_CHAT_VIEW 230
 
 #define WIDTH_EXPRESSION_HOLDER_VIEW WIDTH_CHAT_VIEW
 #define HEIGHT_EXPRESSION_HOLDER_VIEW 34
@@ -154,13 +154,9 @@
     
     [_popTipView presentPointingAtView:view 
                                 inView:inView
+                          aboveSubView:view
                               animated:animated
                         pointDirection:pointDirection];
-}
-
-- (CMPopTipView *)popTipView
-{
-    return _popTipView;
 }
 
 - (void)dismissAnimated:(BOOL)animated
