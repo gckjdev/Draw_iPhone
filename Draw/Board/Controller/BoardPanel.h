@@ -7,6 +7,7 @@
 //
 
 #import "BoardView.h"
+
 @interface BoardPanel : UIView<BoardViewDelegate, UIScrollViewDelegate>
 {
     UIViewController *_controller;

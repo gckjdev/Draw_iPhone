@@ -9,6 +9,7 @@
 #import "EntryController.h"
 #import "BoardPanel.h"
 #import "MenuPanel.h"
+#import "BottomMenuPanel.h"
 
 //#import "Board.h"
 
@@ -38,6 +39,9 @@
         BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
         [boardPanel setBoardList:boards];
         [self.view addSubview:boardPanel];
+//        [boardPanel setBoardList:boards];
+//        [self.view addSubview:boardPanel];
+
     }
 }
 
@@ -48,9 +52,12 @@
 {
     [super viewDidLoad];
 //    [[BoardService defaultService] getBoardsWithDelegate:self];
-    MenuPanel *panel = [MenuPanel menuPanelWithController:self];
-    [panel loadMenu];
+//    MenuPanel *panel = [MenuPanel menuPanelWithController:self];
+//    [self.view addSubview:panel];
+    
+    BottomMenuPanel *panel = [BottomMenuPanel panelWithController:self];
     [self.view addSubview:panel];
+
 }
 
 - (void)viewDidUnload

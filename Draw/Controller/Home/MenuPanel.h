@@ -7,18 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuButton.h"
 
-@interface MenuPanel : UIView<UIScrollViewDelegate>
+@class HomeController;
+@interface MenuPanel : UIView<UIScrollViewDelegate, MenuButtonDelegate>
 {
     
 }
 @property (retain, nonatomic) IBOutlet UILabel *versionLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (retain, nonatomic) UIViewController *controller;
+@property (retain, nonatomic) HomeController *controller;
 
 + (MenuPanel *)menuPanelWithController:(UIViewController *)controller;
 - (IBAction)changePage:(id)sender;
 - (void)loadMenu;
+- (MenuButton *)getMenuButtonByType:(MenuButtonType)type;
+- (void)setMenuBadge:(NSInteger)badge forMenuType:(MenuButtonType)type;
 
 @end

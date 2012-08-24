@@ -705,6 +705,12 @@
 		CA3094A215E5D6000083A7A3 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */; };
 		CA3094A315E5D6000083A7A3 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */; };
 		CA3094A515E5E8110083A7A3 /* h_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3094A415E5E8110083A7A3 /* h_play@2x.png */; };
+		CA3094E915E64B3B0083A7A3 /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3094E715E64B3A0083A7A3 /* BottomMenu.m */; };
+		CA3094EA15E64B3B0083A7A3 /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */; };
+		CA3094EE15E653B90083A7A3 /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */; };
+		CA3094EF15E653B90083A7A3 /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */; };
+		CA3094F215E66A430083A7A3 /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */; };
+		CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */; };
 		CA31D8291561F70E00199A24 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */; };
 		CA31D82A1561F70E00199A24 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */; };
 		CA31D82C1561F72C00199A24 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA31D82B1561F72C00199A24 /* RoomPasswordDialog~ipad.xib */; };
@@ -2098,6 +2104,14 @@
 		CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
 		CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA3094A415E5E8110083A7A3 /* h_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "h_play@2x.png"; path = "Images/h_play@2x.png"; sourceTree = "<group>"; };
+		CA3094E615E64B390083A7A3 /* BottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenu.h; sourceTree = "<group>"; };
+		CA3094E715E64B3A0083A7A3 /* BottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenu.m; sourceTree = "<group>"; };
+		CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenu.xib; sourceTree = "<group>"; };
+		CA3094EB15E653A70083A7A3 /* BottomMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenuPanel.h; sourceTree = "<group>"; };
+		CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenuPanel.m; sourceTree = "<group>"; };
+		CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuPanel.xib; sourceTree = "<group>"; };
+		CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenu~ipad.xib"; sourceTree = "<group>"; };
+		CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA31D8261561F70D00199A24 /* RoomPasswordDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomPasswordDialog.h; sourceTree = "<group>"; };
 		CA31D8271561F70D00199A24 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		CA31D8281561F70D00199A24 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
@@ -4846,10 +4860,18 @@
 				CA30949715E5D5950083A7A3 /* MenuButton.m */,
 				CA30949815E5D5960083A7A3 /* MenuButton.xib */,
 				CA3094A015E5D6000083A7A3 /* MenuButton~ipad.xib */,
+				CA3094E615E64B390083A7A3 /* BottomMenu.h */,
+				CA3094E715E64B3A0083A7A3 /* BottomMenu.m */,
+				CA3094E815E64B3A0083A7A3 /* BottomMenu.xib */,
+				CA3094F015E66A3E0083A7A3 /* BottomMenu~ipad.xib */,
 				CA30949B15E5D5C60083A7A3 /* MenuPanel.h */,
 				CA30949C15E5D5C60083A7A3 /* MenuPanel.m */,
 				CA30949D15E5D5C60083A7A3 /* MenuPanel.xib */,
 				CA3094A115E5D6000083A7A3 /* MenuPanel~ipad.xib */,
+				CA3094EB15E653A70083A7A3 /* BottomMenuPanel.h */,
+				CA3094EC15E653AA0083A7A3 /* BottomMenuPanel.m */,
+				CA3094ED15E653AD0083A7A3 /* BottomMenuPanel.xib */,
+				CA3094F115E66A400083A7A3 /* BottomMenuPanel~ipad.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -6871,6 +6893,10 @@
 				EA177C4415E62AA10083E4B9 /* message_8_F.m4a in Resources */,
 				EA177C4515E62AA10083E4B9 /* message_9_F.m4a in Resources */,
 				A42C523715E62B82001D8208 /* face_anger.gif in Resources */,
+				CA3094EA15E64B3B0083A7A3 /* BottomMenu.xib in Resources */,
+				CA3094EF15E653B90083A7A3 /* BottomMenuPanel.xib in Resources */,
+				CA3094F215E66A430083A7A3 /* BottomMenu~ipad.xib in Resources */,
+				CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7358,6 +7384,8 @@
 				A42C520615E614D2001D8208 /* DiceChatMessage.m in Sources */,
 				A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */,
 				A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */,
+				CA3094E915E64B3B0083A7A3 /* BottomMenu.m in Sources */,
+				CA3094EE15E653B90083A7A3 /* BottomMenuPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

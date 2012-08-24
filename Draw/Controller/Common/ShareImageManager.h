@@ -138,6 +138,13 @@
 - (UIImage *)timelineImage;
 - (UIImage*)shopImage;
 
+//bottom menus image
+- (UIImage *)settingsMenuImage;
+- (UIImage *)opusMenuImage;
+- (UIImage*)friendMenuImage;
+- (UIImage *)chatMenuImage;
+- (UIImage *)feedbackMenuImage;
+- (UIImage*)checkInMenuImage;
 
 - (UIImage *)shareDrawButtonImage;
 

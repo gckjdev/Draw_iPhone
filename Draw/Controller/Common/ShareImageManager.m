@@ -455,29 +455,54 @@ static UIImage* _whitePaperImage;
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage
 {
-    return [UIImage imageNamed:@"h_play.png"];
+    return [self fixedImageNamed:@"h_play"];
 }
 - (UIImage *)offlineDrawImage
 {
-    return [UIImage imageNamed:@"h_draw.png"];    
+    return [self fixedImageNamed:@"h_draw"];    
 }
 - (UIImage*)offlineGuessImage
 {
-    return [UIImage imageNamed:@"h_guess.png"];
+    return [self fixedImageNamed:@"h_guess"];
 }
 - (UIImage *)friendPlayImage
 {
-    return [UIImage imageNamed:@"h_friends.png"];
+    return [self fixedImageNamed:@"h_friends"];
 }
 - (UIImage *)timelineImage
 {
-    return [UIImage imageNamed:@"h_feed.png"];
+    return [self fixedImageNamed:@"h_feed"];
 }
 - (UIImage*)shopImage
 {
-    return [UIImage imageNamed:@"h_shop.png"];
+    return [self fixedImageNamed:@"h_shop"];
 }
 
+//for bottom menu image.
+- (UIImage *)settingsMenuImage
+{
+    return [self fixedImageNamed:@"small_setting"];
+}
+- (UIImage *)opusMenuImage
+{
+    return [self fixedImageNamed:@"small_share"];    
+}
+- (UIImage*)friendMenuImage
+{
+    return [self fixedImageNamed:@"small_friend_manager"];
+}
+- (UIImage *)chatMenuImage
+{
+    return [self fixedImageNamed:@"small_chat"];
+}
+- (UIImage *)feedbackMenuImage
+{
+    return [self fixedImageNamed:@"small_feedback"];
+}
+- (UIImage*)checkInMenuImage
+{
+    return [self fixedImageNamed:@"small_sign"];
+}
 
 
 #pragma mark - save and get temp image.

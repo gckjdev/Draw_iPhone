@@ -258,4 +258,12 @@
     return [MobClickUtils getStringValueByKey:@"FACETIME_SERVER_LIST" defaultValue:@"192.168.1.5:8191"];
 }
 
++ (NSString *)currentVersion
+{
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
+    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
+    return currentVersion;
+}
+
+
 @end
