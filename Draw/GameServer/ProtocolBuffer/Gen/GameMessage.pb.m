@@ -447,6 +447,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
 @property (retain) NSString* gameId;
 @property (retain) PBGameUser* user;
 @property (retain) NSString* roomName;
+@property (retain) NSString* password;
 @end
 
 @implementation CreateRoomRequest
@@ -472,10 +473,18 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   hasRoomName_ = !!value;
 }
 @synthesize roomName;
+- (BOOL) hasPassword {
+  return !!hasPassword_;
+}
+- (void) setHasPassword:(BOOL) value {
+  hasPassword_ = !!value;
+}
+@synthesize password;
 - (void) dealloc {
   self.gameId = nil;
   self.user = nil;
   self.roomName = nil;
+  self.password = nil;
   [super dealloc];
 }
 - (id) init {
@@ -483,6 +492,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
     self.gameId = @"";
     self.user = [PBGameUser defaultInstance];
     self.roomName = @"";
+    self.password = @"";
   }
   return self;
 }
@@ -523,6 +533,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (self.hasRoomName) {
     [output writeString:3 value:self.roomName];
   }
+  if (self.hasPassword) {
+    [output writeString:4 value:self.password];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -540,6 +553,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   }
   if (self.hasRoomName) {
     size += computeStringSize(3, self.roomName);
+  }
+  if (self.hasPassword) {
+    size += computeStringSize(4, self.password);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -625,6 +641,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (other.hasRoomName) {
     [self setRoomName:other.roomName];
   }
+  if (other.hasPassword) {
+    [self setPassword:other.password];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -661,6 +680,10 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
       }
       case 26: {
         [self setRoomName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setPassword:[input readString]];
         break;
       }
     }
@@ -726,6 +749,22 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
 - (CreateRoomRequest_Builder*) clearRoomName {
   result.hasRoomName = NO;
   result.roomName = @"";
+  return self;
+}
+- (BOOL) hasPassword {
+  return result.hasPassword;
+}
+- (NSString*) password {
+  return result.password;
+}
+- (CreateRoomRequest_Builder*) setPassword:(NSString*) value {
+  result.hasPassword = YES;
+  result.password = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearPassword {
+  result.hasPassword = NO;
+  result.password = @"";
   return self;
 }
 @end
