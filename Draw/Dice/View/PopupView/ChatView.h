@@ -30,6 +30,8 @@
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection;
 
+- (CMPopTipView *)popTipView;
+
 - (void)dismissAnimated:(BOOL)animated;
 
 @end
