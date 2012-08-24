@@ -149,6 +149,11 @@
                         pointDirection:pointDirection];
 }
 
+- (CMPopTipView *)popTipView
+{
+    return _popTipView;
+}
+
 - (void)dismissAnimated:(BOOL)animated
 {
     [_popTipView dismissAnimated:YES];
