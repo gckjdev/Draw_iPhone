@@ -66,7 +66,7 @@
 "kQuitGameAlertTitle" = "Quit Game";
 "kQuitGameAlertMessage" = "Are you sure to quit the game?";
 
-"kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct 1 coin.";
+"kDedutCoinQuitGameAlertMessage" = "If you quit the game, the system will deduct %d coin.";
 "kNoCoinQuitGameAlertMessage" = "You have no coins, cannot quit the game!";
 
 "kContinue" = "Next [%d]";

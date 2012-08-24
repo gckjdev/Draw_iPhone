@@ -542,7 +542,7 @@ enum{
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
         style = CommonDialogStyleDoubleButton;
-        message = NSLS(@"kDedutCoinQuitGameAlertMessage");
+        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), 1];//deduct one coin when runaway ,the coin should configured by config manager, do it later ---kira
     }else{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");

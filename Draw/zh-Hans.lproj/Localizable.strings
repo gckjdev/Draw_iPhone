@@ -67,8 +67,8 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
-"kDedutCoinQuitGameAlertMessage" = "如果你退出游戏，系统将会扣除1个金币哦。";
-"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除1个金币，你的账户余额不足，现在不能退出游戏哦！";
+"kDedutCoinQuitGameAlertMessage" = "如果你退出游戏，系统将会扣除%d个金币哦。";
+"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏哦！";
 
 
 "kContinue" = "继续 [%d]";
