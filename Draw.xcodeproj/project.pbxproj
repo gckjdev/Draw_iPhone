@@ -946,6 +946,7 @@
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
+		CADBE28615E7308300FDAA38 /* default_board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CADBE28515E7308300FDAA38 /* default_board@2x.png */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CADD7FD71511BA240075C739 /* GameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FD51511BA240075C739 /* GameNetworkClient.m */; };
@@ -2500,6 +2501,7 @@
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		CADBE28515E7308300FDAA38 /* default_board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_board@2x.png"; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
 		CADD7FCC1510C9700075C739 /* GameConstants.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.pb.h; sourceTree = "<group>"; };
 		CADD7FCE1510DC530075C739 /* GameConstants.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameConstants.proto; sourceTree = "<group>"; };
@@ -3281,6 +3283,7 @@
 		C2615A741591C13100CEEC66 /* frontpage */ = {
 			isa = PBXGroup;
 			children = (
+				CADBE28515E7308300FDAA38 /* default_board@2x.png */,
 				CA3094A415E5E8110083A7A3 /* h_play@2x.png */,
 				C20118F015B69312001C56A6 /* h_shop@2x.png */,
 				C2615A751591C17B00CEEC66 /* h_feed@2x.png */,
@@ -6897,6 +6900,7 @@
 				CA3094EF15E653B90083A7A3 /* BottomMenuPanel.xib in Resources */,
 				CA3094F215E66A430083A7A3 /* BottomMenu~ipad.xib in Resources */,
 				CA3094F315E66A430083A7A3 /* BottomMenuPanel~ipad.xib in Resources */,
+				CADBE28615E7308300FDAA38 /* default_board@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
