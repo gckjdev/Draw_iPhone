@@ -15,4 +15,10 @@
     return DRAW_PRO_APP_ID;
 }
 
+- (BOOL)disableAd
+{
+    return YES;
+}
+
+
 @end

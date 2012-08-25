@@ -25,5 +25,10 @@
     return DICE_UMENG_ID;
 }
 
+- (BOOL)disableAd
+{
+    return NO;
+}
+
 
 @end

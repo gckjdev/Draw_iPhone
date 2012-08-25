@@ -13,5 +13,6 @@
 - (NSString*)appId;
 - (NSString*)gameId;
 - (NSString*)umengId;
+- (BOOL)disableAd;
 
 @end

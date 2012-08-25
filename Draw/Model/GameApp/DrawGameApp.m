@@ -25,4 +25,9 @@
     return DRAW_UMENG_ID;
 }
 
+- (BOOL)disableAd
+{
+    return NO;
+}
+
 @end

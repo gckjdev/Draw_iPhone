@@ -22,22 +22,17 @@
 
 + (BOOL)isProVersion
 {
-    return NO;
+    return [GameApp disableAd];
 }
 
 + (NSString*)appId
 {
-    if ([ConfigManager isProVersion]){
-        return @"541354772";
-    }
-    else{
-        return @"513819630";
-    }
+    return [GameApp appId];
 }
 
 + (NSString*)gameId
 {
-    return @"Game";
+    return [GameApp gameId];
 }
 
 + (int)getBalanceDeviation

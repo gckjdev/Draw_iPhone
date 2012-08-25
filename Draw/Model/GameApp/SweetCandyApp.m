@@ -25,5 +25,10 @@
     return CANDY_UMENG_ID;
 }
 
+- (BOOL)disableAd
+{
+    return NO;
+}
+
 
 @end
