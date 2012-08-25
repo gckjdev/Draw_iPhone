@@ -131,6 +131,8 @@
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
+		A48E824A15E8699D002DB480 /* message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48E824915E8699D002DB480 /* message_icon@2x.png */; };
+		A48E824D15E86B69002DB480 /* helphtml.zip in Resources */ = {isa = PBXBuildFile; fileRef = A48E824C15E86B69002DB480 /* helphtml.zip */; };
 		A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7115D8AF67002FE86D /* bell_1@2x.png */; };
 		A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7215D8AF67002FE86D /* bell_2@2x.png */; };
 		A4A01BB415D8AF67002FE86D /* bell_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7315D8AF67002FE86D /* bell_3@2x.png */; };
@@ -1242,6 +1244,8 @@
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
+		A48E824915E8699D002DB480 /* message_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_icon@2x.png"; sourceTree = "<group>"; };
+		A48E824C15E86B69002DB480 /* helphtml.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = helphtml.zip; sourceTree = "<group>"; };
 		A4A01B7115D8AF67002FE86D /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
 		A4A01B7215D8AF67002FE86D /* bell_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_2@2x.png"; sourceTree = "<group>"; };
 		A4A01B7315D8AF67002FE86D /* bell_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_3@2x.png"; sourceTree = "<group>"; };
@@ -2945,6 +2949,14 @@
 			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
+		A48E824B15E86B69002DB480 /* help */ = {
+			isa = PBXGroup;
+			children = (
+				A48E824C15E86B69002DB480 /* helphtml.zip */,
+			);
+			path = help;
+			sourceTree = "<group>";
+		};
 		A4A01B6F15D8AF67002FE86D /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -2958,6 +2970,7 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A48E824915E8699D002DB480 /* message_icon@2x.png */,
 				A42C523615E62B82001D8208 /* face_anger.gif */,
 				A42C521C15E6215F001D8208 /* face_embarrass.gif */,
 				A42C521D15E6215F001D8208 /* face_proud.gif */,
@@ -3177,6 +3190,7 @@
 		A4B7641C15C37D93003B4E72 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A48E824B15E86B69002DB480 /* help */,
 				EA177C3315E62AA10083E4B9 /* voice */,
 				A4A01B6F15D8AF67002FE86D /* image */,
 				A4A01BAE15D8AF67002FE86D /* music */,
@@ -6941,6 +6955,8 @@
 				CADBE28815E7335800FDAA38 /* default_board@2x.png in Resources */,
 				CADBE28A15E735D100FDAA38 /* main_top@2x.png in Resources */,
 				A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */,
+				A48E824A15E8699D002DB480 /* message_icon@2x.png in Resources */,
+				A48E824D15E86B69002DB480 /* helphtml.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
