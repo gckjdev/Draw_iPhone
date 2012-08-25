@@ -40,17 +40,13 @@
 					<object class="IBUIImageView" id="102925007">
 						<reference key="NSNextResponder" ref="811135455"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 472}</string>
+						<string key="NSFrame">{{12, 26}, {297, 424}}</string>
 						<reference key="NSSuperview" ref="811135455"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="911248886"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">dice_help_bg@2x.png</string>
-						</object>
 					</object>
 					<object class="IBUIButton" id="952438166">
 						<reference key="NSNextResponder" ref="811135455"/>
@@ -160,6 +156,7 @@
 						<string key="NSFrame">{{20, 72}, {280, 368}}</string>
 						<reference key="NSSuperview" ref="811135455"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="844004429">
 							<int key="NSColorSpace">3</int>
@@ -206,6 +203,14 @@
 						<reference key="destination" ref="952438166"/>
 					</object>
 					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bgImageView</string>
+						<reference key="source" ref="811135455"/>
+						<reference key="destination" ref="102925007"/>
+					</object>
+					<int key="connectionID">31</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -261,8 +266,8 @@
 							<reference ref="952438166"/>
 							<reference ref="509728187"/>
 							<reference ref="911248886"/>
-							<reference ref="102925007"/>
 							<reference ref="118099370"/>
+							<reference ref="102925007"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -315,7 +320,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -323,11 +328,16 @@
 					<string key="className">DiceHelpView</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bgImageView">UIImageView</string>
 						<string key="gameRulesButton">FontButton</string>
 						<string key="itemsUsageButton">FontButton</string>
 						<string key="webView">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bgImageView">
+							<string key="name">bgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="gameRulesButton">
 							<string key="name">gameRulesButton</string>
 							<string key="candidateClassName">FontButton</string>
@@ -374,7 +384,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="dice_close_btn.png">{16, 16}</string>
-			<string key="dice_help_bg@2x.png">{640, 960}</string>
 			<string key="dice_tableft_selected@2x.png">{184, 59}</string>
 			<string key="dice_tableft_unselect@2x.png">{184, 59}</string>
 			<string key="dice_tabright_selected@2x.png">{184, 59}</string>

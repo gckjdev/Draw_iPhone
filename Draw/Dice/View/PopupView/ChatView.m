@@ -71,7 +71,7 @@
 {
     _expressionManager = [ExpressionManager defaultManager];
     _messageManager = [DiceChatMsgManager defaultManager];
-    _bgImageView.image = [[DiceImageManager defaultManager] diceChatViewBgImage];
+    _bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     
     [self addExpressions];
 }

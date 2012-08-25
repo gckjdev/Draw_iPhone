@@ -8,7 +8,7 @@
 
 #import "DiceHelpView.h"
 #import "DiceHelpManager.h"
-
+#import "DiceImageManager.h"
 
 @interface DiceHelpView ()
 {
@@ -23,6 +23,7 @@
 @synthesize delegate = _delegate;
 
 // just replace PPTableViewCell by the new Cell Class Name
+@synthesize bgImageView;
 @synthesize webView;
 @synthesize gameRulesButton;
 @synthesize itemsUsageButton;
@@ -34,6 +35,7 @@
     [webView release];
     [gameRulesButton release];
     [itemsUsageButton release];
+    [bgImageView release];
     [super dealloc];
 }
 
@@ -52,6 +54,7 @@
 {
     _helpManager = [DiceHelpManager defaultManager];
     
+    bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     webView.delegate = self;
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;

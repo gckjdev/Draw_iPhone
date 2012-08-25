@@ -224,11 +224,6 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage strectchableImageName:@"dice_message_tip.png" leftCapWidth:10];
 }
 
-- (UIImage *)diceChatViewBgImage
-{
-    return [UIImage strectchableImageName:@"dice_popup_bg.png" leftCapWidth:10 topCapHeight:10]; 
-}
-
 - (UIImage *)diceExpressionBgImage
 {
     return [UIImage imageNamed:@"dice_face_bg.png"];
