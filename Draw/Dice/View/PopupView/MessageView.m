@@ -63,6 +63,7 @@
 
 - (void)popupAtView:(UIView *)atView
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            duration:(int)duration
     backgroundColor:(UIColor *)backgroundColor
            animated:(BOOL)animated
@@ -74,7 +75,7 @@
     
     [_popTipView presentPointingAtView:atView
                                 inView:inView 
-                          aboveSubView:atView
+                          aboveSubView:siblingSubview
                               animated:animated 
                         pointDirection:pointDirection];
     
@@ -85,12 +86,14 @@
 
 - (void)popupAtView:(UIView *)atView
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
     backgroundColor:(UIColor *)backgroundColor
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection
 {
     [self popupAtView:atView 
                inView:inView 
+         aboveSubView:siblingSubview
              duration:0 
       backgroundColor:backgroundColor 
              animated:animated

@@ -19,12 +19,14 @@
                             count:(int)count
                            atView:(UIView *)atView
                            inView:(UIView *)inView
+                     aboveSubView:(UIView *)siblingSubview
                    pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissCallDiceView;
 
 - (void)popupItemListAtView:(UIView *)atView 
                      inView:(UIView *)inView
+               aboveSubView:(UIView *)siblingSubview
                    duration:(int)duration
                    delegate:(id<DiceItemListViewDelegate>)delegate;
 - (void)enableCutItem;
@@ -35,17 +37,20 @@
 - (void)popupMessage:(NSString *)message
               atView:(UIView *)atView
               inView:(UIView *)inView
+        aboveSubView:(UIView *)siblingSubview
       pointDirection:(PointDirection)pointDirection;
 
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
+                         aboveSubView:(UIView *)siblingSubview
                        pointDirection:(PointDirection)pointDirection;
 
 - (void)dismissOpenDiceView;
 
 - (void)popupChatViewAtView:(UIView *)atView
                      inView:(UIView *)inView
+               aboveSubView:(UIView *)siblingSubview
                   deleagate:(id<ChatViewDelegate>)delegate;
 
 - (void)dismissChatView;

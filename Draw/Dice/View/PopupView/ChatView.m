@@ -14,42 +14,22 @@
 #import "GifView.h"
 #import "DiceImageManager.h"
 
-#define POPTIPVIEW_BG_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.9]
-
-#define WIDTH_CHAT_VIEW     ([DeviceDetection isIPAD] ? 460: 230)
-#define HEIGHT_CHAT_VIEW    ([DeviceDetection isIPAD] ? 450: 225)
-
-#define WIDTH_EXPRESSION_HOLDER_VIEW WIDTH_CHAT_VIEW
-#define HEIGHT_EXPRESSION_HOLDER_VIEW   ([DeviceDetection isIPAD] ? 68: 34)
-
-#define WIDTH_MESSAGE_HOLDER_VIEW WIDTH_CHAT_VIEW
-#define HEIGHT_MESSAGE_HOLDER_VIEW  ([DeviceDetection isIPAD] ? 376: 188)
-
 #define WIDTH_EXPRESSION_VIEW   ([DeviceDetection isIPAD] ? 68: 34)
 #define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
 
 #define WIDTH_EXPRESSION    ([DeviceDetection isIPAD] ? 60: 30)
 #define HEIGHT_EXPRESSION WIDTH_EXPRESSION
 
-#define EDGE_BETWEEN_EXPRESSIONS ([DeviceDetection isIPAD] ? 16: 8)
-
-#define EDGE_BETWEEN_EXPREESIONS_HOLDER_VIEW_AND_MESSAGES_HOLDER_VIEW ([DeviceDetection isIPAD] ? 8: 8)
-
-#define ORIGIN_X_EXPRESSIONS_HOLDER_VIEW ([DeviceDetection isIPAD] ? 20: 10)
-#define ORIGIN_X_MESSAGES_HOLDER_VIEW ORIGIN_X_EXPRESSIONS_HOLDER_VIEW
-
 #define EXPRESSION_COUNT_PER_PAGE ([DeviceDetection isIPAD] ? 10: 5)
 
 @interface ChatView()
 {
     ExpressionManager *_expressionManager;
+    DiceChatMsgManager *_messageManager;
 }
 
-@property (retain, nonatomic) UIScrollView *expressionsHolderView;
-@property (retain, nonatomic) UICustomPageControl *pageControl;
-@property (retain, nonatomic) UITableView *messagesHolderView;
-@property (retain, nonatomic) NSArray *messages;
 @property (retain, nonatomic) CMPopTipView *popTipView;
+@property (retain, nonatomic) NSTimer *timer;
 
 @end
 
@@ -58,57 +38,42 @@
 @implementation ChatView
 
 @synthesize delegate = _delegate;
+@synthesize bgImageView = _bgImageView;
 @synthesize expressionsHolderView = _expressionsHolderView;
-@synthesize pageControl = _pageControl;
 @synthesize messagesHolderView = _messagesHolderView;
-@synthesize messages = _messages;
 @synthesize popTipView = _popTipView;
+@synthesize timer = _timer;
 
 - (void)dealloc
 {
     [_expressionsHolderView release];
-    [_pageControl release];
     [_messagesHolderView release];
-    [_messages release];
     [_popTipView release];
+    [_bgImageView release];
+    [_expressionsHolderView release];
+    [_messagesHolderView release];
+    [_timer release];
     [super dealloc];
 }
 
-- (id)init
++ (id)createChatView
 {
-    CGRect frame = CGRectMake(0, 0, WIDTH_CHAT_VIEW, HEIGHT_CHAT_VIEW);
-    if (self = [super initWithFrame:frame]) {
-        CGRect expsHolderViewFrame = CGRectMake(ORIGIN_X_EXPRESSIONS_HOLDER_VIEW, 0, WIDTH_EXPRESSION_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW);
-        self.expressionsHolderView = [[[UIScrollView alloc] initWithFrame:expsHolderViewFrame] autorelease];
-        _expressionsHolderView.pagingEnabled = YES;
-        _expressionsHolderView.showsVerticalScrollIndicator = NO;
-        _expressionsHolderView.showsHorizontalScrollIndicator = NO;
-        _expressionsHolderView.backgroundColor = [UIColor clearColor];
-        _expressionsHolderView.delegate = self;
-        
-        self.pageControl = [[[UICustomPageControl alloc] initWithFrame:CGRectZero] autorelease]; 
-        _pageControl.backgroundColor = [UIColor clearColor];
-        _pageControl.hidesForSinglePage = YES;
-        _pageControl.delegate = self;
-        
-        [self addSubview:_expressionsHolderView];
-        [self addSubview:_pageControl];
-        
-        CGRect msgsHolderViewFrame = CGRectMake(ORIGIN_X_MESSAGES_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW + EDGE_BETWEEN_EXPREESIONS_HOLDER_VIEW_AND_MESSAGES_HOLDER_VIEW, WIDTH_MESSAGE_HOLDER_VIEW, HEIGHT_MESSAGE_HOLDER_VIEW);
-        self.messagesHolderView = [[[UITableView alloc] initWithFrame:msgsHolderViewFrame style:UITableViewStylePlain] autorelease];
-        _messagesHolderView.dataSource = self;
-        _messagesHolderView.delegate = self;
-        _messagesHolderView.backgroundColor = [UIColor clearColor];
-        _messagesHolderView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self addSubview:_messagesHolderView];
-        
-        _expressionManager = [ExpressionManager defaultManager];
-        self.messages = [[DiceChatMsgManager defaultManager] messages];
-        
-        [self addExpressions];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ChatView" owner:self options:nil];
+    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
+    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
+        return nil;
     }
     
-    return self;
+    return [topLevelObjects objectAtIndex:0];;
+}
+
+- (void)loadContent
+{
+    _expressionManager = [ExpressionManager defaultManager];
+    _messageManager = [DiceChatMsgManager defaultManager];
+    _bgImageView.image = [[DiceImageManager defaultManager] diceChatViewBgImage];
+    
+    [self addExpressions];
 }
 
 - (void)addExpressions
@@ -118,7 +83,7 @@
     
     CGRect frame;
     for (int i = 0; i < pageCount; i ++) {
-        frame = CGRectMake(WIDTH_EXPRESSION_HOLDER_VIEW * i, 0, WIDTH_EXPRESSION_HOLDER_VIEW, HEIGHT_EXPRESSION_HOLDER_VIEW);
+        frame = CGRectMake(_expressionsHolderView.frame.size.width * i, 0, _expressionsHolderView.frame.size.width, _expressionsHolderView.frame.size.height);
         UIView *view = [[[UIView alloc] initWithFrame:frame] autorelease];
         [self addExpressionsToView:view pageIndex:i];
         [_expressionsHolderView addSubview:view];
@@ -133,30 +98,34 @@
     int end = MIN((pageIndex + 1) * EXPRESSION_COUNT_PER_PAGE, [allKeys count]);
     
     CGRect frame;
+    CGFloat edge = (_expressionsHolderView.frame.size.width - EXPRESSION_COUNT_PER_PAGE * WIDTH_EXPRESSION_VIEW)/(EXPRESSION_COUNT_PER_PAGE - 1);
     for (int i = start; i < end; i++)
     {
-        frame = CGRectMake((WIDTH_EXPRESSION_VIEW + EDGE_BETWEEN_EXPRESSIONS) * (i % EXPRESSION_COUNT_PER_PAGE), 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
+        frame = CGRectMake((WIDTH_EXPRESSION_VIEW + edge) * (i % EXPRESSION_COUNT_PER_PAGE), 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
         UIButton *expression = [self expressionWithFrame:frame key:[allKeys objectAtIndex:i]];
         [view addSubview:expression];
     }
 }
 
-
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection
 {
     [self dismissAnimated:YES];
-    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
-    _popTipView.backgroundColor = POPTIPVIEW_BG_COLOR;
+    [self createTimer];
+    self.popTipView = [[[CMPopTipView alloc] initWithCustomView:self needBubblePath:NO] autorelease];
+    _popTipView.delegate = self;
+    _popTipView.backgroundColor = [UIColor clearColor];
     _popTipView.disableTapToDismiss = YES;
     
     [_popTipView presentPointingAtView:view 
                                 inView:inView
-                          aboveSubView:view
+                          aboveSubView:siblingSubview
                               animated:animated
                         pointDirection:pointDirection];
+
 }
 
 - (void)dismissAnimated:(BOOL)animated
@@ -195,7 +164,6 @@
 {
     UIButton *button = (UIButton *)sender;
     NSString *key = [button titleForState:UIControlStateSelected];
-//    UIImage *image = [button imageForState:UIControlStateNormal];
     
     if ([_delegate respondsToSelector:@selector(didClickExepression:)]) {
         [_delegate didClickExepression:key];
@@ -204,7 +172,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_messages  count];
+    return [[_messageManager messages] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,7 +183,7 @@
         cell = [ChatViewCell createCell:self];
     }
     
-    [cell setCellData:[_messages objectAtIndex:indexPath.row]];
+    [cell setCellData:[[_messageManager messages] objectAtIndex:indexPath.row]];
     cell.delegate = self;
     
     return cell;
@@ -228,13 +196,13 @@
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate stuff
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    /* we switch page at %50 across */
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
-    _pageControl.currentPage = page;
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    /* we switch page at %50 across */
+//    CGFloat pageWidth = scrollView.frame.size.width;
+//    int page = floor((scrollView.contentOffset.x - pageWidth/2)/pageWidth +1);
+//    _pageControl.currentPage = page;
+//}
 
 #pragma mark -
 #pragma mark PageControl stuff
@@ -254,5 +222,45 @@
         [_delegate didClickMessage:message];
     }
 }
+
+
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    if ([_delegate respondsToSelector:@selector(didChatViewDismiss)]) {
+        [_delegate didChatViewDismiss];
+    }
+}
+
+- (IBAction)clickCloseButton:(id)sender {
+    [self dismissAnimated:YES];
+
+}
+
+#pragma mark - Timer manage
+
+- (void)createTimer
+{
+    [self killTimer];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                                  target:self 
+                                                selector:@selector(handleTimer:)
+                                                userInfo:nil 
+                                                 repeats:NO];
+}
+
+- (void)killTimer
+{
+    if ([_timer isValid]) {
+        [_timer invalidate];        
+    }
+    self.timer = nil;
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    [self dismissAnimated:YES];
+}
+
 
 @end

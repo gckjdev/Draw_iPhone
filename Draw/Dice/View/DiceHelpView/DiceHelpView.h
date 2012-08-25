@@ -20,7 +20,7 @@ typedef enum {
 @protocol DiceHelpViewDelegate <NSObject>
 
 @required
-- (void)didClickCloseButton;
+- (void)didHelpViewHide;
 
 @end
 

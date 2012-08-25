@@ -15,18 +15,27 @@
 @protocol ChatViewDelegate <NSObject>
 
 @optional
+- (void)didChatViewDismiss;
 - (void)didClickExepression:(NSString *)key;
 - (void)didClickMessage:(DiceChatMessage *)message;
 
 @end
 
 
-@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, UICustomPageControlDelegate, ChatViewCellDelegate>
+@interface ChatView : UIView <UITableViewDataSource, UITableViewDelegate, UICustomPageControlDelegate, ChatViewCellDelegate, CMPopTipViewDelegate>
 
 @property (assign, nonatomic) id<ChatViewDelegate> delegate;
 
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIScrollView *expressionsHolderView;
+@property (retain, nonatomic) IBOutlet UITableView *messagesHolderView;
+
++ (id)createChatView;
+- (void)loadContent;
+
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection;
 

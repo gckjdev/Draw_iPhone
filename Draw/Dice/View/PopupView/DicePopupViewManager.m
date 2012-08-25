@@ -59,7 +59,8 @@ static DicePopupViewManager *_instance = nil;
 - (id)init
 {
     if (self = [super init]) {
-        self.chatView = [[[ChatView alloc] init] autorelease];
+        self.chatView = [ChatView createChatView];
+        [self.chatView loadContent];
         self.diceItemListView = [[[DiceItemListView alloc] init] autorelease];
     }
     
@@ -70,11 +71,18 @@ static DicePopupViewManager *_instance = nil;
                             count:(int)count
                            atView:(UIView *)atView
                            inView:(UIView *)inView
+                     aboveSubView:(UIView *)siblingSubview
                    pointDirection:(PointDirection)pointDirection
 {
     [_callDiceView dismissAnimated:YES];
+    
     self.callDiceView = [[[CallDiceView alloc] initWithDice:dice count:count] autorelease];
-    [_callDiceView popupAtView:atView inView:inView animated:YES pointDirection:pointDirection];
+    
+    [_callDiceView popupAtView:atView 
+                        inView:inView
+                  aboveSubView:siblingSubview
+                      animated:YES
+                pointDirection:pointDirection];
 }
 
 - (void)dismissCallDiceView
@@ -84,6 +92,7 @@ static DicePopupViewManager *_instance = nil;
 
 - (void)popupItemListAtView:(UIView *)atView 
                inView:(UIView *)inView
+          aboveSubView:(UIView *)siblingSubview
              duration:(int)duration
              delegate:(id<DiceItemListViewDelegate>)delegate 
 {
@@ -92,6 +101,7 @@ static DicePopupViewManager *_instance = nil;
     [_diceItemListView update];
     [_diceItemListView popupAtView:atView
                             inView:inView 
+                      aboveSubView:siblingSubview
                           duration:duration
                           animated:YES];
 }
@@ -114,6 +124,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)popupMessage:(NSString *)message
               atView:(UIView *)atView
               inView:(UIView *)inView
+        aboveSubView:(UIView *)siblingSubview
       pointDirection:(PointDirection)pointDirection
 {
     MessageView *messageView = [[[MessageView alloc] initWithFrame:CGRectZero 
@@ -122,6 +133,7 @@ static DicePopupViewManager *_instance = nil;
                                                          pointSize:SIZE_FONT_CHAT_MESSAGE] autorelease];
     [messageView popupAtView:atView
                       inView:inView
+                aboveSubView:siblingSubview
                     duration:3.0
              backgroundColor:MESSAGE_BACKGROUND_COLOR
                     animated:YES
@@ -131,6 +143,7 @@ static DicePopupViewManager *_instance = nil;
 - (void)popupOpenDiceViewWithOpenType:(int)openType
                                atView:(UIView *)atView
                                inView:(UIView *)inView
+                         aboveSubView:siblingSubview
                        pointDirection:(PointDirection)pointDirection
 {
     [_openDiceView dismissAnimated:YES];
@@ -160,6 +173,7 @@ static DicePopupViewManager *_instance = nil;
     
     [_openDiceView popupAtView:atView
                         inView:inView
+                  aboveSubView:siblingSubview
                backgroundColor:CALL_DICE_VIEW_BACKGROUND_COLOR
                       animated:YES
                 pointDirection:pointDirection];
@@ -171,15 +185,15 @@ static DicePopupViewManager *_instance = nil;
 }
 
 - (void)popupChatViewAtView:(UIView *)atView
-                     inView:(UIView *)inView   
+                     inView:(UIView *)inView 
+               aboveSubView:(UIView *)siblingSubview
                   deleagate:(id<ChatViewDelegate>)delegate;
-
-
 {
     _chatView.delegate = delegate;
 
     [_chatView popupAtView:atView 
                     inView:inView
+              aboveSubView:siblingSubview
                   animated:YES 
             pointDirection:PointDirectionAuto];
 }

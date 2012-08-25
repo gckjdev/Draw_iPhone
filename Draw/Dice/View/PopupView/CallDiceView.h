@@ -18,6 +18,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection;
 

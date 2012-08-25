@@ -23,6 +23,7 @@
     BOOL firstLoad;
 }
 @property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
+@property (retain, nonatomic) IBOutlet UIButton *helpButton;
 
 @property (retain, nonatomic) IBOutlet FontButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet FontButton *fastEntryButton;

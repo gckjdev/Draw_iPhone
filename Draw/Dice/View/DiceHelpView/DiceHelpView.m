@@ -72,6 +72,7 @@
     [self showInView:view animationType:[self randomAnimationType]];
 }
 
+
 - (void)showInView:(UIView *)view 
      animationType:(AnimationType)animationType
 {
@@ -158,7 +159,9 @@
     }];
 }
 
-- (IBAction)clickCloseButton:(id)sender {
+
+- (void)hide
+{
     switch (_animationType) {
         case AnimationTypeCaseInCaseOut:
             [self removeCaseInCaseOut];
@@ -174,9 +177,13 @@
         default:
             break;
     }
+}
+
+- (IBAction)clickCloseButton:(id)sender {
+    [self hide];
     
-    if ([_delegate respondsToSelector:@selector(didClickCloseButton)]) {
-        [_delegate didClickCloseButton];
+    if ([_delegate respondsToSelector:@selector(didHelpViewHide)]) {
+        [_delegate didHelpViewHide];
     }
 }
 

@@ -360,4 +360,10 @@
     _curSelecetedDiceCountBtn.selected = NO;
 }
 
+- (void)dismiss
+{
+    [self.popView dismissAnimated:YES];
+}
+
+
 @end

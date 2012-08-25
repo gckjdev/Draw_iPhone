@@ -48,7 +48,7 @@
 @property (retain, nonatomic) IBOutlet UIView *diceCountSelectedHolderView;
 @property (retain, nonatomic) IBOutlet FontLabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet FontButton *openDiceButton;
-@property (retain, nonatomic) IBOutlet UIButton *userWildsButton;
+@property (retain, nonatomic) IBOutlet UIButton *wildsButton;
 @property (retain, nonatomic) IBOutlet UIButton *plusOneButton;
 @property (retain, nonatomic) IBOutlet UIButton *itemsBoxButton;
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *wildsLabel;
@@ -63,4 +63,7 @@
 @property (retain, nonatomic) IBOutlet HKGirlFontLabel *gameBeginNoteLabel;
 @property (retain, nonatomic) UIView  *adView;
 @property (retain, nonatomic) IBOutlet UIButton *chatButton;
+@property (retain, nonatomic) IBOutlet UIView *popupLevel1View;
+@property (retain, nonatomic) IBOutlet UIView *popupLevel2View;
+@property (retain, nonatomic) IBOutlet UIView *popupLevel3View;
 @end

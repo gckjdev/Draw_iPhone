@@ -66,7 +66,7 @@
 @synthesize diceCountSelectedHolderView;
 @synthesize roomNameLabel = _roomNameLabel;
 @synthesize openDiceButton = _openDiceButton;
-@synthesize userWildsButton = _userWildsButton;
+@synthesize wildsButton = _wildsButton;
 @synthesize plusOneButton = _plusOneButton;
 @synthesize itemsBoxButton = _itemsBoxButton;
 @synthesize wildsLabel = _wildsLabel;
@@ -79,6 +79,9 @@
 @synthesize enumerator = _enumerator;
 @synthesize adView = _adView;
 @synthesize chatButton = _chatButton;
+@synthesize popupLevel1View = _popupLevel1View;
+@synthesize popupLevel2View = _popupLevel2View;
+@synthesize popupLevel3View = _popupLevel3View;
 
 
 - (void)dealloc {
@@ -94,7 +97,7 @@
     [myDiceListHolderView release];
     [_roomNameLabel release];
     [_openDiceButton release];
-    [_userWildsButton release];
+    [_wildsButton release];
     [_plusOneButton release];
     [_itemsBoxButton release];
     [_wildsLabel release];
@@ -110,6 +113,9 @@
     [_waittingForNextTurnNoteLabel release];
     [_gameBeginNoteLabel release];
     [_chatButton release];
+    [_popupLevel1View release];
+    [_popupLevel2View release];
+    [_popupLevel3View release];
     [super dealloc];
 }
 
@@ -198,7 +204,7 @@
     [self setDiceCountSelectedHolderView:nil];
     [self setMyDiceListHolderView:nil];
     [self setRoomNameLabel:nil];
-    [self setUserWildsButton:nil];
+    [self setWildsButton:nil];
     [self setPlusOneButton:nil];
     [self setItemsBoxButton:nil];
     [self setWildsLabel:nil];
@@ -212,6 +218,9 @@
     [self setWaittingForNextTurnNoteLabel:nil];
     [self setGameBeginNoteLabel:nil];
     [self setChatButton:nil];
+    [self setPopupLevel1View:nil];
+    [self setPopupLevel2View:nil];
+    [self setPopupLevel3View:nil];
     [super viewDidUnload];
 }
 
@@ -231,6 +240,7 @@
     if (button.selected) {
         [_popupViewManager popupItemListAtView:button 
                                         inView:self.view
+                                  aboveSubView:self.popupLevel3View
                                       duration:0
                                       delegate:self];
     } else {
@@ -426,7 +436,7 @@
 - (void)clearGameResult
 {
     _usingWilds = NO;
-    self.userWildsButton.selected = NO;
+    self.wildsButton.selected = NO;
     [self dismissAllPopupViews];
     
     for (int index = 1 ; index <= 6; index ++) {
@@ -788,7 +798,7 @@
 - (void)disableAllDiceOperationButtons
 {
     self.openDiceButton.hidden = YES;
-    self.userWildsButton.enabled = NO;
+    self.wildsButton.enabled = NO;
     self.plusOneButton.enabled = NO;
     [_popupViewManager disableCutItem];
     [self.diceSelectedView disableUserInteraction];
@@ -797,7 +807,7 @@
 - (void)enableAllDiceOperationButtons
 {
     self.openDiceButton.hidden = NO;
-    self.userWildsButton.enabled = YES;
+    self.wildsButton.enabled = YES;
     self.plusOneButton.enabled = YES;
     [_popupViewManager enableCutItem];
     [self.diceSelectedView enableUserInteraction];
@@ -854,7 +864,7 @@
     {        
         [self enableAllDiceOperationButtons];
         
-        self.userWildsButton.enabled = !_diceService.diceSession.wilds;
+        self.wildsButton.enabled = !_diceService.diceSession.wilds;
         [self.diceSelectedView enableUserInteraction];
         
  
@@ -875,8 +885,6 @@
         if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
             self.plusOneButton.enabled = NO;
         }
-        
-        
     }else {
         [self disableAllDiceOperationButtons];
         
@@ -932,25 +940,26 @@
 - (void)userUseWilds
 {
     _usingWilds = YES;
-    self.userWildsButton.selected = YES;
-    self.userWildsButton.enabled = NO;
+    self.wildsButton.selected = YES;
+    self.wildsButton.enabled = NO;
     self.wildsFlagButton.hidden = NO;
 }
 
-- (IBAction)clickUseWildsButton:(id)sender {
+- (IBAction)clickWildsButton:(id)sender {
     [self userUseWilds];
+
 }
 
 - (void)callDiceSuccess
 {
-//    [self disableAllDiceOperationButtons]; 
     [self popupCallDiceView];
 }
 
 -(void)callDice:(int)dice count:(int)count
 {
     [self clearAllReciprocol];
-    [self disableAllDiceOperationButtons]; 
+    [self disableAllDiceOperationButtons];
+    [_diceSelectedView dismiss];
     
     if (dice == 1 || count == _diceService.session.playingUserCount) {
         [self userUseWilds];
@@ -1052,7 +1061,7 @@
     [_popupViewManager popupOpenDiceViewWithOpenType:_diceService.openType
                                               atView:userAvatarView 
                                               inView:self.view
-//                                            duration:(_diceService.diceSession.playingUserCount*4+3)
+                                        aboveSubView:self.popupLevel1View
                                       pointDirection:pointDirection];
 }
 
@@ -1066,6 +1075,7 @@
                                            count:_diceService.lastCallDiceCount
                                           atView:atView
                                           inView:self.view
+                                    aboveSubView:self.popupLevel1View
                                   pointDirection:pointDirection];
 
 }
@@ -1076,6 +1086,7 @@
     [_popupViewManager popupMessage:message 
                              atView:view
                              inView:self.view
+                       aboveSubView:self.popupLevel2View
                      pointDirection:[self popupDirectionWithUserAvatarViewTag:view.tag]];
 }
 
@@ -1119,13 +1130,22 @@
 }
 
 - (IBAction)clickChatButton:(id)sender {
-    self.chatButton.selected = !self.chatButton.selected;
-    if (self.chatButton.selected) {
-        [_popupViewManager popupChatViewAtView:sender inView:self.view deleagate:self];
+    if (!self.chatButton.selected) {
+        self.chatButton.selected = YES;
+        [_popupViewManager popupChatViewAtView:[self selfAvatarView] 
+                                        inView:self.view 
+                                  aboveSubView:self.popupLevel3View
+                                     deleagate:self];
     }else {
         [_popupViewManager dismissChatView];
     }
 }
+
+- (void)didChatViewDismiss
+{
+    self.chatButton.selected = NO;
+}
+
 
 - (void)someoneSendMessage:(NSString *)content 
             contentVoiceId:(NSString *)contentVoiceId
@@ -1186,11 +1206,6 @@
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
-}
-
-- (void)updateUIState
-{
-    
 }
 
 @end

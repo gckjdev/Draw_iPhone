@@ -30,6 +30,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            duration:(int)duration
            animated:(BOOL)animated;
 

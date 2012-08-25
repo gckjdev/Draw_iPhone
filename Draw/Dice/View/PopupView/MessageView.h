@@ -25,6 +25,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            duration:(int)duration
     backgroundColor:(UIColor *)backgroundColor
            animated:(BOOL)animated
@@ -32,6 +33,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
     backgroundColor:(UIColor *)backgroundColor
            animated:(BOOL)animated
      pointDirection:(PointDirection)pointDirection;

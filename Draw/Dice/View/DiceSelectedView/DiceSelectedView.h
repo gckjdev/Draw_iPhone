@@ -30,5 +30,6 @@
 
 - (void)disableUserInteraction;
 - (void)enableUserInteraction;
+- (void)dismiss;
 
 @end

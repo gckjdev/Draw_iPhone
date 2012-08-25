@@ -78,6 +78,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            duration:(int)duration
            animated:(BOOL)animated
 {
@@ -88,7 +89,7 @@
     _popTipView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:213.0/255.0 blue:78.0/255.0 alpha:0.9];
     [_popTipView presentPointingAtView:view
                                 inView:inView 
-                          aboveSubView:view
+                          aboveSubView:siblingSubview
                               animated:animated];
     
     if (duration != 0) {

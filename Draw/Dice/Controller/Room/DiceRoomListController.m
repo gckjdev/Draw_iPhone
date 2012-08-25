@@ -30,9 +30,6 @@
 #define ENTER_ROOM_DIALOG_TAG   220120824
 
 @interface DiceRoomListController ()
-{
-    BOOL _showHelpView;
-}
 
 @end
 
@@ -40,6 +37,7 @@
 
 #pragma mark - Life cycle
 @synthesize titleFontButton;
+@synthesize helpButton;
 @synthesize createRoomButton;
 @synthesize fastEntryButton;
 @synthesize allRoomButton;
@@ -63,6 +61,7 @@
     [friendRoomButton release];
     [nearByRoomButton release];
     PPRelease(_currentSession);
+    [helpButton release];
     [super dealloc];
 }
 
@@ -217,6 +216,7 @@
     [self setAllRoomButton:nil];
     [self setFriendRoomButton:nil];
     [self setNearByRoomButton:nil];
+    [self setHelpButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -374,17 +374,17 @@
 }
 
 - (IBAction)clickHelpButton:(id)sender {
-    if (!_showHelpView) {
-        _showHelpView = YES;
+    if (!helpButton.selected) {
+        helpButton.selected = YES;
         DiceHelpView *view = [DiceHelpView createDiceHelpView];
         view.delegate = self;
         [view showInView:self.view];
     }
 }
 
-- (void)didClickCloseButton
+- (void)didHelpViewHide
 {
-    _showHelpView = NO;
+    helpButton.selected = NO;
 }
 
 @end

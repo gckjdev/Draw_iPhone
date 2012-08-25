@@ -84,6 +84,7 @@
 
 - (void)popupAtView:(UIView *)view
              inView:(UIView *)inView
+       aboveSubView:(UIView *)siblingSubview
            animated:(BOOL)animated
     pointDirection:(PointDirection)pointDirection
 
@@ -95,7 +96,7 @@
 
     [_popTipView presentPointingAtView:view
                                 inView:inView
-                          aboveSubView:view
+                          aboveSubView:siblingSubview
                               animated:animated
                         pointDirection:pointDirection];
 }
