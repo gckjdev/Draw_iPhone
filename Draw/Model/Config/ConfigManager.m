@@ -17,7 +17,7 @@
 
 + (BOOL)isLiarDice
 {
-    return YES;
+    return [[GameApp appId] isEqualToString:DICE_APP_ID];
 }
 
 + (BOOL)isProVersion

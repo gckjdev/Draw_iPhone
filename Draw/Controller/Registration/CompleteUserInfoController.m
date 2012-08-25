@@ -14,6 +14,8 @@
 @implementation CompleteUserInfoController
 @synthesize maleSelectImageView;
 @synthesize femaleSelectImageView;
+@synthesize backgroundImageView;
+@synthesize topLayerView;
 @synthesize avatarLabel;
 @synthesize nickNameLabel;
 @synthesize maleAvatarButton;
@@ -71,6 +73,8 @@
 
 - (void)viewDidLoad
 {
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -119,6 +123,8 @@
     [self setFemaleAvatarButton:nil];
     [self setMaleSelectImageView:nil];
     [self setFemaleSelectImageView:nil];
+    [self setBackgroundImageView:nil];
+    [self setTopLayerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -139,6 +145,8 @@
     [femaleAvatarButton release];
     [maleSelectImageView release];
     [femaleSelectImageView release];
+    [backgroundImageView release];
+    [topLayerView release];
     [super dealloc];
 }
 

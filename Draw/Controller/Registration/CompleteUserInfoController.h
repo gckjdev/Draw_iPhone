@@ -33,5 +33,7 @@
 - (IBAction)clickFemaleAvatar:(id)sender;
 @property (retain, nonatomic) IBOutlet UIImageView *maleSelectImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *femaleSelectImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *topLayerView;
 
 @end

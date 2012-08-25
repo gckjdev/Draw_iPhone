@@ -30,5 +30,11 @@
     return NO;
 }
 
+- (NSString*)background
+{
+    return DICE_BACKGROUND;
+}
+
+
 
 @end

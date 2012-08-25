@@ -30,4 +30,9 @@
     return NO;
 }
 
+- (NSString*)background
+{
+    return DRAW_BACKGROUND;
+}
+
 @end

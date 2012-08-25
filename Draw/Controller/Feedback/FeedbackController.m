@@ -25,6 +25,7 @@
 @implementation FeedbackController
 @synthesize dataTableView;
 @synthesize TitleLabel;
+@synthesize backgroundImageView;
 
 
 
@@ -256,6 +257,8 @@ enum {
 
 - (void)viewDidLoad
 {
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [super viewDidLoad];
     [self.TitleLabel setText:NSLS(@"kFeedback")];
     // Do any additional setup after loading the view from its nib.
@@ -265,6 +268,7 @@ enum {
 {
     [self setDataTableView:nil];
     [self setTitleLabel:nil];
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -274,6 +278,7 @@ enum {
 - (void)dealloc {
     [dataTableView release];
     [TitleLabel release];
+    [backgroundImageView release];
     [super dealloc];
 }
 @end

@@ -19,6 +19,7 @@
 {
     int _currentLoginType;
 }
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 + (void)showAt:(UIViewController*)superViewController;
 
