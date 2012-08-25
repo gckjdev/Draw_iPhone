@@ -36,7 +36,7 @@
     id<CommonGameServiceDelegate>   _connectionDelegate;    
     
     NSString                        *_gameId;
-    
+    NSMutableArray                  *_roomList;
 
 }
 
