@@ -208,12 +208,6 @@ NSString* GlobalGetBoardServerURL()
     return YES;
 }
 
-//- (void)didConnected
-//{
-//    [[DiceGameService defaultService] joinGameRequest];
-//    
-//}
-
 - (void)reviewDone
 {
     [self setReviewRequest:nil];

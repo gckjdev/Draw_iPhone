@@ -7,25 +7,35 @@
 //
 
 #import "DiceHelpView.h"
-#import "FileUtil.h"
+#import "DiceHelpManager.h"
 
-#define HTML_FILE_NAME_GAME_RULES @"help/dice/gameRules.html"
-#define HTML_FILE_NAME_ITMES_USAGE @"help/dice/itemsUsage.html"
-
-#define HTML_FILE_PATH_GAME_RULES [[FileUtil getAppHomeDir] stringByAppendingPathComponent:HTML_FILE_NAME_GAME_RULES]
-#define HTML_FILE_PATH_ITMES_USAGE [[FileUtil getAppHomeDir] stringByAppendingPathComponent:HTML_FILE_NAME_ITMES_USAGE]
 
 @interface DiceHelpView ()
+{
+    DiceHelpManager *_helpManager;
+    AnimationType _animationType;
+}
 
 @end
 
 @implementation DiceHelpView
+
+@synthesize delegate = _delegate;
 
 // just replace PPTableViewCell by the new Cell Class Name
 @synthesize webView;
 @synthesize gameRulesButton;
 @synthesize itemsUsageButton;
 
+
+
+
+- (void)dealloc {
+    [webView release];
+    [gameRulesButton release];
+    [itemsUsageButton release];
+    [super dealloc];
+}
 
 + (id)createDiceHelpView
 {
@@ -38,43 +48,150 @@
     return [topLevelObjects objectAtIndex:0];;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)initialize
 {
-    if (self = [super initWithCoder:aDecoder]) {
-        webView.delegate = self;
+    _helpManager = [DiceHelpManager defaultManager];
+    
+    webView.delegate = self;
+    gameRulesButton.selected = YES;
+    itemsUsageButton.selected = NO;
+    
+    [self loadHtmlFile:[_helpManager gameRulesHtmlFilePath]];
+}
+
+- (AnimationType)randomAnimationType
+{
+    srand((unsigned)time(0)); 
+    int ran_num = rand() % 3; 
+    
+    return ran_num;
+}
+
+- (void)showInView:(UIView *)view
+{
+    [self showInView:view animationType:[self randomAnimationType]];
+}
+
+- (void)showInView:(UIView *)view 
+     animationType:(AnimationType)animationType
+{
+    [self initialize];
+    _animationType = animationType;
+    
+    switch (animationType) {
+        case AnimationTypeCaseInCaseOut:
+            [self showInViewCaseInCaseOut:view];
+            break;
+
+        case AnimationTypeUpToDown:
+            [self showInViewUpToDown:view];
+            break;
+            
+        case AnimationTypeLeftToRight:
+            [self showInViewLeftToRight:view];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)showInViewCaseInCaseOut:(UIView *)view
+{
+    self.alpha = 0;
+    [view addSubview:self];
+    
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.alpha = 1;
+    } completion:^(BOOL finished) {
         
-        gameRulesButton.selected = YES;
-        itemsUsageButton.selected = NO;
+    }];
+}
+
+- (void)removeCaseInCaseOut
+{
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+- (void)showInViewUpToDown:(UIView *)view
+{
+    self.frame = CGRectMake(self.frame.origin.x, -self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    [view addSubview:self];
+    
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished) {
         
-        [self loadHtmlFile:HTML_FILE_PATH_GAME_RULES];
+    }];
+}
+
+- (void)removeUpToDown
+{
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+- (void)showInViewLeftToRight:(UIView *)view
+{
+    self.frame = CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
+    [view addSubview:self];
+    
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)removeLeftToRight
+{
+    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.frame = CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+- (IBAction)clickCloseButton:(id)sender {
+    switch (_animationType) {
+        case AnimationTypeCaseInCaseOut:
+            [self removeCaseInCaseOut];
+            break;
+            
+        case AnimationTypeUpToDown:
+            [self removeUpToDown];
+            break;
+            
+        case AnimationTypeLeftToRight:
+            [self removeLeftToRight];
+            break;
+        default:
+            break;
     }
     
-    return self;
-}
-
-
-- (void)dealloc {
-    [webView release];
-    [gameRulesButton release];
-    [itemsUsageButton release];
-    [super dealloc];
-}
-- (IBAction)clickCloseButton:(id)sender {
-    [self removeFromSuperview];
+    if ([_delegate respondsToSelector:@selector(didClickCloseButton)]) {
+        [_delegate didClickCloseButton];
+    }
 }
 
 - (IBAction)clickGameRulesButton:(id)sender {
     gameRulesButton.selected = YES;
     itemsUsageButton.selected = NO;
     
-    [self loadHtmlFile:HTML_FILE_PATH_GAME_RULES];
+    [self loadHtmlFile:[_helpManager gameRulesHtmlFilePath]];
 }
 
 - (IBAction)clickItemsUsageButton:(id)sender {
     gameRulesButton.selected = NO;
     itemsUsageButton.selected = YES;
     
-    [self loadHtmlFile:HTML_FILE_PATH_ITMES_USAGE];
+    [self loadHtmlFile:[_helpManager itemsUsageHtmlFilePath]];
 }
 
 - (void)loadHtmlFile:(NSString *)filePath

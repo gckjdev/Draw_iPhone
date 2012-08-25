@@ -9,10 +9,30 @@
 #import <UIKit/UIKit.h>
 #import "FontButton.h"
 
+
+typedef enum {
+	AnimationTypeCaseInCaseOut = 0,
+	AnimationTypeUpToDown = 1,
+    AnimationTypeLeftToRight =2,
+} AnimationType;
+
+
+@protocol DiceHelpViewDelegate <NSObject>
+
+@required
+- (void)didClickCloseButton;
+
+@end
+
 @interface DiceHelpView : UIView <UIWebViewDelegate>
+
+@property (assign, nonatomic) id<DiceHelpViewDelegate> delegate;
 
 + (id)createDiceHelpView;
 
+- (void)showInView:(UIView *)view;
+
+//- (void)showInView:(UIView *)view animationType:(AnimationType)animationType;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 
 @property (retain, nonatomic) IBOutlet FontButton *gameRulesButton;

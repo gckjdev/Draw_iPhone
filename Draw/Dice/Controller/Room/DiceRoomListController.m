@@ -19,12 +19,7 @@
 #import "FontButton.h"
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
-
 #import "DiceColorManager.h"
-
-#import "DiceHelpView.h"
-
-
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -35,6 +30,9 @@
 #define ENTER_ROOM_DIALOG_TAG   220120824
 
 @interface DiceRoomListController ()
+{
+    BOOL _showHelpView;
+}
 
 @end
 
@@ -376,8 +374,17 @@
 }
 
 - (IBAction)clickHelpButton:(id)sender {
-    DiceHelpView *view = [DiceHelpView createDiceHelpView];
-    PPDebug(@"frame = %f, %f, %f, %f", view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-    [self.view addSubview:view];
+    if (!_showHelpView) {
+        _showHelpView = YES;
+        DiceHelpView *view = [DiceHelpView createDiceHelpView];
+        view.delegate = self;
+        [view showInView:self.view];
+    }
 }
+
+- (void)didClickCloseButton
+{
+    _showHelpView = NO;
+}
+
 @end
