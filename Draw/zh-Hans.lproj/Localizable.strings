@@ -784,7 +784,7 @@
 "kWaittingForNextTurn" = "等待下轮...";
 "kGameBegin" = "游戏开始了...";
 "kNearBy" = "附近";
-"kWhoseRoom" = "%@ 的房间";
+"kWhoseRoom" = "%@的房间";
 "kSessionFull" = "房间已满";
 
 "kRollAgain" = "摇";
@@ -802,5 +802,6 @@
 "kYouAreFooled" = "哈哈，你上当了";
 "kIWantToGoSeeUNextTime" = "我要走啦，下次再玩";
 "kFastEntry" = "快速加入";
+"kDiceEnterPassword" = "房间密码(可选)";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

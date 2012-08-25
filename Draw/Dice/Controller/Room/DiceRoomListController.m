@@ -303,7 +303,7 @@
                                                                theme:CommonDialogThemeDice];
     inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
     inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-    inputDialog.passwordField.placeholder = NSLS(@"kEnterPassword");
+    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
     [inputDialog showInView:self.view];
     inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
     
