@@ -92,23 +92,23 @@
 {
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",self.userLevel]];
     [self.userName setText:self.userNickName];
-    if (self.userNickName) {
-        
-        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
-        float maxWidth = [DeviceDetection isIPAD]?224:101;
-        CGSize nameSize = [self.userNickName sizeWithFont:font];
-        if (nameSize.width < maxWidth) {
-            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
-                                               self.userName.frame.origin.y, 
-                                               nameSize.width, 
-                                               self.userName.frame.size.height)];
-            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
-                                                 +nameSize.width, 
-                                                 self.levelLabel.frame.origin.y, 
-                                                 self.levelLabel.frame.size.width, 
-                                                 self.levelLabel.frame.size.height)];
-        }
-    }
+//    if (self.userNickName) {
+//        
+//        UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
+//        float maxWidth = [DeviceDetection isIPAD]?224:101;
+//        CGSize nameSize = [self.userNickName sizeWithFont:font];
+//        if (nameSize.width < maxWidth) {
+//            [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
+//                                               self.userName.frame.origin.y, 
+//                                               nameSize.width, 
+//                                               self.userName.frame.size.height)];
+//            [self.levelLabel setFrame:CGRectMake(self.userName.frame.origin.x
+//                                                 +nameSize.width, 
+//                                                 self.levelLabel.frame.origin.y, 
+//                                                 self.levelLabel.frame.size.width, 
+//                                                 self.levelLabel.frame.size.height)];
+//        }
+//    }
     
 }
 
@@ -166,7 +166,6 @@
 
 - (void)initView
 {
-    [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
     [self initTitle];
     [self initButton];
     [self resetUserInfo];
