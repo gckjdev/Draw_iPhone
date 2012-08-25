@@ -20,6 +20,8 @@
 
 @implementation DiceHelpView
 
+@synthesize delegate = _delegate;
+
 // just replace PPTableViewCell by the new Cell Class Name
 @synthesize webView;
 @synthesize gameRulesButton;
@@ -171,6 +173,10 @@
             break;
         default:
             break;
+    }
+    
+    if ([_delegate respondsToSelector:@selector(didClickCloseButton)]) {
+        [_delegate didClickCloseButton];
     }
 }
 
