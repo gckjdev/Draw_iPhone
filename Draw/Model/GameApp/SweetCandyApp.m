@@ -30,5 +30,10 @@
     return NO;
 }
 
+- (NSString*)background
+{
+    return CANDY_BACKGROUND;
+}
+
 
 @end

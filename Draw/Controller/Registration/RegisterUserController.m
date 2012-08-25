@@ -28,6 +28,7 @@
 #import "CommonMessageCenter.h"
 
 @implementation RegisterUserController
+@synthesize backgroundImageView;
 @synthesize userIdTextField;
 @synthesize submitButton;
 @synthesize promptLabel;
@@ -70,7 +71,7 @@
     self.inviteLabel.hidden =YES;
     self.inviteLabel.text = NSLS(@"kRegisterToEnter");
     self.promptLabel.text = NSLS(@"kRegisterPromptLabel");
-    self.titleLabel.text = NSLS(@"kRegisterTitleLabel");
+    self.titleLabel.text = [UIUtils getAppName];
     self.userIdTextField.placeholder = NSLS(@"kEnterEmail");
     [self.userIdTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
     userIdTextField.delegate = self;
@@ -78,6 +79,8 @@
     [self.submitButton setTitle:NSLS(@"kStartGame") forState:UIControlStateNormal];
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
                                  forState:UIControlStateNormal];
+    
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     
     if ([LocaleUtils isChina]){
         sinaButton.hidden = NO;
@@ -92,13 +95,22 @@
     
     [self addRemoteDraw];
     
-    [[DrawDataService defaultService] findRecentDraw:self];
+    if (isDrawApp()){
+        [[DrawDataService defaultService] findRecentDraw:self];
+    }
+    else{
+        [self.userIdTextField becomeFirstResponder];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
-{
-    
+{    
     self.navigationController.navigationBarHidden = YES;
+    [self hideActivity];
+    if (isDrawApp() == NO){
+        [self.userIdTextField becomeFirstResponder];
+    }
+    
     [super viewDidAppear:animated];
 }
 
@@ -119,6 +131,7 @@
     [self setQqButton:nil];
     [self setInviteLabel:nil];
     [self setRemoteDrawArray:nil];
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -251,6 +264,7 @@
     [qqButton release];
     [remoteDrawArray release];
     [inviteLabel release];
+    [backgroundImageView release];
     [super dealloc];
 }
 

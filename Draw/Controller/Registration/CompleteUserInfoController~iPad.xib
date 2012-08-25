@@ -378,6 +378,22 @@
 					<int key="connectionID">29</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="187949247"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">topLayerView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="783988004"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickFemaleAvatar:</string>
 						<reference key="source" ref="618673238"/>
@@ -431,12 +447,12 @@
 							<reference ref="240635273"/>
 							<reference ref="908492419"/>
 							<reference ref="121670718"/>
-							<reference ref="187949247"/>
 							<reference ref="541652079"/>
 							<reference ref="618673238"/>
 							<reference ref="1036361300"/>
 							<reference ref="950324064"/>
 							<reference ref="469708261"/>
+							<reference ref="187949247"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -530,7 +546,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -563,6 +579,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarLabel">UILabel</string>
+						<string key="backgroundImageView">UIImageView</string>
 						<string key="femaleAvatarButton">UIButton</string>
 						<string key="femaleSelectImageView">UIImageView</string>
 						<string key="maleAvatarButton">UIButton</string>
@@ -571,11 +588,16 @@
 						<string key="nickNameTextField">UITextField</string>
 						<string key="skipButton">UIButton</string>
 						<string key="submitButton">UIButton</string>
+						<string key="topLayerView">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="avatarLabel">
 							<string key="name">avatarLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="backgroundImageView">
+							<string key="name">backgroundImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="femaleAvatarButton">
 							<string key="name">femaleAvatarButton</string>
@@ -608,6 +630,10 @@
 						<object class="IBToOneOutletInfo" key="submitButton">
 							<string key="name">submitButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="topLayerView">
+							<string key="name">topLayerView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

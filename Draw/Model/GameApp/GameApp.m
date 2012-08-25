@@ -15,15 +15,22 @@ NSObject<GameAppProtocol>* getGameApp()
     NSString *bundleId = [infoDict objectForKey:@"CFBundleIdentifier"];
     
     if ([bundleId isEqualToString:DRAW_APP_BUNDLE_ID]){
-        return [[DrawGameApp alloc] init];
+        currentApp = [[DrawGameApp alloc] init];        
     }
     else if ([bundleId isEqualToString:DRAW_APP_PRO_BUNDLE_ID]){
-        return [[DrawGameProApp alloc] init];
+        currentApp =  [[DrawGameProApp alloc] init];
     }
     else if ([bundleId isEqualToString:DICE_APP_BUNDLE_ID]){
-        return [[DiceGameApp alloc] init];
+        currentApp = [[DiceGameApp alloc] init];
+    }   
+    else{    
+        PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
     }
+    
+    return currentApp;
+}
 
-    PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
-    return nil;
+extern BOOL isDrawApp()
+{
+    return ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]);
 }

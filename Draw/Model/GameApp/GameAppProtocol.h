@@ -15,4 +15,7 @@
 - (NSString*)umengId;
 - (BOOL)disableAd;
 
+// image resources
+- (NSString*)background;
+
 @end
