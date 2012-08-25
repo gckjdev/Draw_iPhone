@@ -377,7 +377,6 @@
 
 - (IBAction)clickHelpButton:(id)sender {
     DiceHelpView *view = [DiceHelpView createDiceHelpView];
-    PPDebug(@"frame = %f, %f, %f, %f", view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-    [self.view addSubview:view];
+    [view showInView:self.view];
 }
 @end

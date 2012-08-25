@@ -9,9 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "FontButton.h"
 
+
+typedef enum {
+	AnimationTypeCaseInCaseOut = 0,
+	AnimationTypeUpToDown = 1,
+    AnimationTypeLeftToRight =2,
+} AnimationType;
+
 @interface DiceHelpView : UIView <UIWebViewDelegate>
 
 + (id)createDiceHelpView;
+
+- (void)showInView:(UIView *)view;
+
+//- (void)showInView:(UIView *)view animationType:(AnimationType)animationType;
 
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 

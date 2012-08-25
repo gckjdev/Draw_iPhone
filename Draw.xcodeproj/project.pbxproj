@@ -131,8 +131,9 @@
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
-		A48E826015E86CE6002DB480 /* helphtml.zip in Resources */ = {isa = PBXBuildFile; fileRef = A48E825F15E86CE6002DB480 /* helphtml.zip */; };
+		A48E826015E86CE6002DB480 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = A48E825F15E86CE6002DB480 /* help.zip */; };
 		A48E826215E86CF4002DB480 /* message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48E826115E86CF4002DB480 /* message_icon@2x.png */; };
+		A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A48E827315E871CE002DB480 /* DiceHelpManager.m */; };
 		A4A01BB215D8AF67002FE86D /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7115D8AF67002FE86D /* bell_1@2x.png */; };
 		A4A01BB315D8AF67002FE86D /* bell_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7215D8AF67002FE86D /* bell_2@2x.png */; };
 		A4A01BB415D8AF67002FE86D /* bell_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A01B7315D8AF67002FE86D /* bell_3@2x.png */; };
@@ -1246,8 +1247,10 @@
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
-		A48E825F15E86CE6002DB480 /* helphtml.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = helphtml.zip; sourceTree = "<group>"; };
+		A48E825F15E86CE6002DB480 /* help.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = help.zip; sourceTree = "<group>"; };
 		A48E826115E86CF4002DB480 /* message_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_icon@2x.png"; sourceTree = "<group>"; };
+		A48E827215E871CE002DB480 /* DiceHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHelpManager.h; sourceTree = "<group>"; };
+		A48E827315E871CE002DB480 /* DiceHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHelpManager.m; sourceTree = "<group>"; };
 		A4A01B7115D8AF67002FE86D /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
 		A4A01B7215D8AF67002FE86D /* bell_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_2@2x.png"; sourceTree = "<group>"; };
 		A4A01B7315D8AF67002FE86D /* bell_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_3@2x.png"; sourceTree = "<group>"; };
@@ -2959,9 +2962,18 @@
 		A48E825E15E86CE6002DB480 /* help */ = {
 			isa = PBXGroup;
 			children = (
-				A48E825F15E86CE6002DB480 /* helphtml.zip */,
+				A48E825F15E86CE6002DB480 /* help.zip */,
 			);
 			path = help;
+			sourceTree = "<group>";
+		};
+		A48E827115E871BB002DB480 /* DiceHelpManager */ = {
+			isa = PBXGroup;
+			children = (
+				A48E827215E871CE002DB480 /* DiceHelpManager.h */,
+				A48E827315E871CE002DB480 /* DiceHelpManager.m */,
+			);
+			path = DiceHelpManager;
 			sourceTree = "<group>";
 		};
 		A4A01B6F15D8AF67002FE86D /* image */ = {
@@ -3145,6 +3157,7 @@
 		A4B763FB15C28F8E003B4E72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A48E827115E871BB002DB480 /* DiceHelpManager */,
 				C21309F815E774000072A18E /* DiceColorManager */,
 				A42C520815E614E5001D8208 /* DiceSoundManager */,
 				A42C520115E614D2001D8208 /* DiceChatMsgManager */,
@@ -6973,7 +6986,7 @@
 				CA3F9E9215E7848700669A1F /* main_top@2x.png in Resources */,
 				A42C528715E756CF001D8208 /* DiceHelpView.xib in Resources */,
 				EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */,
-				A48E826015E86CE6002DB480 /* helphtml.zip in Resources */,
+				A48E826015E86CE6002DB480 /* help.zip in Resources */,
 				A48E826215E86CF4002DB480 /* message_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7468,6 +7481,7 @@
 				C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */,
 				A42C528615E756CF001D8208 /* DiceHelpView.m in Sources */,
 				C21309FB15E774390072A18E /* DiceColorManager.m in Sources */,
+				A48E827415E871CE002DB480 /* DiceHelpManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
