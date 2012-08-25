@@ -29,6 +29,7 @@
 @synthesize backButton;
 @synthesize contentText;
 @synthesize contactText;
+@synthesize backgroundImageView;
 @synthesize doneButton;
 @synthesize tips;
 @synthesize lastReport = _lastReport;
@@ -308,6 +309,7 @@
     [self setReporterTitle:nil];
     [self setContactBackground:nil];
     [self setTips:nil];
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -325,6 +327,7 @@
     [contactBackground release];
     [_lastReport release];
     [tips release];
+    [backgroundImageView release];
     [super dealloc];
 }
 @end

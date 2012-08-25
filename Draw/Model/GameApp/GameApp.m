@@ -30,7 +30,12 @@ NSObject<GameAppProtocol>* getGameApp()
     return currentApp;
 }
 
-extern BOOL isDrawApp()
+BOOL isDrawApp()
 {
     return ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]);
+}
+
+BOOL isDiceApp()
+{
+    return ([[GameApp gameId] isEqualToString:DICE_GAME_ID]);    
 }

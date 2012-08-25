@@ -13,5 +13,6 @@
 @interface FeedbackController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SNSServiceDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) IBOutlet UILabel *TitleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end

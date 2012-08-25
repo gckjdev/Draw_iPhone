@@ -42,5 +42,6 @@
 
 extern NSObject<GameAppProtocol>* getGameApp();
 extern BOOL isDrawApp();
+extern BOOL isDiceApp();
 
 #endif
