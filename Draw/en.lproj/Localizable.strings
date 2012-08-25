@@ -790,5 +790,6 @@
 "kYouAreFooled" = "Ha ha, you are fooled";
 "kIWantToGoSeeUNextTime" = "I want to go, see you next time";
 "kFastEntry" = "QuickGame";
+"kDiceEnterPassword" = "room password(optional)";
 /*********************** 大话骰子国际化字符串结束 *************************/
 

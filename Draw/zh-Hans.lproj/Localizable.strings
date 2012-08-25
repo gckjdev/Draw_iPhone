@@ -67,7 +67,7 @@
 "kCancel" = "取消";
 "kQuitGameAlertMessage" = "确定要退出游戏吗?";
 "kQuitGameAlertTitle" = "退出游戏";
-"kDedutCoinQuitGameAlertMessage" = "如果你退出游戏，系统将会扣除%d个金币哦。";
+"kDedutCoinQuitGameAlertMessage" = "游戏进行中，如果这时退出游戏，系统将会扣除%d个金币哦。";
 "kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏哦！";
 
 
@@ -784,7 +784,7 @@
 "kWaittingForNextTurn" = "等待下轮...";
 "kGameBegin" = "游戏开始了...";
 "kNearBy" = "附近";
-"kWhoseRoom" = "%@ 的房间";
+"kWhoseRoom" = "%@的房间";
 "kSessionFull" = "房间已满";
 
 "kRollAgain" = "摇";
@@ -802,5 +802,6 @@
 "kYouAreFooled" = "哈哈，你上当了";
 "kIWantToGoSeeUNextTime" = "我要走啦，下次再玩";
 "kFastEntry" = "快速加入";
+"kDiceEnterPassword" = "房间密码(可选)";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
