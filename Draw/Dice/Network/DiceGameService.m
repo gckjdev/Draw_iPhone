@@ -15,8 +15,6 @@
 #import "ConfigManager.h"
 #import "GameMessage.pb.h"
 
-#define DICE_GAME_ID    @"LiarDice"
-
 @implementation DiceGameService
 
 static DiceGameService* _defaultService;

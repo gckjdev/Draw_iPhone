@@ -677,7 +677,8 @@ static UserService* _defaultUserService;
             }
             else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
                 // @"设备未绑定任何用户"
-                [RegisterUserController showAt:homeController];
+                // rem by Benson
+                // [RegisterUserController showAt:homeController];
             }
             else {
                 // @"登录失败，稍后尝试"

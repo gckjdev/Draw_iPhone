@@ -205,9 +205,11 @@ enum {
     
     
 //    [self.backgroundImage setImage:[UIImage imageNamed:@"gameroom_bg.png"]];
-    if ([ConfigManager isLiarDice]){
-        [self.backgroundImage setImage:[UIImage imageNamed:@"dice_room_background.png"]];
-    }
+//    if ([ConfigManager isLiarDice]){
+//        
+//    }
+    
+    [self.backgroundImage setImage:[UIImage imageNamed:[GameApp background]]];
     
     [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
