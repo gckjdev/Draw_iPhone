@@ -16,6 +16,7 @@
 @synthesize passwordField;
 @synthesize roomNameLabel;
 @synthesize passwordLabel;
+@synthesize isPasswordOptional = _isPasswordOptional;
 
 - (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
 {
@@ -24,6 +25,7 @@
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     switch (theme) {
         case CommonInputDialogThemeDice:{ 
+            self.isPasswordOptional = YES;
             [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
             [self.titleLabel.fontLable setText:title];
             
@@ -173,8 +175,8 @@
 
 - (BOOL)isPasswordIllegal
 {
-    return NO;
-    //return [self.passwordField.text length] < 1;
+
+    return [self.passwordField.text length] < 1;
 }
 
 - (BOOL)isRoomNameIllegal
@@ -211,7 +213,7 @@
     if ([self isRoomNameIllegal]) 
     {
         [self handleRoomNameIllegal];
-    }else if([self isPasswordIllegal])
+    }else if([self isPasswordIllegal] && !_isPasswordOptional)
     {
         [self handlePasswordIllegal];
     }else{

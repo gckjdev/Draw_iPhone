@@ -137,7 +137,6 @@
 								<string key="NSFrame">{{149, 108}, {81, 36}}</string>
 								<reference key="NSSuperview" ref="613159573"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -165,6 +164,7 @@
 								<string key="IBUIText">确定要退出游戏吗？确定要退出游戏吗？</string>
 								<reference key="IBUITextColor" ref="256703508"/>
 								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">6</int>
 								<int key="IBUILineBreakMode">1</int>
@@ -373,7 +373,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="backButton">FontButton</string>
 						<string key="contentBackground">UIImageView</string>
-						<string key="messageLabel">UILabel</string>
+						<string key="messageLabel">FontLabel</string>
 						<string key="oKButton">FontButton</string>
 						<string key="titleLabel">UILabel</string>
 					</dictionary>
@@ -388,7 +388,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="messageLabel">
 							<string key="name">messageLabel</string>
-							<string key="candidateClassName">UILabel</string>
+							<string key="candidateClassName">FontLabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="oKButton">
 							<string key="name">oKButton</string>
