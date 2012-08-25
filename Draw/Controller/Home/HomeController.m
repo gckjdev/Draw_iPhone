@@ -143,10 +143,10 @@
     }
     
     
-    self.adView = [[AdService defaultService] createAdInView:self                  
-                                                       frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
-                                                     useLmAd:YES];
+//    self.adView = [[AdService defaultService] createAdInView:self                  
+//                                                       frame:CGRectMake(0, 0, 320, 50) 
+//                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+//                                                     useLmAd:YES];
     
     
     
@@ -235,21 +235,21 @@
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];
 
-    if (self.adView == nil){    
-        self.adView = [[AdService defaultService] createAdInView:self                  
-                                                           frame:CGRectMake(0, 0, 320, 50) 
-                                                       iPadFrame:CGRectMake(65, 800, 320, 50)
-                                                         useLmAd:YES];
-    }
-    else{
-        if ([[AdService defaultService] isShowAd] == NO){
-            [_adView removeFromSuperview];
-            
-            if ([DeviceDetection isIPAD]){
-                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
-            }
-        }
-    }
+//    if (self.adView == nil){    
+//        self.adView = [[AdService defaultService] createAdInView:self                  
+//                                                           frame:CGRectMake(0, 0, 320, 50) 
+//                                                       iPadFrame:CGRectMake(65, 800, 320, 50)
+//                                                         useLmAd:YES];
+//    }
+//    else{
+//        if ([[AdService defaultService] isShowAd] == NO){
+//            [_adView removeFromSuperview];
+//            
+//            if ([DeviceDetection isIPAD]){
+//                [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
+//            }
+//        }
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -263,8 +263,8 @@
 
 - (void)viewDidUnload
 {
-    [[AdService defaultService] clearAdView:_adView];
-    [self setAdView:nil];    
+//    [[AdService defaultService] clearAdView:_adView];
+//    [self setAdView:nil];    
     
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
