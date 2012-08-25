@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FontButton.h"
 
-@interface DiceHelpView : UIView
+@interface DiceHelpView : UIView <UIWebViewDelegate>
 
 + (id)createDiceHelpView;
 
+@property (retain, nonatomic) IBOutlet UIWebView *webView;
+
+@property (retain, nonatomic) IBOutlet FontButton *gameRulesButton;
+@property (retain, nonatomic) IBOutlet FontButton *itemsUsageButton;
 
 @end
