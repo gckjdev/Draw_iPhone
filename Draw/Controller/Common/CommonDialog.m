@@ -12,6 +12,7 @@
 #import "DiceImageManager.h"
 #import "FontButton.h"
 
+
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
 
@@ -46,6 +47,8 @@
     switch (theme) {
         case CommonDialogThemeDice: {
             //init the button
+            [self.messageLabel setNumberOfLines:5];
+            [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
             [self.backButton.fontLable setText:NSLS(@"kCancel")];
             [self.oKButton.fontLable setText:NSLS(@"kOK")];
 
@@ -55,8 +58,8 @@
             [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
         } break;
         case CommonDialogThemeDraw:
-            [self.oKButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
-            [self.backButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
+            [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
+            [self.backButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
             [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
             [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
         default:
@@ -89,12 +92,12 @@
 {
     CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
     [view initButtonsWithStyle:aStyle];
-    [view initTitlesWithTheme:CommonDialogThemeDraw];
+    [view initButtonsWithTheme:CommonDialogThemeDraw];
     [view appear];
     
     //init the button
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    [view.backButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [view.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     view.tag = 0;
