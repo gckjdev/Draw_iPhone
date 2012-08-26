@@ -20,7 +20,7 @@
 #define WIDTH_EXPRESSION    ([DeviceDetection isIPAD] ? 60: 30)
 #define HEIGHT_EXPRESSION WIDTH_EXPRESSION
 
-#define EXPRESSION_COUNT_PER_PAGE ([DeviceDetection isIPAD] ? 10: 5)
+#define EXPRESSION_COUNT_PER_PAGE ([DeviceDetection isIPAD] ? 5: 5)
 
 @interface ChatView()
 {
