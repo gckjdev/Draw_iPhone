@@ -183,7 +183,8 @@
     self.openDiceButton.hidden = YES;
     
     [self registerDiceGameNotifications];    
-    self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+    
+    self.waittingForNextTurnNoteLabel.text = ([_diceService.diceSession.userList count] == 1) ? NSLS(@"kWaitingForMoreUsers") : NSLS(@"kWaittingForNextTurn");
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(224, 0, 320, 50)
@@ -673,7 +674,7 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USER_DICE
                                     usingBlock:^(NSNotification *notification) { 
-//                                        [self someoneChangeDices];
+                                        [self someoneChangeDice];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
@@ -710,7 +711,19 @@
 
 
 
+- (void)someoneChangeDice
+{
+    if (_diceService.diceSession.isMeAByStander) {
+        [self showOtherBells];
+    }
+}
 
+- (void)showOtherBells
+{
+    for (PBGameUser *user in _diceService.diceSession.playingUserList) {
+        [self bellViewOfUser:user.userId].hidden = NO;
+    }
+}
 
 #pragma mark - Private methods
 
@@ -1090,6 +1103,11 @@
 - (void)roomChanged
 {
     [self updateAllPlayersAvatar];
+    
+    if ([_diceService.diceSession.userList count] == 1) {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
+        self.waittingForNextTurnNoteLabel.hidden = NO;
+    }
 }
 
 - (IBAction)clickSettingButton:(id)sender {
