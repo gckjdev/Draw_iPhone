@@ -11,4 +11,12 @@
 
 @interface DiceSettingView : CommonInfoView
 
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *musicOnButton;
+@property (retain, nonatomic) IBOutlet UIButton *musicOffButton;
+@property (retain, nonatomic) IBOutlet UIButton *audioOnButton;
+@property (retain, nonatomic) IBOutlet UIButton *audioOffButton;
+
++ (id)createDiceSettingView;
+
 @end
