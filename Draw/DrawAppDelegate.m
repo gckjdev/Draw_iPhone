@@ -49,8 +49,8 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
-    return @"http://192.168.1.198:8000/api/i?";  
+    return [ConfigManager getAPIServerURL];
+//    return @"http://192.168.1.198:8000/api/i?";  
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -100,7 +100,9 @@ NSString* GlobalGetBoardServerURL()
     
     [self initImageCacheManager];
     
-    [WXApi registerApp:@"wx427a2f57bc4456d1"];
+    if (isDiceApp() == NO){
+        [WXApi registerApp:@"wx427a2f57bc4456d1"];
+    }
     
     //init sounds
     NSArray* drawSoundArray = [NSArray arrayWithObjects:
@@ -112,11 +114,16 @@ NSString* GlobalGetBoardServerURL()
                                 @"rolling.mp3",
                                @"open.aiff", nil];
     NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
-    
-    [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];
+
+    if (isDrawApp()){
+        [[AudioManager defaultManager] initSounds:drawSoundArray];        
+    }
+    else{
+        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
+    }
         
     // init mob click 
-    [MobClick startWithAppkey:@"4f83980852701565c500003a" 
+    [MobClick startWithAppkey:[GameApp umengId]
                  reportPolicy:BATCH 
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];

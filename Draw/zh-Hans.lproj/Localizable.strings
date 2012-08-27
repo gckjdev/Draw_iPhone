@@ -803,6 +803,11 @@
 "kIWantToGoSeeUNextTime" = "我要走啦，下次再玩";
 "kFastEntry" = "快速加入";
 "kDiceEnterPassword" = "房间密码(可选)";
+
 "kDiceRoom" = "欢乐大话骰%d号房";
+
+
+"kWaitingForMoreUsers" = "等待更多用户...";
+
 /*********************** 大话骰子国际化字符串结束 *************************/
 

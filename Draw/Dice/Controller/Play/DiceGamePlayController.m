@@ -15,14 +15,12 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "LevelService.h"
-//#import "SpeechService.h"
-
 #import "AdService.h"
 #import "DiceUserInfoView.h"
-
 #import "ItemType.h"
 #import "GifView.h"
 #import "DiceSoundManager.h"
+#import "DiceSettingView.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -185,7 +183,8 @@
     self.openDiceButton.hidden = YES;
     
     [self registerDiceGameNotifications];    
-    self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaittingForNextTurn");
+    
+    self.waittingForNextTurnNoteLabel.text = ([_diceService.diceSession.userList count] == 1) ? NSLS(@"kWaitingForMoreUsers") : NSLS(@"kWaittingForNextTurn");
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
                                                    iPadFrame:CGRectMake(224, 0, 320, 50)
@@ -675,7 +674,7 @@
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USER_DICE
                                     usingBlock:^(NSNotification *notification) { 
-//                                        [self someoneChangeDices];
+                                        [self someoneChangeDice];
                                     }];
     
     [self registerDiceGameNotificationWithName:NOTIFICATION_USE_ITEM_REQUEST
@@ -712,7 +711,19 @@
 
 
 
+- (void)someoneChangeDice
+{
+    if (_diceService.diceSession.isMeAByStander) {
+        [self showOtherBells];
+    }
+}
 
+- (void)showOtherBells
+{
+    for (PBGameUser *user in _diceService.diceSession.playingUserList) {
+        [[self bellViewOfUser:user.userId] setHidden:NO];
+    }
+}
 
 #pragma mark - Private methods
 
@@ -1092,10 +1103,16 @@
 - (void)roomChanged
 {
     [self updateAllPlayersAvatar];
+    
+    if ([_diceService.diceSession.userList count] == 1) {
+        self.waittingForNextTurnNoteLabel.text = NSLS(@"kWaitingForMoreUsers");
+        self.waittingForNextTurnNoteLabel.hidden = NO;
+    }
 }
 
 - (IBAction)clickSettingButton:(id)sender {
-
+    DiceSettingView *settingView = [DiceSettingView createDiceSettingView];
+    [settingView showInView:self.view];
 }
 
 #pragma mark - common dialog delegate

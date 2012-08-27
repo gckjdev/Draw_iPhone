@@ -12,10 +12,13 @@
 #import "AccountService.h"
 #import "UIUtils.h"
 #import "AdService.h"
+#import "UserManager.h"
 
 #define IPHONE_WALL_ID      @"ed21340370b99ad5bd2a5e304e3ea6c4"
 
 @implementation LmWallService
+
+@synthesize adWallView = _adWallView;
 
 static LmWallService* _defaultService;
 
@@ -32,7 +35,17 @@ static LmWallService* _defaultService;
 - (void)prepareWallService
 {
     PPDebug(@"<LmmobAdWallSDK> GetAdWallWithEntranceID");
-    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:IPHONE_WALL_ID AndDelegate:self];
+//    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:IPHONE_WALL_ID AndDelegate:self];
+    
+    self.adWallView = [[[immobView alloc] initWithAdUnitID:IPHONE_WALL_ID] autorelease];
+    
+    //此属性针对多账户用户，主要用于区分不同账户下的积分
+    if ([[UserManager defaultManager] hasUser]){
+        [_adWallView.UserAttribute setObject:[[UserManager defaultManager] userId] 
+                                      forKey:@"accountname"];
+    }
+    _adWallView.delegate=self;
+        
 }
 
 - (id)init
@@ -42,21 +55,34 @@ static LmWallService* _defaultService;
     return self;
 }
 
+- (void)dealloc
+{
+    PPRelease(_adWallView);
+    [super dealloc];
+}
+
 - (void)queryScore
 {
+    if ([[UserManager defaultManager] hasUser] == NO)
+        return;
+    
+//    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
+    
     PPDebug(@"<LmmobAdWallSDK> ScoreQuery");    
-    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
+    NSString* userId = [[UserManager defaultManager] userId];
+    [self.adWallView immobViewQueryScoreWithAdUnitID:IPHONE_WALL_ID WithAccountID:userId];
 }
 
 - (void)show:(UIViewController*)viewController
-{
-    
-    
+{        
     [MobClick event:@"SHOW_LM_WALL"];
+    
     _viewController = viewController;
-    if([[LmmobAdWallSDK defaultSDK] lmmob]){
-        [_viewController presentModalViewController:[[LmmobAdWallSDK defaultSDK] lmmob] animated:YES];
-    }    
+    [self.adWallView immobViewRequest];    
+    
+//    if([[LmmobAdWallSDK defaultSDK] lmmob]){
+//        [_viewController presentModalViewController:[[LmmobAdWallSDK defaultSDK] lmmob] animated:YES];
+//    }    
 }
 
 - (void)setWallForRemoveAd
@@ -81,45 +107,71 @@ static LmWallService* _defaultService;
 - (void)show:(UIViewController*)viewController isForRemoveAd:(BOOL)isForRemoveAd
 {
     [self setWallForRemoveAd];
-    [self show:viewController];    
+    [self show:viewController];        
 }
 
-/*! 
- @method      LmmobAdWallSDK:DismissAdWall:
- 
- @abstract    广告墙返回按钮的事件
- 
- @param
- sdk          sdk == [LmmobAdWallSDK defaultSDK]
- 
- @param
- result       YES
+
+
+/**
+ *email phone sms等所需要
+ *返回当前添加immobView的ViewController
  */
--(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk DismissAdWall:(BOOL)result
-{
-    PPDebug(@"<LmmobAdWallSDK> DismissAdWall, result=%d", result);
-    if (sdk.lmmob) {
-        [_viewController dismissModalViewControllerAnimated:YES];
+- (UIViewController *)immobViewController{    
+    return _viewController;
+}
+
+/**
+ *根据广告的状态来决定当前广告是否展示到当前界面上 AdReady 
+ *YES  当前广告可用
+ *NO   当前广告不可用
+ */
+- (void) immobViewDidReceiveAd:(BOOL)AdReady{
+    PPDebug(@"<immobViewDidReceiveAd> AdReady=%d", AdReady);
+    if (AdReady){
+        [_viewController.view addSubview:self.adWallView];
+        [self.adWallView immobViewDisplay];
     }
+    
 }
 
 
-/*! 
- @method      LmmobAdWallSDK:AdWallisON:
- 
- @abstract    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:AndDelegate:]方法的回调
- 
- @param
- sdk          sdk == [LmmobAdWallSDK defaultSDK]
- 
- @param
- result         广告墙开关值
- */
--(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk AdWallisON:(BOOL)result
-{
-    PPDebug(@"<LmmobAdWallSDK> AdWallisON, result=%d", result);
-    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
-}
+
+///*! 
+// @method      LmmobAdWallSDK:DismissAdWall:
+// 
+// @abstract    广告墙返回按钮的事件
+// 
+// @param
+// sdk          sdk == [LmmobAdWallSDK defaultSDK]
+// 
+// @param
+// result       YES
+// */
+//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk DismissAdWall:(BOOL)result
+//{
+//    PPDebug(@"<LmmobAdWallSDK> DismissAdWall, result=%d", result);
+//    if (sdk.lmmob) {
+//        [_viewController dismissModalViewControllerAnimated:YES];
+//    }
+//}
+
+
+///*! 
+// @method      LmmobAdWallSDK:AdWallisON:
+// 
+// @abstract    [[LmmobAdWallSDK defaultSDK] GetAdWallWithEntranceID:AndDelegate:]方法的回调
+// 
+// @param
+// sdk          sdk == [LmmobAdWallSDK defaultSDK]
+// 
+// @param
+// result         广告墙开关值
+// */
+//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk AdWallisON:(BOOL)result
+//{
+//    PPDebug(@"<LmmobAdWallSDK> AdWallisON, result=%d", result);
+//    [[LmmobAdWallSDK defaultSDK] ScoreQuery];
+//}
 
 
 /*! 
@@ -134,9 +186,14 @@ static LmWallService* _defaultService;
  score        用户积分值,double
  result       更新用户积分是否成功
  */
--(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk UserScore:(double)score ScoreUpdated:(BOOL)result
+//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk UserScore:(double)score ScoreUpdated:(BOOL)result
+
+/**
+ *查询积分接口回调
+ */
+- (void) immobViewQueryScore:(NSUInteger)score WithMessage:(NSString *)returnMessage
 {
-    PPDebug(@"<LmmobAdWallSDK> UserScore, score=%f, result=%d", score, result);
+    PPDebug(@"<LmmobAdWallSDK> UserQueryScore, score=%d, message=%@", score, returnMessage);
     
     if (score <= 0.0f)
         return;
@@ -144,7 +201,8 @@ static LmWallService* _defaultService;
     // charge account
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
-    [[LmmobAdWallSDK defaultSDK] ScoreSubstract:score];
+//    [[LmmobAdWallSDK defaultSDK] ScoreSubstract:score];
+    [self.adWallView immobViewReducscore:score WithAdUnitID:IPHONE_WALL_ID];
 
     BOOL isForRemoveAd = NO;
     if ([self isWallForRemoveAd]){
@@ -163,8 +221,7 @@ static LmWallService* _defaultService;
     else{
         title = @"免费金币";
         message = [NSString stringWithFormat:@"成功下载应用后获取了%d金币",(int)score] ;
-    }
-        
+    }        
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
@@ -178,39 +235,51 @@ static LmWallService* _defaultService;
     
 }
 
-
-/*! 
- @method      LmmobAdWallSDK:BannerAdRemoved:
- 
- @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
- 
- @param
- sdk          sdk == [LmmobAdWallSDK defaultSDK]
- 
- @param
- result       Banner广告是否永久移除成功/关闭关联的广告位是否成功
- */
--(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk BannerAdRemoved:(BOOL)result
+- (void) immobViewReducscore:(BOOL)status WithMessage:(NSString *)message
 {
-    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, result=%d", result);
-    
+    PPDebug(@"<ReduceScore> status=%d, message=%@", status, message);
 }
 
-/*! 
- @method      LmmobAdWallSDK:didFailedWithNetError:
- 
- @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
- 
- @param
- sdk          sdk == [LmmobAdWallSDK defaultSDK]
- 
- @param
- error        网络错误返回信息
- */
--(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk didFailedWithNetError:(NSError *)error
-{
-    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, error=%@", [error description]);    
+///*! 
+// @method      LmmobAdWallSDK:BannerAdRemoved:
+// 
+// @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
+// 
+// @param
+// sdk          sdk == [LmmobAdWallSDK defaultSDK]
+// 
+// @param
+// result       Banner广告是否永久移除成功/关闭关联的广告位是否成功
+// */
+//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk BannerAdRemoved:(BOOL)result
+//{
+//    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, result=%d", result);
+//    
+//}
+//
+///*! 
+// @method      LmmobAdWallSDK:didFailedWithNetError:
+// 
+// @abstract    [[LmmobAdWallSDK defaultSDK] RemoveBannerAd]的回调
+// 
+// @param
+// sdk          sdk == [LmmobAdWallSDK defaultSDK]
+// 
+// @param
+// error        网络错误返回信息
+// */
+//-(void)LmmobAdWallSDK:(LmmobAdWallSDK *)sdk didFailedWithNetError:(NSError *)error
+//{
+//    PPDebug(@"<LmmobAdWallSDK> BannerAdRemoved, error=%@", [error description]);    
+//}
+
+- (void) immobView: (immobView*) immobView didFailReceiveimmobViewWithError: (NSInteger) errorCode{
+    PPDebug(@"<didFailReceiveimmobViewWithError> errorCode:%i",errorCode);
 }
 
+- (void) onDismissScreen:(immobView *)immobView{
+    PPDebug(@"<onDismissScreen> immobView");
+    _viewController = nil;
+}
 
 @end
