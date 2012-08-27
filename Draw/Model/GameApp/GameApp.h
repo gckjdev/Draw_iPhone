@@ -30,9 +30,8 @@
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"
-#define DICE_UMENG_ID           @"4f83980852701565c500003a"
+#define DICE_UMENG_ID           @"503b13225270150f45000059"
 #define CANDY_UMENG_ID          @"4f83980852701565c500003a"
-
 
 #define DRAW_BACKGROUND         @"wood_bg@2x.png"
 #define DICE_BACKGROUND         @"dice_room_background@2x.png"

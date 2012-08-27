@@ -959,6 +959,8 @@
 		CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878515EB4543003FA6B6 /* music_off@2x.png */; };
 		CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878615EB4543003FA6B6 /* audio_on@2x.png */; };
 		CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878715EB4543003FA6B6 /* audio_off@2x.png */; };
+		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
+		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
 		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
@@ -2547,6 +2549,9 @@
 		CACF878515EB4543003FA6B6 /* music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_off@2x.png"; sourceTree = "<group>"; };
 		CACF878615EB4543003FA6B6 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
 		CACF878715EB4543003FA6B6 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
+		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
+		CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSettingView.m; sourceTree = "<group>"; };
+		CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceSettingView.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
@@ -3243,6 +3248,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CACF87A015EB4D2D003FA6B6 /* DiceSettingView */,
 				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
 				C296872315DCE03F006968BA /* DiceUserInfoView */,
@@ -6201,6 +6207,16 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		CACF87A015EB4D2D003FA6B6 /* DiceSettingView */ = {
+			isa = PBXGroup;
+			children = (
+				CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */,
+				CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */,
+				CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */,
+			);
+			path = DiceSettingView;
+			sourceTree = "<group>";
+		};
 		CAE0C8941591A2D5008CDA62 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -7054,6 +7070,7 @@
 				CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */,
 				CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */,
 				CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */,
+				CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7553,6 +7570,7 @@
 				CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */,
 				CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
+				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
