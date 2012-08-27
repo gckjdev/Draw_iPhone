@@ -951,6 +951,14 @@
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
+		CACF878815EB4543003FA6B6 /* settingright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */; };
+		CACF878915EB4543003FA6B6 /* settingright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */; };
+		CACF878A15EB4543003FA6B6 /* settingleft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */; };
+		CACF878B15EB4543003FA6B6 /* settingleft_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */; };
+		CACF878C15EB4543003FA6B6 /* music_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878415EB4543003FA6B6 /* music_on@2x.png */; };
+		CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878515EB4543003FA6B6 /* music_off@2x.png */; };
+		CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878615EB4543003FA6B6 /* audio_on@2x.png */; };
+		CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878715EB4543003FA6B6 /* audio_off@2x.png */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
 		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
@@ -2531,6 +2539,14 @@
 		CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
+		CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingright_unselect@2x.png"; sourceTree = "<group>"; };
+		CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingright_selected@2x.png"; sourceTree = "<group>"; };
+		CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingleft_unselect@2x.png"; sourceTree = "<group>"; };
+		CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingleft_selected@2x.png"; sourceTree = "<group>"; };
+		CACF878415EB4543003FA6B6 /* music_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_on@2x.png"; sourceTree = "<group>"; };
+		CACF878515EB4543003FA6B6 /* music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_off@2x.png"; sourceTree = "<group>"; };
+		CACF878615EB4543003FA6B6 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
+		CACF878715EB4543003FA6B6 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
@@ -3013,6 +3029,14 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */,
+				CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */,
+				CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */,
+				CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */,
+				CACF878415EB4543003FA6B6 /* music_on@2x.png */,
+				CACF878515EB4543003FA6B6 /* music_off@2x.png */,
+				CACF878615EB4543003FA6B6 /* audio_on@2x.png */,
+				CACF878715EB4543003FA6B6 /* audio_off@2x.png */,
 				A48E826115E86CF4002DB480 /* message_icon@2x.png */,
 				A42C523615E62B82001D8208 /* face_anger.gif */,
 				A42C521C15E6215F001D8208 /* face_embarrass.gif */,
@@ -5562,8 +5586,6 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
-				CA67B8A915EB292E002050DB /* EventKitUI.framework */,
-				CA67B8A715EB2928002050DB /* MediaPlayer.framework */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -5583,6 +5605,8 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA67B8A915EB292E002050DB /* EventKitUI.framework */,
+				CA67B8A715EB2928002050DB /* MediaPlayer.framework */,
 				CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */,
 				CAA1AFC4159EAA9800504C98 /* EventKit.framework */,
 				CAA1AF8D159EA86900504C98 /* CoreTelephony.framework */,
@@ -7022,6 +7046,14 @@
 				EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */,
 				EAE27A3D15EA1C190078F392 /* ChatView~ipad.xib in Resources */,
 				CA67B8A615EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf in Resources */,
+				CACF878815EB4543003FA6B6 /* settingright_unselect@2x.png in Resources */,
+				CACF878915EB4543003FA6B6 /* settingright_selected@2x.png in Resources */,
+				CACF878A15EB4543003FA6B6 /* settingleft_unselect@2x.png in Resources */,
+				CACF878B15EB4543003FA6B6 /* settingleft_selected@2x.png in Resources */,
+				CACF878C15EB4543003FA6B6 /* music_on@2x.png in Resources */,
+				CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */,
+				CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */,
+				CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
