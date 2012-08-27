@@ -16,6 +16,8 @@
 
 @implementation DiceSettingView
 @synthesize bgImageView;
+@synthesize musicImageView;
+@synthesize audioImageView;
 @synthesize musicOnButton;
 @synthesize musicOffButton;
 @synthesize audioOnButton;
@@ -36,12 +38,16 @@
 {
     bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
     
+    musicImageView.image = [[AudioManager defaultManager] isMusicOn] ? [[DiceImageManager defaultManager] diceMusicOnImage] : [[DiceImageManager defaultManager] diceMusicOffImage];
+    
+    audioImageView.image = [[AudioManager defaultManager] isSoundOn] ? [[DiceImageManager defaultManager] diceAudioOnImage] : [[DiceImageManager defaultManager] diceAudioOffImage];
+
     musicOnButton.selected = [[AudioManager defaultManager] isMusicOn];
     musicOffButton.selected = ![[AudioManager defaultManager] isMusicOn];
     
     audioOnButton.selected = [[AudioManager defaultManager] isSoundOn];
     audioOffButton.selected = ![[AudioManager defaultManager] isSoundOn];
-
+    
     [view addSubview:self];
     [self appear];
 }
@@ -53,12 +59,15 @@
     [musicOffButton release];
     [audioOnButton release];
     [audioOffButton release];
+    [musicImageView release];
+    [audioImageView release];
     [super dealloc];
 }
 
 - (IBAction)clickMusicOnButton:(id)sender {
     musicOnButton.selected = YES;
     musicOffButton.selected = NO;
+    musicImageView.image = [[DiceImageManager defaultManager] diceMusicOnImage];
     
     [[AudioManager defaultManager] setIsMusicOn:YES];
     [[AudioManager defaultManager] saveSoundSettings];
@@ -67,7 +76,8 @@
 - (IBAction)clickMusicOffButton:(id)sender {
     musicOnButton.selected = NO;
     musicOffButton.selected = YES;
-    
+    musicImageView.image = [[DiceImageManager defaultManager] diceMusicOffImage];
+
     [[AudioManager defaultManager] setIsMusicOn:NO];
     [[AudioManager defaultManager] saveSoundSettings];
 }
@@ -75,7 +85,8 @@
 - (IBAction)clickAudioOnButton:(id)sender {
     audioOnButton.selected = YES;
     audioOffButton.selected = NO;
-    
+    audioImageView.image = [[DiceImageManager defaultManager] diceAudioOnImage];
+
     [[AudioManager defaultManager] setIsSoundOn:YES];
     [[AudioManager defaultManager] saveSoundSettings];
 
@@ -85,7 +96,8 @@
 - (IBAction)clickAudioOffButton:(id)sender {
     audioOnButton.selected = NO;
     audioOffButton.selected = YES;
-    
+    audioImageView.image = [[DiceImageManager defaultManager] diceAudioOffImage];
+
     [[AudioManager defaultManager] setIsSoundOn:NO];
     [[AudioManager defaultManager] saveSoundSettings];
 }
