@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
 #import "UserService.h"
+@class FontButton;
 @class DiceAvatarView;
 @class PBGameUser;
 @class PPViewController;
@@ -34,7 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *snsTagImageView;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
-@property (retain, nonatomic) IBOutlet UIButton *followUserButton;
+@property (retain, nonatomic) IBOutlet FontButton *followUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) PBGameUser* targetFriend;
 @property (retain, nonatomic) NSString* userId;

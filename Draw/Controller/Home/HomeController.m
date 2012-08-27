@@ -143,10 +143,10 @@
     }
     
     
-//    self.adView = [[AdService defaultService] createAdInView:self                  
-//                                                       frame:CGRectMake(0, 0, 320, 50) 
-//                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
-//                                                     useLmAd:YES];
+    self.adView = [[AdService defaultService] createAdInView:self                  
+                                                       frame:CGRectMake(0, 0, 320, 50) 
+                                                   iPadFrame:CGRectMake(65, 800, 320, 50)
+                                                     useLmAd:YES];
     
     
     
@@ -154,14 +154,14 @@
     
     self.menuPanel = [MenuPanel menuPanelWithController:self];
     
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 661) : CGPointMake(160, 298);
+    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
     
     [self.view insertSubview:self.menuPanel atIndex:0];
 
     
     self.bottomMenuPanel = [BottomMenuPanel panelWithController:self];
     
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 949) : CGPointMake(160, 435);
+    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
     
     [self.view addSubview:_bottomMenuPanel];
 

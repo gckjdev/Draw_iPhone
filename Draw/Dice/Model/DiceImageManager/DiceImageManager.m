@@ -229,4 +229,24 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"dice_face_bg.png"];
 }
 
+- (UIImage *)diceMusicOnImage
+{
+    return [UIImage imageNamed:@"music_on.png"];
+}
+
+- (UIImage *)diceMusicOffImage
+{
+    return [UIImage imageNamed:@"music_off.png"];
+}
+
+- (UIImage *)diceAudioOnImage
+{
+    return [UIImage imageNamed:@"audio_on.png"];
+}
+
+- (UIImage *)diceAudioOffImage
+{
+    return [UIImage imageNamed:@"audio_off.png"];
+}
+
 @end

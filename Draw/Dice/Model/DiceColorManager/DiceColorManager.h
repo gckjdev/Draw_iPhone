@@ -14,4 +14,6 @@
 + (UIColor*)dialoggreenColor;
 + (UIColor*)dialogYellowColor;
 
++ (UIColor*)userInfoViewTextColor;
+
 @end

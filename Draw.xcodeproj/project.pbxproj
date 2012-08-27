@@ -820,6 +820,10 @@
 		CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87615E89B2B002050DB /* DrawGameProApp.m */; };
 		CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87915E89B42002050DB /* SweetCandyApp.m */; };
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
+		CA67B8A515EB1FCD002050DB /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A315EB1FCD002050DB /* immobSDK.framework */; };
+		CA67B8A615EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CA67B8A415EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf */; };
+		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
+		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
 		CA6F0581153C149A00B1AE11 /* color_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6F0580153C149A00B1AE11 /* color_mask@2x.png */; };
 		CA6F0583153C14CC00B1AE11 /* pen_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6F0582153C14CC00B1AE11 /* pen_mask@2x.png */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
@@ -918,12 +922,7 @@
 		CAA8D29115AADF4300EE67E4 /* playagain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D29015AADF4200EE67E4 /* playagain@2x.png */; };
 		CAA8D29315AAE02000EE67E4 /* tools_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA8D29215AAE02000EE67E4 /* tools_wood.png */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
-		CAA9C430159CA8CA00398EC5 /* AdWallSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */; };
-		CAA9C431159CA8CA00398EC5 /* LmmobAdWallSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */; };
-		CAA9C432159CA8CA00398EC5 /* readme.doc in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C42F159CA8CA00398EC5 /* readme.doc */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
-		CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */; };
-		CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */ = {isa = PBXBuildFile; fileRef = CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */; };
 		CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A721578FD5C0012F6B8 /* libYouMi.a */; };
 		CAAE4A7E157908EB0012F6B8 /* YoumiWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4A7C157908EB0012F6B8 /* YoumiWallController.m */; };
 		CAAE4A7F157908EB0012F6B8 /* YoumiWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAE4A7D157908EB0012F6B8 /* YoumiWallController.xib */; };
@@ -952,6 +951,16 @@
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
+		CACF878815EB4543003FA6B6 /* settingright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */; };
+		CACF878915EB4543003FA6B6 /* settingright_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */; };
+		CACF878A15EB4543003FA6B6 /* settingleft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */; };
+		CACF878B15EB4543003FA6B6 /* settingleft_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */; };
+		CACF878C15EB4543003FA6B6 /* music_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878415EB4543003FA6B6 /* music_on@2x.png */; };
+		CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878515EB4543003FA6B6 /* music_off@2x.png */; };
+		CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878615EB4543003FA6B6 /* audio_on@2x.png */; };
+		CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CACF878715EB4543003FA6B6 /* audio_off@2x.png */; };
+		CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
+		CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD95C5D15889612006EAC41 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD95C5B15889611006EAC41 /* FeedCell.m */; };
 		CAD95C5E15889612006EAC41 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD95C5C15889611006EAC41 /* FeedCell.xib */; };
@@ -2316,6 +2325,10 @@
 		CA67B87915E89B42002050DB /* SweetCandyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweetCandyApp.m; sourceTree = "<group>"; };
 		CA67B87B15E89B65002050DB /* GameApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameApp.h; sourceTree = "<group>"; };
 		CA67B87C15E89FB0002050DB /* GameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameApp.m; sourceTree = "<group>"; };
+		CA67B8A315EB1FCD002050DB /* immobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = immobSDK.framework; sourceTree = "<group>"; };
+		CA67B8A415EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "User Guide_iOS_cn_1.0.3.pdf"; sourceTree = "<group>"; };
+		CA67B8A715EB2928002050DB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		CA67B8A915EB292E002050DB /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		CA6F0580153C149A00B1AE11 /* color_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_mask@2x.png"; sourceTree = "<group>"; };
 		CA6F0582153C14CC00B1AE11 /* pen_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen_mask@2x.png"; sourceTree = "<group>"; };
 		CA745D1E1503B1B500600024 /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2480,13 +2493,8 @@
 		CAA8D29215AAE02000EE67E4 /* tools_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tools_wood.png; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
-		CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AdWallSDK.bundle; sourceTree = "<group>"; };
-		CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LmmobAdWallSDK.framework; sourceTree = "<group>"; };
-		CAA9C42F159CA8CA00398EC5 /* readme.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = readme.doc; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
-		CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lmmob.framework; sourceTree = "<group>"; };
-		CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReadMe.docx; sourceTree = "<group>"; };
 		CAAE4A721578FD5C0012F6B8 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CAAE4A731578FD5C0012F6B8 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
 		CAAE4A741578FD5C0012F6B8 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
@@ -2533,6 +2541,17 @@
 		CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		CACC084C1532B02600D9F8E9 /* ShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAction.h; sourceTree = "<group>"; };
 		CACC084D1532B02600D9F8E9 /* ShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAction.m; sourceTree = "<group>"; };
+		CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingright_unselect@2x.png"; sourceTree = "<group>"; };
+		CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingright_selected@2x.png"; sourceTree = "<group>"; };
+		CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingleft_unselect@2x.png"; sourceTree = "<group>"; };
+		CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingleft_selected@2x.png"; sourceTree = "<group>"; };
+		CACF878415EB4543003FA6B6 /* music_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_on@2x.png"; sourceTree = "<group>"; };
+		CACF878515EB4543003FA6B6 /* music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_off@2x.png"; sourceTree = "<group>"; };
+		CACF878615EB4543003FA6B6 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
+		CACF878715EB4543003FA6B6 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
+		CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
+		CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSettingView.m; sourceTree = "<group>"; };
+		CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceSettingView.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
 		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
@@ -2649,9 +2668,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */,
+				CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */,
+				CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */,
 				CA103F2A1509A6CA00F60C03 /* CoreLocation.framework in Frameworks */,
 				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
-				CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */,
 				CAA1AF8E159EA86A00504C98 /* CoreTelephony.framework in Frameworks */,
 				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
 				A3FAE0E215536F8E008B5827 /* AudioToolbox.framework in Frameworks */,
@@ -2678,11 +2699,10 @@
 				A35793101574BD670007B2C0 /* libWeChatSDK.a in Frameworks */,
 				A38894A415778B1200764158 /* iFlyTTS.framework in Frameworks */,
 				CAAE4A761578FD5C0012F6B8 /* libYouMi.a in Frameworks */,
-				CAA9C431159CA8CA00398EC5 /* LmmobAdWallSDK.framework in Frameworks */,
-				CAA9C43D159D3F8B00398EC5 /* Lmmob.framework in Frameworks */,
 				CAA1AF8C159DB00B00504C98 /* libAdMoGo.a in Frameworks */,
 				CAA1AFBB159EAA5900504C98 /* libAderSDK.a in Frameworks */,
 				CAA1AFBD159EAA5900504C98 /* libGoogleAdMobAds.a in Frameworks */,
+				CA67B8A515EB1FCD002050DB /* immobSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3014,6 +3034,14 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				CACF878015EB4543003FA6B6 /* settingright_unselect@2x.png */,
+				CACF878115EB4543003FA6B6 /* settingright_selected@2x.png */,
+				CACF878215EB4543003FA6B6 /* settingleft_unselect@2x.png */,
+				CACF878315EB4543003FA6B6 /* settingleft_selected@2x.png */,
+				CACF878415EB4543003FA6B6 /* music_on@2x.png */,
+				CACF878515EB4543003FA6B6 /* music_off@2x.png */,
+				CACF878615EB4543003FA6B6 /* audio_on@2x.png */,
+				CACF878715EB4543003FA6B6 /* audio_off@2x.png */,
 				A48E826115E86CF4002DB480 /* message_icon@2x.png */,
 				A42C523615E62B82001D8208 /* face_anger.gif */,
 				A42C521C15E6215F001D8208 /* face_embarrass.gif */,
@@ -3220,6 +3248,7 @@
 		A4B7640315C28F8E003B4E72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CACF87A015EB4D2D003FA6B6 /* DiceSettingView */,
 				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
 				C296872315DCE03F006968BA /* DiceUserInfoView */,
@@ -5550,6 +5579,16 @@
 			path = GameApp;
 			sourceTree = "<group>";
 		};
+		CA67B8A215EB1FCD002050DB /* LmmobSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA67B8A315EB1FCD002050DB /* immobSDK.framework */,
+				CA67B8A415EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf */,
+			);
+			name = LmmobSDK;
+			path = "../../Common_iPhone_20/3PP-SDK/LmmobSDK";
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -5572,6 +5611,8 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA67B8A915EB292E002050DB /* EventKitUI.framework */,
+				CA67B8A715EB2928002050DB /* MediaPlayer.framework */,
 				CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */,
 				CAA1AFC4159EAA9800504C98 /* EventKit.framework */,
 				CAA1AF8D159EA86900504C98 /* CoreTelephony.framework */,
@@ -5603,13 +5644,12 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA67B8A215EB1FCD002050DB /* LmmobSDK */,
 				C21309D115E73A590072A18E /* UIGlossyButton */,
 				CA82846515D6378E0016CD43 /* ssziparchive */,
 				A4AC51B215C7BFF00041DC86 /* FontLabel */,
 				C2F48C9C15C681BA005C4D72 /* DACircularProgress */,
 				CAA1AA40159DADB900504C98 /* MangoAd */,
-				CAA9C43A159D3F7800398EC5 /* LmmobSDK */,
-				CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */,
 				CAAE4A711578FD5C0012F6B8 /* YoumiSDK */,
 				A388949115778B1200764158 /* iFly */,
 				A357930C1574BD670007B2C0 /* WeixinSDK */,
@@ -6103,27 +6143,6 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
-		CAA9C42C159CA8C600398EC5 /* LmmobAdWallSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAA9C42D159CA8CA00398EC5 /* AdWallSDK.bundle */,
-				CAA9C42E159CA8CA00398EC5 /* LmmobAdWallSDK.framework */,
-				CAA9C42F159CA8CA00398EC5 /* readme.doc */,
-			);
-			name = LmmobAdWallSDK;
-			path = "../../Common_iPhone_20/3PP-SDK/LmmobAdWallSDK";
-			sourceTree = "<group>";
-		};
-		CAA9C43A159D3F7800398EC5 /* LmmobSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAA9C43B159D3F8A00398EC5 /* Lmmob.framework */,
-				CAA9C43C159D3F8A00398EC5 /* ReadMe.docx */,
-			);
-			name = LmmobSDK;
-			path = "../../Common_iPhone_20/3PP-SDK/LmmobSDK";
-			sourceTree = "<group>";
-		};
 		CAAE4A711578FD5C0012F6B8 /* YoumiSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -6186,6 +6205,16 @@
 				CAC13245154C28C8000A8C8F /* ConfigManager.m */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		CACF87A015EB4D2D003FA6B6 /* DiceSettingView */ = {
+			isa = PBXGroup;
+			children = (
+				CACF87A115EB4D2D003FA6B6 /* DiceSettingView.h */,
+				CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */,
+				CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */,
+			);
+			path = DiceSettingView;
 			sourceTree = "<group>";
 		};
 		CAE0C8941591A2D5008CDA62 /* Notification */ = {
@@ -6822,9 +6851,6 @@
 				A3EC170515996D8100D7872D /* refresh@2x.png in Resources */,
 				CA04B164159AE47F00D7ACD1 /* UserFeedController.xib in Resources */,
 				CA04B166159AE4D900D7ACD1 /* UserFeedController~ipad.xib in Resources */,
-				CAA9C430159CA8CA00398EC5 /* AdWallSDK.bundle in Resources */,
-				CAA9C432159CA8CA00398EC5 /* readme.doc in Resources */,
-				CAA9C43E159D3F8B00398EC5 /* ReadMe.docx in Resources */,
 				CAA1AF7F159DB00B00504C98 /* adsmogo_adclose@2x.png in Resources */,
 				CAA1AF80159DB00B00504C98 /* adsmogo_bannerbg@2x.png in Resources */,
 				CAA1AF81159DB00B00504C98 /* adsmogo_btnbg@2x.png in Resources */,
@@ -7035,6 +7061,16 @@
 				A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */,
 				EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */,
 				EAE27A3D15EA1C190078F392 /* ChatView~ipad.xib in Resources */,
+				CA67B8A615EB1FCD002050DB /* User Guide_iOS_cn_1.0.3.pdf in Resources */,
+				CACF878815EB4543003FA6B6 /* settingright_unselect@2x.png in Resources */,
+				CACF878915EB4543003FA6B6 /* settingright_selected@2x.png in Resources */,
+				CACF878A15EB4543003FA6B6 /* settingleft_unselect@2x.png in Resources */,
+				CACF878B15EB4543003FA6B6 /* settingleft_selected@2x.png in Resources */,
+				CACF878C15EB4543003FA6B6 /* music_on@2x.png in Resources */,
+				CACF878D15EB4543003FA6B6 /* music_off@2x.png in Resources */,
+				CACF878E15EB4543003FA6B6 /* audio_on@2x.png in Resources */,
+				CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */,
+				CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7534,6 +7570,7 @@
 				CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */,
 				CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
+				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
