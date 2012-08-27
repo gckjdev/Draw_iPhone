@@ -721,7 +721,7 @@
 - (void)showOtherBells
 {
     for (PBGameUser *user in _diceService.diceSession.playingUserList) {
-        [self bellViewOfUser:user.userId].hidden = NO;
+        [[self bellViewOfUser:user.userId] setHidden:NO];
     }
 }
 

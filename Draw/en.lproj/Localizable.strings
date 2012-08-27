@@ -792,6 +792,8 @@
 "kFastEntry" = "QuickGame";
 "kDiceEnterPassword" = "room password(optional)";
 
+"kDiceRoom" = "Liar Dice Room %d";
+
 "kWaitingForMoreUsers" = "Watting for more player...";
 
 /*********************** 大话骰子国际化字符串结束 *************************/

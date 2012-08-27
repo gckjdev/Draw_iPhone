@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AccountService.h"
-#import <Lmmob/LmmobADBannerView.h>
+#import <immobSDK/immobView.h>
 #import "AderSDK.h"
 #import "AderDelegateProtocal.h"
 #import "AdMoGoView.h"
@@ -22,7 +22,7 @@ typedef enum
 
 @class PPViewController;
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, LmmobAdBannerViewDelegate, AdMoGoDelegate, AderDelegateProtocal>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal>
 {
 //    LmmobAdBannerView   *_adView;
 //    NSMutableDictionary *_allAdViews;

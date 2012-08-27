@@ -786,7 +786,7 @@
 "kIWantToGoSeeUNextTime" = "我要走啦，下次再玩";
 "kFastEntry" = "快速加入";
 "kDiceEnterPassword" = "房間密碼(可選)";
-
+"kDiceRoom" = "歡樂大話骰%d號房";
 "kWaitingForMoreUsers" = "等待更多用戶...";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
