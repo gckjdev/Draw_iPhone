@@ -21,6 +21,9 @@
 #import "AnimationManager.h"
 #import "UserService.h"
 #import "CommonMessageCenter.h"
+#import "DiceColorManager.h"
+#import "DiceImageManager.h"
+#import "FontButton.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -71,7 +74,7 @@
 
 - (void)initTitle
 {
-    
+
 }
 
 #define AVATAR_FRAME [DeviceDetection isIPAD]?CGRectMake(43, 100, 100, 91):CGRectMake(18, 46, 42, 42)
@@ -85,7 +88,7 @@
 
 - (void)initButton
 {
-
+    [self.followUserButton setRoyButtonWithColor:[DiceColorManager dialogRedColor]];
 }
 
 - (void)initLevelAndName
@@ -136,8 +139,8 @@
 - (void)initFollowStatus
 {
     //set followbutton or statusLabel
-    [self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
-    [self.followUserButton setTitle:NSLS(@"kAddAsFriend") forState:UIControlStateNormal];
+    //[self.followUserButton setBackgroundImage:[[ShareImageManager defaultManager] normalButtonImage] forState:UIControlStateNormal];
+    [self.followUserButton.fontLable setText:NSLS(@"kAddAsFriend")];
     if ([[[UserManager defaultManager] userId] isEqualToString:self.userId]){
         statusLabel.hidden = NO;
         self.followUserButton.hidden = YES;
@@ -169,6 +172,7 @@
     [self initTitle];
     [self initButton];
     [self resetUserInfo];
+    [self.backgroundImageView setImage:[DiceImageManager defaultManager].popupBackgroundImage];
     
 }
 

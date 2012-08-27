@@ -22,5 +22,9 @@
 {
     return [UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95];
 }
++ (UIColor*)userInfoViewTextColor
+{
+    return [UIColor colorWithRed:180.0/255.0 green:148.0/255.0 blue:111.0/255.0 alpha:1.0];
+}
 
 @end

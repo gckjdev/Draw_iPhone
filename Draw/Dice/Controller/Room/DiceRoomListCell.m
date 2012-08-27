@@ -36,7 +36,11 @@
 
 - (void)setCellInfo:(PBGameSession *)session
 {
-    roomNameLabel.text = session.name;
+    if (session.name == nil || session.name.length <= 0) {
+        [self.roomNameLabel setText:[NSString stringWithFormat:NSLS(@"kDiceRoom"), session.sessionId]];
+    } else {
+        [self.roomNameLabel setText:session.name];
+    }
     [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
     for (int i = 0; i < 6; i ++) {
         DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];

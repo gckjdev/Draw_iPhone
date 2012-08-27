@@ -791,5 +791,6 @@
 "kIWantToGoSeeUNextTime" = "I want to go, see you next time";
 "kFastEntry" = "QuickGame";
 "kDiceEnterPassword" = "room password(optional)";
+"kDiceRoom" = "Liar Dice Room %d";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
