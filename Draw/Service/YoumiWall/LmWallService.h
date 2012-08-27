@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LmmobAdWallSDK/LmmobAdWallSDK.h>
+#import <immobSDK/immobView.h>
 
-@interface LmWallService : NSObject<LmmobAdWallDelegate>
+@interface LmWallService : NSObject<immobViewDelegate>
 {
     UIViewController* _viewController;
+    
 }
+
+@property (nonatomic, retain)immobView *adWallView;
 
 + (LmWallService*)defaultService;
 - (void)show:(UIViewController*)viewController;
