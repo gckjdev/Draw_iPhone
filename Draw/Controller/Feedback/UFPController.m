@@ -18,6 +18,7 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize mTableView = _mTableView;
 @synthesize mPromoterDatas = _mPromoterDatas;
+@synthesize backgroundImageView = _backgroundImageView;
 - (void)dealloc
 {
     _mTableView.dataLoadDelegate = nil;
@@ -25,6 +26,7 @@
     _mTableView = nil;
     [_mPromoterDatas release];
     _mPromoterDatas = nil;
+    [_backgroundImageView release];
     [super dealloc];
 }
 
@@ -40,6 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [self.titleLabel setText:NSLS(@"kMore_apps")];
     if ([DeviceDetection isIPAD]) {
         self.mTableView = [[[UMUFPTableView alloc] initWithFrame:CGRectMake(0, 110, 768, 1004-110) style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease]; 
@@ -61,6 +66,7 @@
 {
     
     [self setTitleLabel:nil];
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

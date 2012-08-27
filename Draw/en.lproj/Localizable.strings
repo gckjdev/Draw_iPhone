@@ -792,6 +792,8 @@
 "kFastEntry" = "QuickGame";
 "kDiceEnterPassword" = "room password(optional)";
 
+"kDiceFeedbackTips" = "Welcome to join QQ group:228119679,and follow the official Weibo @欢乐大话骰";
+
 "kDiceRoom" = "Liar Dice Room %d";
 
 "kWaitingForMoreUsers" = "Watting for more player...";

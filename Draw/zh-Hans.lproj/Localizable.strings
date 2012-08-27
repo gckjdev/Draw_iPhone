@@ -804,8 +804,9 @@
 "kFastEntry" = "快速加入";
 "kDiceEnterPassword" = "房间密码(可选)";
 
-"kDiceRoom" = "欢乐大话骰%d号房";
+"kDiceFeedbackTips" = "欢迎加入欢乐大话骰QQ群:228119679, 关注官方微博 @欢乐大话骰";
 
+"kDiceRoom" = "欢乐大话骰%d号房";
 
 "kWaitingForMoreUsers" = "等待更多用户...";
 

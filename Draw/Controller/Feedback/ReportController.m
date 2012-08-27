@@ -209,6 +209,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
+    
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];    
     [self.contactBackground setImage:[[ShareImageManager defaultManager] inputImage]];
@@ -226,12 +228,20 @@
         case SUBMIT_BUG: {
             [self.reporterTitle setText:NSLS(@"kReport_bug")];
             [self.contentText setText:NSLS(@"kHave_problems?")];
-            [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
+            if (isDrawApp()) {
+                [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
+            }else {
+                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
+            }
         } break;
         case SUBMIT_FEEDBACK: {
             [self.reporterTitle setText:NSLS(@"kAdvices")];
             [self.contentText setText:NSLS(@"kSay something...")];
-            [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
+            if (isDrawApp()) {
+                [self.tips setTitle:NSLS(@"kFeedbackTips") forState:UIControlStateNormal];
+            }else {
+                [self.tips setTitle:NSLS(@"kDiceFeedbackTips") forState:UIControlStateNormal];
+            }
         } break;
         case ADD_WORD: {
             [self.reporterTitle setText:NSLS(@"kAddWords")];
