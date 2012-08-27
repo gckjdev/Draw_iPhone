@@ -96,6 +96,11 @@
 		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A4459CED15EB0AA900F191F0 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4459CEC15EB0AA900F191F0 /* DiceSettingView.m */; };
+		A4459CEF15EB107700F191F0 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4459CEE15EB107700F191F0 /* DiceSettingView.xib */; };
+		A4459CF415EB12EF00F191F0 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4459CF015EB12EF00F191F0 /* audio_off@2x.png */; };
+		A4459CF515EB12EF00F191F0 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4459CF115EB12EF00F191F0 /* audio_on@2x.png */; };
+		A4459CF615EB12EF00F191F0 /* music_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4459CF215EB12EF00F191F0 /* music_off@2x.png */; };
+		A4459CF715EB12EF00F191F0 /* music_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4459CF315EB12EF00F191F0 /* music_on@2x.png */; };
 		A44AD68D15CD149D001666AA /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AD68C15CD149D001666AA /* MessageView.m */; };
 		A44C91FC1564DFD300018D0D /* messagebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44C91FB1564DFD300018D0D /* messagebg@2x.png */; };
 		A44DDF4115C64528005609F6 /* DiceShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4015C64528005609F6 /* DiceShowView.m */; };
@@ -1203,6 +1208,11 @@
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		A4459CEB15EB0AA900F191F0 /* DiceSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSettingView.h; sourceTree = "<group>"; };
 		A4459CEC15EB0AA900F191F0 /* DiceSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSettingView.m; sourceTree = "<group>"; };
+		A4459CEE15EB107700F191F0 /* DiceSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceSettingView.xib; sourceTree = "<group>"; };
+		A4459CF015EB12EF00F191F0 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
+		A4459CF115EB12EF00F191F0 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
+		A4459CF215EB12EF00F191F0 /* music_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_off@2x.png"; sourceTree = "<group>"; };
+		A4459CF315EB12EF00F191F0 /* music_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music_on@2x.png"; sourceTree = "<group>"; };
 		A44AD68B15CD149C001666AA /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A44AD68C15CD149D001666AA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A44C91FB1564DFD300018D0D /* messagebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messagebg@2x.png"; sourceTree = "<group>"; };
@@ -2842,6 +2852,7 @@
 			children = (
 				A4459CEB15EB0AA900F191F0 /* DiceSettingView.h */,
 				A4459CEC15EB0AA900F191F0 /* DiceSettingView.m */,
+				A4459CEE15EB107700F191F0 /* DiceSettingView.xib */,
 			);
 			path = DiceSettingView;
 			sourceTree = "<group>";
@@ -3026,6 +3037,10 @@
 		A4A01B7015D8AF67002FE86D /* game */ = {
 			isa = PBXGroup;
 			children = (
+				A4459CF015EB12EF00F191F0 /* audio_off@2x.png */,
+				A4459CF115EB12EF00F191F0 /* audio_on@2x.png */,
+				A4459CF215EB12EF00F191F0 /* music_off@2x.png */,
+				A4459CF315EB12EF00F191F0 /* music_on@2x.png */,
 				A48E826115E86CF4002DB480 /* message_icon@2x.png */,
 				A42C523615E62B82001D8208 /* face_anger.gif */,
 				A42C521C15E6215F001D8208 /* face_embarrass.gif */,
@@ -7048,6 +7063,11 @@
 				A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */,
 				EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */,
 				EAE27A3D15EA1C190078F392 /* ChatView~ipad.xib in Resources */,
+				A4459CEF15EB107700F191F0 /* DiceSettingView.xib in Resources */,
+				A4459CF415EB12EF00F191F0 /* audio_off@2x.png in Resources */,
+				A4459CF515EB12EF00F191F0 /* audio_on@2x.png in Resources */,
+				A4459CF615EB12EF00F191F0 /* music_off@2x.png in Resources */,
+				A4459CF715EB12EF00F191F0 /* music_on@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

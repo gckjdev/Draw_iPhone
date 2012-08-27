@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonInfoView.h"
 
-@interface DiceSettingView : UIViewController
+@interface DiceSettingView : CommonInfoView
 
 @end
