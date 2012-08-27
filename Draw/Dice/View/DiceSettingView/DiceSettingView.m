@@ -7,6 +7,8 @@
 //
 
 #import "DiceSettingView.h"
+#import "DiceImageManager.h"
+#import "AudioManager.h"
 
 @interface DiceSettingView ()
 
@@ -21,15 +23,28 @@
 
 + (id)createDiceSettingView
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceHelpView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DiceSettingView" owner:self options:nil];
     // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
         return nil;
     }
     
-    return [topLevelObjects objectAtIndex:0];;
+    return [topLevelObjects objectAtIndex:0];
 }
 
+- (void)showInView:(UIView *)view
+{
+    bgImageView.image = [[DiceImageManager defaultManager] popupBackgroundImage];
+    
+    musicOnButton.selected = [[AudioManager defaultManager] isMusicOn];
+    musicOffButton.selected = ![[AudioManager defaultManager] isMusicOn];
+    
+    audioOnButton.selected = [[AudioManager defaultManager] isSoundOn];
+    audioOffButton.selected = ![[AudioManager defaultManager] isSoundOn];
+
+    [view addSubview:self];
+    [self appear];
+}
 
 
 - (void)dealloc {
@@ -45,28 +60,34 @@
     musicOnButton.selected = YES;
     musicOffButton.selected = NO;
     
-    // TODO：music on settting
+    [[AudioManager defaultManager] setIsMusicOn:YES];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (IBAction)clickMusicOffButton:(id)sender {
     musicOnButton.selected = NO;
     musicOffButton.selected = YES;
     
-    // TODO：music off setting
+    [[AudioManager defaultManager] setIsMusicOn:NO];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (IBAction)clickAudioOnButton:(id)sender {
     audioOnButton.selected = YES;
     audioOffButton.selected = NO;
     
-    // TODO：audio on setting
+    [[AudioManager defaultManager] setIsSoundOn:YES];
+    [[AudioManager defaultManager] saveSoundSettings];
+
+
 }
 
 - (IBAction)clickAudioOffButton:(id)sender {
     audioOnButton.selected = NO;
     audioOffButton.selected = YES;
     
-    // TODO：audio off setting
+    [[AudioManager defaultManager] setIsSoundOn:NO];
+    [[AudioManager defaultManager] saveSoundSettings];
 }
 
 - (IBAction)clickCloseButton:(id)sender {

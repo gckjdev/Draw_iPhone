@@ -15,14 +15,12 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "LevelService.h"
-//#import "SpeechService.h"
-
 #import "AdService.h"
 #import "DiceUserInfoView.h"
-
 #import "ItemType.h"
 #import "GifView.h"
 #import "DiceSoundManager.h"
+#import "DiceSettingView.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -1095,7 +1093,8 @@
 }
 
 - (IBAction)clickSettingButton:(id)sender {
-
+    DiceSettingView *settingView = [DiceSettingView createDiceSettingView];
+    [settingView showInView:self.view];
 }
 
 #pragma mark - common dialog delegate
