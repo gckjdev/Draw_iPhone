@@ -124,7 +124,7 @@
     [[DiceGameService defaultService] setServerPort:8018];
     
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.198"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
 //    [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];

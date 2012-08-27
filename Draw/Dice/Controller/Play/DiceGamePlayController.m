@@ -159,7 +159,11 @@
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
     //_roomNameLabel.text = @"1号房间";
-    _roomNameLabel.text = [NSString stringWithFormat:NSLS(@"kRoomName"), [[[DiceGameService defaultService] session] roomName]]; ;
+    NSString* aRoomName = [[[DiceGameService defaultService] session] roomName];
+    if (aRoomName == nil || aRoomName.length <= 0) {
+        aRoomName = [NSString stringWithFormat:@"%d", [[[DiceGameService defaultService] session] sessionId]];
+    }
+    _roomNameLabel.text = [NSString stringWithFormat:NSLS(@"kRoomName"), aRoomName]; ;
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];
