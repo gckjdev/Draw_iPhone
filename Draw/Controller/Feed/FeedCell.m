@@ -31,7 +31,7 @@
 @synthesize feed = _feed;
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(12, 20, 83, 82) : CGRectMake(5, 9, 35, 36))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(530, 9, 175, 170) :CGRectMake(222, 4, 70, 72))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(538, 18, 162, 170) :CGRectMake(221, 4, 68, 72))
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 170)
 #define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:14 * 2] : [UIFont systemFontOfSize:14])
