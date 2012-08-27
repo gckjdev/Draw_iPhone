@@ -47,4 +47,9 @@
 - (UIImage *)diceChatMsgBgImage;
 - (UIImage *)diceExpressionBgImage;
 
+- (UIImage *)diceMusicOnImage;
+- (UIImage *)diceMusicOffImage;
+- (UIImage *)diceAudioOnImage;
+- (UIImage *)diceAudioOffImage;
+
 @end

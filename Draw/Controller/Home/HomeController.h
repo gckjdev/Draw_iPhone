@@ -14,13 +14,12 @@
 #import "DrawDataService.h"
 #import "NotificationManager.h"
 #import "UserService.h"
-#import <Lmmob/LmmobADBannerView.h>
 #import "BoardService.h"
 @class UserManager;
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, LmmobAdBannerViewDelegate,BoardServiceDelegate>
+@interface HomeController : PPViewController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate,BoardServiceDelegate>
 {
     BOOL        _isTryJoinGame;  
     BOOL        _isJoiningDice;
