@@ -768,6 +768,10 @@
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA501C4815ECFB0600D41161 /* FeedDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA501C4615ECFB0600D41161 /* FeedDetailCell.m */; };
+		CA501C4915ECFB0600D41161 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4715ECFB0600D41161 /* UserInfoCell.xib */; };
+		CA501C4B15ECFE6400D41161 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */; };
+		CA501C4D15ECFEE200D41161 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
@@ -2241,6 +2245,11 @@
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
 		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
+		CA501C4515ECFB0600D41161 /* FeedDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailCell.h; sourceTree = "<group>"; };
+		CA501C4615ECFB0600D41161 /* FeedDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailCell.m; sourceTree = "<group>"; };
+		CA501C4715ECFB0600D41161 /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
+		CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
+		CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
@@ -5425,6 +5434,22 @@
 			path = StoreKit;
 			sourceTree = "<group>";
 		};
+		CA501C4415ECFAAB00D41161 /* FeedDetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				CAD95C5F15889664006EAC41 /* CommentCell.h */,
+				CAD95C6015889665006EAC41 /* CommentCell.m */,
+				CAD95C6115889665006EAC41 /* CommentCell.xib */,
+				CA7BB846158F210900F38626 /* CommentCell~ipad.xib */,
+				CA501C4515ECFB0600D41161 /* FeedDetailCell.h */,
+				CA501C4615ECFB0600D41161 /* FeedDetailCell.m */,
+				CA501C4715ECFB0600D41161 /* UserInfoCell.xib */,
+				CA501C4C15ECFEE100D41161 /* DrawInfoCell.xib */,
+				CA501C4A15ECFE6400D41161 /* CommentHeaderView.xib */,
+			);
+			name = FeedDetailCells;
+			sourceTree = "<group>";
+		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -5748,6 +5773,7 @@
 		CA7C7E111587237B00406BFB /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				CA501C4415ECFAAB00D41161 /* FeedDetailCells */,
 				CA7C7E12158723AE00406BFB /* FeedController.h */,
 				CA7C7E13158723AE00406BFB /* FeedController.m */,
 				CA7C7E14158723AE00406BFB /* FeedController.xib */,
@@ -5760,10 +5786,6 @@
 				CAD95C5B15889611006EAC41 /* FeedCell.m */,
 				CAD95C5C15889611006EAC41 /* FeedCell.xib */,
 				CA7BB847158F210900F38626 /* FeedCell~ipad.xib */,
-				CAD95C5F15889664006EAC41 /* CommentCell.h */,
-				CAD95C6015889665006EAC41 /* CommentCell.m */,
-				CAD95C6115889665006EAC41 /* CommentCell.xib */,
-				CA7BB846158F210900F38626 /* CommentCell~ipad.xib */,
 				CA04B160159AE47E00D7ACD1 /* UserFeedController.h */,
 				CA04B161159AE47E00D7ACD1 /* UserFeedController.m */,
 				CA04B162159AE47F00D7ACD1 /* UserFeedController.xib */,
@@ -7075,6 +7097,9 @@
 				CACF878F15EB4543003FA6B6 /* audio_off@2x.png in Resources */,
 				CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */,
 				EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */,
+				CA501C4915ECFB0600D41161 /* UserInfoCell.xib in Resources */,
+				CA501C4B15ECFE6400D41161 /* CommentHeaderView.xib in Resources */,
+				CA501C4D15ECFEE200D41161 /* DrawInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7575,6 +7600,7 @@
 				CA67B87A15E89B42002050DB /* SweetCandyApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
+				CA501C4815ECFB0600D41161 /* FeedDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
