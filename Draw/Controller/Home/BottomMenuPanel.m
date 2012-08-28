@@ -60,7 +60,7 @@ static const NSInteger ROW_NUMBER = 5;
     for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i, ++ number) {
         BottomMenu *menu = [BottomMenu bottomMenuWithType:i];
         menu.frame = [self frameForMenuIndex:number];
-        [menu setBadgeNumber:number];
+//        [menu setBadgeNumber:number];
         [self addSubview:menu];
         menu.delegate = self;
     }

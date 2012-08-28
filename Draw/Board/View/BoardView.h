@@ -40,8 +40,12 @@ WillHandleJumpURL:(NSURL *)URL;
 - (void)innerJump:(NSURL *)URL;
 
 //a handle method, used by sub classes.
-
 - (BOOL)handleTap:(NSURL *)URL; //if inner Jump return NO.
 
 
+@end
+
+@interface DefaultBoardView : BoardView {
+    
+}
 @end

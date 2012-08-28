@@ -80,7 +80,7 @@
 + (BottomMenu *)bottomMenuWithType:(MenuButtonType)type
 {
     UIImage *image = [BottomMenu imageForMenuButtonType:type];
-    NSString *title = [BottomMenu titleForMenuButtonType:type];
+    NSString *title = nil;//[BottomMenu titleForMenuButtonType:type];
     
     BottomMenu *menu = [BottomMenu bottomMenuWithImage:image 
                                                  title:title 
