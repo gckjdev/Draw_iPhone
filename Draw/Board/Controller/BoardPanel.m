@@ -58,6 +58,12 @@
 #define BOARD_VIEW_BASE_TAG 100
 - (void)setBoardList:(NSArray *)boardList
 {
+    /*
+    for (BoardView *boardView in [scrollView subviews]) {
+        if ([boardView isKindOfClass:[BoardView class]]) {
+            [boardView removeFromSuperview];
+        }
+    }*/
     [scrollView setContentSize:CGSizeMake([boardList count] * PAGE_WIDTH, PAGE_HEIGHT)];
         
     int i = 0;

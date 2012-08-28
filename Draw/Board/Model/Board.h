@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{    
-    
-    BoardTypeAd = 1,
+    BoardTypeDefault = 1,
     BoardTypeWeb = 2,
-    BoardTypeImage = 3    
-    
+    BoardTypeAd = 3,
+    BoardTypeImage = 4    
 }BoardType;
 
 typedef enum{    
@@ -50,7 +49,7 @@ typedef enum{
 +(Board *)createBoardWithDictionary:(NSDictionary *)dict;
 - (id)initWithDictionary:(NSDictionary *)dict;
 - (BOOL)isRunning;
-
++ (Board *)defaultBoard;
 @end
 
 
@@ -88,7 +87,6 @@ typedef enum{
 @property(nonatomic, retain)NSString *clickUrl;
 
 @end
-
 
 
 #pragma mark - an inner class used for AdBoard

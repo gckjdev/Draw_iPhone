@@ -451,6 +451,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"draw_share.png"];
 }
 
+- (UIImage *)defaultBoardImage
+{
+    return [UIImage imageNamed:@"default_board.png"];
+}
 
 #pragma mark - menu button image
 - (UIImage *)onlinePlayImage
