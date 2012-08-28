@@ -159,7 +159,7 @@
 							<object class="IBUILabel" id="386031461">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{520, 187}, {191, 48}}</string>
+								<string key="NSFrame">{{524, 187}, {191, 48}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -181,7 +181,7 @@
 							<object class="IBUIView" id="335828857">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{530, 9}, {175, 170}}</string>
+								<string key="NSFrame">{{538, 18}, {162, 170}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="571946735"/>
@@ -349,17 +349,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">FeedCell</string>
 					<string key="superclassName">PPTableViewCell</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickActionButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickActionButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickActionButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="descLabel">UILabel</string>
 						<string key="drawImageView">HJManagedImageV</string>

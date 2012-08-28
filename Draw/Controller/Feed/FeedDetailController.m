@@ -49,7 +49,7 @@
 
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(660, 11, 84, 78) : CGRectMake(278, 6, 29, 28))
-#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(271,158,228,217) :CGRectMake(113, 73, 95, 100))
+#define SHOW_DRAW_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(275,151,219,230) :CGRectMake(113, 73, 95, 100))
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -173,10 +173,9 @@
 							<object class="IBUIView" id="594969052">
 								<reference key="NSNextResponder" ref="703497056"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{222, 4}, {70, 72}}</string>
+								<string key="NSFrame">{{224, 4}, {68, 72}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>

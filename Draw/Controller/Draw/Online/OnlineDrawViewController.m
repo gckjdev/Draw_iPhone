@@ -464,7 +464,8 @@ enum{
     if (dialog.tag == DIALOG_TAG_CLEAN_DRAW) {
         [drawGameService cleanDraw];
         [drawView addCleanAction];
-        [pickColorView setHidden:YES];        
+        self.bgColor = self.eraserColor = [DrawColor whiteColor];
+
     }else if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
@@ -487,6 +488,7 @@ enum{
         if (drawView.penType == Eraser) {
             drawView.lineColor = self.eraserColor;
         }
+        [self didDrawedPaint:action.paint];
     }
 
 }

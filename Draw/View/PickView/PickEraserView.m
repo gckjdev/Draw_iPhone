@@ -12,7 +12,7 @@
 @implementation PickEraserView
 
 
-#define MIN_WIDTH ([DeviceDetection isIPAD] ? 3 * 2 : 3)
+#define MIN_WIDTH ([DeviceDetection isIPAD] ? 2 : 2)
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,13 +23,13 @@
         self.userInteractionEnabled = YES;
         
         if ([DeviceDetection isIPAD]) {
-            [widthArray addObject:[NSNumber numberWithInt:20 * 2]];
-            [widthArray addObject:[NSNumber numberWithInt:15 * 2]];
-            [widthArray addObject:[NSNumber numberWithInt:9 * 2]];
+            [widthArray addObject:[NSNumber numberWithInt:21 * 2]];
+            [widthArray addObject:[NSNumber numberWithInt:14 * 2]];
+            [widthArray addObject:[NSNumber numberWithInt:7 * 2]];
         }else{
-            [widthArray addObject:[NSNumber numberWithInt:20]];
-            [widthArray addObject:[NSNumber numberWithInt:15]];
-            [widthArray addObject:[NSNumber numberWithInt:9]];
+            [widthArray addObject:[NSNumber numberWithInt:21]];
+            [widthArray addObject:[NSNumber numberWithInt:14]];
+            [widthArray addObject:[NSNumber numberWithInt:7]];
         }
         [widthArray addObject:[NSNumber numberWithInt:MIN_WIDTH]];
         [self updateLineViews];
