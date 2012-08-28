@@ -309,7 +309,8 @@
 "kLoginUser" = "正在登录...";
 
 
-"kSaveImageOK" = "作品已成功保存";
+"kSaveOpusOK" = "作品已成功保存";
+"kSaveOpusFail" = "作品保存失败";
 "kDeleteAll" = "删除所有作品";
 
 //4.27 add by Gamy

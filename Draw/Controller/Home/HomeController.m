@@ -668,6 +668,7 @@ BOOL hasGetLocalBoardList = NO;
     if (resultCode == 0) {
         PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
         [self updateBoardPanelWithBoards:boards];
+        [[BoardManager defaultManager] saveBoardList:boards];
     }else {
         //start timer to fetch. use the local
         if(!hasGetLocalBoardList){
@@ -692,7 +693,7 @@ BOOL hasGetLocalBoardList = NO;
         _boardPanel = [BoardPanel boardPanelWithController:self];
         _boardPanel.tag = BOARD_PANEL_TAG;
         [_boardPanel setBoardList:boards];
-        [self.view addSubview:_boardPanel];            
+        [self.view addSubview:_boardPanel];  
     }
 
 }

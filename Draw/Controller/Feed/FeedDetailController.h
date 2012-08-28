@@ -12,12 +12,13 @@
 #import "ShowDrawView.h"
 #import "OfflineGuessDrawController.h"
 #import "StableView.h"
+#import "DrawDataService.h"
 
 @class AvatarView;
 @class Feed;
 
 @interface FeedDetailController : PPTableViewController<FeedServiceDelegate, 
-ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
+ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate, DrawDataServiceDelegate>
 {
     AvatarView *_avatarView;
     ShowDrawView *_drawView;
@@ -43,6 +44,7 @@ ShowDrawViewDelegate,OfflineGuessDelegate, AvatarViewDelegate>
 @property (retain, nonatomic) IBOutlet UIImageView *inputBackground;
 @property (retain, nonatomic) IBOutlet UIImageView *paperImage;
 @property (retain, nonatomic) IBOutlet UIImageView *feedImage;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loaddingActivity;
 
 
 - (IBAction)clickActionButton:(id)sender;

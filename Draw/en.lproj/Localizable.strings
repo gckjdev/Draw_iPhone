@@ -295,7 +295,8 @@
 "kEmailNotFound" = "Email not found";
 "kLoginFailure" = "Login failed, please login later";
 "kLoginUser" = "Loading...";
-"kSaveImageOK" = "Drawing Saved";
+"kSaveOpusOK" = "Drawing Saved";
+"kSaveOpusFail" = "Saving opus fail";
 "kDeleteAll" = "Delete All";
 
 //4.27 add by Gamy

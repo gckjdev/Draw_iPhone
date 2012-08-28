@@ -29,6 +29,7 @@
 - (void)didCreateDraw:(int)resultCode;
 - (void)didGuessOfflineDraw:(int)resultCode;
 
+- (void)didSaveOpus:(BOOL)succ;
 @end
 
 
@@ -70,7 +71,7 @@
              isMyPaint:(BOOL)isMyPaint
                   word:(NSString*)word
                  image:(UIImage*)image
-        viewController:(PPViewController*)viewController;
+        delegate:(id<DrawDataServiceDelegate>)delegate;
 
 
 @end
