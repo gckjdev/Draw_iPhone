@@ -60,7 +60,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    float topMargin = (self.bounds.size.height - 48) / 2;
+    float topMargin;
+    if ([DeviceDetection isIPAD]){
+        topMargin = (self.bounds.size.height - 48*2) / 2;
+    } else {
+        topMargin = (self.bounds.size.height - 48) / 2;
+    }
     
     if ([DeviceDetection isIPAD]){
         self.mImageView.frame = CGRectMake(20*2, topMargin, 48*2, 48*2);
