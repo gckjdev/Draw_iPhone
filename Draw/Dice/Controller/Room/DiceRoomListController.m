@@ -124,7 +124,7 @@
     [[DiceGameService defaultService] setServerPort:8018];
     
     
-//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.5"];
+//    [[DiceGameService defaultService] setServerAddress:@"192.168.1.7"];
 //    [[DiceGameService defaultService] setServerPort:8080];
     [[DiceGameService defaultService] connectServer:self];
     [self showActivityWithText:NSLS(@"kConnecting")];
@@ -264,7 +264,10 @@
 {
     
     self.currentSession = [[DiceGameService defaultService] sessionInRoom:indexPath.row];
-    if (self.currentSession.password == nil || self.currentSession.password.length <= 0) {
+    if (self.currentSession.password == nil 
+        || self.currentSession.password.length <= 0 
+        || [[UserManager defaultManager] isMe:self.currentSession.createBy]) 
+    {
         _isJoiningDice = YES;
         [[DiceGameService defaultService] joinGameRequest:self.currentSession.sessionId];
         [self showActivityWithText:NSLS(@"kJoining")];
@@ -349,6 +352,7 @@
         NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
         [_diceGameService createRoomWithName:targetText password:password];
         _isJoiningDice = YES;
+        [self showActivityWithText:NSLS(@"kCreatingRoom")];
     }
     
     if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {

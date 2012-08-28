@@ -797,6 +797,7 @@
 "kDiceRoom" = "Liar Dice Room %d";
 
 "kWaitingForMoreUsers" = "Watting for more player...";
-
+"kJoining" = "Entering the room";
+"kCreatingRoom" = "Creating the room";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
