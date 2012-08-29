@@ -127,3 +127,83 @@
     [super dealloc];
 }
 @end
+
+
+
+
+#pragma mark - Get the Menu list for the game type
+int *drawMainMenuTypeList()
+{
+    static int list[] = {    
+        MenuButtonTypeOnlinePlay,   
+        MenuButtonTypeOfflineDraw,   
+        MenuButtonTypeOfflineGuess,   
+        MenuButtonTypeFriendPlay,   
+        MenuButtonTypeTimeline,   
+        MenuButtonTypeShop,    
+
+        //must add the end mark.
+        MenuButtonTypeEnd
+    };
+    return list;
+    
+}
+
+int *diceMainMenuTypeList()
+{
+    static int list[] = {    
+        MenuButtonTypeStart,   
+        MenuButtonTypeRoom,   
+        MenuButtonTypeHelp,   
+        MenuButtonTypeShop,   
+        //must add the end mark.
+        MenuButtonTypeEnd
+    };
+    return list;
+}
+
+int *drawBottomMenuTypeList()
+{
+    static int list[] = {    
+        MenuButtonTypeSettings,   
+        MenuButtonTypeOpus,   
+        MenuButtonTypeFriend,   
+        MenuButtonTypeChat,   
+        MenuButtonTypeFeedback,   
+        
+        //must add the end mark.
+        MenuButtonTypeEnd
+    };
+    return list;    
+}
+
+int *diceBottomMenuTypeList()
+{
+    
+    static int list[] = {    
+        MenuButtonTypeSettings,   
+        MenuButtonTypeFriend,   
+        MenuButtonTypeChat,   
+        MenuButtonTypeFeedback,   
+        
+        //must add the end mark.
+        MenuButtonTypeEnd
+    };
+    return list;
+}
+
+int *getMainMenuTypeListByGameAppType(GameAppType type)
+{
+    if (type == GameAppTypeDraw) {
+        return drawMainMenuTypeList();
+    }
+    return diceMainMenuTypeList();
+}
+int *getBottomMenuTypeListByGameAppType(GameAppType type)
+{
+    if (type == GameAppTypeDraw) {
+        return drawBottomMenuTypeList();
+    }
+    return diceBottomMenuTypeList();
+}
+

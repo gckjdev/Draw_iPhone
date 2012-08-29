@@ -17,8 +17,11 @@ typedef enum{
     MenuButtonTypeFriendPlay,   
     MenuButtonTypeTimeline,   
     MenuButtonTypeShop,   
-    MenuButtonTypeEnd,
     
+    //for dice.
+    MenuButtonTypeStart,
+    MenuButtonTypeRoom,
+    MenuButtonTypeHelp,
     
     //for bottom menu
     
@@ -27,17 +30,21 @@ typedef enum{
     MenuButtonTypeFriend,   
     MenuButtonTypeChat,   
     MenuButtonTypeFeedback,   
-
-    BottomMenuTypeEnd,
+    MenuButtonTypeCheckIn,
+//    BottomMenuTypeEnd,
 
     //unuse
-    MenuButtonTypeCheckIn
     
+    MenuButtonTypeEnd = 1000000
     
 }MenuButtonType;
 
-#define MenuButtonTypeBase MenuButtonTypeOnlinePlay
-#define BottomMenuTypeBase MenuButtonTypeSettings
+//#define MenuButtonTypeBase MenuButtonTypeOnlinePlay
+//#define BottomMenuTypeBase MenuButtonTypeSettings
+
+
+extern int *getMainMenuTypeListByGameAppType(GameAppType type);
+extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 
 #define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 169 : 71)
 #define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 191 : 87)
