@@ -35,4 +35,25 @@
     return DRAW_BACKGROUND;
 }
 
+- (NSString*)lmwallId
+{
+    return DRAW_LM_WALL_ID;
+}
+
+- (NSString*)lmAdPublisherId
+{
+    return DRAW_LM_AD_ID;
+}
+
+- (NSString*)aderAdPublisherId
+{
+    return DRAW_ADER_AD_ID;
+}
+
+- (NSString*)mangoAdPublisherId
+{
+    return DRAW_MANGO_AD_ID;
+}
+
+
 @end

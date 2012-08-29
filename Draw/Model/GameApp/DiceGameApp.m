@@ -35,6 +35,25 @@
     return DICE_BACKGROUND;
 }
 
+- (NSString*)lmwallId
+{
+    return DICE_LM_WALL_ID;
+}
+
+- (NSString*)lmAdPublisherId
+{
+    return DICE_LM_AD_ID;
+}
+
+- (NSString*)aderAdPublisherId
+{
+    return DICE_ADER_AD_ID;
+}
+
+- (NSString*)mangoAdPublisherId
+{
+    return DICE_MANGO_AD_ID;
+}
 
 
 @end

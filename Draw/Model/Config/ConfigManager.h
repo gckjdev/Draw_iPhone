@@ -81,4 +81,10 @@ typedef enum{
 + (BOOL)isShowRecommendApp;
 + (NSString*)getFacetimeServerListString;
 + (NSString *)currentVersion;
+
++ (int)getOnLineDrawExp;
++ (int)getOnLineGuessExp;
++ (int)getOffLineDrawExp;
++ (int)getOffLineGuessExp;
++ (int)getLiarDiceExp;
 @end
