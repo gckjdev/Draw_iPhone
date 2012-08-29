@@ -21,6 +21,8 @@
 #import "GifView.h"
 #import "DiceSoundManager.h"
 #import "DiceSettingView.h"
+#import "ConfigManager.h"
+#import "CommonMessageCenter.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -34,6 +36,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceGamePlayController ()
 
@@ -926,7 +930,11 @@
 // Sync Account Delegate
 - (void)didSyncFinish
 {
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];    
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];  
+    if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+        [self quitDiceGame];
+    }
 }
 
 #pragma mark - use item animations

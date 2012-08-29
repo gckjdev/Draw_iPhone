@@ -812,6 +812,7 @@
 "kCreatingRoom" = "Creating the room";
 
 "kDiceShop" = "Dice Shop";
+"kNotEnoughCoinToContinue" = "You have no enough coin to continue game";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

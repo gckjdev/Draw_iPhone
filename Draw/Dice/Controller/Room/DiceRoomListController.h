@@ -11,11 +11,12 @@
 #import "DiceGameService.h"
 #import "RoomPasswordDialog.h"
 #import "DiceHelpView.h"
+#import "CommonDialog.h"
 
 @class FontButton;
 @class PBGameSession;
 
-@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate> {
+@interface DiceRoomListController : PPTableViewController<CommonGameServiceDelegate, InputDialogDelegate, DiceHelpViewDelegate, CommonDialogDelegate> {
     BOOL _isJoiningDice;
     DiceGameService* _diceGameService;
     PBGameSession* _currentSession;
