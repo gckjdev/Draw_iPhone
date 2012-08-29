@@ -146,7 +146,7 @@
                    title:(NSString *)title 
                    count:(NSNumber *)count
 {
-    FontButton *buttonTemp = [[FontButton alloc] initWithFrame:frame fontName:[[DiceFontManager defaultManager] fontName] pointSize:FONT_SIZE_BUTTON];
+    FontButton *buttonTemp = [[[FontButton alloc] initWithFrame:frame fontName:[[DiceFontManager defaultManager] fontName] pointSize:FONT_SIZE_BUTTON] autorelease];
     [buttonTemp setBackgroundImage:[[DiceImageManager defaultManager] toolsItemBgImage] forState:UIControlStateNormal];
     buttonTemp.fontLable.text = title;
     buttonTemp.fontLable.frame = CGRectOffset(buttonTemp.fontLable.frame, 0, Y_OFFSET_TITLE);

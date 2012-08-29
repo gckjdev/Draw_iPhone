@@ -51,11 +51,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [[BoardService defaultService] getBoardsWithDelegate:self];
-//    MenuPanel *panel = [MenuPanel menuPanelWithController:self];
-//    [self.view addSubview:panel];
     
-    BottomMenuPanel *panel = [BottomMenuPanel panelWithController:self];
+    BottomMenuPanel *panel = [BottomMenuPanel panelWithController:self gameAppType:GameAppTypeDraw];
     [self.view addSubview:panel];
 
 }

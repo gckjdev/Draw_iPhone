@@ -388,8 +388,10 @@
         self.myDiceListHolderView.hidden = YES;
     }
     
+    NSArray *diceList = [[[_diceService diceSession] userDiceList] objectForKey:userId];
+    
     DicesResultView *resultView = [self resultViewOfUser:userId];
-    [resultView setDices:[[[_diceService diceSession] userDiceList] objectForKey:userId] resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
+    [resultView setDices:diceList resultDice:_diceService.lastCallDice wilds:_diceService.diceSession.wilds];
     [resultView showAnimation:self.view.center];
     resultView.delegate = self;
 }
@@ -932,7 +934,10 @@
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-    [self showItemAnimationOnUser:userId itemName:itemName];
+    
+    if (itemId != ItemTypeCut) {
+        [self showItemAnimationOnUser:userId itemName:itemName];
+    }
 }
 
 
@@ -943,17 +948,16 @@
     [self popupOpenDiceView];  
 }
 
-- (void)openDice:(int)multiple
+- (void)openDice
 {
     [self disableAllDiceOperationButtons];
     [self clearAllReciprocol];
-    [_diceService openDice:1];
-    BOOL gender = [[_userManager toPBGameUser] gender]; 
-    [_soundManager openDice:gender];
+    [_diceService openDice];
+    [self playOpenDiceVoice];
 }
 
 - (IBAction)clickOpenDiceButton:(id)sender {
-    [self openDice:1];
+    [self openDice];
 }
 
 - (void)someoneOpenDice
@@ -961,8 +965,20 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
+    [self playOpenDiceVoice];
+}
+
+- (void)playOpenDiceVoice
+{   
     BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender]; 
-    [_soundManager openDice:gender];
+    
+    if (_diceService.openType == OpenTypeNormal) {
+        [_soundManager openDice:gender];
+    }else if (_diceService.openType == OpenTypeScramble) {
+        [_soundManager scrambleOpen:gender];
+    }else if (_diceService.openType == OpenTypeCut) {
+        // TODO: play cut voice.
+    }
 }
 
 
@@ -997,10 +1013,7 @@
     }
     
     [_diceService callDice:dice count:count wilds:_usingWilds];
-    BOOL gender = [[_userManager toPBGameUser] gender]; 
-    [_soundManager callNumber:_diceService.lastCallDiceCount
-                         dice:_diceService.lastCallDice 
-                       gender:gender];
+    [self playCallDiceVoice];
 }
 
 - (void)didSelectDice:(PBDice *)dice count:(int)count
@@ -1024,7 +1037,7 @@
     [self clearAllReciprocol];
 
     if (_diceService.diceSession.lastCallDiceCount >= _diceService.diceSession.playingUserCount*5) {
-        [self openDice:1];
+        [self openDice];
     }else {
         [self callDice:_diceService.diceSession.lastCallDice count:(_diceService.diceSession.lastCallDiceCount + 1)];
     }
@@ -1040,6 +1053,11 @@
 
     [self updateDiceSelecetedView];
     [self popupCallDiceView];
+    [self playCallDiceVoice];
+}
+
+- (void)playCallDiceVoice
+{
     BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
     [_soundManager callNumber:_diceService.lastCallDiceCount
                          dice:_diceService.lastCallDice 
@@ -1147,7 +1165,7 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     [self quitDiceGame];
-    [[AccountService defaultService] deductAccount:200 source:LiarDiceFleeType];
+    [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
 
 - (void)clickBack:(CommonDialog *)dialog
@@ -1196,9 +1214,13 @@
                     userId:(NSString *)userId
 {
     [self popupMessageView:content onUser:userId];
-    
+    [self playMessageVoice:userId contentVoiceId:contentVoiceId.intValue];
+}
+
+- (void)playMessageVoice:(NSString *)userId contentVoiceId:(int)contentVoiceId
+{
     BOOL gender = [[_diceService.diceSession getUserByUserId:userId] gender]; 
-    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:gender];
+    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId gender:gender];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
@@ -1214,9 +1236,7 @@
     [self popupMessageView:message.content onUser:[_userManager userId]];
     [_diceService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
     
-    // TODO: Play voice here;
-    BOOL gender = [[_userManager toPBGameUser] gender];     
-    [[DiceSoundManager defaultManager] playVoiceById:message.voiceId gender:gender];
+    [self playMessageVoice:_userManager.userId contentVoiceId:message.voiceId];
 }
 
 - (void)didClickExepression:(NSString *)key
