@@ -217,6 +217,7 @@
     [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
     
+    [self.titleFontButton.fontLable setText:NSLS(@"kDiceRoomListTitle")];
     [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
     [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
     [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];

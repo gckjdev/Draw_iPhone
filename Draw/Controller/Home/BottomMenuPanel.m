@@ -14,11 +14,15 @@
 #import "ShareController.h"
 #import "FeedbackController.h"
 #import "AccountService.h"
+#import "ShareImageManager.h"
 
 @implementation BottomMenuPanel
 @synthesize controller = _controller;
+@synthesize panelBgImage = _panelBgImage;
+@synthesize gameAppType = _gameAppType;
 
-+ (BottomMenuPanel *)panelWithController:(UIViewController *)controller
++ (BottomMenuPanel *)panelWithController:(UIViewController *)controller 
+                             gameAppType:(GameAppType)gameAppType
 {
     static NSString *identifier = @"BottomMenuPanel";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -26,6 +30,7 @@
         return nil;
     }
     BottomMenuPanel *panel = [topLevelObjects objectAtIndex:0];
+    panel.gameAppType = gameAppType;
     panel.controller = controller;
     [panel loadMenu];
     return  panel;
@@ -35,33 +40,48 @@
 - (void)dealloc
 {
     PPRelease(_controller);
+    [_panelBgImage release];
     [super dealloc];
 }
 
 #define BOTTOM_MENU_PANEL_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-//#define MENU_PANEL_HEIGHT ([DeviceDetection isIPAD] ? 120 : 43)
-static const NSInteger ROW_NUMBER = 5;
 
 
-- (CGRect)frameForMenuIndex:(NSInteger)index
+- (CGRect)frameForMenuIndex:(NSInteger)index number:(NSInteger)number
 {
     BOOL isIPAD = [DeviceDetection isIPAD];
     CGFloat xStart = isIPAD ? 12 : 6;
     CGFloat y = 0;//isIPAD ? 0 : 2;
-    CGFloat xSpace = ((BOTTOM_MENU_PANEL_WIDTH - 2 *xStart) - ROW_NUMBER * BOTTOM_MENU_WIDTH)/ (ROW_NUMBER - 1);   
+    CGFloat xSpace = ((BOTTOM_MENU_PANEL_WIDTH - 2 *xStart) - number * BOTTOM_MENU_WIDTH)/ (number - 1);   
     CGFloat x = index *(xSpace + BOTTOM_MENU_WIDTH) + xStart;
     
     return CGRectMake(x, y, BOTTOM_MENU_WIDTH, BOTTOM_MENU_HEIGHT);
 }
 
+- (NSInteger)menuNumber
+{
+    if (_gameAppType == GameAppTypeDraw) {
+        return 5;
+    }
+    return 4;
+}
+
 - (void)loadMenu
 {
-    int number = 0;
-    for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i, ++ number) {
-        BottomMenu *menu = [BottomMenu bottomMenuWithType:i];
-        menu.frame = [self frameForMenuIndex:number];
+    [self.panelBgImage setImage:[[ShareImageManager defaultManager]
+                                 bottomPanelBGForGameAppType:_gameAppType]];
+    int index = 0;
+    for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i) {
+        BottomMenu *menu = [BottomMenu bottomMenuWithType:i gameAppType:_gameAppType];
+        
+        if (_gameAppType != GameAppTypeDraw && i == MenuButtonTypeOpus) {
+            continue;
+        }
+        [menu setBadgeNumber:index];
+        menu.frame = [self frameForMenuIndex:index number:[self menuNumber]];
         [self addSubview:menu];
         menu.delegate = self;
+        ++ index;
     }
 }
 - (BottomMenu *)getMenuButtonByType:(MenuButtonType)type

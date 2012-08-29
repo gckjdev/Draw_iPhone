@@ -142,6 +142,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.wildsLabel.text = NSLS(@"kDiceWilds");
+    self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
     self.itemsBoxButton.enabled = NO;
 
     self.gameBeginNoteLabel.hidden = YES;
