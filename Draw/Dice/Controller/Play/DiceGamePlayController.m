@@ -303,19 +303,21 @@
 {    
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
+    
+    [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
 
-    switch (item.type) {
-        case ItemTypeRollAgain:
-            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
-            break;
-            
-        case ItemTypeCut:
-            [self openDice:2];
-            break;
-            
-        default:
-            break;
-    }
+//    switch (item.type) {
+//        case ItemTypeRollAgain:
+//            [self useItem:item.type itemName:item.itemName userId:_userManager.userId];
+//            break;
+//            
+//        case ItemTypeCut:
+//            [self openDice:2];
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     [_accountService consumeItem:item.type amount:1]; 
 }
@@ -927,7 +929,6 @@
 
 -(void)openDiceSuccess
 {
-//    [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
 }
 
