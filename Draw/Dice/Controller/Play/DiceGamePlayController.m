@@ -949,7 +949,7 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
-    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender]; 
     [_soundManager openDice:gender];
 }
 
@@ -1185,7 +1185,7 @@
 {
     [self popupMessageView:content onUser:userId];
     
-    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.lastCallUserId] gender]; 
+    BOOL gender = [[_diceService.diceSession getUserByUserId:userId] gender]; 
     [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:gender];
 }
 
@@ -1231,8 +1231,6 @@
                                    playTimeInterval:0.2] autorelease];
     
     [self.view addSubview:view];
-
-//    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:6.0];
     
     [UIView animateWithDuration:1 delay:6.0 options:UIViewAnimationCurveLinear animations:^{
         view.alpha = 0;
