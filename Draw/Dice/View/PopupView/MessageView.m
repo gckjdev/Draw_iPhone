@@ -48,11 +48,13 @@
       textAlignment:(UITextAlignment)textAlignment
 {
     CGSize withSize = CGSizeMake(MESSAGE_MAX_WIDTH, MAXFLOAT);
-    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:pointSize] constrainedToSize:withSize lineBreakMode:UILineBreakModeWordWrap];
     size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
+    size.width += 6;
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
     if (self = [self initWithFrame:rect fontName:fontName pointSize:pointSize]) {
         self.text = message;
+        self.lineBreakMode = UILineBreakModeWordWrap;
         self.textAlignment = textAlignment;
         self.numberOfLines = 0;
         self.backgroundColor = [UIColor clearColor];
