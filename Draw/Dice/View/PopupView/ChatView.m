@@ -142,7 +142,7 @@
     NSString *filePath = [_expressionManager gifPathForExpression:key];
     GifView *view;
     if (filePath != nil) {
-        [button setBackgroundImage:[[DiceImageManager defaultManager] diceExpressionBgImage] forState:UIControlStateNormal];
+//        [button setBackgroundImage:[[DiceImageManager defaultManager] diceExpressionBgImage] forState:UIControlStateNormal];
         
         CGRect expframe = CGRectMake(0, 0, WIDTH_EXPRESSION, HEIGHT_EXPRESSION);
         view = [[[GifView alloc] initWithFrame:expframe

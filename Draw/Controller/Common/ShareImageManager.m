@@ -478,13 +478,38 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedImageNamed:@"h_feed"];
 }
-- (UIImage*)shopImage
+- (UIImage*)shopImageForGameAppType:(GameAppType)gameAppType
 {
-    return [self fixedImageNamed:@"h_shop"];
+    if (gameAppType == GameAppTypeDraw) {
+        return [self fixedImageNamed:@"h_shop"]; 
+    }
+    return [self fixedImageNamed:@"dice_shop"];
 }
 
-//for bottom menu image.
+- (UIImage *)pickToolBackground
+{
+    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
+}
 
+
+- (UIImage *)diceStartMenuImage
+{
+    return [self fixedImageNamed:@"dice_start"];    
+}
+
+- (UIImage*)diceRoomMenuImage
+{
+    return [self fixedImageNamed:@"dice_room"];
+}
+
+- (UIImage *)diceHelpMenuImage
+{
+    return [self fixedImageNamed:@"dice_help"];    
+}
+
+
+
+//for bottom menu image.
 
 - (UIImage *)opusMenuImage
 {
@@ -496,10 +521,6 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"small_sign"];
 }
 
-- (UIImage *)pickToolBackground
-{
-    return [UIImage strectchableImageName:@"popuptools_bg.png"];    
-}
 
 
 - (UIImage *)settingsMenuImageForGameAppType:(GameAppType)gameAppType

@@ -17,8 +17,11 @@ typedef enum{
     MenuButtonTypeFriendPlay,   
     MenuButtonTypeTimeline,   
     MenuButtonTypeShop,   
-    MenuButtonTypeEnd,
     
+    //for dice.
+    MenuButtonTypeStart,
+    MenuButtonTypeRoom,
+    MenuButtonTypeHelp,
     
     //for bottom menu
     
@@ -27,17 +30,15 @@ typedef enum{
     MenuButtonTypeFriend,   
     MenuButtonTypeChat,   
     MenuButtonTypeFeedback,   
-
-    BottomMenuTypeEnd,
-
-    //unuse
-    MenuButtonTypeCheckIn
+    MenuButtonTypeCheckIn,
     
+    MenuButtonTypeEnd = 1000000
     
 }MenuButtonType;
 
-#define MenuButtonTypeBase MenuButtonTypeOnlinePlay
-#define BottomMenuTypeBase MenuButtonTypeSettings
+
+extern int *getMainMenuTypeListByGameAppType(GameAppType type);
+extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 
 #define MENU_BUTTON_WIDTH ([DeviceDetection isIPAD] ? 169 : 71)
 #define MENU_BUTTON_HEIGHT ([DeviceDetection isIPAD] ? 191 : 87)
@@ -49,7 +50,7 @@ typedef enum{
 
 @optional
 - (void)didClickMenuButton:(MenuButton *)menuButton;
-//- (void)didClickBottomMenu:(MenuButton *)menuButton;
+
 
 @end
 
@@ -62,6 +63,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (assign, nonatomic) MenuButtonType type;
 @property (assign, nonatomic) id<MenuButtonDelegate> delegate;
+@property (assign, nonatomic) GameAppType gameAppType;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
@@ -71,7 +73,8 @@ typedef enum{
               tilte:(NSString *)title 
               badge:(NSInteger)badge;
 
-+ (MenuButton *)menuButtonWithType:(MenuButtonType)type;
++ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType;
 - (void)setBadgeNumber:(NSInteger)badge;
 
 

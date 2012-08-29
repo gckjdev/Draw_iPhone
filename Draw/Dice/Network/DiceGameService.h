@@ -12,6 +12,7 @@
 #import "Dice.pb.h"
 #import "DiceNetworkClient.h"
 
+
 @interface DiceGameService : CommonGameNetworkService
 
 + (DiceGameService*)defaultService;
@@ -23,12 +24,13 @@
 - (int)lastCallDice;
 - (int)lastCallDiceCount;
 - (NSString *)openDiceUserId;
-- (int)openType;
+- (OpenType)openType;
 
 - (NSDictionary *)gameResult;
 
 - (void)callDice:(int)dice count:(int)count wilds:(BOOL)wilds;
-- (void)openDice:(int)multiple;
+//- (void)openDice:(int)multiple;
+- (void)openDice;
 
 - (void)userItem:(int)itemId;
 - (void)changeDiceList:(NSString *)userId diceList:(NSArray *)diceList;
