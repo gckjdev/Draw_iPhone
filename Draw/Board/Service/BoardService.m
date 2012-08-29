@@ -36,9 +36,13 @@ typedef enum{
 {
     dispatch_async(workingQueue, ^{
         DeviceType deviceType = [DeviceDetection isIPAD] ? DeviceTypeIPad :  DeviceTypeIPhone;
+
         NSString *appId = [ConfigManager appId];
+        NSString *gameId = [ConfigManager gameId];
+        
         CommonNetworkOutput *output = [BoardNetwork getBoards:BOARD_SERVER_URL 
                                                         appId:appId 
+                                                       gameId:gameId 
                                                    deviceType:deviceType]; 
         NSInteger errorCode = output.resultCode;
         NSArray *boardList = nil;
