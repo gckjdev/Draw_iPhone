@@ -21,6 +21,8 @@
 #import "GifView.h"
 #import "DiceSoundManager.h"
 #import "DiceSettingView.h"
+#import "ConfigManager.h"
+#import "CommonMessageCenter.h"
 
 #define AVATAR_TAG_OFFSET   8000
 #define NICKNAME_TAG_OFFSET 1100
@@ -34,6 +36,8 @@
 #define DURATION_SHOW_GAIN_COINS 3
 
 #define DURATION_ROLL_BELL 1
+
+#define DICE_THRESHOLD_COIN ([ConfigManager getDiceThresholdCoin])
 
 @interface DiceGamePlayController ()
 
@@ -926,18 +930,18 @@
 // Sync Account Delegate
 - (void)didSyncFinish
 {
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-    
-    // TODO: 
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];  
+    if ([_accountService getBalance] < DICE_THRESHOLD_COIN) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
+        [self quitDiceGame];
+    }
 }
 
 #pragma mark - use item animations
 - (void)useItem:(int)itemId itemName:(NSString *)itemName userId:(NSString *)userId
 {
     [_diceService userItem:itemId];
-    if (itemId != ItemTypeCut) {
-        [self showItemAnimationOnUser:userId itemName:itemName];
-    }
+    [self showItemAnimationOnUser:userId itemName:itemName];
 }
 
 
@@ -948,13 +952,12 @@
     [self popupOpenDiceView];  
 }
 
-//- (void)openDice:(int)multiple
 - (void)openDice
 {
     [self disableAllDiceOperationButtons];
     [self clearAllReciprocol];
     [_diceService openDice];
-    [self playOpenVoice];
+    [self playOpenDiceVoice];
 }
 
 - (IBAction)clickOpenDiceButton:(id)sender {
@@ -966,20 +969,15 @@
     [self clearAllReciprocol];
     [self disableAllDiceOperationButtons];
     [self popupOpenDiceView];  
-    [self playOpenVoice];
+    [self playOpenDiceVoice];
 }
 
-- (void)playOpenVoice
-{
-    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender];
-    if (_diceService.openType == OpenTypeNormal) {
-        [_soundManager openDice:gender];
-    }else if (_diceService.openType == OpenTypeScramble){
-        [_soundManager scrambleOpen:gender];
-    }else if (_diceService.openType == OpenTypeCut){
-        // TODO: Play voice, cut.
-    }
+- (void)playOpenDiceVoice
+{   
+    BOOL gender = [[_diceService.diceSession getUserByUserId:_diceService.openDiceUserId] gender]; 
+    [_soundManager openDice:gender];
 }
+
 
 #pragma mark - DiceSelectedViewDelegate
 
@@ -1053,7 +1051,6 @@
     [self updateDiceSelecetedView];
     [self popupCallDiceView];
     [self playCallDiceVoice];
-
 }
 
 - (void)playCallDiceVoice
@@ -1063,6 +1060,7 @@
                          dice:_diceService.lastCallDice 
                        gender:gender];
 }
+
 
 - (void)gameOver;
 {
@@ -1213,13 +1211,13 @@
                     userId:(NSString *)userId
 {
     [self popupMessageView:content onUser:userId];
-    [self playMessageVoice:userId contentVoiceId:contentVoiceId];
+    [self playMessageVoice:userId contentVoiceId:contentVoiceId.intValue];
 }
 
-- (void)playMessageVoice:(NSString *)userId contentVoiceId:(NSString *)contentVoiceId
+- (void)playMessageVoice:(NSString *)userId contentVoiceId:(int)contentVoiceId
 {
     BOOL gender = [[_diceService.diceSession getUserByUserId:userId] gender]; 
-    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId.intValue gender:gender]; 
+    [[DiceSoundManager defaultManager] playVoiceById:contentVoiceId gender:gender];
 }
 
 - (void)someoneSendExpression:(NSString *)expressionId userId:(NSString *)userId
@@ -1235,8 +1233,7 @@
     [self popupMessageView:message.content onUser:[_userManager userId]];
     [_diceService chatWithContent:message.content contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
     
-    // TODO: Play voice here;
-    [self playMessageVoice:_userManager.userId contentVoiceId:[NSString stringWithFormat:@"%d", message.voiceId]];
+    [self playMessageVoice:_userManager.userId contentVoiceId:message.voiceId];
 }
 
 - (void)didClickExepression:(NSString *)key

@@ -281,4 +281,13 @@
     return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
 }
 
++ (int)getDiceFleeCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_FLEE_COIN_COIN" defaultValue:200];
+}
++ (int)getDiceThresholdCoin
+{
+    return [MobClickUtils getIntValueByKey:@"DICE_THRESHOLD_COIN" defaultValue:400];
+}
+
 @end
