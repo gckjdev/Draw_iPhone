@@ -260,5 +260,25 @@
     return currentVersion;
 }
 
++ (int)getOnLineDrawExp
+{
+    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:15];
+}
++ (int)getOnLineGuessExp
+{
+    return [MobClickUtils getIntValueByKey:@"ONLINE_GUESS_EXP" defaultValue:10];
+}
++ (int)getOffLineDrawExp
+{
+    return [MobClickUtils getIntValueByKey:@"OFFLINE_DRAW_EXP" defaultValue:15];
+}
++ (int)getOffLineGuessExp
+{
+    return [MobClickUtils getIntValueByKey:@"OFFLINE_GUESS_EXP" defaultValue:2];
+}
++ (int)getLiarDiceExp
+{
+    return [MobClickUtils getIntValueByKey:@"LIAR_DICE_EXP" defaultValue:5];
+}
 
 @end
