@@ -293,7 +293,7 @@ static DiceGameService* _defaultService;
     return self.diceSession.openDiceUserId;
 }
 
-- (int)openType
+- (OpenType)openType
 {
     return self.diceSession.openType;
 }
@@ -305,15 +305,16 @@ static DiceGameService* _defaultService;
 
 
 
-- (void)openDice:(int)multiple
+//- (void)openDice:(int)multiple
+- (void)openDice
 {
     PPDebug(@"****************** ME OPEN DICE **********************");
     
-    int openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? 0 : 1;
+    OpenType openType = [self.user.userId isEqualToString:self.diceSession.currentPlayUserId] ? OpenTypeNormal : OpenTypeScramble;
     
-    if (multiple >= 2) {
-        openType = 2;
-    }
+//    if (multiple >= 2) {
+//        openType = 2;
+//    }
     
     self.diceSession.openDiceUserId = self.user.userId;
     self.diceSession.openType = openType;
@@ -321,7 +322,7 @@ static DiceGameService* _defaultService;
     [(DiceNetworkClient *)_networkClient sendOpenDiceRequest:self.user.userId
                                                    sessionId:self.session.sessionId
                                                     openType:openType
-                                                    multiple:multiple]; 
+                                                    multiple:1]; 
 }
 
 @end

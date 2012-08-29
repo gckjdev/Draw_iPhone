@@ -46,7 +46,7 @@
     self.lastCallDice = 0;
     self.lastCallDiceCount = 0;
     self.openDiceUserId = nil;
-    self.openType = 0;
+    self.openType = OpenTypeNormal;
     self.gameResult = nil;
     self.wilds = false;
     self.isMeAByStander = YES;
