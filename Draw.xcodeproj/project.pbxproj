@@ -262,6 +262,8 @@
 		C21309D615E73A590072A18E /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D315E73A590072A18E /* UIGlossyButton.m */; };
 		C21309D715E73A590072A18E /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309D515E73A590072A18E /* UIView+LayerEffects.m */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
+		C22585CD15EDC9B5009D686D /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CB15EDC9B5009D686D /* femaleImage.png */; };
+		C22585CE15EDC9B5009D686D /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C22585CC15EDC9B5009D686D /* maleImage.png */; };
 		C23163A415577B8E00AC132B /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C23163A115577B8E00AC132B /* correct.mp3 */; };
 		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
 		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
@@ -1427,6 +1429,8 @@
 		C21309D515E73A590072A18E /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C22585CB15EDC9B5009D686D /* femaleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleImage.png; sourceTree = "<group>"; };
+		C22585CC15EDC9B5009D686D /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
 		C23163A115577B8E00AC132B /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
 		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
@@ -3353,6 +3357,8 @@
 		C213093015E37BA80072A18E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				C22585CB15EDC9B5009D686D /* femaleImage.png */,
+				C22585CC15EDC9B5009D686D /* maleImage.png */,
 				C213096715E4BD830072A18E /* dice_quit_btn@2x.png */,
 				C213093115E37BA80072A18E /* dice_close_btn@2x.png */,
 				C213093215E37BA80072A18E /* dice_face_bg@2x.png */,
@@ -7100,6 +7106,8 @@
 				CA501C4915ECFB0600D41161 /* UserInfoCell.xib in Resources */,
 				CA501C4B15ECFE6400D41161 /* CommentHeaderView.xib in Resources */,
 				CA501C4D15ECFEE200D41161 /* DrawInfoCell.xib in Resources */,
+				C22585CD15EDC9B5009D686D /* femaleImage.png in Resources */,
+				C22585CE15EDC9B5009D686D /* maleImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
