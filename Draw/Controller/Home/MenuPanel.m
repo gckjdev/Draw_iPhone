@@ -27,8 +27,10 @@
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize controller = _controller;
+@synthesize gameAppType = _gameAppType;
 
-+ (MenuPanel *)menuPanelWithController:(HomeController *)controller
++ (MenuPanel *)menuPanelWithController:(UIViewController *)controller
+                           gameAppType:(GameAppType)gameAppType
 {
     static NSString *identifier = @"MenuPanel";
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -37,6 +39,8 @@
     }
     MenuPanel *panel = [topLevelObjects objectAtIndex:0];
     panel.controller = controller;
+    panel.gameAppType = gameAppType;
+    
     panel.scrollView.delegate = panel;
     [panel loadMenu];
     return  panel;
@@ -75,11 +79,14 @@ static const NSInteger MENU_NUMBER_PER_PAGE = 6;
 - (void)loadMenu
 {
     int number = 0;
-    for (int i = MenuButtonTypeBase; i < MenuButtonTypeEnd; ++ i, ++ number) {
-        MenuButton *menu = [MenuButton menuButtonWithType:i];
-        menu.frame = [self frameForMenuIndex:number];
+    
+    int *list = getMainMenuTypeListByGameAppType(self.gameAppType);
+    while (list != NULL && (*list) != MenuButtonTypeEnd) {
+        MenuButton *menu = [MenuButton menuButtonWithType:(*list)];
+        menu.frame = [self frameForMenuIndex:number++];
         [self.scrollView addSubview:menu];
         menu.delegate = self;
+        list++;
     }
     [self.scrollView setContentSize:CGSizeMake((number / MENU_NUMBER_PER_PAGE)  * MENU_PANEL_WIDTH, MENU_PANEL_HEIGHT)];
     

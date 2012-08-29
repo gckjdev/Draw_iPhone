@@ -70,19 +70,21 @@
 {
     [self.panelBgImage setImage:[[ShareImageManager defaultManager]
                                  bottomPanelBGForGameAppType:_gameAppType]];
+    
+    int *list = getBottomMenuTypeListByGameAppType(self.gameAppType);
     int index = 0;
-    for (int i = BottomMenuTypeBase; i < BottomMenuTypeEnd; ++ i) {
-        BottomMenu *menu = [BottomMenu bottomMenuWithType:i gameAppType:_gameAppType];
-        
-        if (_gameAppType != GameAppTypeDraw && i == MenuButtonTypeOpus) {
-            continue;
-        }
+    while (list != NULL && (*list) != MenuButtonTypeEnd) {
+        MenuButtonType type = *list;
+        BottomMenu *menu = [BottomMenu bottomMenuWithType:type gameAppType:self.gameAppType];
         [menu setBadgeNumber:index];
         menu.frame = [self frameForMenuIndex:index number:[self menuNumber]];
         [self addSubview:menu];
         menu.delegate = self;
-        ++ index;
+        ++ index;        
+        ++ list;
     }
+    
+
 }
 - (BottomMenu *)getMenuButtonByType:(MenuButtonType)type
 {
