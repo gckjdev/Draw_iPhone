@@ -143,10 +143,10 @@
     }
     
     
-    self.adView = [[AdService defaultService] createAdInView:self                  
-                                                       frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(43, 60, 320, 50)
-                                                     useLmAd:YES];
+//    self.adView = [[AdService defaultService] createAdInView:self                  
+//                                                       frame:CGRectMake(0, 0, 320, 50) 
+//                                                   iPadFrame:CGRectMake(43, 60, 320, 50)
+//                                                     useLmAd:YES];
     
     
     
@@ -185,9 +185,10 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
-    if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
-        //[self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
-    }
+//    if ([ConfigManager isInReviewVersion] == NO && ([LocaleUtils isChina] || [LocaleUtils isOtherChina])){
+//        //[self.shopButton setTitle:NSLS(@"kFreeGetCoins") forState:UIControlStateNormal];
+//    }
+
     [self enterNextControllerWityType:self.notificationType];
     
 
@@ -386,8 +387,6 @@
                                          userLevel:[[LevelService defaultService] level]
                                     guessDiffLevel:[ConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
-
-        [[DiceGameService defaultService] joinGameRequest];    
     }
     
     _isTryJoinGame = NO;

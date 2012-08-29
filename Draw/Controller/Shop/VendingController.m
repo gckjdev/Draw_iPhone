@@ -275,8 +275,7 @@ static VendingController* staticVendingController = nil;
         } else {
             [CommonItemInfoView showItem:item infoInView:self];
         }
-    }
-    
+    }    
 }
 
 #define FALLING_TIME    0.05
