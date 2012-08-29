@@ -13,6 +13,7 @@
 @interface BoardNetwork : NSObject
 + (CommonNetworkOutput*)getBoards:(NSString*)baseURL
                             appId:(NSString*)appId
-                       deviceType:(int)deviceType;
+                           gameId:(NSString*)gameId
+                       deviceType:(int)deviceType; //ipad iphone?
 
 @end

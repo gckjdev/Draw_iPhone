@@ -18,6 +18,7 @@
 
 + (CommonNetworkOutput*)getBoards:(NSString*)baseURL
                                       appId:(NSString*)appId
+                                      gameId:(NSString*)gameId
                                       deviceType:(int)deviceType //ipad iphone?
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -29,6 +30,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GETBOARDLIST];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
         
         

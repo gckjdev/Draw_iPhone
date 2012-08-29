@@ -107,18 +107,23 @@ enum {
     rowsInSectionUser = 3;
     
     //section guessword
-    rowOfLanguage = 0;
-    
-    //no matter what the language is, the level is normal.
-    if (languageType == ChineseType) {
-        rowOfLevel = -1;
-        rowOfCustomWord = 1;
-        rowsInSectionGuessWord = 2;
-    }else {
-        rowOfLevel = -1;
-        rowOfCustomWord = -1;
-        rowsInSectionGuessWord = 1;
+    if (isDrawApp()) {
+        //no matter what the language is, the level is normal.
+        if (languageType == ChineseType) {
+            rowOfLanguage = 0;
+            rowOfLevel = -1;
+            rowOfCustomWord = 1;
+            rowsInSectionGuessWord = 2;
+        }else {
+            rowOfLanguage = 0;
+            rowOfLevel = -1;
+            rowOfCustomWord = -1;
+            rowsInSectionGuessWord = 1;
+        }
+    } else if (isDiceApp()) {
+        rowsInSectionGuessWord = 0;
     }
+
     
     //section sound
     rowOfSoundSwitcher = 0;

@@ -8,10 +8,8 @@
 
 #import "ShareImageManager.h"
 #import "UIImageUtil.h"
-#import "LocaleUtils.h"
-#import "DeviceDetection.h"
-#import "PPDebug.h"
 #import "FileUtil.h"
+
 
 @implementation ShareImageManager
 
@@ -453,7 +451,10 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)defaultBoardImage
 {
-    return [UIImage imageNamed:@"default_board.png"];
+    if (isDiceApp()) {
+//        return [UIImage imageNamed:@"draw_share.png"];       
+    }
+    return [UIImage imageNamed:@"default_board.png"];    
 }
 
 #pragma mark - menu button image
