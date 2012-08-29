@@ -15,6 +15,7 @@
 @synthesize title = _title;
 @synthesize type = _type;
 @synthesize delegate = _delegate;
+@synthesize gameAppType = _gameAppType;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
@@ -57,14 +58,22 @@
         case MenuButtonTypeTimeline:
             return NSLS(@"kFeed");
         case MenuButtonTypeShop:
-            return NSLS(@"kShop");            
+            return NSLS(@"kShop"); 
+        case MenuButtonTypeStart:
+            return NSLS(@"kStart"); 
+        case MenuButtonTypeHelp:
+            return NSLS(@"kHelp"); 
+        case MenuButtonTypeRoom:
+            return NSLS(@"kRoom"); 
+
         default:
             return nil;
     }
     
 }
 
-+ (UIImage *)imageForMenuButtonType:(MenuButtonType)type
++ (UIImage *)imageForMenuButtonType:(MenuButtonType)type 
+                        gameAppType:(GameAppType)gameAppType
 {
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -80,7 +89,13 @@
         case MenuButtonTypeTimeline:
             return [imageManager timelineImage];
         case MenuButtonTypeShop:
-            return [imageManager shopImage];
+            return [imageManager shopImageForGameAppType:gameAppType];
+        case MenuButtonTypeStart:
+            return [imageManager diceStartMenuImage];
+        case MenuButtonTypeHelp:
+            return [imageManager diceHelpMenuImage];
+        case MenuButtonTypeRoom:
+            return [imageManager diceRoomMenuImage];
         default:
             return nil;
     }
@@ -94,9 +109,11 @@
     }
 }
 
-+ (MenuButton *)menuButtonWithType:(MenuButtonType)type
++ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType
+
 {
-    UIImage *image = [MenuButton imageForMenuButtonType:type];
+    UIImage *image = [MenuButton imageForMenuButtonType:type gameAppType:gameAppType];
     NSString *title = [MenuButton titleForMenuButtonType:type];
     MenuButton *menu = [MenuButton menuButtonWithImage:image 
                                                  title:title 

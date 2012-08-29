@@ -31,16 +31,10 @@ typedef enum{
     MenuButtonTypeChat,   
     MenuButtonTypeFeedback,   
     MenuButtonTypeCheckIn,
-//    BottomMenuTypeEnd,
-
-    //unuse
     
     MenuButtonTypeEnd = 1000000
     
 }MenuButtonType;
-
-//#define MenuButtonTypeBase MenuButtonTypeOnlinePlay
-//#define BottomMenuTypeBase MenuButtonTypeSettings
 
 
 extern int *getMainMenuTypeListByGameAppType(GameAppType type);
@@ -56,7 +50,7 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 
 @optional
 - (void)didClickMenuButton:(MenuButton *)menuButton;
-//- (void)didClickBottomMenu:(MenuButton *)menuButton;
+
 
 @end
 
@@ -69,6 +63,7 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (assign, nonatomic) MenuButtonType type;
 @property (assign, nonatomic) id<MenuButtonDelegate> delegate;
+@property (assign, nonatomic) GameAppType gameAppType;
 
 + (MenuButton *)menuButtonWithImage:(UIImage *)image 
                               title:(NSString *)title
@@ -78,7 +73,8 @@ extern int *getBottomMenuTypeListByGameAppType(GameAppType type);
               tilte:(NSString *)title 
               badge:(NSInteger)badge;
 
-+ (MenuButton *)menuButtonWithType:(MenuButtonType)type;
++ (MenuButton *)menuButtonWithType:(MenuButtonType)type 
+                       gameAppType:(GameAppType)gameAppType;
 - (void)setBadgeNumber:(NSInteger)badge;
 
 
