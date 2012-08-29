@@ -9,16 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
 #import "UserService.h"
+#import "CommonInfoView.h"
 @class FontButton;
 @class DiceAvatarView;
 @class PBGameUser;
 @class PPViewController;
 
-@interface DiceUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
+@interface DiceUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 
-+ (void)showUser:(PBGameUser*)afriend 
-      infoInView:(UIViewController*)superController;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
++ (void)showUser:(PBGameUser*)aUser 
+      infoInView:(PPViewController*)superController;
+
 + (void)showUser:(NSString*)userId 
         nickName:(NSString*)nickName 
           avatar:(NSString*)avatar 
@@ -29,8 +30,8 @@
            hasQQ:(BOOL)didHasQQ 
      hasFacebook:(BOOL)didHasFacebook
       infoInView:(PPViewController*)superController;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
-@property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *userName;
 @property (retain, nonatomic) IBOutlet UIImageView *snsTagImageView;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;

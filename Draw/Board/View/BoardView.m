@@ -11,6 +11,8 @@
 #import "WebBoardView.h"
 #import "ImageBoardView.h"
 #import "JumpHandler.h"
+#import "ShareImageManager.h"
+#import "AdService.h"
 
 @implementation BoardView
 @synthesize board = _board;
@@ -49,6 +51,9 @@
             return [[[WebBoardView alloc] initWithBoard:board] autorelease];
         case BoardTypeImage:
             return [[[ImageBoardView alloc] initWithBoard:board] autorelease];
+        case BoardTypeDefault:
+            return [[[DefaultBoardView alloc] initWithBoard:board] autorelease];
+            
         default:
             return nil;
     }
@@ -84,6 +89,28 @@
         }
     }
     return YES;
+}
+
+@end
+
+
+@implementation DefaultBoardView
+
+- (void)loadView
+{
+    [super loadView];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    [imageView setImage:[[ShareImageManager defaultManager] defaultBoardImage]];
+    [self addSubview:imageView];
+    [imageView release];
+    
+    [[AdService defaultService] createAdInView:self 
+                                adPlatformType:AdPlatformLm
+                                 adPublisherId:@"eb4ce4f0a0f1f49b6b29bf4c838a5147"
+                                         frame:CGRectMake(0, 0, 320, 50) 
+                                     iPadFrame:CGRectMake((768-320)/2, 0, 320, 50)];
+
+    
 }
 
 @end

@@ -33,6 +33,8 @@
             return [[[WebBoard alloc] initWithDictionary:dict] autorelease];
         case BoardTypeImage:
             return [[[ImageBoard alloc] initWithDictionary:dict] autorelease];
+        case BoardTypeDefault:
+            return [[[Board alloc] initWithDictionary:dict] autorelease];
         default:
             return nil;
     }
@@ -49,6 +51,17 @@
         self.boardId = [dict objectForKey:PARA_BOARDID];
     }
     return self;
+}
+
++ (Board *)defaultBoard
+{
+    Board *board = [[[Board alloc] init] autorelease];
+    board.type = BoardTypeDefault;
+    board.status = BoardStatusRun;
+    board.version = @"1";
+    board.boardId = @"1";
+    board.index = -1;
+    return board;
 }
 
 #define CODE_KEY_TYPE @"type"

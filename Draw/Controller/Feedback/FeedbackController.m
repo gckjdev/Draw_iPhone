@@ -53,16 +53,16 @@
 
 
 #pragma mark - Table dataSource ,table view delegate
-enum {
-    SHARE = 0,
-    ADD_WORDS,
-    REPORT_BUG,
-    FEEDBACK,
-    MORE_APP,
-    GIVE_REVIEW,
-    ABOUT,
-    FEEDBACK_COUNT
-};
+//enum {
+//    SHARE = 0,
+//    ADD_WORDS,
+//    REPORT_BUG,
+//    FEEDBACK,
+//    MORE_APP,
+//    GIVE_REVIEW,
+//    ABOUT,
+//    FEEDBACK_COUNT
+//};
 
 #define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 700 : 350)
 #define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 600 : 300)
@@ -154,24 +154,41 @@ enum {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
+    
+    
+    NSString *shareBodyModel =nil;
+    if (isDrawApp()) {
+        shareBodyModel = NSLS(@"kShare_message_body");
+    }else if (isDiceApp()) {
+        shareBodyModel = NSLS(@"kDice_share_message_body");
+    }
+    
+    NSString *shareBody = [NSString stringWithFormat:shareBodyModel, NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]];
+    
     switch (buttonIndex) {
         case SHARE_VIA_SMS: {
-            [self sendSms:nil body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]]];
+            [self sendSms:nil body:shareBody];
         } break;
         case SHARE_VIA_EMAIL: {
-            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:NSLS(@"kEmail_subject") body:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] isHTML:NO delegate:self];
+            NSString *emailSubject = nil;
+            if (isDrawApp()) {
+                emailSubject = NSLS(@"kEmail_subject");
+            }else if (isDiceApp()) {
+                emailSubject = NSLS(@"kDice_email_subject");
+            }
+            [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
         } break;
         case SHARE_VIA_FACEBOOK: {
             if ([[UserManager defaultManager] hasBindSinaWeibo]){
-                [[SinaSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[SinaSNSService defaultService] publishWeibo:shareBody delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindQQWeibo]){
-                [[QQWeiboService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[QQWeiboService defaultService] publishWeibo:shareBody delegate:self];
             }
             
             if ([[UserManager defaultManager] hasBindFacebook]){
-                [[FacebookSNSService defaultService] publishWeibo:[NSString stringWithFormat:NSLS(@"kShare_message_body"), NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),[UIUtils getAppLink:[ConfigManager appId]]] delegate:self];
+                [[FacebookSNSService defaultService] publishWeibo:shareBody delegate:self];
             } 
         } break;
         default:
@@ -239,6 +256,7 @@ enum {
     } 
     
     else if (indexPath.row  == rowOfGiveReview) {
+        PPDebug(@"<FeedbackController>appId :%@", [ConfigManager appId]);
         [UIUtils gotoReview:[ConfigManager appId]];
     } 
     

@@ -66,19 +66,21 @@
 #import "BoardManager.h"
 
 @interface HomeController()
-
+{
+    BoardPanel *_boardPanel;
+}
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
 - (BOOL)isRegistered;
 - (void)toRegister;
-
+- (void)updateBoardPanelWithBoards:(NSArray *)boards;
 @end
 
 @implementation HomeController
 @synthesize facetimeButton = _facetimeButton;
 @synthesize diceButton = _diceButton;
 
-@synthesize adView = _adView;
+//@synthesize adView = _adView;
 @synthesize recommendButton = _recommendButton;
 @synthesize notificationType = _notificationType;
 @synthesize menuPanel = _menuPanel;
@@ -130,6 +132,10 @@
 {        
     
     
+    Board *defaultBoard = [Board defaultBoard];
+    NSArray *borads = [NSArray arrayWithObject:defaultBoard];
+    PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
+    [self updateBoardPanelWithBoards:borads];
     
     [[BoardService defaultService] getBoardsWithDelegate:self];
     
@@ -501,7 +507,7 @@
     PPRelease(_diceButton);
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
-    PPRelease(_adView);
+//    PPRelease(_adView);
     [super dealloc];
 }
 
@@ -659,26 +665,17 @@ BOOL hasGetLocalBoardList = NO;
           resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-        if ([boards count] != 0) {
-            [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
-            BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
-            [boardPanel setBoardList:boards];
-            boardPanel.tag = BOARD_PANEL_TAG;
-            [self.view addSubview:boardPanel];
-            [[BoardManager defaultManager] saveBoardList:boards];
-        }
+        PPDebug(@"<didGetBoards> update Board Panel With Remote Boards ");
+        [self updateBoardPanelWithBoards:boards];
+        [[BoardManager defaultManager] saveBoardList:boards];
     }else {
         //start timer to fetch. use the local
         if(!hasGetLocalBoardList){
-            NSArray * boardList = [[BoardManager defaultManager] getLocalBoardList];
+            NSArray * boardList = [[BoardManager defaultManager] 
+                                   getLocalBoardList];
             hasGetLocalBoardList = YES;
-            if ([boardList count] != 0) {
-                [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
-                BoardPanel *boardPanel = [BoardPanel boardPanelWithController:self];
-                boardPanel.tag = BOARD_PANEL_TAG;
-                [boardPanel setBoardList:boardList];
-                [self.view addSubview:boardPanel];            
-            }
+            PPDebug(@"<didGetBoards> update Board Panel With Local Boards ");
+            [self updateBoardPanelWithBoards:boardList];
         }
         [NSTimer scheduledTimerWithTimeInterval:interval target:self 
                                        selector:@selector(updateBoardList:)
@@ -688,5 +685,15 @@ BOOL hasGetLocalBoardList = NO;
     }
 }
 
+- (void)updateBoardPanelWithBoards:(NSArray *)boards
+{
+    if ([boards count] != 0) {
+        [[self.view viewWithTag:BOARD_PANEL_TAG] removeFromSuperview];
+        _boardPanel = [BoardPanel boardPanelWithController:self];
+        _boardPanel.tag = BOARD_PANEL_TAG;
+        [_boardPanel setBoardList:boards];
+        [self.view addSubview:_boardPanel];  
+    }
 
+}
 @end

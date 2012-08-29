@@ -295,7 +295,8 @@
 "kEmailNotFound" = "Email not found";
 "kLoginFailure" = "Login failed, please login later";
 "kLoginUser" = "Loading...";
-"kSaveImageOK" = "Drawing Saved";
+"kSaveOpusOK" = "Drawing Saved";
+"kSaveOpusFail" = "Saving opus fail";
 "kDeleteAll" = "Delete All";
 
 //4.27 add by Gamy
@@ -797,6 +798,12 @@
 "kDiceRoom" = "Liar Dice Room %d";
 
 "kWaitingForMoreUsers" = "Watting for more player...";
+
+"kDice_share_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
+"kDice_email_subject" = "Share a funny iOS game - Happy lying dice";
+
+"kJoining" = "Entering the room";
+"kCreatingRoom" = "Creating the room";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 

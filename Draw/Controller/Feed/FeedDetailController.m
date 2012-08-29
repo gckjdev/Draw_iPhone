@@ -21,7 +21,7 @@
 #import "TimeUtils.h"
 #import "CommonUserInfoView.h"
 #import "ShareService.h"
-#import "DrawDataService.h"
+//#import "DrawDataService.h"
 
 
 @interface FeedDetailController()
@@ -45,6 +45,7 @@
 @synthesize inputBackground = _inputBackground;
 @synthesize paperImage = _paperImage;
 @synthesize feedImage;
+@synthesize loaddingActivity;
 @synthesize avatarView = _avatarView;
 
 
@@ -283,7 +284,7 @@
 - (void)loadDrawFeed
 {
     self.actionButton.hidden = YES;
-    [self showActivityWithText:NSLS(@"kLoading")];
+//    [self showActivityWithText:NSLS(@"kLoading")];
     [_feedService getFeedByFeedId:self.feed.feedId delegate:self];
 }
 
@@ -335,6 +336,7 @@
     [self setInputBackground:nil];
     [self setPaperImage:nil];
     [self setFeedImage:nil];
+    [self setLoaddingActivity:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -385,8 +387,8 @@
     PPRelease(_drawView);
     PPRelease(_inputBackground);
     PPRelease(_paperImage);
-    
-    [feedImage release];
+    PPRelease(feedImage);
+    PPRelease(loaddingActivity);
     [super dealloc];
 }
 - (IBAction)clickSendButton:(id)sender {
@@ -441,10 +443,20 @@
                                             nickName:_feed.feedUser.nickName
                                            isMyPaint:[_feed isMyOpus] 
                                                 word:_feed.wordText
-                                               image:[_drawView createImage] viewController:self];
+                                               image:[_drawView createImage] 
+                                            delegate:self];
     
     button.enabled = NO;
     button.selected = YES;
+}
+
+- (void)didSaveOpus:(BOOL)succ
+{
+    if (succ) {
+        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+    }
 }
 
 
@@ -519,6 +531,7 @@
         [self updateTime:feed];
         [self updateDrawView:feed];
         self.feedImage.hidden = YES;
+        [self.loaddingActivity stopAnimating];
         [self hideActivity];
     }else{
         [self hideActivity];

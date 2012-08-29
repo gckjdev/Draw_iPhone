@@ -528,12 +528,31 @@
                                           actionName:DB_FIELD_ACTION_SAVE_TIMES];
     }
     
-    [[ShareService defaultService] shareWithImage:_image drawUserId:_drawUserId isDrawByMe:_isMyPaint drawWord:wordText];    
+    [[ShareService defaultService] shareWithImage:_image
+                                       drawUserId:_drawUserId 
+                                       isDrawByMe:_isMyPaint
+                                         drawWord:wordText];    
     
-    [[DrawDataService defaultService] saveActionList:self.drawActionList userId:_drawUserId nickName:_drawUserNickName isMyPaint:_isMyPaint word:self.wordText image:_image viewController:self];
+    [[DrawDataService defaultService] saveActionList:self.drawActionList 
+                                              userId:_drawUserId 
+                                            nickName:_drawUserNickName 
+                                           isMyPaint:_isMyPaint 
+                                                word:self.wordText 
+                                               image:_image 
+                                            delegate:self];
     self.saveButton.enabled = NO;
     self.saveButton.selected = YES;
 }
+
+- (void)didSaveOpus:(BOOL)succ
+{
+    if (succ) {
+        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+    }
+}
+
 
 - (IBAction)clickExitButton:(id)sender {
     
